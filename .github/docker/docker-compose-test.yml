@@ -14,6 +14,7 @@ services:
       - /gt/sc-prog-repos/emr/.github/docker/ptclient/supervisord.conf:/etc/supervisor/supervisord.conf
       - /gt/sc-prog-repos/emr/.github/docker/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+      - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
   ptserver:
     container_name: ptserver
@@ -30,6 +31,7 @@ services:
       - /gt/sc-prog-repos/emr/.github/docker/ptserver/supervisord.conf:/etc/supervisor/supervisord.conf
       - /gt/sc-prog-repos/emr/.github/docker/ptserver/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+      - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
   mariadb:
     container_name: mariadb
@@ -40,6 +42,7 @@ services:
       - /gt/sc-prog-repos/emr/.github/docker/db/supervisord.conf:/etc/supervisor/supervisord.conf
       - /gt/sc-prog-repos/emr/.github/docker/db/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+      - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
     ports:
       - 4000:3306
 
@@ -62,6 +65,7 @@ services:
       - /gt/sc-prog-repos/emr/.github/docker/puppet/supervisord.conf:/etc/supervisor/supervisord.conf
       - /gt/sc-prog-repos/emr/.github/docker/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+      - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
   phpmyadmin:
     container_name: phpmyadmin

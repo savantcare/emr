@@ -32,7 +32,7 @@ jobs:
           sudo mv puppet /gt/sc-prog-repos/emr/puppet
           sudo mv utils /gt/sc-prog-repos/emr/utils
           sudo mv .github /gt/sc-prog-repos/emr/.github
-          sudo mkdir -p /gt/sc-prog-repos/emr/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
+          sudo mkdir -p /tmp/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
@@ -127,7 +127,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: result
-          path: /gt/sc-prog-repos/emr/logs/
+          path: /tmp/logs/
 #
 #
 #
