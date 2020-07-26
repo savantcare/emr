@@ -12,13 +12,14 @@ jobs:
   ptclient-app: # This is the first job https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
     runs-on: ubuntu-18.04 # For the list of github hosted runners see https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     steps:
+      # ifconfig # Commented this since local runner act does not have ifconfig in ubuntu full
       - name: Goal 1 -> Get env info
         run: |
-          # ifconfig # Commented this since local runner act does not have ifconfig in ubuntu full
+          whoami    
           ls
           pwd
-          docker-compose -v   # github runner in July 2020 had 1.26.2
-          docker -v           # github runner in July 2020 had 19.03.12
+          docker-compose -v  
+          docker -v
 
       - name: Goal 2 -> Check out repository code
         uses: actions/checkout@v2 # This is bringing source code to ubuntu server defined in line 13 Location of checkout is /home/runner/work/emr/emr
