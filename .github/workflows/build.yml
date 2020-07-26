@@ -51,7 +51,7 @@ jobs:
         run: |
           docker ps -a
           docker network ls
-          docker network inspect docker-used-by-workflow_d
+          docker network inspect docker-used-by-workflow_default
 
       # For some time without password works and later it works with password.
       # Reason: MariaDB first creates a temp DB and then shuts down and creates the proper DB
