@@ -33,6 +33,7 @@ jobs:
           sudo mv utils /gt/sc-prog-repos/emr/utils
           sudo mv .github /gt/sc-prog-repos/emr/.github
           sudo mkdir -p /tmp/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
+          sudo chmod -R 777 /tmp/logs
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
@@ -121,7 +122,15 @@ jobs:
         run: |
           docker exec -i puppet npm run start-test
 
-      - name: Goal 20 -> Upload result of tests
+      # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
+      # actions that use a Dockerfile those files are probably created as the root user inside the container.  Because the upload-artifact action runs
+      # as the runner user you will need to sudo chmod the permissions on those files so the runner user can read them.
+      - name: Goal 20 -> Giving permission to logs folder
+        if: always()
+        run: |
+          sudo chmod -R 777 /tmp/logs
+
+      - name: Goal 21 -> Upload result of tests
         # https://stackoverflow.com/questions/58858429/how-to-run-a-github-actions-step-even-if-the-previous-step-fails-while-still-f
         if: always()
         uses: actions/upload-artifact@v2
