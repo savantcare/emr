@@ -11,8 +11,8 @@ services:
     depends_on:
       - ptserver
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker/ptclient/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
@@ -28,8 +28,8 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker/ptserver/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker/ptserver/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptserver/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptserver/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
@@ -39,8 +39,8 @@ services:
     ipc: host
     restart: always
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker/db/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker/db/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/db/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/db/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
     ports:
@@ -62,8 +62,8 @@ services:
     ports:
       - 5901:5900
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker/puppet/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/puppet/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 

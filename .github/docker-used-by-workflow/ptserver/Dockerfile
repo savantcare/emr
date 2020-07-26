@@ -14,7 +14,7 @@ RUN apt-get install -y nodejs
 
 RUN apt-get install -y supervisor
 
-
+# Supervisor services files are mounted in docker-compose as that allows changing services.conf without needing to rebuild docker image
 # COPY etc-supervisor-conf.d-services.conf /etc/supervisor/conf.d/services.conf coming from docker-compose easier to change since new image does not need to be pushed
 
 CMD ["/usr/bin/supervisord", "-n","-c","/etc/supervisor/supervisord.conf"]

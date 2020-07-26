@@ -17,6 +17,7 @@ COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 # Why start inside supervisor?
 #   If there is a problem I can go inside docker container and debug mysql. Since supervisor is process 1 stopping mysql will not stop the container.
 
+# Supervisor services files are mounted in docker-compose as that allows changing services.conf without needing to rebuild docker image
 # COPY etc-supervisor-conf.d-services.conf /etc/supervisor/conf.d/services.conf
 
 COPY cmds-to-customize-mysql.sh /root

@@ -43,8 +43,8 @@ jobs:
 
       - name: Goal 5 -> Start docker containers, ptserver ptclient and mariadb
         run: |
-          cd /gt/sc-prog-repos/emr/.github/docker
-          docker-compose -f docker-compose-test.yml up -d
+          cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
+          docker-compose up -d
           sleep 30
 
       - name: Goal 6 -> Make sure docker containers can ping each other. They have to be on the same network
@@ -136,7 +136,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: result
+          name: logs
           path: /tmp/logs/
 #
 #

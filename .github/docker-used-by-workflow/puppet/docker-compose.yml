@@ -15,5 +15,5 @@ services:
     ports:
       - 5901:5900
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
