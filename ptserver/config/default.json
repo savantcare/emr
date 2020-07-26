@@ -1,0 +1,28 @@
+{
+  "HOST": "127.0.0.1",
+  "USER": "stanford2008",
+  "PASSWORD": "jaidurgama",
+  "DB_PORT": "3306",
+  "DB": "sc_rem",
+  "dialect": "mysql",
+  "pool": {
+    "max": 5,
+    "min": 0,
+    "acquire": 30000,
+    "idle": 10000
+  },
+  "DB_RECOMMENDATION": "sc_recommendation",
+  "DB_REMINDER": "sc_rem",
+  "DB_GOAL": "sc_goal",
+  "DB_DIAGNOSIS": "DB_SC_Diagnosis_CT_V20",
+  "DB_SERVICE_STATEMENT": "sc_serviceStatement",
+  "DB_USER": "sc_user",
+  "DB_SETTING": "sc_setting",
+  "DB_COMPONENT": "sc_component",
+  "DB_SCREENING": "sc_screen",
+  "DB_SOCIALHISTORY": "DB_SC_SocialHistory_CT_V20",
+  "DB_APPOINTMENT": "sc_appointments",
+  "DB_BODYMEASUREMENT": "sc_body_measurement",
+  "DB_MENTAL_STATUS_EXAM": "sc_mental_status_exam",
+  "artificial_delay_in_response_from_node_server": 0
+}

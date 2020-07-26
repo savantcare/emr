@@ -1,0 +1,19 @@
+version: "3"
+services:
+  puppet:
+    container_name: puppet
+    build:
+      context: .
+    environment:
+      - VNC_RESOLUTION=1440x900
+      - VNC_PASSWORD=jai
+      - NODE_PATH=/root/node_modules
+    ipc: host
+    restart: always
+    working_dir: /gt/sc-prog-repos/emr/puppet
+    command: "/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf"
+    ports:
+      - 5901:5900
+    volumes:
+      - /gt/sc-prog-repos/emr/.github/docker/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/

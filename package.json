@@ -1,0 +1,45 @@
+{
+  "name": "ptfile",
+  "version": "1.0.0",
+  "description": "Be atleast as good as paper",
+  "main": "index.js",
+  "resolutions": {
+    "watchpack": "1.6.1",
+    "_comment": "watchpack 1.6.1 needed to make hot reload work. Ref: https://github.com/vuejs/vuepress/issues/221#issuecomment-635510914"
+  },
+  "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "_comment": "Preinstall needed to make hot reload work. Ref: https://github.com/vuejs/vuepress/issues/221#issuecomment-635510914",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs-in-dev-mode": "vuepress dev",
+    "docs-build": "vuepress build",
+    "docs-start-using-nodemon": "nodemon --ext md,vue --watch .vuepress --watch . --exec vuepress dev --host localhost",
+    "docs-info": "npx vuepress info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savantcare/emr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/savantcare/emr/issues"
+  },
+  "homepage": "https://github.com/savantcare/emr#readme",
+  "dependencies": {
+    "cryptiles": "^4.1.3",
+    "hoek": "^6.1.3",
+    "markdown-it-regexp": "^0.4.0",
+    "markdown-it-vuese": "^0.4.0",
+    "mem": "^6.1.0",
+    "nodemon": "^2.0.4",
+    "npm": "^6.14.7",
+    "npx": "^10.2.2",
+    "typescript": "^3.9.7",
+    "vue-focus": "^2.1.0",
+    "vue-tabs-component": "^1.5.0",
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-table-of-contents": "^1.1.6",
+    "vuepress-plugin-tabs": "^0.3.0"
+  }
+}

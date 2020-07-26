@@ -1,0 +1,71 @@
+version: "3"
+services:
+  ptclient:
+    container_name: ptclient
+    image: savantcare/emrclient
+    ipc: host
+    tty: true
+    ports:
+      - 80:80
+    working_dir: /gt/sc-prog-repos/emr/ptclient
+    depends_on:
+      - ptserver
+    volumes:
+      - /gt/sc-prog-repos/emr/.github/docker/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/ptclient:/gt/sc-prog-repos/emr/ptclient
+
+  ptserver:
+    container_name: ptserver
+    image: savantcare/emrserver
+    ipc: host
+    tty: true
+    ports:
+      - 8000:8000
+    working_dir: /gt/sc-prog-repos/emr/ptserver
+    # command: bash -c "npm install && npm run start-test"  If I give commands then supervisor will not start.
+    depends_on:
+      - mariadb
+    volumes:
+      - /gt/sc-prog-repos/emr/.github/docker/ptserver/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+
+  mariadb:
+    container_name: mariadb
+    image: savantcare/emrmysql
+    ipc: host
+    restart: always
+    volumes:
+      - /gt/sc-prog-repos/emr/.github/docker/db/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+    ports:
+      - 4000:3306
+
+  puppet:
+    container_name: puppet
+    image: savantcare/emrpuppet
+    environment:
+      - VNC_RESOLUTION=1440x900
+      - VNC_PASSWORD=jai
+      - NODE_PATH=/root/node_modules
+      - DISPLAY=:10
+    user: "0"
+    ipc: host
+    restart: always
+    working_dir: /gt/sc-prog-repos/emr/puppet
+    command: "/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf"
+    ports:
+      - 5901:5900
+    volumes:
+      - /gt/sc-prog-repos/emr/.github/docker/puppet/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 81:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb

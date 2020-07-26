@@ -1,0 +1,20 @@
+# ./.tmuxinator.yml
+
+name: all-dev-servers-in-tmux
+root: ./
+set-remain-on-exit: on
+
+windows:
+  - editor:
+      layout: tiled
+      panes:
+        # Multiline commands under pane are taken from: https://github.com/tmuxinator/tmuxinator#passing-directly-to-send-keys
+        - docs:
+            - yarn docs-in-dev-mode
+        - Client:
+            - cd ptclient
+            - yarn dev
+        - Server:
+            - cd ptserver
+            - npm run start
+        - Terminal:

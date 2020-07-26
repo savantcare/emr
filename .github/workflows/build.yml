@@ -1,0 +1,176 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Patient file CI # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#name
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  ptclient-app: # This is the first job https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
+    runs-on: ubuntu-18.04 # For the list of github hosted runners see https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    steps:
+      - name: Goal 1 -> Get env info
+        run: |
+          # ifconfig # Commented this since local runner act does not have ifconfig in ubuntu full
+          ls
+          pwd
+          docker-compose -v   # github runner in July 2020 had 1.26.2
+          docker -v           # github runner in July 2020 had 19.03.12
+
+      - name: Goal 2 -> Check out repository code
+        uses: actions/checkout@v2 # This is bringing source code to ubuntu server defined in line 13 Location of checkout is /home/runner/work/emr/emr
+
+      - name: Goal 3 -> Move code to expected folder
+        run: |
+          ls
+          sudo mkdir -p /gt/sc-prog-repos/emr              
+          sudo mv ptserver /gt/sc-prog-repos/emr/ptserver     # In source part of move not giving complete path so it runs on act and github
+          sudo mv ptclient /gt/sc-prog-repos/emr/ptclient
+          sudo mv puppet /gt/sc-prog-repos/emr/puppet
+          sudo mv utils /gt/sc-prog-repos/emr/utils
+          sudo mv .github /gt/sc-prog-repos/emr/.github
+          sudo chmod -R 777 /gt/sc-prog-repos/emr/
+
+      - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
+        run: |
+          ls -a /gt/sc-prog-repos/emr
+
+      - name: Goal 5 -> Start docker containers, ptserver ptclient and mariadb
+        run: |
+          cd /gt/sc-prog-repos/emr/.github/docker
+          docker-compose -f docker-compose-test.yml up -d
+          sleep 30
+
+      - name: Goal 6 -> Make sure docker containers can ping each other. They have to be on the same network
+        run: |
+          docker ps -a
+          docker network ls
+          docker network inspect docker_default
+
+      # For some time without password works and later it works with password.
+      # Reason: MariaDB first creates a temp DB and then shuts down and creates the proper DB
+      # Need to wait for this command to succed before going further. The time needed to wait changes at every run
+      # blank root password is set in docker-compose-test.yml file
+      - name: Goal 7 -> A. Get confitmation that mariaDB is responding to queries
+        run: |
+          docker exec -i mariadb mysql -u root -e "show databases"
+
+      - name: Goal 8 -> A. init mariadb with 1. Database 2. Tables and 3. Mock data
+        run: |
+          docker exec -i mariadb /gt/sc-prog-repos/emr/utils/db/create-db-tables-mock-data-in-db.sh 
+          # Ref: https://stackoverflow.com/questions/31578446/running-a-script-inside-a-docker-container-using-shell-script
+
+      - name: Goal 9 -> Get confitmation that mariaDB has the databases/tables/mock data
+        run: |
+          docker exec -i mariadb mysql -u root -e "show databases"
+
+      # wget run-on-docker_ptserver_1:8000/ will not work as
+      # hostname run-on-docker_ptserver_1 is not known to host.
+      # This hostname is only known inside docker network
+      - name: Goal 10 -> Get confitmation that ptserver is running. Wget default is retry 20 times.
+        run: |
+          wget localhost:8000/reminders/getAll
+
+      - name: Goal 11 -> Make sure that ptserver is returning right results
+        run: |
+          cat getAll
+
+      - name: Goal 12 -> Get confirmation that ptclient is running. Wget default is retry 20 times.
+        run: |
+          wget localhost/
+
+      - name: Goal 13 -> Make sure that ptclient is returning right results
+        run: |
+          cat index.html
+
+      - name: Goal 14 -> Make sure that a patient file opens
+        run: |
+          wget localhost/pf/abcd
+
+      - name: Goal 15 -> Make sure that patient file gave correct results
+        run: |
+          cat abcd
+
+      # this used a public docker that by default logs into userid 1000
+      - name: Goal 16 -> get the logged in user in puppet
+        run: |
+          docker exec -i puppet whoami
+
+      # In ptserver and ptclient supervisor runs npm install.
+      # Why puppeteer is installed from dockerfile and not installed from npm install inside supervisor or build.yml?
+      # If run from supervisor -> npm install is taking long time and node simple-puppet-test-run.js was starting before npm install finished
+      # Also the packages will not change often. So better to install the puppeteer packages inside Dockerfile. This makes each CI/CD run faster.
+
+      # The env must have the display variable set.
+      - name: Goal 17 -> Checking env for virtual display for puppeteer Ref https://stackoverflow.com/a/56202410
+        run: |
+          docker exec -i puppet env
+
+      - name: Goal 18 -> Running a very simple puppeteer program
+        run: |
+          docker exec -i puppet Xvfb :10 -ac &  
+          docker exec -i puppet node simple-puppet-test-run.js
+
+      # This cannot be run from supervisor since then the pipleline will finish. Hence tests need to be run in the pipeline.
+      # Programs run inside docker with supervisor are not in the pipeline. Even if program started from supervisor keeps running it will not stop the pipeline
+      - name: Goal 19 -> run-tests
+        run: |
+          docker exec -i puppet npm run start-test
+
+      - name: Goal 20 -> Upload result of tests
+        uses: actions/upload-artifact@v2
+        with:
+          name: result
+          path: result.txt
+#
+#
+#
+#
+# Q1) What is the tree structure?
+# The tree strcuture is
+#  -- Workflow (Made up of 1 or more jobs)
+#    -- Jobs (Jobs run in parallel by default. Each job runs in a fresh version of the virtual environment)
+#       -- Services
+#       -- Steps # Job contains a sequence of tasks called steps https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
+#          -- name
+#          -- uses
+#          -- run
+#
+#
+#
+#
+# Q2) Why have 3 services and not 3 jobs?
+# The 3 docker containers are not run as 3 different jobs.
+# A. Since ptserver job needs mysql server job to stay on. But mysql-server is not waiting for ptserver
+# Future RnD:
+# https://github.community/t/keep-jobs-services-alive/118912
+# https://github.community/t/mariadb-mysql-service-is-unealthy/17390
+# B. When run as 3 services each can ping the other with the hostname of the service given by docker.
+#
+#
+#
+#
+# Q3) How to get source code inside ptserver and ptclient images?
+# Option1: On github I can create a custom docker image at each commit and then inside build.yml I can say:
+# ptserver:
+#  image: ptserver-node:14 Ref: https://www.learncloudnative.com/blog/2020-02-20-github-action-build-push-docker-images/
+#
+# Option 2:
+# volume mount for e.g at:
+# https://github.community/t/keep-jobs-services-alive/118912
+# https://github.community/t/custom-docker-action-mounted-volumes/17013
+#
+# Preferred: Option 2
+#
+# Q4) How to see dockler logs
+# Comment this when running tests. Since docker logs command does not exit.
+# - name: See docker logs
+#  run: |
+#    cd /gt/sc-prog-repos/emr/utils/run-on-docker
+#    docker logs --follow run-on-docker_ptserver_1
+# https://stackoverflow.com/questions/61078178/github-action-how-to-ensure-that-server-is-running-properly
+# in docker-compose ptclient listens on port 80 Ref: https://unix.stackexchange.com/questions/5277/how-do-i-tell-a-script-to-wait-for-a-process-to-start-accepting-requests-on-a-po
+# https://docs.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts

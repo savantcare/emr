@@ -1,0 +1,30 @@
+{
+  "name": "json-server-api",
+  "version": "1.0.0",
+  "description": "Simple Fake API",
+  "main": "main.js",
+  "scripts": {
+    "start-dev": "export NODE_ENV=dev && sh copy-files-from-component-to-correct-locations.sh && node server.js",
+    "start-dev-on-win": "set NODE_ENV=dev && sh copy-files-from-component-to-correct-locations.sh && node server.js",
+    "start-test": "export NODE_ENV=test && sh copy-files-from-component-to-correct-locations.sh  && node server.js",
+    "start-prod": "export NODE_ENV=prod && sh copy-files-from-component-to-correct-locations.sh && node server.js"
+  },
+  "author": "ME:)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "connect-pause": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0",
+    "sequelize-temporal": "^1.0.8",
+    "socket.io": "^2.3.0",
+    "uniqid": "^5.2.0",
+    "uuid": "^8.2.0",
+    "uuidv4": "^6.1.1"
+  }
+}

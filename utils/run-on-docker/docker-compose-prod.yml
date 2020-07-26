@@ -1,0 +1,50 @@
+version: "3"
+services:
+  ptclient:
+    image: node:14
+    tty: true
+    ports:
+      - 80:80
+    working_dir: /gt/sc-prog-repos/emr/ptclient
+    command: bash -c "npm install && npm run build && npm run start-prod"
+    volumes:
+      - /gt/sc-prog-repos/emr/ptclient:/gt/sc-prog-repos/emr/ptclient # This will allow hot reloading when files are changed on host
+  ptserver:
+    image: node:14
+    tty: true
+    ports:
+      - 8000:8000
+    working_dir: /gt/sc-prog-repos/emr/ptserver
+    command: bash -c "npm install && npm run start-prod"
+    volumes:
+      - /gt/sc-prog-repos/emr/ptserver:/gt/sc-prog-repos/emr/ptserver # This allows file changes on host to be available inside docker container without recreating docker image.
+      # For reasons of this volume mount see the vue: section comments
+  php:
+    image: php:7.2-fpm
+    volumes:
+      - ./php:/var/www/myapp
+      - ./docker/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.4
+    ipc: host
+    restart: always
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+      - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
+    ports:
+      - 4000:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty # For rules regarding mysql pass read https://hub.docker.com/_/mariadb
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 81:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
