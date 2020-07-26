@@ -10,4 +10,5 @@ RUN apt-get install -y nodejs
 
 RUN apt install -y supervisor
 
-RUN npm i yarn npx jest puppeteer-core puppeteer jest-puppeteer nuxt-jest-puppeteer vue-jest
+RUN npm i npx jest puppeteer-core puppeteer jest-puppeteer nuxt-jest-puppeteer vue-jest
+

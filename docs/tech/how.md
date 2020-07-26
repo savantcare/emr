@@ -62,10 +62,10 @@ Start mysqld
 mkdir /gt/sc-prog-repos
 cd /gt/sc-prog-repos
 git clone https://github.com/savantcare/emr.git
-cd ptfile/deploy/docker
+cd emr/deploy/docker
 apt update
 apt install -y docker-compose
-ptfile/deploy/docker> docker-compose -f maria-10.4-docker-compose.yml up -d
+emr/deploy/docker> docker-compose -f maria-10.4-docker-compose.yml up -d
 ```
 
 To access phpmyadmin:
