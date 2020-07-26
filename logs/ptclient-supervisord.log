@@ -1,0 +1,16 @@
+2020-07-26 22:08:30,694 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2020-07-26 22:08:30,694 INFO Included extra file "/etc/supervisor/conf.d/services.conf" during parsing
+2020-07-26 22:08:30,703 INFO RPC interface 'supervisor' initialized
+2020-07-26 22:08:30,703 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-07-26 22:08:30,704 INFO supervisord started with pid 1
+2020-07-26 22:08:31,709 INFO spawned: 'ptclient' with pid 7
+2020-07-26 22:08:32,712 INFO success: ptclient entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-07-26 22:08:33,714 WARN received SIGTERM indicating exit request
+2020-07-26 22:08:33,715 INFO waiting for ptclient to die
+2020-07-26 22:08:47,428 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2020-07-26 22:08:47,429 INFO Included extra file "/etc/supervisor/conf.d/services.conf" during parsing
+2020-07-26 22:08:47,436 INFO RPC interface 'supervisor' initialized
+2020-07-26 22:08:47,437 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-07-26 22:08:47,437 INFO supervisord started with pid 1
+2020-07-26 22:08:48,442 INFO spawned: 'ptclient' with pid 7
+2020-07-26 22:08:49,446 INFO success: ptclient entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

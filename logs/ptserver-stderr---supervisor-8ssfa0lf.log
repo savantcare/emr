@@ -1,0 +1,137 @@
+npm WARN json-server-api@1.0.0 No repository field.
+
+(node:34) [SEQUELIZE0004] DeprecationWarning: A boolean value was passed to options.operatorsAliases. This is a no-op with v5 and should be removed.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_goal'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+(node:34) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_recommendation'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 2)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_rem'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 3)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'DB_SC_SocialHistory_CT_V20'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 4)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_component'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 5)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_user'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 6)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'DB_SC_Diagnosis_CT_V20'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 7)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_screen'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 8)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_body_measurement'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 9)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_mental_status_exam'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 10)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_setting'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 11)
+(node:34) UnhandledPromiseRejectionWarning: SequelizeConnectionError: Unknown database 'sc_appointments'
+    at ConnectionManager.connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:126:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async ConnectionManager._connect (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)
+    at async /gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:613:26
+    at async MySQLQueryInterface.createTable (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/dialects/abstract/query-interface.js:225:12)
+    at async Function.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/model.js:1288:5)
+    at async Sequelize.sync (/gt/sc-prog-repos/emr/ptserver/node_modules/sequelize/lib/sequelize.js:793:35)
+(node:34) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 12)

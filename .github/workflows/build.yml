@@ -33,6 +33,7 @@ jobs:
           sudo mv utils /gt/sc-prog-repos/emr/utils
           sudo mv .github /gt/sc-prog-repos/emr/.github
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
+          sudo mkdir -p /gt/sc-prog-repos/emr/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
@@ -126,7 +127,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: result
-          path: result.txt
+          path: /gt/sc-prog-repos/emr/logs/
 #
 #
 #
