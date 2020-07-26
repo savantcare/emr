@@ -121,6 +121,8 @@ jobs:
           docker exec -i puppet npm run start-test
 
       - name: Goal 20 -> Upload result of tests
+        # https://stackoverflow.com/questions/58858429/how-to-run-a-github-actions-step-even-if-the-previous-step-fails-while-still-f
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: result
