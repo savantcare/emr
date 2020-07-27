@@ -70,14 +70,14 @@
     Topics:
     A. Basic concept of vue
 
-13. https://www.youtube.com/
+13. https://www.youtube.com/watch?v=Gz5oq5687BY
     Date: Video on 27th July 2020
     Speaker: Vikas
     Topics:
     A. How does build.yml work
     B. Automated testing on github
 
-14. https://www.youtube.com/
+14. https://www.youtube.com/watch?v=S4Okz55sn_c
     Date: Video on 27th July 2020
     Speaker: Vikas
     Topics:
