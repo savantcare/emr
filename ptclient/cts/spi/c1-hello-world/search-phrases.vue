@@ -7,8 +7,8 @@ export default {
     ormSearchPhrasesOfCt.insert({
       // ormSearchPhrasesOfCt lives in vue/state and allows sql queries. Uses vuex-orm
       data: {
-        value: 'Hello world Chapter 1',
-        ctAbbr: 'bp',
+        value: 'Chapter 1',
+        ctAbbr: 'c1',
         ctToShowInCsOfVl: 'spi/c1-hello-world/vl/table.vue', // CsVl -> Current state view layer. Read docs/glossary.md when you dont understand a abbreviation.
         layer: 'view', // used by cts/core/vl-search/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in csvl or cl
       },

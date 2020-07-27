@@ -6,7 +6,8 @@ Q) What are the additional end result of this chapter?
    -- For demo type "hello world C2 - change" in the change layer tabs search box.
 
 Q) How many lines of code need to be written for above results?
-Total: 31
+Total: 34
 search-phrases.vue -> 25
 vl/table.vue -> 3
 cl/table.vue -> 3
+vl-search/load-search-phrases-and-handle-selection.vue -> 3

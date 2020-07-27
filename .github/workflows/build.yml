@@ -112,6 +112,7 @@ jobs:
         run: |
           docker exec -i puppet env
 
+      # Xvfb :10 -ac &  -> this starts a virtual display. We need this since we want to run puppet with headless:true so we can take screenshots
       - name: Goal 18 -> Running a very simple puppeteer program
         run: |
           docker exec -i puppet Xvfb :10 -ac &  
@@ -135,7 +136,8 @@ jobs:
         if: always()
         run: |
           cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
-          docker-compose down
+          # Not doing this since devs want the dockers running so they can debug
+          # docker-compose down
           sleep 10
 
       - name: Goal 22 -> Upload result of tests

@@ -5,7 +5,7 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Hello world Chapter 2',
+        value: 'Chapter 2',
         ctAbbr: 'bp',
         ctToShowInCsOfVl: 'spi/c2-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
@@ -13,7 +13,7 @@ export default {
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'hello world Chapter 2 - change',
+        value: 'Chapter 2 - change',
         ctAbbr: 'crem',
         ctToShowInCL: 'spi/c2-hello-world/cl/table.vue',
         layer: 'change',

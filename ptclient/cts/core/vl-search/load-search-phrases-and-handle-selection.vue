@@ -69,7 +69,7 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInLS', 'desc').get()
+        const arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInLS', 'desc').get() // TODO: Change it to usageCountKeptInOrm
         pCallBack(arFromORM)
       } else {
         const arFromORM = ormSearchPhrasesOfCt
