@@ -24,11 +24,23 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning',
       })
-        .then(() => {
+        .then(async () => {
           if (this.daSelectedRemForDiscontinue.length > 0) {
-            this.daSelectedRemForDiscontinue.forEach((row) => {
-              ormRem.sendDiscontinueDataToServer(row.id, row.uuid, null)
-            })
+            const status = await ormRem.sendMultiDiscontinueDataToServer(
+              this.daSelectedRemForDiscontinue
+            )
+            if (status.success > 0) {
+              this.$message({
+                type: 'success',
+                message: status.success + ' reminder discontinued.',
+              })
+            }
+            if (status.failed > 0) {
+              this.$message({
+                type: 'error',
+                message: status.failed + ' reminder failed to discontinue. Please try again later.',
+              })
+            }
           }
           console.log('daSelectedRemForDiscontinue=====>', this.daSelectedRemForDiscontinue)
         })
@@ -64,12 +76,23 @@ export default {
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter discontinue note',
       })
-        .then(({ value }) => {
-          const status = ormRem.sendDiscontinueDataToServer(
+        .then(async ({ value }) => {
+          const status = await ormRem.sendDiscontinueDataToServer(
             pORMDataRowID,
             arResultsFromORM.uuid,
             value
           )
+          if (status === 1) {
+            this.$message({
+              type: 'success',
+              message: 'Reminder discontinued.',
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: 'Something went wrong. Please try again later.',
+            })
+          }
           console.log('discontinue status ======> ', status)
         })
         .catch(() => {
