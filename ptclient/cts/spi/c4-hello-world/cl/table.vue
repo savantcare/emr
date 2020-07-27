@@ -1,7 +1,3 @@
 <template>
-  <div>Hello world C3</div>
+  <div>Hello world C4</div>
 </template>
-
-<script>
-export default {}
-</script>

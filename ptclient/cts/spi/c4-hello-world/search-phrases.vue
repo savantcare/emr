@@ -9,17 +9,17 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Hello world C3',
+        value: 'Hello world Chapter 4',
         ctAbbr: 'bp',
-        ctToShowInCsOfVl: 'spi/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        ctToShowInCsOfVl: 'spi/c4-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'hello world C3 - change',
+        value: 'hello world Chapter 4 - change',
         ctAbbr: 'crem',
-        ctToShowInCL: 'spi/c3-hello-world/cl/table.vue',
+        ctToShowInCL: 'spi/c4-hello-world/cl/table.vue',
         layer: 'change',
         ctWidth: 'small',
       },

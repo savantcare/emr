@@ -12,6 +12,7 @@ import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
 import Scr from '@/models/Screening'
 import Dxa from '@/models/Dxa'
+import Hworld from '@/cts/spi/c4-hello-world/db/vuex-orm/helloworld.js'
 
 const database = new Database()
 
@@ -26,5 +27,6 @@ database.register(Scr)
 database.register(CtSearch)
 database.register(CtLifeCycle)
 database.register(Dxa)
+database.register(Hworld)
 
 export default database
