@@ -15,19 +15,7 @@
       -->
     <Split style="height: 900px; width: 1400px;" :gutter-size="4">
       <SplitArea :size="75">
-        <!--  Q) Who determines the set of cards to show here and also the sequence?
-                The doctor team leader decides it.
-                When they want a change we come into the source code and make the change.
-              Q) Why not make this dynamic and have this come from vuex-orm or Maria DB?
-                This will change on average once in 1 year. Hence there is no advantage of doing this.
-          -->
-        <!--        <ctRexVl> </ctRexVl><br />
-        <ctBMVl> </ctBMVl><br />
-        <ctDXVl> </ctDXVl><br />
-        <ctGVl> </ctGVl><br />
-        <ctScrVl> </ctScrVl><br />
--->
-        <ctRemVL> </ctRemVL><br />
+        <ctMsVlCards></ctMsVlCards>
       </SplitArea>
       <SplitArea id="csvl" :size="25">
         <!-- Why not use <keep-alive> before el-card ?
@@ -79,13 +67,8 @@
 <script>
 import Vue from 'vue'
 import VueSplit from 'vue-split-panel'
+import ctMsVlCards from '@/cts/core/manage-msvl-cards/list-of-cards.vue'
 import ctVLSearchBox from '@/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection'
-import ctRexVl from '@/cts/spi/rec/vl/table'
-import ctRemVL from '@/cts/spi/rem/vl/table'
-import ctBMVl from '@/cts/spi/bm/bm-vl'
-import ctDXVl from '@/cts/spi/dx/dx-vl'
-import ctGVl from '@/cts/spi/goal/g-vl'
-import ctScrVl from '@/cts/spi/scr/scr-vl.vue'
 import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
@@ -105,12 +88,7 @@ export default {
     ctMapDrawer,
     ctTabsInDialogInCL,
     ctVLSearchBox,
-    ctRexVl,
-    ctRemVL,
-    ctBMVl,
-    ctDXVl,
-    ctGVl,
-    ctScrVl,
+    ctMsVlCards,
   },
   data() {
     return {}
