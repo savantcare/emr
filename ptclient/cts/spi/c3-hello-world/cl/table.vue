@@ -1,3 +1,3 @@
 <template>
-  <div>Hello world C3</div>
+  <div>From chapter 3 - Hello world</div>
 </template>

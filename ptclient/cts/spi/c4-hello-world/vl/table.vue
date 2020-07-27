@@ -1,7 +1,6 @@
 <template>
   <div>
-    Hello world from chapter 4
-    {{ cfMsg }}
+    From chapter 4 - Hello {{ cfMsg }}
     <el-button style="padding: 3px;" type="success" plain @click="mfOpenCtInCl">A</el-button>
   </div>
 </template>

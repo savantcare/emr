@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello world C3
+    From chapter 3 - Hello world
     <el-button style="padding: 3px;" type="success" plain @click="mfOpenCtInCl">A</el-button>
   </div>
 </template>
