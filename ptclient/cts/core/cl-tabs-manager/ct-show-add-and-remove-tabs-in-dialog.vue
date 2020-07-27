@@ -31,7 +31,7 @@ dialog
           :show-close="false"
 
         Goal: control dialog visibility based on user actions
-          :visible.sync="vblIsdialogHoldingTabsInCLVisible"      
+          :visible.sync="vblIsdialogHoldingTabsInClVisible"      
 
         Earlier width="90%" but it has been removed why?
           Goal is to let user read as much of the view layer as possible when the user is in change layer
@@ -53,7 +53,7 @@ dialog
     :close-on-click-modal="true"
     :close-on-press-escape="true"
     :show-close="false"
-    :visible.sync="vblIsdialogHoldingTabsInCLVisible"
+    :visible.sync="vblIsdialogHoldingTabsInClVisible"
     :lock-scroll="true"
     :width="vsDialogWidth"
   >
@@ -148,9 +148,9 @@ export default {
         this.$store.commit('mtfSetvsSelectedTabId', value)
       },
     },
-    vblIsdialogHoldingTabsInCLVisible: {
+    vblIsdialogHoldingTabsInClVisible: {
       get() {
-        return this.$store.state.vstObjTabsInCL.vblIsdialogHoldingTabsInCLVisible
+        return this.$store.state.vstObjTabsInCL.vblIsdialogHoldingTabsInClVisible
       },
       set(value) {
         this.$store.commit('mtfSetTabDialogVisibility', value)
@@ -173,7 +173,7 @@ export default {
     },
   },
   mounted() {
-    this.vblIsdialogHoldingTabsInCLVisible = false
+    this.vblIsdialogHoldingTabsInClVisible = false
     this.cfArTabs = [] // Template has a for loop running on this.
     this.cfVSSelectedTabId = ''
     /*
@@ -190,7 +190,7 @@ export default {
   methods: {
     // #region kbselect
     selectActiveTabFromKeyboard(pEvent) {
-      if (this.vblIsdialogHoldingTabsInCLVisible === false) {
+      if (this.vblIsdialogHoldingTabsInClVisible === false) {
         console.log('Rejection reason 1: 2nd layer not active')
         return
       }
@@ -249,7 +249,7 @@ export default {
 
       // If there are no more tabs in the diaglog then hide the dialog
       if (arNewTabs.length === 0) {
-        this.vblIsdialogHoldingTabsInCLVisible = false
+        this.vblIsdialogHoldingTabsInClVisible = false
       } else {
         // Once a tab is removed an existing tab needs to be made active
         console.log(tabToRemoveFoundAt, arNewTabs)

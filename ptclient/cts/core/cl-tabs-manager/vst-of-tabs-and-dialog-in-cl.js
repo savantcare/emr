@@ -3,7 +3,7 @@ import ormSearchPhrasesOfCt from '~/cts/core/vl-search/orm-search-phrases-of-ct'
 export default {
   state: {
     // #region state
-    vblIsdialogHoldingTabsInCLVisible: false,
+    vblIsdialogHoldingTabsInClVisible: false,
     arTabs: [], // Template has a for loop running on this.
     vsSelectedTabId: '', // arTabs might have 10 tabs. Out of those which tab is active needs to be stored outside the array of 10 tabs
     // #endregion state
@@ -11,7 +11,7 @@ export default {
   },
   mutations: {
     mtfSetTabDialogVisibility(state, value) {
-      state.vblIsdialogHoldingTabsInCLVisible = value
+      state.vblIsdialogHoldingTabsInClVisible = value
     },
     mtfSetTabDialogWidth(state, value) {
       console.log('Dialog width', value)
@@ -46,10 +46,12 @@ export default {
     },
     mtfShowNewFirstTabInCl(state, pTab) {
       state.arTabs = [pTab]
-      state.vblIsdialogHoldingTabsInCLVisible = true
+      state.vblIsdialogHoldingTabsInClVisible = true
       state.vsSelectedTabId = pTab.id
       state.vsDialogWidth = pTab.ctWidth
 
+      // This is the 2nd tab with the + sign. It is added at the end of the set of tabs.
+      // Just like chrome browser add new tab control.
       const objNewTab = {
         label: '+',
         closable: false,

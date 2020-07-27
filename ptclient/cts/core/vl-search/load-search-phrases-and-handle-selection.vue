@@ -89,6 +89,9 @@ export default {
 
       let vsCtToShow = ''
 
+      // TODO: Change vl-search to vl-cards-manager so its symmetrical to cl-tabs-manager
+      // ctToShowInCsOfVl and ctToShowInCL why are they needed. Why not have only vsCtToShow
+
       if (pSelectedSuggestion.layer === 'view') {
         vsCtToShow = pSelectedSuggestion.ctToShowInCsOfVl // Ct to show in current state of view layer
       } else {
