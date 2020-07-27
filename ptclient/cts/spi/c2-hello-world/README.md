@@ -11,4 +11,4 @@ Total: 34
 search-phrases.vue -> 25
 vl/table.vue -> 3
 cl/table.vue -> 3
-vl-search/load-search-phrases-and-handle-selection.vue -> 3
+manage-csvl-cards/load-search-phrases-and-handle-selection.vue -> 3

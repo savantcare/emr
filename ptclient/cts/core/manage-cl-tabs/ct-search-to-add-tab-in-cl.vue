@@ -25,7 +25,7 @@ Features needed in search
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 
 export default {
   data() {

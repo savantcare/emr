@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 import ormCTLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import ormScr from '@/models/Screening'
 export default {

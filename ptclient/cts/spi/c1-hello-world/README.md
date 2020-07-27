@@ -7,4 +7,4 @@ Q) How many lines of code need to be written for above results?
 Total: 19
 search-phrases.vue -> 13
 table.vue -> 3
-vl-search/load-search-phrases-and-handle-selection.vue -> 3
+manage-csvl-cards/load-search-phrases-and-handle-selection.vue -> 3

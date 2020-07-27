@@ -1,7 +1,7 @@
 // this is file 3 in example
 
 import { Database } from '@vuex-orm/core'
-import CtSearch from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import CtSearch from '~/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import User from '@/models/user'
 import Patient from '@/models/patient'

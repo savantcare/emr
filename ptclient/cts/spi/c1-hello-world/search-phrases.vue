@@ -1,7 +1,7 @@
 <!-- The search phrases are a entry point to load different cts. -->
 <template> <div></div> </template>
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
@@ -10,7 +10,7 @@ export default {
         value: 'Chapter 1',
         ctAbbr: 'c1',
         ctToShowInCsOfVl: 'spi/c1-hello-world/vl/table.vue', // CsVl -> Current state view layer. Read docs/glossary.md when you dont understand a abbreviation.
-        layer: 'view', // used by cts/core/vl-search/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in csvl or cl
+        layer: 'view', // used by cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in csvl or cl
       },
     })
   },

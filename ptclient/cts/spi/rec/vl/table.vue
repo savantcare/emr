@@ -45,7 +45,7 @@ export default {
     } else {
       // Step 1/3: Store information that this Ct has already been mounted
       // I run this before API to server since API to server takes time and during the wait time 2 Ct may end up running
-      // This ORM is used by the vl-search-ct and once the state is set then the existing ct's update their view
+      // This ORM is used by the manage-csvl-cards-ct and once the state is set then the existing ct's update their view
       // Step 3/3: Run API to get data from server
 
       console.log('Done mounting')

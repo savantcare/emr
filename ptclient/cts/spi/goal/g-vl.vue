@@ -20,7 +20,7 @@
 
 <script>
 // import addGoal from './layer-2/addGoal.vue'
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 import ormGoal from '@/models/Goal'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'

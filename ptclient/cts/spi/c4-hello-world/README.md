@@ -7,6 +7,6 @@ Total: 74
 search-phrases.vue -> 25
 vl/table.vue -> 32
 cl/table.vue -> 3
-vl-search/load-search-phrases-and-handle-selection.vue -> 3
+manage-csvl-cards/load-search-phrases-and-handle-selection.vue -> 3
 db/vuex-orm/helloworld.js -> 11
 database/index.js -> 2

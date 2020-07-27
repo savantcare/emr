@@ -1,10 +1,10 @@
-<!-- To understand how this works read vl-search/load-search-phrases-and-handle-selection.vue -->
+<!-- To understand how this works read manage-csvl-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
   <div></div>
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 
 export default {
   data() {

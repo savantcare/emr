@@ -1,5 +1,5 @@
 <template>
-  <div id="vl-search">
+  <div id="manage-csvl-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
     <feedSPhrases></feedSPhrases>
     <mapSPhrases></mapSPhrases>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/cts/core/feed/search-phrases'
@@ -89,7 +89,7 @@ export default {
 
       let vsCtToShow = ''
 
-      // TODO: Change vl-search to vl-cards-manager so its symmetrical to cl-tabs-manager
+      // TODO: Change manage-csvl-cards to vl-cards-manager so its symmetrical to manage-cl-tabs
       // ctToShowInCsOfVl and ctToShowInCL why are they needed. Why not have only vsCtToShow
 
       if (pSelectedSuggestion.layer === 'view') {
@@ -131,7 +131,7 @@ export default {
         force: true,
         cancelable: true,
       }
-      this.$scrollTo('#vl-search', 500, options)
+      this.$scrollTo('#manage-csvl-cards', 500, options)
     },
   },
 }

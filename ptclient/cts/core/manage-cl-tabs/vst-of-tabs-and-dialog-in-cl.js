@@ -1,4 +1,4 @@
-import ormSearchPhrasesOfCt from '~/cts/core/vl-search/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '~/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 
 export default {
   state: {
@@ -70,7 +70,7 @@ export default {
       const objSearchRowFromORM = arFromORM[0]
 
       // Goal: Create the obj Tab that will be worked upon by for loop in
-      // /cts/core/cl-tabs-manager/ctShowAddAndRemoveTabsInDialog.vue: 76
+      // /cts/core/manage-cl-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
         label: objSearchRowFromORM.value, // TODO: Should be called vsLabel
 
