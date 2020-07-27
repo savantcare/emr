@@ -62,9 +62,9 @@ export default {
 
       console.log('state-> ', state.arTabs)
     },
-    mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
+    async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal: Find out which CT will handle this work
-      const arFromORM = ormSearchPhrasesOfCt.query().search(pPayload.searchTerm).get()
+      const arFromORM = await ormSearchPhrasesOfCt.query().search(pPayload.searchTerm).get()
       const objSearchRowFromORM = arFromORM[0]
 
       // Goal: Create the obj Tab that will be worked upon by for loop in

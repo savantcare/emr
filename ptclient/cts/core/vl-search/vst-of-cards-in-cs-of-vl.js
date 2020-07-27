@@ -2,8 +2,7 @@
 export default {
   state: {
     arCards: [], // Template has a for loop running on this.
-    vsSelectedCardId: '', // arCards might have 10 Cards. Out of those which Card is active needs to be stored outside the array of 10 Cards
-    // #endregion state
+    vsSelectedCardId: '', // arCards might have 10 Cards. Out of those which Card is active needs to be stored outside the array of 10 Cards TODO: Is this needed?
   },
   mutations: {
     mtfSetvsSelectedCardId(state, value) {

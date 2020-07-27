@@ -10,7 +10,7 @@ export default {
   methods: {
     mfOpenCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'hello world C3 - change',
+        searchTerm: 'Chapter 3 - change',
       })
     },
   },

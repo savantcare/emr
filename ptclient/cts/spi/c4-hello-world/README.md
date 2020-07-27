@@ -1,7 +1,6 @@
 Q) What are the additional end result of this chapter?
-
-1. Define a ORM model
-2. Read data from ORM model and show inside a template
+A. Define a ORM model
+B. Read data from ORM model and show inside a template
 
 Q) How many lines of code need to be written for above results?
 Total: 74
