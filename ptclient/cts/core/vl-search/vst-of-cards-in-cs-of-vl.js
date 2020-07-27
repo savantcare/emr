@@ -12,8 +12,8 @@ export default {
     mtfSetArCards(state, value) {
       state.arCards = value
     },
-    mtfShowCardInCSVL(state, pCard) {
-      // CSVL is current state view layer
+    mtfShowCardInCsVl(state, pCard) {
+      // CsVl is current state view layer
       state.arCards.push(pCard)
       state.vsSelectedCardId = pCard.id
       console.log('state-> ', state)

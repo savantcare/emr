@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShowInCsOfVl: 'spi/rem/vl/timeline.vue', // CSVL -> Current state view layer
+        ctToShowInCsOfVl: 'spi/rem/vl/timeline.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })

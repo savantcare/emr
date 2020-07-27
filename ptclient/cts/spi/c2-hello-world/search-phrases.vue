@@ -11,7 +11,7 @@ export default {
       data: {
         value: 'Hello world C2',
         ctAbbr: 'bp',
-        ctToShowInCsOfVl: 'spi/c2-hello-world/vl/table.vue', // CSVL -> Current state view layer
+        ctToShowInCsOfVl: 'spi/c2-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })

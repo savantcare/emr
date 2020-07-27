@@ -82,7 +82,7 @@ export default {
     },
 
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
-      // Goal: Add the card in CSVL (Current state in View layer) or tab in CL (Change layer)
+      // Goal: Add the card in CsVl (Current state in View layer) or tab in CL (Change layer)
 
       let vsCtToShow = ''
 
@@ -100,7 +100,7 @@ export default {
         closable: true,
       }
       if (pSelectedSuggestion.layer === 'view') {
-        this.$store.commit('mtfShowCardInCSVL', objCtToAdd)
+        this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.layer === 'change') {
         this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
       }
