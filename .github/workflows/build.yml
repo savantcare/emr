@@ -134,9 +134,9 @@ jobs:
       - name: Goal 21 -> Stopping all docker containers, So that logs get cleanly written
         if: always()
         run: |
-        cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
-        docker-compose down
-        sleep 10
+          cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
+          docker-compose down
+          sleep 10
 
       - name: Goal 22 -> Upload result of tests
         # https://stackoverflow.com/questions/58858429/how-to-run-a-github-actions-step-even-if-the-previous-step-fails-while-still-f
