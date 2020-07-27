@@ -1,5 +1,5 @@
 <template>
-  <div>Hello world C2</div>
+  <div>From chapter 2 - Hello world</div>
 </template>
 
 <script>

@@ -1,9 +1,12 @@
-By adding another 15 lines of code we get:
-1 c1 +
+Q) What are the additional end result of this chapter?
 
-2. Display a Ct in Change layer
+1. Invoke a ct in Cl from search in view layer
+   -- Type "hello world C2 - change" in the search box on first layer
+2. Invoke a ct from search in change layer
+   -- Type "hello world C2 - change" in the change layer tabs search box.
 
-- invoked from search in view layer
-  -- Type "hello world C2 - change" in the search box on first layer
-- invoked from search in change layer
-  -- Type "hello world C2 - change" in the changle layer tabs search box.
+Q) How many lines of code need to be written for above results?
+Total: 31
+search-phrases.vue -> 25
+vl/table.vue -> 3
+cl/table.vue -> 3
