@@ -7,7 +7,7 @@ export default {
       data: {
         value: 'Chapter 2', // search term
         ctAbbr: 'bp',
-        ctToShowInCsOfVl: 'spi/c2-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/c2-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })
@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'Chapter 2 - change', // search term
         ctAbbr: 'crem',
-        ctToShowInCL: 'spi/c2-hello-world/cl/table.vue',
+        ctToShow: 'spi/c2-hello-world/cl/table.vue',
         layer: 'change',
         ctWidth: 'small',
       },

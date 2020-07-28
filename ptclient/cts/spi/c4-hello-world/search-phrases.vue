@@ -11,7 +11,7 @@ export default {
       data: {
         value: 'Chapter 4',
         ctAbbr: 'bp',
-        ctToShowInCsOfVl: 'spi/c4-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/c4-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })
@@ -19,7 +19,7 @@ export default {
       data: {
         value: 'Chapter 4 - change',
         ctAbbr: 'crem',
-        ctToShowInCL: 'spi/c4-hello-world/cl/table.vue',
+        ctToShow: 'spi/c4-hello-world/cl/table.vue',
         layer: 'change',
         ctWidth: 'small',
       },

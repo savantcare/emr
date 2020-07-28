@@ -17,7 +17,7 @@ Step 6: Once the user selection is finalized the state of vstObjCardsInCsOfVl (F
 is updated cts/manage-csvl-cards/index.vue:47/mfHandleSuggestionSelectedByUser
 
 Step 7: This activates pages/pf/\_id/index.vue:30
-start-component v-bind:is="card.ctToShowInCsOfVl" end-component
+start-component v-bind:is="card.ctToShow" end-component
 
 Step 8: User sees the desired HTML
 

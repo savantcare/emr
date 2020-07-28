@@ -65,7 +65,7 @@ export default {
       const objRowFromORM = arFromORM[0]
       const tab = {
         label: objRowFromORM.value,
-        ctToShow: require('@/cts/' + objRowFromORM.ctToShowInCL).default,
+        ctToShow: require('@/cts/' + objRowFromORM.ctToShow).default,
         ctAbbr: objRowFromORM.ctAbbr,
         id: objRowFromORM.id,
         closable: true,

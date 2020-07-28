@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'map',
         ctAbbr: 'mp',
-        ctToShowInCsOfVl: 'core/map/invoke.vue',
+        ctToShow: 'core/map/invoke.vue',
         layer: 'view',
       },
     })

@@ -17,7 +17,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
-        ctToShowInCL: 'spi/dx/cl/ctAddDx.vue',
+        ctToShow: 'spi/dx/cl/ctAddDx.vue',
         layer: 'change',
       },
     })
@@ -25,7 +25,7 @@ export default {
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
-        ctToShowInCL: 'spi/dx/dx-vl.vue',
+        ctToShow: 'spi/dx/dx-vl.vue',
         layer: 'view',
       },
     })
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',
-        ctToShowInCL: 'spi/dx/cl/ctMultiChangeDxa.vue',
+        ctToShow: 'spi/dx/cl/ctMultiChangeDxa.vue',
         layer: 'change',
       },
     })

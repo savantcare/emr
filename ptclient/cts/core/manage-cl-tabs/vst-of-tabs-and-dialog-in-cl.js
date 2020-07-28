@@ -86,7 +86,7 @@ export default {
 
         */
 
-        ctToShow: require('@/cts/' + objSearchRowFromORM.ctToShowInCL).default,
+        ctToShow: require('@/cts/' + objSearchRowFromORM.ctToShow).default,
         ctAbbr: objSearchRowFromORM.ctAbbr, // TODO: Should be called vsCtAbbr
         id: objSearchRowFromORM.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
         vstPropsToGiveToCt: pPayload.pPropsToGiveToCt, // This holds all the data for the record we want to change in cl

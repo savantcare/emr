@@ -87,21 +87,10 @@ export default {
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
       // Goal: Add the card in CsVl (Current state in View layer) or tab in CL (Change layer)
 
-      let vsCtToShow = ''
-
-      // TODO: Change manage-csvl-cards to vl-cards-manager so its symmetrical to manage-cl-tabs
-      // ctToShowInCsOfVl and ctToShowInCL why are they needed. Why not have only vsCtToShow
-
-      if (pSelectedSuggestion.layer === 'view') {
-        vsCtToShow = pSelectedSuggestion.ctToShowInCsOfVl // Ct to show in current state of view layer
-      } else {
-        vsCtToShow = pSelectedSuggestion.ctToShowInCL // Ct to show in change layer
-      }
-
       const objCtToAdd = {
         label: pSelectedSuggestion.value,
         // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working
-        ctToShow: require('@/cts/' + vsCtToShow).default,
+        ctToShow: require('@/cts/' + pSelectedSuggestion.ctToShow).default,
         id: pSelectedSuggestion.id,
         closable: true,
       }

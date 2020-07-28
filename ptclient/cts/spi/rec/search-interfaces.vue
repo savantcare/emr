@@ -21,8 +21,7 @@ export default {
       data: {
         value: 'recommendations',
         ctAbbr: 'rex',
-        ctToShowInCL: 'spi/',
-        ctToShowInCsOfVl: 'spi/rec/vl/timeline.vue',
+        ctToShow: 'spi/rec/vl/timeline.vue',
         layer: 'view',
       },
     })
@@ -31,7 +30,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',
-        ctToShowInCL: 'spi/rec/vl/table.vue',
+        ctToShow: 'spi/rec/vl/table.vue',
         layer: 'change',
       },
     })
