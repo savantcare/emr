@@ -10,6 +10,7 @@
     <helloWorldC2SPhrases></helloWorldC2SPhrases>
     <helloWorldC3SPhrases></helloWorldC3SPhrases>
     <helloWorldC4SPhrases></helloWorldC4SPhrases>
+    <helloWorldC5SPhrases></helloWorldC5SPhrases>
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -34,6 +35,7 @@ import helloWorldC1SPhrases from '@/cts/spi/c1-hello-world/search-phrases'
 import helloWorldC2SPhrases from '@/cts/spi/c2-hello-world/search-phrases'
 import helloWorldC3SPhrases from '@/cts/spi/c3-hello-world/search-phrases'
 import helloWorldC4SPhrases from '@/cts/spi/c4-hello-world/search-phrases'
+import helloWorldC5SPhrases from '@/cts/spi/c5-hello-world/search-phrases'
 
 export default {
   components: {
@@ -46,6 +48,7 @@ export default {
     helloWorldC2SPhrases,
     helloWorldC3SPhrases,
     helloWorldC4SPhrases,
+    helloWorldC5SPhrases,
   },
   data() {
     return { searchKeyword: '' }

@@ -1,7 +1,3 @@
 <template>
-  <div>Hello world C3</div>
+  <div>From Fifth chapter - Hello world</div>
 </template>
-
-<script>
-export default {}
-</script>
