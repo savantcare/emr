@@ -33,11 +33,11 @@ import clearSPhrases from '@/cts/core/clear/search-phrases'
 import nameSPhrases from '@/cts/spi/name/search-phrases'
 import remSPhrases from '@/cts/spi/rem/search-phrases'
 import helloWorldC1SPhrases from '@/cts/book/c1-hello-world/search-phrases'
-import helloWorldC2SPhrases from '@/cts/book/c2-hello-world/search-phrases'
-import helloWorldC3SPhrases from '@/cts/book/c3-hello-world/search-phrases'
-import helloWorldC4SPhrases from '@/cts/book/c4-hello-world/search-phrases'
-import helloWorldC5SPhrases from '@/cts/book/c5-hello-world/search-phrases'
-import helloWorldC6SPhrases from '@/cts/book/c6-hello-world/search-phrases'
+import helloWorldC2SPhrases from '@/cts/book/c2-change-layer/search-phrases'
+import helloWorldC3SPhrases from '@/cts/book/c3-click-to-invoke/search-phrases'
+import helloWorldC4SPhrases from '@/cts/book/c4-orm-model/search-phrases'
+import helloWorldC5SPhrases from '@/cts/book/c5-form-field/search-phrases'
+import helloWorldC6SPhrases from '@/cts/book/c6-form-to-orm/search-phrases'
 
 export default {
   components: {

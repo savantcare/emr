@@ -2,23 +2,20 @@
 <script>
 import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
 export default {
-  data() {
-    return {}
-  },
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Sixth chapter',
-        ctAbbr: 'c6',
-        ctToShow: 'book/c6-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        value: 'Second chapter', // search term
+        ctAbbr: 'c2',
+        ctToShow: 'book/c2-change-layer/vl/table.vue', // CsVl -> Current state view layer
         location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Sixth chapter - change',
-        ctAbbr: 'c6-c',
-        ctToShow: 'book/c6-hello-world/cl/table.vue',
+        value: 'Second chapter - change', // search term
+        ctAbbr: 'c2-c',
+        ctToShow: 'book/c2-change-layer/cl/table.vue',
         location: 'cl',
         ctWidth: 'small',
       },

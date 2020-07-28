@@ -18,9 +18,9 @@ For demo:
 1. Type "Sixth chapter" and then click on A. Or,
 2. Type "Sixth chapter change"
 
-- /ptclient/cts/book/c4-hello-world/search-phrases.vue
-- /ptclient/cts/book/c4-hello-world/vl/table.vue
-- /ptclient/cts/book/c4-hello-world/cl/table.vue
+- /ptclient/cts/book/c4-orm-model/search-phrases.vue
+- /ptclient/cts/book/c4-orm-model/vl/table.vue
+- /ptclient/cts/book/c4-orm-model/cl/table.vue
 - /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/book/c4-hello-world/db/vuex-orm/helloworld.js
+- /ptclient/cts/book/c4-orm-model/db/vuex-orm/helloworld.js
 - /ptclient/store/vuex-orm-register.js

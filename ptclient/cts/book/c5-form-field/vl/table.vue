@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/book/c4-hello-world/db/vuex-orm/helloworld.js'
+import ormHelloWorld from '@/cts/book/c4-orm-model/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {
