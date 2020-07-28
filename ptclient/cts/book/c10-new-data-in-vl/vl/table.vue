@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/book/c7-multiple-data-rows/db/vuex-orm/helloworld.js'
+import ormHelloWorld from '@/cts/book/c10-new-data-in-vl/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {

@@ -14,6 +14,7 @@ import Scr from '@/models/Screening'
 import Dxa from '@/models/Dxa'
 import Hworld from '~/cts/book/c4-orm-model/db/vuex-orm/helloworld.js'
 import HworldCh7 from '~/cts/book/c7-multiple-data-rows/db/vuex-orm/helloworld.js'
+import HworldCh10 from '~/cts/book/c10-new-data-in-vl/db/vuex-orm/helloworld.js'
 
 const database = new Database()
 
@@ -30,5 +31,6 @@ database.register(CtLifeCycle)
 database.register(Dxa)
 database.register(Hworld)
 database.register(HworldCh7)
+database.register(HworldCh10)
 
 export default database
