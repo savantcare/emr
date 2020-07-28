@@ -7,12 +7,12 @@
 |     | B. Insert into ORM          |     |                |          |          |             |                |
 |     | C. Read from ORM            |     |                |          |          |             |                |
 |     | D. Show data from ORM in Ct |     |                |          |          |             |                |
-| 5   | A. Form field in Ct         |     |                |          |          |             |                |
-|     | B. Sync from form with ORM  |     |                |          |          |             |                |
+| 5   | A. Form field in Ct         | 85  | 22             | 32       | 15       | 3           | 11             | 2              |
 
 For demo:
 
-1. Type "Fifth chapter"
+1. Type "Fifth chapter" and then click on A. Or,
+2. Type "Fifth chapter change"
 
 - /ptclient/cts/book/c4-hello-world/search-phrases.vue
 - /ptclient/cts/book/c4-hello-world/vl/table.vue
