@@ -1,3 +1,29 @@
+# Book Chapters
+
+1. https://youtu.be/PVp3R-r6PRU
+   Date: 27th July 2020
+   Speaker: Vikas
+   Topics:
+   A. How does create the first ct that shows data in current state view layer
+
+# Others
+
+1. https://youtu.be/o42OtD3kDQI
+   Date: 27th July 2020
+   Speaker: Vikas
+   Topics:
+   A. How does build.yml work
+   B. Automated testing on github
+
+2) https://youtu.be/lKmoUtUHkoo
+   Date: 24th July 2020
+   Speaker: Vikas
+   Topics:
+   A. How to get the system up and running
+   B. Description of C1 to C3 hello world.
+
+# Planned
+
 1. https://www.youtube.com/
    Date: 27th July 2020
    Speaker: Raj
@@ -69,26 +95,6 @@
     Speaker: Vikas
     Topics:
     A. Basic concept of vue
-
-13. https://youtu.be/o42OtD3kDQI
-    Date: 27th July 2020
-    Speaker: Vikas
-    Topics:
-    A. How does build.yml work
-    B. Automated testing on github
-
-14. https://youtu.be/PVp3R-r6PRU
-    Date: 27th July 2020
-    Speaker: Vikas
-    Topics:
-    A. How does First Chapter work
-
-15. https://youtu.be/lKmoUtUHkoo
-    Date: 24th July 2020
-    Speaker: Vikas
-    Topics:
-    A. How to get the system up and running
-    B. Description of C1 to C3 hello world.
 
 Footnote:
 Video may be outdated and not completely compatible with the current code base. It is still useful to get a overview.
