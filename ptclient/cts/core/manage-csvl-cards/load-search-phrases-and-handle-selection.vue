@@ -113,8 +113,10 @@ export default {
         closable: true,
       }
       if (pSelectedSuggestion.location === 'csvl') {
+        // csvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.location === 'cl') {
+        // Change layer
         this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
       }
 

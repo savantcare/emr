@@ -2,19 +2,15 @@
 accessed by navigation url Ref:
 https://stackoverflow.com/questions/50865828/what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project
 ctShowAddAndRemoveTabsInDialog is not expected to be accessed by a URL. */
-/*
-//#region goal
+
 Create a tree strucrure that looks like:
 
 dialog
  -- tabs
    --- tabpane
       ---- Component
-//#endregion goal
-*/
--->
-//#region template
 
+-->
 <template>
   <!--  Explanation of props sent to ct 
 
@@ -96,7 +92,9 @@ dialog
                        ┌──────────▼─────────────┐                 
                        │Active tab changed in UI│                 
                        └────────────────────────┘                          
+      TODO: cfArTabs is better called cfArTabsInCl
       -->
+
       <el-col :span="24">
         <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
           <el-tab-pane
@@ -117,7 +115,6 @@ dialog
     </el-row>
   </el-dialog>
 </template>
-//#endregion template
 
 <script>
 import ctSetOfTabs from './ct-set-of-tabs'

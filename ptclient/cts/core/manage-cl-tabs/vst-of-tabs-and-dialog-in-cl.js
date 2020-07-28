@@ -2,12 +2,10 @@ import ormSearchPhrasesOfCt from '~/cts/core/manage-csvl-cards/orm-search-phrase
 
 export default {
   state: {
-    // #region state
     vblIsdialogHoldingTabsInClVisible: false,
     arTabs: [], // Template has a for loop running on this.
     vsSelectedTabId: '', // arTabs might have 10 tabs. Out of those which tab is active needs to be stored outside the array of 10 tabs
-    // #endregion state
-    vsDialogWidth: 'small', // set default CL dialog width
+    vsDialogWidth: 'small', // set default CL dialog width // TODO: Can this be removed? Since arTabs already has this.
   },
   mutations: {
     mtfSetTabDialogVisibility(state, value) {
@@ -31,6 +29,7 @@ export default {
 
       // Case 2 has happened hence a new tab needs to be added
       if (checkIfAdditionalTabIsExisting.length === 0) {
+        // Why splice? Since the "+" sign needs to be the last tab.
         state.arTabs.splice(state.arTabs.length - 1, 0, pObjAdditionalTab)
       }
 
@@ -48,7 +47,7 @@ export default {
       state.arTabs = [pTab]
       state.vblIsdialogHoldingTabsInClVisible = true
       state.vsSelectedTabId = pTab.id
-      state.vsDialogWidth = pTab.ctWidth
+      state.vsDialogWidth = pTab.ctWidth // TODO: since each tab has it is this needed seperately.
 
       // This is the 2nd tab with the + sign. It is added at the end of the set of tabs.
       // Just like chrome browser add new tab control.
