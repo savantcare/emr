@@ -3,13 +3,13 @@
 1. https://youtu.be/PVp3R-r6PRU
 
    - Date: 27th July 2020
-   - Speaker: Vikas
+   - Speaker: Vikas recorded at 3840\*2160
    - Topics:
      - A. How to create the first component that shows data in [current state view layer](https://github.com/savantcare/emr/blob/master/docs/GLOSSARY.md#information-layers)
 
 2. https://youtu.be/zCgWHvHn4JA
    - Date: 28th July 2020
-   - Speaker: Vikas
+   - Speaker: Vikas recorded at 3840\*2160
    - Topics:
      - A. How to show a Ct in Cl from 2 different methods.
 
@@ -17,14 +17,14 @@
 
 1. https://youtu.be/o42OtD3kDQI
    - Date: 27th July 2020
-   - Speaker: Vikas
+   - Speaker: Vikas recorded at 3840\*2160
    - Topics:
      - A. How does build.yml work
      - B. Automated testing on github
 
 2) https://youtu.be/lKmoUtUHkoo
    - Date: 24th July 2020
-   - Speaker: Vikas
+   - Speaker: Vikas recorded at 3840\*2160
    - Topics:
      - A. How to get the system up and running
      - B. Description of C1 to C3 hello world.
