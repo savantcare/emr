@@ -4,7 +4,7 @@
    - Date: 27th July 2020
    - Speaker: Vikas
    - Topics:
-     - A. How does create the first ct that shows data in current state view layer
+     - A. How to create the first component that shows data in [current state view layer](https://github.com/savantcare/emr/blob/master/docs/GLOSSARY.md#information-layers)
 
 # Others
 
