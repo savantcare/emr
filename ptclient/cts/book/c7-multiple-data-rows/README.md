@@ -12,6 +12,8 @@
 |     | B. Data in field survives when form is closed                              |     |                |          |          |             |                |
 |     | C. Data is saved in Chrome                                                 |     |                |          |          |             |                |
 |     | dev console -> vue -> vuex -> state -> entities -> helloworld -> data -> 1 |     |                |          |          |             |                |
+| 7   | A. Form can add multiple data rows                                         |     | 22             | 32       | 27       | 3           | 11             | 2              |
+|     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
 
 For demo:
 
