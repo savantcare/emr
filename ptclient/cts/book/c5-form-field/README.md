@@ -14,9 +14,9 @@ For demo:
 1. Type "Fifth chapter" and then click on A. Or,
 2. Type "Fifth chapter change"
 
-- /ptclient/cts/book/c4-orm-model/search-phrases.vue
-- /ptclient/cts/book/c4-orm-model/vl/table.vue
-- /ptclient/cts/book/c4-orm-model/cl/table.vue
+- /ptclient/cts/book/c5-orm-model/search-phrases.vue
+- /ptclient/cts/book/c5-orm-model/vl/table.vue
+- /ptclient/cts/book/c5-orm-model/cl/table.vue
 - /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/book/c4-orm-model/db/vuex-orm/helloworld.js
+- /ptclient/cts/book/c5-orm-model/db/vuex-orm/helloworld.js
 - /ptclient/store/vuex-orm-register.js
