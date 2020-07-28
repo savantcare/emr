@@ -12,11 +12,11 @@
         <ctGVl> </ctGVl><br />
         <ctScrVl> </ctScrVl><br />
 -->
-    <ctRemVL> </ctRemVL>
+    <ctRemVl> </ctRemVl>
   </div>
 </template>
 <script>
-import ctRemVL from '@/cts/spi/rem/vl/table'
+import ctRemVl from '@/cts/spi/rem/vl/table'
 // import ctRexVl from '@/cts/spi/rec/vl/table'
 // import ctBMVl from '@/cts/spi/bm/bm-vl'
 // import ctDXVl from '@/cts/spi/dx/dx-vl'
@@ -25,7 +25,7 @@ import ctRemVL from '@/cts/spi/rem/vl/table'
 
 export default {
   components: {
-    ctRemVL,
+    ctRemVl,
     //    ctRexVl,
     //    ctBMVl,
     //    ctDXVl,

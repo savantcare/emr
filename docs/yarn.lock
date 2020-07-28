@@ -269,7 +269,7 @@
 "@babel/plugin-proposal-class-properties@^7.10.1", "@babel/plugin-proposal-class-properties@^7.8.3":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.10.1.tgz#046bc7f6550bb08d9bd1d4f060f5f5a4f1087e01"
-  integrity sha512-sqdGWgoXlnOdgMXU+9MbhzwFRgxVLeiGBqTrnuS7LC2IBU31wSsESbTUreT2O418obpfPdGUR2GbEufZF1bpqw==
+  integrity sha512-sqdGWgoXlnOdgMXU+9MbhzwFRgxVleiGBqTrnuS7LC2IBU31wSsESbTUreT2O418obpfPdGUR2GbEufZF1bpqw==
   dependencies:
     "@babel/helper-create-class-features-plugin" "^7.10.1"
     "@babel/helper-plugin-utils" "^7.10.1"
@@ -318,7 +318,7 @@
 "@babel/plugin-proposal-object-rest-spread@^7.0.0", "@babel/plugin-proposal-object-rest-spread@^7.10.3":
   version "7.10.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.10.3.tgz#b8d0d22f70afa34ad84b7a200ff772f9b9fce474"
-  integrity sha512-ZZh5leCIlH9lni5bU/wB/UcjtcVLgR8gc+FAgW2OOY+m9h1II3ItTO1/cewNUcsIDZSYcSaz/rYVls+Fb0ExVQ==
+  integrity sha512-ZZh5leCIlH9lni5bU/wB/UcjtcVlgR8gc+FAgW2OOY+m9h1II3ItTO1/cewNUcsIDZSYcSaz/rYVls+Fb0ExVQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.3"
     "@babel/plugin-syntax-object-rest-spread" "^7.8.0"
@@ -1128,7 +1128,7 @@
 "@vuepress/plugin-search@1.5.2":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-search/-/plugin-search-1.5.2.tgz#b8d77b4300b2e84f3c9c0d94f0a98638245196c2"
-  integrity sha512-/n0W7lQhBCj7vrIhU6VL8ZlUnWBru83W4w0gGNxzXDzZ1AMRJRnQDamBjKAWNd+WMYz8LA2LbJy1rCCds1Mu2Q==
+  integrity sha512-/n0W7lQhBCj7vrIhU6Vl8ZlUnWBru83W4w0gGNxzXDzZ1AMRJRnQDamBjKAWNd+WMYz8LA2LbJy1rCCds1Mu2Q==
 
 "@vuepress/shared-utils@1.5.2":
   version "1.5.2"
@@ -1696,7 +1696,7 @@ babylon@7.0.0-beta.19:
 babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
-  integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
+  integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVl2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -2580,7 +2580,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
-  integrity sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==
+  integrity sha512-eTVlrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==
   dependencies:
     nice-try "^1.0.4"
     path-key "^2.0.1"
@@ -2875,7 +2875,7 @@ deep-extend@^0.6.0:
 deepmerge@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
-  integrity sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==
+  integrity sha512-95k0GDqvBjZavkuvzx/YqVlv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==
 
 default-gateway@^4.2.0:
   version "4.2.0"
@@ -2940,7 +2940,7 @@ delayed-stream@~1.0.0:
 delegate@^3.1.2:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
-  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
+  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVlxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 depd@~1.1.2:
   version "1.1.2"
@@ -3309,7 +3309,7 @@ etag@~1.8.1:
 eventemitter3@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.4.tgz#b5463ace635a083d018bdc7c917b4c5f10a85384"
-  integrity sha512-rlaVLnVxtxvoyLsQQFBx53YmXHDxRIzzTLbdfxqi4yocpSjAxXwkU0cScM5JgSKMqEhrZpnvQ2D9gjylR0AimQ==
+  integrity sha512-rlaVlnVxtxvoyLsQQFBx53YmXHDxRIzzTLbdfxqi4yocpSjAxXwkU0cScM5JgSKMqEhrZpnvQ2D9gjylR0AimQ==
 
 events@^1.1.0:
   version "1.1.1"
@@ -5395,7 +5395,7 @@ nprogress@^0.2.0:
 nth-check@^1.0.2, nth-check@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nth-check/-/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
-  integrity sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==
+  integrity sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7Vly0Da6J1+wCT0AtHg==
   dependencies:
     boolbase "~1.0.0"
 
@@ -6023,7 +6023,7 @@ postcss-ordered-values@^4.1.2:
 postcss-reduce-initial@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/postcss-reduce-initial/-/postcss-reduce-initial-4.0.3.tgz#7fd42ebea5e9c814609639e2c2e84ae270ba48df"
-  integrity sha512-gKWmR5aUulSjbzOfD9AlJiHCGH6AEVLaM0AV+aSioxUDd16qXP1PCh8d1/BGVvpdWn8k/HiK7n6TjeoXN1F7DA==
+  integrity sha512-gKWmR5aUulSjbzOfD9AlJiHCGH6AEVlaM0AV+aSioxUDd16qXP1PCh8d1/BGVvpdWn8k/HiK7n6TjeoXN1F7DA==
   dependencies:
     browserslist "^4.0.0"
     caniuse-api "^3.0.0"
@@ -7789,7 +7789,7 @@ void-elements@^2.0.1:
 vue-docgen-api@^2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue-docgen-api/-/vue-docgen-api-2.6.12.tgz#0121e681b9e6148ec6675277a9b1a94623b0958c"
-  integrity sha512-z+H+uIPNi4jArnVx8uLIhQKhqNs/MarTLlbluU9QqmIwQ3R7+x0JEDpQ/hmG7z9DUddl9FVLkcvD3NmzzwP8tg==
+  integrity sha512-z+H+uIPNi4jArnVx8uLIhQKhqNs/MarTLlbluU9QqmIwQ3R7+x0JEDpQ/hmG7z9DUddl9FVlkcvD3NmzzwP8tg==
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
@@ -7821,7 +7821,7 @@ vue-hot-reload-api@^2.3.0:
 vue-loader@^15.7.1:
   version "15.9.3"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.9.3.tgz#0de35d9e555d3ed53969516cac5ce25531299dda"
-  integrity sha512-Y67VnGGgVLH5Voostx8JBZgPQTlDQeOVBLOEsjc2cXbCYBKexSKEpOA56x0YZofoDOTszrLnIShyOX1p9uCEHA==
+  integrity sha512-Y67VnGGgVlH5Voostx8JBZgPQTlDQeOVBLOEsjc2cXbCYBKexSKEpOA56x0YZofoDOTszrLnIShyOX1p9uCEHA==
   dependencies:
     "@vue/component-compiler-utils" "^3.1.0"
     hash-sum "^1.0.2"

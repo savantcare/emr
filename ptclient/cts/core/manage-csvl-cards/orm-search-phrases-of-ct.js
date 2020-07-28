@@ -12,7 +12,7 @@ export default class ormSearchPhrasesOfCt extends Model {
       ctToShowInCsOfVl: this.string(''), // ctToShowInCsOfVl => ct To Show In Cs Of View layer.
       layer: this.string(''), // This can have the value of "change" or "view"
       usageCountKeptInLS: this.number(0), // usageCountKeptInLS => usage Count Kept In Local storate. This is used to order the search results.
-      ctWidth: this.string(''), // In CL we want to box to be as small as possible to more area of VL is visible.
+      ctWidth: this.string(''), // In CL we want to box to be as small as possible to more area of Vl is visible.
     }
   }
 }

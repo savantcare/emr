@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="info" plain :tabindex="cfPosInArCards * 100 + 1">Vikas</el-button>
+    <el-button type="info" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">Vikas</el-button>
     <el-button type="info" plain>Kedia</el-button>
     <el-button
       type="primary"
@@ -17,11 +17,11 @@
 <script>
 export default {
   computed: {
-    cfPosInArCards() {
-      const arCards = this.$store.state.vstObjCardsInCSOfVL.arCards
-      console.log(arCards)
-      const obj = arCards.find((x) => x.label === 'name')
-      const idx = arCards.indexOf(obj)
+    cfPosInArCardsInCsOfVl() {
+      const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
+      console.log(arCardsInCsOfVl)
+      const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
+      const idx = arCardsInCsOfVl.indexOf(obj)
       console.log(idx)
       return idx
     },

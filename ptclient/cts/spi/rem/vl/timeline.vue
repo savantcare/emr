@@ -7,7 +7,7 @@
     -->
     <el-card class="box-card" :body-style="{ paddingLeft: '3px' }">
       <div slot="header" class="clearfix">
-        <span :tabindex="cfPosInArCards * 100 + 1" @keyup="mfKeyPress($event, 'header')"
+        <span :tabindex="cfPosInArCardsInCsOfVl * 100 + 1" @keyup="mfKeyPress($event, 'header')"
           >Reminders</span
         >
         <el-button-group style="float: right;">
@@ -38,7 +38,7 @@
           :key="row.id"
           :timestamp="row.createdAt"
           :type="row.type"
-          :tabindex="cfPosInArCards * 100 + 2"
+          :tabindex="cfPosInArCardsInCsOfVl * 100 + 2"
           @keyup.native="mfKeyPress($event, row.id, row.remDesc)"
         >
           {{ row.remDesc }}
@@ -78,11 +78,10 @@ export default {
     return {}
   },
   computed: {
-    cfPosInArCards() {
-      const arCards = this.$store.state.vstObjCardsInCSOfVL.arCards
-      console.log(arCards)
-      const obj = arCards.find((x) => x.label === 'reminders')
-      const idx = arCards.indexOf(obj)
+    cfPosInArCardsInCsOfVl() {
+      const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
+      const obj = arCardsInCsOfVl.find((x) => x.label === 'reminders')
+      const idx = arCardsInCsOfVl.indexOf(obj)
       return idx
     },
     cfArOfRemForDisplayInTable() {

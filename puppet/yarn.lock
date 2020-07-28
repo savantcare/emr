@@ -1173,7 +1173,7 @@ babel-plugin-istanbul@^4.1.5:
 babel-plugin-istanbul@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-6.0.0.tgz#e159ccdc9af95e0b570c75b4573b7c34d671d765"
-  integrity sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVLV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==
+  integrity sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVlV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@istanbuljs/load-nyc-config" "^1.0.0"
@@ -1598,7 +1598,7 @@ babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.24.1, babel-types@^6.26
 babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
-  integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
+  integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVl2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -2016,7 +2016,7 @@ chalk@^3.0.0:
 chalk@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVl1A==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -2334,7 +2334,7 @@ cross-spawn@^5.0.1:
 cross-spawn@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
-  integrity sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==
+  integrity sha512-eTVlrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==
   dependencies:
     nice-try "^1.0.4"
     path-key "^2.0.1"
@@ -2361,7 +2361,7 @@ cryptiles@2.x.x:
 cryptiles@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-4.1.3.tgz#2461d3390ea0b82c643a6ba79f0ed491b0934c25"
-  integrity sha512-gT9nyTMSUC1JnziQpPbxKGBbUg8VL7Zn2NB4E1cJYvuXdElHrwxrV9bmltZGDzet45zSDGyYceueke1TjynGzw==
+  integrity sha512-gT9nyTMSUC1JnziQpPbxKGBbUg8Vl7Zn2NB4E1cJYvuXdElHrwxrV9bmltZGDzet45zSDGyYceueke1TjynGzw==
   dependencies:
     boom "7.x.x"
 
@@ -2621,7 +2621,7 @@ domexception@^1.0.1:
 domexception@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/domexception/-/domexception-2.0.1.tgz#fb44aefba793e1574b0af6aed2801d057529f304"
-  integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
+  integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVlOEnTSRaIVVzVQgS0dg==
   dependencies:
     webidl-conversions "^5.0.0"
 
@@ -4300,7 +4300,7 @@ istanbul-reports@^3.0.2:
 jest-changed-files@^22.2.0:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-22.4.3.tgz#8882181e022c38bd46a2e4d18d44d19d90a90fb2"
-  integrity sha512-83Dh0w1aSkUNFhy5d2dvqWxi/y6weDwVVLU6vmK0cV9VpRxPzhTeGimbsbRDSnEoszhF937M4sDLLeS7Cu/Tmw==
+  integrity sha512-83Dh0w1aSkUNFhy5d2dvqWxi/y6weDwVVlU6vmK0cV9VpRxPzhTeGimbsbRDSnEoszhF937M4sDLLeS7Cu/Tmw==
   dependencies:
     throat "^4.0.0"
 
@@ -5530,7 +5530,7 @@ lru-cache@^5.1.1:
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
-  integrity sha512-2w31R7SJtieJJnQtGc7RVL2StM2vGYVfqUOvUDxH6bC6aJTxPxTF0GnIgCyu7tjockiUWAYQRbxa7vKn34s5sQ==
+  integrity sha512-2w31R7SJtieJJnQtGc7RVl2StM2vGYVfqUOvUDxH6bC6aJTxPxTF0GnIgCyu7tjockiUWAYQRbxa7vKn34s5sQ==
   dependencies:
     pify "^3.0.0"
 
@@ -5630,7 +5630,7 @@ mem@^4.0.0:
 mem@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/mem/-/mem-6.1.0.tgz#846eca0bd4708a8f04b9c3f3cd769e194ae63c5c"
-  integrity sha512-RlbnLQgRHk5lwqTtpEkBTQ2ll/CG/iB+J4Hy2Wh97PjgZgXgWJWrFF+XXujh3UUVLvR4OOTgZzcWMMwnehlEUg==
+  integrity sha512-RlbnLQgRHk5lwqTtpEkBTQ2ll/CG/iB+J4Hy2Wh97PjgZgXgWJWrFF+XXujh3UUVlvR4OOTgZzcWMMwnehlEUg==
   dependencies:
     map-age-cleaner "^0.1.3"
     mimic-fn "^3.0.0"
@@ -6925,7 +6925,7 @@ pkg-dir@^4.2.0:
 pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
-  integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
+  integrity sha512-2qHaIQr2VlRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
@@ -7196,7 +7196,7 @@ react-is@^16.12.0:
 read-cmd-shim@^1.0.1, read-cmd-shim@^1.0.5, read-cmd-shim@~1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/read-cmd-shim/-/read-cmd-shim-1.0.5.tgz#87e43eba50098ba5a32d0ceb583ab8e43b961c16"
-  integrity sha512-v5yCqQ/7okKoZZkBQUAfTsQ3sVJtXdNfbPnI5cceppoxEVLYA3k+VtV2omkeo8MS94JCy4fSiUwlRBAwCVRPUA==
+  integrity sha512-v5yCqQ/7okKoZZkBQUAfTsQ3sVJtXdNfbPnI5cceppoxEVlYA3k+VtV2omkeo8MS94JCy4fSiUwlRBAwCVRPUA==
   dependencies:
     graceful-fs "^4.1.2"
 
@@ -8954,7 +8954,7 @@ whatwg-url@^6.4.1:
 whatwg-url@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-7.1.0.tgz#c2c492f1eca612988efd3d2266be1b9fc6170d06"
-  integrity sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==
+  integrity sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVlm8wtw6YJdKyxSjeg==
   dependencies:
     lodash.sortby "^4.7.0"
     tr46 "^1.0.1"

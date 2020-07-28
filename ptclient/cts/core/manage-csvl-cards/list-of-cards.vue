@@ -10,7 +10,7 @@
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
           -->
-    <el-card v-for="card in cfArCards" :key="card.id">
+    <el-card v-for="card in cfArCardsInCsOfVl" :key="card.id">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -20,7 +20,7 @@
             -->
       <component :is="card.ctToShow"></component>
     </el-card>
-    <!-- ctVLSearchBox as per glossary is Component View layer search box 
+    <!-- ctVlSearchBox as per glossary is Component View layer search box 
              Top or bottom of the for loop -> determines if search comes at top or bottom of the other cards
              Advantages of having search box at the top:
               1. We are used to reading from top to bottom
@@ -36,26 +36,26 @@
 
               Do not make the mistake of making something like this configurable. When needed the change should be made directly in the code
         -->
-    <ctVLSearchBox></ctVLSearchBox>
+    <ctVlSearchBox></ctVlSearchBox>
   </div>
 </template>
 <script>
-import ctVLSearchBox from '@/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection'
+import ctVlSearchBox from '@/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection'
 
 export default {
   components: {
-    ctVLSearchBox,
+    ctVlSearchBox,
   },
   data() {
     return {}
   },
   computed: {
-    cfArCards: {
+    cfArCardsInCsOfVl: {
       get() {
-        return this.$store.state.vstObjCardsInCSOfVL.arCards
+        return this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
       },
       set(value) {
-        this.$store.commit('mtfSetArCards', value)
+        this.$store.commit('mtfSetArCardsInCsOfVl', value)
       },
     },
   },

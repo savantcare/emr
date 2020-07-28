@@ -6,7 +6,7 @@ export default {
     return {}
   },
   mounted() {
-    this.$store.commit('mtfSetArCards', [])
+    this.$store.commit('mtfSetArCardsInCsOfVl', [])
   },
 }
 </script>

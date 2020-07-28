@@ -43,7 +43,7 @@ const createStore = () => {
       vstObjMapDrawer: VueStateOfMapDrawerModule,
 
       // Full form: view state object cards in current state of view layer
-      vstObjCardsInCSOfVL: vstOfCardsInCsOfVlModule,
+      vstObjCardsInCsOfVl: vstOfCardsInCsOfVlModule,
     },
     plugins: [VuexORM.install(database)],
   })

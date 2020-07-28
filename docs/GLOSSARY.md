@@ -66,7 +66,7 @@ In the following examples age is a function inside a component
 
 ### Others
 
-- VL: View layer ![Viw layer and change layer](../docs/images/vl-and-cl.png) In this diagram the layer at bottom
+- Vl: View layer ![Viw layer and change layer](../docs/images/vl-and-cl.png) In this diagram the layer at bottom
 - CL: Change layer. In the above diagram the layer on top.
 - cs: currrent state
 - csvl: currrent state view layer ![multi state view layer and current state view layer](../docs/images/msvl-and-csvl.png). In this diagram it is on right
