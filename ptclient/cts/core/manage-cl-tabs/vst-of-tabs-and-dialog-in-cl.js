@@ -65,8 +65,16 @@ export default {
       console.log('state-> ', state.arTabs)
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
-      // Goal: Find out which CT will handle this work
-      const arFromORM = await ormSearchPhrasesOfCt.query().search(pPayload.searchTerm).get()
+      // Goal: Find out which CT will handle this work\
+      console.log('Search term ', pPayload)
+      const arFromORM = await ormSearchPhrasesOfCt
+        .query()
+        .where('location', 'cl')
+        .search(pPayload.searchTerm.trim(), {
+          threshold: 0.3,
+          keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
+        })
+        .get()
       const objSearchRowFromORM = arFromORM[0]
 
       // Goal: Create the obj Tab that will be worked upon by for loop in
