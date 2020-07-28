@@ -71,7 +71,7 @@ export default {
         .query()
         .where('location', 'cl')
         .search(pPayload.searchTerm.trim(), {
-          threshold: 0.3,
+          threshold: 0.2,
           keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
         })
         .get()
