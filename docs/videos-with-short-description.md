@@ -107,5 +107,6 @@
     - Topics:
       - A. Basic concept of vue
 
-Footnote:
+# Footnote:
+
 Video may be outdated and not completely compatible with the current code base. It is still useful to get a overview.
