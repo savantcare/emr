@@ -24,7 +24,7 @@ export default {
   methods: {
     mfOpenCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'Eight chapter - change',
+        searchTerm: 'Ninth chapter - change',
       })
     },
   },
