@@ -10,6 +10,15 @@
               @input="mfSetFieldUsingCache($event, ormRow.id, 'msg')"
             ></el-input>
           </el-col>
+          <el-col :span="4">
+            <el-button
+              plain
+              type="warning"
+              style="float: right;"
+              @click="mfDeleteRowInOrm(ormRow.id)"
+              >Remove</el-button
+            >
+          </el-col>
         </el-form-item>
       </div>
       <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
@@ -49,6 +58,9 @@ export default {
       const rowStatus = 24
       ormHw.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+    },
+    async mfDeleteRowInOrm(pOrmRowId) {
+      await ormHw.delete(pOrmRowId)
     },
     mfResetForm(formName) {
       ormHw.deleteEditStateRows()

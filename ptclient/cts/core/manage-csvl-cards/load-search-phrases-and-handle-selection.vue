@@ -14,6 +14,7 @@
     <helloWorldC6SPhrases></helloWorldC6SPhrases>
     <helloWorldC7SPhrases></helloWorldC7SPhrases>
     <helloWorldC8SPhrases></helloWorldC8SPhrases>
+    <helloWorldC9SPhrases></helloWorldC9SPhrases>
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -42,6 +43,7 @@ import helloWorldC5SPhrases from '@/cts/book/c5-form-field/search-phrases'
 import helloWorldC6SPhrases from '@/cts/book/c6-form-to-orm/search-phrases'
 import helloWorldC7SPhrases from '@/cts/book/c7-multiple-data-rows/search-phrases'
 import helloWorldC8SPhrases from '@/cts/book/c8-reset-form/search-phrases'
+import helloWorldC9SPhrases from '@/cts/book/c9-remove-data-rows/search-phrases'
 
 export default {
   components: {
@@ -58,6 +60,7 @@ export default {
     helloWorldC6SPhrases,
     helloWorldC7SPhrases,
     helloWorldC8SPhrases,
+    helloWorldC9SPhrases,
   },
   data() {
     return { searchKeyword: '' }
