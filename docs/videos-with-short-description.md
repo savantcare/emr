@@ -38,19 +38,19 @@
    Date: Video on 27th July 2020
    Speaker: Vikas
    Topics:
-   A. How does chapter 4 work
+   A. How does Fourth chapter work
 
 8. https://www.youtube.com/
    Date: Video on 27th July 2020
    Speaker: Vikas
    Topics:
-   A. How does chapter 3 work
+   A. How does Third chapter work
 
 9. https://www.youtube.com/
    Date: Video on 27th July 2020
    Speaker: Vikas
    Topics:
-   A. How does chapter 2 work
+   A. How does Second chapter work
 
 10. https://www.youtube.com/
     Date: Video on 27th July 2020
@@ -81,7 +81,7 @@
     Date: Video on 27th July 2020
     Speaker: Vikas
     Topics:
-    A. How does chapter 1 work
+    A. How does First Chapter work
 
 15. https://www.youtube.com/watch?v=KhsalaDDoxc
     Date: Video on 24th July 2020

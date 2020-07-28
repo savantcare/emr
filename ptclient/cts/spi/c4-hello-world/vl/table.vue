@@ -1,6 +1,6 @@
 <template>
   <div>
-    From chapter 4 - Hello {{ cfMsg }}
+    From Fourth chapter - Hello {{ cfMsg }}
     <el-button style="padding: 3px;" type="success" plain @click="mfOpenCtInCl">A</el-button>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   methods: {
     mfOpenCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'Chapter 4 - change',
+        searchTerm: 'Fourth chapter - change',
       })
     },
   },

@@ -5,16 +5,16 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Chapter 2', // search term
-        ctAbbr: 'bp',
+        value: 'Second chapter', // search term
+        ctAbbr: 'c2',
         ctToShow: 'spi/c2-hello-world/vl/table.vue', // CsVl -> Current state view layer
         layer: 'view',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Chapter 2 - change', // search term
-        ctAbbr: 'crem',
+        value: 'Second chapter - change', // search term
+        ctAbbr: 'c2-c',
         ctToShow: 'spi/c2-hello-world/cl/table.vue',
         layer: 'change',
         ctWidth: 'small',
