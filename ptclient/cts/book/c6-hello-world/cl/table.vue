@@ -19,17 +19,6 @@ export default {
     }
   },
   methods: {
-    async mfAddEmptyRowInOrm() {
-      const arFromORM = await ormHw.insert({
-        data: {
-          msg: '',
-          rowStateInThisSession: 2, // For meaning of diff values read ptclient/docs/forms.md
-        },
-      })
-      if (!arFromORM) {
-        console.log('FATAL ERROR')
-      }
-    },
     mfGetField(pOrmRowId, pFieldName) {
       return ormHw.getField(pOrmRowId, pFieldName)
     },
