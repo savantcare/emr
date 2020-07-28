@@ -6,18 +6,9 @@
           <el-col>
             <el-input
               placeholder="Please input"
-              :value="mfGetField(1, 'msg')"
+              :value="mfGetField(ormRow.id, 'msg')"
               @input="mfSetFieldUsingCache($event, ormRow.id, 'msg')"
             ></el-input>
-          </el-col>
-          <el-col :span="4">
-            <el-button
-              plain
-              type="warning"
-              style="float: right;"
-              @click="mfDeleteRowInOrm(ormRow.id)"
-              >Remove</el-button
-            >
           </el-col>
         </el-form-item>
       </div>
@@ -36,7 +27,7 @@ export default {
   },
   methods: {
     async mfAddEmptyRowInOrm() {
-      const arFromORM = await ormRem.insert({
+      const arFromORM = await ormHw.insert({
         data: {
           msg: '',
           rowStateInThisSession: 2, // For meaning of diff values read ptclient/docs/forms.md

@@ -4,7 +4,7 @@
 
 import rowStatus from '@/cts/core/crud/rowstatus.js'
 export default class helloworld extends rowStatus {
-  static entity = 'helloworld'
+  static entity = 'helloworldCh7'
   static fields() {
     return {
       ...super.fields(),
