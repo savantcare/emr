@@ -92,6 +92,15 @@ class rowStatus extends Model {
     return arFromORM
   }
 
+  static getNotEmptyRows(pFieldForNonEmptyCheck) {
+    // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    const arFromORM = this.query()
+      .where('ROW_END', 2147483647.999999)
+      .where(pFieldForNonEmptyCheck, (value) => value.length > 0)
+      .get()
+    return arFromORM
+  }
+
   static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromORM = this.query()

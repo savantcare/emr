@@ -28,7 +28,7 @@ export default {
       return ''
     },
     cfArForDisplayInTable() {
-      const arFromORM = ormHelloWorld.getValidUniqueUuidNotEmptyRows('msg')
+      const arFromORM = ormHelloWorld.getNotEmptyRows('msg')
       return arFromORM
     },
   },
