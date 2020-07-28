@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/book/c4-hello-world/db/vuex-orm/helloworld.js'
+import ormHelloWorld from '@/cts/book/c6-hello-world/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {
@@ -24,7 +24,7 @@ export default {
   methods: {
     mfOpenCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'Fifth chapter - change',
+        searchTerm: 'Sixth chapter - change',
       })
     },
   },

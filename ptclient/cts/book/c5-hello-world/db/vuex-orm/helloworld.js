@@ -5,7 +5,6 @@
 import { Model } from '@vuex-orm/core'
 export default class helloworld extends Model {
   static entity = 'helloworld'
-
   static fields() {
     return {
       id: this.uid(),

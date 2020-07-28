@@ -17,4 +17,4 @@ For demo:
 - /ptclient/cts/book/c4-hello-world/cl/table.vue
 - /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
 - /ptclient/cts/book/c4-hello-world/db/vuex-orm/helloworld.js
-- /ptclient/db/index.js
+- /ptclient/store/vuex-orm-register.js
