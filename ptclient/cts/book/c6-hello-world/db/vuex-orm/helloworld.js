@@ -2,12 +2,15 @@
 // https://vuex-orm.org/guide/model/defining-models.html
 // ptclient/docs/models.md
 
-import { Model } from '@vuex-orm/core'
-export default class helloworld extends Model {
+import rowStatus from '@/cts/core/crud/rowstatus.js'
+
+export default class helloworld extends rowStatus {
   static entity = 'helloworld'
 
   static fields() {
     return {
+      ...super.fields(),
+
       id: this.uid(),
       msg: this.string(null),
     }
