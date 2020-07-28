@@ -31,11 +31,11 @@ import mapSPhrases from '@/cts/core/map/search-phrases'
 import clearSPhrases from '@/cts/core/clear/search-phrases'
 import nameSPhrases from '@/cts/spi/name/search-phrases'
 import remSPhrases from '@/cts/spi/rem/search-phrases'
-import helloWorldC1SPhrases from '@/cts/spi/c1-hello-world/search-phrases'
-import helloWorldC2SPhrases from '@/cts/spi/c2-hello-world/search-phrases'
-import helloWorldC3SPhrases from '@/cts/spi/c3-hello-world/search-phrases'
-import helloWorldC4SPhrases from '@/cts/spi/c4-hello-world/search-phrases'
-import helloWorldC5SPhrases from '@/cts/spi/c5-hello-world/search-phrases'
+import helloWorldC1SPhrases from '@/cts/book/c1-hello-world/search-phrases'
+import helloWorldC2SPhrases from '@/cts/book/c2-hello-world/search-phrases'
+import helloWorldC3SPhrases from '@/cts/book/c3-hello-world/search-phrases'
+import helloWorldC4SPhrases from '@/cts/book/c4-hello-world/search-phrases'
+import helloWorldC5SPhrases from '@/cts/book/c5-hello-world/search-phrases'
 
 export default {
   components: {

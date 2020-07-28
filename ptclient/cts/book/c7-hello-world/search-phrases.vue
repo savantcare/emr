@@ -1,6 +1,7 @@
 <template> <div></div> </template>
 <script>
 import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
+
 export default {
   data() {
     return {}
@@ -8,17 +9,17 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Fifth chapter',
-        ctAbbr: 'c5',
-        ctToShow: 'spi/c5-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        value: 'Hello world C3',
+        ctAbbr: 'bp',
+        ctToShow: 'book/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
         location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Fifth chapter - change',
-        ctAbbr: 'c5-c',
-        ctToShow: 'spi/c5-hello-world/cl/table.vue',
+        value: 'hello world C3 - change',
+        ctAbbr: 'crem',
+        ctToShow: 'book/c3-hello-world/cl/table.vue',
         location: 'cl',
         ctWidth: 'small',
       },

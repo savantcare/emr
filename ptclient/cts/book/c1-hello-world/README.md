@@ -8,6 +8,6 @@ For demo:
 
 File links:
 
-- /ptclient/cts/spi/c1-hello-world/search-phrases.vue
-- /ptclient/cts/spi/c1-hello-world/vl/table.vue
+- /ptclient/cts/book/c1-hello-world/search-phrases.vue
+- /ptclient/cts/book/c1-hello-world/vl/table.vue
 - /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue

@@ -7,16 +7,14 @@
 |     | B. Insert into ORM          |     |                |          |          |             |                |
 |     | C. Read from ORM            |     |                |          |          |             |                |
 |     | D. Show data from ORM in Ct |     |                |          |          |             |                |
-| 5   | A. Form field in Ct         |     |                |          |          |             |                |
-|     | B. Sync from form with ORM  |     |                |          |          |             |                |
 
 For demo:
 
-1. Type "Fifth chapter"
+1. Type "Fourth chapter"
 
-- /ptclient/cts/spi/c4-hello-world/search-phrases.vue
-- /ptclient/cts/spi/c4-hello-world/vl/table.vue
-- /ptclient/cts/spi/c4-hello-world/cl/table.vue
+- /ptclient/cts/book/c4-hello-world/search-phrases.vue
+- /ptclient/cts/book/c4-hello-world/vl/table.vue
+- /ptclient/cts/book/c4-hello-world/cl/table.vue
 - /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/spi/c4-hello-world/db/vuex-orm/helloworld.js
+- /ptclient/cts/book/c4-hello-world/db/vuex-orm/helloworld.js
 - /ptclient/db/index.js

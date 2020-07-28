@@ -7,7 +7,7 @@ export default {
       data: {
         value: 'Third chapter',
         ctAbbr: 'c3',
-        ctToShow: 'spi/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'book/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
         location: 'csvl',
       },
     })
@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'Third chapter - change',
         ctAbbr: 'c3-c',
-        ctToShow: 'spi/c3-hello-world/cl/table.vue',
+        ctToShow: 'book/c3-hello-world/cl/table.vue',
         location: 'cl',
         ctWidth: 'small',
       },

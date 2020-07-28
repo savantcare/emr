@@ -9,7 +9,7 @@ export default {
       data: {
         value: 'First Chapter',
         ctAbbr: 'c1',
-        ctToShow: 'spi/c1-hello-world/vl/table.vue', // CsVl -> Current state view layer. Read docs/glossary.md when you dont understand a abbreviation.
+        ctToShow: 'book/c1-hello-world/vl/table.vue', // CsVl -> Current state view layer. Read docs/glossary.md when you dont understand a abbreviation.
         location: 'csvl', // used by cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in csvl or cl
       },
     })

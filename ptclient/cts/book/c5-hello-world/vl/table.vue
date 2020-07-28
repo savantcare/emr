@@ -1,11 +1,11 @@
 <template>
   <div>
-    From Fourth chapter - Hello {{ cfMsg }}
+    From fifth chapter - Hello {{ cfMsg }}
     <el-button style="padding: 3px;" type="success" plain @click="mfOpenCtInCl">A</el-button>
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/spi/c4-hello-world/db/vuex-orm/helloworld.js'
+import ormHelloWorld from '@/cts/book/c4-hello-world/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {
@@ -24,7 +24,7 @@ export default {
   methods: {
     mfOpenCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'Fourth chapter - change',
+        searchTerm: 'Fifth chapter - change',
       })
     },
   },
