@@ -10,7 +10,7 @@ export default class ormSearchPhrasesOfCt extends Model {
       ctAbbr: this.string(''), // These are industry terms like social history is called shx in medical industry
       ctToShow: this.string(''), // ctToShow => ct To Show
       location: this.string(''), // This can have the value of "change" or "view"
-      usageCountKeptInLS: this.number(0), // usageCountKeptInLS => usage Count Kept In Local storate. This is used to order the search results.
+      usageCountKeptInOrm: this.number(0), // usageCountKeptInOrm => usage Count Kept In Local storate. This is used to order the search results.
       ctWidth: this.string(''), // In CL we want to box to be as small as possible to more area of Vl is visible.
     }
   }

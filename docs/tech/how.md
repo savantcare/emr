@@ -286,7 +286,7 @@ https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoe
 
 ## Q8) How to reduce boilerplate code?
 
-Have three types of components? TODO:
+Have three types of components?
 
 1. UI components: Reusable across the whole app. They communicate just by using props and events, not holding any application logic.
 

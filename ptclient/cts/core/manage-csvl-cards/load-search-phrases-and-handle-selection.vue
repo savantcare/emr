@@ -54,7 +54,7 @@ export default {
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromORM = {}
-      arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInLS', 'desc').get()
+      arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
       const objRowFromORM = arFromORM[0]
       if (objRowFromORM) {
         return 'e.g. ' + objRowFromORM.value
@@ -69,7 +69,7 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInLS', 'desc').get() // TODO: Change it to usageCountKeptInOrm
+        const arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
         pCallBack(arFromORM)
       } else {
         const arFromORM = ormSearchPhrasesOfCt
@@ -78,7 +78,7 @@ export default {
             // Search comes from vuex-orm plugn https://github.com/vuex-orm/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
           })
-          .orderBy('usageCountKeptInLS', 'desc')
+          .orderBy('usageCountKeptInOrm', 'desc')
           .get() // trim is needed for "goal " to match "goal"
         pCallBack(arFromORM)
       }
@@ -105,7 +105,7 @@ export default {
       ormSearchPhrasesOfCt.update({
         where: pSelectedSuggestion.id,
         data: {
-          usageCountKeptInLS: pSelectedSuggestion.usageCountKeptInLS + 1,
+          usageCountKeptInOrm: pSelectedSuggestion.usageCountKeptInOrm + 1,
         },
       })
 
