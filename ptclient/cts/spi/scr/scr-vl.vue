@@ -107,7 +107,7 @@ export default {
             value: 'screening',
             ctAbbr: 'scr',
             ctToShow: 'spi/scr/scr-l1.vue',
-            layer: 'view',
+            location: 'csvl',
           },
         })
         // Step 3/3: Run API to get data from server

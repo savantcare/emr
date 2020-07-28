@@ -8,7 +8,7 @@ export default {
         value: 'Third chapter',
         ctAbbr: 'c3',
         ctToShow: 'spi/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
-        layer: 'view',
+        location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -16,7 +16,7 @@ export default {
         value: 'Third chapter - change',
         ctAbbr: 'c3-c',
         ctToShow: 'spi/c3-hello-world/cl/table.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'small',
       },
     })

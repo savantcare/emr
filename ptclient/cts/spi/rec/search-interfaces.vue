@@ -22,7 +22,7 @@ export default {
         value: 'recommendations',
         ctAbbr: 'rex',
         ctToShow: 'spi/rec/vl/timeline.vue',
-        layer: 'view',
+        location: 'csvl',
       },
     })
 
@@ -31,7 +31,7 @@ export default {
         value: 'add recommendations',
         ctAbbr: 'arex',
         ctToShow: 'spi/rec/vl/table.vue',
-        layer: 'change',
+        location: 'cl',
       },
     })
   },

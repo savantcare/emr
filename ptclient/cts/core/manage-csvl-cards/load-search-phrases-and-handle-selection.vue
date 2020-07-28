@@ -94,9 +94,9 @@ export default {
         id: pSelectedSuggestion.id,
         closable: true,
       }
-      if (pSelectedSuggestion.layer === 'view') {
+      if (pSelectedSuggestion.location === 'csvl') {
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
-      } else if (pSelectedSuggestion.layer === 'change') {
+      } else if (pSelectedSuggestion.location === 'cl') {
         this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
       }
 

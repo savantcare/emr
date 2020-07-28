@@ -12,7 +12,7 @@ export default {
         value: 'Hello world C3',
         ctAbbr: 'bp',
         ctToShow: 'spi/c3-hello-world/vl/table.vue', // CsVl -> Current state view layer
-        layer: 'view',
+        location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -20,7 +20,7 @@ export default {
         value: 'hello world C3 - change',
         ctAbbr: 'crem',
         ctToShow: 'spi/c3-hello-world/cl/table.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'small',
       },
     })

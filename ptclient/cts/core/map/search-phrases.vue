@@ -15,7 +15,7 @@ export default {
         value: 'map',
         ctAbbr: 'mp',
         ctToShow: 'core/map/invoke.vue',
-        layer: 'view',
+        location: 'csvl',
       },
     })
   },

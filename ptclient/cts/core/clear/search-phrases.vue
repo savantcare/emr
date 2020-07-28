@@ -15,7 +15,7 @@ export default {
         value: 'clear',
         ctAbbr: 'clr',
         ctToShow: 'core/clear/index.vue',
-        layer: 'view',
+        location: 'csvl',
       },
     })
   },

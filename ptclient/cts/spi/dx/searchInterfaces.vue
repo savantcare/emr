@@ -18,7 +18,7 @@ export default {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
         ctToShow: 'spi/dx/cl/ctAddDx.vue',
-        layer: 'change',
+        location: 'cl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -26,7 +26,7 @@ export default {
         value: 'diagnosis',
         ctAbbr: 'dx',
         ctToShow: 'spi/dx/dx-vl.vue',
-        layer: 'view',
+        location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -34,7 +34,7 @@ export default {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',
         ctToShow: 'spi/dx/cl/ctMultiChangeDxa.vue',
-        layer: 'change',
+        location: 'cl',
       },
     })
   },

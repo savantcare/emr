@@ -16,7 +16,7 @@ export default {
         value: 'reminders',
         ctAbbr: 'rem',
         ctToShow: 'spi/rem/vl/timeline.vue', // CsVl -> Current state view layer
-        layer: 'view',
+        location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -24,7 +24,7 @@ export default {
         value: 'add reminder',
         ctAbbr: 'arem',
         ctToShow: 'spi/rem/cl/add.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'small',
       },
     })
@@ -33,7 +33,7 @@ export default {
         value: 'change reminder',
         ctAbbr: 'crem',
         ctToShow: 'spi/rem/cl/c.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'small',
       },
     })
@@ -42,7 +42,7 @@ export default {
         value: 'multi change reminders',
         ctAbbr: 'mcrem',
         ctToShow: 'spi/rem/cl/mc.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'large',
       },
     })
@@ -51,7 +51,7 @@ export default {
         value: 'discontinued reminders',
         ctAbbr: 'drem',
         ctToShow: 'spi/rem/vl/discontinued.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'large',
       },
     })

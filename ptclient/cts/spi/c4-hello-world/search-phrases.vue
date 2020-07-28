@@ -12,7 +12,7 @@ export default {
         value: 'Fourth chapter',
         ctAbbr: 'c4',
         ctToShow: 'spi/c4-hello-world/vl/table.vue', // CsVl -> Current state view layer
-        layer: 'view',
+        location: 'csvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -20,7 +20,7 @@ export default {
         value: 'Fourth chapter - change',
         ctAbbr: 'c4-c',
         ctToShow: 'spi/c4-hello-world/cl/table.vue',
-        layer: 'change',
+        location: 'cl',
         ctWidth: 'small',
       },
     })
