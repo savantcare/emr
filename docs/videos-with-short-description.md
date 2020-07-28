@@ -1,10 +1,17 @@
 # Book Chapters
 
 1. https://youtu.be/PVp3R-r6PRU
+
    - Date: 27th July 2020
    - Speaker: Vikas
    - Topics:
      - A. How to create the first component that shows data in [current state view layer](https://github.com/savantcare/emr/blob/master/docs/GLOSSARY.md#information-layers)
+
+2. https://youtu.be/zCgWHvHn4JA
+   - Date: 28th July 2020
+   - Speaker: Vikas
+   - Topics:
+     - A. How to show a Ct in Cl from 2 different methods.
 
 # Others
 
@@ -85,23 +92,16 @@
    - Date:
    - Speaker: Vikas
    - Topics:
-     - A. How does Second chapter work
+     - A. Basic concept of temporal DB
 
 10. https://www.youtube.com/
 
     - Date:
     - Speaker: Vikas
     - Topics:
-      - A. Basic concept of temporal DB
-
-11. https://www.youtube.com/
-
-    - Date:
-    - Speaker: Vikas
-    - Topics:
       - A. Basic concept of vuex-orm
 
-12. https://www.youtube.com/
+11. https://www.youtube.com/
     - Date:
     - Speaker: Vikas
     - Topics:
