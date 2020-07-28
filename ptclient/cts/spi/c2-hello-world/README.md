@@ -1,14 +1,16 @@
-Q) What are the additional end result of this chapter?
+| Ch  | Functionality   | LOC | search-phrases | vl/table | cl/table | load-search |
+| --- | --------------- | --- | -------------- | -------- | -------- | ----------- |
+| 1   | Show Ct in CsVL | 20  | 14             | 3        |          | 3           |
+| 2   | Show Ct in Cl   | 31  | 22             | 3        | 3        | 3           |
 
-1. Invoke a ct in change layer (cl) from
-   A. Search in view layer (vl)
-   -- For demo type "Second chapter - change" in the search box on first layer
-   B. Search in change layer (cl)
-   -- For demo type "Second chapter - change" in the change layer tabs search box.
+For demo:
 
-Q) How many lines of code need to be written for above results?
-Total: 34
-search-phrases.vue -> 25
-vl/table.vue -> 3
-cl/table.vue -> 3
-manage-csvl-cards/load-search-phrases-and-handle-selection.vue -> 3
+1. Search for "Second chapter - change" in view layer (vl)
+2. Search for "Second chapter - change" in change layer (cl)
+
+File links:
+
+- /ptclient/cts/spi/c1-hello-world/search-phrases.vue
+- /ptclient/cts/spi/c1-hello-world/vl/table.vue
+- /ptclient/cts/spi/c1-hello-world/cl/table.vue
+- /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
