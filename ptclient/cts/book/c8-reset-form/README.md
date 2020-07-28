@@ -14,6 +14,7 @@
 |     | dev console -> vue -> vuex -> state -> entities -> helloworld -> data -> 1 |     |                |          |          |             |                |
 | 7   | A. Form can add multiple data rows                                         | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
+| 8   | Remove all rows from the form                                              |     | 22             | 32       | 54       | 3           | 11             | 2              |
 
 For demo:
 
