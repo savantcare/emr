@@ -13,6 +13,9 @@
         </el-form-item>
       </div>
       <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
+      <el-form-item>
+        <el-button type="primary" plain @click="mfAddEmptyRowInOrm">Add more</el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
