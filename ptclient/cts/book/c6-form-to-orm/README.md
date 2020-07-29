@@ -1,3 +1,5 @@
+# Code
+
 | Ch  | Functionality                                                              | LOC | search-phrases | vl/table | cl/table | load-search | orm/helloworld | store/vuex-orm |
 | --- | -------------------------------------------------------------------------- | --- | -------------- | -------- | -------- | ----------- | -------------- | -------------- |
 | 1   | Show Ct in CsVL                                                            | 20  | 14             | 3        |          | 3           |                |
@@ -13,10 +15,22 @@
 |     | C. Data is saved in Chrome                                                 |     |                |          |          |             |                |
 |     | dev console -> vue -> vuex -> state -> entities -> helloworld -> data -> 1 |     |                |          |          |             |                |
 
-For demo:
+# For demo:
 
 1. Type "Sixth chapter" and then click on A. Or,
 2. Type "Sixth chapter change"
+
+# Video walkthrough
+
+Optimal resolution to view: 3840x2160
+
+[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=zCgWHvHn4JA 'Show component in current state of view layer')
+
+https://youtu.be/zCgWHvHn4JA
+
+# Key concepts
+
+# File links
 
 - /ptclient/cts/book/c6-orm-model/search-phrases.vue
 - /ptclient/cts/book/c6-orm-model/vl/table.vue

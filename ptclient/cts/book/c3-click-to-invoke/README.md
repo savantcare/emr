@@ -6,12 +6,12 @@
 | 2   | Show Ct in Cl - 2 of 3 ways | 31  | 22             | 3        | 3        | 3           |
 | 3   | Click Vl to Invoke Ct in Cl | 46  | 22             | 18       | 3        | 3           |
 
-# For demo:
+# For demo
 
 1. Type "Third chapter"
 2. From the table in CsVl click A
 
-# Video walkthrough:
+# Video walkthrough
 
 Optimal resolution to view: 3840x2160
 
@@ -19,7 +19,7 @@ Optimal resolution to view: 3840x2160
 
 https://youtu.be/zCgWHvHn4JA
 
-# File links:
+# File links
 
 - /ptclient/cts/book/c1-hello-world/search-phrases.vue
 - /ptclient/cts/book/c1-hello-world/vl/table.vue

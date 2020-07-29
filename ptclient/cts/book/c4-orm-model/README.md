@@ -27,7 +27,7 @@ https://youtu.be/zCgWHvHn4JA
 1. Sql query in browser
 2. Computed function
 
-# File links:
+# File links
 
 - /ptclient/cts/book/c4-orm-model/search-phrases.vue
 - /ptclient/cts/book/c4-orm-model/vl/table.vue

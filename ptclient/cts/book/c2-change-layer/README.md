@@ -5,12 +5,12 @@
 | 1   | Show Ct in CsVL | 20  | 14             | 3        |          | 3           |
 | 2   | Show Ct in Cl   | 31  | 22             | 3        | 3        | 3           |
 
-# For demo:
+# Demo
 
 1. Search for "Second chapter - change" in view layer (vl)
 2. Search for "Second chapter - change" in change layer (cl)
 
-# Video walkthrough:
+# Video walkthrough
 
 Optimal resolution to view: 3840x2160
 
@@ -18,7 +18,7 @@ Optimal resolution to view: 3840x2160
 
 https://youtu.be/zCgWHvHn4JA
 
-# File links:
+# File links
 
 - /ptclient/cts/book/c1-hello-world/search-phrases.vue
 - /ptclient/cts/book/c1-hello-world/vl/table.vue

@@ -1,3 +1,5 @@
+# Code
+
 | Ch  | Functionality               | LOC | search-phrases | vl/table | cl/table | load-search | orm/helloworld | database/index |
 | --- | --------------------------- | --- | -------------- | -------- | -------- | ----------- | -------------- | -------------- |
 | 1   | Show Ct in CsVL             | 20  | 14             | 3        |          | 3           |                |
@@ -9,10 +11,24 @@
 |     | D. Show data from ORM in Ct |     |                |          |          |             |                |
 | 5   | A. Form field in Ct         | 85  | 22             | 32       | 15       | 3           | 11             | 2              |
 
-For demo:
+# Demo
 
 1. Type "Fifth chapter" and then click on A. Or,
 2. Type "Fifth chapter change"
+
+# Video walkthrough
+
+Optimal resolution to view: 3840x2160
+
+[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=zCgWHvHn4JA 'Show component in current state of view layer')
+
+https://youtu.be/zCgWHvHn4JA
+
+# Key concepts
+
+1. Importance of element.io in the EMR.
+
+# File links
 
 - /ptclient/cts/book/c5-orm-model/search-phrases.vue
 - /ptclient/cts/book/c5-orm-model/vl/table.vue

@@ -4,11 +4,11 @@
 | --- | --------------- | --- | -------------- | -------- | ----------- |
 | 1   | Show Ct in CsVL | 20  | 14             | 3        | 3           |
 
-# For demo:
+# Demo
 
 1. Search in view layer (vl) "First chapter"
 
-# Video walkthrough:
+# Video walkthrough
 
 Optimal resolution to view: 3840x2160
 
@@ -16,7 +16,7 @@ Optimal resolution to view: 3840x2160
 
 https://youtu.be/PVp3R-r6PRU
 
-# File links:
+# File links
 
 - /ptclient/cts/book/c1-hello-world/search-phrases.vue
 - /ptclient/cts/book/c1-hello-world/vl/table.vue
