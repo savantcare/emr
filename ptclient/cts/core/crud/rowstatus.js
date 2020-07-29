@@ -54,12 +54,31 @@ class rowStatus extends Model {
   }
 
   static getChangeRowInEditState(pUuid) {
+    /*
+      Q) Why we remove orWhere clause?
+        Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
+        where (uuid=4545d6 AND rowStateInThisSession=3) 
+        OR rowStateInThisSession=34 
+        OR rowStateInThisSession=3456
+
+        But we want the following query:
+        where uuid=4545d6 AND 
+        (rowStateInThisSession=3 OR rowStateInThisSession=34 OR rowStateInThisSession=3456)
+    */
     const arFromORM = this.query()
       .where('uuid', pUuid)
-      .where('rowStateInThisSession', 3) // Copy
-      .orWhere('rowStateInThisSession', 34) // Copy -> Changed
-      .orWhere('rowStateInThisSession', 3456) // Copy -> Changed -> Requested save -> form error
+      .where((record) => {
+        return (
+          record.rowStateInThisSession === 3 ||
+          record.rowStateInThisSession === 34 ||
+          record.rowStateInThisSession === 3456
+        )
+      })
+      // .where('rowStateInThisSession', 3) // Copy
+      // .orWhere('rowStateInThisSession', 34) // Copy -> Changed
+      // .orWhere('rowStateInThisSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
+
     if (arFromORM.length) {
       const idx = arFromORM.length - 1
       return arFromORM[idx].id
