@@ -3,7 +3,7 @@ import ormSearchPhrasesOfCt from '~/cts/core/manage-csvl-cards/orm-search-phrase
 export default {
   state: {
     vblIsdialogHoldingTabsInClVisible: false,
-    arTabs: [], // Template has a for loop running on this.
+    arTabs: [], // Template has a for loop running on this. // TODO: Can name be more readable
     vsSelectedTabId: '', // arTabs might have 10 tabs. Out of those which tab is active needs to be stored outside the array of 10 tabs
     vsDialogWidth: 'small', // set default CL dialog width // TODO: Can this be removed? Since arTabs already has this.
   },
@@ -44,6 +44,7 @@ export default {
       state.arTabs = value
     },
     mtfShowNewFirstTabInCl(state, pTab) {
+      // instead of = assignement if a push was done then old tabs will still be there.
       state.arTabs = [pTab]
       state.vblIsdialogHoldingTabsInClVisible = true
       state.vsSelectedTabId = pTab.id
@@ -64,8 +65,7 @@ export default {
       console.log('state-> ', state.arTabs)
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
-      // Goal: Find out which CT will handle this work\
-      console.log('Search term ', pPayload)
+      // Goal 1: Find out which CT will handle this search term
       const arFromORM = await ormSearchPhrasesOfCt
         .query()
         .where('location', 'cl')
@@ -76,7 +76,7 @@ export default {
         .get()
       const objSearchRowFromORM = arFromORM[0]
 
-      // Goal: Create the obj Tab that will be worked upon by for loop in
+      // Goal 2: Create the obj Tab that will be worked upon by for loop in
       // /cts/core/manage-cl-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
         label: objSearchRowFromORM.value, // TODO: Should be called vsLabel
