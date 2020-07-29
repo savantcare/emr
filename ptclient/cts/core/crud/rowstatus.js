@@ -92,6 +92,13 @@ class rowStatus extends Model {
     return arFromORM
   }
 
+  static getNewRowsInReadyToSubmitState() {
+    const arFromORM = this.query()
+      .where('rowStateInThisSession', 24) // New -> Changed
+      .get()
+    return arFromORM
+  }
+
   static getNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromORM = this.query()
