@@ -274,6 +274,15 @@ export default {
               rowStateInThisSession: 34571,
             },
           })
+
+          /*
+            Goal:
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into ormRem and it displayed on the top of timeline.
+            When change api request is successfully saved in DB then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
+          */
+          const remDesc = this.getRemDescUsingCache()
+          this.addEmptyRemToUI(remDesc)
+
           console.log('update success')
         }
       } catch (ex) {}
