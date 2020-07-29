@@ -16,6 +16,8 @@
 
 7. See in the video when I click on M it showed me wrong data.
 
+8. In quick submit there was error in saving data. Video has demo.
+
 # Cannot replicate
 
 1. I discontinued 3 reminders at once but those 3 still remained in the table.
