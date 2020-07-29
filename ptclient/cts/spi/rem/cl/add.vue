@@ -85,6 +85,9 @@ export default {
     cfGetOrmEditStateRows() {
       return ormRem.getNewRowsInEditState()
     },
+    cfGetOrmReadyToSubmitStateRows() {
+      return ormRem.getNewRowsInReadyToSubmitState()
+    },
     cfGetOrmApiSuccessStateRows() {
       return ormRem.getApiSuccessStateRows()
     },
@@ -145,7 +148,7 @@ export default {
       ormRem.deleteEditStateRows()
     },
     async mfOnSubmit() {
-      const arFromORM = this.cfGetOrmEditStateRows
+      const arFromORM = this.cfGetOrmReadyToSubmitStateRows
       if (arFromORM.length) {
         console.log('unsaved data found', arFromORM)
         for (let i = 0; i < arFromORM.length; i++) {
