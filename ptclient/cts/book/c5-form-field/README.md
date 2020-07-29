@@ -20,7 +20,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=zCgWHvHn4JA 'Show component in current state of view layer')
+[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=lb1IGuGocbI 'Show component in current state of view layer')
 
 https://youtu.be/zCgWHvHn4JA
 
