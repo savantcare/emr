@@ -4,11 +4,11 @@
 
 import { Model } from '@vuex-orm/core'
 export default class helloworld extends Model {
-  static entity = 'helloworld'
+  static entity = 'helloworld' // This is like table name of mysql DB
 
   static fields() {
     return {
-      id: this.uid(),
+      id: this.uid(), // These are the fields in the table
       msg: this.string(null),
     }
   }

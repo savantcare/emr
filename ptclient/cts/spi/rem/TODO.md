@@ -18,6 +18,8 @@
 
 8. In quick submit there was error in saving data. Video has demo.
 
+9. I should not be able to type "change reminder" in VL or CL search.
+
 # Cannot replicate
 
 1. I discontinued 3 reminders at once but those 3 still remained in the table.

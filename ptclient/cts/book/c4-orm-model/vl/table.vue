@@ -11,15 +11,13 @@ export default {
     cfMsg() {
       const arFromORM = ormHelloWorld.query().get()
       if (arFromORM.length > 0) {
-        console.log(arFromORM)
         return arFromORM[0].msg
       }
       return ''
     },
   },
   mounted() {
-    ormHelloWorld.insert({ data: { id: 1, msg: 'John' } })
-    console.log(ormHelloWorld)
+    ormHelloWorld.insert({ data: { id: 1, msg: 'Jai krishna' } })
   },
   methods: {
     mfOpenCtInCl() {
