@@ -139,8 +139,15 @@ export default {
           obj = {}
           obj.remDesc = arFromORM[i].remDesc
           // For date format ref: /cts/spi/rem/vl/timeline.vue:53
-          date = new Date(arFromORM[i].ROW_START)
-          obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
+          date = new Date(arFromORM[i].ROW_START * 1000)
+          obj.createdAt =
+            date.toLocaleString('default', { month: 'long' }) +
+            '-' +
+            date.getDate() +
+            '-' +
+            date.getFullYear()
+          obj.ROW_START = date.toLocaleString()
+          obj.ROW_END = new Date(arFromORM[i].ROW_END * 1000).toLocaleString()
           obj.rowStateInThisSession = arFromORM[i].rowStateInThisSession
           obj.uuid = arFromORM[i].uuid
           obj.$id = arFromORM[i].$id
