@@ -14,11 +14,7 @@
 
 6. In quick submit there was error in saving data. Video has demo.
 
-7. I should not be able to type "change reminder" in VL or CL search.
-
-8. cs should be cts and
-
-   1. ms should be mts
+7. For VK -> I should not be able to type "change reminder" in VL or CL search.
 
 # Cannot replicate
 
