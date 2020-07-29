@@ -18,7 +18,7 @@ export default {
       return value
     },
     mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
-      const rowStatus = 24
+      const rowStatus = 24 // 2 is new on client and 4 is changed on client
       ormHw.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },

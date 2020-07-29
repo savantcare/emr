@@ -4,21 +4,23 @@
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
    B. On tab the control should not go to browser back forward and address bar
 
-2. Rem added says Jan 19th
+2. I change the same record 2 times the timeline gets confused.
 
-3. I submitted 4 records at once and it gave me validation error on empty record.
+3. Make the X work in a drawer.
 
-4. I change the same record 2 times the timeline gets confused.
+4. There is no data and I click on M the interface shoule be better.
 
-5. Make the X work in a drawer.
+5. See in the video when I click on M it showed me wrong data.
 
-6. There is no data and I click on M the interface shoule be better.
+6. In quick submit there was error in saving data. Video has demo.
 
-7. See in the video when I click on M it showed me wrong data.
+7. I should not be able to type "change reminder" in VL or CL search.
 
-8. In quick submit there was error in saving data. Video has demo.
+8. cs should be cts and
 
-9. I should not be able to type "change reminder" in VL or CL search.
+   1. ms should be mts
+
+9. When I went to change the 2nd field it shoed data from 1st field. It is on chapter 6 video.
 
 # Cannot replicate
 

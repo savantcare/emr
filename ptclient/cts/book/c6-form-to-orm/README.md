@@ -5,12 +5,15 @@
 | 1   | Show Ct in CsVL                                                            | 20  | 14             | 3        |          | 3           |                |
 | 2   | Show Ct in Cl                                                              | 31  | 22             | 3        | 3        | 3           |                |
 | 3   | Click Vl to Invoke Ct in Cl                                                | 46  | 22             | 18       | 3        | 3           |                |
-| 4   | A. Define ORM model                                                        | 73  | 22             | 32       | 3        | 3           | 11             | 2              |
+| 4   | Central role of vuex-orm                                                   | 73  | 22             | 32       | 3        | 3           | 11             | 2              |
+|     | A. Define ORM model                                                        |     |                |          |          |             |                |                |
 |     | B. Insert into ORM                                                         |     |                |          |          |             |                |
 |     | C. Read from ORM                                                           |     |                |          |          |             |                |
 |     | D. Show data from ORM in Ct                                                |     |                |          |          |             |                |
-| 5   | Form field in Ct                                                           | 84  | 22             | 32       | 15       | 3           | 10             | 2              |
-| 6   | A. Connect form field to Orm                                               | 96  | 22             | 32       | 27       | 3           | 11             | 2              |
+| 5   | Central role of element.io                                                 | 84  | 22             | 32       | 15       | 3           | 10             | 2              |
+|     | Form field in Ct                                                           |     |                |          |          |             |                |
+| 6   | Central role of rowstatus.js                                               | 96  | 22             | 32       | 27       | 3           | 11             | 2              |
+|     | A. Connect form field to Orm                                               |     |                |          |          |             |                |
 |     | B. Data in field survives when form is closed                              |     |                |          |          |             |                |
 |     | C. Data is saved in Chrome                                                 |     |                |          |          |             |                |
 |     | dev console -> vue -> vuex -> state -> entities -> helloworld -> data -> 1 |     |                |          |          |             |                |
@@ -29,6 +32,10 @@ Optimal resolution to view: 3840x2160
 https://youtu.be/zCgWHvHn4JA
 
 # Key concepts
+
+1. Central role of the field "rowStateInThisSession"
+2. getfield and setfield how they use the cache and timeout
+3. Performance tab of vue chrome extension measuring frames per second
 
 # File links
 
