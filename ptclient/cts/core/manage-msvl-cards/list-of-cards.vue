@@ -10,27 +10,27 @@
         <ctBMVl> </ctBMVl><br />
         <ctDXVl> </ctDXVl><br />
         <ctGVl> </ctGVl><br />
-        <ctScrVl> </ctScrVl><br />
 -->
-    <ctRemVl> </ctRemVl>
+    <ctRemVl> </ctRemVl><br />
+    <ctScrVl> </ctScrVl>
   </div>
 </template>
 <script>
 import ctRemVl from '@/cts/spi/rem/vl/table'
+import ctScrVl from '@/cts/spi/scr/vl/table'
 // import ctRexVl from '@/cts/spi/rec/vl/table'
 // import ctBMVl from '@/cts/spi/bm/bm-vl'
 // import ctDXVl from '@/cts/spi/dx/dx-vl'
 // import ctGVl from '@/cts/spi/goal/g-vl'
-// import ctScrVl from '@/cts/spi/scr/scr-vl.vue'
 
 export default {
   components: {
     ctRemVl,
+    ctScrVl,
     //    ctRexVl,
     //    ctBMVl,
     //    ctDXVl,
     //    ctGVl,
-    //    ctScrVl,
   },
   data() {
     return {}
