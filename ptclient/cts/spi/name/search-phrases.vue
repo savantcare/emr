@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
         value: 'name',
         ctAbbr: 'n',
         ctToShow: 'spi/name/vl/table.vue', // CsVl -> Current state view layer
-        location: 'csvl',
+        location: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({

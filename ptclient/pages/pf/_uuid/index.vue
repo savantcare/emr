@@ -5,7 +5,7 @@
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
-            when go from msvl to csvl the event gets fired.
+            when go from msvl to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div @mouseleave="mouseleave">
@@ -17,7 +17,7 @@
       <SplitArea :size="75">
         <ctMsVlCards></ctMsVlCards>
       </SplitArea>
-      <SplitArea id="csvl" :size="25">
+      <SplitArea id="ptsvl" :size="25">
         <ctCsVlCards></ctCsVlCards>
       </SplitArea>
     </Split>
@@ -32,7 +32,7 @@
 import Vue from 'vue'
 import VueSplit from 'vue-split-panel'
 import ctMsVlCards from '@/cts/core/manage-msvl-cards/list-of-cards.vue'
-import ctCsVlCards from '@/cts/core/manage-csvl-cards/list-of-cards.vue'
+import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
@@ -40,7 +40,7 @@ import ctMapDrawer from '@/cts/core/map/drawer.vue'
 // The name above expands to Component tabs in dialog in change layer
 
 // say the user enter the rex command 10 times. I need to scroll to the bottom of the cards
-// so search box is given a ID and then #manage-csvl-cards is used to scroll down.
+// so search box is given a ID and then #manage-ptsvl-cards is used to scroll down.
 const VueScrollTo = require('vue-scrollto') // Ref: https://github.com/rigor789/vue-scrollto#as-a-vue-directive
 
 Vue.use(VueSplit)

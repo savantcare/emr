@@ -1,6 +1,6 @@
 <template> <div></div> </template>
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 export default {
   data() {
     return {}
@@ -11,7 +11,7 @@ export default {
         value: 'Fourth chapter',
         ctAbbr: 'c4',
         ctToShow: 'book/c4-orm-model/vl/table.vue', // CsVl -> Current state view layer
-        location: 'csvl',
+        location: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({

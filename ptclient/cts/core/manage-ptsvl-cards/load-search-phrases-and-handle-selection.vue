@@ -1,5 +1,5 @@
 <template>
-  <div id="manage-csvl-cards">
+  <div id="manage-ptsvl-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
     <feedSPhrases></feedSPhrases>
     <mapSPhrases></mapSPhrases>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/cts/core/feed/search-phrases'
@@ -112,8 +112,8 @@ export default {
         id: pSelectedSuggestion.id,
         closable: true,
       }
-      if (pSelectedSuggestion.location === 'csvl') {
-        // csvl -> Current state of view layer
+      if (pSelectedSuggestion.location === 'ptsvl') {
+        // ptsvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.location === 'cl') {
         // Change layer
@@ -134,13 +134,13 @@ export default {
 
       /* Goal: scrolling to top of the search input box */
       const options = {
-        container: '#csvl',
+        container: '#ptsvl',
         easing: 'ease-in',
         offset: 6000, // if offset is negative I do not come on top of search box. Not sure what this means
         force: true,
         cancelable: true,
       }
-      this.$scrollTo('#manage-csvl-cards', 500, options)
+      this.$scrollTo('#manage-ptsvl-cards', 500, options)
     },
   },
 }

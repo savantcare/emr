@@ -1,4 +1,4 @@
-// For flow chart see cts/manage-csvl-cards/orm-search-phrases-of-ct:7
+// For flow chart see cts/manage-ptsvl-cards/orm-search-phrases-of-ct:7
 export default {
   state: {
     arCardsInCsOfVl: [], // Template has a for loop running on this.

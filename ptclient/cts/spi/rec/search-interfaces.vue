@@ -1,5 +1,5 @@
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-csvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 import ormCTLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 
 export default {
@@ -22,7 +22,7 @@ export default {
         value: 'recommendations',
         ctAbbr: 'rex',
         ctToShow: 'spi/rec/vl/timeline.vue',
-        location: 'csvl',
+        location: 'ptsvl',
       },
     })
 

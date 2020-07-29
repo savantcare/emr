@@ -106,13 +106,13 @@ The data looks like this:
 |    msvlHeader = 9      |                              |
 +-----------------------------------------+                              |
 |                                         |                              |
-|   msvl = 102           | csvl = 137|
+|   msvl = 102           | ptsvl = 137|
 |                                         |                              |
 |                                         |                              |  typeOfStateDisplayArea = 122
 |                                         |                              |  This var contains 1 of:
 |This has list of cts.          |This has list of Components   |  msvl
 |Data of each component depends on        |                              |            OR
-|timeOfStateSelectedInHeader ( = 99 )     |Data is from currentTime      |  csvl
+|timeOfStateSelectedInHeader ( = 99 )     |Data is from currentTime      |  ptsvl
 |timeOfStateSelectedInHeader has 2        |                              |
 |possibilities:                           |On right side I do not care   |
 |1. timeOfStateSelectedInHeader=2038-01-19|about                         |

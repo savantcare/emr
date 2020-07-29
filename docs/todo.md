@@ -14,7 +14,7 @@
 
 4) May depend on 2
    DataTable.vue line 201 code should not be needed
-   if (this.typeOfStateDisplayArea == "csvl") {
+   if (this.typeOfStateDisplayArea == "ptsvl") {
    this.$store.dispatch("dbGetMyRecommendationsInSM", params);
       this.$store.dispatch("dbGetOtherRecommendationsInSM", params);
    }
@@ -72,7 +72,7 @@
 
 1. Inside cts/common/DataTable.vue:231
 
-   if (this.typeOfStateDisplayArea == "csvl") {
+   if (this.typeOfStateDisplayArea == "ptsvl") {
    this.$store.dispatch("dbGetMyRecommendations", params);
       this.$store.dispatch("dbGetOtherRecommendations", params);
    } else {

@@ -42,6 +42,6 @@ https://youtu.be/zCgWHvHn4JA
 - /ptclient/cts/book/c6-orm-model/search-phrases.vue
 - /ptclient/cts/book/c6-orm-model/vl/table.vue
 - /ptclient/cts/book/c6-orm-model/cl/table.vue
-- /ptclient/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection.vue
+- /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
 - /ptclient/cts/book/c6-orm-model/db/vuex-orm/helloworld.js
 - /ptclient/store/vuex-orm-register.js

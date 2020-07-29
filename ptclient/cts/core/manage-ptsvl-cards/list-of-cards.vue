@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import ctVlSearchBox from '@/cts/core/manage-csvl-cards/load-search-phrases-and-handle-selection'
+import ctVlSearchBox from '@/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection'
 
 export default {
   components: {
