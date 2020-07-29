@@ -13,9 +13,17 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'name',
-        ctAbbr: 'name',
+        ctAbbr: 'n',
         ctToShow: 'spi/name/vl/table.vue', // CsVl -> Current state view layer
         location: 'csvl',
+      },
+    })
+    ormSearchPhrasesOfCt.insert({
+      data: {
+        value: 'name change',
+        ctAbbr: 'nc',
+        ctToShow: 'spi/name/cl/table.vue', // CsVl -> Current state view layer
+        location: 'cl',
       },
     })
   },

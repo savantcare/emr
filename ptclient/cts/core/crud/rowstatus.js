@@ -1,4 +1,4 @@
-// simiolar to person.js in example
+// similar to person.js in example
 
 import { Model } from '@vuex-orm/core'
 
