@@ -20,8 +20,6 @@
 
    1. ms should be mts
 
-9. When I went to change the 2nd field it shoed data from 1st field. It is on chapter 6 video.
-
 # Cannot replicate
 
 1. I discontinued 3 reminders at once but those 3 still remained in the table.
