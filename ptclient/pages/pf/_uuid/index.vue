@@ -5,7 +5,7 @@
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
-            when go from msvl to ptsvl the event gets fired.
+            when go from mtsvl to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div @mouseleave="mouseleave">
@@ -31,7 +31,7 @@
 <script>
 import Vue from 'vue'
 import VueSplit from 'vue-split-panel'
-import ctMsVlCards from '@/cts/core/manage-msvl-cards/list-of-cards.vue'
+import ctMsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'

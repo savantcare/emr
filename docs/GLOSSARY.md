@@ -69,9 +69,9 @@ In the following examples age is a function inside a component
 - Vl: View layer ![Viw layer and change layer](../docs/images/vl-and-cl.png) In this diagram the layer at bottom
 - CL: Change layer. In the above diagram the layer on top.
 - pts: present time state
-- ptsvl: present time state view layer ![multi state view layer and current state view layer](../docs/images/msvl-and-ptsvl.png). In this diagram it is on right
+- ptsvl: present time state view layer ![multi state view layer and current state view layer](../docs/images/mtsvl-and-ptsvl.png). In this diagram it is on right
 - ms: multi state
-- msvl: multi state view layer. This has components that can show either the current state or historical state. In the above diagram it is on right
+- mtsvl: multi state view layer. This has components that can show either the current state or historical state. In the above diagram it is on right
 
 ### Others
 
