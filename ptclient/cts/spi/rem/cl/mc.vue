@@ -22,8 +22,13 @@ How to solve this?
 
 -->
 <template>
-  <div class="block">
-    <el-carousel arrow="always" trigger="click" :autoplay="false" @change="slideChanged">
+  <div v-if="daUniqueIDOfEachRowFromORM.length > 0" class="block">
+    <el-carousel
+      :arrow="dsSliderArrowVisiblity"
+      trigger="click"
+      :autoplay="false"
+      @change="slideChanged"
+    >
       <!-- Reason for v-bind to pass boolean value https://stackoverflow.com/questions/49225002/passing-boolean-vue-prop-value-in-html -->
       <el-carousel-item v-for="slide in getNumOfCarouselSlides" :key="slide">
         <!-- Performance analysis  TODO
@@ -46,16 +51,18 @@ How to solve this?
         <!-- Why give :gutter="20" 
               There are 3 cards and they will come attached to each other if I do not give :gutter=20
           -->
+
         <el-row type="flex" :gutter="20">
           <el-col v-for="remID in getArrayOfRemIDsToShowInThisCard" :key="remID">
             <el-card>
-              <ctChangeRem :first-param="remID"></ctChangeRem>
+              <ctChangeRem :first-param="remID" open-with="mc"></ctChangeRem>
             </el-card>
           </el-col>
         </el-row>
       </el-carousel-item>
     </el-carousel>
   </div>
+  <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
 import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
@@ -66,6 +73,7 @@ export default {
     return {
       daUniqueIDOfEachRowFromORM: [],
       diVirtualSlideNumber: 0,
+      dsSliderArrowVisiblity: 'never',
     }
   },
   computed: {
@@ -83,16 +91,13 @@ export default {
           If I return the actual length of this.daUniqueIDOfEachRowFromORM.length
           say the length is 100 then 300 times the change component will get called with different params.
         */
-
       const count = this.daUniqueIDOfEachRowFromORM.length / 3
-      const intValue = Math.floor(count)
+      const intValue = Math.ceil(count)
       console.log('number of slides in carousel are', count, intValue)
-      // I used to return intValue but that had negative performance effect
-      if (count === 0) {
-        return 1
-      } else {
-        return 3 // I need initial 3 slides since I need to know transition from 0 to 1 is going forward but 1 to 0 can be reached both with prev and next
+      if (intValue > 1) {
+        this.dsSliderArrowVisiblity = 'always'
       }
+      return intValue
     },
   },
   mounted() {
@@ -109,13 +114,7 @@ export default {
     slideChanged(newSlideNumber, oldSlideNumber) {
       // This is virtual scroller. This improves performance substantially.
       console.log('slide changed from: ', oldSlideNumber, 'to: ', newSlideNumber)
-      if (newSlideNumber > oldSlideNumber || (newSlideNumber === 0 && oldSlideNumber === 2)) {
-        // user clicked next
-        this.diVirtualSlideNumber = this.diVirtualSlideNumber + 1
-      } else {
-        // user clicked prev
-        this.diVirtualSlideNumber = this.diVirtualSlideNumber - 1
-      }
+      this.diVirtualSlideNumber = newSlideNumber
     },
   },
 }
