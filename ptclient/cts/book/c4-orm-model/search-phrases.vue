@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'c4-c',
         ctToShow: 'book/c4-orm-model/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

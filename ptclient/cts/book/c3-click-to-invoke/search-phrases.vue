@@ -17,7 +17,7 @@ export default {
         ctAbbr: 'c3-c',
         ctToShow: 'book/c3-click-to-invoke/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

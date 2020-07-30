@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'c10-c',
         ctToShow: 'book/c10-new-data-in-vl/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

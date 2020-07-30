@@ -48,7 +48,7 @@ export default {
       state.arTabs = [pTab]
       state.vblIsdialogHoldingTabsInClVisible = true
       state.vsSelectedTabId = pTab.id
-      state.vsDialogWidth = pTab.ctWidth // TODO: since each tab has it is this needed seperately.
+      state.vsDialogWidth = pTab.ctWidthInCl // TODO: since each tab has it is this needed seperately.
 
       // This is the 2nd tab with the + sign. It is added at the end of the set of tabs.
       // Just like chrome browser add new tab control.
@@ -57,7 +57,7 @@ export default {
         closable: false,
         ctToShow: require('./ct-search-to-add-tab-in-cl').default,
         id: '0',
-        ctWidth: 'small', // Provide ct width in CL
+        ctWidthInCl: 'small', // Provide ct width in CL
       }
 
       state.arTabs.push(objNewTab)
@@ -98,7 +98,7 @@ export default {
         id: objSearchRowFromORM.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
         vstPropsToGiveToCt: pPayload.pPropsToGiveToCt, // This holds all the data for the record we want to change in cl
         closable: true, // TODO: Should be called blClosable
-        ctWidth: objSearchRowFromORM.ctWidth,
+        ctWidthInCl: objSearchRowFromORM.ctWidthInCl,
       }
 
       console.log(tab)

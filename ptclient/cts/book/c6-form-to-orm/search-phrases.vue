@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'c6-c',
         ctToShow: 'book/c6-form-to-orm/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

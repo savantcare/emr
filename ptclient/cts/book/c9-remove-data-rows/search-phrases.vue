@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'c9-c',
         ctToShow: 'book/c9-remove-data-rows/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

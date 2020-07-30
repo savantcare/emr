@@ -25,7 +25,7 @@ export default {
         ctAbbr: 'arem',
         ctToShow: 'spi/rem/cl/add.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -34,7 +34,7 @@ export default {
         ctAbbr: 'crem',
         ctToShow: 'spi/rem/cl/c.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -43,7 +43,7 @@ export default {
         ctAbbr: 'mcrem',
         ctToShow: 'spi/rem/cl/mc.vue',
         location: 'cl',
-        ctWidth: 'large',
+        ctWidthInCl: 'large',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -52,7 +52,7 @@ export default {
         ctAbbr: 'drem',
         ctToShow: 'spi/rem/vl/discontinued.vue',
         location: 'cl',
-        ctWidth: 'large',
+        ctWidthInCl: 'large',
       },
     })
   },

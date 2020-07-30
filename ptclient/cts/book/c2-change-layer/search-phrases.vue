@@ -17,7 +17,7 @@ export default {
         ctAbbr: 'c2-c',
         ctToShow: 'book/c2-change-layer/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },

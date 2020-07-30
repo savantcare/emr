@@ -47,7 +47,7 @@ export default {
         (element) => element.id === newTabID
       )
       console.log('selected tab: ', clSelectedTab)
-      this.$store.commit('mtfSetTabDialogWidth', clSelectedTab.ctWidth)
+      this.$store.commit('mtfSetTabDialogWidth', clSelectedTab.ctWidthInCl)
 
       if (newTabID === '0') {
         this.$refs.searchbox.focus()
@@ -104,7 +104,7 @@ export default {
         ctToShow: require('@/cts/' + pSelectedSuggestion.ctToShow).default,
         id: pSelectedSuggestion.id,
         closable: true,
-        ctWidth: pSelectedSuggestion.ctWidth,
+        ctWidthInCl: pSelectedSuggestion.ctWidthInCl,
       }
       this.$store.commit('mtfAdditionalTabAddOrActivate', objAddTab)
     },

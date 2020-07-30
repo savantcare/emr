@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'c8-c',
         ctToShow: 'book/c8-reset-form/cl/table.vue',
         location: 'cl',
-        ctWidth: 'small',
+        ctWidthInCl: 'small',
       },
     })
   },
