@@ -1,8 +1,6 @@
-There are 10 chapters.
-
 Each chapter will teach you one more concept.
 
-By the time you understand the 10 chapters and write them yourselves you will be a vueJs master.
+By the time you understand these chapters and write them yourselves you will be a vue / vuex / vuex-orm / sequzlize / elementio / rowstatus master.
 
 Read the following before starting to do these 10 chapters:
 
