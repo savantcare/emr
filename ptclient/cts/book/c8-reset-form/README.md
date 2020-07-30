@@ -31,7 +31,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/ULUJ_Efg1C8.jpg)](https://www.youtube.com/watch?v=ULUJ_Efg1C8 'Deleting all rows')
+[![Deleting all rows](https://img.youtube.com/vi/ULUJ_Efg1C8/0.jpg)](https://www.youtube.com/watch?v=ULUJ_Efg1C8 'Deleting all rows')
 
 https://youtu.be/ULUJ_Efg1C8
 

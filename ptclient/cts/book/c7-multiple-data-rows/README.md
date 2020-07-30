@@ -30,7 +30,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y/0.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
 
 https://youtu.be/Yd4lsHTSu5Y
 
