@@ -15,7 +15,7 @@ export default {
         value: 'name',
         ctAbbr: 'n',
         ctToShow: 'spi/name/vl/table.vue', // CsVl -> Current state view layer
-        location: 'ptsvl',
+        displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -23,7 +23,7 @@ export default {
         value: 'name change',
         ctAbbr: 'nc',
         ctToShow: 'spi/name/cl/table.vue', // CsVl -> Current state view layer
-        location: 'cl',
+        displayLocation: 'cl',
       },
     })
   },

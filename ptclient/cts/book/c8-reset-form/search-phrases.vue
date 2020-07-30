@@ -11,7 +11,7 @@ export default {
         value: 'Eigth chapter',
         ctAbbr: 'c8',
         ctToShow: 'book/c8-reset-form/vl/table.vue', // CsVl -> Current state view layer
-        location: 'ptsvl',
+        displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -19,7 +19,7 @@ export default {
         value: 'Eigth chapter - change',
         ctAbbr: 'c8-c',
         ctToShow: 'book/c8-reset-form/cl/table.vue',
-        location: 'cl',
+        displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })

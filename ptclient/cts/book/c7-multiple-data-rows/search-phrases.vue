@@ -11,7 +11,7 @@ export default {
         value: 'Seventh chapter',
         ctAbbr: 'c7',
         ctToShow: 'book/c7-multiple-data-rows/vl/table.vue', // CsVl -> Current state view layer
-        location: 'ptsvl',
+        displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -19,7 +19,7 @@ export default {
         value: 'Seventh chapter - change',
         ctAbbr: 'c7-c',
         ctToShow: 'book/c7-multiple-data-rows/cl/table.vue',
-        location: 'cl',
+        displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })

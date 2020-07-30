@@ -11,7 +11,7 @@ export default {
         value: 'Sixth chapter',
         ctAbbr: 'c6',
         ctToShow: 'book/c6-form-to-orm/vl/table.vue', // CsVl -> Current state view layer
-        location: 'ptsvl',
+        displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -19,7 +19,7 @@ export default {
         value: 'Sixth chapter - change',
         ctAbbr: 'c6-c',
         ctToShow: 'book/c6-form-to-orm/cl/table.vue',
-        location: 'cl',
+        displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })

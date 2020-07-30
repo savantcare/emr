@@ -8,7 +8,7 @@ export default {
         value: 'Second chapter', // search term
         ctAbbr: 'c2',
         ctToShow: 'book/c2-change-layer/vl/table.vue', // CsVl -> Current state view layer
-        location: 'ptsvl',
+        displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
@@ -16,7 +16,7 @@ export default {
         value: 'Second chapter - change', // search term
         ctAbbr: 'c2-c',
         ctToShow: 'book/c2-change-layer/cl/table.vue',
-        location: 'cl',
+        displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })

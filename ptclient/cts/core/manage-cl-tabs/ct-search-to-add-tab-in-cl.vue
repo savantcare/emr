@@ -74,7 +74,7 @@ export default {
     mfQuerySearchTerms(pQueryString, pCallBack) {
       let arFromORM = ormSearchPhrasesOfCt
         .query()
-        .where('location', 'cl')
+        .where('displayLocation', 'cl')
         .search(pQueryString.trim())
         .get() // trim needs for "goal " to match "goal"
       console.log('search result from orm model', pQueryString, arFromORM)

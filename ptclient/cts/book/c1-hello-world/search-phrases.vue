@@ -10,7 +10,7 @@ export default {
         value: 'First Chapter',
         ctAbbr: 'c1',
         ctToShow: 'book/c1-hello-world/vl/table.vue', // CsVl -> Current state view layer. Read docs/glossary.md when you dont understand a abbreviation.
-        location: 'ptsvl', // used by cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in ptsvl or cl
+        displayLocation: 'ptsvl', // used by cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue to decide if this ct should be loaded in ptsvl or cl
       },
     })
   },

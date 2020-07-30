@@ -68,7 +68,7 @@ export default {
       // Goal 1: Find out which CT will handle this search term
       const arFromORM = await ormSearchPhrasesOfCt
         .query()
-        .where('location', 'cl')
+        .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {
           threshold: 0.2,
           keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
