@@ -24,6 +24,7 @@ export default {
         ctAbbr: 'nc',
         ctToShow: 'spi/name/cl/table.vue', // CsVl -> Current state view layer
         displayLocation: 'cl',
+        scope: 'row',
       },
     })
   },
