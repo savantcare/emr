@@ -34,7 +34,7 @@ export default {
       const arFromORM = await ormHw.insert({
         data: {
           msg: '',
-          rowStateInThisSession: 2, // For meaning of diff values read ptclient/docs/forms.md
+          rowStateInThisSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
         },
       })
       if (!arFromORM) {

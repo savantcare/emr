@@ -17,7 +17,8 @@
 |     | B. Data in field survives when form is closed                              |     |                |          |          |             |                |
 |     | C. Data is saved in Chrome                                                 |     |                |          |          |             |                |
 |     | dev console -> vue -> vuex -> state -> entities -> helloworld -> data -> 1 |     |                |          |          |             |                |
-| 7   | A. Form can add multiple data rows                                         | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
+| 7   | Connecting element.io with vuex-orm using rowstatus.js                     | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
+|     | A. Form can add multiple data rows                                         |     |                |          |          |             |                |                |
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
 
 # For demo:
@@ -29,11 +30,14 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=zCgWHvHn4JA 'Show component in current state of view layer')
+[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
 
-https://youtu.be/zCgWHvHn4JA
+https://youtu.be/Yd4lsHTSu5Y
 
 # Key concepts
+
+1. What does rowStatus 2 and 24 mean
+2. For loop on a computed function cfGetOrmEditStateRows
 
 # File links
 
