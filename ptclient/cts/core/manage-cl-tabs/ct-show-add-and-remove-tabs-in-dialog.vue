@@ -92,13 +92,12 @@ dialog
                        ┌──────────▼─────────────┐                 
                        │Active tab changed in UI│                 
                        └────────────────────────┘                          
-      TODO: cfArTabs is better called cfArTabsInCl
       -->
 
       <el-col :span="24">
         <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
           <el-tab-pane
-            v-for="(tab, loopCount) in cfArTabs"
+            v-for="(tab, loopCount) in cfArTabsInCl"
             :key="tab.id"
             :label="tab.label + '(' + (loopCount + 1) + ')'"
             :name="tab.id"
@@ -129,7 +128,7 @@ export default {
   },
 
   computed: {
-    cfArTabs: {
+    cfArTabsInCl: {
       get() {
         return this.$store.state.vstObjTabsInCL.arTabs
       },
@@ -171,7 +170,7 @@ export default {
   },
   mounted() {
     this.vblIsdialogHoldingTabsInClVisible = false
-    this.cfArTabs = [] // Template has a for loop running on this.
+    this.cfArTabsInCl = [] // Template has a for loop running on this.
     this.cfVSSelectedTabId = ''
     /*
     const self = this // this is not available inside addEventListener since execution context changes. Hence assining this to self Ref: https://stackoverflow.com/a/50818181
@@ -199,30 +198,34 @@ export default {
       }
       if (pEvent.keyCode === 37) {
         console.log('left arrow pressed let us find the position of the tab')
-        const currentTabIdx = this.cfArTabs.findIndex((tab) => tab.id === this.cfVSSelectedTabId)
+        const currentTabIdx = this.cfArTabsInCl.findIndex(
+          (tab) => tab.id === this.cfVSSelectedTabId
+        )
         console.log('Current tab idx is: ', currentTabIdx)
         if (currentTabIdx === 0) {
           console.log('at first tab so ignore')
         } else {
-          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabs[currentTabIdx - 1].id)
+          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx - 1].id)
         }
         return
       }
       if (pEvent.keyCode === 39) {
         console.log('right arrow pressed let us find the position of the tab')
-        const currentTabIdx = this.cfArTabs.findIndex((tab) => tab.id === this.cfVSSelectedTabId)
-        if (currentTabIdx === this.cfArTabs.length - 1) {
+        const currentTabIdx = this.cfArTabsInCl.findIndex(
+          (tab) => tab.id === this.cfVSSelectedTabId
+        )
+        if (currentTabIdx === this.cfArTabsInCl.length - 1) {
           console.log('at last tab so ignore')
         } else {
-          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabs[currentTabIdx + 1].id)
+          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx + 1].id)
         }
         return
       }
-      const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabs.length
+      const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabsInCl.length
       console.log('max code:', maxValidKeyCodeEnteredByUser, 'pressed code is', pEvent.keyCode)
       if (pEvent.keyCode >= '49' && pEvent.keyCode <= maxValidKeyCodeEnteredByUser) {
         console.log('Activating tab at position' + pEvent.key)
-        this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabs[pEvent.key - 1].id)
+        this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[pEvent.key - 1].id)
       } else {
         console.log('Rejection reason 3: User entered # is higher then max tabs')
       }
@@ -231,7 +234,7 @@ export default {
     mfHandleTabRemove(pTabBeingRemovedID) {
       let tabToRemoveFoundAt = false // this is needed to find which tab to activate
       let loopCount = 0
-      const arNewTabs = this.cfArTabs.filter((tab) => {
+      const arNewTabs = this.cfArTabsInCl.filter((tab) => {
         if (tab.id !== pTabBeingRemovedID) {
           loopCount++
           return true
