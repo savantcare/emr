@@ -271,7 +271,7 @@ class rowStatus:interface extends Model {
   static async sendDiscontinueDataToServer(
     pORMDataRowID: number,
     remUUID: string,
-    descontinuedNotes: string
+    discontinuedNote: string
   ) {
     // TODO @raj correct spelling
     try {
@@ -282,7 +282,7 @@ class rowStatus:interface extends Model {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          dNotes: descontinuedNotes,
+          dNotes: discontinuedNote,
           patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
         }),
       })

@@ -397,7 +397,7 @@ class rowStatus extends Model {
     }
   }
 
-  static async sendDiscontinueDataToServer(pORMDataRowID, rowUUID, descontinuedNotes) {
+  static async sendDiscontinueDataToServer(pORMDataRowID, rowUUID, discontinuedNote) {
     try {
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
@@ -406,7 +406,7 @@ class rowStatus extends Model {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          dNotes: descontinuedNotes,
+          dNotes: discontinuedNote,
           patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
         }),
       })
