@@ -65,7 +65,7 @@ export default {
       const timelineDataArray = []
 
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromORM = ormRem.query().where('uuid', this.uuid).orderBy('ROW_START', 'desc').get()
+      const arFromORM = ormRem.query().where('uuid', this.uuid).orderBy('id', 'desc').get()
       // console.log('Time line for uuid', this.uuid)
       if (arFromORM.length) {
         let rowInTimeLine = []
@@ -87,6 +87,7 @@ export default {
           }
           rowInTimeLine.ROW_START = arFromORM[i].ROW_START
           rowInTimeLine.rowStateInThisSession = arFromORM[i].rowStateInThisSession
+
           timelineDataArray.push(rowInTimeLine)
         }
       }
@@ -188,12 +189,21 @@ export default {
 
     async sendDataToServer() {
       try {
+        const requestedToRowId = this.newRowBeingEditedIdfromOrm
         await ormRem.update({
-          where: this.newRowBeingEditedIdfromOrm,
+          where: requestedToRowId,
           data: {
             rowStateInThisSession: '345',
           },
         })
+
+        /*
+            Goal:
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into ormRem and it displayed on the top of timeline.
+            When change api request then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
+          */
+        const remDesc = this.getRemDescUsingCache()
+        this.addEmptyRemToUI(remDesc)
 
         const response = await fetch(`${REMINDER_API_URL}/${this.uuid}`, {
           method: 'PUT',
@@ -203,12 +213,13 @@ export default {
           },
           body: JSON.stringify({
             remDesc: this.getRemDescUsingCache(),
+            requestedToRowId,
           }),
         })
         if (!response.ok) {
           /* Goal: Update the value of 'rowStateInThisSession' to success or failure depending on the api response */
           ormRem.update({
-            where: this.newRowBeingEditedIdfromOrm,
+            where: requestedToRowId,
             data: {
               rowStateInThisSession: 3458,
             },
@@ -269,23 +280,17 @@ export default {
 
           /* Goal: Update the value of 'rowStateInThisSession' to success or failure depending on the api response */
           ormRem.update({
-            where: this.newRowBeingEditedIdfromOrm,
+            where: requestedToRowId,
             data: {
               rowStateInThisSession: 34571,
             },
           })
 
-          /*
-            Goal:
-            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into ormRem and it displayed on the top of timeline.
-            When change api request is successfully saved in DB then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
-          */
-          const remDesc = this.getRemDescUsingCache()
-          this.addEmptyRemToUI(remDesc)
-
           console.log('update success')
         }
-      } catch (ex) {}
+      } catch (ex) {
+        console.log('update error', ex)
+      }
 
       console.log('sendDataToServer-> ', this.uuid, this.getRemDescUsingCache())
     },
