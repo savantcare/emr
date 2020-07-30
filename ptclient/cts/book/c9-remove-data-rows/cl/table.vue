@@ -2,8 +2,8 @@
   <div>
     Ninth chapter
     <el-form>
-      <div v-if="cfGetOrmEditStateRows.length">
-        <el-form-item v-for="ormRow in cfGetOrmEditStateRows" :key="ormRow.id">
+      <div v-if="cfGetOrmNewRowsInEditState.length">
+        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.id">
           <el-col>
             <el-input
               placeholder="Please input"
@@ -34,7 +34,7 @@
 import ormHw from '@/cts/book/c7-multiple-data-rows/db/vuex-orm/helloworld.js'
 export default {
   computed: {
-    cfGetOrmEditStateRows() {
+    cfGetOrmNewRowsInEditState() {
       return ormHw.getNewRowsInEditState()
     },
   },

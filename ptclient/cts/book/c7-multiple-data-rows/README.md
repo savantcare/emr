@@ -37,7 +37,7 @@ https://youtu.be/Yd4lsHTSu5Y
 # Key concepts
 
 1. What does rowStatus 2 and 24 mean
-2. For loop on a computed function cfGetOrmEditStateRows
+2. For loop on a computed function cfGetOrmNewRowsInEditState
 
 # File links
 

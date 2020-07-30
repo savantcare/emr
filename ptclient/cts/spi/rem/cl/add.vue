@@ -3,8 +3,8 @@
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Submit -->
     <el-form>
-      <div v-if="cfGetOrmEditStateRows.length">
-        <el-form-item v-for="ormRow in cfGetOrmEditStateRows" :key="ormRow.id">
+      <div v-if="cfGetOrmNewRowsInEditState.length">
+        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.id">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="20" :class="ormRow.validationClass">
             <el-input
@@ -82,7 +82,7 @@ export default {
   },
 
   computed: {
-    cfGetOrmEditStateRows() {
+    cfGetOrmNewRowsInEditState() {
       return ormRem.getNewRowsInEditState()
     },
     cfGetOrmReadyToSubmitStateRows() {
