@@ -20,13 +20,25 @@
 | 7   | Connecting element.io with vuex-orm using rowstatus.js                     | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
 |     | A. Form can add multiple data rows                                         |     |                |          |          |             |                |                |
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
-| 8   | Remove all rows from the form                                              | 127 | 22             | 32       | 58       | 3           | 11             | 2              |
+| 8   | Remove all rows from the form                                              | 127 | 28             | 32       | 58       | 3           | 11             | 2              |
 | 9   | Remove single data rows                                                    | 155 | 28             | 32       | 70       | 3           | 11             | 2              |
 
-For demo:
+# For demo:
 
 1. Type "Seventh chapter" and then click on A. Or,
 2. Type "Seventh chapter change"
+
+# Video walkthrough
+
+Optimal resolution to view: 3840x2160
+
+[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+
+https://youtu.be/Yd4lsHTSu5Y
+
+# Key concepts
+
+# File links
 
 - /ptclient/cts/book/c7-orm-model/search-phrases.vue
 - /ptclient/cts/book/c7-orm-model/vl/table.vue

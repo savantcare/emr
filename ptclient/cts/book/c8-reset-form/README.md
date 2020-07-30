@@ -20,25 +20,24 @@
 | 7   | Connecting element.io with vuex-orm using rowstatus.js                     | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
 |     | A. Form can add multiple data rows                                         |     |                |          |          |             |                |                |
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
-| 8   | Remove all rows from the form                                              | 127 | 22             | 32       | 58       | 3           | 11             | 2              |
+| 8   | Remove all rows from the form in 2 lines of code                           | 127 | 28             | 32       | 58       | 3           | 11             | 2              |
 
 # For demo:
 
-1. Type "Seventh chapter" and then click on A. Or,
-2. Type "Seventh chapter change"
+1. Type "Eigth chapter change"
+2. Then click on reset form.
 
 # Video walkthrough
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+[![Adding mutiple rows](https://img.youtube.com/vi/ULUJ_Efg1C8.jpg)](https://www.youtube.com/watch?v=ULUJ_Efg1C8 'Deleting all rows')
 
-https://youtu.be/Yd4lsHTSu5Y
+https://youtu.be/ULUJ_Efg1C8
 
 # Key concepts
 
-1. What does rowStatus 2 and 24 mean
-2. For loop on a computed function cfGetOrmEditStateRows
+1. Using rowstatus field to easily delete rows that match a state.
 
 # File links
 
