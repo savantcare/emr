@@ -4,13 +4,13 @@
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
    B. On tab the control should not go to browser back forward and address bar
 
-2. I change the same record 2 times the timeline gets confused.
+2. I change the same record 2 times the timeline gets confused. - DONE
 
 3. Make the X work in a drawer.
 
-4. There is no data and I click on M the interface shoule be better.
+4. There is no data and I click on M the interface shoule be better. - DONE
 
-5. See in the video when I click on M it showed me wrong data.
+5. See in the video when I click on M it showed me wrong data. - DONE
 
 6. In quick submit there was error in saving data. Video has demo.
 
