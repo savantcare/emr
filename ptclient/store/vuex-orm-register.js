@@ -15,6 +15,7 @@ import Dxa from '@/models/Dxa'
 import Hworld from '~/cts/book/c04-orm-model/db/vuex-orm/helloworld.js'
 import HworldCh7 from '~/cts/book/c07-multiple-data-rows/db/vuex-orm/helloworld.js'
 import HworldCh10 from '~/cts/book/c10-new-data-in-vl/db/vuex-orm/helloworld.js'
+import HworldCh10TJ from '~/cts/book/c10-from-jana/db/vuex-orm/helloworld.js'
 
 const database = new Database()
 
@@ -32,5 +33,6 @@ database.register(Dxa)
 database.register(Hworld)
 database.register(HworldCh7)
 database.register(HworldCh10)
+database.register(HworldCh10TJ)
 
 export default database
