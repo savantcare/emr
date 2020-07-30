@@ -20,23 +20,25 @@
 | 7   | Connecting element.io with vuex-orm using rowstatus.js                     | 123 | 22             | 32       | 54       | 3           | 11             | 2              |
 |     | A. Form can add multiple data rows                                         |     |                |          |          |             |                |                |
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
-| 8   | Remove all rows from the form                                              | 127 | 28             | 32       | 58       | 3           | 11             | 2              |
-| 9   | Remove single data rows                                                    | 155 | 28             | 32       | 70       | 3           | 11             | 2              |
+| 8   | Remove all rows from the form                                              | 134 | 28             | 32       | 58       | 3           | 11             | 2              |
+| 9   | Remove single data rows                                                    | 146 | 28             | 32       | 70       | 3           | 11             | 2              |
 
 # For demo:
 
-1. Type "Seventh chapter" and then click on A. Or,
-2. Type "Seventh chapter change"
+1. Type "Ninth chapter" and then click on A.
+2. In the add form there is a remove button beside each row
 
 # Video walkthrough
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+[![Removing a single rows](https://img.youtube.com/vi/cG402Yq5XIo.jpg)](https://www.youtube.com/watch?v=cG402Yq5XIo 'Removing a single rows')
 
-https://youtu.be/Yd4lsHTSu5Y
+https://youtu.be/cG402Yq5XIo
 
 # Key concepts
+
+1. Changing the vuex-orm model automatically changes the element io form. No extra code required. In the demo when a row was deleted from vuex-orm the "element io form" automatically got updated and the row was removed from the form also.
 
 # File links
 
