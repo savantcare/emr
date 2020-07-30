@@ -145,7 +145,7 @@ export default {
       this.mfManageFocus()
     },
     mfResetForm(formName) {
-      ormRem.deleteEditStateRows()
+      ormRem.deleteNewRowsInEditState()
     },
     async mfOnSubmit() {
       const arFromORM = this.cfGetOrmReadyToSubmitStateRows

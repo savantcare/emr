@@ -199,7 +199,7 @@ class rowStatus extends Model {
     }
   }
 
-  static deleteEditStateRows() {
+  static deleteNewRowsInEditState() {
     // TODO: better name is deleteNewRowsInEditState
     const arFromORM = this.getNewRowsInEditState()
     if (arFromORM.length) {

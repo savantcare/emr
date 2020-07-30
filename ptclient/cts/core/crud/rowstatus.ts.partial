@@ -86,7 +86,7 @@ class rowStatus:interface extends Model {
     return arFromORM
   }
 
-  static deleteEditStateRows() {
+  static deleteNewRowsInEditState() {
     const arFromORM: any[] = this.getNewRowsInEditState()
     if (arFromORM.length) {
       console.log('unsaved data found', arFromORM)

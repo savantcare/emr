@@ -63,7 +63,7 @@ export default {
       await ormHw.delete(pOrmRowId)
     },
     mfResetForm(formName) {
-      ormHw.deleteEditStateRows()
+      ormHw.deleteNewRowsInEditState()
     },
   },
 }

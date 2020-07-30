@@ -52,7 +52,7 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     mfResetForm(formName) {
-      ormHw.deleteEditStateRows() // TODO: better name: deleteRowsInEditState
+      ormHw.deleteNewRowsInEditState() // TODO: better name: deleteRowsInEditState
     },
   },
 }
