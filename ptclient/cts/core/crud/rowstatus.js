@@ -112,6 +112,7 @@ class rowStatus extends Model {
   }
 
   static getNewRowsInReadyToSubmitState() {
+    // Following query makes sure I get all the newly added row having field value
     const arFromORM = this.query()
       .where('rowStateInThisSession', 24) // New -> Changed
       .get()
