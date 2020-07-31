@@ -23,6 +23,11 @@ How to solve this?
 -->
 <template>
   <div v-if="daUniqueIDOfEachRowFromORM.length > 0" class="block">
+    <!-- 
+      Q) Why we are using :arrow dynamic in slider?
+      -- If number of slide in slider is 1 (computed function 'getNumOfCarouselSlides' return 1) then no need to show arrow in slider. In this case 'dsSliderArrowVisiblity' should be 'never'.
+      Otherwise if number of slide in slider is greater then 1 then we need to show arrow for next/previous slide. In this case 'dsSliderArrowVisiblity' should be 'always'.
+     -->
     <el-carousel
       :arrow="dsSliderArrowVisiblity"
       trigger="click"
@@ -61,7 +66,7 @@ How to solve this?
               2. Embedded that means it has its own submit and other controls. But the same page has other forms also
               3. sub-part-of-another-form
               -->
-              <ctChangeRem :first-param="remID" open-with="mc"></ctChangeRem>
+              <ctChangeRem :first-param="remID" form-type="embedded"></ctChangeRem>
             </el-card>
           </el-col>
         </el-row>
@@ -100,6 +105,12 @@ export default {
       const count = this.daUniqueIDOfEachRowFromORM.length / 3
       const intValue = Math.ceil(count)
       console.log('number of slides in carousel are', count, intValue)
+
+      /*
+          Goal: Show slider arrow if number of slide is greater then 1.
+          Value of 'dsSliderArrowVisiblity' can be always/hover/never
+          Ref: https://element.eleme.io/#/en-US/component/carousel
+        */
       if (intValue > 1) {
         this.dsSliderArrowVisiblity = 'always'
       }
