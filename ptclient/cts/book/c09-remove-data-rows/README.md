@@ -32,7 +32,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Removing a single rows](https://img.youtube.com/vi/cG402Yq5XIo.jpg)](https://www.youtube.com/watch?v=cG402Yq5XIo 'Removing a single rows')
+[![Removing a single rows](https://img.youtube.com/vi/cG402Yq5XIo/0.jpg)](https://www.youtube.com/watch?v=cG402Yq5XIo 'Removing a single rows')
 
 https://youtu.be/cG402Yq5XIo
 

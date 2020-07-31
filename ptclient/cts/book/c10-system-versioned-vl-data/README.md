@@ -22,7 +22,7 @@
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
 | 8   | Remove all rows from the form                                              | 127 | 22             | 32       | 58       | 3           | 11             | 2              |
 | 9   | Remove single data rows                                                    | 155 | 28             | 32       | 70       | 3           | 11             | 2              |
-| 10  | Showing data from Cl into Vl                                               | 167 | 28             | 47       | 70       | 3           | 11             | 2              |
+| 10  | 3 core concepts of system versioned table Showing data from Cl into Vl     | 167 | 28             | 47       | 70       | 3           | 11             | 2              |
 
 # For demo:
 
@@ -34,9 +34,9 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+[![3 core concepts of system versioned table](https://img.youtube.com/vi/28wMlcOYfwM/0.jpg)](https://www.youtube.com/watch?v=28wMlcOYfwM '3 core concepts of system versioned table')
 
-https://youtu.be/Yd4lsHTSu5Y
+https://youtu.be/28wMlcOYfwM
 
 # Key concepts
 
