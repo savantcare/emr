@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/book/c10-new-data-in-vl/db/vuex-orm/helloworld.js'
+import ormHelloWorld from '@/cts/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {
@@ -28,6 +28,7 @@ export default {
       return ''
     },
     cfArForDisplayInTable() {
+      // TODO: change this from Ar to Obj since JS ar has numerical indexes.
       const arFromORM = ormHelloWorld.getNotEmptyRows('msg')
       return arFromORM
     },

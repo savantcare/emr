@@ -8,17 +8,17 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Seventh chapter',
-        ctAbbr: 'c7',
-        ctToShow: 'book/c07-multiple-data-rows/vl/table.vue', // CsVl -> Current state view layer
+        value: 'Tenth chapter',
+        ctAbbr: 'c10',
+        ctToShow: 'book/c10-system-versioned-vl-data/vl/table.vue', // CsVl -> Current state view layer
         displayLocation: 'ptsvl',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Seventh chapter - change',
-        ctAbbr: 'c7-c',
-        ctToShow: 'book/c07-multiple-data-rows/cl/table.vue',
+        value: 'Tenth chapter - change',
+        ctAbbr: 'c10-c',
+        ctToShow: 'book/c10-system-versioned-vl-data/cl/table.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },

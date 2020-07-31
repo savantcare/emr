@@ -42,10 +42,10 @@ import helloWorldC3SPhrases from '@/cts/book/c03-click-to-invoke/search-phrases'
 import helloWorldC4SPhrases from '@/cts/book/c04-orm-model/search-phrases'
 import helloWorldC5SPhrases from '@/cts/book/c05-form-field/search-phrases'
 import helloWorldC6SPhrases from '@/cts/book/c06-form-to-orm/search-phrases'
-import helloWorldC7SPhrases from '@/cts/book/c07-multiple-data-rows/search-phrases'
+import helloWorldC7SPhrases from '@/cts/book/c07-element-orm-connect-many-rows/search-phrases'
 import helloWorldC8SPhrases from '@/cts/book/c08-reset-form/search-phrases'
 import helloWorldC9SPhrases from '@/cts/book/c09-remove-data-rows/search-phrases'
-import helloWorldC10SPhrases from '@/cts/book/c10-new-data-in-vl/search-phrases'
+import helloWorldC10SPhrases from '@/cts/book/c10-system-versioned-vl-data/search-phrases'
 
 export default {
   components: {

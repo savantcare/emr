@@ -22,12 +22,13 @@
 |     | B. Each data row is saved in ORM                                           |     |                |          |          |             |                |
 | 8   | Remove all rows from the form                                              | 127 | 22             | 32       | 58       | 3           | 11             | 2              |
 | 9   | Remove single data rows                                                    | 155 | 28             | 32       | 70       | 3           | 11             | 2              |
-| 10  | Showing data from Cl into Vl                                               | 155 | 28             | 32       | 70       | 3           | 11             | 2              |
+| 10  | Showing data from Cl into Vl                                               | 167 | 28             | 47       | 70       | 3           | 11             | 2              |
 
 # For demo:
 
-1. Type "Seventh chapter" and then click on A. Or,
-2. Type "Seventh chapter change"
+1. Type "Tenth chapter" and then click on A.
+2. Enter some data in the add form
+3. Data will show up in the view layer.
 
 # Video walkthrough
 
@@ -38,6 +39,9 @@ Optimal resolution to view: 3840x2160
 https://youtu.be/Yd4lsHTSu5Y
 
 # Key concepts
+
+1. vue_table: https://element.eleme.io/#/en-US/component/table
+2. Only required 3 core concepts of system versioned table. https://mariadb.com/kb/en/temporal-data-tables/
 
 # File links:
 
