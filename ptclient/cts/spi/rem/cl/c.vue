@@ -51,15 +51,15 @@ export default {
     */
 
   /*
-    Q) Why we are using 'openWith' props?
+    Q) Why we are using 'formType' props?
     A) 
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
         The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider malformed. 
-        To prevent this malformation we are using 'openWith' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire logic if openWith value is set to 'mc'.
+        To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire logic if formType value is set to 'mc'.
    */
 
-  props: ['firstParam', 'openWith'], // this is the unique row id created by vuex-orm
+  props: ['firstParam', 'formType'], // this is the unique row id created by vuex-orm
   data() {
     return {
       uuid: '',
@@ -121,7 +121,7 @@ export default {
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      if (this.$refs.remDesc && this.openWith !== 'mc') {
+      if (this.$refs.remDesc && this.formType !== 'embedded') {
         const lastElement = this.$refs.remDesc.length
         // this if is needed since when there is only 1 element then remDesc is not an array of objects.
         // with a single form remdesc is just an object.
