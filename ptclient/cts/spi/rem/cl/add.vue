@@ -148,6 +148,10 @@ export default {
       ormRem.deleteNewRowsInEditState()
     },
     async mfOnSubmit() {
+      /*
+        Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
+        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from ormRem ie; 'rowStateInThisSession' = 24
+      */
       const arFromORM = this.cfGetOrmReadyToSubmitStateRows
       if (arFromORM.length) {
         console.log('unsaved data found', arFromORM)
