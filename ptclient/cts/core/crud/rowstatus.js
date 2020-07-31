@@ -360,6 +360,12 @@ class rowStatus extends Model {
                 rowStateInThisSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
               },
             })
+
+            /* Remove orm row id from 'arOrmRowIdSendToServer' after this promise finished. */
+            const index = this.arOrmRowIdSendToServer.indexOf(row.id)
+            if (index > -1) {
+              this.arOrmRowIdSendToServer.splice(index, 1)
+            }
           }
         }
       } catch (err) {
@@ -368,9 +374,6 @@ class rowStatus extends Model {
     })
 
     await Promise.all(promises)
-
-    /* Remove all the orm row ids from 'arOrmRowIdSendToServer' after all the promise finished. */
-    this.arOrmRowIdSendToServer.splice(0, this.arOrmRowIdSendToServer.length)
   }
 
   static async fnMakeApiCAll(pORMRowArray) {
