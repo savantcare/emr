@@ -7,9 +7,9 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class reminders extends rowStatus {
-  static entity = 'rem'
+  static entity = 'name'
 
-  static apiUrl = 'http://localhost:8000/reminders'
+  static apiUrl = 'http://localhost:3000/name'
 
   static fields() {
     return {
