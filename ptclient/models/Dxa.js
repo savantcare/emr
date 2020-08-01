@@ -1,5 +1,4 @@
 import { Model } from '@vuex-orm/core'
-import Patient from '@/models/patient'
 import Dx from '@/models/Dx'
 
 export default class Dxa extends Model {
@@ -11,7 +10,6 @@ export default class Dxa extends Model {
       dxUUID: this.attr(null),
       dx: this.belongsTo(Dx, 'dxUUID'),
       patientUUID: this.attr(null),
-      patient: this.belongsTo(Patient, 'patientUUID'),
       dxAssessment: this.string(null).nullable(),
       recordChangedByUUID: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),

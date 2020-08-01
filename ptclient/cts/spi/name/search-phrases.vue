@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'name change',
         ctAbbr: 'nc',
-        ctToShow: 'spi/name/cl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/name/cl/table.vue', // Cl -> Change layer
         displayLocation: 'cl',
         scope: 'row',
       },

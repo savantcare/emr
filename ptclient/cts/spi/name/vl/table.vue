@@ -1,5 +1,7 @@
 <template>
   <div>
+    <reSyncWithServerDB></reSyncWithServerDB>
+
     <el-button type="info" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">Vikas</el-button>
     <el-button type="info" plain>Kedia</el-button>
     <el-button
@@ -15,7 +17,10 @@
 </template>
 
 <script>
+import reSyncWithServerDB from '../db/re-sync-with-server-db'
 export default {
+  components: { reSyncWithServerDB },
+
   computed: {
     cfPosInArCardsInCsOfVl() {
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
