@@ -1,10 +1,26 @@
 # Specified
 
-1. In quick submit there was error in saving data. Video has demo.
+1. In quick submit there was error in saving data. Video has demo. - DONE
 
 2. Make the X work in a drawer.
 
-3. KB control
+   # Method 1: Get discontinued rows from orm using query like: select max(id) where ROW_END < current_time group by 'uuid'
+
+   Problem:- But I am unable to find vuex-orm groupBy query
+
+   # Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the current record.
+
+   Problem:- But it is not standard method.
+
+   # Method 3: When i click on 'X' button, send a api request to the server and get all the discontinued rows.
+
+   Problem: It is not satisfying our P20 architecture.
+
+   # Method 4: Maintain a 'isDiscontinued' enum(0 ,1) flag in database. But need to approval from Vikas sir.
+
+   - Need to discuss
+
+3) KB control
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
    B. On tab the control should not go to browser back forward and address bar
 
