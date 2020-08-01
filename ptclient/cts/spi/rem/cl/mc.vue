@@ -105,16 +105,26 @@ export default {
       const count = this.daUniqueIDOfEachRowFromORM.length / 3
       const intValue = Math.ceil(count)
       console.log('number of slides in carousel are', count, intValue)
-
-      /*
+      return intValue
+    },
+  },
+  watch: {
+    /*
+      Problem: Sometimes an error comes 'Handling unexpected side effect in computed properties'
+      Solution: you should not edit other data in computed property, you should use watch instead
+      Ref: https://stackoverflow.com/questions/53757107/handling-unexpected-side-effect-in-computed-properties-vuejs
+    */
+    getNumOfCarouselSlides: {
+      handler(newVal) {
+        /*
           Goal: Show slider arrow if number of slide is greater then 1.
-          Value of 'dsSliderArrowVisiblity' can be always/hover/never
+          Visiblity params is always/hover/never
           Ref: https://element.eleme.io/#/en-US/component/carousel
         */
-      if (intValue > 1) {
-        this.dsSliderArrowVisiblity = 'always'
-      }
-      return intValue
+        if (newVal > 1) {
+          this.dsSliderArrowVisiblity = 'always'
+        }
+      },
     },
   },
   mounted() {
