@@ -1,6 +1,6 @@
 <template>
   <div>
-    <reSyncWithServerDB></reSyncWithServerDB>
+    <fullSyncWithServerDB></fullSyncWithServerDB>
 
     <el-button type="info" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">{{
       cfName['firstName']
@@ -20,17 +20,18 @@
 </template>
 
 <script>
-import reSyncWithServerDB from '../db/re-sync-with-server-db'
+import fullSyncWithServerDB from '../db/full-sync-with-server-db'
 import ormName from '@/cts/spi/name/db/orm-name.js'
 export default {
-  components: { reSyncWithServerDB },
+  components: { fullSyncWithServerDB },
 
   computed: {
     cfName() {
       const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromORM.length) {
-        debugger
         return arFromORM[0]
+      } else {
+        return ''
       }
     },
     cfPosInArCardsInCsOfVl() {
