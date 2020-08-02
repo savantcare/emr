@@ -93,6 +93,7 @@ class rowStatus extends Model {
       // finding in model
       const arFromORM = this.find(pOrmRowId)
       if (arFromORM) {
+        this.arOrmRowsCached[pOrmRowId] = arFromORM
         return arFromORM[pFieldName]
       }
     } else {

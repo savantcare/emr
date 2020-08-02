@@ -32,19 +32,35 @@ import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
 import ormName from '@/cts/spi/name/db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
-
+  data() {
+    return {
+      mounted: false,
+    }
+  },
   async mounted() {
     if (ormName.length > 0) {
     } else {
       await this.getDataFromDB()
     }
+    this.mounted = true
   },
   methods: {
     mfGetField(pOrmRowId, pFieldName) {
+      /* 
+      Even before Ct is mounted this fn starts getting called for each field. 
+      Putting a gate here keeps the system optimized
+      Without the gate with a debugger statment placed inside getField this function was called 3 times
+      even before the data came from the server and got loaded into the ORM.
+      */
+      if (!this.mounted) return false
       const value = ormName.getField(pOrmRowId, pFieldName)
       return value
     },
     mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
+      /*
+      For reason of this gate see comment for mfGetField in this file
+      */
+      if (!this.mounted) return false
       const rowStatus = 24 // 2 is new on client and 4 is changed on client
       ormName.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache

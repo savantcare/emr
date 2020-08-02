@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class reminders extends rowStatus {
+export default class name extends rowStatus {
   static entity = 'name'
 
   static apiUrl = 'http://localhost:3000/name'
