@@ -1,7 +1,6 @@
 <!-- When  i went from 80 to 100 the line count went rom 276 to 230 -->
 <template>
   <div>
-    <fullSyncWithServerDB></fullSyncWithServerDB>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>Reminders</span>
@@ -99,12 +98,11 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 </template>
 
 <script>
-import fullSyncWithServerDB from '../db/full-sync-with-server-db'
+import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
 export default {
-  components: { fullSyncWithServerDB },
-  mixins: [clInvokeMixin],
+  mixins: [clInvokeMixin, fullSyncWithServerDBMixin],
   data() {
     return {
       tablePageNumber: 1,
@@ -158,7 +156,12 @@ export default {
       return arRemsForDisplay
     },
   },
-  mounted() {},
+  async mounted() {
+    if (ormRem.length > 0) {
+    } else {
+      await this.getDataFromDB()
+    }
+  },
   methods: {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
