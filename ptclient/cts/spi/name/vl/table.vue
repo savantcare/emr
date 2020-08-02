@@ -11,7 +11,7 @@
       style="padding: 3px;"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl(props.row.$id)"
+      @click="mfOpenCCtInCl()"
       >C</el-button
     >
   </div>
@@ -45,6 +45,13 @@ export default {
     } else {
       await this.getDataFromDB()
     }
+  },
+  methods: {
+    mfOpenCCtInCl() {
+      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+        searchTerm: 'name - change',
+      })
+    },
   },
 }
 </script>

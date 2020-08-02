@@ -20,7 +20,7 @@ export default {
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'name change',
+        value: 'name - change',
         ctAbbr: 'nc',
         ctToShow: 'spi/name/cl/table.vue', // Cl -> Change layer
         displayLocation: 'cl',
