@@ -24,7 +24,6 @@ export default {
         ctAbbr: 'nc',
         ctToShow: 'spi/name/cl/table.vue', // Cl -> Change layer
         displayLocation: 'cl',
-        scope: 'row',
       },
     })
   },

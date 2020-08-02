@@ -128,6 +128,7 @@ class rowStatus extends Model {
     return arFromORM
   }
 
+  // This function finds data in client side vuex-orm. This fn is not making a API query to the server.
   static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromORM = this.query()
