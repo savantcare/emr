@@ -43,7 +43,7 @@ export default {
   async mounted() {
     if (ormName.length > 0) {
     } else {
-      this.getDataFromDB()
+      await this.getDataFromDB()
     }
   },
 }
