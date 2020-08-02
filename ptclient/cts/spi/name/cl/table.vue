@@ -1,21 +1,29 @@
 <template>
   <div>
-    <el-input
-      placeholder="First name"
-      :value="mfGetField(1, 'firstName')"
-      @input="mfSetFieldUsingCache($event, 1, 'firstName')"
-    >
-    </el-input>
-    <el-input
-      placeholder="Middle name"
-      :value="mfGetField(1, 'middleName')"
-      @input="mfSetFieldUsingCache($event, 1, 'middleName')"
-    ></el-input>
-    <el-input
-      placeholder="Last name"
-      :value="mfGetField(1, 'lastName')"
-      @input="mfSetFieldUsingCache($event, 1, 'lastName')"
-    ></el-input>
+    <el-form>
+      <el-form-item>
+        <el-input
+          placeholder="First name"
+          :value="mfGetField(1, 'firstName')"
+          @input="mfSetFieldUsingCache($event, 1, 'firstName')"
+        >
+        </el-input>
+        <el-input
+          placeholder="Middle name"
+          :value="mfGetField(1, 'middleName')"
+          @input="mfSetFieldUsingCache($event, 1, 'middleName')"
+        ></el-input>
+        <el-input
+          placeholder="Last name"
+          :value="mfGetField(1, 'lastName')"
+          @input="mfSetFieldUsingCache($event, 1, 'lastName')"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" plain @click="mfOnSubmit">Submit</el-button>
+        <el-button type="warning" plain @click="mfResetForm">Reset form</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
