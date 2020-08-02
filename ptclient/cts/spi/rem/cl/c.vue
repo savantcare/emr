@@ -42,7 +42,6 @@
   </div>
 </template>
 <script>
-import { REMINDER_API_URL } from '../const.js'
 import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
 export default {
   /* Why is this called firstParam
@@ -215,7 +214,7 @@ export default {
         const remDesc = this.getRemDescUsingCache()
         this.addEmptyRemToUI(remDesc)
 
-        const response = await fetch(`${REMINDER_API_URL}/${this.uuid}`, {
+        const response = await fetch(ormRem.apiUrl + '/' + this.uuid, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
