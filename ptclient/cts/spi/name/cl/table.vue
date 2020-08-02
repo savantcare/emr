@@ -1,5 +1,22 @@
 <template>
   <div>
+    <el-input
+      placeholder="First name"
+      :value="mfGetField(1, 'firstName')"
+      @input="mfSetFieldUsingCache($event, 1, 'firstName')"
+    >
+    </el-input>
+    <el-input
+      placeholder="Middle name"
+      :value="mfGetField(1, 'middleName')"
+      @input="mfSetFieldUsingCache($event, 1, 'middleName')"
+    ></el-input>
+    <el-input
+      placeholder="Last name"
+      :value="mfGetField(1, 'lastName')"
+      @input="mfSetFieldUsingCache($event, 1, 'lastName')"
+    ></el-input>
+
     <el-button type="info" plain>{{ cfName['firstName'] }}</el-button>
     <el-button type="info" plain>{{ cfName['middleName'] }}</el-button>
     <el-button type="info" plain>{{ cfName['lastName'] }}</el-button>
@@ -10,22 +27,22 @@
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
 import ormName from '@/cts/spi/name/db/orm-name.js'
 export default {
-  mixins: [fullSyncWithServerDBMixin],
-  computed: {
-    cfName() {
-      const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
-      if (arFromORM.length) {
-        return arFromORM[0]
-      } else {
-        return ''
-      }
-    },
-  },
   async mounted() {
     if (ormName.length > 0) {
     } else {
       await this.getDataFromDB()
     }
+  },
+  methods: {
+    mfGetField(pOrmRowId, pFieldName) {
+      const value = ormHw.getField(pOrmRowId, pFieldName)
+      return value
+    },
+    mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
+      const rowStatus = 24 // 2 is new on client and 4 is changed on client
+      ormHw.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+    },
   },
 }
 </script>
