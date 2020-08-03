@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-button :type="typeOfButton" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">{{
+    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">{{
       cfName['firstName']
     }}</el-button>
-    <el-button :type="typeOfButton" plain>{{ cfName['middleName'] }}</el-button>
-    <el-button :type="typeOfButton" plain>{{ cfName['lastName'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain>{{ cfName['middleName'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain>{{ cfName['lastName'] }}</el-button>
     <el-button
       type="primary"
       size="mini"
@@ -19,19 +19,14 @@
 
 <script>
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
-import ormName from '@/cts/spi/name/db/orm-name.js'
+import ormName from '../db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
-  data() {
-    return {
-      typeOfButton: 'info',
-    }
-  },
+
   computed: {
     cfName() {
       const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromORM.length) {
-        if (arFromORM[0].rowStateInThisSession != 1) this.typeOfButton = 'warning'
         return arFromORM[0]
       } else {
         return ''
@@ -42,6 +37,14 @@ export default {
       const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
       const idx = arCardsInCsOfVl.indexOf(obj)
       return idx
+    },
+    cfTypeOfButton() {
+      const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      if (arFromORM.length) {
+        if (arFromORM[0].rowStateInThisSession !== 1) return 'warning'
+      } else {
+        return 'info'
+      }
     },
   },
   async mounted() {

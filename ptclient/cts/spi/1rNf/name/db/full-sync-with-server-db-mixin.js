@@ -1,4 +1,4 @@
-import ormName from '@/cts/spi/name/db/orm-name.js'
+import ormName from '~/cts/spi/1rNf/name/db/orm-name.js'
 export default {
   methods: {
     async getDataFromDB() {

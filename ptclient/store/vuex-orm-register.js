@@ -7,7 +7,7 @@ import HworldCh7 from '~/cts/book/c07-element-orm-connect-many-rows/db/vuex-orm/
 import HworldCh10 from '~/cts/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js'
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '@/cts/spi/rem/db/vuex-orm/rem.js'
-import ormName from '@/cts/spi/name/db/orm-name.js'
+import ormName from '~/cts/spi/1rNf/name/db/orm-name.js'
 import Rex from '@/cts/spi/rec/vuex-orm/model.js'
 import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'

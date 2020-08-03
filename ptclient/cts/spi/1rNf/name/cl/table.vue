@@ -32,7 +32,7 @@
 
 <script>
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
-import ormName from '@/cts/spi/name/db/orm-name.js'
+import ormName from '../db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
   data() {
