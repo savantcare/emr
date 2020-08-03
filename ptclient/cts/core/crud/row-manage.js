@@ -120,7 +120,7 @@ class rowManage extends Model {
     }
   }
 
-  static getNewRowsInEditState() {
+  static getAllNewRowsInEditState() {
     const arFromOrm = this.query()
       .where('vnRowStateInSession', 2) // New
       .orWhere('vnRowStateInSession', 24) // New -> Changed
@@ -220,10 +220,19 @@ class rowManage extends Model {
   }
 
   static deleteNewRowsInEditState() {
-    const arFromOrm = this.getNewRowsInEditState()
+    const arFromOrm = this.getAllNewRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
-        this.delete(arFromOrm[i].$id)
+        this.delete(arFromOrm[i].id)
+      }
+    }
+  }
+
+  static deleteChangeRowsInEditState() {
+    const arFromOrm = this.getAllChangeRowsInEditState()
+    if (arFromOrm.length) {
+      for (let i = 0; i < arFromOrm.length; i++) {
+        this.delete(arFromOrm[i].id)
       }
     }
   }

@@ -40,7 +40,7 @@ export default {
     },
     cfTypeOfButton() {
       const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
-      if (arFromOrm.length == 0) return 'info'
+      if (arFromOrm.length === 0) return 'info'
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
