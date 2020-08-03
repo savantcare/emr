@@ -64,7 +64,7 @@ export default {
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromORM = await ormSearchPhrasesOfCt
+      const arFromOrm = await ormSearchPhrasesOfCt
         .query()
         .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {
@@ -72,12 +72,12 @@ export default {
           keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
         })
         .get()
-      const objSearchRowFromORM = arFromORM[0]
+      const objSearchRowFromOrm = arFromOrm[0]
 
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
       // /cts/core/manage-cl-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
-        label: objSearchRowFromORM.value, // TODO: Should be called vsLabel
+        label: objSearchRowFromOrm.value, // TODO: Should be called vsLabel
 
         /*
         import and require are similar
@@ -91,12 +91,12 @@ export default {
 
         */
 
-        ctToShow: require('@/cts/' + objSearchRowFromORM.ctToShow).default,
-        ctAbbr: objSearchRowFromORM.ctAbbr, // TODO: Should be called vsCtAbbr
-        id: objSearchRowFromORM.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
+        ctToShow: require('@/cts/' + objSearchRowFromOrm.ctToShow).default,
+        ctAbbr: objSearchRowFromOrm.ctAbbr, // TODO: Should be called vsCtAbbr
+        id: objSearchRowFromOrm.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
         vstPropsToGiveToCt: pPayload.pPropsToGiveToCt, // This holds all the data for the record we want to change in cl
         closable: true, // TODO: Should be called blClosable
-        ctWidthInCl: objSearchRowFromORM.ctWidthInCl,
+        ctWidthInCl: objSearchRowFromOrm.ctWidthInCl,
       }
       this.commit('mtfShowNewFirstTabInCl', tab)
     },

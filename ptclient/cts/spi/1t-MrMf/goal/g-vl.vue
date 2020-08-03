@@ -61,13 +61,13 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromORM = ormSearchPhrasesOfCt.query().search('add goal').get()
-      const objRowFromORM = arFromORM[0]
+      const arFromOrm = ormSearchPhrasesOfCt.query().search('add goal').get()
+      const objRowFromOrm = arFromOrm[0]
       const tab = {
-        label: objRowFromORM.value,
-        ctToShow: require('@/cts/' + objRowFromORM.ctToShow).default,
-        ctAbbr: objRowFromORM.ctAbbr,
-        id: objRowFromORM.id,
+        label: objRowFromOrm.value,
+        ctToShow: require('@/cts/' + objRowFromOrm.ctToShow).default,
+        ctAbbr: objRowFromOrm.ctAbbr,
+        id: objRowFromOrm.id,
         closable: true,
       }
       this.$store.commit('mtfShowNewFirstTabInCl', tab)

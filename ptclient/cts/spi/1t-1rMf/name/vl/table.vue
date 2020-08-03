@@ -25,9 +25,9 @@ export default {
 
   computed: {
     cfName() {
-      const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
-      if (arFromORM.length) {
-        return arFromORM[0]
+      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      if (arFromOrm.length) {
+        return arFromOrm[0]
       } else {
         return ''
       }
@@ -39,9 +39,12 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
-      if (arFromORM.length) {
-        if (arFromORM[0].vnRowStateInSession !== 1) return 'warning'
+      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      if (arFromOrm.length == 0) return 'info'
+      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'warning'
       }
       return 'info'
     },

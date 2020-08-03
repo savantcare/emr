@@ -85,7 +85,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromORM = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -98,17 +98,17 @@ export default {
 
       const arRemsForDisplay = []
       let obj = {}
-      if (arFromORM.length) {
+      if (arFromOrm.length) {
         let date = ''
-        for (let i = 0; i < arFromORM.length; i++) {
+        for (let i = 0; i < arFromOrm.length; i++) {
           obj = {}
-          obj.remDesc = arFromORM[i].remDesc
+          obj.remDesc = arFromOrm[i].remDesc
           // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline.vue:53
-          date = new Date(arFromORM[i].ROW_START)
+          date = new Date(arFromOrm[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.vnRowStateInSession = arFromORM[i].vnRowStateInSession
-          obj.uuid = arFromORM[i].uuid
-          obj.id = arFromORM[i].id
+          obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
+          obj.uuid = arFromOrm[i].uuid
+          obj.id = arFromOrm[i].id
           arRemsForDisplay.push(obj)
         }
       }

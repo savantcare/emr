@@ -110,13 +110,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromORM = ormRem.getValidUniqueUuidRows()
-      return arFromORM.length
+      const arFromOrm = ormRem.getValidUniqueUuidRows()
+      return arFromOrm.length
     },
 
     cfArOfRemForDisplayInTable() {
       // Whenever ormRem will change this will get called. Even when there are 100 rows in the table when orm rem changes this gets called once'
-      const arFromORM = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -127,15 +127,15 @@ export default {
       */
       const arRemsForDisplay = []
       let obj = {}
-      if (arFromORM.length) {
+      if (arFromOrm.length) {
         let date = ''
         const startDataRowInidex = (this.tablePageNumber - 1) * 10
         const endDataRowIndex = startDataRowInidex + 10
-        for (let i = startDataRowInidex; i < arFromORM.length && i < endDataRowIndex; i++) {
+        for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
-          obj.remDesc = arFromORM[i].remDesc
+          obj.remDesc = arFromOrm[i].remDesc
           // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline.vue:53
-          date = new Date(arFromORM[i].ROW_START * 1000)
+          date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
             '-' +
@@ -143,11 +143,11 @@ export default {
             '-' +
             date.getFullYear()
           obj.ROW_START = date.toLocaleString()
-          obj.ROW_END = new Date(arFromORM[i].ROW_END * 1000).toLocaleString()
-          obj.vnRowStateInSession = arFromORM[i].vnRowStateInSession
-          obj.uuid = arFromORM[i].uuid
-          obj.$id = arFromORM[i].$id
-          obj.id = arFromORM[i].id
+          obj.ROW_END = new Date(arFromOrm[i].ROW_END * 1000).toLocaleString()
+          obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
+          obj.uuid = arFromOrm[i].uuid
+          obj.$id = arFromOrm[i].$id
+          obj.id = arFromOrm[i].id
           arRemsForDisplay.push(obj)
         }
       }

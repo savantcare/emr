@@ -47,9 +47,7 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
-    console.log(this.firstParam)
-    const pOrmRowId = 1
-    const arFromOrm = ormName.find(pOrmRowId)
+    const arFromOrm = ormName.find(this.firstParam)
     const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
     if (vnExistingRowID === false) {
       // Adding a new blank record. Since this is temporal DB

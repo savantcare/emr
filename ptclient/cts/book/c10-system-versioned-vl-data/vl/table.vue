@@ -20,17 +20,17 @@ import ormHelloWorld from '@/cts/book/c10-system-versioned-vl-data/db/vuex-orm/h
 export default {
   computed: {
     cfMsg() {
-      const arFromORM = ormHelloWorld.query().get()
-      if (arFromORM.length > 0) {
-        console.log(arFromORM)
-        return arFromORM[0].msg
+      const arFromOrm = ormHelloWorld.query().get()
+      if (arFromOrm.length > 0) {
+        console.log(arFromOrm)
+        return arFromOrm[0].msg
       }
       return ''
     },
     cfArForDisplayInTable() {
       // TODO: change this from Ar to Obj since JS ar has numerical indexes.
-      const arFromORM = ormHelloWorld.getNotEmptyRows('msg')
-      return arFromORM
+      const arFromOrm = ormHelloWorld.getNotEmptyRows('msg')
+      return arFromOrm
     },
   },
   mounted() {

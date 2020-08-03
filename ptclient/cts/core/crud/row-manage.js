@@ -45,29 +45,29 @@ class rowManage extends Model {
   static getApiErrorStateRows() {
     // C3/3
     // New -> Changed -> Requested save -> Sent to server -> Failure
-    const arFromORM = this.query().where('vnRowStateInSession', 24578).get()
-    return arFromORM
+    const arFromOrm = this.query().where('vnRowStateInSession', 24578).get()
+    return arFromOrm
   }
 
   static getApiSendingStateRows() {
     // New -> Changed -> Requested save -> Sending to server
-    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
-    return arFromORM
+    const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
+    return arFromOrm
   }
 
   static getApiSuccessStateRows() {
     // New -> Changed -> Requested save -> Sent to server -> Success
-    const arFromORM = this.query().where('vnRowStateInSession', 24571).get()
-    return arFromORM
+    const arFromOrm = this.query().where('vnRowStateInSession', 24571).get()
+    return arFromOrm
   }
 
   static getAllChangeRowsInEditState() {
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('vnRowStateInSession', 3) // Copy
       .orWhere('vnRowStateInSession', 34) // Copy -> Changed
       .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
-    return arFromORM
+    return arFromOrm
   }
 
   static getChangeRowInEditState(pUuid) {
@@ -82,7 +82,7 @@ class rowManage extends Model {
         where uuid=4545d6 AND 
         (vnRowStateInSession=3 OR vnRowStateInSession=34 OR vnRowStateInSession=3456)
     */
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('uuid', pUuid)
       .where((record) => {
         return (
@@ -96,9 +96,9 @@ class rowManage extends Model {
       // .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
 
-    if (arFromORM.length) {
-      const idx = arFromORM.length - 1
-      return arFromORM[idx].id
+    if (arFromOrm.length) {
+      const idx = arFromOrm.length - 1
+      return arFromOrm[idx].id
     } else {
       return false
     }
@@ -108,10 +108,10 @@ class rowManage extends Model {
     // first time it will have to find in model. This is needed to show the initial content in the field.
     if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
       // finding in model
-      const arFromORM = this.find(pOrmRowId)
-      if (arFromORM) {
-        this.arOrmRowsCached[pOrmRowId] = arFromORM
-        return arFromORM[pFieldName]
+      const arFromOrm = this.find(pOrmRowId)
+      if (arFromOrm) {
+        this.arOrmRowsCached[pOrmRowId] = arFromOrm
+        return arFromOrm[pFieldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
@@ -121,35 +121,35 @@ class rowManage extends Model {
   }
 
   static getNewRowsInEditState() {
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('vnRowStateInSession', 2) // New
       .orWhere('vnRowStateInSession', 24) // New -> Changed
       .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
       .get()
-    return arFromORM
+    return arFromOrm
   }
 
   static getNewRowsInReadyToSubmitState() {
     // Following query makes sure I get all the newly added row having field value
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('vnRowStateInSession', 24) // New -> Changed
       .get()
-    return arFromORM
+    return arFromOrm
   }
 
   static getNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
       .where(pFieldForNonEmptyCheck, (value) => value.length > 0)
       .get()
-    return arFromORM
+    return arFromOrm
   }
 
   // This function finds data in client side vuex-orm. This fn is not making a API query to the server.
   static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromORM = this.query()
+    const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
       .where(pFieldForNonEmptyCheck, (value) => value.length > 0)
       .get()
@@ -157,20 +157,20 @@ class rowManage extends Model {
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
     let foundInArToReturn = false
-    for (let i = 0; i < arFromORM.length; i++) {
+    for (let i = 0; i < arFromOrm.length; i++) {
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromORM[i].uuid === uniqueUuidRows[j].uuid) {
+        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
           /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          uniqueUuidRows[j] = arFromORM[i]
+          uniqueUuidRows[j] = arFromOrm[i]
           foundInArToReturn = true
         }
       }
       if (foundInArToReturn) {
       } else {
-        uniqueUuidRows.push(arFromORM[i])
+        uniqueUuidRows.push(arFromOrm[i])
       }
     }
 
@@ -179,20 +179,20 @@ class rowManage extends Model {
 
   static getValidUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromORM = this.query().where('ROW_END', 2147483647.999999).get()
+    const arFromOrm = this.query().where('ROW_END', 2147483647.999999).get()
     const uniqueUuidRows = []
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
-    for (let i = 0; i < arFromORM.length; i++) {
+    for (let i = 0; i < arFromOrm.length; i++) {
       let foundInArToReturn = false
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromORM[i].uuid === uniqueUuidRows[j].uuid) {
+        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
           /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          if (arFromORM[i].id > uniqueUuidRows[j].id) {
-            uniqueUuidRows[j] = arFromORM[i]
+          if (arFromOrm[i].id > uniqueUuidRows[j].id) {
+            uniqueUuidRows[j] = arFromOrm[i]
           } else {
             // The existing data is newer hence not replacing
           }
@@ -202,7 +202,7 @@ class rowManage extends Model {
       if (foundInArToReturn) {
         // Already found in array to be returned hence no need to add to arary
       } else {
-        uniqueUuidRows.push(arFromORM[i])
+        uniqueUuidRows.push(arFromOrm[i])
       }
     }
 
@@ -220,10 +220,10 @@ class rowManage extends Model {
   }
 
   static deleteNewRowsInEditState() {
-    const arFromORM = this.getNewRowsInEditState()
-    if (arFromORM.length) {
-      for (let i = 0; i < arFromORM.length; i++) {
-        this.delete(arFromORM[i].$id)
+    const arFromOrm = this.getNewRowsInEditState()
+    if (arFromOrm.length) {
+      for (let i = 0; i < arFromOrm.length; i++) {
+        this.delete(arFromOrm[i].$id)
       }
     }
   }
@@ -327,18 +327,18 @@ class rowManage extends Model {
       isValidationError: false,
     }
 
-    const arFromORM = this.update({
+    const arFromOrm = this.update({
       where: pOrmRowId,
       data: row,
     })
-    if (!arFromORM) {
+    if (!arFromOrm) {
       console.log('FATAL ERROR')
     }
   }
 
   static async sendToServer() {
     // API will return 1 (Success) or 0 (Failure)
-    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
+    const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
 
     /*
       Q) Why we use promise in following code?
@@ -346,7 +346,7 @@ class rowManage extends Model {
         In real time, user may add data and hit save button of add form and again tries to save data before the previous data gets saved in DB. The system got confused in such case.
         We are using asynchronous promises to deal with the case.
     */
-    const promises = arFromORM.map(async (row) => {
+    const promises = arFromOrm.map(async (row) => {
       try {
         /*
         Q) Why we put the api call code in if/else statement?

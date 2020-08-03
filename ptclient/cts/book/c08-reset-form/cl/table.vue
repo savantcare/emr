@@ -32,13 +32,13 @@ export default {
   },
   methods: {
     async mfAddEmptyRowInOrm() {
-      const arFromORM = await ormHw.insert({
+      const arFromOrm = await ormHw.insert({
         data: {
           msg: '',
           vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
         },
       })
-      if (!arFromORM) {
+      if (!arFromOrm) {
         console.log('FATAL ERROR')
       }
     },

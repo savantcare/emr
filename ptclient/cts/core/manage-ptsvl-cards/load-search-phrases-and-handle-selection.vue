@@ -71,11 +71,11 @@ export default {
 
   computed: {
     cfSearchBoxPlaceholder() {
-      let arFromORM = {}
-      arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
-      const objRowFromORM = arFromORM[0]
-      if (objRowFromORM) {
-        return 'e.g. ' + objRowFromORM.value
+      let arFromOrm = {}
+      arFromOrm = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
+      const objRowFromOrm = arFromOrm[0]
+      if (objRowFromOrm) {
+        return 'e.g. ' + objRowFromOrm.value
       } else {
         return 'e.g. screening'
       }
@@ -87,10 +87,10 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromORM = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
-        pCallBack(arFromORM)
+        const arFromOrm = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
+        pCallBack(arFromOrm)
       } else {
-        const arFromORM = ormSearchPhrasesOfCt
+        const arFromOrm = ormSearchPhrasesOfCt
           .query()
           .where('operatesOn', 'table') // For reasons read: ct-search-inside-add-tab-in-cl approx line 78
           .search(pQueryString.trim(), {
@@ -99,7 +99,7 @@ export default {
           })
           .orderBy('usageCountKeptInOrm', 'desc')
           .get() // trim is needed for "goal " to match "goal"
-        pCallBack(arFromORM)
+        pCallBack(arFromOrm)
       }
     },
 

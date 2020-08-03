@@ -69,9 +69,9 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
-      const arResultsFromORM = ormRem.find(pOrmDataRowId)
+      const arResultsFromOrm = ormRem.find(pOrmDataRowId)
 
-      this.$prompt(arResultsFromORM.remDesc, 'Discontinue reminder', {
+      this.$prompt(arResultsFromOrm.remDesc, 'Discontinue reminder', {
         confirmButtonText: 'Discontinue',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter discontinue note',
@@ -79,7 +79,7 @@ export default {
         .then(async ({ value }) => {
           const status = await ormRem.sendDiscontinueDataToServer(
             pOrmDataRowId,
-            arResultsFromORM.uuid,
+            arResultsFromOrm.uuid,
             value
           )
           if (status === 1) {

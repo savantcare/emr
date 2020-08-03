@@ -103,14 +103,14 @@ export default {
 
   methods: {
     async mfAddEmptyRowInOrm() {
-      const arFromORM = await ormRem.insert({
+      const arFromOrm = await ormRem.insert({
         data: {
           remDesc: '',
           vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
-      if (!arFromORM) {
+      if (!arFromOrm) {
         console.log('FATAL ERROR')
       }
       this.mfManageFocus()
@@ -134,8 +134,8 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
-      const arFromORM = ormRem.find(pOrmRowId)
-      if (arFromORM && arFromORM.vnRowStateInSession === 24) {
+      const arFromOrm = ormRem.find(pOrmRowId)
+      if (arFromOrm && arFromOrm.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
@@ -153,14 +153,14 @@ export default {
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
         The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from ormRem ie; 'vnRowStateInSession' = 24
       */
-      const arFromORM = this.cfGetOrmReadyToSubmitStateRows
-      if (arFromORM.length) {
-        console.log('unsaved data found', arFromORM)
-        for (let i = 0; i < arFromORM.length; i++) {
-          if (arFromORM[i].remDesc.length < 3) {
+      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows
+      if (arFromOrm.length) {
+        console.log('unsaved data found', arFromOrm)
+        for (let i = 0; i < arFromOrm.length; i++) {
+          if (arFromOrm[i].remDesc.length < 3) {
             // Validation check
             await ormRem.update({
-              where: (record) => record.id === arFromORM[i].id,
+              where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -169,7 +169,7 @@ export default {
             })
           } else {
             await ormRem.update({
-              where: (record) => record.id === arFromORM[i].id,
+              where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

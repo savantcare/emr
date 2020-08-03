@@ -48,9 +48,9 @@ export default {
       try {
         if (!this.dblOneDxQueryIsRunningGate) {
           this.dblOneDxQueryIsRunningGate = true
-          const countDxCountFromORM = ormDx.query().count()
-          console.log('Number of dx before query =>', countDxCountFromORM)
-          if (countDxCountFromORM === 0) {
+          const countDxCountFromOrm = ormDx.query().count()
+          console.log('Number of dx before query =>', countDxCountFromOrm)
+          if (countDxCountFromOrm === 0) {
             const dxEvalList = await ormDx
               .api()
               .get(
@@ -76,10 +76,10 @@ export default {
         if (!this.dblOneDxaQueryIsRunningGate) {
           console.log('calling assessment api')
           this.dblOneDxaQueryIsRunningGate = true
-          const countDxaCountFromORM = ormDxa.query().count()
+          const countDxaCountFromOrm = ormDxa.query().count()
           console.log('Number of assessment before query')
-          console.log('Number of assessment before query =>', countDxaCountFromORM)
-          if (countDxaCountFromORM === 0) {
+          console.log('Number of assessment before query =>', countDxaCountFromOrm)
+          if (countDxaCountFromOrm === 0) {
             await ormDxa
               .api()
               .get(
@@ -99,26 +99,26 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromORM = ormSearchPhrasesOfCt.query().search('add diagnosis').get()
-      const objRowFromORM = arFromORM[0]
+      const arFromOrm = ormSearchPhrasesOfCt.query().search('add diagnosis').get()
+      const objRowFromOrm = arFromOrm[0]
       const tab = {
-        label: objRowFromORM.value,
-        ctToShow: require('@/cts/' + objRowFromORM.ctToShow).default,
-        ctAbbr: objRowFromORM.ctAbbr,
-        id: objRowFromORM.id,
+        label: objRowFromOrm.value,
+        ctToShow: require('@/cts/' + objRowFromOrm.ctToShow).default,
+        ctAbbr: objRowFromOrm.ctAbbr,
+        id: objRowFromOrm.id,
         closable: true,
       }
       this.$store.commit('mtfShowNewFirstTabInL2', tab)
     },
     mfOpenMCtInCl() {
       console.log('show multi change dialog')
-      const arFromORM = ormSearchPhrasesOfCt.query().search('Multichange dx assessment').get()
-      const objRowFromORM = arFromORM[0]
+      const arFromOrm = ormSearchPhrasesOfCt.query().search('Multichange dx assessment').get()
+      const objRowFromOrm = arFromOrm[0]
       const tab = {
-        label: objRowFromORM.value,
-        ctToShow: require('@/cts/' + objRowFromORM.ctToShow).default,
-        ctAbbr: objRowFromORM.ctAbbr,
-        id: objRowFromORM.id,
+        label: objRowFromOrm.value,
+        ctToShow: require('@/cts/' + objRowFromOrm.ctToShow).default,
+        ctAbbr: objRowFromOrm.ctAbbr,
+        id: objRowFromOrm.id,
         closable: true,
       }
       this.$store.commit('mtfShowNewFirstTabInL2', tab)

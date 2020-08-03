@@ -9,10 +9,10 @@ import ormHelloWorld from '@/cts/book/c04-orm-model/db/vuex-orm/helloworld.js'
 export default {
   computed: {
     cfMsg() {
-      const arFromORM = ormHelloWorld.query().get()
-      if (arFromORM.length > 0) {
-        console.log(arFromORM)
-        return arFromORM[0].msg
+      const arFromOrm = ormHelloWorld.query().get()
+      if (arFromOrm.length > 0) {
+        console.log(arFromOrm)
+        return arFromOrm[0].msg
       }
       return ''
     },

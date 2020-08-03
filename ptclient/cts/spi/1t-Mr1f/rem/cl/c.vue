@@ -74,28 +74,28 @@ export default {
       const timelineDataArray = []
 
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromORM = ormRem.query().where('uuid', this.uuid).orderBy('id', 'desc').get()
+      const arFromOrm = ormRem.query().where('uuid', this.uuid).orderBy('id', 'desc').get()
       // console.log('Time line for uuid', this.uuid)
-      if (arFromORM.length) {
+      if (arFromOrm.length) {
         let rowInTimeLine = []
         let date = ''
-        for (let i = 0; i < arFromORM.length; i++) {
+        for (let i = 0; i < arFromOrm.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.remDesc = arFromORM[i].remDesc
-          date = new Date(arFromORM[i].ROW_START)
+          rowInTimeLine.remDesc = arFromOrm[i].remDesc
+          date = new Date(arFromOrm[i].ROW_START)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           if (
-            arFromORM[i].vnRowStateInSession === 3 ||
-            arFromORM[i].vnRowStateInSession === 34 ||
-            arFromORM[i].vnRowStateInSession === 3456
+            arFromOrm[i].vnRowStateInSession === 3 ||
+            arFromOrm[i].vnRowStateInSession === 34 ||
+            arFromOrm[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
-          rowInTimeLine.ROW_START = arFromORM[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromORM[i].vnRowStateInSession
+          rowInTimeLine.ROW_START = arFromOrm[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }
@@ -109,7 +109,7 @@ export default {
     // We want to show the history of the data. If I edit/change the original data then I will
     // not know what the original data to show below the edit/change form.
     async mfCopyRowToOrm(pDesc) {
-      const arFromORM = await ormRem.insert({
+      const arFromOrm = await ormRem.insert({
         data: {
           remDesc: pDesc,
           uuid: this.uuid,
@@ -118,7 +118,7 @@ export default {
           // ROW_END: already has a default value inside vuex-orm/rem.js
         },
       })
-      this.vnIdOfCopiedRowFromOrm = arFromORM.rem[0].id
+      this.vnIdOfCopiedRowFromOrm = arFromOrm.rem[0].id
       this.mfManageFocus()
     },
     mfManageFocus() {
@@ -168,7 +168,7 @@ export default {
         */
 
       // Goal: decide if it is repeat or first invocation
-      let arFromORM = []
+      let arFromOrm = []
       if (this.ormRowIDForPreviousInvocation === this.firstParam) {
         // this is repeat invocation
         this.mfManageFocus()
@@ -177,13 +177,13 @@ export default {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
         // this is first time invocation
         this.ormRowIDForPreviousInvocation = this.firstParam
-        arFromORM = ormRem.find(this.firstParam)
-        this.uuid = arFromORM.uuid
+        arFromOrm = ormRem.find(this.firstParam)
+        this.uuid = arFromOrm.uuid
         // Find if there is unsaved data for this.uuid
         const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
         if (vnExistingRowID === false) {
           // Adding a new blank record. Since this is temporal DB
-          this.mfCopyRowToOrm(arFromORM.remDesc)
+          this.mfCopyRowToOrm(arFromOrm.remDesc)
           this.mfManageFocus()
         } else {
           this.vnIdOfCopiedRowFromOrm = vnExistingRowID
