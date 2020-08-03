@@ -75,7 +75,7 @@ jobs:
       # This hostname is only known inside docker network
       - name: Goal 10 -> Get confitmation that ptserver is running. Wget default is retry 20 times.
         run: |
-          docker exec -i ptserver
+          docker exec -i ptserver /bin/bash
           wget localhost:8000/reminders/getAll
 
       - name: Goal 11 -> Make sure that ptserver is returning right results
