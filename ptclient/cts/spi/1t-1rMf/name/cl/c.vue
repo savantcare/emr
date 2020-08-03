@@ -87,12 +87,15 @@ export default {
       */
       if (!this.mounted) return false
       // let us find out if there is an existing row that is already in change state
-      const arFromORM = ormName.find(pOrmRowId)
-      const vnExistingRowID = ormName.getChangeRowInEditState(arFromORM.uuid)
+      console.log('inside mfGetFieldValue')
+      const arFromOrm = ormName.find(pOrmRowId)
+      const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
       if (vnExistingRowID === false) {
         // Adding a new blank record. Since this is temporal DB
-        this.mfCopyRowToOrm()
+
+        this.mfCopyRowToOrm(arFromOrm)
       } else {
+        console.log('existing row in change state so no need to copy')
         this.vnIdOfCopiedRowFromOrm = vnExistingRowID
       }
 
@@ -108,7 +111,24 @@ export default {
       ormName.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
-    mfCopyRowToOrm() {},
+    // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
+    async mfCopyRowToOrm(pArFromOrm) {
+      console.log(ormName)
+      const arFromORM = await ormName.insert({
+        data: {
+          id: 2,
+          firstName: pArFromOrm.firstName,
+          middleName: pArFromOrm.middleName,
+          lastName: pArFromOrm.lastName,
+          uuid: pArFromOrm.uuid,
+          vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
+          ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+          // ROW_END: already has a default value inside vuex-orm/rem.js
+        },
+      })
+      console.log(ormName)
+      this.vnIdOfCopiedRowFromOrm = arFromORM.rem[0].id
+    },
   },
 }
 </script>
