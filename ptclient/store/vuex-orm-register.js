@@ -8,7 +8,7 @@ import HworldCh10 from '~/cts/book/c10-system-versioned-vl-data/db/vuex-orm/hell
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 import ormName from '~/cts/spi/1rNf/name/db/orm-name.js'
-import Rex from '@/cts/spi/rec/vuex-orm/model.js'
+import Rex from '~/cts/spi/Nr1f/rec/vuex-orm/model.js'
 import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
 import Scr from '@/models/Screening'
