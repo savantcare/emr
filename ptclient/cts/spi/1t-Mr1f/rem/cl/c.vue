@@ -108,7 +108,7 @@ export default {
     // Why is the row copied and then edited/changed?
     // We want to show the history of the data. If I edit/change the original data then I will
     // not know what the original data to show below the edit/change form.
-    async addEmptyRemToUI(pDesc) {
+    async mfCopyRowToOrm(pDesc) {
       const arFromORM = await ormRem.insert({
         data: {
           remDesc: pDesc,
@@ -183,7 +183,7 @@ export default {
         const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
         if (vnExistingRowID === false) {
           // Adding a new blank record. Since this is temporal DB
-          this.addEmptyRemToUI(arFromORM.remDesc)
+          this.mfCopyRowToOrm(arFromORM.remDesc)
           this.mfManageFocus()
         } else {
           this.vnIdOfCopiedRowFromOrm = vnExistingRowID
@@ -215,7 +215,7 @@ export default {
             When change api request then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
           */
         const remDesc = this.getRemDescUsingCache()
-        this.addEmptyRemToUI(remDesc)
+        this.mfCopyRowToOrm(remDesc)
 
         const response = await fetch(ormRem.apiUrl + '/' + this.uuid, {
           method: 'PUT',

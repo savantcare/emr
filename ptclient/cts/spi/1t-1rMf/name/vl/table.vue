@@ -53,7 +53,7 @@ export default {
     }
   },
   methods: {
-    mfOpenCCtInCl() {
+    mfOpenCCtInCl(pOrmId) {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
         searchTerm: 'name - change',
       })

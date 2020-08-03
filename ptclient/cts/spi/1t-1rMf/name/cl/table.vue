@@ -86,13 +86,12 @@ export default {
       even before the data came from the server and got loaded into the ORM.
       */
       if (!this.mounted) return false
-
       // let us find out if there is an existing row that is already in change state
-      const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
+      const arFromORM = ormName.find(pOrmRowId)
+      const vnExistingRowID = ormName.getChangeRowInEditState(arFromORM.uuid)
       if (vnExistingRowID === false) {
         // Adding a new blank record. Since this is temporal DB
-        this.addEmptyRemToUI(arFromORM.remDesc)
-        this.mfManageFocus()
+        this.mfCopyRowToOrm()
       } else {
         this.vnIdOfCopiedRowFromOrm = vnExistingRowID
       }
@@ -109,6 +108,7 @@ export default {
       ormName.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
+    mfCopyRowToOrm() {},
   },
 }
 </script>
