@@ -1,4 +1,4 @@
-import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
+import ormRem from '~/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 export default {
   methods: {
     async getDataFromDB() {

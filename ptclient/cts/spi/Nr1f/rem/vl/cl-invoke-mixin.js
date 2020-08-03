@@ -1,5 +1,5 @@
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
+import ormRem from '~/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 
 export default {
   methods: {

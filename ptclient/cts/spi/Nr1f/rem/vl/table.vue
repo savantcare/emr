@@ -100,7 +100,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 <script>
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
+import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 export default {
   mixins: [clInvokeMixin, fullSyncWithServerDBMixin],
   data() {
@@ -136,7 +136,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromORM.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.remDesc = arFromORM[i].remDesc
-          // For date format ref: /cts/spi/rem/vl/timeline.vue:53
+          // For date format ref: /cts/spi/Nr1f/rem/vl/timeline.vue:53
           date = new Date(arFromORM[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +

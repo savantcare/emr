@@ -42,9 +42,8 @@ export default {
       const arFromORM = ormName.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromORM.length) {
         if (arFromORM[0].rowStateInThisSession !== 1) return 'warning'
-      } else {
-        return 'info'
       }
+      return 'info'
     },
   },
   async mounted() {

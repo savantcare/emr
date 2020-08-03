@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import ormRem from '@/cts/spi/rem/db/vuex-orm/rem.js'
+import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 export default {
   /* Why is this called firstParam
         This Ct is called in a for loop. In the same for loop other Ct are also called.
