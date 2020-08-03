@@ -11,7 +11,7 @@
       style="padding: 3px;"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl()"
+      @click="mfOpenCCtInCl(cfName['id'])"
       >C</el-button
     >
   </div>
@@ -49,7 +49,7 @@ export default {
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
-      await this.getDataFromDBMx() // mixin fns are copied into the ct where the minin is used.
+      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
   },
   methods: {

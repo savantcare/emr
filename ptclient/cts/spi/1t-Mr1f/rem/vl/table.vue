@@ -157,7 +157,7 @@ export default {
   async mounted() {
     if (ormRem.query().count() > 0) {
     } else {
-      await this.getDataFromDBMx()
+      await this.mxGetDataFromDb()
     }
   },
   methods: {

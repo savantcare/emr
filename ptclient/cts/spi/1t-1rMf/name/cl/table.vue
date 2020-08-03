@@ -43,7 +43,7 @@ export default {
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
-      await this.getDataFromDBMx()
+      await this.mxGetDataFromDb()
     }
     this.mounted = true
   },
@@ -69,7 +69,7 @@ export default {
     },
     mfResetForm() {
       // The original data is no longer on the client side hence I have to fetch the data from the server
-      this.getDataFromDBMx()
+      this.mxGetDataFromDb()
       // the rowStatus has cached the data so I need to remove the cache from row status
       ormName.arOrmRowsCached = []
       // TODO: The form needs to be reinitialized with the data in the state.
