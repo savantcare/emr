@@ -106,7 +106,7 @@ export default {
       For reason of this gate see comment for mfGetField in this file
       */
       if (!this.mounted) return false
-      const rowStatus = 24 // 2 is new on client and 4 is changed on client
+      const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       ormName.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
