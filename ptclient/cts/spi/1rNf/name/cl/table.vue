@@ -43,14 +43,17 @@ export default {
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
-      await this.getDataFromDB()
+      await this.getDataFromDBMx()
     }
     this.mounted = true
   },
   methods: {
     mfOnSubmit() {},
     mfResetForm() {
-      ormName.deleteNewRowsInEditState()
+      // The original data is no longer on the client side hence I have to fetch the data from the server
+      this.getDataFromDBMx()
+      // the rowStatus has cached the data so I need to remove the cache from row status
+      ormName.arOrmRowsCached = []
     },
     mfGetField(pOrmRowId, pFieldName) {
       /* 

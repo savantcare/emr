@@ -49,7 +49,7 @@ export default {
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
-      await this.getDataFromDB() // getDataFromDB is a mixin. And mixin fns are copied into the ct where the minin is used.
+      await this.getDataFromDBMx() // mixin fns are copied into the ct where the minin is used.
     }
   },
   methods: {
