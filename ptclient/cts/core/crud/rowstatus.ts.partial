@@ -113,7 +113,7 @@ class rowStatus:interface extends Model {
 
   static setFieldValue(pEvent: string, pOrmRowId: number, pFieldName: string) {
     this.putFieldValueInCache(pEvent, pOrmRowId, pFieldName)
-    this.createTimeoutToSave(pEvent, pOrmRowId, pFieldName)
+    this.createTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName)
   }
 
   /*  
@@ -185,7 +185,7 @@ class rowStatus:interface extends Model {
     */
   }
 
-  static createTimeoutToSave(pEvent: string, pOrmRowId: number, pFieldName: string) {
+  static createTimeoutToSaveToState(pEvent: string, pOrmRowId: number, pFieldName: string) {
     // Goal 2/2: debouncing. If A and B are pressed quickly. Timeout for "A" keypress will get cancelled and timeout for "B" keypress will get scheduled.
     if (this.vOrmSaveScheduled) {
       clearTimeout(this.vOrmSaveScheduled)
