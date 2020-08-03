@@ -74,8 +74,10 @@ export default {
       ormName.arOrmRowsCached = []
       // TODO: The form needs to be reinitialized with the data in the state.
     },
-    // Template cannot directly call a ORM function. So first calling a method function
-    // and that calls the ORM function
+
+    /* Template cannot directly call a ORM function. So first calling a method function
+     and that calls the ORM function
+     */
     mfGetFieldValue(pOrmRowId, pFieldName) {
       /*
       Even before Ct is mounted this fn starts getting called for each field.
@@ -85,7 +87,15 @@ export default {
       */
       if (!this.mounted) return false
 
-      // let is find out if there is an existing row that is already in change state
+      // let us find out if there is an existing row that is already in change state
+      const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
+      if (vnExistingRowID === false) {
+        // Adding a new blank record. Since this is temporal DB
+        this.addEmptyRemToUI(arFromORM.remDesc)
+        this.mfManageFocus()
+      } else {
+        this.vnIdOfCopiedRowFromOrm = vnExistingRowID
+      }
 
       const value = ormName.getFieldValue(pOrmRowId, pFieldName)
       return value

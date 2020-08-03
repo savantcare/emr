@@ -61,7 +61,7 @@ class rowManage extends Model {
     return arFromORM
   }
 
-  static getChangeRowsInEditState() {
+  static getAllChangeRowsInEditState() {
     const arFromORM = this.query()
       .where('vnRowStateInSession', 3) // Copy
       .orWhere('vnRowStateInSession', 34) // Copy -> Changed

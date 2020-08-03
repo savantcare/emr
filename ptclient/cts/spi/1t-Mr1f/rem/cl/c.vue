@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     cfRowInEditStateOnClient() {
-      return ormRem.getChangeRowsInEditState()
+      return ormRem.getAllChangeRowsInEditState()
     },
     cfTimeLineDataAr() {
       const timelineDataArray = []
@@ -180,13 +180,13 @@ export default {
         arFromORM = ormRem.find(this.firstParam)
         this.uuid = arFromORM.uuid
         // Find if there is unsaved data for this.uuid
-        const existingRowID = ormRem.getChangeRowInEditState(this.uuid)
-        if (existingRowID === false) {
+        const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
+        if (vnExistingRowID === false) {
           // Adding a new blank record. Since this is temporal DB
           this.addEmptyRemToUI(arFromORM.remDesc)
           this.mfManageFocus()
         } else {
-          this.vnIdOfCopiedRowFromOrm = existingRowID
+          this.vnIdOfCopiedRowFromOrm = vnExistingRowID
         }
       }
 
