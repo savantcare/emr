@@ -21,7 +21,7 @@
 3. Make the X work in a drawer.
 
 4. KB control
-   A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
+   A. Remove tabindex from checkmark of reminder table Line 33 of table.vue otherwise tabs go to right side
    B. On tab the control should not go to browser back forward and address bar
 
 # Cannot replicate
