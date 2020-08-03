@@ -34,7 +34,7 @@ import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phras
 import feedSPhrases from '@/cts/core/feed/search-phrases'
 import mapSPhrases from '@/cts/core/map/search-phrases'
 import clearSPhrases from '@/cts/core/clear/search-phrases'
-import nameSPhrases from '@/cts/spi/1rNf/name/search-phrases'
+import nameSPhrases from '@/cts/spi/1t-1rMf/name/search-phrases'
 import remSPhrases from '@/cts/spi/Nr1f/rem/search-phrases'
 import helloWorldC1SPhrases from '@/cts/book/c01-hello-world/search-phrases'
 import helloWorldC2SPhrases from '@/cts/book/c02-change-layer/search-phrases'

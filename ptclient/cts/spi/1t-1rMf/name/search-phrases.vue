@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'spi/1rNf/name/vl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/1t-1rMf/name/vl/table.vue', // CsVl -> Current state view layer
         displayLocation: 'ptsvl',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'name - change',
         ctAbbr: 'nc',
-        ctToShow: 'spi/1rNf/name/cl/table.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/name/cl/table.vue', // Cl -> Change layer
         displayLocation: 'cl',
       },
     })
