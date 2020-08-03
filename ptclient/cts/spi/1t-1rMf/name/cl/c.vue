@@ -35,6 +35,7 @@ import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
 import ormName from '../db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
+  props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
       mounted: false,
@@ -46,6 +47,7 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
+    console.log(this.firstParam)
     const pOrmRowId = 1
     const arFromOrm = ormName.find(pOrmRowId)
     const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)

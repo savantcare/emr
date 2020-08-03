@@ -398,9 +398,9 @@ class rowManage extends Model {
     await Promise.all(promises)
   }
 
-  static async fnMakeApiCAll(pORMRowArray) {
-    pORMRowArray.ptUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
-    pORMRowArray.recordChangedByUUID = 'bua674fa-073b-4223-8c69-0540ee786kj8'
+  static async fnMakeApiCAll(pOrmRowArray) {
+    pOrmRowArray.ptUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
+    pOrmRowArray.recordChangedByUUID = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     try {
       const response = await fetch(this.apiUrl, {
         method: 'POST',
@@ -409,7 +409,7 @@ class rowManage extends Model {
           // Authorization: 'Bearer ' + TOKEN,
         },
         body: JSON.stringify({
-          data: pORMRowArray,
+          data: pOrmRowArray,
         }),
       })
       if (!response.ok) {
@@ -422,7 +422,7 @@ class rowManage extends Model {
     }
   }
 
-  static async sendDiscontinueDataToServer(pORMDataRowID, rowUUID, discontinuedNote) {
+  static async sendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
     try {
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
@@ -439,7 +439,7 @@ class rowManage extends Model {
         return 0
       } else {
         this.update({
-          where: pORMDataRowID,
+          where: pOrmDataRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },

@@ -92,7 +92,7 @@ export default {
       } else {
         const arFromORM = ormSearchPhrasesOfCt
           .query()
-          .where('scope', 'table') // For reasons read: ct-search-inside-add-tab-in-cl approx line 78
+          .where('operatesOn', 'table') // For reasons read: ct-search-inside-add-tab-in-cl approx line 78
           .search(pQueryString.trim(), {
             // Search comes from vuex-orm plugn https://github.com/vuex-orm/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain

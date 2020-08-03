@@ -53,7 +53,7 @@ export default {
         searchTerm: 'discontinued reminders',
       })
     },
-    mxOpenCCtInCl(pORMDataRowID) {
+    mxOpenCCtInCl(pOrmDataRowId) {
       /*
        We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
        Option 1: Send the whole data row
@@ -65,11 +65,11 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'change reminder', pPropsToGiveToCt: pORMDataRowID }
+      const payload = { searchTerm: 'change reminder', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
-    mxOpenDPrompt(pORMDataRowID) {
-      const arResultsFromORM = ormRem.find(pORMDataRowID)
+    mxOpenDPrompt(pOrmDataRowId) {
+      const arResultsFromORM = ormRem.find(pOrmDataRowId)
 
       this.$prompt(arResultsFromORM.remDesc, 'Discontinue reminder', {
         confirmButtonText: 'Discontinue',
@@ -78,7 +78,7 @@ export default {
       })
         .then(async ({ value }) => {
           const status = await ormRem.sendDiscontinueDataToServer(
-            pORMDataRowID,
+            pOrmDataRowId,
             arResultsFromORM.uuid,
             value
           )

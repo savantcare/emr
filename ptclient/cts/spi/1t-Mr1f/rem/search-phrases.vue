@@ -35,7 +35,7 @@ export default {
         ctToShow: 'spi/1t-Mr1f/rem/cl/c.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
-        scope: 'row',
+        operatesOn: 'row',
       },
     })
     ormSearchPhrasesOfCt.insert({

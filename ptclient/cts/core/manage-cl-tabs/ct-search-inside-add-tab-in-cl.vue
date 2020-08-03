@@ -75,7 +75,7 @@ export default {
       let arFromORM = ormSearchPhrasesOfCt
         .query()
         .where('displayLocation', 'cl') // excluding everything where the displayLocation is view layer
-        .where('scope', 'table') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row
+        .where('operatesOn', 'table') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row
         .search(pQueryString.trim())
         .get() // trim needs for "goal " to match "goal"
       console.log('search result from orm model', pQueryString, arFromORM)
