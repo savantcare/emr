@@ -169,6 +169,7 @@ export default {
     mfHandleSelectionForDiscontinue(val) {
       this.daSelectedRemForDiscontinue = val
     },
+    // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow, pIndex) {
       const strOfNumber = pRow.row.rowStateInThisSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
