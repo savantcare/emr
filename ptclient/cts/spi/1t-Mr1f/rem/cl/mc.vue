@@ -7,13 +7,13 @@ Carausel                           |
 
 
 Performance:
-Inside rem/cl/c.vue:getRemDescUsingCache enable the console.log 
+Inside rem/cl/c.vue:mfGetRemDescUsingCache enable the console.log 
 console.log(
         'Inside get desc. Only first time it needs to come from ORM and subsequently it can always come from cache, the value set by setRemDescOn5KeyPress'
       )
 When this Ct is mounted it loads the ctChangeRem 204 times since the above console.log is put on console 204 times. 
 
-Every time the slide is changed the getRemDescUsingCache() is again called 204 times since on console.log I see 204 messages
+Every time the slide is changed the mfGetRemDescUsingCache() is again called 204 times since on console.log I see 204 messages
 
 How to solve this?
 1. Load with getNumOfCarouselSlides as 2. 

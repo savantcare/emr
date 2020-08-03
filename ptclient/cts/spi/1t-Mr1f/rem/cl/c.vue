@@ -6,13 +6,13 @@
           ref="remDesc"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="getRemDescUsingCache()"
-          @input="setRemDescInVstOnDelay($event)"
+          :value="mfGetRemDescUsingCache()"
+          @input="mfSetRemDescInVstOnDelay($event)"
         ></el-input>
-        <!-- setRemDescInVstOnDelay -> Full form: Set reminder description in view state on delay -->
+        <!-- mfSetRemDescInVstOnDelay -> Full form: Set reminder description in view state on delay -->
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="mini" plain @click="sendDataToServer"
+        <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
           >Submit firstpapram is {{ this.firstParam }}</el-button
         >
       </el-form-item>
@@ -134,12 +134,12 @@ export default {
         }
       }
     },
-    getRemDescUsingCache() {
+    mfGetRemDescUsingCache() {
       /*
         Q) Why is this called twice when this page is loaded?
          When C is first clicked and the control comes here. This fn is called twice
          Since following console.log is written twice.
-         If I remove :value="getRemDescUsingCache()" then this fn is called 0 times
+         If I remove :value="mfGetRemDescUsingCache()" then this fn is called 0 times
 
          Why?
          It is a default browser behavior. Clicking on the <label> will trigger 2 clicks, one for <label> and one for <input>.
@@ -193,13 +193,13 @@ export default {
       // From this point on the state is same for change and add
       return ormRem.getFieldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
     },
-    setRemDescInVstOnDelay(pEvent) {
+    mfSetRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
       ormRem.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
 
-    async sendDataToServer() {
+    async mfSendDataToServer() {
       try {
         const requestedToRowId = this.vnIdOfCopiedRowFromOrm
         await ormRem.update({
@@ -214,7 +214,7 @@ export default {
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into ormRem and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
           */
-        const remDesc = this.getRemDescUsingCache()
+        const remDesc = this.mfGetRemDescUsingCache()
         this.mfCopyRowToOrm(remDesc)
 
         const response = await fetch(ormRem.apiUrl + '/' + this.uuid, {
@@ -224,7 +224,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            remDesc: this.getRemDescUsingCache(),
+            remDesc: this.mfGetRemDescUsingCache(),
             requestedToRowId, // TODO: Is this needed?
           }),
         })
@@ -304,7 +304,7 @@ export default {
         console.log('update error', ex)
       }
 
-      console.log('sendDataToServer-> ', this.uuid, this.getRemDescUsingCache())
+      console.log('mfSendDataToServer-> ', this.uuid, this.mfGetRemDescUsingCache())
     },
   },
 }
