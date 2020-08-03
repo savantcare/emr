@@ -157,7 +157,7 @@ export default {
     },
   },
   async mounted() {
-    if (ormRem.length > 0) {
+    if (ormRem.query().count() > 0) {
     } else {
       await this.getDataFromDB()
     }

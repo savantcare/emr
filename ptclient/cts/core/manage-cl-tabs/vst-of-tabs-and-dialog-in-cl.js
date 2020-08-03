@@ -61,8 +61,6 @@ export default {
       }
 
       state.arTabs.push(objNewTab)
-
-      console.log('state-> ', state.arTabs)
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
@@ -100,9 +98,6 @@ export default {
         closable: true, // TODO: Should be called blClosable
         ctWidthInCl: objSearchRowFromORM.ctWidthInCl,
       }
-
-      console.log(tab)
-
       this.commit('mtfShowNewFirstTabInCl', tab)
     },
   },

@@ -10,7 +10,6 @@ export default {
     mtfShowCardInCsVl(state, pCard) {
       // CsVl is current state view layer
       state.arCardsInCsOfVl.push(pCard)
-      console.log('state-> ', state)
     },
   },
 }

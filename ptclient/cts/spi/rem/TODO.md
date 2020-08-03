@@ -1,6 +1,9 @@
 # Specified
 
-1. In quick submit there was error in saving data. Video has demo. - DONE
+1. When changing data
+
+   1. all the date in history shows up as the same date.
+   2. "Saved this session" is not correctly applied.
 
 2. Make the X work in a drawer.
 
@@ -20,7 +23,9 @@
 
    - Need to discuss
 
-3) KB control
+3. Console.error name/cl/table.vue
+
+4) KB control
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
    B. On tab the control should not go to browser back forward and address bar
 

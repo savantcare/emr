@@ -33,17 +33,15 @@ export default {
     },
     cfPosInArCardsInCsOfVl() {
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
-      console.log(arCardsInCsOfVl)
       const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
       const idx = arCardsInCsOfVl.indexOf(obj)
-      console.log(idx)
       return idx
     },
   },
   async mounted() {
-    if (ormName.length > 0) {
+    if (ormName.query().count() > 0) {
     } else {
-      await this.getDataFromDB()
+      await this.getDataFromDB() // getDataFromDB is a mixin. And mixin fns are copied into the ct where the minin is used.
     }
   },
   methods: {

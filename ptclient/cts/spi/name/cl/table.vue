@@ -8,6 +8,9 @@
           @input="mfSetFieldUsingCache($event, 1, 'firstName')"
         >
         </el-input>
+        <!-- This gives a error in the console 
+          Invalid prop: type check failed for prop "value". Expected String, Number, got Boolean with value false.
+        -->
         <el-input
           placeholder="Middle name"
           :value="mfGetField(1, 'middleName')"
@@ -38,13 +41,17 @@ export default {
     }
   },
   async mounted() {
-    if (ormName.length > 0) {
+    if (ormName.query().count() > 0) {
     } else {
       await this.getDataFromDB()
     }
     this.mounted = true
   },
   methods: {
+    mfOnSubmit() {},
+    mfResetForm() {
+      ormName.deleteNewRowsInEditState()
+    },
     mfGetField(pOrmRowId, pFieldName) {
       /* 
       Even before Ct is mounted this fn starts getting called for each field. 
