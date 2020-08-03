@@ -7,7 +7,7 @@ interface Provider {
   uuid: string 
 }
 
-class rowStatus:interface extends Model {
+class rowManage:interface extends Model {
   // For Class syntax https://javascript.info/class
 
   static entity = 'rowstatus'

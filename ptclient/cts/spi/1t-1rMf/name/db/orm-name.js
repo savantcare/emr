@@ -1,12 +1,12 @@
 // For docs read ptclient/docs/models.md
-import rowStatus from '@/cts/core/crud/rowstatus.js'
+import rowManage from '~/cts/core/crud/rowmanage.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class name extends rowStatus {
+export default class name extends rowManage {
   static entity = 'name'
 
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.

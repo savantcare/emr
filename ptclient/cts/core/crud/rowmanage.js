@@ -2,7 +2,7 @@
 
 import { Model } from '@vuex-orm/core'
 
-class rowStatus extends Model {
+class rowManage extends Model {
   // For Class syntax https://javascript.info/class
   static entity = 'rowstatus'
   static arOrmRowsCached = []
@@ -481,4 +481,4 @@ class rowStatus extends Model {
   }
 }
 
-export default rowStatus
+export default rowManage

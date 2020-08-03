@@ -1,12 +1,12 @@
 // For docs read ptclient/docs/models.md
-import rowStatus from '@/cts/core/crud/rowstatus.js'
+import rowManage from '~/cts/core/crud/rowmanage.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class reminders extends rowStatus {
+export default class reminders extends rowManage {
   static entity = 'rem'
 
   static apiUrl = 'http://localhost:8000/reminders'
