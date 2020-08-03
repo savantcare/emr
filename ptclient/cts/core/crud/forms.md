@@ -22,7 +22,7 @@
 
 vuex orm field: rowStateInThisSession of type int
 
-e.g. cts/spi/Nr1f/rem/db/vuex-orm/rems:71
+e.g. cts/spi/1t-Mr1f/rem/db/vuex-orm/rems:71
 
 # Q3) What are the different possible values for rowStateInThisSession?
 

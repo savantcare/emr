@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'spi/Nr1f/rem/vl/timeline.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/1t-Mr1f/rem/vl/timeline.vue', // CsVl -> Current state view layer
         displayLocation: 'ptsvl',
       },
     })
@@ -23,7 +23,7 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: 'spi/Nr1f/rem/cl/add.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/add.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'change reminder',
         ctAbbr: 'crem',
-        ctToShow: 'spi/Nr1f/rem/cl/c.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/c.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         scope: 'row',
@@ -42,7 +42,7 @@ export default {
       data: {
         value: 'multi change reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'spi/Nr1f/rem/cl/mc.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/mc.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
@@ -51,7 +51,7 @@ export default {
       data: {
         value: 'discontinued reminders',
         ctAbbr: 'drem',
-        ctToShow: 'spi/Nr1f/rem/vl/discontinued.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/vl/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

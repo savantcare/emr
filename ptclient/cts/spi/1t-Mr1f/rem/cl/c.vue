@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
+import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 export default {
   /* 
     Q) Why is firstParam needed?

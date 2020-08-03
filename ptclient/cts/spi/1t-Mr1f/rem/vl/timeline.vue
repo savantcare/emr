@@ -70,7 +70,7 @@
 
 <script>
 import clInvokeMixin from './cl-invoke-mixin.js'
-import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
+import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 
 export default {
   mixins: [clInvokeMixin],
@@ -103,7 +103,7 @@ export default {
         for (let i = 0; i < arFromORM.length; i++) {
           obj = {}
           obj.remDesc = arFromORM[i].remDesc
-          // For date format ref: /cts/spi/Nr1f/rem/vl/timeline.vue:53
+          // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline.vue:53
           date = new Date(arFromORM[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.rowStateInThisSession = arFromORM[i].rowStateInThisSession

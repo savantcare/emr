@@ -76,8 +76,8 @@ How to solve this?
   <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
-import ctChangeRem from '@/cts/spi/Nr1f/rem/cl/c.vue'
+import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import ctChangeRem from '@/cts/spi/1t-Mr1f/rem/cl/c.vue'
 export default {
   components: { ctChangeRem },
   data() {
