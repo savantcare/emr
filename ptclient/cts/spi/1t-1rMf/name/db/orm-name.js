@@ -1,5 +1,5 @@
 // For docs read ptclient/docs/models.md
-import rowManage from '~/cts/core/crud/rowmanage.js'
+import rowManage from '~/cts/core/crud/row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
 
