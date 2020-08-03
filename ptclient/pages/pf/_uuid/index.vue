@@ -25,6 +25,7 @@
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
     <ctFeedDrawer></ctFeedDrawer>
     <ctMapDrawer></ctMapDrawer>
+    <ctDiscontinuedDrawer></ctDiscontinuedDrawer>
   </div>
 </template>
 
@@ -36,6 +37,7 @@ import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
+import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
 
 // The name above expands to Component tabs in dialog in change layer
 
@@ -53,6 +55,7 @@ export default {
     ctTabsInDialogInCL,
     ctFeedDrawer,
     ctMapDrawer,
+    ctDiscontinuedDrawer,
   },
   data() {
     return {}

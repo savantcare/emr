@@ -48,9 +48,22 @@ export default {
           console.log('multi discontinue cancelled')
         })
     },
-    mxOpenXCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'discontinued reminders',
+    async mxOpenXCtInCl() {
+      const discontinuedRows = await ormRem.getDiscontinuedRows()
+      const arDrawerData = []
+      discontinuedRows.forEach((item) => {
+        const arRow = []
+        arRow.content = item.remDesc
+        const date = new Date(item.ROW_END * 1000)
+        arRow.discontinuedAt = date.toLocaleString()
+
+        arDrawerData.push(arRow)
+      })
+      console.log('discontinuedRows====>', discontinuedRows)
+      this.$store.commit('mtfSetDiscontinuedDrawerValue', {
+        visibility: true,
+        drawerTitle: 'Discontinued reminders',
+        drawerData: arDrawerData,
       })
     },
     mxOpenCCtInCl(pOrmDataRowId) {
