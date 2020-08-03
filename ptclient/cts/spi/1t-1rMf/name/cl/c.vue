@@ -4,8 +4,8 @@
       <el-form-item>
         <el-input
           placeholder="First name"
-          :value="mfGetFieldValue(1, 'firstName')"
-          @input="mfSetFieldValueUsingCache($event, 1, 'firstName')"
+          :value="mfGetFieldValue('firstName')"
+          @input="mfSetFieldValueUsingCache($event, 'firstName')"
         >
         </el-input>
         <!-- This gives a error in the console 
@@ -13,13 +13,13 @@
         -->
         <el-input
           placeholder="Middle name"
-          :value="mfGetFieldValue(1, 'middleName')"
-          @input="mfSetFieldValueUsingCache($event, 1, 'middleName')"
+          :value="mfGetFieldValue('middleName')"
+          @input="mfSetFieldValueUsingCache($event, 'middleName')"
         ></el-input>
         <el-input
           placeholder="Last name"
-          :value="mfGetFieldValue(1, 'lastName')"
-          @input="mfSetFieldValueUsingCache($event, 1, 'lastName')"
+          :value="mfGetFieldValue('lastName')"
+          @input="mfSetFieldValueUsingCache($event, 'lastName')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -38,12 +38,23 @@ export default {
   data() {
     return {
       mounted: false,
+      vnIdOfCopiedRowFromOrm: 0,
     }
   },
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
+    }
+    const pOrmRowId = 1
+    const arFromOrm = ormName.find(pOrmRowId)
+    const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
+    if (vnExistingRowID === false) {
+      // Adding a new blank record. Since this is temporal DB
+      this.vnIdOfCopiedRowFromOrm = await this.mfCopyRowToOrm(arFromOrm)
+    } else {
+      console.log('existing row in change state so no need to copy')
+      this.vnIdOfCopiedRowFromOrm = vnExistingRowID
     }
     this.mounted = true
   },
@@ -78,7 +89,7 @@ export default {
     /* Template cannot directly call a ORM function. So first calling a method function
      and that calls the ORM function
      */
-    mfGetFieldValue(pOrmRowId, pFieldName) {
+    mfGetFieldValue(pFieldName) {
       /*
       Even before Ct is mounted this fn starts getting called for each field.
       Putting a gate here keeps the system optimized
@@ -87,34 +98,22 @@ export default {
       */
       if (!this.mounted) return false
       // let us find out if there is an existing row that is already in change state
-      console.log('inside mfGetFieldValue')
-      const arFromOrm = ormName.find(pOrmRowId)
-      const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
-      if (vnExistingRowID === false) {
-        // Adding a new blank record. Since this is temporal DB
-
-        this.mfCopyRowToOrm(arFromOrm)
-      } else {
-        console.log('existing row in change state so no need to copy')
-        this.vnIdOfCopiedRowFromOrm = vnExistingRowID
-      }
-
-      const value = ormName.getFieldValue(pOrmRowId, pFieldName)
+      const value = ormName.getFieldValue(this.vnIdOfCopiedRowFromOrm, pFieldName)
       return value
     },
-    mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
+    mfSetFieldValueUsingCache(pEvent, pFieldName) {
       /*
       For reason of this gate see comment for mfGetField in this file
       */
       if (!this.mounted) return false
       const rowStatus = 24 // 2 is new on client and 4 is changed on client
-      ormName.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
+      ormName.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
     async mfCopyRowToOrm(pArFromOrm) {
       console.log(ormName)
-      const arFromORM = await ormName.insert({
+      const arFromOrm = await ormName.insert({
         data: {
           id: 2,
           firstName: pArFromOrm.firstName,
@@ -126,8 +125,8 @@ export default {
           // ROW_END: already has a default value inside vuex-orm/rem.js
         },
       })
-      console.log(ormName)
-      this.vnIdOfCopiedRowFromOrm = arFromORM.rem[0].id
+      console.log(arFromOrm)
+      return arFromOrm.ptName[0].id
     },
   },
 }
