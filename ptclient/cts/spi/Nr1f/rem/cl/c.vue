@@ -44,21 +44,23 @@
 <script>
 import ormRem from '@/cts/spi/Nr1f/rem/db/vuex-orm/rem.js'
 export default {
-  /* Why is this called firstParam
+  /* 
+    Q) Why is firstParam needed?
+        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder the user wants to change.
+        So firstParam is the remID being changed. The remID is the primary key coming from vuexOrm
+    
+    Q) Why is this called firstParam
         This Ct is called in a for loop. In the same for loop other Ct are also called.
         So the param name has to be generic and cannot be unique to each Ct
-    */
-
-  /*
+    
     Q) Why we are using 'formType' props?
-    A) 
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
         The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider malformed. 
         To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire logic if formType value is set to 'mc'.
    */
 
-  props: ['firstParam', 'formType'], // this is the unique row id created by vuex-orm
+  props: ['firstParam', 'formType'],
   data() {
     return {
       uuid: '',
@@ -105,6 +107,9 @@ export default {
   },
   mounted() {},
   methods: {
+    // Why is the row copied and then edited/changed?
+    // We want to show the history of the data. If I edit/change the original data then I will
+    // not know what the original data to show below the edit/change form.
     async addEmptyRemToUI(pDesc) {
       const arFromORM = await ormRem.insert({
         data: {
@@ -187,7 +192,7 @@ export default {
         }
       }
 
-      // From this point on the state is same for same and add
+      // From this point on the state is same for change and add
       return ormRem.getField(this.newRowBeingEditedIdfromOrm, 'remDesc')
     },
     setRemDescInVstOnDelay(pEvent) {

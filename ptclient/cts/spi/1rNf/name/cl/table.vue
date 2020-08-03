@@ -48,16 +48,37 @@ export default {
     this.mounted = true
   },
   methods: {
-    mfOnSubmit() {},
+    async mfOnSubmit() {
+      // Since only one valid row is possible there may be other discontinued rows
+      // Hence find(1) needs to get improved.
+      const rowToUpsert = ormName.find(1)
+      console.log(rowToUpsert)
+      const response = await fetch(ormName.apiUrl + '/' + rowToUpsert.uuid, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          // "Authorization": "Bearer " + TOKEN
+        },
+        body: JSON.stringify({
+          firstName: rowToUpsert.firstName,
+          middleName: rowToUpsert.middleName,
+          lastName: rowToUpsert.lastName,
+        }),
+      })
+      console.log(response)
+    },
     mfResetForm() {
       // The original data is no longer on the client side hence I have to fetch the data from the server
       this.getDataFromDBMx()
       // the rowStatus has cached the data so I need to remove the cache from row status
       ormName.arOrmRowsCached = []
+      // TODO: The form needs to be reinitialized with the data in the state.
     },
+    // Template cannot directly call a ORM function. So first calling a method function
+    // and that calls the ORM function
     mfGetField(pOrmRowId, pFieldName) {
-      /* 
-      Even before Ct is mounted this fn starts getting called for each field. 
+      /*
+      Even before Ct is mounted this fn starts getting called for each field.
       Putting a gate here keeps the system optimized
       Without the gate with a debugger statment placed inside getField this function was called 3 times
       even before the data came from the server and got loaded into the ORM.

@@ -1,11 +1,22 @@
 # Specified
 
-1. When changing data
+## Name
+
+1. Reset form
+   1. When I click on reset form the back layer is still orange.
+   2. Form fields need to be re-init
+2. Submit form
+
+## Rem
+
+1. Better variable name c.vue line 201 requestedToRowId
+
+2. When changing data
 
    1. all the date in history shows up as the same date.
-   2. "Saved this session" is not correctly applied.
+   2. "Saved this session" label is not correctly applied.
 
-2. Make the X work in a drawer.
+3. Make the X work in a drawer.
 
    # Method 1: Get discontinued rows from orm using query like: select max(id) where ROW_END < current_time group by 'uuid'
 
@@ -23,9 +34,9 @@
 
    - Need to discuss
 
-3. Console.error name/cl/table.vue
+4. Console.error name/cl/table.vue
 
-4) KB control
+5) KB control
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue
    B. On tab the control should not go to browser back forward and address bar
 
