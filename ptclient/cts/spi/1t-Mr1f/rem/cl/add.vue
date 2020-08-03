@@ -13,8 +13,8 @@
               :class="mfGetCssClassName(ormRow.id)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the reminder .."
-              :value="mfGetField(ormRow.id, 'remDesc')"
-              @input="mfSetFieldUsingCache($event, ormRow.id, 'remDesc')"
+              :value="mfGetFieldValue(ormRow.id, 'remDesc')"
+              @input="mfSetFieldValueUsingCache($event, ormRow.id, 'remDesc')"
             ></el-input>
             <div v-if="ormRow.isValidationError" class="el-form-item__error">
               Please enter minimum 3 characters.
@@ -124,12 +124,13 @@ export default {
         this.$refs.remDesc[lastElement - 1].focus()
       }
     },
-    mfGetField(pOrmRowId, pFieldName) {
-      return ormRem.getField(pOrmRowId, pFieldName)
+    // Cannot call orm function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    mfGetFieldValue(pOrmRowId, pFieldName) {
+      return ormRem.getFieldValue(pOrmRowId, pFieldName)
     },
-    mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
+    mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
       const rowStatus = 24
-      ormRem.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
+      ormRem.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {

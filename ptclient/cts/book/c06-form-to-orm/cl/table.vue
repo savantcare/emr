@@ -3,8 +3,8 @@
     From sixth chapter - Hello world
     <el-input
       placeholder="Please input"
-      :value="mfGetField(1, 'msg')"
-      @input="mfSetFieldUsingCache($event, 1, 'msg')"
+      :value="mfGetFieldValue(1, 'msg')"
+      @input="mfSetFieldValueUsingCache($event, 1, 'msg')"
     ></el-input>
   </div>
 </template>
@@ -13,13 +13,13 @@ import ormHw from '../db/vuex-orm/helloworld.js' // Path without @ can be resolv
 
 export default {
   methods: {
-    mfGetField(pOrmRowId, pFieldName) {
-      const value = ormHw.getField(pOrmRowId, pFieldName)
+    mfGetFieldValue(pOrmRowId, pFieldName) {
+      const value = ormHw.getFieldValue(pOrmRowId, pFieldName)
       return value
     },
-    mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
+    mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
       const rowStatus = 24 // 2 is new on client and 4 is changed on client
-      ormHw.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
+      ormHw.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
   },

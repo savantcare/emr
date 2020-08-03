@@ -25,6 +25,23 @@ class rowStatus extends Model {
     }
   }
 
+  static getDiscontinuedRows() {
+    /* 
+    Method 1: Get discontinued rows from orm using query like: select max(id) where ROW_END < current_time group by 'uuid'
+    Problem:- But I am unable to find vuex-orm groupBy query
+ 
+    Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not discontinued.
+    Problem:- But it is not standard method.
+    Decided to use this.  
+
+    Method 3: When i click on 'X' button, send a api request to the server and get all the discontinued rows.
+    Problem: It is not satisfying our P20 architecture.
+ 
+    Method 4: Maintain a 'isDiscontinued' enum(0 ,1) flag in database. But need to approval from Vikas sir.
+    Need to discuss
+    */
+  }
+
   static getApiErrorStateRows() {
     // C3/3
     // New -> Changed -> Requested save -> Sent to server -> Failure
@@ -87,7 +104,7 @@ class rowStatus extends Model {
     }
   }
 
-  static getField(pOrmRowId, pFieldName) {
+  static getFieldValue(pOrmRowId, pFieldName) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
     if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
       // finding in model
@@ -211,7 +228,7 @@ class rowStatus extends Model {
     }
   }
 
-  static setField(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static setFieldValue(pEvent, pOrmRowId, pFieldName, pRowStatus) {
     this.putFieldValueInCache(pEvent, pOrmRowId, pFieldName)
     this.createTimeoutToSave(pEvent, pOrmRowId, pFieldName, pRowStatus)
   }

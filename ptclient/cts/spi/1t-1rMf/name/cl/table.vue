@@ -4,8 +4,8 @@
       <el-form-item>
         <el-input
           placeholder="First name"
-          :value="mfGetField(1, 'firstName')"
-          @input="mfSetFieldUsingCache($event, 1, 'firstName')"
+          :value="mfGetFieldValue(1, 'firstName')"
+          @input="mfSetFieldValueUsingCache($event, 1, 'firstName')"
         >
         </el-input>
         <!-- This gives a error in the console 
@@ -13,13 +13,13 @@
         -->
         <el-input
           placeholder="Middle name"
-          :value="mfGetField(1, 'middleName')"
-          @input="mfSetFieldUsingCache($event, 1, 'middleName')"
+          :value="mfGetFieldValue(1, 'middleName')"
+          @input="mfSetFieldValueUsingCache($event, 1, 'middleName')"
         ></el-input>
         <el-input
           placeholder="Last name"
-          :value="mfGetField(1, 'lastName')"
-          @input="mfSetFieldUsingCache($event, 1, 'lastName')"
+          :value="mfGetFieldValue(1, 'lastName')"
+          @input="mfSetFieldValueUsingCache($event, 1, 'lastName')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -76,7 +76,7 @@ export default {
     },
     // Template cannot directly call a ORM function. So first calling a method function
     // and that calls the ORM function
-    mfGetField(pOrmRowId, pFieldName) {
+    mfGetFieldValue(pOrmRowId, pFieldName) {
       /*
       Even before Ct is mounted this fn starts getting called for each field.
       Putting a gate here keeps the system optimized
@@ -87,16 +87,16 @@ export default {
 
       // let is find out if there is an existing row that is already in change state
 
-      const value = ormName.getField(pOrmRowId, pFieldName)
+      const value = ormName.getFieldValue(pOrmRowId, pFieldName)
       return value
     },
-    mfSetFieldUsingCache(pEvent, pOrmRowId, pFieldName) {
+    mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
       /*
       For reason of this gate see comment for mfGetField in this file
       */
       if (!this.mounted) return false
       const rowStatus = 24 // 2 is new on client and 4 is changed on client
-      ormName.setField(pEvent, pOrmRowId, pFieldName, rowStatus)
+      ormName.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
   },

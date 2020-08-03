@@ -96,7 +96,7 @@ class rowStatus:interface extends Model {
     }
   }
 
-  static getField(pOrmRowId: number, pFieldName: string) {
+  static getFieldValue(pOrmRowId: number, pFieldName: string) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
     if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
       console.log('finding in model')
@@ -111,7 +111,7 @@ class rowStatus:interface extends Model {
     }
   }
 
-  static setField(pEvent: string, pOrmRowId: number, pFieldName: string) {
+  static setFieldValue(pEvent: string, pOrmRowId: number, pFieldName: string) {
     this.putFieldValueInCache(pEvent, pOrmRowId, pFieldName)
     this.createTimeoutToSave(pEvent, pOrmRowId, pFieldName)
   }
