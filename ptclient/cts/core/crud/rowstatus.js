@@ -19,7 +19,7 @@ class rowStatus extends Model {
   static fields() {
     return {
       // the following fields only exist on client
-      rowStateInThisSession: this.number(1), // Details read: ./forms.md
+      vnRowStateInSession: this.number(1), // Details read: ./forms.md
       validationClass: this.string(''),
       isValidationError: this.boolean(false),
     }
@@ -28,27 +28,27 @@ class rowStatus extends Model {
   static getApiErrorStateRows() {
     // C3/3
     // New -> Changed -> Requested save -> Sent to server -> Failure
-    const arFromORM = this.query().where('rowStateInThisSession', 24578).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 24578).get()
     return arFromORM
   }
 
   static getApiSendingStateRows() {
     // New -> Changed -> Requested save -> Sending to server
-    const arFromORM = this.query().where('rowStateInThisSession', 2457).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
     return arFromORM
   }
 
   static getApiSuccessStateRows() {
     // New -> Changed -> Requested save -> Sent to server -> Success
-    const arFromORM = this.query().where('rowStateInThisSession', 24571).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 24571).get()
     return arFromORM
   }
 
   static getChangeRowsInEditState() {
     const arFromORM = this.query()
-      .where('rowStateInThisSession', 3) // Copy
-      .orWhere('rowStateInThisSession', 34) // Copy -> Changed
-      .orWhere('rowStateInThisSession', 3456) // Copy -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', 3) // Copy
+      .orWhere('vnRowStateInSession', 34) // Copy -> Changed
+      .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
     return arFromORM
   }
@@ -57,26 +57,26 @@ class rowStatus extends Model {
     /*
       Q) Why we remove orWhere clause?
         Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
-        where (uuid=4545d6 AND rowStateInThisSession=3) 
-        OR rowStateInThisSession=34 
-        OR rowStateInThisSession=3456
+        where (uuid=4545d6 AND vnRowStateInSession=3) 
+        OR vnRowStateInSession=34 
+        OR vnRowStateInSession=3456
 
         But we want the following query:
         where uuid=4545d6 AND 
-        (rowStateInThisSession=3 OR rowStateInThisSession=34 OR rowStateInThisSession=3456)
+        (vnRowStateInSession=3 OR vnRowStateInSession=34 OR vnRowStateInSession=3456)
     */
     const arFromORM = this.query()
       .where('uuid', pUuid)
       .where((record) => {
         return (
-          record.rowStateInThisSession === 3 ||
-          record.rowStateInThisSession === 34 ||
-          record.rowStateInThisSession === 3456
+          record.vnRowStateInSession === 3 ||
+          record.vnRowStateInSession === 34 ||
+          record.vnRowStateInSession === 3456
         )
       })
-      // .where('rowStateInThisSession', 3) // Copy
-      // .orWhere('rowStateInThisSession', 34) // Copy -> Changed
-      // .orWhere('rowStateInThisSession', 3456) // Copy -> Changed -> Requested save -> form error
+      // .where('vnRowStateInSession', 3) // Copy
+      // .orWhere('vnRowStateInSession', 34) // Copy -> Changed
+      // .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
 
     if (arFromORM.length) {
@@ -105,9 +105,9 @@ class rowStatus extends Model {
 
   static getNewRowsInEditState() {
     const arFromORM = this.query()
-      .where('rowStateInThisSession', 2) // New
-      .orWhere('rowStateInThisSession', 24) // New -> Changed
-      .orWhere('rowStateInThisSession', 2456) // New -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', 2) // New
+      .orWhere('vnRowStateInSession', 24) // New -> Changed
+      .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
       .get()
     return arFromORM
   }
@@ -115,7 +115,7 @@ class rowStatus extends Model {
   static getNewRowsInReadyToSubmitState() {
     // Following query makes sure I get all the newly added row having field value
     const arFromORM = this.query()
-      .where('rowStateInThisSession', 24) // New -> Changed
+      .where('vnRowStateInSession', 24) // New -> Changed
       .get()
     return arFromORM
   }
@@ -303,7 +303,7 @@ class rowStatus extends Model {
   static setFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus) {
     const row = {
       [pFieldName]: pEvent,
-      rowStateInThisSession: pRowStatus,
+      vnRowStateInSession: pRowStatus,
       validationClass: '',
       isValidationError: false,
     }
@@ -319,7 +319,7 @@ class rowStatus extends Model {
 
   static async sendToServer() {
     // API will return 1 (Success) or 0 (Failure)
-    const arFromORM = this.query().where('rowStateInThisSession', 2457).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
 
     /*
       Q) Why we use promise in following code?
@@ -336,9 +336,9 @@ class rowStatus extends Model {
             1. User adds data, hits save button twice or double click
             2. user adds data, hits save button and again tries to add another data and click save button before previous api call finished. 
           Here is the problem and how we are resolving this:
-            Save process starts with searching from orm for the records having 'rowStateInThisSession' = 2457.
-            Now, 'rowStateInThisSession' of orm record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'rowStateInThisSession' update. 
-            That means the second time searching for 'rowStateInThisSession' = 2457 will point to the same record multiple times which should not be the actual case.
+            Save process starts with searching from orm for the records having 'vnRowStateInSession' = 2457.
+            Now, 'vnRowStateInSession' of orm record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
+            That means the second time searching for 'vnRowStateInSession' = 2457 will point to the same record multiple times which should not be the actual case.
             To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains orm row id that are going to be saved.
             In if statement we are searching if orm row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing orm row id in 'arOrmRowIdSendToServer'.
       */
@@ -352,7 +352,7 @@ class rowStatus extends Model {
             this.update({
               where: (record) => record.id === row.id,
               data: {
-                rowStateInThisSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
+                vnRowStateInSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
               },
             })
           } else {
@@ -360,7 +360,7 @@ class rowStatus extends Model {
             this.update({
               where: (record) => record.id === row.id,
               data: {
-                rowStateInThisSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
               },
             })
 

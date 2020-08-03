@@ -27,13 +27,11 @@
         :type="row.type"
       >
         {{ row.remDesc }}
-        <span
-          v-if="row.rowStateInThisSession == 345"
-          class="api-response-message el-button--warning"
+        <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
           >sending to server</span
         >
         <span
-          v-if="row.rowStateInThisSession == 34571"
+          v-if="row.vnRowStateInSession == 34571"
           class="api-response-message el-button--success"
           >saved this session</span
         >
@@ -65,7 +63,7 @@ export default {
     return {
       uuid: '',
       ormRowIDForPreviousInvocation: 0,
-      newRowBeingEditedIdfromOrm: 0,
+      vnIdOfCopiedRowFromOrm: 0,
     }
   },
   computed: {
@@ -88,16 +86,16 @@ export default {
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           if (
-            arFromORM[i].rowStateInThisSession === 3 ||
-            arFromORM[i].rowStateInThisSession === 34 ||
-            arFromORM[i].rowStateInThisSession === 3456
+            arFromORM[i].vnRowStateInSession === 3 ||
+            arFromORM[i].vnRowStateInSession === 34 ||
+            arFromORM[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
           rowInTimeLine.ROW_START = arFromORM[i].ROW_START
-          rowInTimeLine.rowStateInThisSession = arFromORM[i].rowStateInThisSession
+          rowInTimeLine.vnRowStateInSession = arFromORM[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }
@@ -115,12 +113,12 @@ export default {
         data: {
           remDesc: pDesc,
           uuid: this.uuid,
-          rowStateInThisSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
+          vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
           // ROW_END: already has a default value inside vuex-orm/rem.js
         },
       })
-      this.newRowBeingEditedIdfromOrm = arFromORM.rem[0].id
+      this.vnIdOfCopiedRowFromOrm = arFromORM.rem[0].id
       this.mfManageFocus()
     },
     mfManageFocus() {
@@ -188,26 +186,26 @@ export default {
           this.addEmptyRemToUI(arFromORM.remDesc)
           this.mfManageFocus()
         } else {
-          this.newRowBeingEditedIdfromOrm = existingRowID
+          this.vnIdOfCopiedRowFromOrm = existingRowID
         }
       }
 
       // From this point on the state is same for change and add
-      return ormRem.getField(this.newRowBeingEditedIdfromOrm, 'remDesc')
+      return ormRem.getField(this.vnIdOfCopiedRowFromOrm, 'remDesc')
     },
     setRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
-      ormRem.setField(pEvent, this.newRowBeingEditedIdfromOrm, 'remDesc', rowStatus)
+      ormRem.setField(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
 
     async sendDataToServer() {
       try {
-        const requestedToRowId = this.newRowBeingEditedIdfromOrm
+        const requestedToRowId = this.vnIdOfCopiedRowFromOrm
         await ormRem.update({
           where: requestedToRowId,
           data: {
-            rowStateInThisSession: '345',
+            vnRowStateInSession: '345',
           },
         })
 
@@ -227,15 +225,15 @@ export default {
           },
           body: JSON.stringify({
             remDesc: this.getRemDescUsingCache(),
-            requestedToRowId,
+            requestedToRowId, // TODO: Is this needed?
           }),
         })
         if (!response.ok) {
-          /* Goal: Update the value of 'rowStateInThisSession' to success or failure depending on the api response */
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           ormRem.update({
             where: requestedToRowId,
             data: {
-              rowStateInThisSession: 3458,
+              vnRowStateInSession: 3458,
             },
           })
           console.log('Failed to update')
@@ -269,21 +267,21 @@ export default {
                 We are following below mentioned logic in where clause of ormRem update:
                 -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
                   "exp A" -> search record from ormRem whose uuid = this.uuid
-                  "exp B1" -> "rowStateInThisSession === 1",
+                  "exp B1" -> "vnRowStateInSession === 1",
                       ormRem record that came from database (Case: User changes an existing record)
-                  "exp B2" -> "rowStateInThisSession === 34571", 
+                  "exp B2" -> "vnRowStateInSession === 34571", 
                       ormRem record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record) 
-                  "exp B3" -> "rowStateInThisSession === 24571", 
+                  "exp B3" -> "vnRowStateInSession === 24571", 
                       ormRem record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
          */
           await ormRem.update({
             where: (record) => {
               return (
                 record.uuid === this.uuid &&
-                (record.rowStateInThisSession === 1 /* Came from DB */ ||
-                record.rowStateInThisSession ===
+                (record.vnRowStateInSession === 1 /* Came from DB */ ||
+                record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
-                  record.rowStateInThisSession ===
+                  record.vnRowStateInSession ===
                     24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
               )
             },
@@ -292,11 +290,11 @@ export default {
             },
           })
 
-          /* Goal: Update the value of 'rowStateInThisSession' to success or failure depending on the api response */
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           ormRem.update({
             where: requestedToRowId,
             data: {
-              rowStateInThisSession: 34571,
+              vnRowStateInSession: 34571,
             },
           })
 

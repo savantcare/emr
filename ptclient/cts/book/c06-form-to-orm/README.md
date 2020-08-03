@@ -33,7 +33,7 @@ https://youtu.be/L4TOFkqIkIQ
 
 # Key concepts
 
-1. Central role of the field "rowStateInThisSession"
+1. Central role of the field "vnRowStateInSession"
 2. getfield and setfield how they use the cache and timeout
 3. Performance tab of vue chrome extension measuring frames per second
 

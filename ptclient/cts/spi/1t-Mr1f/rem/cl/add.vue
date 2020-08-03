@@ -106,7 +106,7 @@ export default {
       const arFromORM = await ormRem.insert({
         data: {
           remDesc: '',
-          rowStateInThisSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
+          vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
@@ -134,7 +134,7 @@ export default {
     },
     mfGetCssClassName(pOrmRowId) {
       const arFromORM = ormRem.find(pOrmRowId)
-      if (arFromORM && arFromORM.rowStateInThisSession === 24) {
+      if (arFromORM && arFromORM.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
@@ -150,7 +150,7 @@ export default {
     async mfOnSubmit() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from ormRem ie; 'rowStateInThisSession' = 24
+        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from ormRem ie; 'vnRowStateInSession' = 24
       */
       const arFromORM = this.cfGetOrmReadyToSubmitStateRows
       if (arFromORM.length) {
@@ -162,7 +162,7 @@ export default {
               where: (record) => record.id === arFromORM[i].id,
               data: {
                 validationClass: 'validaionErrorExist',
-                rowStateInThisSession: '2456', // New -> Changed -> Requested save -> form error
+                vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
                 isValidationError: true,
               },
             })
@@ -171,7 +171,7 @@ export default {
               where: (record) => record.id === arFromORM[i].id,
               data: {
                 validationClass: '',
-                rowStateInThisSession: '2457', // New -> Changed -> Requested save -> Send to server
+                vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server
                 isValidationError: false,
               },
             })

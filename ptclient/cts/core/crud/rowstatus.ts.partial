@@ -24,7 +24,7 @@ class rowStatus:interface extends Model {
   static fields() {
     return {
       // the following fields only exist on client
-      rowStateInThisSession: this.number(1), // Details read: /ptclient/cts/core/crud/forms.md
+      vnRowStateInSession: this.number(1), // Details read: /ptclient/cts/core/crud/forms.md
       validationClass: this.string(''),
       isValidationError: this.boolean(false),
     }
@@ -60,29 +60,29 @@ class rowStatus:interface extends Model {
 
   static getNewRowsInEditState() {
     const arFromORM = this.query()
-      .where('rowStateInThisSession', 2) // New
-      .orWhere('rowStateInThisSession', 24) // New -> Changed
-      .orWhere('rowStateInThisSession', 2456) // New -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', 2) // New
+      .orWhere('vnRowStateInSession', 24) // New -> Changed
+      .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
       .get()
     return arFromORM
   }
 
   static getApiSuccessStateRows() {
     // New -> Changed -> Requested save -> Sent to server -> Success
-    const arFromORM = this.query().where('rowStateInThisSession', 24571).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 24571).get()
     return arFromORM
   }
 
   static getApiErrorStateRows() {
     // C3/3
     // New -> Changed -> Requested save -> Sent to server -> Failure
-    const arFromORM = this.query().where('rowStateInThisSession', 24578).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 24578).get()
     return arFromORM
   }
 
   static getApiSendingStateRows() {
     // New -> Changed -> Requested save -> Sending to server
-    const arFromORM = this.query().where('rowStateInThisSession', 2457).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
     return arFromORM
   }
 
@@ -203,7 +203,7 @@ class rowStatus:interface extends Model {
   static setFieldInVuex(pEvent: string, pOrmRowId: number, pFieldName: string) {
     const row = {
       [pFieldName]: pEvent,
-      rowStateInThisSession: 24,
+      vnRowStateInSession: 24,
       validationClass: '',
       isValidationError: false,
     }
@@ -218,7 +218,7 @@ class rowStatus:interface extends Model {
 
   static async sendToServer() {
     // API will return 1 (Success) or 0 (Failure)
-    const arFromORM = this.query().where('rowStateInThisSession', 2457).get()
+    const arFromORM = this.query().where('vnRowStateInSession', 2457).get()
 
     console.log(arFromORM)
 
@@ -229,7 +229,7 @@ class rowStatus:interface extends Model {
         this.update({
           where: (record) => record.id === arFromORM[i].id,
           data: {
-            rowStateInThisSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
+            vnRowStateInSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
           },
         })
       } else {
@@ -237,7 +237,7 @@ class rowStatus:interface extends Model {
         this.update({
           where: (record) => record.id === arFromORM[i].id,
           data: {
-            rowStateInThisSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
+            vnRowStateInSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
           },
         })
       }

@@ -56,13 +56,11 @@ Setting the <el-table-column as tabindex=-1 does not help -->
               I open "add form" and enter "jai kali ma" and then i close the add form by pressign escape. In the table that row should not have change and discontinue
 
               How: 
-              v-if to check is the 'rowStateInThisSession' not exists in array 'daRowStatesNotHavingCD'
+              v-if to check is the 'vnRowStateInSession' not exists in array 'daRowStatesNotHavingCD'
 
               Ref: https://stackoverflow.com/questions/43881723/can-i-use-vue-js-v-if-to-check-is-the-value-exists-in-array
             -->
-            <el-button-group
-              v-if="!daRowStatesNotHavingCD.includes(props.row.rowStateInThisSession)"
-            >
+            <el-button-group v-if="!daRowStatesNotHavingCD.includes(props.row.vnRowStateInSession)">
               <el-button
                 type="primary"
                 size="mini"
@@ -106,7 +104,7 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'rowStateInThisSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
+      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
       daSelectedRemForDiscontinue: [],
     }
   },
@@ -146,7 +144,7 @@ export default {
             date.getFullYear()
           obj.ROW_START = date.toLocaleString()
           obj.ROW_END = new Date(arFromORM[i].ROW_END * 1000).toLocaleString()
-          obj.rowStateInThisSession = arFromORM[i].rowStateInThisSession
+          obj.vnRowStateInSession = arFromORM[i].vnRowStateInSession
           obj.uuid = arFromORM[i].uuid
           obj.$id = arFromORM[i].$id
           obj.id = arFromORM[i].id
@@ -171,7 +169,7 @@ export default {
     },
     // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow, pIndex) {
-      const strOfNumber = pRow.row.rowStateInThisSession.toString()
+      const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
         return 'unsaved-data'

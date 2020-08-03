@@ -84,6 +84,9 @@ export default {
       even before the data came from the server and got loaded into the ORM.
       */
       if (!this.mounted) return false
+
+      // let is find out if there is an existing row that is already in change state
+
       const value = ormName.getField(pOrmRowId, pFieldName)
       return value
     },

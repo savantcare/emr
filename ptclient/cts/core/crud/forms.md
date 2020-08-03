@@ -20,11 +20,11 @@
 
 # Q2) How is the state of data entered in the form managed on client side?
 
-vuex orm field: rowStateInThisSession of type int
+vuex orm field: vnRowStateInSession of type int
 
 e.g. cts/spi/1t-Mr1f/rem/db/vuex-orm/rems:71
 
-# Q3) What are the different possible values for rowStateInThisSession?
+# Q3) What are the different possible values for vnRowStateInSession?
 
 0 => Not known
 1 => Got from DB. Same as DB.
@@ -69,21 +69,21 @@ New record changed on client but not saved = 23
 
 - See rem/cl/add.vue:114
 
-New record after data is saved on server. rowStateInThisSession = 23461
+New record after data is saved on server. vnRowStateInSession = 23461
 
 - See rem/cl/add.vue:189
 
-# Q5) Why not set rowStateInThisSession = 1 when api succeds?
+# Q5) Why not set vnRowStateInSession = 1 when api succeds?
 
 - For the end user it is a matter of comfort to see the previous data in the table.
 
 # Q6) How is change and discontinued handle?
 
-1. Record is discontinued. Query sent is update. Value will be rowStateInThisSession =
+1. Record is discontinued. Query sent is update. Value will be vnRowStateInSession =
 
 2. When a record is changed
    Since temporal DB old is deleted and new is inserted. But from client side the query sent is update
-   rowStateInThisSession =
+   vnRowStateInSession =
 
 # Q7) Should data be loaded from localstorage or state?
 

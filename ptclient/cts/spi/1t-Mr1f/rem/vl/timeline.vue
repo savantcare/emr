@@ -106,7 +106,7 @@ export default {
           // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline.vue:53
           date = new Date(arFromORM[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.rowStateInThisSession = arFromORM[i].rowStateInThisSession
+          obj.vnRowStateInSession = arFromORM[i].vnRowStateInSession
           obj.uuid = arFromORM[i].uuid
           obj.id = arFromORM[i].id
           arRemsForDisplay.push(obj)
