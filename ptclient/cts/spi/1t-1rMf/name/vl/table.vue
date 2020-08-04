@@ -19,13 +19,13 @@
 
 <script>
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
-import ormName from '../db/orm-name.js'
+import orm from '../db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
 
   computed: {
     cfName() {
-      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {
@@ -39,7 +39,7 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length === 0) return 'info'
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
@@ -50,7 +50,7 @@ export default {
     },
   },
   async mounted() {
-    if (ormName.query().count() > 0) {
+    if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }

@@ -3,7 +3,6 @@
     <el-form>
       <el-form-item>
         <el-input
-          ref="firstName"
           placeholder="First name"
           :value="mfGetFieldValue('firstName')"
           @input="mfSetFieldValueUsingCache($event, 'firstName')"
@@ -37,7 +36,7 @@
 
 <script>
 import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
-import ormName from '../db/orm-name.js'
+import orm from '../db/orm-name.js'
 export default {
   mixins: [fullSyncWithServerDBMixin],
   props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
@@ -49,7 +48,7 @@ export default {
   },
   computed: {
     cfIsButtonEnabled() {
-      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
@@ -66,8 +65,8 @@ export default {
       // in V2 this is part of watch, this is "react on state" programming.
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
         if (newIdOfCopiedRowFromOrm === 0) {
-          const arFromOrm = ormName.find(this.firstParam)
-          const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
+          const arFromOrm = orm.find(this.firstParam)
+          const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
           if (vnExistingRowID === false) {
             // Adding a new blank record. Since this is temporal DB
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
@@ -79,7 +78,7 @@ export default {
     },
   },
   async mounted() {
-    if (ormName.query().count() > 0) {
+    if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }
@@ -89,9 +88,9 @@ export default {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows
       // Hence find(1) needs to get improved.
-      const rowToUpsert = ormName.find(this.vnIdOfCopiedRowBeingChangedInOrm)
+      const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
       console.log(rowToUpsert)
-      const response = await fetch(ormName.apiUrl + '/' + rowToUpsert.uuid, {
+      const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -107,7 +106,7 @@ export default {
       console.log(response)
       if (response.status === 200) {
         // set ROW_END of row being changed
-        const updateStatus = await ormName.update({
+        const updateStatus = await orm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&
@@ -124,7 +123,7 @@ export default {
         })
         console.log(updateStatus)
         /* Goal: Update the value of copied row to success or failure depending on the api response */
-        ormName.update({
+        orm.update({
           where: this.vnIdOfCopiedRowBeingChangedInOrm,
           data: {
             vnRowStateInSession: 34571,
@@ -134,13 +133,13 @@ export default {
     },
     mfResetForm() {
       // Step 1/3: delete the row that was created as a copy
-      ormName.deleteChangeRowsInEditState()
+      orm.deleteChangeRowsInEditState()
 
       // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "change on state" code can take effect to create a copied row
       this.vnIdOfCopiedRowBeingChangedInOrm = 0
 
       // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
-      ormName.arOrmRowsCached = []
+      orm.arOrmRowsCached = []
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function
@@ -155,7 +154,7 @@ export default {
       */
       if (!this.isMounted) return 'loading'
       // let us find out if there is an existing row that is already in change state
-      const value = ormName.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
+      const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
@@ -164,12 +163,12 @@ export default {
       */
       if (!this.isMounted) return 'loading'
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      ormName.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
+      orm.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
     async mfCopyRowToOrm(pArFromOrm) {
-      const arFromOrm = await ormName.insert({
+      const arFromOrm = await orm.insert({
         data: {
           firstName: pArFromOrm.firstName,
           middleName: pArFromOrm.middleName,
