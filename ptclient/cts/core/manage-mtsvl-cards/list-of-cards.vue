@@ -17,7 +17,7 @@
 </template>
 <script>
 import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/table'
-import ctScrVl from '@/cts/spi/scr/vl/table'
+import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table'
 // import ctRexVl from '@/cts/spi/rec/vl/table'
 // import ctBMVl from '@/cts/spi/bm/bm-vl'
 // import ctDXVl from '@/cts/spi/dx/dx-vl'
