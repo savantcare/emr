@@ -69,23 +69,35 @@ export default {
     },
   },
   watch: {
-    vnIdOfCopiedRowFromOrm(val) {
-      console.log('vnIdOfCopiedRowFromOrm changed')
+    vnIdOfCopiedRowFromOrm: {
+      immediate: true,
+      // In V1 this was part of mounted, that is sequential programming
+      // in V2 this is part of watch, this is "react on state" programming.
+      async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
+        console.log(
+          'vnIdOfCopiedRowFromOrm changed',
+          newIdOfCopiedRowFromOrm,
+          oldIdOfCopiedRowFromOrm
+        )
+        if (newIdOfCopiedRowFromOrm === 0) {
+          const arFromOrm = ormName.find(this.firstParam)
+          const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
+          if (vnExistingRowID === false) {
+            // Adding a new blank record. Since this is temporal DB
+            this.vnIdOfCopiedRowFromOrm = await this.mfCopyRowToOrm(arFromOrm)
+          } else {
+            console.log('existing row in change state so no need to copy')
+            this.vnIdOfCopiedRowFromOrm = vnExistingRowID
+          }
+          console.log('creating a row copy')
+        }
+      },
     },
   },
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
-    }
-    const arFromOrm = ormName.find(this.firstParam)
-    const vnExistingRowID = ormName.getChangeRowInEditState(arFromOrm.uuid)
-    if (vnExistingRowID === false) {
-      // Adding a new blank record. Since this is temporal DB
-      this.vnIdOfCopiedRowFromOrm = await this.mfCopyRowToOrm(arFromOrm)
-    } else {
-      console.log('existing row in change state so no need to copy')
-      this.vnIdOfCopiedRowFromOrm = vnExistingRowID
     }
     this.isMounted = true
   },
@@ -110,11 +122,10 @@ export default {
       console.log(response)
     },
     mfResetForm() {
-      // The original data is no longer on the client side hence I have to fetch the data from the server
-      this.mxGetDataFromDb()
-      // the rowStatus has cached the data so I need to remove the cache from row status
-      ormName.arOrmRowsCached = []
-      // TODO: The form needs to be reinitialized with the data in the state.
+      // delete the row that was created as a copy
+      ormName.deleteChangeRowsInEditState()
+      // set vnIdOfCopiedRowFromOrm as 0 so that reactive code can take effect to create a copied row
+      this.vnIdOfCopiedRowFromOrm = 0
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function
