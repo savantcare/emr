@@ -14,6 +14,8 @@
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
+          format="yyyy/MM/dd"
+          value-format="yyyy-MM-dd"
           @input="mfSetFieldValueUsingCache($event, 'dateOfMeasurement')"
         >
         </el-date-picker>
@@ -48,6 +50,35 @@ export default {
       isMounted: false,
       vnIdOfCopiedRowBeingChangedInOrm: 0,
       idOfRowBeingChaged: this.firstParam,
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [
+          {
+            text: 'Today',
+            onClick(picker) {
+              picker.$emit('pick', new Date())
+            },
+          },
+          {
+            text: 'Yesterday',
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit('pick', date)
+            },
+          },
+          {
+            text: 'A week ago',
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', date)
+            },
+          },
+        ],
+      },
     }
   },
   computed: {
