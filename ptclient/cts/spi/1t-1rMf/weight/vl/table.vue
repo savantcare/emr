@@ -1,10 +1,17 @@
 <template>
   <div>
-    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
-      cfWeight['weightInPounds']
+    <h5>Weight</h5>
+    <el-button
+      :type="cfTypeOfButton"
+      plain
+      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+      size="small"
+      >{{ cfWeight['weightInPounds'] }}</el-button
+    >
+    <el-button :type="cfTypeOfButton" plain size="small">{{
+      cfWeight['dateOfMeasurement']
     }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['dateOfMeasurement'] }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['notes'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain size="small">{{ cfWeight['notes'] }}</el-button>
     <el-button
       type="primary"
       size="mini"

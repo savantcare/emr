@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
-      cfHeight['heightInInches']
+  <div class="content element-doc content">
+    <h5>Height</h5>
+    <el-button
+      :type="cfTypeOfButton"
+      plain
+      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+      size="small"
+      >{{ cfHeight['heightInInches'] }}</el-button
+    >
+    <el-button :type="cfTypeOfButton" plain size="small">{{
+      cfHeight['dateOfMeasurement']
     }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfHeight['dateOfMeasurement'] }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfHeight['notes'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain size="small">{{ cfHeight['notes'] }}</el-button>
     <el-button
       type="primary"
       size="mini"
