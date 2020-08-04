@@ -94,7 +94,7 @@ class rowManage extends Model {
     return arFromOrm
   }
 
-  static getChangeRowInEditState(pUuid) {
+  static getChangeRowIdInEditState(pUuid) {
     /*
       Q) Why we remove orWhere clause?
         Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 

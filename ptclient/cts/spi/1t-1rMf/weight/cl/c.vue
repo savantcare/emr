@@ -112,14 +112,14 @@ export default {
         )
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
-          const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
-          if (vnExistingRowID === false) {
+          const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
+          if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
             console.log('adding blank')
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
           } else {
             console.log('not adding blank')
-            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingRowID
+            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingChangeRowId
           }
         }
         console.log('this.vnIdOfCopiedRowBeingChangedInOrm', this.vnIdOfCopiedRowBeingChangedInOrm)

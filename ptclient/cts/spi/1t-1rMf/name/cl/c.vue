@@ -61,8 +61,11 @@ export default {
       const fieldToUseToCheckIfEmpty = 'firstName'
       /* 
           For this data (name) only 1 row can be valid at one time
-          Since a row was copied hence 2 rows are valid
-          so this Fn will find that there are 2 Uuid that are valid.
+          Since a row was copied hence: 
+            1. 2 rows are valid
+            2. Both rows have same UUID
+            3. rowStatus for 1st row ends in 1 and rowStaus for the copied row does not end in 1. When first copied the rowStatus is 3
+          So this Fn will find that there are 2 Uuid that are valid.
           Both the rows that it finds will have the same Uuid.
           Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
       */
@@ -70,7 +73,7 @@ export default {
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
-      // Ref: cts/core/crud/forms.md
+      // Ref: For the different values of rowStatus see: cts/core/crud/forms.md
       if (lastCharecter === '4' || lastCharecter === '6') {
         // 4 => changed on client 6 => error on client side
         return false
@@ -80,6 +83,7 @@ export default {
   },
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
+      // setting this calls this watch when the Ct is first initialized
       immediate: true,
       /*
         In V1 this was part of mounted, that is sequential programming
@@ -97,13 +101,17 @@ export default {
 
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
         if (newIdOfCopiedRowFromOrm === 0) {
+          /*
+              When called first time this.idOfRowBeingChaged is this.firstParam
+              When called 2nd time this.idOfRowBeingChaged is the previous row that just got saved.
+          */
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
-          const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
-          if (vnExistingRowID === false) {
+          const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
+          if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
           } else {
-            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingRowID
+            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingChangeRowId
           }
         }
       },

@@ -184,13 +184,13 @@ export default {
         arFromOrm = ormRem.find(this.firstParam)
         this.uuid = arFromOrm.uuid
         // Find if there is unsaved data for this.uuid
-        const vnExistingRowID = ormRem.getChangeRowInEditState(this.uuid)
-        if (vnExistingRowID === false) {
+        const vnExistingChangeRowId = ormRem.getChangeRowIdInEditState(this.uuid)
+        if (vnExistingChangeRowId === false) {
           // Adding a new blank record. Since this is temporal DB
           this.mfCopyRowToOrm(arFromOrm.remDesc)
           this.mfManageFocus()
         } else {
-          this.vnIdOfCopiedRowFromOrm = vnExistingRowID
+          this.vnIdOfCopiedRowFromOrm = vnExistingChangeRowId
         }
       }
 
