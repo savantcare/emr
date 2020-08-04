@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
-      cfWeight['firstWeight']
+      cfWeight['weightInPounds']
     }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['middleWeight'] }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['lastWeight'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['dateOfMeasurement'] }}</el-button>
+    <el-button :type="cfTypeOfButton" plain>{{ cfWeight['notes'] }}</el-button>
     <el-button
       type="primary"
       size="mini"
@@ -22,10 +22,16 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import orm from '../db/orm-weight.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-
+  data() {
+    return {
+      isMounted: false,
+    }
+  },
   computed: {
     cfWeight() {
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstWeight')
+      if (!this.isMounted) return false
+
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {
@@ -33,13 +39,15 @@ export default {
       }
     },
     cfPosInArCardsInPtsOfVl() {
+      if (!this.isMounted) return false
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
       const obj = arCardsInCsOfVl.find((x) => x.label === 'weight')
       const idx = arCardsInCsOfVl.indexOf(obj)
       return idx
     },
     cfTypeOfButton() {
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstWeight')
+      if (!this.isMounted) return 'info'
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
       if (arFromOrm.length === 0) return 'info'
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
@@ -54,6 +62,7 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
+    this.isMounted = true
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {

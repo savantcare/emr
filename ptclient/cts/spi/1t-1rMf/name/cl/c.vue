@@ -46,6 +46,7 @@ export default {
   },
   computed: {
     cfIsButtonEnabled() {
+      if (!this.isMounted) return false
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
@@ -62,6 +63,7 @@ export default {
       // In V1 this was part of mounted, that is sequential programming
       // in V2 this is part of watch, this is "react on state" programming.
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
+        if (!this.isMounted) return false
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)

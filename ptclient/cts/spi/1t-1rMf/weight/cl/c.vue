@@ -3,20 +3,20 @@
     <el-form>
       <el-form-item>
         <el-input
-          placeholder="First name"
-          :value="mfGetFieldValue('firstName')"
-          @input="mfSetFieldValueUsingCache($event, 'firstName')"
+          placeholder="Weight in pounds"
+          :value="mfGetFieldValue('weightInPounds')"
+          @input="mfSetFieldValueUsingCache($event, 'weightInPounds')"
         >
         </el-input>
         <el-input
-          placeholder="Middle name"
-          :value="mfGetFieldValue('middleName')"
-          @input="mfSetFieldValueUsingCache($event, 'middleName')"
+          placeholder="Date of measurement"
+          :value="mfGetFieldValue('dateOfMeasurement')"
+          @input="mfSetFieldValueUsingCache($event, 'dateOfMeasurement')"
         ></el-input>
         <el-input
-          placeholder="Last name"
-          :value="mfGetFieldValue('lastName')"
-          @input="mfSetFieldValueUsingCache($event, 'lastName')"
+          placeholder="Notes"
+          :value="mfGetFieldValue('notes')"
+          @input="mfSetFieldValueUsingCache($event, 'notes')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -46,7 +46,8 @@ export default {
   },
   computed: {
     cfIsButtonEnabled() {
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
+      if (!this.isMounted) return false
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
@@ -62,6 +63,8 @@ export default {
       // In V1 this was part of mounted, that is sequential programming
       // in V2 this is part of watch, this is "react on state" programming.
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
+        if (!this.isMounted) return false
+
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
@@ -96,9 +99,9 @@ export default {
         },
         body: JSON.stringify({
           uuid: rowToUpsert.uuid,
-          firstName: rowToUpsert.firstName,
-          middleName: rowToUpsert.middleName,
-          lastName: rowToUpsert.lastName,
+          weightInPounds: rowToUpsert.weightInPounds,
+          dateOfMeasurement: rowToUpsert.dateOfMeasurement,
+          notes: rowToUpsert.notes,
         }),
       })
       console.log(response)
@@ -171,9 +174,9 @@ export default {
     async mfCopyRowToOrm(pArFromOrm) {
       const arFromOrm = await orm.insert({
         data: {
-          firstName: pArFromOrm.firstName,
-          middleName: pArFromOrm.middleName,
-          lastName: pArFromOrm.lastName,
+          weightInPounds: pArFromOrm.weightInPounds,
+          dateOfMeasurement: pArFromOrm.dateOfMeasurement,
+          notes: pArFromOrm.notes,
           uuid: pArFromOrm.uuid,
           vnRowStateInSession: 3, // For meaning of diff values read cts/core/crus/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript

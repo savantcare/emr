@@ -6,8 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptName extends rowManage {
-  static entity = 'ptName'
+export default class ptWeight extends rowManage {
+  static entity = 'ptWeight'
 
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.
   // baseurl is defined in nuxt.config.js
@@ -21,9 +21,9 @@ export default class ptName extends rowManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      firstName: this.string(null),
-      middleName: this.string(''),
-      lastName: this.string(null),
+      weightInPounds: this.string(null),
+      dateOfMeasurement: this.string(''),
+      notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

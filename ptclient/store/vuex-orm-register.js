@@ -8,6 +8,7 @@ import HworldCh10 from '~/cts/book/c10-system-versioned-vl-data/db/vuex-orm/hell
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 import ormName from '~/cts/spi/1t-1rMf/name/db/orm-name.js'
+import ormWeight from '~/cts/spi/1t-1rMf/weight/db/orm-weight.js'
 import Rex from '~/cts/spi/1t-Mr1f/rec/vuex-orm/model.js'
 import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
@@ -22,6 +23,7 @@ database.register(HworldCh7)
 database.register(HworldCh10)
 database.register(Rem)
 database.register(ormName)
+database.register(ormWeight)
 database.register(Rex)
 database.register(Dx)
 database.register(Goal)

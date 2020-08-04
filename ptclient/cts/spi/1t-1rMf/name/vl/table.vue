@@ -22,9 +22,14 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import orm from '../db/orm-name.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-
+  data() {
+    return {
+      isMounted: false,
+    }
+  },
   computed: {
     cfName() {
+      if (!this.isMounted) return ''
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length) {
         return arFromOrm[0]
@@ -33,12 +38,14 @@ export default {
       }
     },
     cfPosInArCardsInPtsOfVl() {
+      if (!this.isMounted) return false
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
       const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
       const idx = arCardsInCsOfVl.indexOf(obj)
       return idx
     },
     cfTypeOfButton() {
+      if (!this.isMounted) return 'info'
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length === 0) return 'info'
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
@@ -54,6 +61,7 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
+    this.isMounted = true
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
