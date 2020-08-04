@@ -1,3 +1,4 @@
+<!-- Reference implementation -->
 <template>
   <div>
     <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{

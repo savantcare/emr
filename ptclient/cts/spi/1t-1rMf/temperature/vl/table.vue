@@ -1,3 +1,6 @@
+<!-- Code architecture doc is at reference implementation name/cl/c.vue
+In this file only doc unique to this ct is written
+ -->
 <template>
   <div>
     <h5>Temperature</h5>
@@ -71,7 +74,7 @@ export default {
     } else {
       console.log(orm)
 
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
+      await this.mxGetDataFromDb()
     }
     console.log(orm)
     this.isMounted = true
