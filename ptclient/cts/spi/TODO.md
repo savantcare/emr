@@ -2,12 +2,7 @@
 
 ## Name (Vikas)
 
-1. Reset form
-   1. When I click on reset form
-      1. the copy row needs to be deletd.
-      2. A new empty row needs to get inserted.
-2. Submit form
-3. Console.error name/cl/table.vue
+1. Submit form
 
 ## Rem (Raj)
 

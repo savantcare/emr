@@ -3,6 +3,7 @@
     <el-form>
       <el-form-item>
         <el-input
+          ref="firstName"
           placeholder="First name"
           :value="mfGetFieldValue('firstName')"
           @input="mfSetFieldValueUsingCache($event, 'firstName')"
@@ -122,10 +123,14 @@ export default {
       console.log(response)
     },
     mfResetForm() {
-      // delete the row that was created as a copy
+      // Step 1/3: delete the row that was created as a copy
       ormName.deleteChangeRowsInEditState()
-      // set vnIdOfCopiedRowFromOrm as 0 so that reactive code can take effect to create a copied row
+
+      // Step 2/3: Set vnIdOfCopiedRowFromOrm as 0 so that "change on state" code can take effect to create a copied row
       this.vnIdOfCopiedRowFromOrm = 0
+
+      // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
+      ormName.arOrmRowsCached = []
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function
