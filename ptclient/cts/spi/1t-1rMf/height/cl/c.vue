@@ -51,7 +51,7 @@ export default {
     return {
       isMounted: false,
       vnIdOfCopiedRowBeingChangedInOrm: 0,
-      idOfRowToChaged: this.firstParam,
+      idOfRowToChange: this.firstParam,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -103,15 +103,15 @@ export default {
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         console.log(
           'pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm',
-          'this.idOfRowToChaged',
+          'this.idOfRowToChange',
           'this.firstParam',
           pNewIdOfCopiedRowFromOrm,
           pOldIdOfCopiedRowFromOrm,
-          this.idOfRowToChaged,
+          this.idOfRowToChange,
           this.firstParam
         )
         if (pNewIdOfCopiedRowFromOrm === 0) {
-          const arFromOrm = orm.find(this.idOfRowToChaged)
+          const arFromOrm = orm.find(this.idOfRowToChange)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
@@ -168,7 +168,7 @@ export default {
             vnRowStateInSession: 34571,
           },
         })
-        this.idOfRowToChaged = this.vnIdOfCopiedRowBeingChangedInOrm
+        this.idOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
         this.vnIdOfCopiedRowBeingChangedInOrm = 0
       }
     },
