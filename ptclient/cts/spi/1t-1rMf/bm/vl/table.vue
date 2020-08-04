@@ -1,28 +1,14 @@
 <template>
   <div>
-    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
-      cfHeight['heightInInches']
-    }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfHeight['dateOfMeasurement'] }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfHeight['notes'] }}</el-button>
-    <el-button
-      type="primary"
-      size="mini"
-      style="padding: 3px;"
-      plain
-      tabindex="-1"
-      @click="mfOpenCCtInCl(cfHeight['id'])"
-      >C</el-button
-    >
+    <ctWeight></ctWeight>
+    <ctHeight></ctHeight>
   </div>
 </template>
 
 <script>
+import ctWeight from '@/cts/spi/1t-1rMf/weight/vl/table.vue'
+import ctHeight from '@/cts/spi/1t-1rMf/height/vl/table.vue'
 export default {
-  data() {
-    return {
-      isMounted: false,
-    }
-  },
+  components: { ctWeight, ctHeight },
 }
 </script>
