@@ -43,6 +43,19 @@ export default {
         searchTerm: 'Tenth chapter - change',
       })
     },
+    mfHandleSelectionForDiscontinue(val) {
+      console.log(val)
+    },
+    mfGetCssClassName(pRow, pIndex) {
+      // set 'unsaved-data' class for 'Changed on client', 'form error on client side' types of row in view layer
+      const dsRowStateInSession = pRow.row.vnRowStateInSession.toString()
+      const lastCharecter = dsRowStateInSession.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'unsaved-data'
+      } else {
+        return ''
+      }
+    },
   },
 }
 </script>
