@@ -62,16 +62,28 @@ export default {
       immediate: true,
       // For detailed doc see name/cl/c.vue
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
+        console.log(
+          'newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm',
+          'this.idOfRowBeingChaged',
+          'this.firstParam',
+          newIdOfCopiedRowFromOrm,
+          oldIdOfCopiedRowFromOrm,
+          this.idOfRowBeingChaged,
+          this.firstParam
+        )
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
           if (vnExistingRowID === false) {
             // Adding a new blank record. Since this is temporal DB
+            console.log('adding blank')
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
           } else {
+            console.log('not adding blank')
             this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingRowID
           }
         }
+        console.log('this.vnIdOfCopiedRowBeingChangedInOrm', this.vnIdOfCopiedRowBeingChangedInOrm)
       },
     },
   },
@@ -156,6 +168,7 @@ export default {
       if (!this.isMounted) return 'loading'
       // let us find out if there is an existing row that is already in change state
       const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
+      console.log(value, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
@@ -180,7 +193,7 @@ export default {
           // ROW_END: already has a default value inside vuex-orm/rem.js
         },
       })
-      return arFromOrm.ptName[0].id
+      return arFromOrm.ptWeight[0].id
     },
   },
 }
