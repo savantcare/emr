@@ -147,7 +147,7 @@ export default {
         }),
       })
       if (response.status === 200) {
-        const updateStatus = await orm.update({
+        await orm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&

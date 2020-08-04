@@ -121,7 +121,7 @@ export default {
       console.log(response)
       if (response.status === 200) {
         // set ROW_END of row being changed
-        const updateStatus = await orm.update({
+        await orm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&

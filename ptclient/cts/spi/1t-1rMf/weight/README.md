@@ -20,3 +20,9 @@ SUM:                             7             18             40            353
 -------------------------------------------------------------------------------
 
 ```
+
+Features needed for graph:
+
+1. Small animation
+2. Notes can be shown in popups
+3. Vertical markers like in apexcharts for med dates.
