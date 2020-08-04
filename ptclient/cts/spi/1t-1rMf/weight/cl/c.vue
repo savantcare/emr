@@ -8,11 +8,15 @@
           @input="mfSetFieldValueUsingCache($event, 'weightInPounds')"
         >
         </el-input>
-        <el-input
-          placeholder="Date of measurement"
+        <el-date-picker
+          v-model="value2"
           :value="mfGetFieldValue('dateOfMeasurement')"
+          type="date"
+          placeholder="Pick a day"
+          :picker-options="pickerOptions"
           @input="mfSetFieldValueUsingCache($event, 'dateOfMeasurement')"
-        ></el-input>
+        >
+        </el-date-picker>
         <el-input
           placeholder="Notes"
           type="textarea"
