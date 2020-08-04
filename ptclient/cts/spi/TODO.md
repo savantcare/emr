@@ -3,8 +3,9 @@
 ## Name (Vikas)
 
 1. Reset form
-   1. When I click on reset form the back layer is still orange.
-   2. Form fields need to be re-init
+   1. When I click on reset form
+      1. the copy row needs to be deletd.
+      2. A new empty row needs to get inserted.
 2. Submit form
 3. Console.error name/cl/table.vue
 
@@ -13,7 +14,9 @@
 1. When changing data
 
    1. "Saved this session" label is not correctly applied when saving fast.
-   2. I change a row then discontinue it. The row does not go away from table. I have to refresh.
+   2. I change a row then discontinue it.
+      1. The row does not go away from table. I have to refresh.
+      2. The row does not come in the X drawer. I have to refresh.
 
 2. KB control
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue otherwise tabs go to right side

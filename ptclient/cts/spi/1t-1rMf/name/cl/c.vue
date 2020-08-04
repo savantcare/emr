@@ -38,7 +38,7 @@ export default {
   props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
-      mounted: false,
+      isMounted: false,
       vnIdOfCopiedRowFromOrm: 0,
     }
   },
@@ -56,7 +56,7 @@ export default {
       console.log('existing row in change state so no need to copy')
       this.vnIdOfCopiedRowFromOrm = vnExistingRowID
     }
-    this.mounted = true
+    this.isMounted = true
   },
   methods: {
     async mfOnSubmit() {
@@ -96,7 +96,7 @@ export default {
       Without the gate with a debugger statment placed inside getField this function was called 3 times
       even before the data came from the server and got loaded into the ORM.
       */
-      if (!this.mounted) return false
+      if (!this.isMounted) return false
       // let us find out if there is an existing row that is already in change state
       const value = ormName.getFieldValue(this.vnIdOfCopiedRowFromOrm, pFieldName)
       return value
@@ -105,7 +105,7 @@ export default {
       /*
       For reason of this gate see comment for mfGetField in this file
       */
-      if (!this.mounted) return false
+      if (!this.isMounted) return false
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       ormName.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
