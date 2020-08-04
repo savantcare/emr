@@ -21,10 +21,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="cfIsButtonEnabled" type="primary" plain @click="mfOnSubmit"
+        <el-button :disabled="cfIsButtonDisabled" type="primary" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonEnabled" type="warning" plain @click="mfResetForm"
+        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    cfIsButtonEnabled() {
+    cfIsButtonDisabled() {
       const fieldToUseToCheckIfEmpty = 'firstName'
       /* 
           For this data (name) only 1 row can be valid at one time
@@ -70,7 +70,7 @@ export default {
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
-      // Ref: cts/core/crus/forms.md
+      // Ref: cts/core/crud/forms.md
       if (lastCharecter === '4' || lastCharecter === '6') {
         // 4 => changed on client 6 => error on client side
         return false

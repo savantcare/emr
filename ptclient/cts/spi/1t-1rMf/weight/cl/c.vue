@@ -30,10 +30,10 @@ In this file only doc unique to this ct is written
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="cfIsButtonEnabled" type="primary" plain @click="mfOnSubmit"
+        <el-button :disabled="cfIsButtonDisabled" type="primary" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonEnabled" type="warning" plain @click="mfResetForm"
+        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -84,7 +84,7 @@ export default {
     }
   },
   computed: {
-    cfIsButtonEnabled() {
+    cfIsButtonDisabled() {
       if (!this.isMounted) return false
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
       if (arFromOrm.length === 0) return false
