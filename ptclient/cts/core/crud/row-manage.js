@@ -40,6 +40,30 @@ class rowManage extends Model {
     Method 4: Maintain a 'isDiscontinued' enum(0 ,1) flag in database. But need to approval from Vikas sir.
     Need to discuss
     */
+    // Following query makes sure I get all the discontimued rows
+    const currentTime = Math.floor(Date.now() / 1000)
+    const arFromORM = this.query()
+      .where('ROW_END', (value) => value < currentTime)
+      .orderBy('ROW_END', 'desc')
+      .get()
+
+    const arDiscontinuedRows = []
+    const arDiscontinuedRowUniqueUuid = []
+    const currentUniqueUuidRows = this.getValidUniqueUuidRows()
+
+    arFromORM.forEach((item) => {
+      let foundInArToReturn = false
+      currentUniqueUuidRows.forEach((currentItem) => {
+        if (item.uuid === currentItem.uuid) {
+          foundInArToReturn = true
+        }
+      })
+      if (!foundInArToReturn && !arDiscontinuedRowUniqueUuid.includes(item.uuid)) {
+        arDiscontinuedRowUniqueUuid.push(item.uuid)
+        arDiscontinuedRows.push(item)
+      }
+    })
+    return arDiscontinuedRows
   }
 
   static getApiErrorStateRows() {

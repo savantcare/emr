@@ -15,6 +15,7 @@ import vstOfCardsInPtsOfVlModule from '~/cts/core/manage-ptsvl-cards/vst-of-card
 
 import VueStateOfFeedDrawerModule from '~/cts/core/feed/vue-state-of-feed-drawer'
 import VueStateOfMapDrawerModule from '~/cts/core/map/vue-state-of-map-drawer'
+import VueStateOfDiscontinuedDrawerModule from '~/cts/core/ct-discontinued-rows/vue-state-of-discontinued-drawer'
 
 import database from '~/store/vuex-orm-register'
 
@@ -41,6 +42,7 @@ const createStore = () => {
       // Full form: view state object feed drawer
       vstObjFeedDrawer: VueStateOfFeedDrawerModule,
       vstObjMapDrawer: VueStateOfMapDrawerModule,
+      vstObjDiscontinuedDrawer: VueStateOfDiscontinuedDrawerModule,
 
       // Full form: view state object cards in current state of view layer
       vstObjCardsInCsOfVl: vstOfCardsInPtsOfVlModule,

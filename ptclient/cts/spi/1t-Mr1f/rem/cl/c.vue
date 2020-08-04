@@ -74,7 +74,7 @@ export default {
       const timelineDataArray = []
 
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromOrm = ormRem.query().where('uuid', this.uuid).orderBy('id', 'desc').get()
+      const arFromOrm = ormRem.query().where('uuid', this.uuid).orderBy('ROW_START', 'desc').get()
       // console.log('Time line for uuid', this.uuid)
       if (arFromOrm.length) {
         let rowInTimeLine = []
@@ -82,9 +82,13 @@ export default {
         for (let i = 0; i < arFromOrm.length; i++) {
           rowInTimeLine = {}
           rowInTimeLine.remDesc = arFromOrm[i].remDesc
-          date = new Date(arFromOrm[i].ROW_START)
+          date = new Date(arFromOrm[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
-            date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
+            date.toLocaleString('default', { month: 'long' }) +
+            '-' +
+            date.getDate() +
+            '-' +
+            date.getFullYear()
           if (
             arFromOrm[i].vnRowStateInSession === 3 ||
             arFromOrm[i].vnRowStateInSession === 34 ||
@@ -201,9 +205,9 @@ export default {
 
     async mfSendDataToServer() {
       try {
-        const requestedToRowId = this.vnIdOfCopiedRowFromOrm
+        const ormRowIdToSendToServer = this.vnIdOfCopiedRowFromOrm
         await ormRem.update({
-          where: requestedToRowId,
+          where: ormRowIdToSendToServer,
           data: {
             vnRowStateInSession: '345',
           },
@@ -225,13 +229,12 @@ export default {
           },
           body: JSON.stringify({
             remDesc: this.mfGetRemDescUsingCache(),
-            requestedToRowId, // TODO: Is this needed?
           }),
         })
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           ormRem.update({
-            where: requestedToRowId,
+            where: ormRowIdToSendToServer,
             data: {
               vnRowStateInSession: 3458,
             },
@@ -292,7 +295,7 @@ export default {
 
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           ormRem.update({
-            where: requestedToRowId,
+            where: ormRowIdToSendToServer,
             data: {
               vnRowStateInSession: 34571,
             },
