@@ -36,6 +36,8 @@ jobs:
           sudo mkdir -p /tmp/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
           sudo chmod -R 777 /tmp/logs
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
+          cd /gt/sc-prog-repos/emr/ptserver
+          sudo rm -rf package-lock.json # remove old package-lock.json file
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
