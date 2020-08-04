@@ -111,7 +111,7 @@ export default {
         }),
       })
       console.log(response)
-      if (response.status == 200) {
+      if (response.status === 200) {
         // set ROW_END of previous row
       }
     },

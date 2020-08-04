@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInCsOfVl * 100 + 1">{{
+    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
       cfName['firstName']
     }}</el-button>
     <el-button :type="cfTypeOfButton" plain>{{ cfName['middleName'] }}</el-button>
@@ -32,7 +32,7 @@ export default {
         return ''
       }
     },
-    cfPosInArCardsInCsOfVl() {
+    cfPosInArCardsInPtsOfVl() {
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
       const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
       const idx = arCardsInCsOfVl.indexOf(obj)
