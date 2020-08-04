@@ -42,17 +42,17 @@ export default {
     return {
       /*
        1. This row is not changed in the ORM. This row is the latest data where ROW_END is in future.
-       2. Assigning the prop to a local variable since the value of idOfRowBeingChaged will change everytime the user hits submit
+       2. Assigning the prop to a local variable since the value of idOfRowToChaged will change everytime the user hits submit
           Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
-      idOfRowBeingChaged: this.firstParam,
+      idOfRowToChaged: this.firstParam,
 
       /*
         Why not change the original row?
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnIdOfCopiedRowBeingChangedInOrm: 0, // This row is one step ahead of idOfRowBeingChaged
+      vnIdOfCopiedRowBeingChangedInOrm: 0, // This row is one step ahead of idOfRowToChaged
       // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
     }
   },
@@ -102,10 +102,10 @@ export default {
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         if (pNewIdOfCopiedRowFromOrm === 0) {
           /*
-              When called first time this.idOfRowBeingChaged is this.firstParam
-              When called 2nd time this.idOfRowBeingChaged is the previous row that just got saved.
+              When called first time this.idOfRowToChaged is this.firstParam
+              When called 2nd time this.idOfRowToChaged is the previous row that just got saved.
           */
-          const arFromOrm = orm.find(this.idOfRowBeingChaged)
+          const arFromOrm = orm.find(this.idOfRowToChaged)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
@@ -159,7 +159,7 @@ export default {
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
-        this.idOfRowBeingChaged = this.vnIdOfCopiedRowBeingChangedInOrm
+        this.idOfRowToChaged = this.vnIdOfCopiedRowBeingChangedInOrm
         this.vnIdOfCopiedRowBeingChangedInOrm = 0 // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },
