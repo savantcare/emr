@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
+import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import orm from '../db/orm-name.js'
 export default {
-  mixins: [fullSyncWithServerDBMixin],
+  mixins: [mxFullSyncWithDbServer],
 
   computed: {
     cfName() {

@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import fullSyncWithServerDBMixin from '../db/full-sync-with-server-db-mixin'
+import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import orm from '../db/orm-name.js'
 export default {
-  mixins: [fullSyncWithServerDBMixin],
+  mixins: [mxFullSyncWithDbServer],
   props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
