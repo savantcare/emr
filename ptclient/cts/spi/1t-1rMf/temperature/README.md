@@ -1,7 +1,7 @@
 This is the ideal component for 1 row multiple field type component.
 
 ```
-vk-tech@vk-mini-layer2-3 ~/g/s/e/p/c/s/1/weight> cloc --counted=/tmp/files-counted.txt .
+vk-tech@vk-mini-layer2-3 ~/g/s/e/p/c/s/1/temperature> cloc --counted=/tmp/files-counted.txt .
        7 text files.
        7 unique files.
 Wrote /tmp/files-counted.txt

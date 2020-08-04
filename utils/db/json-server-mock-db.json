@@ -16,7 +16,7 @@
   "weight": [
     {
       "uuid": 1,
-      "weightInPounds": "100",
+      "weightInPounds": "110",
       "dateOfMeasurement": "2020-08-03",
       "notes": "Jai kali ma"
     },
@@ -37,6 +37,20 @@
     {
       "uuid": 2,
       "heightInInches": "200",
+      "dateOfMeasurement": "1st feb 2020",
+      "notes": "Jai durga ma"
+    }
+  ],
+  "temperature": [
+    {
+      "uuid": 1,
+      "temperatureInFarehnite": "98",
+      "dateOfMeasurement": "2020-08-03",
+      "notes": "Jai kali ma"
+    },
+    {
+      "uuid": 2,
+      "temperatureInFarehnite": "120",
       "dateOfMeasurement": "1st feb 2020",
       "notes": "Jai durga ma"
     }

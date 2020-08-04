@@ -8,6 +8,7 @@
     <nameSPhrases></nameSPhrases>
     <weightSPhrases></weightSPhrases>
     <heightSPhrases></heightSPhrases>
+    <temperatureSPhrases></temperatureSPhrases>
     <bmSPhrases></bmSPhrases>
     <helloWorldC1SPhrases></helloWorldC1SPhrases>
     <helloWorldC2SPhrases></helloWorldC2SPhrases>
@@ -40,6 +41,7 @@ import clearSPhrases from '@/cts/core/clear/search-phrases'
 import nameSPhrases from '@/cts/spi/1t-1rMf/name/search-phrases'
 import heightSPhrases from '@/cts/spi/1t-1rMf/height/search-phrases'
 import weightSPhrases from '@/cts/spi/1t-1rMf/weight/search-phrases'
+import temperatureSPhrases from '@/cts/spi/1t-1rMf/temperature/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1rMf/bm/search-phrases'
 import remSPhrases from '@/cts/spi/1t-Mr1f/rem/search-phrases'
 import helloWorldC1SPhrases from '@/cts/book/c01-hello-world/search-phrases'
@@ -62,6 +64,7 @@ export default {
     nameSPhrases,
     heightSPhrases,
     weightSPhrases,
+    temperatureSPhrases,
     bmSPhrases,
     helloWorldC1SPhrases,
     helloWorldC2SPhrases,

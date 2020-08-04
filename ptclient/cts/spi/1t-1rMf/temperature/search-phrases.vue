@@ -1,0 +1,32 @@
+<template>
+  <div></div>
+</template>
+
+<script>
+import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
+
+export default {
+  data() {
+    return {}
+  },
+  mounted() {
+    ormSearchPhrasesOfCt.insert({
+      data: {
+        value: 'temperature',
+        ctAbbr: 'w',
+        ctToShow: 'spi/1t-1rMf/temperature/vl/table.vue', // CsVl -> Current state view layer
+        displayLocation: 'ptsvl',
+      },
+    })
+    ormSearchPhrasesOfCt.insert({
+      data: {
+        value: 'temperature - change',
+        ctAbbr: 'wc',
+        ctToShow: 'spi/1t-1rMf/temperature/cl/c.vue', // Cl -> Change layer
+        displayLocation: 'cl',
+        operatesOn: 'row',
+      },
+    })
+  },
+}
+</script>
