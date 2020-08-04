@@ -96,7 +96,7 @@ export default {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows
       // Hence find(1) needs to get improved.
-      const rowToUpsert = ormName.find(1)
+      const rowToUpsert = ormName.find(this.vnIdOfCopiedRowFromOrm)
       console.log(rowToUpsert)
       const response = await fetch(ormName.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
@@ -111,6 +111,9 @@ export default {
         }),
       })
       console.log(response)
+      if (response.status == 200) {
+        // set ROW_END of previous row
+      }
     },
     mfResetForm() {
       // Step 1/3: delete the row that was created as a copy
