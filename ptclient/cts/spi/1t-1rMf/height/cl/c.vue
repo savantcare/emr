@@ -9,7 +9,6 @@
         >
         </el-input>
         <el-date-picker
-          v-model="value2"
           :value="mfGetFieldValue('dateOfMeasurement')"
           type="date"
           placeholder="Pick a day"
