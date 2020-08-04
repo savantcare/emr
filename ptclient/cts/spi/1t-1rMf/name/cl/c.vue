@@ -58,7 +58,6 @@ export default {
   },
   computed: {
     cfIsButtonDisabled() {
-      const fieldToUseToCheckIfEmpty = 'firstName'
       /*
       Method 1: Problem -> what if user uses backspace to erase the extra charecters typed
       For this data (name) only 1 row can be valid at one time
@@ -70,6 +69,7 @@ export default {
           Both the rows that it finds will have the same Uuid.
           Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
 
+          const fieldToUseToCheckIfEmpty = 'firstName'
           const arFromOrm = orm.getValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
           if (arFromOrm.length === 0) return false
           const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
@@ -88,9 +88,9 @@ export default {
       const arToChangeOrm = orm.find(this.idOfRowToChange)
       const arBeingChanedOrm = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
       if (
-        arToChangeOrm.firstName == arBeingChanedOrm.firstName &&
-        arToChangeOrm.middleName == arBeingChanedOrm.middleName &&
-        arToChangeOrm.lastName == arBeingChanedOrm.lastName
+        arToChangeOrm.firstName === arBeingChanedOrm.firstName &&
+        arToChangeOrm.middleName === arBeingChanedOrm.middleName &&
+        arToChangeOrm.lastName === arBeingChanedOrm.lastName
       ) {
         return true
       }
