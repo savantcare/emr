@@ -15,6 +15,8 @@
         ></el-input>
         <el-input
           placeholder="Notes"
+          type="textarea"
+          :autosize="{ minRows: 2 }"
           :value="mfGetFieldValue('notes')"
           @input="mfSetFieldValueUsingCache($event, 'notes')"
         ></el-input>
