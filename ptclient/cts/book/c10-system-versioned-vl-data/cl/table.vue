@@ -35,7 +35,7 @@ import ormHw from '@/cts/book/c10-system-versioned-vl-data/db/vuex-orm/helloworl
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormHw.getNewRowsInEditState()
+      return ormHw.getAllNewRowsInEditState()
     },
   },
   methods: {

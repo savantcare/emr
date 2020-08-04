@@ -83,7 +83,7 @@ export default {
 
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormRem.getNewRowsInEditState()
+      return ormRem.getAllNewRowsInEditState()
     },
     cfGetOrmReadyToSubmitStateRows() {
       return ormRem.getNewRowsInReadyToSubmitState()

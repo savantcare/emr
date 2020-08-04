@@ -10,17 +10,12 @@
 
 ## Rem (Raj)
 
-1. Better variable name c.vue line 201 requestedToRowId
+1. When changing data
 
-2. When changing data
+   1. "Saved this session" label is not correctly applied when saving fast.
+   2. I change a row then discontinue it. The row does not go away from table. I have to refresh.
 
-   1. all the date in history shows up as the same date.
-   2. "Saved this session" label is not correctly applied when saving fast.
-   3. oldest data should come at the bottom
-
-3. Make the X work in a drawer.
-
-4. KB control
+2. KB control
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue otherwise tabs go to right side
    B. On tab the control should not go to browser back forward and address bar
 
