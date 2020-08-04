@@ -170,7 +170,9 @@ class rowManage extends Model {
     return arFromOrm
   }
 
-  // This function finds data in client side vuex-orm. This fn is not making a API query to the server.
+  /*  This function finds data in client side vuex-orm. This fn is not making a API query to the server.
+      If there are 10 rows with same UUID then it will return the latest row
+  */
   static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()

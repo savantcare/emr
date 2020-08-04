@@ -68,6 +68,11 @@ export default {
       return true
     },
   },
+  watch: {
+    vnIdOfCopiedRowFromOrm(val) {
+      console.log('vnIdOfCopiedRowFromOrm changed')
+    },
+  },
   async mounted() {
     if (ormName.query().count() > 0) {
     } else {
@@ -122,7 +127,7 @@ export default {
       Without the gate with a debugger statment placed inside getField this function was called 3 times
       even before the data came from the server and got loaded into the ORM.
       */
-      if (!this.isMounted) return false
+      if (!this.isMounted) return 'loading'
       // let us find out if there is an existing row that is already in change state
       const value = ormName.getFieldValue(this.vnIdOfCopiedRowFromOrm, pFieldName)
       return value
@@ -131,14 +136,13 @@ export default {
       /*
       For reason of this gate see comment for mfGetField in this file
       */
-      if (!this.isMounted) return false
+      if (!this.isMounted) return 'loading'
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       ormName.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
     async mfCopyRowToOrm(pArFromOrm) {
-      console.log(ormName)
       const arFromOrm = await ormName.insert({
         data: {
           id: 2,
@@ -151,7 +155,6 @@ export default {
           // ROW_END: already has a default value inside vuex-orm/rem.js
         },
       })
-      console.log(arFromOrm)
       return arFromOrm.ptName[0].id
     },
   },

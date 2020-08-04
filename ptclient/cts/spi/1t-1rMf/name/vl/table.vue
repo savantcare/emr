@@ -57,9 +57,7 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
-      console.log(pOrmId)
       const payload = { searchTerm: 'name - change', pPropsToGiveToCt: pOrmId }
-
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
   },
