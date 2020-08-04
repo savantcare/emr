@@ -44,6 +44,7 @@ export default {
     return {
       isMounted: false,
       vnIdOfCopiedRowBeingChangedInOrm: 0,
+      idOfRowBeingChaged: this.firstParam,
     }
   },
   computed: {
@@ -65,7 +66,7 @@ export default {
       // in V2 this is part of watch, this is "react on state" programming.
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
         if (newIdOfCopiedRowFromOrm === 0) {
-          const arFromOrm = orm.find(this.firstParam)
+          const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
           if (vnExistingRowID === false) {
             // Adding a new blank record. Since this is temporal DB
@@ -130,6 +131,7 @@ export default {
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
+        this.idOfRowBeingChaged = this.vnIdOfCopiedRowBeingChangedInOrm
         this.vnIdOfCopiedRowBeingChangedInOrm = 0 // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },
