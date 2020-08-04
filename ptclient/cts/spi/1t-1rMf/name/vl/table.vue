@@ -1,6 +1,7 @@
 <!-- Reference implementation -->
 <template>
   <div>
+    <h5>Name</h5>
     <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
       cfName['firstName']
     }}</el-button>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-name.js'
 export default {
   mixins: [mxFullSyncWithDbServer],

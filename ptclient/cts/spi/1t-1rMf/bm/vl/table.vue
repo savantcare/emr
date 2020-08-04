@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h5>Body measurement</h5>
     <ctWeight></ctWeight>
     <ctHeight></ctHeight>
     <ctTemperature></ctTemperature>

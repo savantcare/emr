@@ -28,7 +28,7 @@ In this file only doc unique to this ct is written
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-weight.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
