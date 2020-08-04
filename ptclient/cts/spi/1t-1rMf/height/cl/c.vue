@@ -3,7 +3,7 @@
     <el-form>
       <el-form-item>
         <el-input
-          placeholder="Height in pounds"
+          placeholder="Height in inches"
           :value="mfGetFieldValue('heightInInches')"
           @input="mfSetFieldValueUsingCache($event, 'heightInInches')"
         >

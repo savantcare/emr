@@ -26,7 +26,7 @@ VuexORM.use(VuexORMAxios, { axios })
 VuexORM.use(VuexormsearchPhrasesOfCt, {
   tokenize: true, // Ref: https://github.com/vuex-orm/plugin-search#configurations needed so "goal add" works when list has "add goal"
   matchAllTokens: true, // needed so "goal add" shows only opyion 1 when list has "add goal" and "multi rate goal"
-  threshold: 0.4, // the following will match goal: gool gaal gaaal gloa Following not match: gloq
+  threshold: 0.1, // height and weight are very close and need to be distinguished so set thresold to .1
 })
 
 Vue.use(uuidv1)
