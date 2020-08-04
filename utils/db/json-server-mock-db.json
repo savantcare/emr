@@ -12,5 +12,19 @@
       "middleName": "Durga",
       "lastName": "Ma"
     }
+  ],
+  "weight": [
+    {
+      "uuid": 1,
+      "firstName": "Jai",
+      "middleName": "Kali kali kalkati wali",
+      "lastName": "Ma"
+    },
+    {
+      "uuid": 2,
+      "firstName": "Jai",
+      "middleName": "Durga",
+      "lastName": "Ma"
+    }
   ]
 }
