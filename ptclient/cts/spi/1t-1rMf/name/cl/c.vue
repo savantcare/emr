@@ -1,3 +1,4 @@
+<!-- Reference implementation -->
 <template>
   <div>
     <el-form>
@@ -135,7 +136,6 @@ export default {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
-        console.log(updateStatus)
         /* Goal: Update the value of copied row to success or failure depending on the api response */
         orm.update({
           where: this.vnIdOfCopiedRowBeingChangedInOrm,
