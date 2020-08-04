@@ -105,6 +105,7 @@ export default {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
+          uuid: rowToUpsert.uuid,
           firstName: rowToUpsert.firstName,
           middleName: rowToUpsert.middleName,
           lastName: rowToUpsert.lastName,
@@ -112,7 +113,24 @@ export default {
       })
       console.log(response)
       if (response.status === 200) {
-        // set ROW_END of previous row
+        // set ROW_END of row being changed
+        debugger
+        const updateStatus = await ormName.update({
+          where: (record) => {
+            return (
+              record.uuid === rowToUpsert.uuid &&
+              (record.vnRowStateInSession === 1 /* Came from DB */ ||
+              record.vnRowStateInSession ===
+                34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
+                record.vnRowStateInSession ===
+                  24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
+            )
+          },
+          data: {
+            ROW_END: Math.floor(Date.now() / 1000),
+          },
+        })
+        console.log(updateStatus)
       }
     },
     mfResetForm() {
@@ -154,7 +172,6 @@ export default {
     async mfCopyRowToOrm(pArFromOrm) {
       const arFromOrm = await ormName.insert({
         data: {
-          id: 2,
           firstName: pArFromOrm.firstName,
           middleName: pArFromOrm.middleName,
           lastName: pArFromOrm.lastName,
