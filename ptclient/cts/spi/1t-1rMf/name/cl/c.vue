@@ -114,7 +114,6 @@ export default {
       console.log(response)
       if (response.status === 200) {
         // set ROW_END of row being changed
-        debugger
         const updateStatus = await ormName.update({
           where: (record) => {
             return (
@@ -131,6 +130,13 @@ export default {
           },
         })
         console.log(updateStatus)
+        /* Goal: Update the value of copied row to success or failure depending on the api response */
+        ormName.update({
+          where: this.vnIdOfCopiedRowFromOrm,
+          data: {
+            vnRowStateInSession: 34571,
+          },
+        })
       }
     },
     mfResetForm() {
