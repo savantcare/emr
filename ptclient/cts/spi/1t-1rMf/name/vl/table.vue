@@ -55,10 +55,10 @@ export default {
     },
   },
   async mounted() {
-    this.$root.$on('name-coped-row-diff', () => {
+    this.$root.$on('name-copied-row-diff', () => {
       this.isCopiedRowDiff = true
     })
-    this.$root.$on('name-coped-row-same', () => {
+    this.$root.$on('name-copied-row-same', () => {
       this.isCopiedRowDiff = false
     })
 

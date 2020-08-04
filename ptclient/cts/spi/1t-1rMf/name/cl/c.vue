@@ -92,10 +92,10 @@ export default {
         arToChangeOrm.middleName === arBeingChanedOrm.middleName &&
         arToChangeOrm.lastName === arBeingChanedOrm.lastName
       ) {
-        this.$root.$emit('name-copied-row-diff')
+        this.$root.$emit('name-copied-row-same')
         return true
       }
-      this.$root.$emit('name-copied-row-same')
+      this.$root.$emit('name-copied-row-diff')
       return false
     },
   },
