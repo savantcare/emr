@@ -90,17 +90,17 @@ export default {
         in V2 this is part of watch, this is "act on state" programming.
 
         When called first time:
-           newIdOfCopiedRowFromOrm = 0 since data section sets that value
-           oldIdOfCopiedRowFromOrm is undefined
+           pNewIdOfCopiedRowFromOrm = 0 since data section sets that value
+           pOldIdOfCopiedRowFromOrm is undefined
 
         When called second time:
-           newIdOfCopiedRowFromOrm = 0 since any other function that wants a new row being copied sets it to 0
-           oldIdOfCopiedRowFromOrm is the old value of newIdOfCopiedRowFromOrm. Hence previous row that was being edited
+           pNewIdOfCopiedRowFromOrm = 0 since any other function that wants a new row being copied sets it to 0
+           pOldIdOfCopiedRowFromOrm is the old value of pNewIdOfCopiedRowFromOrm. Hence previous row that was being edited
 
       */
 
-      async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
-        if (newIdOfCopiedRowFromOrm === 0) {
+      async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
+        if (pNewIdOfCopiedRowFromOrm === 0) {
           /*
               When called first time this.idOfRowBeingChaged is this.firstParam
               When called 2nd time this.idOfRowBeingChaged is the previous row that just got saved.

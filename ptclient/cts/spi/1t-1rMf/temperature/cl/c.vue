@@ -99,17 +99,17 @@ export default {
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
       immediate: true,
-      async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
+      async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         console.log(
-          'newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm',
+          'pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm',
           'this.idOfRowBeingChaged',
           'this.firstParam',
-          newIdOfCopiedRowFromOrm,
-          oldIdOfCopiedRowFromOrm,
+          pNewIdOfCopiedRowFromOrm,
+          pOldIdOfCopiedRowFromOrm,
           this.idOfRowBeingChaged,
           this.firstParam
         )
-        if (newIdOfCopiedRowFromOrm === 0) {
+        if (pNewIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
