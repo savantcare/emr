@@ -49,7 +49,7 @@ jobs:
         run: |
           cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
           docker-compose up -d
-          sleep 30
+          sleep 120
 
       - name: Goal 6 -> Make sure docker containers can ping each other. They have to be on the same network
         run: |
