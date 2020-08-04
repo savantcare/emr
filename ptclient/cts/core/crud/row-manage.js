@@ -349,7 +349,7 @@ class rowManage extends Model {
       function (scope) {
         scope.setFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus)
       },
-      1000,
+      500, // setting timeout of 500 ms
       this
     )
   }

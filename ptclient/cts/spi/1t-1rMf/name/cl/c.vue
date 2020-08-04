@@ -106,6 +106,8 @@ export default {
               When called 2nd time this.idOfRowToChange is the previous row that just got saved.
           */
           const arFromOrm = orm.find(this.idOfRowToChange)
+
+          // For a given UUID there can be only 1 row in edit state.
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
