@@ -102,9 +102,7 @@ export default {
   methods: {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows
-      // Hence find(1) needs to get improved.
       const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
-      console.log(rowToUpsert)
       const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
@@ -118,7 +116,6 @@ export default {
           lastName: rowToUpsert.lastName,
         }),
       })
-      console.log(response)
       if (response.status === 200) {
         // set ROW_END of row being changed
         await orm.update({

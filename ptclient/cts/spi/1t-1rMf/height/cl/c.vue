@@ -136,7 +136,6 @@ export default {
   methods: {
     async mfOnSubmit() {
       const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
-      console.log(rowToUpsert)
       const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
@@ -149,7 +148,6 @@ export default {
           notes: rowToUpsert.notes,
         }),
       })
-      console.log(response)
       if (response.status === 200) {
         await orm.update({
           where: (record) => {

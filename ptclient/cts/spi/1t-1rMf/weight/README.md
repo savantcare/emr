@@ -24,5 +24,18 @@ SUM:                             7             18             40            353
 Features needed for graph:
 
 1. Small animation
-2. Notes can be shown in popups
-3. Vertical markers like in apexcharts for med dates.
+2. Notes can be shown in popups (clickable-points-in-Line-chart)
+3. Vertical markers like in apexcharts for med dates. (Annotations)
+4. Looks good.
+
+```
+
+Options:                          Looks           Animation    OSS      clickable-points-in-Line-chart   Annotations   Heat Map     vue-integration
+1. Apex
+2. chartjs                          6                6
+3. chartlist-js                     4                8
+4. zingchart                                                   No
+5. Highcharts                       6                8        Yes                Yes                        Yes          Yes         https://github.com/highcharts/highcharts-vue
+
+Ref: https://www.sitepoint.com/best-javascript-charting-libraries/
+```
