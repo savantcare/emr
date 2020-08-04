@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       isMounted: false,
+      isCopiedRowDiff: false,
     }
   },
   computed: {
@@ -47,18 +48,20 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      if (!this.isMounted) return 'info'
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
-      if (arFromOrm.length === 0) return 'info'
-      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
+      if (this.isCopiedRowDiff === true) {
         return 'warning'
       }
       return 'info'
     },
   },
   async mounted() {
+    this.$root.$on('name-coped-row-diff', () => {
+      this.isCopiedRowDiff = true
+    })
+    this.$root.$on('name-coped-row-same', () => {
+      this.isCopiedRowDiff = false
+    })
+
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
