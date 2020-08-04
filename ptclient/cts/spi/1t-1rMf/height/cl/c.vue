@@ -164,7 +164,6 @@ export default {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
-        console.log(updateStatus)
         orm.update({
           where: this.vnIdOfCopiedRowBeingChangedInOrm,
           data: {
