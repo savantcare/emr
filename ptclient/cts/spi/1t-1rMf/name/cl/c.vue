@@ -23,7 +23,9 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" plain @click="mfOnSubmit">Submit</el-button>
+        <el-button :disabled="cfIsSubmitEnabled" type="primary" plain @click="mfOnSubmit"
+          >Submit</el-button
+        >
         <el-button type="warning" plain @click="mfResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
@@ -41,6 +43,18 @@ export default {
       isMounted: false,
       vnIdOfCopiedRowFromOrm: 0,
     }
+  },
+  computed: {
+    cfIsSubmitEnabled() {
+      const arFromOrm = ormName.getValidUniqueUuidNotEmptyRows('firstName')
+      if (arFromOrm.length === 0) return false
+      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return false
+      }
+      return true
+    },
   },
   async mounted() {
     if (ormName.query().count() > 0) {
