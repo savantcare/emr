@@ -129,13 +129,15 @@ export default {
             vnRowStateInSession: 34571,
           },
         })
+        // After submitting the form since the form to edit is still there I need to create a copied row
+        this.vnIdOfCopiedRowBeingChangedInOrm = 0 // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },
     mfResetForm() {
       // Step 1/3: delete the row that was created as a copy
       orm.deleteChangeRowsInEditState()
 
-      // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "change on state" code can take effect to create a copied row
+      // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "act on state" code can take effect to create a copied row see watch vnIdOfCopiedRowBeingChangedInOrm
       this.vnIdOfCopiedRowBeingChangedInOrm = 0
 
       // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
