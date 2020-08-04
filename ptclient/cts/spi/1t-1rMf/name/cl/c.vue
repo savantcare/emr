@@ -52,33 +52,49 @@ export default {
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnIdOfCopiedRowBeingChangedInOrm: 0, // This row is one step ahead of idOfRowToChange
+      vnIdOfCopiedRowBeingChangedInOrm: null, // This row is one step ahead of idOfRowToChange
       // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
     }
   },
   computed: {
     cfIsButtonDisabled() {
       const fieldToUseToCheckIfEmpty = 'firstName'
-      /* 
-          For this data (name) only 1 row can be valid at one time
-          Since a row was copied hence: 
+      /*
+      Method 1: Problem -> what if user uses backspace to erase the extra charecters typed
+      For this data (name) only 1 row can be valid at one time
+          Since a row was copied hence:
             1. 2 rows are valid
             2. Both rows have same UUID
             3. rowStatus for 1st row ends in 1 and rowStaus for the copied row does not end in 1. When first copied the rowStatus is 3
           So this Fn will find that there are 2 Uuid that are valid.
           Both the rows that it finds will have the same Uuid.
           Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
-      */
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
-      if (arFromOrm.length === 0) return false
-      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      // Ref: For the different values of rowStatus see: cts/core/crud/forms.md
-      if (lastCharecter === '4' || lastCharecter === '6') {
-        // 4 => changed on client 6 => error on client side
-        return false
+
+          const arFromOrm = orm.getValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
+          if (arFromOrm.length === 0) return false
+          const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
+          const lastCharecter = strOfNumber.slice(-1)
+          // Ref: For the different values of rowStatus see: cts/core/crud/forms.md
+          if (lastCharecter === '4' || lastCharecter === '6') {
+            // 4 => changed on client 6 => error on client side
+            return false
+          }
+          return true
+        },
+            */
+
+      if (this.vnIdOfCopiedRowBeingChangedInOrm === null) return true // there is a race condition. This if statement waits for copy to finish
+
+      const arToChangeOrm = orm.find(this.idOfRowToChange)
+      const arBeingChanedOrm = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
+      if (
+        arToChangeOrm.firstName == arBeingChanedOrm.firstName &&
+        arToChangeOrm.middleName == arBeingChanedOrm.middleName &&
+        arToChangeOrm.lastName == arBeingChanedOrm.lastName
+      ) {
+        return true
       }
-      return true
+      return false
     },
   },
   watch: {
@@ -100,7 +116,7 @@ export default {
       */
 
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
-        if (pNewIdOfCopiedRowFromOrm === 0) {
+        if (pNewIdOfCopiedRowFromOrm === null) {
           /*
               When called first time this.idOfRowToChange is this.firstParam
               When called 2nd time this.idOfRowToChange is the previous row that just got saved.
@@ -162,7 +178,7 @@ export default {
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
         this.idOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
-        this.vnIdOfCopiedRowBeingChangedInOrm = 0 // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
+        this.vnIdOfCopiedRowBeingChangedInOrm = null // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },
     mfResetForm() {
@@ -170,7 +186,7 @@ export default {
       orm.deleteChangeRowsInEditState()
 
       // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "act on state" code can take effect to create a copied row see watch vnIdOfCopiedRowBeingChangedInOrm
-      this.vnIdOfCopiedRowBeingChangedInOrm = 0
+      this.vnIdOfCopiedRowBeingChangedInOrm = null
 
       // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
       orm.arOrmRowsCached = []
