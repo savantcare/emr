@@ -37,7 +37,7 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-name.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-  props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
+  props: { firstParam: Number }, // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
       vnIdOfCopiedRowBeingChangedInOrm: 0, // This row is one step ahead of idOfRowBeingChaged
@@ -60,7 +60,7 @@ export default {
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
       immediate: true,
-      /* 
+      /*
         In V1 this was part of mounted, that is sequential programming
         in V2 this is part of watch, this is "react on state" programming.
 
@@ -150,7 +150,7 @@ export default {
      */
     mfGetFieldValue(pFieldName) {
       /*
-        For each field this function is called twice. 
+        For each field this function is called twice.
         Why is this called twice for each field?
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
