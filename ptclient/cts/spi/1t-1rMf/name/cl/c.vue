@@ -40,14 +40,13 @@ export default {
   props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
-      isMounted: false,
-      vnIdOfCopiedRowBeingChangedInOrm: 0,
-      idOfRowBeingChaged: this.firstParam,
+      vnIdOfCopiedRowBeingChangedInOrm: 0, // This row is one step ahead of idOfRowBeingChaged
+      idOfRowBeingChaged: this.firstParam, // This row is not changed in the ORM. This row is the latest data where ROW_END is in future.
+      // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
     }
   },
   computed: {
     cfIsButtonEnabled() {
-      if (!this.isMounted) return false
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
       if (arFromOrm.length === 0) return false
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
@@ -76,9 +75,6 @@ export default {
       */
 
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
-        /*         if (!this.isMounted) return false
-            This does not work since mounted line that sets it to true is called after this check
-          */
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
@@ -91,13 +87,6 @@ export default {
         }
       },
     },
-  },
-  async mounted() {
-    if (orm.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb()
-    }
-    this.isMounted = true
   },
   methods: {
     async mfOnSubmit() {
@@ -161,12 +150,10 @@ export default {
      */
     mfGetFieldValue(pFieldName) {
       /*
-      Even before Ct is mounted this fn starts getting called for each field.
-      Putting a gate here keeps the system optimized
-      Without the gate with a debugger statment placed inside getField this function was called 3 times
-      even before the data came from the server and got loaded into the ORM.
+        For each field this function is called twice. 
+        Why is this called twice for each field?
+        console.log('When the Ct is first loaded let us see how many times if getField called');
       */
-      if (!this.isMounted) return 'loading'
       // let us find out if there is an existing row that is already in change state
       const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
       return value
@@ -175,7 +162,6 @@ export default {
       /*
       For reason of this gate see comment for mfGetField in this file
       */
-      if (!this.isMounted) return 'loading'
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       orm.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
