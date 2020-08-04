@@ -8,9 +8,6 @@
           @input="mfSetFieldValueUsingCache($event, 'firstName')"
         >
         </el-input>
-        <!-- This gives a error in the console 
-          Invalid prop: type check failed for prop "value". Expected String, Number, got Boolean with value false.
-        -->
         <el-input
           placeholder="Middle name"
           :value="mfGetFieldValue('middleName')"
