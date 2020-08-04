@@ -1,3 +1,6 @@
+<!-- Code architecture doc is at reference implementation name/cl/c.vue
+In this file only doc unique to this ct is written
+ -->
 <template>
   <div>
     <el-form>
@@ -43,7 +46,7 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import orm from '../db/orm-temperature.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-  props: ['firstParam'], // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
+  props: ['firstParam'],
   data() {
     return {
       isMounted: false,
@@ -96,7 +99,6 @@ export default {
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
       immediate: true,
-      // For detailed doc see name/cl/c.vue
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
         console.log(
           'newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm',
@@ -111,8 +113,6 @@ export default {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
           if (vnExistingRowID === false) {
-            // Adding a new blank record. Since this is temporal DB
-            console.log('adding blank')
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
           } else {
             console.log('not adding blank')
@@ -132,15 +132,12 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
-      // Since only one valid row is possible there may be other discontinued rows
-      // Hence find(1) needs to get improved.
       const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
       console.log(rowToUpsert)
       const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
           uuid: rowToUpsert.uuid,
@@ -149,18 +146,14 @@ export default {
           notes: rowToUpsert.notes,
         }),
       })
-      console.log(response)
       if (response.status === 200) {
-        // set ROW_END of row being changed
         const updateStatus = await orm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&
-              (record.vnRowStateInSession === 1 /* Came from DB */ ||
-              record.vnRowStateInSession ===
-                34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
-                record.vnRowStateInSession ===
-                  24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
+              (record.vnRowStateInSession === 1 ||
+                record.vnRowStateInSession === 34571 ||
+                record.vnRowStateInSession === 24571)
             )
           },
           data: {
@@ -168,55 +161,36 @@ export default {
           },
         })
         console.log(updateStatus)
-        /* Goal: Update the value of copied row to success or failure depending on the api response */
         orm.update({
           where: this.vnIdOfCopiedRowBeingChangedInOrm,
           data: {
             vnRowStateInSession: 34571,
           },
         })
-        // After submitting the form since the form to edit is still there I need to create a copied row
         this.idOfRowBeingChaged = this.vnIdOfCopiedRowBeingChangedInOrm
-        this.vnIdOfCopiedRowBeingChangedInOrm = 0 // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
+        this.vnIdOfCopiedRowBeingChangedInOrm = 0
       }
     },
     mfResetForm() {
-      // Step 1/3: delete the row that was created as a copy
       orm.deleteChangeRowsInEditState()
 
-      // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "act on state" code can take effect to create a copied row see watch vnIdOfCopiedRowBeingChangedInOrm
       this.vnIdOfCopiedRowBeingChangedInOrm = 0
 
-      // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
       orm.arOrmRowsCached = []
     },
 
-    /* Template cannot directly call a ORM function. So first calling a method function
-     and that calls the ORM function
-     */
     mfGetFieldValue(pFieldName) {
-      /*
-      Even before Ct is mounted this fn starts getting called for each field.
-      Putting a gate here keeps the system optimized
-      Without the gate with a debugger statment placed inside getField this function was called 3 times
-      even before the data came from the server and got loaded into the ORM.
-      */
       if (!this.isMounted) return 'loading'
-      // let us find out if there is an existing row that is already in change state
       const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
       console.log(value, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
-      /*
-      For reason of this gate see comment for mfGetField in this file
-      */
       if (!this.isMounted) return 'loading'
-      const rowStatus = 34 // 3 is copy on client and 4 is changed on client
+      const rowStatus = 34
       orm.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+      this.$forceUpdate()
     },
-    // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
     async mfCopyRowToOrm(pArFromOrm) {
       const arFromOrm = await orm.insert({
         data: {
@@ -224,9 +198,8 @@ export default {
           dateOfMeasurement: pArFromOrm.dateOfMeasurement,
           notes: pArFromOrm.notes,
           uuid: pArFromOrm.uuid,
-          vnRowStateInSession: 3, // For meaning of diff values read cts/core/crus/forms.md
-          ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          // ROW_END: already has a default value inside vuex-orm/rem.js
+          vnRowStateInSession: 3,
+          ROW_START: Math.floor(Date.now() / 1000),
         },
       })
       return arFromOrm.ptTemperature[0].id
