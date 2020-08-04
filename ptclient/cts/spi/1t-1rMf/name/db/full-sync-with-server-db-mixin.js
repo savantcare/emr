@@ -1,4 +1,4 @@
-import orm from '~/cts/spi/1t-1rMf/weight/db/orm-weight.js'
+import orm from '~/cts/spi/1t-1rMf/name/db/orm-name.js'
 export default {
   methods: {
     async mxGetDataFromDb() {

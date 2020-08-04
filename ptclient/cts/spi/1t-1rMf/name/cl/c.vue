@@ -60,10 +60,24 @@ export default {
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
       immediate: true,
-      // In V1 this was part of mounted, that is sequential programming
-      // in V2 this is part of watch, this is "react on state" programming.
+      /* 
+        In V1 this was part of mounted, that is sequential programming
+        in V2 this is part of watch, this is "react on state" programming.
+
+        When called first time:
+           newIdOfCopiedRowFromOrm = 0 since data section sets that value
+           oldIdOfCopiedRowFromOrm is undefined
+
+        When called second time:
+           newIdOfCopiedRowFromOrm = 0 since any other function that wants a new row being copied sets it to 0
+           oldIdOfCopiedRowFromOrm is the old value of newIdOfCopiedRowFromOrm. Hence previous row that was being edited
+
+      */
+
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
-        if (!this.isMounted) return false
+        /*         if (!this.isMounted) return false
+            This does not work since mounted line that sets it to true is called after this check
+          */
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)

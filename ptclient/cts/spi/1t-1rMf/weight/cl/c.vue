@@ -60,11 +60,8 @@ export default {
   watch: {
     vnIdOfCopiedRowBeingChangedInOrm: {
       immediate: true,
-      // In V1 this was part of mounted, that is sequential programming
-      // in V2 this is part of watch, this is "react on state" programming.
+      // For detailed doc see name/cl/c.vue
       async handler(newIdOfCopiedRowFromOrm, oldIdOfCopiedRowFromOrm) {
-        if (!this.isMounted) return false
-
         if (newIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.idOfRowBeingChaged)
           const vnExistingRowID = orm.getChangeRowInEditState(arFromOrm.uuid)
