@@ -1,5 +1,3 @@
-// similar to person.js in example
-
 import { Model } from '@vuex-orm/core'
 
 class rowManage extends Model {
@@ -7,8 +5,8 @@ class rowManage extends Model {
   static entity = 'rowstatus'
 
   /*
-Question
---------
+Question 1
+----------
 I have:
 
 class rowManage extends Model {
@@ -16,10 +14,10 @@ class rowManage extends Model {
 (https://github.com/savantcare/emr/blob/master/ptclient/cts/core/crud/row-manage.js#L5)
 
 export default class ptHeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm-height.js#L9)
+(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm.js#L9)
 
 export default class ptWeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm-weight.js#L9)
+(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached
@@ -29,15 +27,15 @@ Answer (In slack channel core_team on 5th aug 2020)
 A static class property becomes part of the constructor, therefore applies to anything that inherits it. If it’s to be unique for each model, it should be a prototype property.
 The active record approach means Vuex ORM caches the model, therefore it inherits the ctor properties 
 
-Question (In slack channel core_team on 5th aug 2020)
---------
+Question 2 (In slack channel core_team on 5th aug 2020)
+----------
 How would I define a prototype property
 Answer
 ------
 Remove the static keyword.
 
-Question (In slack channel core_team on 5th aug 2020)
---------
+Question 3 (In slack channel core_team on 5th aug 2020)
+----------
 I removed the static keyword. Now arOrmRowsCached is not available to ptHeight
 Answer
 ------

@@ -1,5 +1,5 @@
 // Reference implementation
-import orm from '~/cts/spi/1t-1rMf/name/db/orm-name.js'
+import orm from '~/cts/spi/1t-1rMf/name/db/orm.js'
 export default {
   methods: {
     async mxGetDataFromDb() {

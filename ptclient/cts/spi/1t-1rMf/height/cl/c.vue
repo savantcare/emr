@@ -43,7 +43,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import orm from '../db/orm-height.js'
+import orm from '../db/orm.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   props: { firstProp: Number },
