@@ -42,17 +42,17 @@ export default {
     return {
       /*
        1. This row is not changed in the ORM. This row is the latest data where ROW_END is in future.
-       2. Assigning the prop to a local variable since the value of vnIdOfRowToChange will change everytime the user hits submit
+       2. Assigning the prop to a local variable since the value of vnOrmIdOfRowToChange will change everytime the user hits submit
           Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
-      vnIdOfRowToChange: this.firstProp,
+      vnOrmIdOfRowToChange: this.firstProp,
 
       /*
         Why not change the original row?
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnIdOfCopiedRowBeingChangedInOrm: null, // This row is one step ahead of vnIdOfRowToChange
+      vnOrmIdOfCopiedRowBeingChanged: null, // This row is one step ahead of vnOrmIdOfRowToChange
       // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
     }
   },
@@ -83,10 +83,10 @@ export default {
         },
             */
 
-      if (this.vnIdOfCopiedRowBeingChangedInOrm === null) return true // there is a race condition. This if statement waits for copy to finish
+      if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
-      const arToChangeOrm = orm.find(this.vnIdOfRowToChange)
-      const arBeingChanedOrm = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
+      const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange)
+      const arBeingChanedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
       if (
         arToChangeOrm.firstName === arBeingChanedOrm.firstName &&
         arToChangeOrm.middleName === arBeingChanedOrm.middleName &&
@@ -100,7 +100,7 @@ export default {
     },
   },
   watch: {
-    vnIdOfCopiedRowBeingChangedInOrm: {
+    vnOrmIdOfCopiedRowBeingChanged: {
       // setting this calls this watch when the Ct is first initialized
       immediate: true,
       /*
@@ -120,18 +120,18 @@ export default {
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
           /*
-              When called first time this.vnIdOfRowToChange is this.firstProp
-              When called 2nd time this.vnIdOfRowToChange is the previous row that just got saved.
+              When called first time this.vnOrmIdOfRowToChange is this.firstProp
+              When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved.
           */
-          const arFromOrm = orm.find(this.vnIdOfRowToChange)
+          const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
 
           // For a given UUID there can be only 1 row in edit state.
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
-            this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
+            this.vnOrmIdOfCopiedRowBeingChanged = await this.mfCopyRowToOrm(arFromOrm)
           } else {
-            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingChangeRowId
+            this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
       },
@@ -140,7 +140,7 @@ export default {
   methods: {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows
-      const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
+      const rowToUpsert = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
@@ -173,22 +173,22 @@ export default {
         })
         /* Goal: Update the value of copied row to success or failure depending on the api response */
         orm.update({
-          where: this.vnIdOfCopiedRowBeingChangedInOrm,
+          where: this.vnOrmIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
-        this.vnIdOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
-        this.vnIdOfCopiedRowBeingChangedInOrm = null // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
+        this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
+        this.vnOrmIdOfCopiedRowBeingChanged = null // the "act on state" logic will get activate see watch vnOrmIdOfCopiedRowBeingChanged
       }
     },
     mfOnResetForm() {
       // Step 1/3: delete the row that was created as a copy
       orm.deleteChangeRowsInEditState()
 
-      // Step 2/3: Set vnIdOfCopiedRowBeingChangedInOrm as 0 so that "act on state" code can take effect to create a copied row see watch vnIdOfCopiedRowBeingChangedInOrm
-      this.vnIdOfCopiedRowBeingChangedInOrm = null
+      // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as 0 so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
+      this.vnOrmIdOfCopiedRowBeingChanged = null
 
       // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
       orm.arOrmRowsCached = []
@@ -204,7 +204,7 @@ export default {
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
       // let us find out if there is an existing row that is already in change state
-      const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
+      const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
@@ -212,7 +212,7 @@ export default {
       For reason of this gate see comment for mfGetField in this file
       */
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      orm.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
+      orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
     },
     // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108

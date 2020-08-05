@@ -50,8 +50,8 @@ export default {
   data() {
     return {
       isMounted: false,
-      vnIdOfCopiedRowBeingChangedInOrm: 0,
-      vnIdOfRowToChange: this.firstProp,
+      vnOrmIdOfCopiedRowBeingChanged: 0,
+      vnOrmIdOfRowToChange: this.firstProp,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -97,32 +97,32 @@ export default {
     },
   },
   watch: {
-    vnIdOfCopiedRowBeingChangedInOrm: {
+    vnOrmIdOfCopiedRowBeingChanged: {
       immediate: true,
       // For detailed doc see name/cl/c.vue
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
         console.log(
           'pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval',
-          'this.vnIdOfRowToChange',
+          'this.vnOrmIdOfRowToChange',
           'this.firstProp',
           pIdOfCopiedRowBeingChangedInOrmNewVal,
           pIdOfCopiedRowBeingChangedInOrmOldval,
-          this.vnIdOfRowToChange,
+          this.vnOrmIdOfRowToChange,
           this.firstProp
         )
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === 0) {
-          const arFromOrm = orm.find(this.vnIdOfRowToChange)
+          const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
             console.log('adding blank')
-            this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
+            this.vnOrmIdOfCopiedRowBeingChanged = await this.mfCopyRowToOrm(arFromOrm)
           } else {
             console.log('not adding blank')
-            this.vnIdOfCopiedRowBeingChangedInOrm = vnExistingChangeRowId
+            this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
-        console.log('this.vnIdOfCopiedRowBeingChangedInOrm', this.vnIdOfCopiedRowBeingChangedInOrm)
+        console.log('this.vnOrmIdOfCopiedRowBeingChanged', this.vnOrmIdOfCopiedRowBeingChanged)
       },
     },
   },
@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
-      const rowToUpsert = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
+      const rowToUpsert = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
@@ -163,32 +163,32 @@ export default {
           },
         })
         orm.update({
-          where: this.vnIdOfCopiedRowBeingChangedInOrm,
+          where: this.vnOrmIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
           },
         })
-        this.vnIdOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
-        this.vnIdOfCopiedRowBeingChangedInOrm = 0
+        this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
+        this.vnOrmIdOfCopiedRowBeingChanged = 0
       }
     },
     mfOnResetForm() {
       orm.deleteChangeRowsInEditState()
 
-      this.vnIdOfCopiedRowBeingChangedInOrm = 0
+      this.vnOrmIdOfCopiedRowBeingChanged = 0
 
       orm.arOrmRowsCached = []
     },
     mfGetFieldValue(pFieldName) {
       if (!this.isMounted) return 'loading'
-      const value = orm.getFieldValue(this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
-      console.log(value, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName)
+      const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+      console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
       if (!this.isMounted) return 'loading'
       const rowStatus = 34
-      orm.setFieldValue(pEvent, this.vnIdOfCopiedRowBeingChangedInOrm, pFieldName, rowStatus)
+      orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate()
     },
     async mfCopyRowToOrm(pArFromOrm) {
