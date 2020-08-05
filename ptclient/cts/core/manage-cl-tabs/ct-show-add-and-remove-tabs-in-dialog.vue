@@ -186,47 +186,45 @@ export default {
     // #region kbselect
     selectActiveTabFromKeyboard(pEvent) {
       if (this.vblIsdialogHoldingTabsInClVisible === false) {
-        console.log('Rejection reason 1: 2nd layer not active')
+        // Rejection reason 1: 2nd layer not active
         return
       }
       if (pEvent.srcElement.type === 'text') {
-        console.log(
-          'Rejection reason 2: inside text input hence meant as form entry hence dont activate tab'
-        )
+        // Rejection reason 2: inside text input hence meant as form entry hence dont activate tab
         return
       }
       if (pEvent.keyCode === 37) {
-        console.log('left arrow pressed let us find the position of the tab')
+        // left arrow pressed let us find the position of the tab
         const currentTabIdx = this.cfArTabsInCl.findIndex(
           (tab) => tab.id === this.cfVSSelectedTabId
         )
-        console.log('Current tab idx is: ', currentTabIdx)
+        // Current tab idx is: ', currentTabIdx
         if (currentTabIdx === 0) {
-          console.log('at first tab so ignore')
+          // at first tab so ignore
         } else {
           this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx - 1].id)
         }
         return
       }
       if (pEvent.keyCode === 39) {
-        console.log('right arrow pressed let us find the position of the tab')
+        // right arrow pressed let us find the position of the tab
         const currentTabIdx = this.cfArTabsInCl.findIndex(
           (tab) => tab.id === this.cfVSSelectedTabId
         )
         if (currentTabIdx === this.cfArTabsInCl.length - 1) {
-          console.log('at last tab so ignore')
+          // at last tab so ignore
         } else {
           this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx + 1].id)
         }
         return
       }
       const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabsInCl.length
-      console.log('max code:', maxValidKeyCodeEnteredByUser, 'pressed code is', pEvent.keyCode)
+      // max code:', maxValidKeyCodeEnteredByUser, 'pressed code is', pEvent.keyCode
       if (pEvent.keyCode >= '49' && pEvent.keyCode <= maxValidKeyCodeEnteredByUser) {
-        console.log('Activating tab at position' + pEvent.key)
+        // Activating tab at position' + pEvent.key
         this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[pEvent.key - 1].id)
       } else {
-        console.log('Rejection reason 3: User entered # is higher then max tabs')
+        // Rejection reason 3: User entered # is higher then max tabs
       }
     },
     // #endregion kbselect
@@ -251,7 +249,7 @@ export default {
         this.vblIsdialogHoldingTabsInClVisible = false
       } else {
         // Once a tab is removed an existing tab needs to be made active
-        console.log(tabToRemoveFoundAt, arNewTabs)
+
         let idOfNewActiveTab = 0
         if (tabToRemoveFoundAt === 0) {
           idOfNewActiveTab = 0

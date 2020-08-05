@@ -40,19 +40,15 @@ export default {
     // Why? el-input has autofocus property but el-autocomplete does not have auto-focus
     // How? Ref: https://stackoverflow.com/questions/43270159/vue-js-2-how-to-watch-store-values-from-vuex
     cfFireWhenActiveTabIDChanges(newTabID, oldTabID) {
-      console.log('New tab id is: ', newTabID)
-
       // get the CL selected tab and update the dialog width accoding to the tab width
       const clSelectedTab = this.$store.state.vstObjTabsInCL.arTabs.find(
         (element) => element.id === newTabID
       )
-      console.log('selected tab: ', clSelectedTab)
       this.$store.commit('mtfSetTabDialogWidth', clSelectedTab.ctWidthInCl)
 
       if (newTabID === '0') {
         this.$refs.searchbox.focus()
         this.keyword = '' // when this tab is activated 2nd time the search box will be empty
-        console.log(`Msg from L2 search ct: Focus changed and keyword empty`)
       }
     },
   },
@@ -78,7 +74,6 @@ export default {
         .where('operatesOn', 'table') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row
         .search(pQueryString.trim())
         .get() // trim needs for "goal " to match "goal"
-      console.log('search result from orm model', pQueryString, arFromOrm)
 
       arFromOrm = arFromOrm.map((result) => {
         let finalStr = ''
@@ -98,7 +93,6 @@ export default {
       pCallBack(arFromOrm)
     },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
-      console.log('Selected suggestion is', pSelectedSuggestion)
       const objAddTab = {
         label: pSelectedSuggestion.value.replace(/(<([^>]+)>)/gi, ''),
         // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working

@@ -12,7 +12,6 @@ export default {
       state.vblIsdialogHoldingTabsInClVisible = value
     },
     mtfSetTabDialogWidth(state, value) {
-      console.log('Dialog width', value)
       state.vsDialogWidth = value
     },
     mtfAdditionalTabAddOrActivate(state, pObjAdditionalTab) {
