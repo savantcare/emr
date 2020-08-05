@@ -10,7 +10,10 @@
           :value="mfGetRemDescUsingCache()"
           @input="mfSetRemDescInVstOnDelay($event)"
         ></el-input>
-        <!-- mfSetRemDescInVstOnDelay -> Full form: Set reminder description in view state on delay -->
+        <!-- 
+          TODO: Give same name like name ct
+          mfSetRemDescInVstOnDelay -> Full form: Set reminder description in view state on delay 
+          -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
@@ -28,6 +31,9 @@
         :type="row.type"
       >
         {{ row.remDesc }}
+        <!-- 
+          TODO: Since this is a reference implementation change to Desc that would be more widely applicable.
+          -->
         <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
           >sending to server</span
         >
@@ -115,6 +121,10 @@ export default {
      not know what the original data to show below the edit/change form.
      */
     async mfCopyRowToOrm(pDesc) {
+      /* TODO: maybe 125 to 134 can be done by rowManage class. Since 
+            1. This is used in each Ct.
+            2. phq9 Ct has 9 fields so this will become very big.
+        */
       const arFromOrm = await ormRem.insert({
         data: {
           remDesc: pDesc,
@@ -174,6 +184,11 @@ export default {
         */
 
       // Goal: decide if it is repeat or first invocation
+
+      /*
+          TODO: Instead of sequential programming make it act on state like in name Ct.
+      */
+
       let arFromOrm = []
       if (this.ormRowIDForPreviousInvocation === this.firstProp) {
         // this is repeat invocation
