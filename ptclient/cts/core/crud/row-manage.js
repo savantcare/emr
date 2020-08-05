@@ -130,17 +130,23 @@ class rowManage extends Model {
 
   static getFieldValue(pOrmRowId, pFieldName) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
+    if (
+      typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
+      typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined'
+    ) {
       // finding in model
       const arFromOrm = this.find(pOrmRowId)
       if (arFromOrm) {
-        this.arOrmRowsCached[pOrmRowId] = arFromOrm
+        if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
+          this.arOrmRowsCached[this.entity] = []
+        }
+        this.arOrmRowsCached[this.entity][pOrmRowId] = arFromOrm
         return arFromOrm[pFieldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[pOrmRowId][pFieldName]
+      return this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName]
     }
   }
 
@@ -278,12 +284,12 @@ class rowManage extends Model {
     Step 1: This is called in the form on each key press (@input is invoked on each key press)
             Ref: The chain is started at cts/spi/1t-Mr1f/rem/cl/add.vue:16 
             The sequence is: add.vue:16:mfSetFieldUsingCache 
-                              => add.vue:116:ormRem.setField 
+                              => add.vue:116:ormRecord.setField 
                                 => rowStatus.js:118:this.putFieldValueInCache
 
     Step : The work done by this function is used on each key press at:
                             add.vue:15:value="mfGetField"
-                              => add.vue:113:ormRem.getField
+                              => add.vue:113:ormRecord.getField
                                 => rowStatus.js:97
 
     Problem?                              
@@ -293,10 +299,13 @@ class rowManage extends Model {
   */
   static putFieldValueInCache(pEvent, pOrmRowId, pFieldName) {
     // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setFieldInOrmOnTimeOut
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
-      this.arOrmRowsCached[pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
+      this.arOrmRowsCached[this.entity] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[pOrmRowId][pFieldName] = pEvent
+    if (typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined') {
+      this.arOrmRowsCached[this.entity][pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    }
+    this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName] = pEvent
 
     /*
     // Method 2: https://vuejs.org/2016/02/06/common-gotchas/#Why-isn%E2%80%99t-the-DOM-updating
@@ -513,6 +522,90 @@ class rowManage extends Model {
     response.success = success
     response.failed = failed
     return response
+  }
+
+  static async sendChangeDataToServer(ormRowId, arData) {
+    const arFromOrm = this.find(ormRowId)
+    const response = await fetch(this.apiUrl + '/' + arFromOrm.uuid, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        // "Authorization": "Bearer " + TOKEN
+      },
+      body: JSON.stringify(arData),
+    })
+    if (!response.ok) {
+      /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+      await this.update({
+        where: ormRowId,
+        data: {
+          vnRowStateInSession: 3458,
+        },
+      })
+      console.log('Failed to update')
+    } else {
+      /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
+        Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
+        ormRowIDForPreviousInvocation is = firstProp. So ormRowIDForPreviousInvocation is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+        How to update the ROW_END for id = 2?
+          option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
+          option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
+                    Option 2 is rejected. Since ID2 will now require update in following 3 cases:
+                      1. When ID 3 is created it will require changing state of id 2. 
+                      2. Also when id3 is deleted without saving to DB. 
+                      3. Or ID 3 is saved to DB. 
+
+      */
+
+      /*
+        Q): Why following where clause needed?
+        A): 
+            Whenever we change a record and hit save button, we get two records in ormRecord with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp. 
+            In real time 3 cases may happen. 
+              1. User changes an existing record. i.e. rowState = 1
+              2. User already changed a record and then again changes that record i.e. rowState = 34571
+              3. User adds a record and then changes that newly added record again i.e. rowState = 24571
+
+        Following logic of where clause deals with these 3 types of cases.
+
+        Q) What we have done to deal with the above mentioned problem?
+        A)
+            We are following below mentioned logic in where clause of ormRecord update:
+            -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
+              "exp A" -> search record from ormRecord whose uuid = this.uuid
+              "exp B1" -> "vnRowStateInSession === 1",
+                  ormRecord record that came from database (Case: User changes an existing record)
+              "exp B2" -> "vnRowStateInSession === 34571", 
+                  ormRecord record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record) 
+              "exp B3" -> "vnRowStateInSession === 24571", 
+                  ormRecord record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+     */
+      await this.update({
+        where: (record) => {
+          return (
+            record.uuid === arFromOrm.uuid &&
+            (record.vnRowStateInSession === 1 /* Came from DB */ ||
+            record.vnRowStateInSession ===
+              34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
+              record.vnRowStateInSession ===
+                24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
+          )
+        },
+        data: {
+          ROW_END: Math.floor(Date.now() / 1000),
+        },
+      })
+
+      /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+      await this.update({
+        where: ormRowId,
+        data: {
+          vnRowStateInSession: 34571,
+        },
+      })
+
+      console.log('update success')
+    }
   }
 }
 
