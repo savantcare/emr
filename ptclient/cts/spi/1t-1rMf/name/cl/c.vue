@@ -108,17 +108,17 @@ export default {
         in V2 this is part of watch, this is "act on state" programming.
 
         When called first time:
-           pNewIdOfCopiedRowFromOrm = 0 since data section sets that value
-           pOldIdOfCopiedRowFromOrm is undefined
+           pIdOfCopiedRowBeingChangedInOrmNewVal = null since data section sets that value
+           pIdOfCopiedRowBeingChangedInOrmOldval is undefined
 
         When called second time:
-           pNewIdOfCopiedRowFromOrm = 0 since any other function that wants a new row being copied sets it to 0
-           pOldIdOfCopiedRowFromOrm is the old value of pNewIdOfCopiedRowFromOrm. Hence previous row that was being edited
+           pIdOfCopiedRowBeingChangedInOrmNewVal = null since any other function that wants a new row being copied sets it to 0
+           pIdOfCopiedRowBeingChangedInOrmOldval is the old value of pIdOfCopiedRowBeingChangedInOrmNewVal. Hence previous row that was being edited
 
       */
 
-      async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
-        if (pNewIdOfCopiedRowFromOrm === null) {
+      async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
+        if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
           /*
               When called first time this.vnIdOfRowToChange is this.firstProp
               When called 2nd time this.vnIdOfRowToChange is the previous row that just got saved.
