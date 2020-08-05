@@ -5,6 +5,12 @@ Code synced with ref implementation on 4th august 2020
   <div>
     <el-form>
       <el-form-item>
+        <el-checkbox-group v-model="checkList">
+          <el-checkbox label="Not at all"></el-checkbox>
+          <el-checkbox label="Several days"></el-checkbox>
+          <el-checkbox label="More then half the days"></el-checkbox>
+          <el-checkbox label="Nearly every day"></el-checkbox>
+        </el-checkbox-group>
         <el-input
           placeholder="little Interest Or Pleasure In Doing Things"
           :value="mfGetFieldValue('littleInterestOrPleasureInDoingThings')"
@@ -55,6 +61,7 @@ export default {
   props: { firstProp: Number },
   data() {
     return {
+      checkList: ['selected and disabled', 'Option A'],
       vnOrmIdOfRowToChange: this.firstProp,
       vnOrmIdOfCopiedRowBeingChanged: null,
       pickerOptions: {
