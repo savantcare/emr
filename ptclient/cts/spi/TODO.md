@@ -4,6 +4,8 @@
 
 1. I have height command and weight command. I click on C for height and change it. When I click on C beside weight this gets the value for height.
 
+2. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+
 ## Rem (Raj)
 
 1. When changing data
