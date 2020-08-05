@@ -92,7 +92,7 @@ export default {
               Option1: Return ORM array
                   -ves:
                     1. Created at needs to be made inside the template
-                    2. Empty row needs to be filtered out in template
+                    2. Making pager would be harder
                   +ves:
                     No need to run the for loop
       */

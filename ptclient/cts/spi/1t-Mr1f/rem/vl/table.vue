@@ -53,7 +53,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
           <template slot-scope="props">
             <!-- 
               Goal: 
-              I open "add form" and enter "jai kali ma" and then i close the add form by pressign escape. In the table that row should not have change and discontinue
+              I open "add form" and enter "jai kali ma" and then i close the add form by pressing escape. In the table that row should not have change and discontinue
 
               How: 
               v-if to check is the 'vnRowStateInSession' not exists in array 'daRowStatesNotHavingCD'
