@@ -38,4 +38,6 @@ Options:                          Looks           Animation    OSS      clickabl
 5. Highcharts                       6                8        Yes                Yes                        Yes          Yes         https://github.com/highcharts/highcharts-vue
 
 Ref: https://www.sitepoint.com/best-javascript-charting-libraries/
+
+Decision: vue-highchrts https://github.com/highcharts/highcharts-vue
 ```
