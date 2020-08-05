@@ -130,17 +130,23 @@ class rowManage extends Model {
 
   static getFieldValue(pOrmRowId, pFieldName) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
+    if (
+      typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
+      typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined'
+    ) {
       // finding in model
       const arFromOrm = this.find(pOrmRowId)
       if (arFromOrm) {
-        this.arOrmRowsCached[pOrmRowId] = arFromOrm
+        if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
+          this.arOrmRowsCached[this.entity] = []
+        }
+        this.arOrmRowsCached[this.entity][pOrmRowId] = arFromOrm
         return arFromOrm[pFieldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[pOrmRowId][pFieldName]
+      return this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName]
     }
   }
 
@@ -293,10 +299,13 @@ class rowManage extends Model {
   */
   static putFieldValueInCache(pEvent, pOrmRowId, pFieldName) {
     // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setFieldInOrmOnTimeOut
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
-      this.arOrmRowsCached[pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
+      this.arOrmRowsCached[this.entity] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[pOrmRowId][pFieldName] = pEvent
+    if (typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined') {
+      this.arOrmRowsCached[this.entity][pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    }
+    this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName] = pEvent
 
     /*
     // Method 2: https://vuejs.org/2016/02/06/common-gotchas/#Why-isn%E2%80%99t-the-DOM-updating
