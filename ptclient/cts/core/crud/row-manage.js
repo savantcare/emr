@@ -426,6 +426,31 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  static async copyRow(pOrmRowId) {
+    const arToCopy = this.find(pOrmRowId)
+
+    // remove the id field so that vuexOrm will create a new primary key
+    delete arToCopy.id
+    // set ROW_START to now
+    arToCopy.ROW_START = Math.floor(Date.now() / 1000)
+    // Since this row is copied set the correct rowState
+    arToCopy.vnRowStateInSession = 3 // For meaning of diff values read cts/core/crus/forms.md
+
+    const newRow = await this.insert({
+      data: arToCopy,
+    })
+
+    // Cannot use this since ptName is hardcoded. For different Ct this will be different.
+    // const idOfNewRow = newRow.ptName[0].id
+
+    /* How to get the first key when I do not know the name of the first key 
+    Ref: https://stackoverflow.com/questions/983267/how-to-access-the-first-property-of-a-javascript-object
+    */
+    const firstKey = newRow[Object.keys(newRow)[0]]
+    const idOfNewRow = firstKey[0].id
+    return idOfNewRow
+  }
+
   static async sendToServer() {
     // API will return 1 (Success) or 0 (Failure)
     const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()

@@ -86,6 +86,8 @@ export default {
         },
             */
 
+      // TODO: there needs to be a compare Row function Since some Ct will have 10 fields.
+
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
       const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange) // at first run this.vnOrmIdOfRowToChange is this.firstProp
@@ -132,7 +134,8 @@ export default {
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
-            this.vnOrmIdOfCopiedRowBeingChanged = await this.mfCopyRowToOrm(arFromOrm)
+            // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
+            this.vnOrmIdOfCopiedRowBeingChanged = await orm.copyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -227,21 +230,6 @@ export default {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
-    },
-    // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
-    async mfCopyRowToOrm(pArFromOrm) {
-      const arFromOrm = await orm.insert({
-        data: {
-          firstName: pArFromOrm.firstName,
-          middleName: pArFromOrm.middleName,
-          lastName: pArFromOrm.lastName,
-          uuid: pArFromOrm.uuid,
-          vnRowStateInSession: 3, // For meaning of diff values read cts/core/crus/forms.md
-          ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          // ROW_END: already has a default value inside vuex-orm/rem.js
-        },
-      })
-      return arFromOrm.ptName[0].id
     },
   },
 }
