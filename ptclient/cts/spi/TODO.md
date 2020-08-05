@@ -1,8 +1,8 @@
 # Specified
 
-## Name (Vikas)
+## Name
 
-1. Submit form
+1. Connect to mariaDB
 
 ## Rem (Raj)
 
