@@ -89,6 +89,17 @@ export default {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
       // at first run this.vnOrmIdOfRowToChange is this.firstProp
+
+      /* Problem:
+          user does the following:
+          1. Clicks on C beside Name and makes a change.
+          2. Closes the open tab by clicking on cross.
+          3. Clicks on C beside Name again.
+          Now this.vnOrmIdOfRowToChange and this.vnOrmIdOfCopiedRowBeingChanged are = 2.
+
+          How to solve this?
+          In the view layer it should always display the row that is getting changed.
+      */
       if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
         this.$root.$emit('event-from-ct-name-copied-row-same')
         return true
