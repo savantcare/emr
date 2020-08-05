@@ -440,14 +440,17 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     delete objRow1.$id
     delete objRow2.$id
 
-    if (
-      objRow1.firstName === objRow2.firstName &&
-      objRow1.middleName === objRow2.middleName &&
-      objRow1.lastName === objRow2.lastName
-    )
-      return true
+    delete objRow1.vnRowStateInSession
+    delete objRow1.vnRowStateInSession
 
-    return false
+    // Code for comparing 2 objects comes from https://stackoverflow.com/a/5859028
+    for (const p in objRow1) {
+      if (objRow1[p] !== objRow2[p]) {
+        return false
+      }
+    }
+
+    return true
   }
 
   static async copyRow(pOrmRowId) {
