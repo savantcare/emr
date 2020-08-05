@@ -1,3 +1,4 @@
+<!-- Reference implementation -->
 <!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
   <div></div>

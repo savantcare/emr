@@ -3,7 +3,7 @@
     {
       "uuid": 1,
       "firstName": "Jai",
-      "middleName": "kali",
+      "middleName": "kali durga",
       "lastName": "Ma"
     },
     {
@@ -16,7 +16,7 @@
   "weight": [
     {
       "uuid": 1,
-      "weightInPounds": "122",
+      "weightInPounds": "124",
       "dateOfMeasurement": "2020-08-03",
       "notes": "Jai kali ma"
     },

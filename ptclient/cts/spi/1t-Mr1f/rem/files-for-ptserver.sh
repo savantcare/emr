@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Reference implementation
+
 # This file is called by /emr/ptserver/copy-files-from-component-to-correct-locations.sh
 echo "Running file copy"
 
