@@ -104,7 +104,7 @@ dialog
             :closable="tab.closable"
           >
             <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
-            <component :is="tab.ctToShow" :first-param="tab.vstPropsToGiveToCt"></component>
+            <component :is="tab.ctToShow" :first-prop="tab.vstPropsToGiveToCt"></component>
           </el-tab-pane>
         </el-tabs>
       </el-col>

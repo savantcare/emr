@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
-          >Submit firstpapram is {{ this.firstParam }}</el-button
+          >Submit firstpapram is {{ this.firstProp }}</el-button
         >
       </el-form-item>
     </el-form>
@@ -43,11 +43,11 @@
 import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 export default {
   /* 
-    Q) Why is firstParam needed?
+    Q) Why is firstProp needed?
         There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder the user wants to change.
-        So firstParam is the remID being changed. The remID is the primary key coming from vuexOrm
+        So firstProp is the remID being changed. The remID is the primary key coming from vuexOrm
     
-    Q) Why is this called firstParam
+    Q) Why is this called firstProp
         This Ct is called in a for loop. In the same for loop other Ct are also called.
         So the param name has to be generic and cannot be unique to each Ct
     
@@ -58,7 +58,7 @@ export default {
         To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire logic if formType value is set to 'mc'.
    */
 
-  props: ['firstParam', 'formType'],
+  props: ['firstProp', 'formType'],
   data() {
     return {
       uuid: '',
@@ -173,15 +173,15 @@ export default {
 
       // Goal: decide if it is repeat or first invocation
       let arFromOrm = []
-      if (this.ormRowIDForPreviousInvocation === this.firstParam) {
+      if (this.ormRowIDForPreviousInvocation === this.firstProp) {
         // this is repeat invocation
         this.mfManageFocus()
         // Inferences: 1. this.uuid is already existing 2. New empty row where the user can type is already existing
       } else {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
         // this is first time invocation
-        this.ormRowIDForPreviousInvocation = this.firstParam
-        arFromOrm = ormRem.find(this.firstParam)
+        this.ormRowIDForPreviousInvocation = this.firstProp
+        arFromOrm = ormRem.find(this.firstProp)
         this.uuid = arFromOrm.uuid
         // Find if there is unsaved data for this.uuid
         const vnExistingChangeRowId = ormRem.getChangeRowIdInEditState(this.uuid)
@@ -242,8 +242,8 @@ export default {
           console.log('Failed to update')
         } else {
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
-            Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstParam is 3.
-            ormRowIDForPreviousInvocation is = firstParam. So ormRowIDForPreviousInvocation is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+            Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
+            ormRowIDForPreviousInvocation is = firstProp. So ormRowIDForPreviousInvocation is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
               option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
               option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row

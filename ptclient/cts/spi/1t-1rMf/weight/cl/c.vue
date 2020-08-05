@@ -46,12 +46,12 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-weight.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-  props: ['firstParam'],
+  props: ['firstProp'],
   data() {
     return {
       isMounted: false,
       vnIdOfCopiedRowBeingChangedInOrm: 0,
-      vnIdOfRowToChange: this.firstParam,
+      vnIdOfRowToChange: this.firstProp,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -104,11 +104,11 @@ export default {
         console.log(
           'pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm',
           'this.vnIdOfRowToChange',
-          'this.firstParam',
+          'this.firstProp',
           pNewIdOfCopiedRowFromOrm,
           pOldIdOfCopiedRowFromOrm,
           this.vnIdOfRowToChange,
-          this.firstParam
+          this.firstProp
         )
         if (pNewIdOfCopiedRowFromOrm === 0) {
           const arFromOrm = orm.find(this.vnIdOfRowToChange)

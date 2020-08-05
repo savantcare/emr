@@ -37,7 +37,7 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-name.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-  props: { firstParam: Number }, // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
+  props: { firstProp: Number }, // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
   data() {
     return {
       /*
@@ -45,7 +45,7 @@ export default {
        2. Assigning the prop to a local variable since the value of vnIdOfRowToChange will change everytime the user hits submit
           Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
-      vnIdOfRowToChange: this.firstParam,
+      vnIdOfRowToChange: this.firstProp,
 
       /*
         Why not change the original row?
@@ -120,7 +120,7 @@ export default {
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         if (pNewIdOfCopiedRowFromOrm === null) {
           /*
-              When called first time this.vnIdOfRowToChange is this.firstParam
+              When called first time this.vnIdOfRowToChange is this.firstProp
               When called 2nd time this.vnIdOfRowToChange is the previous row that just got saved.
           */
           const arFromOrm = orm.find(this.vnIdOfRowToChange)
