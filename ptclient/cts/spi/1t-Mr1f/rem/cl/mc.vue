@@ -68,7 +68,7 @@ How to solve this?
               2. Embedded that means it has its own submit and other controls. But the same page has other forms also
               3. sub-part-of-another-form
               -->
-              <ctChangeRem :first-param="remID" form-type="embedded"></ctChangeRem>
+              <ctChangeRem :first-prop="remID" form-type="embedded"></ctChangeRem>
             </el-card>
           </el-col>
         </el-row>
