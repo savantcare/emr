@@ -86,17 +86,10 @@ export default {
         },
             */
 
-      // TODO: there needs to be a compare Row function Since some Ct will have 10 fields.
-
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
-      const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange) // at first run this.vnOrmIdOfRowToChange is this.firstProp
-      const arBeingChangedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      if (
-        arToChangeOrm.firstName === arBeingChangedOrm.firstName &&
-        arToChangeOrm.middleName === arBeingChangedOrm.middleName &&
-        arToChangeOrm.lastName === arBeingChangedOrm.lastName
-      ) {
+      // at first run this.vnOrmIdOfRowToChange is this.firstProp
+      if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
         this.$root.$emit('event-from-ct-name-copied-row-same')
         return true
       }

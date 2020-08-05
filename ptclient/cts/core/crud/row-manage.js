@@ -426,6 +426,30 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  static compareRows(pRow1Id, pRow2Id) {
+    const objRow1 = this.find(pRow1Id)
+    const objRow2 = this.find(pRow2Id)
+
+    // delete fields that are not part of compare
+    delete objRow1.id
+    delete objRow2.id
+
+    delete objRow1.ROW_START
+    delete objRow2.ROW_START
+
+    delete objRow1.$id
+    delete objRow2.$id
+
+    if (
+      objRow1.firstName === objRow2.firstName &&
+      objRow1.middleName === objRow2.middleName &&
+      objRow1.lastName === objRow2.lastName
+    )
+      return true
+
+    return false
+  }
+
   static async copyRow(pOrmRowId) {
     const arToCopy = this.find(pOrmRowId)
 
