@@ -86,13 +86,7 @@ export default {
     cfIsButtonDisabled() {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
-      const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange)
-      const arBeingChangedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      if (
-        arToChangeOrm.temperatureInFarehnite === arBeingChangedOrm.temperatureInFarehnite &&
-        arToChangeOrm.dateOfMeasurement === arBeingChangedOrm.dateOfMeasurement &&
-        arToChangeOrm.notes === arBeingChangedOrm.notes
-      ) {
+      if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
         this.$root.$emit('event-from-ct-temperature-copied-row-same')
         return true
       }

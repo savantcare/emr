@@ -99,13 +99,7 @@ export default {
     cfIsButtonDisabled() {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
-      const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange)
-      const arBeingChangedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      if (
-        arToChangeOrm.phq9InInches === arBeingChangedOrm.phq9InInches &&
-        arToChangeOrm.dateOfMeasurement === arBeingChangedOrm.dateOfMeasurement &&
-        arToChangeOrm.notes === arBeingChangedOrm.notes
-      ) {
+      if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
         this.$root.$emit('event-from-ct-phq9-copied-row-same')
         return true
       }
