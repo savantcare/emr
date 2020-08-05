@@ -40,6 +40,16 @@ export default {
         return ''
       }
     },
+    /* 
+      This is required for tab indexing 
+      if this is pos 0 then tab index is set as 1 
+      if this is pos 1 then tab index is set as 101 
+      So the first card on ptsVl will get tabIndex as 1
+      So the 2nd card on ptsVl will get tabIndex as 101
+      So when the user presses tab 
+        first Card 1 will focus
+        2nd the card 2 will focus
+      */
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
       const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl

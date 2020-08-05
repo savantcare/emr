@@ -1,5 +1,5 @@
-/* Code architecture doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
-In this file only doc unique to this ct is written */
+/* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
+This file has doc unique to this ct */
 import orm from '~/cts/spi/1t-1rMf/weight/db/orm-weight.js'
 export default {
   methods: {

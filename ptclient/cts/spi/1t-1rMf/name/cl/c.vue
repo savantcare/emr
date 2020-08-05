@@ -53,7 +53,10 @@ export default {
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
       vnOrmIdOfCopiedRowBeingChanged: null, // This row is one step ahead of vnOrmIdOfRowToChange
-      // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
+      /*
+        isMounted: false,
+        Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
+       */
     }
   },
   computed: {
@@ -137,6 +140,16 @@ export default {
       },
     },
   },
+  /*
+    This code is not needed since when I come here I am sure that the data is already inside ORM.
+    async mounted() {
+      if (orm.query().count() > 0) {
+      } else {
+        await this.mxGetDataFromDb()
+      }
+      this.isMounted = true
+    },
+  */
   methods: {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows

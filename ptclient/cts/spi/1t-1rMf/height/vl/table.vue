@@ -1,5 +1,5 @@
-<!-- Code architecture doc is at reference implementation name/vl/table.vue
-In this file only doc unique to this ct is written
+<!-- Master doc is at reference implementation name/vl/table.vue
+This file has doc unique to this ct
  -->
 <template>
   <div class="content element-doc content">

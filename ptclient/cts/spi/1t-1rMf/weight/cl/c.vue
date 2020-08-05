@@ -1,6 +1,4 @@
-<!-- Code architecture doc is at reference implementation name/cl/c.vue
-In this file only doc unique to this ct is written
- -->
+<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct -->
 <template>
   <div>
     <el-form>
@@ -46,12 +44,11 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm-weight.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-  props: ['firstProp'],
+  props: { firstProp: Number },
   data() {
     return {
-      isMounted: false,
-      vnOrmIdOfCopiedRowBeingChanged: 0,
       vnOrmIdOfRowToChange: this.firstProp,
+      vnOrmIdOfCopiedRowBeingChanged: null,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -85,53 +82,37 @@ export default {
   },
   computed: {
     cfIsButtonDisabled() {
-      if (!this.isMounted) return false
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
-      if (arFromOrm.length === 0) return false
-      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
-        return false
+      if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
+
+      const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange)
+      const arBeingChangedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
+      if (
+        arToChangeOrm.weightInPounds === arBeingChangedOrm.weightInPounds &&
+        arToChangeOrm.dateOfMeasurement === arBeingChangedOrm.dateOfMeasurement &&
+        arToChangeOrm.notes === arBeingChangedOrm.notes
+      ) {
+        this.$root.$emit('event-from-ct-weight-copied-row-same')
+        return true
       }
-      return true
+      this.$root.$emit('event-from-ct-weight-copied-row-diff')
+      return false
     },
   },
   watch: {
     vnOrmIdOfCopiedRowBeingChanged: {
       immediate: true,
-      // For detailed doc see name/cl/c.vue
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
-        console.log(
-          'pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval',
-          'this.vnOrmIdOfRowToChange',
-          'this.firstProp',
-          pIdOfCopiedRowBeingChangedInOrmNewVal,
-          pIdOfCopiedRowBeingChangedInOrmOldval,
-          this.vnOrmIdOfRowToChange,
-          this.firstProp
-        )
-        if (pIdOfCopiedRowBeingChangedInOrmNewVal === 0) {
+        if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
-            // Adding a new blank record. Since this is temporal DB
-            console.log('adding blank')
             this.vnOrmIdOfCopiedRowBeingChanged = await this.mfCopyRowToOrm(arFromOrm)
           } else {
-            console.log('not adding blank')
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
-        console.log('this.vnOrmIdOfCopiedRowBeingChanged', this.vnOrmIdOfCopiedRowBeingChanged)
       },
     },
-  },
-  async mounted() {
-    if (orm.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb()
-    }
-    this.isMounted = true
   },
   methods: {
     async mfOnSubmit() {
@@ -170,25 +151,22 @@ export default {
           },
         })
         this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
-        this.vnOrmIdOfCopiedRowBeingChanged = 0
+        this.vnOrmIdOfCopiedRowBeingChanged = null
       }
     },
     mfOnResetForm() {
       orm.deleteChangeRowsInEditState()
 
-      this.vnOrmIdOfCopiedRowBeingChanged = 0
+      this.vnOrmIdOfCopiedRowBeingChanged = null
 
       orm.arOrmRowsCached = []
     },
 
     mfGetFieldValue(pFieldName) {
-      if (!this.isMounted) return 'loading'
       const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
-      console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
-      if (!this.isMounted) return 'loading'
       const rowStatus = 34
       orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate()

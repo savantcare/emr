@@ -1,6 +1,4 @@
-<!-- Code architecture doc is at reference implementation name/cl/c.vue
-In this file only doc unique to this ct is written
- -->
+<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct  -->
 <template>
   <div>
     <h5>Weight</h5>
@@ -35,12 +33,12 @@ export default {
   data() {
     return {
       isMounted: false,
+      isCopiedRowDiff: false,
     }
   },
   computed: {
     cfWeight() {
       if (!this.isMounted) return false
-
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
       if (arFromOrm.length) {
         return arFromOrm[0]
@@ -56,18 +54,20 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      if (!this.isMounted) return 'primary'
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('weightInPounds')
-      if (arFromOrm.length === 0) return 'primary'
-      const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
+      if (this.isCopiedRowDiff === true) {
         return 'warning'
       }
       return 'primary'
     },
   },
   async mounted() {
+    this.$root.$on('event-from-ct-weight-copied-row-diff', () => {
+      this.isCopiedRowDiff = true
+    })
+    this.$root.$on('event-from-ct-weight-copied-row-same', () => {
+      this.isCopiedRowDiff = false
+    })
+
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
