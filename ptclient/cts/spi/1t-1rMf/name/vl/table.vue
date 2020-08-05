@@ -16,6 +16,16 @@
       @click="mfOpenCCtInCl(cfName['id'])"
       >C</el-button
     >
+    <el-button
+      v-if="isCopiedRowDiff"
+      type="primary"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfOpenCCtInCl(cfName['id'])"
+      >S</el-button
+    >
   </div>
 </template>
 
