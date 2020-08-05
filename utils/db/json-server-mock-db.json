@@ -16,7 +16,7 @@
   "weight": [
     {
       "uuid": 1,
-      "weightInPounds": "124",
+      "weightInPounds": "122",
       "dateOfMeasurement": "2020-08-03",
       "notes": "Jai kali ma"
     },
@@ -30,7 +30,7 @@
   "height": [
     {
       "uuid": 1,
-      "heightInInches": "113",
+      "heightInInches": "114",
       "dateOfMeasurement": "2020-08-03",
       "notes": "Height measured "
     },
@@ -53,7 +53,7 @@
   "temperature": [
     {
       "uuid": 1,
-      "temperatureInFarehnite": "99",
+      "temperatureInFarehnite": "101",
       "dateOfMeasurement": "2020-08-03",
       "notes": "Jai kali ma"
     },

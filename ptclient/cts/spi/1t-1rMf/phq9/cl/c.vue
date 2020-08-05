@@ -121,7 +121,7 @@ export default {
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
-            this.vnOrmIdOfCopiedRowBeingChanged = await this.mfCopyRowToOrm(arFromOrm)
+            this.vnOrmIdOfCopiedRowBeingChanged = await orm.copyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -184,19 +184,6 @@ export default {
       const rowStatus = 34
       orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate()
-    },
-    async mfCopyRowToOrm(pArFromOrm) {
-      const arFromOrm = await orm.insert({
-        data: {
-          littleInterestOrPleasureInDoingThings: pArFromOrm.littleInterestOrPleasureInDoingThings,
-          feelingDownDepressedOrHopeless: pArFromOrm.feelingDownDepressedOrHopeless,
-          notes: pArFromOrm.notes,
-          uuid: pArFromOrm.uuid,
-          vnRowStateInSession: 3,
-          ROW_START: Math.floor(Date.now() / 1000),
-        },
-      })
-      return arFromOrm.ptPhq9[0].id
     },
   },
 }
