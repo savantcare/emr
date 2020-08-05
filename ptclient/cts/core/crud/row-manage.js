@@ -217,8 +217,65 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  /*  This function finds data in client side vuex-orm. This fn is not making a API query to the server.
-      If there are 10 rows with same UUID then it will return the latest row
+  /*
+    Suppose the row of Name has had 3 changes and 1 change is in edit state.
+    The inferences we can draw are:
+    1. The Orm Ids are 1,2,3,4
+    2. Id 1,2 are discontinued
+    3. Id 3,4 are valid
+    4. Id 3 is Orm Id Of Row To Change
+    5. Id 4 is Orm Id Of CopiedRowBeingChanged
+
+    This function will return 3.
+
+    For multiple row Cts this for each row will return the highest ID that has been saved to DB
+
+  */
+
+  static getRowsToChange(pFieldForNonEmptyCheck) {
+    // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    const arFromOrm = this.query()
+      .where('ROW_END', 2147483647.999999)
+      .where(pFieldForNonEmptyCheck, (value) => value.length > 0)
+      .get()
+
+    // Discard all entries from this array where it does not end in 1.
+    for (let i = 0; i < arFromOrm.length; i++) {
+      if (arFromOrm[i].vnRowStateInSession % 10 === 1) {
+        // this ends with 1 and hence is saved to DB
+      } else {
+        arFromOrm.splice(i, 1)
+      }
+    }
+
+    const uniqueUuidRows = []
+
+    // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
+    let foundInArToReturn = false
+    for (let i = 0; i < arFromOrm.length; i++) {
+      for (let j = 0; j < uniqueUuidRows.length; j++) {
+        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
+          /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
+          In the array that is returned from this Fn I am returning the array with the new data.       
+          Hence in the following line I over write the old row
+          */
+          uniqueUuidRows[j] = arFromOrm[i]
+          foundInArToReturn = true
+        }
+      }
+      if (foundInArToReturn) {
+      } else {
+        uniqueUuidRows.push(arFromOrm[i])
+      }
+    }
+
+    return uniqueUuidRows
+  }
+
+  /*  1. This function finds data in client side vuex-orm. This fn is not making a API query to the server.
+      2. If there are 10 rows with same UUID then it will return the latest row
+      3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
+          this means that the row has not been discontinued.
   */
   static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/

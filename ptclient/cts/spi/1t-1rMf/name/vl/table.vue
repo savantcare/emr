@@ -33,7 +33,7 @@ export default {
   computed: {
     cfName() {
       if (!this.isMounted) return ''
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('firstName')
+      const arFromOrm = orm.getRowsToChange('firstName')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

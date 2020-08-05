@@ -41,7 +41,7 @@ export default {
   computed: {
     cfTemperature() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('temperatureInFarehnite')
+      const arFromOrm = orm.getRowsToChange('temperatureInFarehnite')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {
