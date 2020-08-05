@@ -21,7 +21,8 @@ export default class ptPhq9 extends rowManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      phq9InInches: this.string(null),
+      littleInterestOrPleasureInDoingThings: this.string(null),
+      feelingDownDepressedOrHopeless: this.string(null),
       dateOfMeasurement: this.string(''),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),

@@ -9,6 +9,7 @@ export default {
             0 if no name was ever entered for this patient
             1 if name was entered but never changed
             more then 1 if name was entered and then changed
+        3. The .api function is provided by vuex-orm-axios
       */
 
       const pro = await orm.api().get(orm.apiUrl + '/1')

@@ -6,9 +6,15 @@ Code synced with ref implementation on 4th august 2020
     <el-form>
       <el-form-item>
         <el-input
-          placeholder="Phq9 in inches"
-          :value="mfGetFieldValue('phq9InInches')"
-          @input="mfSetFieldValueUsingCache($event, 'phq9InInches')"
+          placeholder="little Interest Or Pleasure In Doing Things"
+          :value="mfGetFieldValue('littleInterestOrPleasureInDoingThings')"
+          @input="mfSetFieldValueUsingCache($event, 'littleInterestOrPleasureInDoingThings')"
+        >
+        </el-input>
+        <el-input
+          placeholder="Feeling Down Depressed Or Hopeless"
+          :value="mfGetFieldValue('feelingDownDepressedOrHopeless')"
+          @input="mfSetFieldValueUsingCache($event, 'feelingDownDepressedOrHopeless')"
         >
         </el-input>
         <el-date-picker
@@ -175,8 +181,8 @@ export default {
     async mfCopyRowToOrm(pArFromOrm) {
       const arFromOrm = await orm.insert({
         data: {
-          phq9InInches: pArFromOrm.phq9InInches,
-          dateOfMeasurement: pArFromOrm.dateOfMeasurement,
+          littleInterestOrPleasureInDoingThings: pArFromOrm.littleInterestOrPleasureInDoingThings,
+          feelingDownDepressedOrHopeless: pArFromOrm.feelingDownDepressedOrHopeless,
           notes: pArFromOrm.notes,
           uuid: pArFromOrm.uuid,
           vnRowStateInSession: 3,

@@ -44,7 +44,8 @@
   "phq9": [
     {
       "uuid": 1,
-      "phq9InInches": "113",
+      "littleInterestOrPleasureInDoingThings": "2",
+      "feelingDownDepressedOrHopeless": "3",
       "dateOfMeasurement": "2020-08-03",
       "notes": "phq9 measured change 2"
     }

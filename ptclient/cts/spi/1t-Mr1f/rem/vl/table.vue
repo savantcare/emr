@@ -1,4 +1,4 @@
-<!-- When  i went from 80 to 100 the line count went rom 276 to 230 -->
+<!-- Reference implementation -->
 <template>
   <div>
     <el-card class="box-card">

@@ -9,7 +9,14 @@ Code synced with ref implementation on 4th august 2020
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfPhq9['phq9InInches'] }}</el-button
+      >{{ cfPhq9['littleInterestOrPleasureInDoingThings'] }}</el-button
+    >
+    <el-button
+      :type="cfTypeOfButton"
+      plain
+      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+      size="small"
+      >{{ cfPhq9['feelingDownDepressedOrHopeless'] }}</el-button
     >
     <el-button :type="cfTypeOfButton" plain size="small">{{
       cfPhq9['dateOfMeasurement']
@@ -41,7 +48,7 @@ export default {
   computed: {
     cfPhq9() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('phq9InInches')
+      const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('littleInterestOrPleasureInDoingThings')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

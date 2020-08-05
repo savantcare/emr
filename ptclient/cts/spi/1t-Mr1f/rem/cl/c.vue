@@ -1,3 +1,4 @@
+<!-- Reference implementation -->
 <template>
   <div>
     <el-form>
@@ -109,9 +110,10 @@ export default {
   },
   mounted() {},
   methods: {
-    // Why is the row copied and then edited/changed?
-    // We want to show the history of the data. If I edit/change the original data then I will
-    // not know what the original data to show below the edit/change form.
+    /* Why is the row copied and then edited/changed?
+     We want to show the history of the data. If I edit/change the original data then I will
+     not know what the original data to show below the edit/change form.
+     */
     async mfCopyRowToOrm(pDesc) {
       const arFromOrm = await ormRem.insert({
         data: {
