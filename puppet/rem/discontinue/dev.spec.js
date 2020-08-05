@@ -1,4 +1,4 @@
-const timeout = process.env.SLOWMO ? 30000 : 30000;
+const timeout = process.env.SLOWMO ? 30000 : 10000;
 const {
   gatherPerformanceTimingMetric,
   gatherPerformanceTimingMetrics,
@@ -52,11 +52,12 @@ describe("Test header and title of the page", () => {
     "Test for Single Add",
     async () => {
       await page.waitForSelector(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
       );
       await page.click(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
-      ); // Click on add icon
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+      );
+      // Click on add icon
 
       await page.waitForSelector(
         ".el-form-item > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
@@ -77,7 +78,6 @@ describe("Test header and title of the page", () => {
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       ); // Click on submit button
 
-      await page.waitFor(1000);
       await page.waitForSelector(
         ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
       );
@@ -86,7 +86,6 @@ describe("Test header and title of the page", () => {
       );
       await expect(element).toMatch("Reminders added this session"); //Expect the message for Addition
 
-      await page.waitFor(1000);
       await page.keyboard.press(`Escape`); // Close the Add Popup
     },
     timeout
@@ -152,7 +151,6 @@ describe("Test header and title of the page", () => {
             "N"
           ); // Enter text for Discontinue (Optional)
 
-          await page.waitFor(500);
           await page.waitForSelector(
             ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
           );
