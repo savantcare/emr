@@ -1,4 +1,6 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct -->
+<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct 
+Code synced with ref implementation on 4th august 2020
+-->
 <template>
   <div>
     <el-form>
@@ -121,7 +123,6 @@ export default {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
           uuid: rowToUpsert.uuid,
@@ -161,7 +162,6 @@ export default {
 
       orm.arOrmRowsCached = []
     },
-
     mfGetFieldValue(pFieldName) {
       const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value

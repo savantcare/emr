@@ -1,4 +1,6 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct  -->
+<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct 
+Code synced with ref implementation on 4th august 2020
+ -->
 <template>
   <div>
     <h5>Weight</h5>
