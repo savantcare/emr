@@ -35,6 +35,17 @@ How would I define a prototype property
 Answer
 ------
 Remove the static keyword.
+
+Question (In slack channel core_team on 5th aug 2020)
+--------
+I removed the static keyword. Now arOrmRowsCached is not available to ptHeight
+Answer
+------
+I suspect the issue you’ll now face is arOrmRowsCached will be empty each time an instance is created. So you may need to rethink the logic if caching based on class. For example, arOrmRowsCached can be an object who’s properties map to an entity belonging to a model, who’s values will be an array. Does that make sense?
+Otherwise, to make sure each class has it’s own arOrmRowsCached , you will need to explicitly declare the property on all classes.
+
+
+Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be entity name
 */
 
   static arOrmRowsCached = []
