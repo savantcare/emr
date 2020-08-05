@@ -56,15 +56,15 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      if (!this.isMounted) return 'info'
+      if (!this.isMounted) return 'primary'
       const arFromOrm = orm.getValidUniqueUuidNotEmptyRows('temperatureInFarehnite')
-      if (arFromOrm.length === 0) return 'info'
+      if (arFromOrm.length === 0) return 'primary'
       const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
         return 'warning'
       }
-      return 'info'
+      return 'primary'
     },
   },
   async mounted() {

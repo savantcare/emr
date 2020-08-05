@@ -51,7 +51,7 @@ export default {
       if (this.isCopiedRowDiff === true) {
         return 'warning'
       }
-      return 'info'
+      return 'primary'
     },
   },
   async mounted() {
