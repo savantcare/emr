@@ -11,6 +11,7 @@ import ormName from '~/cts/spi/1t-1rMf/name/db/orm-name.js'
 import ormWeight from '~/cts/spi/1t-1rMf/weight/db/orm-weight.js'
 import ormHeight from '~/cts/spi/1t-1rMf/height/db/orm-height.js'
 import ormTemperature from '~/cts/spi/1t-1rMf/temperature/db/orm-temperature.js'
+import ormPhq9 from '~/cts/spi/1t-1rMf/phq9/db/orm-phq9.js'
 import Rex from '~/cts/spi/1t-Mr1f/rec/vuex-orm/model.js'
 import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
@@ -28,6 +29,7 @@ database.register(ormName)
 database.register(ormWeight)
 database.register(ormHeight)
 database.register(ormTemperature)
+database.register(ormPhq9)
 database.register(Rex)
 database.register(Dx)
 database.register(Goal)

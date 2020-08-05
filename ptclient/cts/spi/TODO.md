@@ -1,8 +1,8 @@
 # Specified
 
-## Name
+## Code template
 
-1. Connect to mariaDB
+1. I have height command and weight command. I click on C for height and change it. When I click on C beside weight this gets the value for height.
 
 ## Rem (Raj)
 
@@ -17,13 +17,13 @@
    A. Remove tabindex from checkmark of reminder table Line 33 of table.vue otherwise tabs go to right side
    B. On tab the control should not go to browser back forward and address bar
 
-# Cannot replicate
+## Name
 
-1. I discontinued 3 reminders at once but those 3 still remained in the table.
+1. Connect to mariaDB
 
 # Not specified
 
-1. When I hit submit the form and the form was submittingf and then i entered and saved again. The system got confused.
+1. When I hit submit the form and the form was submitting and then i entered and saved again. The system got confused.
    Ref: https://github.com/axios/axios/issues/1010
 
 2. Work is done -> make another pull request -> Discontniue and multi discontinue need a response if it was success or not.
