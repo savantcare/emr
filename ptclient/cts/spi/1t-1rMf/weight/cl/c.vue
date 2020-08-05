@@ -171,7 +171,6 @@ export default {
       orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate()
     },
-
     async mfCopyRowToOrm(pArFromOrm) {
       const arFromOrm = await orm.insert({
         data: {
