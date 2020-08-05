@@ -40,7 +40,7 @@
       <el-form-item>
         <el-button type="primary" plain @click="mfOnSubmit">Submit</el-button>
         <el-button type="primary" plain @click="mfAddEmptyRowInOrm">Add more</el-button>
-        <el-button type="warning" plain @click="mfResetForm">Reset form</el-button>
+        <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
     <!-- Goal: Show data at the time of sending to server -->
@@ -145,7 +145,7 @@ export default {
       await ormRem.delete(pOrmRowId)
       this.mfManageFocus()
     },
-    mfResetForm(formName) {
+    mfOnResetForm(formName) {
       ormRem.deleteNewRowsInEditState()
     },
     async mfOnSubmit() {

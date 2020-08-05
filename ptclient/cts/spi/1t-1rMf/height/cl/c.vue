@@ -33,7 +33,7 @@ In this file only doc unique to this ct is written
         <el-button :disabled="cfIsButtonDisabled" type="primary" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfResetForm"
+        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -172,7 +172,7 @@ export default {
         this.vnIdOfCopiedRowBeingChangedInOrm = 0
       }
     },
-    mfResetForm() {
+    mfOnResetForm() {
       orm.deleteChangeRowsInEditState()
 
       this.vnIdOfCopiedRowBeingChangedInOrm = 0

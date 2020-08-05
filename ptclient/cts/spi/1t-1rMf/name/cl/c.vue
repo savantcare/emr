@@ -24,7 +24,7 @@
         <el-button :disabled="cfIsButtonDisabled" type="primary" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfResetForm"
+        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -183,7 +183,7 @@ export default {
         this.vnIdOfCopiedRowBeingChangedInOrm = null // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },
-    mfResetForm() {
+    mfOnResetForm() {
       // Step 1/3: delete the row that was created as a copy
       orm.deleteChangeRowsInEditState()
 

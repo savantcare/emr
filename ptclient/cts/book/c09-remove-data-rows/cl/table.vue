@@ -25,7 +25,7 @@
       <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfAddEmptyRowInOrm">Add more</el-button>
-        <el-button type="warning" plain @click="mfResetForm">Reset form</el-button>
+        <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -62,7 +62,7 @@ export default {
     async mfDeleteRowInOrm(pOrmRowId) {
       await ormHw.delete(pOrmRowId)
     },
-    mfResetForm(formName) {
+    mfOnResetForm(formName) {
       ormHw.deleteNewRowsInEditState()
     },
   },
