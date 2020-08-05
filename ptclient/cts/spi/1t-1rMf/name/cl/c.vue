@@ -42,17 +42,17 @@ export default {
     return {
       /*
        1. This row is not changed in the ORM. This row is the latest data where ROW_END is in future.
-       2. Assigning the prop to a local variable since the value of idOfRowToChange will change everytime the user hits submit
+       2. Assigning the prop to a local variable since the value of vnIdOfRowToChange will change everytime the user hits submit
           Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
-      idOfRowToChange: this.firstParam,
+      vnIdOfRowToChange: this.firstParam,
 
       /*
         Why not change the original row?
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnIdOfCopiedRowBeingChangedInOrm: null, // This row is one step ahead of idOfRowToChange
+      vnIdOfCopiedRowBeingChangedInOrm: null, // This row is one step ahead of vnIdOfRowToChange
       // Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
     }
   },
@@ -85,7 +85,7 @@ export default {
 
       if (this.vnIdOfCopiedRowBeingChangedInOrm === null) return true // there is a race condition. This if statement waits for copy to finish
 
-      const arToChangeOrm = orm.find(this.idOfRowToChange)
+      const arToChangeOrm = orm.find(this.vnIdOfRowToChange)
       const arBeingChanedOrm = orm.find(this.vnIdOfCopiedRowBeingChangedInOrm)
       if (
         arToChangeOrm.firstName === arBeingChanedOrm.firstName &&
@@ -120,10 +120,10 @@ export default {
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         if (pNewIdOfCopiedRowFromOrm === null) {
           /*
-              When called first time this.idOfRowToChange is this.firstParam
-              When called 2nd time this.idOfRowToChange is the previous row that just got saved.
+              When called first time this.vnIdOfRowToChange is this.firstParam
+              When called 2nd time this.vnIdOfRowToChange is the previous row that just got saved.
           */
-          const arFromOrm = orm.find(this.idOfRowToChange)
+          const arFromOrm = orm.find(this.vnIdOfRowToChange)
 
           // For a given UUID there can be only 1 row in edit state.
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
@@ -179,7 +179,7 @@ export default {
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
-        this.idOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
+        this.vnIdOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
         this.vnIdOfCopiedRowBeingChangedInOrm = null // the "act on state" logic will get activate see watch vnIdOfCopiedRowBeingChangedInOrm
       }
     },

@@ -51,7 +51,7 @@ export default {
     return {
       isMounted: false,
       vnIdOfCopiedRowBeingChangedInOrm: 0,
-      idOfRowToChange: this.firstParam,
+      vnIdOfRowToChange: this.firstParam,
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -102,15 +102,15 @@ export default {
       async handler(pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm) {
         console.log(
           'pNewIdOfCopiedRowFromOrm, pOldIdOfCopiedRowFromOrm',
-          'this.idOfRowToChange',
+          'this.vnIdOfRowToChange',
           'this.firstParam',
           pNewIdOfCopiedRowFromOrm,
           pOldIdOfCopiedRowFromOrm,
-          this.idOfRowToChange,
+          this.vnIdOfRowToChange,
           this.firstParam
         )
         if (pNewIdOfCopiedRowFromOrm === 0) {
-          const arFromOrm = orm.find(this.idOfRowToChange)
+          const arFromOrm = orm.find(this.vnIdOfRowToChange)
           const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             this.vnIdOfCopiedRowBeingChangedInOrm = await this.mfCopyRowToOrm(arFromOrm)
@@ -165,7 +165,7 @@ export default {
             vnRowStateInSession: 34571,
           },
         })
-        this.idOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
+        this.vnIdOfRowToChange = this.vnIdOfCopiedRowBeingChangedInOrm
         this.vnIdOfCopiedRowBeingChangedInOrm = 0
       }
     },
