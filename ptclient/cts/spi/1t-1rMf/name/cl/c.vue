@@ -86,11 +86,11 @@ export default {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
       const arToChangeOrm = orm.find(this.vnOrmIdOfRowToChange)
-      const arBeingChanedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
+      const arBeingChangedOrm = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
       if (
-        arToChangeOrm.firstName === arBeingChanedOrm.firstName &&
-        arToChangeOrm.middleName === arBeingChanedOrm.middleName &&
-        arToChangeOrm.lastName === arBeingChanedOrm.lastName
+        arToChangeOrm.firstName === arBeingChangedOrm.firstName &&
+        arToChangeOrm.middleName === arBeingChangedOrm.middleName &&
+        arToChangeOrm.lastName === arBeingChangedOrm.lastName
       ) {
         this.$root.$emit('event-from-ct-name-copied-row-same')
         return true
