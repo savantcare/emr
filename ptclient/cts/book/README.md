@@ -9,7 +9,7 @@ Read the following before starting to do these chapters:
 3. Temporal DB https://mariadb.com/kb/en/temporal-data-tables/
 4. Sequalize
 
-Chapters ready to study: 1 to 13.
+Chapters ready to study: 1 to 14.
 
 Footnote:
 The links given above are sufficient.

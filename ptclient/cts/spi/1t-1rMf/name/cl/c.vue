@@ -61,6 +61,7 @@ export default {
   },
   computed: {
     cfIsButtonDisabled() {
+      // TODO: better name
       /*
       Method 1: Problem -> what if user uses backspace to erase the extra charecters typed
       For this data (name) only 1 row can be valid at one time
