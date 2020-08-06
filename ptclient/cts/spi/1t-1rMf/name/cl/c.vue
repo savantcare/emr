@@ -34,8 +34,9 @@
 <script>
 import orm from '../db/orm.js'
 export default {
-  // if the name was changed 4 times earlier so the id will not be 1 it will be 5. The id will always be the highest row that is not valid and ends in 1
-  // TODO: is it really needed that this value be sent to this Ct? Since this can be derived in this Ct.
+  /*  if the name was changed 4 times earlier so the id will not be 1 it will be 5. The id will always be the highest row that is not valid and ends in 1
+      TODO: I want doctor to be able to type: "change name" though this operates on a row there is only one row. 
+      When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own. */
   props: { firstProp: Number },
   data() {
     return {
@@ -60,18 +61,9 @@ export default {
   },
   computed: {
     cfHasSomeFieldChanged() {
-      /*
-      Method 1: Problem -> what if user uses backspace to erase the extra charecters typed
-      For this data (name) only 1 row can be valid at one time
-          Since a row was copied hence:
-            1. 2 rows are valid
-            2. Both rows have same UUID
-            3. rowStatus for 1st row ends in 1 and rowStaus for the copied row does not end in 1. When first copied the rowStatus is 3
-          So this Fn will find that there are 2 Uuid that are valid.
-          Both the rows that it finds will have the same Uuid.
-          Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
-
-          const fieldToUseToCheckIfEmpty = 'firstName'
+      /* Method 1: (Old code learning)
+      
+        const fieldToUseToCheckIfEmpty = 'firstName'
           const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
           if (arFromOrm.length === 0) return false
           const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
@@ -83,13 +75,25 @@ export default {
           }
           return true
         },
-            */
+      
+        Problem -> what if user uses backspace to erase the extra charecters typed
+        For this data (name) only 1 row can be valid at one time
+            Since a row was copied hence:
+              1. 2 rows are valid
+              2. Both rows have same UUID
+              3. rowStatus for 1st row ends in 1 and rowStaus for the copied row does not end in 1. When first copied the rowStatus is 3
+            So this Fn will find that there are 2 Uuid that are valid.
+            Both the rows that it finds will have the same Uuid.
+            Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
+        */
 
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
 
       // at first run this.vnOrmIdOfRowToChange is this.firstProp
 
-      /* Problem:
+      /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed?
+      
+          Problem:
           user does the following:
           1. Clicks on C beside Name and makes a change.
           2. Closes the open tab by clicking on cross.
@@ -164,15 +168,15 @@ export default {
       },
     },
   },
-  /*
-    This code is not needed since when I come here I am sure that the data is already inside ORM.
-    async mounted() {
-      if (orm.query().count() > 0) {
-      } else {
-        await this.mxGetDataFromDb()
-      }
-      this.isMounted = true
-    },
+  /*  Old code analysis:
+      This code is not needed since when I come here I am sure that the data is already inside ORM.
+      async mounted() {
+        if (orm.query().count() > 0) {
+        } else {
+          await this.mxGetDataFromDb()
+        }
+        this.isMounted = true
+      },
   */
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
@@ -246,7 +250,7 @@ export default {
     mfGetFieldValue(pFieldName) {
       /*
         For each field this function is called twice.
-        Why is this called twice for each field?
+        TODO: Why is this called twice for each field?
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
       // let us find out if there is an existing row that is already in change state
@@ -254,9 +258,6 @@ export default {
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
-      /*
-      For reason of this gate see comment for mfGetField in this file
-      */
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache

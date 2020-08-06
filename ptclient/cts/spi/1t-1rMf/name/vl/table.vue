@@ -108,7 +108,10 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
-      // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
+      /* TODO: Why do I need to send the row ID since there can only be 1 possibility ?
+      I want doctor to be able to type: "change name" though this operates on a row there is only one row. 
+      When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own.
+      */
       const payload = { searchTerm: 'name - change', pPropsToGiveToCt: pOrmId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
