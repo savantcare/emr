@@ -99,6 +99,10 @@ export default {
 
           How to solve this?
           In the view layer it should always display the row that is getting changed.
+
+          Subsequent issue:
+          When a field is changed how to show that in view layer?
+          The event system needs to send a list of fields that have changed.
       */
 
       const objFieldsComparisonResults = orm.compareRows(
