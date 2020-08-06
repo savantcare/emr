@@ -2,7 +2,7 @@
 <template>
   <div>
     <h5>Name</h5>
-    <!-- Passing name of the field so the function can decide if the field is changed or not -->
+    <!-- Passing name of the field so mfTypeOfButton can decide if the field is changed or not -->
     <el-button
       :type="mfTypeOfButton('firstName')"
       plain
@@ -53,7 +53,8 @@ export default {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loaging.  */
       isMounted: false,
       /* This Ct has 3 fields. This helps deciding which field to show in orange color. 
-      Also help deciding if submit and reset options should be shown */
+      Also helps deciding if submit and reset options should be shown 
+      The name begins with fe to indicate it comes from a event */
       feFldsInCopiedRowThatAreDiff: false,
     }
   },
@@ -62,11 +63,10 @@ export default {
       if (!this.isMounted) return ''
       const arFromOrm = orm.getRowsToChange('firstName')
       if (arFromOrm.length) {
-        // Pick up any changed values
+        // Goal: Pick up any changed fld value since need to show new value in the view layer with a organe color background.
         const rowtoReturn = arFromOrm[0]
         for (const k in this.feFldsInCopiedRowThatAreDiff)
           rowtoReturn[k] = this.feFldsInCopiedRowThatAreDiff[k]
-
         // return to the template.
         return rowtoReturn
       } else {
@@ -75,8 +75,8 @@ export default {
     },
     /*
       This is required for tab indexing
-      if this is pos 0 then tab index is set as 1
-      if this is pos 1 then tab index is set as 101
+      if this card is in pos 0 then tab index is set as 1
+      if this card is in pos 1 then tab index is set as 101
       So the first card on ptsVl will get tabIndex as 1
       So the 2nd card on ptsVl will get tabIndex as 101
       So when the user presses tab
@@ -125,10 +125,7 @@ export default {
       )
     },
     mfSendResetFormEvent() {
-      this.$root.$emit(
-        'event-from-ct-name-vl-reset-this-form',
-        this.feFldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
-      )
+      this.$root.$emit('event-from-ct-name-vl-reset-this-form')
     },
   },
 }

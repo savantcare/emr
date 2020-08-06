@@ -181,7 +181,7 @@ export default {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
       this.mfOnSubmit()
     })
-    this.$root.$on('event-from-ct-name-vl-reset-this-form', (pRowID) => {
+    this.$root.$on('event-from-ct-name-vl-reset-this-form', () => {
       this.mfOnResetForm()
     })
   },
