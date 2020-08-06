@@ -1,4 +1,4 @@
-const timeout = process.env.SLOWMO ? 30000 : 30000;
+const timeout = process.env.SLOWMO ? 30000 : 10000;
 const {
   gatherPerformanceTimingMetric,
   gatherPerformanceTimingMetrics,
@@ -52,11 +52,12 @@ describe("Test header and title of the page", () => {
     "Test for Single Add",
     async () => {
       await page.waitForSelector(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
       );
       await page.click(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
-      ); // Click on add icon
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+      );
+      // Click on add icon
 
       await page.waitForSelector(
         ".el-form-item > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
@@ -69,7 +70,7 @@ describe("Test header and title of the page", () => {
         addText
       ); // Type the text for add
 
-      await page.waitFor(1000);
+      await page.waitFor(500);
       await page.waitForSelector(
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       );
@@ -77,16 +78,14 @@ describe("Test header and title of the page", () => {
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       ); // Click on submit button
 
-      await page.waitFor(1000);
       await page.waitForSelector(
-        ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
       );
       element = await page.waitForSelector(
-        ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
       );
-      await expect(element).toMatch("Reminders added this session"); //Expect the message for Addition
+      await expect(element).toMatch(addText); //Expect the message for Addition
 
-      await page.waitFor(1000);
       await page.keyboard.press(`Escape`); // Close the Add Popup
     },
     timeout
@@ -158,7 +157,6 @@ describe("Test header and title of the page", () => {
             changeText
           ); // Type the Change text
 
-          await page.waitFor(500);
           await page.waitForSelector(
             ".el-form > .el-form-item > .el-form-item__content > .el-button > span"
           );
@@ -166,7 +164,6 @@ describe("Test header and title of the page", () => {
             ".el-form > .el-form-item > .el-form-item__content > .el-button > span"
           ); // Click for submit the change
 
-          await page.waitFor(500);
           await page.waitForSelector(
             ".el-timeline > .el-timeline-item > .el-timeline-item__wrapper > .el-timeline-item__content > .api-response-message"
           );
@@ -175,7 +172,6 @@ describe("Test header and title of the page", () => {
           );
           await expect(element).toMatch("saved this session"); //Expect the message for change
 
-          await page.waitFor(500);
           await page.keyboard.press(`Escape`); // Close the Change popup
 
           break;
@@ -245,7 +241,6 @@ describe("Test header and title of the page", () => {
             "N"
           ); // Enter text for Discontinue (Optional)
 
-          await page.waitFor(500);
           await page.waitForSelector(
             ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
           );

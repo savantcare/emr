@@ -1,4 +1,4 @@
-const timeout = process.env.SLOWMO ? 30000 : 30000;
+const timeout = process.env.SLOWMO ? 30000 : 10000;
 const {
   gatherPerformanceTimingMetric,
   gatherPerformanceTimingMetrics,
@@ -52,11 +52,12 @@ describe("Test header and title of the page", () => {
     "Test for Multiple Add",
     async () => {
       await page.waitForSelector(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
       );
       await page.click(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
-      ); // Click on add icon
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+      );
+      // Click on add icon
 
       await page.waitForSelector(
         ".el-form-item > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
@@ -89,7 +90,7 @@ describe("Test header and title of the page", () => {
         addText
       ); // Type the text for add
 
-      await page.waitFor(1000);
+      await page.waitFor(500);
       await page.waitForSelector(
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       );
@@ -97,16 +98,14 @@ describe("Test header and title of the page", () => {
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       ); // Click on submit button
 
-      await page.waitFor(1000);
       await page.waitForSelector(
-        ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
       );
       element = await page.waitForSelector(
-        ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
       );
-      await expect(element).toMatch("Reminders added this session"); //Expect the message for Addition
+      await expect(element).toMatch(addText); //Expect the message for Addition
 
-      await page.waitFor(2000);
       await page.keyboard.press(`Escape`); // Close the Add Popup
     },
     timeout
@@ -149,7 +148,6 @@ describe("Test header and title of the page", () => {
           element
         );
         searchText = searchText.trim();
-        await page.waitFor(500);
 
         if (searchText == addText) {
           await page.waitForSelector(
@@ -169,13 +167,13 @@ describe("Test header and title of the page", () => {
 
       if (count > 0) {
         await page.waitForSelector(
-          ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
+          ".el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
         );
         await page.click(
-          ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
-        ); // Click on Multi Discontinue Icon
+          ".el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
+        );
+        // Click on Multi Discontinue Icon
 
-        await page.waitFor(500);
         await page.waitForSelector(
           ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
         );

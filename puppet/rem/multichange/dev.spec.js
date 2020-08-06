@@ -49,14 +49,15 @@ describe("Test header and title of the page", () => {
   );
 
   test(
-    "Test for Multiple Add",
+    "Test for Single Add",
     async () => {
       await page.waitForSelector(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
       );
       await page.click(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--success > span"
-      ); // Click on add icon
+        ".el-card__header > .clearfix > .el-button-group > .el-button--success > span"
+      );
+      // Click on add icon
 
       await page.waitForSelector(
         ".el-form-item > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
@@ -70,26 +71,6 @@ describe("Test header and title of the page", () => {
       ); // Type the text for add
 
       await page.waitFor(500);
-
-      await page.waitForSelector(
-        ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(2) > span"
-      );
-      await page.click(
-        ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(2) > span"
-      ); // Click on Add more button
-
-      await page.waitForSelector(
-        ".el-form-item:nth-child(2) > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
-      );
-      await page.click(
-        ".el-form-item:nth-child(2) > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner"
-      );
-      await page.type(
-        ".el-form-item:nth-child(2) > .el-form-item__content > .el-col > .el-textarea > .el-textarea__inner",
-        addText
-      ); // Type the text for add
-
-      await page.waitFor(1000);
       await page.waitForSelector(
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       );
@@ -97,16 +78,14 @@ describe("Test header and title of the page", () => {
         ".el-form > .el-form-item > .el-form-item__content > .el-button:nth-child(1) > span"
       ); // Click on submit button
 
-      //   await page.waitFor(1000);
-      //   await page.waitForSelector(
-      //     ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
-      //   );
-      //   element = await page.waitForSelector(
-      //     ".el-table__header > .has-gutter > tr > .el-table_2_column_5 > .cell"
-      //   );
-      //   await expect(element).toMatch("Reminders added this session"); //Expect the message for Addition
+      await page.waitForSelector(
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
+      );
+      element = await page.waitForSelector(
+        ".el-table__body > tbody > .el-table__row > .el-table_2_column_5 > .cell"
+      );
+      await expect(element).toMatch(addText); //Expect the message for Addition
 
-      await page.waitFor(2000);
       await page.keyboard.press(`Escape`); // Close the Add Popup
     },
     timeout
@@ -115,29 +94,132 @@ describe("Test header and title of the page", () => {
   test(
     "Test for Multiple Change",
     async () => {
-      changeText = "jaikalima";
-      await page.waitForSelector(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--primary > span"
-      );
-      await page.click(
-        ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--primary > span"
-      );
+      foundExitTr = await page.evaluate(() => {
+        const tds = Array.from(
+          document.querySelectorAll(
+            ".el-table__body > tbody > .el-table__row> .el-table_1_column_3 > .cell"
+          )
+        );
+        let returnstatus = 0;
+        let childNode = 1;
+        tds.map((td) => {
+          if (td.textContent) {
+            returnstatus = childNode;
+          }
+          childNode++;
+        });
+        return returnstatus;
+      });
 
       await page.waitForSelector(
-        ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--right"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--primary > span"
       );
       await page.click(
-        ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--right"
+        ".el-card__header > .clearfix > .el-button-group > .el-button--primary > span"
       );
 
-      await page.waitForSelector(
-        ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--left"
-      );
-      await page.click(
-        ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--left"
-      );
+      for (let i = 1; i <= foundExitTr; i++) {
+        let f = 3,
+          j = 1;
+        if (i % 3 == 0) {
+          await page.waitForSelector(
+            ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--right"
+          );
+          await page.click(
+            ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--right"
+          );
+          f = f + 1;
+          j = 1;
+        }
 
-      await page.waitFor(500);
+        await page.waitForSelector(
+          ".el-carousel__item:nth-child(" +
+            f +
+            ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+            j +
+            ") > .el-card > .el-card__body >  div > .el-timeline:nth-child(2) > .el-timeline-item:nth-child(1) > .el-timeline-item__wrapper > .el-timeline-item__content"
+        );
+        element = await page.waitForSelector(
+          ".el-carousel__item:nth-child(" +
+            f +
+            ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+            j +
+            ") > .el-card > .el-card__body >  div > .el-timeline:nth-child(2) > .el-timeline-item:nth-child(1) > .el-timeline-item__wrapper > .el-timeline-item__content"
+        );
+        searchText = await page.evaluate(
+          (element) => element.textContent,
+          element
+        );
+        searchText = searchText.trim();
+
+        if (searchText == addText) {
+          await page.waitForSelector(
+            ".el-carousel__item:nth-child(" +
+              f +
+              ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+              j +
+              ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-textarea > .el-textarea__inner"
+          );
+          await page.evaluate(
+            function (f, j) {
+              document.querySelector(
+                ".el-carousel__item:nth-child(" +
+                  f +
+                  ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+                  j +
+                  ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-textarea > .el-textarea__inner"
+              ).value = "";
+            },
+            f,
+            j
+          ); // Clear the text area for Change text
+          await page.click(
+            ".el-carousel__item:nth-child(" +
+              f +
+              ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+              j +
+              ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-textarea > .el-textarea__inner"
+          ); // Click the area for input the text
+          await page.type(
+            ".el-carousel__item:nth-child(" +
+              f +
+              ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+              j +
+              ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-textarea > .el-textarea__inner",
+            changeText
+          ); // Type the Change text
+
+          await page.waitFor(1000);
+          await page.waitForSelector(
+            ".el-carousel__item:nth-child(" +
+              f +
+              ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+              j +
+              ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-button > span"
+          );
+          await page.click(
+            ".el-carousel__item:nth-child(" +
+              f +
+              ") > .el-row:nth-child(1) > .el-col:nth-child(" +
+              j +
+              ") > .el-card > .el-card__body > div > .el-form > .el-form-item > .el-form-item__content > .el-button > span"
+          );
+
+          break;
+        }
+        j = j + 1;
+      }
+
+      if (foundExitTr > 3) {
+        await page.waitForSelector(
+          ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--left"
+        );
+        await page.click(
+          ".block > .el-carousel > .el-carousel__container > .el-carousel__arrow--left"
+        );
+      }
+
+      // await page.waitFor(5000);
       await page.keyboard.press(`Escape`);
     },
     timeout
@@ -180,9 +262,8 @@ describe("Test header and title of the page", () => {
           element
         );
         searchText = searchText.trim();
-        await page.waitFor(500);
 
-        if (searchText == addText) {
+        if (searchText == changeText) {
           await page.waitForSelector(
             ".el-table__row:nth-child(" +
               i +
@@ -200,13 +281,12 @@ describe("Test header and title of the page", () => {
 
       if (count > 0) {
         await page.waitForSelector(
-          ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
+          ".el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
         );
         await page.click(
-          ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
+          ".el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
         ); // Click on Multi Discontinue Icon
 
-        await page.waitFor(500);
         await page.waitForSelector(
           ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
         );
@@ -215,7 +295,7 @@ describe("Test header and title of the page", () => {
         ); // Click Discontinue for all selected row
       }
 
-      await getPerformanceTime("MultiAdd");
+      await getPerformanceTime("MultiChange");
     },
     timeout
   );
