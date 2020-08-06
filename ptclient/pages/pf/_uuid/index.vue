@@ -31,6 +31,7 @@
 
 <script>
 import Vue from 'vue'
+import HighchartsVue from 'highcharts-vue'
 import VueSplit from 'vue-split-panel'
 import ctMsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
@@ -47,6 +48,19 @@ const VueScrollTo = require('vue-scrollto') // Ref: https://github.com/rigor789/
 
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
+
+/*
+  Ref: https://github.com/highcharts/highcharts-vue
+  According to this reference there are two ways of adding Highcharts-Vue wrapper to project:
+  1. Registering globally as a plugin
+  2. Registering locally in specific component
+
+  Q) Why we are registering 'HighchartsVue' globally as a plugin?
+    A) We are doing so for following reasons:
+     - If we choose to register it locally in all the components where required a graph/chart, we had to configure it multiple times.
+     - Globally registering will help us to make the chart consistent through out the project.
+  */
+Vue.use(HighchartsVue)
 
 export default {
   components: {

@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'height',
         ctAbbr: 'h',
-        ctToShow: 'spi/1t-1rMf/height/vl/table.vue', // CsVl -> Current state view layer
+        ctToShow: 'spi/1t-1rMf/height/vl/graph.vue', // CsVl -> Current state view layer. When I give height command show me a graph.
         displayLocation: 'ptsvl',
       },
     })

@@ -36,9 +36,15 @@
     },
     {
       "uuid": 2,
-      "heightInInches": "200",
-      "dateOfMeasurement": "1st feb 2020",
+      "heightInInches": "150",
+      "dateOfMeasurement": "2020-08-05",
       "notes": "Jai durga ma"
+    },
+    {
+      "uuid": 3,
+      "heightInInches": "200",
+      "dateOfMeasurement": "2020-08-06",
+      "notes": "Jai kali ma"
     }
   ],
   "phq9": [
