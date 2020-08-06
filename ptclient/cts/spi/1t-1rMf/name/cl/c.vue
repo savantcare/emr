@@ -174,6 +174,11 @@ export default {
       this.isMounted = true
     },
   */
+  mounted() {
+    this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
+      console.log('cl received message to save the row id', pRowID)
+    })
+  },
   methods: {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows

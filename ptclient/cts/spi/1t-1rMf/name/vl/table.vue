@@ -26,7 +26,7 @@
       style="padding: 3px;"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl(cfName['id'])"
+      @click="mfSendSubmitEvent(cfName['id'])"
       >S</el-button
     >
   </div>
@@ -97,6 +97,9 @@ export default {
         return 'warning'
       }
       return 'primary'
+    },
+    mfSendSubmitEvent(pRowID) {
+      this.$root.$emit('event-from-ct-name-vl-save-this-row', pRowID)
     },
   },
 }

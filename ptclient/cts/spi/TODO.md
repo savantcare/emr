@@ -2,9 +2,7 @@
 
 ## Code template
 
-1. When something is changed the field should get a highlight and not the row. @VK
-
-   1. On change the view layer should get save and restore buttons and send messages to other ct to work. @VK
+1. On change the view layer should get save and restore buttons and send messages to other ct to work. @VK
 
 2. Body measurement to combine other Cts through tabs @VK
 
