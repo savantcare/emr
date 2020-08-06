@@ -29,7 +29,7 @@ export default {
     },
     cfArForDisplayInTable() {
       // TODO: change this from Ar to Obj since JS ar has numerical indexes.
-      const arFromOrm = ormHelloWorld.getNotEmptyRows('msg')
+      const arFromOrm = ormHelloWorld.fnGetNotEmptyRows('msg')
       return arFromOrm
     },
   },

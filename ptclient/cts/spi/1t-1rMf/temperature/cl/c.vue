@@ -86,7 +86,7 @@ export default {
     cfIsButtonDisabled() {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
-      if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
+      if (orm.fnCompareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
         this.$root.$emit('event-from-ct-temperature-copied-row-same')
         return true
       }
@@ -100,9 +100,9 @@ export default {
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
+          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
-            this.vnOrmIdOfCopiedRowBeingChanged = await orm.copyRow(arFromOrm.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -150,19 +150,19 @@ export default {
       }
     },
     mfOnResetForm() {
-      orm.deleteChangeRowsInEditState()
+      orm.fnDeleteChangeRowsInEditState()
 
       this.vnOrmIdOfCopiedRowBeingChanged = null
 
       orm.arOrmRowsCached = []
     },
     mfGetFieldValue(pFieldName) {
-      const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
       const rowStatus = 34
-      orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
+      orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
       this.$forceUpdate()
     },
   },

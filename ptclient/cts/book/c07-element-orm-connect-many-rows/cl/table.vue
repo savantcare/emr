@@ -26,7 +26,7 @@ import ormHw from '../db/vuex-orm/helloworld.js' // Path without @ can be resolv
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormHw.getAllNewRowsInEditState()
+      return ormHw.fnGetAllNewRowsInEditState()
     },
   },
   methods: {
@@ -42,13 +42,13 @@ export default {
       }
     },
     mfGetFieldValue(pOrmRowId, pFieldName) {
-      const value = ormHw.getFieldValue(pOrmRowId, pFieldName)
+      const value = ormHw.fnGetFldValue(pOrmRowId, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
       const rowStatus = 24
-      ormHw.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+      ormHw.fnSetFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
   },
 }

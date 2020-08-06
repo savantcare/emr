@@ -84,19 +84,19 @@ export default {
 
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormRem.getAllNewRowsInEditState()
+      return ormRem.fnGetAllNewRowsInEditState()
     },
     cfGetOrmReadyToSubmitStateRows() {
-      return ormRem.getNewRowsInReadyToSubmitState()
+      return ormRem.fnGetNewRowsInReadyToSubmitState()
     },
     cfGetOrmApiSuccessStateRows() {
-      return ormRem.getApiSuccessStateRows()
+      return ormRem.fnGetApiSuccessStateRows()
     },
     cfGetOrmApiErrorStateRows() {
-      return ormRem.getApiErrorStateRows()
+      return ormRem.fnGetApiErrorStateRows()
     },
     cfGetOrmApiSendingStateRows() {
-      return ormRem.getApiSendingStateRows()
+      return ormRem.fnGetApiSendingStateRows()
     },
   },
 
@@ -127,12 +127,12 @@ export default {
     },
     // Cannot call orm function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFieldValue(pOrmRowId, pFieldName) {
-      return ormRem.getFieldValue(pOrmRowId, pFieldName)
+      return ormRem.fnGetFldValue(pOrmRowId, pFieldName)
     },
     mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
       const rowStatus = 24
-      ormRem.setFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+      ormRem.fnSetFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
       const arFromOrm = ormRem.find(pOrmRowId)
@@ -147,7 +147,7 @@ export default {
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      ormRem.deleteNewRowsInEditState()
+      ormRem.fnDeleteNewRowsInEditState()
     },
     async mfOnSubmit() {
       /*
@@ -181,7 +181,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await ormRem.sendToServer()
+      await ormRem.fnSendToServer()
     },
   },
 }

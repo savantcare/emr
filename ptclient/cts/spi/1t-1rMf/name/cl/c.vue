@@ -31,19 +31,18 @@
     </el-form>
   </div>
 </template>
-
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm.js'
 export default {
-  mixins: [mxFullSyncWithDbServer],
-  props: { firstProp: Number }, // if the name was changed 4 times earlier so the id will not be 1. Hence id needs to come as a prop from the Ct calling this Ct.
+  // if the name was changed 4 times earlier so the id will not be 1 it will be 5. The id will always be the highest row that is not valid and ends in 1
+  // TODO: is it really needed that this value be sent to this Ct? Since this can be derived in this Ct.
+  props: { firstProp: Number },
   data() {
     return {
       /*
-       1. This row is not changed in the ORM. This row is the latest data where ROW_END is in future.
+       1. row to cahnge is not same as row being changed. This row is the latest data where ROW_END is in future and ends row status ends in 1
        2. Assigning the prop to a local variable since the value of vnOrmIdOfRowToChange will change everytime the user hits submit
-          Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
+       3. Vue manual says not to change prop but assign it to data then change the data.  Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
       vnOrmIdOfRowToChange: this.firstProp,
 
@@ -61,7 +60,6 @@ export default {
   },
   computed: {
     cfHasSomeFieldChanged() {
-      // TODO: better name
       /*
       Method 1: Problem -> what if user uses backspace to erase the extra charecters typed
       For this data (name) only 1 row can be valid at one time
@@ -74,7 +72,7 @@ export default {
           Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
 
           const fieldToUseToCheckIfEmpty = 'firstName'
-          const arFromOrm = orm.getValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
+          const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
           if (arFromOrm.length === 0) return false
           const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
           const lastCharecter = strOfNumber.slice(-1)
@@ -106,7 +104,7 @@ export default {
           The event system needs to send a list of fields that have changed.
       */
 
-      const objFieldsComparisonResults = orm.compareRows(
+      const objFieldsComparisonResults = orm.fnCompareRows(
         this.vnOrmIdOfRowToChange,
         this.vnOrmIdOfCopiedRowBeingChanged
       )
@@ -154,11 +152,11 @@ export default {
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
 
           // For a given UUID there can be only 1 row in edit state.
-          const vnExistingChangeRowId = orm.getChangeRowIdInEditState(arFromOrm.uuid)
+          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB
             // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
-            this.vnOrmIdOfCopiedRowBeingChanged = await orm.copyRow(arFromOrm.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -233,7 +231,7 @@ export default {
     },
     mfOnResetForm() {
       // Step 1/3: delete the row that was created as a copy
-      orm.deleteChangeRowsInEditState()
+      orm.fnDeleteChangeRowsInEditState()
 
       // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as 0 so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
       this.vnOrmIdOfCopiedRowBeingChanged = null
@@ -252,7 +250,7 @@ export default {
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
       // let us find out if there is an existing row that is already in change state
-      const value = orm.getFieldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
     mfSetFieldValueUsingCache(pEvent, pFieldName) {
@@ -260,8 +258,8 @@ export default {
       For reason of this gate see comment for mfGetField in this file
       */
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      orm.setFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+      orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
   },
 }

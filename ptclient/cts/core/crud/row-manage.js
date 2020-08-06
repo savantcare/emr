@@ -2,7 +2,7 @@ import { Model } from '@vuex-orm/core'
 
 class rowManage extends Model {
   // For Class syntax https://javascript.info/class
-  static entity = 'rowstatus'
+  static entity = 'rowmanage'
 
   /*
 Question 1
@@ -66,7 +66,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static getDiscontinuedRows() {
+  static fnGetDiscontinuedRows() {
     /* 
     Method 1: Get discontinued rows from orm using query like: select max(id) where ROW_END < current_time group by 'uuid'
     Problem:- But I am unable to find vuex-orm groupBy query
@@ -90,7 +90,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     const arDiscontinuedRows = []
     const arDiscontinuedRowUniqueUuid = []
-    const currentUniqueUuidRows = this.getValidUniqueUuidRows()
+    const currentUniqueUuidRows = this.fnGetValidUniqueUuidRows()
 
     arFromORM.forEach((item) => {
       let foundInArToReturn = false
@@ -107,26 +107,26 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arDiscontinuedRows
   }
 
-  static getApiErrorStateRows() {
+  static fnGetApiErrorStateRows() {
     // C3/3
     // New -> Changed -> Requested save -> Sent to server -> Failure
     const arFromOrm = this.query().where('vnRowStateInSession', 24578).get()
     return arFromOrm
   }
 
-  static getApiSendingStateRows() {
+  static fnGetApiSendingStateRows() {
     // New -> Changed -> Requested save -> Sending to server
     const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
     return arFromOrm
   }
 
-  static getApiSuccessStateRows() {
+  static fnGetApiSuccessStateRows() {
     // New -> Changed -> Requested save -> Sent to server -> Success
     const arFromOrm = this.query().where('vnRowStateInSession', 24571).get()
     return arFromOrm
   }
 
-  static getAllChangeRowsInEditState() {
+  static fnGetAllChangeRowsInEditState() {
     const arFromOrm = this.query()
       .where('vnRowStateInSession', 3) // Copy
       .orWhere('vnRowStateInSession', 34) // Copy -> Changed
@@ -135,7 +135,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  static getChangeRowIdInEditState(pUuid) {
+  static fnGetChangeRowIdInEditState(pUuid) {
     /*
       Q) Why we remove orWhere clause?
         Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
@@ -169,7 +169,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static getFieldValue(pOrmRowId, pFieldName) {
+  static fnGetFldValue(pOrmRowId, pFieldName) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
     if (
       typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
@@ -191,7 +191,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static getAllNewRowsInEditState() {
+  static fnGetAllNewRowsInEditState() {
     const arFromOrm = this.query()
       .where('vnRowStateInSession', 2) // New
       .orWhere('vnRowStateInSession', 24) // New -> Changed
@@ -200,7 +200,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  static getNewRowsInReadyToSubmitState() {
+  static fnGetNewRowsInReadyToSubmitState() {
     // Following query makes sure I get all the newly added row having field value
     const arFromOrm = this.query()
       .where('vnRowStateInSession', 24) // New -> Changed
@@ -208,7 +208,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  static getNotEmptyRows(pFieldForNonEmptyCheck) {
+  static fnGetNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
@@ -232,7 +232,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   */
 
-  static getRowsToChange(pFieldForNonEmptyCheck) {
+  static fnGetRowsToChange(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
@@ -277,7 +277,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
           this means that the row has not been discontinued.
   */
-  static getValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
+  static fnGetValidUniqueUuidNotEmptyRows(pFieldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
@@ -307,7 +307,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return uniqueUuidRows
   }
 
-  static getValidUniqueUuidRows() {
+  static fnGetValidUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query().where('ROW_END', 2147483647.999999).get()
     const uniqueUuidRows = []
@@ -340,7 +340,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return uniqueUuidRows
   }
 
-  static findIfDuplicateExists(pUuid) {
+  static fnFindIfDuplicateExists(pUuid) {
     const num = this.query().where('uuid', pUuid).count()
     if (num > 1) {
       return true
@@ -349,8 +349,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static deleteNewRowsInEditState() {
-    const arFromOrm = this.getAllNewRowsInEditState()
+  static fnDeleteNewRowsInEditState() {
+    const arFromOrm = this.fnGetAllNewRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
         this.delete(arFromOrm[i].id)
@@ -358,8 +358,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static deleteChangeRowsInEditState() {
-    const arFromOrm = this.getAllChangeRowsInEditState()
+  static fnDeleteChangeRowsInEditState() {
+    const arFromOrm = this.fnGetAllChangeRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
         this.delete(arFromOrm[i].id)
@@ -367,11 +367,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static setFieldValue(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnSetFieldValue(pEvent, pOrmRowId, pFieldName, pRowStatus) {
     // Step 1/2
-    this.putFieldValueInCache(pEvent, pOrmRowId, pFieldName)
+    this.fnPutFieldValueInCache(pEvent, pOrmRowId, pFieldName)
     // Step 2/2
-    this.createTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus)
+    this.fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus)
   }
 
   /*  
@@ -383,7 +383,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             Ref: The chain is started at cts/spi/1t-Mr1f/rem/cl/add.vue:16 
             The sequence is: add.vue:16:mfSetFieldUsingCache 
                               => add.vue:116:ormRem.setField 
-                                => rowStatus.js:118:this.putFieldValueInCache
+                                => rowStatus.js:118:this.fnPutFieldValueInCache
 
     Step : The work done by this function is used on each key press at:
                             add.vue:15:value="mfGetField"
@@ -395,7 +395,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
   */
-  static putFieldValueInCache(pEvent, pOrmRowId, pFieldName) {
+  static fnPutFieldValueInCache(pEvent, pOrmRowId, pFieldName) {
     // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setFieldInOrmOnTimeOut
 
     /*
@@ -451,7 +451,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
   }
 
-  static createTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus) {
     // Goal: debouncing. If A and B are pressed quickly. Timeout for "A" keypress will get cancelled and timeout for "B" keypress will get scheduled.
     if (this.vOrmSaveScheduled) {
       clearTimeout(this.vOrmSaveScheduled)
@@ -459,14 +459,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     /* Ref: https://stackoverflow.com/questions/38399050/vue-equivalent-of-settimeout */
     this.vOrmSaveScheduled = setTimeout(
       function (scope) {
-        scope.setFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus)
+        scope.fnSetFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus)
       },
       500, // setting timeout of 500 ms
       this
     )
   }
 
-  static setFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnSetFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus) {
     const row = {
       [pFieldName]: pEvent,
       vnRowStateInSession: pRowStatus,
@@ -483,7 +483,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static compareRows(pRow1Id, pRow2Id) {
+  static fnCompareRows(pRow1Id, pRow2Id) {
     const objRow1 = this.find(pRow1Id)
     const objRow2 = this.find(pRow2Id)
 
@@ -514,7 +514,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return true
   }
 
-  static async copyRow(pOrmRowId) {
+  static async fnCopyRow(pOrmRowId) {
     const arToCopy = this.find(pOrmRowId)
 
     // remove the id field so that vuexOrm will create a new primary key
@@ -539,7 +539,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return idOfNewRow
   }
 
-  static async sendToServer() {
+  static async fnSendToServer() {
     // API will return 1 (Success) or 0 (Failure)
     const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
 
@@ -625,7 +625,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async sendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
+  static async fnSendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
     try {
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
@@ -654,7 +654,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async sendMultiDiscontinueDataToServer(dataRow) {
+  static async fnSendMultiDiscontinueDataToServer(dataRow) {
     let success = 0
     let failed = 0
     /*
@@ -665,7 +665,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.sendDiscontinueDataToServer(row.id, row.uuid, null)
+        const status = await this.fnSendDiscontinueDataToServer(row.id, row.uuid, null)
         if (status === 1) {
           success++
         } else {

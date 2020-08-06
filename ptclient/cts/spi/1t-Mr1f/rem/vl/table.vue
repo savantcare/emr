@@ -110,13 +110,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromOrm = ormRem.getValidUniqueUuidRows()
+      const arFromOrm = ormRem.fnGetValidUniqueUuidRows()
       return arFromOrm.length
     },
 
     cfArOfRemForDisplayInTable() {
       // Whenever ormRem will change this will get called. Even when there are 100 rows in the table when orm rem changes this gets called once'
-      const arFromOrm = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = ormRem.fnGetValidUniqueUuidNotEmptyRows('remDesc')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:

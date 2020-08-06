@@ -86,7 +86,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = ormRem.getValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = ormRem.fnGetValidUniqueUuidNotEmptyRows('remDesc')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

@@ -61,7 +61,8 @@ export default {
   computed: {
     cfName() {
       if (!this.isMounted) return ''
-      const arFromOrm = orm.getRowsToChange('firstName')
+      // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
+      const arFromOrm = orm.fnGetRowsToChange('firstName')
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a organe color background.
         const rowtoReturn = arFromOrm[0]
@@ -107,6 +108,7 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
+      // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       const payload = { searchTerm: 'name - change', pPropsToGiveToCt: pOrmId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
@@ -119,6 +121,7 @@ export default {
       return 'default'
     },
     mfSendSubmitEvent() {
+      // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
         this.feFldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged

@@ -28,7 +28,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDiscontinue.length > 0) {
-            const status = await ormRem.sendMultiDiscontinueDataToServer(
+            const status = await ormRem.fnSendMultiDiscontinueDataToServer(
               this.daSelectedRemForDiscontinue
             )
             if (status.success > 0) {
@@ -51,7 +51,7 @@ export default {
         })
     },
     async mxOpenXCtInCl() {
-      const discontinuedRows = await ormRem.getDiscontinuedRows()
+      const discontinuedRows = await ormRem.fnGetDiscontinuedRows()
       const arDrawerData = []
       discontinuedRows.forEach((item) => {
         const arRow = []
@@ -92,7 +92,7 @@ export default {
         inputPlaceholder: 'Enter discontinue note',
       })
         .then(async ({ value }) => {
-          const status = await ormRem.sendDiscontinueDataToServer(
+          const status = await ormRem.fnSendDiscontinueDataToServer(
             pOrmDataRowId,
             arResultsFromOrm.uuid,
             value

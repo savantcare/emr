@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     cfRowInEditStateOnClient() {
-      return ormRem.getAllChangeRowsInEditState()
+      return ormRem.fnGetAllChangeRowsInEditState()
     },
     cfTimeLineDataAr() {
       const timelineDataArray = []
@@ -201,7 +201,7 @@ export default {
         arFromOrm = ormRem.find(this.firstProp)
         this.uuid = arFromOrm.uuid
         // Find if there is unsaved data for this.uuid
-        const vnExistingChangeRowId = ormRem.getChangeRowIdInEditState(this.uuid)
+        const vnExistingChangeRowId = ormRem.fnGetChangeRowIdInEditState(this.uuid)
         if (vnExistingChangeRowId === false) {
           // Adding a new blank record. Since this is temporal DB
           this.mfCopyRowToOrm(arFromOrm.remDesc)
@@ -212,12 +212,12 @@ export default {
       }
 
       // From this point on the state is same for change and add
-      return ormRem.getFieldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
+      return ormRem.fnGetFldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
     },
     mfSetRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
-      ormRem.setFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/putFieldValueInCache
+      ormRem.fnSetFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
 
     async mfSendDataToServer() {
