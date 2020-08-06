@@ -21,10 +21,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="cfIsButtonDisabled" type="success" plain @click="mfOnSubmit"
+        <el-button :disabled="cfHasSomeFieldChanged" type="success" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonDisabled" type="danger" plain @click="mfOnResetForm"
+        <el-button :disabled="cfHasSomeFieldChanged" type="danger" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -60,7 +60,7 @@ export default {
     }
   },
   computed: {
-    cfIsButtonDisabled() {
+    cfHasSomeFieldChanged() {
       // TODO: better name
       /*
       Method 1: Problem -> what if user uses backspace to erase the extra charecters typed

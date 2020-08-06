@@ -2,6 +2,7 @@
 <template>
   <div>
     <h5>Name</h5>
+    <!-- Passing name of the field so the function can decide if the field is changed or not -->
     <el-button
       :type="mfTypeOfButton('firstName')"
       plain
@@ -20,7 +21,7 @@
       >C</el-button
     >
     <el-button
-      v-if="fieldsInCopiedRowThatAreDiff"
+      v-if="feFldsInCopiedRowThatAreDiff"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -30,7 +31,7 @@
       >S</el-button
     >
     <el-button
-      v-if="fieldsInCopiedRowThatAreDiff"
+      v-if="feFldsInCopiedRowThatAreDiff"
       type="danger"
       size="mini"
       style="padding: 3px;"
@@ -49,8 +50,11 @@ export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
     return {
+      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loaging.  */
       isMounted: false,
-      fieldsInCopiedRowThatAreDiff: false,
+      /* This Ct has 3 fields. This helps deciding which field to show in orange color. 
+      Also help deciding if submit and reset options should be shown */
+      feFldsInCopiedRowThatAreDiff: false,
     }
   },
   computed: {
@@ -60,8 +64,8 @@ export default {
       if (arFromOrm.length) {
         // Pick up any changed values
         const rowtoReturn = arFromOrm[0]
-        for (const k in this.fieldsInCopiedRowThatAreDiff)
-          rowtoReturn[k] = this.fieldsInCopiedRowThatAreDiff[k]
+        for (const k in this.feFldsInCopiedRowThatAreDiff)
+          rowtoReturn[k] = this.feFldsInCopiedRowThatAreDiff[k]
 
         // return to the template.
         return rowtoReturn
@@ -89,10 +93,10 @@ export default {
   },
   async mounted() {
     this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFieldsWithDiff) => {
-      this.fieldsInCopiedRowThatAreDiff = pFieldsWithDiff
+      this.feFldsInCopiedRowThatAreDiff = pFieldsWithDiff
     })
     this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
-      this.fieldsInCopiedRowThatAreDiff = false
+      this.feFldsInCopiedRowThatAreDiff = false
     })
 
     if (orm.query().count() > 0) {
@@ -107,9 +111,9 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mfTypeOfButton(pFieldName) {
-      if (!this.fieldsInCopiedRowThatAreDiff) return 'default'
+      if (!this.feFldsInCopiedRowThatAreDiff) return 'default'
 
-      if (pFieldName in this.fieldsInCopiedRowThatAreDiff) {
+      if (pFieldName in this.feFldsInCopiedRowThatAreDiff) {
         return 'warning'
       }
       return 'default'
@@ -117,13 +121,13 @@ export default {
     mfSendSubmitEvent() {
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
-        this.fieldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+        this.feFldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
       this.$root.$emit(
         'event-from-ct-name-vl-reset-this-form',
-        this.fieldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+        this.feFldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
       )
     },
   },

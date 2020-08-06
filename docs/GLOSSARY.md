@@ -14,6 +14,7 @@
 - mc: multi change
 - c: change
 - d: discontinue
+- fe: from event of some other Ct in Vue see: name/table.vue for example
 
 ### Data types
 
