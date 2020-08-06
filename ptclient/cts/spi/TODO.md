@@ -2,15 +2,19 @@
 
 ## Code template
 
-1. Body measurement to combine other Cts through tabs @VK
+1. Name command has some changed fields and then i give name command again. the changed fields do not show up
 
-2. Finish all of BM children
+2. doctor wants to type "name change" this should be allowed since there is only one row hence i know which row is being changed.
 
-3. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+3. Body measurement to combine other Cts through tabs @VK
 
-## Rem (Raj)
+4. Finish all of BM children
 
-1. When changing data
+5. @raj When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+
+## Rem
+
+1. @raj When changing data
 
    1. "Saved this session" label is not correctly applied when saving fast.
    2. I change a row then discontinue it.
