@@ -52,7 +52,7 @@ export default {
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnOrmIdOfCopiedRowBeingChanged: null, // This row is one step ahead of vnOrmIdOfRowToChange
+      vnOrmIdOfCopiedRowBeingChanged: null, // This row is one step ahead of vnOrmIdOfRowToChange See Chapter 15 video
       /*
         isMounted: false,
         Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
