@@ -21,13 +21,23 @@
     >
     <el-button
       v-if="fieldsInCopiedRowThatAreDiff"
-      type="primary"
+      type="success"
       size="mini"
       style="padding: 3px;"
       plain
       tabindex="-1"
       @click="mfSendSubmitEvent()"
       >S</el-button
+    >
+    <el-button
+      v-if="fieldsInCopiedRowThatAreDiff"
+      type="danger"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfSendResetFormEvent()"
+      >R</el-button
     >
   </div>
 </template>
@@ -91,16 +101,22 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mfTypeOfButton(pFieldName) {
-      if (!this.fieldsInCopiedRowThatAreDiff) return 'primary'
+      if (!this.fieldsInCopiedRowThatAreDiff) return 'default'
 
       if (pFieldName in this.fieldsInCopiedRowThatAreDiff) {
         return 'warning'
       }
-      return 'primary'
+      return 'default'
     },
     mfSendSubmitEvent() {
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
+        this.fieldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+      )
+    },
+    mfSendResetFormEvent() {
+      this.$root.$emit(
+        'event-from-ct-name-vl-reset-this-form',
         this.fieldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
       )
     },

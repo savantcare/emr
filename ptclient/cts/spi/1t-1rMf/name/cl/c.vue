@@ -177,9 +177,11 @@ export default {
   */
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
-      console.log('cl received message to save the row id', pRowID)
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
       this.mfOnSubmit()
+    })
+    this.$root.$on('event-from-ct-name-vl-reset-this-form', (pRowID) => {
+      this.mfOnResetForm()
     })
   },
   methods: {
