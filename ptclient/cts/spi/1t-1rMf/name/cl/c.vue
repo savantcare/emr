@@ -21,10 +21,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="cfIsButtonDisabled" type="primary" plain @click="mfOnSubmit"
+        <el-button :disabled="cfIsButtonDisabled" type="success" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfIsButtonDisabled" type="warning" plain @click="mfOnResetForm"
+        <el-button :disabled="cfIsButtonDisabled" type="danger" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
