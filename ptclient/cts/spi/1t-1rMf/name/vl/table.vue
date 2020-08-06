@@ -17,7 +17,7 @@
       >C</el-button
     >
     <el-button
-      v-if="isCopiedRowDiff"
+      v-if="fieldsInCopiedRowThatAreDiff"
       type="primary"
       size="mini"
       style="padding: 3px;"
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       isMounted: false,
-      isCopiedRowDiff: false,
+      fieldsInCopiedRowThatAreDiff: false,
     }
   },
   computed: {
@@ -68,7 +68,7 @@ export default {
       return idx
     },
     cfTypeOfButton() {
-      if (this.isCopiedRowDiff === true) {
+      if (this.fieldsInCopiedRowThatAreDiff !== false) {
         return 'warning'
       }
       return 'primary'
@@ -76,10 +76,10 @@ export default {
   },
   async mounted() {
     this.$root.$on('event-from-ct-name-copied-row-diff', (pFieldsWithDiff) => {
-      this.isCopiedRowDiff = true
+      this.fieldsInCopiedRowThatAreDiff = pFieldsWithDiff
     })
     this.$root.$on('event-from-ct-name-copied-row-same', () => {
-      this.isCopiedRowDiff = false
+      this.fieldsInCopiedRowThatAreDiff = false
     })
 
     if (orm.query().count() > 0) {
