@@ -24,7 +24,7 @@ export default {
         ctAbbr: 'hc',
         ctToShow: 'spi/1t-1rMf/height/cl/c.vue', // Cl -> Change layer
         displayLocation: 'cl',
-        operatesOn: 'row',
+        needsRowIdToWork: 'no',
       },
     })
   },

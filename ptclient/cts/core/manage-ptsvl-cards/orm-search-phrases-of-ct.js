@@ -12,7 +12,7 @@ export default class ormSearchPhrasesOfCt extends Model {
       displayLocation: this.string(''), // This can have the value of "ptsvl" or "cl". It is used to decide where to show the ct.
       usageCountKeptInOrm: this.number(0), // This is used to order the search results.
       ctWidthInCl: this.string(''), // In CL we want to box to be as small as possible to more area of Vl is visible. This is used to decide on the width of the tab in the change layer
-      operatesOn: this.string('table'), // operatesOn can either be table or row. If operatesOn is Row then search term do not come in Vl or Cl search box. operatesOn=Row search terms are only used to invokle Ct when a icon beside a row is click in Vl
+      needsRowIdToWork: this.string('no'), // needsRowIdToWork can either be table or row. If needsRowIdToWork is Row then search term do not come in Vl or Cl search box. needsRowIdToWork=Row search terms are only used to invokle Ct when a icon beside a row is click in Vl
     }
   }
 }

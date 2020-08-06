@@ -24,7 +24,7 @@ export default {
         ctAbbr: 'bmcc',
         ctToShow: 'spi/1t-1rMf/bm/cl/c.vue', // Cl -> Change layer
         displayLocation: 'cl',
-        operatesOn: 'row',
+        needsRowIdToWork: 'no',
       },
     })
   },
