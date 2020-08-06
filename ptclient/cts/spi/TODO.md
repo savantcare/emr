@@ -2,13 +2,11 @@
 
 ## Code template
 
-1. On change the view layer should get save and restore buttons and send messages to other ct to work. @VK
+1. Body measurement to combine other Cts through tabs @VK
 
-2. Body measurement to combine other Cts through tabs @VK
+2. Finish all of BM children
 
-3. Finish all of BM children
-
-4. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+3. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
 
 ## Rem (Raj)
 

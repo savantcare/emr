@@ -114,6 +114,7 @@ export default {
       if (objFieldsComparisonResults === true) {
         this.$root.$emit('event-from-ct-name-copied-row-same')
       } else {
+        objFieldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
         this.$root.$emit('event-from-ct-name-copied-row-diff', objFieldsComparisonResults)
       }
 
@@ -177,6 +178,8 @@ export default {
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
       console.log('cl received message to save the row id', pRowID)
+      this.vnOrmIdOfCopiedRowBeingChanged = pRowID
+      this.mfOnSubmit()
     })
   },
   methods: {
