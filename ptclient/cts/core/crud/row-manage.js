@@ -505,7 +505,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     // Code for comparing 2 objects comes from https://stackoverflow.com/a/5859028
     for (const p in objRow1) {
       if (objRow1[p] !== objRow2[p]) {
-        ObjFieldsThatAreDifferent[p] = 'diff'
+        ObjFieldsThatAreDifferent[p] = objRow2[p]
       }
     }
 

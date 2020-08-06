@@ -58,7 +58,13 @@ export default {
       if (!this.isMounted) return ''
       const arFromOrm = orm.getRowsToChange('firstName')
       if (arFromOrm.length) {
-        return arFromOrm[0]
+        // Pick up any changed values
+        const rowtoReturn = arFromOrm[0]
+        for (const k in this.fieldsInCopiedRowThatAreDiff)
+          rowtoReturn[k] = this.fieldsInCopiedRowThatAreDiff[k]
+
+        // return to the template.
+        return rowtoReturn
       } else {
         return ''
       }
@@ -82,10 +88,10 @@ export default {
     },
   },
   async mounted() {
-    this.$root.$on('event-from-ct-name-copied-row-diff', (pFieldsWithDiff) => {
+    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFieldsWithDiff) => {
       this.fieldsInCopiedRowThatAreDiff = pFieldsWithDiff
     })
-    this.$root.$on('event-from-ct-name-copied-row-same', () => {
+    this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
       this.fieldsInCopiedRowThatAreDiff = false
     })
 

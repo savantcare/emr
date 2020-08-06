@@ -112,10 +112,10 @@ export default {
 
       // informing view layer
       if (objFieldsComparisonResults === true) {
-        this.$root.$emit('event-from-ct-name-copied-row-same')
+        this.$root.$emit('event-from-ct-name-cl-copied-row-same')
       } else {
         objFieldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
-        this.$root.$emit('event-from-ct-name-copied-row-diff', objFieldsComparisonResults)
+        this.$root.$emit('event-from-ct-name-cl-copied-row-diff', objFieldsComparisonResults)
       }
 
       // informing the current component
