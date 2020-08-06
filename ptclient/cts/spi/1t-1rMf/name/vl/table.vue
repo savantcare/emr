@@ -2,11 +2,14 @@
 <template>
   <div>
     <h5>Name</h5>
-    <el-button :type="cfTypeOfButton" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1">{{
-      cfName['firstName']
-    }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfName['middleName'] }}</el-button>
-    <el-button :type="cfTypeOfButton" plain>{{ cfName['lastName'] }}</el-button>
+    <el-button
+      :type="mfTypeOfButton('firstName')"
+      plain
+      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+      >{{ cfName['firstName'] }}</el-button
+    >
+    <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfName['middleName'] }}</el-button>
+    <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfName['lastName'] }}</el-button>
     <el-button
       type="primary"
       size="mini"
@@ -67,12 +70,6 @@ export default {
       const idx = arCardsInCsOfVl.indexOf(obj)
       return idx
     },
-    cfTypeOfButton() {
-      if (this.fieldsInCopiedRowThatAreDiff !== false) {
-        return 'warning'
-      }
-      return 'primary'
-    },
   },
   async mounted() {
     this.$root.$on('event-from-ct-name-copied-row-diff', (pFieldsWithDiff) => {
@@ -92,6 +89,14 @@ export default {
     mfOpenCCtInCl(pOrmId) {
       const payload = { searchTerm: 'name - change', pPropsToGiveToCt: pOrmId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
+    },
+    mfTypeOfButton(pFieldName) {
+      if (!this.fieldsInCopiedRowThatAreDiff) return 'primary'
+
+      if (pFieldName in this.fieldsInCopiedRowThatAreDiff) {
+        return 'warning'
+      }
+      return 'primary'
     },
   },
 }
