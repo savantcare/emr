@@ -100,12 +100,25 @@ export default {
           How to solve this?
           In the view layer it should always display the row that is getting changed.
       */
-      if (orm.compareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
+
+      const objFieldsComparisonResults = orm.compareRows(
+        this.vnOrmIdOfRowToChange,
+        this.vnOrmIdOfCopiedRowBeingChanged
+      )
+
+      // informing view layer
+      if (objFieldsComparisonResults === true) {
         this.$root.$emit('event-from-ct-name-copied-row-same')
-        return true
+      } else {
+        this.$root.$emit('event-from-ct-name-copied-row-diff', objFieldsComparisonResults)
       }
-      this.$root.$emit('event-from-ct-name-copied-row-diff')
-      return false
+
+      // informing the current component
+      if (objFieldsComparisonResults === true) {
+        return true
+      } else {
+        return false
+      }
     },
   },
   watch: {

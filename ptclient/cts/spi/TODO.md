@@ -2,9 +2,15 @@
 
 ## Code template
 
-1. I have height command and weight command. I click on C for height and change it. When I click on C beside weight this gets the value for height.
+1. When something is changed the field should get a highlight and not the row. @VK
 
-2. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+   1. On change the view layer should get save and restore buttons and send messages to other ct to work. @VK
+
+2. Body measurement to combine other Cts through tabs @VK
+
+3. Finish all of BM children
+
+4. When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
 
 ## Rem (Raj)
 

@@ -75,7 +75,7 @@ export default {
     },
   },
   async mounted() {
-    this.$root.$on('event-from-ct-name-copied-row-diff', () => {
+    this.$root.$on('event-from-ct-name-copied-row-diff', (pFieldsWithDiff) => {
       this.isCopiedRowDiff = true
     })
     this.$root.$on('event-from-ct-name-copied-row-same', () => {
