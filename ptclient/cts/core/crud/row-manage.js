@@ -222,7 +222,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     The inferences we can draw are:
     1. The Orm Ids are 1,2,3,4
     2. Id 1,2 are discontinued
-    3. Id 3,4 are valid
+    3. Id 3,4 are valid (Valid implies that RPW_END time is > then the current time)
     4. Id 3 is Orm Id Of Row To Change
     5. Id 4 is Orm Id Of CopiedRowBeingChanged
 
@@ -233,43 +233,26 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   */
 
   static fnGetRowsToChange(pFieldForNonEmptyCheck) {
-    // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)
       .where(pFieldForNonEmptyCheck, (value) => value.length > 0)
       .get()
 
-    // Discard all entries from this array where it does not end in 1.
+    // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
+
+    // Step 2/3: Discard all entries from this dataset where it does not end in 1. Ending in 1 implies that the data has been saved to DB
     for (let i = 0; i < arFromOrm.length; i++) {
       if (arFromOrm[i].vnRowStateInSession % 10 === 1) {
-        // this ends with 1 and hence is saved to DB
       } else {
         arFromOrm.splice(i, 1)
       }
     }
 
-    const uniqueUuidRows = []
-
-    // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
-    let foundInArToReturn = false
-    for (let i = 0; i < arFromOrm.length; i++) {
-      for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
-          /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
-          In the array that is returned from this Fn I am returning the array with the new data.       
-          Hence in the following line I over write the old row
-          */
-          uniqueUuidRows[j] = arFromOrm[i]
-          foundInArToReturn = true
-        }
-      }
-      if (foundInArToReturn) {
-      } else {
-        uniqueUuidRows.push(arFromOrm[i])
-      }
-    }
-
-    return uniqueUuidRows
+    /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
+    Since everytime a row is updated the previous row is marked as discontinued 
+    So discontinued rows will not cross step 1 query */
+    return arFromOrm
   }
 
   /*  1. This function finds data in client side vuex-orm. This fn is not making a API query to the server.

@@ -1,4 +1,7 @@
-<!-- Reference implementation -->
+<!-- Reference implementation 
+Why copy the code to other components and not use mixin?
+This is the structure and others are supposed to write their own custom code.
+-->
 <template>
   <div>
     <h5>Name</h5>
