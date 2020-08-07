@@ -323,7 +323,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return uniqueUuidRows
   }
 
-  static fnFindIfDuplicateExists(pUuid) {
+  static fnIsThereDuplicateUuid(pUuid) {
     const num = this.query().where('uuid', pUuid).count()
     if (num > 1) {
       return true
@@ -332,22 +332,35 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static fnDeleteNewRowsInEditState() {
-    const arFromOrm = this.fnGetAllNewRowsInEditState()
-    if (arFromOrm.length) {
-      for (let i = 0; i < arFromOrm.length; i++) {
-        this.delete(arFromOrm[i].id)
-      }
-    }
-  }
+  static fnIsDataFieldsOfRowSame(pRow1Id, pRow2Id) {
+    const objRow1 = this.find(pRow1Id)
+    const objRow2 = this.find(pRow2Id)
 
-  static fnDeleteChangeRowsInEditState() {
-    const arFromOrm = this.fnGetAllChangeRowsInEditState()
-    if (arFromOrm.length) {
-      for (let i = 0; i < arFromOrm.length; i++) {
-        this.delete(arFromOrm[i].id)
+    // delete fields that are not data fields. Since only data fields need to be compared.
+    delete objRow1.id
+    delete objRow2.id
+
+    delete objRow1.ROW_START
+    delete objRow2.ROW_START
+
+    delete objRow1.$id
+    delete objRow2.$id
+
+    delete objRow1.vnRowStateInSession
+    delete objRow1.vnRowStateInSession
+
+    const ObjFieldsThatAreDifferent = {}
+
+    // Code for comparing 2 objects comes from https://stackoverflow.com/a/5859028
+    for (const p in objRow1) {
+      if (objRow1[p] !== objRow2[p]) {
+        ObjFieldsThatAreDifferent[p] = objRow2[p]
       }
     }
+
+    if (Object.keys(ObjFieldsThatAreDifferent).length > 0) return ObjFieldsThatAreDifferent
+
+    return true
   }
 
   static fnSetFldValue(pEvent, pOrmRowId, pFldName, pRowStatus) {
@@ -466,60 +479,42 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static fnIsDataFieldsOfRowSame(pRow1Id, pRow2Id) {
-    const objRow1 = this.find(pRow1Id)
-    const objRow2 = this.find(pRow2Id)
-
-    // delete fields that are not part of compare
-    delete objRow1.id
-    delete objRow2.id
-
-    delete objRow1.ROW_START
-    delete objRow2.ROW_START
-
-    delete objRow1.$id
-    delete objRow2.$id
-
-    delete objRow1.vnRowStateInSession
-    delete objRow1.vnRowStateInSession
-
-    const ObjFieldsThatAreDifferent = {}
-
-    // Code for comparing 2 objects comes from https://stackoverflow.com/a/5859028
-    for (const p in objRow1) {
-      if (objRow1[p] !== objRow2[p]) {
-        ObjFieldsThatAreDifferent[p] = objRow2[p]
-      }
-    }
-
-    if (Object.keys(ObjFieldsThatAreDifferent).length > 0) return ObjFieldsThatAreDifferent
-
-    return true
-  }
-
   static async fnCopyRow(pOrmRowId) {
     const arToCopy = this.find(pOrmRowId)
-
-    // remove the id field so that vuexOrm will create a new primary key
-    delete arToCopy.id
-    // set ROW_START to now
-    arToCopy.ROW_START = Math.floor(Date.now() / 1000)
-    // Since this row is copied set the correct rowState
-    arToCopy.vnRowStateInSession = 3 // For meaning of diff values read cts/core/crus/forms.md
-
+    delete arToCopy.id // removing the id field from source so that vuexOrm will create a new primary key in destination
+    arToCopy.ROW_START = Math.floor(Date.now() / 1000) // set ROW_START to now
+    arToCopy.vnRowStateInSession = 3 // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
     })
-
-    // Cannot use this since ptName is hardcoded. For different Ct this will be different.
-    // const idOfNewRow = newRow.ptName[0].id
-
-    /* How to get the first key when I do not know the name of the first key 
-    Ref: https://stackoverflow.com/questions/983267/how-to-access-the-first-property-of-a-javascript-object
+    /* Goal: Get id of the row that has been inserted into the ORM
+    Option1: 
+    const idOfNewRow = newRow.ptName[0].id
+    Cannot use this since ptName is hardcoded. For different Ct this will be different.
+    Hence need a dynamic way to get the value in place of ptName
+    Code for getting the first key when I do not know the name of the first key comes from https://stackoverflow.com/questions/983267/how-to-access-the-first-property-of-a-javascript-object
     */
     const firstKey = newRow[Object.keys(newRow)[0]]
     const idOfNewRow = firstKey[0].id
     return idOfNewRow
+  }
+
+  static fnDeleteNewRowsInEditState() {
+    const arFromOrm = this.fnGetAllNewRowsInEditState()
+    if (arFromOrm.length) {
+      for (let i = 0; i < arFromOrm.length; i++) {
+        this.delete(arFromOrm[i].id)
+      }
+    }
+  }
+
+  static fnDeleteChangeRowsInEditState() {
+    const arFromOrm = this.fnGetAllChangeRowsInEditState()
+    if (arFromOrm.length) {
+      for (let i = 0; i < arFromOrm.length; i++) {
+        this.delete(arFromOrm[i].id)
+      }
+    }
   }
 
   static async fnSendToServer() {
