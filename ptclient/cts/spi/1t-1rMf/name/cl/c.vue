@@ -40,8 +40,8 @@ export default {
 
   data() {
     return {
-      /* Covnetions: -1 implies that the system is not ready to have a value the DB is still getting loaded.     
-        null implies that system is ready for pIdOfCopiedRowBeingChangedInOrmNewVal to have a value but does not have a value */
+      /* Convetion: -1 implies that the system is not ready to have a value the DB is still getting loaded.     
+        null implies that system is ready for pOrmIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
 
       /*  if the name was changed 4 times before this ct loaded the id will be 5. The id will always be latest data where ROW_END is in future and row status ends in 1
           I want doctor to be able to type: "change name" though this operates on a row there is only one row.
@@ -53,6 +53,7 @@ export default {
     }
   },
   computed: {
+    // Goal: Find out which fields have changed and inform 1. the view layer 2. Submit and reset button of this Ct.
     cfHasSomeFieldChanged() {
       // Following 2 protect against race condition. Since data needs to be loaded inside created function and then the row needs to get copied
       // When the Ct is created vnOrmIdOfRowToChange and vnOrmIdOfCopiedRowBeingChanged are -1 indicating they are undefined. They need to have a value before this code should execute
@@ -84,24 +85,26 @@ export default {
     },
   },
   watch: {
+    /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row. 
+    By the time this watchFn exits this.vnOrmIdOfCopiedRowBeingChanged will have a valid value */
     vnOrmIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
-
       /*  In V1 this was part of mounted, that is sequential programming,
           In V2 this is part of watch, this is "act on state" programming.
 
           When called first time:
-            pIdOfCopiedRowBeingChangedInOrmNewVal = -1 since data section sets that value
-            pIdOfCopiedRowBeingChangedInOrmOldval is undefined
+            pOrmIdOfCopiedRowBeingChangedNVal = -1 since data section sets that value
+            pOrmIdOfCopiedRowBeingChangedOVal is undefined
 
           When called second time:
-            pIdOfCopiedRowBeingChangedInOrmNewVal = null since any other function that wants a new row being copied sets it to null
-            pIdOfCopiedRowBeingChangedInOrmOldval is the old value of pIdOfCopiedRowBeingChangedInOrmNewVal. Hence previous row that was being edited  */
+            pOrmIdOfCopiedRowBeingChangedNVal = null since any other function that wants a new row being copied sets it to null
+            pOrmIdOfCopiedRowBeingChangedOVal is the old value of pOrmIdOfCopiedRowBeingChangedNVal. Hence previous row that was being edited  */
 
-      async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
-        if (this.vnOrmIdOfRowToChange === -1) return // race condition
+      async handler(pOrmIdOfCopiedRowBeingChangedNVal, pOrmIdOfCopiedRowBeingChangedOVal) {
+        // NVal => New value and OVal => Old Value
+        if (this.vnOrmIdOfRowToChange === -1) return // Data has not finished loading in the created()
 
-        if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
+        if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
               When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
@@ -116,6 +119,7 @@ export default {
       },
     },
   },
+  // Goal: Load the data from DB
   async created() {
     // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
     if (orm.query().count() > 0) {
@@ -127,6 +131,7 @@ export default {
     this.vnOrmIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },
+  // Goal: Set up event listeners so view layer can ask to submit data or reset form
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
