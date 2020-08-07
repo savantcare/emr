@@ -62,7 +62,7 @@ export default {
       /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed? Better Ux
         The c.vue uses event system  to send a list of fields that have changed to vl */
 
-      const objFieldsComparisonResults = orm.fnCompareRows(
+      const objFieldsComparisonResults = orm.fnIsDataFieldsOfRowSame(
         this.vnOrmIdOfRowToChange,
         this.vnOrmIdOfCopiedRowBeingChanged
       )

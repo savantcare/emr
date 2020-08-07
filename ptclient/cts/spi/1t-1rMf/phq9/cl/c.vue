@@ -99,7 +99,9 @@ export default {
     cfIsButtonDisabled() {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
-      if (orm.fnCompareRows(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)) {
+      if (
+        orm.fnIsDataFieldsOfRowSame(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)
+      ) {
         this.$root.$emit('event-from-ct-phq9-copied-row-same')
         return true
       }
