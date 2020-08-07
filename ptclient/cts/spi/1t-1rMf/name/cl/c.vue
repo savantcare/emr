@@ -43,7 +43,7 @@ export default {
       When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own. */
   data() {
     return {
-      /* 1. row to cahnge is not same as row being changed. This row is the latest data where ROW_END is in future and ends row status ends in 1   */
+      /* 1. row to change is not same as row being changed. This row is the latest data where ROW_END is in future and row status ends in 1   */
       vnOrmIdOfRowToChange: null,
 
       /* Why not change the original row? 1. If the user hits reset I cannot go back to the data that the user started with. 2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed. */
@@ -54,24 +54,9 @@ export default {
     cfHasSomeFieldChanged() {
       if (this.vnOrmIdOfCopiedRowBeingChanged == -1) return true // there is a race condition. This if statement waits for copy to finish
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
-      // at first run this.vnOrmIdOfRowToChange is this.firstProp
 
-      /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed?
-
-          Problem:
-          user does the following:
-          1. Clicks on C beside Name and makes a change.
-          2. Closes the open tab by clicking on cross.
-          3. Clicks on C beside Name again.
-          Now this.vnOrmIdOfRowToChange and this.vnOrmIdOfCopiedRowBeingChanged are = 2.
-
-          How to solve this?
-          In the view layer it should always display the row that is getting changed.
-
-          Subsequent issue:
-          When a field is changed how to show that in view layer?
-          The event system needs to send a list of fields that have changed.
-      */
+      /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed? Better Ux
+        The c.vue uses event system  to send a list of fields that have changed to vl */
 
       const objFieldsComparisonResults = orm.fnCompareRows(
         this.vnOrmIdOfRowToChange,
