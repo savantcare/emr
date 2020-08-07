@@ -57,9 +57,9 @@ export default {
     },
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
-      const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
-      const obj = arCardsInCsOfVl.find((x) => x.label === 'phq9')
-      const idx = arCardsInCsOfVl.indexOf(obj)
+      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'phq9')
+      const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
     cfTypeOfButton() {

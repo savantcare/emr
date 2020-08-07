@@ -137,7 +137,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetChangeRowIdInEditState(pUuid) {
     /*
-      Q) Why we remove orWhere clause?
+      Q) Why did we remove orWhere clause?
         Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
         where (uuid=4545d6 AND vnRowStateInSession=3) 
         OR vnRowStateInSession=34 

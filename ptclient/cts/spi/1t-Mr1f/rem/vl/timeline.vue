@@ -80,9 +80,9 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfVl() {
-      const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
-      const obj = arCardsInCsOfVl.find((x) => x.label === 'reminders')
-      const idx = arCardsInCsOfVl.indexOf(obj)
+      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'reminders')
+      const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
     cfArOfRemForDisplayInTable() {

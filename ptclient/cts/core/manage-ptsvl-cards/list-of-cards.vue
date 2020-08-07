@@ -52,7 +52,7 @@ export default {
   computed: {
     cfArCardsInCsOfVl: {
       get() {
-        return this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
+        return this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
       },
       set(value) {
         this.$store.commit('mtfSetArCardsInCsOfVl', value)

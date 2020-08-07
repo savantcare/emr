@@ -24,7 +24,7 @@ This is the structure and others are supposed to write their own custom code.
       >C</el-button
     >
     <el-button
-      v-if="feFldsInCopiedRowThatAreDiff"
+      v-if="feCopiedRowFldsThatAreDiff"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -34,7 +34,7 @@ This is the structure and others are supposed to write their own custom code.
       >S</el-button
     >
     <el-button
-      v-if="feFldsInCopiedRowThatAreDiff"
+      v-if="feCopiedRowFldsThatAreDiff"
       type="danger"
       size="mini"
       style="padding: 3px;"
@@ -58,7 +58,7 @@ export default {
       /* This Ct has 3 fields. This helps deciding which field to show in orange color.
       Also helps deciding if submit and reset options should be shown
       The name begins with fe to indicate it comes from a event */
-      feFldsInCopiedRowThatAreDiff: false,
+      feCopiedRowFldsThatAreDiff: false,
     }
   },
   computed: {
@@ -67,10 +67,10 @@ export default {
       // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
       const arFromOrm = orm.fnGetRowsToChange('firstName')
       if (arFromOrm.length) {
-        // Goal: Pick up any changed fld value since need to show new value in the view layer with a organe color background.
+        // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
-        for (const k in this.feFldsInCopiedRowThatAreDiff)
-          rowtoReturn[k] = this.feFldsInCopiedRowThatAreDiff[k]
+        for (const k in this.feCopiedRowFldsThatAreDiff)
+          rowtoReturn[k] = this.feCopiedRowFldsThatAreDiff[k]
         // return to the template.
         return rowtoReturn
       } else {
@@ -89,19 +89,19 @@ export default {
       */
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
-      const arCardsInCsOfVl = this.$store.state.vstObjCardsInCsOfVl.arCardsInCsOfVl
-      const obj = arCardsInCsOfVl.find((x) => x.label === 'name')
-      const idx = arCardsInCsOfVl.indexOf(obj)
+      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'name')
+      const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
   },
   async mounted() {
     // Goal: Listen to events from change layer. These events will inform which fields should be in organe color
     this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
-      this.feFldsInCopiedRowThatAreDiff = pFldsWithDiff
+      this.feCopiedRowFldsThatAreDiff = pFldsWithDiff
     })
     this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
-      this.feFldsInCopiedRowThatAreDiff = false
+      this.feCopiedRowFldsThatAreDiff = false
     })
 
     if (orm.query().count() > 0) {
@@ -117,9 +117,9 @@ export default {
       })
     },
     mfTypeOfButton(pFldName) {
-      if (!this.feFldsInCopiedRowThatAreDiff) return 'default'
+      if (!this.feCopiedRowFldsThatAreDiff) return 'default'
 
-      if (pFldName in this.feFldsInCopiedRowThatAreDiff) {
+      if (pFldName in this.feCopiedRowFldsThatAreDiff) {
         return 'warning'
       }
       return 'default'
@@ -128,7 +128,7 @@ export default {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
-        this.feFldsInCopiedRowThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+        this.feCopiedRowFldsThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
