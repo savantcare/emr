@@ -21,10 +21,20 @@ export default class ptPhq9 extends rowManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
+
       littleInterestOrPleasureInDoingThings: this.string(null),
       feelingDownDepressedOrHopeless: this.string(null),
-      dateOfMeasurement: this.string(''),
-      notes: this.string(null),
+      troubleFallingOrStayingAsleep: this.string(null),
+      feelingTiredOrHavingLittleEnergy: this.string(null),
+      poorAppetiteOrOvereating: this.string(null),
+      feelingBadAboutYourself: this.string(null),
+      troubleConcentratingOnThings: this.string(null),
+      movingOrSpeakingSoSlowly: this.string(null),
+      thoughtsThatYouWouldBeBetterOffDead: this.string(null),
+      ifYouCheckedOffAnyProblems: this.string(null),
+
+      // dateOfMeasurement: this.string(''),
+      // notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
