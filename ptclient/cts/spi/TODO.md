@@ -4,7 +4,7 @@
 
 1. Name command has some changed fields and then i give name command again. the changed fields do not show up
 
-2. doctor wants to type "name change" this should be allowed since there is only one row hence i know which row is being changed.
+2. Bring weight height temp and phq9 ct uptodate with latest name ct
 
 3. Body measurement to combine other Cts through tabs @VK
 
