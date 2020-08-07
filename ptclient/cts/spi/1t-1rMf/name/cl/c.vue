@@ -40,10 +40,13 @@ export default {
 
   data() {
     return {
+      /* Covnetions: -1 implies that the system is not ready to have a value the DB is still getting loaded.     
+        null implies that system is ready for pIdOfCopiedRowBeingChangedInOrmNewVal to have a value but does not have a value */
+
       /*  if the name was changed 4 times before this ct loaded the id will be 5. The id will always be latest data where ROW_END is in future and row status ends in 1
           I want doctor to be able to type: "change name" though this operates on a row there is only one row.
           When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own. */
-      vnOrmIdOfRowToChange: null,
+      vnOrmIdOfRowToChange: -1,
 
       /* Why not change the original row? 1. If the user hits reset I cannot go back to the data that the user started with. 2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed. */
       vnOrmIdOfCopiedRowBeingChanged: -1, // This row is one step ahead of vnOrmIdOfRowToChange See Chapter 15 video
@@ -82,43 +85,29 @@ export default {
   },
   watch: {
     vnOrmIdOfCopiedRowBeingChanged: {
-      // setting this calls this watch when the Ct is first initialized
-      immediate: true,
-      /*
-        In V1 this was part of mounted, that is sequential programming,
-        in V2 this is part of watch, this is "act on state" programming.
+      immediate: true, // setting this calls this watch when the Ct is first initialized
 
-        When called first time:
-           pIdOfCopiedRowBeingChangedInOrmNewVal = null since data section sets that value
-           pIdOfCopiedRowBeingChangedInOrmOldval is undefined
+      /*  In V1 this was part of mounted, that is sequential programming,
+          In V2 this is part of watch, this is "act on state" programming.
 
-        When called second time:
-           pIdOfCopiedRowBeingChangedInOrmNewVal = null since any other function that wants a new row being copied sets it to 0
-           pIdOfCopiedRowBeingChangedInOrmOldval is the old value of pIdOfCopiedRowBeingChangedInOrmNewVal. Hence previous row that was being edited
+          When called first time:
+            pIdOfCopiedRowBeingChangedInOrmNewVal = -1 since data section sets that value
+            pIdOfCopiedRowBeingChangedInOrmOldval is undefined
 
-      */
+          When called second time:
+            pIdOfCopiedRowBeingChangedInOrmNewVal = null since any other function that wants a new row being copied sets it to null
+            pIdOfCopiedRowBeingChangedInOrmOldval is the old value of pIdOfCopiedRowBeingChangedInOrmNewVal. Hence previous row that was being edited  */
 
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
-        console.log(
-          'pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval',
-          pIdOfCopiedRowBeingChangedInOrmNewVal,
-          pIdOfCopiedRowBeingChangedInOrmOldval
-        )
-
-        if (this.vnOrmIdOfRowToChange === null) return // race condition
+        if (this.vnOrmIdOfRowToChange === -1) return // race condition
 
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
-          /*
-              When called first time this.vnOrmIdOfRowToChange is this.firstProp
-              When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved.
-          */
+          /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
+              When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
-          console.log(arFromOrm, this.vnOrmIdOfRowToChange, orm)
-          // For a given UUID there can be only 1 row in edit state.
-          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
+          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
-            // Adding a new blank record. Since this is temporal DB
-            // why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
+            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
             this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
@@ -128,6 +117,7 @@ export default {
     },
   },
   async created() {
+    // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
@@ -135,7 +125,7 @@ export default {
     const arFromOrm = orm.fnGetRowsToChange('firstName')
     this.vnOrmIdOfRowToChange = arFromOrm[0].id
     this.vnOrmIdOfCopiedRowBeingChanged = null
-    // console.log('end of created function') # this fn sometimes ends after the mounted fn.
+    // this fn sometimes ends after the mounted fn.
   },
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
@@ -145,7 +135,6 @@ export default {
     this.$root.$on('event-from-ct-name-vl-reset-this-form', () => {
       this.mfOnResetForm()
     })
-    console.log('end of mounted function')
   },
   methods: {
     async mfOnSubmit() {
@@ -197,23 +186,20 @@ export default {
       // Step 1/3: delete the row that was created as a copy
       orm.fnDeleteChangeRowsInEditState()
 
-      // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as 0 so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
+      // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as null so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
       this.vnOrmIdOfCopiedRowBeingChanged = null
 
       // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
       orm.arOrmRowsCached = []
     },
 
-    /* Template cannot directly call a ORM function. So first calling a method function
-     and that calls the ORM function
-     */
+    /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
     mfGetFieldValue(pFieldName) {
       /*
-        For each field this function is called twice.
         TODO: Why is this called twice for each field?
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
-      // let us find out if there is an existing row that is already in change state
+      // There will always be an existing row that is already in change state
       const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return value
     },
