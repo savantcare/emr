@@ -169,7 +169,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static fnGetFldValue(pOrmRowId, pFieldName) {
+  static fnGetFldValue(pOrmRowId, pFldName) {
     // first time it will have to find in model. This is needed to show the initial content in the field.
     if (
       typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
@@ -182,12 +182,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           this.arOrmRowsCached[this.entity] = []
         }
         this.arOrmRowsCached[this.entity][pOrmRowId] = arFromOrm
-        return arFromOrm[pFieldName]
+        return arFromOrm[pFldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName]
+      return this.arOrmRowsCached[this.entity][pOrmRowId][pFldName]
     }
   }
 
@@ -350,11 +350,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static fnSetFieldValue(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnSetFldValue(pEvent, pOrmRowId, pFldName, pRowStatus) {
     // Step 1/2
-    this.fnPutFieldValueInCache(pEvent, pOrmRowId, pFieldName)
+    this.fnPutFieldValueInCache(pEvent, pOrmRowId, pFldName)
     // Step 2/2
-    this.fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus)
+    this.fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFldName, pRowStatus)
   }
 
   /*  
@@ -364,21 +364,21 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     How? 
     Step 1: This is called in the form on each key press (@input is invoked on each key press)
             Ref: The chain is started at cts/spi/1t-Mr1f/rem/cl/add.vue:16 
-            The sequence is: add.vue:16:mfSetFieldUsingCache 
+            The sequence is: add.vue:16:mfSetFldUsingCache 
                               => add.vue:116:ormRem.setField 
                                 => rowStatus.js:118:this.fnPutFieldValueInCache
 
     Step : The work done by this function is used on each key press at:
-                            add.vue:15:value="mfGetField"
+                            add.vue:15:value="mfGetFld"
                               => add.vue:113:ormRem.getField
                                 => rowStatus.js:97
 
     Problem?                              
-      When the cache array is update we want vue to react to the change and update add.vue:15:value="mfGetField"
+      When the cache array is update we want vue to react to the change and update add.vue:15:value="mfGetFld"
 
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
   */
-  static fnPutFieldValueInCache(pEvent, pOrmRowId, pFieldName) {
+  static fnPutFieldValueInCache(pEvent, pOrmRowId, pFldName) {
     // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setFieldInOrmOnTimeOut
 
     /*
@@ -391,7 +391,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     if (typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined') {
       this.arOrmRowsCached[this.entity][pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[this.entity][pOrmRowId][pFieldName] = pEvent
+    this.arOrmRowsCached[this.entity][pOrmRowId][pFldName] = pEvent
 
     /*
     // Method 2: https://vuejs.org/2016/02/06/common-gotchas/#Why-isn%E2%80%99t-the-DOM-updating
@@ -404,7 +404,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       newRow = this.arOrmRowsCached.slice(pOrmRowId, pOrmRowId + 1) // Existing row may have 5 fields so I need to pull it out before updating 1 field
       console.log('Existing row pulled out is', newRow)
     }
-    newRow[pFieldName] = pEvent // Upadted the field value in the new row
+    newRow[pFldName] = pEvent // Upadted the field value in the new row
     this.arOrmRowsCached.splice(pOrmRowId, 1, newRow) // Put the single row back inside the array of a lot of rows.
     // Problem: A tree structure of elements is getting made and can be verified by doing console.log
     console.log(this.arOrmRowsCached)
@@ -424,7 +424,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
       this.arOrmRowsCached[pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[pOrmRowId][pFieldName] = pEvent
+    this.arOrmRowsCached[pOrmRowId][pFldName] = pEvent
 
     const copyOfOldRow = this.arOrmRowsCached
     // this.arOrmRowsCached = []
@@ -434,7 +434,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
   }
 
-  static fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFldName, pRowStatus) {
     // Goal: debouncing. If A and B are pressed quickly. Timeout for "A" keypress will get cancelled and timeout for "B" keypress will get scheduled.
     if (this.vOrmSaveScheduled) {
       clearTimeout(this.vOrmSaveScheduled)
@@ -442,16 +442,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     /* Ref: https://stackoverflow.com/questions/38399050/vue-equivalent-of-settimeout */
     this.vOrmSaveScheduled = setTimeout(
       function (scope) {
-        scope.fnSetFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus)
+        scope.fnSetFldInVuex(pEvent, pOrmRowId, pFldName, pRowStatus)
       },
       500, // setting timeout of 500 ms
       this
     )
   }
 
-  static fnSetFieldInVuex(pEvent, pOrmRowId, pFieldName, pRowStatus) {
+  static fnSetFldInVuex(pEvent, pOrmRowId, pFldName, pRowStatus) {
     const row = {
-      [pFieldName]: pEvent,
+      [pFldName]: pEvent,
       vnRowStateInSession: pRowStatus,
       validationClass: '',
       isValidationError: false,

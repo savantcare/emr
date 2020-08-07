@@ -7,8 +7,8 @@
           <el-col>
             <el-input
               placeholder="Please input"
-              :value="mfGetFieldValue(ormRow.id, 'msg')"
-              @input="mfSetFieldValueUsingCache($event, ormRow.id, 'msg')"
+              :value="mfGetFldValue(ormRow.id, 'msg')"
+              @input="mfSetFldValueUsingCache($event, ormRow.id, 'msg')"
             ></el-input>
           </el-col>
         </el-form-item>
@@ -42,13 +42,13 @@ export default {
         console.log('FATAL ERROR')
       }
     },
-    mfGetFieldValue(pOrmRowId, pFieldName) {
-      const value = ormHw.fnGetFldValue(pOrmRowId, pFieldName)
+    mfGetFldValue(pOrmRowId, pFldName) {
+      const value = ormHw.fnGetFldValue(pOrmRowId, pFldName)
       return value
     },
-    mfSetFieldValueUsingCache(pEvent, pOrmRowId, pFieldName) {
+    mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
       const rowStatus = 24
-      ormHw.fnSetFieldValue(pEvent, pOrmRowId, pFieldName, rowStatus)
+      ormHw.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
     mfOnResetForm(formName) {

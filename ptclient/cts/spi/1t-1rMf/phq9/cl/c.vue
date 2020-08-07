@@ -13,32 +13,32 @@ Code synced with ref implementation on 4th august 2020
         </el-checkbox-group>
         <el-input
           placeholder="little Interest Or Pleasure In Doing Things"
-          :value="mfGetFieldValue('littleInterestOrPleasureInDoingThings')"
-          @input="mfSetFieldValueUsingCache($event, 'littleInterestOrPleasureInDoingThings')"
+          :value="mfGetFldValue('littleInterestOrPleasureInDoingThings')"
+          @input="mfSetFldValueUsingCache($event, 'littleInterestOrPleasureInDoingThings')"
         >
         </el-input>
         <el-input
           placeholder="Feeling Down Depressed Or Hopeless"
-          :value="mfGetFieldValue('feelingDownDepressedOrHopeless')"
-          @input="mfSetFieldValueUsingCache($event, 'feelingDownDepressedOrHopeless')"
+          :value="mfGetFldValue('feelingDownDepressedOrHopeless')"
+          @input="mfSetFldValueUsingCache($event, 'feelingDownDepressedOrHopeless')"
         >
         </el-input>
         <el-date-picker
-          :value="mfGetFieldValue('dateOfMeasurement')"
+          :value="mfGetFldValue('dateOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="yyyy-MM-dd"
-          @input="mfSetFieldValueUsingCache($event, 'dateOfMeasurement')"
+          @input="mfSetFldValueUsingCache($event, 'dateOfMeasurement')"
         >
         </el-date-picker>
         <el-input
           placeholder="Notes"
           type="textarea"
           :autosize="{ minRows: 2 }"
-          :value="mfGetFieldValue('notes')"
-          @input="mfSetFieldValueUsingCache($event, 'notes')"
+          :value="mfGetFldValue('notes')"
+          @input="mfSetFldValueUsingCache($event, 'notes')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -171,14 +171,14 @@ export default {
 
       orm.arOrmRowsCached = []
     },
-    mfGetFieldValue(pFieldName) {
-      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
-      console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+    mfGetFldValue(pFldName) {
+      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
+      console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
-    mfSetFieldValueUsingCache(pEvent, pFieldName) {
+    mfSetFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34
-      orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
+      orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate()
     },
   },

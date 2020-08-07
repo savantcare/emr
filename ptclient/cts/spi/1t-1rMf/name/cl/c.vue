@@ -5,19 +5,19 @@
       <el-form-item>
         <el-input
           placeholder="First name"
-          :value="mfGetFieldValue('firstName')"
-          @input="mfSetFieldValueUsingCache($event, 'firstName')"
+          :value="mfGetFldValue('firstName')"
+          @input="mfSetFldValueUsingCache($event, 'firstName')"
         >
         </el-input>
         <el-input
           placeholder="Middle name"
-          :value="mfGetFieldValue('middleName')"
-          @input="mfSetFieldValueUsingCache($event, 'middleName')"
+          :value="mfGetFldValue('middleName')"
+          @input="mfSetFldValueUsingCache($event, 'middleName')"
         ></el-input>
         <el-input
           placeholder="Last name"
-          :value="mfGetFieldValue('lastName')"
-          @input="mfSetFieldValueUsingCache($event, 'lastName')"
+          :value="mfGetFldValue('lastName')"
+          @input="mfSetFldValueUsingCache($event, 'lastName')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -199,18 +199,18 @@ export default {
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
-    mfGetFieldValue(pFieldName) {
+    mfGetFldValue(pFldName) {
       /*
         TODO: Why is this called twice for each field?
         console.log('When the Ct is first loaded let us see how many times if getField called');
       */
       // There will always be an existing row that is already in change state
-      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
-    mfSetFieldValueUsingCache(pEvent, pFieldName) {
+    mfSetFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
+      orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
   },

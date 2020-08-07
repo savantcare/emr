@@ -19,26 +19,26 @@ Code synced with ref implementation on 4th august 2020
       <el-form-item>
         <el-input
           placeholder="Weight in pounds"
-          :value="mfGetFieldValue('weightInPounds')"
-          @input="mfSetFieldValueUsingCache($event, 'weightInPounds')"
+          :value="mfGetFldValue('weightInPounds')"
+          @input="mfSetFldValueUsingCache($event, 'weightInPounds')"
         >
         </el-input>
         <el-date-picker
-          :value="mfGetFieldValue('dateOfMeasurement')"
+          :value="mfGetFldValue('dateOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="yyyy-MM-dd"
-          @input="mfSetFieldValueUsingCache($event, 'dateOfMeasurement')"
+          @input="mfSetFldValueUsingCache($event, 'dateOfMeasurement')"
         >
         </el-date-picker>
         <el-input
           placeholder="Notes"
           type="textarea"
           :autosize="{ minRows: 2 }"
-          :value="mfGetFieldValue('notes')"
-          @input="mfSetFieldValueUsingCache($event, 'notes')"
+          :value="mfGetFldValue('notes')"
+          @input="mfSetFldValueUsingCache($event, 'notes')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -169,13 +169,13 @@ export default {
 
       orm.arOrmRowsCached = []
     },
-    mfGetFieldValue(pFieldName) {
-      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+    mfGetFldValue(pFldName) {
+      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
-    mfSetFieldValueUsingCache(pEvent, pFieldName) {
+    mfSetFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34
-      orm.fnSetFieldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName, rowStatus)
+      orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate()
     },
   },

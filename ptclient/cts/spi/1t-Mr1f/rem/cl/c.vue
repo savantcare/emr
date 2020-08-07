@@ -216,7 +216,7 @@ export default {
     },
     mfSetRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
-      ormRem.fnSetFieldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
+      ormRem.fnSetFldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
     },
 

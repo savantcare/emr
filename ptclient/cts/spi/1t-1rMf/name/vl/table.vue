@@ -116,10 +116,10 @@ export default {
         searchTerm: 'name - change',
       })
     },
-    mfTypeOfButton(pFieldName) {
+    mfTypeOfButton(pFldName) {
       if (!this.feFldsInCopiedRowThatAreDiff) return 'default'
 
-      if (pFieldName in this.feFldsInCopiedRowThatAreDiff) {
+      if (pFldName in this.feFldsInCopiedRowThatAreDiff) {
         return 'warning'
       }
       return 'default'
