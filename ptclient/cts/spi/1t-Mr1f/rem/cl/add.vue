@@ -90,13 +90,13 @@ export default {
       return ormRem.fnGetNewRowsInReadyToSubmitState()
     },
     cfGetOrmApiSuccessStateRows() {
-      return ormRem.fnGetApiSuccessStateRows()
+      return ormRem.fnGetNewRowsInApiSuccessState()
     },
     cfGetOrmApiErrorStateRows() {
-      return ormRem.fnGetApiErrorStateRows()
+      return ormRem.fnGetNewRowsInApiErrorState()
     },
     cfGetOrmApiSendingStateRows() {
-      return ormRem.fnGetApiSendingStateRows()
+      return ormRem.fnGetNewRowsInApiSendingState()
     },
   },
 

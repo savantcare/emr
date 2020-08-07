@@ -60,7 +60,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fields() {
     return {
       // the following fields only exist on client
-      vnRowStateInSession: this.number(1), // Details read: ./forms.md
+      vnRowStateInSession: this.number(1), // For different values of vnRowStateInSession and what they mean see: ./forms.md
       validationClass: this.string(''),
       isValidationError: this.boolean(false),
     }
@@ -68,6 +68,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetDiscontinuedRows() {
     /* 
+    
     Method 1: Get discontinued rows from orm using query like: select max(id) where ROW_END < current_time group by 'uuid'
     Problem:- But I am unable to find vuex-orm groupBy query
  
@@ -107,30 +108,29 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arDiscontinuedRows
   }
 
-  static fnGetApiErrorStateRows() {
-    // C3/3
-    // New -> Changed -> Requested save -> Sent to server -> Failure
+  static fnGetNewRowsInApiErrorState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
     const arFromOrm = this.query().where('vnRowStateInSession', 24578).get()
     return arFromOrm
   }
 
-  static fnGetApiSendingStateRows() {
-    // New -> Changed -> Requested save -> Sending to server
+  static fnGetNewRowsInApiSendingState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
     const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
     return arFromOrm
   }
 
-  static fnGetApiSuccessStateRows() {
-    // New -> Changed -> Requested save -> Sent to server -> Success
+  static fnGetNewRowsInApiSuccessState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
     const arFromOrm = this.query().where('vnRowStateInSession', 24571).get()
     return arFromOrm
   }
 
   static fnGetAllChangeRowsInEditState() {
     const arFromOrm = this.query()
-      .where('vnRowStateInSession', 3) // Copy
-      .orWhere('vnRowStateInSession', 34) // Copy -> Changed
-      .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', 3) // Copy(3)
+      .orWhere('vnRowStateInSession', 34) // Copy(3) -> Changed(4)
+      .orWhere('vnRowStateInSession', 3456) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
       .get()
     return arFromOrm
   }
