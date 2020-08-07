@@ -50,10 +50,10 @@ export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
     return {
-      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loaging.  */
+      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  */
       isMounted: false,
-      /* This Ct has 3 fields. This helps deciding which field to show in orange color. 
-      Also helps deciding if submit and reset options should be shown 
+      /* This Ct has 3 fields. This helps deciding which field to show in orange color.
+      Also helps deciding if submit and reset options should be shown
       The name begins with fe to indicate it comes from a event */
       feFldsInCopiedRowThatAreDiff: false,
     }
@@ -93,6 +93,7 @@ export default {
     },
   },
   async mounted() {
+    // Goal: Listen to events from change layer. These events will inform which fields should be in organe color
     this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
       this.feFldsInCopiedRowThatAreDiff = pFldsWithDiff
     })
@@ -108,12 +109,9 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
-      /* TODO: Why do I need to send the row ID since there can only be 1 possibility ?
-      I want doctor to be able to type: "change name" though this operates on a row there is only one row. 
-      When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own.
-      */
-      const payload = { searchTerm: 'name - change', pPropsToGiveToCt: pOrmId }
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
+      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+        searchTerm: 'name - change',
+      })
     },
     mfTypeOfButton(pFieldName) {
       if (!this.feFldsInCopiedRowThatAreDiff) return 'default'

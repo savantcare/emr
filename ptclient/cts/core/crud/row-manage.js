@@ -483,7 +483,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static fnCompareRows(pRow1Id, pRow2Id) {
+  static fnIsDataFieldsOfRowSame(pRow1Id, pRow2Id) {
     const objRow1 = this.find(pRow1Id)
     const objRow2 = this.find(pRow2Id)
 
