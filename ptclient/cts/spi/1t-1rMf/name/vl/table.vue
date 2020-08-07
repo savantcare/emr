@@ -24,7 +24,7 @@ This is the structure and others are supposed to write their own custom code.
       >C</el-button
     >
     <el-button
-      v-if="feCopiedRowFldsThatAreDiff"
+      v-if="daCopiedRowFldsThatAreDiff"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -34,7 +34,7 @@ This is the structure and others are supposed to write their own custom code.
       >S</el-button
     >
     <el-button
-      v-if="feCopiedRowFldsThatAreDiff"
+      v-if="daCopiedRowFldsThatAreDiff"
       type="danger"
       size="mini"
       style="padding: 3px;"
@@ -56,23 +56,32 @@ export default {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  */
       isMounted: false,
       /* This Ct has 3 fields. This helps deciding which field to show in orange color.
-      Also helps deciding if submit and reset options should be shown
-      The name begins with fe to indicate it comes from a event */
-      feCopiedRowFldsThatAreDiff: false,
+      Also helps deciding if submit and reset options should be shown */
+      daCopiedRowFldsThatAreDiff: false,
     }
   },
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
+      // fnGetRowsToChange will return valid (=> not discontinued) rows where the rowStatus field ends in 1
       const arFromOrm = orm.fnGetRowsToChange('firstName')
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
-        for (const k in this.feCopiedRowFldsThatAreDiff)
-          rowtoReturn[k] = this.feCopiedRowFldsThatAreDiff[k]
-        // return to the template.
-        return rowtoReturn
+        const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
+        if (vnOrmIdOfCopiedRowBeingChanged === false) {
+          // There is no row in change state.
+          return rowtoReturn
+        } else {
+          // debugger
+          const objFieldsComparisonResults = orm.fnIsDataFieldsOfRowSame(
+            rowtoReturn.id,
+            vnOrmIdOfCopiedRowBeingChanged
+          )
+          for (const k in objFieldsComparisonResults) rowtoReturn[k] = objFieldsComparisonResults[k]
+          this.daCopiedRowFldsThatAreDiff = objFieldsComparisonResults
+          return rowtoReturn
+        }
       } else {
         return ''
       }
@@ -96,14 +105,6 @@ export default {
     },
   },
   async mounted() {
-    // Goal: Listen to events from change layer. These events will inform which fields should be in organe color
-    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
-      this.feCopiedRowFldsThatAreDiff = pFldsWithDiff
-    })
-    this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
-      this.feCopiedRowFldsThatAreDiff = false
-    })
-
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
@@ -117,9 +118,9 @@ export default {
       })
     },
     mfTypeOfButton(pFldName) {
-      if (!this.feCopiedRowFldsThatAreDiff) return 'default'
+      if (!this.daCopiedRowFldsThatAreDiff) return 'default'
 
-      if (pFldName in this.feCopiedRowFldsThatAreDiff) {
+      if (pFldName in this.daCopiedRowFldsThatAreDiff) {
         return 'warning'
       }
       return 'default'
