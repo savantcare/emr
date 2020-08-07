@@ -132,9 +132,10 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    this.vnOrmIdOfRowToChange = 1
+    const arFromOrm = orm.fnGetRowsToChange('firstName')
+    this.vnOrmIdOfRowToChange = arFromOrm[0].id
     this.vnOrmIdOfCopiedRowBeingChanged = null
-    console.log('end of created function')
+    // console.log('end of created function') # this fn sometimes ends after the mounted fn.
   },
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
