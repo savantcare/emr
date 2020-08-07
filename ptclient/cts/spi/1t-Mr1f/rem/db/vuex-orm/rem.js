@@ -9,7 +9,7 @@ const intUniqueID = () => ++count
 export default class reminders extends rowManage {
   static entity = 'rem'
 
-  static apiUrl = 'http://localhost:8000/reminders'
+  static apiUrl = process.env.baseUrl + '/reminders' // fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
 
   static fields() {
     return {
