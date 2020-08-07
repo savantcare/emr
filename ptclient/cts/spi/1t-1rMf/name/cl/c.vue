@@ -68,6 +68,14 @@ export default {
         this.vnOrmIdOfCopiedRowBeingChanged
       )
 
+      // informing all other Cts
+      if (objFieldsComparisonResults === true) {
+        this.$root.$emit('event-from-ct-name-cl-copied-row-same')
+      } else {
+        objFieldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
+        this.$root.$emit('event-from-ct-name-cl-copied-row-diff', objFieldsComparisonResults)
+      }
+
       // informing the current component
       if (objFieldsComparisonResults === true) {
         return true

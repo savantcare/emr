@@ -63,25 +63,15 @@ export default {
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      // fnGetRowsToChange will return valid (=> not discontinued) rows where the rowStatus field ends in 1
+      // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
       const arFromOrm = orm.fnGetRowsToChange('firstName')
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
-        const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
-        if (vnOrmIdOfCopiedRowBeingChanged === false) {
-          // There is no row in change state.
-          return rowtoReturn
-        } else {
-          // debugger
-          const objFieldsComparisonResults = orm.fnIsDataFieldsOfRowSame(
-            rowtoReturn.id,
-            vnOrmIdOfCopiedRowBeingChanged
-          )
-          for (const k in objFieldsComparisonResults) rowtoReturn[k] = objFieldsComparisonResults[k]
-          this.daCopiedRowFldsThatAreDiff = objFieldsComparisonResults
-          return rowtoReturn
-        }
+        for (const k in this.daCopiedRowFldsThatAreDiff)
+          rowtoReturn[k] = this.daCopiedRowFldsThatAreDiff[k]
+        // return to the template.
+        return rowtoReturn
       } else {
         return ''
       }
@@ -105,11 +95,38 @@ export default {
     },
   },
   async mounted() {
+    // Goal: Listen to events from change layer. These events will inform which fields should be in organe color
+    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
+      this.daCopiedRowFldsThatAreDiff = pFldsWithDiff
+    })
+    this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
+      this.daCopiedRowFldsThatAreDiff = false
+    })
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    this.isMounted = true
+    /* Goal: Maybe change name was invoked before this and some fields are in change state. I want to find those fields.
+      Why doing this in mounted function?
+        Finding the diff fields only needs to happen when the Ct is loaded.
+        Once loaded it will listen to change events and it will be informed by the change Ct
+        that something has changed.
+    
+    */
+    const arFromOrm = orm.fnGetRowsToChange('firstName')
+    if (arFromOrm.length) {
+      // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
+      const rowtoReturn = arFromOrm[0]
+      const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
+      if (vnOrmIdOfCopiedRowBeingChanged === false) {
+      } else {
+        this.daCopiedRowFldsThatAreDiff = orm.fnIsDataFieldsOfRowSame(
+          rowtoReturn.id,
+          vnOrmIdOfCopiedRowBeingChanged
+        )
+      }
+      this.isMounted = true
+    }
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
@@ -129,7 +146,7 @@ export default {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
-        this.feCopiedRowFldsThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+        this.daCopiedRowFldsThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
