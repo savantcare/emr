@@ -93,8 +93,8 @@ export default {
     },
   },
   async mounted() {
-    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFieldsWithDiff) => {
-      this.feFldsInCopiedRowThatAreDiff = pFieldsWithDiff
+    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
+      this.feFldsInCopiedRowThatAreDiff = pFldsWithDiff
     })
     this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
       this.feFldsInCopiedRowThatAreDiff = false
