@@ -39,60 +39,21 @@ export default {
   mixins: [mxFullSyncWithDbServer],
 
   /*  if the name was changed 4 times earlier so the id will not be 1 it will be 5. The id will always be the highest row that is not valid and ends in 1
-      TODO: I want doctor to be able to type: "change name" though this operates on a row there is only one row.
+      I want doctor to be able to type: "change name" though this operates on a row there is only one row.
       When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own. */
   data() {
     return {
-      /*
-       1. row to cahnge is not same as row being changed. This row is the latest data where ROW_END is in future and ends row status ends in 1
-       2. Assigning the prop to a local variable since the value of vnOrmIdOfRowToChange will change everytime the user hits submit
-       3. Vue manual says not to change prop but assign it to data then change the data.  Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
-      */
+      /* 1. row to cahnge is not same as row being changed. This row is the latest data where ROW_END is in future and ends row status ends in 1   */
       vnOrmIdOfRowToChange: null,
 
-      /*
-        Why not change the original row?
-          1. If the user hits reset I cannot go back to the data that the user started with.
-          2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
-      */
+      /* Why not change the original row? 1. If the user hits reset I cannot go back to the data that the user started with. 2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed. */
       vnOrmIdOfCopiedRowBeingChanged: -1, // This row is one step ahead of vnOrmIdOfRowToChange See Chapter 15 video
-      /*
-        isMounted: false,
-        Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
-       */
     }
   },
   computed: {
     cfHasSomeFieldChanged() {
-      return false
-      /* Method 1: (Old code learning)
-
-        const fieldToUseToCheckIfEmpty = 'firstName'
-          const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
-          if (arFromOrm.length === 0) return false
-          const strOfNumber = arFromOrm[0].vnRowStateInSession.toString()
-          const lastCharecter = strOfNumber.slice(-1)
-          // Ref: For the different values of rowStatus see: cts/core/crud/forms.md
-          if (lastCharecter === '4' || lastCharecter === '6') {
-            // 4 => changed on client 6 => error on client side
-            return false
-          }
-          return true
-        },
-
-        Problem -> what if user uses backspace to erase the extra charecters typed
-        For this data (name) only 1 row can be valid at one time
-            Since a row was copied hence:
-              1. 2 rows are valid
-              2. Both rows have same UUID
-              3. rowStatus for 1st row ends in 1 and rowStaus for the copied row does not end in 1. When first copied the rowStatus is 3
-            So this Fn will find that there are 2 Uuid that are valid.
-            Both the rows that it finds will have the same Uuid.
-            Out of the 2 rows with the same Uuid it will take the row that has a higher id and send that back.
-        */
-
-      if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true // there is a race condition. This if statement waits for copy to finish
-
+      if (this.vnOrmIdOfCopiedRowBeingChanged == -1) return true // there is a race condition. This if statement waits for copy to finish
+      if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
       // at first run this.vnOrmIdOfRowToChange is this.firstProp
 
       /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed?
