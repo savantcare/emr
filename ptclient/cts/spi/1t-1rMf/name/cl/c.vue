@@ -33,11 +33,14 @@
 </template>
 <script>
 import orm from '../db/orm.js'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+
 export default {
+  mixins: [mxFullSyncWithDbServer],
+
   /*  if the name was changed 4 times earlier so the id will not be 1 it will be 5. The id will always be the highest row that is not valid and ends in 1
-      TODO: I want doctor to be able to type: "change name" though this operates on a row there is only one row. 
+      TODO: I want doctor to be able to type: "change name" though this operates on a row there is only one row.
       When doctor types "change name" the id cannot be passed to this ct. This ct needs to find this id on its own. */
-  props: { firstProp: Number },
   data() {
     return {
       /*
@@ -45,14 +48,14 @@ export default {
        2. Assigning the prop to a local variable since the value of vnOrmIdOfRowToChange will change everytime the user hits submit
        3. Vue manual says not to change prop but assign it to data then change the data.  Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       */
-      vnOrmIdOfRowToChange: this.firstProp,
+      vnOrmIdOfRowToChange: null,
 
       /*
         Why not change the original row?
           1. If the user hits reset I cannot go back to the data that the user started with.
           2. Server side is temporal DB where the origianl data row is not changed. Only ROW_START and ROW_END are changed.
       */
-      vnOrmIdOfCopiedRowBeingChanged: null, // This row is one step ahead of vnOrmIdOfRowToChange See Chapter 15 video
+      vnOrmIdOfCopiedRowBeingChanged: -1, // This row is one step ahead of vnOrmIdOfRowToChange See Chapter 15 video
       /*
         isMounted: false,
         Commit ID 96f8655 there used to be a isMounted flag. But that is not needed since this Ct can only be invoked when data in orm has already been loaded
@@ -61,8 +64,9 @@ export default {
   },
   computed: {
     cfHasSomeFieldChanged() {
+      return false
       /* Method 1: (Old code learning)
-      
+
         const fieldToUseToCheckIfEmpty = 'firstName'
           const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows(fieldToUseToCheckIfEmpty)
           if (arFromOrm.length === 0) return false
@@ -75,7 +79,7 @@ export default {
           }
           return true
         },
-      
+
         Problem -> what if user uses backspace to erase the extra charecters typed
         For this data (name) only 1 row can be valid at one time
             Since a row was copied hence:
@@ -92,7 +96,7 @@ export default {
       // at first run this.vnOrmIdOfRowToChange is this.firstProp
 
       /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed?
-      
+
           Problem:
           user does the following:
           1. Clicks on C beside Name and makes a change.
@@ -134,7 +138,7 @@ export default {
       // setting this calls this watch when the Ct is first initialized
       immediate: true,
       /*
-        In V1 this was part of mounted, that is sequential programming
+        In V1 this was part of mounted, that is sequential programming,
         in V2 this is part of watch, this is "act on state" programming.
 
         When called first time:
@@ -148,13 +152,21 @@ export default {
       */
 
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
+        console.log(
+          'pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval',
+          pIdOfCopiedRowBeingChangedInOrmNewVal,
+          pIdOfCopiedRowBeingChangedInOrmOldval
+        )
+
+        if (this.vnOrmIdOfRowToChange === null) return // race condition
+
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
           /*
               When called first time this.vnOrmIdOfRowToChange is this.firstProp
               When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved.
           */
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
-
+          console.log(arFromOrm, this.vnOrmIdOfRowToChange, orm)
           // For a given UUID there can be only 1 row in edit state.
           const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
@@ -168,16 +180,15 @@ export default {
       },
     },
   },
-  /*  Old code analysis:
-      This code is not needed since when I come here I am sure that the data is already inside ORM.
-      async mounted() {
-        if (orm.query().count() > 0) {
-        } else {
-          await this.mxGetDataFromDb()
-        }
-        this.isMounted = true
-      },
-  */
+  async created() {
+    if (orm.query().count() > 0) {
+    } else {
+      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
+    }
+    this.vnOrmIdOfRowToChange = 1
+    this.vnOrmIdOfCopiedRowBeingChanged = null
+    console.log('end of created function')
+  },
   mounted() {
     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
@@ -186,6 +197,7 @@ export default {
     this.$root.$on('event-from-ct-name-vl-reset-this-form', () => {
       this.mfOnResetForm()
     })
+    console.log('end of mounted function')
   },
   methods: {
     async mfOnSubmit() {
