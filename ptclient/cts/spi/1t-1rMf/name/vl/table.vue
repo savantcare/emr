@@ -7,17 +7,17 @@
       :type="mfTypeOfButton('firstName')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
-      >{{ cfName['firstName'] }}</el-button
+      >{{ cfDataRow['firstName'] }}</el-button
     >
-    <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfName['middleName'] }}</el-button>
-    <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfName['lastName'] }}</el-button>
+    <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfDataRow['middleName'] }}</el-button>
+    <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfDataRow['lastName'] }}</el-button>
     <el-button
       type="primary"
       size="mini"
       style="padding: 3px;"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl(cfName['id'])"
+      @click="mfOpenCCtInCl(cfDataRow['id'])"
       >C</el-button
     >
     <el-button
@@ -59,7 +59,7 @@ export default {
     }
   },
   computed: {
-    cfName() {
+    cfDataRow() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
       const arFromOrm = orm.fnGetRowsToChange('firstName')

@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     cfHasSomeFieldChanged() {
-      if (this.vnOrmIdOfCopiedRowBeingChanged == -1) return true // there is a race condition. This if statement waits for copy to finish
+      if (this.vnOrmIdOfCopiedRowBeingChanged === -1) return true // there is a race condition. This if statement waits for copy to finish
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
       /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed? Better Ux
