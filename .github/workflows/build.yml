@@ -127,7 +127,7 @@ jobs:
         run: |
           cd /gt/sc-prog-repos/emr/puppet
           rm -rf rem # due to rem test in progress
-          docker exec -i puppet npm run start-test # check title of the page
+          docker exec -i puppet npm run start-test-on-git # check title of the page
 
       # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
       # actions that use a Dockerfile those files are probably created as the root user inside the container.  Because the upload-artifact action runs
