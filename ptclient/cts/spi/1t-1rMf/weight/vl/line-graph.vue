@@ -3,7 +3,6 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
     <el-button
       type="primary"
       size="mini"
@@ -33,6 +32,7 @@ Code synced with ref implementation on 4th august 2020
       @click="mfSendResetFormEvent()"
       >R</el-button
     >
+    <highcharts :options="chartOptions"></highcharts>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
       const chartOptions = {
         series: [
           {
+            showInLegend: false,
             data: arWeight,
           },
         ],
@@ -84,6 +85,10 @@ export default {
             },
           },
         ],
+
+        credits: {
+          enabled: false,
+        },
       } // finished defining chartOptions
       return chartOptions
     },
