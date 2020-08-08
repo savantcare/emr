@@ -89,7 +89,7 @@ export default {
             type: 'datetime',
             labels: {
               enabled: 'true',
-              format: '{value:%Y-%m-%d}',
+              format: '{value:%Y-%m}', // X axis now shows year and month
             },
           },
         ],
