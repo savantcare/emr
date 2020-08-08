@@ -153,43 +153,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  static fnGetFldValue(pOrmRowId, pFldName) {
-    // first time it will have to find in model. This is needed to show the initial content in the fld.
-    if (
-      typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
-      typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined'
-    ) {
-      // finding in model
-      const arFromOrm = this.find(pOrmRowId)
-      if (arFromOrm) {
-        if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
-          this.arOrmRowsCached[this.entity] = []
-        }
-        this.arOrmRowsCached[this.entity][pOrmRowId] = arFromOrm
-        return arFromOrm[pFldName]
-      }
-    } else {
-      // if caching is removed then typing will update every 1 second when the vuex store gets updated.
-      // returning from cache
-      return this.arOrmRowsCached[this.entity][pOrmRowId][pFldName]
-    }
-  }
-
-  /*
-    Suppose the row of Name has had 3 changes and 1 change is in edit state.
-    The inferences we can draw are:
-    1. The Orm Ids are 1,2,3,4
-    2. Id 1,2 are discontinued
-    3. Id 3,4 are valid (Valid implies that RPW_END time is > then the current time)
-    4. Id 3 is Orm Id Of Row To Change
-    5. Id 4 is Orm Id Of CopiedRowBeingChanged
-
-    This function will return 3.
-
-    For multiple row Cts this for each row will return the highest ID that has been saved to DB
-
-  */
-
   static fnGetRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
@@ -322,6 +285,43 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     })
     return arDiscontinuedRows
   }
+
+  static fnGetFldValue(pOrmRowId, pFldName) {
+    // first time it will have to find in model. This is needed to show the initial content in the fld.
+    if (
+      typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
+      typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined'
+    ) {
+      // finding in model
+      const arFromOrm = this.find(pOrmRowId)
+      if (arFromOrm) {
+        if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
+          this.arOrmRowsCached[this.entity] = []
+        }
+        this.arOrmRowsCached[this.entity][pOrmRowId] = arFromOrm
+        return arFromOrm[pFldName]
+      }
+    } else {
+      // if caching is removed then typing will update every 1 second when the vuex store gets updated.
+      // returning from cache
+      return this.arOrmRowsCached[this.entity][pOrmRowId][pFldName]
+    }
+  }
+
+  /*
+    Suppose the row of Name has had 3 changes and 1 change is in edit state.
+    The inferences we can draw are:
+    1. The Orm Ids are 1,2,3,4
+    2. Id 1,2 are discontinued
+    3. Id 3,4 are valid (Valid implies that RPW_END time is > then the current time)
+    4. Id 3 is Orm Id Of Row To Change
+    5. Id 4 is Orm Id Of CopiedRowBeingChanged
+
+    This function will return 3.
+
+    For multiple row Cts this for each row will return the highest ID that has been saved to DB
+
+  */
 
   static fnIsThereDuplicateUuid(pUuid) {
     const num = this.query().where('uuid', pUuid).count()
