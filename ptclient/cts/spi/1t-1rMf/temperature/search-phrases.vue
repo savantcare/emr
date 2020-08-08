@@ -14,8 +14,8 @@ export default {
       data: {
         value: 'temperature',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1rMf/temperature/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'spi/1t-1rMf/temperature/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

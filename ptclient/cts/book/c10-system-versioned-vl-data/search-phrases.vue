@@ -10,8 +10,8 @@ export default {
       data: {
         value: 'Tenth chapter',
         ctAbbr: 'c10',
-        ctToShow: 'book/c10-system-versioned-vl-data/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'book/c10-system-versioned-vl-data/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

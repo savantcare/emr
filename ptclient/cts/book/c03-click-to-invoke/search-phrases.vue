@@ -7,8 +7,8 @@ export default {
       data: {
         value: 'Third chapter',
         ctAbbr: 'c3',
-        ctToShow: 'book/c03-click-to-invoke/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'book/c03-click-to-invoke/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

@@ -22,7 +22,7 @@ export default {
         value: 'recommendations',
         ctAbbr: 'rex',
         ctToShow: 'spi/rec/vl/timeline.vue',
-        displayLocation: 'ptsvl',
+        displayLocation: 'ptsVl',
       },
     })
 

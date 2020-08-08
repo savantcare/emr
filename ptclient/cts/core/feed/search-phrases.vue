@@ -15,7 +15,7 @@ export default {
         value: 'feed',
         ctAbbr: 'fd',
         ctToShow: 'core/feed/invoke.vue',
-        displayLocation: 'ptsvl',
+        displayLocation: 'ptsVl',
       },
     })
   },

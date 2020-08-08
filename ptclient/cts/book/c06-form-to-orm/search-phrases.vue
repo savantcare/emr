@@ -10,8 +10,8 @@ export default {
       data: {
         value: 'Sixth chapter',
         ctAbbr: 'c6',
-        ctToShow: 'book/c06-form-to-orm/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'book/c06-form-to-orm/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

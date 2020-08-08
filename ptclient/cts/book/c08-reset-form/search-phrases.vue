@@ -10,8 +10,8 @@ export default {
       data: {
         value: 'Eigth chapter',
         ctAbbr: 'c8',
-        ctToShow: 'book/c08-reset-form/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'book/c08-reset-form/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

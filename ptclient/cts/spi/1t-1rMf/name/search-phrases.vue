@@ -14,8 +14,8 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'spi/1t-1rMf/name/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'spi/1t-1rMf/name/vl/table.vue',
+        displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
     ormSearchPhrasesOfCt.insert({

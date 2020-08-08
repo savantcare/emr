@@ -36,7 +36,7 @@ export default {
         value: 'goal',
         ctAbbr: 'g',
         ctToShow: 'spi/goal/g-vl.vue',
-        displayLocation: 'ptsvl',
+        displayLocation: 'ptsVl',
       },
     })
   },

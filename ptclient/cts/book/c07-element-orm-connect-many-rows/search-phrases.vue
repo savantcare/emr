@@ -10,8 +10,8 @@ export default {
       data: {
         value: 'Seventh chapter',
         ctAbbr: 'c7',
-        ctToShow: 'book/c07-element-orm-connect-many-rows/vl/table.vue', // CsVl -> Current state view layer
-        displayLocation: 'ptsvl',
+        ctToShow: 'book/c07-element-orm-connect-many-rows/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

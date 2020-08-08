@@ -26,7 +26,7 @@ export default {
         value: 'diagnosis',
         ctAbbr: 'dx',
         ctToShow: 'spi/dx/dx-vl.vue',
-        displayLocation: 'ptsvl',
+        displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({

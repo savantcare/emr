@@ -128,7 +128,7 @@ export default {
         id: pSelectedSuggestion.id,
         closable: true,
       }
-      if (pSelectedSuggestion.displayLocation === 'ptsvl') {
+      if (pSelectedSuggestion.displayLocation === 'ptsVl') {
         // ptsvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'cl') {
