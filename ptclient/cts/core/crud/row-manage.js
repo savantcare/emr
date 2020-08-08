@@ -153,7 +153,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
-  static fnGetRowsToChange(pFldForNonEmptyCheck) {
+  static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromOrm = this.query()
       .where('ROW_END', 2147483647.999999)

@@ -48,7 +48,7 @@ export default {
   computed: {
     cfPhq9() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetRowsToChange('littleInterestOrPleasureInDoingThings')
+      const arFromOrm = orm.fnGetNonEmptyRowsToChange('littleInterestOrPleasureInDoingThings')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

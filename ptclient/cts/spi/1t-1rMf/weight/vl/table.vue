@@ -41,7 +41,7 @@ export default {
   computed: {
     cfWeight() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetRowsToChange('weightInPounds')
+      const arFromOrm = orm.fnGetNonEmptyRowsToChange('weightInPounds')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

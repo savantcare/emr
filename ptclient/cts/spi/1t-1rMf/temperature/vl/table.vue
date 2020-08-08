@@ -41,7 +41,7 @@ export default {
   computed: {
     cfTemperature() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetRowsToChange('temperatureInFarehnite')
+      const arFromOrm = orm.fnGetNonEmptyRowsToChange('temperatureInFarehnite')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

@@ -41,7 +41,7 @@ export default {
   computed: {
     cfHeight() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetRowsToChange('heightInInches')
+      const arFromOrm = orm.fnGetNonEmptyRowsToChange('heightInInches')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {

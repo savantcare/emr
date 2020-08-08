@@ -66,8 +66,8 @@ export default {
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromOrm = orm.fnGetRowsToChange('firstName')
+      // fnGetNonEmptyRowsToChange will return valid rows where the rowStatus fld ends in 1
+      const arFromOrm = orm.fnGetNonEmptyRowsToChange('firstName')
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
@@ -120,7 +120,7 @@ export default {
         that something has changed.
     
     */
-    const arFromOrm = orm.fnGetRowsToChange('firstName')
+    const arFromOrm = orm.fnGetNonEmptyRowsToChange('firstName')
     if (arFromOrm.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromOrm[0]

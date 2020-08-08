@@ -131,7 +131,7 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromOrm = orm.fnGetRowsToChange('firstName')
+    const arFromOrm = orm.fnGetNonEmptyRowsToChange('firstName')
     this.vnOrmIdOfRowToChange = arFromOrm[0].id
     this.vnOrmIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
