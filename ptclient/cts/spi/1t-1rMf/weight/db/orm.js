@@ -19,8 +19,13 @@ export default class ptWeight extends rowManage {
     return {
       ...super.fields(),
 
-      id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      id: this.uid(() => intUniqueID()), // Only on client side. Not on server side. If this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
+
+      /* Not stroing ptUUID inside viewstate since writing vuestate slows down the software. 
+      Each browser tab will only work for 1 patient. So no need to store patientUUID inside vue state 
+      ptUUID: this.string(null), */
+
       weightInPounds: this.string(null),
       dateOfMeasurement: this.string(''),
       notes: this.string(null),
