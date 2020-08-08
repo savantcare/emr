@@ -26,6 +26,26 @@ Code synced with ref implementation on 4th august 2020
       @click="mfOpenCCtInCl(cfDataRow['id'])"
       >C</el-button
     >
+    <el-button
+      v-if="daIsDataFldsOfRowsSame !== true"
+      type="success"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfSendSubmitEvent()"
+      >S</el-button
+    >
+    <el-button
+      v-if="daIsDataFldsOfRowsSame !== true"
+      type="danger"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfSendResetFormEvent()"
+      >R</el-button
+    >
   </div>
 </template>
 
