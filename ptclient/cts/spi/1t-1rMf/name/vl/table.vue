@@ -47,23 +47,9 @@ This is the structure and others are supposed to write their own custom code.
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import orm from '../db/orm.js'
-import mxTable from './table-mixin'
+import mxTable from '../../table-mixin.js'
 export default {
-  mixins: [mxFullSyncWithDbServer, mxTable],
-  data() {
-    return {
-      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
-          JS is single threaded. But still a function B called After function A can execute before function A ends.
-          Ref: https://www.youtube.com/watch?v=8aGhZQkoFbQ
-      */
-      isMounted: false,
-      /* This Ct has 3 flds. This helps deciding which fld to show in orange color.
-      Also helps deciding if submit and reset options should be shown */
-      daIsDataFldsOfRowsSame: true,
-    }
-  },
+  mixins: [mxTable],
   computed: {
     /*
       This is required for tab indexing
