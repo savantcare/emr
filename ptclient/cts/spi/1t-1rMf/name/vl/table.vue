@@ -24,7 +24,7 @@ This is the structure and others are supposed to write their own custom code.
       >C</el-button
     >
     <el-button
-      v-if="daCopiedRowFldsThatAreDiff"
+      v-if="daIsDataFldsOfRowsSame !== true"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -34,7 +34,7 @@ This is the structure and others are supposed to write their own custom code.
       >S</el-button
     >
     <el-button
-      v-if="daCopiedRowFldsThatAreDiff"
+      v-if="daIsDataFldsOfRowsSame !== true"
       type="danger"
       size="mini"
       style="padding: 3px;"
@@ -60,7 +60,7 @@ export default {
       isMounted: false,
       /* This Ct has 3 flds. This helps deciding which fld to show in orange color.
       Also helps deciding if submit and reset options should be shown */
-      daCopiedRowFldsThatAreDiff: false,
+      daIsDataFldsOfRowsSame: true,
     }
   },
   computed: {
@@ -71,8 +71,7 @@ export default {
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
-        for (const k in this.daCopiedRowFldsThatAreDiff)
-          rowtoReturn[k] = this.daCopiedRowFldsThatAreDiff[k]
+        for (const k in this.daIsDataFldsOfRowsSame) rowtoReturn[k] = this.daIsDataFldsOfRowsSame[k]
         // return to the template.
         return rowtoReturn
       } else {
@@ -100,10 +99,10 @@ export default {
   async mounted() {
     // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
     this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
-      this.daCopiedRowFldsThatAreDiff = pFldsWithDiff
+      this.daIsDataFldsOfRowsSame = pFldsWithDiff
     })
     this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
-      this.daCopiedRowFldsThatAreDiff = false
+      this.daIsDataFldsOfRowsSame = true
     })
     if (orm.query().count() > 0) {
     } else {
@@ -123,7 +122,7 @@ export default {
       const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.daCopiedRowFldsThatAreDiff = orm.fnIsDataFldsOfRowsSame(
+        this.daIsDataFldsOfRowsSame = orm.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.id,
           vnOrmIdOfCopiedRowBeingChanged
@@ -139,9 +138,9 @@ export default {
       })
     },
     mfTypeOfButton(pFldName) {
-      if (!this.daCopiedRowFldsThatAreDiff) return 'default'
+      if (this.daIsDataFldsOfRowsSame === true) return 'default'
 
-      if (pFldName in this.daCopiedRowFldsThatAreDiff) {
+      if (pFldName in this.daIsDataFldsOfRowsSame) {
         return 'warning'
       }
       return 'default'
@@ -150,7 +149,7 @@ export default {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       this.$root.$emit(
         'event-from-ct-name-vl-save-this-row',
-        this.daCopiedRowFldsThatAreDiff.vnOrmIdOfCopiedRowBeingChanged
+        this.daIsDataFldsOfRowsSame.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
