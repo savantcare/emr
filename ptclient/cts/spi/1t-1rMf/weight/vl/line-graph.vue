@@ -58,18 +58,21 @@ export default {
       const data = orm.all()
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].weightInPounds)
-        arWeight.push(data[i].weightInPounds)
+        const dateOfMeasurement = data[i].dateOfMeasurement
+        arWeight.push([dateOfMeasurement, data[i].weightInPounds])
       }
       console.log(arWeight)
+
+      // Ref: https://www.tutorialspoint.com/highcharts/highcharts_spline_time.htm
       const chartOptions = {
         series: [
           {
+            name: 'Weight',
             showInLegend: false,
             data: arWeight,
           },
         ],
-        title: false, // Reason: Y axis will have "weight"
-
+        title: false, // Reason: Y axis will have "weight" written beside it.
         yAxis: [
           {
             title: {
@@ -82,6 +85,11 @@ export default {
           {
             title: {
               text: 'Measurement date',
+            },
+            type: 'datetime',
+            labels: {
+              enabled: 'true',
+              format: '{value:%Y-%m-%d}',
             },
           },
         ],

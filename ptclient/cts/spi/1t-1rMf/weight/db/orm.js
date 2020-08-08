@@ -27,7 +27,7 @@ export default class ptWeight extends rowManage {
       ptUUID: this.string(null), */
 
       weightInPounds: this.number(null), // number type will also store decimals
-      dateOfMeasurement: this.string(''),
+      dateOfMeasurement: this.number(null), // refer to /docs/db/README.md
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

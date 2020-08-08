@@ -18,21 +18,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "weightInPounds": 122.2,
-      "dateOfMeasurement": "2020-08-03",
+      "dateOfMeasurement": "1596926301",
       "notes": "Jai kali ma"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "weightInPounds": 200,
-      "dateOfMeasurement": "1st feb 2020",
+      "dateOfMeasurement": "1696926301",
       "notes": "Jai durga ma"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "weightInPounds": "122",
-      "dateOfMeasurement": "2020-08-03",
+      "dateOfMeasurement": "1596926301",
       "notes": "Jai kali ma"
     }
   ],
@@ -40,13 +40,13 @@
     {
       "uuid": 1,
       "heightInInches": "114",
-      "dateOfMeasurement": "2020-08-03",
+      "dateOfMeasurement": "1596926301",
       "notes": "Height measured "
     },
     {
       "uuid": 2,
       "heightInInches": "200",
-      "dateOfMeasurement": "1st feb 2020",
+      "dateOfMeasurement": "1596926301",
       "notes": "Jai durga ma"
     }
   ],
@@ -55,7 +55,7 @@
       "uuid": 1,
       "littleInterestOrPleasureInDoingThings": "2",
       "feelingDownDepressedOrHopeless": "3",
-      "dateOfMeasurement": "2020-08-03",
+      "dateOfMeasurement": "1596926301",
       "notes": "phq9 measured change 2"
     }
   ],
@@ -63,13 +63,13 @@
     {
       "uuid": 1,
       "temperatureInFarehnite": "101",
-      "dateOfMeasurement": "2020-08-03",
+      "dateOfMeasurement": "1596926301",
       "notes": "Jai kali ma"
     },
     {
       "uuid": 2,
       "temperatureInFarehnite": "120",
-      "dateOfMeasurement": "1st feb 2020",
+      "dateOfMeasurement": "1596926301",
       "notes": "Jai durga ma"
     }
   ]
