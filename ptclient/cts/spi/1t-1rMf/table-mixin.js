@@ -42,7 +42,7 @@ export default {
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
       const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'name')
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === orm.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
@@ -89,8 +89,10 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
+      const searchString = [orm.entity, 'change'].join(' - ')
+      console.log(searchString)
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'name - change',
+        searchTerm: searchString,
       })
     },
     mfTypeOfButton(pFldName) {
