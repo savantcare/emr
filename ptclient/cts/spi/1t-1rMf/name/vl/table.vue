@@ -98,12 +98,17 @@ export default {
   },
   async mounted() {
     // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
-    this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
+    let eventName = ['event-from-ct', orm.entity, 'cl-copied-row-diff'].join('-')
+
+    this.$root.$on(eventName, (pFldsWithDiff) => {
       this.daIsDataFldsOfRowsSame = pFldsWithDiff
     })
-    this.$root.$on('event-from-ct-name-cl-copied-row-same', () => {
+
+    eventName = ['event-from-ct', orm.entity, 'cl-copied-row-same'].join('-')
+    this.$root.$on(eventName, () => {
       this.daIsDataFldsOfRowsSame = true
     })
+
     if (orm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
@@ -147,13 +152,12 @@ export default {
     },
     mfSendSubmitEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
-      this.$root.$emit(
-        'event-from-ct-name-vl-save-this-row',
-        this.daIsDataFldsOfRowsSame.vnOrmIdOfCopiedRowBeingChanged
-      )
+      const eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
+      this.$root.$emit(eventName, this.daIsDataFldsOfRowsSame.vnOrmIdOfCopiedRowBeingChanged)
     },
     mfSendResetFormEvent() {
-      this.$root.$emit('event-from-ct-name-vl-reset-this-form')
+      const eventName = ['event-from-ct', orm.entity, 'vl-reset-this-form'].join('-')
+      this.$root.$emit(eventName)
     },
   },
 }

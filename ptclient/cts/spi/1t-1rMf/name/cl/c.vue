@@ -41,7 +41,7 @@ export default {
 
   data() {
     return {
-      /* Convetion: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.     
+      /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
         null implies that system is ready for pOrmIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
 
       /*  if the name was changed 4 times before this ct loaded the id will be 5. The id will always be latest data where ROW_END is in future and row status ends in 1
@@ -72,10 +72,13 @@ export default {
 
       // informing all other Cts
       if (objFldsComparisonResults === true) {
-        this.$root.$emit('event-from-ct-name-cl-copied-row-same')
+        //        const eventName = 'event-from-ct-' + orm.entity '-cl-copied-row-same'
+        const eventName = ['event-from-ct', orm.entity, 'cl-copied-row-same'].join('-')
+        this.$root.$emit(eventName)
       } else {
         objFldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
-        this.$root.$emit('event-from-ct-name-cl-copied-row-diff', objFldsComparisonResults)
+        const eventName = ['event-from-ct', orm.entity, 'cl-copied-row-diff'].join('-')
+        this.$root.$emit(eventName, objFldsComparisonResults)
       }
 
       // informing the current component
@@ -87,7 +90,7 @@ export default {
     },
   },
   watch: {
-    /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row. 
+    /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
     By the time this watchFn exits this.vnOrmIdOfCopiedRowBeingChanged will have a valid value */
     vnOrmIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
@@ -135,11 +138,17 @@ export default {
   },
   // Goal: Set up event listeners so view layer can ask to submit data or reset form
   mounted() {
-    this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
+    let eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
+
+    //     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
+
+    this.$root.$on(eventName, (pRowID) => {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
       this.mfOnSubmit()
     })
-    this.$root.$on('event-from-ct-name-vl-reset-this-form', () => {
+
+    eventName = ['event-from-ct', orm.entity, 'vl-reset-this-form'].join('-')
+    this.$root.$on(eventName, () => {
       this.mfOnResetForm()
     })
   },
