@@ -3,9 +3,7 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">Weight</h5>
     <highcharts :options="chartOptions"></highcharts>
-
     <el-button
       type="primary"
       size="mini"
@@ -63,15 +61,31 @@ export default {
         arWeight.push(data[i].weightInPounds)
       }
       console.log(arWeight)
-      const a = {
+      const chartOptions = {
         series: [
           {
             data: arWeight,
           },
         ],
         title: false, // Reason: Y axis will have "weight"
-      }
-      return a
+
+        yAxis: [
+          {
+            title: {
+              text: 'Weight',
+            },
+          },
+        ],
+
+        xAxis: [
+          {
+            title: {
+              text: 'Measurement date',
+            },
+          },
+        ],
+      } // finished defining chartOptions
+      return chartOptions
     },
   },
 }
