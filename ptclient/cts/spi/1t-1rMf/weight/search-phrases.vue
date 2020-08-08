@@ -14,8 +14,8 @@ export default {
       data: {
         value: 'weight',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1rMf/weight/vl/table.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        ctToShow: 'spi/1t-1rMf/weight/vl/line-graph.vue',
+        displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
     ormSearchPhrasesOfCt.insert({
