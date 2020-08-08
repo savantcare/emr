@@ -49,8 +49,9 @@ This is the structure and others are supposed to write their own custom code.
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import orm from '../db/orm.js'
+import mxTable from './table-mixin'
 export default {
-  mixins: [mxFullSyncWithDbServer],
+  mixins: [mxFullSyncWithDbServer, mxTable],
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
@@ -64,20 +65,6 @@ export default {
     }
   },
   computed: {
-    cfDataRow() {
-      if (!this.isMounted) return ''
-      // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromOrm = orm.fnGetRowsToChange()
-      if (arFromOrm.length) {
-        // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-        const rowtoReturn = arFromOrm[0]
-        for (const k in this.daIsDataFldsOfRowsSame) rowtoReturn[k] = this.daIsDataFldsOfRowsSame[k]
-        // return to the template.
-        return rowtoReturn
-      } else {
-        return ''
-      }
-    },
     /*
       This is required for tab indexing
       if this card is in pos 0 then tab index is set as 1
@@ -96,68 +83,11 @@ export default {
       return idx
     },
   },
-  async mounted() {
-    // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
-    let eventName = ['event-from-ct', orm.entity, 'cl-copied-row-diff'].join('-')
-
-    this.$root.$on(eventName, (pFldsWithDiff) => {
-      this.daIsDataFldsOfRowsSame = pFldsWithDiff
-    })
-
-    eventName = ['event-from-ct', orm.entity, 'cl-copied-row-same'].join('-')
-    this.$root.$on(eventName, () => {
-      this.daIsDataFldsOfRowsSame = true
-    })
-
-    if (orm.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
-    /* Goal: Maybe change name was invoked before this and some flds are in change state. I want to find those flds.
-      Why doing this in mounted function?
-        Finding the diff flds only needs to happen when the Ct is loaded.
-        Once loaded it will listen to change events and it will be informed by the change Ct
-        that something has changed.
-    
-    */
-    const arFromOrm = orm.fnGetRowsToChange()
-    if (arFromOrm.length) {
-      // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-      const rowtoReturn = arFromOrm[0]
-      const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
-      if (vnOrmIdOfCopiedRowBeingChanged === false) {
-      } else {
-        this.daIsDataFldsOfRowsSame = orm.fnIsDataFldsOfRowsSame(
-          // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
-          rowtoReturn.id,
-          vnOrmIdOfCopiedRowBeingChanged
-        )
-      }
-      this.isMounted = true
-    }
-  },
   methods: {
     mfOpenCCtInCl(pOrmId) {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
         searchTerm: 'name - change',
       })
-    },
-    mfTypeOfButton(pFldName) {
-      if (this.daIsDataFldsOfRowsSame === true) return 'default'
-
-      if (pFldName in this.daIsDataFldsOfRowsSame) {
-        return 'warning'
-      }
-      return 'default'
-    },
-    mfSendSubmitEvent() {
-      // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
-      const eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
-      this.$root.$emit(eventName, this.daIsDataFldsOfRowsSame.vnOrmIdOfCopiedRowBeingChanged)
-    },
-    mfSendResetFormEvent() {
-      const eventName = ['event-from-ct', orm.entity, 'vl-reset-this-form'].join('-')
-      this.$root.$emit(eventName)
     },
   },
 }
