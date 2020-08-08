@@ -132,7 +132,7 @@ export default {
     mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
       const rowStatus = 24
       ormRem.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
       const arFromOrm = ormRem.find(pOrmRowId)

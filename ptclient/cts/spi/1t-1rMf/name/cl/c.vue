@@ -63,7 +63,7 @@ export default {
       /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed? Better Ux
         The c.vue uses event system  to send a list of fields that have changed to vl */
 
-      const objFieldsComparisonResults = orm.fnIsDataFieldsOfRowSame(
+      const objFieldsComparisonResults = orm.fnIsDataFldsOfRowsSame(
         this.vnOrmIdOfRowToChange,
         this.vnOrmIdOfCopiedRowBeingChanged
       )
@@ -211,7 +211,7 @@ export default {
     mfSetFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFieldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
   },
 }

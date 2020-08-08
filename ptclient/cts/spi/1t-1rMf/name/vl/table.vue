@@ -123,7 +123,7 @@ export default {
       const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.daCopiedRowFldsThatAreDiff = orm.fnIsDataFieldsOfRowSame(
+        this.daCopiedRowFldsThatAreDiff = orm.fnIsDataFldsOfRowsSame(
           rowtoReturn.id,
           vnOrmIdOfCopiedRowBeingChanged
         )

@@ -100,7 +100,7 @@ export default {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
       if (
-        orm.fnIsDataFieldsOfRowSame(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)
+        orm.fnIsDataFldsOfRowsSame(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)
       ) {
         this.$root.$emit('event-from-ct-phq9-copied-row-same')
         return true
