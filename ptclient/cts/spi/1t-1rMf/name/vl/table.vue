@@ -47,7 +47,7 @@ This is the structure and others are supposed to write their own custom code.
 </template>
 
 <script>
-import mxTable from '../../table-mixin.js'
+import mxTable from '../table-mixin.js'
 export default {
   mixins: [mxTable],
 }

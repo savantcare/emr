@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import mxc from '../../c-mixin.js'
+import mxc from '../c-mixin.js'
 
 export default {
   mixins: [mxc],
