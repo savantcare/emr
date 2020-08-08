@@ -21,6 +21,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
+        <!-- as per element.io the default value of disabled is false -->
         <el-button :disabled="cfHasSomeFldChanged" type="success" plain @click="mfOnSubmit"
           >Submit</el-button
         >
