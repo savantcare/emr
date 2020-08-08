@@ -66,6 +66,41 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  static fnGetNewRowsInApiErrorState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
+    const arFromOrm = this.query().where('vnRowStateInSession', 24578).get()
+    return arFromOrm
+  }
+
+  static fnGetNewRowsInApiSendingState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
+    const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
+    return arFromOrm
+  }
+
+  static fnGetNewRowsInApiSuccessState() {
+    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
+    const arFromOrm = this.query().where('vnRowStateInSession', 24571).get()
+    return arFromOrm
+  }
+
+  static fnGetNewRowsInEditState() {
+    const arFromOrm = this.query()
+      .where('vnRowStateInSession', 2) // New
+      .orWhere('vnRowStateInSession', 24) // New -> Changed
+      .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
+      .get()
+    return arFromOrm
+  }
+
+  static fnGetNewRowsInReadyToSubmitState() {
+    // Following query makes sure I get all the newly added row having field value
+    const arFromOrm = this.query()
+      .where('vnRowStateInSession', 24) // New -> Changed
+      .get()
+    return arFromOrm
+  }
+
   static fnGetDiscontinuedRows() {
     /* 
     
@@ -106,24 +141,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       }
     })
     return arDiscontinuedRows
-  }
-
-  static fnGetNewRowsInApiErrorState() {
-    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
-    const arFromOrm = this.query().where('vnRowStateInSession', 24578).get()
-    return arFromOrm
-  }
-
-  static fnGetNewRowsInApiSendingState() {
-    // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
-    const arFromOrm = this.query().where('vnRowStateInSession', 2457).get()
-    return arFromOrm
-  }
-
-  static fnGetNewRowsInApiSuccessState() {
-    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
-    const arFromOrm = this.query().where('vnRowStateInSession', 24571).get()
-    return arFromOrm
   }
 
   static fnGetAllChangeRowsInEditState() {
@@ -189,23 +206,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       // returning from cache
       return this.arOrmRowsCached[this.entity][pOrmRowId][pFldName]
     }
-  }
-
-  static fnGetAllNewRowsInEditState() {
-    const arFromOrm = this.query()
-      .where('vnRowStateInSession', 2) // New
-      .orWhere('vnRowStateInSession', 24) // New -> Changed
-      .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
-      .get()
-    return arFromOrm
-  }
-
-  static fnGetNewRowsInReadyToSubmitState() {
-    // Following query makes sure I get all the newly added row having field value
-    const arFromOrm = this.query()
-      .where('vnRowStateInSession', 24) // New -> Changed
-      .get()
-    return arFromOrm
   }
 
   static fnGetNotEmptyRows(pFieldForNonEmptyCheck) {
@@ -500,7 +500,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnDeleteNewRowsInEditState() {
-    const arFromOrm = this.fnGetAllNewRowsInEditState()
+    const arFromOrm = this.fnGetNewRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
         this.delete(arFromOrm[i].id)

@@ -26,7 +26,7 @@ import ormHw from '../db/vuex-orm/helloworld.js' // Path without @ can be resolv
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormHw.fnGetAllNewRowsInEditState()
+      return ormHw.fnGetNewRowsInEditState()
     },
   },
   methods: {

@@ -27,7 +27,7 @@ import ormHw from '@/cts/book/c07-element-orm-connect-many-rows/db/vuex-orm/hell
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormHw.fnGetAllNewRowsInEditState()
+      return ormHw.fnGetNewRowsInEditState()
     },
   },
   methods: {

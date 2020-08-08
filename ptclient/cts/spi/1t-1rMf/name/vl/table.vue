@@ -53,7 +53,10 @@ export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
     return {
-      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  */
+      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
+          JS is single threaded. But still a function B called After function A can execute before function A ends.
+          Ref: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+      */
       isMounted: false,
       /* This Ct has 3 fields. This helps deciding which field to show in orange color.
       Also helps deciding if submit and reset options should be shown */
