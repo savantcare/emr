@@ -3,7 +3,7 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5>Weight</h5>
+    <h5 v-if="formType === 'stand-alone'">Weight</h5>
     <el-button
       :type="mfTypeOfButton('weightInPounds')"
       plain
@@ -53,5 +53,11 @@ Code synced with ref implementation on 4th august 2020
 import mxTable from '../table-mixin.js'
 export default {
   mixins: [mxTable],
+  props: {
+    formType: {
+      default: 'stand-alone',
+      type: String,
+    },
+  },
 }
 </script>

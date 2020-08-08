@@ -2,9 +2,15 @@
   <div>
     <h5>Body measurement</h5>
     <el-tabs tab-position="left" type="card" @tab-click="handleClick">
-      <el-tab-pane label="Weight"> <ctWeightTable></ctWeightTable></el-tab-pane>
-      <el-tab-pane label="Height"> <ctHeightTable></ctHeightTable></el-tab-pane>
-      <el-tab-pane label="Temperature"> <ctTemperatureTable></ctTemperatureTable> </el-tab-pane>
+      <el-tab-pane label="Weight">
+        <ctWeightTable form-type="embedded"></ctWeightTable
+      ></el-tab-pane>
+      <el-tab-pane label="Height">
+        <ctHeightTable form-type="embedded"></ctHeightTable
+      ></el-tab-pane>
+      <el-tab-pane label="Temperature">
+        <ctTemperatureTable form-type="embedded"></ctTemperatureTable>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>

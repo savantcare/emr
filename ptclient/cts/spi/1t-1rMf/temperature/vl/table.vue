@@ -3,7 +3,7 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5>Temperature</h5>
+    <h5 v-if="formType === 'stand-alone'">Temperature</h5>
     <el-button
       :type="mfTypeOfButton('temperatureInFarehnite')"
       plain
@@ -53,5 +53,11 @@ Code synced with ref implementation on 4th august 2020
 import mxTable from '../table-mixin.js'
 export default {
   mixins: [mxTable],
+  props: {
+    formType: {
+      default: 'stand-alone',
+      type: String,
+    },
+  },
 }
 </script>
