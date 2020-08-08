@@ -21,10 +21,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button :disabled="cfHasSomeFieldChanged" type="success" plain @click="mfOnSubmit"
+        <el-button :disabled="cfHasSomeFldChanged" type="success" plain @click="mfOnSubmit"
           >Submit</el-button
         >
-        <el-button :disabled="cfHasSomeFieldChanged" type="danger" plain @click="mfOnResetForm"
+        <el-button :disabled="cfHasSomeFldChanged" type="danger" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -40,7 +40,7 @@ export default {
 
   data() {
     return {
-      /* Convetion: -1 implies that the system is not ready to have a value the DB is still getting loaded.     
+      /* Convetion: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.     
         null implies that system is ready for pOrmIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
 
       /*  if the name was changed 4 times before this ct loaded the id will be 5. The id will always be latest data where ROW_END is in future and row status ends in 1
@@ -53,31 +53,32 @@ export default {
     }
   },
   computed: {
-    // Goal: Find out which fields have changed and inform 1. the view layer 2. Submit and reset button of this Ct.
-    cfHasSomeFieldChanged() {
+    // Goal: Find out which flds have changed and inform 1. the view layer 2. Submit and reset button of this Ct.
+    cfHasSomeFldChanged() {
       // Following 2 protect against race condition. Since data needs to be loaded inside created function and then the row needs to get copied
       // When the Ct is created vnOrmIdOfRowToChange and vnOrmIdOfCopiedRowBeingChanged are -1 indicating they are undefined. They need to have a value before this code should execute
       if (this.vnOrmIdOfCopiedRowBeingChanged === -1) return true
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
-      /* Why do I need to have the fields that are being changed? Why not just use the rowStatus field to decide if the row has changed? Better Ux
-        The c.vue uses event system  to send a list of fields that have changed to vl */
+      /* Why do I need to have the flds that are being changed? Why not just use the rowStatus fld to decide if the row has changed? Better Ux
+        The c.vue uses event system  to send a list of flds that have changed to vl */
 
-      const objFieldsComparisonResults = orm.fnIsDataFldsOfRowsSame(
+      const objFldsComparisonResults = orm.fnIsDataFldsOfRowsSame(
+        // return true if all data flds are same. Otherwise returns the array of flds that are diff
         this.vnOrmIdOfRowToChange,
         this.vnOrmIdOfCopiedRowBeingChanged
       )
 
       // informing all other Cts
-      if (objFieldsComparisonResults === true) {
+      if (objFldsComparisonResults === true) {
         this.$root.$emit('event-from-ct-name-cl-copied-row-same')
       } else {
-        objFieldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
-        this.$root.$emit('event-from-ct-name-cl-copied-row-diff', objFieldsComparisonResults)
+        objFldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
+        this.$root.$emit('event-from-ct-name-cl-copied-row-diff', objFldsComparisonResults)
       }
 
       // informing the current component
-      if (objFieldsComparisonResults === true) {
+      if (objFldsComparisonResults === true) {
         return true
       } else {
         return false
@@ -194,15 +195,15 @@ export default {
       // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as null so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
       this.vnOrmIdOfCopiedRowBeingChanged = null
 
-      // Step 3/3: the fields in the form have existing edited values the fields need to have non edited values
+      // Step 3/3: the flds in the form have existing edited values the flds need to have non edited values
       orm.arOrmRowsCached = []
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
     mfGetFldValue(pFldName) {
       /*
-        TODO: Why is this called twice for each field?
-        console.log('When the Ct is first loaded let us see how many times if getField called');
+        TODO: Why is this called twice for each fld?
+        console.log('When the Ct is first loaded let us see how many times if getfld called');
       */
       // There will always be an existing row that is already in change state
       const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
