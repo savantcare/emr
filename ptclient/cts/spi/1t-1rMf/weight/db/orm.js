@@ -26,7 +26,7 @@ export default class ptWeight extends rowManage {
       Each browser tab will only work for 1 patient. So no need to store patientUUID inside vue state 
       ptUUID: this.string(null), */
 
-      weightInPounds: this.string(null),
+      weightInPounds: this.number(null), // number type will also store decimals
       dateOfMeasurement: this.string(''),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),

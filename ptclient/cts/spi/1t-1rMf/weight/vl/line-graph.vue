@@ -41,6 +41,7 @@ Code synced with ref implementation on 4th august 2020
 <script>
 import { Chart } from 'highcharts-vue'
 import mxTable from '../table-mixin.js'
+import orm from '../db/orm.js'
 
 export default {
   components: {
@@ -53,16 +54,24 @@ export default {
       type: String,
     },
   },
-  data() {
-    return {
-      chartOptions: {
+  computed: {
+    chartOptions() {
+      const arWeight = []
+      const data = orm.all()
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].weightInPounds)
+        arWeight.push(data[i].weightInPounds)
+      }
+      console.log(arWeight)
+      const a = {
         series: [
           {
-            data: [1, 2, 3], // sample data
+            data: arWeight,
           },
         ],
-      },
-    }
+      }
+      return a
+    },
   },
 }
 </script>

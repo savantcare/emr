@@ -17,14 +17,14 @@
     {
       "uuid": 1,
       "ptUUID": "abcd",
-      "weightInPounds": "122",
+      "weightInPounds": 122.2,
       "dateOfMeasurement": "2020-08-03",
       "notes": "Jai kali ma"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
-      "weightInPounds": "200",
+      "weightInPounds": 200,
       "dateOfMeasurement": "1st feb 2020",
       "notes": "Jai durga ma"
     },
