@@ -54,25 +54,19 @@ export default {
   },
   computed: {
     chartOptions() {
-      const arWeight = []
-      const data = orm.all()
-      for (let i = 0; i < data.length; i++) {
-        console.log(data[i].weightInPounds)
-        const dateOfMeasurement = data[i].dateOfMeasurement
-        arWeight.push([dateOfMeasurement, data[i].weightInPounds])
-      }
-      console.log(arWeight)
+      const arDataToShowOnGraph = this.mfGetDataForGraph()
+      console.log(arDataToShowOnGraph)
 
       // Ref: https://www.tutorialspoint.com/highcharts/highcharts_spline_time.htm
       const chartOptions = {
         series: [
           {
-            name: 'Weight',
+            name: orm.entity,
             showInLegend: false,
-            data: arWeight,
+            data: arDataToShowOnGraph,
           },
         ],
-        title: false, // Reason: Y axis will have "weight" written beside it.
+        title: false, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         xAxis: [
           {
             title: {
@@ -88,7 +82,7 @@ export default {
         yAxis: [
           {
             title: {
-              text: 'Weight',
+              text: orm.entity,
             },
           },
         ],
@@ -101,6 +95,17 @@ export default {
         },
       } // finished defining chartOptions
       return chartOptions
+    },
+  },
+  methods: {
+    mfGetDataForGraph() {
+      const arDataToShowOnGraph = []
+      const data = orm.all()
+      for (let i = 0; i < data.length; i++) {
+        const dateOfMeasurement = data[i].dateOfMeasurement
+        arDataToShowOnGraph.push([dateOfMeasurement, data[i].weightInPounds])
+      }
+      return arDataToShowOnGraph
     },
   },
 }
