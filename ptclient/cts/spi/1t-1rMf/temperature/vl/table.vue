@@ -1,86 +1,57 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct
+<!-- Master doc is at reference implementation name/vl/table.vue. This file has doc unique to this ct 
 Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5>Temperature</h5>
+    <h5>Weight</h5>
     <el-button
-      :type="cfTypeOfButton"
+      :type="mfTypeOfButton('temperatureInFarehnite')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfTemperature['temperatureInFarehnite'] }}</el-button
+      >{{ cfDataRow['temperatureInFarehnite'] }}</el-button
     >
-    <el-button :type="cfTypeOfButton" plain size="small">{{
-      cfTemperature['dateOfMeasurement']
+    <el-button :type="mfTypeOfButton('dateOfMeasurement')" plain size="small">{{
+      cfDataRow['dateOfMeasurement']
     }}</el-button>
-    <el-button :type="cfTypeOfButton" plain size="small">{{ cfTemperature['notes'] }}</el-button>
+    <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
+      cfDataRow['notes']
+    }}</el-button>
     <el-button
       type="primary"
       size="mini"
       style="padding: 3px;"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl(cfTemperature['id'])"
+      @click="mfOpenCCtInCl(cfDataRow['id'])"
       >C</el-button
+    >
+    <el-button
+      v-if="daIsDataFldsOfRowsSame !== true"
+      type="success"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfSendSubmitEvent()"
+      >S</el-button
+    >
+    <el-button
+      v-if="daIsDataFldsOfRowsSame !== true"
+      type="danger"
+      size="mini"
+      style="padding: 3px;"
+      plain
+      tabindex="-1"
+      @click="mfSendResetFormEvent()"
+      >R</el-button
     >
   </div>
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import orm from '../db/orm.js'
+import mxTable from '../table-mixin.js'
 export default {
-  mixins: [mxFullSyncWithDbServer],
-  data() {
-    return {
-      isMounted: false,
-      isCopiedRowDiff: false,
-    }
-  },
-  computed: {
-    cfTemperature() {
-      if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetNonEmptyRowsToChange('temperatureInFarehnite')
-      if (arFromOrm.length) {
-        return arFromOrm[0]
-      } else {
-        return ''
-      }
-    },
-    cfPosInArCardsInPtsOfVl() {
-      if (!this.isMounted) return false
-      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'temperature')
-      const idx = arOfCardsInPtsOfVl.indexOf(obj)
-      return idx
-    },
-    cfTypeOfButton() {
-      if (this.isCopiedRowDiff === true) {
-        return 'warning'
-      }
-      return 'primary'
-    },
-  },
-  async mounted() {
-    this.$root.$on('event-from-ct-temperature-copied-row-diff', () => {
-      this.isCopiedRowDiff = true
-    })
-    this.$root.$on('event-from-ct-temperature-copied-row-same', () => {
-      this.isCopiedRowDiff = false
-    })
-    if (orm.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb()
-    }
-    console.log(orm)
-    this.isMounted = true
-  },
-  methods: {
-    mfOpenCCtInCl(pOrmId) {
-      const payload = { searchTerm: 'temperature - change', pPropsToGiveToCt: pOrmId }
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
-    },
-  },
+  mixins: [mxTable],
 }
 </script>

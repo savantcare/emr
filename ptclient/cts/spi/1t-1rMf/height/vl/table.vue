@@ -5,11 +5,11 @@ Code synced with ref implementation on 4th august 2020
   <div>
     <h5>Height</h5>
     <el-button
-      :type="mfTypeOfButton('heightInPounds')"
+      :type="mfTypeOfButton('heightInInches')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfDataRow['heightInPounds'] }}</el-button
+      >{{ cfDataRow['heightInInches'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('dateOfMeasurement')" plain size="small">{{
       cfDataRow['dateOfMeasurement']
