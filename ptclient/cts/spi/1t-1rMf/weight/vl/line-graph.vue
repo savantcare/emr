@@ -73,14 +73,6 @@ export default {
           },
         ],
         title: false, // Reason: Y axis will have "weight" written beside it.
-        yAxis: [
-          {
-            title: {
-              text: 'Weight',
-            },
-          },
-        ],
-
         xAxis: [
           {
             title: {
@@ -89,11 +81,21 @@ export default {
             type: 'datetime',
             labels: {
               enabled: 'true',
-              format: '{value:%Y-%m}', // X axis now shows year and month
+              format: '{value:%m-%Y}', // X axis now shows year and month
             },
           },
         ],
-
+        yAxis: [
+          {
+            title: {
+              text: 'Weight',
+            },
+          },
+        ],
+        tooltip: {
+          headerFormat: '<b>{point.y:.2f} lbs</b><br>',
+          pointFormat: '{point.x:%m-%Y}', // TODO: Instead of month number need to show month short form.
+        },
         credits: {
           enabled: false,
         },
