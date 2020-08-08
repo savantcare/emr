@@ -23,13 +23,17 @@ Code synced with ref implementation on 4th august 2020
           @input="mfSetCopiedRowFldValueUsingCache($event, 'weightInPounds')"
         >
         </el-input>
+        <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
+             Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
+             value-format="timestamp"
+        -->
         <el-date-picker
           :value="mfGetCopiedRowFldValue('dateOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
-          value-format="yyyy-MM-dd"
+          value-format="timestamp"
           @input="mfSetCopiedRowFldValueUsingCache($event, 'dateOfMeasurement')"
         >
         </el-date-picker>
