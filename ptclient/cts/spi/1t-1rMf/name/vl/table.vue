@@ -5,7 +5,7 @@ This is the structure and others are supposed to write their own custom code.
 <template>
   <div>
     <h5>Name</h5>
-    <!-- Passing name of the field so mfTypeOfButton can decide if the field is changed or not -->
+    <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
     <el-button
       :type="mfTypeOfButton('firstName')"
       plain
@@ -58,7 +58,7 @@ export default {
           Ref: https://www.youtube.com/watch?v=8aGhZQkoFbQ
       */
       isMounted: false,
-      /* This Ct has 3 fields. This helps deciding which field to show in orange color.
+      /* This Ct has 3 flds. This helps deciding which fld to show in orange color.
       Also helps deciding if submit and reset options should be shown */
       daCopiedRowFldsThatAreDiff: false,
     }
@@ -66,7 +66,7 @@ export default {
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      // fnGetRowsToChange will return valid rows where the rowStatus field ends in 1
+      // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
       const arFromOrm = orm.fnGetRowsToChange('firstName')
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
@@ -98,7 +98,7 @@ export default {
     },
   },
   async mounted() {
-    // Goal: Listen to events from change layer. These events will inform which fields should be in organe color
+    // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
     this.$root.$on('event-from-ct-name-cl-copied-row-diff', (pFldsWithDiff) => {
       this.daCopiedRowFldsThatAreDiff = pFldsWithDiff
     })
@@ -109,9 +109,9 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    /* Goal: Maybe change name was invoked before this and some fields are in change state. I want to find those fields.
+    /* Goal: Maybe change name was invoked before this and some flds are in change state. I want to find those flds.
       Why doing this in mounted function?
-        Finding the diff fields only needs to happen when the Ct is loaded.
+        Finding the diff flds only needs to happen when the Ct is loaded.
         Once loaded it will listen to change events and it will be informed by the change Ct
         that something has changed.
     
@@ -124,6 +124,7 @@ export default {
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
         this.daCopiedRowFldsThatAreDiff = orm.fnIsDataFldsOfRowsSame(
+          // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.id,
           vnOrmIdOfCopiedRowBeingChanged
         )
