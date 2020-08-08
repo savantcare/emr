@@ -5,19 +5,19 @@
       <el-form-item>
         <el-input
           placeholder="First name"
-          :value="mfGetFldValue('firstName')"
-          @input="mfSetFldValueUsingCache($event, 'firstName')"
+          :value="mfGetCopiedRowFldValue('firstName')"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'firstName')"
         >
         </el-input>
         <el-input
           placeholder="Middle name"
-          :value="mfGetFldValue('middleName')"
-          @input="mfSetFldValueUsingCache($event, 'middleName')"
+          :value="mfGetCopiedRowFldValue('middleName')"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'middleName')"
         ></el-input>
         <el-input
           placeholder="Last name"
-          :value="mfGetFldValue('lastName')"
-          @input="mfSetFldValueUsingCache($event, 'lastName')"
+          :value="mfGetCopiedRowFldValue('lastName')"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'lastName')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -201,7 +201,7 @@ export default {
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
-    mfGetFldValue(pFldName) {
+    mfGetCopiedRowFldValue(pFldName) {
       /*
         TODO: Why is this called twice for each fld?
         console.log('When the Ct is first loaded let us see how many times if getfld called');
@@ -210,7 +210,7 @@ export default {
       const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
-    mfSetFldValueUsingCache(pEvent, pFldName) {
+    mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
