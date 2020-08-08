@@ -69,6 +69,7 @@ export default {
             data: arWeight,
           },
         ],
+        title: false, // Reason: Y axis will have "weight"
       }
       return a
     },
