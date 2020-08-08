@@ -3,7 +3,7 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5>Weight</h5>
+    <h5>Temperature</h5>
     <el-button
       :type="mfTypeOfButton('temperatureInFarehnite')"
       plain
