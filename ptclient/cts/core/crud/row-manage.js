@@ -176,6 +176,26 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromOrm
   }
 
+  static fnGetRowsToChange() {
+    // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    const arFromOrm = this.query().where('ROW_END', 2147483647.999999).get()
+
+    // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
+
+    // Step 2/3: Discard all entries from this dataset where it does not end in 1. Ending in 1 implies that the data has been saved to DB
+    for (let i = 0; i < arFromOrm.length; i++) {
+      if (arFromOrm[i].vnRowStateInSession % 10 === 1) {
+      } else {
+        arFromOrm.splice(i, 1)
+      }
+    }
+
+    /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
+    Since everytime a row is updated the previous row is marked as discontinued 
+    So discontinued rows will not cross step 1 query */
+    return arFromOrm
+  }
+
   /*  1. This function finds data in client side vuex-orm. This fn is not making a API query to the server.
       2. If there are 10 rows with same UUID then it will return the latest row
       3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
