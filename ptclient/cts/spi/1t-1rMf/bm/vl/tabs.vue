@@ -8,7 +8,7 @@
       <el-tab-pane label="Height">
         <ctHeightTable form-type="embedded"></ctHeightTable
       ></el-tab-pane>
-      <el-tab-pane label="Temperature">
+      <el-tab-pane label="Temp">
         <ctTemperatureTable form-type="embedded"></ctTemperatureTable>
       </el-tab-pane>
     </el-tabs>
