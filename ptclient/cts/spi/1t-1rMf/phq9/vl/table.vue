@@ -19,7 +19,7 @@ Code synced with ref implementation on 4th august 2020
       >{{ cfPhq9['feelingDownDepressedOrHopeless'] }}</el-button
     >
     <el-button :type="cfTypeOfButton" plain size="small">{{
-      cfPhq9['dateOfMeasurement']
+      cfPhq9['timeOfMeasurement']
     }}</el-button>
     <el-button :type="cfTypeOfButton" plain size="small">{{ cfPhq9['notes'] }}</el-button>
     <el-button

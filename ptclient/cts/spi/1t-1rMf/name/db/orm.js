@@ -37,23 +37,37 @@ export default class ptName extends rowManage {
 
       ROW_START: this.number(0),
       ROW_END: this.number(2147483647.999999),
-      /* This is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
-       MariaDB stores values that use the TIMESTAMP data type as the number of seconds since '1970-01-01 00:00:00' (UTC).
-       For fields like dateTimeOfMeasurement the internal convention decided is to store in the field type dateTime as a timestamp.
-       
-       To use this value inside JS I will need to multiply it be 1000 for e.g. see
-       /emr/ptclient/cts/spi/1t-1rMf/weight/vl/line-graph.vue 
-       Since JS expects timeStamp to be in millisecond format.
-       
-       How is time stored throughout the sytem?
-        A. In mariadb We use datetime as the field type. Since field type timestamp is 4 bytes and cannot store beyond 2038
-        B. In the field the value is always in UTC. Hence timezone need not be stored.
-        C. Store the data as number of seconds since January 1, 1970, 00:00:00 UTC.
-        D. In JS when dealing with Ct like element.io -> date picker that expect timestamp to be in JS format then multiply it by 1000
+      /*  Things given to us:
+          A. There are 2 different types of timestamp?
+            1. unix_timestamp / epoch_time -> Numbr of seconds since '1970-01-01 00:00:00'   epoch => start of unix
+            2. JS timestamp -> JS expects timeStamp to be in millisecond format. # of milliseconds since '1970-01-01 00:00:00'
+          
+          B. 2147483647.999999 is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
-      We want to do minimum # of conversions
+          C. MariaDB stores values that use the TIMESTAMP data type as unix_timestamp
 
-      From unix timestamp to get the human readable format we can use: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC */
+          D. For datetime fields there are 2 precision values. DATETIME(6) for microseconds and DATETIME(3) for milliseconds
+
+          Inferences:
+          A. Cannot use timestamp as field type in mariaDB since it will not work after 2038
+
+          B. Hence only option is to use datetime as the fieldtype in mariaDB. 
+          
+          C. Decided to use DATETIME(3) since JS has timestamp in milliseconds.
+          Hence for weight->timeOfMeasurement-> field type will be -> dateTime(3)
+       
+          D. internal data transfer is in the millisecond integer format.
+
+          E. data flow is: mariadb -> dateTime(3) -> select as milli-seconds -> node js -> milli-seconds -> vue -> vuex-orm  field type number -> element.io -> date component
+              For e.g:
+              1. /Users/vk-tech/gt/sc-prog-repos/emr/utils/db/json-server-mock-db.json  timeOfMeasurement is milliseconds from epoch 
+              2. /emr/ptclient/cts/spi/1t-1rMf/weight/vl/line-graph.vue no need to multiply by 1000 to convert from seconds to milliseconds.
+           
+          F. In the datetime field the value is always in UTC. Hence timezone need not be stored.
+
+          We want to do minimum # of conversions
+          From unix timestamp to get the human readable format we can use: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC 
+          */
     }
   }
 }

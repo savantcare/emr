@@ -11,8 +11,8 @@ Code synced with ref implementation on 4th august 2020
       size="small"
       >{{ cfDataRow['weightInPounds'] }}</el-button
     >
-    <el-button :type="mfTypeOfButton('dateOfMeasurement')" plain size="small">{{
-      cfDataRow['dateOfMeasurement']
+    <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
+      cfDataRow['timeOfMeasurement']
     }}</el-button>
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
       cfDataRow['notes']

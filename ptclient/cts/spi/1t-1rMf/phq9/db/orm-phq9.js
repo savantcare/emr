@@ -23,7 +23,7 @@ export default class ptPhq9 extends rowManage {
       uuid: this.uid(() => uuidv1()),
       littleInterestOrPleasureInDoingThings: this.string(null),
       feelingDownDepressedOrHopeless: this.string(null),
-      dateOfMeasurement: this.string(''),
+      timeOfMeasurement: this.number(null),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

@@ -24,13 +24,13 @@ Code synced with ref implementation on 4th august 2020
         >
         </el-input>
         <el-date-picker
-          :value="mfGetCopiedRowFldValue('dateOfMeasurement')"
+          :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="yyyy-MM-dd"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'dateOfMeasurement')"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
         >
         </el-date-picker>
         <el-input

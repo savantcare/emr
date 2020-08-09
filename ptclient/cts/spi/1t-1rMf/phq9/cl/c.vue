@@ -24,13 +24,13 @@ Code synced with ref implementation on 4th august 2020
         >
         </el-input>
         <el-date-picker
-          :value="mfGetFldValue('dateOfMeasurement')"
+          :value="mfGetFldValue('timeOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="yyyy-MM-dd"
-          @input="mfSetFldValueUsingCache($event, 'dateOfMeasurement')"
+          @input="mfSetFldValueUsingCache($event, 'timeOfMeasurement')"
         >
         </el-date-picker>
         <el-input
@@ -136,7 +136,7 @@ export default {
         body: JSON.stringify({
           uuid: rowToUpsert.uuid,
           phq9InInches: rowToUpsert.phq9InInches,
-          dateOfMeasurement: rowToUpsert.dateOfMeasurement,
+          timeOfMeasurement: rowToUpsert.timeOfMeasurement,
           notes: rowToUpsert.notes,
         }),
       })

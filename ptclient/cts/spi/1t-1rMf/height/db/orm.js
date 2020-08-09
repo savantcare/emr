@@ -22,7 +22,7 @@ export default class ptHeight extends rowManage {
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
       heightInInches: this.string(null),
-      dateOfMeasurement: this.string(''),
+      timeOfMeasurement: this.number(null),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

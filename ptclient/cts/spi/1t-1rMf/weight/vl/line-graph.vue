@@ -67,7 +67,9 @@ export default {
             data: arDataToShowOnGraph,
           },
         ],
-        title: false, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        title: {
+          text: '',
+        }, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         xAxis: [
           {
             title: {
@@ -105,14 +107,8 @@ export default {
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          /* Why do I need to multiply unix timestamps by 1000 in JavaScript?
-            Javascript uses milliseconds internally, while normal UNIX timestamps are usually in seconds.
-            This value is taking the following path to arrive here:
-            mariaDB -> field type dateTime -> vuex-orm field type number -> graph
-            Ref: emr/ptclient/cts/spi/1t-1rMf/name/db/orm.js read notes beside ROW_END
-          */
-          const dateOfMeasurement = data[i].dateOfMeasurement * 1000
-          arDataToShowOnGraph.push([dateOfMeasurement, data[i].weightInPounds])
+          const timeOfMeasurement = data[i].timeOfMeasurement
+          arDataToShowOnGraph.push([timeOfMeasurement, data[i].weightInPounds])
         }
         return arDataToShowOnGraph
       } else {
