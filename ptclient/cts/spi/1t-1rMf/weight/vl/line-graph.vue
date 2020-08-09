@@ -35,21 +35,9 @@
 </template>
 
 <script>
-import { Chart } from 'highcharts-vue'
-import mxTable from '../table-mixin.js'
-import orm from '../db/orm.js'
 import mxLineG from '../line-graph-mixin.js'
 
 export default {
-  components: {
-    highcharts: Chart,
-  },
-  mixins: [mxTable, mxLineG],
-  props: {
-    formType: {
-      default: 'stand-alone',
-      type: String,
-    },
-  },
+  mixins: [mxLineG],
 }
 </script>
