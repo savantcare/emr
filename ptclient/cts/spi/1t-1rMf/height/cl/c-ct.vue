@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. 
+<!-- Master doc is at reference implementation namecl/c-ct.vue. 
 and graph related doc is at weight
 -->
 <template>
@@ -11,7 +11,7 @@ and graph related doc is at weight
           @input="mfSetCopiedRowFldValueUsingCache($event, 'heightInInches')"
         >
         </el-input>
-        <!-- Why is valur format timestamp? see weight/cl/c.vue -->
+        <!-- Why is valur format timestamp? see weightcl/c-ct.vue -->
         <el-date-picker
           :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
           type="date"

@@ -21,6 +21,6 @@ https://youtu.be/zCgWHvHn4JA
 # File links
 
 - /ptclient/cts/book/c01-hello-world/search-phrases.vue
-- /ptclient/cts/book/c01-hello-world/vl/table.vue
-- /ptclient/cts/book/c01-hello-world/cl/table.vue
+- /ptclient/cts/book/c01-hello-world/vl/table-ct.vue
+- /ptclient/cts/book/c01-hello-world/cl/table-ct.vue
 - /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue

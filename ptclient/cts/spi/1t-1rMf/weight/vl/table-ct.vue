@@ -1,15 +1,15 @@
-<!-- Master doc is at reference implementation name/vl/table.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/vl/table-ct.vue. This file has doc unique to this ct 
 Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">Temperature</h5>
+    <h5 v-if="formType === 'stand-alone'">Weight</h5>
     <el-button
-      :type="mfTypeOfButton('temperatureInFarehnite')"
+      :type="mfTypeOfButton('weightInPounds')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfDataRow['temperatureInFarehnite'] }}</el-button
+      >{{ cfDataRow['weightInPounds'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
       cfDate

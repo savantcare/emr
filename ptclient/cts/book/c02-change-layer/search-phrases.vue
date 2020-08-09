@@ -7,7 +7,7 @@ export default {
       data: {
         value: 'Second chapter', // search term
         ctAbbr: 'c2',
-        ctToShow: 'book/c02-change-layer/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'book/c02-change-layer/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'Second chapter - change', // search term
         ctAbbr: 'c2-c',
-        ctToShow: 'book/c02-change-layer/cl/table.vue',
+        ctToShow: 'book/c02-change-layer/cl/table-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },

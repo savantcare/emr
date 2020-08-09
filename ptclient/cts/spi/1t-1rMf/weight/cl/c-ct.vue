@@ -1,5 +1,17 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct 
-For graph related work the reference implementation is weight.
+<!-- Master doc is at reference implementation namecl/c-ct.vue. This file has doc unique to this ct 
+This acts as reference implementation for other Cts that use a graph.
+So the heierarchy is:
+
+Name
+ 1. No graph needed
+ 2. Graph needed
+      A. Weight            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and weight is not repeated)
+          2. BMI
+
+
+Code synced with ref implementation on 4th august 2020
+
 -->
 <template>
   <div>
@@ -8,11 +20,15 @@ For graph related work the reference implementation is weight.
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Temperature in farehnite"
-              :value="mfGetCopiedRowFldValue('temperatureInFarehnite')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'temperatureInFarehnite')"
+              placeholder="Weight in pounds"
+              :value="mfGetCopiedRowFldValue('weightInPounds')"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'weightInPounds')"
             >
             </el-input>
+            <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
+             Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
+             value-format="timestamp"
+        -->
             <el-date-picker
               :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
               type="date"
@@ -42,7 +58,7 @@ For graph related work the reference implementation is weight.
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctTemperatureGraph form-type="sub-part-of-another-form"></ctTemperatureGraph>
+        <ctWeightGraph form-type="sub-part-of-another-form"></ctWeightGraph>
       </el-col>
     </el-row>
   </div>
@@ -50,10 +66,10 @@ For graph related work the reference implementation is weight.
 
 <script>
 import mxc from '../c-mixin.js'
-import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph.vue'
+import ctWeightGraph from '@/cts/spi/1t-1rMf/weight/vl/line-graph-ct.vue'
 
 export default {
-  components: { ctTemperatureGraph },
+  components: { ctWeightGraph },
   mixins: [mxc],
   data() {
     return {

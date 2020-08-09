@@ -9,7 +9,7 @@ Carausel                           |
 
 
 Performance:
-Inside rem/cl/c.vue:mfGetRemDescUsingCache enable the console.log 
+Inside remcl/c-ct.vue:mfGetRemDescUsingCache enable the console.log 
 console.log(
         'Inside get desc. Only first time it needs to come from ORM and subsequently it can always come from cache, the value set by setRemDescOn5KeyPress'
       )
@@ -62,7 +62,7 @@ How to solve this?
         <el-row type="flex" :gutter="20">
           <el-col v-for="remID in getArrayOfRemIDsToShowInThisCard" :key="remID">
             <el-card>
-              <!-- For diff types of formType see rem/cl/c.vue -->
+              <!-- For diff types of formType see remcl/c-ct.vue -->
               <ctChangeRem :first-prop="remID" form-type="embedded"></ctChangeRem>
             </el-card>
           </el-col>
@@ -74,7 +74,7 @@ How to solve this?
 </template>
 <script>
 import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
-import ctChangeRem from '@/cts/spi/1t-Mr1f/rem/cl/c.vue'
+import ctChangeRem from '@/cts/spi/1t-Mr1f/rem/cl/c-ct.vue'
 export default {
   components: { ctChangeRem },
   data() {

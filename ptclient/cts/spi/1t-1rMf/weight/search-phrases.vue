@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'weight',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1rMf/weight/vl/line-graph.vue',
+        ctToShow: 'spi/1t-1rMf/weight/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'weight - change',
         ctAbbr: 'wc',
-        ctToShow: 'spi/1t-1rMf/weight/cl/c.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/weightcl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

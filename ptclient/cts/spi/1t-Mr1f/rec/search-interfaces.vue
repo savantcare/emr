@@ -30,7 +30,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',
-        ctToShow: 'spi/rec/vl/table.vue',
+        ctToShow: 'spi/rec/vl/table-ct.vue',
         displayLocation: 'cl',
       },
     })

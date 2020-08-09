@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import ctWeight from '@/cts/spi/1t-1rMf/weight/vl/table.vue'
-import ctHeight from '@/cts/spi/1t-1rMf/height/vl/table.vue'
-import ctTemperature from '@/cts/spi/1t-1rMf/temperature/vl/table.vue'
+import ctWeight from '@/cts/spi/1t-1rMf/weight/vl/table-ct.vue'
+import ctHeight from '@/cts/spi/1t-1rMf/height/vl/table-ct.vue'
+import ctTemperature from '@/cts/spi/1t-1rMf/temperature/vl/table-ct.vue'
 export default {
   components: { ctWeight, ctHeight, ctTemperature },
 }

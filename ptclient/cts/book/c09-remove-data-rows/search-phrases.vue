@@ -10,7 +10,7 @@ export default {
       data: {
         value: 'Ninth chapter',
         ctAbbr: 'c9',
-        ctToShow: 'book/c09-remove-data-rows/vl/table.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'book/c09-remove-data-rows/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -18,7 +18,7 @@ export default {
       data: {
         value: 'Ninth chapter - change',
         ctAbbr: 'c9-c',
-        ctToShow: 'book/c09-remove-data-rows/cl/table.vue',
+        ctToShow: 'book/c09-remove-data-rows/cl/table-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },

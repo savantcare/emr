@@ -80,7 +80,7 @@ export default {
           const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
           const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
-            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See rem/cl/c.vue approx line 108
+            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
             this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId

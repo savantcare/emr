@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'change reminder',
         ctAbbr: 'crem',
-        ctToShow: 'spi/1t-Mr1f/rem/cl/c.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',

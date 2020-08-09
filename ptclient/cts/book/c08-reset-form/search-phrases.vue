@@ -10,15 +10,15 @@ export default {
       data: {
         value: 'Eigth chapter',
         ctAbbr: 'c8',
-        ctToShow: 'book/c08-reset-form/vl/table.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        ctToShow: 'book/c08-reset-form/vl/table-ct.vue',
+        displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer See GLOSSARY.md
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'Eigth chapter - change',
         ctAbbr: 'c8-c',
-        ctToShow: 'book/c08-reset-form/cl/table.vue',
+        ctToShow: 'book/c08-reset-form/cl/table-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },

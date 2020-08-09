@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import ctWeightGraph from '@/cts/spi/1t-1rMf/weight/vl/line-graph.vue'
-import ctHeightGraph from '@/cts/spi/1t-1rMf/height/vl/line-graph.vue'
-import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph.vue'
+import ctWeightGraph from '@/cts/spi/1t-1rMf/weight/vl/line-graph-ct.vue'
+import ctHeightGraph from '@/cts/spi/1t-1rMf/height/vl/line-graph-ct.vue'
+import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph-ct.vue'
 export default {
   components: { ctWeightGraph, ctHeightGraph, ctTemperatureGraph },
 }
