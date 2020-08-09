@@ -1,6 +1,4 @@
-<!-- Master doc is at reference implementation name/vl/table.vue. This file has doc unique to this ct 
-Code synced with ref implementation on 4th august 2020
- -->
+<!-- Reference implementation for line graph -->
 <template>
   <div>
     <el-button
@@ -102,7 +100,13 @@ export default {
       const arDataToShowOnGraph = []
       const data = orm.all()
       for (let i = 0; i < data.length; i++) {
-        const dateOfMeasurement = data[i].dateOfMeasurement
+        /* Why do I need to multiply unix timestamps by 1000 in JavaScript?
+           Javascript uses milliseconds internally, while normal UNIX timestamps are usually in seconds.
+           This value is taking the following path to arrive here:
+           mariaDB -> field type dateTime -> vuex-orm field type number -> graph
+           Ref: emr/ptclient/cts/spi/1t-1rMf/name/db/orm.js read notes beside ROW_END
+        */
+        const dateOfMeasurement = data[i].dateOfMeasurement * 1000
         arDataToShowOnGraph.push([dateOfMeasurement, data[i].weightInPounds])
       }
       return arDataToShowOnGraph
