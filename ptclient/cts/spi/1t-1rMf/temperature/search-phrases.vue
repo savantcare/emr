@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'temperature - change',
         ctAbbr: 'wc',
-        ctToShow: 'spi/1t-1rMf/temperaturecl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/temperature/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

@@ -11,7 +11,7 @@ and graph related doc is at weight
           @input="mfSetCopiedRowFldValueUsingCache($event, 'heightInInches')"
         >
         </el-input>
-        <!-- Why is valur format timestamp? see weightcl/c-ct.vue -->
+        <!-- Why is valur format timestamp? see weight/cl/c-ct.vue -->
         <el-date-picker
           :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
           type="date"

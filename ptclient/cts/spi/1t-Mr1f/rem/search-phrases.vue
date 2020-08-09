@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: 'spi/1t-Mr1f/rem/cl/add.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi change reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'spi/1t-Mr1f/rem/cl/mc.vue',
+        ctToShow: 'spi/1t-Mr1f/rem/cl/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

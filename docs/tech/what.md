@@ -14,9 +14,9 @@ Total loc: 991
 
 ### Layer 2
 
-1. **Add (123 loc)** /cts/rem/cl/add.vue
+1. **Add (123 loc)** /cts/rem/cl/add-ct.vue
 
-2. **Multi change (86 loc)** /cts/rem/cl/mc.vue
+2. **Multi change (86 loc)** /cts/rem/cl/mc-ct.vue
 
 ### Common between layer 1 and layer 2
 
