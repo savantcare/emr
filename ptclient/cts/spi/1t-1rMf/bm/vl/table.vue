@@ -1,9 +1,13 @@
 <template>
   <div>
-    <h5>Body measurement</h5>
-    <ctWeight></ctWeight>
-    <ctHeight></ctHeight>
-    <ctTemperature></ctTemperature>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>Body measurement</span>
+      </div>
+      <ctWeight></ctWeight>
+      <ctHeight></ctHeight>
+      <ctTemperature></ctTemperature>
+    </el-card>
   </div>
 </template>
 

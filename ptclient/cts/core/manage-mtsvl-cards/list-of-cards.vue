@@ -7,10 +7,11 @@
                 This will change on average once in 1 year. Hence there is no advantage of doing this.
           -->
     <!--        <ctRexVl> </ctRexVl><br />
-        <ctBMVl> </ctBMVl><br />
+        
         <ctDXVl> </ctDXVl><br />
         <ctGVl> </ctGVl><br />
 -->
+    <ctBMVl> </ctBMVl><br />
     <ctRemVl> </ctRemVl><br />
     <ctScrVl> </ctScrVl>
   </div>
@@ -18,8 +19,9 @@
 <script>
 import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/table'
 import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table'
+import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/table'
 // import ctRexVl from '@/cts/spi/rec/vl/table'
-// import ctBMVl from '@/cts/spi/bm/bm-vl'
+
 // import ctDXVl from '@/cts/spi/dx/dx-vl'
 // import ctGVl from '@/cts/spi/goal/g-vl'
 
@@ -27,8 +29,8 @@ export default {
   components: {
     ctRemVl,
     ctScrVl,
+    ctBMVl,
     //    ctRexVl,
-    //    ctBMVl,
     //    ctDXVl,
     //    ctGVl,
   },
