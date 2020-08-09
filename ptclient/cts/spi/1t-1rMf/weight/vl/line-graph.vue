@@ -54,7 +54,7 @@ export default {
     chartOptions() {
       const arDataToShowOnGraph = this.mfGetDataForGraph()
 
-      if (!arDataToShowOnGraph) return {} // need to return object. If I return null I get an error.
+      // if (!arDataToShowOnGraph) return {} // In this case the tooltip will not come property formatted. Since during 2nd run it is updating the data but not some of the other chartOptions
 
       console.log(arDataToShowOnGraph)
 
@@ -95,8 +95,9 @@ export default {
           /* TODO: 
           1. Instead of month number need to show month short form. 
           2. In graph sometimes the tooltip format is ok and other times not. Seems like a race condition. 
-          3. json-server needs to send only 1 valid and other discontinued data. 
-          4. On changing the data the json-server data insert and update of old data needs to work. In mariaDB this is transparent. Should I use to MaroaDB now? */
+          3. json-server needs to send only 1 valid and other discontinued data.
+          4. On changing the data the json-server data insert and update of old data needs to work. In mariaDB this is transparent. Should I use to MaroaDB now? 
+          5. Show notes when click on popup */
         },
         credits: {
           enabled: false,
@@ -113,7 +114,8 @@ export default {
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurement = data[i].timeOfMeasurement
-          arDataToShowOnGraph.push([timeOfMeasurement, data[i].weightInPounds])
+          const weight = data[i][orm.graphSeries1FieldName]
+          arDataToShowOnGraph.push([timeOfMeasurement, weight])
         }
         return arDataToShowOnGraph
       } else {

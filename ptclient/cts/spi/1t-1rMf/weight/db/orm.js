@@ -8,6 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptWeight extends rowManage {
   static entity = 'weight'
+  static graphSeries1FieldName = 'weightInPounds'
 
   static apiUrl = 'http://localhost:3000/weight'
 

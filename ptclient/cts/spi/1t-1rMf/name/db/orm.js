@@ -56,7 +56,7 @@ export default class ptName extends rowManage {
           C. Decided to use DATETIME(3) since JS has timestamp in milliseconds.
           Hence for weight->timeOfMeasurement-> field type will be -> dateTime(3)
        
-          D. internal data transfer is in the millisecond integer format.
+          D. internal data transfer is in the millisecond integer format. Why? 1. Integers are fast for comparison 2. String format has many different formats.
 
           E. data flow is: mariadb -> dateTime(3) -> select as milli-seconds -> node js -> milli-seconds -> vue -> vuex-orm  field type number -> element.io -> date component
               For e.g:
