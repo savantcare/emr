@@ -2,15 +2,9 @@
 
 ## Code template
 
-1. Name command has some changed fields and then i give name command again. the changed fields do not show up
+1. @raj Bring temp ct uptodate with latest name ct
 
-2. @raj Bring weight height temp and phq9 ct uptodate with latest name ct
-
-3. Body measurement to combine other Cts through tabs @VK
-
-4. Finish all of BM children
-
-5. @raj When I give height command show me a graph using https://github.com/highcharts/highcharts-vue
+2. Finish all of BM children
 
 ## Rem
 
@@ -28,6 +22,15 @@
 ## Name
 
 1. Connect to mariaDB
+
+## Graph
+
+1. Instead of month number need to show month short form.
+2. I dont want to copy mixin file to each folder.
+3. json-server needs to send only 1 valid and other discontinued data.
+4. On changing the data the json-server data insert and update of old data needs to work. In mariaDB this is transparent. Should I use to MaroaDB now?
+5. Show notes when click on popup
+6. When I change the data the part of data that is in change mode -- that line should be in orange.
 
 # Not specified
 
