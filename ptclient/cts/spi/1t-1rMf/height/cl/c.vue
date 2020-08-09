@@ -23,13 +23,14 @@ Code synced with ref implementation on 4th august 2020
           @input="mfSetCopiedRowFldValueUsingCache($event, 'heightInInches')"
         >
         </el-input>
+        <!-- Why is valur format timestamp? see weight/cl/c.vue -->
         <el-date-picker
           :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
-          value-format="yyyy-MM-dd"
+          value-format="timestamp"
           @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
         >
         </el-date-picker>
