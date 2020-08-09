@@ -40,15 +40,15 @@
     {
       "uuid": 1,
       "ptUUID": "abcd",
-      "heightInInches": 114,
+      "heightInInches": 66,
       "timeOfMeasurement": 1596926301000,
       "notes": "Height measured "
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
-      "heightInInches": 200,
-      "timeOfMeasurement": 1596926301000,
+      "heightInInches": 67,
+      "timeOfMeasurement": 1599998301000,
       "notes": "Jai durga ma"
     }
   ],

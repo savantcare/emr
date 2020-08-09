@@ -12,6 +12,8 @@ export default class ptWeight extends rowManage {
 
   static apiUrl = 'http://localhost:3000/weight'
 
+  static graphSeries1Unit = 'Lbs'
+
   static fields() {
     return {
       ...super.fields(),

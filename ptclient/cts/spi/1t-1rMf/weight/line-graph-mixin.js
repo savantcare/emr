@@ -53,7 +53,7 @@ export default {
           },
         ],
         tooltip: {
-          headerFormat: '<b>{point.y:.2f} lbs</b><br>',
+          headerFormat: '<b>{point.y:.2f} ' + orm.graphSeries1Unit + '</b><br>',
           pointFormat: '{point.x:%m-%Y}',
           /* TODO: 
           1. Instead of month number need to show month short form. 
