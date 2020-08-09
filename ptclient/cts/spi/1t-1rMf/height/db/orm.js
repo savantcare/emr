@@ -8,6 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptHeight extends rowManage {
   static entity = 'height'
+  static graphSeries1FieldName = 'heightInInches'
 
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.
   // baseurl is defined in nuxt.config.js
@@ -21,9 +22,11 @@ export default class ptHeight extends rowManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      heightInInches: this.string(null),
+
+      heightInInches: this.number(null),
       timeOfMeasurement: this.number(null),
       notes: this.string(null),
+
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

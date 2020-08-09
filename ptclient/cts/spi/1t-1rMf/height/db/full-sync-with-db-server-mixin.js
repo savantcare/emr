@@ -5,7 +5,7 @@ import orm from '~/cts/spi/1t-1rMf/height/db/orm.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await orm.api().get(orm.apiUrl + '/1')
+      const pro = await orm.api().get(orm.apiUrl + '?ptUUID=abcd')
       if (pro.ok) {
       }
     },

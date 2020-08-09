@@ -31,7 +31,7 @@
     {
       "uuid": 3,
       "ptUUID": "efgh",
-      "weightInPounds": "122",
+      "weightInPounds": 122,
       "timeOfMeasurement": 1596926301000,
       "notes": "Jai kali ma"
     }
@@ -39,13 +39,15 @@
   "height": [
     {
       "uuid": 1,
-      "heightInInches": "114",
+      "ptUUID": "abcd",
+      "heightInInches": 114,
       "timeOfMeasurement": 1596926301000,
       "notes": "Height measured "
     },
     {
       "uuid": 2,
-      "heightInInches": "200",
+      "ptUUID": "abcd",
+      "heightInInches": 200,
       "timeOfMeasurement": 1596926301000,
       "notes": "Jai durga ma"
     }
