@@ -51,22 +51,5 @@ export default {
       type: String,
     },
   },
-  methods: {
-    mfGetDataForGraph() {
-      const arDataToShowOnGraph = []
-      const data = orm.all()
-      const numberOfPointsOnGraph = data.length
-      if (numberOfPointsOnGraph > 0) {
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurement = data[i].timeOfMeasurement
-          const weight = data[i][orm.graphSeries1FieldName]
-          arDataToShowOnGraph.push([timeOfMeasurement, weight])
-        }
-        return arDataToShowOnGraph
-      } else {
-        return null
-      }
-    },
-  },
 }
 </script>
