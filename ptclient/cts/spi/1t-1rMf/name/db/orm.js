@@ -1,4 +1,4 @@
-// Reference implmentation for Ct ot 1 row and multiple fields.
+// Reference implmentation for Ct that has 1 row and multiple fields.
 // For docs read ptclient/docs/models.md
 import rowManage from '~/cts/core/crud/row-manage.js'
 
@@ -37,17 +37,19 @@ export default class ptName extends rowManage {
 
       ROW_START: this.number(0),
       ROW_END: this.number(2147483647.999999),
-      /* this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+      /* This is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
        MariaDB stores values that use the TIMESTAMP data type as the number of seconds since '1970-01-01 00:00:00' (UTC).
-       For fields like dateTimeOfMeasurement my plan is to store in the field type dateTime as a timestamp.
+       For fields like dateTimeOfMeasurement the internal convention decided is to store in the field type dateTime as a timestamp.
        
        To use this value inside JS I will need to multiply it be 1000 for e.g. see
        /emr/ptclient/cts/spi/1t-1rMf/weight/vl/line-graph.vue 
+       Since JS expects timeStamp to be in millisecond format.
        
        How is time stored throughout the sytem?
         A. In mariadb We use datetime as the field type. Since field type timestamp is 4 bytes and cannot store beyond 2038
         B. In the field the value is always in UTC. Hence timezone need not be stored.
-        C. Store the data as number of milliseconds since January 1, 1970, 00:00:00 UTC.
+        C. Store the data as number of seconds since January 1, 1970, 00:00:00 UTC.
+        D. In JS when dealing with Ct like element.io -> date picker that expect timestamp to be in JS format then multiply it by 1000
 
       We want to do minimum # of conversions
 
