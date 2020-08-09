@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h5>Body measurement</h5>
-    <el-tabs tab-position="left" type="card">
+    <el-tabs tab-position="top" type="card">
       <el-tab-pane label="Wt"> <ctWeightGraph form-type="embedded"></ctWeightGraph></el-tab-pane>
       <el-tab-pane label="Ht"> <ctHeightGraph form-type="embedded"></ctHeightGraph></el-tab-pane>
       <el-tab-pane label="Tm">

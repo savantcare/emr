@@ -14,10 +14,10 @@
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
     <Split style="height: 900px; width: 1400px;" :gutter-size="4">
-      <SplitArea :size="75">
+      <SplitArea :size="65">
         <ctMsVlCards></ctMsVlCards>
       </SplitArea>
-      <SplitArea id="ptsvl" :size="25">
+      <SplitArea id="ptsvl" :size="35">
         <ctCsVlCards></ctCsVlCards>
       </SplitArea>
     </Split>
