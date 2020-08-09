@@ -59,10 +59,5 @@ export default {
       type: String,
     },
   },
-  computed: {
-    cfDate() {
-      return this.cfDataRow.timeOfMeasurement
-    },
-  },
 }
 </script>

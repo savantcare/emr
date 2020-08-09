@@ -12,7 +12,7 @@ Code synced with ref implementation on 4th august 2020
       >{{ cfDataRow['heightInInches'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
-      cfDataRow['timeOfMeasurement']
+      cfDate
     }}</el-button>
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
       cfDataRow['notes']
