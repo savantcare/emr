@@ -1,62 +1,59 @@
 <!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct 
-This acts as reference implementation for other Cts that use a graph.
-So the heierarchy is:
-
-Name
- 1. No graph needed
- 2. Graph needed
-      A. Weight            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and weight is not repeated)
-          2. BMI
-
-
-Code synced with ref implementation on 4th august 2020
-
+For graph related work the reference implementation is weight.
 -->
 <template>
   <div>
-    <el-form>
-      <el-form-item>
-        <el-input
-          placeholder="Weight in pounds"
-          :value="mfGetCopiedRowFldValue('temperatureInFarehnite')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'temperatureInFarehnite')"
-        >
-        </el-input>
-        <el-date-picker
-          :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
-          type="date"
-          placeholder="Pick a day"
-          :picker-options="pickerOptions"
-          format="yyyy/MM/dd"
-          value-format="yyyy-MM-dd"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
-        >
-        </el-date-picker>
-        <el-input
-          placeholder="Notes"
-          type="textarea"
-          :autosize="{ minRows: 2 }"
-          :value="mfGetCopiedRowFldValue('notes')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
-        ></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnSubmit"
-          >Submit</el-button
-        >
-        <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
-          >Reset form</el-button
-        >
-      </el-form-item>
-    </el-form>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-form>
+          <el-form-item>
+            <el-input
+              placeholder="Temperature in farehnite"
+              :value="mfGetCopiedRowFldValue('temperatureInFarehnite')"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'temperatureInFarehnite')"
+            >
+            </el-input>
+            <el-date-picker
+              :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
+              type="date"
+              placeholder="Pick a day"
+              :picker-options="pickerOptions"
+              format="yyyy/MM/dd"
+              value-format="timestamp"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
+            >
+            </el-date-picker>
+            <el-input
+              placeholder="Notes"
+              type="textarea"
+              :autosize="{ minRows: 2 }"
+              :value="mfGetCopiedRowFldValue('notes')"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnSubmit"
+              >Submit</el-button
+            >
+            <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
+              >Reset form</el-button
+            >
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="12">
+        <ctTemperatureGraph form-type="sub-part-of-another-form"></ctTemperatureGraph>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import mxc from '../c-mixin.js'
+import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph.vue'
 
 export default {
+  components: { ctTemperatureGraph },
   mixins: [mxc],
   data() {
     return {

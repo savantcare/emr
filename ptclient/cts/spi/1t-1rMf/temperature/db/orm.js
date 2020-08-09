@@ -15,13 +15,16 @@ export default class ptTemperature extends rowManage {
 
   static apiUrl = 'http://localhost:3000/temperature'
 
+  static graphSeries1FieldName = 'temperatureInFarehnite'
+  static graphSeries1Unit = 'Fh'
+
   static fields() {
     return {
       ...super.fields(),
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      temperatureInFarehnite: this.string(null),
+      temperatureInFarehnite: this.number(null),
       timeOfMeasurement: this.number(null),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
