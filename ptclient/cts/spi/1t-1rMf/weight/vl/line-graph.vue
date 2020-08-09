@@ -53,6 +53,9 @@ export default {
   computed: {
     chartOptions() {
       const arDataToShowOnGraph = this.mfGetDataForGraph()
+
+      if (!arDataToShowOnGraph) return {} // need to return object. If I return null I get an error.
+
       console.log(arDataToShowOnGraph)
 
       // Ref: https://www.tutorialspoint.com/highcharts/highcharts_spline_time.htm
@@ -99,17 +102,22 @@ export default {
     mfGetDataForGraph() {
       const arDataToShowOnGraph = []
       const data = orm.all()
-      for (let i = 0; i < data.length; i++) {
-        /* Why do I need to multiply unix timestamps by 1000 in JavaScript?
-           Javascript uses milliseconds internally, while normal UNIX timestamps are usually in seconds.
-           This value is taking the following path to arrive here:
-           mariaDB -> field type dateTime -> vuex-orm field type number -> graph
-           Ref: emr/ptclient/cts/spi/1t-1rMf/name/db/orm.js read notes beside ROW_END
-        */
-        const dateOfMeasurement = data[i].dateOfMeasurement * 1000
-        arDataToShowOnGraph.push([dateOfMeasurement, data[i].weightInPounds])
+      const numberOfPointsOnGraph = data.length
+      if (numberOfPointsOnGraph > 0) {
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          /* Why do I need to multiply unix timestamps by 1000 in JavaScript?
+            Javascript uses milliseconds internally, while normal UNIX timestamps are usually in seconds.
+            This value is taking the following path to arrive here:
+            mariaDB -> field type dateTime -> vuex-orm field type number -> graph
+            Ref: emr/ptclient/cts/spi/1t-1rMf/name/db/orm.js read notes beside ROW_END
+          */
+          const dateOfMeasurement = data[i].dateOfMeasurement * 1000
+          arDataToShowOnGraph.push([dateOfMeasurement, data[i].weightInPounds])
+        }
+        return arDataToShowOnGraph
+      } else {
+        return null
       }
-      return arDataToShowOnGraph
     },
   },
 }

@@ -42,8 +42,16 @@ export default class ptName extends rowManage {
        For fields like dateTimeOfMeasurement my plan is to store in the field type dateTime as a timestamp.
        
        To use this value inside JS I will need to multiply it be 1000 for e.g. see
-       /emr/ptclient/cts/spi/1t-1rMf/weight/vl/line-graph.vue
-       */
+       /emr/ptclient/cts/spi/1t-1rMf/weight/vl/line-graph.vue 
+       
+       How is time stored throughout the sytem?
+        A. In mariadb We use datetime as the field type. Since field type timestamp is 4 bytes and cannot store beyond 2038
+        B. In the field the value is always in UTC. Hence timezone need not be stored.
+        C. Store the data as number of milliseconds since January 1, 1970, 00:00:00 UTC.
+
+      We want to do minimum # of conversions
+
+      From unix timestamp to get the human readable format we can use: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC */
     }
   }
 }

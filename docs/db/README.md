@@ -13,21 +13,6 @@ C. There are 2 systems before \_V20 and V20. For them to co-exist UUID is needed
 
 Ref: https://www.mysqltutorial.org/mysql-uuid/
 
-3. How is time stored throughout the sytem?
-
-A. We use datetime as the field type. Since tiemstamp is 4 bytes and cannot store beyond 2038
-B. In the field the value is always in UTC. Hence timezone need not be stored.
-C. Store the data as number of milliseconds since January 1, 1970, 00:00:00 UTC.
-
-Reasons:
-
-1. The timeseries graph expects that. https://www.tutorialspoint.com/highcharts/highcharts_spline_time.htm
-2. DateTime field type of Mysql does that.
-
-We want to do minimum # of conversions
-
-From unix timestamp to get the human readable format we can use: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
-
 Questions:
 
 1. Should I use binary_short?
