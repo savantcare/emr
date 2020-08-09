@@ -62,8 +62,14 @@ export default {
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
         The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider malformed. 
-        To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire logic if formType value is set to 'mc'.
-   */
+        To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire 
+        logic if formType value is set to 'mc'.
+
+    Q) What are the diff possible values for formtype?
+              1. stand-alone -> it has its own controls
+              2. embedded -> that means it has its own submit and other controls. But the same page has other forms also
+              3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
+    */
 
   props: ['firstProp', 'formType'],
   data() {

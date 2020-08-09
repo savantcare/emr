@@ -23,6 +23,8 @@
 
 1. Connect to mariaDB
 
+2. I edit a note and then go back to edit form it should have orange border.
+
 ## Graph
 
 1. Instead of month number need to show month short form.

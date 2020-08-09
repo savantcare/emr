@@ -1,17 +1,5 @@
-<!-- Master doc is at reference implementation name/cl/c.vue. This file has doc unique to this ct 
-This acts as reference implementation for other Cts that use a graph.
-So the heierarchy is:
-
-Name
- 1. No graph needed
- 2. Graph needed
-      A. Height            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and height is not repeated)
-          2. BMI
-
-
-Code synced with ref implementation on 4th august 2020
-
+<!-- Master doc is at reference implementation name/cl/c.vue. 
+and graph related doc is at weight
 -->
 <template>
   <div>

@@ -62,12 +62,7 @@ How to solve this?
         <el-row type="flex" :gutter="20">
           <el-col v-for="remID in getArrayOfRemIDsToShowInThisCard" :key="remID">
             <el-card>
-              <!-- The form can be 
-              formType
-              1. Independent
-              2. Embedded that means it has its own submit and other controls. But the same page has other forms also
-              3. sub-part-of-another-form
-              -->
+              <!-- For diff types of formType see rem/cl/c.vue -->
               <ctChangeRem :first-prop="remID" form-type="embedded"></ctChangeRem>
             </el-card>
           </el-col>

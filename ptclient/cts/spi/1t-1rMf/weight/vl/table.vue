@@ -12,7 +12,7 @@ Code synced with ref implementation on 4th august 2020
       >{{ cfDataRow['weightInPounds'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
-      cfDataRow['timeOfMeasurement']
+      cfDate
     }}</el-button>
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
       cfDataRow['notes']
@@ -57,6 +57,11 @@ export default {
     formType: {
       default: 'stand-alone',
       type: String,
+    },
+  },
+  computed: {
+    cfDate() {
+      return this.cfDataRow.timeOfMeasurement
     },
   },
 }
