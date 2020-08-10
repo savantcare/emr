@@ -31,22 +31,44 @@
 
 <script>
 import Vue from 'vue'
+
+/* External Cts */
+
+/* 1/4 Why needed? Split mtsvl and ptsvl  */
 import VueSplit from 'vue-split-panel'
+
+/*  2/4 Why needed?
+  Say the user enter the rex command 10 times. I need to scroll to the bottom of the cards
+  So search box is given a ID and then #manage-ptsvl-cards is used to scroll down.
+  */
+import VueScrollTo from 'vue-scrollto' // Ref: https://github.com/rigor789/vue-scrollto#as-a-vue-directive
+
+/* 3/4 Why needed?
+   Used to toggle between Health and Other components.
+   Why not use element.io inbuilt switch?
+   Read: src/components/common/TheMultiStateDisplayAreaHeader.vue:48
+*/
+import ToggleButton from 'vue-js-toggle-button' // Ref: http://vue-js-toggle-button.yev.io/
+
+/* 4/4 Why use a different slider instead of slider from elemenet.io?
+    Read: src/components/common/TheMultiStateDisplayAreaHeader.vue:23
+*/
+import VueSlider from 'vue-slider-component' // Ref: github.com/NightCatSama/vue-slider-component
+import 'vue-slider-component/theme/default.css'
+
+// Internal Cts
 import ctMtsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
-import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
+import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog' // Name expands to Component tabs in dialog in change layer
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
 
-// The name above expands to Component tabs in dialog in change layer
-
-// say the user enter the rex command 10 times. I need to scroll to the bottom of the cards
-// so search box is given a ID and then #manage-ptsvl-cards is used to scroll down.
-const VueScrollTo = require('vue-scrollto') // Ref: https://github.com/rigor789/vue-scrollto#as-a-vue-directive
+Vue.component('VueSlider', VueSlider)
 
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
+Vue.use(ToggleButton)
 
 export default {
   components: {
