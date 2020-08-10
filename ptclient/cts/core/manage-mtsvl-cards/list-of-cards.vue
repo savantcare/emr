@@ -11,12 +11,14 @@
         <ctDXVl> </ctDXVl><br />
         <ctGVl> </ctGVl><br />
 -->
+    <TheMultiStateDisplayAreaHeader> </TheMultiStateDisplayAreaHeader>
     <ctBMVl> </ctBMVl><br />
     <ctRemVl> </ctRemVl><br />
     <ctScrVl> </ctScrVl>
   </div>
 </template>
 <script>
+import TheMultiStateDisplayAreaHeader from '@/cts/core/mtsvl-header/slider.vue'
 import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/table-ct'
 import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table-ct'
 import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/table-ct'
@@ -30,6 +32,7 @@ export default {
     ctRemVl,
     ctScrVl,
     ctBMVl,
+    TheMultiStateDisplayAreaHeader,
     //    ctRexVl,
     //    ctDXVl,
     //    ctGVl,

@@ -15,7 +15,7 @@
       -->
     <Split style="height: 900px; width: 1400px;" :gutter-size="4">
       <SplitArea :size="65">
-        <ctMsVlCards></ctMsVlCards>
+        <ctMtsVlCards></ctMtsVlCards>
       </SplitArea>
       <SplitArea id="ptsvl" :size="35">
         <ctCsVlCards></ctCsVlCards>
@@ -32,7 +32,7 @@
 <script>
 import Vue from 'vue'
 import VueSplit from 'vue-split-panel'
-import ctMsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
+import ctMtsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog'
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
@@ -50,7 +50,7 @@ Vue.use(VueScrollTo)
 
 export default {
   components: {
-    ctMsVlCards,
+    ctMtsVlCards,
     ctCsVlCards,
     ctTabsInDialogInCL,
     ctFeedDrawer,
