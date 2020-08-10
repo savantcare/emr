@@ -4,7 +4,7 @@ This is the structure and others are supposed to write their own custom code.
 -->
 <template>
   <div>
-    <h5>Name</h5>
+    <h5 v-if="formType === 'stand-alone'">>Name</h5>
     <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
     <el-button
       :type="mfTypeOfButton('firstName')"
@@ -15,6 +15,7 @@ This is the structure and others are supposed to write their own custom code.
     <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfDataRow['middleName'] }}</el-button>
     <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfDataRow['lastName'] }}</el-button>
     <el-button
+      v-if="formType === 'stand-alone'"
       type="primary"
       size="mini"
       style="padding: 3px;"
@@ -24,7 +25,7 @@ This is the structure and others are supposed to write their own custom code.
       >C</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true && formType === 'stand-alone'"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -34,7 +35,7 @@ This is the structure and others are supposed to write their own custom code.
       >S</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true && formType === 'stand-alone'"
       type="danger"
       size="mini"
       style="padding: 3px;"
@@ -50,5 +51,11 @@ This is the structure and others are supposed to write their own custom code.
 import mxTable from '../table-mixin.js'
 export default {
   mixins: [mxTable],
+  props: {
+    formType: {
+      default: 'stand-alone',
+      type: String,
+    },
+  },
 }
 </script>

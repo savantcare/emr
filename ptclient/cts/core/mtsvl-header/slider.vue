@@ -5,7 +5,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 <template>
   <el-row id="TheMultiStateDisplayAreaHeader" type="flex" align="middle">
     <el-col :span="6" class="ml-2" style="display: flex; align-items: center;">
-      <span style="font-size: 20px;"><ctName></ctName></span>
+      <span style="font-size: 20px;"><ctName form-type="embedded"></ctName></span>
       <span style="font-size: 14px; margin-left: 6px;">(28Y)</span>
       <div style="margin-left: 6px;">
         <el-tag v-if="connectionStatus" type="success" size="mini">Online</el-tag>
