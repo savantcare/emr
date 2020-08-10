@@ -27,7 +27,7 @@ Code synced with ref implementation on 4th august 2020
       >C</el-button
     >
     <el-button
-      v-if="daIsDataFldsOfRowsSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -37,7 +37,7 @@ Code synced with ref implementation on 4th august 2020
       >S</el-button
     >
     <el-button
-      v-if="daIsDataFldsOfRowsSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
       type="danger"
       size="mini"
       style="padding: 3px;"

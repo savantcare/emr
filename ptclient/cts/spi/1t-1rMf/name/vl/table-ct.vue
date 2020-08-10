@@ -24,7 +24,7 @@ This is the structure and others are supposed to write their own custom code.
       >C</el-button
     >
     <el-button
-      v-if="daIsDataFldsOfRowsSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -34,7 +34,7 @@ This is the structure and others are supposed to write their own custom code.
       >S</el-button
     >
     <el-button
-      v-if="daIsDataFldsOfRowsSame !== true"
+      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
       type="danger"
       size="mini"
       style="padding: 3px;"
