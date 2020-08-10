@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation namecl/c-ct.vue. 
+<!-- Master doc is at reference implementation name/cl/c-ct.vue. 
 and graph related doc is at weight
 -->
 <template>

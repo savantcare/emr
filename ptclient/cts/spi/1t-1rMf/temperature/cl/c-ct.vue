@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation namecl/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/cl/c-ct.vue. This file has doc unique to this ct 
 For graph related work the reference implementation is weight.
 -->
 <template>

@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'name - change',
         ctAbbr: 'nc',
-        ctToShow: 'spi/1t-1rMf/namecl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/name/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },
