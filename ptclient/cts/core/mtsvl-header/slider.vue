@@ -5,8 +5,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 <template>
   <el-row id="TheMultiStateDisplayAreaHeader" type="flex" align="middle">
     <el-col :span="6" class="ml-2" style="display: flex; align-items: center;">
-      <!-- TODO: This needs to come from DB -->
-      <span style="font-size: 20px;">Alexey D</span>
+      <span style="font-size: 20px;"><ctName></ctName></span>
       <span style="font-size: 14px; margin-left: 6px;">(28Y)</span>
       <div style="margin-left: 6px;">
         <el-tag v-if="connectionStatus" type="success" size="mini">Online</el-tag>
@@ -207,8 +206,9 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
+import ctName from '@/cts/spi/1t-1rMf/name/vl/table-ct.vue'
 export default {
-  components: {},
+  components: { ctName },
   data() {
     // KT: Why is this a function and not a object? Ref: https://vuejs.org/v2/style-guide/#Component-data-essential
     return {
