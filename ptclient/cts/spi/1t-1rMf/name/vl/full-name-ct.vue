@@ -48,7 +48,7 @@ This is the structure and others are supposed to write their own custom code.
 </template>
 
 <script>
-import mxTable from '../mixin-view-layer.js'
+import mxTable from '../../mixin-view-layer.js'
 export default {
   mixins: [mxTable],
   props: {

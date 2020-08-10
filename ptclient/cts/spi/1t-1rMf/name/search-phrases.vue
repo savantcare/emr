@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'spi/1t-1rMf/name/vl/table-ct.vue',
+        ctToShow: 'spi/1t-1rMf/name/vl/full-name-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
