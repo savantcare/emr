@@ -1,4 +1,4 @@
-const timeout = process.env.SLOWMO ? 30000 : 10000;
+const timeout = process.env.SLOWMO ? 30000 : 50000;
 const {
   gatherPerformanceTimingMetric,
   gatherPerformanceTimingMetrics,
