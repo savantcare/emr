@@ -17,7 +17,7 @@ export default {
       data: {
         value: 'add goal',
         ctAbbr: 'addg',
-        ctToShow: 'spi/goal/cl/ctAddGoal.vue',
+        ctToShow: 'spi/1t-MrMf/goal/cl/add.vue',
         displayLocation: 'cl',
       },
     })
@@ -26,7 +26,7 @@ export default {
       data: {
         value: 'multi rate goal',
         ctAbbr: 'mcg',
-        ctToShow: 'spi/goal/cl/ctMultiRateGoal.vue',
+        ctToShow: 'spi/1t-MrMf/goal/cl/ctMultiRateGoal.vue',
         displayLocation: 'cl',
       },
     })
@@ -35,7 +35,7 @@ export default {
       data: {
         value: 'goal',
         ctAbbr: 'g',
-        ctToShow: 'spi/goal/g-vl.vue',
+        ctToShow: 'spi/1t-MrMf/goal/g-vl.vue',
         displayLocation: 'ptsVl',
       },
     })

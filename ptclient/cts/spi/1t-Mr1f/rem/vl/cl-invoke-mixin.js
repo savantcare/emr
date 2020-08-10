@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import ormRem from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import orm from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 
 export default {
   methods: {
@@ -28,7 +28,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDiscontinue.length > 0) {
-            const status = await ormRem.fnSendMultiDiscontinueDataToServer(
+            const status = await orm.fnSendMultiDiscontinueDataToServer(
               this.daSelectedRemForDiscontinue
             )
             if (status.success > 0) {
@@ -51,7 +51,7 @@ export default {
         })
     },
     async mxOpenXCtInCl() {
-      const discontinuedRows = await ormRem.fnGetDiscontinuedRows()
+      const discontinuedRows = await orm.fnGetDiscontinuedRows()
       const arDrawerData = []
       discontinuedRows.forEach((item) => {
         const arRow = []
@@ -84,7 +84,7 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
-      const arResultsFromOrm = ormRem.find(pOrmDataRowId)
+      const arResultsFromOrm = orm.find(pOrmDataRowId)
 
       this.$prompt(arResultsFromOrm.remDesc, 'Discontinue reminder', {
         confirmButtonText: 'Discontinue',
@@ -92,7 +92,7 @@ export default {
         inputPlaceholder: 'Enter discontinue note',
       })
         .then(async ({ value }) => {
-          const status = await ormRem.fnSendDiscontinueDataToServer(
+          const status = await orm.fnSendDiscontinueDataToServer(
             pOrmDataRowId,
             arResultsFromOrm.uuid,
             value

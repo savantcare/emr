@@ -1,10 +1,10 @@
 # Specified
 
-## Code template
+## BM
 
-1. @raj Bring temp ct uptodate with latest name ct
+1. Finish all of BM children
 
-2. Finish all of BM children
+2. First tab of pstvl to be a combined graph.
 
 ## Rem
 
@@ -34,13 +34,16 @@
 5. Show notes when click on popup
 6. When I change the data the part of data that is in change mode -- that line should be in orange.
 
+# Others
+
+1. In cl the tab number to come on top right corner.
+
+2. Focus option in card header of each card on right.
+
 # Not specified
 
 1. When I hit submit the form and the form was submitting and then i entered and saved again. The system got confused.
    Ref: https://github.com/axios/axios/issues/1010
-
-2. Work is done -> make another pull request -> Discontniue and multi discontinue need a response if it was success or not.
-   add doc about using map and why a for loop was not used.
 
 # Low priority:
 

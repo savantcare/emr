@@ -75,7 +75,7 @@
   </div>
 </template>
 <script>
-import ormRem from '../db/vuex-orm/rem.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import orm from '../db/vuex-orm/rem.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   data() {
@@ -84,19 +84,19 @@ export default {
 
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormRem.fnGetNewRowsInEditState()
+      return orm.fnGetNewRowsInEditState()
     },
     cfGetOrmReadyToSubmitStateRows() {
-      return ormRem.fnGetNewRowsInReadyToSubmitState()
+      return orm.fnGetNewRowsInReadyToSubmitState()
     },
     cfGetOrmApiSuccessStateRows() {
-      return ormRem.fnGetNewRowsInApiSuccessState()
+      return orm.fnGetNewRowsInApiSuccessState()
     },
     cfGetOrmApiErrorStateRows() {
-      return ormRem.fnGetNewRowsInApiErrorState()
+      return orm.fnGetNewRowsInApiErrorState()
     },
     cfGetOrmApiSendingStateRows() {
-      return ormRem.fnGetNewRowsInApiSendingState()
+      return orm.fnGetNewRowsInApiSendingState()
     },
   },
 
@@ -104,7 +104,7 @@ export default {
 
   methods: {
     async mfAddEmptyRowInOrm() {
-      const arFromOrm = await ormRem.insert({
+      const arFromOrm = await orm.insert({
         data: {
           remDesc: '',
           vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
@@ -127,15 +127,15 @@ export default {
     },
     // Cannot call orm function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pOrmRowId, pFldName) {
-      return ormRem.fnGetFldValue(pOrmRowId, pFldName)
+      return orm.fnGetFldValue(pOrmRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
       const rowStatus = 24
-      ormRem.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
+      orm.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
-      const arFromOrm = ormRem.find(pOrmRowId)
+      const arFromOrm = orm.find(pOrmRowId)
       if (arFromOrm && arFromOrm.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -143,16 +143,16 @@ export default {
       return ''
     },
     async mfDeleteRowInOrm(pOrmRowId) {
-      await ormRem.delete(pOrmRowId)
+      await orm.delete(pOrmRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      ormRem.fnDeleteNewRowsInEditState()
+      orm.fnDeleteNewRowsInEditState()
     },
     async mfOnSubmit() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from ormRem ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from orm ie; 'vnRowStateInSession' = 24
       */
       const arFromOrm = this.cfGetOrmReadyToSubmitStateRows
       if (arFromOrm.length) {
@@ -160,7 +160,7 @@ export default {
         for (let i = 0; i < arFromOrm.length; i++) {
           if (arFromOrm[i].remDesc.length < 3) {
             // Validation check
-            await ormRem.update({
+            await orm.update({
               where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -169,7 +169,7 @@ export default {
               },
             })
           } else {
-            await ormRem.update({
+            await orm.update({
               where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: '',
@@ -181,7 +181,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await ormRem.fnSendToServer()
+      await orm.fnSendToServer()
     },
   },
 }

@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import ormRem from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import orm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 export default {
   /* 
     Q) Why is firstProp needed?
@@ -81,13 +81,13 @@ export default {
   },
   computed: {
     cfRowInEditStateOnClient() {
-      return ormRem.fnGetAllChangeRowsInEditState()
+      return orm.fnGetAllChangeRowsInEditState()
     },
     cfTimeLineDataAr() {
       const timelineDataArray = []
 
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromOrm = ormRem.query().where('uuid', this.uuid).orderBy('ROW_START', 'desc').get()
+      const arFromOrm = orm.query().where('uuid', this.uuid).orderBy('ROW_START', 'desc').get()
       // console.log('Time line for uuid', this.uuid)
       if (arFromOrm.length) {
         let rowInTimeLine = []
@@ -131,7 +131,7 @@ export default {
             1. This is used in each Ct.
             2. phq9 Ct has 9 fields so this will become very big.
         */
-      const arFromOrm = await ormRem.insert({
+      const arFromOrm = await orm.insert({
         data: {
           remDesc: pDesc,
           uuid: this.uuid,
@@ -204,10 +204,10 @@ export default {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
         // this is first time invocation
         this.ormRowIDForPreviousInvocation = this.firstProp
-        arFromOrm = ormRem.find(this.firstProp)
+        arFromOrm = orm.find(this.firstProp)
         this.uuid = arFromOrm.uuid
         // Find if there is unsaved data for this.uuid
-        const vnExistingChangeRowId = ormRem.fnGetChangeRowIdInEditState(this.uuid)
+        const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(this.uuid)
         if (vnExistingChangeRowId === false) {
           // Adding a new blank record. Since this is temporal DB
           this.mfCopyRowToOrm(arFromOrm.remDesc)
@@ -218,18 +218,18 @@ export default {
       }
 
       // From this point on the state is same for change and add
-      return ormRem.fnGetFldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
+      return orm.fnGetFldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
     },
     mfSetRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
-      ormRem.fnSetFldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
+      orm.fnSetFldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
 
     async mfSendDataToServer() {
       try {
         const ormRowIdToSendToServer = this.vnIdOfCopiedRowFromOrm
-        await ormRem.update({
+        await orm.update({
           where: ormRowIdToSendToServer,
           data: {
             vnRowStateInSession: '345',
@@ -238,13 +238,13 @@ export default {
 
         /*
             Goal:
-            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into ormRem and it displayed on the top of timeline.
-            When change api request then we should need to insert a duplicate row (copy of row) again in ormRem for further change.
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into orm and it displayed on the top of timeline.
+            When change api request then we should need to insert a duplicate row (copy of row) again in orm for further change.
           */
         const remDesc = this.mfGetRemDescUsingCache()
         this.mfCopyRowToOrm(remDesc)
 
-        const response = await fetch(ormRem.apiUrl + '/' + this.uuid, {
+        const response = await fetch(orm.apiUrl + '/' + this.uuid, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -256,7 +256,7 @@ export default {
         })
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          ormRem.update({
+          orm.update({
             where: ormRowIdToSendToServer,
             data: {
               vnRowStateInSession: 3458,
@@ -280,7 +280,7 @@ export default {
           /*
             Q): Why following where clause needed?
             A): 
-                Whenever we change a record and hit save button, we get two records in ormRem with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp. 
+                Whenever we change a record and hit save button, we get two records in orm with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp. 
                 In real time 3 cases may happen. 
                   1. User changes an existing record. i.e. rowState = 1
                   2. User already changed a record and then again changes that record i.e. rowState = 34571
@@ -290,17 +290,17 @@ export default {
 
             Q) What we have done to deal with the above mentioned problem?
             A)
-                We are following below mentioned logic in where clause of ormRem update:
+                We are following below mentioned logic in where clause of orm update:
                 -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
-                  "exp A" -> search record from ormRem whose uuid = this.uuid
+                  "exp A" -> search record from orm whose uuid = this.uuid
                   "exp B1" -> "vnRowStateInSession === 1",
-                      ormRem record that came from database (Case: User changes an existing record)
+                      orm record that came from database (Case: User changes an existing record)
                   "exp B2" -> "vnRowStateInSession === 34571", 
-                      ormRem record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record) 
+                      orm record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record) 
                   "exp B3" -> "vnRowStateInSession === 24571", 
-                      ormRem record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+                      orm record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
          */
-          await ormRem.update({
+          await orm.update({
             where: (record) => {
               return (
                 record.uuid === this.uuid &&
@@ -317,7 +317,7 @@ export default {
           })
 
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          ormRem.update({
+          orm.update({
             where: ormRowIdToSendToServer,
             data: {
               vnRowStateInSession: 34571,
