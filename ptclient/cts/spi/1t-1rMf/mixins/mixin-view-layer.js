@@ -1,7 +1,27 @@
-import mxFullSyncWithDbServer from './name/db/full-sync-with-db-server-mixin'
-import orm from './name/db/orm.js'
+/* 
+Goal:
+When this mixin is used by height and weight component the import statement has to be:
+1. import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
+2. import mxFullSyncWithDbServer from '../weight/db/full-sync-with-db-server-mixin'
+
+So I need to figure out how to do:
+import mxFullSyncWithDbServer from '../' + ctName + 'weight/db/full-sync-with-db-server-mixin'
+
+Known:
+1. import statment does not work with variables but require statement works with variables.
+2. const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' + this.ctName + '/db/full-sync-with-db-server-mixin').default, does not give compilation error but at run time the value this.ctName is not available. 
+*/
+
+// import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
+import orm from '../name/db/orm.js'
+
+const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' +
+  this.ctName +
+  '/db/full-sync-with-db-server-mixin').default
+
 export default {
   mixins: [mxFullSyncWithDbServer],
+
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
