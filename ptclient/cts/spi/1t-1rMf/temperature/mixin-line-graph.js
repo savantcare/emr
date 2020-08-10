@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import mxTable from './table-mixin.js'
+import mxTable from './mixin-view-layer.js'
 import orm from './db/orm.js'
 
 export default {
