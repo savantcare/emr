@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 import orm from './db/orm.js'
 export default {
@@ -46,6 +48,9 @@ export default {
       const obj = arOfCardsInPtsOfVl.find((x) => x.label === orm.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
+    },
+    cfTimeOfMeasurement() {
+      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {

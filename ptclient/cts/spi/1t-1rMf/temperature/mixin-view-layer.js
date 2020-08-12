@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 import orm from './db/orm.js'
 export default {
@@ -29,6 +31,10 @@ export default {
       } else {
         return ''
       }
+    },
+    cfTimeOfMeasurement() {
+      // working in https://github.com/savantcare/emr/tree/a05745fe5cf1a6408e1febc18f44f8c785ab81e8/ptclient/cts/spi/1t-1rMf
+      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
     /*
       This is required for tab indexing

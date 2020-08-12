@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 import orm from './db/orm.js'
 export default {
@@ -29,6 +31,9 @@ export default {
       } else {
         return ''
       }
+    },
+    cfTimeOfMeasurement() {
+      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
     /*
       This is required for tab indexing
