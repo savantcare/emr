@@ -48,10 +48,31 @@ This is the structure and others are supposed to write their own custom code.
 </template>
 
 <script>
-// Option1: Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
-// import mxTable from '@/cts/spi/1t-1rMf/mixins/mixin-view-layer.js'
+/* Option1: 
 
-// Option2: Working. But in this option the same file '../mixin-view-layer.js' has to be kept in each folder like height weight name
+import mxTable from '@/cts/spi/1t-1rMf/mixins/mixin-view-layer.js'
+
+Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
+But inside /mixins/mixin-view-layer.js I am not able to import the correct 
+import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
+
+Since relative paths current working directory is /mixins/
+
+Posted the question on 
+stackoverflow: https://stackoverflow.com/questions/63373084/relative-path-getting-resolved-from-location-of-imported-file
+Discord: https://discord.com/channels/325477692906536972/325479107012067328/743027109659672616
+
+*/
+
+/* option 2:
+const mxTable = require('../mixin-view-layer.js').default         -> Works
+Why use this?
+Require allows to pass variable names Ref: https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module
+Problem:
+const mxTable = require('../mixin-view-layer.js')('weight').default -> Does not work
+*/
+
+/* Option3: Working. But in this option the same file '../mixin-view-layer.js' has to be kept in each folder like height weight name */
 import mxTable from '../mixin-view-layer.js'
 
 export default {
