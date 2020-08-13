@@ -36,6 +36,30 @@
       "notes": "Jai kali ma"
     }
   ],
+  "blood-pressure": [
+    {
+      "uuid": 1,
+      "ptUUID": "abcd",
+      "bloodPressureInBpm": 60,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "Jai kali ma"
+    },
+    {
+      "uuid": 2,
+      "ptUUID": "abcd",
+      "weightInPounds": 70,
+      "timeOfMeasurement": 1599998301000,
+      "notes": "Jai durga ma"
+    },
+    {
+      "uuid": 3,
+      "ptUUID": "efgh",
+      "weightInPounds": 80,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "Jai kali ma"
+    }
+  ],
+
   "height": [
     {
       "uuid": 1,
