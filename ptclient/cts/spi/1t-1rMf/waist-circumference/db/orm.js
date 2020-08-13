@@ -10,8 +10,8 @@ export default class ptWaistCircumference extends rowManage {
   static entity = 'waistCircumference'
   static apiUrl = 'http://localhost:3000/waist-circumference'
 
-  static graphSeries1FieldName = 'InPounds'
-  static graphSeries1Unit = 'Lbs'
+  static graphSeries1FieldName = 'waistCircumferenceInInches'
+  static graphSeries1Unit = 'Inches'
 
   static fields() {
     return {
