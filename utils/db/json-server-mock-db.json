@@ -63,21 +63,21 @@
     {
       "uuid": 1,
       "ptUUID": "abcd",
-      "bloodPressureInBpm": 90,
+      "bloodSugarInBpm": 90,
       "timeOfMeasurement": 1596926301000,
       "notes": "BS Notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
-      "bloodPressureInBpm": 92,
+      "bloodSugarInBpm": 92,
       "timeOfMeasurement": 1599998301000,
       "notes": "BS Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
-      "bloodPressureInBpm": 80,
+      "bloodSugarInBpm": 80,
       "timeOfMeasurement": 1596926301000,
       "notes": "BS Notes 3"
     }

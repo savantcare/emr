@@ -66,7 +66,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../mixin-change-layer.js'
-import ctBloodSugarGraph from '@/cts/spi/1t-1rMf/blood-Sugar/vl/line-graph-ct.vue'
+import ctBloodSugarGraph from '@/cts/spi/1t-1rMf/blood-sugar/vl/line-graph-ct.vue'
 
 export default {
   components: { ctBloodSugarGraph },

@@ -13,16 +13,16 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'blood Sugar',
-        ctAbbr: 'bp',
-        ctToShow: 'spi/1t-1rMf/blood-Sugar/vl/line-graph-ct.vue',
+        ctAbbr: 'bs',
+        ctToShow: 'spi/1t-1rMf/blood-sugar/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'blood Sugar - change',
-        ctAbbr: 'bpc',
-        ctToShow: 'spi/1t-1rMf/blood-Sugar/cl/c-ct.vue', // Cl -> Change layer
+        ctAbbr: 'bsc',
+        ctToShow: 'spi/1t-1rMf/blood-sugar/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },
