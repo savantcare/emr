@@ -71,8 +71,8 @@ export default {
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurement = data[i].timeOfMeasurement
-          const weight = data[i][orm.graphSeries1FieldName]
-          arDataToShowOnGraph.push([timeOfMeasurement, weight])
+          const graphData = data[i][orm.graphSeries1FieldName]
+          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
         return arDataToShowOnGraph
       } else {
