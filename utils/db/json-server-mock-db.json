@@ -47,14 +47,14 @@
     {
       "uuid": 2,
       "ptUUID": "abcd",
-      "weightInPounds": 70,
+      "bloodPressureInBpm": 70,
       "timeOfMeasurement": 1599998301000,
       "notes": "BP Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
-      "weightInPounds": 80,
+      "bloodPressureInBpm": 80,
       "timeOfMeasurement": 1596926301000,
       "notes": "Jai kali ma"
     }
