@@ -56,10 +56,32 @@
       "ptUUID": "efgh",
       "bloodPressureInBpm": 80,
       "timeOfMeasurement": 1596926301000,
-      "notes": "Jai kali ma"
+      "notes": "BP Notes 3"
     }
   ],
-
+  "waist-circumference": [
+    {
+      "uuid": 1,
+      "ptUUID": "abcd",
+      "waistCircumferenceInInches": 36,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "WC Notes 1"
+    },
+    {
+      "uuid": 2,
+      "ptUUID": "abcd",
+      "waistCircumferenceInInches": 38,
+      "timeOfMeasurement": 1599998301000,
+      "notes": "WC Notes 2"
+    },
+    {
+      "uuid": 3,
+      "ptUUID": "efgh",
+      "waistCircumferenceInInches": 40,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "WC Notes 3"
+    }
+  ],
   "height": [
     {
       "uuid": 1,

@@ -1,5 +1,3 @@
-<!-- Reference implementation for non numeric hence no graph -->
-
 <template>
   <div></div>
 </template>
@@ -14,17 +12,17 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'name',
-        ctAbbr: 'n',
-        ctToShow: 'spi/1t-1rMf/name/vl/full-name-ct.vue',
+        value: 'waist circumference',
+        ctAbbr: 'wc',
+        ctToShow: 'spi/1t-1rMf/waist-circumference/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'name - change',
-        ctAbbr: 'nc',
-        ctToShow: 'spi/1t-1rMf/name/cl/c-ct.vue', // Cl -> Change layer
+        value: 'waist circumference - change',
+        ctAbbr: 'wcc',
+        ctToShow: 'spi/1t-1rMf/waist-circumference/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

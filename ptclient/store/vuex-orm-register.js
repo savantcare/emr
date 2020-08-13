@@ -9,6 +9,7 @@ import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 import ormName from '~/cts/spi/1t-1rMf/name/db/orm.js'
 import ormWeight from '~/cts/spi/1t-1rMf/weight/db/orm.js'
+import ormWaistCircumference from '~/cts/spi/1t-1rMf/waist-circumference/db/orm.js'
 import ormBloodPressure from '~/cts/spi/1t-1rMf/blood-pressure/db/orm.js'
 import ormHeight from '~/cts/spi/1t-1rMf/height/db/orm.js'
 import ormTemperature from '~/cts/spi/1t-1rMf/temperature/db/orm.js'
@@ -30,6 +31,7 @@ database.register(ormName)
 database.register(ormWeight)
 database.register(ormHeight)
 database.register(ormBloodPressure)
+database.register(ormWaistCircumference)
 database.register(ormTemperature)
 database.register(ormPhq9)
 database.register(Rex)

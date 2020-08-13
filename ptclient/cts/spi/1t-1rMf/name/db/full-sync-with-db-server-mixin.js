@@ -1,4 +1,4 @@
-// Reference implementation
+// Reference implementation for non numeric hence no graph
 import orm from '~/cts/spi/1t-1rMf/name/db/orm.js'
 export default {
   methods: {

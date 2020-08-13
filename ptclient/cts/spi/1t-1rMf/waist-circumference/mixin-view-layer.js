@@ -1,5 +1,3 @@
-// Common for all 1rMf
-
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
@@ -34,9 +32,6 @@ export default {
         return ''
       }
     },
-    cfTimeOfMeasurement() {
-      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
-    },
     /*
       This is required for tab indexing
       if this card is in pos 0 then tab index is set as 1
@@ -53,6 +48,9 @@ export default {
       const obj = arOfCardsInPtsOfVl.find((x) => x.label === orm.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
+    },
+    cfTimeOfMeasurement() {
+      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {

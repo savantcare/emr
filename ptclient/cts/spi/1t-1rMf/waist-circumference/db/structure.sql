@@ -1,5 +1,3 @@
-# Reference implementation for non numeric hence no graph
-
 use sc_rem;
 
 DROP TABLE IF EXISTS `rems`;
