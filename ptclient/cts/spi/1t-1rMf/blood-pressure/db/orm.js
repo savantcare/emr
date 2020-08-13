@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptWeight extends rowManage {
+export default class ptBloodPressure extends rowManage {
   static entity = 'weight'
   static apiUrl = 'http://localhost:3000/blood-pressure'
 
