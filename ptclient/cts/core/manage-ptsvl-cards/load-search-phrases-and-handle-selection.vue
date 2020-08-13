@@ -12,6 +12,7 @@
     <phq9SPhrases></phq9SPhrases>
     <bmSPhrases></bmSPhrases>
     <bloodPressureSPhrases></bloodPressureSPhrases>
+    <bloodSugarSPhrases></bloodSugarSPhrases>
     <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
     <helloWorldC1SPhrases></helloWorldC1SPhrases>
     <helloWorldC2SPhrases></helloWorldC2SPhrases>
@@ -47,6 +48,7 @@ import heightSPhrases from '@/cts/spi/1t-1rMf/height/search-phrases'
 import weightSPhrases from '@/cts/spi/1t-1rMf/weight/search-phrases'
 import temperatureSPhrases from '@/cts/spi/1t-1rMf/temperature/search-phrases'
 import bloodPressureSPhrases from '@/cts/spi/1t-1rMf/blood-pressure/search-phrases'
+import bloodSugarSPhrases from '@/cts/spi/1t-1rMf/blood-sugar/search-phrases'
 import waistCircumferenceSPhrases from '@/cts/spi/1t-1rMf/waist-circumference/search-phrases'
 import phq9SPhrases from '@/cts/spi/1t-1rMf/phq9/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1rMf/bm/search-phrases'
@@ -75,6 +77,7 @@ export default {
     phq9SPhrases,
     bmSPhrases,
     bloodPressureSPhrases,
+    bloodSugarSPhrases,
     waistCircumferenceSPhrases,
     helloWorldC1SPhrases,
     helloWorldC2SPhrases,
