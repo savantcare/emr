@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptBloodPressure extends rowManage {
-  static entity = 'weight'
+  static entity = 'bloodPressure'
   static apiUrl = 'http://localhost:3000/blood-pressure'
 
   static graphSeries1FieldName = 'bloodPressureInBpm'
