@@ -3,7 +3,7 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">OxygenSaturation</h5>
+    <h5 v-if="formType === 'stand-alone'">Oxygen saturation</h5>
     <el-button
       :type="mfTypeOfButton('oxygenSaturationInSpo2')"
       plain

@@ -11,6 +11,7 @@
       <ctBloodSugar></ctBloodSugar>
       <ctWaistCircumference></ctWaistCircumference>
       <ctPulse></ctPulse>
+      <ctOxygenSaturation></ctOxygenSaturation>
     </el-card>
   </div>
 </template>
@@ -23,6 +24,7 @@ import ctBloodPressure from '@/cts/spi/1t-1rMf/blood-pressure/vl/table-ct.vue'
 import ctBloodSugar from '@/cts/spi/1t-1rMf/blood-sugar/vl/table-ct.vue'
 import ctWaistCircumference from '@/cts/spi/1t-1rMf/waist-circumference/vl/table-ct.vue'
 import ctPulse from '@/cts/spi/1t-1rMf/pulse/vl/table-ct.vue'
+import ctOxygenSaturation from '@/cts/spi/1t-1rMf/oxygen-saturation/vl/table-ct.vue'
 export default {
   components: {
     ctWeight,
@@ -32,6 +34,7 @@ export default {
     ctBloodPressure,
     ctBloodSugar,
     ctPulse,
+    ctOxygenSaturation,
   },
 }
 </script>

@@ -8,10 +8,10 @@ const intUniqueID = () => ++count
 
 export default class ptOxygenSaturation extends rowManage {
   static entity = 'oxygenSaturation'
-  static apiUrl = 'http://localhost:3000/oxygenSaturation'
+  static apiUrl = 'http://localhost:3000/oxygen-saturation'
 
   static graphSeries1FieldName = 'oxygenSaturationInSpo2'
-  static graphSeries1Unit = 'Lbs'
+  static graphSeries1Unit = 'SpO2'
 
   static fields() {
     return {
