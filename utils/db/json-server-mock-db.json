@@ -128,6 +128,29 @@
       "notes": "WC Notes 3"
     }
   ],
+  "oxygen-saturation": [
+    {
+      "uuid": 1,
+      "ptUUID": "abcd",
+      "oxygenSaturationInSpo2": 36,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "Oxygen Saturation Notes 1"
+    },
+    {
+      "uuid": 2,
+      "ptUUID": "abcd",
+      "oxygenSaturationInSpo2": 38,
+      "timeOfMeasurement": 1599998301000,
+      "notes": "Oxygen Saturation Notes 2"
+    },
+    {
+      "uuid": 3,
+      "ptUUID": "efgh",
+      "oxygenSaturationInSpo2": 40,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "Oxygen Saturation Notes 3"
+    }
+  ],
   "height": [
     {
       "uuid": 1,

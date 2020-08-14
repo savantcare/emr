@@ -21,8 +21,8 @@ Code synced with ref implementation on 4th august 2020
           <el-form-item>
             <el-input
               placeholder="OxygenSaturation in pounds"
-              :value="mfGetCopiedRowFldValue('OxygenSaturationInSpo2')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'OxygenSaturationInSpo2')"
+              :value="mfGetCopiedRowFldValue('oxygenSaturationInSpo2')"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'oxygenSaturationInSpo2')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -66,7 +66,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../mixin-change-layer.js'
-import ctOxygenSaturationGraph from '@/cts/spi/1t-1rMf/oxygenSaturation/vl/line-graph-ct.vue'
+import ctOxygenSaturationGraph from '@/cts/spi/1t-1rMf/oxygen-saturation/vl/line-graph-ct.vue'
 
 export default {
   components: { ctOxygenSaturationGraph },

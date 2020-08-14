@@ -14,6 +14,7 @@
     <bmSPhrases></bmSPhrases>
     <bloodPressureSPhrases></bloodPressureSPhrases>
     <bloodSugarSPhrases></bloodSugarSPhrases>
+    <oxygenSaturationSPhrases></oxygenSaturationSPhrases>
     <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
     <helloWorldC1SPhrases></helloWorldC1SPhrases>
     <helloWorldC2SPhrases></helloWorldC2SPhrases>
@@ -52,6 +53,7 @@ import temperatureSPhrases from '@/cts/spi/1t-1rMf/temperature/search-phrases'
 import bloodPressureSPhrases from '@/cts/spi/1t-1rMf/blood-pressure/search-phrases'
 import bloodSugarSPhrases from '@/cts/spi/1t-1rMf/blood-sugar/search-phrases'
 import waistCircumferenceSPhrases from '@/cts/spi/1t-1rMf/waist-circumference/search-phrases'
+import oxygenSaturationSPhrases from '@/cts/spi/1t-1rMf/oxygen-saturation/search-phrases'
 import phq9SPhrases from '@/cts/spi/1t-1rMf/phq9/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1rMf/bm/search-phrases'
 import remSPhrases from '@/cts/spi/1t-Mr1f/rem/search-phrases'
@@ -82,6 +84,7 @@ export default {
     bloodPressureSPhrases,
     bloodSugarSPhrases,
     waistCircumferenceSPhrases,
+    oxygenSaturationSPhrases,
     helloWorldC1SPhrases,
     helloWorldC2SPhrases,
     helloWorldC3SPhrases,

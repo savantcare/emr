@@ -5,11 +5,11 @@ Code synced with ref implementation on 4th august 2020
   <div>
     <h5 v-if="formType === 'stand-alone'">OxygenSaturation</h5>
     <el-button
-      :type="mfTypeOfButton('OxygenSaturationInSpo2')"
+      :type="mfTypeOfButton('oxygenSaturationInSpo2')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfDataRow['OxygenSaturationInSpo2'] }}</el-button
+      >{{ cfDataRow['oxygenSaturationInSpo2'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
       cfTimeOfMeasurement

@@ -10,7 +10,7 @@ export default class ptOxygenSaturation extends rowManage {
   static entity = 'oxygenSaturation'
   static apiUrl = 'http://localhost:3000/oxygenSaturation'
 
-  static graphSeries1FieldName = 'OxygenSaturationInSpo2'
+  static graphSeries1FieldName = 'oxygenSaturationInSpo2'
   static graphSeries1Unit = 'Lbs'
 
   static fields() {
@@ -20,7 +20,7 @@ export default class ptOxygenSaturation extends rowManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      OxygenSaturationInSpo2: this.number(null), // number type of vuex-orm will also store decimals
+      oxygenSaturationInSpo2: this.number(null), // number type of vuex-orm will also store decimals
       timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),

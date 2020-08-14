@@ -12,6 +12,7 @@ import ormWeight from '~/cts/spi/1t-1rMf/weight/db/orm.js'
 import ormWaistCircumference from '~/cts/spi/1t-1rMf/waist-circumference/db/orm.js'
 import ormBloodPressure from '~/cts/spi/1t-1rMf/blood-pressure/db/orm.js'
 import ormBloodSugar from '~/cts/spi/1t-1rMf/blood-sugar/db/orm.js'
+import ormOxygenSaturation from '~/cts/spi/1t-1rMf/oxygen-saturation/db/orm.js'
 import ormHeight from '~/cts/spi/1t-1rMf/height/db/orm.js'
 import ormTemperature from '~/cts/spi/1t-1rMf/temperature/db/orm.js'
 import ormPulse from '~/cts/spi/1t-1rMf/pulse/db/orm.js'
@@ -33,6 +34,7 @@ database.register(ormName)
 database.register(ormWeight)
 database.register(ormHeight)
 database.register(ormBloodPressure)
+database.register(ormOxygenSaturation)
 database.register(ormBloodSugar)
 database.register(ormWaistCircumference)
 database.register(ormTemperature)
