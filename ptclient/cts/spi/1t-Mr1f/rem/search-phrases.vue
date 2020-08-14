@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'spi/1t-Mr1f/rem/vl/timeline.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'spi/1t-Mr1f/rem/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })

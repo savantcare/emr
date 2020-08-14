@@ -104,7 +104,7 @@ export default {
         for (let i = 0; i < arFromOrm.length; i++) {
           obj = {}
           obj.remDesc = arFromOrm[i].remDesc
-          // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline.vue:53
+          // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
