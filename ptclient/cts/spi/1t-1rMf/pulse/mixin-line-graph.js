@@ -32,7 +32,7 @@ export default {
         ],
         title: {
           text: '',
-        }, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        }, // Reason: Y axis will have orm.entity for e.g. "pulse" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         xAxis: [
           {
             title: {

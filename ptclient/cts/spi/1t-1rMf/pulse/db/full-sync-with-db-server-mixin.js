@@ -1,6 +1,6 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
-import orm from '~/cts/spi/1t-1rMf/weight/db/orm.js'
+import orm from '~/cts/spi/1t-1rMf/pulse/db/orm.js'
 export default {
   methods: {
     async mxGetDataFromDb() {

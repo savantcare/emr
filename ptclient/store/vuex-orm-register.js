@@ -14,6 +14,7 @@ import ormBloodPressure from '~/cts/spi/1t-1rMf/blood-pressure/db/orm.js'
 import ormBloodSugar from '~/cts/spi/1t-1rMf/blood-sugar/db/orm.js'
 import ormHeight from '~/cts/spi/1t-1rMf/height/db/orm.js'
 import ormTemperature from '~/cts/spi/1t-1rMf/temperature/db/orm.js'
+import ormPulse from '~/cts/spi/1t-1rMf/pulse/db/orm.js'
 import ormPhq9 from '~/cts/spi/1t-1rMf/phq9/db/orm-phq9.js'
 import Rex from '~/cts/spi/1t-Mr1f/rec/vuex-orm/model.js'
 import Dx from '@/models/Dx'
@@ -35,6 +36,7 @@ database.register(ormBloodPressure)
 database.register(ormBloodSugar)
 database.register(ormWaistCircumference)
 database.register(ormTemperature)
+database.register(ormPulse)
 database.register(ormPhq9)
 database.register(Rex)
 database.register(Dx)

@@ -15,6 +15,9 @@
       <el-tab-pane label="WC">
         <ctWaistCircumferenceGraph form-type="embedded"></ctWaistCircumferenceGraph>
       </el-tab-pane>
+      <el-tab-pane label="PL">
+        <ctPulseGraph form-type="embedded"></ctPulseGraph>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -26,6 +29,7 @@ import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph-ct.v
 import ctBloodPressureGraph from '@/cts/spi/1t-1rMf/blood-pressure/vl/line-graph-ct.vue'
 import ctBloodSugarGraph from '@/cts/spi/1t-1rMf/blood-sugar/vl/line-graph-ct.vue'
 import ctWaistCircumferenceGraph from '@/cts/spi/1t-1rMf/waist-circumference/vl/line-graph-ct.vue'
+import ctPulseGraph from '@/cts/spi/1t-1rMf/pulse/vl/line-graph-ct.vue'
 export default {
   components: {
     ctWeightGraph,
@@ -34,6 +38,7 @@ export default {
     ctBloodPressureGraph,
     ctBloodSugarGraph,
     ctWaistCircumferenceGraph,
+    ctPulseGraph,
   },
 }
 </script>

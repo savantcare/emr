@@ -12,17 +12,17 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'weight',
+        value: 'pulse',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1rMf/weight/vl/line-graph-ct.vue',
+        ctToShow: 'spi/1t-1rMf/pulse/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'weight - change',
+        value: 'pulse - change',
         ctAbbr: 'wc',
-        ctToShow: 'spi/1t-1rMf/weight/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/pulse/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

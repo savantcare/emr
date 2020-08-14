@@ -10,6 +10,7 @@
       <ctBloodPressure></ctBloodPressure>
       <ctBloodSugar></ctBloodSugar>
       <ctWaistCircumference></ctWaistCircumference>
+      <ctPulse></ctPulse>
     </el-card>
   </div>
 </template>
@@ -21,6 +22,7 @@ import ctTemperature from '@/cts/spi/1t-1rMf/temperature/vl/table-ct.vue'
 import ctBloodPressure from '@/cts/spi/1t-1rMf/blood-pressure/vl/table-ct.vue'
 import ctBloodSugar from '@/cts/spi/1t-1rMf/blood-sugar/vl/table-ct.vue'
 import ctWaistCircumference from '@/cts/spi/1t-1rMf/waist-circumference/vl/table-ct.vue'
+import ctPulse from '@/cts/spi/1t-1rMf/pulse/vl/table-ct.vue'
 export default {
   components: {
     ctWeight,
@@ -29,6 +31,7 @@ export default {
     ctWaistCircumference,
     ctBloodPressure,
     ctBloodSugar,
+    ctPulse,
   },
 }
 </script>

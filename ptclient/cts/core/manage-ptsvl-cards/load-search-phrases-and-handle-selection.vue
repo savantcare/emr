@@ -7,6 +7,7 @@
     <remSPhrases></remSPhrases>
     <nameSPhrases></nameSPhrases>
     <weightSPhrases></weightSPhrases>
+    <pulseSPhrases></pulseSPhrases>
     <heightSPhrases></heightSPhrases>
     <temperatureSPhrases></temperatureSPhrases>
     <phq9SPhrases></phq9SPhrases>
@@ -46,6 +47,7 @@ import clearSPhrases from '@/cts/core/clear/search-phrases'
 import nameSPhrases from '@/cts/spi/1t-1rMf/name/search-phrases'
 import heightSPhrases from '@/cts/spi/1t-1rMf/height/search-phrases'
 import weightSPhrases from '@/cts/spi/1t-1rMf/weight/search-phrases'
+import pulseSPhrases from '@/cts/spi/1t-1rMf/pulse/search-phrases'
 import temperatureSPhrases from '@/cts/spi/1t-1rMf/temperature/search-phrases'
 import bloodPressureSPhrases from '@/cts/spi/1t-1rMf/blood-pressure/search-phrases'
 import bloodSugarSPhrases from '@/cts/spi/1t-1rMf/blood-sugar/search-phrases'
@@ -73,6 +75,7 @@ export default {
     nameSPhrases,
     heightSPhrases,
     weightSPhrases,
+    pulseSPhrases,
     temperatureSPhrases,
     phq9SPhrases,
     bmSPhrases,

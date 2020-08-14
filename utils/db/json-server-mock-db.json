@@ -36,6 +36,29 @@
       "notes": "Jai kali ma"
     }
   ],
+  "pulse": [
+    {
+      "uuid": 1,
+      "ptUUID": "abcd",
+      "pulseInBpm": 40,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "pulse notes 1"
+    },
+    {
+      "uuid": 2,
+      "ptUUID": "abcd",
+      "pulseInBpm": 50,
+      "timeOfMeasurement": 1599998301000,
+      "notes": "pulse notes 2"
+    },
+    {
+      "uuid": 3,
+      "ptUUID": "efgh",
+      "pulseInBpm": 70,
+      "timeOfMeasurement": 1596926301000,
+      "notes": "pulse notes 3"
+    }
+  ],
   "blood-pressure": [
     {
       "uuid": 1,
