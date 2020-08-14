@@ -3,13 +3,13 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">Weight</h5>
+    <h5 v-if="formType === 'stand-alone'">OxygenSaturation</h5>
     <el-button
-      :type="mfTypeOfButton('weightInPounds')"
+      :type="mfTypeOfButton('OxygenSaturationInSpo2')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfDataRow['weightInPounds'] }}</el-button
+      >{{ cfDataRow['OxygenSaturationInSpo2'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
       cfTimeOfMeasurement
