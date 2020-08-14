@@ -20,7 +20,7 @@ export default class ptDateOfBirth extends rowManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      dateOfBirthInMilliseconds: this.number(null), // number type of vuex-orm will also store decimals
+      dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/orm.js
       timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),

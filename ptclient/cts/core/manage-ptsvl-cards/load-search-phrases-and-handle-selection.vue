@@ -16,6 +16,7 @@
     <bloodSugarSPhrases></bloodSugarSPhrases>
     <oxygenSaturationSPhrases></oxygenSaturationSPhrases>
     <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
+    <dobSPhrases></dobSPhrases>
     <helloWorldC1SPhrases></helloWorldC1SPhrases>
     <helloWorldC2SPhrases></helloWorldC2SPhrases>
     <helloWorldC3SPhrases></helloWorldC3SPhrases>
@@ -56,6 +57,7 @@ import waistCircumferenceSPhrases from '@/cts/spi/1t-1rMf/waist-circumference/se
 import oxygenSaturationSPhrases from '@/cts/spi/1t-1rMf/oxygen-saturation/search-phrases'
 import phq9SPhrases from '@/cts/spi/1t-1rMf/phq9/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1rMf/bm/search-phrases'
+import dobSPhrases from '@/cts/spi/1t-1rMf/date-of-birth/search-phrases'
 import remSPhrases from '@/cts/spi/1t-Mr1f/rem/search-phrases'
 import helloWorldC1SPhrases from '@/cts/book/c01-hello-world/search-phrases'
 import helloWorldC2SPhrases from '@/cts/book/c02-change-layer/search-phrases'
@@ -85,6 +87,7 @@ export default {
     bloodSugarSPhrases,
     waistCircumferenceSPhrases,
     oxygenSaturationSPhrases,
+    dobSPhrases,
     helloWorldC1SPhrases,
     helloWorldC2SPhrases,
     helloWorldC3SPhrases,

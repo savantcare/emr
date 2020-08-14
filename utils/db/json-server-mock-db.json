@@ -13,6 +13,20 @@
       "lastName": "Ma"
     }
   ],
+  "date-of-birth": [
+    {
+      "uuid": 1,
+      "ptUUID": "abcd",
+      "dateOfBirthInMilliseconds": 1596926301000,
+      "notes": "Jai kali ma"
+    },
+    {
+      "uuid": 2,
+      "ptUUID": "abcd",
+      "dateOfBirthInMilliseconds": 1596926301000,
+      "notes": "Jai kali ma"
+    }
+  ],
   "weight": [
     {
       "uuid": 1,
