@@ -37,7 +37,9 @@ export default class ptName extends rowManage {
 
       ROW_START: this.number(0),
       ROW_END: this.number(2147483647.999999),
-      /*  Things given to us:
+      /*  How should time be stored in 1. mariadb 2. vuex-orm 3. JS
+      
+          Things given to us:
           A. There are 2 different types of timestamp?
             1. unix_timestamp / epoch_time -> Numbr of seconds since '1970-01-01 00:00:00'   epoch => start of unix
             2. JS timestamp -> JS expects timeStamp to be in millisecond format. # of milliseconds since '1970-01-01 00:00:00'
@@ -54,7 +56,7 @@ export default class ptName extends rowManage {
           B. Hence only option is to use datetime as the fieldtype in mariaDB. 
           
           C. Decided to use DATETIME(3) since JS has timestamp in milliseconds.
-          Hence for weight->timeOfMeasurement-> field type will be -> dateTime(3)
+          Hence for MariaDB -> weight->timeOfMeasurement-> field type will be -> dateTime(3)
        
           D. internal data transfer is in the millisecond integer format. Why? 1. Integers are fast for comparison 2. String format has many different formats.
 
