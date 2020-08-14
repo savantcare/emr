@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'date of birth',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1rMf/date-of-birth/vl/line-graph-ct.vue',
+        ctToShow: 'spi/1t-1rMf/date-of-birth/vl/table-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
