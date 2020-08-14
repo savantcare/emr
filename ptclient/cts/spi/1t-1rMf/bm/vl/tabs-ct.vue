@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-tabs tab-position="top" type="card">
-      <el-tab-pane label="Wt"> <ctWeightGraph form-type="embedded"></ctWeightGraph></el-tab-pane>
-      <el-tab-pane label="Ht"> <ctHeightGraph form-type="embedded"></ctHeightGraph></el-tab-pane>
-      <el-tab-pane label="Tm">
+      <el-tab-pane label="W"> <ctWeightGraph form-type="embedded"></ctWeightGraph></el-tab-pane>
+      <el-tab-pane label="H"> <ctHeightGraph form-type="embedded"></ctHeightGraph></el-tab-pane>
+      <el-tab-pane label="T">
         <ctTemperatureGraph form-type="embedded"></ctTemperatureGraph>
       </el-tab-pane>
       <el-tab-pane label="BP">
@@ -12,13 +12,13 @@
       <el-tab-pane label="BS">
         <ctBloodSugarGraph form-type="embedded"></ctBloodSugarGraph>
       </el-tab-pane>
-      <el-tab-pane label="WC">
+      <el-tab-pane label="W">
         <ctWaistCircumferenceGraph form-type="embedded"></ctWaistCircumferenceGraph>
       </el-tab-pane>
-      <el-tab-pane label="PL">
+      <el-tab-pane label="P">
         <ctPulseGraph form-type="embedded"></ctPulseGraph>
       </el-tab-pane>
-      <el-tab-pane label="OS">
+      <el-tab-pane label="O">
         <ctOxygenSaturationGraph form-type="embedded"></ctOxygenSaturationGraph>
       </el-tab-pane>
     </el-tabs>
