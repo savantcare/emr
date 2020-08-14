@@ -5,8 +5,8 @@ So the heierarchy is:
 Name
  1. No graph needed
  2. Graph needed
-      A. Weight            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and weight is not repeated)
+      A. Date of birth            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and Date of birth is not repeated)
           2. BMI
 
 
@@ -20,9 +20,9 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Weight in pounds"
-              :value="mfGetCopiedRowFldValue('weightInPounds')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'weightInPounds')"
+              placeholder="Date of birth in pounds"
+              :value="mfGetCopiedRowFldValue('dateOfBirthInMilliseconds')"
+              @input="mfSetCopiedRowFldValueUsingCache($event, 'dateOfBirthInMilliseconds')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -58,7 +58,7 @@ Code synced with ref implementation on 4th august 2020
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctWeightGraph form-type="sub-part-of-another-form"></ctWeightGraph>
+        <ctDateOfBirthGraph form-type="sub-part-of-another-form"></ctDateOfBirthGraph>
       </el-col>
     </el-row>
   </div>
@@ -66,10 +66,10 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../mixin-change-layer.js'
-import ctWeightGraph from '@/cts/spi/1t-1rMf/weight/vl/line-graph-ct.vue'
+import ctDateOfBirthGraph from '@/cts/spi/1t-1rMf/date-of-birth/vl/line-graph-ct.vue'
 
 export default {
-  components: { ctWeightGraph },
+  components: { ctDateOfBirthGraph },
   mixins: [mxc],
   data() {
     return {

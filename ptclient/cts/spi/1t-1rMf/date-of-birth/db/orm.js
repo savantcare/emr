@@ -6,11 +6,11 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptWeight extends rowManage {
-  static entity = 'weight'
-  static apiUrl = 'http://localhost:3000/weight'
+export default class ptDateOfBirth extends rowManage {
+  static entity = 'dateOfBirth'
+  static apiUrl = 'http://localhost:3000/date-of-birth'
 
-  static graphSeries1FieldName = 'weightInPounds'
+  static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
   static graphSeries1Unit = 'Lbs'
 
   static fields() {
@@ -20,7 +20,7 @@ export default class ptWeight extends rowManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      weightInPounds: this.number(null), // number type of vuex-orm will also store decimals
+      dateOfBirthInMilliseconds: this.number(null), // number type of vuex-orm will also store decimals
       timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
