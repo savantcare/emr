@@ -206,7 +206,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
-import ctName from '@/cts/spi/1t-1rMf/name/vl/full-name-ct.vue'
+import ctName from '@/cts/spi/1t-1rMf/name/vl/privacy-protected-name.vue'
 export default {
   components: { ctName },
   data() {

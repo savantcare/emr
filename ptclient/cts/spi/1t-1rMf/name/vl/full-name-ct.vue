@@ -1,7 +1,4 @@
-<!-- Reference implementation for non numeric hence no graph
-Why copy the code to other components and not use mixin?
-This is the structure and others are supposed to write their own custom code.
--->
+<!-- Reference implementation for non numeric hence no graph-->
 <template>
   <div>
     <h5 v-if="formType === 'stand-alone'">Name</h5>
