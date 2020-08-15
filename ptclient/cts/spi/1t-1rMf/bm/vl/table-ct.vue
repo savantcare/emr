@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import ctWeight from '@/cts/spi/1t-1rMf/weight/vl/table-ct.vue'
-import ctHeight from '@/cts/spi/1t-1rMf/height/vl/table-ct.vue'
-import ctTemperature from '@/cts/spi/1t-1rMf/temperature/vl/table-ct.vue'
-import ctBloodPressure from '@/cts/spi/1t-1rMf/blood-pressure/vl/table-ct.vue'
-import ctBloodSugar from '@/cts/spi/1t-1rMf/blood-sugar/vl/table-ct.vue'
-import ctWaistCircumference from '@/cts/spi/1t-1rMf/waist-circumference/vl/table-ct.vue'
-import ctPulse from '@/cts/spi/1t-1rMf/pulse/vl/table-ct.vue'
-import ctOxygenSaturation from '@/cts/spi/1t-1rMf/oxygen-saturation/vl/table-ct.vue'
+import ctWeight from '@/cts/spi/1t-1rMf/bm/sub-cts/weight/vl/table-ct.vue'
+import ctHeight from '@/cts/spi/1t-1rMf/bm/sub-cts/height/vl/table-ct.vue'
+import ctTemperature from '@/cts/spi/1t-1rMf/bm/sub-cts/temperature/vl/table-ct.vue'
+import ctBloodPressure from '@/cts/spi/1t-1rMf/bm/sub-cts/blood-pressure/vl/table-ct.vue'
+import ctBloodSugar from '@/cts/spi/1t-1rMf/bm/sub-cts/blood-sugar/vl/table-ct.vue'
+import ctWaistCircumference from '@/cts/spi/1t-1rMf/bm/sub-cts/waist-circumference/vl/table-ct.vue'
+import ctPulse from '@/cts/spi/1t-1rMf/bm/sub-cts/pulse/vl/table-ct.vue'
+import ctOxygenSaturation from '@/cts/spi/1t-1rMf/bm/sub-cts/oxygen-saturation/vl/table-ct.vue'
 export default {
   components: {
     ctWeight,

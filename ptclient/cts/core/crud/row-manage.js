@@ -14,10 +14,10 @@ class rowManage extends Model {
 (https://github.com/savantcare/emr/blob/master/ptclient/cts/core/crud/row-manage.js#L5)
 
 export default class ptHeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm.js#L9)
+(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/bm/sub-cts/height/db/orm.js#L9)
 
 export default class ptWeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/height/db/orm.js#L9)
+(https://github.com/savantcare/emr/blob/master/ptclient/cts/spi/1t-1rMf/bm/sub-cts/height/db/orm.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached

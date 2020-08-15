@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import ctWeightGraph from '@/cts/spi/1t-1rMf/weight/vl/line-graph-ct.vue'
-import ctHeightGraph from '@/cts/spi/1t-1rMf/height/vl/line-graph-ct.vue'
-import ctTemperatureGraph from '@/cts/spi/1t-1rMf/temperature/vl/line-graph-ct.vue'
-import ctBloodPressureGraph from '@/cts/spi/1t-1rMf/blood-pressure/vl/line-graph-ct.vue'
-import ctBloodSugarGraph from '@/cts/spi/1t-1rMf/blood-sugar/vl/line-graph-ct.vue'
-import ctWaistCircumferenceGraph from '@/cts/spi/1t-1rMf/waist-circumference/vl/line-graph-ct.vue'
-import ctPulseGraph from '@/cts/spi/1t-1rMf/pulse/vl/line-graph-ct.vue'
-import ctOxygenSaturationGraph from '@/cts/spi/1t-1rMf/oxygen-saturation/vl/line-graph-ct.vue'
+import ctWeightGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/weight/vl/line-graph-ct.vue'
+import ctHeightGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/height/vl/line-graph-ct.vue'
+import ctTemperatureGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/temperature/vl/line-graph-ct.vue'
+import ctBloodPressureGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/blood-pressure/vl/line-graph-ct.vue'
+import ctBloodSugarGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/blood-sugar/vl/line-graph-ct.vue'
+import ctWaistCircumferenceGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/waist-circumference/vl/line-graph-ct.vue'
+import ctPulseGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/pulse/vl/line-graph-ct.vue'
+import ctOxygenSaturationGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue'
 export default {
   components: {
     ctWeightGraph,
