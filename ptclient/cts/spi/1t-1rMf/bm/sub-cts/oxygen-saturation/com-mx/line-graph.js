@@ -1,12 +1,12 @@
 import { Chart } from 'highcharts-vue'
 import orm from '../db/orm.js'
-import mxTable from './view-layer.js'
+import mxViewLayer from './view-layer.js'
 
 export default {
   components: {
     highcharts: Chart,
   },
-  mixins: [mxTable],
+  mixins: [mxViewLayer],
   props: {
     formType: {
       default: 'stand-alone',

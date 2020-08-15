@@ -70,10 +70,10 @@ const mxTable = require('../com-mx/view-layer.js')('weight').default -> Does not
 */
 
 /* Option3: Working. But in this option the same file '../com-mx/view-layer.js' has to be kept in each folder like height weight name */
-import mxTable from '../com-mx/view-layer.js'
+import mxViewLayer from '../com-mx/view-layer.js'
 
 export default {
-  mixins: [mxTable],
+  mixins: [mxViewLayer],
   props: {
     formType: {
       default: 'stand-alone',

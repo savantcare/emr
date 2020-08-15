@@ -12,9 +12,9 @@ Code synced with ref implementation on 4th august 2020
 <script>
 // import moment from 'moment'
 
-import mxTable from '../com-mx/view-layer.js'
+import mxViewLayer from '../com-mx/view-layer.js'
 export default {
-  mixins: [mxTable],
+  mixins: [mxViewLayer],
   props: {
     formType: {
       default: 'stand-alone',

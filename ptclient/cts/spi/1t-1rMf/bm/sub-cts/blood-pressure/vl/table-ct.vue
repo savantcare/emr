@@ -50,9 +50,9 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxTable from '../com-mx/view-layer.js'
+import mxViewLayer from '../com-mx/view-layer.js'
 export default {
-  mixins: [mxTable],
+  mixins: [mxViewLayer],
   props: {
     formType: {
       default: 'stand-alone',
