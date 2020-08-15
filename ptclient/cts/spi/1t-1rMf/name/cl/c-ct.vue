@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import mxc from '../mixin-change-layer.js'
+import mxc from '../mixins/change-layer.js'
 
 export default {
   mixins: [mxc],

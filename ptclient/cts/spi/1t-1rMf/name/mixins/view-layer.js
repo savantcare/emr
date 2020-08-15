@@ -2,8 +2,8 @@
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
-import orm from './db/orm.js'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import orm from '../db/orm.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {

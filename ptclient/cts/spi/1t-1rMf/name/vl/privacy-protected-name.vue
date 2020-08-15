@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import mxTable from '../mixin-view-layer.js'
+import mxTable from '../mixins/view-layer.js'
 
 export default {
   mixins: [mxTable],
