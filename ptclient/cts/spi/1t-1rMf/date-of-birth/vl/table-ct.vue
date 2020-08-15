@@ -9,7 +9,7 @@ Code synced with ref implementation on 4th august 2020
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
-      >{{ cfDataRow['dateOfBirthInMilliseconds'] }}</el-button
+      >{{ cfFormatDateOfBirth }}</el-button
     >
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
       cfDataRow['notes']
@@ -47,6 +47,8 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
+import moment from 'moment'
+
 import mxTable from '../mixin-view-layer.js'
 export default {
   mixins: [mxTable],
@@ -54,6 +56,11 @@ export default {
     formType: {
       default: 'stand-alone',
       type: String,
+    },
+  },
+  computed: {
+    cfFormatDateOfBirth() {
+      return moment(this.cfDataRow.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
     },
   },
 }
