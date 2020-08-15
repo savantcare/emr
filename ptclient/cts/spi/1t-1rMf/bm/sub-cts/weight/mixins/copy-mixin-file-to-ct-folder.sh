@@ -6,9 +6,6 @@ cp * ../../blood-pressure/mixins/
 mkdir -p ../../blood-sugar/mixins/
 cp * ../../blood-sugar/mixins/
 
-mkdir -p ../../date-of-birth/mixins/
-cp * ../../date-of-birth/mixins/
-
 mkdir -p ../../height/mixins/ 
 cp * ../../height/mixins/
 
@@ -27,5 +24,9 @@ cp * ../../waist-circumference/mixins/
 # mkdir -p ../../weight/mixins/ 
 # cp * ../../weight/mixins/ 
 
-mkdir -p ../../name/mixins/ 
-cp * ../../name/mixins/ 
+mkdir -p ../../../../name/mixins/ 
+cp * ../../../../name/mixins/ 
+
+mkdir -p ../../../../date-of-birth/mixins/
+cp * ../../../../date-of-birth/mixins/
+
