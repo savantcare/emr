@@ -17,32 +17,24 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
       ></vue-slider>
     </el-col>
     <el-col :span="2">
-      <!-- Why not use element.io inbuilt switch
-        In element.io switch the label cannot be shown on top of the switch in June 20. 
-        If a way is found to show H or O on top of the switch then this library should be removed and elemenet.io built in switch component should be used
-      -->
-      <toggle-button
-        v-model="componentType"
-        style="float: right;"
-        :labels="{ checked: 'H', unchecked: 'O' }"
-        @change="handleChangeToggleButtonEvent"
-      />
+      <ctTogleHealthOther></ctTogleHealthOther>
     </el-col>
   </el-row>
 </template>
 
 <script>
+import ctTogleHealthOther from './toggle-health-other.vue'
 import ctName from '@/cts/spi/1t-1rMf/name/vl/privacy-protected-name.vue'
 import ctAge from '@/cts/spi/1t-1rMf/date-of-birth/vl/age.vue'
+
 export default {
-  components: { ctName, ctAge },
+  components: { ctName, ctAge, ctTogleHealthOther },
   data() {
     // KT: Why is this a function and not a object? Ref: https://vuejs.org/v2/style-guide/#Component-data-essential
     return {
       tabMode: true,
       patientInfo: null,
       sliderCurrentValue: 100,
-      componentType: true,
       timeOfApptsStart: [],
       patientId: this.$route.query.patient_id,
     }
@@ -187,10 +179,6 @@ export default {
       value += 0.1
       this.$store.commit('setMultiStateDisplayAreaZoomValue', value)
       this.$store.dispatch('zoomMultiStateDisplayArea')
-    },
-    handleChangeToggleButtonEvent() {
-      const type = this.componentType === true ? 'health' : 'other'
-      this.$store.commit('setComponentType', type)
     },
     async apiGetAppointments() {
       try {
