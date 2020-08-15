@@ -9,19 +9,20 @@ import mxFullSyncWithDbServer from '../' + ctName + 'weight/db/full-sync-with-db
 
 Known:
 1. import statment does not work with variables but require statement works with variables.
-2. const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' + this.ctName + '/db/full-sync-with-db-server-mixin').default, does not give compilation error but at run time the value this.ctName is not available. 
+2. The following statement works:
+const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' + 
+            this.ctName + 
+            '/db/full-sync-with-db-server-mixin').default, 
+            // does not give compilation error but at run time the value this.ctName is not available. 
+3. parameters can be sent when doing a require.
 */
 
-// import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
-import orm from '../name/db/orm.js'
+import moment from 'moment'
 
-const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' +
-  this.ctName +
-  '/db/full-sync-with-db-server-mixin').default
-
+import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
+import orm from './db/orm.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
-
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
@@ -66,6 +67,9 @@ export default {
       const obj = arOfCardsInPtsOfVl.find((x) => x.label === orm.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
+    },
+    cfTimeOfMeasurement() {
+      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {
