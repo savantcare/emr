@@ -6,7 +6,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
   <el-row id="TheMultiStateDisplayAreaHeader" type="flex" align="middle">
     <el-col :span="6" class="ml-2" style="display: flex; align-items: center;">
       <span style="font-size: 20px;"><ctName form-type="embedded"></ctName></span>
-      <span style="font-size: 14px; margin-left: 6px;">(28Y)</span>
+      <span style="font-size: 14px; margin-left: 6px;"><ctAge></ctAge></span>
       <div style="margin-left: 6px;">
         <el-tag v-if="connectionStatus" type="success" size="mini">Online</el-tag>
         <el-tag v-else type="danger" size="mini">Offline</el-tag>
@@ -207,8 +207,9 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 
 <script>
 import ctName from '@/cts/spi/1t-1rMf/name/vl/privacy-protected-name.vue'
+import ctAge from '@/cts/spi/1t-1rMf/date-of-birth/vl/age.vue'
 export default {
-  components: { ctName },
+  components: { ctName, ctAge },
   data() {
     // KT: Why is this a function and not a object? Ref: https://vuejs.org/v2/style-guide/#Component-data-essential
     return {
@@ -235,10 +236,10 @@ export default {
     },
     timeOfApptsStartToMarkOnSlider() {
       /*
-      The first date is at 0 and todays date is at 100. 
-      
+      The first date is at 0 and todays date is at 100.
+
       The middle points get proprotionate space based on the distance between appts.
-      
+
       The data returned looks like
       timeOfApptsStartToMarkOnSlider: {
          0: "1/15/20", // Here I want to show -> this.timeOfStateTime.date1
@@ -395,22 +396,22 @@ export default {
     },
     handleSliderChangeEvent() {
       /* timeOfStateSelectedInHeader is watched by all components and they react when timeOfStateSelectedInHeader changes
-         For e.g. in components/patient/recommendations/layer1Card.vue:241 
+         For e.g. in components/patient/recommendations/layer1Card.vue:241
             watch: {
              timeOfStateSelectedInHeader() {
       */
 
-      /* 
+      /*
         if this.timeOfApptsStart.length is 0 then percent = 100
         if this.timeOfApptsStart.length is 1 then percent = 50
         if this.timeOfApptsStart.length is 2 then percent = 33
       */
       const percent = Math.floor(100 / (this.timeOfApptsStart.length + 1))
 
-      /* 
+      /*
         sliderCurrentValue is 100. So when percent is 100 the index is 1
                                       When percent is 50 the index is 2
-                                      When percent is 33 the index is 3          
+                                      When percent is 33 the index is 3
       */
       const index = this.sliderCurrentValue / percent
 
@@ -418,7 +419,7 @@ export default {
       let timeOfStateSelectedInHeader = '2038-01-19 03:14:07.999999'
 
       /*
-      How to convert a date to Mysql time stamp format? 
+      How to convert a date to Mysql time stamp format?
       let timeOfStateSelectedInHeader = new Date()
          .toISOString()
          .slice(0, 19)
