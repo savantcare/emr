@@ -49,7 +49,7 @@ Code synced with ref implementation on 4th august 2020
 <script>
 import moment from 'moment'
 
-import mxTable from '../mixin-view-layer.js'
+import mxTable from '../mixins/view-layer.js'
 export default {
   mixins: [mxTable],
   props: {
