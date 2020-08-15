@@ -26,3 +26,6 @@ cp * ../../waist-circumference/mixins/
 
 # mkdir -p ../../weight/mixins/ 
 # cp * ../../weight/mixins/ 
+
+mkdir -p ../../name/mixins/ 
+cp * ../../name/mixins/ 
