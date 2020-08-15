@@ -20,7 +20,7 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Date of birth in pounds"
+              placeholder="Date of birth"
               :value="mfGetCopiedRowFldValue('dateOfBirthInMilliseconds')"
               @input="mfSetCopiedRowFldValueUsingCache($event, 'dateOfBirthInMilliseconds')"
             >
@@ -29,16 +29,6 @@ Code synced with ref implementation on 4th august 2020
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
         -->
-            <el-date-picker
-              :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
-              type="date"
-              placeholder="Pick a day"
-              :picker-options="pickerOptions"
-              format="yyyy/MM/dd"
-              value-format="timestamp"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
-            >
-            </el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
@@ -57,19 +47,13 @@ Code synced with ref implementation on 4th august 2020
           </el-form-item>
         </el-form>
       </el-col>
-      <el-col :span="12">
-        <ctDateOfBirthGraph form-type="sub-part-of-another-form"></ctDateOfBirthGraph>
-      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
 import mxc from '../mixin-change-layer.js'
-import ctDateOfBirthGraph from '@/cts/spi/1t-1rMf/date-of-birth/vl/line-graph-ct.vue'
-
 export default {
-  components: { ctDateOfBirthGraph },
   mixins: [mxc],
   data() {
     return {

@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptDateOfBirth extends rowManage {
-  static entity = 'dateOfBirth'
+  static entity = 'date of birth'
   static apiUrl = 'http://localhost:3000/date-of-birth'
 
   static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
@@ -21,7 +21,6 @@ export default class ptDateOfBirth extends rowManage {
       uuid: this.uid(() => uuidv1()),
 
       dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/orm.js
-      timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
