@@ -32,7 +32,7 @@ export default {
       isMounted: false,
       /* This Ct has 3 flds. This helps deciding which fld to show in orange color.
       Also helps deciding if submit and reset options should be shown */
-      dataFldsOfCopiedAndToChangeRowsAreSame: true,
+      dataFldsOfToChangeAndCopiedRowsAreSame: true,
     }
   },
   computed: {
@@ -43,8 +43,8 @@ export default {
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
-        for (const k in this.dataFldsOfCopiedAndToChangeRowsAreSame)
-          rowtoReturn[k] = this.dataFldsOfCopiedAndToChangeRowsAreSame[k]
+        for (const k in this.dataFldsOfToChangeAndCopiedRowsAreSame)
+          rowtoReturn[k] = this.dataFldsOfToChangeAndCopiedRowsAreSame[k]
         // return to the template.
         return rowtoReturn
       } else {
@@ -77,12 +77,12 @@ export default {
     let eventName = ['event-from-ct', orm.entity, 'cl-copied-row-diff'].join('-')
 
     this.$root.$on(eventName, (pFldsWithDiff) => {
-      this.dataFldsOfCopiedAndToChangeRowsAreSame = pFldsWithDiff
+      this.dataFldsOfToChangeAndCopiedRowsAreSame = pFldsWithDiff
     })
 
     eventName = ['event-from-ct', orm.entity, 'cl-copied-row-same'].join('-')
     this.$root.$on(eventName, () => {
-      this.dataFldsOfCopiedAndToChangeRowsAreSame = true
+      this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
     if (orm.query().count() > 0) {
@@ -103,7 +103,7 @@ export default {
       const vnOrmIdOfCopiedRowBeingChanged = orm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.dataFldsOfCopiedAndToChangeRowsAreSame = orm.fnIsDataFldsOfRowsSame(
+        this.dataFldsOfToChangeAndCopiedRowsAreSame = orm.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.id,
           vnOrmIdOfCopiedRowBeingChanged
@@ -121,9 +121,9 @@ export default {
       })
     },
     mfTypeOfButton(pFldName) {
-      if (this.dataFldsOfCopiedAndToChangeRowsAreSame === true) return 'default'
+      if (this.dataFldsOfToChangeAndCopiedRowsAreSame === true) return 'default'
 
-      if (pFldName in this.dataFldsOfCopiedAndToChangeRowsAreSame) {
+      if (pFldName in this.dataFldsOfToChangeAndCopiedRowsAreSame) {
         return 'warning'
       }
       return 'default'
@@ -133,7 +133,7 @@ export default {
       const eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,
-        this.dataFldsOfCopiedAndToChangeRowsAreSame.vnOrmIdOfCopiedRowBeingChanged
+        this.dataFldsOfToChangeAndCopiedRowsAreSame.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {

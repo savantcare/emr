@@ -22,7 +22,7 @@
       >C</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true && formType === 'stand-alone'"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -32,7 +32,7 @@
       >S</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true && formType === 'stand-alone'"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="danger"
       size="mini"
       style="padding: 3px;"

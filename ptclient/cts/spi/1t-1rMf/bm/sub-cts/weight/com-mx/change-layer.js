@@ -103,10 +103,10 @@ export default {
   },
   // Goal: Set up event listeners so view layer can ask to submit data or reset form
   mounted() {
+    // these events are sent from view layer when "S" or "R" buttons are clicked in the VL
+
     let eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
-
-    //     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
-
+    // A sample event name is: 'event-from-ct-name-vl-save-this-row'
     this.$root.$on(eventName, (pRowID) => {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
       this.mfOnSubmit()

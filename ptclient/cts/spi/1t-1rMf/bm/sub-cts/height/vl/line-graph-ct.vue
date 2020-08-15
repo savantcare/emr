@@ -11,7 +11,7 @@
       >C</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="success"
       size="mini"
       style="padding: 3px;"
@@ -21,7 +21,7 @@
       >S</el-button
     >
     <el-button
-      v-if="dataFldsOfCopiedAndToChangeRowsAreSame !== true"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="danger"
       size="mini"
       style="padding: 3px;"
