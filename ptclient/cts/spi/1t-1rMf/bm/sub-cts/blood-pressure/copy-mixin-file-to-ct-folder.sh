@@ -1,12 +1,12 @@
 #!/bin/bash
-mkdir -p ../../date-of-birth/mixins/
-cp * ../../date-of-birth/mixins/
+mkdir -p ../../date-of-birth/com-mx/
+cp * ../../date-of-birth/com-mx/
 
 mkdir -p ../../height/ 
 cp * ../../height/ 
 
-mkdir -p ../../oxygen-saturation/mixins/
-cp * ../../oxygen-saturation/mixins/
+mkdir -p ../../oxygen-saturation/com-mx/
+cp * ../../oxygen-saturation/com-mx/
 
 mkdir -p ../../pulse/ 
 cp * ../../pulse/ 
@@ -23,5 +23,5 @@ cp * ../../blood-pressure/
 mkdir -p ../../blood-sugar/
 cp * ../../blood-sugar/
 
-# mkdir -p ../../weight/mixins/ 
-# cp * ../../weight/mixins/ 
+# mkdir -p ../../weight/com-mx/ 
+# cp * ../../weight/com-mx/ 

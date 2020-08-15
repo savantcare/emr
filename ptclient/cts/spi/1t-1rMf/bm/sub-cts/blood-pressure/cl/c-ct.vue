@@ -65,7 +65,7 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxc from '../mixins/change-layer.js'
+import mxc from '../com-mx/change-layer.js'
 import ctBloodPressureGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/blood-pressure/vl/line-graph-ct.vue'
 
 export default {

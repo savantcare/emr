@@ -43,7 +43,7 @@ and graph related doc is at weight
 </template>
 
 <script>
-import mxc from '../mixins/change-layer.js'
+import mxc from '../com-mx/change-layer.js'
 
 export default {
   mixins: [mxc],

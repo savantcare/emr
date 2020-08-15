@@ -47,13 +47,13 @@
 <script>
 /* Option1: 
 
-import mxTable from '@/cts/spi/1t-1rMf/mixins/mixins/view-layer.js'
+import mxTable from '@/cts/spi/1t-1rMf/com-mx/mixins/view-layer.js'
 
 Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
-But inside /mixins/mixins/view-layer.js I am not able to import the correct 
+But inside /com-mx/mixins/view-layer.js I am not able to import the correct 
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 
-Since relative paths current working directory is /mixins/
+Since relative paths current working directory is /com-mx/
 
 Posted the question on 
 stackoverflow: https://stackoverflow.com/questions/63373084/relative-path-getting-resolved-from-location-of-imported-file
@@ -62,15 +62,15 @@ Discord: https://discord.com/channels/325477692906536972/325479107012067328/7430
 */
 
 /* option 2:
-const mxTable = require('../mixins/view-layer.js').default         -> Works
+const mxTable = require('../com-mx/view-layer.js').default         -> Works
 Why use this?
 Require allows to pass variable names Ref: https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module
 Problem:
-const mxTable = require('../mixins/view-layer.js')('weight').default -> Does not work
+const mxTable = require('../com-mx/view-layer.js')('weight').default -> Does not work
 */
 
-/* Option3: Working. But in this option the same file '../mixins/view-layer.js' has to be kept in each folder like height weight name */
-import mxTable from '../mixins/view-layer.js'
+/* Option3: Working. But in this option the same file '../com-mx/view-layer.js' has to be kept in each folder like height weight name */
+import mxTable from '../com-mx/view-layer.js'
 
 export default {
   mixins: [mxTable],
@@ -80,7 +80,7 @@ export default {
       type: String,
     },
     date: {
-      ctName: 'name', // this is supposed to be used by import mxTable from '@/cts/spi/1t-1rMf/mixins/mixins/view-layer.js so that the same mixin cab be used by name height and weight
+      ctName: 'name', // this is supposed to be used by import mxTable from '@/cts/spi/1t-1rMf/com-mx/mixins/view-layer.js so that the same mixin cab be used by name height and weight
     },
   },
 }

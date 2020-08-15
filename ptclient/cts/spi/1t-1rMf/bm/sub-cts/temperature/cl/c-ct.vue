@@ -49,7 +49,7 @@ For graph related work the reference implementation is weight.
 </template>
 
 <script>
-import mxc from '../mixins/change-layer.js'
+import mxc from '../com-mx/change-layer.js'
 import ctTemperatureGraph from '@/cts/spi/1t-1rMf/bm/sub-cts/temperature/vl/line-graph-ct.vue'
 
 export default {
