@@ -65,7 +65,7 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxc from '../mixin-change-layer.js'
+import mxc from '../mixins/change-layer.js'
 import ctPulseGraph from '@/cts/spi/1t-1rMf/pulse/vl/line-graph-ct.vue'
 
 export default {

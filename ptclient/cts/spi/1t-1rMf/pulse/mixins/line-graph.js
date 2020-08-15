@@ -1,6 +1,6 @@
 import { Chart } from 'highcharts-vue'
-import mxTable from './mixin-view-layer.js'
-import orm from './db/orm.js'
+import orm from '../db/orm.js'
+import mxTable from './view-layer.js'
 
 export default {
   components: {
@@ -33,6 +33,9 @@ export default {
         title: {
           text: '',
         }, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        chart: {
+          height: 200,
+        },
         xAxis: [
           {
             title: {

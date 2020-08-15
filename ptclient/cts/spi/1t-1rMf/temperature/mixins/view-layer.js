@@ -1,7 +1,26 @@
+/* 
+Goal:
+When this mixin is used by height and weight component the import statement has to be:
+1. import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
+2. import mxFullSyncWithDbServer from '../weight/db/full-sync-with-db-server-mixin'
+
+So I need to figure out how to do:
+import mxFullSyncWithDbServer from '../' + ctName + 'weight/db/full-sync-with-db-server-mixin'
+
+Known:
+1. import statment does not work with variables but require statement works with variables.
+2. The following statement works:
+const mxFullSyncWithDbServer = require('@/cts/spi/1t-1rMf/' + 
+            this.ctName + 
+            '/db/full-sync-with-db-server-mixin').default, 
+            // does not give compilation error but at run time the value this.ctName is not available. 
+3. parameters can be sent when doing a require.
+*/
+
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
-import orm from './db/orm.js'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import orm from '../db/orm.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
