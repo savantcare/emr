@@ -50,7 +50,7 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxTable from '../mixin-view-layer.js'
+import mxTable from '../mixins/view-layer.js'
 export default {
   mixins: [mxTable],
   props: {

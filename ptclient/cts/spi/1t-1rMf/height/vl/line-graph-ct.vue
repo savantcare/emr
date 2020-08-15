@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import mxLineG from '../mixin-line-graph.js'
+import mxLineG from '../mixins/line-graph.js'
 
 export default {
   mixins: [mxLineG],
