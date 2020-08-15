@@ -65,7 +65,7 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxc from '../mixin-change-layer.js'
+import mxc from '../mixins/change-layer.js'
 import ctOxygenSaturationGraph from '@/cts/spi/1t-1rMf/oxygen-saturation/vl/line-graph-ct.vue'
 
 export default {
