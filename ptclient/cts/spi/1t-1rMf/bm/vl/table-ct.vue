@@ -3,7 +3,7 @@
     <div slot="header" class="clearfix">
       <span>Body measurement</span>
     </div>
-    <div class="flex-container">
+    <div class="grid-container">
       <ctWeight></ctWeight>
       <ctHeight></ctHeight>
       <ctTemperature></ctTemperature>
@@ -40,36 +40,20 @@ export default {
 </script>
 
 <style scoped>
-/* Ref: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
-.flex-container {
-  /* We first create a flex layout context */
-  display: flex;
+/* Ref: https://www.freecodecamp.org/news/a-beginners-guide-to-css-grid-3889612c4b35/
 
-  /* Then we define the flow direction 
-     and if we allow the items to wrap 
-   * Remember this is the same as:
-   * flex-direction: row;
-   * flex-wrap: wrap;
-   */
-  flex-flow: row wrap;
+Q) Why use grid and not use flex?
+"There is no method in flexbox to tell items in one row to line up with items in the row above"
+Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items
+Hence using the grid system
 
-  /* Then we define how is distributed the remaining space */
-  justify-content: space-around;
-  padding: 10;
-  margin: 10;
-  list-style: none;
-}
-
-.flex-item {
-  background: tomato;
-  padding: 5px;
-  width: 200px;
-  height: 150px;
-  margin-top: 10px;
-  line-height: 150px;
-  color: blue;
-  font-weight: bold;
-  font-size: 3em;
-  text-align: center;
+Q) Where can i see the example of flex?
+The previous commit (d72c5110df1450385bdc8a5ec867095cde453e1e) was flex I did not say the number of columns. 
+The number of columns was being auto-decided depending on the space available.
+ */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-gap: 1rem;
 }
 </style>
