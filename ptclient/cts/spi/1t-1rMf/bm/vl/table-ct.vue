@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>Body measurement</span>
-      </div>
+  <el-card class="box-card">
+    <div slot="header" class="clearfix">
+      <span>Body measurement</span>
+    </div>
+    <div class="flex-container">
       <ctWeight></ctWeight>
       <ctHeight></ctHeight>
       <ctTemperature></ctTemperature>
@@ -12,8 +12,8 @@
       <ctWaistCircumference></ctWaistCircumference>
       <ctPulse></ctPulse>
       <ctOxygenSaturation></ctOxygenSaturation>
-    </el-card>
-  </div>
+    </div>
+  </el-card>
 </template>
 
 <script>
@@ -38,3 +38,38 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+/* Ref: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+.flex-container {
+  /* We first create a flex layout context */
+  display: flex;
+
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: space-around;
+  padding: 10;
+  margin: 10;
+  list-style: none;
+}
+
+.flex-item {
+  background: tomato;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 10px;
+  line-height: 150px;
+  color: blue;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
+</style>
