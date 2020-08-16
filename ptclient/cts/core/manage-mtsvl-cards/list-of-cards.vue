@@ -13,13 +13,13 @@
 -->
     <TheMultiStateDisplayAreaHeader> </TheMultiStateDisplayAreaHeader>
     <ctBMVl> </ctBMVl><br />
-    <ctRemVl> </ctRemVl><br />
+    <ctRemVl> </ctRemVl>
     <ctScrVl> </ctScrVl>
   </div>
 </template>
 <script>
 import TheMultiStateDisplayAreaHeader from '@/cts/core/mtsvl-header/sub-ct-container.vue'
-import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/table-ct'
+import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/grid-ct-design2'
 import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table-ct'
 import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/table-ct'
 // import ctRexVl from '@/cts/spi/rec/vl/table-ct'
@@ -29,10 +29,10 @@ import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/table-ct'
 
 export default {
   components: {
-    ctRemVl,
     ctScrVl,
     ctBMVl,
     TheMultiStateDisplayAreaHeader,
+    ctRemVl,
     //    ctRexVl,
     //    ctDXVl,
     //    ctGVl,
