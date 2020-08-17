@@ -138,10 +138,8 @@ export default {
      not know what the original data to show below the edit/change form.
      */
     async mfCopyRowToOrm(pDesc) {
-      /* TODO: maybe 125 to 134 can be done by rowManage class. Since 
-            1. This is used in each Ct.
-            2. phq9 Ct has 9 fields so this will become very big.
-        */
+      /* There is already a function in rowManage class that does this.
+       */
       const arFromOrm = await objOrm.insert({
         data: {
           description: pDesc,
@@ -209,7 +207,7 @@ export default {
       let arOrmRowToChange = []
       if (this.vnOrmIdOfRowToChange === this.firstProp) {
         // this is repeat invocation
-        // IF 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
+        // If 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
         // Inferences: 1. this.OrmUuidOfRowToChange is already existing 2. New empty row where the user can type is already existing
         this.mfManageFocus()
       } else {
