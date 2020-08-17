@@ -77,7 +77,7 @@ export default {
   props: ['firstProp', 'formType'],
   data() {
     return {
-      uuidOfRowBeingChanged: '',
+      OrmUuidOfRowToChange: '',
       ormRowIDForPreviousInvocation: 0,
       vnOrmIdOfCopiedRowBeingChanged: 0,
     }
@@ -92,10 +92,10 @@ export default {
       // Insight: to create timeline the uuid will be same but id will be different.
       const arFromOrm = objOrm
         .query()
-        .where('uuid', this.uuidOfRowBeingChanged)
+        .where('uuid', this.OrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
-      // console.log('Time line for uuid', this.uuidOfRowBeingChanged)
+      // console.log('Time line for uuid', this.OrmUuidOfRowToChange)
       if (arFromOrm.length) {
         let rowInTimeLine = []
         let date = ''
@@ -141,7 +141,7 @@ export default {
       const arFromOrm = await objOrm.insert({
         data: {
           remDesc: pDesc,
-          uuid: this.uuidOfRowBeingChanged,
+          uuid: this.OrmUuidOfRowToChange,
           vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
           // ROW_END: already has a default value inside vuex-orm/orm.js
@@ -205,16 +205,16 @@ export default {
       let arFromOrm = []
       if (this.ormRowIDForPreviousInvocation === this.firstProp) {
         // this is repeat invocation
+        // Inferences: 1. this.OrmUuidOfRowToChange is already existing 2. New empty row where the user can type is already existing
         this.mfManageFocus()
-        // Inferences: 1. this.uuidOfRowBeingChanged is already existing 2. New empty row where the user can type is already existing
       } else {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
         // this is first time invocation
         this.ormRowIDForPreviousInvocation = this.firstProp
         arFromOrm = objOrm.find(this.firstProp)
-        this.uuidOfRowBeingChanged = arFromOrm.uuid
-        // Find if there is unsaved data for this.uuidOfRowBeingChanged
-        const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(this.uuidOfRowBeingChanged)
+        this.OrmUuidOfRowToChange = arFromOrm.uuid
+        // Find if there is unsaved data for this.OrmUuidOfRowToChange
+        const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(this.OrmUuidOfRowToChange)
         if (vnExistingChangeRowId === false) {
           // Adding a new blank record. Since this is temporal DB
           this.mfCopyRowToOrm(arFromOrm[pFldName])
@@ -251,7 +251,7 @@ export default {
         const remDesc = this.mfGetCopiedRowFldValue()
         this.mfCopyRowToOrm(remDesc)
 
-        const response = await fetch(objOrm.apiUrl + '/' + this.uuidOfRowBeingChanged, {
+        const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -299,7 +299,7 @@ export default {
             A)
                 We are following below mentioned logic in where clause of objOrm update:
                 -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
-                  "exp A" -> search record from objOrm whose uuid = this.uuidOfRowBeingChanged
+                  "exp A" -> search record from objOrm whose uuid = this.OrmUuidOfRowToChange
                   "exp B1" -> "vnRowStateInSession === 1",
                       objOrm record that came from database (Case: User changes an existing record)
                   "exp B2" -> "vnRowStateInSession === 34571", 
@@ -310,7 +310,7 @@ export default {
           await objOrm.update({
             where: (record) => {
               return (
-                record.uuid === this.uuidOfRowBeingChanged &&
+                record.uuid === this.OrmUuidOfRowToChange &&
                 (record.vnRowStateInSession === 1 /* Came from DB */ ||
                 record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
@@ -337,11 +337,7 @@ export default {
         console.log('update error', ex)
       }
 
-      console.log(
-        'mfSendDataToServer-> ',
-        this.uuidOfRowBeingChanged,
-        this.mfGetCopiedRowFldValue()
-      )
+      console.log('mfSendDataToServer-> ', this.OrmUuidOfRowToChange, this.mfGetCopiedRowFldValue())
     },
   },
 }
