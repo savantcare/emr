@@ -1,15 +1,15 @@
 # Code
 
-| Ch  | Functionality               | LOC | search-phrases | vl/table | cl/table | load-search | orm/helloworld | store/vuex-orm |
-| --- | --------------------------- | --- | -------------- | -------- | -------- | ----------- | -------------- | -------------- |
-| 1   | Show Ct in CsVL             | 20  | 14             | 3        |          | 3           |                |
-| 2   | Show Ct in Cl               | 31  | 22             | 3        | 3        | 3           |                |
-| 3   | Click Vl to Invoke Ct in Cl | 46  | 22             | 18       | 3        | 3           |                |
-| 4   | Central role of vuex-orm    | 73  | 22             | 32       | 3        | 3           | 11             | 2              |
-|     | A. Define ORM model         |     |                |          |          |             |                |                |
-|     | B. Insert into ORM          |     |                |          |          |             |                |
-|     | C. Read from ORM            |     |                |          |          |             |                |
-|     | D. Show data from ORM in Ct |     |                |          |          |             |                |
+| Ch  | Functionality               | LOC | search-phrases | vl/table | cl/table | load-search | objOrm/helloworld | store/vuex-orm |
+| --- | --------------------------- | --- | -------------- | -------- | -------- | ----------- | ----------------- | -------------- |
+| 1   | Show Ct in CsVL             | 20  | 14             | 3        |          | 3           |                   |
+| 2   | Show Ct in Cl               | 31  | 22             | 3        | 3        | 3           |                   |
+| 3   | Click Vl to Invoke Ct in Cl | 46  | 22             | 18       | 3        | 3           |                   |
+| 4   | Central role of vuex-orm    | 73  | 22             | 32       | 3        | 3           | 11                | 2              |
+|     | A. Define ORM model         |     |                |          |          |             |                   |                |
+|     | B. Insert into ORM          |     |                |          |          |             |                   |
+|     | C. Read from ORM            |     |                |          |          |             |                   |
+|     | D. Show data from ORM in Ct |     |                |          |          |             |                   |
 
 # For demo:
 

@@ -1,4 +1,4 @@
-import orm from '../db/orm.js'
+import objOrm from '../db/orm.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {
@@ -29,7 +29,7 @@ export default {
       /* Why do I need to have the flds that are being changed? Why not just use the rowStatus fld to decide if the row has changed? Better Ux
         The c.vue uses event system  to send a list of flds that have changed to vl */
 
-      const objFldsComparisonResults = orm.fnIsDataFldsOfRowsSame(
+      const objFldsComparisonResults = objOrm.fnIsDataFldsOfRowsSame(
         // return true if all data flds are same. Otherwise returns the array of flds that are diff
         this.vnOrmIdOfRowToChange,
         this.vnOrmIdOfCopiedRowBeingChanged
@@ -37,12 +37,12 @@ export default {
 
       // informing all other Cts
       if (objFldsComparisonResults === true) {
-        //        const eventName = 'event-from-ct-' + orm.entity '-cl-copied-row-same'
-        const eventName = ['event-from-ct', orm.entity, 'cl-copied-row-same'].join('-')
+        //        const eventName = 'event-from-ct-' + objOrm.entity '-cl-copied-row-same'
+        const eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-same'].join('-')
         this.$root.$emit(eventName)
       } else {
         objFldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
-        const eventName = ['event-from-ct', orm.entity, 'cl-copied-row-diff'].join('-')
+        const eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-diff'].join('-')
         this.$root.$emit(eventName, objFldsComparisonResults)
       }
 
@@ -77,11 +77,11 @@ export default {
         if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
               When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
-          const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
+          const arFromOrm = objOrm.find(this.vnOrmIdOfRowToChange)
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
-            this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -92,18 +92,18 @@ export default {
   // Goal: Load the data from DB
   async created() {
     // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
-    if (orm.query().count() > 0) {
+    if (objOrm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromOrm = orm.fnGetRowsToChange()
+    const arFromOrm = objOrm.fnGetRowsToChange()
     this.vnOrmIdOfRowToChange = arFromOrm[0].id
     this.vnOrmIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },
   // Goal: Set up event listeners so view layer can ask to submit data or reset form
   mounted() {
-    let eventName = ['event-from-ct', orm.entity, 'vl-save-this-row'].join('-')
+    let eventName = ['event-from-ct', objOrm.entity, 'vl-save-this-row'].join('-')
 
     //     this.$root.$on('event-from-ct-name-vl-save-this-row', (pRowID) => {
 
@@ -112,7 +112,7 @@ export default {
       this.mfOnSubmit()
     })
 
-    eventName = ['event-from-ct', orm.entity, 'vl-reset-this-form'].join('-')
+    eventName = ['event-from-ct', objOrm.entity, 'vl-reset-this-form'].join('-')
     this.$root.$on(eventName, () => {
       this.mfOnResetForm()
     })
@@ -120,8 +120,8 @@ export default {
   methods: {
     async mfOnSubmit() {
       // Since only one valid row is possible there may be other discontinued rows
-      const rowToUpsert = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
+      const rowToUpsert = objOrm.find(this.vnOrmIdOfCopiedRowBeingChanged)
+      const response = await fetch(objOrm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -136,7 +136,7 @@ export default {
       })
       if (response.status === 200) {
         // set ROW_END of row being changed
-        await orm.update({
+        await objOrm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&
@@ -152,7 +152,7 @@ export default {
           },
         })
         /* Goal: Update the value of copied row to success or failure depending on the api response */
-        orm.update({
+        objOrm.update({
           where: this.vnOrmIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
@@ -165,13 +165,13 @@ export default {
     },
     mfOnResetForm() {
       // Step 1/3: delete the row that was created as a copy
-      orm.fnDeleteChangeRowsInEditState()
+      objOrm.fnDeleteChangeRowsInEditState()
 
       // Step 2/3: Set vnOrmIdOfCopiedRowBeingChanged as null so that "act on state" code can take effect to create a copied row see watch vnOrmIdOfCopiedRowBeingChanged
       this.vnOrmIdOfCopiedRowBeingChanged = null
 
       // Step 3/3: the flds in the form have existing edited values the flds need to have non edited values
-      orm.arOrmRowsCached = []
+      objOrm.arOrmRowsCached = []
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
@@ -181,12 +181,12 @@ export default {
         console.log('When the Ct is first loaded let us see how many times if getfld called');
       */
       // There will always be an existing row that is already in change state
-      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
+      const value = objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
     mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
+      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
   },

@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import orm from '../db/orm.js'
+import objOrm from '../db/orm.js'
 import mxViewLayer from './view-layer.js'
 
 export default {
@@ -25,14 +25,14 @@ export default {
       const chartOptions = {
         series: [
           {
-            name: orm.entity,
+            name: objOrm.entity,
             showInLegend: false,
             data: arDataToShowOnGraph,
           },
         ],
         title: {
           text: '',
-        }, // Reason: Y axis will have orm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        }, // Reason: Y axis will have objOrm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         chart: {
           height: 200,
         },
@@ -51,12 +51,12 @@ export default {
         yAxis: [
           {
             title: {
-              text: orm.entity,
+              text: objOrm.entity,
             },
           },
         ],
         tooltip: {
-          headerFormat: '<b>{point.y:.2f} ' + orm.graphSeries1Unit + '</b><br>',
+          headerFormat: '<b>{point.y:.2f} ' + objOrm.graphSeries1Unit + '</b><br>',
           pointFormat: '{point.x:%m-%Y}',
         },
         credits: {
@@ -69,12 +69,12 @@ export default {
   methods: {
     mfGetDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = orm.all()
+      const data = objOrm.all()
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurement = data[i].timeOfMeasurement
-          const graphData = data[i][orm.graphSeries1FieldName]
+          const graphData = data[i][objOrm.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
         return arDataToShowOnGraph

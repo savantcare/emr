@@ -55,7 +55,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import orm from '../db/orm-phq9.js'
+import objOrm from '../db/orm-phq9.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   props: { firstProp: Number },
@@ -100,7 +100,10 @@ export default {
       if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
 
       if (
-        orm.fnIsDataFldsOfRowsSame(this.vnOrmIdOfRowToChange, this.vnOrmIdOfCopiedRowBeingChanged)
+        objOrm.fnIsDataFldsOfRowsSame(
+          this.vnOrmIdOfRowToChange,
+          this.vnOrmIdOfCopiedRowBeingChanged
+        )
       ) {
         this.$root.$emit('event-from-ct-phq9-copied-row-same')
         return true
@@ -114,10 +117,10 @@ export default {
       immediate: true,
       async handler(pIdOfCopiedRowBeingChangedInOrmNewVal, pIdOfCopiedRowBeingChangedInOrmOldval) {
         if (pIdOfCopiedRowBeingChangedInOrmNewVal === null) {
-          const arFromOrm = orm.find(this.vnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = orm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
+          const arFromOrm = objOrm.find(this.vnOrmIdOfRowToChange)
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arFromOrm.uuid)
           if (vnExistingChangeRowId === false) {
-            this.vnOrmIdOfCopiedRowBeingChanged = await orm.fnCopyRow(arFromOrm.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arFromOrm.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -127,8 +130,8 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
-      const rowToUpsert = orm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      const response = await fetch(orm.apiUrl + '/' + rowToUpsert.uuid, {
+      const rowToUpsert = objOrm.find(this.vnOrmIdOfCopiedRowBeingChanged)
+      const response = await fetch(objOrm.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -141,7 +144,7 @@ export default {
         }),
       })
       if (response.status === 200) {
-        await orm.update({
+        await objOrm.update({
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&
@@ -154,7 +157,7 @@ export default {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
-        orm.update({
+        objOrm.update({
           where: this.vnOrmIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
@@ -165,20 +168,20 @@ export default {
       }
     },
     mfOnResetForm() {
-      orm.fnDeleteChangeRowsInEditState()
+      objOrm.fnDeleteChangeRowsInEditState()
 
       this.vnOrmIdOfCopiedRowBeingChanged = null
 
-      orm.arOrmRowsCached = []
+      objOrm.arOrmRowsCached = []
     },
     mfGetFldValue(pFldName) {
-      const value = orm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
+      const value = objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
     mfSetFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34
-      orm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
+      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate()
     },
   },

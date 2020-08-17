@@ -1,10 +1,10 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
-import orm from '~/cts/spi/1t-1rMf/bm/sub-cts/pulse/db/orm.js'
+import objOrm from '~/cts/spi/1t-1rMf/bm/sub-cts/pulse/db/orm.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await orm.api().get(orm.apiUrl + '?ptUUID=abcd')
+      const pro = await objOrm.api().get(objOrm.apiUrl + '?ptUUID=abcd')
       if (pro.ok) {
       }
     },

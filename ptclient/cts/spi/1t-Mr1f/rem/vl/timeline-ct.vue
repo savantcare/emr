@@ -71,7 +71,7 @@
 
 <script>
 import clInvokeMixin from './cl-invoke-mixin.js'
-import orm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 
 export default {
   mixins: [clInvokeMixin],
@@ -86,7 +86,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

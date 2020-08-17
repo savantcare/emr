@@ -51,7 +51,7 @@
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import orm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
@@ -63,13 +63,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromOrm = orm.fnGetValidUniqueUuidRows()
+      const arFromOrm = objOrm.fnGetValidUniqueUuidRows()
       return arFromOrm.length
     },
 
     cfArOfRemForDisplayInTable() {
-      // Whenever orm will change this will get called. Even when there are 100 rows in the table when orm rem changes this gets called once'
-      const arFromOrm = orm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
+      // Whenever objOrm will change this will get called. Even when there are 100 rows in the table when objOrm rem changes this gets called once'
+      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -108,7 +108,7 @@ export default {
     },
   },
   async mounted() {
-    if (orm.query().count() > 0) {
+    if (objOrm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }

@@ -36,7 +36,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import orm from '../db/orm-phq9.js'
+import objOrm from '../db/orm-phq9.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
@@ -48,7 +48,7 @@ export default {
   computed: {
     cfPhq9() {
       if (!this.isMounted) return false
-      const arFromOrm = orm.fnGetNonEmptyRowsToChange('littleInterestOrPleasureInDoingThings')
+      const arFromOrm = objOrm.fnGetNonEmptyRowsToChange('littleInterestOrPleasureInDoingThings')
       if (arFromOrm.length) {
         return arFromOrm[0]
       } else {
@@ -77,7 +77,7 @@ export default {
       this.isCopiedRowDiff = false
     })
 
-    if (orm.query().count() > 0) {
+    if (objOrm.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }
