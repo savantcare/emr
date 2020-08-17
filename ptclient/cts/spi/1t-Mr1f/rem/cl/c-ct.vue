@@ -7,7 +7,7 @@
           ref="remDesc"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetRemDescUsingCache()"
+          :value="mfGetCopiedRowFldValue()"
           @input="mfSetRemDescInVstOnDelay($event)"
         ></el-input>
         <!-- 
@@ -58,6 +58,9 @@ export default {
         This Ct is called in a for loop. In the same for loop other Ct are also called.
         So the param name has to be generic and cannot be unique to each Ct
     
+    Q) Why is firstprop not needed in 1r type Cts?
+        Since we definitely know which row is being edited. I do not need to get a incoming ID.
+
     Q) Why we are using 'formType' props?
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
@@ -156,12 +159,12 @@ export default {
         }
       }
     },
-    mfGetRemDescUsingCache() {
+    mfGetCopiedRowFldValue() {
       /*
         Q) Why is this called twice when this page is loaded?
          When C is first clicked and the control comes here. This fn is called twice
          Since following console.log is written twice.
-         If I remove :value="mfGetRemDescUsingCache()" then this fn is called 0 times
+         If I remove :value="mfGetCopiedRowFldValue()" then this fn is called 0 times
 
          Why?
          It is a default browser behavior. Clicking on the <label> will trigger 2 clicks, one for <label> and one for <input>.
@@ -241,7 +244,7 @@ export default {
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
           */
-        const remDesc = this.mfGetRemDescUsingCache()
+        const remDesc = this.mfGetCopiedRowFldValue()
         this.mfCopyRowToOrm(remDesc)
 
         const response = await fetch(objOrm.apiUrl + '/' + this.uuid, {
@@ -251,7 +254,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            remDesc: this.mfGetRemDescUsingCache(),
+            remDesc: this.mfGetCopiedRowFldValue(),
           }),
         })
         if (!response.ok) {
@@ -330,7 +333,7 @@ export default {
         console.log('update error', ex)
       }
 
-      console.log('mfSendDataToServer-> ', this.uuid, this.mfGetRemDescUsingCache())
+      console.log('mfSendDataToServer-> ', this.uuid, this.mfGetCopiedRowFldValue())
     },
   },
 }
