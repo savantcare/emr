@@ -21,7 +21,10 @@
       </div>
       <div class="grid-container">
         <div v-for="rem in cfArOfRemForDisplayInTable" :key="rem.id">
-          <el-button type="text">{{ rem.remDesc }}</el-button>
+          <!-- <el-button type="text">{{ rem.remDesc }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
+          -->
+          <div>{{ rem.remDesc }}</div>
           <el-button-group>
             <el-button
               type="primary"
@@ -29,7 +32,7 @@
               style="padding: 3px;"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl()"
+              @click="mxOpenCCtInCl(rem.id)"
               >C</el-button
             >
             <el-button
@@ -38,7 +41,7 @@
               style="padding: 3px;"
               plain
               tabindex="-1"
-              @click="mxOpenDPrompt()"
+              @click="mxOpenDPrompt(rem.id)"
               >D</el-button
             >
           </el-button-group>
@@ -137,7 +140,14 @@ export default {
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 200px);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
 }
 </style>
