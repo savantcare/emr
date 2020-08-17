@@ -76,7 +76,7 @@ export default {
     return {
       uuid: '',
       ormRowIDForPreviousInvocation: 0,
-      vnIdOfCopiedRowFromOrm: 0,
+      vnOrmIdOfCopiedRowBeingChanged: 0,
     }
   },
   computed: {
@@ -140,7 +140,7 @@ export default {
           // ROW_END: already has a default value inside vuex-orm/orm.js
         },
       })
-      this.vnIdOfCopiedRowFromOrm = arFromOrm.rem[0].id
+      this.vnOrmIdOfCopiedRowBeingChanged = arFromOrm.rem[0].id
       this.mfManageFocus()
     },
     mfManageFocus() {
@@ -213,22 +213,22 @@ export default {
           this.mfCopyRowToOrm(arFromOrm.remDesc)
           this.mfManageFocus()
         } else {
-          this.vnIdOfCopiedRowFromOrm = vnExistingChangeRowId
+          this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
         }
       }
 
       // From this point on the state is same for change and add
-      return objOrm.fnGetFldValue(this.vnIdOfCopiedRowFromOrm, 'remDesc')
+      return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc')
     },
     mfSetRemDescInVstOnDelay(pEvent) {
       const rowStatus = 34
-      objOrm.fnSetFldValue(pEvent, this.vnIdOfCopiedRowFromOrm, 'remDesc', rowStatus)
+      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
 
     async mfSendDataToServer() {
       try {
-        const ormRowIdToSendToServer = this.vnIdOfCopiedRowFromOrm
+        const ormRowIdToSendToServer = this.vnOrmIdOfCopiedRowBeingChanged
         await objOrm.update({
           where: ormRowIdToSendToServer,
           data: {
