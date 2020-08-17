@@ -78,7 +78,7 @@ export default {
   data() {
     return {
       OrmUuidOfRowToChange: '',
-      ormRowIDForPreviousInvocation: 0,
+      vnOrmIdOfRowToChange: 0,
       vnOrmIdOfCopiedRowBeingChanged: 0,
     }
   },
@@ -203,24 +203,29 @@ export default {
       */
 
       let arFromOrm = []
-      if (this.ormRowIDForPreviousInvocation === this.firstProp) {
+      if (this.vnOrmIdOfRowToChange === this.firstProp) {
         // this is repeat invocation
         // Inferences: 1. this.OrmUuidOfRowToChange is already existing 2. New empty row where the user can type is already existing
         this.mfManageFocus()
       } else {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
-        // this is first time invocation
-        this.ormRowIDForPreviousInvocation = this.firstProp
+        // firstProp is the OrmID of the row that the user wants to change.
+        this.vnOrmIdOfRowToChange = this.firstProp
         arFromOrm = objOrm.find(this.firstProp)
         this.OrmUuidOfRowToChange = arFromOrm.uuid
-        // Find if there is unsaved data for this.OrmUuidOfRowToChange
-        const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(this.OrmUuidOfRowToChange)
-        if (vnExistingChangeRowId === false) {
+        /* Find if there is unsaved data for this.OrmUuidOfRowToChange
+          In an alternative design if I sent the ormID then that Fn will need to first find the OrmUuid associated with that orm.id and
+          then run a query if a record with same uuid (there might be 100's) had a row status indicating change.
+        */
+        const ormIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(
+          this.OrmUuidOfRowToChange
+        )
+        if (ormIdOfCopiedRowBeingChanged === false) {
           // Adding a new blank record. Since this is temporal DB
           this.mfCopyRowToOrm(arFromOrm[pFldName])
           this.mfManageFocus()
         } else {
-          this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
+          this.vnOrmIdOfCopiedRowBeingChanged = ormIdOfCopiedRowBeingChanged
         }
       }
 
@@ -273,7 +278,7 @@ export default {
         } else {
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
-            ormRowIDForPreviousInvocation is = firstProp. So ormRowIDForPreviousInvocation is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+            vnOrmIdOfRowToChange is = firstProp. So vnOrmIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
               option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
               option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
