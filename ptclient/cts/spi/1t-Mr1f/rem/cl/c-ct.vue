@@ -138,8 +138,7 @@ export default {
      not know what the original data to show below the edit/change form.
      */
     async mfCopyRowToOrm(pDesc) {
-      /* There is already a function in rowManage class that does this.
-       */
+      /* There is already a function in rowManage class that does this.  */
       const arFromOrm = await objOrm.insert({
         data: {
           description: pDesc,
@@ -156,8 +155,8 @@ export default {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
       if (this.$refs.description && this.formType !== 'embedded') {
         const lastElement = this.$refs.description.length
-        // this if is needed since when there is only 1 element then description is not an array of objects.
-        // with a single form remdesc is just an object.
+        /* this "if" is needed since when there is only 1 element then description is not an array of objects.
+         with a single form "description" is just an object. */
         if (!lastElement) {
           this.$refs.description.focus()
         } else {
@@ -206,13 +205,22 @@ export default {
 
       let arOrmRowToChange = []
       if (this.vnOrmIdOfRowToChange === this.firstProp) {
-        // this is repeat invocation
-        // If 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
-        // Inferences: 1. this.OrmUuidOfRowToChange is already existing 2. New empty row where the user can type is already existing
+        /* 
+        If 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
+        When this.vnOrmIdOfRowToChange === this.firstProp the following inferences can be made:
+        1. this.OrmUuidOfRowToChange is already existing 
+        2. A copied row where the user can type is already existing
+        3. User clicked on C beside the same row.
+        4. This is repeat invocation
+        */
+        console.log('this.vnOrmIdOfRowToChange === this.firstProp')
         this.mfManageFocus()
       } else {
-        // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
-        // firstProp is the OrmID of the row that the user wants to change.
+        /* Inference: 
+        1. This is first time in this Ct lifetimes that it has been called with this parameter
+        2. firstProp is the OrmID of the row that the user wants to change.
+         */
+        console.log('this.vnOrmIdOfRowToChange !== this.firstProp')
         this.vnOrmIdOfRowToChange = this.firstProp
         arOrmRowToChange = objOrm.find(this.firstProp)
         this.OrmUuidOfRowToChange = arOrmRowToChange.uuid
@@ -290,9 +298,6 @@ export default {
                           2. Also when id3 is deleted without saving to DB. 
                           3. Or ID 3 is saved to DB. 
 
-          */
-
-          /*
             Q): Why following where clause needed?
             A): 
                 Whenever we change a record and hit save button, we get two records in objOrm with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp. 

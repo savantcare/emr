@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     initialMiddleName() {
-      console.log(this.cfDataRow.middleName)
+      // console.log(this.cfDataRow.middleName)
       if (this.cfDataRow.middleName) {
         return this.cfDataRow.middleName.charAt(0)
       } else {
@@ -31,7 +31,7 @@ export default {
       }
     },
     initialLastName() {
-      console.log(this.cfDataRow.lastName)
+      // console.log(this.cfDataRow.lastName)
       if (this.cfDataRow.lastName) {
         return this.cfDataRow.lastName.charAt(0)
       } else {
