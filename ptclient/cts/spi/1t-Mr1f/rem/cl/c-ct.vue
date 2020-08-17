@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
+import objOrm from '../db/vuex-orm/orm.js'
 export default {
   /* 
     Q) Why is firstProp needed?
