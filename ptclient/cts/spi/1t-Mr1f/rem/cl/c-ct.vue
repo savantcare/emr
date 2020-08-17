@@ -8,7 +8,7 @@
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
           :value="mfGetCopiedRowFldValue('remDesc')"
-          @input="mfSetCopiedRowFldValueUsingCache($event)"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'remDesc')"
         ></el-input>
         <!-- 
           TODO: Give same name like name ct
@@ -223,9 +223,9 @@ export default {
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
-    mfSetCopiedRowFldValueUsingCache(pEvent) {
+    mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34
-      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc', rowStatus)
+      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
 
