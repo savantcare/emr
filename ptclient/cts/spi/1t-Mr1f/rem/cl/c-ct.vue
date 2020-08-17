@@ -206,17 +206,18 @@ export default {
           TODO: Instead of sequential programming make it act on state like in name Ct.
       */
 
-      let arFromOrm = []
+      let arOrmRowToChange = []
       if (this.vnOrmIdOfRowToChange === this.firstProp) {
         // this is repeat invocation
+        // IF 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
         // Inferences: 1. this.OrmUuidOfRowToChange is already existing 2. New empty row where the user can type is already existing
         this.mfManageFocus()
       } else {
         // Inference: This is first time in this Ct lifetimes that it has been called with this parameter
         // firstProp is the OrmID of the row that the user wants to change.
         this.vnOrmIdOfRowToChange = this.firstProp
-        arFromOrm = objOrm.find(this.firstProp)
-        this.OrmUuidOfRowToChange = arFromOrm.uuid
+        arOrmRowToChange = objOrm.find(this.firstProp)
+        this.OrmUuidOfRowToChange = arOrmRowToChange.uuid
         /* Find if there is unsaved data for this.OrmUuidOfRowToChange
           In an alternative design if I sent the ormID then that Fn will need to first find the OrmUuid associated with that orm.id and
           then run a query if a record with same uuid (there might be 100's) had a row status indicating change.
@@ -226,7 +227,7 @@ export default {
         )
         if (ormIdOfCopiedRowBeingChanged === false) {
           // Adding a new blank record. Since this is temporal DB
-          this.mfCopyRowToOrm(arFromOrm[pFldName])
+          this.mfCopyRowToOrm(arOrmRowToChange[pFldName])
           this.mfManageFocus()
         } else {
           this.vnOrmIdOfCopiedRowBeingChanged = ormIdOfCopiedRowBeingChanged
