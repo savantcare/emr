@@ -77,6 +77,7 @@ export default {
   props: ['firstProp', 'formType'],
   data() {
     return {
+      /* Why is UUID field needed here but not needed in case of weight */
       OrmUuidOfRowToChange: '',
       vnOrmIdOfRowToChange: 0,
       vnOrmIdOfCopiedRowBeingChanged: 0,
