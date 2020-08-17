@@ -7,7 +7,7 @@
           ref="remDesc"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetCopiedRowFldValue()"
+          :value="mfGetCopiedRowFldValue('remDesc')"
           @input="mfSetCopiedRowFldValueUsingCache($event)"
         ></el-input>
         <!-- 
@@ -17,7 +17,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
-          >Submit firstpapram is {{ this.firstProp }}</el-button
+          >Submit firstprop is {{ this.firstProp }}</el-button
         >
       </el-form-item>
     </el-form>
@@ -159,7 +159,7 @@ export default {
         }
       }
     },
-    mfGetCopiedRowFldValue() {
+    mfGetCopiedRowFldValue(pFldName) {
       /*
         Q) Why is this called twice when this page is loaded?
          When C is first clicked and the control comes here. This fn is called twice
@@ -213,7 +213,7 @@ export default {
         const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(this.uuid)
         if (vnExistingChangeRowId === false) {
           // Adding a new blank record. Since this is temporal DB
-          this.mfCopyRowToOrm(arFromOrm.remDesc)
+          this.mfCopyRowToOrm(arFromOrm[pFldName])
           this.mfManageFocus()
         } else {
           this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
@@ -221,7 +221,7 @@ export default {
       }
 
       // From this point on the state is same for change and add
-      return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc')
+      return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowFldValueUsingCache(pEvent) {
       const rowStatus = 34
