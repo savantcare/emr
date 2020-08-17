@@ -106,7 +106,6 @@ export default {
     async mfAddEmptyRowInOrm() {
       const arFromOrm = await objOrm.insert({
         data: {
-          remDesc: '',
           vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
