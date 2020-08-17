@@ -1,3 +1,12 @@
+This is reference implementation for Mr1f
+
+# How is this different from 1rMf
+
+1. Mr1f has add. 1rMf does not have add.
+2. Mr1f has multi change. 1rMf does not have multichange.
+3. Mr1f single row change can only be invoked from view layer action button. Since the row ID is needed.
+   1rMf change can be invked dierctly.
+
 # Q) How should data be saved before sending to DB when user is adding?
 
 ## Option 1: Local array

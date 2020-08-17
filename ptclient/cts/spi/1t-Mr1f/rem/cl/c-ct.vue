@@ -10,10 +10,6 @@
           :value="mfGetCopiedRowFldValue('description')"
           @input="mfSetCopiedRowFldValueUsingCache($event, 'description')"
         ></el-input>
-        <!-- 
-          TODO: Give same name like name ct
-          mfSetCopiedRowFldValueUsingCache -> Full form: Set reminder description in view state on delay 
-          -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
@@ -22,7 +18,10 @@
       </el-form-item>
     </el-form>
 
-    <!-- Goal: show history of this row -->
+    <!-- Goal: show history of this row
+    Since this is a single field hence we are showing the history. 
+    If it was multiple fields then we do not show the history
+     -->
     <el-timeline style="padding-inline-start: 20px;">
       <el-timeline-item
         v-for="row in cfTimeLineDataAr"
@@ -31,9 +30,10 @@
         :type="row.type"
       >
         {{ row.description }}
-        <!-- 
-          TODO: Since this is a reference implementation change to Desc that would be more widely applicable.
-          -->
+        <!-- The following come on right of the description that comes in the timeline 
+        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
+        and it is not "Sending to server"
+        -->
         <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
           >sending to server</span
         >
@@ -51,7 +51,8 @@ import objOrm from '../db/vuex-orm/orm.js'
 export default {
   /* 
     Q) Why is firstProp needed?
-        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder the user wants to change.
+        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder 
+        the user wants to change.
         So firstProp is the remID being changed. The remID is the primary key coming from vuexOrm
     
     Q) Why is this called firstProp
@@ -60,6 +61,8 @@ export default {
     
     Q) Why is firstprop not needed in 1r type Cts?
         Since we definitely know which row is being edited. I do not need to get a incoming ID.
+        In 1r Cts the change form can be invoked directly. But for Mr change can only be invoked by clicking on an 
+        action button in the view layer.
 
     Q) Why we are using 'formType' props?
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
