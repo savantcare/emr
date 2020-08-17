@@ -20,7 +20,11 @@
         </el-button-group>
       </div>
       <div class="grid-container">
-        <div v-for="rem in cfArOfRemForDisplayInTable" :key="rem.id">
+        <div
+          v-for="rem in cfArOfRemForDisplayInTable"
+          :key="rem.id"
+          :style="mfGetCssClassName(rem)"
+        >
           <!-- <el-button type="text">{{ rem.remDesc }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
           -->
@@ -124,13 +128,13 @@ export default {
       this.daSelectedRemForDiscontinue = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow, pIndex) {
-      const strOfNumber = pRow.row.vnRowStateInSession.toString()
+    mfGetCssClassName(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'unsaved-data'
+        return 'color: #E6A23C;'
       } else {
-        return ''
+        return 'color: #409EFF;'
       }
     },
   },
