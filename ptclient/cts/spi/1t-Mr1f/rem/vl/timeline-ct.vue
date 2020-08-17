@@ -40,9 +40,9 @@
           :timestamp="row.createdAt"
           :type="row.type"
           :tabindex="cfPosInArCardsInPtsOfVl * 100 + 2"
-          @keyup.native="mfKeyPress($event, row.id, row.remDesc)"
+          @keyup.native="mfKeyPress($event, row.id, row.description)"
         >
-          {{ row.remDesc }}
+          {{ row.description }}
           <el-button-group style="float: right;">
             <el-button
               type="primary"
@@ -86,7 +86,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -103,7 +103,7 @@ export default {
         let date = ''
         for (let i = 0; i < arFromOrm.length; i++) {
           obj = {}
-          obj.remDesc = arFromOrm[i].remDesc
+          obj.description = arFromOrm[i].description
           // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()

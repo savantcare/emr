@@ -18,7 +18,7 @@ export default class reminders extends rowManage {
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
       ptUUID: this.string(null),
-      remDesc: this.string(''),
+      description: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
       isAutoRem: this.number(0),

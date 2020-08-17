@@ -74,10 +74,10 @@ module.exports = (io, sequelize) => {
     // Replace existing row with new row
     try {
       // Update the existing object to discontinue.
-      // console.log(req.body.remDesc, req.params.id);
+      // console.log(req.body.description, req.params.id);
       await Reminder.update(
         {
-          remDesc: req.body.remDesc,
+          description: req.body.description,
         },
         {
           where: {

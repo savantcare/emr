@@ -11,7 +11,6 @@
              3. When saving data
                   I can again use numbers. No need to change from string to numbers.
 
-
 # Q2) On the client side should I work with seconds or microseconds?
 
           ROW_START and ROW_END are stored as timestamp(6). This mneans there is 6 digits of precision hence in microseconds
@@ -19,7 +18,6 @@
               https://mariadb.com/kb/en/temporal-data-tables/
 
            Goal is to do monimum number of conversions. Hence we will store the data the way it is given to us.
-
 
 # Q3) What should be the primary key?
 
@@ -35,7 +33,7 @@
                  ormRem.update({
                   where: uniqueRowID              // vuex-orm knows that it needs to match with primary key
                   data: {
-                    remDesc: pEvent,
+                    description: pEvent,
                     },
                   })
 
@@ -44,7 +42,7 @@
              ormRem.update({
               where: [remUUID, this.reminderRowStart],    // The index is bigger and it will take longer to match
               data: {
-                remDesc: pEvent,
+                description: pEvent,
                 },
               })
 

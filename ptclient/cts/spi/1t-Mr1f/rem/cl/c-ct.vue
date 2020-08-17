@@ -4,11 +4,11 @@
     <el-form>
       <el-form-item>
         <el-input
-          ref="remDesc"
+          ref="description"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetCopiedRowFldValue('remDesc')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'remDesc')"
+          :value="mfGetCopiedRowFldValue('description')"
+          @input="mfSetCopiedRowFldValueUsingCache($event, 'description')"
         ></el-input>
         <!-- 
           TODO: Give same name like name ct
@@ -30,7 +30,7 @@
         :timestamp="row.createdAt"
         :type="row.type"
       >
-        {{ row.remDesc }}
+        {{ row.description }}
         <!-- 
           TODO: Since this is a reference implementation change to Desc that would be more widely applicable.
           -->
@@ -102,7 +102,7 @@ export default {
         let date = ''
         for (let i = 0; i < arFromOrm.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.remDesc = arFromOrm[i].remDesc
+          rowInTimeLine.description = arFromOrm[i].description
           date = new Date(arFromOrm[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
@@ -141,7 +141,7 @@ export default {
         */
       const arFromOrm = await objOrm.insert({
         data: {
-          remDesc: pDesc,
+          description: pDesc,
           uuid: this.OrmUuidOfRowToChange,
           vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -153,14 +153,14 @@ export default {
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      if (this.$refs.remDesc && this.formType !== 'embedded') {
-        const lastElement = this.$refs.remDesc.length
-        // this if is needed since when there is only 1 element then remDesc is not an array of objects.
+      if (this.$refs.description && this.formType !== 'embedded') {
+        const lastElement = this.$refs.description.length
+        // this if is needed since when there is only 1 element then description is not an array of objects.
         // with a single form remdesc is just an object.
         if (!lastElement) {
-          this.$refs.remDesc.focus()
+          this.$refs.description.focus()
         } else {
-          this.$refs.remDesc[lastElement - 1].focus()
+          this.$refs.description[lastElement - 1].focus()
         }
       }
     },
@@ -254,8 +254,8 @@ export default {
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
           */
-        const remDesc = this.mfGetCopiedRowFldValue()
-        this.mfCopyRowToOrm(remDesc)
+        const description = this.mfGetCopiedRowFldValue()
+        this.mfCopyRowToOrm(description)
 
         const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
           method: 'PUT',
@@ -264,7 +264,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            remDesc: this.mfGetCopiedRowFldValue(),
+            description: this.mfGetCopiedRowFldValue(),
           }),
         })
         if (!response.ok) {

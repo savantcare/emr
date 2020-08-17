@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       ptUUID: {
         type: Sequelize.STRING,
       },
-      remDesc: {
+      description: {
         type: Sequelize.STRING,
       },
       notes: {

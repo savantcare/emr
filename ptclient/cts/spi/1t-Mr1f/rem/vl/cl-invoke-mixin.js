@@ -55,7 +55,7 @@ export default {
       const arDrawerData = []
       discontinuedRows.forEach((item) => {
         const arRow = []
-        arRow.content = item.remDesc
+        arRow.content = item.description
         const date = new Date(item.ROW_END * 1000)
         arRow.discontinuedAt = date.toLocaleString()
 
@@ -86,7 +86,7 @@ export default {
     mxOpenDPrompt(pOrmDataRowId) {
       const arResultsFromOrm = objOrm.find(pOrmDataRowId)
 
-      this.$prompt(arResultsFromOrm.remDesc, 'Discontinue reminder', {
+      this.$prompt(arResultsFromOrm.description, 'Discontinue reminder', {
         confirmButtonText: 'Discontinue',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter discontinue note',

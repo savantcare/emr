@@ -25,10 +25,10 @@
           :key="rem.id"
           :style="mfGetCssClassName(rem)"
         >
-          <!-- <el-button type="text">{{ rem.remDesc }}</el-button> 
+          <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
           -->
-          <div>{{ rem.remDesc }}</div>
+          <div>{{ rem.description }}</div>
           <el-button-group>
             <el-button
               type="primary"
@@ -76,7 +76,7 @@ export default {
 
     cfArOfRemForDisplayInTable() {
       // Whenever objOrm will change this will get called. Even when there are 100 rows in the table when objOrm rem changes this gets called once'
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('remDesc')
+      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -93,7 +93,7 @@ export default {
         const endDataRowIndex = startDataRowInidex + 10
         for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
-          obj.remDesc = arFromOrm[i].remDesc
+          obj.description = arFromOrm[i].description
           // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
