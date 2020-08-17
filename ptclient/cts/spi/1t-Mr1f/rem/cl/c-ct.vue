@@ -175,7 +175,7 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by setRemDesc
 
-        Q) WHat are the states for the paramters supplied to this Ct?
+        Q) What are the states for the paramters supplied to this Ct?
                  1. Repeat invocatoion => 1.1 no unsaved data 1.2 there is unsaved data
                  2. First time invocation => 2.1 no unsaved data 2.2 there is unsaved data
 
