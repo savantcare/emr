@@ -8,11 +8,11 @@
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
           :value="mfGetCopiedRowFldValue()"
-          @input="mfSetRemDescInVstOnDelay($event)"
+          @input="mfSetCopiedRowFldValueUsingCache($event)"
         ></el-input>
         <!-- 
           TODO: Give same name like name ct
-          mfSetRemDescInVstOnDelay -> Full form: Set reminder description in view state on delay 
+          mfSetCopiedRowFldValueUsingCache -> Full form: Set reminder description in view state on delay 
           -->
       </el-form-item>
       <el-form-item>
@@ -223,7 +223,7 @@ export default {
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc')
     },
-    mfSetRemDescInVstOnDelay(pEvent) {
+    mfSetCopiedRowFldValueUsingCache(pEvent) {
       const rowStatus = 34
       objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, 'remDesc', rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
