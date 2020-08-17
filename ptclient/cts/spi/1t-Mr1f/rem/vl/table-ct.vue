@@ -98,7 +98,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {

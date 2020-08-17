@@ -71,7 +71,7 @@
 
 <script>
 import clInvokeMixin from './cl-invoke-mixin.js'
-import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
 
 export default {
   mixins: [clInvokeMixin],

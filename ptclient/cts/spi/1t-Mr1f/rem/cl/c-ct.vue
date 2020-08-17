@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/rem.js'
+import objOrm from '@/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
 export default {
   /* 
     Q) Why is firstProp needed?
@@ -137,7 +137,7 @@ export default {
           uuid: this.uuid,
           vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          // ROW_END: already has a default value inside vuex-orm/rem.js
+          // ROW_END: already has a default value inside vuex-orm/orm.js
         },
       })
       this.vnIdOfCopiedRowFromOrm = arFromOrm.rem[0].id
