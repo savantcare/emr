@@ -134,18 +134,9 @@ export default {
      We want to show the history of the data. If I edit/change the original data then I will
      not know what the original data to show below the edit/change form.
      */
-    async mfCopyRowToOrm(pDesc) {
-      /* There is already a function in rowManage class that does this.  */
-      const arFromOrm = await objOrm.insert({
-        data: {
-          description: pDesc,
-          uuid: this.OrmUuidOfRowToChange,
-          vnRowStateInSession: 3, // For meaning of diff values read rem/db/vuex-orm/rems.js:71
-          ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          // ROW_END: already has a default value inside vuex-orm/orm.js
-        },
-      })
-      this.vnOrmIdOfCopiedRowBeingChanged = arFromOrm.rem[0].id
+    async mfCopyRowToOrm(pOrmRowToChange) {
+      this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.id)
+
       this.mfManageFocus()
     },
     mfManageFocus() {
@@ -232,7 +223,7 @@ export default {
         )
         if (ormIdOfCopiedRowBeingChanged === false) {
           // Adding a new blank record. Since this is temporal DB
-          this.mfCopyRowToOrm(arOrmRowToChange[pFldName])
+          this.mfCopyRowToOrm(arOrmRowToChange)
           this.mfManageFocus()
         } else {
           this.vnOrmIdOfCopiedRowBeingChanged = ormIdOfCopiedRowBeingChanged
@@ -263,7 +254,7 @@ export default {
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
           */
-        const description = this.mfGetCopiedRowFldValue()
+        const description = this.mfGetCopiedRowFldValue('description')
         this.mfCopyRowToOrm(description)
 
         const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
@@ -273,7 +264,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            description: this.mfGetCopiedRowFldValue(),
+            description: this.mfGetCopiedRowFldValue('description'),
           }),
         })
         if (!response.ok) {
@@ -349,7 +340,11 @@ export default {
         console.log('update error', ex)
       }
 
-      console.log('mfSendDataToServer-> ', this.OrmUuidOfRowToChange, this.mfGetCopiedRowFldValue())
+      console.log(
+        'mfSendDataToServer-> ',
+        this.OrmUuidOfRowToChange,
+        this.mfGetCopiedRowFldValue('description')
+      )
     },
   },
 }
