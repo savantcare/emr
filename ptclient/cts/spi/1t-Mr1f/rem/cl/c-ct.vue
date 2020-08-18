@@ -136,8 +136,6 @@ export default {
      */
     async mfCopyRowToOrm(pOrmRowToChange) {
       this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.id)
-
-      this.mfManageFocus()
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
@@ -190,7 +188,6 @@ export default {
       /*
           TODO: Instead of sequential programming make it act on state like in name Ct.
       */
-
       let arOrmRowToChange = []
       if (this.vnOrmIdOfRowToChange === this.firstProp) {
         /* 
@@ -229,7 +226,6 @@ export default {
           this.vnOrmIdOfCopiedRowBeingChanged = ormIdOfCopiedRowBeingChanged
         }
       }
-
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
@@ -238,7 +234,6 @@ export default {
       objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
-
     async mfSendDataToServer() {
       try {
         const ormRowIdToSendToServer = this.vnOrmIdOfCopiedRowBeingChanged
@@ -256,7 +251,7 @@ export default {
           */
         const description = this.mfGetCopiedRowFldValue('description')
         this.mfCopyRowToOrm(description)
-
+        this.mfManageFocus()
         const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
           method: 'PUT',
           headers: {
@@ -325,7 +320,6 @@ export default {
               ROW_END: Math.floor(Date.now() / 1000),
             },
           })
-
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           objOrm.update({
             where: ormRowIdToSendToServer,
@@ -333,13 +327,11 @@ export default {
               vnRowStateInSession: 34571,
             },
           })
-
           console.log('update success')
         }
       } catch (ex) {
         console.log('update error', ex)
       }
-
       console.log(
         'mfSendDataToServer-> ',
         this.OrmUuidOfRowToChange,
