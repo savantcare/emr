@@ -217,8 +217,10 @@ export default {
         this.mfManageFocus()
       } else {
         /* Inference: 
-        1. This is first time in this Ct lifetimes that it has been called with this parameter
+        1. This is first time in this Ct lifetime that it has been called with the OrmID parameter
         2. firstProp is the OrmID of the row that the user wants to change.
+        3. When C beside a row is clicked the control comes here for the first time. Then control goes to
+        'this.vnOrmIdOfRowToChange === this.firstProp' 2 times.
          */
         console.log('this.vnOrmIdOfRowToChange !== this.firstProp')
         this.vnOrmIdOfRowToChange = this.firstProp
