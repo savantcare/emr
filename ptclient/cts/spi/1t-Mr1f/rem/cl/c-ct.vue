@@ -87,9 +87,6 @@ export default {
     }
   },
   computed: {
-    cfRowInEditStateOnClient() {
-      return objOrm.fnGetAllChangeRowsInEditState()
-    },
     cfTimeLineDataAr() {
       const timelineDataArray = []
 
