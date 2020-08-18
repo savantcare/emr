@@ -77,11 +77,11 @@ export default {
         if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
               When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
-          const arFromOrm = objOrm.find(this.vnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
+          const arOrmRowToChange = objOrm.find(this.vnOrmIdOfRowToChange)
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
-            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arFromOrm.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
