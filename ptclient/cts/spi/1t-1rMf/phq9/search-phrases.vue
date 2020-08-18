@@ -22,9 +22,10 @@ export default {
       data: {
         value: 'phq9 - change',
         ctAbbr: 'hc',
-        ctToShow: 'spi/1t-1rMf/phq9cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'spi/1t-1rMf/phq9/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
+        ctWidthInCl: 'large',
       },
     })
   },
