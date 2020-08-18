@@ -42,7 +42,10 @@ export default {
 <style scoped>
 /* Ref: https://www.freecodecamp.org/news/a-beginners-guide-to-css-grid-3889612c4b35/
 
-Q) Why use grid and not use flex?
+Q) Why use grid and not use flex or breakpoints?
+Breakpoints is 7 year old tech. The breakpoints were small / medium / large.
+Flex is 4 year old tech
+Grid is 2 year old tech
 "There is no method in flexbox to tell items in one row to line up with items in the row above"
 Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items
 Hence using the grid system
