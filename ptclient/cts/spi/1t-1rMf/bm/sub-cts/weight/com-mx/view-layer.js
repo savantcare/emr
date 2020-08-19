@@ -100,13 +100,13 @@ export default {
     if (arFromOrm.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromOrm[0]
-      const vnOrmIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
-      if (vnOrmIdOfCopiedRowBeingChanged === false) {
+      const dnOrmIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
+      if (dnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = objOrm.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.id,
-          vnOrmIdOfCopiedRowBeingChanged
+          dnOrmIdOfCopiedRowBeingChanged
         )
       }
       this.isMounted = true
@@ -133,7 +133,7 @@ export default {
       const eventName = ['event-from-ct', objOrm.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,
-        this.dataFldsOfToChangeAndCopiedRowsAreSame.vnOrmIdOfCopiedRowBeingChanged
+        this.dataFldsOfToChangeAndCopiedRowsAreSame.dnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
