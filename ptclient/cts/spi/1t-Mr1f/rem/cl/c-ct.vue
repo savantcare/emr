@@ -1,9 +1,8 @@
-<!-- Reference implementation -->
+<!-- Reference implementation for Mr1f (Multiple row 1 field) -->
 <template>
   <div>
     <el-form>
       <el-form-item>
-        <!-- TODO: fn name should have beingChanged in it -->
         <el-input
           ref="description"
           type="textarea"
@@ -19,10 +18,7 @@
       </el-form-item>
     </el-form>
 
-    <!-- Goal: show history of this row
-    Since this is a single field hence we are showing the history. 
-    If it was multiple fields then we do not show the history
-     -->
+    <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
     <el-timeline style="padding-inline-start: 20px;">
       <el-timeline-item
         v-for="row in cfTimeLineDataAr"
@@ -31,7 +27,7 @@
         :type="row.type"
       >
         {{ row.description }}
-        <!-- The following come on right of the description that comes in the timeline 
+        <!-- The following come on right of the description that comes in the timeline. 
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
@@ -56,21 +52,21 @@ export default {
         the user wants to change.
         So firstProp is the remID being changed. The remID is the primary key coming from vuexOrm
     
-    Q) Why is this called firstProp
+    Q) Why is this called firstProp?
         This Ct is called in a for loop. In the same for loop other Ct are also called.
-        So the param name has to be generic and cannot be unique to each Ct
+        So the prop name has to be generic and cannot be unique to each Ct
     
     Q) Why is firstprop not needed in 1r type Cts?
         Since we definitely know which row is being edited. I do not need to get a incoming ID.
         In 1r Cts the change form can be invoked directly. But for Mr change can only be invoked by clicking on an 
-        action button in the view layer.
+        action button in the view layer. Since when action button in VL is clicked i get the ormID of that row
 
     Q) Why we are using 'formType' props?
         This change component has a method named 'mfManageFocus' and it is focusing a form field. 
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
-        The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider malformed. 
-        To prevent this malformation we are using 'formType' prop, passing 'mc' string from multichange component and within 'mfManageFocus' method we are bypassing the entire 
-        logic if formType value is set to 'mc'.
+        The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work. 
+        To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfManageFocus' method we are bypassing the entire 
+        logic if formType value is set to 'embedded'.
 
     Q) What are the diff possible values for formtype?
               1. stand-alone -> it has its own controls
@@ -83,8 +79,8 @@ export default {
     return {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
-      dnOrmIdOfRowToChange: this.firstProp, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
-      dnOrmIdOfCopiedRowBeingChanged: -1,
+      dnOrmIdOfRowToChange: this.firstProp,
+      dnOrmIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
     }
   },
   computed: {
@@ -138,7 +134,6 @@ export default {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
         this.dnOrmIdOfRowToChange = pNVal
         this.dnOrmIdOfCopiedRowBeingChanged = null
-        console.log(pNVal, pOVal)
       },
     },
 
