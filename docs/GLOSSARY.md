@@ -35,10 +35,10 @@ In the following examples age is a function inside a component
 
 ### Component Prop (similar to function parameters)
 
-- psRem: prop of type string called age in component.
-- pnRem: prop of type number called age in the component
-- paRem: prop of type array called age in the component
-- poRem: prop of type object called age in the component
+- ppsRem: prop of type string called age in component.
+- ppnRem: prop of type number called age in the component
+- ppaRem: prop of type array called age in the component
+- ppoRem: prop of type object called age in the component
 
 ### Component Data (similar to local variables)
 

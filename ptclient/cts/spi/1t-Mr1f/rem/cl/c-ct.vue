@@ -132,7 +132,7 @@ export default {
   watch: {
     firstProp: {
       immediate: true,
-      async handler(pNVal, pOVal) {
+      handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
         this.dnOrmIdOfRowToChange = pNVal
         this.dnOrmIdOfCopiedRowBeingChanged = null
