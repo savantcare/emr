@@ -81,9 +81,9 @@ export default {
   data() {
     return {
       /* Why is UUID field needed here but not needed in case of weight */
-      OrmUuidOfRowToChange: '',
-      vnOrmIdOfRowToChange: -1, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
-      vnOrmIdOfCopiedRowBeingChanged: -1,
+      dnOrmUuidOfRowToChange: '',
+      dnOrmIdOfRowToChange: this.firstProp, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
+      dnOrmIdOfCopiedRowBeingChanged: -1,
     }
   },
   computed: {
@@ -93,10 +93,10 @@ export default {
       // Insight: to create timeline the uuid will be same but id will be different.
       const arFromOrm = objOrm
         .query()
-        .where('uuid', this.OrmUuidOfRowToChange)
+        .where('uuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
-      // console.log('Time line for uuid', this.OrmUuidOfRowToChange)
+      // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange)
       if (arFromOrm.length) {
         let rowInTimeLine = []
         let date = ''
@@ -130,53 +130,55 @@ export default {
   },
 
   watch: {
+    firstProp: {
+      immediate: true,
+      async handler(pNVal, pOVal) {
+        // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
+        this.dnOrmIdOfRowToChange = pNVal
+        this.dnOrmIdOfCopiedRowBeingChanged = null
+        console.log(pNVal, pOVal)
+      },
+    },
+
     /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
-    By the time this watchFn exits this.vnOrmIdOfCopiedRowBeingChanged will have a valid value */
-    vnOrmIdOfCopiedRowBeingChanged: {
+    By the time this watchFn exits this.dnOrmIdOfCopiedRowBeingChanged will have a valid value */
+    dnOrmIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
       /*  In V1 this was part of mounted, that is sequential programming,
           In V2 this is part of watch, this is "act on state" programming.
 
           When called first time:
-            pOrmIdOfCopiedRowBeingChangedNVal = -1 since data section sets that value
-            pOrmIdOfCopiedRowBeingChangedOVal is undefined
+            pNVal = -1 since data section sets that value
+            pOVal is undefined
 
           When called second time:
-            pOrmIdOfCopiedRowBeingChangedNVal = null since any other function that wants a new row being copied sets it to null
-            pOrmIdOfCopiedRowBeingChangedOVal is the old value of pOrmIdOfCopiedRowBeingChangedNVal. Hence previous row that was being edited  */
+            pNVal = null since any other function that wants a new row being copied sets it to null
+            pOVal is the old value of pNVal. Hence previous row that was being edited  */
 
-      async handler(pOrmIdOfCopiedRowBeingChangedNVal, pOrmIdOfCopiedRowBeingChangedOVal) {
+      async handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value
-        if (this.vnOrmIdOfRowToChange === -1) return // Data has not finished loading in the created()
+        if (this.dnOrmIdOfRowToChange === -1) return // Data has not finished loading in the created()
 
-        if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
-          /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
-              When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
-          const arOrmRowToChange = objOrm.find(this.vnOrmIdOfRowToChange)
+        if (pNVal === null) {
+          /* When called first time this.dnOrmIdOfRowToChange is assigned in the mounted event function
+              When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
+          const arOrmRowToChange = objOrm.find(this.dnOrmIdOfRowToChange)
+          this.dnOrmUuidOfRowToChange = arOrmRowToChange.uuid
           const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
-            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
+            this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
           } else {
-            this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
+            this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
       },
     },
   },
-  mounted() {
-    this.vnOrmIdOfRowToChange = this.firstProp
-    this.vnOrmIdOfCopiedRowBeingChanged = null
-  },
-  async created() {},
-
   methods: {
-    /* Why is the row copied and then edited/changed?
-     We want to show the history of the data. If I edit/change the original data then I will
-     not know what the original data to show below the edit/change form.
-     */
+    /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.id)
+      this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.id)
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
@@ -208,35 +210,23 @@ export default {
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by setRemDesc 
          */
       // From this point on the state is same for change and add
-      return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
+      return objOrm.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
       const rowStatus = 34
-      objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
+      objOrm.fnSetFldValue(pEvent, this.dnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
     async mfSendDataToServer() {
       try {
-        const ormRowIdToSendToServer = this.vnOrmIdOfCopiedRowBeingChanged
         await objOrm.update({
-          where: ormRowIdToSendToServer,
+          where: this.dnOrmIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: '345',
           },
         })
 
-        /*
-            Goal:
-            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
-            When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
-
-            TODO: The following 3 lines should be executed when there is success
-          */
-        this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
-        this.vnOrmIdOfCopiedRowBeingChanged = null
-        this.mfManageFocus()
-
-        const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
+        const response = await fetch(objOrm.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -246,6 +236,19 @@ export default {
             description: this.mfGetCopiedRowFldValue('description'),
           }),
         })
+
+        /*
+            Goal:
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
+            When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
+
+            TODO: The following 2nd line should be delted and the remaining 3 lines should be executed when there is success
+          */
+        this.dnOrmIdOfRowToChange = this.dnOrmIdOfCopiedRowBeingChanged
+        const ormRowIdToSendToServer = this.dnOrmIdOfCopiedRowBeingChanged
+        this.dnOrmIdOfCopiedRowBeingChanged = null
+        this.mfManageFocus()
+
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           objOrm.update({
@@ -258,7 +261,7 @@ export default {
         } else {
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
-            vnOrmIdOfRowToChange is = firstProp. So vnOrmIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+            dnOrmIdOfRowToChange is = firstProp. So dnOrmIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
               option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
               option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
@@ -281,7 +284,7 @@ export default {
             A)
                 We are following below mentioned logic in where clause of objOrm update:
                 -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
-                  "exp A" -> search record from objOrm whose uuid = this.OrmUuidOfRowToChange
+                  "exp A" -> search record from objOrm whose uuid = this.dnOrmUuidOfRowToChange
                   "exp B1" -> "vnRowStateInSession === 1",
                       objOrm record that came from database (Case: User changes an existing record)
                   "exp B2" -> "vnRowStateInSession === 34571", 
@@ -292,7 +295,7 @@ export default {
           await objOrm.update({
             where: (record) => {
               return (
-                record.uuid === this.OrmUuidOfRowToChange &&
+                record.uuid === this.dnOrmUuidOfRowToChange &&
                 (record.vnRowStateInSession === 1 /* Came from DB */ ||
                 record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
@@ -318,7 +321,7 @@ export default {
       }
       console.log(
         'mfSendDataToServer-> ',
-        this.OrmUuidOfRowToChange,
+        this.dnOrmUuidOfRowToChange,
         this.mfGetCopiedRowFldValue('description')
       )
     },
