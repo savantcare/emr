@@ -7,27 +7,27 @@ and graph related doc is at weight
       <el-form-item>
         <el-input
           placeholder="Height in inches"
-          :value="mfGetCopiedRowFldValue('heightInInches')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'heightInInches')"
+          :value="mfGetCopiedRowBeingChangedFldVal('heightInInches')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'heightInInches')"
         >
         </el-input>
         <!-- Why is valur format timestamp? see weight/cl/c-ct.vue -->
         <el-date-picker
-          :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
+          :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="timestamp"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
         >
         </el-date-picker>
         <el-input
           placeholder="Notes"
           type="textarea"
           :autosize="{ minRows: 2 }"
-          :value="mfGetCopiedRowFldValue('notes')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
+          :value="mfGetCopiedRowBeingChangedFldVal('notes')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
         ></el-input>
       </el-form-item>
       <el-form-item>

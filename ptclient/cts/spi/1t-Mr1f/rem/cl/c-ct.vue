@@ -8,8 +8,8 @@
           ref="description"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetCopiedRowFldValue('description')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'description')"
+          :value="mfGetCopiedRowBeingChangedFldVal('description')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'description')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -195,12 +195,12 @@ export default {
         }
       }
     },
-    mfGetCopiedRowFldValue(pFldName) {
+    mfGetCopiedRowBeingChangedFldVal(pFldName) {
       /*
         Q) Why is this called twice when this page is loaded?
          When C is first clicked and the control comes here. This fn is called twice
          Since following console.log is written twice.
-         If I remove :value="mfGetCopiedRowFldValue()" then this fn is called 0 times
+         If I remove :value="mfGetCopiedRowBeingChangedFldVal()" then this fn is called 0 times
 
          Why?
          It is a default browser behavior. Clicking on the <label> will trigger 2 clicks, one for <label> and one for <input>.
@@ -214,7 +214,7 @@ export default {
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
-    mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
+    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
       objOrm.fnSetFldValue(pEvent, this.dnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
@@ -235,7 +235,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            description: this.mfGetCopiedRowFldValue('description'),
+            description: this.mfGetCopiedRowBeingChangedFldVal('description'),
           }),
         })
 
@@ -321,7 +321,7 @@ export default {
       console.log(
         'mfSendDataToServer-> ',
         this.dnOrmUuidOfRowToChange,
-        this.mfGetCopiedRowFldValue('description')
+        this.mfGetCopiedRowBeingChangedFldVal('description')
       )
     },
   },

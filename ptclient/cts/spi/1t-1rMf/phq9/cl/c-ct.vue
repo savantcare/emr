@@ -31,7 +31,7 @@ Code synced with ref implementation on 18th august 2020
               <el-col :span="12">
                 <el-radio-group
                   :value="mfGetCopiedRowFldNumericValue(question.name)"
-                  @input="mfSetCopiedRowFldValueUsingCache($event, question.name)"
+                  @input="mfSetCopiedRowBeingChangedFldVal($event, question.name)"
                 >
                   <el-radio :label="0">Not at all</el-radio>
                   <el-radio :label="1">Several days</el-radio>
@@ -51,7 +51,7 @@ Code synced with ref implementation on 18th august 2020
               <el-col :span="12">
                 <el-radio-group
                   :value="mfGetCopiedRowFldNumericValue(question.name)"
-                  @input="mfSetCopiedRowFldValueUsingCache($event, question.name)"
+                  @input="mfSetCopiedRowBeingChangedFldVal($event, question.name)"
                 >
                   <el-radio :label="0">Not difficult at all</el-radio>
                   <el-radio :label="1">Somewhat difficult</el-radio>

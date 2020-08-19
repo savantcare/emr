@@ -21,8 +21,8 @@ Code synced with ref implementation on 4th august 2020
           <el-form-item>
             <el-input
               placeholder="OxygenSaturation in pounds"
-              :value="mfGetCopiedRowFldValue('oxygenSaturationInSpo2')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'oxygenSaturationInSpo2')"
+              :value="mfGetCopiedRowBeingChangedFldVal('oxygenSaturationInSpo2')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'oxygenSaturationInSpo2')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -30,21 +30,21 @@ Code synced with ref implementation on 4th august 2020
              value-format="timestamp"
         -->
             <el-date-picker
-              :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
+              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
               type="date"
               placeholder="Pick a day"
               :picker-options="pickerOptions"
               format="yyyy/MM/dd"
               value-format="timestamp"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
             >
             </el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
               :autosize="{ minRows: 2 }"
-              :value="mfGetCopiedRowFldValue('notes')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
+              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
             ></el-input>
           </el-form-item>
           <el-form-item>

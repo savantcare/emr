@@ -21,8 +21,8 @@ Code synced with ref implementation on 4th august 2020
           <el-form-item>
             <el-input
               placeholder="Date of birth"
-              :value="mfGetCopiedRowFldValue('dateOfBirthInMilliseconds')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'dateOfBirthInMilliseconds')"
+              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -33,8 +33,8 @@ Code synced with ref implementation on 4th august 2020
               placeholder="Notes"
               type="textarea"
               :autosize="{ minRows: 2 }"
-              :value="mfGetCopiedRowFldValue('notes')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
+              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
             ></el-input>
           </el-form-item>
           <el-form-item>

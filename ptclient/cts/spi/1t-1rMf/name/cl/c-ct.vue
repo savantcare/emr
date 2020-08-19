@@ -5,19 +5,19 @@
       <el-form-item>
         <el-input
           placeholder="First name"
-          :value="mfGetCopiedRowFldValue('firstName')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'firstName')"
+          :value="mfGetCopiedRowBeingChangedFldVal('firstName')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'firstName')"
         >
         </el-input>
         <el-input
           placeholder="Middle name"
-          :value="mfGetCopiedRowFldValue('middleName')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'middleName')"
+          :value="mfGetCopiedRowBeingChangedFldVal('middleName')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'middleName')"
         ></el-input>
         <el-input
           placeholder="Last name"
-          :value="mfGetCopiedRowFldValue('lastName')"
-          @input="mfSetCopiedRowFldValueUsingCache($event, 'lastName')"
+          :value="mfGetCopiedRowBeingChangedFldVal('lastName')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'lastName')"
         ></el-input>
       </el-form-item>
       <el-form-item>

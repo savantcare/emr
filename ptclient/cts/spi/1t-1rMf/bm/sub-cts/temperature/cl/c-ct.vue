@@ -9,26 +9,26 @@ For graph related work the reference implementation is weight.
           <el-form-item>
             <el-input
               placeholder="Temperature in farehnite"
-              :value="mfGetCopiedRowFldValue('temperatureInFarehnite')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'temperatureInFarehnite')"
+              :value="mfGetCopiedRowBeingChangedFldVal('temperatureInFarehnite')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'temperatureInFarehnite')"
             >
             </el-input>
             <el-date-picker
-              :value="mfGetCopiedRowFldValue('timeOfMeasurement')"
+              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
               type="date"
               placeholder="Pick a day"
               :picker-options="pickerOptions"
               format="yyyy/MM/dd"
               value-format="timestamp"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'timeOfMeasurement')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
             >
             </el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
               :autosize="{ minRows: 2 }"
-              :value="mfGetCopiedRowFldValue('notes')"
-              @input="mfSetCopiedRowFldValueUsingCache($event, 'notes')"
+              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
             ></el-input>
           </el-form-item>
           <el-form-item>

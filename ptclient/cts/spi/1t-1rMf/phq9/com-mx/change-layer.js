@@ -130,7 +130,7 @@ export default {
       this.vnOrmIdOfCopiedRowBeingChanged = null
       objOrm.arOrmRowsCached = []
     },
-    mfGetCopiedRowFldValue(pFldName) {
+    mfGetCopiedRowBeingChangedFldVal(pFldName) {
       const value = objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
@@ -139,7 +139,7 @@ export default {
       console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
       return parseInt(value)
     },
-    mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
+    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
       objOrm.fnSetFldValue(pEvent, this.vnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate()

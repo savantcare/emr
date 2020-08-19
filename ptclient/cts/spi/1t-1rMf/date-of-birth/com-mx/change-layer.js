@@ -175,7 +175,7 @@ export default {
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
-    mfGetCopiedRowFldValue(pFldName) {
+    mfGetCopiedRowBeingChangedFldVal(pFldName) {
       /*
         TODO: Why is this called twice for each fld?
         console.log('When the Ct is first loaded let us see how many times if getfld called');
@@ -184,7 +184,7 @@ export default {
       const value = objOrm.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
-    mfSetCopiedRowFldValueUsingCache(pEvent, pFldName) {
+    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
       objOrm.fnSetFldValue(pEvent, this.dnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
