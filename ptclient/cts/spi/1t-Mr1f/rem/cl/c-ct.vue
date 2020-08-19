@@ -237,22 +237,10 @@ export default {
           }),
         })
 
-        /*
-            Goal:
-            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
-            When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
-
-            TODO: The following 2nd line should be delted and the remaining 3 lines should be executed when there is success
-          */
-        this.dnOrmIdOfRowToChange = this.dnOrmIdOfCopiedRowBeingChanged
-        const ormRowIdToSendToServer = this.dnOrmIdOfCopiedRowBeingChanged
-        this.dnOrmIdOfCopiedRowBeingChanged = null
-        this.mfManageFocus()
-
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           objOrm.update({
-            where: ormRowIdToSendToServer,
+            where: this.dnOrmIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 3458,
             },
@@ -309,13 +297,22 @@ export default {
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           objOrm.update({
-            where: ormRowIdToSendToServer,
+            where: this.dnOrmIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 34571,
             },
           })
           console.log('update success')
         }
+
+        /*
+            Goal:
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
+            When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
+          */
+        this.dnOrmIdOfRowToChange = this.dnOrmIdOfCopiedRowBeingChanged
+        this.dnOrmIdOfCopiedRowBeingChanged = null
+        this.mfManageFocus()
       } catch (ex) {
         console.log('update error', ex)
       }
