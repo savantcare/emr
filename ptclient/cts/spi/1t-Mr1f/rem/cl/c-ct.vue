@@ -74,12 +74,12 @@ export default {
               3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
     */
 
-  props: ['firstProp', 'formType'],
+  props: ['firstProp', 'formType'], // firstProp is the OrmIdOfRowToChange
   data() {
     return {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
-      dnOrmIdOfRowToChange: this.firstProp,
+      dnOrmIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       dnOrmIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
     }
   },
@@ -141,8 +141,8 @@ export default {
     By the time this watchFn exits this.dnOrmIdOfCopiedRowBeingChanged will have a valid value */
     dnOrmIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
-      /*  In V1 this was part of mounted, that is sequential programming,
-          In V2 this is part of watch, this is "act on state" programming.
+      /*  In V1 getting id of copied row was part of mounted, that is sequential programming,
+          In V2 getting id of copied row is part of watch, this is "act on state" programming.
 
           When called first time:
             pNVal = -1 since data section sets that value
@@ -154,16 +154,16 @@ export default {
 
       async handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value
-        if (this.dnOrmIdOfRowToChange === -1) return // Data has not finished loading in the created()
+        if (this.dnOrmIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnOrmIdOfRowToChange. Look at date section.
 
         if (pNVal === null) {
-          /* When called first time this.dnOrmIdOfRowToChange is assigned in the mounted event function
+          /* When called first time this.dnOrmIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
           const arOrmRowToChange = objOrm.find(this.dnOrmIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.uuid
           const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
-            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
+            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
             this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
           } else {
             this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
@@ -191,12 +191,7 @@ export default {
       }
     },
     mfGetCopiedRowBeingChangedFldVal(pFldName) {
-      /*
-        Q) Why is this called twice when this page is loaded?
-         When C is first clicked and the control comes here. This fn is called twice
-         Since following console.log is written twice.
-         If I remove :value="mfGetCopiedRowBeingChangedFldVal()" then this fn is called 0 times
-
+      /* When C is first clicked and the control comes here. This fn is called twice
          Why?
          It is a default browser behavior. Clicking on the <label> will trigger 2 clicks, one for <label> and one for <input>.
          Ref: https://stackoverflow.com/a/58724163
@@ -204,8 +199,7 @@ export default {
          This fn is fired once when the property is first defined with undefined value and then is fired twice when a value is assigned to it.
 
         Q) When to get from ORM and when from cache?
-         Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by setRemDesc 
-         */
+         Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
