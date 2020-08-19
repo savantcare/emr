@@ -78,10 +78,6 @@
 import objOrm from '../db/vuex-orm/orm.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
-  data() {
-    return {}
-  },
-
   computed: {
     cfGetOrmNewRowsInEditState() {
       return objOrm.fnGetNewRowsInEditState()
@@ -99,11 +95,9 @@ export default {
       return objOrm.fnGetNewRowsInApiSendingState()
     },
   },
-
-  mounted() {},
-
   methods: {
     async mfAddEmptyRowInOrm() {
+      // TODO: this should be part of base class
       const arFromOrm = await objOrm.insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md

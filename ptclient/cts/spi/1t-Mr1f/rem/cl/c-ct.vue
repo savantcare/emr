@@ -3,6 +3,7 @@
   <div>
     <el-form>
       <el-form-item>
+        <!-- TODO: fn name should have beingChanged in it -->
         <el-input
           ref="description"
           type="textarea"
@@ -80,7 +81,7 @@ export default {
   props: ['firstProp', 'formType'],
   data() {
     return {
-      /* Why is UUID field needed here but not needed in case of weight */
+      /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
       dnOrmIdOfRowToChange: this.firstProp, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
       dnOrmIdOfCopiedRowBeingChanged: -1,
@@ -90,6 +91,7 @@ export default {
     cfTimeLineDataAr() {
       const timelineDataArray = []
 
+      // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
       const arFromOrm = objOrm
         .query()
