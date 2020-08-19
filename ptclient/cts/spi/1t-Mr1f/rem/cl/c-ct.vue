@@ -82,8 +82,8 @@ export default {
     return {
       /* Why is UUID field needed here but not needed in case of weight */
       OrmUuidOfRowToChange: '',
-      vnOrmIdOfRowToChange: 0,
-      vnOrmIdOfCopiedRowBeingChanged: 0,
+      vnOrmIdOfRowToChange: -1, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
+      vnOrmIdOfCopiedRowBeingChanged: -1,
     }
   },
   computed: {
@@ -128,7 +128,48 @@ export default {
       return timelineDataArray
     },
   },
-  mounted() {},
+
+  watch: {
+    /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
+    By the time this watchFn exits this.vnOrmIdOfCopiedRowBeingChanged will have a valid value */
+    vnOrmIdOfCopiedRowBeingChanged: {
+      immediate: true, // setting this calls this watch when the Ct is first initialized
+      /*  In V1 this was part of mounted, that is sequential programming,
+          In V2 this is part of watch, this is "act on state" programming.
+
+          When called first time:
+            pOrmIdOfCopiedRowBeingChangedNVal = -1 since data section sets that value
+            pOrmIdOfCopiedRowBeingChangedOVal is undefined
+
+          When called second time:
+            pOrmIdOfCopiedRowBeingChangedNVal = null since any other function that wants a new row being copied sets it to null
+            pOrmIdOfCopiedRowBeingChangedOVal is the old value of pOrmIdOfCopiedRowBeingChangedNVal. Hence previous row that was being edited  */
+
+      async handler(pOrmIdOfCopiedRowBeingChangedNVal, pOrmIdOfCopiedRowBeingChangedOVal) {
+        // NVal => New value and OVal => Old Value
+        if (this.vnOrmIdOfRowToChange === -1) return // Data has not finished loading in the created()
+
+        if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
+          /* When called first time this.vnOrmIdOfRowToChange is assigned in the created event function
+              When called 2nd time this.vnOrmIdOfRowToChange is the previous row that just got saved. */
+          const arOrmRowToChange = objOrm.find(this.vnOrmIdOfRowToChange)
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid) // For a given UUID there can be only 1 row in edit state.
+          if (vnExistingChangeRowId === false) {
+            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
+            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
+          } else {
+            this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
+          }
+        }
+      },
+    },
+  },
+  mounted() {
+    this.vnOrmIdOfRowToChange = this.firstProp
+    this.vnOrmIdOfCopiedRowBeingChanged = null
+  },
+  async created() {},
+
   methods: {
     /* Why is the row copied and then edited/changed?
      We want to show the history of the data. If I edit/change the original data then I will
@@ -164,68 +205,8 @@ export default {
          This fn is fired once when the property is first defined with undefined value and then is fired twice when a value is assigned to it.
 
         Q) When to get from ORM and when from cache?
-         Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by setRemDesc
-
-        Q) What are the states for the paramters supplied to this Ct?
-                 1. Repeat invocatoion => 1.1 no unsaved data 1.2 there is unsaved data
-                 2. First time invocation => 2.1 no unsaved data 2.2 there is unsaved data
-
-        Q) What are the different times this function is called?
-          1. User types multiple keystrokes. This fn is called for each keystroke
-          2. User click C from the table. Uses esc key to closes the tab and then again clicks C
-          3. User click C from table clicks cross to exit the tab and then again click C
-
-          1st click on C -> 1 fti / 1 ri
-                      each keystroke -> ri 2 times
-                                                    close tab by clicking outside modal ->
-                                                                                then click same C -> NO  fti / ri
-                                                                                then click different C -> 1 fti / 1 ri
-                                                    close tab by clicking cross -> then click same C -> -> 1 fti / 1 ri
-        */
-
-      // Goal: decide if it is repeat or first invocation
-
-      /*
-          TODO: Instead of sequential programming make it act on state like in name Ct.
-      */
-      let arOrmRowToChange = []
-      if (this.vnOrmIdOfRowToChange === this.firstProp) {
-        /* 
-        If 5 times this Ct is invoked then there are 5 different instances of this Ct in the memory
-        When this.vnOrmIdOfRowToChange === this.firstProp the following inferences can be made:
-        1. this.OrmUuidOfRowToChange is already existing 
-        2. A copied row where the user can type is already existing
-        3. User clicked on C beside the same row.
-        4. This is repeat invocation
-        */
-        console.log('this.vnOrmIdOfRowToChange === this.firstProp')
-        this.mfManageFocus()
-      } else {
-        /* Inference: 
-        1. This is first time in this Ct lifetime that it has been called with the OrmID parameter
-        2. firstProp is the OrmID of the row that the user wants to change.
-        3. When C beside a row is clicked the control comes here for the first time. Then control goes to
-        'this.vnOrmIdOfRowToChange === this.firstProp' 2 times.
+         Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by setRemDesc 
          */
-        console.log('this.vnOrmIdOfRowToChange !== this.firstProp')
-        this.vnOrmIdOfRowToChange = this.firstProp
-        arOrmRowToChange = objOrm.find(this.firstProp)
-        this.OrmUuidOfRowToChange = arOrmRowToChange.uuid
-        /* Find if there is unsaved data for this.OrmUuidOfRowToChange
-          In an alternative design if I sent the ormID then that Fn will need to first find the OrmUuid associated with that orm.id and
-          then run a query if a record with same uuid (there might be 100's) had a row status indicating change.
-        */
-        const ormIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(
-          this.OrmUuidOfRowToChange
-        )
-        if (ormIdOfCopiedRowBeingChanged === false) {
-          // Adding a new blank record. Since this is temporal DB
-          this.mfCopyRowToOrm(arOrmRowToChange)
-          this.mfManageFocus()
-        } else {
-          this.vnOrmIdOfCopiedRowBeingChanged = ormIdOfCopiedRowBeingChanged
-        }
-      }
       // From this point on the state is same for change and add
       return objOrm.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
     },
@@ -248,10 +229,13 @@ export default {
             Goal:
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into objOrm and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in objOrm for further change.
+
+            TODO: The following 3 lines should be executed when there is success
           */
-        const description = this.mfGetCopiedRowFldValue('description')
-        this.mfCopyRowToOrm(description)
+        this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
+        this.vnOrmIdOfCopiedRowBeingChanged = null
         this.mfManageFocus()
+
         const response = await fetch(objOrm.apiUrl + '/' + this.OrmUuidOfRowToChange, {
           method: 'PUT',
           headers: {
