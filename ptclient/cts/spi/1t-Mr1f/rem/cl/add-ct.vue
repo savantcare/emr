@@ -79,6 +79,7 @@ import objOrm from '../db/vuex-orm/orm.js' // Path without @ can be resolved by 
 
 export default {
   computed: {
+    // objOrm functions can not be directly called from template. hence computed functions have been defined.
     cfGetOrmNewRowsInEditState() {
       return objOrm.fnGetNewRowsInEditState()
     },
@@ -147,7 +148,7 @@ export default {
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
         The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from objOrm ie; 'vnRowStateInSession' = 24
       */
-      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows
+      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of objOrm since get benefit of caching.
       if (arFromOrm.length) {
         console.log('unsaved data found', arFromOrm)
         for (let i = 0; i < arFromOrm.length; i++) {
