@@ -5,7 +5,7 @@ The tree structure is:
 
 Carausel                           |
   -- Carausel item                 |   These are the slides
-    -- Cards                       |   Each card is a reminder
+    -- Cards                       |   Each card is a phoneNumber
 
 
 Performance:
@@ -70,7 +70,7 @@ How to solve this?
       </el-carousel-item>
     </el-carousel>
   </div>
-  <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
+  <div v-else><el-alert title="No phoneNumber found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
 import objOrm from '../db/vuex-orm/orm.js'

@@ -48,7 +48,7 @@ import objOrm from '../db/vuex-orm/orm.js'
 export default {
   /* 
     Q) Why is firstProp needed?
-        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder 
+        There are many phone numbers when a phoneNumber is to be changed there needs to be a way to find out which phoneNumber 
         the user wants to change.
         So firstProp is the remID being changed. The remID is the primary key coming from vuexOrm
     
@@ -238,7 +238,7 @@ export default {
           })
           console.log('Failed to update')
         } else {
-          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
+          /* Goal: Update old version of the phoneNumber's ROW_END to current timestamp if change is successful 
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
             dnOrmIdOfRowToChange is = firstProp. So dnOrmIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?

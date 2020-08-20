@@ -81,7 +81,7 @@ export default {
   computed: {
     cfPosInArCardsInPtsOfVl() {
       const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'reminders')
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'phone numbers')
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },

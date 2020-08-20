@@ -23,6 +23,7 @@ import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
 import Scr from '@/models/Screening'
 import Dxa from '@/models/Dxa'
+import phoneNumbers from '@/cts/spi/1t-MrMf/phone-numbers/db/vuex-orm/orm.js'
 
 const database = new Database()
 
@@ -48,5 +49,6 @@ database.register(Goal)
 database.register(Scr)
 database.register(CtLifeCycle)
 database.register(Dxa)
+database.register(phoneNumbers)
 
 export default database

@@ -13,7 +13,7 @@
               type="textarea"
               :class="mfGetCssClassName(ormRow.id)"
               :autosize="{ minRows: 2, maxRows: 10 }"
-              placeholder="Please enter the reminder .."
+              placeholder="Please enter the phoneNumber .."
               :value="mfGetFldValue(ormRow.id, 'description')"
               @input="mfSetFldValueUsingCache($event, ormRow.id, 'description')"
             ></el-input>

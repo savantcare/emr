@@ -7,18 +7,18 @@ export default {
   methods: {
     mxOpenACtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'add reminder',
+        searchTerm: 'add phoneNumber',
       })
     },
     mxOpenMCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'multi change reminder',
+        searchTerm: 'multi change phoneNumber',
       })
     },
     mxOpenDDialog() {
-      let confirmMessage = 'Are you sure you want to discontinue all the selected reminders?'
+      let confirmMessage = 'Are you sure you want to discontinue all the selected phone numbers?'
       if (this.daSelectedRemForDiscontinue.length === 0) {
-        confirmMessage = 'No reminder selected. Please select at least one reminder.'
+        confirmMessage = 'No phoneNumber selected. Please select at least one phoneNumber.'
       }
 
       this.$confirm(confirmMessage, 'Multi discontinue', {
@@ -34,13 +34,14 @@ export default {
             if (status.success > 0) {
               this.$message({
                 type: 'success',
-                message: status.success + ' reminder discontinued.',
+                message: status.success + ' phoneNumber discontinued.',
               })
             }
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message: status.failed + ' reminder failed to discontinue. Please try again later.',
+                message:
+                  status.failed + ' phoneNumber failed to discontinue. Please try again later.',
               })
             }
           }
@@ -64,7 +65,7 @@ export default {
       console.log('discontinuedRows====>', discontinuedRows)
       this.$store.commit('mtfSetDiscontinuedDrawerValue', {
         visibility: true,
-        drawerTitle: 'Discontinued reminders',
+        drawerTitle: 'Discontinued phone numbers',
         drawerData: arDrawerData,
       })
     },
@@ -74,19 +75,19 @@ export default {
        Option 1: Send the whole data row
        Option 2: Send just the ID in a prop.
         +ves:
-          1. At some places I may need to call change where I have the reminder ID but
+          1. At some places I may need to call change where I have the phoneNumber ID but
           i do not have the remainder of the data row. Hence this makes the Change Ct possible
           to use at other places
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'change reminder', pPropsToGiveToCt: pOrmDataRowId }
+      const payload = { searchTerm: 'change phoneNumber', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
       const arResultsFromOrm = objOrm.find(pOrmDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Discontinue reminder', {
+      this.$prompt(arResultsFromOrm.description, 'Discontinue phoneNumber', {
         confirmButtonText: 'Discontinue',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter discontinue note',

@@ -6,10 +6,11 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class reminders extends rowManage {
-  static entity = 'rem'
+export default class phone extends rowManage {
+  static entity = 'phoneNumbers'
 
-  static apiUrl = process.env.baseUrl + '/reminders' // fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
+  // To work with nodejs server -> mariaDB server
+  static apiUrl = process.env.baseUrl + '/phone-numbers' // fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
 
   static fields() {
     return {
@@ -18,7 +19,7 @@ export default class reminders extends rowManage {
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
       ptUUID: this.string(null),
-      description: this.string(''),
+      phoneNumber: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
       isAutoRem: this.number(0),
