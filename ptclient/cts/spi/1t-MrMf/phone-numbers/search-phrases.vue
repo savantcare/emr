@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'rem',
-        ctToShow: 'spi/1t-MrMf/phone-numbers/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'spi/1t-MrMf/phone-numbers/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
