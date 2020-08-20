@@ -3,7 +3,7 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>Reminders</span>
+        <span>Phone Number</span>
         <el-button-group style="float: right;">
           <el-button style="padding: 3px;" type="success" plain tabindex="-1" @click="mxOpenACtInCl"
             >A</el-button

@@ -9,7 +9,7 @@
     <el-card class="box-card" :body-style="{ paddingLeft: '3px' }">
       <div slot="header" class="clearfix">
         <span :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1" @keyup="mfKeyPress($event, 'header')"
-          >Reminders</span
+          >Phone Number</span
         >
         <el-button-group style="float: right;">
           <el-button style="padding: 3px;" type="success" plain tabindex="-1" @click="mxOpenACtInCl"

@@ -50,7 +50,7 @@
       :data="cfGetOrmApiSendingStateRows"
       style="width: 100%; background: #f0f9eb;"
     >
-      <el-table-column prop="description" label="Reminders sending to server"></el-table-column>
+      <el-table-column prop="description" label="Phone Number sending to server"></el-table-column>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
@@ -59,7 +59,7 @@
       :data="cfGetOrmApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb;"
     >
-      <el-table-column prop="description" label="Reminders added this session"></el-table-column>
+      <el-table-column prop="description" label="Phone Number added this session"></el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
@@ -69,7 +69,7 @@
     >
       <el-table-column
         prop="description"
-        label="Error: Reminders attempted but failed to save"
+        label="Error: Phone Number attempted but failed to save"
       ></el-table-column>
     </el-table>
   </div>
