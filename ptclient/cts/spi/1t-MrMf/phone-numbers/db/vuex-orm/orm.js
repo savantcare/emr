@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class phone extends rowManage {
+export default class phoneNumbers extends rowManage {
   static entity = 'phoneNumbers'
 
   // To work with nodejs server -> mariaDB server
