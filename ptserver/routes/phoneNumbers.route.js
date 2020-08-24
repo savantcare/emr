@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("/gt/sc-prog-repos/emr/ptserver/models");
-const PhoneNumber = db.phoneNumberDB.rems;
+const PhoneNumber = db.phoneNumberDB.PhoneNumber;
 const User = db.userDB.users;
 const { Op } = require("sequelize");
 
@@ -28,7 +28,7 @@ module.exports = (io, sequelize) => {
     } catch (err) {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Recommenation",
+          err.message || "Some error occurred while creating the Phone number",
       });
     }
   });
@@ -48,7 +48,7 @@ module.exports = (io, sequelize) => {
     } catch (err) {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while fetching the Recommenation",
+          err.message || "Some error occurred while fetching the Phone number",
       });
     }
   });
@@ -65,7 +65,7 @@ module.exports = (io, sequelize) => {
     } catch (err) {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while fetching the Recommenation",
+          err.message || "Some error occurred while fetching the Phone number",
       });
     }
   });

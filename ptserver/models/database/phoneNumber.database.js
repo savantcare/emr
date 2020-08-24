@@ -2,7 +2,7 @@ const config = require("config");
 
 const Sequelize = require("sequelize");
 const phoneNumberSequelize = new Sequelize(
-  config.DB_PHONENUMBER,
+  config.DB_PHONE_NUMBER,
   config.USER,
   config.PASSWORD,
   {
@@ -20,13 +20,16 @@ const phoneNumberSequelize = new Sequelize(
   }
 );
 
-const reminderDB = {};
+const phoneNumberDB = {};
 
-reminderDB.Sequelize = Sequelize;
-reminderDB.sequelize = reminderSequelize;
+phoneNumberDB.Sequelize = Sequelize;
+phoneNumberDB.sequelize = phoneNumberSequelize;
 
-reminderDB.rems = require("../reminder.model.js")(reminderSequelize, Sequelize);
+phoneNumberDB.rems = require("../phoneNumbers.model.js")(
+  phoneNumberSequelize,
+  Sequelize
+);
 
-reminderDB.sequelize.sync();
+phoneNumberDB.sequelize.sync();
 
-module.exports = reminderDB;
+module.exports = phoneNumberDB;

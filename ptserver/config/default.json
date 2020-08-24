@@ -12,6 +12,7 @@
     "idle": 10000
   },
   "DB_RECOMMENDATION": "sc_recommendation",
+  "DB_PHONE_NUMBER": "sc_phone_numbers",
   "DB_REMINDER": "sc_rem",
   "DB_GOAL": "sc_goal",
   "DB_DIAGNOSIS": "DB_SC_Diagnosis_CT_V20",

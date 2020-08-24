@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Reminder = sequelize.define(
+  const PhoneNumber = sequelize.define(
     "rems",
     {
       uuid: {
@@ -42,5 +42,5 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
 
-  return Reminder;
+  return PhoneNumber;
 };
