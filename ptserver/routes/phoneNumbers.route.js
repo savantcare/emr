@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("/gt/sc-prog-repos/emr/ptserver/models");
-const PhoneNumber = db.phoneNumberDB.PhoneNumber;
+const PhoneNumber = db.phoneNumberDB.numbers;
 const User = db.userDB.users;
 const { Op } = require("sequelize");
 

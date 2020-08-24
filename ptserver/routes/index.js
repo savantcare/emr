@@ -7,6 +7,7 @@ module.exports = (io) => {
   const diagnosisRoutes = require("./dx.route")(io);
   const dxAssessmentRoutes = require("./dxa.route")(io);
   const reminderRoutes = require("./reminder.route")(io);
+  const phoneNumberRoutes = require("./phoneNumbers.route")(io);
   const settingRoutes = require("./setting.route");
   const userRoleRoutes = require("./userRole.routes");
   const componentRoutes = require("./component.route");
@@ -23,6 +24,7 @@ module.exports = (io) => {
   router.use("/diagnosis", diagnosisRoutes);
   router.use("/assessment", dxAssessmentRoutes);
   router.use("/reminders", reminderRoutes);
+  router.use("/phone-numbers", phoneNumberRoutes);
   router.use("/settings", settingRoutes);
   router.use("/user-roles", userRoleRoutes);
   router.use("/components", componentRoutes);
