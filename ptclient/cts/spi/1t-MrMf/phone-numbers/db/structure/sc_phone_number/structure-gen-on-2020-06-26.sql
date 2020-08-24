@@ -1,10 +1,10 @@
 -- DB name has _ so that phpmyadmin creates tree struture
-use sc_phone_number;
+use sc_phone_numbers;
 
 DROP TABLE IF EXISTS `numbers`;
 
 
--- Tables names should be signular: Reason: https://stackoverflow.com/questions/338156/table-naming-dilemma-singular-vs-plural-names
+-- We use plural names since "select phoneNumber from numbers" is more readable than "select phoneNumber from number"
 
 CREATE TABLE `numbers` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,

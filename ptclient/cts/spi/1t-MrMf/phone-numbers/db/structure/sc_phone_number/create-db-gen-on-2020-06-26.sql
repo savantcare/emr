@@ -1,2 +1,2 @@
-create database sc_phone_number
+create database sc_phone_numbers
 
