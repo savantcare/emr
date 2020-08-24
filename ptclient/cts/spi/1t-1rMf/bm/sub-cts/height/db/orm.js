@@ -14,6 +14,8 @@ export default class ptHeight extends rowManage {
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.
   // baseurl is defined in nuxt.config.js
   // static apiUrl = process.env.baseUrl + '/name'
+  // on 3000 json-server runs
+  // on 8000 nodejs runs along with sequalize
 
   static apiUrl = 'http://localhost:3000/height'
 
