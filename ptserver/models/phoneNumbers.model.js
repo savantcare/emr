@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const PhoneNumber = sequelize.define(
+  const numbers = sequelize.define(
     "rems",
     {
       uuid: {
@@ -21,10 +21,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.NUMBER,
         defaultValue: null,
       },
-      isAutoRem: {
-        type: Sequelize.NUMBER,
-        defaultValue: null,
-      },
       recordChangedByUUID: {
         type: Sequelize.STRING,
       },
@@ -42,5 +38,5 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
 
-  return PhoneNumber;
+  return numbers;
 };
