@@ -7,12 +7,12 @@ export default {
   methods: {
     mxOpenACtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'add phoneNumber',
+        searchTerm: 'add phone number',
       })
     },
     mxOpenMCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'multi change phoneNumber',
+        searchTerm: 'multi change phone numbers',
       })
     },
     mxOpenDDialog() {
@@ -81,13 +81,13 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'change phoneNumber', pPropsToGiveToCt: pOrmDataRowId }
+      const payload = { searchTerm: 'change phone number', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
       const arResultsFromOrm = objOrm.find(pOrmDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Discontinue phoneNumber', {
+      this.$prompt(arResultsFromOrm.description, 'Discontinue phone number', {
         confirmButtonText: 'Discontinue',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter discontinue note',

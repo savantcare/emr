@@ -9,13 +9,12 @@
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="20" :class="ormRow.validationClass">
             <el-input
-              ref="description"
-              type="textarea"
+              ref="phone number"
               :class="mfGetCssClassName(ormRow.id)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the phoneNumber .."
-              :value="mfGetFldValue(ormRow.id, 'description')"
-              @input="mfSetFldValueUsingCache($event, ormRow.id, 'description')"
+              :value="mfGetFldValue(ormRow.id, 'phoneNumber')"
+              @input="mfSetFldValueUsingCache($event, ormRow.id, 'phoneNumber')"
             ></el-input>
             <div v-if="ormRow.isValidationError" class="el-form-item__error">
               Please enter minimum 3 characters.
@@ -50,7 +49,7 @@
       :data="cfGetOrmApiSendingStateRows"
       style="width: 100%; background: #f0f9eb;"
     >
-      <el-table-column prop="description" label="Phone Number sending to server"></el-table-column>
+      <el-table-column prop="phoneNumber" label="Phone Number sending to server"></el-table-column>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
@@ -59,7 +58,7 @@
       :data="cfGetOrmApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb;"
     >
-      <el-table-column prop="description" label="Phone Number added this session"></el-table-column>
+      <el-table-column prop="phoneNumber" label="Phone Number added this session"></el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
@@ -68,7 +67,7 @@
       style="width: 100%; background: #f0f9eb;"
     >
       <el-table-column
-        prop="description"
+        prop="phoneNumber"
         label="Error: Phone Number attempted but failed to save"
       ></el-table-column>
     </el-table>
@@ -113,10 +112,10 @@ export default {
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
       console.log(this.$refs)
-      if (this.$refs.description) {
-        const lastElement = this.$refs.description.length
+      if (this.$refs.phoneNumber) {
+        const lastElement = this.$refs.phoneNumber.length
         console.log('setting focus of', lastElement - 1, 'length is', lastElement)
-        this.$refs.description[lastElement - 1].focus()
+        this.$refs.phoneNumber[lastElement - 1].focus()
       }
     },
     // Cannot call objOrm function directly from template so need to have a method function to act as a pipe between template and the ORM function
@@ -152,7 +151,7 @@ export default {
       if (arFromOrm.length) {
         console.log('unsaved data found', arFromOrm)
         for (let i = 0; i < arFromOrm.length; i++) {
-          if (arFromOrm[i].description.length < 3) {
+          if (arFromOrm[i].phoneNumber.length < 3) {
             // Validation check
             await objOrm.update({
               where: (record) => record.id === arFromOrm[i].id,
