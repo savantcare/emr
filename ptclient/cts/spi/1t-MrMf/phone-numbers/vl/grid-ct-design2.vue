@@ -85,7 +85,7 @@ export default {
                   +ves:
                     No need to run the for loop
       */
-      const arRemsForDisplay = []
+      const arphoneNumberForDisplay = []
       let obj = {}
       if (arFromOrm.length) {
         let date = ''
@@ -108,10 +108,10 @@ export default {
           obj.uuid = arFromOrm[i].uuid
           obj.$id = arFromOrm[i].$id
           obj.id = arFromOrm[i].id
-          arRemsForDisplay.push(obj)
+          arphoneNumberForDisplay.push(obj)
         }
       }
-      return arRemsForDisplay
+      return arphoneNumberForDisplay
     },
   },
   async mounted() {
