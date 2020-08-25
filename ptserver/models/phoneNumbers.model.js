@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const numbers = sequelize.define(
-    "rems",
+    "numbers",
     {
       uuid: {
         type: Sequelize.STRING,
@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: Sequelize.UUIDV4,
       },
       ptUUID: {
+        type: Sequelize.STRING,
+      },
+      countryCode: {
         type: Sequelize.STRING,
       },
       phoneNumber: {

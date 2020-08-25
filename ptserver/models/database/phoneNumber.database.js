@@ -25,7 +25,7 @@ const phoneNumberDB = {};
 phoneNumberDB.Sequelize = Sequelize;
 phoneNumberDB.sequelize = phoneNumberSequelize;
 
-phoneNumberDB.rems = require("../phoneNumbers.model.js")(
+phoneNumberDB.numbers = require("../phoneNumbers.model.js")(
   phoneNumberSequelize,
   Sequelize
 );
