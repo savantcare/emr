@@ -7,7 +7,7 @@
       <div v-if="cfGetOrmNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.id">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
-          <el-col :span="20" :class="ormRow.validationClass">
+          <el-col :span="10" :class="ormRow.validationClass">
             <el-input
               ref="phone number"
               :class="mfGetCssClassName(ormRow.id)"
@@ -16,9 +16,21 @@
               :value="mfGetFldValue(ormRow.id, 'phoneNumber')"
               @input="mfSetFldValueUsingCache($event, ormRow.id, 'phoneNumber')"
             ></el-input>
+
             <div v-if="ormRow.isValidationError" class="el-form-item__error">
               Please enter minimum 3 characters.
             </div>
+          </el-col>
+
+          <el-col :span="10" :class="ormRow.validationClass">
+            <el-input
+              ref="country code"
+              :class="mfGetCssClassName(ormRow.id)"
+              :autosize="{ minRows: 2, maxRows: 10 }"
+              placeholder="Please enter the country code .."
+              :value="mfGetFldValue(ormRow.id, 'countryCode')"
+              @input="mfSetFldValueUsingCache($event, ormRow.id, 'countryCode')"
+            ></el-input>
           </el-col>
           <!-- Prop explaination
             Goal: Show remove button on the RHS of input area. Since element.io divides it into 24 columns. we are giving
