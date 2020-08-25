@@ -15,7 +15,7 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'phone numbers',
-        ctAbbr: 'rem',
+        ctAbbr: 'pn',
         ctToShow: 'spi/1t-MrMf/phone-numbers/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
@@ -23,7 +23,7 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'add phone number',
-        ctAbbr: 'arem',
+        ctAbbr: 'apn',
         ctToShow: 'spi/1t-MrMf/phone-numbers/cl/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
@@ -32,7 +32,7 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'change phone number',
-        ctAbbr: 'crem',
+        ctAbbr: 'cpn',
         ctToShow: 'spi/1t-MrMf/phone-numbers/cl/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
@@ -42,7 +42,7 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'multi change phone numbers',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcpn',
         ctToShow: 'spi/1t-MrMf/phone-numbers/cl/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
@@ -51,7 +51,7 @@ export default {
     ormSearchPhrasesOfCt.insert({
       data: {
         value: 'discontinued phone numbers',
-        ctAbbr: 'drem',
+        ctAbbr: 'dpn',
         ctToShow: 'spi/1t-MrMf/phone-numbers/vl/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',

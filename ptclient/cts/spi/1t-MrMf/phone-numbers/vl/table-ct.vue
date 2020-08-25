@@ -20,7 +20,7 @@
         </el-button-group>
       </div>
       <el-table
-        :data="cfArOfRemForDisplayInTable"
+        :data="cfArOfPhoneNumberForDisplayInTable"
         :show-header="false"
         size="mini"
         style="width: 100%;"
@@ -44,7 +44,8 @@ Setting the <el-table-column as tabindex=-1 does not help -->
           </template>
         </el-table-column>
 
-        <el-table-column prop="description" label="Desc"> </el-table-column>
+        <el-table-column prop="countryCode" label="Country code"> </el-table-column>
+        <el-table-column prop="phoneNumber" label="Phone number"> </el-table-column>
         <!-- Why is width = "60" for the action column
         Setting this makes the middle column of desc flexible.
         After this is set if desc has 200 words they will use the maximum available space.
@@ -105,7 +106,7 @@ export default {
     return {
       tablePageNumber: 1,
       daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
-      daSelectedRemForDiscontinue: [],
+      daSelectedPhoneNumberForDiscontinue: [],
     }
   },
   computed: {
@@ -114,9 +115,9 @@ export default {
       return arFromOrm.length
     },
 
-    cfArOfRemForDisplayInTable() {
-      // Whenever objOrm will change this will get called. Even when there are 100 rows in the table when objOrm rem changes this gets called once'
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
+    cfArOfPhoneNumberForDisplayInTable() {
+      // Whenever objOrm will change this will get called. Even when there are 100 rows in the table when objOrm phoneNumber changes this gets called once'
+      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('countryCode')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -125,7 +126,7 @@ export default {
                   +ves:
                     No need to run the for loop
       */
-      const arRemsForDisplay = []
+      const arPhoneNumbersForDisplay = []
       let obj = {}
       if (arFromOrm.length) {
         let date = ''
@@ -133,8 +134,9 @@ export default {
         const endDataRowIndex = startDataRowInidex + 10
         for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
-          obj.description = arFromOrm[i].description
-          // For date format ref: /cts/spi/1t-Mr1f/rem/vl/timeline-ct.vue:53
+          obj.countryCode = arFromOrm[i].countryCode
+          obj.phoneNumber = arFromOrm[i].phoneNumber
+          // For date format ref: /cts/spi/1t-Mr1f/phoneNumber/vl/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
@@ -148,10 +150,10 @@ export default {
           obj.uuid = arFromOrm[i].uuid
           obj.$id = arFromOrm[i].$id
           obj.id = arFromOrm[i].id
-          arRemsForDisplay.push(obj)
+          arPhoneNumbersForDisplay.push(obj)
         }
       }
-      return arRemsForDisplay
+      return arPhoneNumbersForDisplay
     },
   },
   async mounted() {
@@ -165,7 +167,7 @@ export default {
       this.tablePageNumber = pNewPageNumber
     },
     mfHandleSelectionForDiscontinue(val) {
-      this.daSelectedRemForDiscontinue = val
+      this.daSelectedPhoneNumberForDiscontinue = val
     },
     // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow, pIndex) {
