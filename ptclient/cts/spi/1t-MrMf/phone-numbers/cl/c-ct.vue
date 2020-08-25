@@ -4,11 +4,11 @@
     <el-form>
       <el-form-item>
         <el-input
-          ref="description"
+          ref="phoneNumber"
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetCopiedRowBeingChangedFldVal('description')"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'description')"
+          :value="mfGetCopiedRowBeingChangedFldVal('phoneNumber')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'phoneNumber')"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -26,8 +26,8 @@
         :timestamp="row.createdAt"
         :type="row.type"
       >
-        {{ row.description }}
-        <!-- The following come on right of the description that comes in the timeline. 
+        {{ row.phoneNumber }}
+        <!-- The following come on right of the phoneNumber that comes in the timeline. 
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
@@ -100,7 +100,7 @@ export default {
         let date = ''
         for (let i = 0; i < arFromOrm.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.description = arFromOrm[i].description
+          rowInTimeLine.phoneNumber = arFromOrm[i].phoneNumber
           date = new Date(arFromOrm[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
@@ -179,14 +179,14 @@ export default {
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      if (this.$refs.description && this.formType !== 'embedded') {
-        const lastElement = this.$refs.description.length
-        /* this "if" is needed since when there is only 1 element then description is not an array of objects.
-         with a single form "description" is just an object. */
+      if (this.$refs.phoneNumber && this.formType !== 'embedded') {
+        const lastElement = this.$refs.phoneNumber.length
+        /* this "if" is needed since when there is only 1 element then phoneNumber is not an array of objects.
+         with a single form "phoneNumber" is just an object. */
         if (!lastElement) {
-          this.$refs.description.focus()
+          this.$refs.phoneNumber.focus()
         } else {
-          this.$refs.description[lastElement - 1].focus()
+          this.$refs.phoneNumber[lastElement - 1].focus()
         }
       }
     },
@@ -224,7 +224,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            description: this.mfGetCopiedRowBeingChangedFldVal('description'),
+            phoneNumber: this.mfGetCopiedRowBeingChangedFldVal('phoneNumber'),
           }),
         })
 
@@ -310,7 +310,7 @@ export default {
       console.log(
         'mfSendDataToServer-> ',
         this.dnOrmUuidOfRowToChange,
-        this.mfGetCopiedRowBeingChangedFldVal('description')
+        this.mfGetCopiedRowBeingChangedFldVal('phoneNumber')
       )
     },
   },
