@@ -4,10 +4,17 @@
     <el-form>
       <el-form-item>
         <el-input
+          ref="countryCode"
+          :value="mfGetCopiedRowBeingChangedFldVal('countryCode')"
+          maxlength="5"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'countryCode')"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input
           ref="phoneNumber"
-          type="textarea"
-          :autosize="{ minRows: 2, maxRows: 4 }"
           :value="mfGetCopiedRowBeingChangedFldVal('phoneNumber')"
+          maxlength="10"
           @input="mfSetCopiedRowBeingChangedFldVal($event, 'phoneNumber')"
         ></el-input>
       </el-form-item>
@@ -26,7 +33,7 @@
         :timestamp="row.createdAt"
         :type="row.type"
       >
-        {{ row.phoneNumber }}
+        {{ row.countryCode }}-{{ row.phoneNumber }}
         <!-- The following come on right of the phoneNumber that comes in the timeline. 
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
@@ -101,6 +108,7 @@ export default {
         for (let i = 0; i < arFromOrm.length; i++) {
           rowInTimeLine = {}
           rowInTimeLine.phoneNumber = arFromOrm[i].phoneNumber
+          rowInTimeLine.countryCode = arFromOrm[i].countryCode
           date = new Date(arFromOrm[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
