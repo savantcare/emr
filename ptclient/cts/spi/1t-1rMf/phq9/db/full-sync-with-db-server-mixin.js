@@ -2,6 +2,7 @@
 This file has doc unique to this ct */
 
 import objOrm from '~/cts/spi/1t-1rMf/phq9/db/orm.js'
+
 export default {
   data() {
     return {
@@ -55,7 +56,11 @@ export default {
   },
   methods: {
     async mxGetDataFromDb() {
-      const pro = await objOrm.api().get(objOrm.apiUrl + '/1')
+      // sample patient UUID
+      const patientUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
+      const screenUrl = objOrm.apiUrl + `/getPatientScrDetail?ptUUID=${patientUUID}&screentype=PHQ9`
+      // const screenUrl = objOrm.apiUrl + '/1' // for json-server data
+      const pro = await objOrm.api().get(screenUrl)
       if (pro.ok) {
       }
     },
