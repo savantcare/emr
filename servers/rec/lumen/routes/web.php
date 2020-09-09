@@ -11,6 +11,12 @@
 |
 */
 
+$router->get('foo', function () {
+    $results = app('db')->select("SELECT * FROM recs");
+    print_r($results);
+    return 'Hello World';
+});
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
