@@ -10,19 +10,25 @@ export default class reminders extends rowManage {
   static entity = 'rem'
 
   /* 
-    fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
+    Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
-
+    On 8001 php/lumen/eloquent is running
+    
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/reminders/getAll
 
     To make post request:
     enter http://127.0.0.1:8000/reminders/getAll in https://hoppscotch.io/
 
+    Options:
+    1. static apiUrl = process.env.baseUrl + '/reminders'
+
   */
-  static apiUrl = process.env.baseUrl + '/reminders'
+
+  static apiUrl = 'http://localhost:8001/public/api/reminders'
+
   static fields() {
     return {
       ...super.fields(),

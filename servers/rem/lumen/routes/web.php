@@ -11,6 +11,15 @@
 |
 */
 
+/* 
+  Following 3 lines are needed to remove the CORS error of
+  No 'Access-Control-Allow-Origin' header is present on the requested resource
+*/
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
