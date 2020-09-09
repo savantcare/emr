@@ -27,7 +27,7 @@ export default class reminders extends rowManage {
 
   */
 
-  static apiUrl = 'http://localhost:8001/public/api/reminders'
+  static apiUrl = 'http://localhost:8000/public/api/reminders'
 
   static fields() {
     return {
