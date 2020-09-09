@@ -14,3 +14,15 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('reminders',  ['uses' => 'ReminderController@showAllReminders']);
+  
+    $router->get('reminders/{id}', ['uses' => 'ReminderController@showOneReminder']);
+  
+    $router->post('reminders', ['uses' => 'ReminderController@create']);
+  
+    $router->delete('reminders/{id}', ['uses' => 'ReminderController@delete']);
+  
+    $router->put('reminders/{id}', ['uses' => 'ReminderController@update']);
+  });

@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
-
-// $app->withEloquent();
+// Ref: https://auth0.com/blog/developing-restful-apis-with-lumen/
+$app->withFacades();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
