@@ -57,14 +57,15 @@ redis.on("pmessage", function (subscribed, channel, message) {
       channel=discontinued message=JSON{uuid=$UUID,discontinuedBy=}
 
 
-      The word channel means different things to different people
+      The word namespace/rooms/channel/rooms/path/event means different things to different systems.
     
-      One name space can have multiple rooms
-                        namespace   |    room            |
-                      --------------|--------------------|
-      socket.io       | namespace   |    channel or room | https://socket.io/docs/rooms/
-      vue-socket.io   | path        |    event name      |
-      nuxt-socket.io  | channel     |                    | https://nuxt-socket-io.netlify.app/usage
+      One namespace can have multiple rooms
+                      |  namespace                                            |    room            |
+                      |  ---------                                            |  -----------       |
+      socket.io       | namespace or /$name                                   |    channel or room | https://socket.io/docs/rooms/ https://socket.io/docs/client-api/#With-custom-path
+      vue-socket.io   | given in  connection: 'http://localhost:6001/$name',  |    event name      |
+      nuxt-socket.io  | channel                                               |                    | https://nuxt-socket-io.netlify.app/usage
+      redis           |                                                       |    channel         |
 
       The channel name comes from lumn -> redis -> nodejs. So all the control is with lumin.
   */
