@@ -52,14 +52,17 @@
         </div>
       </div>
     </el-card>
+    <ct-socket></ct-socket>
   </div>
 </template>
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import objOrm from '../db/vuex-orm/orm.js'
+import ctSocket from '../cl/act-on-socket-message.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
+  components: { ctSocket },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {
@@ -119,11 +122,6 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
-  },
-  sockets: {
-    sktAddRem(data) {
-      console.log('sktAddRem message received from socket server. The data received is', data)
-    },
   },
   methods: {
     mfTablePageChanged(pNewPageNumber) {
