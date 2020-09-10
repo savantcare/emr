@@ -55,9 +55,21 @@ redis.on("pmessage", function (subscribed, channel, message) {
   /* The messages that lumen can send and that the vue-client understands are
       channel=added message=JSON{description=,addedby=,} 
       channel=discontinued message=JSON{uuid=$UUID,discontinuedBy=}
+
+
+      The word channel means different things to different people
+
+      nuxt-socket.io -> channel is namespace Ref: https://nuxt-socket-io.netlify.app/usage
+
+      socket.io -> channel is room Ref: https://socket.io/docs/rooms/ One name space can have multiple rooms
+
+      vue-socket.io -> channel is event name
+
+      The channel name comes from lumn -> redis -> nodejs. So all the control is with lumin.
   */
 
   console.log(channel, message);
+  io.emit("chatMessage2", "jaikalima");
   // message = JSON.parse(message);
   // io.emit(channel + ":" + message.event, message.data);
 });

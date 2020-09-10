@@ -59,17 +59,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['vue-scrollto/nuxt', 'nuxt-socket-io'],
-  // Simplest example is at: https://nuxt-socket-io.netlify.app/basic
-  io: {
-    sockets: [
-      // Required
-      {
-        // At least one entry is required
-        url: 'https://nuxt-socket-io.herokuapp.com',
-      },
-    ],
-  },
+  modules: ['vue-scrollto/nuxt'],
   // https://stackoverflow.com/questions/53993890/how-to-pass-env-variables-to-nuxt-in-production
   env: {
     baseUrl:

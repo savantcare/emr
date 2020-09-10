@@ -119,12 +119,6 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
-    this.socket = this.$nuxtSocket({ channel: '/index' })
-    console.log(this.socket)
-    this.socket.emit('getMessage', { id: 'abc123' }, (resp) => {
-      console.log(resp)
-      this.messageRxd = resp
-    })
   },
   methods: {
     mfTablePageChanged(pNewPageNumber) {
