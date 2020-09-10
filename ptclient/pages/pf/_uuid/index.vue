@@ -56,6 +56,9 @@ import ToggleButton from 'vue-js-toggle-button' // Ref: http://vue-js-toggle-but
 import VueSlider from 'vue-slider-component' // Ref: github.com/NightCatSama/vue-slider-component
 import 'vue-slider-component/theme/default.css'
 
+// Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
+import VueSocketIO from 'vue-socket.io'
+
 // Internal Cts
 import ctMtsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
@@ -63,6 +66,14 @@ import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
+
+// Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
+Vue.use(
+  new VueSocketIO({
+    debug: true,
+    connection: 'http://localhost:6001',
+  })
+)
 
 Vue.component('VueSlider', VueSlider)
 

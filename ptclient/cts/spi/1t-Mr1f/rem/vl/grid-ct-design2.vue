@@ -120,6 +120,11 @@ export default {
       await this.mxGetDataFromDb()
     }
   },
+  sockets: {
+    sktAddRem(data) {
+      console.log('sktAddRem message received from socket server. The data received is', data)
+    },
+  },
   methods: {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
