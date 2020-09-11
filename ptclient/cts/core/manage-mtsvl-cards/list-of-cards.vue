@@ -20,7 +20,7 @@
 <script>
 import TheMultiStateDisplayAreaHeader from '@/cts/core/mtsvl-header/sub-ct-container.vue'
 import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/grid-ct-design2'
-import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table-ct'
+import ctScrVl from '@/cts/spi/1t-Mr1f/scr/vl/table-ct'
 import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/grid-ct'
 // import ctRexVl from '@/cts/spi/rec/vl/table-ct'
 
