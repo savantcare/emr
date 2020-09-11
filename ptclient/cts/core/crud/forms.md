@@ -36,6 +36,7 @@ After 2 if there is success the state goes back to 1
 6 => form error on client side
 7 => Data sent to server to save
 8 => Data saved to server failed.
+9 => Recd from socket after successful save to database.
 
 Data is stored with the timeline
 
