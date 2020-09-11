@@ -32,3 +32,7 @@ Topics covered:
 5. How is a new row added when socket message is recieved. objOrm.insert in previous file
 6. As soon as new row is added the UI of grid-ct-design2 gets updated. No extra work needs to done. This is like spreadsheet cell getting updated.
 7. How to start the redis web ui? redis-commander
+8. How to start the socker server?
+   > cd emr/servers/socket/
+   > ./start-redis-client-and-socket-server
+   > This will execute the script: emr/servers/socket/msg-pipeline-step1-from-lumen-to-step2-redis-server-to-step3-nodejs-redis-client-to-step4-socketio-emit.js
