@@ -27,6 +27,11 @@
         >
           <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
+
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
+            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
           -->
           <div>{{ rem.description }}</div>
           <el-button-group>
