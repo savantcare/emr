@@ -1,28 +1,28 @@
 /* 
-    Diff between using node createServer and express: https://stackoverflow.com/questions/35167824/difference-between-a-server-with-http-createserver-and-a-server-using-express-in/35167883#:~:text=Express%20uses%20the%20http%20module,app%20using%20HTTPS%2C%20as%20app.
+    Diff between using node createServer and express: https://stackoverflow.com/questions/35167824/difference-between-a-server-with-http-createserver-and-a-server-using-express-in/35167883
     express is built over createServer and there are tons of middleware available for express (and express-like) frameworks to complete common tasks such as: CORS, XSRF, POST parsing, cookies etc.
 
     Ref of code: https://laravel.com/docs/5.2/events#consuming-event-broadcasts
 */
-var app = require("http").createServer(handler);
-var io = require("socket.io")(app);
+var httpApp = require("http").createServer(httpHandler);
+var socketIO = require("socket.io")(httpApp);
 
 var Redis = require("ioredis");
 var redis = new Redis();
 
-app.listen(6001, function () {
+httpApp.listen(6001, function () {
   console.log("Node Server has been started");
   console.log("The redis connection details are", redis);
 });
 
-function handler(req, res) {
-  console.log("Client connected from handler function");
-  res.writeHead(200);
-  res.write("Hello World! from handler function");
-  res.end("");
+function httpHandler(pReq, pRes) {
+  console.log("Client connected from httpHandler function");
+  pRes.writeHead(200);
+  pRes.write("Hello World! from httpHandler function");
+  pRes.end("");
 }
 
-io.on("connection", function (socket) {
+socketIO.on("connection", function (socket) {
   console.log("connected");
 });
 
@@ -51,7 +51,7 @@ redis.psubscribe("*", function (err, count) {
   );
 });
 
-redis.on("pmessage", function (subscribed, channel, message) {
+redis.on("pmessage", function (subscribed, pChannel, pMessage) {
   /* The messages that lumen can send and that the vue-client understands are
       channel=added message=JSON{description=,addedby=,} 
       channel=discontinued message=JSON{uuid=$UUID,discontinuedBy=}
@@ -64,14 +64,14 @@ redis.on("pmessage", function (subscribed, channel, message) {
                       |  ---------                                            |  -----------       |
       socket.io       | namespace or /$name                                   |    channel or room | https://socket.io/docs/rooms/ https://socket.io/docs/client-api/#With-custom-path
       vue-socket.io   | given in  connection: 'http://localhost:6001/$name',  |    event name      |
-      nuxt-socket.io  | channel                                               |                    | https://nuxt-socket-io.netlify.app/usage
+      nuxt-socket.io  | channel                                               |                    | https://nuxt-socket-socketIO.netlify.app/usage
       redis           |                                                       |    channel         |
 
       The channel name comes from lumn -> redis -> nodejs. So all the control is with lumin.
   */
 
-  console.log(channel, message);
-  io.emit(channel, message);
-  // message = JSON.parse(message);
-  // io.emit(channel + ":" + message.event, message.data);
+  console.log(pChannel, pMessage);
+  socketIO.emit(pChannel, pMessage);
+  // pMessage = JSON.parse(message);
+  // socketIO.emit(channel + ":" + message.event, message.data);
 });
