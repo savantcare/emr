@@ -21,6 +21,7 @@ Part 1:
 https://www.youtube.com/watch?v=a2DT3B3_OzQ
 
 Part 2:
+https://youtu.be/IYCzpHm5VFo
 
 Topics covered:
 

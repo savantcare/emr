@@ -4,6 +4,9 @@
 <script>
 import objOrm from '../db/vuex-orm/orm.js'
 export default {
+  mounted() {
+    console.log('mounted ct-act-on-socket-messages')
+  },
   sockets: {
     MsgFromSktForRemToAdd(pData) {
       console.log('MsgFromSktForRemToAdd received from socket server. The data received is', pData)
