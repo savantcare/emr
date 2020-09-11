@@ -25,7 +25,7 @@ Part 2:
 Topics covered:
 
 1. Message sent from redis Web UI. This is simulating php/lumen sending the publish message. The event name must be same as the function name at: emr/ptclient/cts/spi/1t-Mr1f/rem/cl/ct-act-on-socket-messages.vue
-2. This message is received by nodejs socket server. Look at: emr/servers/socket/publish-events-broadcast-by-lumen-app.js
+2. This message is received by nodejs socket server. Look at: emr/servers/socket/msg-pipeline-step1-from-lumen-to-step2-redis-server-to-step3-nodejs-redis-client-to-step4-socketio-emit
 3. vue developer tools -> vuex -> entities -> reminders -> see the current rows
 4. When message from socket is sent a new row gets added /emr/ptclient/cts/spi/1t-Mr1f/rem/cl/ct-act-on-socket-messages.vue
 5. How is a new row added when socket message is recieved. objOrm.insert in previous file
