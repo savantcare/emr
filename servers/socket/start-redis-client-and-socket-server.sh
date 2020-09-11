@@ -1,2 +1,2 @@
 #!/bin/bash
-node publish-events-broadcast-by-lumen-app.js 
+node step1-from-lumen-to-step2-redis-server-to-step3-nodejs-redis-client-to-step4-socketio-emit.js
