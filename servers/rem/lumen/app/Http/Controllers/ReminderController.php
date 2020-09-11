@@ -6,6 +6,9 @@ use App\Reminder;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
+use Predis\Autoloader;
+\Predis\Autoloader::register();
+
 
 class ReminderController extends Controller
 {
@@ -35,6 +38,12 @@ class ReminderController extends Controller
         );
        
         $Reminder = Reminder::insertGetId($remData);
+
+        $channel = 'MsgFromSktForRemToAdd';
+        $message = $requestData['data']['description'];
+        $redis = new \Predis\Client();
+        $redis->publish($channel, $message);
+
         // $Reminder = Reminder::create($request->all());
         return response()->json($Reminder, 201);
     }
