@@ -66,14 +66,18 @@
         </el-timeline-item>
       </el-timeline>
     </el-card>
+    <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
 </template>
 
 <script>
 import objOrm from '../db/vuex-orm/orm.js'
+import ctActOnSocketMessages from '../cl/ct-act-on-socket-messages.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {
+  components: { ctActOnSocketMessages },
+
   mixins: [clInvokeMixin],
   data() {
     return {}
