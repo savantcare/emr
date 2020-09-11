@@ -17,12 +17,15 @@
 */
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE, PATCH');
 header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// CORS implementation for preflight requests
+
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('reminders',  ['uses' => 'ReminderController@showAllReminders']);
@@ -34,4 +37,17 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->delete('reminders/{id}', ['uses' => 'ReminderController@delete']);
   
     $router->put('reminders/{id}', ['uses' => 'ReminderController@update']);
+
+    $router->patch('reminders/{id}', ['uses' => 'ReminderController@discontinue']);
+
+    $router->options('reminders', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('reminders/{id}', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
   });
