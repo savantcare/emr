@@ -33,7 +33,12 @@
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
           -->
-          <div>{{ rem.description }}</div>
+
+          <div v-if="(rem.vnRowStateInSession === 9)">Added from socket {{ rem.description }}</div>
+          <div v-else>
+            {{ rem.description }}
+          </div>
+
           <el-button-group>
             <el-button
               type="primary"

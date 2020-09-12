@@ -9,7 +9,7 @@ export default {
     console.log('The current socket event listeners are', this.$options.sockets)
     /*
       This ct is included by gird-ct-design2.vue and timeline-ct.vue
-      even when both the ct's (gird-ct-design2.vue and timeline-ct.vue) are on the same page this.$options.sockets only has 
+      even when both the ct's (gird-ct-design2.vue and timeline-ct.vue) are on the same page this.$options.sockets only has
       1 of MsgFromSktForRemToAdd and MsgFromSktForRemToDiscontinue
     */
   },
@@ -32,16 +32,15 @@ export default {
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
       const primaryKeyValue = arFromOrm.rem[0].id
-      objOrm.update({
-        where: primaryKeyValue,
-        data: {
-          vnRowStateInSession: 1, // For meaning of diff values read ptclient/cts/core/crud/forms.md
+      setTimeout(
+        function (scope) {
+          scope.fnSetRowStatus(primaryKeyValue)
         },
-      })
-      if (!arFromOrm) {
-        console.log('FATAL ERROR')
-      }
+        1000, // setting timeout of 1 s
+        this
+      )
     },
+
     MsgFromSktForRemToDiscontinue(pData) {
       console.log(
         'MsgFromSktForRemToDiscontinue received from socket server. The data received is',
@@ -58,6 +57,16 @@ export default {
       if (!arFromOrm) {
         console.log('FATAL ERROR')
       }
+    },
+  },
+  methods: {
+    fnSetRowStatus(pPrimaryKeyValue) {
+      objOrm.update({
+        where: pPrimaryKeyValue,
+        data: {
+          vnRowStateInSession: 1, // For meaning of diff values read ptclient/cts/core/crud/forms.md
+        },
+      })
     },
   },
 }
