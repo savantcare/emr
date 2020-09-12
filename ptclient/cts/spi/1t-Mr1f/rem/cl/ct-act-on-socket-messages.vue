@@ -6,12 +6,17 @@ import objOrm from '../db/vuex-orm/orm.js'
 export default {
   mounted() {
     console.log('mounted ct-act-on-socket-messages for reminders')
-    console.log('The current socket event listeners are', this.$options.sockets)
+
     /*
       This ct is included by gird-ct-design2.vue and timeline-ct.vue
       even when both the ct's (gird-ct-design2.vue and timeline-ct.vue) are on the same page this.$options.sockets only has
       1 of MsgFromSktForRemToAdd and MsgFromSktForRemToDiscontinue
     */
+    console.log('The current socket event listeners are', this.$options.sockets)
+
+    /* Ignore message if server sends a socket message that originated from this client */
+    console.log('Client id is', this.$socket)
+    console.log('Client id is', this.$socket.id)
   },
   sockets: {
     async MsgFromSktForRemToAdd(pData) {
