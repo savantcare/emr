@@ -13,14 +13,12 @@ export default {
       1 of MsgFromSktForRemToAdd and MsgFromSktForRemToDiscontinue
     */
     console.log('The current socket event listeners are', this.$options.sockets)
-
-    /* Ignore message if server sends a socket message that originated from this client */
-    console.log('Client id is', this.$socket)
-    console.log('Client id is', this.$socket.id)
   },
   sockets: {
     async MsgFromSktForRemToAdd(pData) {
       console.log('MsgFromSktForRemToAdd received from socket server. The data received is', pData)
+
+      // if this.$socket.id = clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange then return
 
       const arFromOrm = await objOrm.insert({
         data: {
