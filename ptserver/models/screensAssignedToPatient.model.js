@@ -6,37 +6,37 @@ id is string since we do not want it to be a auto incrementing integer.
 */
 
 module.exports = (sequelize, Sequelize) => {
-    const screensAssignedToPatient = sequelize.define("screensAssignedToPatients", {
+  const screensAssignedToPatient = sequelize.define(
+    "scrAssignedToPts",
+    {
       uuid: {
         type: Sequelize.STRING(64),
         defaultValue: Sequelize.UUIDV4,
-        primaryKey: true
+        primaryKey: true,
       },
-      screenUUID: {
-        type: Sequelize.STRING(64)
+      scrUUID: {
+        type: Sequelize.STRING(64),
       },
-      patientUUID: {
-        type: Sequelize.STRING(64)
+      ptUUID: {
+        type: Sequelize.STRING(64),
       },
       notes: {
         type: Sequelize.TEXT,
-        defaultValue: null
+        defaultValue: null,
       },
       recordChangedByUUID: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       recordChangedFromIPAddress: {
         type: Sequelize.STRING,
-        defaultValue: null
-      }
-    },{
+        defaultValue: null,
+      },
+    },
+    {
       timestamps: false,
-      freezeTableName: true
-    });
-  
+      freezeTableName: true,
+    }
+  );
 
-
-
-    return screensAssignedToPatient;
-  };
-  
+  return screensAssignedToPatient;
+};

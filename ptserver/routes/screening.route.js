@@ -1,169 +1,148 @@
-const router = require('express').Router()
-const db = require('../models')
-const screensListMaster = db.screeningDB.screensListMaster
-const screensAssignedToPatient = db.screeningDB.screensAssignedToPatient
-const phq9PatientResponse = db.screeningDB.phq9PatientResponse
+const router = require("express").Router();
+const db = require("../models");
+const screensListMaster = db.screeningDB.screensListMaster;
+const screensAssignedToPatient = db.screeningDB.screensAssignedToPatient;
+const phq9PatientResponse = db.screeningDB.phq9PatientResponse;
 // const User = db.userDB.users
 // const { Op } = require("sequelize")
 
-//Screening
+// Screening
 
 module.exports = (io) => {
-
-  //  get the patient assigned screen list 
-  router.get('/', async (req, res) => {
+  //  get the patient assigned screen list
+  router.get("/getAll/", async (req, res) => {
     try {
       //const { patientId, userId, date } = req.body
-      const { patientUUID } = req.query
+      const { patientUUID } = req.query;
 
-      const queryResult = await screensListMaster.sequelize.query('SELECT * FROM screensAssignedToPatients LEFT JOIN  screensListMasters ON screensAssignedToPatients.screenUUID = screensListMasters.uuid where screensAssignedToPatients.patientUUID=:patientUUID', {
-        replacements: { patientUUID: patientUUID },
-        type: screensListMaster.sequelize.QueryTypes.SELECT
-      })
-      res.send(queryResult)
-    } catch (err) {
-      res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening data"
-      })
-    }
-  })
-
-  router.get('/getScreenMasterList', async (req, res) => {
-    try {
-
-      //const { patientUUID } = req.query
       const queryResult = await screensListMaster.sequelize.query(
-        'SELECT * FROM  screensListMasters ', {
-        //replacements: { patientUUID: patientId },
-        type: screensListMaster.sequelize.QueryTypes.SELECT
-      })
-      res.send(queryResult)
-    } catch (err) {
-      res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening"
-      })
-    }
-  })
-
-  router.post('/addPatientScreen', async (req, res) => {
-    try {
-      const { data, patientUUID, date } = req.body
-
-      const newScreening = await screensAssignedToPatient.bulkCreate(data)
-
-      const queryResult = await screensListMaster.sequelize.query('SELECT * FROM screensAssignedToPatients LEFT JOIN  screensListMasters ON screensAssignedToPatients.screenUUID = screensListMasters.uuid where screensAssignedToPatients.patientUUID=:patientUUID', {
-        replacements: { patientUUID: patientUUID },
-        type: screensListMaster.sequelize.QueryTypes.SELECT
-      })
-      res.send(queryResult)
-    } catch (err) {
-      res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening"
-      })
-    }
-  })
-
-
-  router.get('/getScreeningDetail', async (req, res) => {
-    try {
-
-      const { screentype, patientUUID } = req.query
-      let returnData = {
-        screentype: screentype,
-        record: {}
-      }
-
-      if (screentype == 'PHQ9') {
-
-        queryResult = await phq9PatientResponse.sequelize.query('SELECT * FROM phq9PatientResponses  where patientUUID=:patientUUID', {
+        "SELECT *, UNIX_TIMESTAMP(scrAssignedToPts.ROW_START) as ROW_START, UNIX_TIMESTAMP(scrAssignedToPts.ROW_END) as ROW_END FROM scrAssignedToPts FOR SYSTEM_TIME ALL LEFT JOIN  scrListMasters ON scrAssignedToPts.scrUUID = scrListMasters.uuid where scrAssignedToPts.ptUUID=:patientUUID",
+        {
           replacements: { patientUUID: patientUUID },
-          type: phq9PatientResponse.sequelize.QueryTypes.SELECT
-        })
+          type: screensListMaster.sequelize.QueryTypes.SELECT,
+        }
+      );
+      res.send(queryResult);
+    } catch (err) {
+      res.status(500).send({
+        message:
+          err.message || "Some error occured while fetching the Screening data",
+      });
+    }
+  });
+
+  router.get("/getScrMasterList/", async (req, res) => {
+    try {
+      const queryResult = await screensListMaster.sequelize.query(
+        "SELECT * FROM  scrListMasters ",
+        {
+          type: screensListMaster.sequelize.QueryTypes.SELECT,
+        }
+      );
+      res.send(queryResult);
+    } catch (err) {
+      res.status(500).send({
+        message:
+          err.message || "Some error occured while fetching the Screening data",
+      });
+    }
+  });
+
+  router.post("/", async (req, res) => {
+    try {
+      const { data } = req.body;
+      const scrPtData = [
+        {
+          uuid: data.uuid,
+          scrUUID: data.scrUUID,
+          ptUUID: data.ptUUID,
+          notes: data.notes,
+          recordChangedByUUID: data.recordChangedByUUID,
+          recordChangedFromIPAddress: data.recordChangedFromIPAddress,
+        },
+      ];
+
+      const queryResult = await screensAssignedToPatient.bulkCreate(scrPtData, {
+        returning: true,
+      });
+      res.send(queryResult);
+    } catch (err) {
+      res.status(500).send({
+        message: err.message || "Some error occurred while updating Screening",
+      });
+    }
+  });
+
+  router.get("/getPatientScrDetail", async (req, res) => {
+    try {
+      const { screentype, ptUUID } = req.query;
+      if (screentype == "PHQ9") {
+        queryResult = await phq9PatientResponse.sequelize.query(
+          "SELECT " +
+            "ptUUID as uuid, " +
+            "question1 as littleInterestOrPleasureInDoingThings, " +
+            "question2 as feelingDownDepressedOrHopeless, " +
+            "question3 as troubleFallingOrStayingAsleep, " +
+            "question4 as feelingTiredOrHavingLittleEnergy, " +
+            "question5 as poorAppetiteOrOvereating, " +
+            "question6 as feelingBadAboutYourself, " +
+            "question7 as troubleConcentratingOnThings, " +
+            "question8 as movingOrSpeakingSoSlowly, " +
+            "question9 as thoughtsThatYouWouldBeBetterOffDead, " +
+            "question10 as ifYouCheckedOffAnyProblems, " +
+            "recordChangedByUUID, " +
+            "recordChangedFromIPAddress, " +
+            "UNIX_TIMESTAMP(row_start) AS ROW_START, " +
+            "UNIX_TIMESTAMP(row_end) AS ROW_END " +
+            "FROM phq9PtResponses FOR SYSTEM_TIME ALL where ptUUID=:ptUUID",
+          {
+            replacements: { ptUUID: ptUUID },
+            type: phq9PatientResponse.sequelize.QueryTypes.SELECT,
+          }
+        );
 
         if (queryResult.length > 0) {
-          returnData.record = queryResult[0]
+          res.send(queryResult);
+        } else {
+          const emptyRow = {
+            uuid: ptUUID,
+          };
+          res.send(emptyRow);
         }
-
-        res.send(returnData)
       }
-
     } catch (err) {
       res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening"
-      })
+        message:
+          err.message || "Some error occured while fetching the Screening",
+      });
     }
-  })
+  });
 
-  router.post('/storeScreeningDetail', async (req, res) => {
+  router.post("/storePatientScreenDetail", async (req, res) => {
     try {
-      const { data, patientUUID, screentype, updateFlag } = req.body
-      let returnData = {
-        screentype: screentype,
-        record: {}
+      const { data, ptUUID } = req.body;
+
+      for (i = 1; i <= 10; i++) {
+        let key = "question" + i;
+        data[key] = data[key] == "null" ? null : String(data[key]);
       }
 
-      if (screentype == 'PHQ9') {
-        if (updateFlag == true) {
-          const updateScreening = await phq9PatientResponse.update(data[0], {
-            where: {
-              patientUUID: patientUUID
-            }
-          })
+      phq9PatientResponse.upsert(data).then(function (test) {
+        if (test) {
+          res.status(200);
+          res.send("Successfully updated");
+        } else {
+          res.status(200);
+          res.send("Successfully stored");
         }
-        else {
-          const newScreening = await phq9PatientResponse.bulkCreate(data)
-        }
-        queryResult = await phq9PatientResponse.sequelize.query('SELECT * FROM phq9PatientResponses   where patientUUID=:patientUUID', {
-          replacements: { patientUUID: patientUUID },
-          type: phq9PatientResponse.sequelize.QueryTypes.SELECT
-        })
-
-        if (queryResult.length > 0) {
-          returnData.record = queryResult[0]
-        }
-
-        res.send(returnData)
-      }
-
+      });
     } catch (err) {
       res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening"
-      })
+        message:
+          err.message || "Some error occured while fetching the Screening",
+      });
     }
-  })
+  });
 
-  router.get('/getScreenHistoryDetail', async (req, res) => {
-    try {
-
-      const { screentype, patientUUID } = req.query
-      let returnData = {
-        screentype: screentype,
-        record: {}
-      }
-
-      if (screentype == 'PHQ9') {
-        queryResult = await phq9PatientResponse.sequelize.query('SELECT *, row_start, row_end  FROM phq9PatientResponses  FOR SYSTEM_TIME ALL where patientUUID=:patientUUID', {
-          replacements: { patientUUID: patientUUID },
-          type: phq9PatientResponse.sequelize.QueryTypes.SELECT
-        })
-
-        if (queryResult.length > 0) {
-          returnData.record = queryResult
-        }
-
-        res.send(returnData)
-      }
-
-    } catch (err) {
-      res.status(500).send({
-        message: err.message || "Some error occured while fetching the Screening"
-      })
-    }
-  })
-
-
-
-
-
-  return router
-}
+  return router;
+};
