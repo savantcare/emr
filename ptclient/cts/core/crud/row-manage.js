@@ -1,4 +1,5 @@
 import { Model } from '@vuex-orm/core'
+import objOrm from '@/cts/spi/1t-1rMf/common-for-all-components/db/orm.js'
 
 class rowManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -604,8 +605,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static async fnMakeApiCAll(pOrmRowArray) {
+    const socketClientObj = await objOrm.find(1)
+    // console.log(objOrm)
     pOrmRowArray.ptUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
     pOrmRowArray.recordChangedByUUID = 'bua674fa-073b-4223-8c69-0540ee786kj8'
+    pOrmRowArray.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange =
+      socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
     try {
       const response = await fetch(this.apiUrl, {
         method: 'POST',

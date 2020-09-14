@@ -40,9 +40,14 @@ class ReminderController extends Controller
         $Reminder = Reminder::insertGetId($remData);
 
         $channel = 'MsgFromSktForRemToAdd';
-        $message = $requestData['data']['description'];
+        $message = array(
+            'uuid' => $uuid,
+            'description' => $requestData['data']['description'],
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+        );
+
         $redis = new \Predis\Client();
-        $redis->publish($channel, $message);
+        $redis->publish($channel, json_encode($message));
 
         // $Reminder = Reminder::create($request->all());
         return response()->json($Reminder, 201);
