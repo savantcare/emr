@@ -102,6 +102,14 @@ export default {
   methods: {
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
+
+      objOrm.insert({
+        data: {
+          clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this
+            .$socket.id,
+        },
+      })
+
       console.log(objOrm)
     },
     log(message) {
