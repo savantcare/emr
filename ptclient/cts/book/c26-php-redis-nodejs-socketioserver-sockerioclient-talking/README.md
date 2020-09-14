@@ -36,3 +36,12 @@ Topics covered:
    > cd emr/servers/socket/
    > ./start-redis-client-and-socket-server
    > This will execute the script: emr/servers/socket/msg-pipeline-step1-from-lumen-to-step2-redis-server-to-step3-nodejs-redis-client-to-step4-socketio-emit.js
+
+Part 3:
+https://youtu.be/6WYv-kxGLuA
+
+This video covers:
+
+1. How to start development server
+2. How to work 'added from socket logic'
+3. How to prevent duplicate entry from socket
