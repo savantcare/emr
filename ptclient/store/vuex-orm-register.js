@@ -1,11 +1,16 @@
 // this is file 3 in example
 
 import { Database } from '@vuex-orm/core'
+import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
+import Dx from '@/models/Dx'
+import Goal from '@/models/Goal'
+import Dxa from '@/models/Dxa'
+import phoneNumbers from '@/cts/spi/1t-MrMf/phone-numbers/db/vuex-orm/orm.js'
+import Scr from '~/cts/spi/1t-Mr1f/scr/db/vuex-orm/orm.js'
 import CtSearch from '~/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 import Hworld from '~/cts/book/c04-orm-model/db/vuex-orm/helloworld.js'
 import HworldCh7 from '~/cts/book/c07-element-orm-connect-many-rows/db/vuex-orm/helloworld.js'
 import HworldCh10 from '~/cts/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js'
-import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
 import ormName from '~/cts/spi/1t-1rMf/name/db/orm.js'
 import ormWeight from '~/cts/spi/1t-1rMf/bm/sub-cts/weight/db/orm.js'
@@ -19,11 +24,6 @@ import ormPulse from '~/cts/spi/1t-1rMf/bm/sub-cts/pulse/db/orm.js'
 import ormDob from '~/cts/spi/1t-1rMf/date-of-birth/db/orm.js'
 import ormPhq9 from '~/cts/spi/1t-1rMf/phq9/db/orm.js'
 import Rex from '~/cts/spi/1t-Mr1f/rec/db/vuex-orm/model.js'
-import Dx from '@/models/Dx'
-import Goal from '@/models/Goal'
-import Scr from '@/models/Screening'
-import Dxa from '@/models/Dxa'
-import phoneNumbers from '@/cts/spi/1t-MrMf/phone-numbers/db/vuex-orm/orm.js'
 
 const database = new Database()
 

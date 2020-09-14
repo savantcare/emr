@@ -5,6 +5,7 @@
     <mapSPhrases></mapSPhrases>
     <clearSPhrases></clearSPhrases>
     <remSPhrases></remSPhrases>
+    <scrSPhrases></scrSPhrases>
     <nameSPhrases></nameSPhrases>
     <weightSPhrases></weightSPhrases>
     <pulseSPhrases></pulseSPhrases>
@@ -33,7 +34,7 @@
       class="inline-input"
       :fetch-suggestions="mfQuerySearchTerms"
       :placeholder="cfSearchBoxPlaceholder"
-      style="width: 100%;"
+      style="width: 100%"
       :highlight-first-item="true"
       @select="mfHandleSuggestionSelectedByUser"
     ></el-autocomplete>
@@ -60,6 +61,7 @@ import phq9SPhrases from '@/cts/spi/1t-1rMf/phq9/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1rMf/bm/search-phrases'
 import dobSPhrases from '@/cts/spi/1t-1rMf/date-of-birth/search-phrases'
 import remSPhrases from '@/cts/spi/1t-Mr1f/rem/search-phrases'
+import scrSPhrases from '@/cts/spi/1t-Mr1f/scr/search-phrases'
 import phoneNumberSPhrases from '@/cts/spi/1t-MrMf/phone-numbers/search-phrases'
 import helloWorldC1SPhrases from '@/cts/book/c01-hello-world/search-phrases'
 import helloWorldC2SPhrases from '@/cts/book/c02-change-layer/search-phrases'
@@ -75,6 +77,7 @@ import helloWorldC10SPhrases from '@/cts/book/c10-system-versioned-vl-data/searc
 export default {
   components: {
     remSPhrases,
+    scrSPhrases,
     feedSPhrases,
     clearSPhrases,
     mapSPhrases,
