@@ -66,6 +66,7 @@ import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
+import objOrm from '~/cts/spi/1t-1rMf/common-for-all-components/db/orm.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -96,8 +97,13 @@ export default {
   mounted() {
     // when page first loads the change layer tabs are set to not show
     this.$store.commit('mtfSetTabDialogVisibility', false)
+    this.mfUpdateSocketClientId()
   },
   methods: {
+    mfUpdateSocketClientId() {
+      console.log('Socker ID is', this.$socket.id)
+      console.log(objOrm)
+    },
     log(message) {
       console.log(message)
     },
