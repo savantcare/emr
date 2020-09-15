@@ -61,6 +61,14 @@
           </el-button-group>
         </div>
       </div>
+      <el-pagination
+        :hide-on-single-page="true"
+        background
+        layout="pager"
+        :total="cfLengthOfDataArray"
+        @current-change="mfTablePageChanged"
+      >
+      </el-pagination>
     </el-card>
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>

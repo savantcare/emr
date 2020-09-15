@@ -634,6 +634,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async fnSendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
     try {
+      const socketClientObj = await objOrm.find(1)
+
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
         headers: {
@@ -643,6 +645,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         body: JSON.stringify({
           dNotes: discontinuedNote,
           patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+          clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
+            socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
         }),
       })
       if (!response.ok) {

@@ -45,6 +45,7 @@
 </template>
 <script>
 import objOrm from '../db/vuex-orm/orm.js'
+import objCommonOrm from '@/cts/spi/1t-1rMf/common-for-all-components/db/orm.js'
 export default {
   /* 
     Q) Why is firstProp needed?
@@ -217,6 +218,11 @@ export default {
           },
         })
 
+        /**
+         * Send socket id to the server for update from socket
+         */
+        const socketClientObj = await objCommonOrm.find(1)
+
         const response = await fetch(objOrm.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
           method: 'PUT',
           headers: {
@@ -225,6 +231,8 @@ export default {
           },
           body: JSON.stringify({
             description: this.mfGetCopiedRowBeingChangedFldVal('description'),
+            clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
+              socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
           }),
         })
 

@@ -58,6 +58,20 @@ class ReminderController extends Controller
         $Reminder = Reminder::findOrFail($id);
         $Reminder->update($request->all());
 
+        /**
+         * Send data to socket
+         */
+        $requestData = $request->all();
+        $channel = 'MsgFromSktForRemToChange';
+        $message = array(
+            'uuid' => $id,
+            'description' => $requestData['description'],
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+        );
+
+        $redis = new \Predis\Client();
+        $redis->publish($channel, json_encode($message));
+
         return response()->json($Reminder, 200);
     }
 
@@ -81,6 +95,19 @@ class ReminderController extends Controller
         }
 
         $Reminder->delete();
+
+        /**
+         * Send data to socket
+         */
+        $channel = 'MsgFromSktForRemToDiscontinue';
+        $message = array(
+            'uuid' => $id,
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+        );
+
+        $redis = new \Predis\Client();
+        $redis->publish($channel, json_encode($message));
+
         return response('Discontinued successfully', 200);
     }
 }
