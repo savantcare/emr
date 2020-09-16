@@ -26,9 +26,6 @@ import objOrm from '@/cts/spi/1t-1rMf/common-for-all-components/db/orm.js'
 const database = new Database()
 
 database.register(CtSearch)
-database.register(Hworld)
-database.register(HworldCh7)
-database.register(HworldCh10)
 database.register(Rem)
 database.register(ormName)
 database.register(ormWeight)
