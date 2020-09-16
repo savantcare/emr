@@ -59,20 +59,54 @@ export default {
     },
 
     MsgFromSktForRemToDiscontinue(pData) {
+      const pDataArr = JSON.parse(pData)
       console.log(
         'MsgFromSktForRemToDiscontinue received from socket server. The data received is',
-        pData
+        pDataArr
       )
 
-      const arFromOrm = objOrm.insert({
+      objOrm.update({
+        where: (record) => record.uuid === pDataArr.uuid,
         data: {
-          vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
-          ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          description: pData,
+          ROW_END: Math.floor(Date.now() / 1000),
         },
       })
-      if (!arFromOrm) {
-        console.log('FATAL ERROR')
+    },
+
+    async MsgFromSktForRemToChange(pData) {
+      const pDataArr = JSON.parse(pData)
+      console.log(
+        'MsgFromSktForRemToChange received from socket server. The data received is',
+        pDataArr
+      )
+
+      const socketClientObj = await objCommonOrm.find(1)
+
+      if (
+        socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
+        pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+      ) {
+        /**
+         * Goal:
+         * 1. Update ROW_END as now() of current active reminder
+         * 2. Insert new row in orm with new description
+         */
+        await objOrm.update({
+          where: (record) => {
+            return record.uuid === pDataArr.uuid && record.vnRowStateInSession === 1
+          },
+          data: {
+            ROW_END: Math.floor(Date.now() / 1000),
+          },
+        })
+
+        await objOrm.insert({
+          data: {
+            ROW_START: Math.floor(Date.now() / 1000),
+            description: pDataArr.description,
+            uuid: pDataArr.uuid,
+          },
+        })
       }
     },
   },
