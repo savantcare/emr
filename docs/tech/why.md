@@ -166,3 +166,22 @@ So for vue client side code decided to use [vue-styleguidist](https://github.com
 Ref: https://www.youtube.com/watch?v=ryyAiUYvfY8
 
 Click here for [steps to run the doc generator](/tech/howto.html#q1-how-to-start-the-documentation-system)
+
+## Q8) Single lumen vs multiple lumen?
+
+-ves of multiple lumen:
+
+1. Middle ware like socket authentication needs to be implemented at 40 places. Mostprobably there will be a mistake in 1 socket implementtion and it will be hard to catch
+2. Writing new APIs takes extra time when working with multiple lumen
+
+Earlier +ves of multiple lumen:
+
+1. Dev1 is working on rec. Dev2 is working on rem. Dev1 work is complete. Dev2 work is not complete. On prod Sanjay can do git pull of rec repo.
+   1. In current dev we use branch. Dev1 will work on branch 1 and Dev2 will work on Branch 2. Only branch 1 pull request will come to master and then master will be git pulled on prod.
+
+-ves of single lumen:
+
+1. Suppose in middleware of rec a new bug is introduced. It will only aftter rec and not other 39 Cts.
+   1. Counterpoint: git makes it easy to revert to previous version
+
+Decision in Sept 2020: Use a single lumen.
