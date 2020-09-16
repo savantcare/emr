@@ -17,7 +17,7 @@ export default class ptHeight extends rowManage {
   // on 3000 json-server runs
   // on 8000 nodejs runs along with sequalize
 
-  static apiUrl = 'http://localhost:3000/height'
+  static apiUrl = 'http://localhost:8000/public/api/height/v20'
 
   static fields() {
     return {

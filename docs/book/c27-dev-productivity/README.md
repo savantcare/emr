@@ -6,3 +6,4 @@ Q) How to run all servers together?
 Q) How to review pull requests?
 
 Q) How to access staging server for P20?
+https://youtu.be/TTTNUimKOfo
