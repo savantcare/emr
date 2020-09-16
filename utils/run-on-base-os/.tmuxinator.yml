@@ -27,7 +27,7 @@ windows:
             - cd servers/redis
             - ./start-redis-web-interface.sh
         - socketServer:
-            - cd servers/socket
+            - cd servers/msg-pipeline
             - ./start-redis-client-and-socket-server.sh
         - remServer:
             - cd servers/rem
