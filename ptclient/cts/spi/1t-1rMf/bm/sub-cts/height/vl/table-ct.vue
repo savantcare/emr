@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/vl/table-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/vl/table-ct.vue. This file has doc unique to this ct
 Code synced with ref implementation on 4th august 2020
  -->
 <template>
@@ -9,6 +9,7 @@ Code synced with ref implementation on 4th august 2020
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
       size="small"
+      @click="mfOpenCCtInCl(cfDataRow['id'])"
       >{{ cfDataRow['heightInInches'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
@@ -18,19 +19,10 @@ Code synced with ref implementation on 4th august 2020
       cfDataRow['notes']
     }}</el-button>
     <el-button
-      type="primary"
-      size="mini"
-      style="padding: 3px;"
-      plain
-      tabindex="-1"
-      @click="mfOpenCCtInCl(cfDataRow['id'])"
-      >C</el-button
-    >
-    <el-button
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="success"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendSubmitEvent()"
@@ -40,7 +32,7 @@ Code synced with ref implementation on 4th august 2020
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="danger"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendResetFormEvent()"
