@@ -81,16 +81,6 @@ export default {
     oxygenSaturationSPhrases,
     dobSPhrases,
     phoneNumberSPhrases,
-    helloWorldC1SPhrases,
-    helloWorldC2SPhrases,
-    helloWorldC3SPhrases,
-    helloWorldC4SPhrases,
-    helloWorldC5SPhrases,
-    helloWorldC6SPhrases,
-    helloWorldC7SPhrases,
-    helloWorldC8SPhrases,
-    helloWorldC9SPhrases,
-    helloWorldC10SPhrases,
   },
   data() {
     return { searchKeyword: '' }
