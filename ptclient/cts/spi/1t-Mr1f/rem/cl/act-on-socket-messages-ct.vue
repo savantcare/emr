@@ -7,7 +7,7 @@ import objCommonOrm from '@/cts/spi/1t-1rMf/common-for-all-components/db/orm.js'
 
 export default {
   mounted() {
-    console.log('mounted ct-act-on-socket-messages for reminders')
+    console.log('mounted act-on-socket-messages-ct for reminders')
 
     /*
       This ct is included by gird-ct-design2.vue and timeline-ct.vue

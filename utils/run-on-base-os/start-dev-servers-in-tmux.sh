@@ -13,5 +13,4 @@
 tmuxinator start all-dev-servers-in-tmux
 
 # If you dont have yarn
-# 1. cd ptclient; npm run dev
-# 2. cd ptserver; npm run start
+# 1. cd ptclient; npm run start-dev

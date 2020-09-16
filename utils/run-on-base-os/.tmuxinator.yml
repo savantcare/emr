@@ -14,9 +14,6 @@ windows:
         - Client:
             - cd ptclient
             - npm run start-dev
-        - nodejsServer:
-            - cd ptserver
-            - npm run start-dev
         - JsonServer:
             - cd utils/db
             - ./start-json-server-for-mock-db.sh
@@ -26,7 +23,7 @@ windows:
         - redisUI:
             - cd servers/redis
             - ./start-redis-web-interface.sh
-        - socketServer:
+        - msgPipeline:
             - cd servers/msg-pipeline
             - ./start-redis-client-and-socket-server.sh
         - remServer:
