@@ -1,7 +1,7 @@
-See video at: https://youtu.be/rJKPyYjFtE0
+Videos:
 
-See video2 at: https://youtu.be/pCMeXLqbcs8
-
-See video3 at: https://youtu.be/EEnkCME3SFI
+1. https://youtu.be/rJKPyYjFtE0
+2. https://youtu.be/pCMeXLqbcs8
+3. https://youtu.be/EEnkCME3SFI
 
 Implement the 1t-1rMf/name component it has less than 250 lines of code.
