@@ -28,24 +28,24 @@ $router->get('/', function () use ($router) {
 
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('reminders',  ['uses' => 'ReminderController@showAllReminders']);
+    $router->get('reminders/v20/',  ['uses' => 'ReminderController@showAllReminders']);
   
-    $router->get('reminders/{id}', ['uses' => 'ReminderController@showOneReminder']);
+    $router->get('reminders/v20/{id}', ['uses' => 'ReminderController@showOneReminder']);
   
-    $router->post('reminders', ['uses' => 'ReminderController@create']);
+    $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
   
-    $router->delete('reminders/{id}', ['uses' => 'ReminderController@delete']);
+    $router->delete('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
   
-    $router->put('reminders/{id}', ['uses' => 'ReminderController@update']);
+    $router->put('reminders/v20/{id}', ['uses' => 'ReminderController@update']);
 
-    $router->patch('reminders/{id}', ['uses' => 'ReminderController@discontinue']);
+    $router->patch('reminders/v20/{id}', ['uses' => 'ReminderController@discontinue']);
 
-    $router->options('reminders', function () {
+    $router->options('reminders/v20', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('reminders/{id}', function () {
+    $router->options('reminders/v20/{id}', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
