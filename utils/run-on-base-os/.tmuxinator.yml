@@ -27,6 +27,6 @@ windows:
             - cd servers/msg-pipeline
             - ./start-redis-client-and-socket-server.sh
         - remServer:
-            - cd servers/rem
-            - php -S localhost:8000 -t lumen
+            - cd servers/lumen
+            - php -S localhost:8000 -t .
         - Terminal:
