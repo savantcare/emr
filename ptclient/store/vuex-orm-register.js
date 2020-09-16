@@ -2,9 +2,6 @@
 
 import { Database } from '@vuex-orm/core'
 import CtSearch from '~/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
-import Hworld from '~/cts/book/c04-orm-model/db/vuex-orm/helloworld.js'
-import HworldCh7 from '~/cts/book/c07-element-orm-connect-many-rows/db/vuex-orm/helloworld.js'
-import HworldCh10 from '~/cts/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js'
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/1t-Mr1f/rem/db/vuex-orm/orm.js'
 import ormName from '~/cts/spi/1t-1rMf/name/db/orm.js'
