@@ -1,2 +1,0 @@
-# keeping route files with cts leads in nuxt giving build errors
-# Module not found: Error: Can't resolve 'fs' in '/System/Volumes/Data/Users/vk-tech/gt/sc-prog-repos/emr/ptserver/node_modules/config/lib'
