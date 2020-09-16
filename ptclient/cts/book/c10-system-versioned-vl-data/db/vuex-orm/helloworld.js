@@ -2,7 +2,7 @@
 // https://vuex-orm.org/guide/model/defining-models.html
 // ptclient/docs/models.md
 
-import rowManage from '~/cts/core/crud/row-manage.js'
+import rowManage from '~/cts/core/crud/orm-row-manage.js'
 export default class helloworldCh10 extends rowManage {
   static entity = 'helloworldCh10'
   static fields() {

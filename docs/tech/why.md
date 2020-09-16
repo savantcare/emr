@@ -59,11 +59,13 @@
 
 3. **Slim DB**: Remove fields not needed and make component DB's consistent and clean.
 
-4. **Review:** Code review before making it to master branch
+4. **Review:** Code review before making it to master branch.
 
 5. **Open source:** Better code quality by developing it in open and make it open source from start.
 
-6. **Documentation:** using vuepress and vue-stylegudist
+6. **Identifying good developers:** Github pulse is used to see which developers are committing code.
+
+7. **Documentation:** using vuepress and vue-stylegudist
 
 ### D. Other fields to explore:
 

@@ -1,7 +1,7 @@
 # ./.tmuxinator.yml
 
 name: all-dev-servers-in-tmux
-root: ./
+root: ./../../
 set-remain-on-exit: on
 
 windows:
@@ -13,8 +13,23 @@ windows:
             - yarn docs-in-dev-mode
         - Client:
             - cd ptclient
-            - yarn dev
-        - Server:
+            - npm run start-dev
+        - nodejsServer:
             - cd ptserver
-            - npm run start
+            - npm run start-dev
+        - JsonServer:
+            - cd utils/db
+            - ./start-json-server-for-mock-db.sh
+        - redisServer:
+            - cd servers/redis
+            - ./start-redis-server.sh
+        - redisUI:
+            - cd servers/redis
+            - ./start-redis-web-interface.sh
+        - socketServer:
+            - cd servers/socket
+            - ./start-redis-client-and-socket-server.sh
+        - remServer:
+            - cd servers/rem
+            - php -S localhost:8000 -t lumen
         - Terminal:
