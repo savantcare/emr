@@ -14,26 +14,26 @@ export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'reminders',
+        value: 'service statements',
         ctAbbr: 'rem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'spi/1t-Mrow-1Field/ss/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'add reminder',
+        value: 'add service statement',
         ctAbbr: 'arem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/add-ct.vue',
+        ctToShow: 'spi/1t-Mrow-1Field/ss/cl/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'change reminder',
+        value: 'change service statement',
         ctAbbr: 'crem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/c-ct.vue',
+        ctToShow: 'spi/1t-Mrow-1Field/ss/cl/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -41,18 +41,18 @@ export default {
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'multi change reminders',
+        value: 'multi change service statements',
         ctAbbr: 'mcrem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/mc-ct.vue',
+        ctToShow: 'spi/1t-Mrow-1Field/ss/cl/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
     })
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'discontinued reminders',
+        value: 'discontinued service statements',
         ctAbbr: 'drem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/vl/discontinued.vue',
+        ctToShow: 'spi/1t-Mrow-1Field/ss/vl/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
