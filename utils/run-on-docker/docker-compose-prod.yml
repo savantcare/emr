@@ -1,14 +1,14 @@
 version: "3"
 services:
-  ptclient:
+  webclient:
     image: node:14
     tty: true
     ports:
       - 80:80
-    working_dir: /gt/sc-prog-repos/emr/ptclient
+    working_dir: /gt/sc-prog-repos/emr/webclient
     command: bash -c "npm install && npm run build && npm run start-prod"
     volumes:
-      - /gt/sc-prog-repos/emr/ptclient:/gt/sc-prog-repos/emr/ptclient # This will allow hot reloading when files are changed on host
+      - /gt/sc-prog-repos/emr/webclient:/gt/sc-prog-repos/emr/webclient # This will allow hot reloading when files are changed on host
   ptserver:
     image: node:14
     tty: true

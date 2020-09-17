@@ -1,4 +1,4 @@
-/* For docs read ptclient/docs/models.md
+/* For docs read webclient/docs/models.md
 To see response from server: http://127.0.0.1:8000/phone-numbers/getAll
 */
 import rowManage from '~/cts/core/crud/orm-row-manage.js'

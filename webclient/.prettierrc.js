@@ -4,7 +4,7 @@
     For different file types see: https://prettier.io/docs/en/configuration.html
 
     How to do changes in a lot of files at once?
-    > /ptclient> npx prettier --write .  
+    > /webclient> npx prettier --write .  
   */
 module.exports = {
   semi: false, // https://prettier.io/docs/en/options.html#semicolons

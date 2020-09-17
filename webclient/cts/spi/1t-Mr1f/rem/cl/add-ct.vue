@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- For design see ptclient/cts/core/crud/forms.md -->
+<!-- For design see webclient/cts/core/crud/forms.md -->
 <template>
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Submit -->
@@ -101,7 +101,7 @@ export default {
       // TODO: this should be part of base class
       const arFromOrm = await objOrm.insert({
         data: {
-          vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
+          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })

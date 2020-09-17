@@ -30,7 +30,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y/0.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y 'Adding mutiple rows')
+[![Adding mutiple rows](https://img.youtube.com/vi/Yd4lsHTSu5Y/0.jpg)](https://www.youtube.com/watch?v=Yd4lsHTSu5Y "Adding mutiple rows")
 
 https://youtu.be/Yd4lsHTSu5Y
 
@@ -41,9 +41,9 @@ https://youtu.be/Yd4lsHTSu5Y
 
 # File links
 
-- /ptclient/cts/book/c7-orm-model/search-phrases.vue
-- /ptclient/cts/book/c7-orm-model/vl/table-ct.vue
-- /ptclient/cts/book/c7-orm-model/cl/table-ct.vue
-- /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/book/c7-orm-model/db/vuex-orm/helloworld.js
-- /ptclient/store/vuex-orm-register.js
+- /webclient/cts/book/c7-orm-model/search-phrases.vue
+- /webclient/cts/book/c7-orm-model/vl/table-ct.vue
+- /webclient/cts/book/c7-orm-model/cl/table-ct.vue
+- /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
+- /webclient/cts/book/c7-orm-model/db/vuex-orm/helloworld.js
+- /webclient/store/vuex-orm-register.js

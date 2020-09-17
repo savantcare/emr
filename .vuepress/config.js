@@ -48,17 +48,17 @@ module.exports = {
         // How to do nested sidebar? https://github.com/vuejs/vuepress/issues/287#issuecomment-480805333
         children: [
           {
-            path: "/ptclient/docs/ui/",
+            path: "/webclient/docs/ui/",
             title: "UI",
             sidebarDepth: 0,
             children: [
               {
-                path: "/ptclient/docs/ui/why",
+                path: "/webclient/docs/ui/why",
                 title: "Why",
                 sidebarDepth: 0,
               },
               {
-                path: "/ptclient/docs/ui/what",
+                path: "/webclient/docs/ui/what",
                 title: "What",
                 sidebarDepth: 0,
               },
@@ -108,153 +108,153 @@ module.exports = {
       },
       {
         title: "Client",
-        path: "/ptclient/",
+        path: "/webclient/",
         collapsable: true,
         sidebarDepth: 0,
         children: [
           {
-            path: "/ptclient/store/",
+            path: "/webclient/store/",
             title: "vuex-orm",
             sidebarDepth: 0,
           },
           {
-            path: "/ptclient/cts/",
+            path: "/webclient/cts/",
             title: "Components",
             sidebarDepth: 0,
             children: [
               {
-                path: "/ptclient/cts/spi/allergies/",
+                path: "/webclient/cts/spi/allergies/",
                 title: "Allergies",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/allergies/design/design",
+                    path: "/webclient/cts/spi/allergies/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/bm/",
+                path: "/webclient/cts/spi/bm/",
                 title: "Body measurements",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/bm/design/design",
+                    path: "/webclient/cts/spi/bm/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/contacts/",
+                path: "/webclient/cts/contacts/",
                 title: "Contacts",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/contacts/design/design",
+                    path: "/webclient/cts/spi/contacts/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/dx/",
+                path: "/webclient/cts/spi/dx/",
                 title: "Diagnosis",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/dx/design/design",
+                    path: "/webclient/cts/spi/dx/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/documents/",
+                path: "/webclient/cts/spi/documents/",
                 title: "Documents",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/documents/design/design",
+                    path: "/webclient/cts/spi/documents/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/family-history/",
+                path: "/webclient/cts/spi/family-history/",
                 title: "Family history",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/family-history/design/design",
+                    path: "/webclient/cts/spi/family-history/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/medications/",
+                path: "/webclient/cts/spi/medications/",
                 title: "Medication",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/medications/design/design",
+                    path: "/webclient/cts/spi/medications/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/mse/",
+                path: "/webclient/cts/spi/mse/",
                 title: "Mental status exam",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/mse/design/design",
+                    path: "/webclient/cts/spi/mse/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/pharmacy/",
+                path: "/webclient/cts/spi/pharmacy/",
                 title: "Pharmacy",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/pharmacy/design/design",
+                    path: "/webclient/cts/spi/pharmacy/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/psych-review-of-systems/",
+                path: "/webclient/cts/spi/psych-review-of-systems/",
                 title: "Psych review of systems",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/ptclient/cts/spi/psych-review-of-systems/design/design",
+                      "/webclient/cts/spi/psych-review-of-systems/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/ptclient/cts/spi/rec/",
+                path: "/webclient/cts/spi/rec/",
                 title: "Recommendations",
                 sidebarDepth: 0,
               },
               {
-                path: "/ptclient/cts/spi/scr/",
+                path: "/webclient/cts/spi/scr/",
                 title: "Screening",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/ptclient/cts/spi/scr/design/design",
+                    path: "/webclient/cts/spi/scr/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
@@ -264,7 +264,7 @@ module.exports = {
           },
           {
             title: "FAQ",
-            path: "/ptclient/docs/faq",
+            path: "/webclient/docs/faq",
             sidebarDepth: 0,
           },
         ],

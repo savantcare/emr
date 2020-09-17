@@ -31,7 +31,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Deleting all rows](https://img.youtube.com/vi/ULUJ_Efg1C8/0.jpg)](https://www.youtube.com/watch?v=ULUJ_Efg1C8 'Deleting all rows')
+[![Deleting all rows](https://img.youtube.com/vi/ULUJ_Efg1C8/0.jpg)](https://www.youtube.com/watch?v=ULUJ_Efg1C8 "Deleting all rows")
 
 https://youtu.be/ULUJ_Efg1C8
 
@@ -41,9 +41,9 @@ https://youtu.be/ULUJ_Efg1C8
 
 # File links
 
-- /ptclient/cts/book/c7-orm-model/search-phrases.vue
-- /ptclient/cts/book/c7-orm-model/vl/table-ct.vue
-- /ptclient/cts/book/c7-orm-model/cl/table-ct.vue
-- /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/book/c7-orm-model/db/vuex-orm/helloworld.js
-- /ptclient/store/vuex-orm-register.js
+- /webclient/cts/book/c7-orm-model/search-phrases.vue
+- /webclient/cts/book/c7-orm-model/vl/table-ct.vue
+- /webclient/cts/book/c7-orm-model/cl/table-ct.vue
+- /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
+- /webclient/cts/book/c7-orm-model/db/vuex-orm/helloworld.js
+- /webclient/store/vuex-orm-register.js

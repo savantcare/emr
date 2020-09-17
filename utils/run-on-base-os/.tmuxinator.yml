@@ -12,7 +12,7 @@ windows:
         - docs:
             - yarn docs-in-dev-mode
         - Client:
-            - cd ptclient
+            - cd webclient
             - npm run start-dev
         - JsonServer:
             - cd utils/db

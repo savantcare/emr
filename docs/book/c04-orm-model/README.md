@@ -19,7 +19,7 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=QQvTadWycQ4 'ORM model')
+[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=QQvTadWycQ4 "ORM model")
 
 https://youtu.be/QQvTadWycQ4
 
@@ -30,9 +30,9 @@ https://youtu.be/QQvTadWycQ4
 
 # File links
 
-- /ptclient/cts/book/c04-orm-model/search-phrases.vue
-- /ptclient/cts/book/c04-orm-model/vl/table-ct.vue
-- /ptclient/cts/book/c04-orm-model/cl/table-ct.vue
-- /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
-- /ptclient/cts/book/c04-orm-model/db/vuex-orm/helloworld.js
-- /ptclient/store/vuex-orm-register.js
+- /webclient/cts/book/c04-orm-model/search-phrases.vue
+- /webclient/cts/book/c04-orm-model/vl/table-ct.vue
+- /webclient/cts/book/c04-orm-model/cl/table-ct.vue
+- /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
+- /webclient/cts/book/c04-orm-model/db/vuex-orm/helloworld.js
+- /webclient/store/vuex-orm-register.js

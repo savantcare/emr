@@ -15,13 +15,13 @@
 
 Optimal resolution to view: 3840x2160
 
-[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=hW83eAImTUo 'Click to invoke a Component (ct) in change layer (cl)')
+[![Show component in current state of view layer](https://img.youtube.com/vi/zCgWHvHn4JA/0.jpg)](https://www.youtube.com/watch?v=hW83eAImTUo "Click to invoke a Component (ct) in change layer (cl)")
 
 https://youtu.be/hW83eAImTUo
 
 # File links
 
-- /ptclient/cts/book/c01-hello-world/search-phrases.vue
-- /ptclient/cts/book/c01-hello-world/vl/table-ct.vue
-- /ptclient/cts/book/c01-hello-world/cl/table-ct.vue
-- /ptclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
+- /webclient/cts/book/c01-hello-world/search-phrases.vue
+- /webclient/cts/book/c01-hello-world/vl/table-ct.vue
+- /webclient/cts/book/c01-hello-world/cl/table-ct.vue
+- /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue

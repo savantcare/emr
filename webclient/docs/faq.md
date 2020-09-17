@@ -17,7 +17,7 @@ $ yarn start or npm start
 
 ## Q2) How was the app generated?
 
-yarn create nuxt-app ptclient
+yarn create nuxt-app webclient
 
 ## Q3) What is the basic knowledge assumed?
 
@@ -33,7 +33,7 @@ yarn create nuxt-app ptclient
 
 ## Q4) What to do if it says nuxt not recognized?
 
-cd ptclient
+cd webclient
 
 > yard add nuxt
 

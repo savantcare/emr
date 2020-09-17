@@ -1,18 +1,18 @@
 version: "3"
 services:
-  ptclient:
-    container_name: ptclient
+  webclient:
+    container_name: webclient
     image: savantcare/emrclient
     ipc: host
     tty: true
     ports:
       - 80:80
-    working_dir: /gt/sc-prog-repos/emr/ptclient
+    working_dir: /gt/sc-prog-repos/emr/webclient
     depends_on:
       - ptserver
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/webclient/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/webclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 

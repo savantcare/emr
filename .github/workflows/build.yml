@@ -9,7 +9,7 @@ on:
     branches: [master]
 
 jobs:
-  ptclient-app: # This is the first job https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
+  webclient-app: # This is the first job https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
     runs-on: ubuntu-18.04 # For the list of github hosted runners see https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     steps:
       # ifconfig # Commented this since local runner act does not have ifconfig in ubuntu full
@@ -29,7 +29,7 @@ jobs:
           ls
           sudo mkdir -p /gt/sc-prog-repos/emr              
           sudo mv ptserver /gt/sc-prog-repos/emr/ptserver     # In source part of move not giving complete path so it runs on act and github
-          sudo mv ptclient /gt/sc-prog-repos/emr/ptclient
+          sudo mv webclient /gt/sc-prog-repos/emr/webclient
           sudo mv puppet /gt/sc-prog-repos/emr/puppet
           sudo mv utils /gt/sc-prog-repos/emr/utils
           sudo mv .github /gt/sc-prog-repos/emr/.github
@@ -38,14 +38,14 @@ jobs:
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
           cd /gt/sc-prog-repos/emr/ptserver
           sudo rm -rf package-lock.json # remove old package-lock.json file from ptserver
-          cd /gt/sc-prog-repos/emr/ptclient
-          sudo rm -rf package-lock.json # remove old package-lock.json file from ptclient
+          cd /gt/sc-prog-repos/emr/webclient
+          sudo rm -rf package-lock.json # remove old package-lock.json file from webclient
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
           ls -a /gt/sc-prog-repos/emr
 
-      - name: Goal 5 -> Start docker containers, ptserver ptclient and mariadb
+      - name: Goal 5 -> Start docker containers, ptserver webclient and mariadb
         run: |
           cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
           docker-compose up -d
@@ -85,11 +85,11 @@ jobs:
         run: |
           cat getAll
 
-      - name: Goal 12 -> Get confirmation that ptclient is running. Wget default is retry 20 times.
+      - name: Goal 12 -> Get confirmation that webclient is running. Wget default is retry 20 times.
         run: |
           wget localhost/
 
-      - name: Goal 13 -> Make sure that ptclient is returning right results
+      - name: Goal 13 -> Make sure that webclient is returning right results
         run: |
           cat index.html
 
@@ -106,7 +106,7 @@ jobs:
         run: |
           docker exec -i puppet whoami
 
-      # In ptserver and ptclient supervisor runs npm install.
+      # In ptserver and webclient supervisor runs npm install.
       # Why puppeteer is installed from dockerfile and not installed from npm install inside supervisor or build.yml?
       # If run from supervisor -> npm install is taking long time and node simple-puppet-test-run.js was starting before npm install finished
       # Also the packages will not change often. So better to install the puppeteer packages inside Dockerfile. This makes each CI/CD run faster.
@@ -180,7 +180,7 @@ jobs:
 #
 #
 #
-# Q3) How to get source code inside ptserver and ptclient images?
+# Q3) How to get source code inside ptserver and webclient images?
 # Option1: On github I can create a custom docker image at each commit and then inside build.yml I can say:
 # ptserver:
 #  image: ptserver-node:14 Ref: https://www.learncloudnative.com/blog/2020-02-20-github-action-build-push-docker-images/
@@ -199,5 +199,5 @@ jobs:
 #    cd /gt/sc-prog-repos/emr/utils/run-on-docker
 #    docker logs --follow run-on-docker_ptserver_1
 # https://stackoverflow.com/questions/61078178/github-action-how-to-ensure-that-server-is-running-properly
-# in docker-compose ptclient listens on port 80 Ref: https://unix.stackexchange.com/questions/5277/how-do-i-tell-a-script-to-wait-for-a-process-to-start-accepting-requests-on-a-po
+# in docker-compose webclient listens on port 80 Ref: https://unix.stackexchange.com/questions/5277/how-do-i-tell-a-script-to-wait-for-a-process-to-start-accepting-requests-on-a-po
 # https://docs.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts

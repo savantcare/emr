@@ -63,6 +63,6 @@ default formatter: prettier
 
 ## Why
 
-### Q) Why is vue-press in parent folder of ptclient and ptserver?
+### Q) Why is vue-press in parent folder of webclient and ptserver?
 
 vuepress cannot refer to files in parent folders. This vuepress will be used to document both client and server.

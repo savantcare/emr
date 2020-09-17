@@ -3,7 +3,10 @@
     Seventh chapter
     <el-form>
       <div v-if="cfGetOrmNewRowsInEditState.length">
-        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.id">
+        <el-form-item
+          v-for="ormRow in cfGetOrmNewRowsInEditState"
+          :key="ormRow.id"
+        >
           <el-col>
             <el-input
               placeholder="Please input"
@@ -15,41 +18,43 @@
       </div>
       <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
       <el-form-item>
-        <el-button type="primary" plain @click="mfAddEmptyRowInOrm">Add more</el-button>
+        <el-button type="primary" plain @click="mfAddEmptyRowInOrm"
+          >Add more</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
-import ormHw from '../db/vuex-orm/helloworld.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import ormHw from "../db/vuex-orm/helloworld.js"; // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
-      return ormHw.fnGetNewRowsInEditState()
+      return ormHw.fnGetNewRowsInEditState();
     },
   },
   methods: {
     async mfAddEmptyRowInOrm() {
       const arFromOrm = await ormHw.insert({
         data: {
-          msg: '',
-          vnRowStateInSession: 2, // For meaning of diff values read ptclient/cts/core/crud/forms.md
+          msg: "",
+          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
         },
-      })
+      });
       if (!arFromOrm) {
-        console.log('FATAL ERROR')
+        console.log("FATAL ERROR");
       }
     },
     mfGetFldValue(pOrmRowId, pFldName) {
-      const value = ormHw.fnGetFldValue(pOrmRowId, pFldName)
-      return value
+      const value = ormHw.fnGetFldValue(pOrmRowId, pFldName);
+      return value;
     },
     mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
-      const rowStatus = 24
-      ormHw.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
+      const rowStatus = 24;
+      ormHw.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus);
+      this.$forceUpdate(); // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
     },
   },
-}
+};
 </script>

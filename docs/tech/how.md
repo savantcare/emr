@@ -15,8 +15,8 @@ Step1: Start vue-client
 ```
 cd /gt/sc-prog-repos/
 git clone https://github.com/savantcare/emr.git
-cd ptclient
-ptclient> npm install
+cd webclient
+webclient> npm install
 # starts vue server
 vue-client> yarn start-dev
 # or

@@ -1,4 +1,4 @@
-// For docs read ptclient/docs/models.md
+// For docs read webclient/docs/models.md
 import rowManage from '~/cts/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')

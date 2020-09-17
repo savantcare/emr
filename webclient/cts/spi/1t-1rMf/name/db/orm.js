@@ -1,5 +1,5 @@
 // Reference implmentation for Ct that has 1 row and multiple fields.
-// For docs read ptclient/docs/models.md
+// For docs read webclient/docs/models.md
 import rowManage from '~/cts/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -63,7 +63,7 @@ export default class ptName extends rowManage {
           E. data flow is: mariadb -> dateTime(3) -> select as milli-seconds -> node js -> milli-seconds -> vue -> vuex-orm  field type number -> element.io -> date component
               For e.g:
               1. /Users/vk-tech/gt/sc-prog-repos/emr/utils/db/json-server-mock-db.json  timeOfMeasurement is milliseconds from epoch 
-              2. /emr/ptclient/cts/spi/1t-1rMf/bm/sub-cts/weight/vl/line-graph-ct.vue no need to multiply by 1000 to convert from seconds to milliseconds.
+              2. /emr/webclient/cts/spi/1t-1rMf/bm/sub-cts/weight/vl/line-graph-ct.vue no need to multiply by 1000 to convert from seconds to milliseconds.
            
           F. In the datetime field the value is always in UTC. Hence timezone need not be stored.
 

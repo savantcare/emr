@@ -3,7 +3,7 @@ module.exports = {
   globals: {
     URL:
       process.env.NODE_ENV === "test"
-        ? "http://ptclient:80/pf/abcd"
+        ? "http://webclient:80/pf/abcd"
         : "http://localhost:80/pf/abcd", // change URL as per NODE_ENV
   },
   moduleNameMapper: {
