@@ -1,32 +1,34 @@
 <template>
   <div>
     From fifth chapter - Hello {{ cfMsg }}
-    <el-button style="padding: 3px;" type="success" plain @click="mfOpenCtInCl">A</el-button>
+    <el-button style="padding: 3px" type="success" plain @click="mfOpenCtInCl"
+      >A</el-button
+    >
   </div>
 </template>
 <script>
-import ormHelloWorld from '@/cts/book/c04-orm-model/db/vuex-orm/helloworld.js'
+import ormHelloWorld from "@/components/book/c04-orm-model/db/vuex-orm/helloworld.js";
 export default {
   computed: {
     cfMsg() {
-      const arFromOrm = ormHelloWorld.query().get()
+      const arFromOrm = ormHelloWorld.query().get();
       if (arFromOrm.length > 0) {
-        console.log(arFromOrm)
-        return arFromOrm[0].msg
+        console.log(arFromOrm);
+        return arFromOrm[0].msg;
       }
-      return ''
+      return "";
     },
   },
   mounted() {
-    ormHelloWorld.insert({ data: { id: 1, msg: 'John' } })
-    console.log(ormHelloWorld)
+    ormHelloWorld.insert({ data: { id: 1, msg: "John" } });
+    console.log(ormHelloWorld);
   },
   methods: {
     mfOpenCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'Fifth chapter - change',
-      })
+      this.$store.commit("mtfShowNewFirstTabInClFromSearchPhrase", {
+        searchTerm: "Fifth chapter - change",
+      });
     },
   },
-}
+};
 </script>

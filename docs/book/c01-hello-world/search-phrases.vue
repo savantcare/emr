@@ -1,7 +1,7 @@
 <!-- The search phrases are a entry point to load different cts. -->
 <template><div></div></template>
 <script>
-import ormSearchPhrasesOfCt from "@/cts/core/search-phrases/search-phrases-of-components-orm";
+import ormSearchPhrasesOfCt from "@/components/core/search-phrases/search-phrases-of-components-orm";
 export default {
   mounted() {
     ormSearchPhrasesOfCt.insert({

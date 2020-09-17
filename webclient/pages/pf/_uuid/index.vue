@@ -60,12 +60,12 @@ import 'vue-slider-component/theme/default.css'
 import VueSocketIO from 'vue-socket.io'
 
 // Internal Cts
-import ctMtsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
-import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
-import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
-import ctMapDrawer from '@/cts/core/map/drawer.vue'
-import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
+import ctMtsVlCards from '@/components/core/manage-mtsvl-cards/list-of-cards.vue'
+import ctCsVlCards from '@/components/core/manage-ptsvl-cards/list-of-cards.vue'
+import ctTabsInDialogInCL from '@/components/core/manage-cl-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
+import ctFeedDrawer from '@/components/pt-info/combined/feed/drawer.vue'
+import ctMapDrawer from '@/components/pt-info/combined/map/drawer.vue'
+import ctDiscontinuedDrawer from '@/components/core/ct-discontinued-rows/drawer.vue'
 import objOrm from '~/cts/pt-info/single/1t-1row-mField/common-for-all-components/db/orm.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation

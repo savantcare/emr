@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import ormHw from "@/cts/book/c07-element-orm-connect-many-rows/db/vuex-orm/helloworld.js";
+import ormHw from "@/components/book/c07-element-orm-connect-many-rows/db/vuex-orm/helloworld.js";
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {
