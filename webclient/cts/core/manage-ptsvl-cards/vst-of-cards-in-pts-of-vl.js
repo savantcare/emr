@@ -1,4 +1,4 @@
-// For flow chart see cts/search-phrases/orm-search-phrases-of-ct:7
+// For flow chart see cts/search-phrases/search-phrases-of-components-orm:7
 export default {
   state: {
     arOfCardsInPtsOfVl: [], // Template has a for loop running on this.

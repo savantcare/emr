@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/search-phrases/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/search-phrases/search-phrases-of-components-orm'
 export default {
   data() {
     return {

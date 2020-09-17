@@ -1,4 +1,4 @@
-import ormSearchPhrasesOfCt from '~/cts/core/search-phrases/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '~/cts/core/search-phrases/search-phrases-of-components-orm'
 
 export default {
   state: {
@@ -54,7 +54,7 @@ export default {
       const objNewTab = {
         label: '+',
         closable: false,
-        ctToShow: require('./ct-search-inside-add-tab-in-cl').default,
+        ctToShow: require('./search-inside-add-tab-in-cl-ct').default,
         id: '0',
         ctWidthInCl: 'small', // Provide ct width in CL
       }

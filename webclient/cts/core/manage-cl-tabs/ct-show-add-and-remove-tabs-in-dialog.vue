@@ -116,7 +116,7 @@ dialog
 </template>
 
 <script>
-import ctSetOfTabs from './ct-set-of-tabs'
+import ctSetOfTabs from './set-of-tabs-ct'
 
 export default {
   name: 'CLTabsInDialogManager',
