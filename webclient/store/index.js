@@ -17,7 +17,7 @@ import VueStateOfFeedDrawerModule from '~/cts/core/feed/vue-state-of-feed-drawer
 import VueStateOfMapDrawerModule from '~/cts/core/map/vue-state-of-map-drawer'
 import VueStateOfDiscontinuedDrawerModule from '~/cts/core/ct-discontinued-rows/vue-state-of-discontinued-drawer'
 
-import database from '~/store/vuex-orm-register-database-models'
+import database from '~/store/register-database-and-models-to-vuex-orm'
 
 // Ref: https://stackoverflow.com/a/62247034
 const { v1: uuidv1 } = require('uuid')
