@@ -41,7 +41,7 @@ https://youtu.be/Yd4lsHTSu5Y
 
 # File links
 
-- /webclient/cts/book/c7-orm-model/search-phrases.vue
+- /webclient/cts/book/c7-orm-model/search-phrases-ct.vue
 - /webclient/cts/book/c7-orm-model/vl/table-ct.vue
 - /webclient/cts/book/c7-orm-model/cl/table-ct.vue
 - /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue

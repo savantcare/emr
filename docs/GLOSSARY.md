@@ -86,7 +86,7 @@ In the following examples age is a function inside a component
 
 ### Naming
 
-- Files are folder names: All small case seperated by - For e.g. search-phrases.vue. Why? some filesystems are case sensitive and some are not.
+- Files are folder names: All small case seperated by - For e.g. search-phrases-ct.vue. Why? some filesystems are case sensitive and some are not.
 
 - Component names: camelCase
   - Why not use hyphens in component names?

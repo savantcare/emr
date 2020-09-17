@@ -32,7 +32,7 @@ https://youtu.be/lb1IGuGocbI
 
 # File links
 
-- /webclient/cts/book/c5-orm-model/search-phrases.vue
+- /webclient/cts/book/c5-orm-model/search-phrases-ct.vue
 - /webclient/cts/book/c5-orm-model/vl/table-ct.vue
 - /webclient/cts/book/c5-orm-model/cl/table-ct.vue
 - /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue

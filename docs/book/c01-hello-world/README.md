@@ -18,6 +18,6 @@ https://youtu.be/PVp3R-r6PRU
 
 # File links
 
-- /webclient/cts/book/c01-hello-world/search-phrases.vue
+- /webclient/cts/book/c01-hello-world/search-phrases-ct.vue
 - /webclient/cts/book/c01-hello-world/vl/table-ct.vue
 - /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
