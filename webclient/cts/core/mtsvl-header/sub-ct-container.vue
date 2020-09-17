@@ -20,8 +20,8 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 <script>
 import ctSlider from './slider.vue'
 import ctTogleHealthOther from './toggle-health-other.vue'
-import ctName from '@/cts/spi/1t-1row-mField/name/vl/privacy-protected-name.vue'
-import ctAge from '@/cts/spi/1t-1row-mField/date-of-birth/vl/age.vue'
+import ctName from '@/cts/pt-info/single/1t-1row-mField/name/vl/privacy-protected-name.vue'
+import ctAge from '@/cts/pt-info/single/1t-1row-mField/date-of-birth/vl/age.vue'
 
 export default {
   components: { ctName, ctAge, ctTogleHealthOther, ctSlider },

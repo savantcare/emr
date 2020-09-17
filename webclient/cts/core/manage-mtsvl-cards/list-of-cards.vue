@@ -19,13 +19,13 @@
 </template>
 <script>
 import TheMultiStateDisplayAreaHeader from '@/cts/core/mtsvl-header/sub-ct-container.vue'
-import ctRemVl from '@/cts/spi/1t-Mrow-1Field/rem/vl/grid-design2-ct'
-import ctScrVl from '@/cts/spi/1t-Mrow-mField/scr/vl/table-ct'
-import ctBMVl from '@/cts/spi/1t-1row-mField/bm/vl/grid-ct'
-// import ctRexVl from '@/cts/spi/rec/vl/table-ct'
+import ctRemVl from '@/cts/pt-info/single/1t-Mrow-1Field/rem/vl/grid-design2-ct'
+import ctScrVl from '@/cts/pt-info/single/1t-Mrow-mField/scr/vl/table-ct'
+import ctBMVl from '@/cts/pt-info/single/1t-1row-mField/bm/vl/grid-ct'
+// import ctRexVl from '@/cts/pt-info/single/rec/vl/table-ct'
 
-// import ctDXVl from '@/cts/spi/dx/dx-vl'
-// import ctGVl from '@/cts/spi/goal/g-vl'
+// import ctDXVl from '@/cts/pt-info/single/dx/dx-vl'
+// import ctGVl from '@/cts/pt-info/single/goal/g-vl'
 
 export default {
   components: {

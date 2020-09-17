@@ -13,8 +13,8 @@ import vstOfTabsAndDialogInClModule from '~/cts/core/manage-cl-tabs/vst-of-tabs-
 // Full form: Vue State Of Cards In Current state Of View layer Module
 import vstOfCardsInPtsOfVlModule from '~/cts/core/manage-ptsvl-cards/vst-of-cards-in-pts-of-vl'
 
-import VueStateOfFeedDrawerModule from '~/cts/core/feed/vue-state-of-feed-drawer'
-import VueStateOfMapDrawerModule from '~/cts/core/map/vue-state-of-map-drawer'
+import VueStateOfFeedDrawerModule from '~/cts/pt-info/combined/feed/vue-state-of-feed-drawer'
+import VueStateOfMapDrawerModule from '~/cts/pt-info/combined/map/vue-state-of-map-drawer'
 import VueStateOfDiscontinuedDrawerModule from '~/cts/core/ct-discontinued-rows/vue-state-of-discontinued-drawer'
 
 import database from '~/store/register-database-and-models-to-vuex-orm'
