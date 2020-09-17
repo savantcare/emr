@@ -19,9 +19,9 @@
 </template>
 <script>
 import TheMultiStateDisplayAreaHeader from '@/cts/core/mtsvl-header/sub-ct-container.vue'
-import ctRemVl from '@/cts/spi/1t-Mr1f/rem/vl/grid-design2-ct'
-import ctScrVl from '@/cts/spi/1t-MrMf/scr/vl/table-ct'
-import ctBMVl from '@/cts/spi/1t-1rMf/bm/vl/grid-ct'
+import ctRemVl from '@/cts/spi/1t-Mrow-1Field/rem/vl/grid-design2-ct'
+import ctScrVl from '@/cts/spi/1t-Mrow-mField/scr/vl/table-ct'
+import ctBMVl from '@/cts/spi/1t-1row-mField/bm/vl/grid-ct'
 // import ctRexVl from '@/cts/spi/rec/vl/table-ct'
 
 // import ctDXVl from '@/cts/spi/dx/dx-vl'
