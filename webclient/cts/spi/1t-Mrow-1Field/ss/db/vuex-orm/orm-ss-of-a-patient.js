@@ -1,7 +1,7 @@
 // For docs read webclient/docs/models.md
 import rowManage from '~/cts/core/crud/orm-row-manage.js'
 
-// const { v1: uuidv1 } = require('uuid')
+const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
