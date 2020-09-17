@@ -5,6 +5,7 @@
     <mapSPhrases></mapSPhrases>
     <clearSPhrases></clearSPhrases>
     <remSPhrases></remSPhrases>
+    <scrSPhrases></scrSPhrases>
     <nameSPhrases></nameSPhrases>
     <weightSPhrases></weightSPhrases>
     <pulseSPhrases></pulseSPhrases>
@@ -18,22 +19,12 @@
     <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
     <dobSPhrases></dobSPhrases>
     <phoneNumberSPhrases></phoneNumberSPhrases>
-    <helloWorldC1SPhrases></helloWorldC1SPhrases>
-    <helloWorldC2SPhrases></helloWorldC2SPhrases>
-    <helloWorldC3SPhrases></helloWorldC3SPhrases>
-    <helloWorldC4SPhrases></helloWorldC4SPhrases>
-    <helloWorldC5SPhrases></helloWorldC5SPhrases>
-    <helloWorldC6SPhrases></helloWorldC6SPhrases>
-    <helloWorldC7SPhrases></helloWorldC7SPhrases>
-    <helloWorldC8SPhrases></helloWorldC8SPhrases>
-    <helloWorldC9SPhrases></helloWorldC9SPhrases>
-    <helloWorldC10SPhrases></helloWorldC10SPhrases>
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
       :fetch-suggestions="mfQuerySearchTerms"
       :placeholder="cfSearchBoxPlaceholder"
-      style="width: 100%;"
+      style="width: 100%"
       :highlight-first-item="true"
       @select="mfHandleSuggestionSelectedByUser"
     ></el-autocomplete>
@@ -60,11 +51,13 @@ import phq9SPhrases from '@/cts/spi/1t-1row-mField/phq9/search-phrases'
 import bmSPhrases from '@/cts/spi/1t-1row-mField/bm/search-phrases'
 import dobSPhrases from '@/cts/spi/1t-1row-mField/date-of-birth/search-phrases'
 import remSPhrases from '@/cts/spi/1t-Mrow-1Field/rem/search-phrases'
+import scrSPhrases from '@/cts/spi/1t-Mrow-1Field/scr/search-phrases'
 import phoneNumberSPhrases from '@/cts/spi/1t-Mrow-mField/phone-numbers/search-phrases'
 
 export default {
   components: {
     remSPhrases,
+    scrSPhrases,
     feedSPhrases,
     clearSPhrases,
     mapSPhrases,

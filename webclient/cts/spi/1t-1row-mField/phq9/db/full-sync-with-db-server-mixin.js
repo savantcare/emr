@@ -1,7 +1,8 @@
-/* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
-This file has doc unique to this ct */
+// Master doc is at reference implementation name/db/ull-sync-with-db-server-mixin.js This file has doc unique to this ct
+// Code synced with ref implementation on 17th sept 2020
 
 import objOrm from '~/cts/spi/1t-1row-mField/phq9/db/orm.js'
+
 export default {
   data() {
     return {
@@ -55,8 +56,13 @@ export default {
   },
   methods: {
     async mxGetDataFromDb() {
-      const pro = await objOrm.api().get(objOrm.apiUrl + '/1')
-      if (pro.ok) {
+      // sample patient UUID
+      // const patientUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
+      // const screenUrl = objOrm.apiUrl + `/getPatientScrDetail?ptUUID=${patientUUID}&screentype=PHQ9`
+      // const screenUrl = objOrm.apiUrl + '/1' // for json-server data
+      // const scrResponse = await objOrm.api().get(screenUrl)
+      const scrResponse = await objOrm.api().get(objOrm.apiUrl)
+      if (scrResponse.ok) {
       }
     },
   },

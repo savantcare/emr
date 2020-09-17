@@ -1,9 +1,15 @@
 // this is file 3 in example
 
 import { Database } from '@vuex-orm/core'
-import CtSearch from '~/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
+import Dx from '@/models/Dx'
+import Goal from '@/models/Goal'
+import Dxa from '@/models/Dxa'
+import CtSearch from '~/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
 import Rem from '~/cts/spi/1t-Mrow-1Field/rem/db/vuex-orm/orm.js'
+
+import ormScrMaster from '~/cts/spi/1t-Mrow-1Field/scr/db/vuex-orm/orm-scr-master-list.js'
+import ormScr from '~/cts/spi/1t-Mrow-1Field/scr/db/vuex-orm/orm-scr-of-pt.js'
 import ormName from '~/cts/spi/1t-1row-mField/name/db/orm.js'
 import ormWeight from '~/cts/spi/1t-1row-mField/bm/sub-cts/weight/db/orm.js'
 import ormWaistCircumference from '~/cts/spi/1t-1row-mField/bm/sub-cts/waist-circumference/db/orm.js'
@@ -16,10 +22,6 @@ import ormPulse from '~/cts/spi/1t-1row-mField/bm/sub-cts/pulse/db/orm.js'
 import ormDob from '~/cts/spi/1t-1row-mField/date-of-birth/db/orm.js'
 import ormPhq9 from '~/cts/spi/1t-1row-mField/phq9/db/orm.js'
 import Rex from '~/cts/spi/1t-Mrow-1Field/rec/db/vuex-orm/model.js'
-import Dx from '@/models/Dx'
-import Goal from '@/models/Goal'
-import Scr from '@/models/Screening'
-import Dxa from '@/models/Dxa'
 import phoneNumbers from '~/cts/spi/1t-Mrow-mField/phone-numbers/db/vuex-orm/orm.js'
 import objOrm from '~/cts/spi/1t-1row-mField/common-for-all-components/db/orm.js'
 
@@ -41,7 +43,8 @@ database.register(ormPhq9)
 database.register(Rex)
 database.register(Dx)
 database.register(Goal)
-database.register(Scr)
+database.register(ormScrMaster)
+database.register(ormScr)
 database.register(CtLifeCycle)
 database.register(Dxa)
 database.register(phoneNumbers)

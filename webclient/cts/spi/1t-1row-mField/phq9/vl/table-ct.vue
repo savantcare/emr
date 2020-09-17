@@ -1,5 +1,5 @@
 // Master doc is at reference implementation name/vl/full-name-ct.vue. This file has doc unique to
-this ct Code synced with ref implementation on 18th august 2020
+this ct Code synced with ref implementation on 14th sept 2020
 <template>
   <div>
     <h5 v-if="formType === 'stand-alone'">PHQ9</h5>
@@ -23,7 +23,7 @@ this ct Code synced with ref implementation on 18th august 2020
       v-if="formType === 'stand-alone'"
       type="primary"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfOpenCCtInCl(cfDataRow['id'])"
@@ -33,7 +33,7 @@ this ct Code synced with ref implementation on 18th august 2020
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="success"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendSubmitEvent()"
@@ -43,7 +43,7 @@ this ct Code synced with ref implementation on 18th august 2020
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="danger"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendResetFormEvent()"

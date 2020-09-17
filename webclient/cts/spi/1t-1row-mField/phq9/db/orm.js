@@ -1,4 +1,5 @@
-// For docs read webclient/docs/models.md
+// For docs read ptclient/docs/models.md
+// import { SCREENING_API_URL } from '@/static/others.js'
 import rowManage from '~/cts/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -9,11 +10,15 @@ const intUniqueID = () => ++count
 export default class ptPhq9 extends rowManage {
   static entity = 'phq9'
 
+  // static apiUrl = `${SCREENING_API_URL}` //  for mariadb data via node server
+  // static apiUrl = 'http://localhost:3000/phq9' // for json-server data
+  static apiUrl = 'http://localhost:8000/public/api/phq9/v20/'
+
+  static graphSeries1Unit = 'unit'
+
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.
   // baseurl is defined in nuxt.config.js
   // static apiUrl = process.env.baseUrl + '/name'
-
-  static apiUrl = 'http://localhost:3000/phq9'
 
   static fields() {
     return {
