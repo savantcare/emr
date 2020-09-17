@@ -62,7 +62,7 @@ import VueSocketIO from 'vue-socket.io'
 // Internal Cts
 import ctMtsVlCards from '@/cts/core/manage-mtsvl-cards/list-of-cards.vue'
 import ctCsVlCards from '@/cts/core/manage-ptsvl-cards/list-of-cards.vue'
-import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/ct-show-add-and-remove-tabs-in-dialog' // Name expands to Component tabs in dialog in change layer
+import ctTabsInDialogInCL from '@/cts/core/manage-cl-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctFeedDrawer from '@/cts/core/feed/drawer.vue'
 import ctMapDrawer from '@/cts/core/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/cts/core/ct-discontinued-rows/drawer.vue'
