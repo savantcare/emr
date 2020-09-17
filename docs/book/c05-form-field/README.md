@@ -35,6 +35,6 @@ https://youtu.be/lb1IGuGocbI
 - /webclient/cts/book/c5-orm-model/search-phrases-ct.vue
 - /webclient/cts/book/c5-orm-model/vl/table-ct.vue
 - /webclient/cts/book/c5-orm-model/cl/table-ct.vue
-- /webclient/cts/core/manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue
+- /webclient/cts/core/search-phrases/load-search-phrases-and-handle-selection.vue
 - /webclient/cts/book/c5-orm-model/db/vuex-orm/helloworld.js
 - /webclient/store/vuex-orm-register.js

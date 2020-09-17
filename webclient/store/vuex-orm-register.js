@@ -1,7 +1,7 @@
 // this is file 3 in example
 
 import { Database } from '@vuex-orm/core'
-import CtSearch from '~/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
+import CtSearch from '~/cts/core/search-phrases/orm-search-phrases-of-ct'
 import CtLifeCycle from '@/cts/core/ctMaster/orm-ct-life-cycle'
 import Rem from '~/cts/spi/1t-Mrow-1Field/rem/db/vuex-orm/orm.js'
 import ormName from '~/cts/spi/1t-1row-mField/name/db/orm.js'

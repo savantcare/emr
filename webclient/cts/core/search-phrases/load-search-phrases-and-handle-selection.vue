@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/search-phrases/orm-search-phrases-of-ct'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/cts/core/feed/search-phrases-ct'

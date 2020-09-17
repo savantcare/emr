@@ -25,7 +25,7 @@ Features needed in search
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from '@/cts/core/search-phrases/orm-search-phrases-of-ct'
 
 export default {
   data() {

@@ -1,28 +1,28 @@
-<template> <div></div> </template>
+<template><div></div></template>
 <script>
-import ormSearchPhrasesOfCt from '@/cts/core/manage-ptsvl-cards/orm-search-phrases-of-ct'
+import ormSearchPhrasesOfCt from "@/cts/core/search-phrases/orm-search-phrases-of-ct";
 export default {
   data() {
-    return {}
+    return {};
   },
   mounted() {
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Sixth chapter',
-        ctAbbr: 'c6',
-        ctToShow: 'book/c06-form-to-orm/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        value: "Sixth chapter",
+        ctAbbr: "c6",
+        ctToShow: "book/c06-form-to-orm/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        displayLocation: "ptsVl",
       },
-    })
+    });
     ormSearchPhrasesOfCt.insert({
       data: {
-        value: 'Sixth chapter - change',
-        ctAbbr: 'c6-c',
-        ctToShow: 'book/c06-form-to-orm/cl/table-ct.vue',
-        displayLocation: 'cl',
-        ctWidthInCl: 'small',
+        value: "Sixth chapter - change",
+        ctAbbr: "c6-c",
+        ctToShow: "book/c06-form-to-orm/cl/table-ct.vue",
+        displayLocation: "cl",
+        ctWidthInCl: "small",
       },
-    })
+    });
   },
-}
+};
 </script>
