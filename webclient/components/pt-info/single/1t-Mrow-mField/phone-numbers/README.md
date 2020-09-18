@@ -31,7 +31,7 @@ Positive of saving data in vuex-orm
     The name of component watchForUserSubmit
         This function will find
         let results = store.getters['entities/allDirty']();
-        Ref: https://github.com/client-side-db/plugin-change-flags
+        Ref: https://github.com/client-side/plugin-change-flags
 
 How to do it?
 https://stackoverflow.com/questions/57218760/two-way-data-binding-with-vuex-orm

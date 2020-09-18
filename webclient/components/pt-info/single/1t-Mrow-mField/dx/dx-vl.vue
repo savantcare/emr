@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
-import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dx.js'
-import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dxa.js'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/search-phrases-of-components-table'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
+import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
 
 /* export default {
   async asyncData({ params }) {

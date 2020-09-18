@@ -372,7 +372,7 @@ Advantages of architecture 2:
 
 Dis-Advantages of architecture 2:
 
-1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/client-side-db/plugin-axios and https://github.com/client-side-db/plugin-soft-delete (bring discontinued to industry standard by calling it soft delete)
+1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/client-side/plugin-axios and https://github.com/client-side/plugin-soft-delete (bring discontinued to industry standard by calling it soft delete)
 
 ## Q12) How to deploy to Heroku?
 

@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import ormHw from "../db/client-side-db/helloworld.js"; // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import ormHw from "../db/client-side/helloworld.js"; // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   methods: {

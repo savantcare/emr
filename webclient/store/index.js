@@ -1,4 +1,4 @@
-// This file is structured based on https://github.com/client-side-db/vuex-orm-examples-nuxt/tree/master/store
+// This file is structured based on https://github.com/client-side/vuex-orm-examples-nuxt/tree/master/store
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -24,7 +24,7 @@ const { v1: uuidv1 } = require('uuid')
 
 VuexORM.use(VuexORMAxios, { axios })
 VuexORM.use(VuextblSearchPhrasesOfCt, {
-  tokenize: true, // Ref: https://github.com/client-side-db/plugin-search#configurations needed so "goal add" works when list has "add goal"
+  tokenize: true, // Ref: https://github.com/client-side/plugin-search#configurations needed so "goal add" works when list has "add goal"
   matchAllTokens: true, // needed so "goal add" shows only opyion 1 when list has "add goal" and "multi rate goal"
   threshold: 0.1, // height and weight are very close and need to be distinguished so set thresold to .1
 })

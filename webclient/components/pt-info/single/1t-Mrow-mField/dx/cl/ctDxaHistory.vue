@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dx.js'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
 export default {
   props: ['dx'],
   data() {

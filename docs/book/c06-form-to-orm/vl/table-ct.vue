@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from "@/components/book/c06-form-to-orm/db/client-side-db/helloworld.js";
+import ormHelloWorld from "@/components/book/c06-form-to-orm/db/client-side/helloworld.js";
 export default {
   computed: {
     cfMsg() {

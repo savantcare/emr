@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from "@/components/book/c07-element-orm-connect-many-rows/db/client-side-db/helloworld.js";
+import ormHelloWorld from "@/components/book/c07-element-orm-connect-many-rows/db/client-side/helloworld.js";
 export default {
   computed: {
     cfMsg() {

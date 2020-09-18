@@ -20,8 +20,8 @@
 
 <script>
 // import addGoal from './layer-2/addGoal.vue'
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
-import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/client-side-db/Goal.js'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/search-phrases-of-components-table'
+import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal.js'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'
 export default {

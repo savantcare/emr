@@ -20,7 +20,7 @@ Step 4: Import the models where you want to use them.
 ## Q2) What is the pattern being followed for vuex-orm?
 
 This file is structured based on:
-[https://github.com/client-side-db/vuex-orm-examples-nuxt/](https://github.com/client-side-db/vuex-orm-examples-nuxt/)
+[https://github.com/client-side/vuex-orm-examples-nuxt/](https://github.com/client-side/vuex-orm-examples-nuxt/)
 
 ## Q3 What is this folder used for?
 
@@ -45,7 +45,7 @@ entities inside vuex store.
 
 ## Q) What is this file structure based on?
 
-https://github.com/client-side-db/vuex-orm-examples-nuxt/tree/master/database
+https://github.com/client-side/vuex-orm-examples-nuxt/tree/master/database
 
 ## Q) What are models?
 
@@ -61,4 +61,4 @@ Create a class that extend Vuex ORM Model.
 
 ## Q) What is this file structure based on?
 
-[https://github.com/client-side-db/vuex-orm-examples-nuxt/tree/master/models](https://github.com/client-side-db/vuex-orm-examples-nuxt/tree/master/models)
+[https://github.com/client-side/vuex-orm-examples-nuxt/tree/master/models](https://github.com/client-side/vuex-orm-examples-nuxt/tree/master/models)

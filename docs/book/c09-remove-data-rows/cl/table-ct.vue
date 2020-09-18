@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import ormHw from "@/components/book/c07-element-orm-connect-many-rows/db/client-side-db/helloworld.js";
+import ormHw from "@/components/book/c07-element-orm-connect-many-rows/db/client-side/helloworld.js";
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {

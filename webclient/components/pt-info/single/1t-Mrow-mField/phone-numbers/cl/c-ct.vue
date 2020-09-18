@@ -51,7 +51,7 @@
   </div>
 </template>
 <script>
-import objOrm from '../db/client-side-db/table.js'
+import objOrm from '../db/client-side/table.js'
 export default {
   /* 
     Q) Why is firstProp needed?

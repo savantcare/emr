@@ -1,9 +1,9 @@
 // this is file 3 in example
 
 import { Database } from '@vuex-orm/core'
-import tableSearch from '~/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
+import tableSearch from '~/components/core/search-phrases/db/client-side/search-phrases-of-components-table'
 import tableLifeCycle from '~/components/core/ctMaster/orm-ct-life-cycle'
-import tableRem from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/client-side-db/rem-table.js'
+import tableRem from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/client-side/rem-table.js'
 import tableName from '~/components/pt-info/single/1t-1row-mField/name/db/table.js'
 import tableWeight from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/weight/db/table.js'
 import tableWaistCircumference from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/db/table.js'
@@ -15,12 +15,12 @@ import tableTemperature from '~/components/pt-info/single/1t-1row-mField/bm/sub-
 import tablePulse from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/pulse/db/table.js'
 import tableDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/table.js'
 import tablePhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.js'
-import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side-db/model.js'
-import tableDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dx.js'
-import tableGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side-db/Goal'
-import tableScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side-db/Screening'
-import tableDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dxa.js'
-import tablePhoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side-db/table.js'
+import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side/model.js'
+import tableDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
+import tableGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal'
+import tableScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side/Screening'
+import tableDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
+import tablePhoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side/table.js'
 import tableCommon from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
 const database = new Database()

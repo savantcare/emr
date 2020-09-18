@@ -1,5 +1,5 @@
 // Reference implementation
-import objOrm from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side-db/table.js'
+import objOrm from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side/table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
