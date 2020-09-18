@@ -1,5 +1,5 @@
 // Master doc is at reference implementation name/com-mx/change-layer.js. This file has doc unique to this ct
-// Code synced with ref implementation on 18th august 2020
+// Code synced with ref implementation on 18th sept 2020
 import objOrm from '../db/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
@@ -80,25 +80,29 @@ export default {
   methods: {
     async mfOnSubmit() {
       const rowToUpsert = objOrm.find(this.vnOrmIdOfCopiedRowBeingChanged)
-      const response = await fetch(objOrm.apiUrl + '/' + rowToUpsert.uuid, {
-        method: 'PUT',
+      const patientUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8' // sample patient UUID
+      const response = await fetch(objOrm.apiUrl, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          uuid: rowToUpsert.uuid,
-
-          littleInterestOrPleasureInDoingThings: rowToUpsert.littleInterestOrPleasureInDoingThings,
-          feelingDownDepressedOrHopeless: rowToUpsert.feelingDownDepressedOrHopeless,
-          troubleFallingOrStayingAsleep: rowToUpsert.troubleFallingOrStayingAsleep,
-          feelingTiredOrHavingLittleEnergy: rowToUpsert.feelingTiredOrHavingLittleEnergy,
-          poorAppetiteOrOvereating: rowToUpsert.poorAppetiteOrOvereating,
-          feelingBadAboutYourself: rowToUpsert.feelingBadAboutYourself,
-          troubleConcentratingOnThings: rowToUpsert.troubleConcentratingOnThings,
-          movingOrSpeakingSoSlowly: rowToUpsert.movingOrSpeakingSoSlowly,
-          thoughtsThatYouWouldBeBetterOffDead: rowToUpsert.thoughtsThatYouWouldBeBetterOffDead,
-          ifYouCheckedOffAnyProblems: rowToUpsert.ifYouCheckedOffAnyProblems,
+          ptUUID: patientUUID,
+          data: {
+            ptUUID: rowToUpsert.uuid,
+            question1: rowToUpsert.littleInterestOrPleasureInDoingThings,
+            question2: rowToUpsert.feelingDownDepressedOrHopeless,
+            question3: rowToUpsert.troubleFallingOrStayingAsleep,
+            question4: rowToUpsert.feelingTiredOrHavingLittleEnergy,
+            question5: rowToUpsert.poorAppetiteOrOvereating,
+            question6: rowToUpsert.feelingBadAboutYourself,
+            question7: rowToUpsert.troubleConcentratingOnThings,
+            question8: rowToUpsert.movingOrSpeakingSoSlowly,
+            question9: rowToUpsert.thoughtsThatYouWouldBeBetterOffDead,
+            question10: rowToUpsert.ifYouCheckedOffAnyProblems,
+            recordChangedByUUID: patientUUID,
+            recordChangedFromIPAddress: '',
+          },
         }),
       })
       if (response.status === 200) {

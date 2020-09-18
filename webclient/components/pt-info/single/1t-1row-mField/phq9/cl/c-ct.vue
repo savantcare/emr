@@ -1,5 +1,5 @@
-// Master doc is at reference implementation name/view-layer/c-ct.vue. This file has doc unique to
-this ct Code synced with ref implementation on 18th august 2020
+// Master doc is at reference implementation name/vl/c-ct.vue. This file has doc unique to this ct
+// This file has doc unique to this ct code synced with ref implementation on 18th sept 2020
 <template>
   <div>
     <el-form>
@@ -13,7 +13,7 @@ this ct Code synced with ref implementation on 18th august 2020
 
         Note: The question 10 has differeent radio button label and design pattern
         for this we have saperated the design using v-if="index === 9" at line 45
-      -->
+        -->
 
         <div v-for="(question, index) in vaPhq9QuestionFields" :key="index">
           <div v-if="index !== 9">

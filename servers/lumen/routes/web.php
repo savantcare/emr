@@ -45,6 +45,35 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+
+  $router->get('screeings/v20/{ptUUID}',  ['uses' => 'ScreeningController@getScreenings']);
+  $router->post('screeings/v20/',  ['uses' => 'ScreeningController@setScreenings']);
+  $router->options('screeings/v20', function () {
+    return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+          ->header('Access-Control-Allow-Credentials', 'true')
+          ->header('Connection', 'keep-alive');
+  });
+  $router->options('screeings/v20/{id}', function () {
+    return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+          ->header('Access-Control-Allow-Credentials', 'true')
+          ->header('Connection', 'keep-alive');
+  });
+
+  $router->get('phq9/v20/{ptUUID}',  ['uses' => 'ScreeningController@getScrPhq9']);
+  $router->post('phq9/v20/',  ['uses' => 'ScreeningController@setScrPhq9']);
+  $router->options('phq9/v20', function () {
+    return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+          ->header('Access-Control-Allow-Credentials', 'true')
+          ->header('Connection', 'keep-alive');
+  });
+  $router->options('phq9/v20/{id}', function () {
+    return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+          ->header('Access-Control-Allow-Credentials', 'true')
+          ->header('Connection', 'keep-alive');
+  });
+
+
+
     /**
      * Routing for Height
      */

@@ -1,3 +1,4 @@
+<!-- Reference implementation -->
 <!-- To understand how this works read components/core/search-phrases/load-search-phrases-and-handle-selection.vue -->
 <template>
   <div></div>
@@ -13,20 +14,19 @@ export default {
   mounted() {
     tblSearchPhrasesOfCt.insert({
       data: {
-        value: 'phq9',
-        ctAbbr: 'h',
-        ctToShow: 'pt-info/single/1t-1row-mField/phq9/vl/line-graph-ct.vue',
+        value: 'screening',
+        ctAbbr: 'scr',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/scr/vl/timeline-ct.vue',
         displayLocation: 'ptsVl',
       },
     })
     tblSearchPhrasesOfCt.insert({
       data: {
-        value: 'phq9 - change',
-        ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1t-1row-mField/phq9/cl/c-ct.vue',
+        value: 'add screen',
+        ctAbbr: 'ascr',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/scr/cl/add-ct.vue',
         displayLocation: 'cl',
-        needsRowIdToWork: 'no',
-        ctWidthInCl: 'large',
+        ctWidthInCl: 'small',
       },
     })
   },

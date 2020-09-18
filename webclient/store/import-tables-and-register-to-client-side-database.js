@@ -18,7 +18,8 @@ import tablePhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.
 import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side/model.js'
 import tableDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
 import tableGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal'
-import tableScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side/Screening'
+import tableScr from '~/components/pt-info/single/1t-Mrow-1Field/scr/db/vuex-orm/scr-table.js'
+import tableScrMaster from '~/components/pt-info/single/1t-Mrow-1Field/scr/db/vuex-orm/scr-table-master.js'
 import tableDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
 import tablePhoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side/table.js'
 import tableCommon from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
@@ -42,6 +43,7 @@ database.register(tableRec)
 database.register(tableDx)
 database.register(tableGoal)
 database.register(tableScr)
+database.register(tableScrMaster)
 database.register(tableLifeCycle)
 database.register(tableDxa)
 database.register(tablePhoneNumbers)

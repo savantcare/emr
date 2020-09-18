@@ -1,5 +1,5 @@
-// Master doc is at reference implementation name/view-layer/full-name-ct.vue. This file has doc
-unique to this ct Code synced with ref implementation on 18th august 2020
+// Master doc is at reference implementation name/vl/full-name-ct.vue. This file has doc unique to
+this ct Code synced with ref implementation on 18th sept 2020
 <template>
   <div>
     <h5 v-if="formType === 'stand-alone'">PHQ9</h5>
@@ -9,7 +9,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       Ans) the vaPhq9QuestionFields is is required for both VL and CL components. 
       Due to this we fetched data from mixins component.
       Fetched all the fields with v-for loop and displayed in the template.
-     -->
+    -->
     <span v-for="(question, index) in vaPhq9QuestionFields" :key="index">
       <el-button
         :type="mfTypeOfButton(question.name)"
@@ -23,7 +23,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       v-if="formType === 'stand-alone'"
       type="primary"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfOpenCCtInCl(cfDataRow['id'])"
@@ -33,7 +33,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="success"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendSubmitEvent()"
@@ -43,7 +43,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="danger"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendResetFormEvent()"
