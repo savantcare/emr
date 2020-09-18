@@ -15,10 +15,7 @@
   ],
   "date-of-birth": [
     {
-      "uuid": 1,
-      "ptUUID": "abcd",
-      "dateOfBirthInMilliseconds": 240471503000,
-      "notes": "DOB notes 1"
+      "uuid": 1
     },
     {
       "uuid": 2,

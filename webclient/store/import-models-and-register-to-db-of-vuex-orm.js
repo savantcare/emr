@@ -13,7 +13,7 @@ import tableOxygenSaturation from '~/components/pt-info/single/1t-1row-mField/bm
 import tableHeight from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/table.js'
 import tableTemperature from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/temperature/db/table.js'
 import tablePulse from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/pulse/db/table.js'
-import tableDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/table.js'
+import tableDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tablePhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.js'
 import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side/model.js'
 import tableDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
