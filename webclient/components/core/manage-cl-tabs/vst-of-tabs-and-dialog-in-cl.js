@@ -1,4 +1,4 @@
-import ormSearchPhrasesOfCt from '~/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '~/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   state: {
@@ -63,7 +63,7 @@ export default {
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromOrm = await ormSearchPhrasesOfCt
+      const arFromOrm = await tblSearchPhrasesOfCt
         .query()
         .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {

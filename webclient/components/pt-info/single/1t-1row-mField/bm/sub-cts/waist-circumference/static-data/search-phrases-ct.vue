@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'waist circumference',
         ctAbbr: 'wc',
@@ -19,7 +19,7 @@ export default {
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'waist circumference - change',
         ctAbbr: 'wcc',

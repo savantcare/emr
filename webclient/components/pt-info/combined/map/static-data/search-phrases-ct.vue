@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'map',
         ctAbbr: 'mp',

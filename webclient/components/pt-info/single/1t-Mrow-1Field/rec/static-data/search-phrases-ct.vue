@@ -1,5 +1,5 @@
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 import ormCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     })
 
     // Step 2/3: Inserting Search interfaces to this component
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'recommendations',
         ctAbbr: 'rex',
@@ -26,7 +26,7 @@ export default {
       },
     })
 
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',

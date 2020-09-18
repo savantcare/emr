@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
@@ -82,7 +82,7 @@ export default {
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromOrm = {}
-      arFromOrm = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
+      arFromOrm = tblSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
       const objRowFromOrm = arFromOrm[0]
       if (objRowFromOrm) {
         return 'e.g. ' + objRowFromOrm.value
@@ -97,10 +97,10 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromOrm = ormSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
+        const arFromOrm = tblSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
         pCallBack(arFromOrm)
       } else {
-        const arFromOrm = ormSearchPhrasesOfCt
+        const arFromOrm = tblSearchPhrasesOfCt
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -133,7 +133,7 @@ export default {
 
       /* Goal: Increase the usageCount of the search term so I can order them better
         Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
-      ormSearchPhrasesOfCt.update({
+      tblSearchPhrasesOfCt.update({
         where: pSelectedSuggestion.id,
         data: {
           usageCountKeptInOrm: pSelectedSuggestion.usageCountKeptInOrm + 1,

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     // Search interfaces to this component
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'add goal',
         ctAbbr: 'addg',
@@ -22,7 +22,7 @@ export default {
       },
     })
 
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'multi rate goal',
         ctAbbr: 'mcg',
@@ -31,7 +31,7 @@ export default {
       },
     })
 
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'goal',
         ctAbbr: 'g',

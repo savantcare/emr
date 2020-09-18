@@ -1,12 +1,12 @@
 <template><div></div></template>
 <script>
-import ormSearchPhrasesOfCt from "@/components/core/search-phrases/search-phrases-of-components-table";
+import tblSearchPhrasesOfCt from "@/components/core/search-phrases/search-phrases-of-components-table";
 export default {
   data() {
     return {};
   },
   mounted() {
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: "Sixth chapter",
         ctAbbr: "c6",
@@ -14,7 +14,7 @@ export default {
         displayLocation: "ptsVl",
       },
     });
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: "Sixth chapter - change",
         ctAbbr: "c6-c",

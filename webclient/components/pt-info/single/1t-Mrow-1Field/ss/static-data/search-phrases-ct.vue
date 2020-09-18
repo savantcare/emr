@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'service statements',
         ctAbbr: 'rem',
@@ -20,7 +20,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'add service statement',
         ctAbbr: 'arem',
@@ -29,7 +29,7 @@ export default {
         ctWidthInCl: 'small',
       },
     })
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'change service statement',
         ctAbbr: 'crem',
@@ -39,7 +39,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'multi change service statements',
         ctAbbr: 'mcrem',
@@ -48,7 +48,7 @@ export default {
         ctWidthInCl: 'large',
       },
     })
-    ormSearchPhrasesOfCt.insert({
+    tblSearchPhrasesOfCt.insert({
       data: {
         value: 'discontinued service statements',
         ctAbbr: 'drem',

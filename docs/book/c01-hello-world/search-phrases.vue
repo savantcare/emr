@@ -1,11 +1,11 @@
 <!-- The search phrases are a entry point to load different cts. -->
 <template><div></div></template>
 <script>
-import ormSearchPhrasesOfCt from "@/components/core/search-phrases/search-phrases-of-components-table";
+import tblSearchPhrasesOfCt from "@/components/core/search-phrases/search-phrases-of-components-table";
 export default {
   mounted() {
-    ormSearchPhrasesOfCt.insert({
-      // ormSearchPhrasesOfCt lives in vue/state and allows sql queries. Uses vuex-orm
+    tblSearchPhrasesOfCt.insert({
+      // tblSearchPhrasesOfCt lives in vue/state and allows sql queries. Uses vuex-orm
       data: {
         value: "First Chapter",
         ctAbbr: "c1",
