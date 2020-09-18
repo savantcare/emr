@@ -7,7 +7,7 @@ export default {
       data: {
         value: "Third chapter",
         ctAbbr: "c3",
-        ctToShow: "book/c03-click-to-invoke/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        ctToShow: "book/c03-click-to-invoke/view-layer/table-ct.vue", // PtsVl -> Present time state - part of - view layer
         displayLocation: "ptsVl",
       },
     });

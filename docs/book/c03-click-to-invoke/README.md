@@ -22,6 +22,6 @@ https://youtu.be/hW83eAImTUo
 # File links
 
 - /webclient/cts/book/c01-hello-world/search-phrases-ct.vue
-- /webclient/cts/book/c01-hello-world/vl/table-ct.vue
+- /webclient/cts/book/c01-hello-world/view-layer/table-ct.vue
 - /webclient/cts/book/c01-hello-world/change-layer/table-ct.vue
 - /webclient/cts/core/search-phrases/load-search-phrases-and-handle-selection.vue

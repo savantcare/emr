@@ -46,7 +46,7 @@ https://youtu.be/28wMlcOYfwM
 # File links:
 
 - /webclient/cts/book/c7-orm-model/search-phrases-ct.vue
-- /webclient/cts/book/c7-orm-model/vl/table-ct.vue
+- /webclient/cts/book/c7-orm-model/view-layer/table-ct.vue
 - /webclient/cts/book/c7-orm-model/change-layer/table-ct.vue
 - /webclient/cts/core/search-phrases/load-search-phrases-and-handle-selection.vue
 - /webclient/cts/book/c7-orm-model/db/client-side/helloworld.js

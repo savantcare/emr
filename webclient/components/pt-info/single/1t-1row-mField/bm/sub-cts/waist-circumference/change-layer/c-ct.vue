@@ -66,7 +66,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctWaistCircumferenceGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/vl/line-graph-ct.vue'
+import ctWaistCircumferenceGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue'
 
 export default {
   components: { ctWaistCircumferenceGraph },

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'discontinued reminders',
         ctAbbr: 'drem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/vl/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

@@ -15,7 +15,7 @@ export default {
         value: 'waist circumference',
         ctAbbr: 'wc',
         ctToShow:
-          'pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/vl/line-graph-ct.vue',
+          'pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })

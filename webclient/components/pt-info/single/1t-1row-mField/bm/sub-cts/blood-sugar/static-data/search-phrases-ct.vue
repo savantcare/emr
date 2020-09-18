@@ -14,7 +14,8 @@ export default {
       data: {
         value: 'blood Sugar',
         ctAbbr: 'bs',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/vl/line-graph-ct.vue',
+        ctToShow:
+          'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })

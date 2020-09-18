@@ -10,7 +10,7 @@ Total loc: 991
 
 ### Layer 1
 
-**HTML/CSS/JS (122 loc)** -> /cts/rem/vl/table-ct.vue -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by [vue-cli](https://cli.vuejs.org/)
+**HTML/CSS/JS (122 loc)** -> /cts/rem/view-layer/table-ct.vue -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by [vue-cli](https://cli.vuejs.org/)
 
 ### Layer 2
 

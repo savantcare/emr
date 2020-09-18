@@ -14,7 +14,8 @@ export default {
       data: {
         value: 'oxygen Saturation',
         ctAbbr: 'w',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue',
+        ctToShow:
+          'pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })

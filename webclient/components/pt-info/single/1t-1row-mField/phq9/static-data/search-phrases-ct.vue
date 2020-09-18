@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'phq9',
         ctAbbr: 'h',
-        ctToShow: 'pt-info/single/1t-1row-mField/phq9/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-1row-mField/phq9/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })

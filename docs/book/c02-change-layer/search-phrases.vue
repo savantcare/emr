@@ -7,7 +7,7 @@ export default {
       data: {
         value: "Second chapter", // search term
         ctAbbr: "c2",
-        ctToShow: "book/c02-change-layer/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        ctToShow: "book/c02-change-layer/view-layer/table-ct.vue", // PtsVl -> Present time state - part of - view layer
         displayLocation: "ptsVl",
       },
     });

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'pt-info/single/1t-1row-mField/name/vl/full-name-ct.vue',
+        ctToShow: 'pt-info/single/1t-1row-mField/name/view-layer/full-name-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })

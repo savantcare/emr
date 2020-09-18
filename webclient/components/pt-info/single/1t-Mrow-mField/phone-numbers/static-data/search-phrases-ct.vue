@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
-        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'discontinued phone numbers',
         ctAbbr: 'dpn',
-        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/vl/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

@@ -10,7 +10,7 @@ export default {
       data: {
         value: "Fourth chapter",
         ctAbbr: "c4",
-        ctToShow: "book/c04-orm-model/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        ctToShow: "book/c04-orm-model/view-layer/table-ct.vue", // PtsVl -> Present time state - part of - view layer
         displayLocation: "ptsVl",
       },
     });

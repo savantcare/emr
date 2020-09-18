@@ -10,7 +10,7 @@ export default {
       data: {
         value: "Eigth chapter",
         ctAbbr: "c8",
-        ctToShow: "book/c08-reset-form/vl/table-ct.vue",
+        ctToShow: "book/c08-reset-form/view-layer/table-ct.vue",
         displayLocation: "ptsVl", // PtsVl -> Present time state - part of - view layer See GLOSSARY.md
       },
     });

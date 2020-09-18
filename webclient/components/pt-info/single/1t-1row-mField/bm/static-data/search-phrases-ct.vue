@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'body measurement',
         ctAbbr: 'bm',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/vl/tabs-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/view-layer/tabs-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })

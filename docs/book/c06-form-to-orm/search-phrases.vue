@@ -10,7 +10,7 @@ export default {
       data: {
         value: "Sixth chapter",
         ctAbbr: "c6",
-        ctToShow: "book/c06-form-to-orm/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        ctToShow: "book/c06-form-to-orm/view-layer/table-ct.vue", // PtsVl -> Present time state - part of - view layer
         displayLocation: "ptsVl",
       },
     });

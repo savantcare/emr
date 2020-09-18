@@ -50,7 +50,7 @@ For graph related work the reference implementation is weight.
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctTemperatureGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/temperature/vl/line-graph-ct.vue'
+import ctTemperatureGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/temperature/view-layer/line-graph-ct.vue'
 
 export default {
   components: { ctTemperatureGraph },

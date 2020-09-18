@@ -10,7 +10,7 @@ export default {
       data: {
         value: "Tenth chapter",
         ctAbbr: "c10",
-        ctToShow: "book/c10-system-versioned-vl-data/vl/table-ct.vue", // PtsVl -> Present time state - part of - view layer
+        ctToShow: "book/c10-system-versioned-vl-data/view-layer/table-ct.vue", // PtsVl -> Present time state - part of - view layer
         displayLocation: "ptsVl",
       },
     });

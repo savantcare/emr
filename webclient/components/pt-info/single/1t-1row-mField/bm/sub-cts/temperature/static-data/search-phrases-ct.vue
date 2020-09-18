@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'temperature',
         ctAbbr: 'w',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/temperature/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })

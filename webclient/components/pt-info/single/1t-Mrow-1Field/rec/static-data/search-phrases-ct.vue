@@ -21,7 +21,7 @@ export default {
       data: {
         value: 'recommendations',
         ctAbbr: 'rex',
-        ctToShow: 'pt-info/single/rec/vl/timeline.vue',
+        ctToShow: 'pt-info/single/rec/view-layer/timeline.vue',
         displayLocation: 'ptsVl',
       },
     })
@@ -30,7 +30,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',
-        ctToShow: 'pt-info/single/rec/vl/table-ct.vue',
+        ctToShow: 'pt-info/single/rec/view-layer/table-ct.vue',
         displayLocation: 'cl',
       },
     })

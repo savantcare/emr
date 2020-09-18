@@ -14,7 +14,8 @@ export default {
       data: {
         value: 'blood pressure',
         ctAbbr: 'bp',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-pressure/vl/line-graph-ct.vue',
+        ctToShow:
+          'pt-info/single/1t-1row-mField/bm/sub-cts/blood-pressure/view-layer/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })

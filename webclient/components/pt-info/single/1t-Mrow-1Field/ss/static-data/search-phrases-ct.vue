@@ -17,7 +17,7 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'rem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -53,7 +53,7 @@ export default {
       data: {
         value: 'discontinued service statements',
         ctAbbr: 'drem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/vl/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
