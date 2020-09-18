@@ -15,7 +15,7 @@ import ormTemperature from '~/components/pt-info/single/1t-1row-mField/bm/sub-ct
 import ormPulse from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/pulse/db/orm.js'
 import ormDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/orm.js'
 import ormPhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/orm.js'
-import Rex from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/vuex-orm/model.js'
+import Rec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/vuex-orm/model.js'
 import Dx from '@/models/Dx'
 import Goal from '@/models/Goal'
 import Scr from '@/models/Screening'
@@ -38,7 +38,7 @@ database.register(ormTemperature)
 database.register(ormPulse)
 database.register(ormDob)
 database.register(ormPhq9)
-database.register(Rex)
+database.register(Rec)
 database.register(Dx)
 database.register(Goal)
 database.register(Scr)
