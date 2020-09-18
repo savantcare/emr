@@ -6,6 +6,7 @@
 
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/vuex-orm/search-phrases-of-components-table'
+// import tableMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/vuex-orm/master-list-of-ss-ct'
 
 export default {
   data() {

@@ -5,34 +5,34 @@
 </template>
 
 <script>
-import ormSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/vuex-orm/table-master-list-of-ss.js'
+import tableSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/vuex-orm/table-master-list-of-ss.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    ormSSMasterList.insert({
+    tableSSMasterList.insert({
       data: {
         description: 'Spent 10 mins with patient',
       },
     })
-    ormSSMasterList.insert({
+    tableSSMasterList.insert({
       data: {
         description: 'Spent 15 mins with patient',
       },
     })
-    ormSSMasterList.insert({
+    tableSSMasterList.insert({
       data: {
         description: 'Spent 20 mins with patient',
       },
     })
-    ormSSMasterList.insert({
+    tableSSMasterList.insert({
       data: {
         description: 'Spent 25 mins with patient',
       },
     })
-    ormSSMasterList.insert({
+    tableSSMasterList.insert({
       data: {
         description: 'Spent 30 mins with patient',
       },
