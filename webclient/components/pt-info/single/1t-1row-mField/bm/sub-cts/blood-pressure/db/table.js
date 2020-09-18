@@ -1,5 +1,5 @@
 // For ref implementation see name/db/table.js
-import rowManage from '~/components/core/crud/orm-row-manage.js'
+import rowManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 
