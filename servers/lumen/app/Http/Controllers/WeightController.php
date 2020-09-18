@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Height;
+use App\Weight;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
@@ -10,19 +10,17 @@ use Predis\Autoloader;
 \Predis\Autoloader::register();
 
 
-class HeightController extends Controller
+class WeightController extends Controller
 {
-    public function showAllHeights()
+    public function showAllWeights()
     {
-        $heightQuery = DB::select(DB::raw('SELECT *,UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END FROM sc_body_measurement.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($heightQuery);
-
-        // return response()->json(Height::all());
+        $weightQuery = DB::select(DB::raw('SELECT *,UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END FROM sc_body_measurement.weight FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        return response()->json($weightQuery);
     }
 
-    public function showOneHeight($id)
+    public function showOneWeight($id)
     {
-        return response()->json(Height::find($id));
+        return response()->json(Weight::find($id));
     }
 
     public function create(Request $request)
@@ -30,25 +28,25 @@ class HeightController extends Controller
         $requestData = $request->all();
         $uuid = Uuid::uuid4();
 
-        $heightData = array(
+        $weightData = array(
             'uuid' => $uuid,
             'ptUUID' => $requestData['data']['ptUUID'],
-            'heightInInch' => $requestData['data']['heightInInch'],
+            'weightInPounds' => $requestData['data']['weightInPounds'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );
        
-        $heightObj = Height::insertGetId($heightData);
+        $weightObj = Weight::insertGetId($weightData);
 
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForHeightToAdd';
+        $channel = 'MsgFromSktForWeightToAdd';
         $message = array(
             'uuid' => $uuid,
             'ptUUID' => $requestData['data']['ptUUID'],
-            'heightInInch' => $requestData['data']['heightInInch'],
+            'weightInPounds' => $requestData['data']['weightInPounds'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
@@ -56,22 +54,22 @@ class HeightController extends Controller
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response()->json($heightObj, 201);
+        return response()->json($weightObj, 201);
     }
 
     public function update($id, Request $request)
     {
-        $heightObj = Height::findOrFail($id);
-        $heightObj->update($request->all());
+        $weightObj = Weight::findOrFail($id);
+        $weightObj->update($request->all());
 
         /**
          * Send data to socket
          */
         $requestData = $request->all();
-        $channel = 'MsgFromSktForHeightToChange';
+        $channel = 'MsgFromSktForWeightToChange';
         $message = array(
             'uuid' => $id,
-            'heightInInches' => $requestData['heightInInches'],
+            'weightInPounds' => $requestData['weightInPounds'],
             'timeOfMeasurement' => $requestData['timeOfMeasurement'],
             'notes' => $requestData['notes'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
@@ -80,7 +78,7 @@ class HeightController extends Controller
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response()->json($heightObj, 200);
+        return response()->json($weightObj, 200);
     }
 
 }

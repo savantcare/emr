@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Height extends Model
+class Weight extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'height';
+    protected $table = 'weight';
     public $timestamps = false;
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class Height extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'heightInInches', 'timeOfMeasurement', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUUID', 'weightInPounds', 'timeOfMeasurement', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
     ];
 
     /**

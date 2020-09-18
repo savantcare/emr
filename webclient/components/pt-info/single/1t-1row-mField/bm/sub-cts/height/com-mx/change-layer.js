@@ -1,5 +1,6 @@
 import objOrm from '../db/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import tableCommonForAllComponents from '@/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],
@@ -119,6 +120,7 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
+      const socketClientObj = await tableCommonForAllComponents.find(1)
       // Since only one valid row is possible there may be other discontinued rows
       const rowToUpsert = objOrm.find(this.dnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(objOrm.apiUrl + '/' + rowToUpsert.uuid, {
@@ -128,10 +130,11 @@ export default {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          uuid: rowToUpsert.uuid,
-          firstName: rowToUpsert.firstName,
-          middleName: rowToUpsert.middleName,
-          lastName: rowToUpsert.lastName,
+          heightInInches: rowToUpsert.heightInInches,
+          timeOfMeasurement: rowToUpsert.timeOfMeasurement,
+          notes: rowToUpsert.notes,
+          clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
+            socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
         }),
       })
       if (response.status === 200) {
@@ -141,8 +144,8 @@ export default {
             return (
               record.uuid === rowToUpsert.uuid &&
               (record.vnRowStateInSession === 1 /* Came from DB */ ||
-              record.vnRowStateInSession ===
-                34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
+                record.vnRowStateInSession ===
+                  34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
                 record.vnRowStateInSession ===
                   24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
             )
@@ -182,6 +185,7 @@ export default {
       */
       // There will always be an existing row that is already in change state
       const value = objOrm.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
+      console.log('value ====> ', value)
       return value
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
