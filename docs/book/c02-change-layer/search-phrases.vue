@@ -1,6 +1,6 @@
 <template><div></div></template>
 <script>
-import tblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/search-phrases-of-components-table";
+import tblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table";
 export default {
   mounted() {
     tblSearchPhrasesOfCt.insert({

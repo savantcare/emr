@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
