@@ -1,5 +1,5 @@
 // Reference implementation
-import objOrm from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/client-side/rem-table.js'
+import objOrm from '~/components/pt-info/single/1t-Mrow-1Field/reminder/db/client-side/rem-table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {

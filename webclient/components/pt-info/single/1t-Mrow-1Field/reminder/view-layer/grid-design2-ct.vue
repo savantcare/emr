@@ -19,70 +19,48 @@
           >
         </el-button-group>
       </div>
-      <el-table
-        :data="cfArOfRemForDisplayInTable"
-        :show-header="false"
-        size="mini"
-        style="width: 100%;"
-        :stripe="true"
-        :row-class-name="mfGetCssClassName"
-        @selection-change="mfHandleSelectionForDiscontinue"
-      >
-        <el-table-column type="selection" width="42" tabindex="-1"> </el-table-column>
-        <!-- From developer console if I set:
-<input type="checkbox" aria-hidden="false" class="el-checkbox__original" value="" tabindex="-1">
-as tabindex=-1 then the KB tab key does not take user to the checkbox.
-Setting the <el-table-column as tabindex=-1 does not help -->
+      <div class="grid-container">
+        <div
+          v-for="rem in cfArOfRemForDisplayInTable"
+          :key="rem.id"
+          :style="mfGetCssClassName(rem)"
+        >
+          <!-- <el-button type="text">{{ rem.description }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
 
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <p>Created: {{ props.row.createdAt }}</p>
-            <p>Row start: {{ props.row.ROW_START }}</p>
-            <p>Row end: {{ props.row.ROW_END }}</p>
-            <p>uuid: {{ props.row.uuid }}</p>
-            <p>id: {{ props.row.id }}</p>
-          </template>
-        </el-table-column>
-
-        <el-table-column prop="description" label="Desc"> </el-table-column>
-        <!-- Why is width = "60" for the action column
-        Setting this makes the middle column of desc flexible.
-        After this is set if desc has 200 words they will use the maximum available space.
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
+            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
           -->
-        <el-table-column label="Actions" width="60">
-          <template slot-scope="props">
-            <!-- 
-              Goal: 
-              I open "add form" and enter "jai kali ma" and then i close the add form by pressing escape. In the table that row should not have change and discontinue
 
-              How: 
-              v-if to check is the 'vnRowStateInSession' not exists in array 'daRowStatesNotHavingCD'
+          <div v-if="(rem.vnRowStateInSession === 9)">Added from socket {{ rem.description }}</div>
+          <div v-else>
+            {{ rem.description }}
+          </div>
 
-              Ref: https://stackoverflow.com/questions/43881723/can-i-use-vue-js-v-if-to-check-is-the-value-exists-in-array
-            -->
-            <el-button-group v-if="!daRowStatesNotHavingCD.includes(props.row.vnRowStateInSession)">
-              <el-button
-                type="primary"
-                size="mini"
-                style="padding: 3px;"
-                plain
-                tabindex="-1"
-                @click="mxOpenCCtInCl(props.row.id)"
-                >C</el-button
-              >
-              <el-button
-                type="warning"
-                size="mini"
-                style="padding: 3px;"
-                plain
-                tabindex="-1"
-                @click="mxOpenDPrompt(props.row.id)"
-                >D</el-button
-              >
-            </el-button-group>
-          </template>
-        </el-table-column>
-      </el-table>
+          <el-button-group>
+            <el-button
+              type="primary"
+              size="mini"
+              style="padding: 3px;"
+              plain
+              tabindex="-1"
+              @click="mxOpenCCtInCl(rem.id)"
+              >C</el-button
+            >
+            <el-button
+              type="warning"
+              size="mini"
+              style="padding: 3px;"
+              plain
+              tabindex="-1"
+              @click="mxOpenDPrompt(rem.id)"
+              >D</el-button
+            >
+          </el-button-group>
+        </div>
+      </div>
       <el-pagination
         :hide-on-single-page="true"
         background
@@ -92,14 +70,17 @@ Setting the <el-table-column as tabindex=-1 does not help -->
       >
       </el-pagination>
     </el-card>
+    <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
 </template>
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import objOrm from '../db/client-side/rem-table.js'
+import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
+  components: { ctActOnSocketMessages },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {
@@ -134,7 +115,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.description = arFromOrm[i].description
-          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/rem/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
@@ -168,13 +149,13 @@ export default {
       this.daSelectedRemForDiscontinue = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow, pIndex) {
-      const strOfNumber = pRow.row.vnRowStateInSession.toString()
+    mfGetCssClassName(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'unsaved-data'
+        return 'color: #E6A23C;'
       } else {
-        return ''
+        return 'color: #409EFF;'
       }
     },
   },
@@ -182,10 +163,16 @@ export default {
 </script>
 
 <style>
-tr.el-table__row.unsaved-data {
-  background: #fde2b9;
-}
-.el-table--striped .el-table__body tr.el-table__row--striped.unsaved-data td {
-  background: #f9d399;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
 }
 </style>

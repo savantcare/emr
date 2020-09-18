@@ -3,7 +3,7 @@ const {
   gatherPerformanceTimingMetric,
   gatherPerformanceTimingMetrics,
   processPerformanceTimingMetrics,
-} = require("@/rem/helper");
+} = require("@/reminder/helper");
 
 beforeAll(async () => {
   await page.goto(URL, { waitUntil: "domcontentloaded" }); // Goto the patient file link and wait for loading

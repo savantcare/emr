@@ -20,25 +20,8 @@
         </el-button-group>
       </div>
       <div class="grid-container">
-        <div
-          v-for="rem in cfArOfRemForDisplayInTable"
-          :key="rem.id"
-          :style="mfGetCssClassName(rem)"
-        >
-          <!-- <el-button type="text">{{ rem.description }}</el-button> 
-          if I use the button then a long text is not getting divided into multiple lines
-
-          if rowStateInThisSession == 9 then the div should have a orange border
-          Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
-            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
-          -->
-
-          <div v-if="(rem.vnRowStateInSession === 9)">Added from socket {{ rem.description }}</div>
-          <div v-else>
-            {{ rem.description }}
-          </div>
-
+        <div v-for="rem in cfArOfRemForDisplayInTable" :key="rem.id">
+          <div>{{ rem.description }}</div>
           <el-button-group>
             <el-button
               type="primary"
@@ -46,7 +29,7 @@
               style="padding: 3px;"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl(rem.id)"
+              @click="mxOpenCCtInCl()"
               >C</el-button
             >
             <el-button
@@ -55,32 +38,21 @@
               style="padding: 3px;"
               plain
               tabindex="-1"
-              @click="mxOpenDPrompt(rem.id)"
+              @click="mxOpenDPrompt()"
               >D</el-button
             >
           </el-button-group>
         </div>
       </div>
-      <el-pagination
-        :hide-on-single-page="true"
-        background
-        layout="pager"
-        :total="cfLengthOfDataArray"
-        @current-change="mfTablePageChanged"
-      >
-      </el-pagination>
     </el-card>
-    <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
 </template>
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import objOrm from '../db/client-side/rem-table.js'
-import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
-  components: { ctActOnSocketMessages },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {
@@ -115,7 +87,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.description = arFromOrm[i].description
-          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/rem/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
@@ -149,13 +121,13 @@ export default {
       this.daSelectedRemForDiscontinue = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
+    mfGetCssClassName(pRow, pIndex) {
+      const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'color: #E6A23C;'
+        return 'unsaved-data'
       } else {
-        return 'color: #409EFF;'
+        return ''
       }
     },
   },
@@ -165,14 +137,7 @@ export default {
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* Some other grid-template-columns options are :
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
-  */
-  grid-gap: 1px;
-  grid-auto-flow: row; /* This is default value */
-  margin: 1px;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-gap: 1rem;
 }
 </style>

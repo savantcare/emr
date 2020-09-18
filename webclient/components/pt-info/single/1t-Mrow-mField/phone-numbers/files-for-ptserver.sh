@@ -6,9 +6,9 @@
 echo "Running file copy"
 
 echo "Copying: phoneNumber.model.js"
-cp /gt/sc-prog-repos/emr/webclient/cts/pt-info/single/1t-Mrow-1Field/rem/db/sequalize/phoneNumber.model.js /gt/sc-prog-repos/emr/ptserver/models/
+cp /gt/sc-prog-repos/emr/webclient/cts/pt-info/single/1t-Mrow-1Field/reminder/db/sequalize/phoneNumber.model.js /gt/sc-prog-repos/emr/ptserver/models/
 
 echo "Copying: phoneNumber.route.js"
 echo "keeping route files with cts leads in nuxt giving build errors"
 echo "# The error is: Module not found: Error: Can't resolve 'fs' in '/System/Volumes/Data/Users/vk-tech/gt/sc-prog-repos/emr/ptserver/node_modules/config/lib'"
-# cp /gt/sc-prog-repos/emr/webclient/cts/pt-info/single/1t-Mrow-1Field/rem/db/sequalize/phoneNumber.route.js /gt/sc-prog-repos/emr/ptserver/routes/
+# cp /gt/sc-prog-repos/emr/webclient/cts/pt-info/single/1t-Mrow-1Field/reminder/db/sequalize/phoneNumber.route.js /gt/sc-prog-repos/emr/ptserver/routes/

@@ -50,7 +50,7 @@ import oxygenSaturationSPhrases from '@/components/pt-info/single/1t-1row-mField
 import phq9SPhrases from '@/components/pt-info/single/1t-1row-mField/phq9/static-data/search-phrases-ct'
 import bmSPhrases from '@/components/pt-info/single/1t-1row-mField/bm/static-data/search-phrases-ct'
 import dobSPhrases from '@/components/pt-info/single/1t-1row-mField/date-of-birth/static-data/search-phrases-ct'
-import remSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/rem/static-data/search-phrases-ct'
+import remSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/reminder/static-data/search-phrases-ct'
 import ssSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/ss/static-data/search-phrases-ct'
 import phoneNumberSPhrases from '@/components/pt-info/single/1t-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
 

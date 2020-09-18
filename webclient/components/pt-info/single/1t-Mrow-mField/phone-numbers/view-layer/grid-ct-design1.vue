@@ -87,7 +87,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromOrm.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.phoneNumber = arFromOrm[i].phoneNumber
-          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/rem/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) +

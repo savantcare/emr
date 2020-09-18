@@ -104,7 +104,7 @@ export default {
         for (let i = 0; i < arFromOrm.length; i++) {
           obj = {}
           obj.description = arFromOrm[i].description
-          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/rem/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/pt-info/single/1t-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
           date = new Date(arFromOrm[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession

@@ -10,17 +10,17 @@ Total loc: 991
 
 ### Layer 1
 
-**HTML/CSS/JS (122 loc)** -> /cts/rem/view-layer/table-ct.vue -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by [vue-cli](https://cli.vuejs.org/)
+**HTML/CSS/JS (122 loc)** -> /cts/reminder/view-layer/table-ct.vue -> This has the presentation layer (html), styling layer (css), JS to change the state. This file is compiled into seperate html js and css by [vue-cli](https://cli.vuejs.org/)
 
 ### Layer 2
 
-1. **Add (123 loc)** /cts/rem/change-layer/add-ct.vue
+1. **Add (123 loc)** /cts/reminder/change-layer/add-ct.vue
 
-2. **Multi change (86 loc)** /cts/rem/change-layer/mc-ct.vue
+2. **Multi change (86 loc)** /cts/reminder/change-layer/mc-ct.vue
 
 ### Common between layer 1 and layer 2
 
-State (267 loc) -> Maintained inside vuex-orm. see /cts/rem/db/client-side/rem.js
+State (267 loc) -> Maintained inside vuex-orm. see /cts/reminder/db/client-side/rem.js
 
 ## Server side
 
