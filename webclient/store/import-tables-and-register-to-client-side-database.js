@@ -15,7 +15,7 @@ import tableTemperature from '~/components/pt-info/single/1t-1row-mField/bm/sub-
 import tablePulse from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/pulse/db/table.js'
 import tableDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tablePhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.js'
-import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side/model.js'
+import tableRec from '~/components/pt-info/single/1t-Mrow-1Field/recommendation/db/client-side/structure/rec-table.js'
 import tableDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
 import tableGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal'
 import tableScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side/Screening'

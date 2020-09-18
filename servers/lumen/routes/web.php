@@ -64,4 +64,25 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+    /**
+     * Routing for Recommendation
+     */
+
+    $router->get('recommendations/v20/',  ['uses' => 'RecommendationController@showAllRecommendations']);
+    $router->get('recommendations/v20/{id}', ['uses' => 'RecommendationController@showOneRecommendation']);
+    $router->post('recommendations/v20/', ['uses' => 'RecommendationController@create']);
+    $router->delete('recommendations/v20/{id}', ['uses' => 'RecommendationController@delete']);
+    $router->put('recommendations/v20/{id}', ['uses' => 'RecommendationController@update']);
+    $router->patch('recommendations/v20/{id}', ['uses' => 'RecommendationController@discontinue']);
+    $router->options('recommendations/v20', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('recommendations/v20/{id}', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
   });

@@ -5,6 +5,7 @@
     <mapSPhrases></mapSPhrases>
     <clearSPhrases></clearSPhrases>
     <remSPhrases></remSPhrases>
+    <recSPhrases></recSPhrases>
     <ssSPhrases></ssSPhrases>
     <nameSPhrases></nameSPhrases>
     <weightSPhrases></weightSPhrases>
@@ -34,7 +35,6 @@
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
-// Goal: Get the search terms from each component
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
 import mapSPhrases from '@/components/pt-info/combined/map/static-data/search-phrases-ct'
 import clearSPhrases from '@/components/core/clear/static-data/search-phrases-ct'
@@ -51,12 +51,14 @@ import phq9SPhrases from '@/components/pt-info/single/1t-1row-mField/phq9/static
 import bmSPhrases from '@/components/pt-info/single/1t-1row-mField/bm/static-data/search-phrases-ct'
 import dobSPhrases from '@/components/pt-info/single/1t-1row-mField/date-of-birth/static-data/search-phrases-ct'
 import remSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'
+import recSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/recommendation/db/client-side/static-data/search-phrases-ct'
 import ssSPhrases from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/static-data/search-phrases-ct'
 import phoneNumberSPhrases from '@/components/pt-info/single/1t-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
 
 export default {
   components: {
     remSPhrases,
+    recSPhrases,
     ssSPhrases,
     feedSPhrases,
     clearSPhrases,
@@ -94,45 +96,35 @@ export default {
   mounted() {},
   methods: {
     mfQuerySearchTerms(pQueryString, pCallBack) {
-      // pQueryString empty means user did not enter anything
-      // to show values in dropdown returning all results
       if (!pQueryString) {
         const arFromOrm = tblSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
         pCallBack(arFromOrm)
       } else {
         const arFromOrm = tblSearchPhrasesOfCt
           .query()
-          .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
+          .where('needsRowIdToWork', 'no')
           .search(pQueryString.trim(), {
-            // Search comes from vuex-orm plugn https://github.com/client-side/plugin-search#during-query-chain
-            keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
+            keys: ['value'],
           })
           .orderBy('usageCountKeptInOrm', 'desc')
-          .get() // trim is needed for "goal " to match "goal"
+          .get()
         pCallBack(arFromOrm)
       }
     },
 
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
-      // Goal: Add the card in CsVl (Current state in View layer) or tab in CL (Change layer)
-
       const objCtToAdd = {
         label: pSelectedSuggestion.value,
-        // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working
         ctToShow: require('@/components/' + pSelectedSuggestion.ctToShow).default,
         id: pSelectedSuggestion.id,
         closable: true,
       }
       if (pSelectedSuggestion.displayLocation === 'ptsVl') {
-        // ptsvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'cl') {
-        // Change layer
         this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
       }
 
-      /* Goal: Increase the usageCount of the search term so I can order them better
-        Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
       tblSearchPhrasesOfCt.update({
         where: pSelectedSuggestion.id,
         data: {
@@ -140,14 +132,12 @@ export default {
         },
       })
 
-      /* Goal: Once search work is done then the input area needs to be empty */
       this.searchKeyword = ''
 
-      /* Goal: scrolling to top of the search input box */
       const options = {
         container: '#ptsvl',
         easing: 'ease-in',
-        offset: 6000, // if offset is negative I do not come on top of search box. Not sure what this means
+        offset: 6000,
         force: true,
         cancelable: true,
       }
