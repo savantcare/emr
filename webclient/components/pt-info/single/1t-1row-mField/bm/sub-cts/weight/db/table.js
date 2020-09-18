@@ -1,4 +1,4 @@
-// For ref implementation see name/db/orm.js
+// For ref implementation see name/db/table.js
 import rowManage from '~/components/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -21,7 +21,7 @@ export default class ptWeight extends rowManage {
       uuid: this.uid(() => uuidv1()),
 
       weightInPounds: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
+      timeOfMeasurement: this.number(null), // refer to /name/db/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

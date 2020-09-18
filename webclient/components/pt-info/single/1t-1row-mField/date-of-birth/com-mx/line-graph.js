@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import objOrm from '../db/orm.js'
+import objOrm from '../db/table.js'
 import mxViewLayer from './view-layer.js'
 
 export default {

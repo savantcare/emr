@@ -1,4 +1,4 @@
-import ormSearchPhrasesOfCt from '~/components/core/search-phrases/search-phrases-of-components-orm'
+import ormSearchPhrasesOfCt from '~/components/core/search-phrases/search-phrases-of-components-table'
 
 export default {
   state: {

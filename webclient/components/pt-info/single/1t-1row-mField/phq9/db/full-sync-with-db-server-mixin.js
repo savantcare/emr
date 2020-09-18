@@ -1,7 +1,7 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
 
-import objOrm from '~/components/pt-info/single/1t-1row-mField/phq9/db/orm.js'
+import objOrm from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.js'
 export default {
   data() {
     return {

@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/orm.js'
+import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
 class rowManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -15,10 +15,10 @@ class rowManage extends Model {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/core/crud/row-manage.js#L5)
 
 export default class ptHeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/orm.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/table.js#L9)
 
 export default class ptWeight extends rowManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/orm.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/table.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached

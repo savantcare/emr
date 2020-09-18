@@ -1,4 +1,4 @@
-// For ref implementation see name/db/orm.js
+// For ref implementation see name/db/table.js
 import rowManage from '~/components/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -6,12 +6,12 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptPulse extends rowManage {
-  static entity = 'pulse'
-  static apiUrl = 'http://localhost:3000/pulse'
+export default class ptBloodPressure extends rowManage {
+  static entity = 'bloodPressure'
+  static apiUrl = 'http://localhost:3000/blood-pressure'
 
-  static graphSeries1FieldName = 'pulseInBpm'
-  static graphSeries1Unit = 'Lbs'
+  static graphSeries1FieldName = 'bloodPressureInBpm'
+  static graphSeries1Unit = 'Bpm'
 
   static fields() {
     return {
@@ -20,8 +20,8 @@ export default class ptPulse extends rowManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      pulseInBpm: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
+      bloodPressureInBpm: this.number(null), // number type of vuex-orm will also store decimals
+      timeOfMeasurement: this.number(null), // refer to /name/db/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

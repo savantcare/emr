@@ -66,7 +66,7 @@ import ctTabsInDialogInCL from '@/components/core/manage-cl-tabs/show-add-and-re
 import ctFeedDrawer from '@/components/pt-info/combined/feed/drawer.vue'
 import ctMapDrawer from '@/components/pt-info/combined/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/components/core/ct-discontinued-rows/drawer.vue'
-import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/orm.js'
+import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(

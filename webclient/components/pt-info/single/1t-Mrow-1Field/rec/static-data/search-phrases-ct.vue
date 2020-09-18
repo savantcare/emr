@@ -1,5 +1,5 @@
 <script>
-import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-orm'
+import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-table'
 import ormCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
 
 export default {

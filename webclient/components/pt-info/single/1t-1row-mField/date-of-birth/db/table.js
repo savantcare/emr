@@ -1,4 +1,4 @@
-// For ref implementation see name/db/orm.js
+// For ref implementation see name/db/table.js
 import rowManage from '~/components/core/crud/orm-row-manage.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -6,12 +6,12 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptWaistCircumference extends rowManage {
-  static entity = 'waistCircumference'
-  static apiUrl = 'http://localhost:3000/waist-circumference'
+export default class ptDateOfBirth extends rowManage {
+  static entity = 'date of birth'
+  static apiUrl = 'http://localhost:3000/date-of-birth'
 
-  static graphSeries1FieldName = 'waistCircumferenceInInches'
-  static graphSeries1Unit = 'Inches'
+  static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
+  static graphSeries1Unit = 'Lbs'
 
   static fields() {
     return {
@@ -20,8 +20,7 @@ export default class ptWaistCircumference extends rowManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      waistCircumferenceInInches: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/orm.js notes for ROW_END
+      dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/table.js
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

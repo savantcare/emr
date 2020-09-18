@@ -1,4 +1,4 @@
-import objOrm from '../db/orm.js'
+import objOrm from '../db/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {

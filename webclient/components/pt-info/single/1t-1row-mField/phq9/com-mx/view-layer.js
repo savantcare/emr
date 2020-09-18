@@ -4,7 +4,7 @@
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import objOrm from '../db/orm.js'
+import objOrm from '../db/table.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
