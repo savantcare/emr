@@ -6,7 +6,7 @@
 
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-// import tblMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/master-list-of-ss-ct'
+// import tblMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss'
 
 export default {
   data() {
