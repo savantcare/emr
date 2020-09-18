@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ormSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/vuex-orm/orm-master-list-of-ss.js'
+import ormSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/vuex-orm/table-master-list-of-ss.js'
 
 export default {
   data() {
