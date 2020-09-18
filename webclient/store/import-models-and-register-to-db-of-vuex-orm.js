@@ -16,10 +16,10 @@ import ormPulse from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/puls
 import ormDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/orm.js'
 import ormPhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/orm.js'
 import Rec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/vuex-orm/model.js'
-import Dx from '@/models/Dx'
+import Dx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx.js'
 import Goal from '@/models/Goal'
 import Scr from '@/models/Screening'
-import Dxa from '@/models/Dxa'
+import Dxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dxa.js'
 import phoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/vuex-orm/orm.js'
 import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/orm.js'
 

@@ -32,7 +32,7 @@
 </template>
 <script>
 import DxaHistoryItem from './ctDxaHistory'
-import ormDx from '@/models/Dx'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx.js'
 export default {
   components: {
     DxaHistoryItem,

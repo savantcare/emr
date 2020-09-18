@@ -20,8 +20,8 @@
 
 <script>
 import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-orm'
-import ormDx from '@/models/Dx'
-import ormDxa from '@/models/Dxa'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx.js'
+import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dxa.js'
 
 /* export default {
   async asyncData({ params }) {
