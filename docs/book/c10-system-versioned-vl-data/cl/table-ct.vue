@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import ormHw from "@/components/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js";
+import ormHw from "@/components/book/c10-system-versioned-vl-data/db/client-side-db/helloworld.js";
 export default {
   computed: {
     cfGetOrmNewRowsInEditState() {

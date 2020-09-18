@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/vuex-orm/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
 
 export default {
   data() {

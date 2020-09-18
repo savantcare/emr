@@ -40,15 +40,15 @@
 
         1B. [DB versioning and migrations can happen.](https://github.com/savantcare/patientfile/blob/master/node-server/models/recommendation.model.js)
 
-    Client side [vuex-orm](https://github.com/vuex-orm/vuex-orm)
+    Client side [vuex-orm](https://github.com/client-side-db/vuex-orm)
 
 3.  **elelemt.io** [Pre made components](https://element.eleme.io/#/en-US/component/layout)
 
 4.  **Jest**
 
-5.  **Application folder framework** Industry standard best practives. Decided to use [nuxt](https://nuxtjs.org/guide). This has built in integration with element.io and [vuex-orm](https://github.com/vuex-orm/vuex-orm-examples-nuxt)
+5.  **Application folder framework** Industry standard best practives. Decided to use [nuxt](https://nuxtjs.org/guide). This has built in integration with element.io and [vuex-orm](https://github.com/client-side-db/vuex-orm-examples-nuxt)
 
-6.  GraphQL: So only the required fields are fetched. [vuex-orm-graphql](https://github.com/vuex-orm/plugin-graphql)
+6.  GraphQL: So only the required fields are fetched. [vuex-orm-graphql](https://github.com/client-side-db/plugin-graphql)
 
 ### C. Tech Benefits from improved development practice
 

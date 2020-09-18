@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/vuex-orm/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
 
 // Goal: Get the search terms from each component
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
@@ -104,8 +104,8 @@ export default {
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
-            // Search comes from vuex-orm plugn https://github.com/vuex-orm/plugin-search#during-query-chain
-            keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
+            // Search comes from vuex-orm plugn https://github.com/client-side-db/plugin-search#during-query-chain
+            keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side-db/plugin-search#during-query-chain
           })
           .orderBy('usageCountKeptInOrm', 'desc')
           .get() // trim is needed for "goal " to match "goal"

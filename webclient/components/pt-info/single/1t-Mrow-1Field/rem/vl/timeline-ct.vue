@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import objOrm from '../db/vuex-orm/rem-table.js'
+import objOrm from '../db/client-side-db/rem-table.js'
 import ctActOnSocketMessages from '../cl/act-on-socket-messages-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 

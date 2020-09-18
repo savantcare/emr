@@ -1,4 +1,4 @@
-import tblSearchPhrasesOfCt from '~/components/core/search-phrases/db/vuex-orm/search-phrases-of-components-table'
+import tblSearchPhrasesOfCt from '~/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
 
 export default {
   state: {
@@ -68,7 +68,7 @@ export default {
         .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {
           threshold: 0.1,
-          keys: ['value'], // If key is not specified it will search all fields https://github.com/vuex-orm/plugin-search#during-query-chain
+          keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side-db/plugin-search#during-query-chain
         })
         .get()
       const objSearchRowFromOrm = arFromOrm[0]

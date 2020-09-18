@@ -20,7 +20,7 @@ Total loc: 991
 
 ### Common between layer 1 and layer 2
 
-State (267 loc) -> Maintained inside vuex-orm. see /cts/rem/db/vuex-orm/rem.js
+State (267 loc) -> Maintained inside vuex-orm. see /cts/rem/db/client-side-db/rem.js
 
 ## Server side
 

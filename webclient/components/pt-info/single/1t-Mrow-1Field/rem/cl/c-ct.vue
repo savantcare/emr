@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import objOrm from '../db/vuex-orm/rem-table.js'
+import objOrm from '../db/client-side-db/rem-table.js'
 import objCommonOrm from '@/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 export default {
   /* 

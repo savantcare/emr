@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/vuex-orm/search-phrases-of-components-table'
-import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx.js'
-import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dxa.js'
+import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side-db/search-phrases-of-components-table'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dx.js'
+import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dxa.js'
 
 /* export default {
   async asyncData({ params }) {

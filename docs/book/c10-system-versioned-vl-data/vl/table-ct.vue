@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import ormHelloWorld from "@/components/book/c10-system-versioned-vl-data/db/vuex-orm/helloworld.js";
+import ormHelloWorld from "@/components/book/c10-system-versioned-vl-data/db/client-side-db/helloworld.js";
 export default {
   computed: {
     cfMsg() {

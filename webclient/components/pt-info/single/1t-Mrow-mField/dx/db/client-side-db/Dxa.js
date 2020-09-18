@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import Dx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx'
+import Dx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side-db/Dx'
 
 export default class Dxa extends Model {
   static entity = 'dxAssessment'

@@ -22,7 +22,7 @@
 
 vuex objOrm field: vnRowStateInSession of type int
 
-e.g. cts/pt-info/single/1t-Mrow-1Field/rem/db/vuex-orm/rems:71
+e.g. cts/pt-info/single/1t-Mrow-1Field/rem/db/client-side-db/rems:71
 
 # Q3) What are the different possible values for vnRowStateInSession?
 

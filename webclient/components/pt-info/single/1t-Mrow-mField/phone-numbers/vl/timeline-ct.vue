@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import objOrm from '../db/vuex-orm/table.js'
+import objOrm from '../db/client-side-db/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {

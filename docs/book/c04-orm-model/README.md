@@ -34,5 +34,5 @@ https://youtu.be/QQvTadWycQ4
 - /webclient/cts/book/c04-orm-model/vl/table-ct.vue
 - /webclient/cts/book/c04-orm-model/cl/table-ct.vue
 - /webclient/cts/core/search-phrases/load-search-phrases-and-handle-selection.vue
-- /webclient/cts/book/c04-orm-model/db/vuex-orm/helloworld.js
+- /webclient/cts/book/c04-orm-model/db/client-side-db/helloworld.js
 - /webclient/store/vuex-orm-register.js

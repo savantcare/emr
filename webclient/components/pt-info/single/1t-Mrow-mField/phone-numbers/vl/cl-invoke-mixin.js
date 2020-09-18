@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import objOrm from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/vuex-orm/rem-table.js'
+import objOrm from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/client-side-db/rem-table.js'
 
 export default {
   methods: {
