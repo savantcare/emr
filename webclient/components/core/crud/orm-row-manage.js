@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import objOrm from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
+import tableCommonForAllComponents from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
 class rowManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -605,8 +605,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static async fnMakeApiCAll(pOrmRowArray) {
-    const socketClientObj = await objOrm.find(1)
-    // console.log(objOrm)
+    const socketClientObj = await tableCommonForAllComponents.find(1)
+    // console.log(tableCommonForAllComponents)
     pOrmRowArray.ptUUID = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
     pOrmRowArray.recordChangedByUUID = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     pOrmRowArray.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange =
@@ -634,7 +634,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async fnSendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
     try {
-      const socketClientObj = await objOrm.find(1)
+      const socketClientObj = await tableCommonForAllComponents.find(1)
 
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
