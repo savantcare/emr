@@ -6,7 +6,7 @@
 
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/search-phrases-of-components-table'
-// import tableMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/client-side/master-list-of-ss-ct'
+// import tableMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/master-list-of-ss-ct'
 
 export default {
   data() {
@@ -17,7 +17,7 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'rem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/service-statement/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -25,7 +25,7 @@ export default {
       data: {
         value: 'add service statement',
         ctAbbr: 'arem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/service-statement/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -34,7 +34,7 @@ export default {
       data: {
         value: 'change service statement',
         ctAbbr: 'crem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/service-statement/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -44,7 +44,7 @@ export default {
       data: {
         value: 'multi change service statements',
         ctAbbr: 'mcrem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/service-statement/change-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
@@ -53,7 +53,7 @@ export default {
       data: {
         value: 'discontinued service statements',
         ctAbbr: 'drem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/view-layer/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/service-statement/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

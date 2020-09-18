@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tableSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/ss/db/client-side/table-master-list-of-ss.js'
+import tableSSMasterList from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/table-master-list-of-ss.js'
 
 export default {
   data() {
