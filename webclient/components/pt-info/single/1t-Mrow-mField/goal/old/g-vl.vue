@@ -21,7 +21,7 @@
 <script>
 // import addGoal from './layer-2/addGoal.vue'
 import ormSearchPhrasesOfCt from '@/components/core/search-phrases/search-phrases-of-components-orm'
-import ormGoal from '@/models/Goal'
+import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/vuex-orm/Goal.js'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'
 export default {

@@ -17,7 +17,7 @@ import ormDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/
 import ormPhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/orm.js'
 import Rec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/vuex-orm/model.js'
 import Dx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dx.js'
-import Goal from '@/models/Goal'
+import Goal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/vuex-orm/Goal'
 import Scr from '@/models/Screening'
 import Dxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/vuex-orm/Dxa.js'
 import phoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/vuex-orm/orm.js'

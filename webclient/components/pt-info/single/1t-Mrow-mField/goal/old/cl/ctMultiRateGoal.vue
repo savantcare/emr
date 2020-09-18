@@ -52,7 +52,7 @@
 <script>
 import GoalHistoryItem from './GoalHistoryItem'
 import { GOAL_API_URL } from '@/static/others.js'
-import ormGoal from '@/models/Goal'
+import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/vuex-orm/Goal.js'
 export default {
   components: {
     GoalHistoryItem,
