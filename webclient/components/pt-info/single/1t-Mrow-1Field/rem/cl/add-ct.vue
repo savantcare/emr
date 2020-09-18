@@ -75,7 +75,7 @@
   </div>
 </template>
 <script>
-import objOrm from '../db/vuex-orm/orm.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import objOrm from '../db/vuex-orm/rem-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {

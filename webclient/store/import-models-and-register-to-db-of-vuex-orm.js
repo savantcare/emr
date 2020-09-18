@@ -3,7 +3,7 @@
 import { Database } from '@vuex-orm/core'
 import CtSearch from '~/components/core/search-phrases/search-phrases-of-components-orm'
 import CtLifeCycle from '~/components/core/ctMaster/orm-ct-life-cycle'
-import Rem from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/vuex-orm/orm.js'
+import Rem from '~/components/pt-info/single/1t-Mrow-1Field/rem/db/vuex-orm/rem-table.js'
 import ormName from '~/components/pt-info/single/1t-1row-mField/name/db/orm.js'
 import ormWeight from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/weight/db/orm.js'
 import ormWaistCircumference from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/db/orm.js'
