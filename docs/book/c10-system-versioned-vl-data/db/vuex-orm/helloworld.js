@@ -2,8 +2,8 @@
 // https://vuex-orm.org/guide/model/defining-models.html
 // webclient/docs/models.md
 
-import rowManage from "~/cts/core/crud/orm-row-manage.js";
-export default class helloworldCh10 extends rowManage {
+import clientSideTableManage from "~/cts/core/crud/orm-row-manage.js";
+export default class helloworldCh10 extends clientSideTableManage {
   static entity = "helloworldCh10";
   static fields() {
     return {

@@ -1,12 +1,12 @@
 // For docs read webclient/docs/models.md
-import rowManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptHeight extends rowManage {
+export default class ptHeight extends clientSideTableManage {
   static entity = 'height'
   static graphSeries1FieldName = 'heightInInches'
   static graphSeries1Unit = 'Inches'

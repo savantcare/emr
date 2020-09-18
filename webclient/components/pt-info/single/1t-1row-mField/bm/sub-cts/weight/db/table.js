@@ -1,12 +1,12 @@
 // For ref implementation see name/db/table.js
-import rowManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptWeight extends rowManage {
+export default class ptWeight extends clientSideTableManage {
   static entity = 'weight'
   static apiUrl = 'http://localhost:3000/weight'
 

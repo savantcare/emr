@@ -1,13 +1,13 @@
 // Reference implmentation for Ct that has 1 row and multiple fields.
 // For docs read webclient/docs/models.md
-import rowManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptName extends rowManage {
+export default class ptName extends clientSideTableManage {
   static entity = 'name'
 
   /* By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.

@@ -1,23 +1,23 @@
 import { Model } from '@vuex-orm/core'
 import tableCommonForAllComponents from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
 
-class rowManage extends Model {
+class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class
-  static entity = 'rowmanage'
+  static entity = 'clientSideTableManage'
 
   /*
 Question 1
 ----------
 I have:
 
-class rowManage extends Model {
+class clientSideTableManage extends Model {
   static arOrmRowsCached = []
 (https://github.com/savantcare/emr/blob/master/webclient/cts/core/crud/row-manage.js#L5)
 
-export default class ptHeight extends rowManage {
+export default class ptHeight extends clientSideTableManage {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/table.js#L9)
 
-export default class ptWeight extends rowManage {
+export default class ptWeight extends clientSideTableManage {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/pt-info/single/1t-1row-mField/bm/sub-cts/height/db/table.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
@@ -695,4 +695,4 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 }
 
-export default rowManage
+export default clientSideTableManage
