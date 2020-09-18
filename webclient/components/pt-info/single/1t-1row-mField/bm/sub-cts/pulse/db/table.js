@@ -1,4 +1,4 @@
-// For ref implementation see name/db/table.js
+// For ref implementation see name/db/structure/table.js
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -21,7 +21,7 @@ export default class ptPulse extends clientSideTableManage {
       uuid: this.uid(() => uuidv1()),
 
       pulseInBpm: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/table.js notes for ROW_END
+      timeOfMeasurement: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

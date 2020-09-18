@@ -1,4 +1,4 @@
-// For ref implementation see name/db/table.js
+// For ref implementation see name/db/structure/table.js
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
@@ -20,7 +20,7 @@ export default class ptDateOfBirth extends clientSideTableManage {
       id: this.uid(() => intUniqueID()),
       uuid: this.uid(() => uuidv1()),
 
-      dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/table.js
+      dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/structure/table.js
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

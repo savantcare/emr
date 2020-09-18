@@ -1,5 +1,5 @@
 // Reference implementation for non numeric hence no graph
-import objOrm from '~/components/pt-info/single/1t-1row-mField/name/db/table.js'
+import objOrm from '~/components/pt-info/single/1t-1row-mField/name/db/client-side/structure/table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
