@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/vl/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'change reminder',
         ctAbbr: 'crem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi change reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/cl/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'discontinued reminders',
         ctAbbr: 'drem',
-        ctToShow: 'spi/1t-Mrow-1Field/rem/vl/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/vl/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

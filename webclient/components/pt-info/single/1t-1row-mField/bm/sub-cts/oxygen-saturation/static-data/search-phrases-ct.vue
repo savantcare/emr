@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'oxygen Saturation',
         ctAbbr: 'w',
-        ctToShow: 'spi/1t-1row-mField/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue',
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'oxygen Saturation - change',
         ctAbbr: 'wc',
-        ctToShow: 'spi/1t-1row-mField/bm/sub-cts/oxygen-saturation/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

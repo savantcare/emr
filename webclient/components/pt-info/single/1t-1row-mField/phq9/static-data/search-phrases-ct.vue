@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'phq9',
         ctAbbr: 'h',
-        ctToShow: 'spi/1t-1row-mField/phq9/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-1row-mField/phq9/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'phq9 - change',
         ctAbbr: 'hc',
-        ctToShow: 'spi/1t-1row-mField/phq9/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/phq9/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
         ctWidthInCl: 'large',

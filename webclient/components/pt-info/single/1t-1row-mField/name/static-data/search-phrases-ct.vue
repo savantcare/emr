@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'spi/1t-1row-mField/name/vl/full-name-ct.vue',
+        ctToShow: 'pt-info/single/1t-1row-mField/name/vl/full-name-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'name - change',
         ctAbbr: 'nc',
-        ctToShow: 'spi/1t-1row-mField/name/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/name/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

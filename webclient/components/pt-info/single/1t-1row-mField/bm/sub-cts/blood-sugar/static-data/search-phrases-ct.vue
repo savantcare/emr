@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'blood Sugar',
         ctAbbr: 'bs',
-        ctToShow: 'spi/1t-1row-mField/bm/sub-cts/blood-sugar/vl/line-graph-ct.vue',
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/vl/line-graph-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'blood Sugar - change',
         ctAbbr: 'bsc',
-        ctToShow: 'spi/1t-1row-mField/bm/sub-cts/blood-sugar/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/cl/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

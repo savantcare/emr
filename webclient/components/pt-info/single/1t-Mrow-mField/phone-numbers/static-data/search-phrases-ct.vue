@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
-        ctToShow: 'spi/1t-Mrow-mField/phone-numbers/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/vl/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
-        ctToShow: 'spi/1t-Mrow-mField/phone-numbers/cl/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'change phone number',
         ctAbbr: 'cpn',
-        ctToShow: 'spi/1t-Mrow-mField/phone-numbers/cl/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi change phone numbers',
         ctAbbr: 'mcpn',
-        ctToShow: 'spi/1t-Mrow-mField/phone-numbers/cl/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'discontinued phone numbers',
         ctAbbr: 'dpn',
-        ctToShow: 'spi/1t-Mrow-mField/phone-numbers/vl/discontinued.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/vl/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
