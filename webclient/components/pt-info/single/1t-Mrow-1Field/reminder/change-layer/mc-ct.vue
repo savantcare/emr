@@ -73,7 +73,7 @@ How to solve this?
   <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import objOrm from '../db/client-side/rem-table.js'
+import objOrm from '../db/client-side/structure/rem-table.js'
 import ctChangeRem from './c-ct.vue'
 export default {
   components: { ctChangeRem },
