@@ -25,7 +25,7 @@ export default {
       data: {
         value: 'add service statement',
         ctAbbr: 'arem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/cl/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -34,7 +34,7 @@ export default {
       data: {
         value: 'change service statement',
         ctAbbr: 'crem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/cl/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -44,7 +44,7 @@ export default {
       data: {
         value: 'multi change service statements',
         ctAbbr: 'mcrem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/cl/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/ss/change-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

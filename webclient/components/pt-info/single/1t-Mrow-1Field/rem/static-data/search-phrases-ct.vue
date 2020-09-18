@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'change reminder',
         ctAbbr: 'crem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi change reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/cl/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-1Field/rem/change-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

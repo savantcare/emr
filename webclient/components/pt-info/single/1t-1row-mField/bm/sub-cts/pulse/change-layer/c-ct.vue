@@ -1,12 +1,12 @@
-<!-- Master doc is at reference implementation name/cl/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
 Name
  1. No graph needed
  2. Graph needed
-      A. Weight            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and weight is not repeated)
+      A. Pulse            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and pulse is not repeated)
           2. BMI
 
 
@@ -20,9 +20,9 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Waist Circumference In Inches"
-              :value="mfGetCopiedRowBeingChangedFldVal('waistCircumferenceInInches')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'waistCircumferenceInInches')"
+              placeholder="Pulse in pounds"
+              :value="mfGetCopiedRowBeingChangedFldVal('pulseInBpm')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'pulseInBpm')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -58,7 +58,7 @@ Code synced with ref implementation on 4th august 2020
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctWaistCircumferenceGraph form-type="sub-part-of-another-form"></ctWaistCircumferenceGraph>
+        <ctPulseGraph form-type="sub-part-of-another-form"></ctPulseGraph>
       </el-col>
     </el-row>
   </div>
@@ -66,10 +66,10 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctWaistCircumferenceGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/vl/line-graph-ct.vue'
+import ctPulseGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/pulse/vl/line-graph-ct.vue'
 
 export default {
-  components: { ctWaistCircumferenceGraph },
+  components: { ctPulseGraph },
   mixins: [mxc],
   data() {
     return {

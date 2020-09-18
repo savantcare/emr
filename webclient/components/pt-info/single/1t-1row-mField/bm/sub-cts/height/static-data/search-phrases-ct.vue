@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'height - change',
         ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/height/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/height/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

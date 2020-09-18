@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'blood Sugar - change',
         ctAbbr: 'bsc',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/blood-sugar/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

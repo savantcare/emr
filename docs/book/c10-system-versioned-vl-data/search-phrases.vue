@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Tenth chapter - change",
         ctAbbr: "c10-c",
-        ctToShow: "book/c10-system-versioned-vl-data/cl/table-ct.vue",
+        ctToShow: "book/c10-system-versioned-vl-data/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

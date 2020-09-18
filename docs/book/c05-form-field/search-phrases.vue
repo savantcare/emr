@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Fifth chapter - change",
         ctAbbr: "c5-c",
-        ctToShow: "book/c05-form-field/cl/table-ct.vue",
+        ctToShow: "book/c05-form-field/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

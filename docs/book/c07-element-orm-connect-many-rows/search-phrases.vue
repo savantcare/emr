@@ -18,7 +18,8 @@ export default {
       data: {
         value: "Seventh chapter - change",
         ctAbbr: "c7-c",
-        ctToShow: "book/c07-element-orm-connect-many-rows/cl/table-ct.vue",
+        ctToShow:
+          "book/c07-element-orm-connect-many-rows/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
-        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/add-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'change phone number',
         ctAbbr: 'cpn',
-        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/c-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi change phone numbers',
         ctAbbr: 'mcpn',
-        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/cl/mc-ct.vue',
+        ctToShow: 'pt-info/single/1t-Mrow-mField/phone-numbers/change-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Eigth chapter - change",
         ctAbbr: "c8-c",
-        ctToShow: "book/c08-reset-form/cl/table-ct.vue",
+        ctToShow: "book/c08-reset-form/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

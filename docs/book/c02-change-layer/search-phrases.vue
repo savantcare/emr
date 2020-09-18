@@ -15,7 +15,7 @@ export default {
       data: {
         value: "Second chapter - change", // search term
         ctAbbr: "c2-c",
-        ctToShow: "book/c02-change-layer/cl/table-ct.vue",
+        ctToShow: "book/c02-change-layer/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Sixth chapter - change",
         ctAbbr: "c6-c",
-        ctToShow: "book/c06-form-to-orm/cl/table-ct.vue",
+        ctToShow: "book/c06-form-to-orm/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

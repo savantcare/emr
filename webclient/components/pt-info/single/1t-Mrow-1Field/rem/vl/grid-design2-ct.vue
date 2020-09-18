@@ -77,7 +77,7 @@
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import objOrm from '../db/client-side/rem-table.js'
-import ctActOnSocketMessages from '../cl/act-on-socket-messages-ct.vue'
+import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
   components: { ctActOnSocketMessages },

@@ -23,7 +23,8 @@ export default {
       data: {
         value: 'waist circumference - change',
         ctAbbr: 'wcc',
-        ctToShow: 'pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow:
+          'pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

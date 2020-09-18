@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/cl/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
@@ -20,9 +20,9 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Blood pressure in bpm"
-              :value="mfGetCopiedRowBeingChangedFldVal('bloodPressureInBpm')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'bloodPressureInBpm')"
+              placeholder="Waist Circumference In Inches"
+              :value="mfGetCopiedRowBeingChangedFldVal('waistCircumferenceInInches')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'waistCircumferenceInInches')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -58,7 +58,7 @@ Code synced with ref implementation on 4th august 2020
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctBloodPressureGraph form-type="sub-part-of-another-form"></ctBloodPressureGraph>
+        <ctWaistCircumferenceGraph form-type="sub-part-of-another-form"></ctWaistCircumferenceGraph>
       </el-col>
     </el-row>
   </div>
@@ -66,10 +66,10 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctBloodPressureGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/blood-pressure/vl/line-graph-ct.vue'
+import ctWaistCircumferenceGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/vl/line-graph-ct.vue'
 
 export default {
-  components: { ctBloodPressureGraph },
+  components: { ctWaistCircumferenceGraph },
   mixins: [mxc],
   data() {
     return {

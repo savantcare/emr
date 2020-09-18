@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Ninth chapter - change",
         ctAbbr: "c9-c",
-        ctToShow: "book/c09-remove-data-rows/cl/table-ct.vue",
+        ctToShow: "book/c09-remove-data-rows/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

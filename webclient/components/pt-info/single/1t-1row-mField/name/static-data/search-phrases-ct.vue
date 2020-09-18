@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'name - change',
         ctAbbr: 'nc',
-        ctToShow: 'pt-info/single/1t-1row-mField/name/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/name/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

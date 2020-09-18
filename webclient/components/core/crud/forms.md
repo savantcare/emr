@@ -2,21 +2,21 @@
 
 1. Give visual feedback to the user that the data was added.
    - There are 2 tables below the form:
-     - A. Data added this session: rem/cl/add-ct.vue:46
-     - Uses rem/cl/add-ct.vue:76:cfDataSavedToDBThisSessionSuccessfully()
-     - B. Error: Reminders attempleted but failed to save rem/cl/add-ct.vue:54
-     - Uses rem/cl/add-ct.vue:81:cfDataApiErrorThisSession
+     - A. Data added this session: rem/change-layer/add-ct.vue:46
+     - Uses rem/change-layer/add-ct.vue:76:cfDataSavedToDBThisSessionSuccessfully()
+     - B. Error: Reminders attempleted but failed to save rem/change-layer/add-ct.vue:54
+     - Uses rem/change-layer/add-ct.vue:81:cfDataApiErrorThisSession
 2. Visual feedback should come close to where the user eyes are. The visual feedback should not be on top right corner.
    - Achived with 2 tables above.
 3. Immediately allow the user to add one more.
-   - rem/cl/add-ct.vue:Onsubmit:145 is async
+   - rem/change-layer/add-ct.vue:Onsubmit:145 is async
 4. User should be able to add 1 more without taking another action with their mouse.
    - Description field has focus using v-on on the div.
 5. While the data is being sent to the server allow the user to add one more.
    - same as point 3.
 6. If user does "add more" and now there are 2 add more forms open. The first rem has 5 charecters and 2nd rem has 2 charecters.
    On clicking submit the 1st should move down and the 2nd should stay up.
-   - rem/cl/add-ct.vue:Onsubmit:154 calls the api in the else part
+   - rem/change-layer/add-ct.vue:Onsubmit:154 calls the api in the else part
 
 # Q2) How is the state of data entered in the form managed on client side?
 
@@ -68,11 +68,11 @@ Once submit button finishes the possibles states are:
 
 New record changed on client but not saved = 23
 
-- See rem/cl/add-ct.vue:114
+- See rem/change-layer/add-ct.vue:114
 
 New record after data is saved on server. vnRowStateInSession = 23461
 
-- See rem/cl/add-ct.vue:189
+- See rem/change-layer/add-ct.vue:189
 
 # Q5) Why not set vnRowStateInSession = 1 when api succeds?
 

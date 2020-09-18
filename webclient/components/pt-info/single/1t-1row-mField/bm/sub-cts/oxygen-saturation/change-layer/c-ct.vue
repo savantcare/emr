@@ -1,5 +1,17 @@
-<!-- Master doc is at reference implementation name/cl/c-ct.vue. This file has doc unique to this ct 
-For graph related work the reference implementation is weight.
+<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
+This acts as reference implementation for other Cts that use a graph.
+So the heierarchy is:
+
+Name
+ 1. No graph needed
+ 2. Graph needed
+      A. OxygenSaturation            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and oxygenSaturation is not repeated)
+          2. BMI
+
+
+Code synced with ref implementation on 4th august 2020
+
 -->
 <template>
   <div>
@@ -8,11 +20,15 @@ For graph related work the reference implementation is weight.
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Temperature in farehnite"
-              :value="mfGetCopiedRowBeingChangedFldVal('temperatureInFarehnite')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'temperatureInFarehnite')"
+              placeholder="OxygenSaturation in pounds"
+              :value="mfGetCopiedRowBeingChangedFldVal('oxygenSaturationInSpo2')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'oxygenSaturationInSpo2')"
             >
             </el-input>
+            <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
+             Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
+             value-format="timestamp"
+        -->
             <el-date-picker
               :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
               type="date"
@@ -42,7 +58,7 @@ For graph related work the reference implementation is weight.
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctTemperatureGraph form-type="sub-part-of-another-form"></ctTemperatureGraph>
+        <ctOxygenSaturationGraph form-type="sub-part-of-another-form"></ctOxygenSaturationGraph>
       </el-col>
     </el-row>
   </div>
@@ -50,10 +66,10 @@ For graph related work the reference implementation is weight.
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctTemperatureGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/temperature/vl/line-graph-ct.vue'
+import ctOxygenSaturationGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue'
 
 export default {
-  components: { ctTemperatureGraph },
+  components: { ctOxygenSaturationGraph },
   mixins: [mxc],
   data() {
     return {

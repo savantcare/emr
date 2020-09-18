@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'date of birth - change',
         ctAbbr: 'wc',
-        ctToShow: 'pt-info/single/1t-1row-mField/date-of-birth/cl/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1t-1row-mField/date-of-birth/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

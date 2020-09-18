@@ -1,12 +1,12 @@
-<!-- Master doc is at reference implementation name/cl/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
 Name
  1. No graph needed
  2. Graph needed
-      A. OxygenSaturation            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and oxygenSaturation is not repeated)
+      A. Date of birth            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and Date of birth is not repeated)
           2. BMI
 
 
@@ -20,25 +20,15 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="OxygenSaturation in pounds"
-              :value="mfGetCopiedRowBeingChangedFldVal('oxygenSaturationInSpo2')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'oxygenSaturationInSpo2')"
+              placeholder="Date of birth"
+              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
         -->
-            <el-date-picker
-              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
-              type="date"
-              placeholder="Pick a day"
-              :picker-options="pickerOptions"
-              format="yyyy/MM/dd"
-              value-format="timestamp"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
-            >
-            </el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
@@ -57,19 +47,13 @@ Code synced with ref implementation on 4th august 2020
           </el-form-item>
         </el-form>
       </el-col>
-      <el-col :span="12">
-        <ctOxygenSaturationGraph form-type="sub-part-of-another-form"></ctOxygenSaturationGraph>
-      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
 import mxc from '../com-mx/change-layer.js'
-import ctOxygenSaturationGraph from '@/components/pt-info/single/1t-1row-mField/bm/sub-cts/oxygen-saturation/vl/line-graph-ct.vue'
-
 export default {
-  components: { ctOxygenSaturationGraph },
   mixins: [mxc],
   data() {
     return {

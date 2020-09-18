@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/cl/c-ct.vue. 
+<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. 
 and graph related doc is at weight
 -->
 <template>
@@ -11,7 +11,7 @@ and graph related doc is at weight
           @input="mfSetCopiedRowBeingChangedFldVal($event, 'heightInInches')"
         >
         </el-input>
-        <!-- Why is valur format timestamp? see weight/cl/c-ct.vue -->
+        <!-- Why is valur format timestamp? see weight/change-layer/c-ct.vue -->
         <el-date-picker
           :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
           type="date"

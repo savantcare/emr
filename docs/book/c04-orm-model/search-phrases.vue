@@ -18,7 +18,7 @@ export default {
       data: {
         value: "Fourth chapter - change",
         ctAbbr: "c4-c",
-        ctToShow: "book/c04-orm-model/cl/table-ct.vue",
+        ctToShow: "book/c04-orm-model/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },

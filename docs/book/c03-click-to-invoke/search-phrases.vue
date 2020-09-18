@@ -15,7 +15,7 @@ export default {
       data: {
         value: "Third chapter - change",
         ctAbbr: "c3-c",
-        ctToShow: "book/c03-click-to-invoke/cl/table-ct.vue",
+        ctToShow: "book/c03-click-to-invoke/change-layer/table-ct.vue",
         displayLocation: "cl",
         ctWidthInCl: "small",
       },
