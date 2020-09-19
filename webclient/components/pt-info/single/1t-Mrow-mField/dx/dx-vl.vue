@@ -20,8 +20,8 @@
 
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
-import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
+import ormDx from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/structure/Dx.js'
+import ormDxa from '@/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 
 /* export default {
   async asyncData({ params }) {

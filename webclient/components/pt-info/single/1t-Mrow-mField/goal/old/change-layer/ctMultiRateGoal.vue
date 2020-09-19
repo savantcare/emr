@@ -52,7 +52,7 @@
 <script>
 import GoalHistoryItem from './GoalHistoryItem'
 import { GOAL_API_URL } from '@/static/others.js'
-import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal.js'
+import ormGoal from '@/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/structure/Goal.js'
 export default {
   components: {
     GoalHistoryItem,

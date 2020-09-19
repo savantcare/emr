@@ -17,9 +17,9 @@ import tableStructureForPulse from '~/components/pt-info/single/1t-1row-mField/b
 import tableStructureForDob from '~/components/pt-info/single/1t-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tableStructureForPhq9 from '~/components/pt-info/single/1t-1row-mField/phq9/db/table.js'
 import tableStructureForRec from '~/components/pt-info/single/1t-Mrow-1Field/rec/db/client-side/model.js'
-import tableStructureForDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx.js'
-import tableStructureForDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
-import tableStructureForGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/Goal'
+import tableStructureForDx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/structure/Dx.js'
+import tableStructureForDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/structure/Dxa.js'
+import tableStructureForGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client-side/structure/Goal'
 import tableStructureForScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side/Screening'
 
 import tableStructureForPhoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side/table.js'
