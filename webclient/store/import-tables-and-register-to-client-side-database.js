@@ -2,7 +2,7 @@
 
 import { Database } from '@vuex-orm/core'
 import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tableStructureForLifeCycle from '~/components/core/ctMaster/orm-ct-life-cycle'
+import tableStructureForLifeCycle from '~/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForRem from '~/components/pt-info/single/1t-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 import tableStructureForSSMaster from '~/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss.js'
 import tableStructureForName from '~/components/pt-info/single/1t-1row-mField/name/db/client-side/structure/table.js'

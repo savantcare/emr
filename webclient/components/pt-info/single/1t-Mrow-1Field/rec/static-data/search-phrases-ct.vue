@@ -1,6 +1,6 @@
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
+import tblCTLifeCycle from '@/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 
 export default {
   data() {

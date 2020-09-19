@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import tblCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
+import tblCTLifeCycle from '@/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 export default {
   data() {
     return {
