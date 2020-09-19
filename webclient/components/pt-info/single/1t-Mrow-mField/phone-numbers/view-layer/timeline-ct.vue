@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import objOrm from '../db/client-side/table.js'
+import objOrm from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {

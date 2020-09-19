@@ -86,7 +86,7 @@
   </div>
 </template>
 <script>
-import objOrm from '../db/client-side/table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import objOrm from '../db/client-side/structure/table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {
