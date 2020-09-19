@@ -2,7 +2,7 @@
   <div>
     <div class="grid-container">
       <div v-for="ss in cfArOfSSForDisplayInTable" :key="ss.id">
-        {{ ss.description }}
+        <el-button>{{ ss.description }}</el-button>
       </div>
     </div>
   </div>
