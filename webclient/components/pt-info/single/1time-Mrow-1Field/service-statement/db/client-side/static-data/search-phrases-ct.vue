@@ -17,7 +17,7 @@ export default {
     tblSearchPhrasesOfCt.insert({
       data: {
         value: 'service statements',
-        ctAbbr: 'rem',
+        ctAbbr: 'ss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
@@ -25,7 +25,7 @@ export default {
     tblSearchPhrasesOfCt.insert({
       data: {
         value: 'add service statement',
-        ctAbbr: 'arem',
+        ctAbbr: 'addss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
@@ -34,7 +34,7 @@ export default {
     tblSearchPhrasesOfCt.insert({
       data: {
         value: 'change service statement',
-        ctAbbr: 'crem',
+        ctAbbr: 'css',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
@@ -44,7 +44,7 @@ export default {
     tblSearchPhrasesOfCt.insert({
       data: {
         value: 'multi change service statements',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/change-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
@@ -53,7 +53,7 @@ export default {
     tblSearchPhrasesOfCt.insert({
       data: {
         value: 'discontinued service statements',
-        ctAbbr: 'drem',
+        ctAbbr: 'dss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
