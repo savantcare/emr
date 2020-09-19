@@ -14,26 +14,31 @@ export default {
   mounted() {
     tableSSMasterList.insert({
       data: {
+        uuid: '1',
         description: 'Spent 10 mins with patient',
       },
     })
     tableSSMasterList.insert({
       data: {
+        uuid: '2',
         description: 'Spent 15 mins with patient',
       },
     })
     tableSSMasterList.insert({
       data: {
+        uuid: '3',
         description: 'Spent 20 mins with patient',
       },
     })
     tableSSMasterList.insert({
       data: {
+        uuid: '4',
         description: 'Spent 25 mins with patient',
       },
     })
     tableSSMasterList.insert({
       data: {
+        uuid: '5',
         description: 'Spent 30 mins with patient',
       },
     })

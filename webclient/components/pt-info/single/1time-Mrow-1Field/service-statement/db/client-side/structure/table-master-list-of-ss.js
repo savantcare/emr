@@ -1,7 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
-// const { v1: uuidv1 } = require('uuid')
+const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
@@ -16,7 +16,9 @@ export default class serviceStatementsMasterList extends clientSideTableManage {
       ...super.fields(),
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      uuid: this.uid(() => uuidv1()),
       description: this.string(null),
+      ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
     }
   }
 }
