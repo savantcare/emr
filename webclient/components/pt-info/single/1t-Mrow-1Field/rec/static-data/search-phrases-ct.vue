@@ -1,6 +1,6 @@
 <script>
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import ormCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
+import tblCTLifeCycle from '@/components/core/ctMaster/orm-ct-life-cycle'
 
 export default {
   data() {
@@ -9,7 +9,7 @@ export default {
     }
   },
   mounted() {
-    ormCTLifeCycle.insert({
+    tblCTLifeCycle.insert({
       data: {
         name: 'recommendations',
         status: 3,

@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import tableCommonForAllComponents from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
+import tableCommonForAllComponents from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class

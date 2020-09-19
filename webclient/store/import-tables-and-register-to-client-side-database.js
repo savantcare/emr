@@ -22,7 +22,7 @@ import tableGoal from '~/components/pt-info/single/1t-Mrow-mField/goal/db/client
 import tableScr from '~/components/pt-info/single/1t-Mrow-mField/scr/db/client-side/Screening'
 import tableDxa from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dxa.js'
 import tablePhoneNumbers from '~/components/pt-info/single/1t-Mrow-mField/phone-numbers/db/client-side/table.js'
-import tableCommon from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/table.js'
+import tableCommon from '~/components/pt-info/single/1t-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 const database = new Database()
 
