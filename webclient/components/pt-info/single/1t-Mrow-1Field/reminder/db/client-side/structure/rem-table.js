@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class reminders extends clientSideTableManage {
-  static entity = 'rem'
+  static entity = 'tblReminders'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"

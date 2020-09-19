@@ -4,6 +4,7 @@ import { Database } from '@vuex-orm/core'
 import tableSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tableLifeCycle from '~/components/core/ctMaster/orm-ct-life-cycle'
 import tableRem from '~/components/pt-info/single/1t-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
+import tableSSMaster from '~/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss.js'
 import tableName from '~/components/pt-info/single/1t-1row-mField/name/db/client-side/structure/table.js'
 import tableWeight from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/weight/db/table.js'
 import tableWaistCircumference from '~/components/pt-info/single/1t-1row-mField/bm/sub-cts/waist-circumference/db/table.js'
@@ -46,5 +47,5 @@ database.register(tableLifeCycle)
 database.register(tableDxa)
 database.register(tablePhoneNumbers)
 database.register(tableCommon)
-
+database.register(tableSSMaster)
 export default database

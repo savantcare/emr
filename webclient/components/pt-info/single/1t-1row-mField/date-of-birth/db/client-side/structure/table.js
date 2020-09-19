@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptDateOfBirth extends clientSideTableManage {
-  static entity = 'date of birth'
+  static entity = 'tblDateOfBirth'
   static apiUrl = 'http://localhost:3000/date-of-birth'
 
   static graphSeries1FieldName = 'dateOfBirthInMilliseconds'

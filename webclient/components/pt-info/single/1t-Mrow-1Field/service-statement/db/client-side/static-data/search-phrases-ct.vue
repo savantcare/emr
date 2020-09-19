@@ -1,14 +1,15 @@
 <!-- Reference implementation -->
 <!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
-  <div></div>
+  <div><tblMasterListOfSSCt /></div>
 </template>
 
 <script>
+import tblMasterListOfSSCt from './master-list-of-ss-ct'
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-// import tblMasterListOfSS from '@/components/pt-info/single/1t-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss'
 
 export default {
+  components: { tblMasterListOfSSCt },
   data() {
     return {}
   },

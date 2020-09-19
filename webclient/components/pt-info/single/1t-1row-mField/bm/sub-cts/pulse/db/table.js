@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptPulse extends clientSideTableManage {
-  static entity = 'pulse'
+  static entity = 'tblPulse'
   static apiUrl = 'http://localhost:3000/pulse'
 
   static graphSeries1FieldName = 'pulseInBpm'

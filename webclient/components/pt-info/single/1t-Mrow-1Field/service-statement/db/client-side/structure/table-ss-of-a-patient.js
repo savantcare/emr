@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class serviceStatements extends clientSideTableManage {
-  static entity = 'rem'
+  static entity = 'tblServiceStatementsOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 

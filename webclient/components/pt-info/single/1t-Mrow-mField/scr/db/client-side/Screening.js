@@ -1,7 +1,7 @@
 import { Model } from '@vuex-orm/core'
 // import Patient from './patient'
 export default class Screening extends Model {
-  static entity = 'screenings'
+  static entity = 'tblScreenings'
 
   static fields() {
     return {

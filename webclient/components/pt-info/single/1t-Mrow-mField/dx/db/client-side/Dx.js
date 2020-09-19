@@ -1,7 +1,7 @@
 import { Model } from '@vuex-orm/core'
 
 export default class Dx extends Model {
-  static entity = 'diagnoses'
+  static entity = 'tblDiagnoses'
 
   static fields() {
     return {

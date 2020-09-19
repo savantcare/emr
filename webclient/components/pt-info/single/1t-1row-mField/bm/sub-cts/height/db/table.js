@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptHeight extends clientSideTableManage {
-  static entity = 'height'
+  static entity = 'tblHeight'
   static graphSeries1FieldName = 'heightInInches'
   static graphSeries1Unit = 'Inches'
 

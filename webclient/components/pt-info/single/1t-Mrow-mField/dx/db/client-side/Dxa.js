@@ -2,7 +2,7 @@ import { Model } from '@vuex-orm/core'
 import Dx from '~/components/pt-info/single/1t-Mrow-mField/dx/db/client-side/Dx'
 
 export default class Dxa extends Model {
-  static entity = 'dxAssessment'
+  static entity = 'tblDxAssessment'
 
   static fields() {
     return {

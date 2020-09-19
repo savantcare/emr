@@ -9,7 +9,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class phoneNumbers extends clientSideTableManage {
-  static entity = 'phoneNumbers'
+  static entity = 'tblPhoneNumbers'
 
   // To work with nodejs server -> mariaDB server
   static apiUrl = process.env.baseUrl + '/phone-numbers' // fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"

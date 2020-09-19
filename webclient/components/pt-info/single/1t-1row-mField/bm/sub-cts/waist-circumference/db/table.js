@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptWaistCircumference extends clientSideTableManage {
-  static entity = 'waistCircumference'
+  static entity = 'tblWaistCircumference'
   static apiUrl = 'http://localhost:3000/waist-circumference'
 
   static graphSeries1FieldName = 'waistCircumferenceInInches'

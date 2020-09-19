@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptBloodSugar extends clientSideTableManage {
-  static entity = 'bloodSugar'
+  static entity = 'tblBloodSugar'
   static apiUrl = 'http://localhost:3000/blood-Sugar'
 
   static graphSeries1FieldName = 'bloodSugarInBpm'

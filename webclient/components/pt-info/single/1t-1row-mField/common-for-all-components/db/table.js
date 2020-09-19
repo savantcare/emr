@@ -5,7 +5,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class commonForAllComponents extends Model {
-  static entity = 'common'
+  static entity = 'tblCommonForAllComponents'
   /* Ignore message if server sends a socket message that originated from this client */
 
   // static clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = '' // this.$socket.id

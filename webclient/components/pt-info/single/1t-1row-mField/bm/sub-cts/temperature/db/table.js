@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class ptTemperature extends clientSideTableManage {
-  static entity = 'temperature'
+  static entity = 'tblTemperature'
 
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.
   // baseurl is defined in nuxt.config.js
