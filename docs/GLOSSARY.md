@@ -10,7 +10,7 @@
 - pf: Patient file
 - ctRem: Rem is a component
 - pRem: Rem is a parameter to a function
-- [ormRem](https://github.com/savantcare/emr/blob/5a821d5a7fb76bf4f41051319a6851f07474d1d2/webclient/cts/pt-info/single/1t-Mrow-1Field/reminder/view-layer/table-ct.vue#L89): Rem is [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) created with [vuex-orm](https://vuex-orm.org/)
+- [ormRem](https://github.com/savantcare/emr/blob/5a821d5a7fb76bf4f41051319a6851f07474d1d2/webclient/cts/pt-info/single/1time-Mrow-1Field/reminder/view-layer/table-ct.vue#L89): Rem is [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) created with [vuex-orm](https://vuex-orm.org/)
 - mc: multi change
 - c: change
 - d: discontinue
