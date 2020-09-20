@@ -76,6 +76,21 @@ export default {
   build: {
     transpile: [/^element-ui/],
     extend(config, ctx) {
+      /* Goal 1: Reduce the build time. 
+
+        config.parallelism = 100       https://webpack.js.org/configuration/other-options/#parallelism
+        config.cache  = true           https://webpack.js.org/configuration/other-options/#cache
+        config.hardSource = true       https://nuxtjs.org/api/configuration-build/#hardsource
+
+        when add-ct.vue has a string change        
+          With cache and parallelism speed is Fresh compile -> 15s / 15s 
+          With cache speed is Fresh compile -> 15s / 15s 
+          With nothing speed is Fresh compile -> 24s / 24s
+        */
+      config.cache = true
+
+      /* End: Goal 1 */
+
       // set for vscode debugger
       config.devtool = 'source-map'
       // push new rules in module
