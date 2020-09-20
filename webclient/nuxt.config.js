@@ -3,7 +3,7 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: 'spa',
+  ssr: false,
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -75,21 +75,34 @@ export default {
    */
   build: {
     transpile: [/^element-ui/],
-    extend(config, ctx) {
-      /* Goal 1: Reduce the build time. 
 
-        config.parallelism = 100       https://webpack.js.org/configuration/other-options/#parallelism
-        config.cache  = true           https://webpack.js.org/configuration/other-options/#cache
-        config.hardSource = true       https://nuxtjs.org/api/configuration-build/#hardsource
+    /* Goal 1:  Reduce the build time. 
+                  When add-ct.vue has a string change        
+                    With cache and parallelism speed is Fresh compile -> 15s / 15s 
+                    With cache speed is Fresh compile -> 15s / 15s 
+                    With nothing speed is Fresh compile -> 24s / 24s
+    */
 
-        when add-ct.vue has a string change        
-          With cache and parallelism speed is Fresh compile -> 15s / 15s 
-          With cache speed is Fresh compile -> 15s / 15s 
-          With nothing speed is Fresh compile -> 24s / 24s
-        */
-      config.cache = true
+        
+      /* Method 1: hardSource https://nuxtjs.org/api/configuration-build/#hardsource
 
-      /* End: Goal 1 */
+        HardSource has to be initilized before the extend(config)  
+          Ref: https://github.com/tinytxy/nuxt_demo/blob/d7df41c992733b60f815c7d5b2638ac3be04d070/nuxt.config.js
+              https://github.com/Sphereon-Opensource/poe-js-webapp/blob/3887d3f1eaa19ae12c1aee8897db27788d94f776/nuxt.config.js
+              https://github.com/saavuio/s_nuxt_2nd/blob/f889e7dbabf62d369df683ca1827a05625c76f31/base/nuxt.config.js
+      */
+      // hardSource: true, // this makes the compile hang at 93%
+      
+      // Method 2: https://webpack.js.org/configuration/other-options/#parallelism
+      parallel:true,
+
+      // Method 3: https://webpack.js.org/configuration/other-options/#cache
+      cache:true,
+
+    /* End: Goal 1 */
+
+
+    extend(config, ctx) { 
 
       // set for vscode debugger
       config.devtool = 'source-map'
