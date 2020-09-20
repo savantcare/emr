@@ -3,6 +3,8 @@ import { Model } from '@vuex-orm/core'
 export default class tblSearchPhrasesOfCt extends Model {
   static entity = 'tblCtLifeCycle'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       /*  If I do not specify a id field then vuex-orm generates a $id field. 

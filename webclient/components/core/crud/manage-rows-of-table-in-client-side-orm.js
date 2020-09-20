@@ -58,6 +58,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
   */
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       // the following flds only exist on client
@@ -115,16 +117,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     /*
       Q) Why did we remove orWhere clause?
         Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
-        where (uuid=4545d6 AND vnRowStateInSession=3) 
+        where (serverSideRowUuid=4545d6 AND vnRowStateInSession=3) 
         OR vnRowStateInSession=34 
         OR vnRowStateInSession=3456
 
         But we want the following query:
-        where uuid=4545d6 AND 
+        where serverSideRowUuid=4545d6 AND 
         (vnRowStateInSession=3 OR vnRowStateInSession=34 OR vnRowStateInSession=3456)
     */
     const arFromOrm = this.query()
-      .where('uuid', pUuid)
+      .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
           record.vnRowStateInSession === 3 ||
@@ -214,8 +216,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     let foundInArToReturn = false
     for (let i = 0; i < arFromOrm.length; i++) {
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
-          /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
+        if (arFromOrm[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+          /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
@@ -241,8 +243,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     for (let i = 0; i < arFromOrm.length; i++) {
       let foundInArToReturn = false
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromOrm[i].uuid === uniqueUuidRows[j].uuid) {
-          /* Suppose a row is being changed. Now 2 rows have the same uuid. The old row and the new changed row.
+        if (arFromOrm[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+          /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
@@ -268,7 +270,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetDiscontinuedRows() {
     /* 
     
-    Method 1: Get discontinued rows from objOrm using query like: select max(id) where ROW_END < current_time group by 'uuid'
+    Method 1: Get discontinued rows from objOrm using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
     Problem:- But I am unable to find vuex-orm groupBy query
  
     Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not discontinued.
@@ -295,12 +297,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     arFromORM.forEach((item) => {
       let foundInArToReturn = false
       currentUniqueUuidRows.forEach((currentItem) => {
-        if (item.uuid === currentItem.uuid) {
+        if (item.serverSideRowUuid === currentItem.serverSideRowUuid) {
           foundInArToReturn = true
         }
       })
-      if (!foundInArToReturn && !arDiscontinuedRowUniqueUuid.includes(item.uuid)) {
-        arDiscontinuedRowUniqueUuid.push(item.uuid)
+      if (!foundInArToReturn && !arDiscontinuedRowUniqueUuid.includes(item.serverSideRowUuid)) {
+        arDiscontinuedRowUniqueUuid.push(item.serverSideRowUuid)
         arDiscontinuedRows.push(item)
       }
     })
@@ -345,7 +347,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   */
 
   static fnIsThereDuplicateUuid(pUuid) {
-    const num = this.query().where('uuid', pUuid).count()
+    const num = this.query().where('serverSideRowUuid', pUuid).count()
     if (num > 1) {
       return true
     } else {
@@ -502,7 +504,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static async fnCopyRow(pOrmSourceRowId) {
-    // the copied row will have the same uuid as the first row
+    // the copied row will have the same serverSideRowUuid as the first row
     // In temporal table when row is updated first a copy is made but UUID remains same
     // Since primary key is internally set as UUID.row_start
     const arToCopy = this.find(pOrmSourceRowId)
@@ -676,7 +678,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDiscontinueDataToServer(row.id, row.uuid, null)
+        const status = await this.fnSendDiscontinueDataToServer(row.id, row.serverSideRowUuid, null)
         if (status === 1) {
           success++
         } else {

@@ -3,6 +3,8 @@ import { Model } from '@vuex-orm/core'
 export default class tblSearchPhrasesOfCt extends Model {
   static entity = 'tblSearchPhrasesOfCt'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       id: this.uid(), // vuex-orm generates a unique ID https://vuex-orm.org/guide/model/defining-models.html#uid-type

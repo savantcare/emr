@@ -46,7 +46,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl(rem.id)"
+              @click="mxOpenCCtInCl(rem.clientSideRowId)"
               >C</el-button
             >
             <el-button
@@ -55,7 +55,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenDPrompt(rem.id)"
+              @click="mxOpenDPrompt(rem.clientSideRowId)"
               >D</el-button
             >
           </el-button-group>

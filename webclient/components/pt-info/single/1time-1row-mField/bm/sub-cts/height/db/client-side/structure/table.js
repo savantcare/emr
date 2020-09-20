@@ -19,12 +19,14 @@ export default class ptHeight extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:8000/public/api/height/v20'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       ...super.fields(),
 
-      id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
-      uuid: this.uid(() => uuidv1()),
+      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      serverSideRowUuid: this.uid(() => uuidv1()),
 
       heightInInches: this.number(null),
       timeOfMeasurement: this.number(null),

@@ -98,7 +98,7 @@ export default {
       // Insight: to create timeline the uuid will be same but id will be different.
       const arFromOrm = objOrm
         .query()
-        .where('uuid', this.dnOrmUuidOfRowToChange)
+        .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
       // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange)

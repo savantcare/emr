@@ -3,6 +3,8 @@ import { Model } from '@vuex-orm/core'
 export default class Dx extends Model {
   static entity = 'tblDiagnoses'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       uuid: this.uid(),

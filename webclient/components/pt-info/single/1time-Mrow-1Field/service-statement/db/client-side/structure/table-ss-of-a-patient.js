@@ -11,12 +11,14 @@ export default class serviceStatements extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       ...super.fields(),
 
-      id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
-      uuid: this.uid(() => uuidv1()),
+      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      serverSideRowUuid: this.uid(() => uuidv1()),
       patientUUID: this.string(null),
       serviceStatementUUID: this.number(0),
       recordChangedByUUID: this.string(null),

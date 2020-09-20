@@ -3,6 +3,8 @@ import { Model } from '@vuex-orm/core'
 export default class Screening extends Model {
   static entity = 'tblScreenings'
 
+  static primaryKey = 'clientSideRowId'
+
   static fields() {
     return {
       screenUUID: this.attr(null),
