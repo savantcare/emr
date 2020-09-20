@@ -26,17 +26,17 @@
   </div>
 </template>
 <script>
-import ormHw from "../db/client-side/helloworld.js"; // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import ormClientSideTable from "../db/client-side/helloworld.js"; // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {
     cfGetClientSideTableNewRowsInEditState() {
-      return ormHw.fnGetNewRowsInEditState();
+      return ormClientSideTable.fnGetNewRowsInEditState();
     },
   },
   methods: {
     async mfAddEmptyRowInClientSideTable() {
-      const arFromClientSideTable = await ormHw.insert({
+      const arFromClientSideTable = await ormClientSideTable.insert({
         data: {
           msg: "",
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
@@ -47,12 +47,20 @@ export default {
       }
     },
     mfGetFldValue(pClientSideRowId, pFldName) {
-      const value = ormHw.fnGetFldValue(pClientSideRowId, pFldName);
+      const value = ormClientSideTable.fnGetFldValue(
+        pClientSideRowId,
+        pFldName
+      );
       return value;
     },
     mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24;
-      ormHw.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus);
+      ormClientSideTable.fnSetFldValue(
+        pEvent,
+        pClientSideRowId,
+        pFldName,
+        rowStatus
+      );
       this.$forceUpdate(); // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },
