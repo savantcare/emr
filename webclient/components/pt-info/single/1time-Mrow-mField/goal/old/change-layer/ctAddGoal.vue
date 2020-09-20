@@ -9,7 +9,7 @@
               v-for="(domain, index) in daGoalForm.goals"
               :key="index"
               class="box-card"
-              style="margin-bottom: 20px;"
+              style="margin-bottom: 20px"
             >
               <el-row>
                 <el-col :span="2" :offset="24">
@@ -18,7 +18,7 @@
               </el-row>
               <el-form-item
                 :prop="'goals.' + index + '.description'"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label-position="top"
                 label="Description"
                 :rules="{
@@ -39,7 +39,7 @@
 
               <el-form-item
                 :prop="'goals.' + index + '.startDate'"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label-position="top"
                 label="Start date of goal"
                 :rules="{
@@ -54,13 +54,13 @@
                   type="date"
                   placeholder="Pick a day"
                   :picker-options="pickerOptions"
-                  style="width: 100%;"
+                  style="width: 100%"
                 ></el-date-picker>
               </el-form-item>
               <el-form-item
                 :prop="'goals.' + index + '.score'"
                 label-position="top"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label="Score"
               >
                 <el-slider

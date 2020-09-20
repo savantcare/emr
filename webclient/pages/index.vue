@@ -2,9 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        webclient
-      </h1>
+      <h1 class="title">webclient</h1>
       <div class="links">
         <a
           href="https://savantcare.github.io"

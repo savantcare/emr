@@ -3,12 +3,12 @@
     <el-carousel :interval="5000" arrow="always" :autoplay="false">
       <el-carousel-item v-for="(dxList, index) in sliderSet" :key="`dxCarousel-${index}`">
         <el-col v-for="(dx, index) in dxList" :key="index" :span="8">
-          <el-card class="box-card" shadow="hover" style="font-family: Helvetica;">
+          <el-card class="box-card" shadow="hover" style="font-family: Helvetica">
             <div><b>Name:</b> {{ dx.dxName }}</div>
             <div><b>Diagnosed On:</b> {{ dx.dxOnDate }}</div>
             <el-divider></el-divider>
             <el-form ref="dx" label-position="top" :model="dx">
-              <el-form-item style="font-weight: bold;" label="Change assessment">
+              <el-form-item style="font-weight: bold" label="Change assessment">
                 <el-input
                   v-model="dx.currentAssessment"
                   :span="8"
@@ -31,8 +31,8 @@
   </el-row>
 </template>
 <script>
-import DxaHistoryItem from './ctDxaHistory'
 import ormDx from '@/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
+import DxaHistoryItem from './ctDxaHistory'
 export default {
   components: {
     DxaHistoryItem,

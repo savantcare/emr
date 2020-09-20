@@ -49,8 +49,8 @@ For graph related work the reference implementation is weight.
 </template>
 
 <script>
-import mxc from '../com-mx/change-layer.js'
 import ctTemperatureGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/line-graph-ct.vue'
+import mxc from '../com-mx/change-layer.js'
 
 export default {
   components: { ctTemperatureGraph },

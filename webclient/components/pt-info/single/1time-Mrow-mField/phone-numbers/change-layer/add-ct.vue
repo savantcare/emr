@@ -40,7 +40,7 @@
             <el-button
               plain
               type="warning"
-              style="float: right;"
+              style="float: right"
               @click="mfDeleteRowInOrm(ormRow.id)"
               >Remove</el-button
             >
@@ -59,7 +59,7 @@
     <el-table
       v-if="cfGetOrmApiSendingStateRows.length > 0"
       :data="cfGetOrmApiSendingStateRows"
-      style="width: 100%; background: #f0f9eb;"
+      style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="phoneNumber" label="Phone Number sending to server"></el-table-column>
     </el-table>
@@ -68,7 +68,7 @@
     <el-table
       v-if="cfGetOrmApiSuccessStateRows.length > 0"
       :data="cfGetOrmApiSuccessStateRows"
-      style="width: 100%; background: #f0f9eb;"
+      style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="phoneNumber" label="Phone Number added this session"></el-table-column>
     </el-table>
@@ -76,7 +76,7 @@
     <el-table
       v-if="cfGetOrmApiErrorStateRows.length > 0"
       :data="cfGetOrmApiErrorStateRows"
-      style="width: 100%; background: #f0f9eb;"
+      style="width: 100%; background: #f0f9eb"
     >
       <el-table-column
         prop="phoneNumber"

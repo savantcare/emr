@@ -1,7 +1,7 @@
 <template>
   <div v-if="histories.length > 0">
     <el-row>
-      <span style="font-size: 14px;">History:</span>
+      <span style="font-size: 14px">History:</span>
     </el-row>
     <br />
     <el-row :gutter="12">

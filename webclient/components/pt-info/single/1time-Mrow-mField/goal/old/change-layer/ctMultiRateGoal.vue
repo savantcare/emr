@@ -5,7 +5,7 @@
         <el-col v-for="(goal, index) in goalList" :key="`goal-${index}`" :span="8">
           <el-card class="box-card" shadow="hover">
             <el-form ref="form" label-position="top">
-              <el-form-item style="font-weight: bold;" label="Description:">
+              <el-form-item style="font-weight: bold" label="Description:">
                 <el-input
                   v-model="goal.description"
                   :span="8"
@@ -13,7 +13,7 @@
                   :disabled="true"
                 ></el-input>
               </el-form-item>
-              <el-form-item style="font-weight: bold;" label="Score:">
+              <el-form-item style="font-weight: bold" label="Score:">
                 <el-slider
                   v-model="goal.score"
                   :span="8"
@@ -23,14 +23,14 @@
                   show-stops
                 ></el-slider>
               </el-form-item>
-              <el-form-item style="font-weight: bold;" label="Date:">
+              <el-form-item style="font-weight: bold" label="Date:">
                 <el-date-picker
                   v-model="goal.startDate"
                   :span="8"
                   type="date"
                   placeholder="Pick a day"
                   :picker-options="pickerOptions"
-                  style="width: 100%;"
+                  style="width: 100%"
                 ></el-date-picker>
               </el-form-item>
 
@@ -50,9 +50,9 @@
 </template>
 
 <script>
-import GoalHistoryItem from './GoalHistoryItem'
 import { GOAL_API_URL } from '@/static/others.js'
 import ormGoal from '@/components/pt-info/single/1time-Mrow-mField/goal/db/client-side/structure/Goal.js'
+import GoalHistoryItem from './GoalHistoryItem'
 export default {
   components: {
     GoalHistoryItem,

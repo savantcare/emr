@@ -6,7 +6,7 @@ Features needed in search
 -->
 
 <template>
-  <div style="text-align: center;">
+  <div style="text-align: center">
     <el-autocomplete
       ref="searchbox"
       v-model="keyword"

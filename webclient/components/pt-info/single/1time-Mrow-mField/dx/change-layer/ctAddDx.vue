@@ -10,7 +10,7 @@
               v-for="(diagnosis, index) in daDxForm.diagnosis"
               :key="index"
               class="box-card"
-              style="margin-bottom: 20px;"
+              style="margin-bottom: 20px"
             >
               <el-row>
                 <el-col :span="2" :offset="24">
@@ -20,7 +20,7 @@
 
               <el-form-item
                 :prop="'diagnosis.' + index + '.description'"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label-position="top"
                 label="Search Diagnosis"
                 :rules="{
@@ -33,7 +33,7 @@
                   v-model="diagnosis.value"
                   filterable
                   placeholder="Select"
-                  style="width: 100%;"
+                  style="width: 100%"
                 >
                   <el-option
                     v-for="item in diagnosesList"
@@ -47,7 +47,7 @@
 
               <el-form-item
                 :prop="'diagnosis.' + index + '.startDate'"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label-position="top"
                 label="Start date of diagnosis"
                 :rules="{
@@ -60,7 +60,7 @@
                   v-model="diagnosis.when"
                   type="date"
                   placeholder="Pick a date"
-                  style="width: 100%;"
+                  style="width: 100%"
                 >
                 </el-date-picker>
               </el-form-item>

@@ -9,7 +9,7 @@
               v-for="(domain, index) in screenForm.screenings"
               :key="index"
               class="box-card"
-              style="margin-bottom: 20px;"
+              style="margin-bottom: 20px"
             >
               <el-row>
                 <el-col :span="2" :offset="24">
@@ -18,7 +18,7 @@
               </el-row>
               <el-form-item
                 :prop="'screenings.' + index + '.value'"
-                style="font-weight: bold;"
+                style="font-weight: bold"
                 label-position="top"
                 label="value"
                 :rules="{

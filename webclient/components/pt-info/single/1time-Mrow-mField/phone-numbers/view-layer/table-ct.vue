@@ -4,17 +4,17 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>Phone Number</span>
-        <el-button-group style="float: right;">
-          <el-button style="padding: 3px;" type="success" plain tabindex="-1" @click="mxOpenACtInCl"
+        <el-button-group style="float: right">
+          <el-button style="padding: 3px" type="success" plain tabindex="-1" @click="mxOpenACtInCl"
             >A</el-button
           >
-          <el-button style="padding: 3px;" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
+          <el-button style="padding: 3px" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
             >M</el-button
           >
-          <el-button style="padding: 3px;" type="warning" plain tabindex="-1" @click="mxOpenDDialog"
+          <el-button style="padding: 3px" type="warning" plain tabindex="-1" @click="mxOpenDDialog"
             >D</el-button
           >
-          <el-button style="padding: 3px;" type="info" plain tabindex="-1" @click="mxOpenXCtInCl"
+          <el-button style="padding: 3px" type="info" plain tabindex="-1" @click="mxOpenXCtInCl"
             >X</el-button
           >
         </el-button-group>
@@ -23,7 +23,7 @@
         :data="cfArOfPhoneNumberForDisplayInTable"
         :show-header="false"
         size="mini"
-        style="width: 100%;"
+        style="width: 100%"
         :stripe="true"
         :row-class-name="mfGetCssClassName"
         @selection-change="mfHandleSelectionForDiscontinue"
@@ -65,7 +65,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
               <el-button
                 type="primary"
                 size="mini"
-                style="padding: 3px;"
+                style="padding: 3px"
                 plain
                 tabindex="-1"
                 @click="mxOpenCCtInCl(props.row.id)"
@@ -74,7 +74,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
               <el-button
                 type="warning"
                 size="mini"
-                style="padding: 3px;"
+                style="padding: 3px"
                 plain
                 tabindex="-1"
                 @click="mxOpenDPrompt(props.row.id)"

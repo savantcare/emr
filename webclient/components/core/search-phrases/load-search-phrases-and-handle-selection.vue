@@ -24,7 +24,7 @@
       class="inline-input"
       :fetch-suggestions="mfQuerySearchTerms"
       :placeholder="cfSearchBoxPlaceholder"
-      style="width: 100%;"
+      style="width: 100%"
       :highlight-first-item="true"
       @select="mfHandleSuggestionSelectedByUser"
     ></el-autocomplete>

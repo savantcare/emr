@@ -141,8 +141,8 @@ export default {
             return (
               record.uuid === rowToUpsert.uuid &&
               (record.vnRowStateInSession === 1 /* Came from DB */ ||
-              record.vnRowStateInSession ===
-                34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
+                record.vnRowStateInSession ===
+                  34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
                 record.vnRowStateInSession ===
                   24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
             )

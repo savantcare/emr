@@ -104,8 +104,8 @@
                   <div class="clearfix header">
                     <span>Medication</span>
                   </div>
-                  <div style="padding-top: 2px;">
-                    <el-tabs :tab-position="'top'" style="font-size: 12px;">
+                  <div style="padding-top: 2px">
+                    <el-tabs :tab-position="'top'" style="font-size: 12px">
                       <el-tab-pane
                         v-for="eachMed in arMedData"
                         :key="eachMed.name"
@@ -224,8 +224,8 @@
                   <div class="clearfix header">
                     <span>Mental status exam</span>
                   </div>
-                  <div style="padding-top: 2px;">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px;">
+                  <div style="padding-top: 2px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
                       <el-tab-pane
                         v-for="eachMse in arMseData"
                         :key="eachMse.name"
@@ -236,9 +236,7 @@
                             {{ value }}
                           </div>
                         </div>
-                        <div v-else>
-                          No data found
-                        </div>
+                        <div v-else>No data found</div>
                       </el-tab-pane>
                     </el-tabs>
                   </div>
@@ -253,8 +251,8 @@
                   <div class="clearfix header">
                     <span>Psych Review of Systems</span>
                   </div>
-                  <div style="padding-top: 2px;">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px;">
+                  <div style="padding-top: 2px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
                       <el-tab-pane
                         v-for="eachPros in arProsData"
                         :key="eachPros.name"
@@ -274,9 +272,7 @@
                             </span>
                           </div>
                         </div>
-                        <div v-else>
-                          No data found
-                        </div>
+                        <div v-else>No data found</div>
                       </el-tab-pane>
                     </el-tabs>
                   </div>
@@ -316,8 +312,8 @@
                   <div class="clearfix header">
                     <span>Contacts</span>
                   </div>
-                  <div style="padding-top: 2px;">
-                    <el-tabs :tab-position="'top'" style="font-size: 12px;">
+                  <div style="padding-top: 2px">
+                    <el-tabs :tab-position="'top'" style="font-size: 12px">
                       <el-tab-pane
                         v-for="eachContactChannel in arContactsData"
                         :key="eachContactChannel.name"
@@ -363,8 +359,8 @@
                   <div class="clearfix header">
                     <span>Screening</span>
                   </div>
-                  <div style="padding-top: 2px;">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px;">
+                  <div style="padding-top: 2px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
                       <el-tab-pane
                         v-for="eachScr in arScrData"
                         :key="eachScr.name"
@@ -384,9 +380,7 @@
                             </span>
                           </div>
                         </div>
-                        <div v-else>
-                          No data found
-                        </div>
+                        <div v-else>No data found</div>
                       </el-tab-pane>
                     </el-tabs>
                   </div>

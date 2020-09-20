@@ -4,7 +4,7 @@
     <el-button
       type="primary"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfOpenCCtInCl(cfDataRow['id'])"
@@ -14,7 +14,7 @@
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="success"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendSubmitEvent()"
@@ -24,7 +24,7 @@
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="danger"
       size="mini"
-      style="padding: 3px;"
+      style="padding: 3px"
       plain
       tabindex="-1"
       @click="mfSendResetFormEvent()"

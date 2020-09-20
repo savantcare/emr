@@ -3,14 +3,14 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>Goal</span>
-        <el-button-group style="float: right;">
-          <el-button style="padding: 3px;" type="success" plain tabindex="-1">A</el-button>
-          <el-button style="padding: 3px;" type="primary" plain tabindex="-1">M</el-button>
-          <el-button style="padding: 3px;" type="warning" plain tabindex="-1">D</el-button>
-          <el-button style="padding: 3px;" type="info" plain tabindex="-1">X</el-button>
+        <el-button-group style="float: right">
+          <el-button style="padding: 3px" type="success" plain tabindex="-1">A</el-button>
+          <el-button style="padding: 3px" type="primary" plain tabindex="-1">M</el-button>
+          <el-button style="padding: 3px" type="warning" plain tabindex="-1">D</el-button>
+          <el-button style="padding: 3px" type="info" plain tabindex="-1">X</el-button>
         </el-button-group>
       </div>
-      <el-table :data="daGTable" style="width: 100%;" :show-header="false">
+      <el-table :data="daGTable" style="width: 100%" :show-header="false">
         <el-table-column prop="description" label="Description" width="180"> </el-table-column>
         <el-table-column prop="score" label="Score" width="180"> </el-table-column>
       </el-table>

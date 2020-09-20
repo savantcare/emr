@@ -65,8 +65,8 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxc from '../com-mx/change-layer.js'
 import ctOxygenSaturationGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue'
+import mxc from '../com-mx/change-layer.js'
 
 export default {
   components: { ctOxygenSaturationGraph },

@@ -26,7 +26,7 @@
     </el-form>
 
     <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
-    <el-timeline style="padding-inline-start: 20px;">
+    <el-timeline style="padding-inline-start: 20px">
       <el-timeline-item
         v-for="row in cfTimeLineDataAr"
         :key="row.ROW_START"
@@ -284,8 +284,8 @@ export default {
               return (
                 record.uuid === this.dnOrmUuidOfRowToChange &&
                 (record.vnRowStateInSession === 1 /* Came from DB */ ||
-                record.vnRowStateInSession ===
-                  34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
+                  record.vnRowStateInSession ===
+                    34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
                   record.vnRowStateInSession ===
                     24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
               )

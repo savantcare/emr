@@ -5,7 +5,7 @@
       -->
   <toggle-button
     v-model="componentType"
-    style="float: right;"
+    style="float: right"
     :labels="{ checked: 'H', unchecked: 'O' }"
     @change="handleChangeToggleButtonEvent"
   />

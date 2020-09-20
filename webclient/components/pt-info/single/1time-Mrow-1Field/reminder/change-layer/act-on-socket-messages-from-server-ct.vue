@@ -2,8 +2,8 @@
   <div></div>
 </template>
 <script>
-import objOrm from '../db/client-side/structure/rem-table.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import objOrm from '../db/client-side/structure/rem-table.js'
 
 export default {
   mounted() {

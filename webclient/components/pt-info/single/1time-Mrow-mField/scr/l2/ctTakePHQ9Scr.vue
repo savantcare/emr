@@ -4,7 +4,7 @@
       <el-form-item>
         <h4>Patient health questionnaire</h4>
 
-        <el-table :data="questionData" style="width: 100%;">
+        <el-table :data="questionData" style="width: 100%">
           <el-table-column
             prop="question"
             label="Over the last 2 weeks, how often have you been bothered by any of the following problems?"

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import tblMasterListOfSSCt from './master-list-of-ss-ct'
 import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import tblMasterListOfSSCt from './master-list-of-ss-ct'
 
 export default {
   components: { tblMasterListOfSSCt },
