@@ -28,7 +28,7 @@ export default class serviceStatements extends clientSideTableManage {
           When doctor assigns uuid2 to this patient then in this table
           serverSideRowUuid = 2
          */
-      serverSideRowUuid: this.uid(() => uuidv1()),
+      serverSideRowUuid: this.uid(() => uuidv1()), // This is the ID of the service statement assigned to this patient.
 
       patientUUID: this.string(null),
       recordChangedByUUID: this.string(null),
