@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ClientSideTblMasterServiceStatement from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss.js'
+import ClientSideTblMasterServiceStatement from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-service-statements.js'
 
 export default {
   data() {

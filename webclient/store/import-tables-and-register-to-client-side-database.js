@@ -36,8 +36,8 @@ database.register(tableStructureForScr)
 database.register(tableStructureForPhq9)
 
 // Service statement tables
-import tableStructureForSSMaster from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-ss.js'
-import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-ss-of-a-patient.js'
+import tableStructureForSSMaster from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-service-statements.js'
+import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-service-statements-of-a-patient.js'
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 

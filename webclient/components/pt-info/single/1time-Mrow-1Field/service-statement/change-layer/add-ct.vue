@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ClientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-ss.js'
-import ClientSideTblPatientServiceStatements from '../db/client-side/structure/table-ss-of-a-patient.js'
+import ClientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
+import ClientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 
 export default {
   data() {
