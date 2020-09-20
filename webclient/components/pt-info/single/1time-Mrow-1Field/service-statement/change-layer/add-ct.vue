@@ -3,7 +3,7 @@
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div class="grid-container">
       <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.id">
-        <el-button @click="mfToggleServiceStatement(ss.clientSideRowId)">{{
+        <el-button @click="mfToggleServiceStatement(ss.serverSideRowUuid)">{{
           ss.serviceStatementDescription
         }}</el-button>
       </div>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ClientSideTblMasterServiceStatement from '../db/client-side/structure/table-master-list-of-ss.js'
-import ClientSideTblPatientServiceStatement from '../db/client-side/structure/table-ss-of-a-patient.js'
+import ClientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-ss.js'
+import ClientSideTblPatientServiceStatements from '../db/client-side/structure/table-ss-of-a-patient.js'
 
 export default {
   data() {
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatement.fnGetValidUniqueUuidNotEmptyRows(
+      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.fnGetValidUniqueUuidNotEmptyRows(
         'serviceStatementDescription'
       )
       const newObj = arOfObjectsFromClientSideDB.filter((x) =>
@@ -33,12 +33,11 @@ export default {
     },
   },
   methods: {
-    mfToggleServiceStatement(pServiceStatementId) {
-      console.log(pServiceStatementId)
-      ClientSideTblPatientServiceStatement.insert({
+    mfToggleServiceStatement(pServiceStatementUuid) {
+      console.log(pServiceStatementUuid)
+      ClientSideTblPatientServiceStatements.insert({
         data: {
-          serverSideRowUuid: '2',
-          serviceStatementDescription: 'Spent 15 mins with patient',
+          serverSideRowUuid: pServiceStatementUuid,
         },
       })
     },

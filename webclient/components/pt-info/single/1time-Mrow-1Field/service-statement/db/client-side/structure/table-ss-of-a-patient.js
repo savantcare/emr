@@ -18,9 +18,19 @@ export default class serviceStatements extends clientSideTableManage {
       ...super.fields(),
 
       clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+
+      /* There is no extra field called serviceStatementUUID. This field is used to store the value of tblServiceStatementMaster/serverSideRowUuid
+         E.g: The  tblServiceStatementMaster has:
+         ServerSideRowUuid         |         serviceStatementDescription    
+          uuid1                    |  Spent 10 min with patient
+          uuid2                    |  Spent 20 min with patient
+
+          When doctor assigns uuid2 to this patient then in this table
+          serverSideRowUuid = 2
+         */
       serverSideRowUuid: this.uid(() => uuidv1()),
+
       patientUUID: this.string(null),
-      serviceStatementUUID: this.number(0),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
