@@ -166,7 +166,7 @@ export default {
           if (arFromClientSideTable[i].phoneNumber.length < 3) {
             // Validation check
             await clientSideTable.update({
-              where: (record) => record.id === arFromClientSideTable[i].id,
+              where: (record) => record.id === arFromClientSideTable[i].clientSideRowId,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -175,7 +175,7 @@ export default {
             })
           } else {
             await clientSideTable.update({
-              where: (record) => record.id === arFromClientSideTable[i].id,
+              where: (record) => record.id === arFromClientSideTable[i].clientSideRowId,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

@@ -108,8 +108,8 @@ export default {
           date = new Date(arFromClientSideTable[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
-          obj.uuid = arFromClientSideTable[i].uuid
-          obj.id = arFromClientSideTable[i].id
+          obj.uuid = arFromClientSideTable[i].serverSideRowUuid
+          obj.id = arFromClientSideTable[i].clientSideRowId
           arphoneNumberForDisplay.push(obj)
         }
       }

@@ -79,12 +79,12 @@ export default {
               When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
           const arFromClientSideTable = clientSideTable.find(this.dnOrmIdOfRowToChange)
           const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
-            arFromClientSideTable.uuid
+            arFromClientSideTable.serverSideRowUuid
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
             this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
-              arFromClientSideTable.id
+              arFromClientSideTable.clientSideRowId
             )
           } else {
             this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId

@@ -130,7 +130,7 @@ export default {
           obj.ROW_START = date.toLocaleString()
           obj.ROW_END = new Date(arFromClientSideTable[i].ROW_END * 1000).toLocaleString()
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
-          obj.uuid = arFromClientSideTable[i].uuid
+          obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
           obj.clientSideRowId = arFromClientSideTable[i].clientSideRowId
           arRemsForDisplay.push(obj)
