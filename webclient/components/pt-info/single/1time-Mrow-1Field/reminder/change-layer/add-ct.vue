@@ -5,17 +5,17 @@
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Submit -->
     <el-form>
       <div v-if="cfGetOrmNewRowsInEditState.length">
-        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.id">
+        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.clientSideRowId">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="20" :class="ormRow.validationClass">
             <el-input
               ref="description"
               type="textarea"
-              :class="mfGetCssClassName(ormRow.id)"
+              :class="mfGetCssClassName(ormRow.clientSideRowId)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the reminder .."
-              :value="mfGetFldValue(ormRow.id, 'description')"
-              @input="mfSetFldValueUsingCache($event, ormRow.id, 'description')"
+              :value="mfGetFldValue(ormRow.clientSideRowId, 'description')"
+              @input="mfSetFldValueUsingCache($event, ormRow.clientSideRowId, 'description')"
             ></el-input>
             <div v-if="ormRow.isValidationError" class="el-form-item__error">
               Please enter minimum 3 characters.
@@ -30,7 +30,7 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInOrm(ormRow.id)"
+              @click="mfDeleteRowInOrm(ormRow.clientSideRowId)"
               >Remove</el-button
             >
           </el-col>
@@ -126,7 +126,7 @@ export default {
     mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
       const rowStatus = 24
       objOrm.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
       const arFromOrm = objOrm.find(pOrmRowId)

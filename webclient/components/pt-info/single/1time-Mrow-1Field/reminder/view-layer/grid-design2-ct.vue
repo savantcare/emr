@@ -128,7 +128,7 @@ export default {
           obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
           obj.uuid = arFromOrm[i].uuid
           obj.$id = arFromOrm[i].$id
-          obj.id = arFromOrm[i].id
+          obj.clientSideRowId = arFromOrm[i].clientSideRowId
           arRemsForDisplay.push(obj)
         }
       }

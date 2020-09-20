@@ -141,7 +141,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     if (arFromOrm.length) {
       const idx = arFromOrm.length - 1
-      return arFromOrm[idx].id
+      return arFromOrm[idx].clientSideRowId
     } else {
       return false
     }
@@ -248,7 +248,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          if (arFromOrm[i].id > uniqueUuidRows[j].id) {
+          if (arFromOrm[i].clientSideRowId > uniqueUuidRows[j].clientSideRowId) {
             uniqueUuidRows[j] = arFromOrm[i]
           } else {
             // The existing data is newer hence not replacing
@@ -360,8 +360,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const objRow2 = this.find(pRow2Id)
 
     // delete flds that are not data flds. Since only data flds need to be compared.
-    delete objRow1.id
-    delete objRow2.id
+    delete objRow1.clientSideRowId
+    delete objRow2.clientSideRowId
 
     delete objRow1.ROW_START
     delete objRow2.ROW_START
@@ -508,7 +508,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     // In temporal table when row is updated first a copy is made but UUID remains same
     // Since primary key is internally set as UUID.row_start
     const arToCopy = this.find(pOrmSourceRowId)
-    delete arToCopy.id // removing the id fld from source so that vuexOrm will create a new primary key in destination
+    delete arToCopy.clientSideRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now() / 1000) // set ROW_START to now
     arToCopy.vnRowStateInSession = 3 // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
@@ -516,13 +516,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     })
     /* Goal: Get id of the row that has been inserted into the ORM
     Option1: 
-    const idOfNewRow = newRow.ptName[0].id
+    const idOfNewRow = newRow.ptName[0].clientSideRowId
     Cannot use this since ptName is hardcoded. For different Ct this will be different.
     Hence need a dynamic way to get the value in place of ptName
     Code for getting the first key when I do not know the name of the first key comes from https://stackoverflow.com/questions/983267/how-to-access-the-first-property-of-a-javascript-object
     */
     const firstKey = newRow[Object.keys(newRow)[0]]
-    const idOfNewRow = firstKey[0].id
+    const idOfNewRow = firstKey[0].clientSideRowId
     return idOfNewRow
   }
 
@@ -530,7 +530,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromOrm = this.fnGetNewRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
-        this.delete(arFromOrm[i].id)
+        this.delete(arFromOrm[i].clientSideRowId)
       }
     }
   }
@@ -539,7 +539,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromOrm = this.fnGetAllChangeRowsInEditState()
     if (arFromOrm.length) {
       for (let i = 0; i < arFromOrm.length; i++) {
-        this.delete(arFromOrm[i].id)
+        this.delete(arFromOrm[i].clientSideRowId)
       }
     }
   }
@@ -569,15 +569,15 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains objOrm row id that are going to be saved.
             In if statement we are searching if objOrm row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing objOrm row id in 'arOrmRowIdSendToServer'.
       */
-        if (this.arOrmRowIdSendToServer.includes(row.id)) {
+        if (this.arOrmRowIdSendToServer.includes(row.clientSideRowId)) {
           console.log('Already sent to server')
         } else {
-          this.arOrmRowIdSendToServer.push(row.id)
+          this.arOrmRowIdSendToServer.push(row.clientSideRowId)
           const status = await this.fnMakeApiCAll(row)
           if (status === 0) {
             // Handle api returned success
             this.update({
-              where: (record) => record.id === row.id,
+              where: (record) => record.clientSideRowId === row.clientSideRowId,
               data: {
                 vnRowStateInSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
               },
@@ -585,14 +585,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           } else {
             // Handle api returned failure
             this.update({
-              where: (record) => record.id === row.id,
+              where: (record) => record.clientSideRowId === row.clientSideRowId,
               data: {
                 vnRowStateInSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
               },
             })
 
             /* Remove objOrm row id from 'arOrmRowIdSendToServer' after this promise finished. */
-            const index = this.arOrmRowIdSendToServer.indexOf(row.id)
+            const index = this.arOrmRowIdSendToServer.indexOf(row.clientSideRowId)
             if (index > -1) {
               this.arOrmRowIdSendToServer.splice(index, 1)
             }
@@ -678,7 +678,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDiscontinueDataToServer(row.id, row.serverSideRowUuid, null)
+        const status = await this.fnSendDiscontinueDataToServer(
+          row.clientSideRowId,
+          row.serverSideRowUuid,
+          null
+        )
         if (status === 1) {
           success++
         } else {

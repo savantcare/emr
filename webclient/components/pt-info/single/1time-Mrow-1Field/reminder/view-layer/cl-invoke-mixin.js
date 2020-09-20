@@ -94,7 +94,7 @@ export default {
         .then(async ({ value }) => {
           const status = await objOrm.fnSendDiscontinueDataToServer(
             pOrmDataRowId,
-            arResultsFromOrm.uuid,
+            arResultsFromOrm.serverSideRowUuid,
             value
           )
           if (status === 1) {

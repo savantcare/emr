@@ -45,9 +45,13 @@ export default {
 
         if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
           const arOrmRowToChange = objOrm.find(this.vnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid)
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(
+            arOrmRowToChange.serverSideRowUuid
+          )
           if (vnExistingChangeRowId === false) {
-            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
+            this.vnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(
+              arOrmRowToChange.clientSideRowId
+            )
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }

@@ -168,11 +168,15 @@ export default {
           /* When called first time this.dnOrmIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
           const arOrmRowToChange = objOrm.find(this.dnOrmIdOfRowToChange)
-          this.dnOrmUuidOfRowToChange = arOrmRowToChange.uuid
-          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(arOrmRowToChange.uuid) // For a given UUID there can be only 1 row in edit state.
+          this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
+          const vnExistingChangeRowId = objOrm.fnGetChangeRowIdInEditState(
+            arOrmRowToChange.serverSideRowUuid
+          ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(arOrmRowToChange.id)
+            this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(
+              arOrmRowToChange.clientSideRowId
+            )
           } else {
             this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -183,7 +187,7 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.id)
+      this.dnOrmIdOfCopiedRowBeingChanged = await objOrm.fnCopyRow(pOrmRowToChange.clientSideRowId)
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
@@ -214,7 +218,7 @@ export default {
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
       objOrm.fnSetFldValue(pEvent, this.dnOrmIdOfCopiedRowBeingChanged, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/rowstatus.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     async mfSendDataToServer() {
       try {
