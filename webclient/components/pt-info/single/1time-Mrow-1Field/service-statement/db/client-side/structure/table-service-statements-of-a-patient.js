@@ -28,7 +28,7 @@ export default class serviceStatements extends clientSideTableManage {
           When doctor assigns uuid2 to this patient then in this table
           serverSideRowUuid = 2
          */
-      serverSideRowUuid: this.uid(() => uuidv1()), // This is the ID of the service statement assigned to this patient.
+      serverSideRowUuid: this.uid(() => uuidv1()), // This is service statement ID assigned to this patient coming from master table
 
       patientUUID: this.string(null),
       recordChangedByUUID: this.string(null),
@@ -37,6 +37,8 @@ export default class serviceStatements extends clientSideTableManage {
 
       ROW_START: this.number(0),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+
+      user: this.belongsTo(tblServiceStatementsMaster, 'serverSideRowUuid', ''),
     }
   }
 }
