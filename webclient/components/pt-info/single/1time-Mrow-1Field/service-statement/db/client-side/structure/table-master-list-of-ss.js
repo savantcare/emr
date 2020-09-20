@@ -17,7 +17,7 @@ export default class serviceStatementsMasterList extends clientSideTableManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      description: this.string(null),
+      serviceStatementDescription: this.string(null),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
     }
   }

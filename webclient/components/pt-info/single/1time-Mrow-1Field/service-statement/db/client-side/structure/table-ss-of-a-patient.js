@@ -17,8 +17,8 @@ export default class serviceStatements extends clientSideTableManage {
 
       id: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       uuid: this.uid(() => uuidv1()),
-      ptUUID: this.string(null),
-      ssID: this.number(0),
+      patientUUID: this.string(null),
+      serviceStatementUUID: this.number(0),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
