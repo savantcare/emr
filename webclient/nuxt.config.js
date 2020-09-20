@@ -1,13 +1,8 @@
 export default {
-  /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
+  // Section 1: Nuxt rendering mode See https://nuxtjs.org/api/configuration-mode
   ssr: false,
-  /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
-   */
+
+  // Section 2: Nuxt target can be static or server. See https://nuxtjs.org/api/configuration-target TODO: Why is this not static.
   target: 'server',
 
   telemetry: false,
@@ -17,10 +12,7 @@ export default {
     host: '0.0.0.0', // default: localhost
   },
 
-  /*
-   ** Headers of the page
-   ** See https://nuxtjs.org/api/configuration-head
-   */
+  // Section 3: Headers of the page See https://nuxtjs.org/api/configuration-head
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -34,31 +26,17 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  /*
-   ** Global CSS
-   */
+
+  // Section 4: Global CSS
   css: ['element-ui/lib/theme-chalk/index.css'],
-  /*
-   ** Plugins to load before mounting the App
-   ** https://nuxtjs.org/guide/plugins
-   */
+
+  // Section 5: Plugins to load before mounting the App https://nuxtjs.org/guide/plugins
   plugins: ['@/plugins/element-ui'],
-  /*
-   ** Auto import components
-   ** See https://nuxtjs.org/api/configuration-components
-   */
+
+  // Section 6: Auto import components https://nuxtjs.org/api/configuration-components
   components: true,
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    '@nuxt/typescript-build',
-  ],
-  /*
-   ** Nuxt.js modules
-   */
+
+  // Section 7: Nuxt.js modules
   modules: ['vue-scrollto/nuxt'],
   // https://stackoverflow.com/questions/53993890/how-to-pass-env-variables-to-nuxt-in-production
   env: {
@@ -69,72 +47,91 @@ export default {
         ? 'http://ptserver:8000'
         : 'http://116.203.134.163:8000',
   },
-  /*
-   ** Build configuration
-   ** See https://nuxtjs.org/api/configuration-build/
-   */
+
+  // Section 8: Nuxt.js dev-modules Factor 4 influencing build time
+  /*  
+  buildModules: [
+    '@nuxtjs/eslint-module', // https://github.com/nuxt-community/eslint-module
+  ],
+  */
+
+  // Section 9: Build configuration https://nuxtjs.org/api/configuration-build/
   build: {
     transpile: [/^element-ui/],
 
-    /* Goal 1:  Reduce the build time. 
-                  When add-ct.vue has a string change        
-                    With cache and parallelism speed is Fresh compile -> 15s / 15s 
-                    With cache speed is Fresh compile -> 15s / 15s 
-                    With nothing speed is Fresh compile -> 24s / 24s
+    /* Goal:  Reduce the build time. 
+              Build time depends on 4 factors:
+                  1. cache                          https://nuxtjs.org/api/configuration-build/#cache
+                  2. parallel                       https://nuxtjs.org/api/configuration-build/#parallel
+                  3. hardsource                     https://nuxtjs.org/api/configuration-build/#hardsource
+                  4. Build modules loaded
+                  5. loaders doing pre-processing   https://stackoverflow.com/questions/56350912/nuxt-application-taking-more-than-4-minutes-to-compile
+
+              Comparison of different options: scanrio: changing the text name inside full-name.vue 
+                          cache   parallel    hardsource    loaders    Buildmkodules  Time
+                            Y         Y           N            NP         NP           2s
+                            Y         Y           N            NP          P           8s
+                            N         Y           N            NP          P          10s
+                            Y         Y           N            P           P          15s
+                            Y         N           N            P           P          15s   
+                            N         N           N            P           P          25s                      
+
     */
 
-        
-      /* Method 1: hardSource https://nuxtjs.org/api/configuration-build/#hardsource
+    // Factor 1 influencing build time
+    cache: true,
 
-        HardSource has to be initilized before the extend(config)  
+    // Factor 2 influencing build time
+    parallel: true,
+
+    // Factor 3 influencing build time
+    /* HardSource has to be initilized before the extend(config)  
           Ref: https://github.com/tinytxy/nuxt_demo/blob/d7df41c992733b60f815c7d5b2638ac3be04d070/nuxt.config.js
               https://github.com/Sphereon-Opensource/poe-js-webapp/blob/3887d3f1eaa19ae12c1aee8897db27788d94f776/nuxt.config.js
               https://github.com/saavuio/s_nuxt_2nd/blob/f889e7dbabf62d369df683ca1827a05625c76f31/base/nuxt.config.js
       */
-      // hardSource: true, // this makes the compile hang at 93%
-      
-      // Method 2: https://webpack.js.org/configuration/other-options/#parallelism
-      parallel:true,
+    // hardSource: true, // this makes the compile hang at 93%
 
-      // Method 3: https://webpack.js.org/configuration/other-options/#cache
-      cache:true,
+    // Factor 5 influencing build time
+    loaders: {
+      vue: {
+        prettify: false, //
+        eslint: false,
+        babel: false,
+      },
+    },
 
-    /* End: Goal 1 */
-
-
-    extend(config, ctx) { 
-
+    extend(config, ctx) {
       // set for vscode debugger
       config.devtool = 'source-map'
+
+      /* Section start: Enabling this section increases the build time.
       // push new rules in module
       config.module.rules.push(
         {
-          /*
-            Q) Why is this config needed? 
-            - before every build eslint loader check all mention file type (eg: md, js) from source directory and return format errors and warnings.try to fix those errors automattically.
-            ** this config try to fix all errors and warnings before build the project
-          */
+          // Q) Why is this config needed? 
+          //      Before every build eslint loader check all mention file type (eg: md, js) from source directory and return format errors and warnings.try to fix those errors automattically.
+          //      This config try to fix all errors and warnings before build the project
           enforce: 'pre',
           test: /\.(js|vue)$/, // file type pattern
-          loader: 'eslint-loader', // loader name
+          loader: 'eslint-loader', // https://nuxtjs.org/api/configuration-build/#loaders
           exclude: /(node_modules)/, // bypass node_modules
           options: {
             fix: true, // to fix errors
           },
         },
         {
-          /*
-            Q) Why is this config needed? 
-            - before every build eslint loader check sql, md, monopic file and throwing console error, console looks very dirty. try to by passing those file types.
-            ** before add this config run yarn add ignore-loader if ignore-loader module doesn't exsists
-            ** this config put ignore loader for mentioned file type (sql, md, monopic) to stop arise those error.
-          */
+          // Q) Why is this config needed? 
+          //    Before every build eslint loader check sql, md, monopic file and throwing console error, console looks very dirty. try to by passing those file types.
+          //    Before add this config run yarn add ignore-loader if ignore-loader module doesn't exsists
+          //    This config put ignore loader for mentioned file type (sql, md, monopic) to stop arise those error.
           // push rule to specify ignore loader for some format (sql, md, monopic)
           test: /\.(sql|md|monopic|)$/, // file type pattern
           exclude: /(node_modules)/, // bypass node_modules
           loader: 'ignore-loader', // loader name
         }
       )
+      Section end */
     },
   },
 }
