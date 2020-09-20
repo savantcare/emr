@@ -2,8 +2,8 @@
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.id">
-        <el-button @click="mfToggleServiceStatement(ss.serverSideRowUuid)">{{
+      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.masterRowId">
+        <el-button @click="mfToggleServiceStatement(ss.masterRowId)">{{
           ss.serviceStatementDescription
         }}</el-button>
       </div>
@@ -23,9 +23,7 @@ export default {
   },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.fnGetValidUniqueUuidNotEmptyRows(
-        'serviceStatementDescription'
-      )
+      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.all()
       const newObj = arOfObjectsFromClientSideDB.filter((x) =>
         x.serviceStatementDescription.includes(this.userTypedKeyword)
       )
@@ -33,11 +31,11 @@ export default {
     },
   },
   methods: {
-    mfToggleServiceStatement(pServiceStatementUuid) {
-      console.log(pServiceStatementUuid)
+    mfToggleServiceStatement(pMasterRowId) {
+      console.log(pMasterRowId)
       ClientSideTblPatientServiceStatements.insert({
         data: {
-          serverSideRowUuid: pServiceStatementUuid,
+          serviceStatementMasterId: pMasterRowId,
         },
       })
     },

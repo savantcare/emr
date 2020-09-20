@@ -14,31 +14,31 @@ export default {
   mounted() {
     ClientSideTblMasterServiceStatement.insert({
       data: {
-        serverSideRowUuid: 'uuid-1', // this is uuid-1 to easily distinhuish it from the same row field -> id
+        masterRowId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
         serviceStatementDescription: 'Spent 10 mins with patient',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
-        serverSideRowUuid: 'uuid-2',
+        masterRowId: '2',
         serviceStatementDescription: 'Spent 15 mins with patient',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
-        serverSideRowUuid: 'uuid-3',
+        masterRowId: '3',
         serviceStatementDescription: 'Spent 20 mins with patient',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
-        serverSideRowUuid: 'uuid-4',
+        masterRowId: '4',
         serviceStatementDescription: 'Spent 25 mins with patient',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
-        serverSideRowUuid: 'uuid-5',
+        masterRowId: '5',
         serviceStatementDescription: 'Spent 30 mins with patient',
       },
     })

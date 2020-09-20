@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.id">
-        <el-button @click="mfToggleServiceStatement(ss.serverSideRowUuid)">{{
-          ss.serverSideRowUuid
+      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
+        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
+          ss.serviceStatementMasterId
         }}</el-button>
       </div>
     </div>
@@ -17,9 +17,7 @@ import ClientSideTblPatientServiceStatements from '../db/client-side/structure/t
 export default {
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.fnGetValidUniqueUuidNotEmptyRows(
-        'serverSideRowUuid'
-      )
+      const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.all()
       return arOfObjectsFromClientSideDB
     },
   },
@@ -28,7 +26,7 @@ export default {
       console.log(pServiceStatementUuid)
       ClientSideTblPatientServiceStatements.insert({
         data: {
-          serverSideRowUuid: pServiceStatementUuid,
+          serviceStatementMasterId: pServiceStatementUuid,
         },
       })
     },
