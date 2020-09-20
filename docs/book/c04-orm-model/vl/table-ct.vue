@@ -11,9 +11,9 @@ import ormHelloWorld from "@/components/book/c04-orm-model/db/client-side/hellow
 export default {
   computed: {
     cfMsg() {
-      const arFromOrm = ormHelloWorld.query().get();
-      if (arFromOrm.length > 0) {
-        return arFromOrm[0].msg;
+      const arFromClientSideTable = ormHelloWorld.query().get();
+      if (arFromClientSideTable.length > 0) {
+        return arFromClientSideTable[0].msg;
       }
       return "";
     },

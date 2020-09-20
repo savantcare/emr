@@ -32,7 +32,7 @@ export default {
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
         pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
       ) {
-        const arFromOrm = await clientSideTable.insert({
+        const arFromClientSideTable = await clientSideTable.insert({
           data: {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/core/crud/forms.md
             ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -40,14 +40,14 @@ export default {
             uuid: pDataArr.uuid,
           },
         })
-        if (!arFromOrm) {
+        if (!arFromClientSideTable) {
           console.log('FATAL ERROR')
         }
 
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const primaryKeyValue = arFromOrm.rem[0].id
+        const primaryKeyValue = arFromClientSideTable.rem[0].id
         setTimeout(
           function (scope) {
             scope.fnSetRowStatus(primaryKeyValue)

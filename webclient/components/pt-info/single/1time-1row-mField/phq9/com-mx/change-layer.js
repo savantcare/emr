@@ -65,8 +65,8 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
-    const arFromOrm = clientSideTable.fnGetRowsToChange()
-    this.vnOrmIdOfRowToChange = arFromOrm[0].id
+    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    this.vnOrmIdOfRowToChange = arFromClientSideTable[0].id
     this.vnOrmIdOfCopiedRowBeingChanged = null
   },
   mounted() {

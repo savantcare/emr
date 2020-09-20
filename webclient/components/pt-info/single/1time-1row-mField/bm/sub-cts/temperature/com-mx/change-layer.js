@@ -77,11 +77,15 @@ export default {
         if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.dnOrmIdOfRowToChange is assigned in the created event function
               When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
-          const arFromOrm = clientSideTable.find(this.dnOrmIdOfRowToChange)
-          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(arFromOrm.uuid) // For a given UUID there can be only 1 row in edit state.
+          const arFromClientSideTable = clientSideTable.find(this.dnOrmIdOfRowToChange)
+          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
+            arFromClientSideTable.uuid
+          ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
-            this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(arFromOrm.id)
+            this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+              arFromClientSideTable.id
+            )
           } else {
             this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -96,8 +100,8 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromOrm = clientSideTable.fnGetRowsToChange()
-    this.dnOrmIdOfRowToChange = arFromOrm[0].id
+    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    this.dnOrmIdOfRowToChange = arFromClientSideTable[0].id
     this.dnOrmIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },

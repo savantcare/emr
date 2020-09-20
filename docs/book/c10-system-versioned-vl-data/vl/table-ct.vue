@@ -22,17 +22,17 @@ import ormHelloWorld from "@/components/book/c10-system-versioned-vl-data/db/cli
 export default {
   computed: {
     cfMsg() {
-      const arFromOrm = ormHelloWorld.query().get();
-      if (arFromOrm.length > 0) {
-        console.log(arFromOrm);
-        return arFromOrm[0].msg;
+      const arFromClientSideTable = ormHelloWorld.query().get();
+      if (arFromClientSideTable.length > 0) {
+        console.log(arFromClientSideTable);
+        return arFromClientSideTable[0].msg;
       }
       return "";
     },
     cfArForDisplayInTable() {
       // TODO: change this from Ar to Obj since JS ar has numerical indexes.
-      const arFromOrm = ormHelloWorld.fnGetNotEmptyRows("msg");
-      return arFromOrm;
+      const arFromClientSideTable = ormHelloWorld.fnGetNotEmptyRows("msg");
+      return arFromClientSideTable;
     },
   },
   mounted() {

@@ -38,8 +38,8 @@ export default {
         Sorrounding component with keepAlive in pf/_uuid/index.vue does not help. Since previous rendering of rex
         is not hidden. When user types rex 2 times, rex is being displayed 2 times
     */
-    const arFromOrm = tblCTLifeCycle.query().where('name', 'Recommendations').get()
-    const objRowFromOrm = arFromOrm[0]
+    const arFromClientSideTable = tblCTLifeCycle.query().where('name', 'Recommendations').get()
+    const objRowFromOrm = arFromClientSideTable[0]
     if (typeof objRowFromOrm !== 'undefined') {
       console.log('already mounted')
     } else {

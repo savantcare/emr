@@ -16,9 +16,9 @@ export default {
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      const arFromOrm = clientSideTable.fnGetRowsToChange()
-      if (arFromOrm.length) {
-        const rowtoReturn = arFromOrm[0]
+      const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+      if (arFromClientSideTable.length) {
+        const rowtoReturn = arFromClientSideTable[0]
         for (const k in this.dataFldsOfToChangeAndCopiedRowsAreSame)
           rowtoReturn[k] = this.dataFldsOfToChangeAndCopiedRowsAreSame[k]
         return rowtoReturn
@@ -53,9 +53,9 @@ export default {
     } else {
       await this.mxGetDataFromDb()
     }
-    const arFromOrm = clientSideTable.fnGetRowsToChange()
-    if (arFromOrm.length) {
-      const rowtoReturn = arFromOrm[0]
+    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    if (arFromClientSideTable.length) {
+      const rowtoReturn = arFromClientSideTable[0]
       const vnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
         rowtoReturn.uuid
       )

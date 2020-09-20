@@ -39,13 +39,13 @@ export default {
   },
   methods: {
     async mfAddEmptyRowInOrm() {
-      const arFromOrm = await ormHw.insert({
+      const arFromClientSideTable = await ormHw.insert({
         data: {
           msg: "",
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
         },
       });
-      if (!arFromOrm) {
+      if (!arFromClientSideTable) {
         console.log("FATAL ERROR");
       }
     },

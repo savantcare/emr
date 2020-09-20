@@ -68,14 +68,14 @@ export default {
     },
 
     mfQuerySearchTerms(pQueryString, pCallBack) {
-      let arFromOrm = tblSearchPhrasesOfCt
+      let arFromClientSideTable = tblSearchPhrasesOfCt
         .query()
         .where('displayLocation', 'cl') // excluding everything where the displayLocation is view layer
         .where('needsRowIdToWork', 'no') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row
         .search(pQueryString.trim())
         .get() // trim needs for "goal " to match "goal"
 
-      arFromOrm = arFromOrm.map((result) => {
+      arFromClientSideTable = arFromClientSideTable.map((result) => {
         let finalStr = ''
         if (pQueryString.length > 0) {
           const strings = pQueryString.split(' ')
@@ -90,7 +90,7 @@ export default {
         result.value = finalStr
         return result
       })
-      pCallBack(arFromOrm)
+      pCallBack(arFromClientSideTable)
     },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
       const objAddTab = {

@@ -61,8 +61,8 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromOrm = tblSearchPhrasesOfCt.query().search('add goal').get()
-      const objRowFromOrm = arFromOrm[0]
+      const arFromClientSideTable = tblSearchPhrasesOfCt.query().search('add goal').get()
+      const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,

@@ -39,10 +39,10 @@ export default {
     cfDataRow() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromOrm = clientSideTable.fnGetRowsToChange()
-      if (arFromOrm.length) {
+      const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+      if (arFromClientSideTable.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-        const rowtoReturn = arFromOrm[0]
+        const rowtoReturn = arFromClientSideTable[0]
         for (const k in this.dataFldsOfToChangeAndCopiedRowsAreSame)
           rowtoReturn[k] = this.dataFldsOfToChangeAndCopiedRowsAreSame[k]
         // return to the template.
@@ -96,10 +96,10 @@ export default {
         that something has changed.
     
     */
-    const arFromOrm = clientSideTable.fnGetRowsToChange()
-    if (arFromOrm.length) {
+    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    if (arFromClientSideTable.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-      const rowtoReturn = arFromOrm[0]
+      const rowtoReturn = arFromClientSideTable[0]
       const dnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
         rowtoReturn.uuid
       )

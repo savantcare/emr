@@ -99,8 +99,8 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromOrm = tblSearchPhrasesOfCt.query().search('add diagnosis').get()
-      const objRowFromOrm = arFromOrm[0]
+      const arFromClientSideTable = tblSearchPhrasesOfCt.query().search('add diagnosis').get()
+      const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,
@@ -112,8 +112,11 @@ export default {
     },
     mfOpenMCtInCl() {
       console.log('show multi change dialog')
-      const arFromOrm = tblSearchPhrasesOfCt.query().search('Multichange dx assessment').get()
-      const objRowFromOrm = arFromOrm[0]
+      const arFromClientSideTable = tblSearchPhrasesOfCt
+        .query()
+        .search('Multichange dx assessment')
+        .get()
+      const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,

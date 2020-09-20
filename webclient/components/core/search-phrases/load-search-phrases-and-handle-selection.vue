@@ -81,9 +81,12 @@ export default {
 
   computed: {
     cfSearchBoxPlaceholder() {
-      let arFromOrm = {}
-      arFromOrm = tblSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
-      const objRowFromOrm = arFromOrm[0]
+      let arFromClientSideTable = {}
+      arFromClientSideTable = tblSearchPhrasesOfCt
+        .query()
+        .orderBy('usageCountKeptInOrm', 'desc')
+        .get()
+      const objRowFromOrm = arFromClientSideTable[0]
       if (objRowFromOrm) {
         return 'e.g. ' + objRowFromOrm.value
       } else {
@@ -97,10 +100,13 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromOrm = tblSearchPhrasesOfCt.query().orderBy('usageCountKeptInOrm', 'desc').get()
-        pCallBack(arFromOrm)
+        const arFromClientSideTable = tblSearchPhrasesOfCt
+          .query()
+          .orderBy('usageCountKeptInOrm', 'desc')
+          .get()
+        pCallBack(arFromClientSideTable)
       } else {
-        const arFromOrm = tblSearchPhrasesOfCt
+        const arFromClientSideTable = tblSearchPhrasesOfCt
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -109,7 +115,7 @@ export default {
           })
           .orderBy('usageCountKeptInOrm', 'desc')
           .get() // trim is needed for "goal " to match "goal"
-        pCallBack(arFromOrm)
+        pCallBack(arFromClientSideTable)
       }
     },
 

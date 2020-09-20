@@ -63,7 +63,7 @@ export default {
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromOrm = await tblSearchPhrasesOfCt
+      const arFromClientSideTable = await tblSearchPhrasesOfCt
         .query()
         .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {
@@ -71,7 +71,7 @@ export default {
           keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
         })
         .get()
-      const objSearchRowFromOrm = arFromOrm[0]
+      const objSearchRowFromOrm = arFromClientSideTable[0]
 
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
       // /cts/core/manage-cl-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76

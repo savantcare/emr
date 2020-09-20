@@ -96,7 +96,7 @@ New record after data is saved on server. vnRowStateInSession = 23461
       When there is unsaved data we need to load the unsaved data
 
       The query to load data from vuex is:
-      const arFromOrm = ormRem.query().where('$isNew', true).get()
+      const arFromClientSideTable = ormRem.query().where('$isNew', true).get()
 
       The permanence of data is:
       Least permanane: data (local variable) of ct    -> Does not survive Ct remounting

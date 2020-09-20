@@ -11,10 +11,10 @@ import ormHelloWorld from "@/components/book/c07-element-orm-connect-many-rows/d
 export default {
   computed: {
     cfMsg() {
-      const arFromOrm = ormHelloWorld.query().get();
-      if (arFromOrm.length > 0) {
-        console.log(arFromOrm);
-        return arFromOrm[0].msg;
+      const arFromClientSideTable = ormHelloWorld.query().get();
+      if (arFromClientSideTable.length > 0) {
+        console.log(arFromClientSideTable);
+        return arFromClientSideTable[0].msg;
       }
       return "";
     },

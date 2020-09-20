@@ -90,19 +90,19 @@ export default {
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromOrm = clientSideTable
+      const arFromClientSideTable = clientSideTable
         .query()
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
       // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange)
-      if (arFromOrm.length) {
+      if (arFromClientSideTable.length) {
         let rowInTimeLine = []
         let date = ''
-        for (let i = 0; i < arFromOrm.length; i++) {
+        for (let i = 0; i < arFromClientSideTable.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.description = arFromOrm[i].description
-          date = new Date(arFromOrm[i].ROW_START * 1000)
+          rowInTimeLine.description = arFromClientSideTable[i].description
+          date = new Date(arFromClientSideTable[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) +
             '-' +
@@ -110,16 +110,16 @@ export default {
             '-' +
             date.getFullYear()
           if (
-            arFromOrm[i].vnRowStateInSession === 3 ||
-            arFromOrm[i].vnRowStateInSession === 34 ||
-            arFromOrm[i].vnRowStateInSession === 3456
+            arFromClientSideTable[i].vnRowStateInSession === 3 ||
+            arFromClientSideTable[i].vnRowStateInSession === 34 ||
+            arFromClientSideTable[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
-          rowInTimeLine.ROW_START = arFromOrm[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
+          rowInTimeLine.ROW_START = arFromClientSideTable[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }

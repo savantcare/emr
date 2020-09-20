@@ -99,13 +99,13 @@ export default {
   methods: {
     async mfAddEmptyRowInOrm() {
       // TODO: this should be part of base class
-      const arFromOrm = await clientSideTable.insert({
+      const arFromClientSideTable = await clientSideTable.insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
-      if (!arFromOrm) {
+      if (!arFromClientSideTable) {
         console.log('FATAL ERROR')
       }
       this.mfManageFocus()
@@ -129,8 +129,8 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
-      const arFromOrm = clientSideTable.find(pOrmRowId)
-      if (arFromOrm && arFromOrm.vnRowStateInSession === 24) {
+      const arFromClientSideTable = clientSideTable.find(pOrmRowId)
+      if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
@@ -148,14 +148,15 @@ export default {
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
         The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
       */
-      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
-      if (arFromOrm.length) {
-        console.log('unsaved data found', arFromOrm)
-        for (let i = 0; i < arFromOrm.length; i++) {
-          if (arFromOrm[i].description.length < 3) {
+      const arFromClientSideTable = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
+      if (arFromClientSideTable.length) {
+        console.log('unsaved data found', arFromClientSideTable)
+        for (let i = 0; i < arFromClientSideTable.length; i++) {
+          if (arFromClientSideTable[i].description.length < 3) {
             // Validation check
             await clientSideTable.update({
-              where: (record) => record.id === arFromOrm[i].id,
+              where: (record) =>
+                record.clientSideRowId === arFromClientSideTable[i].clientSideRowId,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -164,7 +165,8 @@ export default {
             })
           } else {
             await clientSideTable.update({
-              where: (record) => record.id === arFromOrm[i].id,
+              where: (record) =>
+                record.clientSideRowId === arFromClientSideTable[i].clientSideRowId,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

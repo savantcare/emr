@@ -90,7 +90,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
+      const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -103,17 +103,17 @@ export default {
 
       const arRemsForDisplay = []
       let obj = {}
-      if (arFromOrm.length) {
+      if (arFromClientSideTable.length) {
         let date = ''
-        for (let i = 0; i < arFromOrm.length; i++) {
+        for (let i = 0; i < arFromClientSideTable.length; i++) {
           obj = {}
-          obj.description = arFromOrm[i].description
+          obj.description = arFromClientSideTable[i].description
           // For date format ref: /cts/pt-info/single/1time-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
-          date = new Date(arFromOrm[i].ROW_START)
+          date = new Date(arFromClientSideTable[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.vnRowStateInSession = arFromOrm[i].vnRowStateInSession
-          obj.uuid = arFromOrm[i].uuid
-          obj.id = arFromOrm[i].id
+          obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
+          obj.uuid = arFromClientSideTable[i].uuid
+          obj.id = arFromClientSideTable[i].id
           arRemsForDisplay.push(obj)
         }
       }
