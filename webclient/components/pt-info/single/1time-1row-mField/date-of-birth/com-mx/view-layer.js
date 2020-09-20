@@ -20,7 +20,7 @@ const mxFullSyncWithDbServer = require('@/components/pt-info/single/1time-1row-m
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import objOrm from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/table.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
@@ -39,7 +39,7 @@ export default {
     cfDataRow() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromOrm = objOrm.fnGetRowsToChange()
+      const arFromOrm = clientSideTable.fnGetRowsToChange()
       if (arFromOrm.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromOrm[0]
@@ -64,7 +64,7 @@ export default {
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
       const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === objOrm.entity)
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === clientSideTable.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
@@ -74,18 +74,18 @@ export default {
   },
   async mounted() {
     // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
-    let eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-diff'].join('-')
+    let eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-diff'].join('-')
 
     this.$root.$on(eventName, (pFldsWithDiff) => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = pFldsWithDiff
     })
 
-    eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-same'].join('-')
+    eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-same'].join('-')
     this.$root.$on(eventName, () => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (objOrm.query().count() > 0) {
+    if (clientSideTable.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
@@ -96,14 +96,16 @@ export default {
         that something has changed.
     
     */
-    const arFromOrm = objOrm.fnGetRowsToChange()
+    const arFromOrm = clientSideTable.fnGetRowsToChange()
     if (arFromOrm.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromOrm[0]
-      const dnOrmIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
+      const dnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
+        rowtoReturn.uuid
+      )
       if (dnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.dataFldsOfToChangeAndCopiedRowsAreSame = objOrm.fnIsDataFldsOfRowsSame(
+        this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.id,
           dnOrmIdOfCopiedRowBeingChanged
@@ -114,7 +116,7 @@ export default {
   },
   methods: {
     mfOpenCCtInCl(pOrmId) {
-      const searchString = [objOrm.entity, 'change'].join(' - ')
+      const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
         searchTerm: searchString,
@@ -130,14 +132,14 @@ export default {
     },
     mfSendSubmitEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
-      const eventName = ['event-from-ct', objOrm.entity, 'vl-save-this-row'].join('-')
+      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,
         this.dataFldsOfToChangeAndCopiedRowsAreSame.dnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
-      const eventName = ['event-from-ct', objOrm.entity, 'vl-reset-this-form'].join('-')
+      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
       this.$root.$emit(eventName)
     },
   },

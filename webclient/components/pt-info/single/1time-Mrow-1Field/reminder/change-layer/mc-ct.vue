@@ -73,7 +73,7 @@ How to solve this?
   <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import objOrm from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/rem-table.js'
 import ctChangeRem from './c-ct.vue'
 export default {
   components: { ctChangeRem },
@@ -126,7 +126,7 @@ export default {
   },
   mounted() {
     console.log('In mounted function')
-    const resultArFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
+    const resultArFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
         this.daUniqueIDOfEachRowFromOrm.push(resultArFromOrm[i].$id)

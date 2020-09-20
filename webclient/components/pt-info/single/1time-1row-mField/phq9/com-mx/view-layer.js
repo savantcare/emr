@@ -4,7 +4,7 @@
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import objOrm from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/table.js'
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
@@ -16,7 +16,7 @@ export default {
   computed: {
     cfDataRow() {
       if (!this.isMounted) return ''
-      const arFromOrm = objOrm.fnGetRowsToChange()
+      const arFromOrm = clientSideTable.fnGetRowsToChange()
       if (arFromOrm.length) {
         const rowtoReturn = arFromOrm[0]
         for (const k in this.dataFldsOfToChangeAndCopiedRowsAreSame)
@@ -29,7 +29,7 @@ export default {
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
       const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === objOrm.entity)
+      const obj = arOfCardsInPtsOfVl.find((x) => x.label === clientSideTable.entity)
       const idx = arOfCardsInPtsOfVl.indexOf(obj)
       return idx
     },
@@ -38,28 +38,30 @@ export default {
     },
   },
   async mounted() {
-    let eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-diff'].join('-')
+    let eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-diff'].join('-')
 
     this.$root.$on(eventName, (pFldsWithDiff) => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = pFldsWithDiff
     })
 
-    eventName = ['event-from-ct', objOrm.entity, 'cl-copied-row-same'].join('-')
+    eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-same'].join('-')
     this.$root.$on(eventName, () => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (objOrm.query().count() > 0) {
+    if (clientSideTable.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }
-    const arFromOrm = objOrm.fnGetRowsToChange()
+    const arFromOrm = clientSideTable.fnGetRowsToChange()
     if (arFromOrm.length) {
       const rowtoReturn = arFromOrm[0]
-      const vnOrmIdOfCopiedRowBeingChanged = objOrm.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
+      const vnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
+        rowtoReturn.uuid
+      )
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.dataFldsOfToChangeAndCopiedRowsAreSame = objOrm.fnIsDataFldsOfRowsSame(
+        this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
           rowtoReturn.id,
           vnOrmIdOfCopiedRowBeingChanged
         )
@@ -70,7 +72,7 @@ export default {
   methods: {
     mfOpenCCtInCl(pOrmId) {
       console.log(pOrmId)
-      const searchString = [objOrm.entity, 'change'].join(' - ')
+      const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
         searchTerm: searchString,
@@ -85,14 +87,14 @@ export default {
       return 'default'
     },
     mfSendSubmitEvent() {
-      const eventName = ['event-from-ct', objOrm.entity, 'vl-save-this-row'].join('-')
+      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,
         this.dataFldsOfToChangeAndCopiedRowsAreSame.vnOrmIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
-      const eventName = ['event-from-ct', objOrm.entity, 'vl-reset-this-form'].join('-')
+      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
       this.$root.$emit(eventName)
     },
   },

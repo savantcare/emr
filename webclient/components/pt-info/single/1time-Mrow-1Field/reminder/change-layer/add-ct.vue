@@ -75,31 +75,31 @@
   </div>
 </template>
 <script>
-import objOrm from '../db/client-side/structure/rem-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import clientSideTable from '../db/client-side/structure/rem-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {
-    // objOrm functions can not be directly called from template. hence computed functions have been defined.
+    // clientSideTable functions can not be directly called from template. hence computed functions have been defined.
     cfGetOrmNewRowsInEditState() {
-      return objOrm.fnGetNewRowsInEditState()
+      return clientSideTable.fnGetNewRowsInEditState()
     },
     cfGetOrmReadyToSubmitStateRows() {
-      return objOrm.fnGetNewRowsInReadyToSubmitState()
+      return clientSideTable.fnGetNewRowsInReadyToSubmitState()
     },
     cfGetOrmApiSuccessStateRows() {
-      return objOrm.fnGetNewRowsInApiSuccessState()
+      return clientSideTable.fnGetNewRowsInApiSuccessState()
     },
     cfGetOrmApiErrorStateRows() {
-      return objOrm.fnGetNewRowsInApiErrorState()
+      return clientSideTable.fnGetNewRowsInApiErrorState()
     },
     cfGetOrmApiSendingStateRows() {
-      return objOrm.fnGetNewRowsInApiSendingState()
+      return clientSideTable.fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     async mfAddEmptyRowInOrm() {
       // TODO: this should be part of base class
-      const arFromOrm = await objOrm.insert({
+      const arFromOrm = await clientSideTable.insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
           ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -119,17 +119,17 @@ export default {
         this.$refs.description[lastElement - 1].focus()
       }
     },
-    // Cannot call objOrm function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call clientSideTable function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pOrmRowId, pFldName) {
-      return objOrm.fnGetFldValue(pOrmRowId, pFldName)
+      return clientSideTable.fnGetFldValue(pOrmRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
       const rowStatus = 24
-      objOrm.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
+      clientSideTable.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassName(pOrmRowId) {
-      const arFromOrm = objOrm.find(pOrmRowId)
+      const arFromOrm = clientSideTable.find(pOrmRowId)
       if (arFromOrm && arFromOrm.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -137,24 +137,24 @@ export default {
       return ''
     },
     async mfDeleteRowInOrm(pOrmRowId) {
-      await objOrm.delete(pOrmRowId)
+      await clientSideTable.delete(pOrmRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      objOrm.fnDeleteNewRowsInEditState()
+      clientSideTable.fnDeleteNewRowsInEditState()
     },
     async mfOnSubmit() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from objOrm ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
       */
-      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of objOrm since get benefit of caching.
+      const arFromOrm = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
       if (arFromOrm.length) {
         console.log('unsaved data found', arFromOrm)
         for (let i = 0; i < arFromOrm.length; i++) {
           if (arFromOrm[i].description.length < 3) {
             // Validation check
-            await objOrm.update({
+            await clientSideTable.update({
               where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -163,7 +163,7 @@ export default {
               },
             })
           } else {
-            await objOrm.update({
+            await clientSideTable.update({
               where: (record) => record.id === arFromOrm[i].id,
               data: {
                 validationClass: '',
@@ -175,7 +175,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await objOrm.fnSendToServer()
+      await clientSideTable.fnSendToServer()
     },
   },
 }

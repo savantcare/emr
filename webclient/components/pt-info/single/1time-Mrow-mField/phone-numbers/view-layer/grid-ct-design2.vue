@@ -57,7 +57,7 @@
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
-import objOrm from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
@@ -70,13 +70,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromOrm = objOrm.fnGetValidUniqueUuidRows()
+      const arFromOrm = clientSideTable.fnGetValidUniqueUuidRows()
       return arFromOrm.length
     },
 
     cfArOfRemForDisplayInTable() {
-      // Whenever objOrm will change this will get called. Even when there are 100 rows in the table when objOrm rem changes this gets called once'
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
+      // Whenever clientSideTable will change this will get called. Even when there are 100 rows in the table when clientSideTable rem changes this gets called once'
+      const arFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -115,7 +115,7 @@ export default {
     },
   },
   async mounted() {
-    if (objOrm.query().count() > 0) {
+    if (clientSideTable.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }

@@ -1,7 +1,7 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
 
-import objOrm from '~/components/pt-info/single/1time-1row-mField/phq9/db/client-side/structure/table.js'
+import clientSideTable from '~/components/pt-info/single/1time-1row-mField/phq9/db/client-side/structure/table.js'
 export default {
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async mxGetDataFromDb() {
-      const pro = await objOrm.api().get(objOrm.apiUrl + '/1')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '/1')
       if (pro.ok) {
       }
     },

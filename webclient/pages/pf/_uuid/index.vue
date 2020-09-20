@@ -66,7 +66,7 @@ import ctTabsInDialogInCL from '@/components/core/manage-cl-tabs/show-add-and-re
 import ctFeedDrawer from '@/components/pt-info/combined/feed/drawer.vue'
 import ctMapDrawer from '@/components/pt-info/combined/map/drawer.vue'
 import ctDiscontinuedDrawer from '@/components/core/ct-discontinued-rows/drawer.vue'
-import objOrm from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTable from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -103,14 +103,14 @@ export default {
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
-      objOrm.insert({
+      clientSideTable.insert({
         data: {
           clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this
             .$socket.id,
         },
       })
 
-      console.log(objOrm)
+      console.log(clientSideTable)
     },
     log(message) {
       console.log(message)

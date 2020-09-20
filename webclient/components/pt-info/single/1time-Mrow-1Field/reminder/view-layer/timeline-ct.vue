@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import objOrm from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/rem-table.js'
 import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
@@ -90,7 +90,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
+      const arFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

@@ -1,5 +1,5 @@
 // Reference implementation for non numeric hence no graph
-import objOrm from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
+import clientSideTable from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
@@ -12,7 +12,7 @@ export default {
         3. The .api function is provided by vuex-orm-axios
       */
 
-      const pro = await objOrm.api().get(objOrm.apiUrl + '/1')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '/1')
       if (pro.ok) {
       }
     },

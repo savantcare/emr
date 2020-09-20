@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import objOrm from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/table.js'
 import mxViewLayer from './view-layer.js'
 
 export default {
@@ -25,14 +25,14 @@ export default {
       const chartOptions = {
         series: [
           {
-            name: objOrm.entity,
+            name: clientSideTable.entity,
             showInLegend: false,
             data: arDataToShowOnGraph,
           },
         ],
         title: {
           text: '',
-        }, // Reason: Y axis will have objOrm.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         chart: {
           height: 200,
         },
@@ -51,12 +51,12 @@ export default {
         yAxis: [
           {
             title: {
-              text: objOrm.entity,
+              text: clientSideTable.entity,
             },
           },
         ],
         tooltip: {
-          headerFormat: '<b>{point.y:.2f} ' + objOrm.graphSeries1Unit + '</b><br>',
+          headerFormat: '<b>{point.y:.2f} ' + clientSideTable.graphSeries1Unit + '</b><br>',
           pointFormat: '{point.x:%m-%Y}',
         },
         credits: {
@@ -69,12 +69,12 @@ export default {
   methods: {
     mfGetDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = objOrm.all()
+      const data = clientSideTable.all()
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurement = data[i].timeOfMeasurement
-          const graphData = data[i][objOrm.graphSeries1FieldName]
+          const graphData = data[i][clientSideTable.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
         return arDataToShowOnGraph

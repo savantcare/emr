@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import objOrm from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {
@@ -86,7 +86,7 @@ export default {
       return idx
     },
     cfArOfRemForDisplayInTable() {
-      const arFromOrm = objOrm.fnGetValidUniqueUuidNotEmptyRows('description')
+      const arFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

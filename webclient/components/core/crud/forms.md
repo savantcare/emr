@@ -20,7 +20,7 @@
 
 # Q2) How is the state of data entered in the form managed on client side?
 
-vuex objOrm field: vnRowStateInSession of type int
+vuex clientSideTable field: vnRowStateInSession of type int
 
 e.g. cts/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/rems:71
 

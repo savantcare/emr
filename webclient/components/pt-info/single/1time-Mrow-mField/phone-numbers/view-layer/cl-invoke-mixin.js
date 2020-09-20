@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import objOrm from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
+import clientSideTable from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 
 export default {
   methods: {
@@ -28,7 +28,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDiscontinue.length > 0) {
-            const status = await objOrm.fnSendMultiDiscontinueDataToServer(
+            const status = await clientSideTable.fnSendMultiDiscontinueDataToServer(
               this.daSelectedRemForDiscontinue
             )
             if (status.success > 0) {
@@ -52,7 +52,7 @@ export default {
         })
     },
     async mxOpenXCtInCl() {
-      const discontinuedRows = await objOrm.fnGetDiscontinuedRows()
+      const discontinuedRows = await clientSideTable.fnGetDiscontinuedRows()
       const arDrawerData = []
       discontinuedRows.forEach((item) => {
         const arRow = []
@@ -85,7 +85,7 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
-      const arResultsFromOrm = objOrm.find(pOrmDataRowId)
+      const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Discontinue phone number', {
         confirmButtonText: 'Discontinue',
@@ -93,7 +93,7 @@ export default {
         inputPlaceholder: 'Enter discontinue note',
       })
         .then(async ({ value }) => {
-          const status = await objOrm.fnSendDiscontinueDataToServer(
+          const status = await clientSideTable.fnSendDiscontinueDataToServer(
             pOrmDataRowId,
             arResultsFromOrm.uuid,
             value

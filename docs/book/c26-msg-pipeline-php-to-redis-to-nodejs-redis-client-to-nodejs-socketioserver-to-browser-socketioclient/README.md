@@ -29,7 +29,7 @@ Topics covered:
 2. This message is received by nodejs socket server. Look at: emr/servers/socket/msg-pipeline-step1-from-lumen-to-step2-redis-server-to-step3-nodejs-redis-client-to-step4-socketio-emit
 3. vue developer tools -> vuex -> entities -> reminders -> see the current rows
 4. When message from socket is sent a new row gets added /emr/webclient/cts/pt-info/single/1time-Mrow-1Field/reminder/change-layer/act-on-socket-messages-from-server-ct.vue
-5. How is a new row added when socket message is recieved. objOrm.insert in previous file
+5. How is a new row added when socket message is recieved. clientSideTable.insert in previous file
 6. As soon as new row is added the UI of grid-design2-ct gets updated. No extra work needs to done. This is like spreadsheet cell getting updated.
 7. How to start the redis web ui? redis-commander
 8. How to start the socker server?

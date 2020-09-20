@@ -3,7 +3,7 @@
 </template>
 <script>
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import objOrm from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/rem-table.js'
 
 export default {
   mounted() {
@@ -32,7 +32,7 @@ export default {
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
         pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
       ) {
-        const arFromOrm = await objOrm.insert({
+        const arFromOrm = await clientSideTable.insert({
           data: {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/core/crud/forms.md
             ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -65,7 +65,7 @@ export default {
         pDataArr
       )
 
-      objOrm.update({
+      clientSideTable.update({
         where: (record) => record.uuid === pDataArr.uuid,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
@@ -91,7 +91,7 @@ export default {
          * 1. Update ROW_END as now() of current active reminder
          * 2. Insert new row in orm with new description
          */
-        await objOrm.update({
+        await clientSideTable.update({
           where: (record) => {
             return record.uuid === pDataArr.uuid && record.vnRowStateInSession === 1
           },
@@ -100,7 +100,7 @@ export default {
           },
         })
 
-        await objOrm.insert({
+        await clientSideTable.insert({
           data: {
             ROW_START: Math.floor(Date.now() / 1000),
             description: pDataArr.description,
@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     fnSetRowStatus(pPrimaryKeyValue) {
-      objOrm.update({
+      clientSideTable.update({
         where: pPrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/core/crud/forms.md
