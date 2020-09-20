@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'date of birth',
         ctAbbr: 'w',
-        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/view-layer/table-ct.vue',
+        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/view-layer/dob-table-ct.vue',
         displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
       },
     })
