@@ -309,25 +309,25 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arDiscontinuedRows
   }
 
-  static fnGetFldValue(pOrmRowId, pFldName) {
+  static fnGetFldValue(pClientSideRowId, pFldName) {
     // first time it will have to find in model. This is needed to show the initial content in the fld.
     if (
       typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
-      typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined'
+      typeof this.arOrmRowsCached[this.entity][pClientSideRowId] === 'undefined'
     ) {
       // finding in model
-      const arFromClientSideTable = this.find(pOrmRowId)
+      const arFromClientSideTable = this.find(pClientSideRowId)
       if (arFromClientSideTable) {
         if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
           this.arOrmRowsCached[this.entity] = []
         }
-        this.arOrmRowsCached[this.entity][pOrmRowId] = arFromClientSideTable
+        this.arOrmRowsCached[this.entity][pClientSideRowId] = arFromClientSideTable
         return arFromClientSideTable[pFldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[this.entity][pOrmRowId][pFldName]
+      return this.arOrmRowsCached[this.entity][pClientSideRowId][pFldName]
     }
   }
 
@@ -386,11 +386,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return true // implies that data flds of row are same
   }
 
-  static fnSetFldValue(pEvent, pOrmRowId, pFldName, pRowStatus) {
+  static fnSetFldValue(pEvent, pClientSideRowId, pFldName, pRowStatus) {
     // Step 1/2: Putting the value in cache so that getFldValue can get the data from cache and user can get fast feedback to typing
-    this.fnPutFldValueInCache(pEvent, pOrmRowId, pFldName)
+    this.fnPutFldValueInCache(pEvent, pClientSideRowId, pFldName)
     // Step 2/2
-    this.fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFldName, pRowStatus)
+    this.fnCreateTimeoutToSaveToState(pEvent, pClientSideRowId, pFldName, pRowStatus)
   }
 
   /*  
@@ -415,8 +415,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
   */
-  static fnPutFldValueInCache(pEvent, pOrmRowId, pFldName) {
-    // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setfldInOrmOnTimeOut
+  static fnPutFldValueInCache(pEvent, pClientSideRowId, pFldName) {
+    // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setfldInClientSideTableOnTimeOut
 
     /*
       Q) Why we are using three dimensional array of arOrmRowsCached?
@@ -425,43 +425,43 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
       this.arOrmRowsCached[this.entity] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    if (typeof this.arOrmRowsCached[this.entity][pOrmRowId] === 'undefined') {
-      this.arOrmRowsCached[this.entity][pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[this.entity][pClientSideRowId] === 'undefined') {
+      this.arOrmRowsCached[this.entity][pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[this.entity][pOrmRowId][pFldName] = pEvent
+    this.arOrmRowsCached[this.entity][pClientSideRowId][pFldName] = pEvent
 
     /*
     // Method 2: https://vuejs.org/2016/02/06/common-gotchas/#Why-isn%E2%80%99t-the-DOM-updating
     // of updating cache array Ref: https://stackoverflow.com/questions/45644781/update-value-in-multidimensional-array-in-vue
     let newRow = []
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
-      this.arOrmRowsCached[pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[pClientSideRowId] === 'undefined') {
+      this.arOrmRowsCached[pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
       console.log('Creating a new blank row')
     } else {
-      newRow = this.arOrmRowsCached.slice(pOrmRowId, pOrmRowId + 1) // Existing row may have 5 flds so I need to pull it out before updating 1 fld
+      newRow = this.arOrmRowsCached.slice(pClientSideRowId, pClientSideRowId + 1) // Existing row may have 5 flds so I need to pull it out before updating 1 fld
       console.log('Existing row pulled out is', newRow)
     }
     newRow[pFldName] = pEvent // Upadted the fld value in the new row
-    this.arOrmRowsCached.splice(pOrmRowId, 1, newRow) // Put the single row back inside the array of a lot of rows.
+    this.arOrmRowsCached.splice(pClientSideRowId, 1, newRow) // Put the single row back inside the array of a lot of rows.
     // Problem: A tree structure of elements is getting made and can be verified by doing console.log
     console.log(this.arOrmRowsCached)
 */
 
     /*
       Method 3 of updating cache:
-      this.arOrmRowsCached[pOrmRowId] = newRow // vue does not react. Now add.vue:115:setfldInOrmOnTimeOut needs this.$forceUpdate
+      this.arOrmRowsCached[pClientSideRowId] = newRow // vue does not react. Now add.vue:115:setfldInClientSideTableOnTimeOut needs this.$forceUpdate
       */
     /* 
       Method 4 of updating cache:
       This will not work since $set is not available outside vue conetxt this is not vue context
-      this.$set(this.arOrmRowsCached, pOrmRowId, newRow)
+      this.$set(this.arOrmRowsCached, pClientSideRowId, newRow)
       */
 
     /* Method 5: Delete old rows and create new row Checked by RJ and VK on 15th July
-    if (typeof this.arOrmRowsCached[pOrmRowId] === 'undefined') {
-      this.arOrmRowsCached[pOrmRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[pClientSideRowId] === 'undefined') {
+      this.arOrmRowsCached[pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[pOrmRowId][pFldName] = pEvent
+    this.arOrmRowsCached[pClientSideRowId][pFldName] = pEvent
 
     const copyOfOldRow = this.arOrmRowsCached
     // this.arOrmRowsCached = []
@@ -471,7 +471,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
   }
 
-  static fnCreateTimeoutToSaveToState(pEvent, pOrmRowId, pFldName, pRowStatus) {
+  static fnCreateTimeoutToSaveToState(pEvent, pClientSideRowId, pFldName, pRowStatus) {
     // Goal: debouncing. If A and B are pressed quickly. Timeout for "A" keypress will get cancelled and timeout for "B" keypress will get scheduled.
     if (this.vOrmSaveScheduled) {
       clearTimeout(this.vOrmSaveScheduled)
@@ -479,14 +479,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     /* Ref: https://stackoverflow.com/questions/38399050/vue-equivalent-of-settimeout */
     this.vOrmSaveScheduled = setTimeout(
       function (scope) {
-        scope.fnSetFldInVuex(pEvent, pOrmRowId, pFldName, pRowStatus)
+        scope.fnSetFldInVuex(pEvent, pClientSideRowId, pFldName, pRowStatus)
       },
       500, // setting timeout of 500 ms
       this
     )
   }
 
-  static fnSetFldInVuex(pEvent, pOrmRowId, pFldName, pRowStatus) {
+  static fnSetFldInVuex(pEvent, pClientSideRowId, pFldName, pRowStatus) {
     const row = {
       [pFldName]: pEvent,
       vnRowStateInSession: pRowStatus,
@@ -495,7 +495,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     const arFromClientSideTable = this.update({
-      where: pOrmRowId,
+      where: pClientSideRowId,
       data: row,
     })
     if (!arFromClientSideTable) {

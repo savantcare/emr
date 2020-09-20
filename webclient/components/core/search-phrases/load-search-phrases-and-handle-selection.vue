@@ -84,7 +84,7 @@ export default {
       let arFromClientSideTable = {}
       arFromClientSideTable = tblSearchPhrasesOfCt
         .query()
-        .orderBy('usageCountKeptInOrm', 'desc')
+        .orderBy('usageCountKeptInClientSideTable', 'desc')
         .get()
       const objRowFromOrm = arFromClientSideTable[0]
       if (objRowFromOrm) {
@@ -102,7 +102,7 @@ export default {
       if (!pQueryString) {
         const arFromClientSideTable = tblSearchPhrasesOfCt
           .query()
-          .orderBy('usageCountKeptInOrm', 'desc')
+          .orderBy('usageCountKeptInClientSideTable', 'desc')
           .get()
         pCallBack(arFromClientSideTable)
       } else {
@@ -113,7 +113,7 @@ export default {
             // Search comes from vuex-orm plugn https://github.com/client-side/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
           })
-          .orderBy('usageCountKeptInOrm', 'desc')
+          .orderBy('usageCountKeptInClientSideTable', 'desc')
           .get() // trim is needed for "goal " to match "goal"
         pCallBack(arFromClientSideTable)
       }
@@ -142,7 +142,7 @@ export default {
       tblSearchPhrasesOfCt.update({
         where: pSelectedSuggestion.id,
         data: {
-          usageCountKeptInOrm: pSelectedSuggestion.usageCountKeptInOrm + 1,
+          usageCountKeptInClientSideTable: pSelectedSuggestion.usageCountKeptInClientSideTable + 1,
         },
       })
 

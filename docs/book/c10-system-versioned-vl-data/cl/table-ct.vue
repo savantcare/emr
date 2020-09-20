@@ -2,9 +2,9 @@
   <div>
     Tenth chapter
     <el-form>
-      <div v-if="cfGetOrmNewRowsInEditState.length">
+      <div v-if="cfGetClientSideTableNewRowsInEditState.length">
         <el-form-item
-          v-for="ormRow in cfGetOrmNewRowsInEditState"
+          v-for="ormRow in cfGetClientSideTableNewRowsInEditState"
           :key="ormRow.id"
         >
           <el-col>
@@ -19,15 +19,15 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInOrm(ormRow.id)"
+              @click="mfDeleteRowInClientSideTable(ormRow.id)"
               >Remove</el-button
             >
           </el-col>
         </el-form-item>
       </div>
-      <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
+      <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
       <el-form-item>
-        <el-button type="primary" plain @click="mfAddEmptyRowInOrm"
+        <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable"
           >Add more</el-button
         >
         <el-button type="warning" plain @click="mfOnResetForm"
@@ -41,12 +41,12 @@
 import ormHw from "@/components/book/c10-system-versioned-vl-data/db/client-side/helloworld.js";
 export default {
   computed: {
-    cfGetOrmNewRowsInEditState() {
+    cfGetClientSideTableNewRowsInEditState() {
       return ormHw.fnGetNewRowsInEditState();
     },
   },
   methods: {
-    async mfAddEmptyRowInOrm() {
+    async mfAddEmptyRowInClientSideTable() {
       const arFromClientSideTable = await ormHw.insert({
         data: {
           msg: "",
@@ -57,17 +57,17 @@ export default {
         console.log("FATAL ERROR");
       }
     },
-    mfGetFldValue(pOrmRowId, pFldName) {
-      const value = ormHw.fnGetFldValue(pOrmRowId, pFldName);
+    mfGetFldValue(pClientSideRowId, pFldName) {
+      const value = ormHw.fnGetFldValue(pClientSideRowId, pFldName);
       return value;
     },
-    mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
+    mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24;
-      ormHw.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus);
+      ormHw.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus);
       this.$forceUpdate(); // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    async mfDeleteRowInOrm(pOrmRowId) {
-      await ormHw.delete(pOrmRowId);
+    async mfDeleteRowInClientSideTable(pClientSideRowId) {
+      await ormHw.delete(pClientSideRowId);
     },
     mfOnResetForm(formName) {
       ormHw.fnDeleteNewRowsInEditState();

@@ -4,8 +4,11 @@
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Submit -->
     <el-form>
-      <div v-if="cfGetOrmNewRowsInEditState.length">
-        <el-form-item v-for="ormRow in cfGetOrmNewRowsInEditState" :key="ormRow.clientSideRowId">
+      <div v-if="cfGetClientSideTableNewRowsInEditState.length">
+        <el-form-item
+          v-for="ormRow in cfGetClientSideTableNewRowsInEditState"
+          :key="ormRow.clientSideRowId"
+        >
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="20" :class="ormRow.validationClass">
             <el-input
@@ -30,24 +33,24 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInOrm(ormRow.clientSideRowId)"
+              @click="mfDeleteRowInClientSideTable(ormRow.clientSideRowId)"
               >Remove</el-button
             >
           </el-col>
         </el-form-item>
       </div>
       <!-- If there are no edit state rows then create a empty row for faster data input -->
-      <p v-else>{{ mfAddEmptyRowInOrm() }}</p>
+      <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfOnSubmit">Submit</el-button>
-        <el-button type="primary" plain @click="mfAddEmptyRowInOrm">Add more</el-button>
+        <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable">Add more</el-button>
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
     <!-- Goal: Show data at the time of sending to server -->
     <el-table
-      v-if="cfGetOrmApiSendingStateRows.length > 0"
-      :data="cfGetOrmApiSendingStateRows"
+      v-if="cfGetClientSideTableApiSendingStateRows.length > 0"
+      :data="cfGetClientSideTableApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="description" label="Reminders sending to server"></el-table-column>
@@ -55,16 +58,16 @@
 
     <!-- Goal: Show data saved successfuly this session -->
     <el-table
-      v-if="cfGetOrmApiSuccessStateRows.length > 0"
-      :data="cfGetOrmApiSuccessStateRows"
+      v-if="cfGetClientSideTableApiSuccessStateRows.length > 0"
+      :data="cfGetClientSideTableApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="description" label="Reminders added this session"></el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
-      v-if="cfGetOrmApiErrorStateRows.length > 0"
-      :data="cfGetOrmApiErrorStateRows"
+      v-if="cfGetClientSideTableApiErrorStateRows.length > 0"
+      :data="cfGetClientSideTableApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column
@@ -80,24 +83,24 @@ import clientSideTable from '../db/client-side/structure/rem-table.js' // Path w
 export default {
   computed: {
     // clientSideTable functions can not be directly called from template. hence computed functions have been defined.
-    cfGetOrmNewRowsInEditState() {
+    cfGetClientSideTableNewRowsInEditState() {
       return clientSideTable.fnGetNewRowsInEditState()
     },
-    cfGetOrmReadyToSubmitStateRows() {
+    cfGetClientSideTableReadyToSubmitStateRows() {
       return clientSideTable.fnGetNewRowsInReadyToSubmitState()
     },
-    cfGetOrmApiSuccessStateRows() {
+    cfGetClientSideTableApiSuccessStateRows() {
       return clientSideTable.fnGetNewRowsInApiSuccessState()
     },
-    cfGetOrmApiErrorStateRows() {
+    cfGetClientSideTableApiErrorStateRows() {
       return clientSideTable.fnGetNewRowsInApiErrorState()
     },
-    cfGetOrmApiSendingStateRows() {
+    cfGetClientSideTableApiSendingStateRows() {
       return clientSideTable.fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
-    async mfAddEmptyRowInOrm() {
+    async mfAddEmptyRowInClientSideTable() {
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable.insert({
         data: {
@@ -120,24 +123,24 @@ export default {
       }
     },
     // Cannot call clientSideTable function directly from template so need to have a method function to act as a pipe between template and the ORM function
-    mfGetFldValue(pOrmRowId, pFldName) {
-      return clientSideTable.fnGetFldValue(pOrmRowId, pFldName)
+    mfGetFldValue(pClientSideRowId, pFldName) {
+      return clientSideTable.fnGetFldValue(pClientSideRowId, pFldName)
     },
-    mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
+    mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24
-      clientSideTable.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus)
+      clientSideTable.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassName(pOrmRowId) {
-      const arFromClientSideTable = clientSideTable.find(pOrmRowId)
+    mfGetCssClassName(pClientSideRowId) {
+      const arFromClientSideTable = clientSideTable.find(pClientSideRowId)
       if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
       return ''
     },
-    async mfDeleteRowInOrm(pOrmRowId) {
-      await clientSideTable.delete(pOrmRowId)
+    async mfDeleteRowInClientSideTable(pClientSideRowId) {
+      await clientSideTable.delete(pClientSideRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
@@ -146,9 +149,9 @@ export default {
     async mfOnSubmit() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetOrmReadyToSubmitStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientSideTableReadyToSubmitStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientSideTable = this.cfGetOrmReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
+      const arFromClientSideTable = this.cfGetClientSideTableReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
       if (arFromClientSideTable.length) {
         console.log('unsaved data found', arFromClientSideTable)
         for (let i = 0; i < arFromClientSideTable.length; i++) {

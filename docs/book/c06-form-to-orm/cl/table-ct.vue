@@ -13,13 +13,13 @@ import ormHw from "../db/client-side/helloworld.js"; // Path without @ can be re
 
 export default {
   methods: {
-    mfGetFldValue(pOrmRowId, pFldName) {
-      const value = ormHw.fnGetFldValue(pOrmRowId, pFldName);
+    mfGetFldValue(pClientSideRowId, pFldName) {
+      const value = ormHw.fnGetFldValue(pClientSideRowId, pFldName);
       return value;
     },
-    mfSetFldValueUsingCache(pEvent, pOrmRowId, pFldName) {
+    mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24; // 2 is new on client and 4 is changed on client
-      ormHw.fnSetFldValue(pEvent, pOrmRowId, pFldName, rowStatus);
+      ormHw.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus);
       this.$forceUpdate(); // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },
