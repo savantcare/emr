@@ -1,3 +1,4 @@
+// On 20th sept 2020: Compiling and showing changes was taking 20 seconds. Also changes were visible without refreshing manually.
 export default {
   // Section 1: Nuxt rendering mode See https://nuxtjs.org/api/configuration-mode
   ssr: false,
