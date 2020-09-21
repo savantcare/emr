@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input placeholder="Please input" v-model="userTypedKeyword" />
+    <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
       v-for="(allServiceStatementsInsideAGroup,
       groupNameGivenAsIndex) in cfGetMasterListOfServiceStatementsGrouped"
@@ -9,7 +9,7 @@
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
         <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
-          <div v-if="mfValid(ss)">
+          <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
               @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
               type="primary"
@@ -139,7 +139,8 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfValid(pSS) {
+    mfCheckIfThisExistsInChildTable(pSS) {
+      // I am able to get the data from child table.
       if (pSS.tblServiceStatementsForPatientLink) {
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483647.999999) {
           return true
