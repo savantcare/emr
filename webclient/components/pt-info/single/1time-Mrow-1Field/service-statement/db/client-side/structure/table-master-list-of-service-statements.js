@@ -22,7 +22,7 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
       serviceStatementDescription: this.string(null),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
-      serviceStatementsForPatientLink: this.hasOne(
+      tblServiceStatementsForPatientLink: this.hasOne(
         serviceStatementsForPatientClass,
         'serviceStatementMasterId',
         'serviceStatementMasterId'

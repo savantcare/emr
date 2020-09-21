@@ -37,7 +37,7 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
-      serviceStatementsMasterLink: this.belongsTo(
+      tblServiceStatementsMasterLink: this.belongsTo(
         serviceStatementsMasterClass,
         'serviceStatementMasterId',
         'serviceStatementMasterId'
