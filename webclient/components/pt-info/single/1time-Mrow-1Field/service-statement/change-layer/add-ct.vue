@@ -43,11 +43,11 @@ export default {
     },
   },
   methods: {
-    mfToggleServiceStatement(pserviceStatementMasterId) {
-      console.log(pserviceStatementMasterId)
+    mfToggleServiceStatement(pServiceStatementMasterId) {
+      console.log(pServiceStatementMasterId)
       ClientSideTblPatientServiceStatements.insert({
         data: {
-          serviceStatementMasterId: pserviceStatementMasterId,
+          serviceStatementMasterId: pServiceStatementMasterId,
         },
       })
     },
