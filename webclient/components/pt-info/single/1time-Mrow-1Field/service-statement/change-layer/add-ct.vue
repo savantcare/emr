@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
-    <div v-for="(group, index) in cfGetArOfGroupNames" :key="group.id">
-      {{ index }}
+    <div v-for="(group, groupNameGivenAsIndex) in cfGetArOfGroupNames" :key="group.id">
+      {{ groupNameGivenAsIndex }}
       <div class="grid-container">
         <div v-for="ss in group" :key="ss.serviceStatementMasterId">
           <div v-if="mfValid(ss)">
