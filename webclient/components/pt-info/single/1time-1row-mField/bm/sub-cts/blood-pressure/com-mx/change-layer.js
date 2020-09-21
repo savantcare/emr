@@ -84,7 +84,7 @@ export default {
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
             this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
-              arFromClientSideTable.clientSideRowId
+              arFromClientSideTable.clientSideUniqRowId
             )
           } else {
             this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId

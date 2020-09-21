@@ -17,13 +17,13 @@ export default class ptName extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:3000/name'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueID()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       /* Not stroing ptUUID inside viewstate since writing vuestate slows down the software. 

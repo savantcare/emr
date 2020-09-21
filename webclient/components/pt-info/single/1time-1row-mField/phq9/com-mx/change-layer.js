@@ -50,7 +50,7 @@ export default {
           )
           if (vnExistingChangeRowId === false) {
             this.vnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
-              arOrmRowToChange.clientSideRowId
+              arOrmRowToChange.clientSideUniqRowId
             )
           } else {
             this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId

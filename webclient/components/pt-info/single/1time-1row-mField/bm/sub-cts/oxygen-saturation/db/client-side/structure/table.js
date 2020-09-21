@@ -13,13 +13,13 @@ export default class ptOxygenSaturation extends clientSideTableManage {
   static graphSeries1FieldName = 'oxygenSaturationInSpo2'
   static graphSeries1Unit = 'SpO2'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueID()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       oxygenSaturationInSpo2: this.number(null), // number type of vuex-orm will also store decimals

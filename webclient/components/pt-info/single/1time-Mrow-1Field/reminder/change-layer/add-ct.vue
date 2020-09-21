@@ -7,18 +7,18 @@
       <div v-if="cfGetClientSideTableNewRowsInEditState.length">
         <el-form-item
           v-for="ormRow in cfGetClientSideTableNewRowsInEditState"
-          :key="ormRow.clientSideRowId"
+          :key="ormRow.clientSideUniqRowId"
         >
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="20" :class="ormRow.validationClass">
             <el-input
               ref="description"
               type="textarea"
-              :class="mfGetCssClassName(ormRow.clientSideRowId)"
+              :class="mfGetCssClassName(ormRow.clientSideUniqRowId)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the reminder .."
-              :value="mfGetFldValue(ormRow.clientSideRowId, 'description')"
-              @input="mfSetFldValueUsingCache($event, ormRow.clientSideRowId, 'description')"
+              :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
+              @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
             ></el-input>
             <div v-if="ormRow.isValidationError" class="el-form-item__error">
               Please enter minimum 3 characters.
@@ -33,7 +33,7 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInClientSideTable(ormRow.clientSideRowId)"
+              @click="mfDeleteRowInClientSideTable(ormRow.clientSideUniqRowId)"
               >Remove</el-button
             >
           </el-col>
@@ -159,7 +159,7 @@ export default {
             // Validation check
             await clientSideTable.update({
               where: (record) =>
-                record.clientSideRowId === arFromClientSideTable[i].clientSideRowId,
+                record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -169,7 +169,7 @@ export default {
           } else {
             await clientSideTable.update({
               where: (record) =>
-                record.clientSideRowId === arFromClientSideTable[i].clientSideRowId,
+                record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

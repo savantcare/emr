@@ -6,7 +6,7 @@ import { Model } from "@vuex-orm/core";
 export default class helloworld extends Model {
   static entity = "helloworld"; // This is like table name of mysql DB
 
-  static primaryKey = "clientSideRowId";
+  static primaryKey = "clientSideUniqRowId";
 
   static fields() {
     return {

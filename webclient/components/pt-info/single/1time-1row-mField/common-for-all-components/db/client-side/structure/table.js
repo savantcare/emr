@@ -10,11 +10,11 @@ export default class commonForAllComponents extends Model {
 
   // static clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = '' // this.$socket.id
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
-      clientSideRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueID()),
       clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this.string(
         ''
       ),

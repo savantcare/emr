@@ -153,7 +153,7 @@ export default {
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
-          obj.id = arFromClientSideTable[i].clientSideRowId
+          obj.id = arFromClientSideTable[i].clientSideUniqRowId
           arPhoneNumbersForDisplay.push(obj)
         }
       }

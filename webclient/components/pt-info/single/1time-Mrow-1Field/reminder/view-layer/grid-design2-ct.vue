@@ -46,7 +46,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl(rem.clientSideRowId)"
+              @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
               >C</el-button
             >
             <el-button
@@ -55,7 +55,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenDPrompt(rem.clientSideRowId)"
+              @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
               >D</el-button
             >
           </el-button-group>
@@ -132,7 +132,7 @@ export default {
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
-          obj.clientSideRowId = arFromClientSideTable[i].clientSideRowId
+          obj.clientSideUniqRowId = arFromClientSideTable[i].clientSideUniqRowId
           arRemsForDisplay.push(obj)
         }
       }

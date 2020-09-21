@@ -11,13 +11,13 @@ export default class serviceStatementsMasterList extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
-  static primaryKey = 'masterRowId'
+  static primaryKey = 'serviceStatementMasterId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      masterRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      serviceStatementMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementDescription: this.string(null),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
     }

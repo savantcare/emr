@@ -13,13 +13,13 @@ export default class ptDateOfBirth extends clientSideTableManage {
   static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
   static graphSeries1Unit = 'Lbs'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueID()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/structure/table.js

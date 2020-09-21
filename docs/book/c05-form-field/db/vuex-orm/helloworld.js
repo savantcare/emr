@@ -5,7 +5,7 @@
 import { Model } from "@vuex-orm/core";
 export default class helloworld extends Model {
   static entity = "helloworld";
-  static primaryKey = "clientSideRowId";
+  static primaryKey = "clientSideUniqRowId";
 
   static fields() {
     return {

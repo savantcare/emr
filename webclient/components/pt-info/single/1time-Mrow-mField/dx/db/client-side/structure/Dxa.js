@@ -4,7 +4,7 @@ import Dx from '~/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/
 export default class Dxa extends Model {
   static entity = 'tblDxAssessment'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {

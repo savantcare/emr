@@ -13,13 +13,13 @@ export default class ptBloodPressure extends clientSideTableManage {
   static graphSeries1FieldName = 'bloodPressureInBpm'
   static graphSeries1Unit = 'Bpm'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueID()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       bloodPressureInBpm: this.number(null), // number type of vuex-orm will also store decimals

@@ -5,7 +5,7 @@
 import clientSideTableManage from "~/cts/core/crud/orm-row-manage.js";
 export default class helloworld extends clientSideTableManage {
   static entity = "helloworld";
-  static primaryKey = "clientSideRowId";
+  static primaryKey = "clientSideUniqRowId";
 
   static fields() {
     return {

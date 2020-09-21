@@ -13,13 +13,13 @@ export default class ptPulse extends clientSideTableManage {
   static graphSeries1FieldName = 'pulseInBpm'
   static graphSeries1Unit = 'Lbs'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueID()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       pulseInBpm: this.number(null), // number type of vuex-orm will also store decimals

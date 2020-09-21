@@ -2,8 +2,8 @@
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.masterRowId">
-        <el-button @click="mfToggleServiceStatement(ss.masterRowId)">{{
+      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
+        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
           ss.serviceStatementDescription
         }}</el-button>
       </div>
@@ -31,11 +31,11 @@ export default {
     },
   },
   methods: {
-    mfToggleServiceStatement(pMasterRowId) {
-      console.log(pMasterRowId)
+    mfToggleServiceStatement(pserviceStatementMasterId) {
+      console.log(pserviceStatementMasterId)
       ClientSideTblPatientServiceStatements.insert({
         data: {
-          serviceStatementMasterId: pMasterRowId,
+          serviceStatementMasterId: pserviceStatementMasterId,
         },
       })
     },

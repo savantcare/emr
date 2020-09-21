@@ -3,7 +3,7 @@ import { Model } from '@vuex-orm/core'
 export default class Dx extends Model {
   static entity = 'tblDiagnoses'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {

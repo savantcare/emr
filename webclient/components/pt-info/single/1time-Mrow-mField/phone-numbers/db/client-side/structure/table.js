@@ -14,13 +14,13 @@ export default class phoneNumbers extends clientSideTableManage {
   // To work with nodejs server -> mariaDB server
   static apiUrl = process.env.baseUrl + '/phone-numbers' // fetch baseurl from enviroment variable. Goal: change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUUID: this.string(null),
       countryCode: this.string(''),

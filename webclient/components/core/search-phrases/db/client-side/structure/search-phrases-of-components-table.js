@@ -3,7 +3,7 @@ import { Model } from '@vuex-orm/core'
 export default class tblSearchPhrasesOfCt extends Model {
   static entity = 'tblSearchPhrasesOfCt'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {

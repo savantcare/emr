@@ -113,7 +113,7 @@ export default {
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
-          obj.id = arFromClientSideTable[i].clientSideRowId
+          obj.id = arFromClientSideTable[i].clientSideUniqRowId
           arRemsForDisplay.push(obj)
         }
       }

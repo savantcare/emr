@@ -29,13 +29,13 @@ export default class reminders extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:8000/public/api/reminders/v20'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUUID: this.string(null),
       description: this.string(''),

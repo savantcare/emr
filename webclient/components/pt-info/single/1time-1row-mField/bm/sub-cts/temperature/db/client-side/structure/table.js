@@ -18,13 +18,13 @@ export default class ptTemperature extends clientSideTableManage {
   static graphSeries1FieldName = 'temperatureInFarehnite'
   static graphSeries1Unit = 'Fh'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       temperatureInFarehnite: this.number(null),
       timeOfMeasurement: this.number(null),

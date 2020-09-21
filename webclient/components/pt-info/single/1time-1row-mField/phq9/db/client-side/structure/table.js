@@ -15,13 +15,13 @@ export default class ptPhq9 extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:3000/phq9'
 
-  static primaryKey = 'clientSideRowId'
+  static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       littleInterestOrPleasureInDoingThings: this.string(null),
