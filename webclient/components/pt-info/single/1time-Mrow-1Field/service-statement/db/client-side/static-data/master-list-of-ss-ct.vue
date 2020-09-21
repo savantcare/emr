@@ -82,6 +82,41 @@ export default {
         serviceStatementCategory: 'Modality of Psychotherapy',
       },
     })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '11',
+        serviceStatementDescription: '60',
+        serviceStatementCategory: 'Total time with patient',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '12',
+        serviceStatementDescription: '55',
+        serviceStatementCategory: 'Total time with patient',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '13',
+        serviceStatementDescription: '50',
+        serviceStatementCategory: 'Total time with patient',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '14',
+        serviceStatementDescription: '45',
+        serviceStatementCategory: 'Total time with patient',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '15',
+        serviceStatementDescription: '40',
+        serviceStatementCategory: 'Total time with patient',
+      },
+    })
   },
 }
 </script>
