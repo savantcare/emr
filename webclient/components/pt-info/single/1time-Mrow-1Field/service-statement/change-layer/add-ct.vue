@@ -43,12 +43,11 @@ export default {
       const arOfObjectsFromClientSideMasterDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
-        .where('serviceStatementCategory', (value) =>
-          value.toLowerCase().includes(this.userTypedKeyword)
-        )
-        .orWhere('serviceStatementDescription', (value) =>
-          value.toLowerCase().includes(this.userTypedKeyword)
-        )
+        .where((_record, query) => {
+          query.where('serviceStatementCategory', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword)
+          )
+        })
         .get()
 
       // Apply rules given by doctors
