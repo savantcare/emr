@@ -34,7 +34,6 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
       */
       tblServiceStatementsForPatientLink: this.hasOne(
         serviceStatementsForPatientClass,
-        'serviceStatementMasterId',
         'serviceStatementMasterId'
       ),
     }

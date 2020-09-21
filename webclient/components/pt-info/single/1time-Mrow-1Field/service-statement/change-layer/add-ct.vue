@@ -55,11 +55,14 @@ export default {
 
       // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
       let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
-        .with('tblServiceStatementsMasterLink', (query) => {
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Modality of Psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      //  (query) => { query.where('serviceStatementCategory', 'Modality of Psychotherapy') })
 
       console.log('modalityOfPsychotherapyExists', modalityOfPsychotherapyExists)
 
@@ -84,7 +87,8 @@ export default {
 
       // Rule2: If one Time in psychotherapy then do not show others
       let timeInPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
-        .with('tblServiceStatementsMasterLink', (query) => {
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Time in psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
