@@ -40,7 +40,7 @@ export default {
   computed: {
     cfGetMasterListOfServiceStatementsGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = ClientSideTblMasterServiceStatements.query()
+      let arOfObjectsFromClientSideMasterDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .where((_record, query) => {
@@ -57,98 +57,22 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
-      let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
-        .with('tblServiceStatementsMasterLink')
-        .whereHas('tblServiceStatementsMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Modality of Psychotherapy')
-        })
-        .where('ROW_END', 2147483647.999999)
-        .get()
-
-      //  (query) => { query.where('serviceStatementCategory', 'Modality of Psychotherapy') })
-
-      console.log('modalityOfPsychotherapyExists', modalityOfPsychotherapyExists)
-
-      if (modalityOfPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
-            'Modality of Psychotherapy'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
+      arOfObjectsFromClientSideMasterDB = this.mfApplyRuleOnServiceStatements(
+        arOfObjectsFromClientSideMasterDB,
+        'Modality of Psychotherapy'
+      )
 
       // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
-        .with('tblServiceStatementsMasterLink')
-        .whereHas('tblServiceStatementsMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Time in psychotherapy')
-        })
-        .where('ROW_END', 2147483647.999999)
-        .get()
-
-      console.log('timeInPsychotherapyExists', timeInPsychotherapyExists)
-
-      if (timeInPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          console.log(arOfObjectsFromClientSideMasterDB[i])
-          if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
-            'Time in psychotherapy'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
+      arOfObjectsFromClientSideMasterDB = this.mfApplyRuleOnServiceStatements(
+        arOfObjectsFromClientSideMasterDB,
+        'Time in psychotherapy'
+      )
 
       // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = ClientSideTblPatientServiceStatements.query()
-        .with('tblServiceStatementsMasterLink')
-        .whereHas('tblServiceStatementsMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Total time with patient')
-        })
-        .where('ROW_END', 2147483647.999999)
-        .get()
-
-      console.log('timeInPsychotherapyExists', totalTimeWithPatientExists)
-
-      if (totalTimeWithPatientExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          console.log(arOfObjectsFromClientSideMasterDB[i])
-          if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
-            'Total time with patient'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
+      arOfObjectsFromClientSideMasterDB = this.mfApplyRuleOnServiceStatements(
+        arOfObjectsFromClientSideMasterDB,
+        'Total time with patient'
+      )
 
       // End: Now group the SS
 
@@ -187,25 +111,60 @@ export default {
       }
       return false
     },
-    mfToggleServiceStatement(pServiceStatementMasterId) {
-      const exists = ClientSideTblPatientServiceStatements.query()
+    async mfToggleServiceStatement(pServiceStatementMasterId) {
+      const exists = await ClientSideTblPatientServiceStatements.query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        ClientSideTblPatientServiceStatements.update({
+        await ClientSideTblPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        ClientSideTblPatientServiceStatements.insert({
+        await ClientSideTblPatientServiceStatements.insert({
           data: {
             serviceStatementMasterId: pServiceStatementMasterId,
           },
         })
       }
+    },
+    mfApplyRuleOnServiceStatements(arOfObjectsFromClientSideMasterDB, serviceStatementCategory) {
+      let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', serviceStatementCategory)
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      console.log('arOfObjectsFromClientSideMasterDB', arOfObjectsFromClientSideMasterDB)
+
+      if (modalityOfPsychotherapyExists.length > 0) {
+        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+          if (
+            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            serviceStatementCategory
+          ) {
+            if (
+              arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null &&
+              arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink.ROW_END ==
+                '2147483647.999999'
+            ) {
+              console.log('row is there in client table.')
+            } else {
+              console.log(
+                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
+              )
+              arOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+      return arOfObjectsFromClientSideMasterDB
     },
   },
 }
