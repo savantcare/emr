@@ -15,31 +15,71 @@ export default {
     ClientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
-        serviceStatementDescription: 'Spent 10 mins with patient',
+        serviceStatementDescription: 'Time in psychotherapy: 90 minutes',
+        serviceStatementCategory: 'Therapy SS - Time spent',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: '2',
-        serviceStatementDescription: 'Spent 15 mins with patient',
+        serviceStatementDescription: 'Time in psychotherapy: 85 minutes',
+        serviceStatementCategory: 'Therapy SS - Time spent',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: '3',
-        serviceStatementDescription: 'Spent 20 mins with patient',
+        serviceStatementDescription: 'Time in psychotherapy: 80 minutes',
+        serviceStatementCategory: 'Therapy SS - Time spent',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: '4',
-        serviceStatementDescription: 'Spent 25 mins with patient',
+        serviceStatementDescription: 'Time in psychotherapy: 75 minutes',
+        serviceStatementCategory: 'Therapy SS - Time spent',
       },
     })
     ClientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: '5',
-        serviceStatementDescription: 'Spent 30 mins with patient',
+        serviceStatementDescription: 'Time in psychotherapy: 70 minutes',
+        serviceStatementCategory: 'Therapy SS - Time spent',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '6',
+        serviceStatementDescription: 'Modality of Psychotherapy: Client Centered',
+        serviceStatementCategory: ' Therapy SS - Modality',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '7',
+        serviceStatementDescription: 'Modality of Psychotherapy: Dialectical Behavior therapy',
+        serviceStatementCategory: ' Therapy SS - Modality',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '8',
+        serviceStatementDescription: 'Modality of Psychotherapy: Holistic Therapy',
+        serviceStatementCategory: ' Therapy SS - Modality',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '9',
+        serviceStatementDescription: 'Modality of Psychotherapy: Existential humanistic',
+        serviceStatementCategory: ' Therapy SS - Modality',
+      },
+    })
+    ClientSideTblMasterServiceStatement.insert({
+      data: {
+        serviceStatementMasterId: '10',
+        serviceStatementDescription: 'Modality of Psychotherapy: Bibilotheray',
+        serviceStatementCategory: ' Therapy SS - Modality',
       },
     })
   },
