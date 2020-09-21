@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tblMasterListOfSSCt from './master-list-of-ss-ct'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
@@ -22,7 +22,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'add service statement',
         ctAbbr: 'addss',
@@ -31,7 +31,7 @@ export default {
         ctWidthInCl: 'small',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'change service statement',
         ctAbbr: 'css',
@@ -41,7 +41,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'multi change service statements',
         ctAbbr: 'mcss',
@@ -50,7 +50,7 @@ export default {
         ctWidthInCl: 'large',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'discontinued service statements',
         ctAbbr: 'dss',

@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'temperature',
         ctAbbr: 'w',
@@ -18,7 +18,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'temperature - change',
         ctAbbr: 'wc',

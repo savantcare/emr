@@ -20,7 +20,7 @@
 
 <script>
 // import addGoal from './layer-2/addGoal.vue'
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import ormGoal from '@/components/pt-info/single/1time-Mrow-mField/goal/db/client-side/structure/Goal.js'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'
@@ -61,7 +61,7 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromClientSideTable = tblSearchPhrasesOfCt.query().search('add goal').get()
+      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt.query().search('add goal').get()
       const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,

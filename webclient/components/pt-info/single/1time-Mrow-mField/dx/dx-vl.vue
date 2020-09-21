@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import ormDx from '@/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
 import ormDxa from '@/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 
@@ -99,7 +99,10 @@ export default {
     },
     mfOpenACtInCl() {
       console.log('show add dialog')
-      const arFromClientSideTable = tblSearchPhrasesOfCt.query().search('add diagnosis').get()
+      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+        .query()
+        .search('add diagnosis')
+        .get()
       const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,
@@ -112,7 +115,7 @@ export default {
     },
     mfOpenMCtInCl() {
       console.log('show multi change dialog')
-      const arFromClientSideTable = tblSearchPhrasesOfCt
+      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
         .query()
         .search('Multichange dx assessment')
         .get()

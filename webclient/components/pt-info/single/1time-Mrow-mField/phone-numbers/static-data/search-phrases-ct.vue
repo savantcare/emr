@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
@@ -20,7 +20,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
@@ -29,7 +29,7 @@ export default {
         ctWidthInCl: 'small',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'change phone number',
         ctAbbr: 'cpn',
@@ -39,7 +39,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'multi change phone numbers',
         ctAbbr: 'mcpn',
@@ -48,7 +48,7 @@ export default {
         ctWidthInCl: 'large',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'discontinued phone numbers',
         ctAbbr: 'dpn',

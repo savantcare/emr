@@ -1,9 +1,9 @@
 <template><div></div></template>
 <script>
-import tblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table";
+import clientSideTblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table";
 export default {
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: "Third chapter",
         ctAbbr: "c3",
@@ -11,7 +11,7 @@ export default {
         displayLocation: "ptsVl",
       },
     });
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: "Third chapter - change",
         ctAbbr: "c3-c",

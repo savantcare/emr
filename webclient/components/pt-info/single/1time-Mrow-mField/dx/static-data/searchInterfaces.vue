@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     // Search interfaces to this component
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
@@ -21,7 +21,7 @@ export default {
         displayLocation: 'cl',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
@@ -29,7 +29,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',

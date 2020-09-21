@@ -1,12 +1,12 @@
 <template><div></div></template>
 <script>
-import tblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table";
+import clientSideTblSearchPhrasesOfCt from "@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table";
 export default {
   data() {
     return {};
   },
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: "Eigth chapter",
         ctAbbr: "c8",
@@ -14,7 +14,7 @@ export default {
         displayLocation: "ptsVl", // PtsVl -> Present time state - part of - view layer See GLOSSARY.md
       },
     });
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: "Eigth chapter - change",
         ctAbbr: "c8-c",
