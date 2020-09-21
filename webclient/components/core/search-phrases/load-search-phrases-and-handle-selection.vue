@@ -19,6 +19,7 @@
     <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
     <dobSPhrases></dobSPhrases>
     <phoneNumberSPhrases></phoneNumberSPhrases>
+    <diagnosisSPhrases></diagnosisSPhrases>
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -53,6 +54,7 @@ import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-b
 import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'
 import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/search-phrases-ct'
 import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
+import diagnosisSPhrases from '@/components/pt-info/single/1time-Mrow-mField/diagnosis/db/client-side/static-data/search-phrases-ct'
 
 export default {
   components: {
@@ -74,6 +76,7 @@ export default {
     oxygenSaturationSPhrases,
     dobSPhrases,
     phoneNumberSPhrases,
+    diagnosisSPhrases,
   },
   data() {
     return { searchKeyword: '' }
