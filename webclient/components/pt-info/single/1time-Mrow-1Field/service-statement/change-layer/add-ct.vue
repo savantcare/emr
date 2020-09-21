@@ -33,7 +33,7 @@ export default {
   computed: {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
-        .with('serviceStatementsForPatient')
+        .with('serviceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
@@ -46,9 +46,9 @@ export default {
   methods: {
     mfValid(pSS) {
       console.log(pSS)
-      if (pSS.serviceStatementsForPatient) {
+      if (pSS.serviceStatementsForPatientLink) {
         console.log('1st test passed')
-        if (pSS.serviceStatementsForPatient.ROW_END === 2147483647.999999) {
+        if (pSS.serviceStatementsForPatientLink.ROW_END === 2147483647.999999) {
           console.log('2nd test passed')
           return true
         }
