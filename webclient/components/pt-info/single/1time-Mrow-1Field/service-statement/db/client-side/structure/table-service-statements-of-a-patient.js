@@ -1,12 +1,12 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsMasterList from './table-master-list-of-service-statements.js'
+import serviceStatementsMasterClass from './table-master-list-of-service-statements.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class serviceStatements extends clientSideTableManage {
+export default class serviceStatementsForPatientClass extends clientSideTableManage {
   static entity = 'tblServiceStatementsOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
@@ -38,7 +38,7 @@ export default class serviceStatements extends clientSideTableManage {
 
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
       serviceStatementsMaster: this.belongsTo(
-        serviceStatementsMasterList,
+        serviceStatementsMasterClass,
         'serviceStatementMasterId',
         'serviceStatementMasterId'
       ),
