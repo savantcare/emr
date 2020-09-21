@@ -40,7 +40,7 @@ export default {
   computed: {
     cfGetMasterListOfServiceStatementsGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
+      const arOfObjectsFromClientSideMasterDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .where('serviceStatementCategory', (value) =>
@@ -53,7 +53,7 @@ export default {
 
       // Apply rules given by doctors
 
-      // Rule1: If one Modality of Psychotherapy then do not show others
+      // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
       let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
         .with('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Modality of Psychotherapy')
@@ -61,28 +61,26 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      console.log(modalityOfPsychotherapyExists)
+      console.log('modalityOfPsychotherapyExists', modalityOfPsychotherapyExists)
 
       if (modalityOfPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-          console.log(arOfObjectsFromClientSideDB[i])
+        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
           if (
-            arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Modality of Psychotherapy'
+            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Modality of Psychotherapy'
           ) {
-            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink !== null) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
               console.log('row is there in client table.')
             } else {
               console.log(
                 'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
               )
-              arOfObjectsFromClientSideDB.splice(i, 1)
+              arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
             }
           }
         }
       }
-
-      console.log(arOfObjectsFromClientSideDB)
 
       // Rule2: If one Time in psychotherapy then do not show others
       let timeInPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
@@ -92,19 +90,22 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      console.log(timeInPsychotherapyExists)
+      console.log('timeInPsychotherapyExists', timeInPsychotherapyExists)
 
       if (timeInPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-          console.log(arOfObjectsFromClientSideDB[i])
-          if (arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Time in psychotherapy') {
-            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink !== null) {
+        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+          console.log(arOfObjectsFromClientSideMasterDB[i])
+          if (
+            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Time in psychotherapy'
+          ) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
               console.log('row is there in client table.')
             } else {
               console.log(
                 'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
               )
-              arOfObjectsFromClientSideDB.splice(i, 1)
+              arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
             }
           }
@@ -113,7 +114,7 @@ export default {
 
       // End: Now group the SS
 
-      const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
+      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'serviceStatementCategory')
 
       // console.log(ar)
       return ar
