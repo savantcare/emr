@@ -15,7 +15,7 @@ class ReminderController extends Controller
 
     public function showAllReminders()
     {
-        $remQuery = DB::select(DB::raw('SELECT *,UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END FROM rems FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $remQuery = DB::select(DB::raw('SELECT *, uuid as serverSideRowUuid, UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END FROM rems FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($remQuery);
         // return response()->json(Reminder::all());
     }
@@ -73,12 +73,6 @@ class ReminderController extends Controller
         $redis->publish($channel, json_encode($message));
 
         return response()->json($Reminder, 200);
-    }
-
-    public function delete($id)
-    {
-        Reminder::findOrFail($id)->delete();
-        return response('Deleted Successfully', 200);
     }
 
     public function discontinue($id, Request $request)
