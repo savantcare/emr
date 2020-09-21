@@ -36,7 +36,6 @@ export default {
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
       const newObj = arOfObjectsFromClientSideDB.filter((x) =>
         x.serviceStatementDescription.includes(this.userTypedKeyword)
       )
@@ -45,23 +44,18 @@ export default {
   },
   methods: {
     mfValid(pSS) {
-      console.log(pSS)
       if (pSS.tblServiceStatementsForPatientLink) {
-        console.log('1st test passed')
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483647.999999) {
-          console.log('2nd test passed')
           return true
         }
       }
       return false
     },
     mfToggleServiceStatement(pServiceStatementMasterId) {
-      console.log(pServiceStatementMasterId)
       const exists = ClientSideTblPatientServiceStatements.query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
-      console.log(exists)
       if (exists.length > 0) {
         ClientSideTblPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,

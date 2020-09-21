@@ -21,7 +21,6 @@ export default {
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
