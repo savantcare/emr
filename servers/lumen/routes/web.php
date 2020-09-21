@@ -31,7 +31,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('reminders/v20/',  ['uses' => 'ReminderController@showAllReminders']);
     $router->get('reminders/v20/{id}', ['uses' => 'ReminderController@showOneReminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
-    $router->delete('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
     $router->put('reminders/v20/{id}', ['uses' => 'ReminderController@update']);
     $router->patch('reminders/v20/{id}', ['uses' => 'ReminderController@discontinue']);
     $router->options('reminders/v20', function () {
@@ -51,9 +50,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('height/v20/',  ['uses' => 'HeightController@showAllHeights']);
     $router->get('height/v20/{id}', ['uses' => 'HeightController@showOneHeight']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
-    $router->delete('height/v20/{id}', ['uses' => 'HeightController@delete']);
     $router->put('height/v20/{id}', ['uses' => 'HeightController@update']);
-    $router->patch('height/v20/{id}', ['uses' => 'HeightController@discontinue']);
     $router->options('height/v20', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
@@ -64,4 +61,23 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+    /**
+     * Routing for Weight
+     */
+    $router->get('weight/v20/',  ['uses' => 'WeightController@showAllWeights']);
+    $router->get('weight/v20/{id}', ['uses' => 'WeightController@showOneWeight']);
+    $router->post('weight/v20/', ['uses' => 'WeightController@create']);
+    $router->put('weight/v20/{id}', ['uses' => 'WeightController@update']);
+    $router->options('weight/v20', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('weight/v20/{id}', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
   });

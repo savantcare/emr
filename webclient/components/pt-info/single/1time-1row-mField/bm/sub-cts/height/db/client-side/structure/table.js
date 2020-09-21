@@ -26,10 +26,10 @@ export default class ptHeight extends clientSideTableManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
-      serverSideRowUuid: this.uid(() => uuidv1()),
+      serverSideRowUuid: this.string(null),
 
       heightInInches: this.number(null),
-      timeOfMeasurement: this.number(null),
+      timeOfMeasurement: this.string(null),
       notes: this.string(null),
 
       recordChangedByUUID: this.string(null),

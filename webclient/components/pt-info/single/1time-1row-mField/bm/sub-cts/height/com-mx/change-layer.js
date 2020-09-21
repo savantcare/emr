@@ -1,5 +1,6 @@
 import clientSideTable from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import tableCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],
@@ -101,7 +102,7 @@ export default {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
-    this.dnOrmIdOfRowToChange = arFromClientSideTable[0].id
+    this.dnOrmIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.dnOrmIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },
@@ -123,19 +124,21 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
+      const socketClientObj = await tableCommonForAllComponents.find(1)
       // Since only one valid row is possible there may be other discontinued rows
       const rowToUpsert = clientSideTable.find(this.dnOrmIdOfCopiedRowBeingChanged)
-      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
+      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          uuid: rowToUpsert.uuid,
-          firstName: rowToUpsert.firstName,
-          middleName: rowToUpsert.middleName,
-          lastName: rowToUpsert.lastName,
+          heightInInches: rowToUpsert.heightInInches,
+          timeOfMeasurement: rowToUpsert.timeOfMeasurement,
+          notes: rowToUpsert.notes,
+          clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
+            socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
         }),
       })
       if (response.status === 200) {
@@ -143,7 +146,7 @@ export default {
         await clientSideTable.update({
           where: (record) => {
             return (
-              record.uuid === rowToUpsert.uuid &&
+              record.serverSideRowUuid === rowToUpsert.serverSideRowUuid &&
               (record.vnRowStateInSession === 1 /* Came from DB */ ||
                 record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||

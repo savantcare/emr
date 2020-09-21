@@ -20,7 +20,7 @@ export default {
     })
     tblSearchPhrasesOfCt.insert({
       data: {
-        value: 'height - change',
+        value: 'tblHeight - change',
         ctAbbr: 'hc',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/change-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',

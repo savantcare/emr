@@ -8,7 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptWeight extends clientSideTableManage {
   static entity = 'tblWeight'
-  static apiUrl = 'http://localhost:3000/weight'
+  static apiUrl = 'http://localhost:8000/public/api/weight/v20'
 
   static graphSeries1FieldName = 'weightInPounds'
   static graphSeries1Unit = 'Lbs'
@@ -20,10 +20,10 @@ export default class ptWeight extends clientSideTableManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueID()),
-      serverSideRowUuid: this.uid(() => uuidv1()),
+      serverSideRowUuid: this.string(null),
 
       weightInPounds: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
+      timeOfMeasurement: this.string(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
