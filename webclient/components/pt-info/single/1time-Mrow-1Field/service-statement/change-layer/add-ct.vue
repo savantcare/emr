@@ -46,10 +46,10 @@ export default {
         .where((_record, query) => {
           query
             .where('serviceStatementCategory', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword)
+              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
             .orWhere('serviceStatementDescription', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword)
+              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
         .get()
