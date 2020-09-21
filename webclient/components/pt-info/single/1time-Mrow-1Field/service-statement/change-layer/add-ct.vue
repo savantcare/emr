@@ -39,6 +39,7 @@ export default {
   },
   computed: {
     cfGetMasterListOfServiceStatementsGrouped() {
+      console.log('cf called')
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
@@ -53,47 +54,63 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one Modality of Psychotherapy then do not show others
-      let exists = ClientSideTblPatientServiceStatements.query()
+      let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
         .with('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Modality of Psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      if (exists.length > 0) {
+      console.log(modalityOfPsychotherapyExists)
+
+      if (modalityOfPsychotherapyExists.length > 0) {
         for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+          console.log(arOfObjectsFromClientSideDB[i])
           if (
             arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Modality of Psychotherapy'
           ) {
-            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink) {
+            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink !== null) {
+              console.log('row is there in client table.')
             } else {
-              console.log('delete the row from array')
-              delete arOfObjectsFromClientSideDB[i]
+              console.log(
+                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
+              )
+              arOfObjectsFromClientSideDB.splice(i, 1)
+              i = i - 1
             }
           }
         }
       }
-      /*
+
+      console.log(arOfObjectsFromClientSideDB)
+
       // Rule2: If one Time in psychotherapy then do not show others
-      exists = ClientSideTblPatientServiceStatements.query()
+      let timeInPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
         .with('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Time in psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      if (exists.length > 0) {
+      console.log(timeInPsychotherapyExists)
+
+      if (timeInPsychotherapyExists.length > 0) {
         for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+          console.log(arOfObjectsFromClientSideDB[i])
           if (arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Time in psychotherapy') {
-            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink) {
+            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink !== null) {
+              console.log('row is there in client table.')
             } else {
-              console.log('delete the row from array')
-              delete arOfObjectsFromClientSideDB[i]
+              console.log(
+                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+              )
+              arOfObjectsFromClientSideDB.splice(i, 1)
+              i = i - 1
             }
           }
         }
       }
-*/
+
       // End: Now group the SS
 
       const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
