@@ -47,7 +47,9 @@ export default {
     mfValid(pSS) {
       console.log(pSS)
       if (pSS.serviceStatementsForPatient) {
-        if (pSS.serviceStatementsForPatient.ROW_END === '2147483647.999999') {
+        console.log('1st test passed')
+        if (pSS.serviceStatementsForPatient.ROW_END === 2147483647.999999) {
+          console.log('2nd test passed')
           return true
         }
       }
@@ -55,11 +57,25 @@ export default {
     },
     mfToggleServiceStatement(pServiceStatementMasterId) {
       console.log(pServiceStatementMasterId)
-      ClientSideTblPatientServiceStatements.insert({
-        data: {
-          serviceStatementMasterId: pServiceStatementMasterId,
-        },
-      })
+      const exists = ClientSideTblPatientServiceStatements.query()
+        .where('serviceStatementMasterId', pServiceStatementMasterId)
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      console.log(exists)
+      if (exists.length > 0) {
+        ClientSideTblPatientServiceStatements.update({
+          where: exists[0].clientSideUniqRowId,
+          data: {
+            ROW_END: Math.floor(Date.now() / 1000),
+          },
+        })
+      } else {
+        ClientSideTblPatientServiceStatements.insert({
+          data: {
+            serviceStatementMasterId: pServiceStatementMasterId,
+          },
+        })
+      }
     },
   },
   async mounted() {},

@@ -27,8 +27,6 @@ export default {
   },
   methods: {
     mfDiscontinueServiceStatement(pClientSideUniqRowId) {
-      console.log(pClientSideUniqRowId)
-      console.log(ClientSideTblPatientServiceStatements)
       ClientSideTblPatientServiceStatements.update({
         where: pClientSideUniqRowId,
         data: {
