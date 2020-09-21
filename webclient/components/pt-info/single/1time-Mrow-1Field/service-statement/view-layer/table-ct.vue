@@ -2,9 +2,10 @@
   <div>
     <div class="grid-container">
       <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
-          ss.serviceStatementMasterId
-        }}</el-button>
+        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
+          >{{ ss.serviceStatementMasterId }}
+          {{ ss.serviceStatementsMaster.serviceStatementDescription }}</el-button
+        >
       </div>
     </div>
   </div>
@@ -17,7 +18,10 @@ import ClientSideTblPatientServiceStatements from '../db/client-side/structure/t
 export default {
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.all()
+      const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.query()
+        .with('serviceStatementsMaster')
+        .get()
+      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
@@ -29,8 +33,6 @@ export default {
           serviceStatementMasterId: pServiceStatementMasterId,
         },
       })
-      const ar = ClientSideTblPatientServiceStatements.query().with('serviceStatementsMaster').get() //
-      console.log(ar)
     },
   },
   async mounted() {},
