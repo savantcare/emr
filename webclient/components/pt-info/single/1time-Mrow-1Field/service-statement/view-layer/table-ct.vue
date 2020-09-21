@@ -1,11 +1,10 @@
 <template>
   <div>
     <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)" type="primary"
-          >{{ ss.serviceStatementMasterId }}
-          {{ ss.serviceStatementsMaster.serviceStatementDescription }}</el-button
-        >
+      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.clientSideUniqRowId">
+        <el-button @click="mfDiscontinueServiceStatement(ss.clientSideUniqRowId)" type="primary">{{
+          ss.serviceStatementsMaster.serviceStatementDescription
+        }}</el-button>
       </div>
     </div>
   </div>
@@ -20,17 +19,20 @@ export default {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.query()
         .with('serviceStatementsMaster')
+        .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
   methods: {
-    mfToggleServiceStatement(pServiceStatementMasterId) {
-      console.log(pServiceStatementMasterId)
-      ClientSideTblPatientServiceStatements.insert({
+    mfDiscontinueServiceStatement(pClientSideUniqRowId) {
+      console.log(pClientSideUniqRowId)
+      console.log(ClientSideTblPatientServiceStatements)
+      ClientSideTblPatientServiceStatements.update({
+        where: pClientSideUniqRowId,
         data: {
-          serviceStatementMasterId: pServiceStatementMasterId,
+          ROW_END: Math.floor(Date.now() / 1000),
         },
       })
     },

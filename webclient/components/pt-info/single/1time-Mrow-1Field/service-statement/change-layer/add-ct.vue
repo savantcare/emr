@@ -3,7 +3,7 @@
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div class="grid-container">
       <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <div v-if="ss.serviceStatementsForPatient">
+        <div v-if="mfValid(ss)">
           <el-button
             @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
             type="primary"
@@ -34,6 +34,7 @@ export default {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('serviceStatementsForPatient')
+        .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
       const newObj = arOfObjectsFromClientSideDB.filter((x) =>
@@ -43,6 +44,15 @@ export default {
     },
   },
   methods: {
+    mfValid(pSS) {
+      console.log(pSS)
+      if (pSS.serviceStatementsForPatient) {
+        if (pSS.serviceStatementsForPatient.ROW_END === '2147483647.999999') {
+          return true
+        }
+      }
+      return false
+    },
     mfToggleServiceStatement(pServiceStatementMasterId) {
       console.log(pServiceStatementMasterId)
       ClientSideTblPatientServiceStatements.insert({
