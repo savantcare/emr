@@ -2,7 +2,7 @@
   <div>
     <div class="grid-container">
       <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
+        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)" type="primary"
           >{{ ss.serviceStatementMasterId }}
           {{ ss.serviceStatementsMaster.serviceStatementDescription }}</el-button
         >

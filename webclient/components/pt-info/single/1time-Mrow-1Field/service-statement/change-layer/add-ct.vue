@@ -3,9 +3,18 @@
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div class="grid-container">
       <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
-          ss.serviceStatementDescription
-        }}</el-button>
+        <div v-if="ss.serviceStatementsForPatient">
+          <el-button
+            @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
+            type="primary"
+            >{{ ss.serviceStatementDescription }}</el-button
+          >
+        </div>
+        <div v-else>
+          <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
+            ss.serviceStatementDescription
+          }}</el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -23,7 +32,10 @@ export default {
   },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.all()
+      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
+        .with('serviceStatementsForPatient')
+        .get()
+      console.log(arOfObjectsFromClientSideDB)
       const newObj = arOfObjectsFromClientSideDB.filter((x) =>
         x.serviceStatementDescription.includes(this.userTypedKeyword)
       )
