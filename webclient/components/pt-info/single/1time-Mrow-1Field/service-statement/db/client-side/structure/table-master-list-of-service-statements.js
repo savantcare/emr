@@ -20,6 +20,8 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
 
       serviceStatementMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementDescription: this.string(null),
+      serviceStatementCategory: this.string(null),
+
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       tblServiceStatementsForPatientLink: this.hasOne(

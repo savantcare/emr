@@ -36,8 +36,13 @@ export default {
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .get()
-      const newObj = arOfObjectsFromClientSideDB.filter((x) =>
-        x.serviceStatementDescription.includes(this.userTypedKeyword)
+
+      console.log(arOfObjectsFromClientSideDB)
+
+      const newObj = arOfObjectsFromClientSideDB.filter(
+        (x) =>
+          x.serviceStatementDescription.includes(this.userTypedKeyword) ||
+          x.serviceStatementCategory.includes(this.userTypedKeyword)
       )
       return newObj
     },
