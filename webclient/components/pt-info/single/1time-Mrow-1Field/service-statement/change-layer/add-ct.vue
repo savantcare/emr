@@ -1,10 +1,14 @@
 <template>
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
-    <div v-for="(group, groupNameGivenAsIndex) in cfGetServiceStatementsGrouped" :key="group.id">
+    <div
+      v-for="(allServiceStatementsInsideAGroup,
+      groupNameGivenAsIndex) in cfGetServiceStatementsGrouped"
+      :key="allServiceStatementsInsideAGroup.id"
+    >
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
-        <div v-for="ss in group" :key="ss.serviceStatementMasterId">
+        <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
           <div v-if="mfValid(ss)">
             <el-button
               @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
