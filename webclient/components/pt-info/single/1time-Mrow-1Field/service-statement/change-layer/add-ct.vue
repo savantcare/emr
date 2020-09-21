@@ -1,19 +1,25 @@
 <template>
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
-    <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.serviceStatementMasterId">
-        <div v-if="mfValid(ss)">
-          <el-button
-            @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
-            type="primary"
-            >{{ ss.serviceStatementDescription }}</el-button
-          >
-        </div>
-        <div v-else>
-          <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
-            ss.serviceStatementDescription
-          }}</el-button>
+    <div v-for="group in cfGetArOfGroupNames" :key="group.id">
+      {{ group.name }}
+      <div class="grid-container">
+        <div
+          v-for="ss in mfArOfServiceStatementForDisplay(group)"
+          :key="ss.serviceStatementMasterId"
+        >
+          <div v-if="mfValid(ss)">
+            <el-button
+              @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
+              type="primary"
+              >{{ ss.serviceStatementDescription }}</el-button
+            >
+          </div>
+          <div v-else>
+            <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
+              ss.serviceStatementDescription
+            }}</el-button>
+          </div>
         </div>
       </div>
     </div>
@@ -31,10 +37,26 @@ export default {
     }
   },
   computed: {
-    cfArOfServiceStatementForDisplay() {
+    cfGetArOfGroupNames() {
+      let ar = [
+        {
+          id: 1,
+          name: 'Time in psychotherapy',
+        },
+        {
+          id: 2,
+          name: 'Modality of Psychotherapy',
+        },
+      ]
+      return ar
+    },
+  },
+  methods: {
+    mfArOfServiceStatementForDisplay(pGroupName) {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
+        .where('serviceStatementCategory', pGroupName.name)
         .get()
 
       console.log(arOfObjectsFromClientSideDB)
@@ -46,8 +68,7 @@ export default {
       )
       return newObj
     },
-  },
-  methods: {
+
     mfValid(pSS) {
       if (pSS.tblServiceStatementsForPatientLink) {
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483647.999999) {
