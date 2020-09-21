@@ -1,12 +1,22 @@
 <template>
   <div>
-    <div class="grid-container">
-      <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.clientSideUniqRowId">
-        <el-button @click="mfDiscontinueServiceStatement(ss.clientSideUniqRowId)" type="primary">{{
-          ss.tblServiceStatementsMasterLink.serviceStatementDescription
-        }}</el-button>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>Service statemetns</span>
+        <el-button style="float: right; padding: 3px 0" type="text" @click="mfOpenACtInCl"
+          >A</el-button
+        >
       </div>
-    </div>
+      <div class="grid-container">
+        <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.clientSideUniqRowId">
+          <el-button
+            @click="mfDiscontinueServiceStatement(ss.clientSideUniqRowId)"
+            type="primary"
+            >{{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}</el-button
+          >
+        </div>
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -31,6 +41,11 @@ export default {
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
         },
+      })
+    },
+    mfOpenACtInCl() {
+      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+        searchTerm: 'add service statement',
       })
     },
   },
