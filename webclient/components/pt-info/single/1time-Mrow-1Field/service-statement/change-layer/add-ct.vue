@@ -119,6 +119,37 @@ export default {
         }
       }
 
+      // Rule3: If one Time in psychotherapy then do not show others
+      let totalTimeWithPatientExists = ClientSideTblPatientServiceStatements.query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total time with patient')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      console.log('timeInPsychotherapyExists', totalTimeWithPatientExists)
+
+      if (totalTimeWithPatientExists.length > 0) {
+        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+          console.log(arOfObjectsFromClientSideMasterDB[i])
+          if (
+            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Total time with patient'
+          ) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null) {
+              console.log('row is there in client table.')
+            } else {
+              console.log(
+                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+              )
+              arOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+
       // End: Now group the SS
 
       const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'serviceStatementCategory')
