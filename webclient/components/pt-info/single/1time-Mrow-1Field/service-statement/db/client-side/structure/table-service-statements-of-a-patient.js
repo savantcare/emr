@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-
+import serviceStatementsMasterList from './table-master-list-of-service-statements.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
@@ -36,7 +36,12 @@ export default class serviceStatements extends clientSideTableManage {
       ROW_START: this.number(0),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
-      //      user: this.belongsTo(serviceStatementsMasterList, 'serviceStatementMasterId', 'serviceStatementMasterId'),
+      // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
+      serviceStatementsMaster: this.belongsTo(
+        serviceStatementsMasterList,
+        'serviceStatementMasterId',
+        'serviceStatementMasterId'
+      ),
     }
   }
 }

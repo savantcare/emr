@@ -22,13 +22,15 @@ export default {
     },
   },
   methods: {
-    mfToggleServiceStatement(pServiceStatementUuid) {
-      console.log(pServiceStatementUuid)
+    mfToggleServiceStatement(pServiceStatementMasterId) {
+      console.log(pServiceStatementMasterId)
       ClientSideTblPatientServiceStatements.insert({
         data: {
-          serviceStatementMasterId: pServiceStatementUuid,
+          serviceStatementMasterId: pServiceStatementMasterId,
         },
       })
+      const ar = ClientSideTblPatientServiceStatements.query().with('serviceStatementsMaster').get() //
+      console.log(ar)
     },
   },
   async mounted() {},
