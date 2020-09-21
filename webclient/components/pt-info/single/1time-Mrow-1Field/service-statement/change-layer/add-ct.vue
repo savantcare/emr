@@ -49,9 +49,56 @@ export default {
           value.toLowerCase().includes(this.userTypedKeyword)
         )
         .get()
-      console.log(arOfObjectsFromClientSideDB)
+
+      // Apply rules given by doctors
+
+      // Rule1: If one Modality of Psychotherapy then do not show others
+      let exists = ClientSideTblPatientServiceStatements.query()
+        .with('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Modality of Psychotherapy')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      if (exists.length > 0) {
+        for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+          if (
+            arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Modality of Psychotherapy'
+          ) {
+            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink) {
+            } else {
+              console.log('delete the row from array')
+              delete arOfObjectsFromClientSideDB[i]
+            }
+          }
+        }
+      }
+      /*
+      // Rule2: If one Time in psychotherapy then do not show others
+      exists = ClientSideTblPatientServiceStatements.query()
+        .with('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Time in psychotherapy')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      if (exists.length > 0) {
+        for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+          if (arOfObjectsFromClientSideDB[i].serviceStatementCategory === 'Time in psychotherapy') {
+            if (arOfObjectsFromClientSideDB[i].tblServiceStatementsForPatientLink) {
+            } else {
+              console.log('delete the row from array')
+              delete arOfObjectsFromClientSideDB[i]
+            }
+          }
+        }
+      }
+*/
+      // End: Now group the SS
+
       const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
-      console.log(ar)
+
+      // console.log(ar)
       return ar
     },
   },

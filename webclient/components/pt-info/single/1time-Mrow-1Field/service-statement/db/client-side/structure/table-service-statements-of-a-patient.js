@@ -27,8 +27,6 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
 
           When doctor assigns 2 to this patient then in this table serviceStatementMasterId = 2 */
       serviceStatementMasterId: this.uid(() => uuidv1()), // This is service statement ID assigned to this patient coming from master table
-      serviceStatementCategory: this.string(null),
-
       patientUUID: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
