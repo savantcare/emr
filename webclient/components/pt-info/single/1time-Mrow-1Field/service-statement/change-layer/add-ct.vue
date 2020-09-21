@@ -4,10 +4,7 @@
     <div v-for="(group, index) in cfGetArOfGroupNames" :key="group.id">
       {{ index }}
       <div class="grid-container">
-        <div
-          v-for="ss in mfArOfServiceStatementForDisplay(index)"
-          :key="ss.serviceStatementMasterId"
-        >
+        <div v-for="ss in group" :key="ss.serviceStatementMasterId">
           <div v-if="mfValid(ss)">
             <el-button
               @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
@@ -41,7 +38,9 @@ export default {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
+        .where('serviceStatementCategory', (value) => value.includes(this.userTypedKeyword))
         .get()
+      console.log(arOfObjectsFromClientSideDB)
       const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
       console.log(ar)
       return ar
@@ -67,24 +66,6 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfArOfServiceStatementForDisplay(pGroupName) {
-      console.log(pGroupName)
-      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
-        .with('tblServiceStatementsForPatientLink')
-        .where('ROW_END', 2147483647.999999)
-        .where('serviceStatementCategory', pGroupName)
-        .get()
-
-      console.log(arOfObjectsFromClientSideDB)
-
-      const newObj = arOfObjectsFromClientSideDB.filter(
-        (x) =>
-          x.serviceStatementDescription.includes(this.userTypedKeyword) ||
-          x.serviceStatementCategory.includes(this.userTypedKeyword)
-      )
-      return newObj
-    },
-
     mfValid(pSS) {
       if (pSS.tblServiceStatementsForPatientLink) {
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483647.999999) {
