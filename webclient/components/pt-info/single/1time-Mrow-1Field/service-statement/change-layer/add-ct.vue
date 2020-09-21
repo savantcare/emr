@@ -42,8 +42,12 @@ export default {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
-        .where('serviceStatementCategory', (value) => value.includes(this.userTypedKeyword))
-        .orWhere('serviceStatementDescription', (value) => value.includes(this.userTypedKeyword))
+        .where('serviceStatementCategory', (value) =>
+          value.toLowerCase().includes(this.userTypedKeyword)
+        )
+        .orWhere('serviceStatementDescription', (value) =>
+          value.toLowerCase().includes(this.userTypedKeyword)
+        )
         .get()
       console.log(arOfObjectsFromClientSideDB)
       const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
