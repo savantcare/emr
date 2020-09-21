@@ -3,7 +3,7 @@
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
     <div
       v-for="(allServiceStatementsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetServiceStatementsGrouped"
+      groupNameGivenAsIndex) in cfGetMasterListOfServiceStatementsGrouped"
       :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    cfGetServiceStatementsGrouped() {
+    cfGetMasterListOfServiceStatementsGrouped() {
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
