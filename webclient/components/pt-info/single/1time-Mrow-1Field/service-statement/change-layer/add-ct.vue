@@ -39,6 +39,7 @@ export default {
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .where('serviceStatementCategory', (value) => value.includes(this.userTypedKeyword))
+        .orWhere('serviceStatementDescription', (value) => value.includes(this.userTypedKeyword))
         .get()
       console.log(arOfObjectsFromClientSideDB)
       const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
