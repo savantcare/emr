@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-input placeholder="Please input" v-model="userTypedKeyword" />
-    <div v-for="group in cfGetArOfGroupNames" :key="group.id">
-      {{ group.name }}
+    <div v-for="(group, index) in cfGetArOfGroupNames" :key="group.id">
+      {{ index }}
       <div class="grid-container">
         <div
-          v-for="ss in mfArOfServiceStatementForDisplay(group)"
+          v-for="ss in mfArOfServiceStatementForDisplay(index)"
           :key="ss.serviceStatementMasterId"
         >
           <div v-if="mfValid(ss)">
@@ -38,25 +38,41 @@ export default {
   },
   computed: {
     cfGetArOfGroupNames() {
-      let ar = [
-        {
-          id: 1,
-          name: 'Time in psychotherapy',
-        },
-        {
-          id: 2,
-          name: 'Modality of Psychotherapy',
-        },
-      ]
+      const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
+        .with('tblServiceStatementsForPatientLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      const ar = this.groupBy(arOfObjectsFromClientSideDB, 'serviceStatementCategory')
+      console.log(ar)
       return ar
     },
   },
   methods: {
+    groupBy(data, key) {
+      // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
+      // `data` is an array of objects, `key` is the key (or property accessor) to group by
+      // reduce runs this anonymous function on each element of `data` (the `item` parameter,
+      // returning the `storage` parameter at the end
+      return data.reduce(function (storage, item) {
+        // get the first instance of the key by which we're grouping
+        var group = item[key]
+
+        // set `storage` for this instance of group to the outer scope (if not empty) or initialize it
+        storage[group] = storage[group] || []
+
+        // add this item to its group within `storage`
+        storage[group].push(item)
+
+        // return the updated storage to the reduce function, which will then loop through the next
+        return storage
+      }, {}) // {} is the initial value of the storage
+    },
     mfArOfServiceStatementForDisplay(pGroupName) {
+      console.log(pGroupName)
       const arOfObjectsFromClientSideDB = ClientSideTblMasterServiceStatements.query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
-        .where('serviceStatementCategory', pGroupName.name)
+        .where('serviceStatementCategory', pGroupName)
         .get()
 
       console.log(arOfObjectsFromClientSideDB)
@@ -98,6 +114,5 @@ export default {
       }
     },
   },
-  async mounted() {},
 }
 </script>
