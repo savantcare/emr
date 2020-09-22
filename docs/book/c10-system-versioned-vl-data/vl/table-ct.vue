@@ -1,9 +1,13 @@
 <template>
   <div>
     From Tenth chapter - Hello {{ cfMsg }}
-    <el-button style="padding: 3px" type="success" plain @click="mfOpenCtInCl"
-      >A</el-button
-    >
+    <el-button
+      style="padding: 3px"
+      type="success"
+      plain
+      @click="mfOpenCtInCl"
+      class="el-icon-circle-plus-outline"
+    ></el-button>
     <el-table
       :data="cfArForDisplayInTable"
       :show-header="false"

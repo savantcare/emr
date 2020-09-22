@@ -1,11 +1,14 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card class="box-card" shadow="hover">
       <div slot="header" class="clearfix">
         <span>Mental status exam</span>
-        <el-button style="float: right; padding: 3px 0" type="text" @click="mfOpenCCtInCl"
-          >C</el-button
-        >
+        <el-button
+          style="float: right; padding: 3px 0"
+          type="text"
+          @click="mfOpenCCtInCl"
+          icon="el-icon-edit"
+        ></el-button>
       </div>
       <div class="grid-container">
         <div v-for="ss in cfArOfMentalStatusExamForDisplay" :key="ss.clientSideUniqRowId">

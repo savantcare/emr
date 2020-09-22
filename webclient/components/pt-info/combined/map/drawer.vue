@@ -30,7 +30,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content reccomendation">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Reccomendation</span>
                   </div>
@@ -50,7 +50,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content goal">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Goal</span>
                   </div>
@@ -70,7 +70,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content body-measurement">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Body measurement</span>
                   </div>
@@ -100,7 +100,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content medication">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Medication</span>
                   </div>
@@ -159,7 +159,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content reminders">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Reminders</span>
                   </div>
@@ -179,7 +179,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content diagnosis">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Diagnosis</span>
                   </div>
@@ -196,7 +196,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content allergies">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Allergies</span>
                   </div>
@@ -220,7 +220,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content mental-status-exam">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Mental status exam</span>
                   </div>
@@ -247,7 +247,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content pros">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Psych Review of Systems</span>
                   </div>
@@ -283,7 +283,7 @@
           <el-row>
             <el-col :span="12">
               <div class="map-grid-content family-history">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Family history</span>
                   </div>
@@ -308,7 +308,7 @@
             </el-col>
             <el-col :span="12">
               <div class="map-grid-content contacts">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Contacts</span>
                   </div>
@@ -355,7 +355,7 @@
           <el-row>
             <el-col>
               <div class="map-grid-content screening">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Screening</span>
                   </div>
@@ -391,7 +391,7 @@
           <el-row>
             <el-col :span="12">
               <div class="map-grid-content social-history">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Social history</span>
                   </div>
@@ -416,7 +416,7 @@
             </el-col>
             <el-col :span="12">
               <div class="map-grid-content appointment">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Appointment</span>
                   </div>
@@ -450,7 +450,7 @@
           <el-row>
             <el-col :span="12">
               <div class="map-grid-content pharmacy">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Pharmacy</span>
                   </div>
@@ -475,7 +475,7 @@
             </el-col>
             <el-col :span="12">
               <div class="map-grid-content documents">
-                <el-card class="box-card">
+                <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
                     <span>Documents</span>
                   </div>

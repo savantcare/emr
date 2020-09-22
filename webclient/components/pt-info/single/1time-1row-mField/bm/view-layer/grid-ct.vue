@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card" shadow="hover">
     <div slot="header" class="clearfix">
       <span>Body measurement</span>
     </div>

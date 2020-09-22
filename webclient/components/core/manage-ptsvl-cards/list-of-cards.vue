@@ -10,7 +10,7 @@
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
           -->
-    <el-card v-for="card in cfArCardsInCsOfVl" :key="card.id">
+    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin-bottom: 25px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -19,7 +19,7 @@
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
             -->
       <component :is="card.ctToShow"></component>
-    </el-card>
+    </div>
     <!-- ctVlSearchBox as per glossary is Component View layer search box 
              Top or bottom of the for loop -> determines if search comes at top or bottom of the other cards
              Advantages of having search box at the top:

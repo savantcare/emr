@@ -4,7 +4,7 @@
     <el-row :gutter="12">
       <el-col :span="24">
         <!-- If I make style="border: 0;" then when tab is activated the bottom border of the tab does not go away -->
-        <el-card class="box-card">
+        <el-card class="box-card" shadow="hover">
           <el-form ref="daDxForm" label-position="top" :model="daDxForm" class="demo-dynamic">
             <el-card
               v-for="(diagnosis, index) in daDxForm.diagnosis"

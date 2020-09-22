@@ -6,24 +6,34 @@
     hence made it 3px
     This controls the space between edge of the card and the line that shows the dots
     -->
-    <el-card class="box-card" :body-style="{ paddingLeft: '3px' }">
+    <el-card class="box-card" :body-style="{ paddingLeft: '3px' }" shadow="hover">
       <div slot="header" class="clearfix">
         <span :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1" @keyup="mfKeyPress($event, 'header')"
           >Reminders</span
         >
         <el-button-group style="float: right">
-          <el-button style="padding: 3px" type="success" plain tabindex="-1" @click="mxOpenACtInCl"
-            >A</el-button
-          >
+          <el-button
+            style="padding: 3px"
+            type="success"
+            plain
+            tabindex="-1"
+            @click="mxOpenACtInCl"
+            class="el-icon-circle-plus-outline"
+          ></el-button>
           <el-button style="padding: 3px" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
             >M</el-button
           >
           <el-button style="padding: 3px" type="warning" plain tabindex="-1" @click="mxOpenDDialog"
             >D</el-button
           >
-          <el-button style="padding: 3px" type="info" plain tabindex="-1" @click="mxOpenXCtInCl"
-            >X</el-button
-          >
+          <el-button
+            style="padding: 3px"
+            type="info"
+            plain
+            tabindex="-1"
+            @click="mxOpenXCtInCl"
+            class="el-icon-delete"
+          ></el-button>
         </el-button-group>
       </div>
       <!-- explanation of following params:

@@ -3,7 +3,7 @@
     <!-- <el-tab-pane> -->
     <el-row :gutter="12">
       <el-col :span="24">
-        <el-card class="box-card">
+        <el-card class="box-card" shadow="hover">
           <el-form ref="daGoalForm" label-position="top" :model="daGoalForm" class="demo-dynamic">
             <el-card
               v-for="(domain, index) in daGoalForm.goals"

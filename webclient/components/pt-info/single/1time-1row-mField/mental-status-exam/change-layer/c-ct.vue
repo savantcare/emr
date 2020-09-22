@@ -1,17 +1,22 @@
 <template>
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
-    <div
+    <el-card
+      shadow="hover"
       v-for="(allMentalStatusExamInsideAGroup,
       groupNameGivenAsIndex) in cfGetMasterListOfMentalStatusExamGrouped"
       :key="allMentalStatusExamInsideAGroup.id"
     >
-      {{ groupNameGivenAsIndex }}
+      <div slot="header" class="clearfix">
+        <span> {{ groupNameGivenAsIndex }}</span>
+      </div>
+
       <div class="grid-container">
         <div v-for="ms in allMentalStatusExamInsideAGroup" :key="ms.mentalStatusExamMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
               <el-button
+                size="small"
                 @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
                 type="primary"
                 >{{ ms.mentalStatusExamDescription }}</el-button
@@ -26,9 +31,11 @@
           </div>
           <div v-else>
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
-              <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
-                ms.mentalStatusExamDescription
-              }}</el-button>
+              <el-button
+                size="small"
+                @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
+                >{{ ms.mentalStatusExamDescription }}</el-button
+              >
             </div>
             <div v-else>
               <el-input
@@ -39,7 +46,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 

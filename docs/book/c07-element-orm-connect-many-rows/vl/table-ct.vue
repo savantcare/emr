@@ -1,9 +1,13 @@
 <template>
   <div>
     From Seventh chapter - Hello {{ cfMsg }}
-    <el-button style="padding: 3px" type="success" plain @click="mfOpenCtInCl"
-      >A</el-button
-    >
+    <el-button
+      style="padding: 3px"
+      type="success"
+      plain
+      @click="mfOpenCtInCl"
+      class="el-icon-circle-plus-outline"
+    ></el-button>
   </div>
 </template>
 <script>
