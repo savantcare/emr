@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-mental-status exams.js'
+import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
 import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-mental-status exams-of-a-patient.js'
 
 export default {
