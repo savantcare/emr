@@ -20,13 +20,14 @@
 </template>
 
 <script>
-import ClientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
-import ClientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
+import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
+import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 
 export default {
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = ClientSideTblPatientServiceStatements.query()
+      const arOfObjectsFromClientSideDB = clientSideTblPatientServiceStatements
+        .query()
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
@@ -35,7 +36,7 @@ export default {
   },
   methods: {
     mfDiscontinueServiceStatement(pClientSideUniqRowId) {
-      ClientSideTblPatientServiceStatements.update({
+      clientSideTblPatientServiceStatements.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),

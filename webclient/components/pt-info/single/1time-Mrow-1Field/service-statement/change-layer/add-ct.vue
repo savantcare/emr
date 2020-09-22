@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import ClientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
-import ClientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
+import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
+import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 
 export default {
   data() {
@@ -40,7 +40,8 @@ export default {
   computed: {
     cfGetMasterListOfServiceStatementsGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = ClientSideTblMasterServiceStatements.query()
+      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterServiceStatements
+        .query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .where((_record, query) => {
@@ -57,7 +58,8 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
-      let modalityOfPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
+      let modalityOfPsychotherapyExists = clientSideTblPatientServiceStatements
+        .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Modality of Psychotherapy')
@@ -89,7 +91,8 @@ export default {
       }
 
       // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = ClientSideTblPatientServiceStatements.query()
+      let timeInPsychotherapyExists = clientSideTblPatientServiceStatements
+        .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Time in psychotherapy')
@@ -120,7 +123,8 @@ export default {
       }
 
       // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = ClientSideTblPatientServiceStatements.query()
+      let totalTimeWithPatientExists = clientSideTblPatientServiceStatements
+        .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Total time with patient')
@@ -188,19 +192,20 @@ export default {
       return false
     },
     mfToggleServiceStatement(pServiceStatementMasterId) {
-      const exists = ClientSideTblPatientServiceStatements.query()
+      const exists = clientSideTblPatientServiceStatements
+        .query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        ClientSideTblPatientServiceStatements.update({
+        clientSideTblPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        ClientSideTblPatientServiceStatements.insert({
+        clientSideTblPatientServiceStatements.insert({
           data: {
             serviceStatementMasterId: pServiceStatementMasterId,
           },
