@@ -27,13 +27,13 @@
               ></el-input>
               <vue-slider
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
-                :marks="3"
+                :marks="false"
                 :min="0"
                 :max="2"
+                :width="150"
                 :absord="true"
                 :included="true"
-                :tooltip="'always'"
-                :tooltip-formatter="(val) => ros.psychReviewOfSystemsDescription + ': ' + val"
+                :tooltip="'none'"
               ></vue-slider>
             </div>
           </div>
@@ -44,16 +44,17 @@
               }}</el-button>
             </div>
             <div v-else>
+              {{ ros.psychReviewOfSystemsDescription }}
               <vue-slider
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
                 :marks="false"
                 :min="0"
                 :max="2"
-                :width="90"
+                :width="150"
                 :absord="true"
                 :included="true"
-                :tooltip="'always'"
-                :tooltip-formatter="(val) => ros.psychReviewOfSystemsDescription + ': ' + val"
+                :tooltip="'none'"
+                :height="10"
               ></vue-slider>
             </div>
           </div>
@@ -268,8 +269,8 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
   */
-  grid-gap: 40px;
+  grid-gap: 20px;
   grid-auto-flow: row; /* This is default value */
-  margin: 40px;
+  margin: 20px;
 }
 </style>
