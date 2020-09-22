@@ -254,7 +254,26 @@ export default {
   padding: 10px !important;
 }
 
-/* Hierarchy Level 2 / Child 1*/
+/* Hierarchy Level 2 / Child 1 */
+
+.el-card:hover .sc-reminder-all-content-header .el-button-group {
+  display: inline-block !important;
+}
+
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
+  color: #67c23a !important;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
+  color: #409eff !important;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
+  color: #f56c6c !important;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
+  color: #909399 !important;
+}
+
+/* Hierarchy Level 2 / Child 2 */
 
 .sc-reminder-all-content-body {
   display: grid;
@@ -274,25 +293,6 @@ export default {
   height: 100%;
   line-height: 18px;
   text-decoration: none;
-}
-
-/* Hierarchy Level 2 / Child 2 */
-
-.el-card:hover .sc-reminder-all-content-header .el-button-group {
-  display: inline-block !important;
-}
-
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
-  color: #67c23a !important;
-}
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
-  color: #409eff !important;
-}
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
-  color: #f56c6c !important;
-}
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
-  color: #909399 !important;
 }
 
 /* Hierarchy Level 3 */
@@ -337,10 +337,10 @@ export default {
 
 /* Hierarchy Level 4: Partition 2 */
 
-.sc-reminder-individual-card-delete-icon {
+.sc-reminder-individual-card-info-icon {
   position: absolute;
   top: -10px;
-  right: 0px;
+  right: 16px;
   z-index: 999;
   cursor: pointer;
   text-decoration: none;
@@ -348,10 +348,10 @@ export default {
 
 /* Hierarchy Level 4: Partition 3 */
 
-.sc-reminder-individual-card-info-icon {
+.sc-reminder-individual-card-delete-icon {
   position: absolute;
   top: -10px;
-  right: 16px;
+  right: 0px;
   z-index: 999;
   cursor: pointer;
   text-decoration: none;
