@@ -14,7 +14,7 @@ export default {
   mounted() {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
+        psychReviewOfSystemsMasterId: '1',
         psychReviewOfSystemsDescription: 'Good grooming and hygiene',
         psychReviewOfSystemsCategory: 'Appearence',
       },

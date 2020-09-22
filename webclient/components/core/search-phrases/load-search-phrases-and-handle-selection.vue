@@ -36,9 +36,15 @@
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 // Goal: Get the search terms from each component
+
+// core
+import clearSPhrases from '@/components/core/clear/static-data/search-phrases-ct'
+
+// combined
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
 import mapSPhrases from '@/components/pt-info/combined/map/static-data/search-phrases-ct'
-import clearSPhrases from '@/components/core/clear/static-data/search-phrases-ct'
+
+// 1time-1row-mField
 import nameSPhrases from '@/components/pt-info/single/1time-1row-mField/name/static-data/search-phrases-ct'
 import heightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/search-phrases-ct'
 import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/search-phrases-ct'
@@ -51,9 +57,13 @@ import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mFi
 import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/search-phrases-ct'
 import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/search-phrases-ct'
 import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/search-phrases-ct'
+import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/search-phrases-ct'
+
+// 1time-Mrow-1Field
 import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'
 import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/search-phrases-ct'
-import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/search-phrases-ct'
+
+// 1time-Mrow-mField
 import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
 
 export default {

@@ -14,7 +14,7 @@ export default {
   mounted() {
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
+        mentalStatusExamMasterId: '1',
         mentalStatusExamDescription: 'Good grooming and hygiene',
         mentalStatusExamCategory: 'Appearence',
       },

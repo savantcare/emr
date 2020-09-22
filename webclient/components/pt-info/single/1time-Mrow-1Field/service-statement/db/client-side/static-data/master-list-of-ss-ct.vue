@@ -14,7 +14,7 @@ export default {
   mounted() {
     clientSideTblMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
+        serviceStatementMasterId: '1',
         serviceStatementDescription: '90 minutes',
         serviceStatementCategory: 'Time in psychotherapy',
       },
