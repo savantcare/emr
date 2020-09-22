@@ -28,10 +28,9 @@ class ReminderController extends Controller
     public function create(Request $request)
     {
         $requestData = $request->all();
-        $uuid = Uuid::uuid4();
-
+        
         $remData = array(
-            'uuid' => $uuid,
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUUID' => $requestData['data']['ptUUID'],
             'description' => $requestData['data']['description'],
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
@@ -41,7 +40,7 @@ class ReminderController extends Controller
 
         $channel = 'MsgFromSktForRemToAdd';
         $message = array(
-            'uuid' => $uuid,
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'description' => $requestData['data']['description'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
@@ -64,7 +63,7 @@ class ReminderController extends Controller
         $requestData = $request->all();
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
-            'uuid' => $id,
+            'serverSideRowUuid' => $id,
             'description' => $requestData['description'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
@@ -101,7 +100,7 @@ class ReminderController extends Controller
          */
         $channel = 'MsgFromSktForRemToDiscontinue';
         $message = array(
-            'uuid' => $id,
+            'serverSideRowUuid' => $id,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 

@@ -37,7 +37,7 @@ export default {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/core/crud/forms.md
             ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
             description: pDataArr.description,
-            uuid: pDataArr.uuid,
+            serverSideRowUuid: pDataArr.serverSideRowUuid,
           },
         })
         if (!arFromClientSideTable) {
@@ -66,7 +66,7 @@ export default {
       )
 
       clientSideTable.update({
-        where: (record) => record.uuid === pDataArr.uuid,
+        where: (record) => record.serverSideRowUuid === pDataArr.serverSideRowUuid,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
         },
@@ -93,7 +93,10 @@ export default {
          */
         await clientSideTable.update({
           where: (record) => {
-            return record.uuid === pDataArr.uuid && record.vnRowStateInSession === 1
+            return (
+              record.serverSideRowUuid === pDataArr.serverSideRowUuid &&
+              record.vnRowStateInSession === 1
+            )
           },
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
@@ -104,7 +107,7 @@ export default {
           data: {
             ROW_START: Math.floor(Date.now() / 1000),
             description: pDataArr.description,
-            uuid: pDataArr.uuid,
+            serverSideRowUuid: pDataArr.serverSideRowUuid,
           },
         })
       }

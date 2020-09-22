@@ -9,7 +9,7 @@ class Reminder extends Model
 {
     protected $table = 'rems';
     public $timestamps = false;
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
     public $incrementing = false;
 
