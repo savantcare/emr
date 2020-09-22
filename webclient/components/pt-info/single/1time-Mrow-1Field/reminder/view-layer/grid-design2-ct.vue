@@ -248,12 +248,12 @@ Generatiobn 3                     |
 
 /* Generation Level 1 */
 .sc-reminder-all-content .el-card__header {
-  /* Distance from border to content in header*/
+  /* Goal: Manage Distance from border to content in header*/
   padding: 10px !important;
 }
 
 .sc-reminder-all-content .el-card__body {
-  /* Distance from border to content in body*/
+  /* Goal: Manage  Distance from border to content in body*/
   padding: 10px !important;
 }
 
@@ -278,6 +278,7 @@ Generatiobn 3                     |
 
 /* Generation Level 2 / Child 2 */
 
+/* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
 .sc-reminder-all-content-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -291,11 +292,11 @@ Generatiobn 3                     |
   margin: 1px;
 }
 
+/* */
 .sc-reminder-all-content-body .el-card__body {
   padding: 16px 10px 5px !important;
   height: 100%;
   line-height: 18px;
-  text-decoration: none;
 }
 
 /* Generation Level 3 */
