@@ -16,42 +16,42 @@ export default {
       data: {
         mentalStatusExamMasterId: '1',
         mentalStatusExamDescription: 'Good grooming and hygiene',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '2',
         mentalStatusExamDescription: 'No apparennt distress',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '3',
         mentalStatusExamDescription: 'Well developed, well nourished',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '4',
         mentalStatusExamDescription: 'Appears stated age',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '5',
         mentalStatusExamDescription: 'Appears younger than stated age',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '6',
         mentalStatusExamDescription: 'Appears older than stated age',
-        mentalStatusExamCategory: 'Appearence',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
