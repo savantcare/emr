@@ -1,55 +1,70 @@
 <template>
-  <div>
-    <el-card class="box-card" shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>Mental status exam</span>
-        <el-button
-          style="float: right; padding: 3px 0"
-          type="text"
-          @click="mfOpenCCtInCl"
-          icon="el-icon-edit"
-        ></el-button>
-      </div>
-      <div class="grid-container data-card">
-        <el-card
-          v-for="ss in cfArOfMentalStatusExamForDisplay"
-          :key="ss.clientSideUniqRowId"
-          class="box-card content-card"
-          shadow="hover"
-        >
-          <div class="info-icon">
-            <el-button type="text">
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="info"
-                placement="top-end"
-                :open-delay="500"
-              >
-                <i class="el-icon-info custom-info-icon"></i>
-              </el-tooltip>
-            </el-button>
-          </div>
+  <el-card
+    shadow="hover"
+    class="box-card sc-reminder-all-content"
+    :style="cfGetVariablesFromClientSideTableToUseInCSS"
+  >
+    <div slot="header" class="clearfix">
+      <span>Mental status exam</span>
+      <el-button
+        style="float: right; padding: 3px 0"
+        type="text"
+        @click="mfOpenCCtInCl"
+        icon="el-icon-edit"
+      ></el-button>
+    </div>
+    <div class="grid-container data-card">
+      <el-card
+        v-for="ss in cfArOfMentalStatusExamForDisplay"
+        :key="ss.clientSideUniqRowId"
+        class="box-card content-card"
+        shadow="hover"
+      >
+        <div class="info-icon">
+          <el-button type="text">
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="info"
+              placement="top-end"
+              :open-delay="500"
+            >
+              <i class="el-icon-info custom-info-icon"></i>
+            </el-tooltip>
+          </el-button>
+        </div>
 
-          <div class="delete-icon">
-            <el-button type="text" @click="mfDeleteMentalStatusExam(ss.clientSideUniqRowId)">
-              <i class="el-icon-error custom-close-icon"></i>
-            </el-button>
-          </div>
-          {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
-          {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
-        </el-card>
-      </div>
-    </el-card>
-  </div>
+        <div class="delete-icon">
+          <el-button type="text" @click="mfDeleteMentalStatusExam(ss.clientSideUniqRowId)">
+            <i class="el-icon-error custom-close-icon"></i>
+          </el-button>
+        </div>
+        {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
+        {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
+      </el-card>
+    </div>
+  </el-card>
 </template>
 
 <script>
 import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
 import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   computed: {
+    cfGetVariablesFromClientSideTableToUseInCSS() {
+      const objCommonRow = objCommonOrm.find(1) // if this is async then it does not work.
+      if (objCommonRow !== null) {
+        let fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForNormalEyeSight
+        if (objCommonRow.currentUserEyeSight == 'weak') {
+          fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForWeakEyeSight
+        }
+        return {
+          '--font-size-of-content-every-where': fontSizeOfContentEveryWhere,
+        }
+      }
+    },
     cfArOfMentalStatusExamForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblPatientMentalStatusExam
         .query()
@@ -72,6 +87,16 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
         searchTerm: 'change mental status exam',
       })
+    },
+    // This is used to make the rows that are in change state a orange background.
+    mfGetCssClassName(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'color: #E6A23C;'
+      } else {
+        return 'color: #202020;'
+      }
     },
   },
   async mounted() {},
