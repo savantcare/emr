@@ -9,28 +9,28 @@
       <span>Reminders</span>
       <el-button-group style="float: right; display: none">
         <el-button
-          style="padding: 3px"
+          style="padding: 3px; color: #c0c4cc; border: none"
           plain
           tabindex="-1"
           @click="mxOpenACtInCl"
           class="el-icon-circle-plus-outline"
         ></el-button>
         <el-button
-          style="padding: 3px"
+          style="padding: 3px; color: #c0c4cc; border: none"
           plain
           tabindex="-1"
           class="el-icon-s-grid"
           @click="mxOpenMCtInCl"
         ></el-button>
         <el-button
-          style="padding: 3px"
+          style="padding: 3px; color: #c0c4cc; border: none"
           plain
           tabindex="-1"
           @click="mxOpenDDialog"
           class="el-icon-document-delete"
         ></el-button>
         <el-button
-          style="padding: 3px"
+          style="padding: 3px; color: #c0c4cc; border: none"
           plain
           tabindex="-1"
           @click="mxOpenXCtInCl"
@@ -46,8 +46,13 @@
         shadow="hover"
         :style="mfGetCssClassName(rem)"
       >
-        <div class="sc-reminder-individual-card-info-icon">
-          <el-button type="text">
+        <el-button-group style="float: right; display: none">
+          <el-button
+            class="el-icon-info"
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+          >
             <el-tooltip
               class="item"
               effect="light"
@@ -55,12 +60,15 @@
               placement="top-end"
               :open-delay="500"
             >
-              <i class="el-icon-info sc-info-icon"></i>
             </el-tooltip>
           </el-button>
-        </div>
-        <div class="sc-reminder-individual-card-delete-icon">
-          <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
+          <el-button
+            class="el-icon-error"
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
+          >
             <el-tooltip
               class="item"
               effect="light"
@@ -68,10 +76,9 @@
               placement="top-end"
               :open-delay="500"
             >
-              <i class="el-icon-error sc-delete-icon"></i>
             </el-tooltip>
           </el-button>
-        </div>
+        </el-button-group>
 
         <el-tooltip
           class="item"
@@ -247,7 +254,7 @@ export default {
   padding: 10px !important;
 }
 
-/* Hierarchy Level 2 */
+/* Hierarchy Level 2 / Child 1*/
 
 .sc-reminder-all-content-body {
   display: grid;
@@ -269,21 +276,23 @@ export default {
   text-decoration: none;
 }
 
+/* Hierarchy Level 2 / Child 2 */
+
 .el-card:hover .sc-reminder-all-content-header .el-button-group {
   display: inline-block !important;
 }
 
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
-  color: #67c23a;
+  color: #67c23a !important;
 }
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
-  color: #409eff;
+  color: #409eff !important;
 }
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
-  color: #f56c6c;
+  color: #f56c6c !important;
 }
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
-  color: #909399;
+  color: #909399 !important;
 }
 
 /* Hierarchy Level 3 */
@@ -296,10 +305,16 @@ export default {
   padding: 1px;
 }
 
-.sc-reminder-individual-card.el-card.box-card:hover
-  .sc-reminder-individual-card-delete-icon
-  .el-button.el-button--text {
-  color: #f39797;
+.el-card:hover .sc-reminder-individual-card .el-button-group {
+  display: inline-block !important;
+}
+
+.el-card__header:hover .sc-reminder-individual-card .el-icon-info {
+  color: #909399 !important;
+}
+
+.el-card__header:hover .sc-reminder-individual-card .el-icon-error {
+  color: #f56c6c !important;
 }
 
 .sc-reminder-individual-card.el-card.box-card {
@@ -330,9 +345,6 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
-.sc-reminder-individual-card-delete-icon .el-button.el-button--text {
-  color: #ebe9e9;
-}
 
 /* Hierarchy Level 4: Partition 3 */
 
@@ -343,27 +355,5 @@ export default {
   z-index: 999;
   cursor: pointer;
   text-decoration: none;
-}
-.sc-reminder-individual-card-info-icon .el-button.el-button--text {
-  color: #ebe9e9;
-}
-.sc-reminder-individual-card.el-card.box-card:hover
-  .sc-reminder-individual-card-info-icon
-  .el-button.el-button--text {
-  color: #a1e5fa;
-}
-.sc-info-icon {
-  font-size: 0.85rem;
-}
-.sc-info-icon:hover {
-  color: #2ccbfc;
-  font-size: 1.05rem;
-}
-.sc-delete-icon {
-  font-size: 0.85rem;
-}
-.sc-delete-icon:hover {
-  color: #ff0000;
-  font-size: 1.05rem;
 }
 </style>
