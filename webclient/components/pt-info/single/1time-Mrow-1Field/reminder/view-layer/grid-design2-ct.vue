@@ -7,7 +7,7 @@
   >
     <div class="sc-reminder-all-content-header clearfix" slot="header">
       <span>Reminders</span>
-      <el-button-group style="float: right">
+      <el-button-group style="float: right; display: none">
         <el-button
           style="padding: 3px"
           plain
@@ -15,7 +15,13 @@
           @click="mxOpenACtInCl"
           class="el-icon-circle-plus-outline"
         ></el-button>
-        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+        <el-button
+          style="padding: 3px"
+          plain
+          tabindex="-1"
+          class="el-icon-s-grid"
+          @click="mxOpenMCtInCl"
+        ></el-button>
         <el-button
           style="padding: 3px"
           plain
@@ -261,6 +267,23 @@ export default {
   height: 100%;
   line-height: 18px;
   text-decoration: none;
+}
+
+.el-card:hover .sc-reminder-all-content-header .el-button-group {
+  display: inline-block !important;
+}
+
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
+  color: #67c23a;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
+  color: #409eff;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
+  color: #f56c6c;
+}
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
+  color: #909399;
 }
 
 /* Hierarchy Level 3 */
