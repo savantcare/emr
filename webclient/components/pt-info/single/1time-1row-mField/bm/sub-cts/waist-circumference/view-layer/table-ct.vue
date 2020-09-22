@@ -18,7 +18,6 @@ Code synced with ref implementation on 4th august 2020
       cfDataRow['notes']
     }}</el-button>
     <el-button
-      type="primary"
       size="mini"
       style="padding: 3px"
       plain
