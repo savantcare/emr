@@ -18,7 +18,7 @@
               >
             </div>
             <div v-else>
-              <el-input />
+              <el-input v-model="input" />
             </div>
           </div>
           <div v-else>
@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
+      input: '',
     }
   },
   computed: {
