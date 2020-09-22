@@ -10,10 +10,11 @@
           icon="el-icon-edit"
         ></el-button>
       </div>
-      <div class="grid-container">
+      <div class="grid-container data-card">
         <el-card
           v-for="ss in cfArOfServiceStatementForDisplay"
           :key="ss.clientSideUniqRowId"
+          shadow="hover"
           class="box-card content-card"
         >
           <div class="info-icon">
