@@ -68,7 +68,7 @@
               placement="top-end"
               :open-delay="500"
             >
-              <i class="el-icon-error sc-close-icon"></i>
+              <i class="el-icon-error sc-delete-icon"></i>
             </el-tooltip>
           </el-button>
         </div>
@@ -359,10 +359,10 @@ export default {
   color: #2ccbfc;
   font-size: 1.05rem;
 }
-.sc-close-icon {
+.sc-delete-icon {
   font-size: 0.85rem;
 }
-.sc-close-icon:hover {
+.sc-delete-icon:hover {
   color: #ff0000;
   font-size: 1.05rem;
 }
