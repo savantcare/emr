@@ -18,36 +18,18 @@ export default {
       data: {
         value: 'mental status exams',
         ctAbbr: 'ss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
-      },
-    })
-    clientSideTblSearchPhrasesOfCt.insert({
-      data: {
-        value: 'add mental status exam',
-        ctAbbr: 'addss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/change-layer/add-ct.vue',
-        displayLocation: 'cl',
-        ctWidthInCl: 'small',
       },
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'change mental status exam',
         ctAbbr: 'css',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
-      },
-    })
-    clientSideTblSearchPhrasesOfCt.insert({
-      data: {
-        value: 'discontinued mental status exams',
-        ctAbbr: 'dss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/view-layer/discontinued.vue',
-        displayLocation: 'cl',
-        ctWidthInCl: 'large',
       },
     })
   },
