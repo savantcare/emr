@@ -8,8 +8,8 @@
         >
       </div>
       <div class="grid-container">
-        <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.clientSideUniqRowId">
-          <el-button @click="mfDiscontinueServiceStatement(ss.clientSideUniqRowId)" type="primary"
+        <div v-for="ss in cfArOfMentalStatusExamForDisplay" :key="ss.clientSideUniqRowId">
+          <el-button @click="mfDiscontinueMentalStatusExam(ss.clientSideUniqRowId)" type="primary"
             >{{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
             {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}</el-button
           >
@@ -25,7 +25,7 @@ import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/ta
 
 export default {
   computed: {
-    cfArOfServiceStatementForDisplay() {
+    cfArOfMentalStatusExamForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
@@ -35,7 +35,7 @@ export default {
     },
   },
   methods: {
-    mfDiscontinueServiceStatement(pClientSideUniqRowId) {
+    mfDiscontinueMentalStatusExam(pClientSideUniqRowId) {
       clientSideTblPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {
