@@ -24,8 +24,13 @@
         shadow="hover"
         :style="mfGetCssClassName(mse)"
       >
-        <div class="info-icon">
-          <el-button type="text">
+        <el-button-group style="float: right; display: none">
+          <el-button
+            class="el-icon-discover"
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+          >
             <el-tooltip
               class="item"
               effect="light"
@@ -33,16 +38,25 @@
               placement="top-end"
               :open-delay="500"
             >
-              <i class="el-icon-info custom-info-icon"></i>
             </el-tooltip>
           </el-button>
-        </div>
-
-        <div class="delete-icon">
-          <el-button type="text" @click="mfDeleteMentalStatusExam(mse.clientSideUniqRowId)">
-            <i class="el-icon-error custom-close-icon"></i>
+          <el-button
+            class="el-icon-circle-close"
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mfDeleteMentalStatusExam(mse.clientSideUniqRowId)"
+          >
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="Click to delete"
+              placement="top-end"
+              :open-delay="500"
+            >
+            </el-tooltip>
           </el-button>
-        </div>
+        </el-button-group>
         {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
         {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
       </el-card>
@@ -198,5 +212,6 @@ Generatiobn 3                     |
 
 .sc-mental-status-exam-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
+  font-size: 20px;
 }
 </style>
