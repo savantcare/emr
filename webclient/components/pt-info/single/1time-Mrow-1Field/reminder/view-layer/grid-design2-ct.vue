@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <div>
+  <div :style="contentStyle">
     <el-card class="box-card" shadow="hover">
       <div slot="header" class="clearfix">
         <span>Reminders</span>
@@ -109,6 +109,8 @@ import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clientSideTable from '../db/client-side/structure/rem-table.js'
 import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
+import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+
 export default {
   components: { ctActOnSocketMessages },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
@@ -117,12 +119,21 @@ export default {
       tablePageNumber: 1,
       daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
-      fontSizeOfHeadingEveryWhere: '24',
-      fontSizeOfContentEveryWhere: '112',
-      fontSizeOfSubContentEveryWhere: '10',
     }
   },
   computed: {
+    contentStyle() {
+      const objCommonRow = objCommonOrm.find(1)
+      if (objCommonRow !== null) {
+        let fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForNormalEyeSight
+        if (objCommonRow.currentUserEyeSight == 'weak') {
+          fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForWeakEyeSight
+        }
+        return {
+          '--font-size-of-content-every-where': fontSizeOfContentEveryWhere,
+        }
+      }
+    },
     cfLengthOfDataArray() {
       const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidRows()
       return arFromClientSideTable.length
