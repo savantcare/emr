@@ -25,6 +25,15 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
+        value: 'mental status exam v2',
+        ctAbbr: 'mse',
+        ctToShow:
+          'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'ptsVl',
+      },
+    })
+    clientSideTblSearchPhrasesOfCt.insert({
+      data: {
         value: 'change mental status exam',
         ctAbbr: 'cmse',
         ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/change-layer/c-ct.vue',
