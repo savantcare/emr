@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <div :style="contentStyle">
+  <div :style="cfContentStyle">
     <el-card class="box-card" shadow="hover">
       <div slot="header" class="clearfix">
         <span>Reminders</span>
@@ -122,8 +122,8 @@ export default {
     }
   },
   computed: {
-    contentStyle() {
-      const objCommonRow = objCommonOrm.find(1)
+    cfContentStyle() {
+      const objCommonRow = objCommonOrm.find(1) // if this is async then it does not work.
       if (objCommonRow !== null) {
         let fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForNormalEyeSight
         if (objCommonRow.currentUserEyeSight == 'weak') {
