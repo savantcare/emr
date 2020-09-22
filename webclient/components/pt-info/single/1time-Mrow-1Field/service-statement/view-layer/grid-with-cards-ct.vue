@@ -17,27 +17,29 @@
           shadow="hover"
           class="box-card content-card"
         >
-          <div class="info-icon">
-            <el-button type="text">
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="info"
-                placement="top-end"
-                :open-delay="500"
-              >
-                <i class="el-icon-info custom-info-icon"></i>
-              </el-tooltip>
-            </el-button>
-          </div>
+          <div v-on:click="mfDeleteServiceStatement(ss.clientSideUniqRowId)">
+            <div class="info-icon">
+              <el-button type="text">
+                <el-tooltip
+                  class="item"
+                  effect="light"
+                  content="info"
+                  placement="top-end"
+                  :open-delay="500"
+                >
+                  <i class="el-icon-info custom-info-icon"></i>
+                </el-tooltip>
+              </el-button>
+            </div>
 
-          <div class="delete-icon">
-            <el-button type="text" @click="mfDeleteServiceStatement(ss.clientSideUniqRowId)">
-              <i class="el-icon-error custom-close-icon"></i>
-            </el-button>
+            <div class="delete-icon">
+              <el-button type="text" @click="mfDeleteServiceStatement(ss.clientSideUniqRowId)">
+                <i class="el-icon-error custom-close-icon"></i>
+              </el-button>
+            </div>
+            {{ ss.tblServiceStatementsMasterLink.serviceStatementCategory }}:
+            {{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}
           </div>
-          {{ ss.tblServiceStatementsMasterLink.serviceStatementCategory }}:
-          {{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}
         </el-card>
       </div>
     </el-card>
