@@ -1,8 +1,8 @@
 <!-- Reference implementation -->
 <template>
-  <div clsss="sc-reminder-all-cards" :style="cfContentStyle">
+  <div clsss="sc-reminder-all-content" :style="cfGetVariablesFromClientSideTableToUseInCSS">
     <el-card class="box-card" shadow="hover">
-      <div class="sc-reminder-header clearfix" slot="header">
+      <div class="sc-reminder-all-content-header clearfix" slot="header">
         <span>Reminders</span>
         <el-button-group style="float: right">
           <el-button
@@ -29,7 +29,7 @@
           ></el-button>
         </el-button-group>
       </div>
-      <div class="sc-reminder-all-cards-body">
+      <div class="sc-reminder-all-content-body">
         <el-card
           v-for="rem in cfArOfRemForDisplayInTable"
           :key="rem.id"
@@ -83,7 +83,9 @@
               class="text item sc-reminder-individual-card-content"
               @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
             >
-              <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+              <div v-if="rem.vnRowStateInSession === 9">
+                Added from socket {{ rem.description }}
+              </div>
               <div v-else>{{ rem.description }}</div>
             </div>
           </el-tooltip>
@@ -120,7 +122,7 @@ export default {
     }
   },
   computed: {
-    cfContentStyle() {
+    cfGetVariablesFromClientSideTableToUseInCSS() {
       const objCommonRow = objCommonOrm.find(1) // if this is async then it does not work.
       if (objCommonRow !== null) {
         let fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForNormalEyeSight
@@ -208,23 +210,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 /* Hierarchy ->           
-                  .sc-reminder-all-cards
+                  .sc-reminder-all-content
                             |
-                 ___________________________           
-                 |                         |
-              .sc-reminder-header  .sc-reminder-all-cards-body
-                                           |
-                                .sc-reminder-individual-card
-                                           |
+                 _________________________________           
+                 |                               |
+  .sc-reminder-all-content-header       .sc-reminder-all-content-body
+                                                 |
+                                        .sc-reminder-individual-card
+                                                 |
                        ________________________________________________________________________________          
                       |                                 |                                             |
         .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
 
 */
 
-.sc-reminder-all-cards-body {
+/* Hierarchy Level 1 */
+
+.sc-reminder-all-content .el-card__body {
+  padding: 1px 1px 1px !important;
+}
+
+/* Hierarchy Level 2 */
+
+.sc-reminder-all-content-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
@@ -237,24 +247,29 @@ export default {
   margin: 1px;
 }
 
-.sc-reminder-all-cards-body .el-card__body {
+.sc-reminder-all-content-body .el-card__body {
   padding: 16px 10px 5px !important;
   height: 100%;
   line-height: 18px;
   text-decoration: none;
 }
 
+/* Hierarchy Level 3 */
+
 .sc-reminder-individual-card {
   cursor: pointer;
   overflow-wrap: break-word;
   position: relative;
   margin: 5px;
+  padding: 1px;
 }
 .sc-reminder-individual-card.el-card.box-card:hover
   .sc-reminder-individual-card-delete-icon
   .el-button.el-button--text {
   color: #f39797;
 }
+
+/* Hierarchy Level 4 */
 
 .sc-reminder-individual-card-content {
   font-size: var(--font-size-of-content-every-where);
