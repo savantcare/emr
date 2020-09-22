@@ -9,15 +9,20 @@
 
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
-          -->
-    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin-bottom: 25px">
+    -->
+    <div
+      class="cs-of-vl"
+      v-for="card in cfArCardsInCsOfVl"
+      :key="card.id"
+      style="margin-bottom: 25px"
+    >
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
                 is not hidden. When user types rex 2 times, rex is being displayed 2 times
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
-            -->
+      -->
       <component :is="card.ctToShow"></component>
     </div>
     <!-- ctVlSearchBox as per glossary is Component View layer search box 
@@ -35,7 +40,7 @@
               Choice in July 2020 by VK: keep search box at botoom
 
               Do not make the mistake of making something like this configurable. When needed the change should be made directly in the code
-        -->
+    -->
     <ctVlSearchBox></ctVlSearchBox>
   </div>
 </template>
@@ -61,3 +66,14 @@ export default {
   },
 }
 </script>
+<style>
+.cs-of-vl .el-card.box-card .el-card__header {
+  padding: 9px 9px !important;
+}
+.cs-of-vl .el-card.box-card {
+  border: 1px solid #e4e4e4;
+}
+.cs-of-vl .el-card.box-card:hover {
+  border: 1px solid #b7daf7;
+}
+</style>
