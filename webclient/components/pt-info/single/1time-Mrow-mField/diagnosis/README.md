@@ -1,0 +1,1 @@
+Diagnosis skill made by MK
