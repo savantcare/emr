@@ -19,13 +19,49 @@
           >
         </el-button-group>
       </div>
-      <div class="grid-container">
-        <div
+      <div class="grid-container data-card">
+        <el-card
           v-for="rem in cfArOfRemForDisplayInTable"
           :key="rem.id"
+          class="box-card content-card"
+          shadow="hover"
           :style="mfGetCssClassName(rem)"
         >
-          <!-- <el-button type="text">{{ rem.description }}</el-button> 
+          <div class="info-icon">
+            <el-button type="text">
+              <el-tooltip
+                class="item"
+                effect="light"
+                content="info"
+                placement="top-end"
+                open-delay="500"
+              >
+                <i class="el-icon-info custom-info-icon"></i>
+              </el-tooltip>
+            </el-button>
+          </div>
+          <div class="discontinue-icon">
+            <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
+              <el-tooltip
+                class="item"
+                effect="light"
+                content="Click to discontinue"
+                placement="top-end"
+                open-delay="500"
+              >
+                <i class="el-icon-error custom-close-icon"></i>
+              </el-tooltip>
+            </el-button>
+          </div>
+
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to change"
+            placement="top-start"
+            open-delay="500"
+          >
+            <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
 
           if rowStateInThisSession == 9 then the div should have a orange border
@@ -33,34 +69,18 @@
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
           -->
-
-          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-          <div v-else>
-            {{ rem.description }}
-          </div>
-
-          <el-button-group>
-            <el-button
-              type="primary"
-              size="mini"
-              style="padding: 3px"
-              plain
-              tabindex="-1"
-              @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-              >C</el-button
-            >
-            <el-button
-              type="warning"
-              size="mini"
-              style="padding: 3px"
-              plain
-              tabindex="-1"
-              @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
-              >D</el-button
-            >
-          </el-button-group>
-        </div>
+            <div class="text item content-div" @click="mxOpenCCtInCl(rem.clientSideUniqRowId)">
+              <div v-if="rem.vnRowStateInSession === 9">
+                Added from socket {{ rem.description }}
+              </div>
+              <div v-else>
+                {{ rem.description }}
+              </div>
+            </div>
+          </el-tooltip>
+        </el-card>
       </div>
+
       <el-pagination
         :hide-on-single-page="true"
         background
@@ -159,7 +179,7 @@ export default {
       if (lastCharecter === '4' || lastCharecter === '6') {
         return 'color: #E6A23C;'
       } else {
-        return 'color: #409EFF;'
+        return 'color: #202020;'
       }
     },
   },
@@ -178,5 +198,82 @@ export default {
   grid-gap: 1px;
   grid-auto-flow: row; /* This is default value */
   margin: 1px;
+}
+.el-tag {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.el-tag .el-tag__close {
+  color: #409eff;
+  float: right;
+  top: 7px !important;
+}
+.grid-container.data-card .el-card__body {
+  padding: 16px 10px 5px;
+  height: 100%;
+  line-height: 18px;
+  text-decoration: none;
+}
+.discontinue-icon {
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  z-index: 999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.discontinue-icon .el-button.el-button--text {
+  color: #ebe9e9;
+}
+.content-card.el-card.box-card:hover .discontinue-icon .el-button.el-button--text {
+  color: #f39797;
+}
+.content-card {
+  cursor: pointer;
+  overflow-wrap: break-word;
+  position: relative;
+  margin: 5px;
+}
+.content-div {
+  font-size: 12px;
+  height: 100%;
+}
+.content-div:hover {
+  color: #409eff !important;
+}
+.content-card.el-card.box-card {
+  border: 1px solid #e4e4e4;
+}
+.content-card.el-card.box-card:hover {
+  border: 1px solid #b7daf7;
+}
+.custom-close-icon {
+  font-size: 0.85rem;
+}
+.custom-close-icon:hover {
+  color: #ff0000;
+  font-size: 1.05rem;
+}
+
+.info-icon {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  z-index: 999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.info-icon .el-button.el-button--text {
+  color: #ebe9e9;
+}
+.content-card.el-card.box-card:hover .info-icon .el-button.el-button--text {
+  color: #a1e5fa;
+}
+.custom-info-icon {
+  font-size: 0.85rem;
+}
+.custom-info-icon:hover {
+  color: #2ccbfc;
+  font-size: 1.05rem;
 }
 </style>
