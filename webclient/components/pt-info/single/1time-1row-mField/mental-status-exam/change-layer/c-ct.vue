@@ -10,16 +10,26 @@
       <div class="grid-container">
         <div v-for="ms in allMentalStatusExamInsideAGroup" :key="ms.mentalStatusExamMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
-            <el-button
-              @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
-              type="primary"
-              >{{ ms.mentalStatusExamDescription }}</el-button
-            >
+            <div v-if="ms.mentalStatusExamFieldType === 'bool'">
+              <el-button
+                @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
+                type="primary"
+                >{{ ms.mentalStatusExamDescription }}</el-button
+              >
+            </div>
+            <div v-else>
+              <el-input />
+            </div>
           </div>
           <div v-else>
-            <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
-              ms.mentalStatusExamDescription
-            }}</el-button>
+            <div v-if="ms.mentalStatusExamFieldType === 'bool'">
+              <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
+                ms.mentalStatusExamDescription
+              }}</el-button>
+            </div>
+            <div v-else>
+              <el-input />
+            </div>
           </div>
         </div>
       </div>

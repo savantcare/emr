@@ -157,6 +157,17 @@ export default {
         mentalStatusExamCategory: 'Attitude',
       },
     })
+
+    i = i + 1
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: i,
+        mentalStatusExamDescription: 'Other',
+        mentalStatusExamCategory: 'Attitude',
+        mentalStatusExamFieldType: 'input',
+      },
+    })
+
     i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
