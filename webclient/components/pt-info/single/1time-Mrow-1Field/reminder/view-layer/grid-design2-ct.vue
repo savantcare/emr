@@ -63,7 +63,7 @@
             </el-tooltip>
           </el-button>
           <el-button
-            class="el-icon-error"
+            class="el-icon-circle-close"
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
@@ -254,7 +254,7 @@ export default {
   padding: 10px !important;
 }
 
-/* Hierarchy Level 2 / Child 1 */
+/* Hierarchy Level 2 / Child 1 Goal: Header icon management */
 
 .el-card:hover .sc-reminder-all-content-header .el-button-group {
   display: inline-block !important;
@@ -305,6 +305,7 @@ export default {
   padding: 1px;
 }
 
+/* Goal: Header icon management  */
 .el-card:hover .sc-reminder-individual-card .el-button-group {
   display: inline-block !important;
 }
@@ -313,16 +314,8 @@ export default {
   color: #909399 !important;
 }
 
-.sc-reminder-individual-card:hover .el-icon-error {
+.sc-reminder-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
-}
-
-.sc-reminder-individual-card.el-card.box-card {
-  border: 1px solid #e4e4e4;
-}
-
-.sc-reminder-individual-card.el-card.box-card:hover {
-  border: 1px solid #b7daf7;
 }
 
 /* Hierarchy Level 4: Partition 1 */
@@ -331,29 +324,6 @@ export default {
   font-size: var(--font-size-of-content-every-where);
   height: 100%;
 }
-.sc-reminder-individual-card-content:hover {
-  color: #409eff !important;
-}
 
 /* Hierarchy Level 4: Partition 2 */
-
-.sc-reminder-individual-card-info-icon {
-  position: absolute;
-  top: -10px;
-  right: 16px;
-  z-index: 999;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Hierarchy Level 4: Partition 3 */
-
-.sc-reminder-individual-card-delete-icon {
-  position: absolute;
-  top: -10px;
-  right: 0px;
-  z-index: 999;
-  cursor: pointer;
-  text-decoration: none;
-}
 </style>
