@@ -20,203 +20,232 @@ export default {
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '2',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'No apparennt distress',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '3',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Well developed, well nourished',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '4',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears stated age',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '5',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears younger than stated age',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '6',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears older than stated age',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '7',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Obese',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '8',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Thin or cachectic',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '9',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Disheveled, unkempt',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '10',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Malodorous',
         mentalStatusExamCategory: 'Appearance',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '11',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Other',
         mentalStatusExamCategory: 'Appearance',
         mentalStatusExamFieldType: 'input',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '11',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Pleasant and cooperative',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '12',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Uncooperative',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '13',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Hostile or defiant',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '14',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Guarded',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Evasive',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Apathetic',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Disorganized behavior',
         mentalStatusExamCategory: 'Attitude',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '14',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Agitated',
         mentalStatusExamCategory: 'Psychomotor',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Retarded',
         mentalStatusExamCategory: 'Psychomotor',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appropriate',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Downcast',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Intense',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Fleeting',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Regular, rate and rhythm',
         mentalStatusExamCategory: 'Speech',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '14',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Agitated',
         mentalStatusExamCategory: 'Psychomotor',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Retarded',
         mentalStatusExamCategory: 'Psychomotor',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appropriate',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '15',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Downcast',
         mentalStatusExamCategory: 'Eye-contact',
       },
     })
+    i = i + 1
   },
 }
 </script>
