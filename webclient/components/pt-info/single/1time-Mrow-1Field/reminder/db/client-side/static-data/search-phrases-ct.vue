@@ -50,9 +50,9 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'discontinued reminders',
+        value: 'deleted reminders',
         ctAbbr: 'drem',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/view-layer/discontinued.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/view-layer/deleted.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

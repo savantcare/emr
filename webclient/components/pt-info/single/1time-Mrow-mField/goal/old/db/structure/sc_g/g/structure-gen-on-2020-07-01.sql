@@ -9,7 +9,7 @@ CREATE TABLE `g` (
   `startDate` datetime DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
   `priority` int(11) DEFAULT 0,
-  `discontinuedNotes` text DEFAULT NULL,
+  `deletedNotes` text DEFAULT NULL,
   `recordChangedByUUID` CHAR(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`uuid`)

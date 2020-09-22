@@ -54,7 +54,7 @@ redis.psubscribe("*", function (err, count) {
 redis.on("pmessage", function (subscribed, pChannel, pMessage) {
   /* The messages that lumen can send and that the vue-client understands are
       channel=added message=JSON{description=,addedby=,} 
-      channel=discontinued message=JSON{uuid=$UUID,discontinuedBy=}
+      channel=deleted message=JSON{uuid=$UUID,deletedBy=}
 
 
       The word namespace/rooms/channel/rooms/path/event means different things to different systems.

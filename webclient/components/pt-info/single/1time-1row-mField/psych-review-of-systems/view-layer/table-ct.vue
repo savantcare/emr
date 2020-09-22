@@ -12,9 +12,7 @@
       </div>
       <div class="grid-container">
         <div v-for="ss in cfArOfPsychReviewOfSystemsForDisplay" :key="ss.clientSideUniqRowId">
-          <el-button
-            @click="mfDiscontinuePsychReviewOfSystems(ss.clientSideUniqRowId)"
-            type="primary"
+          <el-button @click="mfDeletePsychReviewOfSystems(ss.clientSideUniqRowId)" type="primary"
             >{{ ss.tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsCategory }}:
             {{ ss.tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsDescription }}</el-button
           >
@@ -40,7 +38,7 @@ export default {
     },
   },
   methods: {
-    mfDiscontinuePsychReviewOfSystems(pClientSideUniqRowId) {
+    mfDeletePsychReviewOfSystems(pClientSideUniqRowId) {
       clientSideTblPatientPsychReviewOfSystems.update({
         where: pClientSideUniqRowId,
         data: {

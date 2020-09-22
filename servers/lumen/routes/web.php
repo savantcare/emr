@@ -33,7 +33,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
     $router->delete('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
     $router->put('reminders/v20/{id}', ['uses' => 'ReminderController@update']);
-    $router->patch('reminders/v20/{id}', ['uses' => 'ReminderController@discontinue']);
+    $router->patch('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
     $router->options('reminders/v20', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
@@ -53,7 +53,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
     $router->delete('height/v20/{id}', ['uses' => 'HeightController@delete']);
     $router->put('height/v20/{id}', ['uses' => 'HeightController@update']);
-    $router->patch('height/v20/{id}', ['uses' => 'HeightController@discontinue']);
+    $router->patch('height/v20/{id}', ['uses' => 'HeightController@delete']);
     $router->options('height/v20', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')

@@ -15,7 +15,7 @@ Layer 1 Card
 │┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐ ┌───┐ ┌───┐ │ ┌──────────────────────┐
 │                            tried to committ suicide in context of            │ C │ │ D │ │ │C => Change           │
 ││ Brother                   bad marriage and loss of businesses, but        │ └───┘ └───┘ │ │                      │
-│                            not generally depressive                                      │ │D => Discontinue      │
+│                            not generally depressive                                      │ │D => Delete      │
 ││                                                                           │             │ └──────────────────────┘
 │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─              │
 │┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐ ┌───┐ ┌───┐ │

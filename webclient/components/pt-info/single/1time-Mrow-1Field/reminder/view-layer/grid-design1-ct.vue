@@ -67,8 +67,8 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
-      daSelectedRemForDiscontinue: [],
+      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daSelectedRemForDelete: [],
     }
   },
   computed: {
@@ -131,8 +131,8 @@ export default {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
     },
-    mfHandleSelectionForDiscontinue(val) {
-      this.daSelectedRemForDiscontinue = val
+    mfHandleSelectionForDelete(val) {
+      this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow, pIndex) {

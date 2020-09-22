@@ -50,12 +50,12 @@
               </el-tooltip>
             </el-button>
           </div>
-          <div class="discontinue-icon">
+          <div class="delete-icon">
             <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
               <el-tooltip
                 class="item"
                 effect="light"
-                content="Click to discontinue"
+                content="Click to delete"
                 placement="top-end"
                 open-delay="500"
               >
@@ -115,8 +115,8 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
-      daSelectedRemForDiscontinue: [],
+      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daSelectedRemForDelete: [],
     }
   },
   computed: {
@@ -179,8 +179,8 @@ export default {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
     },
-    mfHandleSelectionForDiscontinue(val) {
-      this.daSelectedRemForDiscontinue = val
+    mfHandleSelectionForDelete(val) {
+      this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow) {
@@ -224,7 +224,7 @@ export default {
   line-height: 18px;
   text-decoration: none;
 }
-.discontinue-icon {
+.delete-icon {
   position: absolute;
   top: -10px;
   right: 0px;
@@ -232,10 +232,10 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
-.discontinue-icon .el-button.el-button--text {
+.delete-icon .el-button.el-button--text {
   color: #ebe9e9;
 }
-.content-card.el-card.box-card:hover .discontinue-icon .el-button.el-button--text {
+.content-card.el-card.box-card:hover .delete-icon .el-button.el-button--text {
   color: #f39797;
 }
 .content-card {

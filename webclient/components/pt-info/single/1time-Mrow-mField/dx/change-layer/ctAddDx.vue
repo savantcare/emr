@@ -194,7 +194,7 @@ export default {
             this.updateData.description = this.daDxForm.diagnosis[0].description
             this.updateData.startDate = this.daDxForm.diagnosis[0].startDate
             this.updateData.score = this.daDxForm.diagnosis[0].score
-            this.updateData.discontinuedByUserId = this.userId
+            this.updateData.deletedByUserId = this.userId
             this.updateData.recordChangedByUUID = this.userId
             this.$store.dispatch('updateGoal', {
               data: this.updateData,

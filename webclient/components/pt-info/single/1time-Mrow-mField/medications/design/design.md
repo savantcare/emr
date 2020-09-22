@@ -22,7 +22,7 @@ Layer 1 card
 │└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘└───────────┘ │ │add form but fields will be       │
 │                                                                               │ │pre-filled with the corresponding │
 │                                                                               │ │medicine details                  │
-│ Orders requiring refill                                                       │ │D -> Discontinue                  │
+│ Orders requiring refill                                                       │ │D -> Delete                  │
 │┌────────────────────────────────────────────────────────────────────────────┐ │ └──────────────────────────────────┘
 ││Drug name    | Quantity| #Refill| Direction to patient| Status  | Action    │ │
 │└────────────────────────────────────────────────────────────────────────────┘ │
@@ -35,7 +35,7 @@ Layer 1 card
 │                                                                               │
 │                                                                               │
 │┌────────────────────────────────────────────────────────────────────────────┐ │
-││ Discontinued orders                                                    ▽   │ │
+││ Deleted orders                                                    ▽   │ │
 │├────────────────────────────────────────────────────────────────────────────┤ │
 ││┌──────────────────────────────────────────────────────────────────────────┐│ │
 │││Drug name    | Quantity| #Refill| Direction to patient| Status  | Action  ││ │

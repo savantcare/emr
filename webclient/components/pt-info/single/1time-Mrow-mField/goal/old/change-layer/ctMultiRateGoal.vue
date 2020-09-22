@@ -36,8 +36,8 @@
 
               <el-form-item>
                 <el-button type="success" size="small" @click="onClickSave(goal)">Save</el-button>
-                <el-button type="danger" size="small" @click="onClickDiscontinue(goal)"
-                  >Discontinue</el-button
+                <el-button type="danger" size="small" @click="onClickDelete(goal)"
+                  >Delete</el-button
                 >
               </el-form-item>
             </el-form>
@@ -126,9 +126,9 @@ export default {
         }
       } catch (ex) {}
     },
-    async onClickDiscontinue(goal) {
+    async onClickDelete(goal) {
       try {
-        goal.discontinue = true
+        goal.delete = true
         const response = await fetch(`${GOAL_API_URL}/${goal.uuid}`, {
           method: 'PATCH',
           headers: {
@@ -138,9 +138,9 @@ export default {
           body: JSON.stringify(goal),
         })
         if (!response.ok) {
-          console.log('Failed to discontinue')
+          console.log('Failed to delete')
         } else {
-          console.log('Discontinued successfull')
+          console.log('Deleted successfull')
         }
       } catch (ex) {}
     },

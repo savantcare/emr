@@ -113,7 +113,7 @@ describe("Test header and title of the page", () => {
   );
 
   test(
-    "Test for Multiple Discontinue",
+    "Test for Multiple Delete",
     async () => {
       let count = 0;
       foundExitTr = await page.evaluate(() => {
@@ -173,7 +173,7 @@ describe("Test header and title of the page", () => {
         );
         await page.click(
           ".el-card:nth-child(2) > .el-card__header > .clearfix > .el-button-group > .el-button--warning > span"
-        ); // Click on Multi Discontinue Icon
+        ); // Click on Multi Delete Icon
 
         await page.waitFor(500);
         await page.waitForSelector(
@@ -181,7 +181,7 @@ describe("Test header and title of the page", () => {
         );
         await page.click(
           ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
-        ); // Click Discontinue for all selected row
+        ); // Click Delete for all selected row
       }
 
       await getPerformanceTime("MultiAdd");

@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     async mfOnSubmit() {
-      // Since only one valid row is possible there may be other discontinued rows
+      // Since only one valid row is possible there may be other deleted rows
       const rowToUpsert = clientSideTable.find(this.dnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',

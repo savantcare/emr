@@ -8,7 +8,7 @@
 │1. Diagnosis (dx in short) can have multiple entries for a patient.                                       │
 │2. Each "Diagnosis" can have only one "Assessment".                                                       │
 │3. You can not change a "Diagnosis" but can change the "Assessment" written under it.                     │
-│4. If any change is needed in the diagnoses list then you have to "Discontinue" the obsolete "Diagnosis"  │
+│4. If any change is needed in the diagnoses list then you have to "Delete" the obsolete "Diagnosis"  │
 │first then "Add" a new "Diagnosis".                                                                       │
 │5. Diagnoses are selected from a predefined list of ICD10 Codes                                           │
 │                                                                                                          │
@@ -25,7 +25,7 @@
 │                                                                    │      │Header icons                │
 │ ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  │      │=============               │
 │  Diagnosis 1                                                     │ │      │A: Add new diagnosis        │
-│ │                                                                  │      │D: Show discontinued list   │
+│ │                                                                  │      │D: Show deleted list   │
 │                                                                  │ │      └────────────────────────────┘
 │ │  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─┌───────┐─   │
 │     Assessment for Diagnosis 1                        │ C I D │ ││ │  ┌───────────────────────────────────────────┐
@@ -36,12 +36,12 @@
 │  Diagnosis 2                                          │ A I D │  │ │  │C: Change assessment written under dx      │
 │ │                                                     └───────┘    │  │I: Information about activities done on    │
 │  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘ │  │this dx                                    │
-│                                                                    │  │D: Discontinue diagnosis                   │
+│                                                                    │  │D: Delete diagnosis                   │
 └────────────────────────────────────────────────────────────────────┘  │                                           │
                                                                         │*Note: Please see introduction section to  │
                                                                         │understand why the Assessment has only     │
                                                                         │"Change" and Diagnosis has only            │
-                                                                        │"Discontinue"                              │
+                                                                        │"Delete"                              │
                                                                         │                                           │
                                                                         │When dx has no assessment                  │
                                                                         │---------------------------                │

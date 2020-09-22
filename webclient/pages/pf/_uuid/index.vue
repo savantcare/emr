@@ -25,7 +25,7 @@
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
     <ctFeedDrawer></ctFeedDrawer>
     <ctMapDrawer></ctMapDrawer>
-    <ctDiscontinuedDrawer></ctDiscontinuedDrawer>
+    <ctDeletedDrawer></ctDeletedDrawer>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ import ctCsVlCards from '@/components/core/manage-ptsvl-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/manage-cl-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctFeedDrawer from '@/components/pt-info/combined/feed/drawer.vue'
 import ctMapDrawer from '@/components/pt-info/combined/map/drawer.vue'
-import ctDiscontinuedDrawer from '@/components/core/ct-discontinued-rows/drawer.vue'
+import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
 import clientSideTable from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
@@ -89,7 +89,7 @@ export default {
     ctTabsInDialogInCL,
     ctFeedDrawer,
     ctMapDrawer,
-    ctDiscontinuedDrawer,
+    ctDeletedDrawer,
   },
   data() {
     return {}

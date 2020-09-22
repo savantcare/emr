@@ -50,9 +50,9 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'discontinued phone numbers',
+        value: 'deleted phone numbers',
         ctAbbr: 'dpn',
-        ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/view-layer/discontinued.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/view-layer/deleted.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

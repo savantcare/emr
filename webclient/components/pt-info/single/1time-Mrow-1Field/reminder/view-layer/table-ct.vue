@@ -36,7 +36,7 @@
         style="width: 100%"
         :stripe="true"
         :row-class-name="mfGetCssClassName"
-        @selection-change="mfHandleSelectionForDiscontinue"
+        @selection-change="mfHandleSelectionForDelete"
       >
         <el-table-column type="selection" width="42" tabindex="-1"> </el-table-column>
         <!-- From developer console if I set:
@@ -63,7 +63,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
           <template slot-scope="props">
             <!-- 
               Goal: 
-              I open "add form" and enter "jai kali ma" and then i close the add form by pressing escape. In the table that row should not have change and discontinue
+              I open "add form" and enter "jai kali ma" and then i close the add form by pressing escape. In the table that row should not have change and delete
 
               How: 
               v-if to check is the 'vnRowStateInSession' not exists in array 'daRowStatesNotHavingCD'
@@ -114,8 +114,8 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and discontinue button. As per GLOSSARY.md C stands for 'change' and D stands for 'discontinue'.
-      daSelectedRemForDiscontinue: [],
+      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daSelectedRemForDelete: [],
     }
   },
   computed: {
@@ -178,8 +178,8 @@ export default {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
     },
-    mfHandleSelectionForDiscontinue(val) {
-      this.daSelectedRemForDiscontinue = val
+    mfHandleSelectionForDelete(val) {
+      this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
     mfGetCssClassName(pRow, pIndex) {

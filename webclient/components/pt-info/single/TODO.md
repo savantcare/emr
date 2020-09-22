@@ -11,7 +11,7 @@
 1. @raj When changing data
 
    1. "Saved this session" label is not correctly applied when saving fast.
-   2. I change a row then discontinue it.
+   2. I change a row then delete it.
       1. The row does not go away from table. I have to refresh.
       2. The row does not come in the X drawer. I have to refresh.
 
@@ -29,7 +29,7 @@
 
 1. Instead of month number need to show month short form.
 2. I dont want to copy mixin file to each folder.
-3. json-server needs to send only 1 valid and other discontinued data.
+3. json-server needs to send only 1 valid and other deleted data.
 4. On changing the data the json-server data insert and update of old data needs to work. In mariaDB this is transparent. Should I use to MaroaDB now?
 5. Show notes when click on popup
 6. When I change the data the part of data that is in change mode -- that line should be in orange.

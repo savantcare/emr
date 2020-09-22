@@ -9,7 +9,7 @@
       </div>
       <div class="grid-container">
         <div v-for="ss in cfArOfMentalStatusExamForDisplay" :key="ss.clientSideUniqRowId">
-          <el-button @click="mfDiscontinueMentalStatusExam(ss.clientSideUniqRowId)" type="primary"
+          <el-button @click="mfDeleteMentalStatusExam(ss.clientSideUniqRowId)" type="primary"
             >{{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
             {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}</el-button
           >
@@ -68,7 +68,7 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfDiscontinueMentalStatusExam(pClientSideUniqRowId) {
+    mfDeleteMentalStatusExam(pClientSideUniqRowId) {
       clientSideTblPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {

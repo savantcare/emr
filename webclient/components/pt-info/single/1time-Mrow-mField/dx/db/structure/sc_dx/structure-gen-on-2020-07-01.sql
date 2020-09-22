@@ -8,7 +8,7 @@ CREATE TABLE `dx` (
   `ptUUID` char(36) NOT NULL,
   `dxName` varchar(255) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
-  `dxDiscontinueNotes` varchar(255) DEFAULT NULL,
+  `dxDeleteNotes` varchar(255) DEFAULT NULL,
   `dxOnDate` datetime DEFAULT NULL,
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,

@@ -10,7 +10,7 @@ export default class Dx extends Model {
       uuid: this.uid(),
       dxName: this.string(''),
       icd10Code: this.string(null).nullable(),
-      dxDiscontinueNotes: this.string(null).nullable(),
+      dxDeleteNotes: this.string(null).nullable(),
       dxOnDate: this.string(null).nullable(),
       // patientUUID: this.belongsTo(Patient, 'uid'),
       patientUUID: this.attr(null),

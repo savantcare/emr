@@ -34,9 +34,9 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'discontinued service statements',
+        value: 'deleted service statements',
         ctAbbr: 'dss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/discontinued.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/deleted.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

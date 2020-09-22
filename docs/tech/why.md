@@ -30,7 +30,7 @@
 
 ### B. Tech Benefits from eco-system
 
-1.  **Temporal DB**: No need to maintain [created and discontinued related fields](https://mariadb.com/kb/en/temporal-data-tables/). Each table 8 fields are replaced with 3 fields.
+1.  **Temporal DB**: No need to maintain [created and deleted related fields](https://mariadb.com/kb/en/temporal-data-tables/). Each table 8 fields are replaced with 3 fields.
 
 2.  **ORM**:
 

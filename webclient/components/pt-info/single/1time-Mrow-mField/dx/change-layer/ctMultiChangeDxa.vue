@@ -18,9 +18,7 @@
               </el-form-item>
               <el-form-item>
                 <el-button type="success" size="small" @click="onClickSave(dx)">Save</el-button>
-                <el-button type="danger" size="small" @click="onClickDiscontinue(dx)"
-                  >Discontinue</el-button
-                >
+                <el-button type="danger" size="small" @click="onClickDelete(dx)">Delete</el-button>
               </el-form-item>
             </el-form>
             <DxaHistoryItem :dx="dx"></DxaHistoryItem>
@@ -82,9 +80,9 @@ export default {
         notify: this.$notify,
       })
     },
-    onClickDiscontinue(dx) {
+    onClickDelete(dx) {
       console.log(dx)
-      this.$store.dispatch('discontinueDiagnosisAssessment', {
+      this.$store.dispatch('deleteDiagnosisAssessment', {
         data: dx,
         notify: this.$notify,
       })

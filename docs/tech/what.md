@@ -58,11 +58,11 @@ patientfile> grep -ir -n --exclude-dir={node_modules,.git} ' FIX:' ./
 
 https://www.youtube.com/watch?v=8fx-EaOUK2E
 
-## Q7) How to do discontinue and delete in temporal DB?
+## Q7) How to do delete and delete in temporal DB?
 
 1. When doctor says change then run a edit query
 
-2. When doctor says discontinue then run a delete query
+2. When doctor says delete then run a delete query
 
 ### What is the DB doing internally?
 
@@ -212,7 +212,7 @@ ideal: patient/Recommendations/stateDBSocket.js
 
 - 1/3 add See line 62
 - 2/3 change (same as update query for temporal DB) See line 83
-- 3/3 discontinue (same as delete query for temporal DB) See line 96
+- 3/3 delete (same as delete query for temporal DB) See line 96
 
 ### Core 6/6: Categories of DB API calls
 

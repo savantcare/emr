@@ -16,56 +16,55 @@ export default {
       })
     },
     mxOpenDDialog() {
-      let confirmMessage = 'Are you sure you want to discontinue all the selected phone numbers?'
-      if (this.daSelectedRemForDiscontinue.length === 0) {
+      let confirmMessage = 'Are you sure you want to delete all the selected phone numbers?'
+      if (this.daSelectedRemForDelete.length === 0) {
         confirmMessage = 'No phoneNumber selected. Please select at least one phoneNumber.'
       }
 
-      this.$confirm(confirmMessage, 'Multi discontinue', {
-        confirmButtonText: 'Discontinue',
+      this.$confirm(confirmMessage, 'Multi delete', {
+        confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         type: 'warning',
       })
         .then(async () => {
-          if (this.daSelectedRemForDiscontinue.length > 0) {
-            const status = await clientSideTable.fnSendMultiDiscontinueDataToServer(
-              this.daSelectedRemForDiscontinue
+          if (this.daSelectedRemForDelete.length > 0) {
+            const status = await clientSideTable.fnSendMultiDeleteDataToServer(
+              this.daSelectedRemForDelete
             )
             if (status.success > 0) {
               this.$message({
                 type: 'success',
-                message: status.success + ' phoneNumber discontinued.',
+                message: status.success + ' phoneNumber deleted.',
               })
             }
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message:
-                  status.failed + ' phoneNumber failed to discontinue. Please try again later.',
+                message: status.failed + ' phoneNumber failed to delete. Please try again later.',
               })
             }
           }
-          console.log('daSelectedRemForDiscontinue=====>', this.daSelectedRemForDiscontinue)
+          console.log('daSelectedRemForDelete=====>', this.daSelectedRemForDelete)
         })
         .catch(() => {
-          console.log('multi discontinue cancelled')
+          console.log('multi delete cancelled')
         })
     },
     async mxOpenXCtInCl() {
-      const discontinuedRows = await clientSideTable.fnGetDiscontinuedRows()
+      const deletedRows = await clientSideTable.fnGetDeletedRows()
       const arDrawerData = []
-      discontinuedRows.forEach((item) => {
+      deletedRows.forEach((item) => {
         const arRow = []
         arRow.content = item.description
         const date = new Date(item.ROW_END * 1000)
-        arRow.discontinuedAt = date.toLocaleString()
+        arRow.deletedAt = date.toLocaleString()
 
         arDrawerData.push(arRow)
       })
-      console.log('discontinuedRows====>', discontinuedRows)
-      this.$store.commit('mtfSetDiscontinuedDrawerValue', {
+      console.log('deletedRows====>', deletedRows)
+      this.$store.commit('mtfSetDeletedDrawerValue', {
         visibility: true,
-        drawerTitle: 'Discontinued phone numbers',
+        drawerTitle: 'Deleted phone numbers',
         drawerData: arDrawerData,
       })
     },
@@ -87,13 +86,13 @@ export default {
     mxOpenDPrompt(pOrmDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Discontinue phone number', {
-        confirmButtonText: 'Discontinue',
+      this.$prompt(arResultsFromOrm.description, 'Delete phone number', {
+        confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
-        inputPlaceholder: 'Enter discontinue note',
+        inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientSideTable.fnSendDiscontinueDataToServer(
+          const status = await clientSideTable.fnSendDeleteDataToServer(
             pOrmDataRowId,
             arResultsFromOrm.uuid,
             value
@@ -101,7 +100,7 @@ export default {
           if (status === 1) {
             this.$message({
               type: 'success',
-              message: 'Reminder discontinued.',
+              message: 'Reminder deleted.',
             })
           } else {
             this.$message({
@@ -109,14 +108,14 @@ export default {
               message: 'Something went wrong. Please try again later.',
             })
           }
-          console.log('discontinue status ======> ', status)
+          console.log('delete status ======> ', status)
         })
         .catch(() => {
-          console.log('Discontinue cancelled')
+          console.log('Delete cancelled')
         })
     },
-    mxHandleSelectionForDiscontinue(val) {
-      this.daSelectedRemForDiscontinue = val
+    mxHandleSelectionForDelete(val) {
+      this.daSelectedRemForDelete = val
     },
   },
 }

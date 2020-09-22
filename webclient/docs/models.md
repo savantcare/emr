@@ -4,8 +4,8 @@
            + ves of storing as a number:
              1.  When using data
                     At a lot of places in the code I will need to compare the current time with ROW_END
-                    For e.g. 1. To decide if the row is discontinued.
-                           2. For a previous appt to decide if the row was discontinued before that appt time.
+                    For e.g. 1. To decide if the row is deleted.
+                           2. For a previous appt to decide if the row was deleted before that appt time.
              2. Whhen reading data
                   MariaDB is already storing the ROW_START and ROW_END as numbers.
              3. When saving data

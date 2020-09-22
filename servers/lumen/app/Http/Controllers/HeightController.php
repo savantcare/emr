@@ -84,13 +84,7 @@ class HeightController extends Controller
         return response()->json($Height, 200);
     }
 
-    public function delete($id)
-    {
-        Height::findOrFail($id)->delete();
-        return response('Deleted Successfully', 200);
-    }
-
-    public function discontinue($id, Request $request)
+    public function delete($id, Request $request)
     {
         $Height = Height::findOrFail($id);
         $requestData = $request->all();
@@ -108,7 +102,7 @@ class HeightController extends Controller
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForRemToDiscontinue';
+        $channel = 'MsgFromSktForRemToDelete';
         $message = array(
             'uuid' => $id,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
@@ -117,6 +111,6 @@ class HeightController extends Controller
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response('Discontinued successfully', 200);
+        return response('Deleted successfully', 200);
     }
 }

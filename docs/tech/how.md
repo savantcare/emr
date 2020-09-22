@@ -257,11 +257,11 @@ In this case we saved the doctor 10 seconds.
 
 ### Scenario 2:
 
-On the UI discontinue a rex.
+On the UI delete a rex.
 
-Inside database.json it will not say Discontinue:true UI will continue to show it as discontinued.
+Inside database.json it will not say Delete:true UI will continue to show it as deleted.
 
-After 10 seconds database.json will show Discontinue:true.
+After 10 seconds database.json will show Delete:true.
 
 In this case the app was able to give doctor 10 second faster response.
 
@@ -343,12 +343,12 @@ https://bootstrap-vue.org/docs/reference/theming
 Suppose doctor wants the state of the paitent on 15th Jan 2020:
 
 The query is:
-select \* from recommendationsTable where patientID=1 and createdBy < "15th Jan 2020" and ( discontinuedDate > "15th Jan 2020" or discontinuedDate == NULL)
+select \* from recommendationsTable where patientID=1 and createdBy < "15th Jan 2020" and ( deletedDate > "15th Jan 2020" or deletedDate == NULL)
 This returns JSON A
 
 Suppose doctor wants the state of the paitent on 10th Mar 2020:
 The query is:
-select \* from recommendationsTable where patientID=1 and createdBy < "10th Mar 2020" and ( discontinuedDate > "10th Mar 2020" or discontinuedDate == NULL)
+select \* from recommendationsTable where patientID=1 and createdBy < "10th Mar 2020" and ( deletedDate > "10th Mar 2020" or deletedDate == NULL)
 This returns JSON B
 
 Suppose the doctor wants to know the state of the patient on 9th March 2020:
@@ -372,7 +372,7 @@ Advantages of architecture 2:
 
 Dis-Advantages of architecture 2:
 
-1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/client-side/plugin-axios and https://github.com/client-side/plugin-soft-delete (bring discontinued to industry standard by calling it soft delete)
+1. How to run sql query over a JSON on the browser client side. Use https://vuex-orm.org/ with https://github.com/client-side/plugin-axios and https://github.com/client-side/plugin-soft-delete (bring deleted to industry standard by calling it soft delete)
 
 ## Q12) How to deploy to Heroku?
 

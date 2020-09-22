@@ -74,13 +74,8 @@ class ReminderController extends Controller
         return response()->json($Reminder, 200);
     }
 
-    public function delete($id)
-    {
-        Reminder::findOrFail($id)->delete();
-        return response('Deleted Successfully', 200);
-    }
-
-    public function discontinue($id, Request $request)
+ 
+    public function delete($id, Request $request)
     {
         $Reminder = Reminder::findOrFail($id);
         $requestData = $request->all();
@@ -98,7 +93,7 @@ class ReminderController extends Controller
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForRemToDiscontinue';
+        $channel = 'MsgFromSktForRemToDelete';
         $message = array(
             'serverSideRowUuid' => $id,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
@@ -107,6 +102,6 @@ class ReminderController extends Controller
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response('Discontinued successfully', 200);
+        return response('Deleted successfully', 200);
     }
 }

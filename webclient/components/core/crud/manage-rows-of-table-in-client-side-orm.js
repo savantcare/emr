@@ -157,7 +157,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
-    // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
       .where('ROW_END', 2147483647.999999)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
@@ -174,13 +174,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
-    Since everytime a row is updated the previous row is marked as discontinued 
-    So discontinued rows will not cross step 1 query */
+    Since everytime a row is updated the previous row is marked as deleted 
+    So deleted rows will not cross step 1 query */
     return arFromClientSideTable
   }
 
   static fnGetRowsToChange() {
-    // Step 1/2: Get valid data and not discontinued data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+    // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query().where('ROW_END', 2147483647.999999).get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
@@ -194,15 +194,15 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
-    Since everytime a row is updated the previous row is marked as discontinued 
-    So discontinued rows will not cross step 1 query */
+    Since everytime a row is updated the previous row is marked as deleted 
+    So deleted rows will not cross step 1 query */
     return arFromClientSideTable
   }
 
   /*  1. This function finds data in client side vuex-orm. This fn is not making a API query to the server.
       2. If there are 10 rows with same UUID then it will return the latest row
       3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
-          this means that the row has not been discontinued.
+          this means that the row has not been deleted.
   */
   static fnGetValidUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
@@ -269,20 +269,20 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return uniqueUuidRows
   }
 
-  static fnGetDiscontinuedRows() {
+  static fnGetDeletedRows() {
     /* 
     
-    Method 1: Get discontinued rows from clientSideTable using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
+    Method 1: Get deleted rows from clientSideTable using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
     Problem:- But I am unable to find vuex-orm groupBy query
  
-    Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not discontinued.
+    Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not deleted.
     Problem:- But it is not standard method.
     Decided to use this.  
 
-    Method 3: When i click on 'X' button, send a api request to the server and get all the discontinued rows.
+    Method 3: When i click on 'X' button, send a api request to the server and get all the deleted rows.
     Problem: It is not satisfying our P20 architecture.
  
-    Method 4: Maintain a 'isDiscontinued' enum(0 ,1) flag in database. But need to approval from Vikas sir.
+    Method 4: Maintain a 'isDeleted' enum(0 ,1) flag in database. But need to approval from Vikas sir.
     Need to discuss
     */
     // Following query makes sure I get all the discontimued rows
@@ -292,8 +292,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .orderBy('ROW_END', 'desc')
       .get()
 
-    const arDiscontinuedRows = []
-    const arDiscontinuedRowUniqueUuid = []
+    const arDeletedRows = []
+    const arDeletedRowUniqueUuid = []
     const currentUniqueUuidRows = this.fnGetValidUniqueUuidRows()
 
     arFromORM.forEach((item) => {
@@ -303,12 +303,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           foundInArToReturn = true
         }
       })
-      if (!foundInArToReturn && !arDiscontinuedRowUniqueUuid.includes(item.serverSideRowUuid)) {
-        arDiscontinuedRowUniqueUuid.push(item.serverSideRowUuid)
-        arDiscontinuedRows.push(item)
+      if (!foundInArToReturn && !arDeletedRowUniqueUuid.includes(item.serverSideRowUuid)) {
+        arDeletedRowUniqueUuid.push(item.serverSideRowUuid)
+        arDeletedRows.push(item)
       }
     })
-    return arDiscontinuedRows
+    return arDeletedRows
   }
 
   static fnGetFldValue(pClientSideRowId, pFldName) {
@@ -337,7 +337,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     Suppose the row of Name has had 3 changes and 1 change is in edit state.
     The inferences we can draw are:
     1. The Orm Ids are 1,2,3,4
-    2. Id 1,2 are discontinued
+    2. Id 1,2 are deleted
     3. Id 3,4 are valid (Valid implies that RPW_END time is > then the current time)
     4. Id 3 is Orm Id Of Row To Change
     5. Id 4 is Orm Id Of CopiedRowBeingChanged
@@ -636,7 +636,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendDiscontinueDataToServer(pOrmDataRowId, rowUUID, discontinuedNote) {
+  static async fnSendDeleteDataToServer(pOrmDataRowId, rowUUID, deletedNote) {
     try {
       const socketClientObj = await tableCommonForAllComponents.find(1)
 
@@ -647,7 +647,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          dNotes: discontinuedNote,
+          dNotes: deletedNote,
           patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
           clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
             socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
@@ -669,7 +669,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendMultiDiscontinueDataToServer(dataRow) {
+  static async fnSendMultiDeleteDataToServer(dataRow) {
     let success = 0
     let failed = 0
     /*
@@ -680,7 +680,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDiscontinueDataToServer(
+        const status = await this.fnSendDeleteDataToServer(
           row.clientSideUniqRowId,
           row.serverSideRowUuid,
           null

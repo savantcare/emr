@@ -186,7 +186,7 @@ describe("Test header and title of the page", () => {
   );
 
   test(
-    "Test for Single Discontinue",
+    "Test for Single Delete",
     async () => {
       foundExitTr = await page.evaluate(() => {
         const tds = Array.from(
@@ -232,7 +232,7 @@ describe("Test header and title of the page", () => {
             ".el-table__row:nth-child(" +
               i +
               ") > .el-table_1_column_4 > .cell > .el-button-group > .el-button--warning > span"
-          ); // Click on Discontinue Icon
+          ); // Click on Delete Icon
 
           await page.waitForSelector(
             ".el-message-box > .el-message-box__content > .el-message-box__input > .el-input > .el-input__inner"
@@ -243,7 +243,7 @@ describe("Test header and title of the page", () => {
           await page.type(
             ".el-message-box > .el-message-box__content > .el-message-box__input > .el-input > .el-input__inner",
             "N"
-          ); // Enter text for Discontinue (Optional)
+          ); // Enter text for Delete (Optional)
 
           await page.waitFor(500);
           await page.waitForSelector(
@@ -251,7 +251,7 @@ describe("Test header and title of the page", () => {
           );
           await page.click(
             ".el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span"
-          ); // Click on Discontinue button for Discontinue the data
+          ); // Click on Delete button for Delete the data
 
           break;
         }

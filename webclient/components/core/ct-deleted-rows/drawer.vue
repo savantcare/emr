@@ -17,7 +17,7 @@
         <el-timeline-item
           v-for="(activity, index) in cfDrawerData"
           :key="index"
-          :timestamp="activity.discontinuedAt"
+          :timestamp="activity.deletedAt"
         >
           {{ activity.content }}
         </el-timeline-item>
@@ -37,29 +37,29 @@ export default {
   computed: {
     cfDrawerVisibility: {
       get() {
-        return this.$store.state.vstObjDiscontinuedDrawer.vblIsDiscontinuedDrawerVisible
+        return this.$store.state.vstObjDeletedDrawer.vblIsDeletedDrawerVisible
       },
       set(value) {
-        // this.$store.commit('mtfSetDiscontinuedDrawerValue', value)
-        this.$store.commit('mtfSetDiscontinuedDrawerValue', {
+        // this.$store.commit('mtfSetDeletedDrawerValue', value)
+        this.$store.commit('mtfSetDeletedDrawerValue', {
           visibility: value,
         })
       },
     },
     cfDrawerTitle: {
       get() {
-        return this.$store.state.vstObjDiscontinuedDrawer.vsDiscontinuedDrawerTitle
+        return this.$store.state.vstObjDeletedDrawer.vsDeletedDrawerTitle
       },
       set(value) {
-        // this.$store.commit('mtfSetDiscontinuedDrawerValue', value)
-        this.$store.commit('mtfSetDiscontinuedDrawerValue', {
+        // this.$store.commit('mtfSetDeletedDrawerValue', value)
+        this.$store.commit('mtfSetDeletedDrawerValue', {
           drawerTitle: value,
         })
       },
     },
     cfDrawerData: {
       get() {
-        return this.$store.state.vstObjDiscontinuedDrawer.vaDiscontinuedDrawerData
+        return this.$store.state.vstObjDeletedDrawer.vaDeletedDrawerData
       },
     },
   },

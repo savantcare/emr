@@ -15,7 +15,7 @@ import vstOfCardsInPtsOfVlModule from '~/components/core/manage-ptsvl-cards/vst-
 
 import VueStateOfFeedDrawerModule from '~/components/pt-info/combined/feed/vue-state-of-feed-drawer'
 import VueStateOfMapDrawerModule from '~/components/pt-info/combined/map/vue-state-of-map-drawer'
-import VueStateOfDiscontinuedDrawerModule from '~/components/core/ct-discontinued-rows/vue-state-of-discontinued-drawer'
+import VueStateOfDeletedDrawerModule from '~/components/core/ct-deleted-rows/vue-state-of-deleted-drawer'
 
 import database from '~/store/import-tables-and-register-to-client-side-database'
 
@@ -42,7 +42,7 @@ const createStore = () => {
       // Full form: view state object feed drawer
       vstObjFeedDrawer: VueStateOfFeedDrawerModule,
       vstObjMapDrawer: VueStateOfMapDrawerModule,
-      vstObjDiscontinuedDrawer: VueStateOfDiscontinuedDrawerModule,
+      vstObjDeletedDrawer: VueStateOfDeletedDrawerModule,
 
       // Full form: view state object cards in current state of view layer
       vstObjCardsInPtsOfVl: vstOfCardsInPtsOfVlModule,

@@ -15,7 +15,7 @@
       style="width: 100%"
       :stripe="true"
       :row-class-name="mfGetCssClassName"
-      @selection-change="mfHandleSelectionForDiscontinue"
+      @selection-change="mfHandleSelectionForDelete"
     >
       <el-table-column prop="msg"> </el-table-column>
     </el-table>

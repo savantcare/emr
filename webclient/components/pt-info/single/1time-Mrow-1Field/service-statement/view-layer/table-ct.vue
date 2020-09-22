@@ -12,7 +12,7 @@
       </div>
       <div class="grid-container">
         <div v-for="ss in cfArOfServiceStatementForDisplay" :key="ss.clientSideUniqRowId">
-          <el-button @click="mfDiscontinueServiceStatement(ss.clientSideUniqRowId)" type="primary"
+          <el-button @click="mfDeleteServiceStatement(ss.clientSideUniqRowId)" type="primary"
             >{{ ss.tblServiceStatementsMasterLink.serviceStatementCategory }}:
             {{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}</el-button
           >
@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    mfDiscontinueServiceStatement(pClientSideUniqRowId) {
+    mfDeleteServiceStatement(pClientSideUniqRowId) {
       clientSideTblPatientServiceStatements.update({
         where: pClientSideUniqRowId,
         data: {

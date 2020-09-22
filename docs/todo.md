@@ -141,7 +141,7 @@ Ref: cts/patient/Recommendations/stateDBSocket.js:6 Using apollo solves this pro
 
 4. Code refactor
 
-   1. https://github.com/savantcare/patientfile/blob/62d857092560bb2770611fd9cbef4012adbca00d/vue-client/src/store/modules/recommendation.js#L181 section for "Server connection error" is missing. Why not call discontinueRecommendation() in a for loop from inside multiDiscontinueRecommendations (@jana)
+   1. https://github.com/savantcare/patientfile/blob/62d857092560bb2770611fd9cbef4012adbca00d/vue-client/src/store/modules/recommendation.js#L181 section for "Server connection error" is missing. Why not call deleteRecommendation() in a for loop from inside multiDeleteRecommendations (@jana)
 
 # Dr. Parikh meeting on 2nd June:
 
