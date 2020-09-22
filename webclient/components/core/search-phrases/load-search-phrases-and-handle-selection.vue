@@ -35,6 +35,7 @@
 
     <!-- 1time-Mrow-mField/others -->
     <phoneNumberSPhrases />
+    <diagnosisSPhrases />
 
     <el-autocomplete
       v-model="searchKeyword"
@@ -86,6 +87,7 @@ import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-st
 
 // 1time-Mrow-mField
 import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
+import diagnosisSPhrases from '@/components/pt-info/single/1time-Mrow-mField/diagnosis/db/client-side/static-data/search-phrases-ct'
 
 export default {
   components: {
@@ -122,6 +124,7 @@ export default {
 
     // 1time-Mrow-mField
     phoneNumberSPhrases,
+    diagnosisSPhrases,
   },
   data() {
     return { searchKeyword: '' }
