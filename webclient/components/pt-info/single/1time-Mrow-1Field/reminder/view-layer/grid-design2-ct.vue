@@ -1,77 +1,80 @@
 <!-- Reference implementation -->
 <template>
-  <div clsss="sc-reminder-all-content" :style="cfGetVariablesFromClientSideTableToUseInCSS">
-    <el-card class="box-card" shadow="hover">
-      <div class="sc-reminder-all-content-header clearfix" slot="header">
-        <span>Reminders</span>
-        <el-button-group style="float: right">
-          <el-button
-            style="padding: 3px"
-            plain
-            tabindex="-1"
-            @click="mxOpenACtInCl"
-            class="el-icon-circle-plus-outline"
-          ></el-button>
-          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
-          <el-button
-            style="padding: 3px"
-            plain
-            tabindex="-1"
-            @click="mxOpenDDialog"
-            class="el-icon-document-delete"
-          ></el-button>
-          <el-button
-            style="padding: 3px"
-            plain
-            tabindex="-1"
-            @click="mxOpenXCtInCl"
-            class="el-icon-delete"
-          ></el-button>
-        </el-button-group>
-      </div>
-      <div class="sc-reminder-all-content-body">
-        <el-card
-          v-for="rem in cfArOfRemForDisplayInTable"
-          :key="rem.id"
-          class="box-card sc-reminder-individual-card"
-          shadow="hover"
-          :style="mfGetCssClassName(rem)"
-        >
-          <div class="sc-reminder-individual-card-info-icon">
-            <el-button type="text">
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="info"
-                placement="top-end"
-                :open-delay="500"
-              >
-                <i class="el-icon-info sc-info-icon"></i>
-              </el-tooltip>
-            </el-button>
-          </div>
-          <div class="sc-reminder-individual-card-delete-icon">
-            <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="Click to delete"
-                placement="top-end"
-                :open-delay="500"
-              >
-                <i class="el-icon-error sc-close-icon"></i>
-              </el-tooltip>
-            </el-button>
-          </div>
+  <el-card
+    shadow="hover"
+    class="box-card sc-reminder-all-content"
+    :style="cfGetVariablesFromClientSideTableToUseInCSS"
+  >
+    <div class="sc-reminder-all-content-header clearfix" slot="header">
+      <span>Reminders</span>
+      <el-button-group style="float: right">
+        <el-button
+          style="padding: 3px"
+          plain
+          tabindex="-1"
+          @click="mxOpenACtInCl"
+          class="el-icon-circle-plus-outline"
+        ></el-button>
+        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+        <el-button
+          style="padding: 3px"
+          plain
+          tabindex="-1"
+          @click="mxOpenDDialog"
+          class="el-icon-document-delete"
+        ></el-button>
+        <el-button
+          style="padding: 3px"
+          plain
+          tabindex="-1"
+          @click="mxOpenXCtInCl"
+          class="el-icon-delete"
+        ></el-button>
+      </el-button-group>
+    </div>
+    <div class="sc-reminder-all-content-body">
+      <el-card
+        v-for="rem in cfArOfRemForDisplayInTable"
+        :key="rem.id"
+        class="box-card sc-reminder-individual-card"
+        shadow="hover"
+        :style="mfGetCssClassName(rem)"
+      >
+        <div class="sc-reminder-individual-card-info-icon">
+          <el-button type="text">
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="info"
+              placement="top-end"
+              :open-delay="500"
+            >
+              <i class="el-icon-info sc-info-icon"></i>
+            </el-tooltip>
+          </el-button>
+        </div>
+        <div class="sc-reminder-individual-card-delete-icon">
+          <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="Click to delete"
+              placement="top-end"
+              :open-delay="500"
+            >
+              <i class="el-icon-error sc-close-icon"></i>
+            </el-tooltip>
+          </el-button>
+        </div>
 
-          <el-tooltip
-            class="item"
-            effect="light"
-            content="Click to change"
-            placement="top-start"
-            :open-delay="500"
-          >
-            <!-- <el-button type="text">{{ rem.description }}</el-button> 
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Click to change"
+          placement="top-start"
+          :open-delay="500"
+        >
+          <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
 
           if rowStateInThisSession == 9 then the div should have a orange border
@@ -79,29 +82,26 @@
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
             -->
-            <div
-              class="text item sc-reminder-individual-card-content"
-              @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-            >
-              <div v-if="rem.vnRowStateInSession === 9">
-                Added from socket {{ rem.description }}
-              </div>
-              <div v-else>{{ rem.description }}</div>
-            </div>
-          </el-tooltip>
-        </el-card>
-      </div>
+          <div
+            class="text item sc-reminder-individual-card-content"
+            @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
+          >
+            <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+            <div v-else>{{ rem.description }}</div>
+          </div>
+        </el-tooltip>
+      </el-card>
+    </div>
 
-      <el-pagination
-        :hide-on-single-page="true"
-        background
-        layout="pager"
-        :total="cfLengthOfDataArray"
-        @current-change="mfTablePageChanged"
-      ></el-pagination>
-    </el-card>
+    <el-pagination
+      :hide-on-single-page="true"
+      background
+      layout="pager"
+      :total="cfLengthOfDataArray"
+      @current-change="mfTablePageChanged"
+    ></el-pagination>
     <ctActOnSocketMessages></ctActOnSocketMessages>
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -228,7 +228,16 @@ export default {
 
 /* Hierarchy Level 1 */
 
+.sc-reminder-all-content {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .sc-reminder-all-content .el-card__body {
+  padding: 10px !important;
+}
+
+.sc-reminder-all-content .el-card__header {
   padding: 10px !important;
 }
 
