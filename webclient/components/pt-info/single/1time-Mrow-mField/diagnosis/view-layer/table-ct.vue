@@ -9,10 +9,9 @@
       </div>
       <div class="grid-container">
         <div v-if="displayData.length > 0">
-          <div v-for="ss in displayData" :key="ss.clientSideUniqRowId">
-            <el-button @click="mfDiscontinue(ss.clientSideUniqRowId)" type="primary"
-              >{{ ss.tblServiceStatementsMasterLink.serviceStatementCategory }}:
-              {{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}</el-button
+          <div v-for="dx in displayData" :key="dx.clientSideUniqRowId">
+            <el-button @click="mfDiscontinue(dx.clientSideUniqRowId)" type="primary"
+              >{{ dx.name }}</el-button
             >
           </div>
         </div>
