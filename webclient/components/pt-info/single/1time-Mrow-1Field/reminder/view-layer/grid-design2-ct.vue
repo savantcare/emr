@@ -211,6 +211,21 @@ export default {
 </script>
 
 <style>
+/* Hierarchy ->           
+                  .sc-reminder-all-cards
+                            |
+                 ___________________________           
+                 |                         |
+              .sc-reminder-header  .sc-reminder-body
+                                           |
+                                .sc-individual-reminder-card
+                                           |
+                       ________________________________________________________________________________          
+                      |                                 |                                             |
+        .sc-individual-reminder-card-content    .sc-individual-reminder-card-info-icon           .sc-individual-reminder-card-delete-icon
+
+*/
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
