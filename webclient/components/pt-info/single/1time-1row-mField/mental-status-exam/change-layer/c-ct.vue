@@ -8,17 +8,17 @@
     >
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
-        <div v-for="ss in allMentalStatusExamInsideAGroup" :key="ss.serviceStatementMasterId">
+        <div v-for="ss in allMentalStatusExamInsideAGroup" :key="ss.mentalStatusExamMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
-              @click="mfToggleMentalStatusExam(ss.serviceStatementMasterId)"
+              @click="mfToggleMentalStatusExam(ss.mentalStatusExamMasterId)"
               type="primary"
-              >{{ ss.serviceStatementDescription }}</el-button
+              >{{ ss.mentalStatusExamDescription }}</el-button
             >
           </div>
           <div v-else>
-            <el-button @click="mfToggleMentalStatusExam(ss.serviceStatementMasterId)">{{
-              ss.serviceStatementDescription
+            <el-button @click="mfToggleMentalStatusExam(ss.mentalStatusExamMasterId)">{{
+              ss.mentalStatusExamDescription
             }}</el-button>
           </div>
         </div>
@@ -46,10 +46,10 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .where((_record, query) => {
           query
-            .where('serviceStatementCategory', (value) =>
+            .where('mentalStatusExamCategory', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
-            .orWhere('serviceStatementDescription', (value) =>
+            .orWhere('mentalStatusExamDescription', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
@@ -62,19 +62,19 @@ export default {
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Modality of Psychotherapy')
+          query.where('mentalStatusExamCategory', 'Modality of Psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      //  (query) => { query.where('serviceStatementCategory', 'Modality of Psychotherapy') })
+      //  (query) => { query.where('mentalStatusExamCategory', 'Modality of Psychotherapy') })
 
       console.log('modalityOfPsychotherapyExists', modalityOfPsychotherapyExists)
 
       if (modalityOfPsychotherapyExists.length > 0) {
         for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
           if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
             'Modality of Psychotherapy'
           ) {
             if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
@@ -95,7 +95,7 @@ export default {
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Time in psychotherapy')
+          query.where('mentalStatusExamCategory', 'Time in psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
@@ -106,7 +106,7 @@ export default {
         for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
           console.log(arOfObjectsFromClientSideMasterDB[i])
           if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
             'Time in psychotherapy'
           ) {
             if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
@@ -127,7 +127,7 @@ export default {
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('serviceStatementCategory', 'Total time with patient')
+          query.where('mentalStatusExamCategory', 'Total time with patient')
         })
         .where('ROW_END', 2147483647.999999)
         .get()
@@ -138,7 +138,7 @@ export default {
         for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
           console.log(arOfObjectsFromClientSideMasterDB[i])
           if (
-            arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
             'Total time with patient'
           ) {
             if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
@@ -156,7 +156,7 @@ export default {
 
       // End: Now group the SS
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'serviceStatementCategory')
+      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'mentalStatusExamCategory')
 
       // console.log(ar)
       return ar
@@ -194,7 +194,7 @@ export default {
     mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
       const exists = clientSideTblPatientMentalStatusExam
         .query()
-        .where('serviceStatementMasterId', pMentalStatusExamMasterId)
+        .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
@@ -207,7 +207,7 @@ export default {
       } else {
         clientSideTblPatientMentalStatusExam.insert({
           data: {
-            serviceStatementMasterId: pMentalStatusExamMasterId,
+            mentalStatusExamMasterId: pMentalStatusExamMasterId,
           },
         })
       }
