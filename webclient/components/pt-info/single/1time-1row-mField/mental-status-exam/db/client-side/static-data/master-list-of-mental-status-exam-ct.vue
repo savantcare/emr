@@ -12,9 +12,10 @@ export default {
     return {}
   },
   mounted() {
+    let i = 1
     clientSideTblMasterMentalStatusExam.insert({
       data: {
-        mentalStatusExamMasterId: '1',
+        mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Good grooming and hygiene',
         mentalStatusExamCategory: 'Appearance',
       },
@@ -80,6 +81,14 @@ export default {
         mentalStatusExamMasterId: '10',
         mentalStatusExamDescription: 'Malodorous',
         mentalStatusExamCategory: 'Appearance',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '11',
+        mentalStatusExamDescription: 'Other',
+        mentalStatusExamCategory: 'Appearance',
+        mentalStatusExamFieldType: 'input',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({

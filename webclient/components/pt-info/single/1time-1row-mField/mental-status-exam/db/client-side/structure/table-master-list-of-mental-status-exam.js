@@ -21,7 +21,7 @@ export default class mentalStatusExamMasterClass extends clientSideTableManage {
       mentalStatusExamMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each mental status exam
       mentalStatusExamDescription: this.string(null),
       mentalStatusExamCategory: this.string(null),
-
+      mentalStatusExamFieldType: this.string('bool'),
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       /* Q) Why is this relationship needed ?

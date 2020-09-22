@@ -8,17 +8,17 @@
     >
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
-        <div v-for="ss in allMentalStatusExamInsideAGroup" :key="ss.mentalStatusExamMasterId">
-          <div v-if="mfCheckIfThisExistsInChildTable(ss)">
+        <div v-for="ms in allMentalStatusExamInsideAGroup" :key="ms.mentalStatusExamMasterId">
+          <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <el-button
-              @click="mfToggleMentalStatusExam(ss.mentalStatusExamMasterId)"
+              @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
               type="primary"
-              >{{ ss.mentalStatusExamDescription }}</el-button
+              >{{ ms.mentalStatusExamDescription }}</el-button
             >
           </div>
           <div v-else>
-            <el-button @click="mfToggleMentalStatusExam(ss.mentalStatusExamMasterId)">{{
-              ss.mentalStatusExamDescription
+            <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
+              ms.mentalStatusExamDescription
             }}</el-button>
           </div>
         </div>
