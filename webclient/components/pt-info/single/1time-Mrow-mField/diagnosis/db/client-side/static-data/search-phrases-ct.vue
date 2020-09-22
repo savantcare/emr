@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import masterList from './master-list-of-dx-ct'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    tblSearchPhrasesOfCt.insert({
+    clientSideTblSearchPhrasesOfCt.insert({
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
