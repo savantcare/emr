@@ -19,7 +19,7 @@ export default {
         value: 'mental status exam',
         ctAbbr: 'mse',
         ctToShow:
-          'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-ct', // PtsVl -> Present time state - part of - view layer
+          'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
