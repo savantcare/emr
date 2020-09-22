@@ -117,6 +117,9 @@ export default {
       tablePageNumber: 1,
       daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
+      fontSizeOfHeadingEveryWhere: '24',
+      fontSizeOfContentEveryWhere: '112',
+      fontSizeOfSubContentEveryWhere: '10',
     }
   },
   computed: {
@@ -245,7 +248,7 @@ export default {
   margin: 5px;
 }
 .content-div {
-  font-size: 12px;
+  font-size: var(--font-size-of-content-every-where);
   height: 100%;
 }
 .content-div:hover {
