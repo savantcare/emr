@@ -18,7 +18,10 @@
               >
             </div>
             <div v-else>
-              <el-input v-model="input" />
+              <el-input
+                :placeholder="ms.mentalStatusExamDescription"
+                v-model="ms.mentalStatusExamMasterId"
+              ></el-input>
             </div>
           </div>
           <div v-else>
@@ -28,7 +31,10 @@
               }}</el-button>
             </div>
             <div v-else>
-              <el-input />
+              <el-input
+                :placeholder="ms.mentalStatusExamDescription"
+                :v-model="ms.mentalStatusExamMasterId"
+              ></el-input>
             </div>
           </div>
         </div>
@@ -45,7 +51,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
-      input: '',
+      11: '',
     }
   },
   computed: {
