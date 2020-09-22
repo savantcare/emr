@@ -22,8 +22,8 @@
             </div>
             <div v-else>
               <el-input
-                :placeholder="ros.mentalStatusExamDescription"
-                v-model="descriptionModal[ros.mentalStatusExamMasterId]"
+                :placeholder="ros.psychReviewOfSystemsDescription"
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
               ></el-input>
             </div>
           </div>
@@ -35,8 +35,8 @@
             </div>
             <div v-else>
               <el-input
-                :placeholder="ros.mentalStatusExamDescription"
-                v-model="descriptionModal[ros.mentalStatusExamMasterId]"
+                :placeholder="ros.psychReviewOfSystemsDescription"
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
               ></el-input>
             </div>
           </div>
