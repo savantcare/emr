@@ -48,6 +48,23 @@
       >
         <el-button-group style="float: right; display: none">
           <el-button
+            class="el-icon-edit"
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
+          >
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="info"
+              placement="top-end"
+              :open-delay="500"
+            >
+            </el-tooltip>
+          </el-button>
+
+          <el-button
             class="el-icon-discover"
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
@@ -80,14 +97,7 @@
           </el-button>
         </el-button-group>
 
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Click to change"
-          placement="top-start"
-          :open-delay="500"
-        >
-          <!-- <el-button type="text">{{ rem.description }}</el-button> 
+        <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
 
           if rowStateInThisSession == 9 then the div should have a orange border
@@ -95,14 +105,13 @@
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
             -->
-          <div
-            class="text item sc-reminder-individual-card-content"
-            @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-          >
-            <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-            <div v-else>{{ rem.description }}</div>
-          </div>
-        </el-tooltip>
+        <div
+          class="text item sc-reminder-individual-card-content"
+          @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
+        >
+          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+          <div v-else>{{ rem.description }}</div>
+        </div>
       </el-card>
     </div>
 
@@ -267,7 +276,7 @@ Generatiobn 3                     |
 /* When inside the card header make the action icons in the card header -> level 2 visual */
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
   color: #67c23a !important;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
   color: #409eff !important;
@@ -317,11 +326,23 @@ Generatiobn 3                     |
   right: 0px;
 }
 
+.sc-reminder-individual-card:hover .el-icon-edit {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
 .sc-reminder-individual-card:hover .el-icon-discover {
   color: #909399 !important;
 }
 
+.el-icon-discover:hover {
+  font-size: 1.5rem;
+}
+
 .sc-reminder-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
+}
+.el-icon-circle-close:hover {
+  font-size: 1.5rem;
 }
 </style>

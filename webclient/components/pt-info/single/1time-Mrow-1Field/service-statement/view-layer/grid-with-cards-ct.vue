@@ -16,7 +16,7 @@
           plain
           tabindex="-1"
           @click="mfOpenCCtInCl"
-          class="el-icon-circle-plus-outline"
+          class="el-icon-edit"
         ></el-button>
       </el-button-group>
     </div>
@@ -168,9 +168,9 @@ Generatiobn 3                     |
 }
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .sc-service-statement-all-content-header .el-icon-circle-plus-outline {
+.el-card__header:hover .sc-service-statement-all-content-header .el-icon-edit {
   color: #67c23a !important;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 .el-card__header:hover .sc-service-statement-all-content-header .el-icon-s-grid {
   color: #409eff !important;
@@ -226,6 +226,6 @@ Generatiobn 3                     |
 
 .sc-service-statement-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 </style>

@@ -165,7 +165,7 @@ Generatiobn 3                     |
 /* When inside the card header make the action icons in the card header -> level 2 visual */
 .el-card__header:hover .sc-mental-status-exam-all-content-header .el-icon-edit {
   color: #67c23a !important;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 /* Generation Level 2 / Child 2 */
@@ -212,6 +212,6 @@ Generatiobn 3                     |
 
 .sc-mental-status-exam-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 </style>
