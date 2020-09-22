@@ -66,14 +66,18 @@ export default {
       // Rule2: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
-        'Time in psychotherapy'
+        'Total minutes in psychotherapy'
       )
 
       // Rule3: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
-        'Total time with patient'
+        'Total minutes with patient'
       )
+
+      // Rule 4: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
+
+      // Rule 5: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
 
       // End: Now group the SS
 
@@ -136,33 +140,31 @@ export default {
 
     mfApplyOneEntryRuleOnServiceStatementCategory(
       pArOfObjectsFromClientSideMasterDB,
-      pServiceStatementCategory
+      pServiceStatementCategoryToApplyRuleOn
     ) {
-      let serviceStatementCategoryExists = clientSideTblPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
-          query.where('serviceStatementCategory', pServiceStatementCategory)
+          query.where('serviceStatementCategory', pServiceStatementCategoryToApplyRuleOn)
         })
         .where('ROW_END', 2147483647.999999)
         .get()
-      console.log('pArOfObjectsFromClientSideMasterDB', pArOfObjectsFromClientSideMasterDB)
-      if (serviceStatementCategoryExists.length > 0) {
+      if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
           if (
             pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
-            pServiceStatementCategory
+            pServiceStatementCategoryToApplyRuleOn
           ) {
+            // master list has 10 entries. Once the category has matched there are 2 possibilityes. P1: This element is there in SS  of patient P2: This element is not there in SS of patient
             if (
+              // Handling Possibility 1:  This element is there in SS of patient
               pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null &&
               pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink.ROW_END ==
                 '2147483647.999999'
             ) {
-              console.log('row is there in client table.')
             } else {
-              console.log(
-                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
-              )
+              // Handling Possibility 2: This element is not there in SS of patient
               pArOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
             }
