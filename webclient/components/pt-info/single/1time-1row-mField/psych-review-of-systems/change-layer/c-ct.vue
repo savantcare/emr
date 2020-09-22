@@ -7,7 +7,7 @@
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="grid-container">
+      <div class="sc-psych-review-of-systems-all-content-divs">
         <div
           v-for="ros in allPsychReviewOfSystemsInsideAGroup"
           :key="ros.psychReviewOfSystemsMasterId"
@@ -25,6 +25,16 @@
                 :placeholder="ros.psychReviewOfSystemsDescription"
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
               ></el-input>
+              <vue-slider
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
+                :marks="3"
+                :min="0"
+                :max="2"
+                :absord="true"
+                :included="true"
+                :tooltip="'always'"
+                :tooltip-formatter="(val) => ros.psychReviewOfSystemsDescription + ': ' + val"
+              ></vue-slider>
             </div>
           </div>
           <div v-else>
@@ -34,10 +44,16 @@
               }}</el-button>
             </div>
             <div v-else>
-              <el-input
-                :placeholder="ros.psychReviewOfSystemsDescription"
+              <vue-slider
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
-              ></el-input>
+                :marks="false"
+                :min="0"
+                :max="2"
+                :absord="true"
+                :included="true"
+                :tooltip="'always'"
+                :tooltip-formatter="(val) => ros.psychReviewOfSystemsDescription + ': ' + val"
+              ></vue-slider>
             </div>
           </div>
         </div>
@@ -241,3 +257,18 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.sc-psych-review-of-systems-all-content-divs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 40px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 40px;
+}
+</style>
