@@ -224,37 +224,40 @@ export default {
 </script>
 
 <style>
-/* Hierarchy ->
-                  .sc-reminder-all-content
-                            |
-                 _________________________________
-                 |                               |
-  .sc-reminder-all-content-header       .sc-reminder-all-content-body
-                                                 |
-                                        .sc-reminder-individual-card
-                                                 |
+/* Generation ->
+==============
+                                       .sc-reminder-all-content
+ Generation 1                                      |
+==============                     _________________________________
+                                  |                                |
+                    .sc-reminder-all-content-header                |
+ Generatiobn 2                                                     |
+                                    _______________________________|
+                                  |
+                  .sc-reminder-all-content-body
+==============                    |
+                                  |
+                   .sc-reminder-individual-card
+Generatiobn 3                     |
                        ________________________________________________________________________________
                       |                                 |                                             |
         .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
 
+==============
 */
 
-/* Hierarchy Level 1 */
-
-.sc-reminder-all-content {
-  margin-left: 5px;
-  margin-right: 5px;
+/* Generation Level 1 */
+.sc-reminder-all-content .el-card__header {
+  /* Distance from border to content in header*/
+  padding: 10px !important;
 }
 
 .sc-reminder-all-content .el-card__body {
+  /* Distance from border to content in body*/
   padding: 10px !important;
 }
 
-.sc-reminder-all-content .el-card__header {
-  padding: 10px !important;
-}
-
-/* Hierarchy Level 2 / Child 1 Goal: Header icon management */
+/* Generation Level 2 / Child 1 == Goal: Header icon management */
 
 .el-card:hover .sc-reminder-all-content-header .el-button-group {
   display: inline-block !important;
@@ -273,7 +276,7 @@ export default {
   color: #909399 !important;
 }
 
-/* Hierarchy Level 2 / Child 2 */
+/* Generation Level 2 / Child 2 */
 
 .sc-reminder-all-content-body {
   display: grid;
@@ -295,7 +298,7 @@ export default {
   text-decoration: none;
 }
 
-/* Hierarchy Level 3 */
+/* Generation Level 3 */
 
 .sc-reminder-individual-card {
   cursor: pointer;
@@ -321,12 +324,12 @@ export default {
   color: #f56c6c !important;
 }
 
-/* Hierarchy Level 4: Partition 1 */
+/* Generation Level 4: Partition 1 */
 
 .sc-reminder-individual-card-content {
   font-size: var(--font-size-of-content-every-where);
   height: 100%;
 }
 
-/* Hierarchy Level 4: Partition 2 */
+/* Generation Level 4: Partition 2 */
 </style>
