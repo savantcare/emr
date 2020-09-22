@@ -9,7 +9,7 @@ const intUniqueID = () => ++count
 export default class mentalStatusExamForPatientClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamOfPatient'
 
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
+  static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -26,7 +26,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table mentalStatusExamMasterId = 2 */
-      mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is service statement ID assigned to this patient coming from master table
+      mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is mental status exam ID assigned to this patient coming from master table
       patientUUID: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -38,7 +38,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
       /* Why is this relationship needed?
       First place used
       ================
-      In view layer when showing the service statement I want to append the category name. The category name is not there in child table. The category name is only there in master table.
+      In view layer when showing the mental status exam I want to append the category name. The category name is not there in child table. The category name is only there in master table.
 
       Second place used
       =================

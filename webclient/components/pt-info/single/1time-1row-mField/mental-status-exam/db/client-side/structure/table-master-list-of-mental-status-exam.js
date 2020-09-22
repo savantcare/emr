@@ -10,7 +10,7 @@ const intUniqueID = () => ++count
 export default class mentalStatusExamMasterClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamMaster'
 
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
+  static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
 
   static primaryKey = 'mentalStatusExamMasterId'
 
@@ -18,7 +18,7 @@ export default class mentalStatusExamMasterClass extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      mentalStatusExamMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      mentalStatusExamMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each mental status exam
       mentalStatusExamDescription: this.string(null),
       mentalStatusExamCategory: this.string(null),
 
