@@ -48,7 +48,7 @@
       >
         <el-button-group style="float: right; display: none">
           <el-button
-            class="el-icon-info"
+            class="el-icon-discover"
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
@@ -224,16 +224,16 @@ export default {
 </script>
 
 <style>
-/* Hierarchy ->           
+/* Hierarchy ->
                   .sc-reminder-all-content
                             |
-                 _________________________________           
+                 _________________________________
                  |                               |
   .sc-reminder-all-content-header       .sc-reminder-all-content-body
                                                  |
                                         .sc-reminder-individual-card
                                                  |
-                       ________________________________________________________________________________          
+                       ________________________________________________________________________________
                       |                                 |                                             |
         .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
 
@@ -279,7 +279,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
   */
@@ -308,9 +308,12 @@ export default {
 /* Goal: Header icon management  */
 .el-card:hover .sc-reminder-individual-card .el-button-group {
   display: inline-block !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
-.sc-reminder-individual-card:hover .el-icon-info {
+.sc-reminder-individual-card:hover .el-icon-discover {
   color: #909399 !important;
 }
 
