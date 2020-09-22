@@ -13,16 +13,32 @@
           :key="ros.psychReviewOfSystemsMasterId"
         >
           <div v-if="mfCheckIfThisExistsInChildTable(ros)">
-            <el-button
-              @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
-              type="primary"
-              >{{ ros.psychReviewOfSystemsDescription }}</el-button
-            >
+            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+              <el-button
+                @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
+                type="primary"
+                >{{ ros.psychReviewOfSystemsDescription }}</el-button
+              >
+            </div>
+            <div v-else>
+              <el-input
+                :placeholder="ros.mentalStatusExamDescription"
+                v-model="descriptionModal[ros.mentalStatusExamMasterId]"
+              ></el-input>
+            </div>
           </div>
           <div v-else>
-            <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
-              ros.psychReviewOfSystemsDescription
-            }}</el-button>
+            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+              <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
+                ros.psychReviewOfSystemsDescription
+              }}</el-button>
+            </div>
+            <div v-else>
+              <el-input
+                :placeholder="ros.mentalStatusExamDescription"
+                v-model="descriptionModal[ros.mentalStatusExamMasterId]"
+              ></el-input>
+            </div>
           </div>
         </div>
       </div>
@@ -38,6 +54,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
+      descriptionModal: [],
     }
   },
   computed: {
