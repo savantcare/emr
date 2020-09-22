@@ -229,7 +229,7 @@ export default {
 /* Hierarchy Level 1 */
 
 .sc-reminder-all-content .el-card__body {
-  padding: 1px 1px 1px !important;
+  padding: 10px !important;
 }
 
 /* Hierarchy Level 2 */
@@ -263,13 +263,22 @@ export default {
   margin: 5px;
   padding: 1px;
 }
+
 .sc-reminder-individual-card.el-card.box-card:hover
   .sc-reminder-individual-card-delete-icon
   .el-button.el-button--text {
   color: #f39797;
 }
 
-/* Hierarchy Level 4 */
+.sc-reminder-individual-card.el-card.box-card {
+  border: 1px solid #e4e4e4;
+}
+
+.sc-reminder-individual-card.el-card.box-card:hover {
+  border: 1px solid #b7daf7;
+}
+
+/* Hierarchy Level 4: Partition 1 */
 
 .sc-reminder-individual-card-content {
   font-size: var(--font-size-of-content-every-where);
@@ -279,12 +288,8 @@ export default {
   color: #409eff !important;
 }
 
-.sc-reminder-individual-card.el-card.box-card {
-  border: 1px solid #e4e4e4;
-}
-.sc-reminder-individual-card.el-card.box-card:hover {
-  border: 1px solid #b7daf7;
-}
+/* Hierarchy Level 4: Partition 2 */
+
 .sc-reminder-individual-card-delete-icon {
   position: absolute;
   top: -10px;
@@ -296,6 +301,8 @@ export default {
 .sc-reminder-individual-card-delete-icon .el-button.el-button--text {
   color: #ebe9e9;
 }
+
+/* Hierarchy Level 4: Partition 3 */
 
 .sc-reminder-individual-card-info-icon {
   position: absolute;
