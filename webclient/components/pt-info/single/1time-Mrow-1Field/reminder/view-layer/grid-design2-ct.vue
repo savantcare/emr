@@ -44,7 +44,7 @@
                 effect="light"
                 content="info"
                 placement="top-end"
-                open-delay="500"
+                :open-delay="500"
               >
                 <i class="el-icon-info custom-info-icon"></i>
               </el-tooltip>
@@ -57,7 +57,7 @@
                 effect="light"
                 content="Click to delete"
                 placement="top-end"
-                open-delay="500"
+                :open-delay="500"
               >
                 <i class="el-icon-error custom-close-icon"></i>
               </el-tooltip>
@@ -69,7 +69,7 @@
             effect="light"
             content="Click to change"
             placement="top-start"
-            open-delay="500"
+            :open-delay="500"
           >
             <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines

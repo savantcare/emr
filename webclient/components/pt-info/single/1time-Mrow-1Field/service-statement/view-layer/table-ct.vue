@@ -23,7 +23,7 @@
                 effect="light"
                 content="info"
                 placement="top-end"
-                open-delay="500"
+                :open-delay="500"
               >
                 <i class="el-icon-info custom-info-icon"></i>
               </el-tooltip>
