@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '@/components/pt-info/single/1time-Mrow-1Field/mental-status-examdb/client-side/structure/table-master-list-of-mental-status-exam.js'
+import clientSideTblMasterMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-master-list-of-mental-status-exam.js'
 
 export default {
   data() {

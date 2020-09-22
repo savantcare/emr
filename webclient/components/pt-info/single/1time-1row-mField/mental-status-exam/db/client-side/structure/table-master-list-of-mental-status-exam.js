@@ -1,14 +1,14 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import mentalStatusExamsForPatientClass from './table-mental-status-exam-of-a-patient.js'
+import mentalStatusExamForPatientClass from './table-mental-status-exam-of-a-patient.js'
 
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class mentalStatusExamsMasterClass extends clientSideTableManage {
-  static entity = 'tblMentalStatusExamsMaster'
+export default class mentalStatusExamMasterClass extends clientSideTableManage {
+  static entity = 'tblMentalStatusExamMaster'
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
@@ -30,10 +30,10 @@ export default class mentalStatusExamsMasterClass extends clientSideTableManage 
         ================
         When all SS are displayed I want to show the selected SS in button primary color.
         So I want to create a big row that has data from master and child
-        see add-ct.vue/cfGetMasterListOfMentalStatusExamsGrouped
+        see add-ct.vue/cfGetMasterListOfMentalStatusExamGrouped
       */
-      tblMentalStatusExamsForPatientLink: this.hasOne(
-        mentalStatusExamsForPatientClass,
+      tblMentalStatusExamForPatientLink: this.hasOne(
+        mentalStatusExamForPatientClass,
         'mentalStatusExamMasterId'
       ),
     }

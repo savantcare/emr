@@ -2,13 +2,13 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
-      v-for="(allMentalStatusExamsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfMentalStatusExamsGrouped"
-      :key="allMentalStatusExamsInsideAGroup.id"
+      v-for="(allMentalStatusExamInsideAGroup,
+      groupNameGivenAsIndex) in cfGetMasterListOfMentalStatusExamGrouped"
+      :key="allMentalStatusExamInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
-        <div v-for="ss in allMentalStatusExamsInsideAGroup" :key="ss.serviceStatementMasterId">
+        <div v-for="ss in allMentalStatusExamInsideAGroup" :key="ss.serviceStatementMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
               @click="mfToggleMentalStatusExam(ss.serviceStatementMasterId)"
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExams from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
-import clientSideTblPatientMentalStatusExams from '../db/client-side/structure/table-mental-status-exams-of-a-patient.js'
+import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
+import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
 
 export default {
   data() {
@@ -38,11 +38,11 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfMentalStatusExamsGrouped() {
+    cfGetMasterListOfMentalStatusExamGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterMentalStatusExams
+      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterMentalStatusExam
         .query()
-        .with('tblMentalStatusExamsForPatientLink')
+        .with('tblMentalStatusExamForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .where((_record, query) => {
           query
@@ -57,11 +57,11 @@ export default {
 
       // Apply rules given by doctors
 
-      // Rule1: If one "Modality of Psychotherapy" exists PatientMentalStatusExams table then do not show others
-      let modalityOfPsychotherapyExists = clientSideTblPatientMentalStatusExams
+      // Rule1: If one "Modality of Psychotherapy" exists PatientMentalStatusExam table then do not show others
+      let modalityOfPsychotherapyExists = clientSideTblPatientMentalStatusExam
         .query()
-        .with('tblMentalStatusExamsMasterLink')
-        .whereHas('tblMentalStatusExamsMasterLink', (query) => {
+        .with('tblMentalStatusExamMasterLink')
+        .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Modality of Psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
@@ -77,7 +77,7 @@ export default {
             arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
             'Modality of Psychotherapy'
           ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamsForPatientLink !== null) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
               console.log('row is there in client table.')
             } else {
               console.log(
@@ -91,10 +91,10 @@ export default {
       }
 
       // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = clientSideTblPatientMentalStatusExams
+      let timeInPsychotherapyExists = clientSideTblPatientMentalStatusExam
         .query()
-        .with('tblMentalStatusExamsMasterLink')
-        .whereHas('tblMentalStatusExamsMasterLink', (query) => {
+        .with('tblMentalStatusExamMasterLink')
+        .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Time in psychotherapy')
         })
         .where('ROW_END', 2147483647.999999)
@@ -109,7 +109,7 @@ export default {
             arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
             'Time in psychotherapy'
           ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamsForPatientLink !== null) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
               console.log('row is there in client table.')
             } else {
               console.log(
@@ -123,10 +123,10 @@ export default {
       }
 
       // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = clientSideTblPatientMentalStatusExams
+      let totalTimeWithPatientExists = clientSideTblPatientMentalStatusExam
         .query()
-        .with('tblMentalStatusExamsMasterLink')
-        .whereHas('tblMentalStatusExamsMasterLink', (query) => {
+        .with('tblMentalStatusExamMasterLink')
+        .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Total time with patient')
         })
         .where('ROW_END', 2147483647.999999)
@@ -141,7 +141,7 @@ export default {
             arOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
             'Total time with patient'
           ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamsForPatientLink !== null) {
+            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
               console.log('row is there in client table.')
             } else {
               console.log(
@@ -184,28 +184,28 @@ export default {
     },
     mfCheckIfThisExistsInChildTable(pSS) {
       // I am able to get the data from child table.
-      if (pSS.tblMentalStatusExamsForPatientLink) {
-        if (pSS.tblMentalStatusExamsForPatientLink.ROW_END === 2147483647.999999) {
+      if (pSS.tblMentalStatusExamForPatientLink) {
+        if (pSS.tblMentalStatusExamForPatientLink.ROW_END === 2147483647.999999) {
           return true
         }
       }
       return false
     },
     mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
-      const exists = clientSideTblPatientMentalStatusExams
+      const exists = clientSideTblPatientMentalStatusExam
         .query()
         .where('serviceStatementMasterId', pMentalStatusExamMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        clientSideTblPatientMentalStatusExams.update({
+        clientSideTblPatientMentalStatusExam.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        clientSideTblPatientMentalStatusExams.insert({
+        clientSideTblPatientMentalStatusExam.insert({
           data: {
             serviceStatementMasterId: pMentalStatusExamMasterId,
           },

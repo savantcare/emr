@@ -41,6 +41,12 @@ import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
+// Mental status exam tables
+import tableStructureForMSEMaster from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-master-list-of-mental-status-exam.js'
+import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+database.register(tableStructureForMSEMaster)
+database.register(tableStructureForMSEOfPatient)
+
 // Other components tables
 import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 import tableStructureForName from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'

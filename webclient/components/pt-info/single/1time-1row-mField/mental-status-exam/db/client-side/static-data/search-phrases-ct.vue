@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterListOfSSCt from './master-list-of-mse-ct'
+import tblMasterListOfSSCt from './master-list-of-mental-status-exam-ct'
 
 export default {
   components: { tblMasterListOfSSCt },
@@ -16,7 +16,7 @@ export default {
   mounted() {
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'mental status exams',
+        value: 'mental status exam',
         ctAbbr: 'ss',
         ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',

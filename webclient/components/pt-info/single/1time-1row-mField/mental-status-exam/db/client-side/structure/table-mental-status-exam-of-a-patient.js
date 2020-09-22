@@ -1,13 +1,13 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import mentalStatusExamsMasterClass from './table-master-list-of-mental-status-exam.js'
+import mentalStatusExamMasterClass from './table-master-list-of-mental-status-exam.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
 const intUniqueID = () => ++count
 
-export default class mentalStatusExamsForPatientClass extends clientSideTableManage {
-  static entity = 'tblMentalStatusExamsOfPatient'
+export default class mentalStatusExamForPatientClass extends clientSideTableManage {
+  static entity = 'tblMentalStatusExamOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
@@ -19,8 +19,8 @@ export default class mentalStatusExamsForPatientClass extends clientSideTableMan
 
       clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
 
-      /* This field is used to store the value of tblMentalStatusExamsMaster/mentalStatusExamMasterId
-         E.g: The  tblMentalStatusExamsMaster has:
+      /* This field is used to store the value of tblMentalStatusExamMaster/mentalStatusExamMasterId
+         E.g: The  tblMentalStatusExamMaster has:
          mentalStatusExamMasterId  |         mentalStatusExamDescription    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
@@ -47,12 +47,12 @@ export default class mentalStatusExamsForPatientClass extends clientSideTableMan
      So after I get the list of all master SS. I find all the SS that have been added in the client and there mentalStatusExamCategory has a max 1 limit
      If found then I remove those extra rows from master.
 
-      add-ct.vue/cfGetMasterListOfMentalStatusExamsGrouped
+      add-ct.vue/cfGetMasterListOfMentalStatusExamGrouped
 
       */
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
-      tblMentalStatusExamsMasterLink: this.belongsTo(
-        mentalStatusExamsMasterClass,
+      tblMentalStatusExamMasterLink: this.belongsTo(
+        mentalStatusExamMasterClass,
         'mentalStatusExamMasterId',
         'mentalStatusExamMasterId'
       ),
