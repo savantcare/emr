@@ -57,27 +57,21 @@ export default {
 
       // Apply rules given by doctors
 
-      // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
-        arOfObjectsFromClientSideMasterDB,
-        'Modality of Psychotherapy'
-      )
-
-      // Rule2: If one Time in psychotherapy then do not show others
+      // Rule1: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes in psychotherapy'
       )
 
-      // Rule3: If one Time in psychotherapy then do not show others
+      // Rule2: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes with patient'
       )
 
-      // Rule 4: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
+      // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
 
-      // Rule 5: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
+      // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
 
       // End: Now group the SS
 
