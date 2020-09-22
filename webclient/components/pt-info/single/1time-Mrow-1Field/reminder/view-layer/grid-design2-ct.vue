@@ -259,12 +259,15 @@ Generatiobn 3                     |
 
 /* Generation Level 2 / Child 1 == Goal: Header icon management */
 
+/* When anywhere inside the card make the action icons in the card header -> level 1 visual */
 .el-card:hover .sc-reminder-all-content-header .el-button-group {
   display: inline-block !important;
 }
 
+/* When inside the card header make the action icons in the card header -> level 2 visual */
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
   color: #67c23a !important;
+  font-size: 20px;
 }
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
   color: #409eff !important;
