@@ -16,9 +16,14 @@
           <el-button style="padding: 3px" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
             >M</el-button
           >
-          <el-button style="padding: 3px" type="warning" plain tabindex="-1" @click="mxOpenDDialog"
-            >D</el-button
-          >
+          <el-button
+            style="padding: 3px"
+            type="warning"
+            plain
+            tabindex="-1"
+            @click="mxOpenDDialog"
+            class="el-icon-document-delete"
+          ></el-button>
           <el-button
             style="padding: 3px"
             type="info"

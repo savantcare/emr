@@ -27,8 +27,8 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       plain
       tabindex="-1"
       @click="mfOpenCCtInCl(cfDataRow['id'])"
-      >C</el-button
-    >
+      class="el-icon-edit"
+    ></el-button>
     <el-button
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
       type="success"

@@ -23,9 +23,14 @@
           <el-button style="padding: 3px" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
             >M</el-button
           >
-          <el-button style="padding: 3px" type="warning" plain tabindex="-1" @click="mxOpenDDialog"
-            >D</el-button
-          >
+          <el-button
+            style="padding: 3px"
+            type="warning"
+            plain
+            tabindex="-1"
+            @click="mxOpenDDialog"
+            class="el-icon-document-delete"
+          ></el-button>
           <el-button
             style="padding: 3px"
             type="info"
@@ -61,8 +66,8 @@
               plain
               tabindex="-1"
               @click="mxOpenCCtInCl(row.id)"
-              >C</el-button
-            >
+              class="el-icon-edit"
+            ></el-button>
             <el-button
               type="warning"
               size="mini"
@@ -70,8 +75,8 @@
               plain
               tabindex="-1"
               @click="mxOpenDPrompt(row.id)"
-              >D</el-button
-            >
+              class="el-icon-document-delete"
+            ></el-button>
           </el-button-group>
         </el-timeline-item>
       </el-timeline>
