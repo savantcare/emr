@@ -7,7 +7,7 @@
       :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="grid-container">
+      <div class="sc-service-statement-all-content-body">
         <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
@@ -176,3 +176,18 @@ export default {
   },
 }
 </script>
+
+<style>
+.sc-service-statement-all-content-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
+}
+</style>

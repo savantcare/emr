@@ -11,7 +11,7 @@
         <span> {{ groupNameGivenAsIndex }}</span>
       </div>
 
-      <div class="grid-container">
+      <div class="sc-mental-status-exam-all-content-body">
         <div v-for="ms in allMentalStatusExamInsideAGroup" :key="ms.mentalStatusExamMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
@@ -239,3 +239,18 @@ export default {
   },
 }
 </script>
+<style>
+/* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
+.sc-mental-status-exam-all-content-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
+}
+</style>
