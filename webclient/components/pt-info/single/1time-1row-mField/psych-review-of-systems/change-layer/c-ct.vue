@@ -49,6 +49,7 @@
                 :marks="false"
                 :min="0"
                 :max="2"
+                :width="90"
                 :absord="true"
                 :included="true"
                 :tooltip="'always'"
