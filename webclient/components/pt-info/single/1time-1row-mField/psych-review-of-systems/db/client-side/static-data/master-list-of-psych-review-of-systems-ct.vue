@@ -16,8 +16,9 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'Good grooming and hygiene',
+        psychReviewOfSystemsDescription: 'Depressive mood',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 
@@ -25,8 +26,9 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'No apparennt distress',
+        psychReviewOfSystemsDescription: 'Interest',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 
@@ -34,8 +36,9 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'Well developed, well nourished',
+        psychReviewOfSystemsDescription: 'Sleep',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 
@@ -43,8 +46,9 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'Appears stated age',
+        psychReviewOfSystemsDescription: 'Gulf / Self esteem',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 
@@ -52,8 +56,9 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'Appears younger than stated age',
+        psychReviewOfSystemsDescription: 'Energy',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 
@@ -61,8 +66,29 @@ export default {
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
-        psychReviewOfSystemsDescription: 'Appears older than stated age',
+        psychReviewOfSystemsDescription: 'Conc/Dist',
         psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
+      },
+    })
+
+    i = i + 1
+    clientSideTblMasterPsychReviewOfSystems.insert({
+      data: {
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Appetite',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
+      },
+    })
+
+    i = i + 1
+    clientSideTblMasterPsychReviewOfSystems.insert({
+      data: {
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'PMR/PMA',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
 

@@ -9,19 +9,19 @@
       {{ groupNameGivenAsIndex }}
       <div class="grid-container">
         <div
-          v-for="ss in allPsychReviewOfSystemsInsideAGroup"
-          :key="ss.psychReviewOfSystemsMasterId"
+          v-for="ros in allPsychReviewOfSystemsInsideAGroup"
+          :key="ros.psychReviewOfSystemsMasterId"
         >
-          <div v-if="mfCheckIfThisExistsInChildTable(ss)">
+          <div v-if="mfCheckIfThisExistsInChildTable(ros)">
             <el-button
-              @click="mfTogglePsychReviewOfSystems(ss.psychReviewOfSystemsMasterId)"
+              @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
               type="primary"
-              >{{ ss.psychReviewOfSystemsDescription }}</el-button
+              >{{ ros.psychReviewOfSystemsDescription }}</el-button
             >
           </div>
           <div v-else>
-            <el-button @click="mfTogglePsychReviewOfSystems(ss.psychReviewOfSystemsMasterId)">{{
-              ss.psychReviewOfSystemsDescription
+            <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
+              ros.psychReviewOfSystemsDescription
             }}</el-button>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row category=Modality of psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -120,7 +120,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row where category=Time in psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -154,7 +154,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row where category=Time in psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -191,10 +191,10 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfCheckIfThisExistsInChildTable(pSS) {
+    mfCheckIfThisExistsInChildTable(pros) {
       // I am able to get the data from child table.
-      if (pSS.tblPsychReviewOfSystemsForPatientLink) {
-        if (pSS.tblPsychReviewOfSystemsForPatientLink.ROW_END === 2147483647.999999) {
+      if (pros.tblPsychReviewOfSystemsForPatientLink) {
+        if (pros.tblPsychReviewOfSystemsForPatientLink.ROW_END === 2147483647.999999) {
           return true
         }
       }
