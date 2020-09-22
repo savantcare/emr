@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-master-list-of-mental-status-exam.js'
+import clientSideTblMasterMentalStatusExam from '@/components/pt-info/single/1time-Mrow-1Field/mental-status-examdb/client-side/structure/table-master-list-of-mental-status-exam.js'
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '1', // this is uuid-1 to easily distinhuish it from the same row field -> id
-        mentalStatusExamDescription: 'Good gromming and hegine',
+        mentalStatusExamDescription: 'Good grooming and hygiene',
         mentalStatusExamCategory: 'Appearence',
       },
     })
@@ -29,92 +29,183 @@ export default {
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '3',
-        mentalStatusExamDescription: '80 minutes',
+        mentalStatusExamDescription: 'Well developed, well nourished',
         mentalStatusExamCategory: 'Appearence',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '4',
-        mentalStatusExamDescription: '75 minutes',
+        mentalStatusExamDescription: 'Appears stated age',
         mentalStatusExamCategory: 'Appearence',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '5',
-        mentalStatusExamDescription: '70 minutes',
+        mentalStatusExamDescription: 'Appears younger than stated age',
         mentalStatusExamCategory: 'Appearence',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '6',
-        mentalStatusExamDescription: 'Client Centered',
-        mentalStatusExamCategory: 'Modality of Psychotherapy',
+        mentalStatusExamDescription: 'Appears older than stated age',
+        mentalStatusExamCategory: 'Appearence',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '7',
-        mentalStatusExamDescription: 'Dialectical Behavior therapy',
-        mentalStatusExamCategory: 'Modality of Psychotherapy',
+        mentalStatusExamDescription: 'Obese',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '8',
-        mentalStatusExamDescription: 'Holistic Therapy',
-        mentalStatusExamCategory: 'Modality of Psychotherapy',
+        mentalStatusExamDescription: 'Thin or cachectic',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '9',
-        mentalStatusExamDescription: 'Existential humanistic',
-        mentalStatusExamCategory: 'Modality of Psychotherapy',
+        mentalStatusExamDescription: 'Disheveled, unkempt',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '10',
-        mentalStatusExamDescription: 'Bibilotherapy',
-        mentalStatusExamCategory: 'Modality of Psychotherapy',
+        mentalStatusExamDescription: 'Malodorous',
+        mentalStatusExamCategory: 'Appearance',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '11',
-        mentalStatusExamDescription: '60',
-        mentalStatusExamCategory: 'Total time with patient',
+        mentalStatusExamDescription: 'Pleasant and cooperative',
+        mentalStatusExamCategory: 'Attitude',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '12',
-        mentalStatusExamDescription: '55',
-        mentalStatusExamCategory: 'Total time with patient',
+        mentalStatusExamDescription: 'Uncooperative',
+        mentalStatusExamCategory: 'Attitude',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '13',
-        mentalStatusExamDescription: '50',
-        mentalStatusExamCategory: 'Total time with patient',
+        mentalStatusExamDescription: 'Hostile or defiant',
+        mentalStatusExamCategory: 'Attitude',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '14',
-        mentalStatusExamDescription: '45',
-        mentalStatusExamCategory: 'Total time with patient',
+        mentalStatusExamDescription: 'Guarded',
+        mentalStatusExamCategory: 'Attitude',
       },
     })
     clientSideTblMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: '15',
-        mentalStatusExamDescription: '40',
-        mentalStatusExamCategory: 'Total time with patient',
+        mentalStatusExamDescription: 'Evasive',
+        mentalStatusExamCategory: 'Attitude',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Apathetic',
+        mentalStatusExamCategory: 'Attitude',
+      },
+    })
+      clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Disorganized behavior',
+        mentalStatusExamCategory: 'Attitude',
+      },
+    })
+        clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '14',
+        mentalStatusExamDescription: 'Agitated',
+        mentalStatusExamCategory: 'Psychomotor',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Retarded',
+        mentalStatusExamCategory: 'Psychomotor',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Appropriate',
+        mentalStatusExamCategory: 'Eye-contact',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Downcast',
+        mentalStatusExamCategory: 'Eye-contact',
+      },
+    })
+  clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Intense',
+        mentalStatusExamCategory: 'Eye-contact',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Fleeting',
+        mentalStatusExamCategory: 'Eye-contact',
+      },
+    })
+      clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Regular, rate and rhythm',
+        mentalStatusExamCategory: 'Speech',
+      },
+    })
+        clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '14',
+        mentalStatusExamDescription: 'Agitated',
+        mentalStatusExamCategory: 'Psychomotor',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Retarded',
+        mentalStatusExamCategory: 'Psychomotor',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Appropriate',
+        mentalStatusExamCategory: 'Eye-contact',
+      },
+    })
+    clientSideTblMasterMentalStatusExam.insert({
+      data: {
+        mentalStatusExamMasterId: '15',
+        mentalStatusExamDescription: 'Downcast',
+        mentalStatusExamCategory: 'Eye-contact',
       },
     })
   },
