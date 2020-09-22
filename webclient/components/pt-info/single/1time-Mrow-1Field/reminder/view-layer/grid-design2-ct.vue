@@ -281,11 +281,24 @@ Generatiobn 3                     |
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
   color: #409eff !important;
 }
+
+.el-icon-s-grid:hover {
+  font-size: 1.5rem;
+}
+
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
   color: #f56c6c !important;
 }
+
+.el-icon-document-delete:hover {
+  font-size: 1.5rem;
+}
+
 .el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
   color: #909399 !important;
+}
+.el-icon-delete:hover {
+  font-size: 1.5rem;
 }
 
 /* Generation Level 2 / Child 2 */
@@ -342,6 +355,7 @@ Generatiobn 3                     |
 .sc-reminder-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
 }
+
 .el-icon-circle-close:hover {
   font-size: 1.5rem;
 }
