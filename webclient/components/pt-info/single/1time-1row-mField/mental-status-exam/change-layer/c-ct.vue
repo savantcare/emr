@@ -20,7 +20,7 @@
             <div v-else>
               <el-input
                 :placeholder="ms.mentalStatusExamDescription"
-                v-model="ms.mentalStatusExamMasterId"
+                v-model="descriptionModal[ms.mentalStatusExamMasterId]"
               ></el-input>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <div v-else>
               <el-input
                 :placeholder="ms.mentalStatusExamDescription"
-                :v-model="ms.mentalStatusExamMasterId"
+                v-model="descriptionModal[ms.mentalStatusExamMasterId]"
               ></el-input>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
-      11: '',
+      descriptionModal: [],
     }
   },
   computed: {
