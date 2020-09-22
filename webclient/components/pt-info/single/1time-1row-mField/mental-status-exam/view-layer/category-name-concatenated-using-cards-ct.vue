@@ -11,12 +11,33 @@
         ></el-button>
       </div>
       <div class="grid-container">
-        <div v-for="ss in cfArOfMentalStatusExamForDisplay" :key="ss.clientSideUniqRowId">
-          <el-button @click="mfDeleteMentalStatusExam(ss.clientSideUniqRowId)" type="primary"
-            >{{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
-            {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}</el-button
-          >
-        </div>
+        <el-card
+          v-for="ss in cfArOfMentalStatusExamForDisplay"
+          :key="ss.clientSideUniqRowId"
+          class="box-card content-card"
+        >
+          <div class="info-icon">
+            <el-button type="text">
+              <el-tooltip
+                class="item"
+                effect="light"
+                content="info"
+                placement="top-end"
+                :open-delay="500"
+              >
+                <i class="el-icon-info custom-info-icon"></i>
+              </el-tooltip>
+            </el-button>
+          </div>
+
+          <div class="delete-icon">
+            <el-button type="text" @click="mfDeleteMentalStatusExam(ss.clientSideUniqRowId)">
+              <i class="el-icon-error custom-close-icon"></i>
+            </el-button>
+          </div>
+          {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
+          {{ ss.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
+        </el-card>
       </div>
     </el-card>
   </div>
