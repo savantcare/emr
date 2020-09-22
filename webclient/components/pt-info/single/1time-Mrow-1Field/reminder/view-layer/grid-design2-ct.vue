@@ -309,11 +309,11 @@ export default {
   display: inline-block !important;
 }
 
-.el-card__header:hover .sc-reminder-individual-card .el-icon-info {
+.sc-reminder-individual-card:hover .el-icon-info {
   color: #909399 !important;
 }
 
-.el-card__header:hover .sc-reminder-individual-card .el-icon-error {
+.sc-reminder-individual-card:hover .el-icon-error {
   color: #f56c6c !important;
 }
 
