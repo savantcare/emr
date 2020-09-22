@@ -46,7 +46,7 @@
                 placement="top-end"
                 :open-delay="500"
               >
-                <i class="el-icon-info sc-info-icon"></i>
+                <i class="el-icon-info sc-reminder-info-icon"></i>
               </el-tooltip>
             </el-button>
           </div>
@@ -59,7 +59,7 @@
                 placement="top-end"
                 :open-delay="500"
               >
-                <i class="el-icon-error sc-close-icon"></i>
+                <i class="el-icon-error sc-reminder-close-icon"></i>
               </el-tooltip>
             </el-button>
           </div>
@@ -83,9 +83,7 @@
               class="text item sc-reminder-individual-card-content"
               @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
             >
-              <div v-if="rem.vnRowStateInSession === 9">
-                Added from socket {{ rem.description }}
-              </div>
+              <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
               <div v-else>{{ rem.description }}</div>
             </div>
           </el-tooltip>
@@ -290,20 +288,6 @@ export default {
 
 /* Hierarchy Level 4: Partition 2 */
 
-.sc-reminder-individual-card-delete-icon {
-  position: absolute;
-  top: -10px;
-  right: 0px;
-  z-index: 999;
-  cursor: pointer;
-  text-decoration: none;
-}
-.sc-reminder-individual-card-delete-icon .el-button.el-button--text {
-  color: #ebe9e9;
-}
-
-/* Hierarchy Level 4: Partition 3 */
-
 .sc-reminder-individual-card-info-icon {
   position: absolute;
   top: -10px;
@@ -320,17 +304,31 @@ export default {
   .el-button.el-button--text {
   color: #a1e5fa;
 }
-.sc-info-icon {
+.sc-reminder-info-icon {
   font-size: 0.85rem;
 }
-.sc-info-icon:hover {
+.sc-reminder-info-icon:hover {
   color: #2ccbfc;
   font-size: 1.05rem;
 }
-.sc-close-icon {
+
+/* Hierarchy Level 4: Partition 3 */
+
+.sc-reminder-individual-card-delete-icon {
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  z-index: 999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.sc-reminder-individual-card-delete-icon .el-button.el-button--text {
+  color: #ebe9e9;
+}
+.sc-reminder-close-icon {
   font-size: 0.85rem;
 }
-.sc-close-icon:hover {
+.sc-reminder-close-icon:hover {
   color: #ff0000;
   font-size: 1.05rem;
 }
