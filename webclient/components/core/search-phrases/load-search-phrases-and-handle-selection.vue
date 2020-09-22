@@ -1,24 +1,25 @@
 <template>
   <div id="manage-ptsvl-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
-    <feedSPhrases></feedSPhrases>
-    <mapSPhrases></mapSPhrases>
-    <clearSPhrases></clearSPhrases>
-    <remSPhrases></remSPhrases>
-    <ssSPhrases></ssSPhrases>
-    <nameSPhrases></nameSPhrases>
-    <weightSPhrases></weightSPhrases>
-    <pulseSPhrases></pulseSPhrases>
-    <heightSPhrases></heightSPhrases>
-    <temperatureSPhrases></temperatureSPhrases>
-    <phq9SPhrases></phq9SPhrases>
-    <bmSPhrases></bmSPhrases>
-    <bloodPressureSPhrases></bloodPressureSPhrases>
-    <bloodSugarSPhrases></bloodSugarSPhrases>
-    <oxygenSaturationSPhrases></oxygenSaturationSPhrases>
-    <waistCircumferenceSPhrases></waistCircumferenceSPhrases>
-    <dobSPhrases></dobSPhrases>
-    <phoneNumberSPhrases></phoneNumberSPhrases>
+    <feedSPhrases />
+    <mapSPhrases />
+    <clearSPhrases />
+    <remSPhrases />
+    <ssSPhrases />
+    <mseSPhrases />
+    <nameSPhrases />
+    <weightSPhrases />
+    <pulseSPhrases />
+    <heightSPhrases />
+    <temperatureSPhrases />
+    <phq9SPhrases />
+    <bmSPhrases />
+    <bloodPressureSPhrases />
+    <bloodSugarSPhrases />
+    <oxygenSaturationSPhrases />
+    <waistCircumferenceSPhrases />
+    <dobSPhrases />
+    <phoneNumberSPhrases />
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -52,12 +53,14 @@ import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-
 import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/search-phrases-ct'
 import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'
 import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/search-phrases-ct'
+import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/search-phrases-ct'
 import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/search-phrases-ct'
 
 export default {
   components: {
     remSPhrases,
     ssSPhrases,
+    mseSPhrases,
     feedSPhrases,
     clearSPhrases,
     mapSPhrases,

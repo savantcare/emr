@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterListOfSSCt from './master-list-of-ss-ct'
+import tblMasterListOfSSCt from './master-list-of-mse-ct'
 
 export default {
   components: { tblMasterListOfSSCt },
@@ -16,26 +16,26 @@ export default {
   mounted() {
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'service statements',
+        value: 'mental status exams',
         ctAbbr: 'ss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'add service statement',
+        value: 'add mental status exam',
         ctAbbr: 'addss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/change-layer/add-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/change-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change service statement',
+        value: 'change mental status exam',
         ctAbbr: 'css',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/change-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -43,9 +43,9 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'discontinued service statements',
+        value: 'discontinued mental status exams',
         ctAbbr: 'dss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/discontinued.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/mental-status-exam/view-layer/discontinued.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },
