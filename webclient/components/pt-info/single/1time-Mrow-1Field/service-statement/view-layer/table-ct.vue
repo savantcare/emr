@@ -2,9 +2,9 @@
   <div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>Service statemetns</span>
-        <el-button style="float: right; padding: 3px 0" type="text" @click="mfOpenACtInCl"
-          >A</el-button
+        <span>Service statements</span>
+        <el-button style="float: right; padding: 3px 0" type="text" @click="mfOpenCCtInCl"
+          >C</el-button
         >
       </div>
       <div class="grid-container">
@@ -43,9 +43,9 @@ export default {
         },
       })
     },
-    mfOpenACtInCl() {
+    mfOpenCCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'add service statement',
+        searchTerm: 'change service statement',
       })
     },
   },
