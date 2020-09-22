@@ -292,21 +292,18 @@ Generatiobn 3                     |
   margin: 1px;
 }
 
-/* */
-.sc-reminder-all-content-body .el-card__body {
-  padding: 16px 10px 5px !important;
-  height: 100%;
-  line-height: 18px;
-}
-
 /* Generation Level 3 */
+
+/* Goal: Margin and padding of individual card */
 
 .sc-reminder-individual-card {
   cursor: pointer;
   overflow-wrap: break-word;
   position: relative;
-  margin: 5px;
-  padding: 1px;
+  margin: 1px;
+  padding: 10px 1px 1px !important;
+  /* Goal: Give normal and weak eyesight two different font size*/
+  font-size: var(--font-size-of-content-every-where);
 }
 
 /* Goal: Header icon management  */
@@ -324,13 +321,4 @@ Generatiobn 3                     |
 .sc-reminder-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
 }
-
-/* Generation Level 4: Partition 1 */
-
-.sc-reminder-individual-card-content {
-  font-size: var(--font-size-of-content-every-where);
-  height: 100%;
-}
-
-/* Generation Level 4: Partition 2 */
 </style>
