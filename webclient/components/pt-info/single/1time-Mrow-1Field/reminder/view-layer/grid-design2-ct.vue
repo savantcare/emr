@@ -1,8 +1,8 @@
 <!-- Reference implementation -->
 <template>
-  <div :style="cfContentStyle">
+  <div clsss="sc-reminder-all-cards" :style="cfContentStyle">
     <el-card class="box-card" shadow="hover">
-      <div slot="header" class="clearfix">
+      <div class="sc-reminder-header clearfix" slot="header">
         <span>Reminders</span>
         <el-button-group style="float: right">
           <el-button
@@ -29,15 +29,15 @@
           ></el-button>
         </el-button-group>
       </div>
-      <div class="grid-container data-card">
+      <div class="sc-reminder-all-cards-body">
         <el-card
           v-for="rem in cfArOfRemForDisplayInTable"
           :key="rem.id"
-          class="box-card content-card"
+          class="box-card sc-reminder-individual-card"
           shadow="hover"
           :style="mfGetCssClassName(rem)"
         >
-          <div class="info-icon">
+          <div class="sc-reminder-individual-card-info-icon">
             <el-button type="text">
               <el-tooltip
                 class="item"
@@ -46,11 +46,11 @@
                 placement="top-end"
                 :open-delay="500"
               >
-                <i class="el-icon-info custom-info-icon"></i>
+                <i class="el-icon-info sc-info-icon"></i>
               </el-tooltip>
             </el-button>
           </div>
-          <div class="delete-icon">
+          <div class="sc-reminder-individual-card-delete-icon">
             <el-button type="text" @click="mxOpenDPrompt(rem.clientSideUniqRowId)">
               <el-tooltip
                 class="item"
@@ -59,7 +59,7 @@
                 placement="top-end"
                 :open-delay="500"
               >
-                <i class="el-icon-error custom-close-icon"></i>
+                <i class="el-icon-error sc-close-icon"></i>
               </el-tooltip>
             </el-button>
           </div>
@@ -78,14 +78,13 @@
           Why we are doing this?
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
-          -->
-            <div class="text item content-div" @click="mxOpenCCtInCl(rem.clientSideUniqRowId)">
-              <div v-if="rem.vnRowStateInSession === 9">
-                Added from socket {{ rem.description }}
-              </div>
-              <div v-else>
-                {{ rem.description }}
-              </div>
+            -->
+            <div
+              class="text item sc-reminder-individual-card-content"
+              @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
+            >
+              <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+              <div v-else>{{ rem.description }}</div>
             </div>
           </el-tooltip>
         </el-card>
@@ -97,8 +96,7 @@
         layout="pager"
         :total="cfLengthOfDataArray"
         @current-change="mfTablePageChanged"
-      >
-      </el-pagination>
+      ></el-pagination>
     </el-card>
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
@@ -210,23 +208,23 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* Hierarchy ->           
                   .sc-reminder-all-cards
                             |
                  ___________________________           
                  |                         |
-              .sc-reminder-header  .sc-reminder-body
+              .sc-reminder-header  .sc-reminder-all-cards-body
                                            |
-                                .sc-individual-reminder-card
+                                .sc-reminder-individual-card
                                            |
                        ________________________________________________________________________________          
                       |                                 |                                             |
-        .sc-individual-reminder-card-content    .sc-individual-reminder-card-info-icon           .sc-individual-reminder-card-delete-icon
+        .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
 
 */
 
-.grid-container {
+.sc-reminder-all-cards-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
@@ -238,22 +236,41 @@ export default {
   grid-auto-flow: row; /* This is default value */
   margin: 1px;
 }
-.el-tag {
-  margin-left: 10px;
-  cursor: pointer;
-}
-.el-tag .el-tag__close {
-  color: #409eff;
-  float: right;
-  top: 7px !important;
-}
-.grid-container.data-card .el-card__body {
-  padding: 16px 10px 5px;
+
+.sc-reminder-all-cards-body .el-card__body {
+  padding: 16px 10px 5px !important;
   height: 100%;
   line-height: 18px;
   text-decoration: none;
 }
-.delete-icon {
+
+.sc-reminder-individual-card {
+  cursor: pointer;
+  overflow-wrap: break-word;
+  position: relative;
+  margin: 5px;
+}
+.sc-reminder-individual-card.el-card.box-card:hover
+  .sc-reminder-individual-card-delete-icon
+  .el-button.el-button--text {
+  color: #f39797;
+}
+
+.sc-reminder-individual-card-content {
+  font-size: var(--font-size-of-content-every-where);
+  height: 100%;
+}
+.sc-reminder-individual-card-content:hover {
+  color: #409eff !important;
+}
+
+.sc-reminder-individual-card.el-card.box-card {
+  border: 1px solid #e4e4e4;
+}
+.sc-reminder-individual-card.el-card.box-card:hover {
+  border: 1px solid #b7daf7;
+}
+.sc-reminder-individual-card-delete-icon {
   position: absolute;
   top: -10px;
   right: 0px;
@@ -261,40 +278,11 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
-.delete-icon .el-button.el-button--text {
+.sc-reminder-individual-card-delete-icon .el-button.el-button--text {
   color: #ebe9e9;
 }
-.content-card.el-card.box-card:hover .delete-icon .el-button.el-button--text {
-  color: #f39797;
-}
-.content-card {
-  cursor: pointer;
-  overflow-wrap: break-word;
-  position: relative;
-  margin: 5px;
-}
-.content-div {
-  font-size: var(--font-size-of-content-every-where);
-  height: 100%;
-}
-.content-div:hover {
-  color: #409eff !important;
-}
-.content-card.el-card.box-card {
-  border: 1px solid #e4e4e4;
-}
-.content-card.el-card.box-card:hover {
-  border: 1px solid #b7daf7;
-}
-.custom-close-icon {
-  font-size: 0.85rem;
-}
-.custom-close-icon:hover {
-  color: #ff0000;
-  font-size: 1.05rem;
-}
 
-.info-icon {
+.sc-reminder-individual-card-info-icon {
   position: absolute;
   top: -10px;
   right: 16px;
@@ -302,17 +290,26 @@ export default {
   cursor: pointer;
   text-decoration: none;
 }
-.info-icon .el-button.el-button--text {
+.sc-reminder-individual-card-info-icon .el-button.el-button--text {
   color: #ebe9e9;
 }
-.content-card.el-card.box-card:hover .info-icon .el-button.el-button--text {
+.sc-reminder-individual-card.el-card.box-card:hover
+  .sc-reminder-individual-card-info-icon
+  .el-button.el-button--text {
   color: #a1e5fa;
 }
-.custom-info-icon {
+.sc-info-icon {
   font-size: 0.85rem;
 }
-.custom-info-icon:hover {
+.sc-info-icon:hover {
   color: #2ccbfc;
+  font-size: 1.05rem;
+}
+.sc-close-icon {
+  font-size: 0.85rem;
+}
+.sc-close-icon:hover {
+  color: #ff0000;
   font-size: 1.05rem;
 }
 </style>
