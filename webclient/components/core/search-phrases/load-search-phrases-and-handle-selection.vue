@@ -1,25 +1,41 @@
 <template>
   <div id="manage-ptsvl-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
+
+    <!-- core -->
+    <clearSPhrases />
+
+    <!-- combined -->
     <feedSPhrases />
     <mapSPhrases />
-    <clearSPhrases />
-    <remSPhrases />
-    <ssSPhrases />
-    <mseSPhrases />
+
+    <!-- 1time-1row-mField/PII -->
+    <dobSPhrases />
     <nameSPhrases />
-    <weightSPhrases />
-    <pulseSPhrases />
-    <heightSPhrases />
-    <temperatureSPhrases />
-    <phq9SPhrases />
-    <bmSPhrases />
+
+    <!-- 1time-1row-mField/body-measurement -->
     <bloodPressureSPhrases />
     <bloodSugarSPhrases />
+    <bmSPhrases />
+    <heightSPhrases />
     <oxygenSaturationSPhrases />
+    <pulseSPhrases />
+    <temperatureSPhrases />
     <waistCircumferenceSPhrases />
-    <dobSPhrases />
+    <weightSPhrases />
+
+    <!-- 1time-1row-mField/others -->
+    <mseSPhrases />
+    <phq9SPhrases />
+    <prosSPhrases />
+
+    <!-- 1time-Mrow-1Field/others -->
+    <remSPhrases />
+    <ssSPhrases />
+
+    <!-- 1time-Mrow-mField/others -->
     <phoneNumberSPhrases />
+
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -44,20 +60,25 @@ import clearSPhrases from '@/components/core/clear/static-data/search-phrases-ct
 import feedSPhrases from '@/components/pt-info/combined/feed/static-data/search-phrases-ct'
 import mapSPhrases from '@/components/pt-info/combined/map/static-data/search-phrases-ct'
 
-// 1time-1row-mField
+// 1time-1row-mField/PII
+import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/search-phrases-ct'
 import nameSPhrases from '@/components/pt-info/single/1time-1row-mField/name/static-data/search-phrases-ct'
-import heightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/search-phrases-ct'
-import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/search-phrases-ct'
-import pulseSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/static-data/search-phrases-ct'
-import temperatureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/static-data/search-phrases-ct'
+
+// 1time-1row-mField/body-measurement
 import bloodPressureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/static-data/search-phrases-ct'
 import bloodSugarSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/static-data/search-phrases-ct'
-import waistCircumferenceSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/search-phrases-ct'
-import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/search-phrases-ct'
-import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/search-phrases-ct'
 import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/search-phrases-ct'
-import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/search-phrases-ct'
+import heightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/search-phrases-ct'
+import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/search-phrases-ct'
+import pulseSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/static-data/search-phrases-ct'
+import temperatureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/static-data/search-phrases-ct'
+import waistCircumferenceSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/search-phrases-ct'
+import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/search-phrases-ct'
+
+// 1time-1row-mField/others
 import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/search-phrases-ct'
+import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/search-phrases-ct'
+import prosSPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/search-phrases-ct'
 
 // 1time-Mrow-1Field
 import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'
@@ -68,24 +89,38 @@ import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/p
 
 export default {
   components: {
-    remSPhrases,
-    ssSPhrases,
-    mseSPhrases,
-    feedSPhrases,
+    // core
     clearSPhrases,
+
+    // combined
+    feedSPhrases,
     mapSPhrases,
+
+    // 1time-1row-mField/PII
+    dobSPhrases,
     nameSPhrases,
-    heightSPhrases,
-    weightSPhrases,
-    pulseSPhrases,
-    temperatureSPhrases,
-    phq9SPhrases,
-    bmSPhrases,
+
+    // 1time-1row-mField/body-measurement
     bloodPressureSPhrases,
     bloodSugarSPhrases,
-    waistCircumferenceSPhrases,
+    bmSPhrases,
+    heightSPhrases,
     oxygenSaturationSPhrases,
-    dobSPhrases,
+    pulseSPhrases,
+    temperatureSPhrases,
+    waistCircumferenceSPhrases,
+    weightSPhrases,
+
+    // 1time-1row-mField/others
+    mseSPhrases,
+    phq9SPhrases,
+    prosSPhrases,
+
+    // 1time-Mrow-1Field
+    remSPhrases,
+    ssSPhrases,
+
+    // 1time-Mrow-mField
     phoneNumberSPhrases,
   },
   data() {

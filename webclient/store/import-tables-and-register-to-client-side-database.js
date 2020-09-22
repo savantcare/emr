@@ -47,6 +47,12 @@ import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1ro
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
+// Psych review of systems tables
+import tableStructureForPROSMaster from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-master-list-of-psych-review-of-systems.js'
+import tableStructureForPROSOfPatient from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-psych-review-of-systems-of-a-patient.js'
+database.register(tableStructureForPROSMaster)
+database.register(tableStructureForPROSOfPatient)
+
 // Other components tables
 import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 import tableStructureForName from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
