@@ -228,4 +228,8 @@ Generatiobn 3                     |
   color: #f56c6c !important;
   font-size: 1.5rem;
 }
+
+.el-icon-discover:hover {
+  font-size: 1.5rem;
+}
 </style>
