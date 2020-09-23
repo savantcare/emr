@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sc-brain-container">
     <!-- Why not use <keep-alive> before el-card ?
             <keep-alive> before the card creates problem since multiple cards then get inside keep alive   
             <keep-alive> is designed for the case where it has one direct child component that is being toggled. 
@@ -9,15 +9,20 @@
 
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
-          -->
-    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin: 10px">
+    -->
+    <div
+      class="sc-brain-all-cards-container"
+      v-for="card in cfArCardsInCsOfVl"
+      :key="card.id"
+      style="margin: 10px"
+    >
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
                 is not hidden. When user types rex 2 times, rex is being displayed 2 times
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
-            -->
+      -->
       <component :is="card.ctToShow"></component>
     </div>
     <!-- ctVlSearchBox as per glossary is Component View layer search box 
@@ -35,8 +40,10 @@
               Choice in July 2020 by VK: keep search box at botoom
 
               Do not make the mistake of making something like this configurable. When needed the change should be made directly in the code
-        -->
-    <ctVlSearchBox></ctVlSearchBox>
+    -->
+    <div class="sc-brain-all-cards-search-container">
+      <ctVlSearchBox></ctVlSearchBox>
+    </div>
   </div>
 </template>
 <script>
@@ -61,3 +68,15 @@ export default {
   },
 }
 </script>
+<style>
+/* Goal: remove extra white space from all cards header*/
+.sc-brain-container .el-card__header {
+  padding: 10px !important;
+}
+
+/* Goal: remove extra white space from all cards body*/
+.sc-brain-container .el-card__body {
+  padding: 10px !important;
+}
+</style>
+
