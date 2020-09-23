@@ -7,7 +7,7 @@
       :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="grid-container">
+      <div class="sc-service-statement-all-content-body">
         <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
@@ -57,27 +57,21 @@ export default {
 
       // Apply rules given by doctors
 
-      // Rule1: If one "Modality of Psychotherapy" exists PatientServiceStatements table then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
-        arOfObjectsFromClientSideMasterDB,
-        'Modality of Psychotherapy'
-      )
-
-      // Rule2: If one Time in psychotherapy then do not show others
+      // Rule1: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes in psychotherapy'
       )
 
-      // Rule3: If one Time in psychotherapy then do not show others
+      // Rule2: If one Time in psychotherapy then do not show others
       arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes with patient'
       )
 
-      // Rule 4: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
+      // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
 
-      // Rule 5: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
+      // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
 
       // End: Now group the SS
 
@@ -176,3 +170,18 @@ export default {
   },
 }
 </script>
+
+<style>
+.sc-service-statement-all-content-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
+}
+</style>

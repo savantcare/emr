@@ -7,18 +7,14 @@
         <el-button-group style="float: right">
           <el-button
             style="padding: 3px"
-            type="success"
             plain
             tabindex="-1"
             @click="mxOpenACtInCl"
             class="el-icon-circle-plus-outline"
           ></el-button>
-          <el-button style="padding: 3px" type="primary" plain tabindex="-1" @click="mxOpenMCtInCl"
-            >M</el-button
-          >
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
           <el-button
             style="padding: 3px"
-            type="warning"
             plain
             tabindex="-1"
             @click="mxOpenDDialog"
@@ -26,7 +22,6 @@
           ></el-button>
           <el-button
             style="padding: 3px"
-            type="info"
             plain
             tabindex="-1"
             @click="mxOpenXCtInCl"

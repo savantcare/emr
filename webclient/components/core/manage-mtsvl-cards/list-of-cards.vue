@@ -12,9 +12,9 @@
         <ctGVl> </ctGVl><br />
 -->
     <TheMultiStateDisplayAreaHeader> </TheMultiStateDisplayAreaHeader>
-    <div style="margin-bottom: 25px"><ctBMVl /></div>
-    <div style="margin-bottom: 25px"><ctRemVl /></div>
-    <div style="margin-bottom: 25px"><ctScrVl /></div>
+    <div style="margin: 10px"><ctBMVl /></div>
+    <div style="margin: 10px"><ctRemVl /></div>
+    <div style="margin: 10px"><ctScrVl /></div>
   </div>
 </template>
 <script>

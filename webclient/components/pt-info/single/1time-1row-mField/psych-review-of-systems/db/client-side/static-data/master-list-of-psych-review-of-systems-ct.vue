@@ -12,200 +12,236 @@ export default {
     return {}
   },
   mounted() {
+    let i = 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '1',
-        psychReviewOfSystemsDescription: 'Good grooming and hygiene',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Depressive mood',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '2',
-        psychReviewOfSystemsDescription: 'No apparennt distress',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Interest',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '3',
-        psychReviewOfSystemsDescription: 'Well developed, well nourished',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Sleep',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '4',
-        psychReviewOfSystemsDescription: 'Appears stated age',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Gulf / Self esteem',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '5',
-        psychReviewOfSystemsDescription: 'Appears younger than stated age',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Energy',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '6',
-        psychReviewOfSystemsDescription: 'Appears older than stated age',
-        psychReviewOfSystemsCategory: 'Appearence',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Conc/Dist',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '7',
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'Appetite',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
+      },
+    })
+
+    i = i + 1
+    clientSideTblMasterPsychReviewOfSystems.insert({
+      data: {
+        psychReviewOfSystemsMasterId: i,
+        psychReviewOfSystemsDescription: 'PMR/PMA',
+        psychReviewOfSystemsCategory: 'Depression',
+        psychReviewOfSystemsFieldType: 'radio',
+      },
+    })
+
+    i = i + 1
+    clientSideTblMasterPsychReviewOfSystems.insert({
+      data: {
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Obese',
-        psychReviewOfSystemsCategory: 'Appearance',
+        psychReviewOfSystemsCategory: 'Gateway mood symptoms',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '8',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Thin or cachectic',
-        psychReviewOfSystemsCategory: 'Appearance',
+        psychReviewOfSystemsCategory: 'Gateway mood symptoms',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '9',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Disheveled, unkempt',
-        psychReviewOfSystemsCategory: 'Appearance',
+        psychReviewOfSystemsCategory: 'Gateway mood symptoms',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '10',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Malodorous',
-        psychReviewOfSystemsCategory: 'Appearance',
+        psychReviewOfSystemsCategory: 'Gateway mood symptoms',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '11',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Pleasant and cooperative',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '12',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Uncooperative',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '13',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Hostile or defiant',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '14',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Guarded',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Evasive',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Apathetic',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Disorganized behavior',
-        psychReviewOfSystemsCategory: 'Attitude',
+        psychReviewOfSystemsCategory: 'Mania / Hypomania',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '14',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Agitated',
-        psychReviewOfSystemsCategory: 'Psychomotor',
+        psychReviewOfSystemsCategory: 'Psychosis',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Retarded',
-        psychReviewOfSystemsCategory: 'Psychomotor',
+        psychReviewOfSystemsCategory: 'Psychosis',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Appropriate',
-        psychReviewOfSystemsCategory: 'Eye-contact',
+        psychReviewOfSystemsCategory: 'Sleep',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Downcast',
-        psychReviewOfSystemsCategory: 'Eye-contact',
+        psychReviewOfSystemsCategory: 'Sleep',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Intense',
-        psychReviewOfSystemsCategory: 'Eye-contact',
+        psychReviewOfSystemsCategory: 'Sleep',
       },
     })
+
+    i = i + 1
     clientSideTblMasterPsychReviewOfSystems.insert({
       data: {
-        psychReviewOfSystemsMasterId: '15',
+        psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Fleeting',
-        psychReviewOfSystemsCategory: 'Eye-contact',
-      },
-    })
-    clientSideTblMasterPsychReviewOfSystems.insert({
-      data: {
-        psychReviewOfSystemsMasterId: '15',
-        psychReviewOfSystemsDescription: 'Regular, rate and rhythm',
-        psychReviewOfSystemsCategory: 'Speech',
-      },
-    })
-    clientSideTblMasterPsychReviewOfSystems.insert({
-      data: {
-        psychReviewOfSystemsMasterId: '14',
-        psychReviewOfSystemsDescription: 'Agitated',
-        psychReviewOfSystemsCategory: 'Psychomotor',
-      },
-    })
-    clientSideTblMasterPsychReviewOfSystems.insert({
-      data: {
-        psychReviewOfSystemsMasterId: '15',
-        psychReviewOfSystemsDescription: 'Retarded',
-        psychReviewOfSystemsCategory: 'Psychomotor',
-      },
-    })
-    clientSideTblMasterPsychReviewOfSystems.insert({
-      data: {
-        psychReviewOfSystemsMasterId: '15',
-        psychReviewOfSystemsDescription: 'Appropriate',
-        psychReviewOfSystemsCategory: 'Eye-contact',
-      },
-    })
-    clientSideTblMasterPsychReviewOfSystems.insert({
-      data: {
-        psychReviewOfSystemsMasterId: '15',
-        psychReviewOfSystemsDescription: 'Downcast',
-        psychReviewOfSystemsCategory: 'Eye-contact',
+        psychReviewOfSystemsCategory: 'Sleep',
       },
     })
   },

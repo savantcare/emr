@@ -10,7 +10,7 @@
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
           -->
-    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin-bottom: 25px">
+    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex

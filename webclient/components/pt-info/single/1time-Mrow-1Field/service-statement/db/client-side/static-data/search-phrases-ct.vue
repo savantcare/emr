@@ -18,7 +18,8 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow:
+          'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/grid-with-cards-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'ptsVl',
       },
     })

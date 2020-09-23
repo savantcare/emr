@@ -7,22 +7,56 @@
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="grid-container">
+      <div class="sc-psych-review-of-systems-all-content-divs">
         <div
-          v-for="ss in allPsychReviewOfSystemsInsideAGroup"
-          :key="ss.psychReviewOfSystemsMasterId"
+          v-for="ros in allPsychReviewOfSystemsInsideAGroup"
+          :key="ros.psychReviewOfSystemsMasterId"
         >
-          <div v-if="mfCheckIfThisExistsInChildTable(ss)">
-            <el-button
-              @click="mfTogglePsychReviewOfSystems(ss.psychReviewOfSystemsMasterId)"
-              type="primary"
-              >{{ ss.psychReviewOfSystemsDescription }}</el-button
-            >
+          <div v-if="mfCheckIfThisExistsInChildTable(ros)">
+            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+              <el-button
+                @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
+                type="primary"
+                >{{ ros.psychReviewOfSystemsDescription }}</el-button
+              >
+            </div>
+            <div v-else>
+              <el-input
+                :placeholder="ros.psychReviewOfSystemsDescription"
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
+              ></el-input>
+              <vue-slider
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
+                :marks="false"
+                :min="0"
+                :max="2"
+                :width="150"
+                :absord="true"
+                :included="true"
+                :tooltip="'none'"
+              ></vue-slider>
+            </div>
           </div>
           <div v-else>
-            <el-button @click="mfTogglePsychReviewOfSystems(ss.psychReviewOfSystemsMasterId)">{{
-              ss.psychReviewOfSystemsDescription
-            }}</el-button>
+            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+              <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
+                ros.psychReviewOfSystemsDescription
+              }}</el-button>
+            </div>
+            <div v-else>
+              {{ ros.psychReviewOfSystemsDescription }}
+              <vue-slider
+                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
+                :marks="false"
+                :min="0"
+                :max="2"
+                :width="150"
+                :absord="true"
+                :included="true"
+                :tooltip="'none'"
+                :height="10"
+              ></vue-slider>
+            </div>
           </div>
         </div>
       </div>
@@ -38,6 +72,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
+      descriptionModal: [],
     }
   },
   computed: {
@@ -86,7 +121,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row category=Modality of psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -120,7 +155,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row where category=Time in psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -154,7 +189,7 @@ export default {
               console.log('row is there in client table.')
             } else {
               console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
+                'delete the row where category=Time in psychotherapy from array of ros allowed to be chosen by patient'
               )
               arOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -191,10 +226,10 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfCheckIfThisExistsInChildTable(pSS) {
+    mfCheckIfThisExistsInChildTable(pros) {
       // I am able to get the data from child table.
-      if (pSS.tblPsychReviewOfSystemsForPatientLink) {
-        if (pSS.tblPsychReviewOfSystemsForPatientLink.ROW_END === 2147483647.999999) {
+      if (pros.tblPsychReviewOfSystemsForPatientLink) {
+        if (pros.tblPsychReviewOfSystemsForPatientLink.ROW_END === 2147483647.999999) {
           return true
         }
       }
@@ -224,3 +259,18 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.sc-psych-review-of-systems-all-content-divs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 20px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 20px;
+}
+</style>

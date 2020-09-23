@@ -26,7 +26,8 @@ export default class psychReviewOfSystemsForPatientClass extends clientSideTable
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemsMasterId = 2 */
-      psychReviewOfSystemsMasterId: this.uid(() => uuidv1()), // This is psych review of systems ID assigned to this patient coming from master table
+      psychReviewOfSystemsMasterId: this.number(0), // This is psych review of systems ID assigned to this patient coming from master table
+      psychReviewOfSystemsFieldValue: this.string(null),
       patientUUID: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

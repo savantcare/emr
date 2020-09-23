@@ -224,39 +224,6 @@ export default {
         mentalStatusExamCategory: 'Speech',
       },
     })
-    i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
-      data: {
-        mentalStatusExamMasterId: i,
-        mentalStatusExamDescription: 'Agitated',
-        mentalStatusExamCategory: 'Psychomotor',
-      },
-    })
-    i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
-      data: {
-        mentalStatusExamMasterId: i,
-        mentalStatusExamDescription: 'Retarded',
-        mentalStatusExamCategory: 'Psychomotor',
-      },
-    })
-    i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
-      data: {
-        mentalStatusExamMasterId: i,
-        mentalStatusExamDescription: 'Appropriate',
-        mentalStatusExamCategory: 'Eye-contact',
-      },
-    })
-    i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
-      data: {
-        mentalStatusExamMasterId: i,
-        mentalStatusExamDescription: 'Downcast',
-        mentalStatusExamCategory: 'Eye-contact',
-      },
-    })
-    i = i + 1
   },
 }
 </script>
