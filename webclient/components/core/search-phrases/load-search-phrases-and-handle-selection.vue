@@ -47,7 +47,7 @@ import bloodPressureSPhrases from '@/components/pt-info/single/1time-1row-mField
 import bloodSugarSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/static-data/search-phrases-ct'
 import waistCircumferenceSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/search-phrases-ct'
 import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/search-phrases-ct'
-import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/search-phrases-ct'
+import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/db/client-side/static-data/search-phrases-ct'
 import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/search-phrases-ct'
 import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/search-phrases-ct'
 import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/search-phrases-ct'

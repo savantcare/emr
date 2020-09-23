@@ -1,5 +1,5 @@
 // Master doc is at reference implementation name/com-mx/view-layer.js. This file has doc unique to this ct
-// Code synced with ref implementation on 18th august 2020
+// Code synced with ref implementation on 23rd august 2020
 
 import moment from 'moment'
 
@@ -56,9 +56,7 @@ export default {
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
     if (arFromClientSideTable.length) {
       const rowtoReturn = arFromClientSideTable[0]
-      const vnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
-        rowtoReturn.uuid
-      )
+      const vnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(rowtoReturn.uuid)
       if (vnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(

@@ -1,3 +1,4 @@
+<!-- To understand how this works read components/core/search-phrases/load-search-phrases-and-handle-selection.vue -->
 <template>
   <div></div>
 </template>
@@ -14,7 +15,7 @@ export default {
       data: {
         value: 'phq9',
         ctAbbr: 'h',
-        ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/line-graph-ct.vue',
         displayLocation: 'ptsVl',
       },
     })
@@ -22,7 +23,7 @@ export default {
       data: {
         value: 'phq9 - change',
         ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1time-1row-mField/phq9/change-layer/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/change-layer/c-ct.vue',
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
         ctWidthInCl: 'large',
