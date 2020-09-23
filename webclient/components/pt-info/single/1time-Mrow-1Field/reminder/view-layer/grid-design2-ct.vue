@@ -344,12 +344,20 @@ Generatiobn 3                     |
   font-size: 1.5rem;
 }
 
+.sc-reminder-individual-card:hover .sc-reminder-individual-card-content {
+  color: #67c23a !important;
+}
+
 .sc-reminder-individual-card:hover .el-icon-discover {
   color: #909399 !important;
 }
 
 .el-icon-discover:hover {
   font-size: 1.5rem;
+}
+
+.el-icon-discover:hover .sc-reminder-individual-card-content {
+  color: #909399 !important;
 }
 
 .sc-reminder-individual-card:hover .el-icon-circle-close {
