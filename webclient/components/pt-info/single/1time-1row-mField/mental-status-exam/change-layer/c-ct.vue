@@ -16,7 +16,6 @@
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
               <el-button
-                size="small"
                 @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
                 type="primary"
                 >{{ ms.mentalStatusExamDescription }}</el-button
@@ -31,11 +30,9 @@
           </div>
           <div v-else>
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
-              <el-button
-                size="small"
-                @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
-                >{{ ms.mentalStatusExamDescription }}</el-button
-              >
+              <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
+                ms.mentalStatusExamDescription
+              }}</el-button>
             </div>
             <div v-else>
               <el-input
