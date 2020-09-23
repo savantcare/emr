@@ -70,8 +70,14 @@ export default {
       )
 
       // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
+        arOfObjectsFromClientSideMasterDB
+      )
 
       // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
+        arOfObjectsFromClientSideMasterDB
+      )
 
       // End: Now group the SS
 
@@ -159,6 +165,70 @@ export default {
             ) {
             } else {
               // Handling Possibility 2: This element is not there in SS of patient
+              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+      return pArOfObjectsFromClientSideMasterDB
+    },
+    mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
+      pArOfObjectsFromClientSideMasterDB
+    ) {
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+        .query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes in psychotherapy')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
+        const categoryOfThisSetAssignedToPatient =
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
+
+        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+          if (
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Total minutes with patient'
+          ) {
+            if (
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription) >
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription)
+            ) {
+              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+      return pArOfObjectsFromClientSideMasterDB
+    },
+    mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
+      pArOfObjectsFromClientSideMasterDB
+    ) {
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+        .query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes with patient')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
+        const categoryOfThisSetAssignedToPatient =
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
+
+        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+          if (
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Total minutes in psychotherapy'
+          ) {
+            if (
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription) <
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription)
+            ) {
               pArOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
             }
