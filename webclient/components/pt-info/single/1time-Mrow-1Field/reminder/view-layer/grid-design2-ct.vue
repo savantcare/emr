@@ -46,55 +46,41 @@
         shadow="hover"
         :style="mfGetCssClassName(rem)"
       >
+        <div
+          v-if="rem.vnRowStateInSession === 9"
+          class="sc-reminder-individual-socket-messege-container"
+        >
+          <span>Added from socket</span>
+        </div>
         <el-button-group style="float: right; display: none">
-          <el-button
-            class="el-icon-edit"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
+          <el-tooltip class="item" effect="dark" content="Click to edit" placement="top-start">
+            <el-button
+              class="el-icon-edit"
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
+              @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
+            ></el-button>
+          </el-tooltip>
 
-          <el-button
-            class="el-icon-discover"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-          <el-button
-            class="el-icon-circle-close"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to delete"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
+          <el-tooltip class="item" effect="dark" content="Info" placement="top-start">
+            <el-button
+              class="el-icon-discover"
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
+            ></el-button>
+          </el-tooltip>
+
+          <el-tooltip class="item" effect="dark" content="Click to delete" placement="top-start">
+            <el-button
+              class="el-icon-circle-close"
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
+              @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
+            ></el-button>
+          </el-tooltip>
         </el-button-group>
 
         <!-- <el-button type="text">{{ rem.description }}</el-button> 
@@ -104,13 +90,13 @@
           Why we are doing this?
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
-            -->
+        -->
         <div
           class="text item sc-reminder-individual-card-content"
           @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
         >
-          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-          <div v-else>{{ rem.description }}</div>
+          <!-- <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div> -->
+          <div>{{ rem.description }}</div>
         </div>
       </el-card>
     </div>
@@ -224,7 +210,11 @@ export default {
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
         return 'color: #E6A23C;'
-      } else {
+      }
+       else if(lastCharecter === '9') { // when data added from socket overwrite default design
+        return 'border:1px solid #ff9900;color: #ff9900;'
+      }
+      else{
         return 'color: #202020;'
       }
     },
@@ -329,6 +319,19 @@ Generatiobn 3                     |
   padding: 10px 1px 1px !important;
   /* Goal: Give normal and weak eyesight two different font size*/
   font-size: var(--font-size-of-content-every-where);
+  overflow: visible !important;
+}
+
+/* Goal: Design for socket messege container */
+.sc-reminder-individual-socket-messege-container {
+  font-size: 10px;
+  color: #ff9900;
+  position: absolute;
+  font-weight: bolder;
+  padding: 0 1px;
+  top: -7px;
+  left: 30%;
+  background-color: #fff;
 }
 
 /* Goal: Header icon management  */
@@ -367,4 +370,11 @@ Generatiobn 3                     |
 .el-icon-circle-close:hover {
   font-size: 1.5rem;
 }
+
+/* Goal: For subtle tooltip */
+.el-tooltip__popper {
+  padding: 5px;
+}
 </style>
+
+

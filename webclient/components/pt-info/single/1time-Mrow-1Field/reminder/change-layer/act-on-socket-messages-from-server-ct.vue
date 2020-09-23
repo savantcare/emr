@@ -47,10 +47,10 @@ export default {
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const primaryKeyValue = arFromClientSideTable.rem[0].id
+        const primaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
-            scope.fnSetRowStatus(primaryKeyValue)
+             scope.fnSetRowStatus(primaryKeyValue)
           },
           1000, // setting timeout of 1 s
           this
