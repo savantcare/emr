@@ -30,9 +30,11 @@ database.register(tableStructureForTemperature)
 database.register(tableStructureForPulse)
 
 // Screening tables
-import tableStructureForScr from '~/components/pt-info/single/1time-Mrow-mField/scr/db/client-side/structure/Screening'
+import tableStructureForScrMaster from '~/components/pt-info/single/1time-Mrow-1Field/scr/db/client-side/structure/scr-table-master.js'
+import tableStructureForScrPatient from '~/components/pt-info/single/1time-Mrow-1Field/scr/db/client-side/structure/scr-table-patient.js'
 import tableStructureForPhq9 from '~/components/pt-info/single/1time-1row-mField/phq9/db/client-side/structure/table.js'
-database.register(tableStructureForScr)
+database.register(tableStructureForScrMaster)
+database.register(tableStructureForScrPatient)
 database.register(tableStructureForPhq9)
 
 // Service statement tables
