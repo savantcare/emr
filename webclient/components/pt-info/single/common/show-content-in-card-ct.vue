@@ -1,6 +1,6 @@
 <template>
-  <el-card shadow="hover" class="box-card sc-mental-status-exam-all-content">
-    <div slot="header" class="sc-mental-status-exam-all-content-header clearfix">
+  <el-card shadow="hover" class="box-card sc-top-most-parent-all-content">
+    <div slot="header" class="sc-top-most-parent-header clearfix">
       <span>{{ mainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-button
@@ -12,11 +12,11 @@
         ></el-button>
       </el-button-group>
     </div>
-    <div class="sc-mental-status-exam-all-content-body">
+    <div class="sc-top-most-parent-body">
       <el-card
         v-for="card in childCardsArray"
         :key="card.clientSideUniqRowId"
-        class="box-card sc-mental-status-exam-individual-card"
+        class="box-card sc-individual-child-card"
         shadow="hover"
       >
         <el-button-group style="float: right; display: none">
@@ -70,3 +70,111 @@ export default {
   },
 }
 </script>
+
+<style>
+/* Generation ->
+==============
+                                       .sc-top-most-parent-all-content
+ Generation 1                                      |
+==============                     _________________________________
+                                  |                                |
+                    .sc-top-most-parent-header                |
+ Generatiobn 2                                                     |
+                                    _______________________________|
+                                  |
+                  .sc-top-most-parent-body
+==============                    |
+                                  |
+                   .sc-individual-child-card
+Generatiobn 3                     |
+                       ________________________________________________________________________________
+                      |                                 |                                             |
+        .sc-individual-child-card-content    .sc-individual-child-card-info-icon           .sc-individual-child-card-delete-icon
+
+==============
+*/
+
+/* Generation Level 1 */
+.sc-top-most-parent-all-content .el-card__header {
+  /* Goal: Manage Distance from border to content in header*/
+  padding: 10px !important;
+}
+
+.sc-top-most-parent-all-content .el-card__body {
+  /* Goal: Manage  Distance from border to content in body*/
+  padding: 10px !important;
+}
+
+/* Generation Level 2 / Child 1 == Goal: Header icon management */
+
+/* When anywhere inside the card make the action icons in the card header -> level 1 visual */
+.el-card:hover .sc-top-most-parent-header .el-button-group {
+  display: inline-block !important;
+}
+
+/* When inside the card header make the action icons in the card header -> level 2 visual */
+.el-card__header:hover .sc-top-most-parent-header .el-icon-edit {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+.el-card__header:hover .sc-top-most-parent-header .el-icon-s-grid {
+  color: #409eff !important;
+}
+.el-card__header:hover .sc-top-most-parent-header .el-icon-document-delete {
+  color: #f56c6c !important;
+}
+.el-card__header:hover .sc-top-most-parent-header .el-icon-delete {
+  color: #909399 !important;
+}
+
+/* Generation Level 2 / Child 2 */
+
+/* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
+.sc-top-most-parent-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
+}
+
+/* Generation Level 3 */
+
+/* Goal: Margin and padding of individual card */
+
+.sc-individual-child-card {
+  cursor: pointer;
+  overflow-wrap: break-word;
+  position: relative;
+  margin: 1px;
+  padding: 10px 1px 1px !important;
+  /* Goal: Give normal and weak eyesight two different font size*/
+  font-size: var(--font-size-of-content-every-where);
+}
+
+/* Goal: Header icon management  */
+.el-card:hover .sc-individual-child-card .el-button-group {
+  display: inline-block !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.sc-individual-child-card:hover .el-icon-discover {
+  color: #909399 !important;
+}
+
+.sc-individual-child-card:hover .el-icon-circle-close {
+  color: #f56c6c !important;
+  font-size: 1.5rem;
+}
+
+.el-icon-discover:hover {
+  font-size: 1.5rem;
+}
+</style>
