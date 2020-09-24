@@ -83,7 +83,7 @@ export default {
       const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
-    mxOpenDPrompt(pOrmDataRowId) {
+    mfIconDeleteClickedOnChildCard(pOrmDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
