@@ -80,7 +80,7 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'change reminder', pPropsToGiveToCt: pOrmDataRowId }
+      const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {

@@ -31,7 +31,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change phone number',
+        value: 'edit phone number',
         ctAbbr: 'cpn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/c-ct.vue',
         displayLocation: 'cl',

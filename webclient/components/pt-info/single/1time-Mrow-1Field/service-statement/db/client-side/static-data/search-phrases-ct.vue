@@ -25,7 +25,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change service statement',
+        value: 'edit service statement',
         ctAbbr: 'css',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/edit-layer/c-ct.vue',
         displayLocation: 'cl',

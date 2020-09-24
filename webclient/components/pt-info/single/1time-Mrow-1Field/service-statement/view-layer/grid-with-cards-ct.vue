@@ -104,7 +104,7 @@ export default {
     },
     mfOpenCCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'change service statement',
+        searchTerm: 'edit service statement',
       })
     },
     // This is used to make the rows that are in change state a orange background.

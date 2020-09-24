@@ -31,7 +31,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change reminder',
+        value: 'edit reminder',
         ctAbbr: 'crem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/c-ct.vue',
         displayLocation: 'cl',

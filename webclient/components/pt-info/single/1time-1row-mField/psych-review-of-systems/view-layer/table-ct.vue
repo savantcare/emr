@@ -48,7 +48,7 @@ export default {
     },
     mfOpenCCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'change psych review of systems',
+        searchTerm: 'edit psych review of systems',
       })
     },
   },

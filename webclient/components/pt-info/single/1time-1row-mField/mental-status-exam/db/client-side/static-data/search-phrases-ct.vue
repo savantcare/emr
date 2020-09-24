@@ -34,7 +34,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change mental status exam',
+        value: 'edit mental status exam',
         ctAbbr: 'cmse',
         ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/c-ct.vue',
         displayLocation: 'cl',
