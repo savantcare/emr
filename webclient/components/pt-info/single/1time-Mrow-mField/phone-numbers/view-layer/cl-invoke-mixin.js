@@ -12,7 +12,7 @@ export default {
     },
     mxOpenMCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'multi change phone numbers',
+        searchTerm: 'multi edit phone numbers',
       })
     },
     mxOpenDDialog() {

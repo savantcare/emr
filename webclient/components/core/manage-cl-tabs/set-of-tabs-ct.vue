@@ -43,7 +43,7 @@ export default {
       } else if (pValue === 'plan-tabset') {
         let resultArFromOrm = clientSideTblSearchPhrasesOfCt
           .query()
-          .search('multi change reminders')
+          .search('multi edit reminders')
           .get()
         let objRowFromOrm = resultArFromOrm[0]
         let objAddTab = {

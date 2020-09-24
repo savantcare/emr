@@ -12,7 +12,7 @@ export default {
     },
     mxOpenMCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'multi change reminder',
+        searchTerm: 'multi edit reminder',
       })
     },
     mxOpenDDialog() {

@@ -41,7 +41,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'multi change reminders',
+        value: 'multi edit reminders',
         ctAbbr: 'mcrem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/mc-ct.vue',
         displayLocation: 'cl',

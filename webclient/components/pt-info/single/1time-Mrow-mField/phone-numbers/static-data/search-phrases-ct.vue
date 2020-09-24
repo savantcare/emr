@@ -41,7 +41,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'multi change phone numbers',
+        value: 'multi edit phone numbers',
         ctAbbr: 'mcpn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/mc-ct.vue',
         displayLocation: 'cl',
