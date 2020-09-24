@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sc-mental-status-exam-all-content">
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <el-card
       shadow="hover"
@@ -8,7 +8,7 @@
       :key="allMentalStatusExamInsideAGroup.id"
     >
       <div slot="header" class="clearfix">
-        <span> {{ groupNameGivenAsIndex }}</span>
+        <span>{{ groupNameGivenAsIndex }}</span>
       </div>
 
       <div class="sc-mental-status-exam-all-content-body">
@@ -16,10 +16,10 @@
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
               <el-button
+                size="mini"
                 @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
                 type="primary"
-                >{{ ms.mentalStatusExamDescription }}</el-button
-              >
+              >{{ ms.mentalStatusExamDescription }}</el-button>
             </div>
             <div v-else>
               <el-input
@@ -30,12 +30,15 @@
           </div>
           <div v-else>
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
-              <el-button @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">{{
+              <el-button size="mini" @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">
+                {{
                 ms.mentalStatusExamDescription
-              }}</el-button>
+                }}
+              </el-button>
             </div>
             <div v-else>
               <el-input
+                size="mini"
                 :placeholder="ms.mentalStatusExamDescription"
                 v-model="descriptionModal[ms.mentalStatusExamMasterId]"
               ></el-input>
@@ -246,8 +249,23 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
   */
-  grid-gap: 1px;
+  grid-gap: 8px;
   grid-auto-flow: row; /* This is default value */
-  margin: 1px;
+  margin: 0px;
+}
+
+/* Goal: add space between two content card*/
+.sc-mental-status-exam-all-content .el-card {
+  margin: 5px 0px !important;
+}
+
+/* Goal: remove extra white space from sc-mental-status-exam-all-content header*/
+.sc-mental-status-exam-all-content .el-card__header {
+  padding: 10px !important;
+}
+
+/* Goal: remove extra white space from sc-mental-status-exam-all-content body*/
+.sc-mental-status-exam-all-content .el-card__body {
+  padding: 8px !important;
 }
 </style>
