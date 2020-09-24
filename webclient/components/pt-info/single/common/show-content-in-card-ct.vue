@@ -101,12 +101,12 @@ Generatiobn 3                     |
 /* Generation Level 1 */
 .sc-top-most-parent-all-content .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
-  padding: 10px !important;
+  padding: 0.5rem !important;
 }
 
 .sc-top-most-parent-all-content .el-card__body {
   /* Goal: Manage  Distance from border to content in body*/
-  padding: 10px !important;
+  padding: 0.5rem !important;
 }
 
 /* Generation Level 2 / Child 1 == Goal: Header icon management */
@@ -147,9 +147,9 @@ Generatiobn 3                     |
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
   */
-  grid-gap: 1px;
+  grid-gap: 0.1rem;
   grid-auto-flow: row; /* This is default value */
-  margin: 1px;
+  margin: 0.1rem;
 }
 
 /* Generation Level 3 */
@@ -160,8 +160,8 @@ Generatiobn 3                     |
   cursor: pointer;
   overflow-wrap: break-word;
   position: relative;
-  margin: 1px;
-  padding: 10px 1px 1px !important;
+  margin: 0.1rem;
+  padding: 1rem 0.1rem 0.1rem !important; /* top - left / right - bottom */
   /* Goal: The contnet of child card should be 1 of the font size of the browser */
   font-size: 1rem;
 }
