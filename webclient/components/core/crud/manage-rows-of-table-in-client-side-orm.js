@@ -84,7 +84,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromClientSideTable
   }
 
-  static fnGetNewRowsInReadyToSubmitState() {
+  static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientSideTable = this.query()
       .where('vnRowStateInSession', 24) // New -> Changed

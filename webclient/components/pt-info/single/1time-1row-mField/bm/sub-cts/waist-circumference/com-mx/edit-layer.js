@@ -19,7 +19,7 @@ export default {
     }
   },
   computed: {
-    // Goal: Find out which flds have changed and inform 1. the view layer 2. Submit and reset button of this Ct.
+    // Goal: Find out which flds have changed and inform 1. the view layer 2. Reviewed and reset button of this Ct.
     cfHasSomeFldChanged() {
       // Following 2 protect against race condition. Since data needs to be loaded inside created function and then the row needs to get copied
       // When the Ct is created dnOrmIdOfRowToChange and dnOrmIdOfCopiedRowBeingChanged are -1 indicating they are undefined. They need to have a value before this code should execute
@@ -113,7 +113,7 @@ export default {
     // A sample event name is: 'event-from-ct-name-vl-save-this-row'
     this.$root.$on(eventName, (pRowID) => {
       this.dnOrmIdOfCopiedRowBeingChanged = pRowID
-      this.mfOnSubmit()
+      this.mfOnReviewed()
     })
 
     eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
@@ -122,7 +122,7 @@ export default {
     })
   },
   methods: {
-    async mfOnSubmit() {
+    async mfOnReviewed() {
       // Since only one valid row is possible there may be other deleted rows
       const rowToUpsert = clientSideTable.find(this.dnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {

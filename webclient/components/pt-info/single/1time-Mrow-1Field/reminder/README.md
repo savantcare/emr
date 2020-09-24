@@ -28,7 +28,7 @@ Positive of saving data in vuex-orm
        https://github.com/eldomagan/vuex-orm-localforage
 
     4. Since submit button will be a state value when submit is pressed some other component will watch if submit is pressed and then act on the data. This will make the work more seperate.
-    The name of component watchForUserSubmit
+    The name of component watchForUserReviewed
         This function will find
         let results = store.getters['entities/allDirty']();
         Ref: https://github.com/client-side/plugin-change-flags

@@ -130,7 +130,7 @@ export default {
       }
       return 'default'
     },
-    mfSendSubmitEvent() {
+    mfSendReviewedEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(

@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
-          >Submit firstprop is {{ this.firstProp }}</el-button
+          >Reviewed firstprop is {{ this.firstProp }}</el-button
         >
       </el-form-item>
     </el-form>

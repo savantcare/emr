@@ -73,7 +73,7 @@ export default {
     let eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
     this.$root.$on(eventName, (pRowID) => {
       this.vnOrmIdOfCopiedRowBeingChanged = pRowID
-      this.mfOnSubmit()
+      this.mfOnReviewed()
     })
 
     eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
@@ -82,7 +82,7 @@ export default {
     })
   },
   methods: {
-    async mfOnSubmit() {
+    async mfOnReviewed() {
       const rowToUpsert = clientSideTable.find(this.vnOrmIdOfCopiedRowBeingChanged)
       const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',

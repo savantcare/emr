@@ -58,7 +58,7 @@
       </el-form-item>
 
       <el-form-item class="qstn-submit">
-        <el-button type="success" size="small" @click="submitForm()">Submit</el-button>
+        <el-button type="success" size="small" @click="submitForm()">Reviewed</el-button>
       </el-form-item>
     </el-form>
   </el-row>
@@ -217,7 +217,7 @@ export default {
     updateAnswer(index, row) {
       console.log(index, row.selectedAnswer)
     },
-    onSubmit() {
+    onReviewed() {
       console.log('submit!')
     },
     async submitForm() {

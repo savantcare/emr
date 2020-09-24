@@ -86,7 +86,7 @@ export default {
       }
       return 'default'
     },
-    mfSendSubmitEvent() {
+    mfSendReviewedEvent() {
       const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,

@@ -38,8 +38,8 @@ Code synced with ref implementation on 4th august 2020
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnSubmit"
-              >Submit</el-button
+            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed"
+              >Reviewed</el-button
             >
             <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
               >Reset form</el-button

@@ -32,8 +32,8 @@ For graph related work the reference implementation is weight.
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnSubmit"
-              >Submit</el-button
+            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed"
+              >Reviewed</el-button
             >
             <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
               >Reset form</el-button

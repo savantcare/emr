@@ -2,7 +2,7 @@
 <!-- For design see webclient/cts/core/crud/forms.md -->
 <template>
   <div>
-    <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Submit -->
+    <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
     <el-form>
       <div v-if="cfGetClientSideTableNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientSideTableNewRowsInEditState" :key="ormRow.id">
@@ -50,7 +50,7 @@
       <!-- If there are no edit state rows then create a empty row for faster data input -->
       <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
       <el-form-item>
-        <el-button type="primary" plain @click="mfOnSubmit">Submit</el-button>
+        <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
         <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable">Add more</el-button>
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
@@ -94,8 +94,8 @@ export default {
     cfGetClientSideTableNewRowsInEditState() {
       return clientSideTable.fnGetNewRowsInEditState()
     },
-    cfGetClientSideTableReadyToSubmitStateRows() {
-      return clientSideTable.fnGetNewRowsInReadyToSubmitState()
+    cfGetClientSideTableReadyToReviewedStateRows() {
+      return clientSideTable.fnGetNewRowsInReadyToReviewedState()
     },
     cfGetClientSideTableApiSuccessStateRows() {
       return clientSideTable.fnGetNewRowsInApiSuccessState()
@@ -154,12 +154,12 @@ export default {
     mfOnResetForm(formName) {
       clientSideTable.fnDeleteNewRowsInEditState()
     },
-    async mfOnSubmit() {
+    async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientSideTableReadyToSubmitStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientSideTableReadyToReviewedStateRows' returns all the newly added row which is not empty from clientSideTable ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientSideTable = this.cfGetClientSideTableReadyToSubmitStateRows // calling cf instead of clientSideTable since get benefit of caching.
+      const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientSideTable since get benefit of caching.
       if (arFromClientSideTable.length) {
         console.log('unsaved data found', arFromClientSideTable)
         for (let i = 0; i < arFromClientSideTable.length; i++) {

@@ -51,7 +51,7 @@ add -> enter 2 charecters -> remove
       enter 4 charecters  -> remove
                           -> reset form
                           -> Close form and destroy Ct Local variables.
-add -> enter 2 charecters -> Add more -> enter 4 charecters -> Submit
+add -> enter 2 charecters -> Add more -> enter 4 charecters -> Reviewed
 ```
 
 ### After hitting submit the possibilities are:
