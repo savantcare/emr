@@ -1,76 +1,20 @@
 <template>
-  <el-card
-    shadow="hover"
-    class="box-card sc-service-statement-all-content"
-    :style="cfGetVariablesFromClientSideTableToUseInCSS"
-  >
-    <div
-      class="sc-service-statement-all-content-header clearfix"
-      slot="header"
-      v-on:click="mfOpenCCtInCl"
-    >
-      <span>Service statements</span>
-      <el-button-group style="float: right; display: none">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mfOpenCCtInCl"
-          class="el-icon-edit"
-        ></el-button>
-      </el-button-group>
-    </div>
-    <div class="sc-service-statement-all-content-body">
-      <el-card
-        v-for="ss in cfArOfServiceStatementForDisplay"
-        :key="ss.clientSideUniqRowId"
-        class="box-card sc-service-statement-individual-card"
-        shadow="hover"
-        :style="mfGetCssClassName(ss)"
-      >
-        <div v-on:click="mfDeleteServiceStatement(ss.clientSideUniqRowId)">
-          <el-button-group style="float: right; display: none">
-            <el-button
-              class="el-icon-discover"
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              tabindex="-1"
-              v-on:click.stop="mfShowTimeLine()"
-            >
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="info"
-                placement="top-end"
-                :open-delay="500"
-              >
-              </el-tooltip>
-            </el-button>
-
-            <el-button
-              class="el-icon-circle-close"
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              tabindex="-1"
-              @click="mfDeleteServiceStatement(ss.clientSideUniqRowId)"
-            >
-            </el-button>
-          </el-button-group>
-
-          {{ ss.tblServiceStatementsMasterLink.serviceStatementCategory }}:
-          {{ ss.tblServiceStatementsMasterLink.serviceStatementDescription }}
-        </div>
-      </el-card>
-    </div>
-  </el-card>
+  <showContentInCard
+    mainCardName="Service statement"
+    :childCardsArray="cfArOfServiceStatementForDisplay"
+    clientSideDBLevelTableActions="edit"
+    clientSideCardLevelActions="remove, info"
+  />
 </template>
 
 <script>
 import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
 import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
 
 export default {
+  components: { showContentInCard },
   computed: {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblPatientServiceStatements
@@ -78,6 +22,15 @@ export default {
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        arOfObjectsFromClientSideDB[i]['cardContent'] =
+          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+          ': ' +
+          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementDescription
+      }
+
+      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
     cfGetVariablesFromClientSideTableToUseInCSS() {

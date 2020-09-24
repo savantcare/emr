@@ -14,8 +14,8 @@
     </div>
     <div class="sc-mental-status-exam-all-content-body">
       <el-card
-        v-for="mse in childCardsArray"
-        :key="mse.clientSideUniqRowId"
+        v-for="card in childCardsArray"
+        :key="card.clientSideUniqRowId"
         class="box-card sc-mental-status-exam-individual-card"
         shadow="hover"
       >
@@ -40,7 +40,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfDeleteMentalStatusExam(mse.clientSideUniqRowId)"
+            @click="mfDeleteMentalStatusExam(card.clientSideUniqRowId)"
           >
             <el-tooltip
               class="item"
@@ -52,8 +52,7 @@
             </el-tooltip>
           </el-button>
         </el-button-group>
-        {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
-        {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
+        {{ card.cardContent }}
       </el-card>
     </div>
   </el-card>
