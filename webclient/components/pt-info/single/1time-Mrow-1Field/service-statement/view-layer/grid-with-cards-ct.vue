@@ -32,6 +32,7 @@ export default {
 
       return arOfObjectsFromClientSideDB
     },
+  },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblPatientServiceStatements.update({

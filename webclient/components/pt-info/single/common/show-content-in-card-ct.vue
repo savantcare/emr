@@ -110,6 +110,11 @@ Generatiobn 3                     |
 
 /* Generation Level 2 / Child 1 == Goal: Header icon management */
 
+/* Goal: The header of the parent card should be 1.2 of the font size of the browser */
+.sc-top-most-parent-header {
+  font-size: 1.2rem;
+}
+
 /* When anywhere inside the card make the action icons in the card header -> level 1 visual */
 .el-card:hover .sc-top-most-parent-header .el-button-group {
   display: inline-block !important;
@@ -156,7 +161,7 @@ Generatiobn 3                     |
   position: relative;
   margin: 1px;
   padding: 10px 1px 1px !important;
-  /* Goal: Give normal and weak eyesight two different font size*/
+  /* Goal: The contnet of child card should be 1 of the font size of the browser */
   font-size: 1rem;
 }
 
