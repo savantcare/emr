@@ -1,129 +1,11 @@
 <!-- Reference implementation -->
 <template>
-  <el-card
-    shadow="hover"
-    class="box-card sc-reminder-all-content"
-    :style="cfGetVariablesFromClientSideTableToUseInCSS"
-  >
-    <div class="sc-reminder-all-content-header clearfix" slot="header">
-      <span>Reminders</span>
-      <el-button-group style="float: right; display: none">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mxOpenACtInCl"
-          class="el-icon-circle-plus-outline"
-        ></el-button>
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          class="el-icon-s-grid"
-          @click="mxOpenMCtInCl"
-        ></el-button>
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mxOpenDDialog"
-          class="el-icon-document-delete"
-        ></el-button>
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mxOpenXCtInCl"
-          class="el-icon-delete"
-        ></el-button>
-      </el-button-group>
-    </div>
-    <div class="sc-reminder-all-content-body">
-      <el-card
-        v-for="rem in cfArOfRemForDisplayInTable"
-        :key="rem.id"
-        class="box-card sc-reminder-individual-card"
-        shadow="hover"
-        :style="mfGetCssClassName(rem)"
-      >
-        <el-button-group style="float: right; display: none">
-          <el-button
-            class="el-icon-edit"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-
-          <el-button
-            class="el-icon-discover"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-          <el-button
-            class="el-icon-circle-close"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mxOpenDPrompt(rem.clientSideUniqRowId)"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to delete"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-        </el-button-group>
-
-        <!-- <el-button type="text">{{ rem.description }}</el-button> 
-          if I use the button then a long text is not getting divided into multiple lines
-
-          if rowStateInThisSession == 9 then the div should have a orange border
-          Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
-            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
-            -->
-        <div
-          class="text item sc-reminder-individual-card-content"
-          @click="mxOpenCCtInCl(rem.clientSideUniqRowId)"
-        >
-          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-          <div v-else>{{ rem.description }}</div>
-        </div>
-      </el-card>
-    </div>
-
-    <el-pagination
-      :hide-on-single-page="true"
-      background
-      layout="pager"
-      :total="cfLengthOfDataArray"
-      @current-change="mfTablePageChanged"
-    ></el-pagination>
-    <ctActOnSocketMessages></ctActOnSocketMessages>
-  </el-card>
+  <showContentInCard
+    mainCardName="Reminders"
+    :childCardsArray="cfArOfRemForDisplayInTable"
+    clientSideDBLevelTableActions="edit"
+    clientSideCardLevelActions="remove, info"
+  />
 </template>
 
 <script>
@@ -132,9 +14,10 @@ import clientSideTable from '../db/client-side/structure/rem-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
 
 export default {
-  components: { ctActOnSocketMessages },
+  components: { ctActOnSocketMessages, showContentInCard },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {
@@ -199,6 +82,7 @@ export default {
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
           obj.clientSideUniqRowId = arFromClientSideTable[i].clientSideUniqRowId
+          obj.cardContent = obj.description
           arRemsForDisplay.push(obj)
         }
       }
@@ -231,140 +115,3 @@ export default {
   },
 }
 </script>
-
-<style>
-/* Generation ->
-==============
-                                       .sc-reminder-all-content
- Generation 1                                      |
-==============                     _________________________________
-                                  |                                |
-                    .sc-reminder-all-content-header                |
- Generatiobn 2                                                     |
-                                    _______________________________|
-                                  |
-                  .sc-reminder-all-content-body
-==============                    |
-                                  |
-                   .sc-reminder-individual-card
-Generatiobn 3                     |
-                       ________________________________________________________________________________
-                      |                                 |                                             |
-        .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
-
-==============
-*/
-
-/* Generation Level 1 */
-.sc-reminder-all-content .el-card__header {
-  /* Goal: Manage Distance from border to content in header*/
-  padding: 10px !important;
-}
-
-.sc-reminder-all-content .el-card__body {
-  /* Goal: Manage  Distance from border to content in body*/
-  padding: 10px !important;
-}
-
-/* Generation Level 2 / Child 1 == Goal: Header icon management */
-
-/* When anywhere inside the card make the action icons in the card header -> level 1 visual */
-.el-card:hover .sc-reminder-all-content-header .el-button-group {
-  display: inline-block !important;
-}
-
-/* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-circle-plus-outline {
-  color: #67c23a !important;
-  font-size: 1.5rem;
-}
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
-  color: #409eff !important;
-}
-
-.el-icon-s-grid:hover {
-  font-size: 1.5rem;
-}
-
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
-  color: #f56c6c !important;
-}
-
-.el-icon-document-delete:hover {
-  font-size: 1.5rem;
-}
-
-.el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
-  color: #909399 !important;
-}
-.el-icon-delete:hover {
-  font-size: 1.5rem;
-}
-
-/* Generation Level 2 / Child 2 */
-
-/* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
-.sc-reminder-all-content-body {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* Some other grid-template-columns options are :
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
-  */
-  grid-gap: 1px;
-  grid-auto-flow: row; /* This is default value */
-  margin: 1px;
-}
-
-/* Generation Level 3 */
-
-/* Goal: Margin and padding of individual card */
-
-.sc-reminder-individual-card {
-  cursor: pointer;
-  overflow-wrap: break-word;
-  position: relative;
-  margin: 1px;
-  padding: 10px 1px 1px !important;
-  /* Goal: Give normal and weak eyesight two different font size*/
-  font-size: var(--font-size-of-content-every-where);
-}
-
-/* Goal: Header icon management  */
-.el-card:hover .sc-reminder-individual-card .el-button-group {
-  display: inline-block !important;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-
-.sc-reminder-individual-card:hover .el-icon-edit {
-  color: #67c23a !important;
-  font-size: 1.5rem;
-}
-
-.sc-reminder-individual-card:hover .sc-reminder-individual-card-content {
-  color: #67c23a !important;
-}
-
-.sc-reminder-individual-card:hover .el-icon-discover {
-  color: #909399 !important;
-}
-
-.el-icon-discover:hover {
-  font-size: 1.5rem;
-}
-
-.el-icon-discover:hover .sc-reminder-individual-card-content {
-  color: #909399 !important;
-}
-
-.sc-reminder-individual-card:hover .el-icon-circle-close {
-  color: #f56c6c !important;
-}
-
-.el-icon-circle-close:hover {
-  font-size: 1.5rem;
-}
-</style>
