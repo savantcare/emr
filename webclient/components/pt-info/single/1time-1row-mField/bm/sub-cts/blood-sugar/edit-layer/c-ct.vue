@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
@@ -20,9 +20,9 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Waist Circumference In Inches"
-              :value="mfGetCopiedRowBeingChangedFldVal('waistCircumferenceInInches')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'waistCircumferenceInInches')"
+              placeholder="Blood Sugar in bpm"
+              :value="mfGetCopiedRowBeingChangedFldVal('bloodSugarInBpm')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'bloodSugarInBpm')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
@@ -58,18 +58,18 @@ Code synced with ref implementation on 4th august 2020
         </el-form>
       </el-col>
       <el-col :span="12">
-        <ctWaistCircumferenceGraph form-type="sub-part-of-another-form"></ctWaistCircumferenceGraph>
+        <ctBloodSugarGraph form-type="sub-part-of-another-form"></ctBloodSugarGraph>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import ctWaistCircumferenceGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue'
-import mxc from '../com-mx/change-layer.js'
+import ctBloodSugarGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue'
+import mxc from '../com-mx/edit-layer.js'
 
 export default {
-  components: { ctWaistCircumferenceGraph },
+  components: { ctBloodSugarGraph },
   mixins: [mxc],
   data() {
     return {

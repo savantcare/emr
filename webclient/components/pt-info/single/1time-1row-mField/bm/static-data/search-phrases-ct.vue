@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'body measurement - change',
         ctAbbr: 'bmcc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/change-layer/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/edit-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

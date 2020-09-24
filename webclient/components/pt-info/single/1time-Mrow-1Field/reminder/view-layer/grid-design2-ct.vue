@@ -129,7 +129,7 @@
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clientSideTable from '../db/client-side/structure/rem-table.js'
-import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 

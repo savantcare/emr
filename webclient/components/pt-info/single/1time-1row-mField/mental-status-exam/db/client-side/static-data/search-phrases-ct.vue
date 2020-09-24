@@ -36,7 +36,7 @@ export default {
       data: {
         value: 'change mental status exam',
         ctAbbr: 'cmse',
-        ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',

@@ -82,7 +82,7 @@
 
 <script>
 import clientSideTable from '../db/client-side/structure/rem-table.js'
-import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {

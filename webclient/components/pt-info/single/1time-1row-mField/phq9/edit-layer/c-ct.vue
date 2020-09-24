@@ -76,7 +76,7 @@ this ct Code synced with ref implementation on 18th august 2020
   </div>
 </template>
 <script>
-import mxc from '../com-mx/change-layer.js'
+import mxc from '../com-mx/edit-layer.js'
 
 export default {
   mixins: [mxc],

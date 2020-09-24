@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'temperature - change',
         ctAbbr: 'wc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/change-layer/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/edit-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

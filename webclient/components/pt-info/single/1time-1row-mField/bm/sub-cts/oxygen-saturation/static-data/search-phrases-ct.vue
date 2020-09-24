@@ -24,7 +24,7 @@ export default {
         value: 'oxygen Saturation - change',
         ctAbbr: 'wc',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/change-layer/c-ct.vue', // Cl -> Change layer
+          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/edit-layer/c-ct.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

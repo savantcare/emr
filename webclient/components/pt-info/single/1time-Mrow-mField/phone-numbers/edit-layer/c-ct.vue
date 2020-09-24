@@ -87,7 +87,7 @@ export default {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
       dnOrmIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
-      dnOrmIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/change-layer.js approx line 15
+      dnOrmIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/edit-layer.js approx line 15
     }
   },
   computed: {

@@ -1,12 +1,12 @@
-<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
 Name
  1. No graph needed
  2. Graph needed
-      A. Date of birth            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and Date of birth is not repeated)
+      A. Weight            (Doc of name is not repeated but has doc related to graph)
+          1. Height        (Doc of name and weight is not repeated)
           2. BMI
 
 
@@ -20,15 +20,25 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Date of birth"
-              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
+              placeholder="Weight in pounds"
+              :value="mfGetCopiedRowBeingChangedFldVal('weightInPounds')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'weightInPounds')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
         -->
+            <el-date-picker
+              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
+              type="date"
+              placeholder="Pick a day"
+              :picker-options="pickerOptions"
+              format="yyyy/MM/dd"
+              value-format="timestamp"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
+            >
+            </el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
@@ -47,13 +57,19 @@ Code synced with ref implementation on 4th august 2020
           </el-form-item>
         </el-form>
       </el-col>
+      <el-col :span="12">
+        <ctWeightGraph form-type="sub-part-of-another-form"></ctWeightGraph>
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import mxc from '../com-mx/change-layer.js'
+import ctWeightGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue'
+import mxc from '../com-mx/edit-layer.js'
+
 export default {
+  components: { ctWeightGraph },
   mixins: [mxc],
   data() {
     return {

@@ -1,4 +1,4 @@
-// Master doc is at reference implementation name/com-mx/change-layer.js. This file has doc unique to this ct
+// Master doc is at reference implementation name/com-mx/edit-layer.js. This file has doc unique to this ct
 // Code synced with ref implementation on 18th august 2020
 import clientSideTable from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'

@@ -27,7 +27,7 @@ export default {
       data: {
         value: 'change psych review of systems',
         ctAbbr: 'css',
-        ctToShow: 'pt-info/single/1time-1row-mField/psych-review-of-systems/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-1row-mField/psych-review-of-systems/edit-layer/c-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',

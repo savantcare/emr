@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/c-ct.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
@@ -66,7 +66,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import ctBloodPressureGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/line-graph-ct.vue'
-import mxc from '../com-mx/change-layer.js'
+import mxc from '../com-mx/edit-layer.js'
 
 export default {
   components: { ctBloodPressureGraph },

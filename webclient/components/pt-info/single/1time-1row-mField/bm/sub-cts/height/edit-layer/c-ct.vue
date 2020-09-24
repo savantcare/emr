@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/change-layer/c-ct.vue. 
+<!-- Master doc is at reference implementation name/edit-layer/c-ct.vue. 
 and graph related doc is at weight
 -->
 <template>
@@ -11,7 +11,7 @@ and graph related doc is at weight
           @input="mfSetCopiedRowBeingChangedFldVal($event, 'heightInInches')"
         >
         </el-input>
-        <!-- Why is valur format timestamp? see weight/change-layer/c-ct.vue -->
+        <!-- Why is valur format timestamp? see weight/edit-layer/c-ct.vue -->
         <el-date-picker
           :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
           type="date"
@@ -43,7 +43,7 @@ and graph related doc is at weight
 </template>
 
 <script>
-import mxc from '../com-mx/change-layer.js'
+import mxc from '../com-mx/edit-layer.js'
 
 export default {
   mixins: [mxc],
