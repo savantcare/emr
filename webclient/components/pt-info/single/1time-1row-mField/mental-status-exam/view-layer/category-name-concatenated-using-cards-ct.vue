@@ -46,7 +46,7 @@ export default {
     },
   },
   methods: {
-    mfDeleteMentalStatusExam(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {

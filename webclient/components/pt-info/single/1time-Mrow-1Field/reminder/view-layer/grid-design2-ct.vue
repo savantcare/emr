@@ -99,7 +99,7 @@ export default {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
     },
-    mfHandleSelectionForDelete(val) {
+    mfIconDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.

@@ -46,7 +46,7 @@ export default {
     },
   },
   methods: {
-    mfDeleteServiceStatement(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblPatientServiceStatements.update({
         where: pClientSideUniqRowId,
         data: {

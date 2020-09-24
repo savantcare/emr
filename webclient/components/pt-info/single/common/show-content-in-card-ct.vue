@@ -40,7 +40,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfDeleteMentalStatusExam(card.clientSideUniqRowId)"
+            @click="mfIconDeleteClickedOnChildCard(card.clientSideUniqRowId)"
           >
             <el-tooltip
               class="item"
@@ -66,6 +66,9 @@ export default {
   methods: {
     mfOpenCCtInCl() {
       this.$parent.mfOpenCCtInCl()
+    },
+    mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
+      this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)
     },
   },
 }
