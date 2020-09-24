@@ -70,8 +70,14 @@ export default {
       )
 
       // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
+        arOfObjectsFromClientSideMasterDB
+      )
 
       // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
+        arOfObjectsFromClientSideMasterDB
+      )
 
       // End: Now group the SS
 
@@ -159,6 +165,118 @@ export default {
             ) {
             } else {
               // Handling Possibility 2: This element is not there in SS of patient
+              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+      return pArOfObjectsFromClientSideMasterDB
+    },
+
+    /**
+     * Rule: If "Total minutes in psychotherapy" has been chosen to be N.
+     * Then from "Total minutes with patient" remove elements that are less than N
+     */
+    mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
+      pArOfObjectsFromClientSideMasterDB
+    ) {
+      /**
+       * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
+       */
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+        .query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes in psychotherapy')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      /**
+       * Step 2: If 'Total minutes in psychotherapy' is assigned.
+       * Than store relative service statement master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
+       */
+      if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
+        const categoryOfThisSetAssignedToPatient =
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
+
+        /**
+         * Step 3: Iterate service statement master category object to process
+         */
+        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+          /**
+           * Step 4: Check if category is 'Total minutes with patient'.
+           * Otherwise do not need to do any manipulation
+           */
+          if (
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Total minutes with patient'
+          ) {
+            /**
+             * Step 5: If "Total minutes in psychotherapy" has been assigned to the patient to be N.
+             * Than remove "Total minutes with patient" elements that are less than N.
+             */
+            if (
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription) <
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription)
+            ) {
+              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              i = i - 1
+            }
+          }
+        }
+      }
+      return pArOfObjectsFromClientSideMasterDB
+    },
+
+    /**
+     * Rule: If "Total minutes with patient" has been chosen to be N.
+     * Then from "Total minutes in psychotherapy" remove elements that are greater than N
+     */
+    mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
+      pArOfObjectsFromClientSideMasterDB
+    ) {
+      /**
+       * Step 1: Getting 'Total minutes with patient' already assigned to patient
+       */
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+        .query()
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes with patient')
+        })
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      /**
+       * Step 2: If 'Total minutes with patient' is assigned.
+       * Than store relative service statement master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
+       */
+      if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
+        const categoryOfThisSetAssignedToPatient =
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
+
+        /**
+         * Step 3: Iterate service statement master category object to process
+         */
+        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+          /**
+           * Step 4: Check if category is 'Total minutes in psychotherapy'.
+           * Otherwise do not need to do any manipulation
+           */
+          if (
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            'Total minutes in psychotherapy'
+          ) {
+            /**
+             * Step 5: If "Total minutes with patient" has been assigned to the patient to be N.
+             * Than remove "Total minutes in psychotherapy" elements that are greater than N.
+             */
+            if (
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription) >
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription)
+            ) {
               pArOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
             }
