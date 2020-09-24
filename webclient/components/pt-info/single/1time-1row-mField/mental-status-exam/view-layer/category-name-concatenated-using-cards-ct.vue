@@ -1,75 +1,20 @@
 <template>
-  <el-card
-    shadow="hover"
-    class="box-card sc-mental-status-exam-all-content"
-    :style="cfGetVariablesFromClientSideTableToUseInCSS"
-  >
-    <div slot="header" class="sc-mental-status-exam-all-content-header clearfix">
-      <span>Mental status exam</span>
-      <el-button-group style="float: right; display: none">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mfOpenCCtInCl"
-          class="el-icon-edit"
-        ></el-button>
-      </el-button-group>
-    </div>
-    <div class="sc-mental-status-exam-all-content-body">
-      <el-card
-        v-for="mse in cfArOfMentalStatusExamForDisplay"
-        :key="mse.clientSideUniqRowId"
-        class="box-card sc-mental-status-exam-individual-card"
-        shadow="hover"
-        :style="mfGetCssClassName(mse)"
-      >
-        <el-button-group style="float: right; display: none">
-          <el-button
-            class="el-icon-discover"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-          <el-button
-            class="el-icon-circle-close"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mfDeleteMentalStatusExam(mse.clientSideUniqRowId)"
-          >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to delete"
-              placement="top-end"
-              :open-delay="500"
-            >
-            </el-tooltip>
-          </el-button>
-        </el-button-group>
-        {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamCategory }}:
-        {{ mse.tblMentalStatusExamMasterLink.mentalStatusExamDescription }}
-      </el-card>
-    </div>
-  </el-card>
+  <showContentInCard
+    mainCardName="Mental status exam"
+    child-cards-array="cfArOfMentalStatusExamForDisplay"
+    clientSideDBLevelTableActions="edit"
+    clientSideCardLevelActions="remove, info"
+  />
 </template>
 
 <script>
 import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
 import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
 
 export default {
+  components: { showContentInCard },
   computed: {
     cfGetVariablesFromClientSideTableToUseInCSS() {
       const objCommonRow = objCommonOrm.find(1) // if this is async then it does not work.
