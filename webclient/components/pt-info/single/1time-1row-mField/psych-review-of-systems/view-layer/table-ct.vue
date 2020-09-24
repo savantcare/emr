@@ -138,7 +138,6 @@ Generatiobn 3                     |
   margin: 1px;
   padding: 10px 1px 1px !important;
   /* Goal: Give normal and weak eyesight two different font size*/
-  font-size: var(--font-size-of-content-every-where);
 }
 
 /* Goal: Header icon management  */

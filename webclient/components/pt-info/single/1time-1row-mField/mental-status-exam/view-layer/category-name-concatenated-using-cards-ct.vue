@@ -16,18 +16,6 @@ import showContentInCard from '@/components/pt-info/single/common/show-content-i
 export default {
   components: { showContentInCard },
   computed: {
-    cfGetVariablesFromClientSideTableToUseInCSS() {
-      const objCommonRow = objCommonOrm.find(1) // if this is async then it does not work.
-      if (objCommonRow !== null) {
-        let fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForNormalEyeSight
-        if (objCommonRow.currentUserEyeSight == 'weak') {
-          fontSizeOfContentEveryWhere = objCommonRow.fontSizeOfContentEveryWhereForWeakEyeSight
-        }
-        return {
-          '--font-size-of-content-every-where': fontSizeOfContentEveryWhere,
-        }
-      }
-    },
     cfArOfMentalStatusExamForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblPatientMentalStatusExam
         .query()
