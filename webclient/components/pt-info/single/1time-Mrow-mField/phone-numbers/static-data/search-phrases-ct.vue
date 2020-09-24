@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit phone number',
         ctAbbr: 'cpn',
-        ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/edit-design-1.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',

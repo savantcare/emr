@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/edit-layer/c-ct.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct 
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 

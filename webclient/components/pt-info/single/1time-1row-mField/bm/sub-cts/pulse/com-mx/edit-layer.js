@@ -82,7 +82,7 @@ export default {
             arFromClientSideTable.serverSideRowUuid
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
-            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/c-ct.vue approx line 108
+            // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/edit-design-1.vue approx line 108
             this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
               arFromClientSideTable.clientSideUniqRowId
             )

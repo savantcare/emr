@@ -27,7 +27,7 @@ export default {
       data: {
         value: 'edit service statement',
         ctAbbr: 'css',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/edit-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/edit-layer/edit-design-1.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
