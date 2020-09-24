@@ -14,7 +14,7 @@
     </div>
     <div class="sc-mental-status-exam-all-content-body">
       <el-card
-        v-for="mse in this.$parent.cfArOfMentalStatusExamForDisplay"
+        v-for="mse in childCardsArray"
         :key="mse.clientSideUniqRowId"
         class="box-card sc-mental-status-exam-individual-card"
         shadow="hover"
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  props: { mainCardName: String },
+  props: { mainCardName: String, childCardsArray: Array },
   date: {},
   computed: {},
   methods: {

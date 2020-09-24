@@ -1,7 +1,7 @@
 <template>
   <showContentInCard
     mainCardName="Mental status exam"
-    child-cards-array="cfArOfMentalStatusExamForDisplay"
+    :childCardsArray="cfArOfMentalStatusExamForDisplay"
     clientSideDBLevelTableActions="edit"
     clientSideCardLevelActions="remove, info"
   />
