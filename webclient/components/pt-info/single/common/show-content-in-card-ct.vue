@@ -20,37 +20,38 @@
         shadow="hover"
       >
         <el-button-group style="float: right; display: none">
-          <el-button
-            class="el-icon-discover"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Timeline"
+            placement="top-end"
+            :open-delay="500"
           >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
+            <el-button
+              class="el-icon-discover"
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
             >
-            </el-tooltip>
-          </el-button>
-          <el-button
-            class="el-icon-circle-close"
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mfIconDeleteClickedOnChildCard(card.clientSideUniqRowId)"
+            </el-button>
+          </el-tooltip>
+
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Delete"
+            placement="top-end"
+            :open-delay="500"
           >
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to delete"
-              placement="top-end"
-              :open-delay="500"
+            <el-button
+              class="el-icon-circle-close"
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
+              @click="mfIconDeleteClickedOnChildCard(card.clientSideUniqRowId)"
             >
-            </el-tooltip>
-          </el-button>
+            </el-button>
+          </el-tooltip>
         </el-button-group>
         {{ card.cardContent }}
       </el-card>
