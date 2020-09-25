@@ -18,7 +18,13 @@
         :key="card.clientSideUniqRowId"
         class="box-card sc-individual-child-card"
         shadow="hover"
+        :style="mfGetCssClassNameForEachDataRow(card)"
       >
+        <!-- Goal: Identify the data coming through socket -->
+        <div v-if="card.vnRowStateInSession === 9" class="sc-individual-socket-messege-container">
+          <span>Added from socket</span>
+        </div>
+
         <el-button-group style="float: right; display: none">
           <el-tooltip
             class="item"
@@ -32,8 +38,7 @@
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
-            >
-            </el-button>
+            ></el-button>
           </el-tooltip>
 
           <el-tooltip
@@ -49,8 +54,7 @@
               plain
               tabindex="-1"
               @click="mfIconDeleteClickedOnChildCard(card.clientSideUniqRowId)"
-            >
-            </el-button>
+            ></el-button>
           </el-tooltip>
         </el-button-group>
         {{ card.cardContent }}
@@ -70,6 +74,21 @@ export default {
     },
     mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
       this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)
+    },
+
+    // Goal: Change container font color as per client side row status
+    mfGetCssClassNameForEachDataRow(clientSideDataRow) {
+      const strOfNumber = clientSideDataRow.vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') { // when data added only client side
+        return 'color: #E6A23C;'
+      }
+       else if(lastCharecter === '9') { // when data added from socket overwrite default design
+        return 'border:1px solid #67C23A;color: #67C23A;'
+      }
+      else{
+        return 'color: #202020;'
+      }
     },
   },
 }
@@ -160,10 +179,23 @@ Generatiobn 3                     |
   cursor: pointer;
   overflow-wrap: break-word;
   position: relative;
-  margin: 0.1rem;
+  margin: 0.2rem;
   padding: 1rem 0.1rem 0.1rem !important; /* top - left / right - bottom */
   /* Goal: The contnet of child card should be 1 of the font size of the browser */
   font-size: 1rem;
+  overflow: visible;
+}
+
+/* Goal: Design for socket messege container */
+.sc-individual-socket-messege-container {
+  font-size: 10px;
+  color: #67c23a;
+  position: absolute;
+  font-weight: bolder;
+  padding: 0 1px;
+  top: -7px;
+  left: 27%;
+  background-color: #fff;
 }
 
 /* Goal: Header icon management  */
