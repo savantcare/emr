@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
       v-for="(allServiceStatementsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfServiceStatementsGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfServiceStatementsGrouped"
       :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
+import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
 import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 
 export default {
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfServiceStatementsGrouped() {
+    cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
       let arOfObjectsFromClientSideMasterDB = clientSideTblMasterServiceStatements
         .query()

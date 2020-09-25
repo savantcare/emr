@@ -35,7 +35,7 @@
         size="mini"
         style="width: 100%"
         :stripe="true"
-        :row-class-name="mfGetCssClassName"
+        :row-class-name="mfGetCssClassNameForEachDataRow"
         @selection-change="mfHandleSelectionForDelete"
       >
         <el-table-column type="selection" width="42" tabindex="-1"> </el-table-column>
@@ -184,7 +184,7 @@ export default {
       this.daSelectedPhoneNumberForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow, pIndex) {
+    mfGetCssClassNameForEachDataRow(pRow, pIndex) {
       const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {

@@ -14,7 +14,7 @@
             <el-input
               ref="description"
               type="textarea"
-              :class="mfGetCssClassName(ormRow.clientSideUniqRowId)"
+              :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the reminder .."
               :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
@@ -131,7 +131,7 @@ export default {
       clientSideTable.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassName(pClientSideRowId) {
+    mfGetCssClassNameForEachDataRow(pClientSideRowId) {
       const arFromClientSideTable = clientSideTable.find(pClientSideRowId)
       if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
