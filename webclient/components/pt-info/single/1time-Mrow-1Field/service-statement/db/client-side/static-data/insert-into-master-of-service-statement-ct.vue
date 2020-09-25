@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblMasterServiceStatement from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/master-table-of-service-statements.js'
+import clientSideTblOfMasterServiceStatement from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/master-table-of-service-statements.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '60',
@@ -22,7 +22,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '55',
@@ -31,7 +31,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '50',
@@ -40,7 +40,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '45',
@@ -49,7 +49,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '40',
@@ -58,7 +58,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: 'Client Centered',
@@ -67,7 +67,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: 'Dialectical Behavior therapy',
@@ -76,7 +76,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: 'Holistic Therapy',
@@ -85,7 +85,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: 'Existential humanistic',
@@ -94,7 +94,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: 'Bibilotherapy',
@@ -103,7 +103,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '60',
@@ -112,7 +112,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '55',
@@ -121,7 +121,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '50',
@@ -130,7 +130,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '45',
@@ -139,7 +139,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterServiceStatement.insert({
+    clientSideTblOfMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
         serviceStatementDescription: '40',

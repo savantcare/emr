@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import clientSideTblMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientSideTblOfMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
 import clientSideTblOfPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 export default {
@@ -78,7 +78,7 @@ export default {
   computed: {
     cfGetMasterRowsOfPsychReviewOfSystemsGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterPsychReviewOfSystems
+      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483647.999999)

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
+import clientSideTblOfMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
 import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 
 export default {
@@ -40,7 +40,7 @@ export default {
   computed: {
     cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientSideMasterDB = clientSideTblMasterServiceStatements
+      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterServiceStatements
         .query()
         .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483647.999999)
