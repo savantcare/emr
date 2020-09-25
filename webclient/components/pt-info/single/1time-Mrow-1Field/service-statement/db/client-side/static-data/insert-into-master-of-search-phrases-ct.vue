@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
+<!-- To understand how this works read manage-ptsvl-cards/call-insert-search-phases-of-components-and-handle-selection.vue.vue -->
 <template>
   <div><insertIntoMasterRowsOfServiceStatementCt /></div>
 </template>

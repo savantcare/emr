@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import ctVlSearchBox from '@/components/core/search-phrases/load-search-phrases-and-handle-selection'
+import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {
   components: {
