@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Height;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
 use DB;
 use Predis\Autoloader;
 \Predis\Autoloader::register();
@@ -28,10 +26,7 @@ class HeightController extends Controller
     public function create(Request $request)
     {
         $requestData = $request->all();
-        $uuid = Uuid::uuid4();
-
         $heightData = array(
-            'uuid' => $uuid,
             'ptUUID' => $requestData['data']['ptUUID'],
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
@@ -39,78 +34,52 @@ class HeightController extends Controller
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );
        
-        $Height = Height::insertGetId($heightData);
+        $heightObj = Height::insertGetId($heightData);
 
         /**
          * Send data to socket
          */
+        $socketID = (isset($requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'])) ? $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'] : null;
         $channel = 'MsgFromSktForHeightToAdd';
         $message = array(
             'uuid' => $uuid,
             'ptUUID' => $requestData['data']['ptUUID'],
-            'heightInInch' => $requestData['data']['heightInInch'],
+            'heightInInches' => $requestData['data']['heightInInches'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $socketID
         );
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response()->json($Height, 201);
+        return response()->json($heightObj, 201);
     }
 
     public function update($id, Request $request)
     {
-        $Height = Height::findOrFail($id);
-        $Height->update($request->all());
+        $heightObj = Height::findOrFail($id);
+        $requestData = $request->all();
+        $requestData['timeOfMeasurement'] = date('Y-m-d H:i:s', strtotime($requestData['timeOfMeasurement']));
+        $heightObj->update($request->all());
 
         /**
          * Send data to socket
          */
-        $requestData = $request->all();
+        $socketID = (isset($requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'])) ? $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'] : null;
+
         $channel = 'MsgFromSktForHeightToChange';
         $message = array(
-            'uuid' => $id,
-            'ptUUID' => $requestData['data']['ptUUID'],
-            'heightInInch' => $requestData['data']['heightInInch'],
-            'measurementDate' => $requestData['data']['measurementDate'],
-            'notes' => $requestData['data']['notes'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'serverSideRowUuid' => $id,
+            'heightInInches' => $requestData['heightInInches'],
+            'timeOfMeasurement' => $requestData['timeOfMeasurement'],
+            'notes' => $requestData['notes'],
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $socketID
         );
 
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response()->json($Height, 200);
+        return response()->json($heightObj, 200);
     }
 
-    public function delete($id, Request $request)
-    {
-        $Height = Height::findOrFail($id);
-        $requestData = $request->all();
-
-        if(isset($requestData['dNotes']) && !empty($requestData['dNotes']))
-        {
-            $updateData = array(
-                'notes' => $requestData['dNotes']
-            );
-            $Height->update($updateData);
-        }
-
-        $Height->delete();
-
-        /**
-         * Send data to socket
-         */
-        $channel = 'MsgFromSktForRemToDelete';
-        $message = array(
-            'uuid' => $id,
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        return response('Deleted successfully', 200);
-    }
 }

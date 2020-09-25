@@ -29,7 +29,7 @@ export default class ptHeight extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       heightInInches: this.number(null),
-      timeOfMeasurement: this.number(null),
+      timeOfMeasurement: this.string(null),
       notes: this.string(null),
 
       recordChangedByUUID: this.string(null),
