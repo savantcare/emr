@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterRowsOfServiceStatementCt from './insert-into-master-of-ss-ct.vue'
+import tblMasterRowsOfServiceStatementCt from './insert-into-master-of-service-statement-ct.vue'
 
 export default {
   components: { tblMasterRowsOfServiceStatementCt },
