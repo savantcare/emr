@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
 
@@ -17,7 +17,7 @@ export default {
   components: { showContentInCard },
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblPatientMentalStatusExam
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483647.999999)
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblPatientMentalStatusExam.update({
+      clientSideTblOfPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),

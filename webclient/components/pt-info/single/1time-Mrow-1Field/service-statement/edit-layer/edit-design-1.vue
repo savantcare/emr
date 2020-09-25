@@ -29,7 +29,7 @@
 
 <script>
 import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
-import clientSideTblPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 
 export default {
   data() {
@@ -117,20 +117,20 @@ export default {
       return false
     },
     mfToggleServiceStatement(pServiceStatementMasterId) {
-      const exists = clientSideTblPatientServiceStatements
+      const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        clientSideTblPatientServiceStatements.update({
+        clientSideTblOfPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        clientSideTblPatientServiceStatements.insert({
+        clientSideTblOfPatientServiceStatements.insert({
           data: {
             serviceStatementMasterId: pServiceStatementMasterId,
           },
@@ -142,7 +142,7 @@ export default {
       pArOfObjectsFromClientSideMasterDB,
       pServiceStatementCategoryToApplyRuleOn
     ) {
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
@@ -184,7 +184,7 @@ export default {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {
@@ -240,7 +240,7 @@ export default {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .whereHas('tblServiceStatementsMasterLink', (query) => {

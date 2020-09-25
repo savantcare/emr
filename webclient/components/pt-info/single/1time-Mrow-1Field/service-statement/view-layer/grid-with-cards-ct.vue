@@ -9,7 +9,7 @@
 
 <script>
 import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
-import clientSideTblPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
 
@@ -17,7 +17,7 @@ export default {
   components: { showContentInCard },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblPatientServiceStatements
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483647.999999)
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblPatientServiceStatements.update({
+      clientSideTblOfPatientServiceStatements.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),

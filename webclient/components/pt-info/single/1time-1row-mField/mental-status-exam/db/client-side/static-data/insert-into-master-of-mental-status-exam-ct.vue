@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientSideTblOfMasterMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Good grooming and hygiene',
@@ -21,7 +21,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'No apparennt distress',
@@ -29,7 +29,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Well developed, well nourished',
@@ -37,7 +37,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears stated age',
@@ -45,7 +45,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears younger than stated age',
@@ -53,7 +53,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appears older than stated age',
@@ -61,7 +61,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Obese',
@@ -69,7 +69,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Thin or cachectic',
@@ -77,7 +77,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Disheveled, unkempt',
@@ -85,7 +85,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Malodorous',
@@ -93,7 +93,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Other',
@@ -102,7 +102,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Pleasant and cooperative',
@@ -110,7 +110,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Uncooperative',
@@ -118,7 +118,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Hostile or defiant',
@@ -126,7 +126,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Guarded',
@@ -134,7 +134,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Evasive',
@@ -142,7 +142,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Apathetic',
@@ -150,7 +150,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Disorganized behavior',
@@ -159,7 +159,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Other',
@@ -169,7 +169,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Agitated',
@@ -177,7 +177,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Retarded',
@@ -185,7 +185,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Appropriate',
@@ -193,7 +193,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Downcast',
@@ -201,7 +201,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Intense',
@@ -209,7 +209,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Fleeting',
@@ -217,7 +217,7 @@ export default {
       },
     })
     i = i + 1
-    clientSideTblMasterMentalStatusExam.insert({
+    clientSideTblOfMasterMentalStatusExam.insert({
       data: {
         mentalStatusExamMasterId: i,
         mentalStatusExamDescription: 'Regular, rate and rhythm',

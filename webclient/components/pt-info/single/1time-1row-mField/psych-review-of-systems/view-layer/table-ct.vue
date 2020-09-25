@@ -24,12 +24,12 @@
 
 <script>
 import clientSideTblMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientSideTblPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientSideTblOfPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 export default {
   computed: {
     cfArOfPsychReviewOfSystemsForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblPatientPsychReviewOfSystems
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483647.999999)
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     mfDeletePsychReviewOfSystems(pClientSideUniqRowId) {
-      clientSideTblPatientPsychReviewOfSystems.update({
+      clientSideTblOfPatientPsychReviewOfSystems.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
