@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tblMasterRowsOfPsychReviewOfSystemsCt from './insert-into-master-of-psych-review-of-systems-ct.vue'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'psych review of systems',
         ctAbbr: 'ss',
@@ -23,7 +23,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit psych review of systems',
         ctAbbr: 'css',

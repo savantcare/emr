@@ -25,7 +25,7 @@ Features needed in search
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   data() {
@@ -68,7 +68,7 @@ export default {
     },
 
     mfQuerySearchTerms(pQueryString, pCallBack) {
-      let arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+      let arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
         .where('displayLocation', 'cl') // excluding everything where the displayLocation is view layer
         .where('needsRowIdToWork', 'no') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row

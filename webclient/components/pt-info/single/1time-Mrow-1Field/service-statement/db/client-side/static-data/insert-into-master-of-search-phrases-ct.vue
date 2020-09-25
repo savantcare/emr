@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tblMasterRowsOfServiceStatementCt from './insert-into-master-of-ss-ct.vue'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
@@ -23,7 +23,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit service statement',
         ctAbbr: 'css',
@@ -33,7 +33,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted service statements',
         ctAbbr: 'dss',

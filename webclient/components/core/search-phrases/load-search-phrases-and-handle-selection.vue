@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 // Goal: Get the search terms from each component
 
@@ -130,7 +130,7 @@ export default {
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromClientSideTable = {}
-      arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+      arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
         .orderBy('usageCountKeptInClientSideTable', 'desc')
         .get()
@@ -148,13 +148,13 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
           .query()
           .orderBy('usageCountKeptInClientSideTable', 'desc')
           .get()
         pCallBack(arFromClientSideTable)
       } else {
-        const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -187,7 +187,7 @@ export default {
 
       /* Goal: Increase the usageCount of the search term so I can order them better
         Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
-      clientSideTblSearchPhrasesOfCt.update({
+      clientSideTblOfCtSearchPhrases.update({
         where: pSelectedSuggestion.id,
         data: {
           usageCountKeptInClientSideTable: pSelectedSuggestion.usageCountKeptInClientSideTable + 1,

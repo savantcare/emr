@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 export default {
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
       console.log('value changed', pValue)
       if (pValue === 'assessment-tabset') {
         // cannot hardcode, need to query since dont know the ID created when inserted
-        const resultArFromOrm = clientSideTblSearchPhrasesOfCt.query().search('add reminder').get()
+        const resultArFromOrm = clientSideTblOfCtSearchPhrases.query().search('add reminder').get()
         const objRowFromOrm = resultArFromOrm[0]
         const objAddTab = {
           label: objRowFromOrm.value,
@@ -41,7 +41,7 @@ export default {
         this.$store.commit('mtfShowNewFirstTabInCl', objAddTab)
         this.$store.state.vstObjTabsInCL.vsSelectedTabId = this.$store.state.vstObjTabsInCL.arTabs[0].id
       } else if (pValue === 'plan-tabset') {
-        let resultArFromOrm = clientSideTblSearchPhrasesOfCt
+        let resultArFromOrm = clientSideTblOfCtSearchPhrases
           .query()
           .search('multi edit reminders')
           .get()
@@ -55,7 +55,7 @@ export default {
           ctWidthInCl: objRowFromOrm.ctWidthInCl,
         }
         this.$store.commit('mtfShowNewFirstTabInCl', objAddTab)
-        resultArFromOrm = clientSideTblSearchPhrasesOfCt.query().search('add reminder').get()
+        resultArFromOrm = clientSideTblOfCtSearchPhrases.query().search('add reminder').get()
         objRowFromOrm = resultArFromOrm[0]
         objAddTab = {
           label: objRowFromOrm.value,

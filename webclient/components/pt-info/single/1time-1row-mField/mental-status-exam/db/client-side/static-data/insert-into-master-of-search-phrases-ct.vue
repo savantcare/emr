@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tblMasterRowsOfMentalStatusExamCt from './insert-into-master-of-mental-status-exam-ct.vue'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'mental status exam',
         ctAbbr: 'mse',
@@ -23,7 +23,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'mental status exam v2',
         ctAbbr: 'mse',
@@ -32,7 +32,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit mental status exam',
         ctAbbr: 'cmse',

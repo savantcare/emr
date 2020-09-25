@@ -1,5 +1,5 @@
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 import tblCTLifeCycle from '@/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     })
 
     // Step 2/3: Inserting Search interfaces to this component
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'recommendations',
         ctAbbr: 'rex',
@@ -26,7 +26,7 @@ export default {
       },
     })
 
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',

@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
@@ -20,7 +20,7 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
@@ -29,7 +29,7 @@ export default {
         ctWidthInCl: 'small',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit phone number',
         ctAbbr: 'cpn',
@@ -39,7 +39,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit phone numbers',
         ctAbbr: 'mcpn',
@@ -48,7 +48,7 @@ export default {
         ctWidthInCl: 'large',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted phone numbers',
         ctAbbr: 'dpn',

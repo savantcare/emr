@@ -1,4 +1,4 @@
-import clientSideTblSearchPhrasesOfCt from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
 
 export default {
   state: {
@@ -63,7 +63,7 @@ export default {
     },
     async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromClientSideTable = await clientSideTblSearchPhrasesOfCt
+      const arFromClientSideTable = await clientSideTblOfCtSearchPhrases
         .query()
         .where('displayLocation', 'cl')
         .search(pPayload.searchTerm.trim(), {
