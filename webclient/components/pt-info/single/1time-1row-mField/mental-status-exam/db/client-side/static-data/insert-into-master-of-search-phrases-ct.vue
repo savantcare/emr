@@ -1,15 +1,15 @@
 <!-- Reference implementation -->
 <!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
-  <div><tblMasterRowsOfMentalStatusExamCt /></div>
+  <div><insertIntoMasterRowsOfMentalStatusExamCt /></div>
 </template>
 
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
-import tblMasterRowsOfMentalStatusExamCt from './insert-into-master-of-mental-status-exam-ct.vue'
+import insertIntoMasterRowsOfMentalStatusExamCt from './insert-into-master-of-mental-status-exam-ct.vue'
 
 export default {
-  components: { tblMasterRowsOfMentalStatusExamCt },
+  components: { insertIntoMasterRowsOfMentalStatusExamCt },
   data() {
     return {}
   },
