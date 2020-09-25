@@ -22,7 +22,7 @@ export default {
         value: 'recommendations',
         ctAbbr: 'rex',
         ctToShow: 'pt-info/single/rec/view-layer/timeline.vue',
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
 

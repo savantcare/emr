@@ -15,7 +15,7 @@ export default {
         value: 'body measurement',
         ctAbbr: 'bm',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/view-layer/tabs-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

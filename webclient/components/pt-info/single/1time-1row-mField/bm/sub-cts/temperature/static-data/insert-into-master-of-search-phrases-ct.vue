@@ -15,7 +15,7 @@ export default {
         value: 'temperature',
         ctAbbr: 'w',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

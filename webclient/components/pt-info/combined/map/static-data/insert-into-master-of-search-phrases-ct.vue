@@ -15,7 +15,7 @@ export default {
         value: 'map',
         ctAbbr: 'mp',
         ctToShow: 'pt-info/combined/map/invoke.vue',
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
   },

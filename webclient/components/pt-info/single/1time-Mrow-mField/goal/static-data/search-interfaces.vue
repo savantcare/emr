@@ -36,7 +36,7 @@ export default {
         value: 'goal',
         ctAbbr: 'g',
         ctToShow: 'pt-info/single/1time-Mrow-mField/goal/g-vl.vue',
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
   },

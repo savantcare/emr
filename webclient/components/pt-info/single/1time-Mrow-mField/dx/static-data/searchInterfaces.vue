@@ -26,7 +26,7 @@ export default {
         value: 'diagnosis',
         ctAbbr: 'dx',
         ctToShow: 'pt-info/single/dx/dx-vl.vue',
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

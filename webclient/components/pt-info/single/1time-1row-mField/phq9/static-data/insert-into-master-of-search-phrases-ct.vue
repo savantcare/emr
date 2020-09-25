@@ -15,7 +15,7 @@ export default {
         value: 'phq9',
         ctAbbr: 'h',
         ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

@@ -20,7 +20,7 @@ export default {
         ctAbbr: 'ss',
         ctToShow:
           'pt-info/single/1time-1row-mField/psych-review-of-systems/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

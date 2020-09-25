@@ -15,7 +15,7 @@ export default {
         value: 'height',
         ctAbbr: 'h',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/line-graph-ct.vue',
-        displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

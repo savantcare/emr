@@ -16,7 +16,7 @@ export default {
         ctAbbr: 'wc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
-        displayLocation: 'ptsVl', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

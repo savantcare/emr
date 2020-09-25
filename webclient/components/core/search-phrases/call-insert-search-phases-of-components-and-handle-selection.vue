@@ -177,7 +177,7 @@ export default {
         id: pSelectedSuggestion.id,
         closable: true,
       }
-      if (pSelectedSuggestion.displayLocation === 'ptsVl') {
+      if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // ptsvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'cl') {
