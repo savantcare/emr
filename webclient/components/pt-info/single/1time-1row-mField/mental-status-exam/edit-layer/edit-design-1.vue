@@ -4,7 +4,7 @@
     <el-card
       shadow="hover"
       v-for="(allMentalStatusExamInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfMentalStatusExamGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfMentalStatusExamGrouped"
       :key="allMentalStatusExamInsideAGroup.id"
     >
       <div slot="header" class="clearfix">
@@ -19,7 +19,8 @@
                 size="mini"
                 @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
                 type="primary"
-              >{{ ms.mentalStatusExamDescription }}</el-button>
+                >{{ ms.mentalStatusExamDescription }}</el-button
+              >
             </div>
             <div v-else>
               <el-input
@@ -31,9 +32,7 @@
           <div v-else>
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
               <el-button size="mini" @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">
-                {{
-                ms.mentalStatusExamDescription
-                }}
+                {{ ms.mentalStatusExamDescription }}
               </el-button>
             </div>
             <div v-else>
@@ -62,7 +61,7 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfMentalStatusExamGrouped() {
+    cfGetMasterRowsOfMentalStatusExamGrouped() {
       console.log('cf called')
       const arOfObjectsFromClientSideMasterDB = clientSideTblMasterMentalStatusExam
         .query()

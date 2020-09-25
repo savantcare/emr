@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
       v-for="(allServiceStatementsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfServiceStatementsGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfServiceStatementsGrouped"
       :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfServiceStatementsGrouped() {
+    cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
       let arOfObjectsFromClientSideMasterDB = clientSideTblMasterServiceStatements
         .query()

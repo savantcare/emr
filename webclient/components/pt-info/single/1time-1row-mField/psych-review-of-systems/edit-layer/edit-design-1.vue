@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
       v-for="(allPsychReviewOfSystemsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfPsychReviewOfSystemsGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfPsychReviewOfSystemsGrouped"
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -76,7 +76,7 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfPsychReviewOfSystemsGrouped() {
+    cfGetMasterRowsOfPsychReviewOfSystemsGrouped() {
       console.log('cf called')
       const arOfObjectsFromClientSideMasterDB = clientSideTblMasterPsychReviewOfSystems
         .query()

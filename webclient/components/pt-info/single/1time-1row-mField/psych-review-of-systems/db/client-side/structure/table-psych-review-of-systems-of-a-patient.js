@@ -48,7 +48,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientSideTable
      So after I get the list of all master SS. I find all the SS that have been added in the client and there psychReviewOfSystemsCategory has a max 1 limit
      If found then I remove those extra rows from master.
 
-      add-ct.vue/cfGetMasterListOfPsychReviewOfSystemsGrouped
+      add-ct.vue/cfGetMasterRowsOfPsychReviewOfSystemsGrouped
 
       */
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse

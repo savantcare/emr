@@ -1,5 +1,5 @@
 Web typography 3.4K
-https://github.com/KyleAMathews/typography.js]
+https://github.com/KyleAMathews/typography.js
 
 Resume template: good typography 1.3k
 https://github.com/WebPraktikos/universal-resume

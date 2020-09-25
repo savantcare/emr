@@ -30,7 +30,7 @@ export default class mentalStatusExamMasterClass extends clientSideTableManage {
         ================
         When all SS are displayed I want to show the selected SS in button primary color.
         So I want to create a big row that has data from master and child
-        see add-ct.vue/cfGetMasterListOfMentalStatusExamGrouped
+        see add-ct.vue/cfGetMasterRowsOfMentalStatusExamGrouped
       */
       tblMentalStatusExamForPatientLink: this.hasOne(
         mentalStatusExamForPatientClass,
