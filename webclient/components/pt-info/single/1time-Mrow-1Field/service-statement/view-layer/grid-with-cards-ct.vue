@@ -42,7 +42,7 @@ export default {
         },
       })
     },
-    mfOpenCCtInEditLayer() {
+    mfOpenEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit service statement',
       })

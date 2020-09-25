@@ -64,7 +64,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenCCtInEditLayer(row.id)"
+            @click="mxOpenEditCtInEditLayer(row.id)"
             class="el-icon-edit"
           ></el-button>
           <el-button
@@ -151,7 +151,7 @@ export default {
         }
       } else {
         if (e.code === 'KeyC') {
-          this.mxOpenCCtInEditLayer(rowId)
+          this.mxOpenEditCtInEditLayer(rowId)
         }
         if (e.code === 'KeyD') {
           this.mxOpenDPrompt(rowId)

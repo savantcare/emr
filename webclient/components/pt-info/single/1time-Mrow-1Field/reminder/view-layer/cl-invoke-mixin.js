@@ -68,7 +68,7 @@ export default {
         drawerData: arDrawerData,
       })
     },
-    mxOpenCCtInEditLayer(pOrmDataRowId) {
+    mxOpenEditCtInEditLayer(pOrmDataRowId) {
       /*
        We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
        Option 1: Send the whole data row

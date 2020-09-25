@@ -7,7 +7,7 @@
           style="padding: 3px; color: #c0c4cc; border: none"
           plain
           tabindex="-1"
-          @click="mfOpenCCtInEditLayer"
+          @click="mfOpenEditCtInEditLayer"
           class="el-icon-edit"
         ></el-button>
       </el-button-group>
@@ -65,8 +65,8 @@ export default {
   date: {},
   computed: {},
   methods: {
-    mfOpenCCtInEditLayer() {
-      this.$parent.mfOpenCCtInEditLayer()
+    mfOpenEditCtInEditLayer() {
+      this.$parent.mfOpenEditCtInEditLayer()
     },
     mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
       this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)

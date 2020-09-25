@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    mfOpenCCtInEditLayer(pOrmId) {
+    mfOpenEditCtInEditLayer(pOrmId) {
       console.log(pOrmId)
       const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)

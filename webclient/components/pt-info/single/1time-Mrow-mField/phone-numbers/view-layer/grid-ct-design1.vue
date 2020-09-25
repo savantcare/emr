@@ -41,7 +41,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInEditLayer()"
+              @click="mxOpenEditCtInEditLayer()"
               class="el-icon-edit"
             ></el-button>
             <el-button

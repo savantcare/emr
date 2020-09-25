@@ -79,7 +79,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
                 style="padding: 3px"
                 plain
                 tabindex="-1"
-                @click="mxOpenCCtInEditLayer(props.row.id)"
+                @click="mxOpenEditCtInEditLayer(props.row.id)"
                 class="el-icon-edit"
               ></el-button>
               <el-button
