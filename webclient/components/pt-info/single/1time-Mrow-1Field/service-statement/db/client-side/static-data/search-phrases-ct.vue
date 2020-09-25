@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterRowsOfServiceStatementCt from './master-list-of-ss-ct'
+import tblMasterRowsOfServiceStatementCt from './master-rows-of-ss-ct'
 
 export default {
   components: { tblMasterRowsOfServiceStatementCt },

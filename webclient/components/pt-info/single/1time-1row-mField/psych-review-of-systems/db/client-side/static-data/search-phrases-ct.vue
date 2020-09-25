@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterRowsOfPsychReviewOfSystemsCt from './master-list-of-psych-review-of-systems-ct'
+import tblMasterRowsOfPsychReviewOfSystemsCt from './master-rows-of-psych-review-of-systems-ct'
 
 export default {
   components: { tblMasterRowsOfPsychReviewOfSystemsCt },
