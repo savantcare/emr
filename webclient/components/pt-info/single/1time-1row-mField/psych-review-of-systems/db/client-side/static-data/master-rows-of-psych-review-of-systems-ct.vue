@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblMasterPsychReviewOfSystems from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-master-list-of-psych-review-of-systems.js'
+import clientSideTblMasterPsychReviewOfSystems from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
 
 export default {
   data() {

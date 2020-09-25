@@ -14,7 +14,7 @@
       size="mini"
       style="width: 100%"
       :stripe="true"
-      :row-class-name="mfGetCssClassName"
+      :row-class-name="mfGetCssClassNameForEachDataRow"
       @selection-change="mfHandleSelectionForDelete"
     >
       <el-table-column prop="msg"> </el-table-column>

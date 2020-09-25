@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsMasterClass from './table-master-list-of-service-statements.js'
+import serviceStatementsMasterClass from './master-table-of-service-statements.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
@@ -47,7 +47,7 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
      So after I get the list of all master SS. I find all the SS that have been added in the client and there serviceStatementCategory has a max 1 limit
      If found then I remove those extra rows from master.
 
-      add-ct.vue/cfGetMasterListOfServiceStatementsGrouped
+      add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
 
       */
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
