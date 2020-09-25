@@ -6,7 +6,7 @@
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
-import tblMasterRowsOfMentalStatusExamCt from './master-rows-of-mental-status-exam-ct'
+import tblMasterRowsOfMentalStatusExamCt from './insert-into-master-of-mental-status-exam-ct.vue'
 
 export default {
   components: { tblMasterRowsOfMentalStatusExamCt },
