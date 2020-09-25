@@ -13,7 +13,7 @@ export default class ptTemperature extends clientSideTableManage {
   // baseurl is defined in nuxt.config.js
   // static apiUrl = process.env.baseUrl + '/name'
 
-  static apiUrl = 'http://localhost:3000/temperature'
+  static apiUrl = 'http://localhost:8000/public/api/temperature/v20'
 
   static graphSeries1FieldName = 'temperatureInFarehnite'
   static graphSeries1Unit = 'Fh'
@@ -27,7 +27,7 @@ export default class ptTemperature extends clientSideTableManage {
       clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       temperatureInFarehnite: this.number(null),
-      timeOfMeasurement: this.number(null),
+      timeOfMeasurement: this.string(null),
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
