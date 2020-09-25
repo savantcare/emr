@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- To understand how this works read manage-ptsvl-cards/call-insert-search-phases-of-components-and-handle-selection.vue.vue -->
+<!-- To understand how this works call-insert-search-phases-of-components-and-handle-selection.vue -->
 <template>
   <div><insertIntoMasterRowsOfMentalStatusExamCt /></div>
 </template>
