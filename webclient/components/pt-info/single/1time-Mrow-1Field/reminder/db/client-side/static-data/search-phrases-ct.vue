@@ -24,16 +24,16 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/change-layer/add-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/add-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
       },
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change reminder',
+        value: 'edit reminder',
         ctAbbr: 'crem',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/change-layer/c-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/edit-design-1.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
@@ -41,9 +41,9 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'multi change reminders',
+        value: 'multi edit reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/change-layer/mc-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/mc-ct.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'large',
       },

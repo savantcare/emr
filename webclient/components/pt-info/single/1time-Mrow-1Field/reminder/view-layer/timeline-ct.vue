@@ -82,7 +82,7 @@
 
 <script>
 import clientSideTable from '../db/client-side/structure/rem-table.js'
-import ctActOnSocketMessages from '../change-layer/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 
 export default {
@@ -241,8 +241,6 @@ Generatiobn 3                     |
   position: relative;
   margin: 1px;
   padding: 10px 1px 1px !important;
-  /* Goal: Give normal and weak eyesight two different font size*/
-  font-size: var(--font-size-of-content-every-where);
 }
 
 /* Goal: Header icon management  */

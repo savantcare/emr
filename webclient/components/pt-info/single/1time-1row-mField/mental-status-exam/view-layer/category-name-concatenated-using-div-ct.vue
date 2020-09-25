@@ -48,7 +48,7 @@ export default {
     },
     mfOpenCCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'change mental status exam',
+        searchTerm: 'edit mental status exam',
       })
     },
   },

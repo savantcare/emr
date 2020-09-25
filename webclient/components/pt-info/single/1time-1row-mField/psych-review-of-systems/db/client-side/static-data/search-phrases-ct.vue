@@ -25,9 +25,10 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'change psych review of systems',
+        value: 'edit psych review of systems',
         ctAbbr: 'css',
-        ctToShow: 'pt-info/single/1time-1row-mField/psych-review-of-systems/change-layer/c-ct.vue',
+        ctToShow:
+          'pt-info/single/1time-1row-mField/psych-review-of-systems/edit-layer/edit-design-1.vue',
         displayLocation: 'cl',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',

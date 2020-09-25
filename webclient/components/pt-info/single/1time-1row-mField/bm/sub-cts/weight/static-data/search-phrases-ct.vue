@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'weight - change',
         ctAbbr: 'wc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/change-layer/c-ct.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

@@ -17,7 +17,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
-        ctToShow: 'pt-info/single/dx/change-layer/ctAddDx.vue',
+        ctToShow: 'pt-info/single/dx/edit-layer/ctAddDx.vue',
         displayLocation: 'cl',
       },
     })
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',
-        ctToShow: 'pt-info/single/dx/change-layer/ctMultiChangeDxa.vue',
+        ctToShow: 'pt-info/single/dx/edit-layer/ctMultiChangeDxa.vue',
         displayLocation: 'cl',
       },
     })

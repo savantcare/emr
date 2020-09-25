@@ -18,15 +18,6 @@ export default class commonForAllComponents extends Model {
       clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this.string(
         ''
       ),
-      fontSizeOfHeadingEveryWhereForNormalEyeSight: this.string('16px'),
-      fontSizeOfContentEveryWhereForNormalEyeSight: this.string('14px'),
-      fontSizeOfSubContentEveryWhereForNormalEyeSight: this.string('12px'),
-
-      fontSizeOfHeadingEveryWhereForWeakEyeSight: this.string('18px'),
-      fontSizeOfContentEveryWhereForWeakEyeSight: this.string('16px'),
-      fontSizeOfSubContentEveryWhereForWeakEyeSight: this.string('14px'),
-
-      currentUserEyeSight: this.string('normal'),
     }
   }
 }

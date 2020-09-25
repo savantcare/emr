@@ -16,7 +16,7 @@ export default {
     clientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
-        serviceStatementDescription: '90',
+        serviceStatementDescription: '60',
         serviceStatementCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -25,7 +25,7 @@ export default {
     clientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
-        serviceStatementDescription: '85',
+        serviceStatementDescription: '55',
         serviceStatementCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -34,7 +34,7 @@ export default {
     clientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
-        serviceStatementDescription: '80',
+        serviceStatementDescription: '50',
         serviceStatementCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -43,7 +43,7 @@ export default {
     clientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
-        serviceStatementDescription: '75',
+        serviceStatementDescription: '45',
         serviceStatementCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -52,7 +52,7 @@ export default {
     clientSideTblMasterServiceStatement.insert({
       data: {
         serviceStatementMasterId: i,
-        serviceStatementDescription: '70',
+        serviceStatementDescription: '40',
         serviceStatementCategory: 'Total minutes in psychotherapy',
       },
     })

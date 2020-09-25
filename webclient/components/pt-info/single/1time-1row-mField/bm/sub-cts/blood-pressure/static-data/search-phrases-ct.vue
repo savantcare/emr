@@ -24,7 +24,7 @@ export default {
         value: 'blood pressure - change',
         ctAbbr: 'bpc',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/change-layer/c-ct.vue', // Cl -> Change layer
+          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
       },

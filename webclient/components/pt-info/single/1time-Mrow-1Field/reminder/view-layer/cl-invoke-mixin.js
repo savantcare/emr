@@ -12,7 +12,7 @@ export default {
     },
     mxOpenMCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'multi change reminder',
+        searchTerm: 'multi edit reminder',
       })
     },
     mxOpenDDialog() {
@@ -80,10 +80,10 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'change reminder', pPropsToGiveToCt: pOrmDataRowId }
+      const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pOrmDataRowId }
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
     },
-    mxOpenDPrompt(pOrmDataRowId) {
+    mfIconDeleteClickedOnChildCard(pOrmDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {

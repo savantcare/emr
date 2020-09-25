@@ -8,7 +8,10 @@
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
+  /*  font-size: 16px;
+      Removing  font-size since we want Dr. Keeling to be able to change font-size in her borwser and the emr should adopt itself.
+  */
+
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -51,5 +54,13 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+/* Now text inside the button willl change based on Dr. Keeling choice inside the browser settings 
+The default value given by element.io is 14px
+
+*/
+.el-button {
+  font-size: 1rem;
 }
 </style>

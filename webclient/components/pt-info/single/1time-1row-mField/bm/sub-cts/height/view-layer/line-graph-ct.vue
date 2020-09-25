@@ -17,7 +17,7 @@
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfSendSubmitEvent()"
+      @click="mfSendReviewedEvent()"
       >S</el-button
     >
     <el-button

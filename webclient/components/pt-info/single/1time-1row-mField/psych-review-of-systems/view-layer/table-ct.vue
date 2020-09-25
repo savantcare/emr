@@ -48,7 +48,7 @@ export default {
     },
     mfOpenCCtInCl() {
       this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
-        searchTerm: 'change psych review of systems',
+        searchTerm: 'edit psych review of systems',
       })
     },
   },
@@ -138,7 +138,6 @@ Generatiobn 3                     |
   margin: 1px;
   padding: 10px 1px 1px !important;
   /* Goal: Give normal and weak eyesight two different font size*/
-  font-size: var(--font-size-of-content-every-where);
 }
 
 /* Goal: Header icon management  */
