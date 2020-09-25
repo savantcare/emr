@@ -8,7 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptWaistCircumference extends clientSideTableManage {
   static entity = 'tblWaistCircumference'
-  static apiUrl = 'http://localhost:3000/waist-circumference'
+  static apiUrl = 'http://localhost:8000/public/api/waist-circumference/v20'
 
   static graphSeries1FieldName = 'waistCircumferenceInInches'
   static graphSeries1Unit = 'Inches'
@@ -23,7 +23,7 @@ export default class ptWaistCircumference extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       waistCircumferenceInInches: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
+      timeOfMeasurement: this.string(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
