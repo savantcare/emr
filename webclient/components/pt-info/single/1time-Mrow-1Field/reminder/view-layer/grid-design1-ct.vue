@@ -135,7 +135,7 @@ export default {
       this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow, pIndex) {
+    mfGetCssClassNameForEachDataRow(pRow, pIndex) {
       const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
