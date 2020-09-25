@@ -47,10 +47,10 @@ export default {
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const primaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
+        const clientSidePrimaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
-            scope.fnSetRowStatus(primaryKeyValue)
+            scope.fnSetRowStatus(clientSidePrimaryKeyValue)
           },
           2000, // setting timeout of 2 s
           this
@@ -114,9 +114,9 @@ export default {
     },
   },
   methods: {
-    fnSetRowStatus(pPrimaryKeyValue) {
+    fnSetRowStatus(pClientSidePrimaryKeyValue) {
       clientSideTable.update({
-        where: pPrimaryKeyValue,
+        where: pClientSidePrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/core/crud/forms.md
         },

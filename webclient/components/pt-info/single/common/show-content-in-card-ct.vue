@@ -20,6 +20,7 @@
         shadow="hover"
         :style="mfGetCssClassName(card)"
       >
+        <!-- Goal: Identify the data coming through socket -->
         <div v-if="card.vnRowStateInSession === 9" class="sc-individual-socket-messege-container">
           <span>Added from socket</span>
         </div>
@@ -74,10 +75,12 @@ export default {
     mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
       this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)
     },
-    mfGetCssClassName(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
+
+    // Goal: Change container font color as per client side row status
+    mfGetCssClassName(clientSideDataRow) {
+      const strOfNumber = clientSideDataRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
+      if (lastCharecter === '4' || lastCharecter === '6') { // when data added only client side
         return 'color: #E6A23C;'
       }
        else if(lastCharecter === '9') { // when data added from socket overwrite default design

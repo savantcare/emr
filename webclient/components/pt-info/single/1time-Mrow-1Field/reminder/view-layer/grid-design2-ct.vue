@@ -7,6 +7,7 @@
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"
     ></showContentInCard>
+
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
 </template>
