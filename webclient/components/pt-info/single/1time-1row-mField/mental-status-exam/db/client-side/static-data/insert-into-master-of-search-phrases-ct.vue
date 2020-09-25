@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import tblMasterRowsOfMentalStatusExamCt from './insert-into-master-of-mental-status-exam-ct.vue'
 
 export default {

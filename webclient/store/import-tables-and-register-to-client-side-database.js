@@ -4,7 +4,7 @@ import { Database } from '@vuex-orm/core'
 const database = new Database()
 
 // Core tables
-import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import tableStructureForLifeCycle from '~/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForCommon from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 database.register(tableStructureForSearch)

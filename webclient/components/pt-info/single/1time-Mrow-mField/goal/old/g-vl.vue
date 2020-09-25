@@ -38,7 +38,7 @@
 
 <script>
 // import addGoal from './layer-2/addGoal.vue'
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import ormGoal from '@/components/pt-info/single/1time-Mrow-mField/goal/db/client-side/structure/Goal.js'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'
