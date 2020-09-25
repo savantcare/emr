@@ -18,7 +18,7 @@
         :key="card.clientSideUniqRowId"
         class="box-card sc-individual-child-card"
         shadow="hover"
-        :style="mfGetCssClassName(card)"
+        :style="mfGetCssClassNameOnEachDataRow(card)"
       >
         <!-- Goal: Identify the data coming through socket -->
         <div v-if="card.vnRowStateInSession === 9" class="sc-individual-socket-messege-container">
@@ -77,7 +77,7 @@ export default {
     },
 
     // Goal: Change container font color as per client side row status
-    mfGetCssClassName(clientSideDataRow) {
+    mfGetCssClassNameOnEachDataRow(clientSideDataRow) {
       const strOfNumber = clientSideDataRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') { // when data added only client side
