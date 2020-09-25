@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'weight - change',
+        value: 'edit weight',
         ctAbbr: 'wc',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'cl',
