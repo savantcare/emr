@@ -5,22 +5,51 @@
 
 <script>
 import clientSideTblMasterDiagnosis from '../structure/master-of-diagnosis-table'
+// import jsonMasterOfDiagnosis from './diagnosisdMatser.json'
 
 export default {
   data() {
     return {
+      // masterDiagnosis: jsonMasterOfDiagnosis.data
       masterDiagnosis: [
         {
-          diagnosisName: 'Academic or educational problem'
+          name: 'Academic or educational problem'
         },
         {
-          diagnosisName: 'Depersonalization/derealization disorder'
+          name: 'Acculturation difficulty'
         },
         {
-          diagnosisName: 'Adjustment disorder, With mixed disturbance of emotions and conduct'
+          name: 'Acute stress disorder'
         },
         {
-          diagnosisName: 'Adjustment insomnia'
+          name: 'Adjustment disorder, Unspecified'
+        },
+        {
+          name: 'Adjustment disorder, With anxiety'
+        },
+        {
+          name: 'Adjustment disorder, With depressed mood'
+        },
+        {
+          name: 'Adjustment disorder, With disturbance of conduct'
+        },
+        {
+          name: 'Adjustment disorder, With mixed anxiety and depressed mood'
+        },
+        {
+          name: 'Adjustment disorder, With mixed disturbance of emotions and conduct'
+        },
+        {
+          name: 'Adult antisocial behavior'
+        },
+        {
+          name: 'Adult physical abuse by nonspouse or nonpartner, Confirmed, Initial encounter'
+        },
+        {
+          name: 'Adult physical abuse by nonspouse or nonpartner, Confirmed, Subsequent encounter'
+        },
+        {
+          name: 'Adult physical abuse by nonspouse or nonpartner, Suspected, Initial encounter'
         },
       ]
     }
@@ -36,7 +65,7 @@ export default {
         const element = array[index];
         clientSideTblMasterDiagnosis.insert({
           data: {
-            diagnosisName: element.diagnosisName,
+            diagnosisName: element.name,
           },
         })
       }

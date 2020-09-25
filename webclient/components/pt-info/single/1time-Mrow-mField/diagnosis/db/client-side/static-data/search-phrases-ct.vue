@@ -22,6 +22,25 @@ export default {
         displayLocation: 'ptsVl',
       },
     })
+    // clientSideTblSearchPhrasesOfCt.insert({
+    //   data: {
+    //     value: 'change diagnosis',
+    //     ctAbbr: 'cdx',
+    //     ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design.vue',
+    //     displayLocation: 'cl',
+    //     ctWidthInCl: 'large', // small
+    //     needsRowIdToWork: 'yes',
+    //   },
+    // })
+    clientSideTblSearchPhrasesOfCt.insert({
+      data: {
+        value: 'add diagnosis',
+        ctAbbr: 'adx',
+        ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design.vue',
+        displayLocation: 'cl',
+        ctWidthInCl: 'small', // small
+      },
+    })
   },
 }
 </script>

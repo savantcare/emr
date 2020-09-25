@@ -58,17 +58,21 @@ import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/
 import tableStructureForName from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
 import tableStructureForDob from '~/components/pt-info/single/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tableStructureForRec from '~/components/pt-info/single/1time-Mrow-1Field/rec/db/client-side/structure/model.js'
-import tableStructureForDx from '~/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
-import tableStructureForDxa from '~/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
+// import tableStructureForDx from '~/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
+// import tableStructureForDxa from '~/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
+import tableStructureForDiagnosisPatient from '~/components/pt-info/single/1time-Mrow-mField/diagnosis/db/client-side/structure/patient-of-diagnosis-table'
+import tableStructureForDiagnosiMaster from '~/components/pt-info/single/1time-Mrow-mField/diagnosis/db/client-side/structure/master-of-diagnosis-table'
 import tableStructureForGoal from '~/components/pt-info/single/1time-Mrow-mField/goal/db/client-side/structure/Goal'
 import tableStructureForPhoneNumbers from '~/components/pt-info/single/1time-Mrow-mField/phone-numbers/db/client-side/structure/table.js'
 database.register(tableStructureForRem)
 database.register(tableStructureForName)
 database.register(tableStructureForDob)
 database.register(tableStructureForRec)
-database.register(tableStructureForDx)
+// database.register(tableStructureForDx)
+// database.register(tableStructureForDxa)
+database.register(tableStructureForDiagnosisPatient)
+database.register(tableStructureForDiagnosiMaster)
 database.register(tableStructureForGoal)
-database.register(tableStructureForDxa)
 database.register(tableStructureForPhoneNumbers)
 
 export default database
