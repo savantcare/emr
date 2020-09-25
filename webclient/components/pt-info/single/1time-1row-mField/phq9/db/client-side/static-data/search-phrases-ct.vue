@@ -1,11 +1,14 @@
+<!-- To understand how this works read components/core/search-phrases/load-search-phrases-and-handle-selection.vue -->
 <template>
-  <div></div>
+  <div><tblMasterListOfPhq9Ct /></div>
 </template>
 
 <script>
 import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import tblMasterListOfPhq9Ct from './phq9-master-data'
 
 export default {
+  components: { tblMasterListOfPhq9Ct },
   data() {
     return {}
   },
@@ -14,18 +17,18 @@ export default {
       data: {
         value: 'phq9',
         ctAbbr: 'h',
-        ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/grid-with-cards-ct.vue',
         displayLocation: 'ptsVl',
       },
     })
     clientSideTblSearchPhrasesOfCt.insert({
       data: {
-        value: 'phq9 - change',
+        value: 'phq9 edit',
         ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue',
         displayLocation: 'cl',
         needsRowIdToWork: 'no',
-        ctWidthInCl: 'large',
+        ctWidthInCl: 'small',
       },
     })
   },

@@ -77,7 +77,7 @@ import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub
 
 // 1time-1row-mField/others
 import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/search-phrases-ct'
-import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/search-phrases-ct'
+import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/db/client-side/static-data/search-phrases-ct'
 import prosSPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/search-phrases-ct'
 
 // 1time-Mrow-1Field
