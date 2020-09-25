@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import mentalStatusExamForPatientClass from './table-mental-status-exam-of-a-patient.js'
+import mentalStatusExamForPatientClass from './patient-table-of-mental-status-exam.js'
 
 const { v1: uuidv1 } = require('uuid')
 

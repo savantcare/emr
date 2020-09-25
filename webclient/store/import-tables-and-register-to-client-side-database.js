@@ -37,19 +37,19 @@ database.register(tableStructureForPhq9)
 
 // Service statement tables
 import tableStructureForSSMaster from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/master-table-of-service-statements.js'
-import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-service-statements-of-a-patient.js'
+import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
 // Mental status exam tables
 import tableStructureForMSEMaster from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
-import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables
 import tableStructureForPROSMaster from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import tableStructureForPROSOfPatient from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-psych-review-of-systems-of-a-patient.js'
+import tableStructureForPROSOfPatient from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 

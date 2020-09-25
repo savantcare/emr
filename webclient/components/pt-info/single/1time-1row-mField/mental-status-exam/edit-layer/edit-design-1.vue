@@ -51,7 +51,7 @@
 
 <script>
 import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   data() {

@@ -29,7 +29,7 @@
 
 <script>
 import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
-import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
+import clientSideTblPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 
 export default {
   data() {
