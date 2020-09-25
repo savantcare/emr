@@ -180,7 +180,7 @@ export default {
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // ptsvl -> Current state of view layer
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
-      } else if (pSelectedSuggestion.displayLocation === 'cl') {
+      } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
         // Change layer
         this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
       }

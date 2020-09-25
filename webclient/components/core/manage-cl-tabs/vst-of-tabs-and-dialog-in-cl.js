@@ -65,7 +65,7 @@ export default {
       // Goal 1: Find out which CT will handle this search term
       const arFromClientSideTable = await clientSideTblOfCtSearchPhrases
         .query()
-        .where('displayLocation', 'cl')
+        .where('displayLocation', 'edit-layer')
         .search(pPayload.searchTerm.trim(), {
           threshold: 0.1,
           keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain

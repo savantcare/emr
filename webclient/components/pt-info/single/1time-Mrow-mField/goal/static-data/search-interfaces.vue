@@ -18,7 +18,7 @@ export default {
         value: 'add goal',
         ctAbbr: 'addg',
         ctToShow: 'pt-info/single/1time-Mrow-mField/goal/edit-layer/add.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
 
@@ -27,7 +27,7 @@ export default {
         value: 'multi rate goal',
         ctAbbr: 'mcg',
         ctToShow: 'pt-info/single/1time-Mrow-mField/goal/edit-layer/ctMultiRateGoal.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
 

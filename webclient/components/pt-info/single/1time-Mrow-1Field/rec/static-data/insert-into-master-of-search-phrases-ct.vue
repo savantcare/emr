@@ -31,7 +31,7 @@ export default {
         value: 'add recommendations',
         ctAbbr: 'arex',
         ctToShow: 'pt-info/single/rec/view-layer/table-ct.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
   },

@@ -38,7 +38,7 @@ export default {
         ctAbbr: 'cmse',
         ctToShow:
           'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
       },

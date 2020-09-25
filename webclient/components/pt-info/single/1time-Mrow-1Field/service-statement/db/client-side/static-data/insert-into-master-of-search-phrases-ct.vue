@@ -28,7 +28,7 @@ export default {
         value: 'edit service statement',
         ctAbbr: 'css',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/edit-layer/edit-design-1.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
       },
@@ -38,7 +38,7 @@ export default {
         value: 'deleted service statements',
         ctAbbr: 'dss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/deleted.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'large',
       },
     })

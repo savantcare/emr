@@ -18,7 +18,7 @@ export default {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
         ctToShow: 'pt-info/single/dx/edit-layer/ctAddDx.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
@@ -34,7 +34,7 @@ export default {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',
         ctToShow: 'pt-info/single/dx/edit-layer/ctMultiChangeDxa.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
   },

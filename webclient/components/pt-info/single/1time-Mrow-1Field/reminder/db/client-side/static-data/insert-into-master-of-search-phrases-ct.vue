@@ -25,7 +25,7 @@ export default {
         value: 'add reminder',
         ctAbbr: 'arem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/add-ct.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'small',
       },
     })
@@ -34,7 +34,7 @@ export default {
         value: 'edit reminder',
         ctAbbr: 'crem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/edit-design-1.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'small',
         needsRowIdToWork: 'yes',
       },
@@ -44,7 +44,7 @@ export default {
         value: 'multi edit reminders',
         ctAbbr: 'mcrem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/mc-ct.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'large',
       },
     })
@@ -53,7 +53,7 @@ export default {
         value: 'deleted reminders',
         ctAbbr: 'drem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/view-layer/deleted.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'large',
       },
     })
