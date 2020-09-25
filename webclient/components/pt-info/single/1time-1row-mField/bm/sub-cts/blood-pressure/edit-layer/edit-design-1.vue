@@ -35,7 +35,6 @@ Code synced with ref implementation on 4th august 2020
               placeholder="Pick a day"
               :picker-options="pickerOptions"
               format="yyyy/MM/dd"
-              value-format="timestamp"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
             >
             </el-date-picker>
