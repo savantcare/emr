@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import clientSideTblMasterServiceStatements from '../db/client-side/structure/table-master-list-of-service-statements.js'
+import clientSideTblMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
 import clientSideTblPatientServiceStatements from '../db/client-side/structure/table-service-statements-of-a-patient.js'
 
 export default {

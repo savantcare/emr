@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
+import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
 import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
 import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'

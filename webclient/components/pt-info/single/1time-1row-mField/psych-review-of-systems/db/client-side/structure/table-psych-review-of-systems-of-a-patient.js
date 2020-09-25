@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import psychReviewOfSystemsMasterClass from './table-master-list-of-psych-review-of-systems.js'
+import psychReviewOfSystemsMasterClass from './master-table-of-psych-review-of-systems.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0

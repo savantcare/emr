@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsMasterClass from './table-master-list-of-service-statements.js'
+import serviceStatementsMasterClass from './master-table-of-service-statements.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0

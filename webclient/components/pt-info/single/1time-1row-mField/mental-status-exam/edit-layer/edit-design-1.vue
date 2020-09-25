@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
+import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
 import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
 
 export default {
