@@ -1,11 +1,14 @@
 <!-- Reference implementation -->
 <template>
-  <showContentInCard
-    mainCardName="Reminders"
-    :childCardsArray="cfArOfRemForDisplayInTable"
-    clientSideDBLevelTableActions="edit"
-    clientSideCardLevelActions="remove, info"
-  />
+  <div>
+    <showContentInCard
+      mainCardName="Reminders"
+      :childCardsArray="cfArOfRemForDisplayInTable"
+      clientSideDBLevelTableActions="edit"
+      clientSideCardLevelActions="remove, info"
+    ></showContentInCard>
+    <ctActOnSocketMessages></ctActOnSocketMessages>
+  </div>
 </template>
 
 <script>
