@@ -115,7 +115,7 @@ export default {
 
       // console.log(dxList);
     },
-    mfOpenACtInCl() {
+    mfOpenACtInEditLayer() {
       console.log('show add dialog')
       const arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
@@ -131,7 +131,7 @@ export default {
       }
       this.$store.commit('mtfShowNewFirstTabInL2', tab)
     },
-    mfOpenMCtInCl() {
+    mfOpenMCtInEditLayer() {
       console.log('show multi change dialog')
       const arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()

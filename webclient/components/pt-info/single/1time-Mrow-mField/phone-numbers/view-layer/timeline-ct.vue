@@ -16,10 +16,12 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenACtInCl"
+            @click="mxOpenACtInEditLayer"
             class="el-icon-circle-plus-outline"
           ></el-button>
-          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInEditLayer"
+            >M</el-button
+          >
           <el-button
             style="padding: 3px"
             plain
@@ -31,7 +33,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenXCtInCl"
+            @click="mxOpenXCtInEditLayer"
             class="el-icon-delete"
           ></el-button>
         </el-button-group>
@@ -60,7 +62,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl(row.id)"
+              @click="mxOpenCCtInEditLayer(row.id)"
               class="el-icon-edit"
             ></el-button>
             <el-button
@@ -132,20 +134,20 @@ export default {
       console.log(e, rowId)
       if (rowId === 'header') {
         if (e.code === 'KeyA') {
-          this.mxOpenACtInCl()
+          this.mxOpenACtInEditLayer()
         }
         if (e.code === 'KeyM') {
-          this.mxOpenMCtInCl()
+          this.mxOpenMCtInEditLayer()
         }
         if (e.code === 'KeyD') {
           this.mxOpenDDialog()
         }
         if (e.code === 'KeyX') {
-          this.mxOpenXCtInCl()
+          this.mxOpenXCtInEditLayer()
         }
       } else {
         if (e.code === 'KeyC') {
-          this.mxOpenCCtInCl(rowId)
+          this.mxOpenCCtInEditLayer(rowId)
         }
         if (e.code === 'KeyD') {
           this.mxOpenDPrompt(rowId)

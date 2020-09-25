@@ -6,7 +6,7 @@
         <el-button
           style="float: right; padding: 3px 0"
           type="text"
-          @click="mfOpenCCtInCl"
+          @click="mfOpenCCtInEditLayer"
           class="el-icon-edit"
         ></el-button>
       </div>
@@ -79,8 +79,8 @@ export default {
         },
       })
     },
-    mfOpenCCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mfOpenCCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit mental status exam',
       })
     },

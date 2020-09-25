@@ -36,9 +36,9 @@ export default {
           ctAbbr: objRowFromOrm.ctAbbr,
           id: objRowFromOrm.id,
           closable: true,
-          ctWidthInCl: objRowFromOrm.ctWidthInCl,
+          ctWidthInEditLayer: objRowFromOrm.ctWidthInEditLayer,
         }
-        this.$store.commit('mtfShowNewFirstTabInCl', objAddTab)
+        this.$store.commit('mtfShowNewFirstTabInEditLayer', objAddTab)
         this.$store.state.vstObjTabsInCL.vsSelectedTabId = this.$store.state.vstObjTabsInCL.arTabs[0].id
       } else if (pValue === 'plan-tabset') {
         let resultArFromOrm = clientSideTblOfCtSearchPhrases
@@ -52,9 +52,9 @@ export default {
           ctAbbr: objRowFromOrm.ctAbbr,
           id: objRowFromOrm.id,
           closable: true,
-          ctWidthInCl: objRowFromOrm.ctWidthInCl,
+          ctWidthInEditLayer: objRowFromOrm.ctWidthInEditLayer,
         }
-        this.$store.commit('mtfShowNewFirstTabInCl', objAddTab)
+        this.$store.commit('mtfShowNewFirstTabInEditLayer', objAddTab)
         resultArFromOrm = clientSideTblOfCtSearchPhrases.query().search('add reminder').get()
         objRowFromOrm = resultArFromOrm[0]
         objAddTab = {
@@ -63,7 +63,7 @@ export default {
           ctAbbr: objRowFromOrm.ctAbbr,
           id: objRowFromOrm.id,
           closable: true,
-          ctWidthInCl: objRowFromOrm.ctWidthInCl,
+          ctWidthInEditLayer: objRowFromOrm.ctWidthInEditLayer,
         }
         this.$store.commit('mtfAdditionalTabAddOrActivate', objAddTab)
         this.$store.state.vstObjTabsInCL.vsSelectedTabId = this.$store.state.vstObjTabsInCL.arTabs[0].id

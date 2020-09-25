@@ -132,7 +132,7 @@ export default {
       let arFromClientSideTable = {}
       arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
-        .orderBy('usageCountKeptInClientSideTable', 'desc')
+        .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
         .get()
       const objRowFromOrm = arFromClientSideTable[0]
       if (objRowFromOrm) {
@@ -150,7 +150,7 @@ export default {
       if (!pQueryString) {
         const arFromClientSideTable = clientSideTblOfCtSearchPhrases
           .query()
-          .orderBy('usageCountKeptInClientSideTable', 'desc')
+          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
           .get()
         pCallBack(arFromClientSideTable)
       } else {
@@ -161,7 +161,7 @@ export default {
             // Search comes from vuex-orm plugn https://github.com/client-side/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
           })
-          .orderBy('usageCountKeptInClientSideTable', 'desc')
+          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
           .get() // trim is needed for "goal " to match "goal"
         pCallBack(arFromClientSideTable)
       }
@@ -182,7 +182,7 @@ export default {
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
         // Change layer
-        this.$store.commit('mtfShowNewFirstTabInCl', objCtToAdd)
+        this.$store.commit('mtfShowNewFirstTabInEditLayer', objCtToAdd)
       }
 
       /* Goal: Increase the usageCount of the search term so I can order them better
@@ -190,7 +190,8 @@ export default {
       clientSideTblOfCtSearchPhrases.update({
         where: pSelectedSuggestion.id,
         data: {
-          usageCountKeptInClientSideTable: pSelectedSuggestion.usageCountKeptInClientSideTable + 1,
+          usageCountKeptInEditLayerientSideTable:
+            pSelectedSuggestion.usageCountKeptInEditLayerientSideTable + 1,
         },
       })
 

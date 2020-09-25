@@ -33,17 +33,19 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInClientSideTable(ormRow.clientSideUniqRowId)"
+              @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
               >Remove</el-button
             >
           </el-col>
         </el-form-item>
       </div>
       <!-- If there are no edit state rows then create a empty row for faster data input -->
-      <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
+      <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
-        <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable">Add more</el-button>
+        <el-button type="primary" plain @click="mfAddEmptyRowInEditLayerientSideTable"
+          >Add more</el-button
+        >
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
@@ -100,7 +102,7 @@ export default {
     },
   },
   methods: {
-    async mfAddEmptyRowInClientSideTable() {
+    async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable.insert({
         data: {
@@ -139,7 +141,7 @@ export default {
       }
       return ''
     },
-    async mfDeleteRowInClientSideTable(pClientSideRowId) {
+    async mfDeleteRowInEditLayerientSideTable(pClientSideRowId) {
       await clientSideTable.delete(pClientSideRowId)
       this.mfManageFocus()
     },

@@ -25,7 +25,7 @@ export default {
         ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
   },

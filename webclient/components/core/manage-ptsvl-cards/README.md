@@ -23,12 +23,12 @@ Step 8: User sees the desired HTML
 
 ## How is the search term go to a tab in CL?
 
-The state of tabs is in CL (Change layer) is maintained in cts/manage-cl-tabs/vstOfTabsAndDialogInCl.js
+The state of tabs is in CL (Change layer) is maintained in cts/manage-cl-tabs/vstOfTabsAndDialogInEditLayer.js
 
 When autocomplete is done by user in cts/search-phrases/db/client-side/structure/search-phrases-of-components-table:mfHandleSuggestionSelectedByUser
 
-A new object is added to vstOfTabsAndDialogInCl.js
+A new object is added to vstOfTabsAndDialogInEditLayer.js
 
 ## How does a click in Vl become a tab in CL?
 
-A new object is added to vstOfTabsAndDialogInCl.js
+A new object is added to vstOfTabsAndDialogInEditLayer.js

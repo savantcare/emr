@@ -2,14 +2,14 @@ import clientSideTblOfCtSearchPhrases from '~/components/core/search-phrases/db/
 
 export default {
   state: {
-    vblIsdialogHoldingTabsInClVisible: false,
+    vblIsdialogHoldingTabsInEditLayerVisible: false,
     arTabs: [], // Template has a for loop running on this. // TODO: Can name be more readable
     vsSelectedTabId: '', // arTabs might have 10 tabs. Out of those which tab is active needs to be stored outside the array of 10 tabs
     vsDialogWidth: 'small', // set default CL dialog width // TODO: Can this be removed? Since arTabs already has this.
   },
   mutations: {
     mtfSetTabDialogVisibility(state, value) {
-      state.vblIsdialogHoldingTabsInClVisible = value
+      state.vblIsdialogHoldingTabsInEditLayerVisible = value
     },
     mtfSetTabDialogWidth(state, value) {
       state.vsDialogWidth = value
@@ -42,12 +42,12 @@ export default {
     mtfSetArTabs(state, value) {
       state.arTabs = value
     },
-    mtfShowNewFirstTabInCl(state, pTab) {
+    mtfShowNewFirstTabInEditLayer(state, pTab) {
       // instead of = assignement if a push was done then old tabs will still be there.
       state.arTabs = [pTab]
-      state.vblIsdialogHoldingTabsInClVisible = true
+      state.vblIsdialogHoldingTabsInEditLayerVisible = true
       state.vsSelectedTabId = pTab.id
-      state.vsDialogWidth = pTab.ctWidthInCl // TODO: since each tab has it is this needed seperately.
+      state.vsDialogWidth = pTab.ctWidthInEditLayer // TODO: since each tab has it is this needed seperately.
 
       // This is the 2nd tab with the + sign. It is added at the end of the set of tabs.
       // Just like chrome browser add new tab control.
@@ -56,12 +56,12 @@ export default {
         closable: false,
         ctToShow: require('./search-inside-add-tab-in-cl-ct').default,
         id: '0',
-        ctWidthInCl: 'small', // Provide ct width in CL
+        ctWidthInEditLayer: 'small', // Provide ct width in CL
       }
 
       state.arTabs.push(objNewTab)
     },
-    async mtfShowNewFirstTabInClFromSearchPhrase(state, pPayload) {
+    async mtfShowNewFirstTabInEditLayerFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
       const arFromClientSideTable = await clientSideTblOfCtSearchPhrases
         .query()
@@ -95,9 +95,9 @@ export default {
         id: objSearchRowFromOrm.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
         vstPropsToGiveToCt: pPayload.pPropsToGiveToCt, // This holds all the data for the record we want to change in cl
         closable: true, // TODO: Should be called blClosable
-        ctWidthInCl: objSearchRowFromOrm.ctWidthInCl,
+        ctWidthInEditLayer: objSearchRowFromOrm.ctWidthInEditLayer,
       }
-      this.commit('mtfShowNewFirstTabInCl', tab)
+      this.commit('mtfShowNewFirstTabInEditLayer', tab)
     },
   },
 }

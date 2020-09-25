@@ -70,11 +70,11 @@ export default {
     }
   },
   methods: {
-    mfOpenCCtInCl(pOrmId) {
+    mfOpenCCtInEditLayer(pOrmId) {
       console.log(pOrmId)
       const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: searchString,
       })
     },

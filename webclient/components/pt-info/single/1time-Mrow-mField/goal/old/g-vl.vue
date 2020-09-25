@@ -77,7 +77,7 @@ export default {
         console.log('failed')
       }
     },
-    mfOpenACtInCl() {
+    mfOpenACtInEditLayer() {
       console.log('show add dialog')
       const arFromClientSideTable = clientSideTblOfCtSearchPhrases.query().search('add goal').get()
       const objRowFromOrm = arFromClientSideTable[0]
@@ -88,7 +88,7 @@ export default {
         id: objRowFromOrm.id,
         closable: true,
       }
-      this.$store.commit('mtfShowNewFirstTabInCl', tab)
+      this.$store.commit('mtfShowNewFirstTabInEditLayer', tab)
     },
   },
 }

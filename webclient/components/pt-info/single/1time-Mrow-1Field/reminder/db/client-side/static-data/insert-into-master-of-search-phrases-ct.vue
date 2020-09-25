@@ -26,7 +26,7 @@ export default {
         ctAbbr: 'arem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
@@ -35,7 +35,7 @@ export default {
         ctAbbr: 'crem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
       },
     })
@@ -45,7 +45,7 @@ export default {
         ctAbbr: 'mcrem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/mc-ct.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
@@ -54,7 +54,7 @@ export default {
         ctAbbr: 'drem',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
   },

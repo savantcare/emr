@@ -42,8 +42,8 @@ export default {
         },
       })
     },
-    mfOpenCCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mfOpenCCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit service statement',
       })
     },

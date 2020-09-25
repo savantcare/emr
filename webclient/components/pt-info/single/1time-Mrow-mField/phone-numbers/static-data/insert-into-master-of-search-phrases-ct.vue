@@ -26,7 +26,7 @@ export default {
         ctAbbr: 'apn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
@@ -35,7 +35,7 @@ export default {
         ctAbbr: 'cpn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
       },
     })
@@ -45,7 +45,7 @@ export default {
         ctAbbr: 'mcpn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/edit-layer/mc-ct.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
@@ -54,7 +54,7 @@ export default {
         ctAbbr: 'dpn',
         ctToShow: 'pt-info/single/1time-Mrow-mField/phone-numbers/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
   },

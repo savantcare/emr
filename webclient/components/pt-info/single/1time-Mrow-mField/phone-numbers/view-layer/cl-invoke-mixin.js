@@ -5,13 +5,13 @@ import clientSideTable from '~/components/pt-info/single/1time-Mrow-1Field/remin
 
 export default {
   methods: {
-    mxOpenACtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mxOpenACtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add phone number',
       })
     },
-    mxOpenMCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mxOpenMCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'multi edit phone numbers',
       })
     },
@@ -50,7 +50,7 @@ export default {
           console.log('multi delete cancelled')
         })
     },
-    async mxOpenXCtInCl() {
+    async mxOpenXCtInEditLayer() {
       const deletedRows = await clientSideTable.fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
@@ -68,7 +68,7 @@ export default {
         drawerData: arDrawerData,
       })
     },
-    mxOpenCCtInCl(pOrmDataRowId) {
+    mxOpenCCtInEditLayer(pOrmDataRowId) {
       /*
        We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
        Option 1: Send the whole data row
@@ -81,7 +81,7 @@ export default {
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
       const payload = { searchTerm: 'edit phone number', pPropsToGiveToCt: pOrmDataRowId }
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mxOpenDPrompt(pOrmDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)

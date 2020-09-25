@@ -39,7 +39,7 @@ export default {
         ctToShow:
           'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
       },
     })

@@ -27,7 +27,7 @@ dialog
           :show-close="false"
 
         Goal: control dialog visibility based on user actions
-          :visible.sync="vblIsdialogHoldingTabsInClVisible"      
+          :visible.sync="vblIsdialogHoldingTabsInEditLayerVisible"      
 
         Earlier width="90%" but it has been removed why?
           Goal is to let user read as much of the view layer as possible when the user is in change layer
@@ -49,7 +49,7 @@ dialog
     :close-on-click-modal="true"
     :close-on-press-escape="true"
     :show-close="false"
-    :visible.sync="vblIsdialogHoldingTabsInClVisible"
+    :visible.sync="vblIsdialogHoldingTabsInEditLayerVisible"
     :lock-scroll="true"
     :width="vsDialogWidth"
   >
@@ -74,11 +74,11 @@ dialog
                            └────┬─────┘                           
                                 │                                 
                 ┌───────────────▼─────────────────┐               
-                │  Call state mutation function   │                 vstOfTabsAndDialogInCl:36            
+                │  Call state mutation function   │                 vstOfTabsAndDialogInEditLayer:36            
                 └────────────────┬────────────────┘               
                                  │                                
 ┌────────────────────────────────▼───────────────────────────────┐
-│Changes this.$store.state.vstObjTabsInCL.vsSelectedTabId        │  vstOfTabsAndDialogInCl:37 
+│Changes this.$store.state.vstObjTabsInCL.vsSelectedTabId        │  vstOfTabsAndDialogInEditLayer:37 
 └────────────────────────────────┬───────────────────────────────┘
                                  │                                
                  ┌───────────────▼────────────────────────────┐               
@@ -97,7 +97,7 @@ dialog
       <el-col :span="24">
         <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
           <el-tab-pane
-            v-for="(tab, loopCount) in cfArTabsInCl"
+            v-for="(tab, loopCount) in cfArTabsInEditLayer"
             :key="tab.id"
             :label="tab.label + '(' + (loopCount + 1) + ')'"
             :name="tab.id"
@@ -128,7 +128,7 @@ export default {
   },
 
   computed: {
-    cfArTabsInCl: {
+    cfArTabsInEditLayer: {
       get() {
         return this.$store.state.vstObjTabsInCL.arTabs
       },
@@ -144,9 +144,9 @@ export default {
         this.$store.commit('mtfSetvsSelectedTabId', value)
       },
     },
-    vblIsdialogHoldingTabsInClVisible: {
+    vblIsdialogHoldingTabsInEditLayerVisible: {
       get() {
-        return this.$store.state.vstObjTabsInCL.vblIsdialogHoldingTabsInClVisible
+        return this.$store.state.vstObjTabsInCL.vblIsdialogHoldingTabsInEditLayerVisible
       },
       set(value) {
         this.$store.commit('mtfSetTabDialogVisibility', value)
@@ -168,8 +168,8 @@ export default {
     },
   },
   mounted() {
-    this.vblIsdialogHoldingTabsInClVisible = false
-    this.cfArTabsInCl = [] // Template has a for loop running on this.
+    this.vblIsdialogHoldingTabsInEditLayerVisible = false
+    this.cfArTabsInEditLayer = [] // Template has a for loop running on this.
     this.cfVSSelectedTabId = ''
     /*
     const self = this // this is not available inside addEventListener since execution context changes. Hence assining this to self Ref: https://stackoverflow.com/a/50818181
@@ -185,7 +185,7 @@ export default {
   methods: {
     // #region kbselect
     selectActiveTabFromKeyboard(pEvent) {
-      if (this.vblIsdialogHoldingTabsInClVisible === false) {
+      if (this.vblIsdialogHoldingTabsInEditLayerVisible === false) {
         // Rejection reason 1: 2nd layer not active
         return
       }
@@ -195,34 +195,40 @@ export default {
       }
       if (pEvent.keyCode === 37) {
         // left arrow pressed let us find the position of the tab
-        const currentTabIdx = this.cfArTabsInCl.findIndex(
+        const currentTabIdx = this.cfArTabsInEditLayer.findIndex(
           (tab) => tab.id === this.cfVSSelectedTabId
         )
         // Current tab idx is: ', currentTabIdx
         if (currentTabIdx === 0) {
           // at first tab so ignore
         } else {
-          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx - 1].id)
+          this.$store.commit(
+            'mtfSetvsSelectedTabId',
+            this.cfArTabsInEditLayer[currentTabIdx - 1].id
+          )
         }
         return
       }
       if (pEvent.keyCode === 39) {
         // right arrow pressed let us find the position of the tab
-        const currentTabIdx = this.cfArTabsInCl.findIndex(
+        const currentTabIdx = this.cfArTabsInEditLayer.findIndex(
           (tab) => tab.id === this.cfVSSelectedTabId
         )
-        if (currentTabIdx === this.cfArTabsInCl.length - 1) {
+        if (currentTabIdx === this.cfArTabsInEditLayer.length - 1) {
           // at last tab so ignore
         } else {
-          this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[currentTabIdx + 1].id)
+          this.$store.commit(
+            'mtfSetvsSelectedTabId',
+            this.cfArTabsInEditLayer[currentTabIdx + 1].id
+          )
         }
         return
       }
-      const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabsInCl.length
+      const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabsInEditLayer.length
       // max code:', maxValidKeyCodeEnteredByUser, 'pressed code is', pEvent.keyCode
       if (pEvent.keyCode >= '49' && pEvent.keyCode <= maxValidKeyCodeEnteredByUser) {
         // Activating tab at position' + pEvent.key
-        this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInCl[pEvent.key - 1].id)
+        this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInEditLayer[pEvent.key - 1].id)
       } else {
         // Rejection reason 3: User entered # is higher then max tabs
       }
@@ -231,7 +237,7 @@ export default {
     mfHandleTabRemove(pTabBeingRemovedID) {
       let tabToRemoveFoundAt = false // this is needed to find which tab to activate
       let loopCount = 0
-      const arNewTabs = this.cfArTabsInCl.filter((tab) => {
+      const arNewTabs = this.cfArTabsInEditLayer.filter((tab) => {
         if (tab.id !== pTabBeingRemovedID) {
           loopCount++
           return true
@@ -246,7 +252,7 @@ export default {
 
       // If there are no more tabs in the diaglog then hide the dialog
       if (arNewTabs.length === 0) {
-        this.vblIsdialogHoldingTabsInClVisible = false
+        this.vblIsdialogHoldingTabsInEditLayerVisible = false
       } else {
         // Once a tab is removed an existing tab needs to be made active
 

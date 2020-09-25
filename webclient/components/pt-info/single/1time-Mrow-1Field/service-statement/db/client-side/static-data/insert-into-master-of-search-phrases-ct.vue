@@ -29,7 +29,7 @@ export default {
         ctAbbr: 'css',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'small',
+        ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
       },
     })
@@ -39,7 +39,7 @@ export default {
         ctAbbr: 'dss',
         ctToShow: 'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
-        ctWidthInCl: 'large',
+        ctWidthInEditLayer: 'large',
       },
     })
   },

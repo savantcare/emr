@@ -7,7 +7,7 @@
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenCCtInCl(cfDataRow['id'])"
+      @click="mfOpenCCtInEditLayer(cfDataRow['id'])"
       class="el-icon-edit"
     ></el-button>
     <el-button
