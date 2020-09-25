@@ -10,7 +10,7 @@ class Height extends Model
     protected $connection = 'bodyMeasurementDB';
     protected $table = 'height';
     public $timestamps = false;
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
     public $incrementing = false;
 
@@ -20,7 +20,7 @@ class Height extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'heightInInch', 'measurementDate', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUUID', 'heightInInches', 'timeOfMeasurement', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
     ];
 
     /**

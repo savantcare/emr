@@ -18,7 +18,6 @@ and graph related doc is at weight
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
-          value-format="timestamp"
           @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
         >
         </el-date-picker>
