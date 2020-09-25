@@ -54,38 +54,38 @@ import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/
 // Goal: Get the search terms from each component
 
 // core
-import clearSPhrases from '@/components/core/clear/static-data/insert-into-search-phrases-ct'
+import clearSPhrases from '@/components/core/clear/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
-import feedSPhrases from '@/components/pt-info/combined/feed/static-data/insert-into-search-phrases-ct'
-import mapSPhrases from '@/components/pt-info/combined/map/static-data/insert-into-search-phrases-ct'
+import feedSPhrases from '@/components/pt-info/combined/feed/static-data/insert-into-master-of-search-phrases-ct.vue'
+import mapSPhrases from '@/components/pt-info/combined/map/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/PII
-import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/insert-into-search-phrases-ct'
-import nameSPhrases from '@/components/pt-info/single/1time-1row-mField/name/static-data/insert-into-search-phrases-ct'
+import dobSPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/insert-into-master-of-search-phrases-ct.vue'
+import nameSPhrases from '@/components/pt-info/single/1time-1row-mField/name/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/body-measurement
-import bloodPressureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/static-data/insert-into-search-phrases-ct'
-import bloodSugarSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/static-data/insert-into-search-phrases-ct'
-import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/insert-into-search-phrases-ct'
-import heightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/insert-into-search-phrases-ct'
-import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/insert-into-search-phrases-ct'
-import pulseSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/static-data/insert-into-search-phrases-ct'
-import temperatureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/static-data/insert-into-search-phrases-ct'
-import waistCircumferenceSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/insert-into-search-phrases-ct'
-import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/insert-into-search-phrases-ct'
+import bloodPressureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/static-data/insert-into-master-of-search-phrases-ct.vue'
+import bloodSugarSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/static-data/insert-into-master-of-search-phrases-ct.vue'
+import bmSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/insert-into-master-of-search-phrases-ct.vue'
+import heightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/insert-into-master-of-search-phrases-ct.vue'
+import oxygenSaturationSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/insert-into-master-of-search-phrases-ct.vue'
+import pulseSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/static-data/insert-into-master-of-search-phrases-ct.vue'
+import temperatureSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/static-data/insert-into-master-of-search-phrases-ct.vue'
+import waistCircumferenceSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/insert-into-master-of-search-phrases-ct.vue'
+import weightSPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/others
-import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-search-phrases-ct'
-import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/insert-into-search-phrases-ct'
-import prosSPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-search-phrases-ct'
+import mseSPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import phq9SPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/insert-into-master-of-search-phrases-ct.vue'
+import prosSPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
-import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-search-phrases-ct'
-import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/insert-into-search-phrases-ct'
+import remSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import ssSPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-mField
-import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/insert-into-search-phrases-ct'
+import phoneNumberSPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 export default {
   components: {
