@@ -1,10 +1,18 @@
 <template>
-  <vue-slider
-    v-model="sliderCurrentValue"
-    :marks="timeOfApptsStartToMarkOnSlider"
-    :included="true"
-    @change="handleSliderChangeEvent"
-  ></vue-slider>
+  <div>
+    <vue-slider
+      v-model="sliderCurrentValue"
+      :marks="timeOfApptsStartToMarkOnSlider"
+      :included="true"
+      @change="handleSliderChangeEvent"
+    ></vue-slider>
+    <!-- Slide to reveal content can possibly be done with: 
+      1. http://v-show-slide.peterhegman.com/ 
+      2. https://element.eleme.io/#/en-US/component/collapse#basic-usage 
+            For it to come infront instead of pushing dowm: https://stackoverflow.com/questions/55889518/element-ui-el-collapse-in-front-if-others-components
+      -->
+    <div>Note details for:</div>
+  </div>
 </template>
 
 <script>
