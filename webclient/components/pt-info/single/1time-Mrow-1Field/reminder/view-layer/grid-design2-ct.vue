@@ -1,12 +1,12 @@
 <!-- Reference implementation -->
 <template>
   <div>
-    <showContentInCard
+    <showContentInCardComponent
       mainCardName="Reminders"
       :childCardsArray="cfArOfRemForDisplayInTable"
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"
-    ></showContentInCard>
+    ></showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
@@ -18,10 +18,10 @@ import clientSideTable from '../db/client-side/structure/rem-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
-  components: { ctActOnSocketMessages, showContentInCard },
+  components: { ctActOnSocketMessages, showContentInCardComponent },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {

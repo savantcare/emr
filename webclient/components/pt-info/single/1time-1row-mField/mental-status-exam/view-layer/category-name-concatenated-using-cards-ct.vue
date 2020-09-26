@@ -1,5 +1,5 @@
 <template>
-  <showContentInCard
+  <showContentInCardComponent
     mainCardName="Mental status exam"
     :childCardsArray="cfArOfMentalStatusExamForDisplay"
     clientSideDBLevelTableActions="edit"
@@ -11,10 +11,10 @@
 import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
 import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
-  components: { showContentInCard },
+  components: { showContentInCardComponent },
   computed: {
     cfArOfMentalStatusExamForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
