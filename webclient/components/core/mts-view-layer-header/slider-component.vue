@@ -26,9 +26,6 @@ export default {
     timeOfStateSelectedInHeader() {
       return this.$store.state.multiStateDisplayArea.timeOfStateSelectedInHeader
     },
-    zoomValue() {
-      return this.$store.state.multiStateDisplayArea.zoomValue
-    },
     timeOfApptsStartToMarkOnSlider() {
       /*
       The first date is at 0 and todays date is at 100.
@@ -71,13 +68,7 @@ export default {
       // this.updateMultiStateDisplayArea();
     },
   },
-  mounted() {
-    // this.apiGetPatientInfo();
-    // this.updateMultiStateDisplayArea();
-    // this.zoomValue = this.$store.state.MultiStateDisplayArea.zoomValue;
-    // this.zoomMultiStateDisplayArea();
-    this.apiGetAppointments()
-  },
+  mounted() {},
   methods: {
     // TODO: This should take data from timeOfApptsStartToMarkOnSlider
     formatTooltip(val) {
@@ -96,94 +87,6 @@ export default {
         type: this.tabMode === true ? 1 : 2,
         toast: this.$bvToast,
       })
-
-      // setTimeout(() => {
-      //   var width = document.getElementById("multiStateDisplayAreaContent").offsetWidth;
-      //   var height = document.getElementById("multiStateDisplayAreaContent").offsetHeight;
-      //   var windowWidth = $(document).outerWidth();
-      //   var windowHeight = $(document).outerHeight();
-      //   windowWidth = windowWidth * (70 / 100);
-      //   windowHeight = windowHeight - 100;
-
-      //   console.log(height + " : " + windowHeight);
-
-      //   let r = 1;
-      //   if (height > windowHeight) {
-      //     r = Math.min(windowWidth / width, windowHeight / height);
-      //   }
-
-      //   this.$store.commit("setMultiStateDisplayAreaZoomValue", r);
-      //   this.$store.dispatch("zoomMultiStateDisplayArea");
-      // }, 100);
-    },
-    async apiGetPatientInfo() {
-      const TOKEN = localStorage.getItem('token')
-      const searchQuery = {
-        roleId: 3,
-      }
-      try {
-        const response = await fetch('/getDetail', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization: 'Bearer ' + TOKEN,
-          },
-          body: JSON.stringify(searchQuery),
-        })
-        if (response.ok) {
-          const json = await response.json()
-          this.patientInfo = json[0]
-        } else {
-          this.$bvToast.toast('Failed to get patientInfo', {
-            title: 'Error',
-            variant: 'danger',
-            solid: true,
-          })
-        }
-      } catch (ex) {
-        this.$bvToast.toast('Server connection error', {
-          title: 'Error',
-          variant: 'danger',
-          solid: true,
-        })
-      }
-    },
-    zoomOut() {
-      let value = this.zoomValue
-      value -= 0.1
-      this.$store.commit('setMultiStateDisplayAreaZoomValue', value)
-      this.$store.dispatch('zoomMultiStateDisplayArea')
-    },
-    zoomIn() {
-      let value = this.zoomValue
-      value += 0.1
-      this.$store.commit('setMultiStateDisplayAreaZoomValue', value)
-      this.$store.dispatch('zoomMultiStateDisplayArea')
-    },
-    async apiGetAppointments() {
-      try {
-        const TOKEN = localStorage.getItem('token')
-        const response = await fetch(`/api`, {
-          headers: {
-            Authorization: 'Bearer ' + TOKEN,
-          },
-        })
-        if (response.ok) {
-          const json = await response.json()
-          console.log(json)
-          this.timeOfApptsStart = json
-        } else {
-          this.$notify({
-            title: 'Error',
-            message: 'Failed to get appointments',
-          })
-        }
-      } catch (ex) {
-        this.$notify({
-          title: 'Error',
-          message: 'Server connection error',
-        })
-      }
     },
     handleSliderChangeEvent() {
       /* timeOfStateSelectedInHeader is watched by all components and they react when timeOfStateSelectedInHeader changes
