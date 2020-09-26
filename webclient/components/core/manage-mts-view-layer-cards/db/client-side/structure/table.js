@@ -18,7 +18,9 @@ export default class ptDateOfBirth extends clientSideTableManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueID()),
 
-      ctName: this.string(null),
+      name: this.string(null),
+
+      ctToShow: this.string(null),
 
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

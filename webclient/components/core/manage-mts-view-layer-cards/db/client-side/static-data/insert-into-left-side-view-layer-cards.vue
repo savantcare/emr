@@ -12,21 +12,21 @@ export default {
   mounted() {
     clientSideTblOfLeftSideCards.insert({
       data: {
-        value: 'mental status exam',
+        name: 'mental status exam',
         ctToShow:
           'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfLeftSideCards.insert({
       data: {
-        value: 'mental status exam v2',
+        name: 'mental status exam v2',
         ctToShow:
           'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfLeftSideCards.insert({
       data: {
-        value: 'edit mental status exam',
+        name: 'edit mental status exam',
         ctToShow:
           'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
       },
