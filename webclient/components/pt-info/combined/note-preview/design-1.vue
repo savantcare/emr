@@ -1,23 +1,21 @@
 <template>
-  <el-card>
-    <div class="A4">
-      Note details for: Name: Vikas Kedia Age: 42 Appt Date:
+  <div class="A4">
+    Note details for: Name: Vikas Kedia Age: 42 Appt Date:
 
-      <h3>Service statements</h3>
+    <h3>Service statements</h3>
 
-      <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
-      </div>
-
-      <h3>Mental status exam</h3>
-      <h3>Psych review of systems</h3>
-      <h3>Reminders</h3>
-      <h3>Recommendations</h3>
-      <h3>Medications</h3>
-      <el-button>Lock the note </el-button>
+    <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
+      {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
+      {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
-  </el-card>
+
+    <h3>Mental status exam</h3>
+    <h3>Psych review of systems</h3>
+    <h3>Reminders</h3>
+    <h3>Recommendations</h3>
+    <h3>Medications</h3>
+    <el-button>Lock the note </el-button>
+  </div>
 </template>
 
 <script>
@@ -46,7 +44,8 @@ export default {
   height: 29.7cm;
   display: block;
   margin: 0 auto;
-  padding: 10px 25px;
+  padding: 2cm;
+  font-size: 12px;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
 }
