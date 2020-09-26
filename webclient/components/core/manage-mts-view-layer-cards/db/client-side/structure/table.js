@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class ptDateOfBirth extends clientSideTableManage {
+export default class leftSideViewLayer extends clientSideTableManage {
   static entity = 'tblLeftSideViewLayer'
   static apiUrl = 'http://localhost:3000/date-of-birth'
 

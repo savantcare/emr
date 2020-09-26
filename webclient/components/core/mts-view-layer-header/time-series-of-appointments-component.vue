@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+
 export default {
   data() {
     // KT: Why is this a function and not a object? Ref: https://vuejs.org/v2/style-guide/#Component-data-essential
@@ -95,8 +97,11 @@ export default {
         toast: this.$bvToast,
       })
     },
-    handleSliderChangeEvent() {
-      console.log('slider clicked')
+    async handleSliderChangeEvent() {
+      const updateState = await clientSideTblOfViewCards.update({
+        clientSideUniqRowId: 2,
+        vIfState: 1,
+      })
     },
     handleSliderEndEvent() {
       // console.log(this.sliderCurrentValue);
