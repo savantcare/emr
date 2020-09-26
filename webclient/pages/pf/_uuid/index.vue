@@ -60,8 +60,8 @@ import 'vue-slider-component/theme/default.css'
 import VueSocketIO from 'vue-socket.io'
 
 // Internal Cts
-import ctMtsVlCards from '@/components/core/manage-mtsvl-cards/list-of-cards.vue'
-import ctCsVlCards from '@/components/core/manage-ptsvl-cards/list-of-cards.vue'
+import ctMtsVlCards from '@/components/core/manage-mts-view-layer-cards/list-of-cards.vue'
+import ctCsVlCards from '@/components/core/manage-pts-view-layer-cards/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/manage-edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctFeedDrawer from '@/components/pt-info/combined/feed/drawer.vue'
 import ctMapDrawer from '@/components/pt-info/combined/map/drawer.vue'
