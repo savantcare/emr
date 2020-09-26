@@ -4,6 +4,12 @@
       Note details for: Name: Vikas Kedia Age: 42 Appt Date:
 
       <h3>Service statements</h3>
+
+      <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
+        {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
+        {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
+      </div>
+
       <h3>Mental status exam</h3>
       <h3>Psych review of systems</h3>
       <h3>Reminders</h3>
@@ -13,6 +19,24 @@
     </div>
   </el-card>
 </template>
+
+<script>
+import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+
+export default {
+  computed: {
+    cfArOfServiceStatementForDisplay() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+        .query()
+        .with('tblServiceStatementsMasterLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      console.log(arOfObjectsFromClientSideDB)
+      return arOfObjectsFromClientSideDB
+    },
+  },
+}
+</script>
 
 <style scoped>
 /* Ref: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html  */
