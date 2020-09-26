@@ -28,7 +28,8 @@
 
     <h3 style="padding-top: 20px; padding-bottom: 5px">Recommendations</h3>
     <h3 style="padding-top: 20px; padding-bottom: 5px">Medications</h3>
-    <el-button style="align: center">Lock the note </el-button>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Body measurements</h3>
+    <el-button :type="primary">Lock the note </el-button>
   </div>
 </template>
 
