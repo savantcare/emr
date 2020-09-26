@@ -98,9 +98,10 @@ export default {
       })
     },
     async handleSliderChangeEvent() {
+      const noteCurrentValue = clientSideTblOfViewCards.find(2)
       const updateState = await clientSideTblOfViewCards.update({
         clientSideUniqRowId: 2,
-        vIfState: 1,
+        vIfState: 1 - noteCurrentValue['vIfState'],
       })
     },
     handleSliderEndEvent() {
