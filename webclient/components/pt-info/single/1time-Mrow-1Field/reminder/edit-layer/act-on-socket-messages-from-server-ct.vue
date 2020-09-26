@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import clientSideTable from '../db/client-side/structure/rem-table.js'
 
 export default {
@@ -26,7 +26,7 @@ export default {
 
       // if clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = socketIdInMsgRecdFromServer then return withiout making any changes.
 
-      const socketClientObj = await objCommonOrm.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
 
       if (
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
@@ -80,7 +80,7 @@ export default {
         pDataArr
       )
 
-      const socketClientObj = await objCommonOrm.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
 
       if (
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
