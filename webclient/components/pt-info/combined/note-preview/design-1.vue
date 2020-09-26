@@ -14,6 +14,11 @@
     </div>
 
     <h3 style="padding-top: 20px; padding-bottom: 5px">Mental status exam</h3>
+    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="row.clientSideUniqRowId">
+      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
+      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
+    </div>
+
     <h3 style="padding-top: 20px; padding-bottom: 5px">Psych review of systems</h3>
     <h3 style="padding-top: 20px; padding-bottom: 5px">Reminders</h3>
 
@@ -32,6 +37,8 @@ import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single
 
 import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 
+import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+
 export default {
   computed: {
     cfArOfServiceStatementForDisplay() {
@@ -46,6 +53,14 @@ export default {
     cfArOfRemindersForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      return arOfObjectsFromClientSideDB
+    },
+    cfArOfMentalStatusExamForDisplay() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+        .query()
+        .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
