@@ -1,25 +1,36 @@
 <template>
   <div class="A4">
-    Note details for: Name: Vikas Kedia Age: 42 Appt Date:
+    <h1 style="text-align: center">Appt Note (Confidential)</h1>
 
-    <h3>Service statements</h3>
+    <h3 style="padding-top: 20px">Name: Vikas K</h3>
+    <h3>Age: 42</h3>
+    <h3>Appt Date: 31st Jan 2020</h3>
+
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
 
     <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
 
-    <h3>Mental status exam</h3>
-    <h3>Psych review of systems</h3>
-    <h3>Reminders</h3>
-    <h3>Recommendations</h3>
-    <h3>Medications</h3>
-    <el-button>Lock the note </el-button>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Mental status exam</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Psych review of systems</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Reminders</h3>
+
+    <div v-for="row in cfArOfRemindersForDisplay" :key="row.clientSideUniqRowId">
+      {{ row['description'] }}
+    </div>
+
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Recommendations</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">Medications</h3>
+    <el-button style="align: center">Lock the note </el-button>
   </div>
 </template>
 
 <script>
 import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+
+import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
 
 export default {
   computed: {
@@ -27,6 +38,14 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      return arOfObjectsFromClientSideDB
+    },
+
+    cfArOfRemindersForDisplay() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
+        .query()
         .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
