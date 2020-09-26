@@ -6,3 +6,5 @@ https://github.com/WebPraktikos/universal-resume
 
 Format for letter in PHP: 445
 https://github.com/bastianallgeier/letter
+
+https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
