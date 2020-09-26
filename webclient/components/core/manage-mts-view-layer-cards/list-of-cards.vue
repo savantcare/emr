@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import TheMultiStateDisplayAreaHeader from '@/components/core/mts-view-layer-header/sub-ct-container.vue'
+import TheMultiStateDisplayAreaHeader from '@/components/core/mts-view-layer-header/sub-ct-container-design2.vue'
 import ctRemVl from '@/components/pt-info/single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct'
 import ctScrVl from '@/components/pt-info/single/1time-Mrow-mField/scr/view-layer/table-ct'
 import ctBMVl from '@/components/pt-info/single/1time-1row-mField/bm/view-layer/grid-ct'
