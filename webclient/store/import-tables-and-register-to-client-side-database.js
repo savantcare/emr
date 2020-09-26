@@ -11,6 +11,10 @@ database.register(tableStructureForSearch)
 database.register(tableStructureForLifeCycle)
 database.register(tableStructureForCommon)
 
+// table that decides which cards to show
+import tableStructureForLeftSideView from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+database.register(tableStructureForLeftSideView)
+
 // body measurement tables
 import tableStructureForWeight from '~/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/structure/table.js'
 import tableStructureForWaistCircumference from '~/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/db/client-side/structure/table.js'

@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientSideTblOfLeftSideCards from '../structure/table.js'
+import clientSideTblOfLeftSideCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -12,23 +12,26 @@ export default {
   mounted() {
     clientSideTblOfLeftSideCards.insert({
       data: {
-        name: 'mental status exam',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct', // PtsVl -> Present time state - part of - view layer
+        name: 'Header',
+        ctToShowPath: 'core/mts-view-layer-header/sub-ct-container-design2.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfLeftSideCards.insert({
       data: {
-        name: 'mental status exam v2',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct', // PtsVl -> Present time state - part of - view layer
+        name: 'Body measurement',
+        ctToShowPath: 'pt-info/single/1time-1row-mField/bm/view-layer/grid-ct', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfLeftSideCards.insert({
       data: {
-        name: 'edit mental status exam',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
+        name: 'Reminder',
+        ctToShowPath: 'pt-info/single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct', // PtsVl -> Present time state - part of - view layer
+      },
+    })
+    clientSideTblOfLeftSideCards.insert({
+      data: {
+        name: 'Screening',
+        ctToShowPath: 'pt-info/single/1time-Mrow-mField/scr/view-layer/table-ct',
       },
     })
   },

@@ -17,10 +17,10 @@ export default class ptDateOfBirth extends clientSideTableManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueID()),
-
       name: this.string(null),
-
-      ctToShow: this.string(null),
+      ctToShowPath: this.string(null),
+      ctToShowObject: this.string(null),
+      vIfState: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
 
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
