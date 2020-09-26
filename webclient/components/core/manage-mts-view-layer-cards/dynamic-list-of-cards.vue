@@ -23,7 +23,10 @@ export default {
   },
   computed: {
     cfArCardsInCsOfVl() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards.query().get()
+      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
+        .query()
+        .where('vIfState', 1)
+        .get()
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
           arOfObjectsFromClientSideDB[i]['ctToShowPath']).default

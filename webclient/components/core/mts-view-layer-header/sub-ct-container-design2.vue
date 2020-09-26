@@ -16,9 +16,6 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <ctTogleHealthOther></ctTogleHealthOther>
       </el-col>
     </el-card>
-    <el-card>
-      <noteDesign1 />
-    </el-card>
   </div>
 </template>
 
@@ -27,10 +24,9 @@ import ctName from '@/components/pt-info/single/1time-1row-mField/name/view-laye
 import ctAge from '@/components/pt-info/single/1time-1row-mField/date-of-birth/view-layer/age.vue'
 import ctSlider from './time-series-of-appointments-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
-import noteDesign1 from '@/components/pt-info/combined/note-preview/design-1.vue'
 
 export default {
-  components: { ctName, ctAge, ctTogleHealthOther, ctSlider, noteDesign1 },
+  components: { ctName, ctAge, ctTogleHealthOther, ctSlider },
 }
 </script>
 
