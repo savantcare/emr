@@ -74,7 +74,7 @@ export default {
       const objSearchRowFromOrm = arFromClientSideTable[0]
 
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
-      // /cts/core/manage-cl-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
+      // /cts/core/manage-edit-layer-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
         label: objSearchRowFromOrm.value, // TODO: Should be called vsLabel
 
