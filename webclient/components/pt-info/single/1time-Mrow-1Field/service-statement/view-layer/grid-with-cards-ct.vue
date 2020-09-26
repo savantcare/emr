@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import clientSideTblOfMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
 import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
-import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
