@@ -12,15 +12,28 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
         placement="top-end"
         :open-delay="500"
       >
-        <el-button
-          :type="appt.buttonType"
-          :class="appt.iconClass"
-          circle
-          size="mini"
-          plain
-          icon1
-          @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
-        ></el-button>
+        <template v-if="appt.clientSideUniqRowId === currentActiveButtonClientSideRowId">
+          <el-button
+            :type="appt.buttonType"
+            :class="appt.iconClass"
+            :plain="false"
+            circle
+            size="mini"
+            icon1
+            @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
+          ></el-button>
+        </template>
+        <template v-else>
+          <el-button
+            :type="appt.buttonType"
+            :class="appt.iconClass"
+            :plain="true"
+            circle
+            size="mini"
+            icon1
+            @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
+          ></el-button>
+        </template>
       </el-tooltip>
     </div>
   </div>
@@ -33,7 +46,9 @@ import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-he
 
 export default {
   data() {
-    return {}
+    return {
+      currentActiveButtonClientSideRowId: 0,
+    }
   },
   components: { clientSideTblOfAppointmentsInit },
   computed: {
@@ -69,22 +84,29 @@ export default {
           arOfObjectsFromClientSideDB[i]['buttonType'] = 'warning'
         }
       }
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
   methods: {
     async handleClickEvent(pClientSideRowId, pApptStatus) {
+      // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (pApptStatus === 'late-cancellation') return
       if (pApptStatus === 'no-show') return
       if (pApptStatus === 'cancellation') return
+
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+
+      // Goal: Keep the button highlighted that has been clicked
       if (noteCurrentValue['vIfState'] === pClientSideRowId) {
-        pClientSideRowId = 0
+        this.currentActiveButtonClientSideRowId = 0
+      } else {
+        this.currentActiveButtonClientSideRowId = pClientSideRowId
       }
+
+      // This update will lead to the card visibility getting toggled
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
-        vIfState: pClientSideRowId,
+        vIfState: this.currentActiveButtonClientSideRowId,
       })
     },
   },
