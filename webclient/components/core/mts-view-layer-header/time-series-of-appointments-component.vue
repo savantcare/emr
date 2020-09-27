@@ -1,13 +1,11 @@
 <template>
   <div>
     <vue-slider
-      v-model="sliderCurrentValue"
-      :data="timeOfApptsStartToMarkOnSlider"
-      :marks="true"
-      :included="true"
+      v-model="value"
+      :data="data"
+      :data-value="'id'"
+      :data-label="'name'"
       :process="false"
-      @change="handleSliderChangeEvent"
-      @drag-start="handleSliderChangeEvent"
     ></vue-slider>
     <clientSideTblOfAppointmentsInit />
   </div>
@@ -21,41 +19,30 @@ import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-he
 export default {
   data() {
     return {
-      sliderCurrentValue: 100,
-      timeOfApptsStart: [],
+      value: 2,
+      data: [
+        {
+          id: 1,
+          name: '1st Jan 20',
+        },
+        {
+          id: 2,
+          name: '11th Jan 20',
+        },
+        {
+          id: 3,
+          name: '21st Jan 20',
+        },
+        {
+          id: 4,
+          name: '31st Jan 20',
+        },
+      ],
     }
   },
   components: { clientSideTblOfAppointmentsInit },
   computed: {
-    timeOfApptsStartToMarkOnSlider() {
-      const result = {}
-
-      result['10'] = {
-        id: 1,
-        style: { color: '#1989FA' },
-        name: 'jai kali ma',
-      }
-
-      result['15'] = {
-        id: 1,
-        style: { color: '#1989FA' },
-        name: 'jai kali ma',
-      }
-
-      result['45'] = {
-        id: 1,
-        style: { color: '#1989FA' },
-        name: 'jai kali ma',
-      }
-
-      result['100'] = {
-        id: 2,
-        style: { color: '#1611FA' },
-        name: 'jai durga ma',
-      }
-
-      return result
-    },
+    timeOfApptsStartToMarkOnSlider() {},
   },
   methods: {
     async handleSliderChangeEvent() {
