@@ -1,37 +1,46 @@
-<!-- 
-1. absorb = true       -> Gives gravity effect 
-2. included = true     -> Without this absorb does not work 
-3. process = false     -> The bottle fill effect goes away 
-4. hide-label=true     -> Content below the dots can be hidden with this.
-
-Features needed:
-1. Red and yellow should be not selectable points on the line.
-2. Instead of blue color dot be able to give the lock icon nad unlock icon
-3. Show tooltip on mouseover
-
-Experimentation jsfiddle:
-https://jsfiddle.net/ab1yntkr/5
-
-
-
+<!-- Ref
+https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
-  <div>
-    <vue-slider
-      v-model="value"
-      :marks="marks"
-      :absorb="true"
-      :included="true"
-      tooltip="hover"
-      :process="false"
-      :hide-label="true"
-      height="2px"
-      :tooltip-formatter="cfToolTipContent"
-      @change="handleSliderChangeEvent"
-      @drag-start="handleSliderChangeEvent"
-    >
-    </vue-slider>
-    <clientSideTblOfAppointmentsInit />
+  <div class="content-wrap">
+    <el-button
+      type="success"
+      class="el-icon-lock"
+      circle
+      size="mini"
+      plain
+      icon1
+      @click="handleSliderChangeEvent()"
+    ></el-button>
+    <hr class="horizontal" />
+
+    <el-button
+      type="warning"
+      class="el-icon-remove-outline"
+      circle
+      size="mini"
+      plain
+      icon1
+      @click="handleSliderChangeEvent()"
+    ></el-button>
+    <el-button
+      type="danger"
+      class="el-icon-minus"
+      circle
+      size="mini"
+      plain
+      icon1
+      @click="handleSliderChangeEvent()"
+    ></el-button>
+    <el-button
+      type="primary"
+      class="el-icon-unlock"
+      circle
+      size="mini"
+      plain
+      icon1
+      @click="handleSliderChangeEvent()"
+    ></el-button>
   </div>
 </template>
 
@@ -42,84 +51,10 @@ import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-he
 
 export default {
   data() {
-    return {
-      value: 26,
-      marks: {
-        0: {
-          // 0 is the content above the dot
-          label: 'Locked', // This is the content below the dot. The display of this can be switched off with hide-label="true"
-          style: {
-            width: '8px', // This is width of the dot
-            height: '8px',
-            display: 'block',
-            backgroundColor: 'blue', // This is color of the dot
-            transform: 'translate(-2px, -2px)',
-          },
-          labelStyle: {
-            color: '#69c0ff', // This is the background color of the popup that comes when I click on the dot
-          },
-        },
-        26: {
-          label: 'No show',
-          style: {
-            width: '8px',
-            height: '8px',
-            display: 'block',
-            backgroundColor: 'yellow',
-            transform: 'translate(-2px, -2px)',
-          },
-          labelStyle: {
-            color: '#69c0ff',
-          },
-        },
-        37: {
-          label: 'Late cancellation',
-          style: {
-            width: '8px',
-            height: '8px',
-            display: 'block',
-            backgroundColor: 'red',
-            transform: 'translate(-2px, -2px)',
-          },
-          labelStyle: {
-            color: '#69c0ff',
-          },
-        },
-        100: {
-          label: 'Current',
-          style: {
-            width: '8px',
-            height: '8px',
-            display: 'block',
-            backgroundColor: 'green',
-            transform: 'translate(-2px, -2px)',
-          },
-          labelStyle: {
-            color: 'red',
-          },
-        },
-      },
-    }
+    return {}
   },
   components: { clientSideTblOfAppointmentsInit },
-  computed: {
-    cfToolTipContent() {
-      if (this.value === '0') {
-        return 'Locked by Dr. Savant on 12th Jan 2020'
-      }
-      if (this.value === '26') {
-        return 'Appt for 15th Jan 2020 - Cancelled'
-      }
-      if (this.value === '37') {
-        return 'Appt for 21st Jan 2020 - No show'
-      }
-      if (this.value === '100') {
-        return 'Appt for 1st Feb 2020 - Unlocked'
-      }
-
-      return this.value + 'jaikalima'
-    },
-  },
+  computed: {},
   methods: {
     async handleSliderChangeEvent() {
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
@@ -134,3 +69,42 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.content-wrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1em;
+  overflow: hidden;
+}
+
+.content-wrap::before {
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  left: 0;
+  content: '';
+  background-color: grey;
+  height: 2px;
+}
+
+.icon1 {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  font-size: 3rem;
+  color: #777;
+  border: 2px solid #777777;
+  border-radius: 50%;
+  padding: 1rem;
+  background: #f9f9f9;
+  box-shadow: 0 0 0 0.5em #f9f9f9;
+}
+</style>
