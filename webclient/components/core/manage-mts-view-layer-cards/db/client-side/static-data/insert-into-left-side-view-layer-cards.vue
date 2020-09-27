@@ -25,6 +25,12 @@ export default {
     })
     clientSideTblOfLeftSideCards.insert({
       data: {
+        name: 'Correlate',
+        ctToShowPath: 'pt-info/combined/correlate/design-1.vue',
+      },
+    })
+    clientSideTblOfLeftSideCards.insert({
+      data: {
         name: 'Body measurement',
         ctToShowPath: 'pt-info/single/1time-1row-mField/bm/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
