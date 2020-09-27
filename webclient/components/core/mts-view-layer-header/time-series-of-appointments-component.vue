@@ -19,7 +19,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
           size="mini"
           plain
           icon1
-          @click="handleClickEvent(appt.clientSideUniqRowId)"
+          @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
         ></el-button>
       </el-tooltip>
     </div>
@@ -74,7 +74,10 @@ export default {
     },
   },
   methods: {
-    async handleClickEvent() {
+    async handleClickEvent(pClientSideRowId, pApptStatus) {
+      if (pApptStatus === 'late-cancellation') return
+      if (pApptStatus === 'no-show') return
+      if (pApptStatus === 'cancellation') return
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
