@@ -3,44 +3,18 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
   <div class="content-wrap">
-    <el-button
-      type="success"
-      class="el-icon-lock"
-      circle
-      size="mini"
-      plain
-      icon1
-      @click="handleSliderChangeEvent()"
-    ></el-button>
-    <hr class="horizontal" />
-
-    <el-button
-      type="warning"
-      class="el-icon-remove-outline"
-      circle
-      size="mini"
-      plain
-      icon1
-      @click="handleSliderChangeEvent()"
-    ></el-button>
-    <el-button
-      type="danger"
-      class="el-icon-minus"
-      circle
-      size="mini"
-      plain
-      icon1
-      @click="handleSliderChangeEvent()"
-    ></el-button>
-    <el-button
-      type="primary"
-      class="el-icon-unlock"
-      circle
-      size="mini"
-      plain
-      icon1
-      @click="handleSliderChangeEvent()"
-    ></el-button>
+    <clientSideTblOfAppointmentsInit />
+    <div v-for="appt in cfAllAppointments" :key="appt.clientSideUniqRowId">
+      <el-button
+        type="success"
+        class="el-icon-lock"
+        circle
+        size="mini"
+        plain
+        icon1
+        @click="handleSliderChangeEvent()"
+      ></el-button>
+    </div>
   </div>
 </template>
 
@@ -54,7 +28,15 @@ export default {
     return {}
   },
   components: { clientSideTblOfAppointmentsInit },
-  computed: {},
+  computed: {
+    cfAllAppointments() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
+
+      console.log(arOfObjectsFromClientSideDB)
+
+      return arOfObjectsFromClientSideDB
+    },
+  },
   methods: {
     async handleSliderChangeEvent() {
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
