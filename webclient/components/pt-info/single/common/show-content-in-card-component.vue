@@ -50,7 +50,7 @@
         </el-tooltip>
       </el-button-group>
     </div>
-    <div class="sc-top-most-parent-body">
+    <div class="sc-top-most-parent-body" v-if="contentBodyIsMinimized === false">
       <el-card
         v-for="card in childCardsArray"
         :key="card.clientSideUniqRowId"
@@ -104,7 +104,11 @@
 <script>
 export default {
   props: { mainCardName: String, childCardsArray: Array },
-  date: {},
+  data: function () {
+    return {
+      contentBodyIsMinimized: false,
+    }
+  },
   computed: {},
   methods: {
     mfOpenEditCtInEditLayer() {
@@ -128,6 +132,11 @@ export default {
         return 'color: #202020;'
       }
     },
+    mfRemoveOutlineClicked() {
+      console.log('Inside mfRemoveOutlineClicked')
+      this.contentBodyIsMinimized = true
+    },
+    mfIconCloseClicked() {},
   },
 }
 </script>
