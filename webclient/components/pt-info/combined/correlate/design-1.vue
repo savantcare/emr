@@ -17,8 +17,11 @@ export default {
     highcharts: Chart,
   },
   data() {
-    return {
-      chartOptions: {
+    return {}
+  },
+  computed: {
+    chartOptions() {
+      const chart = {
         xAxis: [
           {
             title: {
@@ -48,15 +51,20 @@ export default {
             data: [0, 0, 0], // sample data
             name: 'Height',
           },
+          {
+            //            data: this.cfArOfRemindersForDisplay, // sample data
+            data: this.cfArOfRemindersForDisplay, // sample data
+            name: 'Reminders',
+          },
         ],
 
         credits: {
           enabled: false,
         },
-      },
-    }
-  },
-  computed: {
+      }
+
+      return chart
+    },
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
@@ -66,12 +74,50 @@ export default {
       return arOfObjectsFromClientSideDB
     },
 
+    cfBasicConcept() {
+      var data = new Array()
+
+      // All highcharts cares about are 0 and 1 values it does not care about the field / key names
+      data.push([2, 2])
+
+      data.push([4, 4])
+
+      // This will work but show wrong graph since this will be taken as two values and not an array of values
+      data.push(5, 5)
+
+      // This will not work since each point needs to be array and not a object
+      var firstError = new Object()
+      firstError[0] = 6
+      firstError[1] = 6
+      data.push(firstError)
+
+      // This will not work since each point should not have field name. It should just have a index.
+      var secondError = new Object()
+      secondError['row'] = 8
+      secondError['value'] = 8
+      data.push(secondError)
+
+      console.log(data)
+
+      // Only 2,2 and 4,4 will be shown on graph
+
+      return data
+    },
     cfArOfRemindersForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
         .where('ROW_END', 2147483647.999999)
         .get()
-      return arOfObjectsFromClientSideDB
+      console.log(arOfObjectsFromClientSideDB)
+
+      var arDataToShowOnGraph = new Array()
+
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        arDataToShowOnGraph.push([arOfObjectsFromClientSideDB[i].ROW_START, 0])
+      }
+
+      console.log(arDataToShowOnGraph)
+      return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
@@ -80,7 +126,8 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
       console.log(arOfObjectsFromClientSideDB)
-      return arOfObjectsFromClientSideDB
+      const data = [10, 10, 10]
+      return data
     },
   },
 }
