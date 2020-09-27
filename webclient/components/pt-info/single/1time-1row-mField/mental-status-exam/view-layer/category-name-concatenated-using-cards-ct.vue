@@ -17,7 +17,7 @@ export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
+      let arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483647.999999)

@@ -5,15 +5,23 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
   <div class="content-wrap">
     <clientSideTblOfAppointmentsInit />
     <div v-for="appt in cfAllAppointments" :key="appt.clientSideUniqRowId">
-      <el-button
-        type="success"
-        class="el-icon-lock"
-        circle
-        size="mini"
-        plain
-        icon1
-        @click="handleSliderChangeEvent()"
-      ></el-button>
+      <el-tooltip
+        class="item"
+        effect="light"
+        :content="appt.toolTip"
+        placement="top-end"
+        :open-delay="500"
+      >
+        <el-button
+          :type="appt.buttonType"
+          :class="appt.iconClass"
+          circle
+          size="mini"
+          plain
+          icon1
+          @click="handleClickEvent(appt.clientSideUniqRowId)"
+        ></el-button>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -32,21 +40,46 @@ export default {
     cfAllAppointments() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
 
-      console.log(arOfObjectsFromClientSideDB)
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        arOfObjectsFromClientSideDB[i]['toolTip'] =
+          'On ' +
+          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar'] +
+          ' ' +
+          arOfObjectsFromClientSideDB[i]['apptStatus']
 
+        if (arOfObjectsFromClientSideDB[i].apptStatus === 'locked') {
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'success'
+          arOfObjectsFromClientSideDB[i]['toolTip'] =
+            arOfObjectsFromClientSideDB[i]['toolTip'] +
+            ' by ' +
+            arOfObjectsFromClientSideDB[i]['apptProviderUUID']
+
+          arOfObjectsFromClientSideDB[i]['iconClass'] = 'el-icon-lock'
+        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'un-locked') {
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'primary'
+          arOfObjectsFromClientSideDB[i]['toolTip'] +
+            ' Provider: ' +
+            arOfObjectsFromClientSideDB[i]['apptProviderUUID']
+          arOfObjectsFromClientSideDB[i]['iconClass'] = 'el-icon-unlock'
+        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'late-cancellation') {
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'danger'
+        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'no-show') {
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'danger'
+        } else {
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'warning'
+        }
+      }
+      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
   methods: {
-    async handleSliderChangeEvent() {
+    async handleClickEvent() {
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
         vIfState: 1 - noteCurrentValue['vIfState'],
       })
-    },
-    handleSliderEndEvent() {
-      // console.log(this.sliderCurrentValue);
     },
   },
 }

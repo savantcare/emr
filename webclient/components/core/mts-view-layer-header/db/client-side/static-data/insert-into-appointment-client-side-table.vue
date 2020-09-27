@@ -21,28 +21,28 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 200,
         apptProviderUUID: 1,
-        apptStatus: 'locked',
+        apptStatus: 'no-show',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 300,
         apptProviderUUID: 1,
-        apptStatus: 'locked',
+        apptStatus: 'late-cancellation',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 400,
         apptProviderUUID: 1,
-        apptStatus: 'locked',
+        apptStatus: 'cancellation',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 500,
         apptProviderUUID: 1,
-        apptStatus: 'locked',
+        apptStatus: 'un-locked',
       },
     })
   },
