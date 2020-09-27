@@ -1,12 +1,12 @@
+<!-- 
+absorb = true -> gives gravity effect 
+included = true -> without this absorb does not work 
+process = false -> the bottle fill effect gfoes away 
+-->
 <template>
   <div>
-    <vue-slider
-      v-model="value"
-      :data="data"
-      :data-value="'id'"
-      :data-label="'name'"
-      :process="false"
-    ></vue-slider>
+    <vue-slider v-model="value" :marks="marks2" :absorb="true" :included="true" :process="false">
+    </vue-slider>
     <clientSideTblOfAppointmentsInit />
   </div>
 </template>
@@ -19,25 +19,63 @@ import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-he
 export default {
   data() {
     return {
-      value: 2,
-      data: [
-        {
-          id: 1,
-          name: '1st Jan 20',
+      value: 26,
+      marks1: [0, 10, 30, 60, 100],
+
+      marks2: {
+        0: {
+          label: '😊',
+          style: {
+            width: '8px',
+            height: '8px',
+            display: 'block',
+            backgroundColor: '#69c0ff',
+            transform: 'translate(-2px, -2px)',
+          },
+          labelStyle: {
+            color: '#69c0ff',
+          },
         },
-        {
-          id: 2,
-          name: '11th Jan 20',
+        26: {
+          label: '26℃',
+          style: {
+            width: '8px',
+            height: '8px',
+            display: 'block',
+            backgroundColor: 'red',
+            transform: 'translate(-2px, -2px)',
+          },
+          labelStyle: {
+            color: '#69c0ff',
+          },
         },
-        {
-          id: 3,
-          name: '21st Jan 20',
+        37: {
+          label: '37℃',
+          style: {
+            width: '8px',
+            height: '8px',
+            display: 'block',
+            backgroundColor: 'red',
+            transform: 'translate(-2px, -2px)',
+          },
+          labelStyle: {
+            color: '#69c0ff',
+          },
         },
-        {
-          id: 4,
-          name: '31st Jan 20',
+        100: {
+          label: '100℃',
+          style: {
+            width: '8px',
+            height: '8px',
+            display: 'block',
+            backgroundColor: 'red',
+            transform: 'translate(-2px, -2px)',
+          },
+          labelStyle: {
+            color: 'red',
+          },
         },
-      ],
+      },
     }
   },
   components: { clientSideTblOfAppointmentsInit },
