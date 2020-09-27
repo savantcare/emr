@@ -10,6 +10,10 @@ import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single
 import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
 import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblWeight from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/structure/table.js'
+import clientSideTblHeight from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/db/client-side/structure/table.js'
+import clientSideTblOxygenSaturation from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -39,23 +43,12 @@ export default {
         }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
 
         series: [
-          {
-            data: [0, 0, 0], // sample data
-            name: 'Appointments',
-          },
-          {
-            data: [0, 0, 0], // sample data
-            name: 'Weight',
-          },
-          {
-            data: [0, 0, 0], // sample data
-            name: 'Height',
-          },
-          {
-            //            data: this.cfArOfRemindersForDisplay, // sample data
-            data: this.cfArOfRemindersForDisplay, // sample data
-            name: 'Reminders',
-          },
+          // { data: this.cfBasicConcept, name: 'Basic concept' },
+          // { data: [0, 0, 0], name: 'Appointments' },
+          // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
+          // { data: this.cfGetHeightDataForGraph, name: 'Height' },
+          { data: this.cfGetWeightDataForGraph, name: 'Weight' },
+          { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2' },
         ],
 
         credits: {
@@ -65,6 +58,57 @@ export default {
 
       return chart
     },
+    cfGetHeightDataForGraph() {
+      const arDataToShowOnGraph = []
+      const data = clientSideTblHeight.all()
+      const numberOfPointsOnGraph = data.length
+      if (numberOfPointsOnGraph > 0) {
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const timeOfMeasurement = data[i].timeOfMeasurement
+          const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
+          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+        }
+        console.log(arDataToShowOnGraph)
+        return arDataToShowOnGraph
+      } else {
+        return null
+      }
+    },
+
+    cfGetWeightDataForGraph() {
+      const arDataToShowOnGraph = []
+      const data = clientSideTblWeight.all()
+      const numberOfPointsOnGraph = data.length
+      if (numberOfPointsOnGraph > 0) {
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const timeOfMeasurement = data[i].timeOfMeasurement
+          const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
+          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+        }
+        console.log(arDataToShowOnGraph)
+
+        return arDataToShowOnGraph
+      } else {
+        return null
+      }
+    },
+
+    cfGetOxygenSaturationDataForGraph() {
+      const arDataToShowOnGraph = []
+      const data = clientSideTblOxygenSaturation.all()
+      const numberOfPointsOnGraph = data.length
+      if (numberOfPointsOnGraph > 0) {
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const timeOfMeasurement = data[i].timeOfMeasurement
+          const graphData = data[i][clientSideTblOxygenSaturation.graphSeries1FieldName]
+          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+        }
+        return arDataToShowOnGraph
+      } else {
+        return null
+      }
+    },
+
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
