@@ -11,6 +11,10 @@ database.register(tableStructureForSearch)
 database.register(tableStructureForLifeCycle)
 database.register(tableStructureForCommon)
 
+// Appointments
+import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
+database.register(clientSideTblOfAppointments)
+
 // table that decides which cards to show
 import tableStructureForLeftSideView from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
 database.register(tableStructureForLeftSideView)

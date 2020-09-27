@@ -1,15 +1,20 @@
 <template>
-  <vue-slider
-    v-model="sliderCurrentValue"
-    :marks="timeOfApptsStartToMarkOnSlider"
-    :included="true"
-    @change="handleSliderChangeEvent"
-    @drag-start="handleSliderChangeEvent"
-  ></vue-slider>
+  <div>
+    <vue-slider
+      v-model="sliderCurrentValue"
+      :marks="timeOfApptsStartToMarkOnSlider"
+      :included="true"
+      @change="handleSliderChangeEvent"
+      @drag-start="handleSliderChangeEvent"
+    ></vue-slider>
+    <clientSideTblOfAppointmentsInit />
+  </div>
 </template>
 
 <script>
-import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import clientSideTblOfMultiStateViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-header/db/client-side/static-data/insert-into-appointment-client-side-table.vue'
 
 export default {
   data() {
@@ -18,6 +23,7 @@ export default {
       timeOfApptsStart: [],
     }
   },
+  components: { clientSideTblOfAppointmentsInit },
   computed: {
     timeOfApptsStartToMarkOnSlider() {
       /*
@@ -58,8 +64,8 @@ export default {
   },
   methods: {
     async handleSliderChangeEvent() {
-      const noteCurrentValue = clientSideTblOfViewCards.find(2)
-      const updateState = await clientSideTblOfViewCards.update({
+      const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
         vIfState: 1 - noteCurrentValue['vIfState'],
       })
