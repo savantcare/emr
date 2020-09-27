@@ -13,7 +13,7 @@ Features needed:
   <div>
     <vue-slider
       v-model="value"
-      :marks="marks2"
+      :marks="marks"
       :absorb="true"
       :included="true"
       :process="false"
@@ -36,9 +36,7 @@ export default {
   data() {
     return {
       value: 26,
-      marks1: [0, 10, 30, 60, 100],
-
-      marks2: {
+      marks: {
         0: {
           // 0 is the content above the dot
           label: '😊', // This is the content below the dot.
