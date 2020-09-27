@@ -1,5 +1,9 @@
 <template>
-  <el-card shadow="hover" class="box-card sc-top-most-parent-all-content">
+  <el-card
+    shadow="hover"
+    class="box-card sc-top-most-parent-all-content"
+    v-if="flipSwitchShowCard === 1"
+  >
     <div slot="header" class="sc-top-most-parent-header clearfix">
       <span>{{ mainCardName }}</span>
       <el-button-group style="float: right; display: none">
@@ -21,7 +25,7 @@
         <el-tooltip
           class="item"
           effect="light"
-          content="Minimize"
+          content="Toggle content display"
           placement="top-end"
           :open-delay="500"
         >
@@ -50,7 +54,7 @@
         </el-tooltip>
       </el-button-group>
     </div>
-    <div class="sc-top-most-parent-body" v-if="contentBodyIsMinimized === false">
+    <div class="sc-top-most-parent-body" v-if="toggleSwitchShowBodyContent === 1">
       <el-card
         v-for="card in childCardsArray"
         :key="card.clientSideUniqRowId"
@@ -106,7 +110,8 @@ export default {
   props: { mainCardName: String, childCardsArray: Array },
   data: function () {
     return {
-      contentBodyIsMinimized: false,
+      toggleSwitchShowBodyContent: 1,
+      flipSwitchShowCard: 1,
     }
   },
   computed: {},
@@ -134,9 +139,11 @@ export default {
     },
     mfRemoveOutlineClicked() {
       console.log('Inside mfRemoveOutlineClicked')
-      this.contentBodyIsMinimized = true
+      this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
     },
-    mfIconCloseClicked() {},
+    mfIconCloseClicked() {
+      this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
+    },
   },
 }
 </script>
