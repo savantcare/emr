@@ -1,5 +1,7 @@
 <template>
-  <el-card> Correlate</el-card>
+  <el-card>
+    <highcharts :options="chartOptions"></highcharts>
+  </el-card>
 </template>
 
 <script>
@@ -8,8 +10,52 @@ import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single
 import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
 import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import { Chart } from 'highcharts-vue'
 
 export default {
+  components: {
+    highcharts: Chart,
+  },
+  data() {
+    return {
+      chartOptions: {
+        xAxis: [
+          {
+            title: {
+              text: 'Measurement date',
+            },
+            type: 'datetime',
+            labels: {
+              enabled: 'true',
+              format: '{value:%m-%Y}', // X axis now shows month and year
+            },
+          },
+        ],
+        title: {
+          text: 'Correlate',
+        }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+
+        series: [
+          {
+            data: [0, 0, 0], // sample data
+            name: 'Appointments',
+          },
+          {
+            data: [0, 0, 0], // sample data
+            name: 'Weight',
+          },
+          {
+            data: [0, 0, 0], // sample data
+            name: 'Height',
+          },
+        ],
+
+        credits: {
+          enabled: false,
+        },
+      },
+    }
+  },
   computed: {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
