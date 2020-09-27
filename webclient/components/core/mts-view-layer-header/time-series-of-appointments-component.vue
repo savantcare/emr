@@ -1,12 +1,13 @@
 <!-- 
-absorb = true       -> Gives gravity effect 
-included = true     -> Without this absorb does not work 
-process = false     -> The bottle fill effect goes away 
-hide-label=true     -> Content below the dots can be hidden with this.
+1. absorb = true       -> Gives gravity effect 
+2. included = true     -> Without this absorb does not work 
+3. process = false     -> The bottle fill effect goes away 
+4. hide-label=true     -> Content below the dots can be hidden with this.
 
 Features needed:
 1. Red and yellow should be not selectable points on the line.
 2. Instead of blue color dot be able to give the lock icon nad unlock icon
+3. Show tooltip on mouseover
 
 -->
 <template>
@@ -18,7 +19,8 @@ Features needed:
       :included="true"
       :process="false"
       :hide-label="true"
-      :tooltip="'always'"
+      :tooltip="hover"
+      height="2px"
       :tooltip-formatter="cfToolTipContent"
       @change="handleSliderChangeEvent"
       @drag-start="handleSliderChangeEvent"
@@ -40,7 +42,7 @@ export default {
       marks: {
         0: {
           // 0 is the content above the dot
-          label: '😊', // This is the content below the dot.
+          label: '😊', // This is the content below the dot. The display of this can be switched off with hide-label="true"
           style: {
             width: '8px', // This is width of the dot
             height: '8px',
