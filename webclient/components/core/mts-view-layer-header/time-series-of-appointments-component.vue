@@ -9,6 +9,11 @@ Features needed:
 2. Instead of blue color dot be able to give the lock icon nad unlock icon
 3. Show tooltip on mouseover
 
+Experimentation jsfiddle:
+https://jsfiddle.net/ab1yntkr/5
+
+
+
 -->
 <template>
   <div>
