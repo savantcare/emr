@@ -2,7 +2,8 @@
   <div>
     <vue-slider
       v-model="sliderCurrentValue"
-      :marks="timeOfApptsStartToMarkOnSlider"
+      :data="timeOfApptsStartToMarkOnSlider"
+      :marks="true"
       :included="true"
       @change="handleSliderChangeEvent"
       @drag-start="handleSliderChangeEvent"
@@ -26,37 +27,18 @@ export default {
   components: { clientSideTblOfAppointmentsInit },
   computed: {
     timeOfApptsStartToMarkOnSlider() {
-      /*
-      The first date is at 0 and todays date is at 100.
-
-      The middle points get proprotionate space based on the distance between appts.
-
-      The data returned looks like
-      timeOfApptsStartToMarkOnSlider: {
-         0: "1/15/20", // Here I want to show -> this.timeOfStateTime.date1
-         20: "2/15/20",
-         40: "4/25/20",
-         100: {
-           style: {
-             color: "#1989FA"
-           },
-           label: this.$createElement("strong", "Current")
-         }
-      },
-*/
-
       const result = {}
-      if (this.timeOfApptsStart.length > 0) {
-        const percent = Math.floor(100 / (this.timeOfApptsStart.length + 1))
-        this.timeOfApptsStart.forEach((data, index) => {
-          const { dateTimeOfAppt } = data
 
-          result[index * percent] = dateTimeOfAppt.split('T')[0]
-        })
-      }
-      result['100'] = {
+      result['90'] = {
+        id: 1,
         style: { color: '#1989FA' },
-        label: this.$createElement('strong', 'Current'),
+        name: 'jai kali ma',
+      }
+
+      result['100'] = {
+        id: 2,
+        style: { color: '#1611FA' },
+        name: 'jai durga ma',
       }
 
       return result
