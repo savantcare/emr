@@ -22,9 +22,9 @@ https://jsfiddle.net/ab1yntkr/5
       :marks="marks"
       :absorb="true"
       :included="true"
+      tooltip="hover"
       :process="false"
       :hide-label="true"
-      :tooltip="hover"
       height="2px"
       :tooltip-formatter="cfToolTipContent"
       @change="handleSliderChangeEvent"
@@ -47,12 +47,12 @@ export default {
       marks: {
         0: {
           // 0 is the content above the dot
-          label: '😊', // This is the content below the dot. The display of this can be switched off with hide-label="true"
+          label: 'Locked', // This is the content below the dot. The display of this can be switched off with hide-label="true"
           style: {
             width: '8px', // This is width of the dot
             height: '8px',
             display: 'block',
-            backgroundColor: '#69c0ff', // This is color of the dot
+            backgroundColor: 'blue', // This is color of the dot
             transform: 'translate(-2px, -2px)',
           },
           labelStyle: {
@@ -60,7 +60,7 @@ export default {
           },
         },
         26: {
-          label: '26℃',
+          label: 'No show',
           style: {
             width: '8px',
             height: '8px',
@@ -73,7 +73,7 @@ export default {
           },
         },
         37: {
-          label: '37℃',
+          label: 'Late cancellation',
           style: {
             width: '8px',
             height: '8px',
@@ -86,12 +86,12 @@ export default {
           },
         },
         100: {
-          label: '100℃',
+          label: 'Current',
           style: {
             width: '8px',
             height: '8px',
             display: 'block',
-            backgroundColor: 'red',
+            backgroundColor: 'green',
             transform: 'translate(-2px, -2px)',
           },
           labelStyle: {
