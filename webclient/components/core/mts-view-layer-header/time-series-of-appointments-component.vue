@@ -5,6 +5,7 @@
       :data="timeOfApptsStartToMarkOnSlider"
       :marks="true"
       :included="true"
+      :process="false"
       @change="handleSliderChangeEvent"
       @drag-start="handleSliderChangeEvent"
     ></vue-slider>
@@ -29,7 +30,19 @@ export default {
     timeOfApptsStartToMarkOnSlider() {
       const result = {}
 
-      result['90'] = {
+      result['10'] = {
+        id: 1,
+        style: { color: '#1989FA' },
+        name: 'jai kali ma',
+      }
+
+      result['15'] = {
+        id: 1,
+        style: { color: '#1989FA' },
+        name: 'jai kali ma',
+      }
+
+      result['45'] = {
         id: 1,
         style: { color: '#1989FA' },
         name: 'jai kali ma',
