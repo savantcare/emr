@@ -3,13 +3,51 @@
     <div slot="header" class="sc-top-most-parent-header clearfix">
       <span>{{ mainCardName }}</span>
       <el-button-group style="float: right; display: none">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
-          plain
-          tabindex="-1"
-          @click="mfOpenEditCtInEditLayer"
-          class="el-icon-edit"
-        ></el-button>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Edit"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mfOpenEditCtInEditLayer"
+            class="el-icon-edit"
+          ></el-button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Minimize"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mfRemoveOutlineClicked"
+            class="el-icon-remove-outline"
+          ></el-button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Close"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mfIconCloseClicked"
+            class="el-icon-close"
+          ></el-button>
+        </el-tooltip>
       </el-button-group>
     </div>
     <div class="sc-top-most-parent-body">
@@ -80,13 +118,13 @@ export default {
     mfGetCssClassNameForEachDataRow(clientSideDataRow) {
       const strOfNumber = clientSideDataRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') { // when data added only client side
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        // when data added only client side
         return 'color: #E6A23C;'
-      }
-       else if(lastCharecter === '9') { // when data added from socket overwrite default design
+      } else if (lastCharecter === '9') {
+        // when data added from socket overwrite default design
         return 'border:1px solid #67C23A;color: #67C23A;'
-      }
-      else{
+      } else {
         return 'color: #202020;'
       }
     },
@@ -216,6 +254,14 @@ Generatiobn 3                     |
 }
 
 .el-icon-discover:hover {
+  font-size: 1.5rem;
+}
+
+.el-icon-close:hover {
+  font-size: 1.5rem;
+}
+
+.el-icon-remove-outline:hover {
   font-size: 1.5rem;
 }
 </style>
