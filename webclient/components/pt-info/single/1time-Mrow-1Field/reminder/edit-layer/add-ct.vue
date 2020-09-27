@@ -80,7 +80,7 @@
   </div>
 </template>
 <script>
-import clientSideTable from '../db/client-side/structure/rem-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {

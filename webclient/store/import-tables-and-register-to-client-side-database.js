@@ -62,7 +62,7 @@ database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
+import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import tableStructureForName from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
 import tableStructureForDob from '~/components/pt-info/single/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tableStructureForRec from '~/components/pt-info/single/1time-Mrow-1Field/rec/db/client-side/structure/model.js'

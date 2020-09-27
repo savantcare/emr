@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 

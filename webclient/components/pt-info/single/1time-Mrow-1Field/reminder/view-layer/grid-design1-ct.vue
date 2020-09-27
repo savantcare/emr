@@ -62,7 +62,7 @@
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
