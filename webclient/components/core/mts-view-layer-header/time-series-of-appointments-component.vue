@@ -79,9 +79,12 @@ export default {
       if (pApptStatus === 'no-show') return
       if (pApptStatus === 'cancellation') return
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      if (noteCurrentValue['vIfState'] === pClientSideRowId) {
+        pClientSideRowId = 0
+      }
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
-        vIfState: 1 - noteCurrentValue['vIfState'],
+        vIfState: pClientSideRowId,
       })
     },
   },
