@@ -71,7 +71,7 @@ export default {
 
           arOfObjectsFromClientSideDB[i]['iconClass'] = 'el-icon-lock'
         } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'un-locked') {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'primary'
+          arOfObjectsFromClientSideDB[i]['buttonType'] = 'success'
           arOfObjectsFromClientSideDB[i]['toolTip'] +
             ' Provider: ' +
             arOfObjectsFromClientSideDB[i]['apptProviderUUID']
