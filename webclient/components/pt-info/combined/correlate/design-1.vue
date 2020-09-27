@@ -80,13 +80,22 @@ export default {
       const data = clientSideTblWeight.all()
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
+        // find the max value
+        let maxGraphData = 0
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
+          if (graphData > maxGraphData) {
+            maxGraphData = graphData
+          }
+        }
+
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurement = data[i].timeOfMeasurement
-          const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
+          const graphData =
+            (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
         console.log(arDataToShowOnGraph)
-
         return arDataToShowOnGraph
       } else {
         return null
