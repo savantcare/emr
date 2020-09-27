@@ -47,8 +47,8 @@ export default {
           // { data: [0, 0, 0], name: 'Appointments' },
           // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          { data: this.cfGetWeightDataForGraph, name: 'Weight' },
-          { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2' },
+          { data: this.cfGetWeightDataForGraph, name: 'Weight', dashStyle: 'longdash' },
+          { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2', dashStyle: 'shortdot' },
         ],
 
         credits: {
