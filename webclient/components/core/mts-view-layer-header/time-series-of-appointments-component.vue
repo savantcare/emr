@@ -1,11 +1,27 @@
 <!-- 
-absorb = true -> gives gravity effect 
-included = true -> without this absorb does not work 
-process = false -> the bottle fill effect gfoes away 
+absorb = true       -> Gives gravity effect 
+included = true     -> Without this absorb does not work 
+process = false     -> The bottle fill effect goes away 
+hide-label=true     -> Content below the dots can be hidden with this.
+
+Features needed:
+1. Red and yellow should be not selectable points on the line.
+2. Instead of blue color dot be able to give the lock icon nad unlock icon
+
 -->
 <template>
   <div>
-    <vue-slider v-model="value" :marks="marks2" :absorb="true" :included="true" :process="false">
+    <vue-slider
+      v-model="value"
+      :marks="marks2"
+      :absorb="true"
+      :included="true"
+      :process="false"
+      :hide-label="true"
+      :tooltip="'always'"
+      @change="handleSliderChangeEvent"
+      @drag-start="handleSliderChangeEvent"
+    >
     </vue-slider>
     <clientSideTblOfAppointmentsInit />
   </div>
@@ -24,16 +40,17 @@ export default {
 
       marks2: {
         0: {
-          label: '😊',
+          // 0 is the content above the dot
+          label: '😊', // This is the content below the dot.
           style: {
-            width: '8px',
+            width: '8px', // This is width of the dot
             height: '8px',
             display: 'block',
-            backgroundColor: '#69c0ff',
+            backgroundColor: '#69c0ff', // This is color of the dot
             transform: 'translate(-2px, -2px)',
           },
           labelStyle: {
-            color: '#69c0ff',
+            color: '#69c0ff', // This is the background color of the popup that comes when I click on the dot
           },
         },
         26: {
@@ -42,7 +59,7 @@ export default {
             width: '8px',
             height: '8px',
             display: 'block',
-            backgroundColor: 'red',
+            backgroundColor: 'yellow',
             transform: 'translate(-2px, -2px)',
           },
           labelStyle: {
