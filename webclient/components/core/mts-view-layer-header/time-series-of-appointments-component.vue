@@ -19,6 +19,7 @@ Features needed:
       :process="false"
       :hide-label="true"
       :tooltip="'always'"
+      :tooltip-formatter="cfToolTipContent"
       @change="handleSliderChangeEvent"
       @drag-start="handleSliderChangeEvent"
     >
@@ -95,7 +96,22 @@ export default {
   },
   components: { clientSideTblOfAppointmentsInit },
   computed: {
-    timeOfApptsStartToMarkOnSlider() {},
+    cfToolTipContent() {
+      if (this.value === '0') {
+        return 'Locked by Dr. Savant on 12th Jan 2020'
+      }
+      if (this.value === '26') {
+        return 'Appt for 15th Jan 2020 - Cancelled'
+      }
+      if (this.value === '37') {
+        return 'Appt for 21st Jan 2020 - No show'
+      }
+      if (this.value === '100') {
+        return 'Appt for 1st Feb 2020 - Unlocked'
+      }
+
+      return this.value + 'jaikalima'
+    },
   },
   methods: {
     async handleSliderChangeEvent() {
