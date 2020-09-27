@@ -138,7 +138,6 @@ export default {
       }
     },
     mfRemoveOutlineClicked() {
-      console.log('Inside mfRemoveOutlineClicked')
       this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
     },
     mfIconCloseClicked() {
