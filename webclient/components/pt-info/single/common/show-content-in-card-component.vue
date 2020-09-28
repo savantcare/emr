@@ -249,13 +249,18 @@ Generatiobn 3                     |
 }
 
 /* Used at: Reminder Ct Row Position 1  */
-.el-icon-discover:hover {
+.el-icon-edit:hover {
   color: #909399 !important;
   font-size: 1.5rem;
 }
 
 /* Used at: Reminder Ct Row Position 2  */
+.el-icon-discover:hover {
+  color: #909399 !important;
+  font-size: 1.5rem;
+}
 
+/* Used at: Reminder Ct Row Position 3  */
 .el-icon-circle-close:hover {
   color: #f56c6c !important;
   font-size: 1.5rem;

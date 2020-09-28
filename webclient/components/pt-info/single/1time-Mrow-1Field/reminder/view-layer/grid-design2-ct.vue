@@ -12,6 +12,7 @@
         { content: 'Trash can', class: 'el-icon-delete' },
       ]"
       :propClientSideRowLevelActions="[
+        { content: 'Edit', class: 'el-icon-edit' },
         { content: 'Timeline', class: 'el-icon-discover' },
         { content: 'Delete', class: 'el-icon-circle-close' },
       ]"
