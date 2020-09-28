@@ -1,10 +1,10 @@
 <template>
   <el-card
     shadow="hover"
-    class="box-card sc-top-most-parent-all-content"
+    class="box-card s-css-class-top-most-card"
     v-if="flipSwitchShowCard === 1"
   >
-    <div slot="header" class="sc-top-most-parent-header clearfix">
+    <div slot="header" class="s-css-class-top-most-card-header clearfix">
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
@@ -108,7 +108,7 @@ export default {
       if (this.propGridDesignTopMostParentBody) {
         return this.propGridDesignTopMostParentBody
       }
-      return 'sc-top-most-parent-body-grid-min-200px-max-1fr'
+      return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
     },
     mfIconClicked(pAction) {
       console.log(pAction)
@@ -129,15 +129,15 @@ export default {
 <style>
 /* Generation ->
 ==============
-                                       .sc-top-most-parent-all-content
+                                       .s-css-class-top-most-card
  Generation 1                                      |
 ==============                     _________________________________
                                   |                                |
-                    .sc-top-most-parent-header                |
+                    .s-css-class-top-most-card-header                |
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
-                  ..sc-top-most-parent-body-grid-min-200px-max-1fr
+                  ..s-css-class-top-most-card-body-grid-min-200px-max-1fr
 ==============                    |
                                   |
                    .sc-individual-child-card
@@ -150,12 +150,12 @@ Generatiobn 3                     |
 */
 
 /* Generation Level 1 */
-.sc-top-most-parent-all-content .el-card__header {
+.s-css-class-top-most-card .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
   padding: 0.5rem !important;
 }
 
-.sc-top-most-parent-all-content .el-card__body {
+.s-css-class-top-most-card .el-card__body {
   /* Goal: Manage  Distance from border to content in body*/
   padding: 0.5rem !important;
 }
@@ -163,28 +163,28 @@ Generatiobn 3                     |
 /* Generation Level 2 / Child 1 == Goal: Header icon management */
 
 /* Goal: The header of the parent card should be 1.2 of the font size of the browser */
-.sc-top-most-parent-header {
+.s-css-class-top-most-card-header {
   font-size: 1.2rem;
 }
 
 /* When anywhere inside the card make the action icons in the card header -> level 1 visual */
-.el-card:hover .sc-top-most-parent-header .el-button-group {
+.el-card:hover .s-css-class-top-most-card-header .el-button-group {
   display: inline-block !important;
 }
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .sc-top-most-parent-header .el-icon-edit {
+.el-card__header:hover .s-css-class-top-most-card-header .el-icon-edit {
   color: #67c23a !important;
   font-size: 1.5rem;
 }
-.el-card__header:hover .sc-top-most-parent-header .el-icon-s-grid {
+.el-card__header:hover .s-css-class-top-most-card-header .el-icon-s-grid {
   color: #409eff !important;
 }
 
 /* Generation Level 2 / Child 2 */
 
 /* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
-.sc-top-most-parent-body-grid-min-200px-max-1fr {
+.s-css-class-top-most-card-body-grid-min-200px-max-1fr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
@@ -197,7 +197,7 @@ Generatiobn 3                     |
   margin: 0.1rem;
 }
 
-.sc-top-most-parent-body-grid {
+.s-css-class-top-most-card-body-grid {
   display: grid;
   /* Some other grid-template-columns options are :
   grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));

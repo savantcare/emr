@@ -7,7 +7,7 @@
         { content: 'Minimize card', class: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[{}]"
-      propGridDesignTopMostParentBody="sc-top-most-parent-body-grid"
+      propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     ></showContentInCardComponent>
   </div>
 </template>
