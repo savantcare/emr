@@ -58,7 +58,7 @@
           </el-tooltip>
         </el-button-group>
         <div v-if="card.cardContent">{{ card.cardContent }}</div>
-        <div v-if="card.componentPath"><component :is="card.componentObj"></component></div>
+        <div v-else><component :is="card.componentObj"></component></div>
       </el-card>
     </div>
   </el-card>

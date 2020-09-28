@@ -29,15 +29,15 @@ export default {
       var arBMForDisplay = new Array()
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
@@ -46,33 +46,33 @@ export default {
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       console.log(arBMForDisplay)

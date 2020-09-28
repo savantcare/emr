@@ -27,8 +27,8 @@ export default {
       var arBMForDisplay = new Array()
 
       var obj = new Object()
-      obj.componentPath = 'pt-info/combined/correlate/graph-design-1.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+      obj.componentObj = require('@/components/' +
+        'pt-info/combined/correlate/graph-design-1.vue').default
 
       arBMForDisplay.push(obj)
 
