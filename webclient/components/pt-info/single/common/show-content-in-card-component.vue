@@ -192,12 +192,6 @@ Generatiobn 3                     |
 .el-card__header:hover .sc-top-most-parent-header .el-icon-s-grid {
   color: #409eff !important;
 }
-.el-card__header:hover .sc-top-most-parent-header .el-icon-document-delete {
-  color: #f56c6c !important;
-}
-.el-card__header:hover .sc-top-most-parent-header .el-icon-delete {
-  color: #909399 !important;
-}
 
 /* Generation Level 2 / Child 2 */
 
@@ -303,13 +297,13 @@ Generatiobn 3                     |
 
 /* Used at: Reminder Ct Table Position 4 */
 .el-icon-document-delete:hover {
-  color: #67c23a !important;
+  color: #f56c6c !important;
   font-size: 1.5rem;
 }
 
 /*  Used at: Reminder Ct Table Position 5 */
 .el-icon-delete:hover {
-  color: #67c23a !important;
+  color: #909399 !important;
   font-size: 1.5rem;
 }
 </style>
