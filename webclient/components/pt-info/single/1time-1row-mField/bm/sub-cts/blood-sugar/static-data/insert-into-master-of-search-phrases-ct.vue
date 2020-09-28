@@ -21,7 +21,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood Sugar - change',
+        value: 'edit blood Sugar',
         ctAbbr: 'bsc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/edit-layer/edit-design-1.vue', // Cl -> Change layer

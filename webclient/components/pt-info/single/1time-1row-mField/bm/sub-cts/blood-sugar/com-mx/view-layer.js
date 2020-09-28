@@ -101,13 +101,13 @@ export default {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromClientSideTable[0]
       const dnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
-        rowtoReturn.uuid
+        rowtoReturn.serverSideRowUuid
       )
       if (dnOrmIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
-          rowtoReturn.id,
+          rowtoReturn.clientSideUniqRowId,
           dnOrmIdOfCopiedRowBeingChanged
         )
       }
@@ -119,7 +119,7 @@ export default {
       const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: searchString,
+        searchTerm: 'edit blood Sugar',
       })
     },
     mfTypeOfButton(pFldName) {
