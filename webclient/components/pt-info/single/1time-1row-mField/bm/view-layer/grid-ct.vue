@@ -1,40 +1,89 @@
 <template>
-  <el-card class="box-card" shadow="hover">
-    <div slot="header" class="clearfix">
-      <span>Body measurement</span>
-    </div>
-    <div class="grid-container">
-      <ctWeight></ctWeight>
-      <ctHeight></ctHeight>
-      <ctTemperature></ctTemperature>
-      <ctBloodPressure></ctBloodPressure>
-      <ctBloodSugar></ctBloodSugar>
-      <ctWaistCircumference></ctWaistCircumference>
-      <ctPulse></ctPulse>
-      <ctOxygenSaturation></ctOxygenSaturation>
-    </div>
-  </el-card>
+  <div>
+    <showContentInCardComponent
+      mainCardName="Body measurement"
+      :childCardsArray="cfArOfBMComponentsForDisplay"
+      clientSideDBLevelTableActions="edit"
+      clientSideCardLevelActions="remove, info"
+    ></showContentInCardComponent>
+  </div>
 </template>
 
 <script>
-import ctWeight from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/table-ct.vue'
-import ctHeight from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/table-ct.vue'
-import ctTemperature from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue'
-import ctBloodPressure from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/table-ct.vue'
-import ctBloodSugar from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/table-ct.vue'
-import ctWaistCircumference from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/table-ct.vue'
-import ctPulse from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/table-ct.vue'
-import ctOxygenSaturation from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
+
 export default {
   components: {
-    ctWeight,
-    ctHeight,
-    ctTemperature,
-    ctWaistCircumference,
-    ctBloodPressure,
-    ctBloodSugar,
-    ctPulse,
-    ctOxygenSaturation,
+    showContentInCardComponent,
+  },
+  data: function () {
+    return {}
+  },
+  computed: {
+    cfArOfBMComponentsForDisplay() {
+      var arBMForDisplay = new Array()
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      var obj = new Object()
+      obj.componentPath =
+        'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue'
+      obj.componentObj = require('@/components/' + obj.componentPath).default
+      arBMForDisplay.push(obj)
+
+      console.log(arBMForDisplay)
+      // return arrayOfComponentsToShow
+      return arBMForDisplay
+    },
+  },
+  methods: {
+    mfTablePageChanged(pNewPageNumber) {
+      this.tablePageNumber = pNewPageNumber
+    },
+    mfIconMultiDeleteClickedOnChildCard(val) {
+      this.daSelectedRemForDelete = val
+    },
   },
 }
 </script>
@@ -54,9 +103,4 @@ Q) Where can i see the example of flex?
 The previous commit (d72c5110df1450385bdc8a5ec867095cde453e1e) was flex I did not say the number of columns. 
 The number of columns was being auto-decided depending on the space available.
  */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
-  grid-gap: 1rem;
-}
 </style>

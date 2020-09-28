@@ -99,7 +99,8 @@
             ></el-button>
           </el-tooltip>
         </el-button-group>
-        {{ card.cardContent }}
+        <div v-if="card.cardContent">{{ card.cardContent }}</div>
+        <div v-if="card.componentPath"><component :is="card.componentObj"></component></div>
       </el-card>
     </div>
   </el-card>
@@ -125,6 +126,7 @@ export default {
 
     // Goal: Change container font color as per client side row status
     mfGetCssClassNameForEachDataRow(clientSideDataRow) {
+      if (!clientSideDataRow.vnRowStateInSession) return
       const strOfNumber = clientSideDataRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {

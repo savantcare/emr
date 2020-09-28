@@ -142,21 +142,21 @@ export default {
     cfBasicConcept() {
       var data = new Array()
 
-      // All highcharts cares about are 0 and 1 values it does not care about the field / key names
+      // Works: All highcharts cares about are 0 and 1 values it does not care about the field / key names
       data.push([2, 2])
 
       data.push([4, 4])
 
-      // This will work but show wrong graph since this will be taken as two values and not an array of values
+      // Works: but show wrong graph since this will be taken as two values and not an array of values
       data.push(5, 5)
 
-      // This will not work since each point needs to be array and not a object
+      // Not work: since each point needs to be array and not a object
       var firstError = new Object()
       firstError[0] = 6
       firstError[1] = 6
       data.push(firstError)
 
-      // This will not work since each point should not have field name. It should just have a index.
+      // Not work: since each point should not have field name. It should just have a index.
       var secondError = new Object()
       secondError['row'] = 8
       secondError['value'] = 8

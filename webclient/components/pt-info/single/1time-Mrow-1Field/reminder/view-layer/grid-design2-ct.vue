@@ -94,16 +94,6 @@ export default {
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
     },
-    // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassNameForEachDataRow(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'color: #E6A23C;'
-      } else {
-        return 'color: #202020;'
-      }
-    },
   },
 }
 </script>
