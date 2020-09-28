@@ -56,7 +56,7 @@
     </div>
     <div :class="mfGetClass()" v-if="toggleSwitchShowBodyContent === 1">
       <el-card
-        v-for="card in childCardsArray"
+        v-for="card in propChildCardsArray"
         :key="card.clientSideUniqRowId"
         class="box-card sc-individual-child-card"
         shadow="hover"
@@ -108,7 +108,11 @@
 
 <script>
 export default {
-  props: { propMainCardName: String, childCardsArray: Array, gridDesign: String },
+  props: {
+    propMainCardName: String,
+    propChildCardsArray: Array,
+    propGridDesignTopMostParentBody: String,
+  },
   data: function () {
     return {
       toggleSwitchShowBodyContent: 1,
@@ -140,8 +144,8 @@ export default {
       }
     },
     mfGetClass() {
-      if (this.gridDesign) {
-        return this.gridDesign
+      if (this.propGridDesignTopMostParentBody) {
+        return this.propGridDesignTopMostParentBody
       }
       return 'sc-top-most-parent-body-grid-min-200px-max-1fr'
     },

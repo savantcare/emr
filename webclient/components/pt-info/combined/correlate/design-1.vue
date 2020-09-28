@@ -2,10 +2,10 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Correlate"
-      :childCardsArray="cfArOfCorrelateComponentsForDisplay"
-      clientSideDBLevelTableActions="edit"
-      clientSideCardLevelActions="remove, info"
-      gridDesign="sc-top-most-parent-body-grid"
+      :propChildCardsArray="cfArOfCorrelateComponentsForDisplay"
+      propclientSideDBLevelTableActions="edit"
+      propClientSideCardLevelActions="remove, info"
+      propGridDesignTopMostParentBody="sc-top-most-parent-body-grid"
     ></showContentInCardComponent>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Mental status exam"
-    :childCardsArray="cfArOfMentalStatusExamForDisplay"
-    clientSideDBLevelTableActions="edit"
-    clientSideCardLevelActions="remove, info"
+    :propChildCardsArray="cfArOfMentalStatusExamForDisplay"
+    propclientSideDBLevelTableActions="edit"
+    propClientSideCardLevelActions="remove, info"
   />
 </template>
 

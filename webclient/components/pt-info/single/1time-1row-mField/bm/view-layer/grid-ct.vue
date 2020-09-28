@@ -2,9 +2,9 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Body measurement"
-      :childCardsArray="cfArOfBMComponentsForDisplay"
-      clientSideDBLevelTableActions="edit"
-      clientSideCardLevelActions="remove, info"
+      :propChildCardsArray="cfArOfBMComponentsForDisplay"
+      propclientSideDBLevelTableActions="edit"
+      propClientSideCardLevelActions="remove, info"
     ></showContentInCardComponent>
   </div>
 </template>

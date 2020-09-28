@@ -1,9 +1,9 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Service statement"
-    :childCardsArray="cfArOfServiceStatementForDisplay"
-    clientSideDBLevelTableActions="edit"
-    clientSideCardLevelActions="remove, info"
+    :propChildCardsArray="cfArOfServiceStatementForDisplay"
+    propclientSideDBLevelTableActions="edit"
+    propClientSideCardLevelActions="remove, info"
   />
 </template>
 
