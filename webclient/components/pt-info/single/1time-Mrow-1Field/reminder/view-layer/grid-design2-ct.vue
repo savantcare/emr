@@ -8,7 +8,7 @@
         { content: 'Add', class: 'el-icon-circle-plus-outline' },
         { content: 'Multi edit', class: 'el-icon-money' },
         { content: 'Multi delete', class: 'el-icon-document-delete' },
-        { content: 'MinimizeContent', class: 'el-icon-remove-outline' },
+        { content: 'Minimize card', class: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[
         { content: 'Edit', class: 'el-icon-edit' },
