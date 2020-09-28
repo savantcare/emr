@@ -5,6 +5,7 @@
       :childCardsArray="cfArOfCorrelateComponentsForDisplay"
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"
+      gridDesign="sc-top-most-parent-body-grid"
     ></showContentInCardComponent>
   </div>
 </template>

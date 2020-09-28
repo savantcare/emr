@@ -54,7 +54,7 @@
         </el-tooltip>
       </el-button-group>
     </div>
-    <div class="sc-top-most-parent-body" v-if="toggleSwitchShowBodyContent === 1">
+    <div :class="mfGetClass()" v-if="toggleSwitchShowBodyContent === 1">
       <el-card
         v-for="card in childCardsArray"
         :key="card.clientSideUniqRowId"
@@ -108,7 +108,7 @@
 
 <script>
 export default {
-  props: { mainCardName: String, childCardsArray: Array },
+  props: { mainCardName: String, childCardsArray: Array, gridDesign: String },
   data: function () {
     return {
       toggleSwitchShowBodyContent: 1,
@@ -139,6 +139,12 @@ export default {
         return 'color: #202020;'
       }
     },
+    mfGetClass() {
+      if (this.gridDesign) {
+        return this.gridDesign
+      }
+      return 'sc-top-most-parent-body-grid-min-200px-max-1fr'
+    },
     mfRemoveOutlineClicked() {
       this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
     },
@@ -160,7 +166,7 @@ export default {
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
-                  .sc-top-most-parent-body
+                  ..sc-top-most-parent-body-grid-min-200px-max-1fr
 ==============                    |
                                   |
                    .sc-individual-child-card
@@ -213,9 +219,21 @@ Generatiobn 3                     |
 /* Generation Level 2 / Child 2 */
 
 /* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
-.sc-top-most-parent-body {
+.sc-top-most-parent-body-grid-min-200px-max-1fr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 0.1rem;
+  grid-auto-flow: row; /* This is default value */
+  margin: 0.1rem;
+}
+
+.sc-top-most-parent-body-grid {
+  display: grid;
   /* Some other grid-template-columns options are :
   grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
