@@ -37,7 +37,7 @@ export default {
           },
         ],
         title: {
-          text: 'Correlate',
+          text: '',
         }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
 
         series: [
