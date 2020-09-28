@@ -4,7 +4,13 @@
     <showContentInCardComponent
       propMainCardName="Reminders"
       :propChildCardsArray="cfArOfRemForDisplayInTable"
-      propClientSideTableLevelActions="edit"
+      :propClientSideTableLevelActions="[
+        { content: 'minimize', class: 'el-icon-remove-outline' },
+        { content: 'add', class: 'el-icon-circle-plus-outline' },
+        { content: 'Multi Edit', class: 'el-icon-money' },
+        { content: 'Multi Delete', class: 'el-icon-document-delete' },
+        { content: 'Trash can', class: 'el-icon-delete' },
+      ]"
       propClientSideRowLevelActions="remove, info"
     ></showContentInCardComponent>
 

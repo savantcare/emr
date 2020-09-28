@@ -8,9 +8,11 @@
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
+          v-for="action in propClientSideTableLevelActions"
+          :key="action.content"
           class="item"
           effect="light"
-          content="Edit"
+          :content="action.content"
           placement="top-end"
           :open-delay="500"
         >
@@ -18,38 +20,8 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfOpenEditCtInEditLayer"
-            class="el-icon-edit"
-          ></el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Toggle content display"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mfRemoveOutlineClicked"
-            class="el-icon-remove-outline"
-          ></el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Close"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click="mfIconCloseClicked"
-            class="el-icon-close"
+            @click="mfIconClicked(action.content)"
+            :class="action.class"
           ></el-button>
         </el-tooltip>
       </el-button-group>
@@ -112,6 +84,7 @@ export default {
     propMainCardName: String,
     propChildCardsArray: Array,
     propGridDesignTopMostParentBody: String,
+    propClientSideTableLevelActions: Array,
   },
   data: function () {
     return {
@@ -144,12 +117,18 @@ export default {
       }
     },
     mfGetClass() {
+      console.log(this.propClientSideTableLevelActions)
       if (this.propGridDesignTopMostParentBody) {
         return this.propGridDesignTopMostParentBody
       }
       return 'sc-top-most-parent-body-grid-min-200px-max-1fr'
     },
-    mfRemoveOutlineClicked() {
+    mfIconClicked(pAction) {
+      console.log(pAction)
+      this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
+    },
+    mfRemoveOutlineClicked(pAction) {
+      console.log(pAction)
       this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
     },
     mfIconCloseClicked() {
@@ -283,24 +262,54 @@ Generatiobn 3                     |
   right: 0px;
 }
 
-.sc-individual-child-card:hover .el-icon-discover {
-  color: #909399 !important;
-}
-
-.sc-individual-child-card:hover .el-icon-circle-close {
-  color: #f56c6c !important;
-  font-size: 1.5rem;
-}
-
-.el-icon-discover:hover {
-  font-size: 1.5rem;
-}
-
+/* Not sure where used */
 .el-icon-close:hover {
   font-size: 1.5rem;
 }
 
+/* Used at: Reminder Ct Row Position 1  */
+.el-icon-discover:hover {
+  color: #909399 !important;
+  font-size: 1.5rem;
+}
+
+/* Used at: Reminder Ct Row Position 2  */
+
+.el-icon-circle-close:hover {
+  color: #f56c6c !important;
+  font-size: 1.5rem;
+}
+
+/* Used at: 
+  Reminder Ct Table Position 1 
+  Corelate Ct Table Position 1 
+  Body measurement Ct Table Position 1  */
 .el-icon-remove-outline:hover {
+  color: #f56c6c !important;
+  font-size: 1.5rem;
+}
+
+/* Used at: Reminder Ct Table Position 2 */
+.el-icon-circle-plus-outline:hover {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
+/* Used at: Reminder Ct Table Position 3 */
+.el-icon-money:hover {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
+/* Used at: Reminder Ct Table Position 4 */
+.el-icon-document-delete:hover {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
+/*  Used at: Reminder Ct Table Position 5 */
+.el-icon-delete:hover {
+  color: #67c23a !important;
   font-size: 1.5rem;
 }
 </style>
