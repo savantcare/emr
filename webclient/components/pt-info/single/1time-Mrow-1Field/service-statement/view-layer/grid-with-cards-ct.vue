@@ -3,9 +3,9 @@
     propMainCardName="Service statement"
     :propChildCardsArray="cfArOfServiceStatementForDisplay"
     :propClientSideTableLevelActions="[
-      { content: 'Multi edit', class: 'el-icon-money' },
-      { content: 'Toggle card', class: 'el-icon-remove-outline' },
-      { content: 'Close card', class: 'el-icon-close' },
+      { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
+      { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+      { content: 'Close card', elementIoIconClass: 'el-icon-close' },
     ]"
     :propClientSideRowLevelActions="[{}]"
   />

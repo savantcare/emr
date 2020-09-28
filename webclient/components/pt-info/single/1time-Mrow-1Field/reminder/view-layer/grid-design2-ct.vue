@@ -5,15 +5,15 @@
       propMainCardName="Reminders"
       :propChildCardsArray="cfArOfRemForDisplayInTable"
       :propClientSideTableLevelActions="[
-        { content: 'Add', class: 'el-icon-circle-plus-outline' },
-        { content: 'Multi edit', class: 'el-icon-money' },
-        { content: 'Multi delete', class: 'el-icon-document-delete' },
-        { content: 'Toggle card', class: 'el-icon-remove-outline' },
+        { content: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
+        { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
+        { content: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
+        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[
-        { content: 'Edit', class: 'el-icon-edit' },
-        { content: 'Show data timeline', class: 'el-icon-discover' },
-        { content: 'Delete row', class: 'el-icon-circle-close' },
+        { content: 'Edit', elementIoIconClass: 'el-icon-edit' },
+        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
+        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
 

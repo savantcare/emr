@@ -21,7 +21,7 @@
             plain
             tabindex="-1"
             @click="mfActOnIconClicked(tableLevelAction.content)"
-            :class="tableLevelAction.class"
+            :class="tableLevelAction.elementIoIconClass"
           ></el-button>
         </el-tooltip>
       </el-button-group>
@@ -50,7 +50,7 @@
             :open-delay="500"
           >
             <el-button
-              :class="rowLevelAction.class"
+              :class="rowLevelAction.elementIoIconClass"
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
