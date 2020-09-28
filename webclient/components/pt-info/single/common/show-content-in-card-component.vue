@@ -112,20 +112,15 @@ export default {
     },
     mfIconClicked(pAction) {
       console.log(pAction)
-      if (pAction === 'Minimize')
-        this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
       if (pAction === 'Add') this.$parent.mxOpenACtInEditLayer()
       if (pAction === 'Multi edit') this.$parent.mxOpenMCtInEditLayer()
       if (pAction === 'Trash can') this.$parent.mxOpenXCtInEditLayer()
+      if (pAction === 'Minimize')
+        this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
+
+      if (pAction === 'Close') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
 
       return
-    },
-    mfRemoveOutlineClicked(pAction) {
-      console.log(pAction)
-      this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
-    },
-    mfIconCloseClicked() {
-      this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
     },
   },
 }
@@ -249,11 +244,6 @@ Generatiobn 3                     |
   right: 0px;
 }
 
-/* Not sure where used */
-.el-icon-close:hover {
-  font-size: 1.5rem;
-}
-
 /* Used at: Reminder Ct Row Position 1  */
 .el-icon-edit:hover {
   color: #909399 !important;
@@ -272,34 +262,54 @@ Generatiobn 3                     |
   font-size: 1.5rem;
 }
 
-/* Used at: 
-  Reminder Ct Table Position 1 
-  Corelate Ct Table Position 1 
-  Body measurement Ct Table Position 1  */
+/* Used for minimize at: 
+Component           |  Side        | Location     | From front  | From back
+  Reminder          |  Fixed       |  Header      |  4          |  -1
+  Corelate          |  Fixed       |  Header      |  1          |  -1
+  Body measurement  |  Fixed       |  Header      |  1          |  -1
+  Service statement |  Flexible    |  Header      |  2          |  -2
+  */
 .el-icon-remove-outline:hover {
-  color: #f56c6c !important;
+  color: #909399 !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Table Position 2 */
+/* Used for close at: 
+Component          |  Side         | Position    | From front  | Front back
+Service statement  |  Flexible     | Header      |   3         |    -1
+Mental status exam |  Flexible     | Header      |   3         |    -1
+*/
+.el-icon-close:hover {
+  font-size: 1.5rem;
+  color: #f56c6c !important;
+}
+
+/* Used for add at: 
+Component         |  Side           | Position    | From front  | Front back
+Reminder          |  Fixed          |  Header     |  1 
+*/
 .el-icon-circle-plus-outline:hover {
   color: #67c23a !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Table Position 3 */
+/* Used for multi edit at: 
+Component          |  Side        | Position    | From front  | Front back
+ Reminder          |  Fixed       |  Header     |   2         |    -3
+ Service statement |  Flexible    | Header      |   1         |    -3
+ */
 .el-icon-money:hover {
   color: #67c23a !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Table Position 4 */
+/* Used at: Reminder Ct Header Position 4 */
 .el-icon-document-delete:hover {
   color: #f56c6c !important;
   font-size: 1.5rem;
 }
 
-/*  Used at: Reminder Ct Table Position 5 */
+/*  Used at: Reminder Ct Header Position 5 */
 .el-icon-delete:hover {
   color: #909399 !important;
   font-size: 1.5rem;

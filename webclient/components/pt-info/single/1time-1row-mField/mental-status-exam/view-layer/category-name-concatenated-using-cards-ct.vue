@@ -2,8 +2,12 @@
   <showContentInCardComponent
     propMainCardName="Mental status exam"
     :propChildCardsArray="cfArOfMentalStatusExamForDisplay"
-    propClientSideTableLevelActions="edit"
-    propClientSideRowLevelActions="remove, info"
+    :propClientSideTableLevelActions="[
+      { content: 'Multi edit', class: 'el-icon-money' },
+      { content: 'Minimize', class: 'el-icon-remove-outline' },
+      { content: 'Close', class: 'el-icon-close' },
+    ]"
+    :propClientSideRowLevelActions="[{}]"
   />
 </template>
 
@@ -42,7 +46,7 @@ export default {
         },
       })
     },
-    mfOpenEditCtInEditLayer() {
+    mxOpenMCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit mental status exam',
       })

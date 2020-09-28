@@ -3,7 +3,7 @@
     <showContentInCardComponent
       propMainCardName="Correlate"
       :propChildCardsArray="cfArOfCorrelateComponentsForDisplay"
-      :propClientSideTableLevelActions="[{ content: 'minimize', class: 'el-icon-remove-outline' }]"
+      :propClientSideTableLevelActions="[{ content: 'Minimize', class: 'el-icon-remove-outline' }]"
       :propClientSideRowLevelActions="[{}]"
       propGridDesignTopMostParentBody="sc-top-most-parent-body-grid"
     ></showContentInCardComponent>
