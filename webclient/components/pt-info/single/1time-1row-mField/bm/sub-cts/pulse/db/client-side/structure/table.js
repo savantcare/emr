@@ -8,7 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptPulse extends clientSideTableManage {
   static entity = 'tblPulse'
-  static apiUrl = 'http://localhost:3000/pulse'
+  static apiUrl = 'http://localhost:8000/public/api/pulse/v20'
 
   static graphSeries1FieldName = 'pulseInBpm'
   static graphSeries1Unit = 'Lbs'
@@ -23,7 +23,7 @@ export default class ptPulse extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       pulseInBpm: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
+      timeOfMeasurement: this.string(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),
