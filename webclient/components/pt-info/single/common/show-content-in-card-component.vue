@@ -112,13 +112,13 @@ export default {
     },
     mfIconClicked(pAction) {
       console.log(pAction)
-      if (pAction === 'Add') this.$parent.mxOpenACtInEditLayer()
-      if (pAction === 'Multi edit') this.$parent.mxOpenMCtInEditLayer()
-      if (pAction === 'Trash can') this.$parent.mxOpenXCtInEditLayer()
-      if (pAction === 'Minimize')
+      if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
+      if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
+      if (pAction === 'Trash can') this.$parent.mxOpenTrashCanCtInEditLayer()
+      if (pAction === 'MinimizeContent')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
 
-      if (pAction === 'Close') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
+      if (pAction === 'CloseContent') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
 
       return
     },

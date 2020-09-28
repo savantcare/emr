@@ -3,10 +3,12 @@
     <showContentInCardComponent
       propMainCardName="Body measurement"
       :propChildCardsArray="cfArOfBMComponentsForDisplay"
-      :propClientSideTableLevelActions="[{ content: 'Minimize', class: 'el-icon-remove-outline' }]"
+      :propClientSideTableLevelActions="[
+        { content: 'MinimizeContent', class: 'el-icon-remove-outline' },
+      ]"
       :propClientSideRowLevelActions="[
-        { content: 'Timeline', class: 'el-icon-discover' },
-        { content: 'Delete', class: 'el-icon-circle-close' },
+        { content: 'ShowRowTimeline', class: 'el-icon-discover' },
+        { content: 'DeleteRow', class: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
   </div>
@@ -39,10 +41,8 @@ export default {
       arBMForDisplay.push(obj)
 
       var obj = new Object()
-      obj.componentPath =
-        'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue'
-      obj.componentObj = require('@/components/' + obj.componentPath).default
-      obj.componentObj = require('@/components/' + obj.componentPath).default
+      obj.componentObj = require('@/components/' +
+        'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue').default
       arBMForDisplay.push(obj)
 
       var obj = new Object()

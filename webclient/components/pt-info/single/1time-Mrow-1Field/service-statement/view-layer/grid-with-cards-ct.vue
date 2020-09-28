@@ -4,8 +4,8 @@
     :propChildCardsArray="cfArOfServiceStatementForDisplay"
     :propClientSideTableLevelActions="[
       { content: 'Multi edit', class: 'el-icon-money' },
-      { content: 'Minimize', class: 'el-icon-remove-outline' },
-      { content: 'Close', class: 'el-icon-close' },
+      { content: 'MinimizeContent', class: 'el-icon-remove-outline' },
+      { content: 'CloseContent', class: 'el-icon-close' },
     ]"
     :propClientSideRowLevelActions="[{}]"
   />
@@ -44,7 +44,7 @@ export default {
         },
       })
     },
-    mxOpenMCtInEditLayer() {
+    mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit service statement',
       })

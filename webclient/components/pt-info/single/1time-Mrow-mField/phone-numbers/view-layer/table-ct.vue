@@ -9,10 +9,10 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenACtInEditLayer"
+            @click="mxOpenAddCtInEditLayer"
             class="el-icon-circle-plus-outline"
           ></el-button>
-          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInEditLayer"
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
             >M</el-button
           >
           <el-button
@@ -26,7 +26,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenXCtInEditLayer"
+            @click="mxOpenTrashCanCtInEditLayer"
             class="el-icon-delete"
           ></el-button>
         </el-button-group>

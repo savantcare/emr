@@ -5,12 +5,12 @@ import clientSideTable from '~/components/pt-info/single/1time-Mrow-1Field/remin
 
 export default {
   methods: {
-    mxOpenACtInEditLayer() {
+    mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add phone number',
       })
     },
-    mxOpenMCtInEditLayer() {
+    mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'multi edit phone numbers',
       })
@@ -50,7 +50,7 @@ export default {
           console.log('multi delete cancelled')
         })
     },
-    async mxOpenXCtInEditLayer() {
+    async mxOpenTrashCanCtInEditLayer() {
       const deletedRows = await clientSideTable.fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {

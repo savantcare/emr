@@ -8,12 +8,12 @@
         { content: 'Add', class: 'el-icon-circle-plus-outline' },
         { content: 'Multi edit', class: 'el-icon-money' },
         { content: 'Multi delete', class: 'el-icon-document-delete' },
-        { content: 'Minimize', class: 'el-icon-remove-outline' },
+        { content: 'MinimizeContent', class: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[
         { content: 'Edit', class: 'el-icon-edit' },
-        { content: 'Timeline', class: 'el-icon-discover' },
-        { content: 'Delete', class: 'el-icon-circle-close' },
+        { content: 'ShowRowTimeline', class: 'el-icon-discover' },
+        { content: 'DeleteRow', class: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
 

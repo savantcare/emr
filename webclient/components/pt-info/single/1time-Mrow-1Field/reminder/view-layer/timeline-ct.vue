@@ -19,10 +19,10 @@
           style="padding: 3px"
           plain
           tabindex="-1"
-          @click="mxOpenACtInEditLayer"
+          @click="mxOpenAddCtInEditLayer"
           class="el-icon-circle-plus-outline"
         ></el-button>
-        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInEditLayer"
+        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
           >M</el-button
         >
         <el-button
@@ -36,7 +36,7 @@
           style="padding: 3px"
           plain
           tabindex="-1"
-          @click="mxOpenXCtInEditLayer"
+          @click="mxOpenTrashCanCtInEditLayer"
           class="el-icon-delete"
         ></el-button>
       </el-button-group>
@@ -138,16 +138,16 @@ export default {
       console.log(e, rowId)
       if (rowId === 'header') {
         if (e.code === 'KeyA') {
-          this.mxOpenACtInEditLayer()
+          this.mxOpenAddCtInEditLayer()
         }
         if (e.code === 'KeyM') {
-          this.mxOpenMCtInEditLayer()
+          this.mxOpenMultiEditCtInEditLayer()
         }
         if (e.code === 'KeyD') {
           this.mxOpenDDialog()
         }
         if (e.code === 'KeyX') {
-          this.mxOpenXCtInEditLayer()
+          this.mxOpenTrashCanCtInEditLayer()
         }
       } else {
         if (e.code === 'KeyC') {
