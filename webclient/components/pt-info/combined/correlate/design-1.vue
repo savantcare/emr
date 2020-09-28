@@ -1,7 +1,7 @@
 <template>
   <div>
     <showContentInCardComponent
-      mainCardName="Correlate"
+      propMainCardName="Correlate"
       :childCardsArray="cfArOfCorrelateComponentsForDisplay"
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"

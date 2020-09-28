@@ -2,7 +2,7 @@
 <template>
   <div>
     <showContentInCardComponent
-      mainCardName="Reminders"
+      propMainCardName="Reminders"
       :childCardsArray="cfArOfRemForDisplayInTable"
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"

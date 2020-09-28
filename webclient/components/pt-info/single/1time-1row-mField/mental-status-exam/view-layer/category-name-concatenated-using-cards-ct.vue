@@ -1,6 +1,6 @@
 <template>
   <showContentInCardComponent
-    mainCardName="Mental status exam"
+    propMainCardName="Mental status exam"
     :childCardsArray="cfArOfMentalStatusExamForDisplay"
     clientSideDBLevelTableActions="edit"
     clientSideCardLevelActions="remove, info"

@@ -5,7 +5,7 @@
     v-if="flipSwitchShowCard === 1"
   >
     <div slot="header" class="sc-top-most-parent-header clearfix">
-      <span>{{ mainCardName }}</span>
+      <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
           class="item"
@@ -108,7 +108,7 @@
 
 <script>
 export default {
-  props: { mainCardName: String, childCardsArray: Array, gridDesign: String },
+  props: { propMainCardName: String, childCardsArray: Array, gridDesign: String },
   data: function () {
     return {
       toggleSwitchShowBodyContent: 1,

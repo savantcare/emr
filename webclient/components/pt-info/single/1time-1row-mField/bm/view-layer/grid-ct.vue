@@ -1,7 +1,7 @@
 <template>
   <div>
     <showContentInCardComponent
-      mainCardName="Body measurement"
+      propMainCardName="Body measurement"
       :childCardsArray="cfArOfBMComponentsForDisplay"
       clientSideDBLevelTableActions="edit"
       clientSideCardLevelActions="remove, info"
