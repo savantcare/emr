@@ -4,8 +4,8 @@
     <showContentInCardComponent
       propMainCardName="Reminders"
       :propChildCardsArray="cfArOfRemForDisplayInTable"
-      propclientSideDBLevelTableActions="edit"
-      propClientSideCardLevelActions="remove, info"
+      propClientSideTableLevelActions="edit"
+      propClientSideRowLevelActions="remove, info"
     ></showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>

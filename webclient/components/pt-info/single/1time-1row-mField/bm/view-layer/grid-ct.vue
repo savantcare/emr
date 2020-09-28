@@ -3,8 +3,8 @@
     <showContentInCardComponent
       propMainCardName="Body measurement"
       :propChildCardsArray="cfArOfBMComponentsForDisplay"
-      propclientSideDBLevelTableActions="edit"
-      propClientSideCardLevelActions="remove, info"
+      propClientSideTableLevelActions="edit"
+      propClientSideRowLevelActions="remove, info"
     ></showContentInCardComponent>
   </div>
 </template>

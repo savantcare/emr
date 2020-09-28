@@ -2,8 +2,8 @@
   <showContentInCardComponent
     propMainCardName="Mental status exam"
     :propChildCardsArray="cfArOfMentalStatusExamForDisplay"
-    propclientSideDBLevelTableActions="edit"
-    propClientSideCardLevelActions="remove, info"
+    propClientSideTableLevelActions="edit"
+    propClientSideRowLevelActions="remove, info"
   />
 </template>
 

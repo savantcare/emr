@@ -3,8 +3,8 @@
     <showContentInCardComponent
       propMainCardName="Correlate"
       :propChildCardsArray="cfArOfCorrelateComponentsForDisplay"
-      propclientSideDBLevelTableActions="edit"
-      propClientSideCardLevelActions="remove, info"
+      propClientSideTableLevelActions="[edit]"
+      propClientSideRowLevelActions="[remove], [info]"
       propGridDesignTopMostParentBody="sc-top-most-parent-body-grid"
     ></showContentInCardComponent>
   </div>
