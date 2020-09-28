@@ -112,7 +112,13 @@ export default {
     },
     mfIconClicked(pAction) {
       console.log(pAction)
-      this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
+      if (pAction === 'Minimize')
+        this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
+      if (pAction === 'Add') this.$parent.mxOpenACtInEditLayer()
+      if (pAction === 'Multi edit') this.$parent.mxOpenMCtInEditLayer()
+      if (pAction === 'Trash can') this.$parent.mxOpenXCtInEditLayer()
+
+      return
     },
     mfRemoveOutlineClicked(pAction) {
       console.log(pAction)

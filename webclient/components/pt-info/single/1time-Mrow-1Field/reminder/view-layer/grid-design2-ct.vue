@@ -5,10 +5,10 @@
       propMainCardName="Reminders"
       :propChildCardsArray="cfArOfRemForDisplayInTable"
       :propClientSideTableLevelActions="[
-        { content: 'minimize', class: 'el-icon-remove-outline' },
-        { content: 'add', class: 'el-icon-circle-plus-outline' },
-        { content: 'Multi Edit', class: 'el-icon-money' },
-        { content: 'Multi Delete', class: 'el-icon-document-delete' },
+        { content: 'Minimize', class: 'el-icon-remove-outline' },
+        { content: 'Add', class: 'el-icon-circle-plus-outline' },
+        { content: 'Multi edit', class: 'el-icon-money' },
+        { content: 'Multi delete', class: 'el-icon-document-delete' },
         { content: 'Trash can', class: 'el-icon-delete' },
       ]"
       :propClientSideRowLevelActions="[
