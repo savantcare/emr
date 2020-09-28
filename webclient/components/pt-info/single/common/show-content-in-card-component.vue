@@ -115,7 +115,7 @@ export default {
       if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
       if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
       if (pAction === 'Trash can') this.$parent.mxOpenTrashCanCtInEditLayer()
-      if (pAction === 'Minimize card')
+      if (pAction === 'Toggle card')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
 
       if (pAction === 'Close card') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard

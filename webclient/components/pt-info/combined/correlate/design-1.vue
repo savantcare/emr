@@ -4,7 +4,7 @@
       propMainCardName="Correlate"
       :propChildCardsArray="cfArOfCorrelateComponentsForDisplay"
       :propClientSideTableLevelActions="[
-        { content: 'Minimize card', class: 'el-icon-remove-outline' },
+        { content: 'Toggle card', class: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[{}]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
