@@ -243,25 +243,34 @@ Generatiobn 3                     |
   right: 0px;
 }
 
-/* Used at: Reminder Ct Row Position 1  */
+/* Used for EDIT at: 
+Component           |  Side        | Location     | From front  | From back
+  Reminder          |  Fixed       |  Row         |     1       |  -3
+  */
 .el-icon-edit:hover {
   color: #909399 !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Row Position 2  */
+/* Used for TIMELINE at: 
+Component           |  Side        | Location     | From front  | From back
+  Reminder          |  Fixed       |  Row         |  2          |  -2
+  */
 .el-icon-discover:hover {
   color: #909399 !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Row Position 3  */
+/* Used for DELETE-ROW at: 
+Component           |  Side        | Location     | From front  | From back
+  Reminder          |  Fixed       |  Row         |  3          |  -1
+  */
 .el-icon-circle-close:hover {
   color: #f56c6c !important;
   font-size: 1.5rem;
 }
 
-/* Used for minimize at: 
+/* Used for MINIMIZE at: 
 Component           |  Side        | Location     | From front  | From back
   Reminder          |  Fixed       |  Header      |  4          |  -1
   Corelate          |  Fixed       |  Header      |  1          |  -1
@@ -273,7 +282,7 @@ Component           |  Side        | Location     | From front  | From back
   font-size: 1.5rem;
 }
 
-/* Used for close at: 
+/* Used for CLOSE at: 
 Component          |  Side         | Position    | From front  | Front back
 Service statement  |  Flexible     | Header      |   3         |    -1
 Mental status exam |  Flexible     | Header      |   3         |    -1
@@ -283,7 +292,7 @@ Mental status exam |  Flexible     | Header      |   3         |    -1
   color: #f56c6c !important;
 }
 
-/* Used for add at: 
+/* Used for ADD at: 
 Component         |  Side           | Position    | From front  | Front back
 Reminder          |  Fixed          |  Header     |  1 
 */
@@ -292,23 +301,29 @@ Reminder          |  Fixed          |  Header     |  1
   font-size: 1.5rem;
 }
 
-/* Used for multi edit at: 
+/* Used for MULTI-EDIT at: 
 Component          |  Side        | Position    | From front  | Front back
  Reminder          |  Fixed       |  Header     |   2         |    -3
- Service statement |  Flexible    | Header      |   1         |    -3
+ Service statement |  Flexible    |  Header     |   1         |    -3
  */
 .el-icon-money:hover {
   color: #67c23a !important;
   font-size: 1.5rem;
 }
 
-/* Used at: Reminder Ct Header Position 4 */
+/* Used for MULTI-DELETE at: 
+Component          |  Side        | Position    | From front  | Front back
+  Reminder         |  Fixed       |  Header     |             | 
+   */
 .el-icon-document-delete:hover {
   color: #f56c6c !important;
   font-size: 1.5rem;
 }
 
-/*  Used at: Reminder Ct Header Position 5 */
+/*  Used for TRASH-CAN at: 
+Component          |  Side        | Position    | From front  | Front back
+Reminder           |  Fixed       |  Header     |   5 
+*/
 .el-icon-delete:hover {
   color: #909399 !important;
   font-size: 1.5rem;
