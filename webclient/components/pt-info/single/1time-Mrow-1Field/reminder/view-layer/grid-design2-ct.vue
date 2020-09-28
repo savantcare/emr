@@ -11,7 +11,10 @@
         { content: 'Multi Delete', class: 'el-icon-document-delete' },
         { content: 'Trash can', class: 'el-icon-delete' },
       ]"
-      propClientSideRowLevelActions="remove, info"
+      :propClientSideRowLevelActions="[
+        { content: 'Timeline', class: 'el-icon-discover' },
+        { content: 'Delete', class: 'el-icon-circle-close' },
+      ]"
     ></showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>

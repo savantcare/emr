@@ -41,33 +41,19 @@
 
         <el-button-group style="float: right; display: none">
           <el-tooltip
+            v-for="action in propClientSideRowLevelActions"
+            :key="action.content"
             class="item"
             effect="light"
-            content="Timeline"
+            :content="action.content"
             placement="top-end"
             :open-delay="500"
           >
             <el-button
-              class="el-icon-discover"
+              :class="action.class"
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
-            ></el-button>
-          </el-tooltip>
-
-          <el-tooltip
-            class="item"
-            effect="light"
-            content="Delete"
-            placement="top-end"
-            :open-delay="500"
-          >
-            <el-button
-              class="el-icon-circle-close"
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              tabindex="-1"
-              @click="mfIconDeleteClickedOnChildCard(card.clientSideUniqRowId)"
             ></el-button>
           </el-tooltip>
         </el-button-group>
@@ -85,6 +71,7 @@ export default {
     propChildCardsArray: Array,
     propGridDesignTopMostParentBody: String,
     propClientSideTableLevelActions: Array,
+    propClientSideRowLevelActions: Array,
   },
   data: function () {
     return {

@@ -4,7 +4,10 @@
       propMainCardName="Body measurement"
       :propChildCardsArray="cfArOfBMComponentsForDisplay"
       :propClientSideTableLevelActions="[{ content: 'minimize', class: 'el-icon-remove-outline' }]"
-      propClientSideRowLevelActions="remove, info"
+      :propClientSideRowLevelActions="[
+        { content: 'Timeline', class: 'el-icon-discover' },
+        { content: 'Delete', class: 'el-icon-circle-close' },
+      ]"
     ></showContentInCardComponent>
   </div>
 </template>
