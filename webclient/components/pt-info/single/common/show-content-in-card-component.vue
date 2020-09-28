@@ -8,11 +8,11 @@
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
-          v-for="action in propClientSideTableLevelActions"
-          :key="action.content"
+          v-for="tableLevelAction in propClientSideTableLevelActions"
+          :key="tableLevelAction.content"
           class="item"
           effect="light"
-          :content="action.content"
+          :content="tableLevelAction.content"
           placement="top-end"
           :open-delay="500"
         >
@@ -20,13 +20,13 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfIconClicked(action.content)"
-            :class="action.class"
+            @click="mfActOnIconClicked(tableLevelAction.content)"
+            :class="tableLevelAction.class"
           ></el-button>
         </el-tooltip>
       </el-button-group>
     </div>
-    <div :class="mfGetClass()" v-if="toggleSwitchShowBodyContent === 1">
+    <div :class="mfGetTopMostCardBodyGrid()" v-if="toggleSwitchShowBodyContent === 1">
       <el-card
         v-for="card in propChildCardsArray"
         :key="card.clientSideUniqRowId"
@@ -41,16 +41,16 @@
 
         <el-button-group style="float: right; display: none">
           <el-tooltip
-            v-for="action in propClientSideRowLevelActions"
-            :key="action.content"
+            v-for="rowLevelAction in propClientSideRowLevelActions"
+            :key="rowLevelAction.content"
             class="item"
             effect="light"
-            :content="action.content"
+            :content="rowLevelAction.content"
             placement="top-end"
             :open-delay="500"
           >
             <el-button
-              :class="action.class"
+              :class="rowLevelAction.class"
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
@@ -103,15 +103,14 @@ export default {
         return 'color: #202020;'
       }
     },
-    mfGetClass() {
+    mfGetTopMostCardBodyGrid() {
       console.log(this.propClientSideTableLevelActions)
       if (this.propGridDesignTopMostParentBody) {
         return this.propGridDesignTopMostParentBody
       }
       return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
     },
-    mfIconClicked(pAction) {
-      console.log(pAction)
+    mfActOnIconClicked(pAction) {
       if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
       if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
       if (pAction === 'Trash can') this.$parent.mxOpenTrashCanCtInEditLayer()

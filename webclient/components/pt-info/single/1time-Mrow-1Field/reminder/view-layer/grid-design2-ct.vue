@@ -12,8 +12,8 @@
       ]"
       :propClientSideRowLevelActions="[
         { content: 'Edit', class: 'el-icon-edit' },
-        { content: 'ShowRowTimeline', class: 'el-icon-discover' },
-        { content: 'DeleteRow', class: 'el-icon-circle-close' },
+        { content: 'Show data timeline', class: 'el-icon-discover' },
+        { content: 'Delete row', class: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
 
