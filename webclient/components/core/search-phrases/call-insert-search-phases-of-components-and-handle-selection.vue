@@ -77,7 +77,7 @@ import insertWeightComponentSearchPhrases from '@/components/pt-info/single/1tim
 
 // 1time-1row-mField/others
 import insertMseComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertPhq9ComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertPhq9ComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import insertProsComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
@@ -176,6 +176,7 @@ export default {
         ctToShow: require('@/components/' + pSelectedSuggestion.ctToShow).default,
         id: pSelectedSuggestion.id,
         closable: true,
+        ctWidthInEditLayer: pSelectedSuggestion.ctWidthInEditLayer,
       }
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // ptsvl -> Current state of view layer

@@ -1,84 +1,136 @@
-// Master doc is at reference implementation name/view-layer/edit-design-1.vue. This file has doc
-unique to this ct Code synced with ref implementation on 18th august 2020
 <template>
   <div>
-    <el-form>
-      <el-form-item>
-        <!-- 
-        Q) Why we are using the vaPhq9QuestionFields variable data from  mixins component db/full-sync-with-db-server-mixin.js
+    <el-input placeholder="Filter text" v-model="userTypedKeyword" />
+    <!-- 
+        Q) Why there is separate section for question 10
+        Ans) The question 10 has differeent radio button label and design pattern
+        for this we have separated the design using v-if="index === 9" at line 39
+    -->
+    <div
+      v-for="(objQuestion, index) in cfGetMasterListOfPhq9"
+      :key="index"
+      style="margin-top: 20px"
+    >
+      <div v-if="index !== 9">
+        <el-row v-if="index === 0">
+          <strong>
+            Over the last 2 weeks, how often have you been bothered by any of the following
+            problems?
+          </strong>
+        </el-row>
+        <br />
+        <el-row>
+          <div>{{ index + 1 }}. {{ objQuestion.phq9QuestionFullText }}</div>
+          <br />
+          <el-radio-group
+            :value="mfGetValueFromClientSideTblPatient(objQuestion)"
+            @input="mfSetValueInClientSideTblPatient($event, objQuestion.phq9QuestionMasterId)"
+          >
+            <el-radio-button :label="0" border>Not at all</el-radio-button>
+            <el-radio-button :label="1" border>Several days</el-radio-button>
+            <el-radio-button :label="2" border>More then half the days</el-radio-button>
+            <el-radio-button :label="3" border>Nearly every day</el-radio-button>
+          </el-radio-group>
+        </el-row>
+      </div>
 
-        Ans) the vaPhq9QuestionFields is is required for both VL and CL components. 
-        Due to this we fetched data from mixins component.
-        Fetched all the fields with v-for loop and displayed in the template.
-
-        Note: The question 10 has differeent radio button label and design pattern
-        for this we have saperated the design using v-if="index === 9" at line 45
-      -->
-
-        <div v-for="(question, index) in vaPhq9QuestionFields" :key="index">
-          <div v-if="index !== 9">
-            <el-row v-if="index === 0">
-              <strong>
-                Over the last 2 weeks, how often have you been bothered by any of the following
-                problems?
-              </strong>
-            </el-row>
-
-            <el-row>
-              <el-col :span="12">
-                <div>{{ index + 1 }}. {{ question.label }}</div>
-              </el-col>
-              <el-col :span="12">
-                <el-radio-group
-                  :value="mfGetCopiedRowFldNumericValue(question.name)"
-                  @input="mfSetCopiedRowBeingChangedFldVal($event, question.name)"
-                >
-                  <el-radio :label="0">Not at all</el-radio>
-                  <el-radio :label="1">Several days</el-radio>
-                  <el-radio :label="2">More then half the days</el-radio>
-                  <el-radio :label="3">Nearly every day</el-radio>
-                </el-radio-group>
-              </el-col>
-            </el-row>
-          </div>
-
-          <div v-if="index === 9">
-            <el-row>
-              <strong>{{ question.label }}</strong>
-            </el-row>
-
-            <el-row>
-              <el-col :span="12">
-                <el-radio-group
-                  :value="mfGetCopiedRowFldNumericValue(question.name)"
-                  @input="mfSetCopiedRowBeingChangedFldVal($event, question.name)"
-                >
-                  <el-radio :label="0">Not difficult at all</el-radio>
-                  <el-radio :label="1">Somewhat difficult</el-radio>
-                  <el-radio :label="2">Very difficult</el-radio>
-                  <el-radio :label="3">Extremely difficult</el-radio>
-                </el-radio-group>
-              </el-col>
-            </el-row>
-          </div>
-        </div>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button :disabled="cfHasSomeFldChanged" type="success" plain @click="mfOnReviewed"
-          >Reviewed</el-button
-        >
-        <el-button :disabled="cfHasSomeFldChanged" type="danger" plain @click="mfOnResetForm"
-          >Reset form</el-button
-        >
-      </el-form-item>
-    </el-form>
+      <div v-if="index === 9">
+        <el-row>
+          <strong>{{ objQuestion.phq9QuestionFullText }}</strong>
+          <br />
+          <el-radio-group
+            :value="mfGetValueFromClientSideTblPatient(objQuestion)"
+            @input="mfSetValueInClientSideTblPatient($event, objQuestion.phq9QuestionMasterId)"
+          >
+            <el-radio-button :label="0">Not difficult at all</el-radio-button>
+            <el-radio-button :label="1">Somewhat difficult</el-radio-button>
+            <el-radio-button :label="2">Very difficult</el-radio-button>
+            <el-radio-button :label="3">Extremely difficult</el-radio-button>
+          </el-radio-group>
+        </el-row>
+      </div>
+    </div>
   </div>
 </template>
-<script>
-import mxc from '../com-mx/edit-layer.js'
 
+<script>
+import clientSideTblMasterPhq9 from '../db/client-side/structure/master-table-of-phq9.js'
+import clientSideTblPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
 export default {
-  mixins: [mxc],
+  data() {
+    return {
+      userTypedKeyword: '',
+    }
+  },
+  computed: {
+    cfGetMasterListOfPhq9() {
+      let arOfObjectsFromClientSideMasterDB = clientSideTblMasterPhq9
+        .query()
+        .with('tblPhq9ForPatientLink')
+        .where('ROW_END', 2147483647.999999)
+        .where((_record, query) => {
+          query.where('phq9QuestionFullText', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
+        })
+        .get()
+      console.log(arOfObjectsFromClientSideMasterDB)
+      return arOfObjectsFromClientSideMasterDB
+    },
+  },
+  methods: {
+    mfGetValueFromClientSideTblPatient(pObjQuestion) {
+      // console.log(pObjQuestion)
+      if (pObjQuestion.tblPhq9ForPatientLink) {
+        if (pObjQuestion.tblPhq9ForPatientLink.ROW_END === 2147483647.999999) {
+          return parseInt(pObjQuestion.tblPhq9ForPatientLink.valueChosenByPatient)
+        }
+      }
+      return null
+    },
+    mfSetValueInClientSideTblPatient(pEvent, pQuestionMasterId) {
+      const exists = clientSideTblPatientPhq9
+        .query()
+        .where('phq9QuestionMasterId', pQuestionMasterId)
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      console.log(exists)
+      if (exists.length > 0) {
+        clientSideTblPatientPhq9.update({
+          where: exists[0].clientSideUniqRowId,
+          data: {
+            valueChosenByPatient: pEvent,
+          },
+        })
+      } else {
+        clientSideTblPatientPhq9.insert({
+          data: {
+            valueChosenByPatient: pEvent,
+            phq9QuestionMasterId: pQuestionMasterId,
+          },
+        })
+      }
+    },
+  },
 }
 </script>
+
+<style>
+.sc-phq9-all-content-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Some other grid-template-columns options are :
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
+  */
+  grid-gap: 1px;
+  grid-auto-flow: row; /* This is default value */
+  margin: 1px;
+}
+.el-radio-group label span {
+  margin-right: 10px;
+  border-left: 1px solid #dcdfe6;
+  border-radius: 4px;
+}
+</style>
