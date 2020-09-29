@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import masterList from './master-list-of-dx-ct'
 
 export default {
@@ -14,30 +14,30 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
-        ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'ptsVl',
+        ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/view-layer/grid-with-cards-ct.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    // clientSideTblSearchPhrasesOfCt.insert({
+    // clientSideTblOfCtSearchPhrases.insert({
     //   data: {
     //     value: 'change diagnosis',
     //     ctAbbr: 'cdx',
-    //     ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design.vue',
-    //     displayLocation: 'cl',
+    //     ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
+    //     displayLocation: 'edit-layer',
     //     ctWidthInCl: 'large', // small
     //     needsRowIdToWork: 'yes',
     //   },
     // })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adx',
-        ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design.vue',
-        displayLocation: 'cl',
+        ctToShow: 'pt-info/single/1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
+        displayLocation: 'edit-layer',
         ctWidthInCl: 'small', // small
       },
     })

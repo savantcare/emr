@@ -8,7 +8,7 @@
         > -->
         <el-tooltip content="Add diagnosis"
                     effect="light"
-                    :open-delay="100"
+                    :open-delay="300"
                     placement="top">
             <el-button style="float: right; padding: 3px 0" type="text" @click="mfOpenAddModule" icon="el-icon-circle-plus-outline"></el-button>
         </el-tooltip>
@@ -31,7 +31,7 @@
               <template slot-scope="props">
                 <el-tooltip content="Discontinue"
                     effect="light"
-                    :open-delay="100"
+                    :open-delay="300"
                     placement="top">
                     
                   <el-button
@@ -97,7 +97,7 @@ export default {
         })
     },
     mfOpenAddModule() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add diagnosis', //pPropsToGiveToCt: 1
       })
     },
