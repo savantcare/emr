@@ -57,27 +57,27 @@ import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/
 import insertClearComponentSearchPhrases from '@/components/core/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
-import insertFeedComponentSearchPhrases from '@/components/pt-info/combined/feed/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertMapComponentSearchPhrases from '@/components/pt-info/combined/map/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertFeedComponentSearchPhrases from '@/components/pt-info/combined/feed/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertMapComponentSearchPhrases from '@/components/pt-info/combined/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/PII
-import insertDobComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertDobComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import insertNameComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/body-measurement
-import insertBloodPressureComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertBloodSugarComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertBmComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertHeightComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertOxygenSaturationComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertPulseComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertTemperatureComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertWaistCircumferenceComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertWeightComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertBloodPressureComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertBloodSugarComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertBmComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertHeightComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertOxygenSaturationComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertPulseComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertTemperatureComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertWaistCircumferenceComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertWeightComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/others
 import insertMseComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertPhq9ComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertPhq9ComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import insertProsComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
@@ -85,7 +85,7 @@ import insertRemComponentSearchPhrases from '@/components/pt-info/single/1time-M
 import insertSsComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-mField
-import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 
