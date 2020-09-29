@@ -66,7 +66,7 @@
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
-              @click="mfActOnRowLevelIconClicked(rowLevelAction.actionDescription)"
+              @click="mfActOnRowLevelIconClicked(rowLevelAction.actionDescription, card)"
             ></el-button>
           </el-tooltip>
         </el-button-group>
@@ -120,21 +120,21 @@ export default {
       }
       return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
     },
-    mfActOnTableLevelIconClicked(pAction) {
-      if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
-      if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
+    mfActOnTableLevelIconClicked(pActionDescription) {
+      if (pActionDescription === 'Add') this.$parent.mxOpenAddCtInEditLayer()
+      if (pActionDescription === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
 
-      if (pAction === 'Toggle card display')
+      if (pActionDescription === 'Toggle card display')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
-      if (pAction === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
-      if (pAction === 'Close card')
+      if (pActionDescription === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
+      if (pActionDescription === 'Close card')
         this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh =
           1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh
 
       return
     },
-    mfActOnRowLevelIconClicked(pAction) {
-      if (pAction === 'Edit') this.$parent.mfOpenEditCtInEditLayer()
+    mfActOnRowLevelIconClicked(pActionDescription, pCard) {
+      if (pActionDescription === 'Edit') this.$parent.mfEditIconClicked(pCard.clientSideUniqRowId)
 
       return
     },

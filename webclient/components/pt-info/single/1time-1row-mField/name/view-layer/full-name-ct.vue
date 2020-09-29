@@ -38,20 +38,6 @@
       cfLatestDataRowFromClientSideTable['lastName']
     }}</el-button>
     <el-button
-      type="primary"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="
-        mfOpenEditCtInEditLayer(
-          cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
-          'name - edit'
-        )
-      "
-      class="el-icon-edit"
-    ></el-button>
-    <el-button
       v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="success"
       size="mini"
@@ -112,12 +98,20 @@ export default {
       let obj = new Object()
       obj['cardContentOfTypeStringToShowInBodyOfCards'] =
         this.cfLatestDataRowFromClientSideTable['firstName'] +
-        ' ' +
+        ' - ' +
         this.cfLatestDataRowFromClientSideTable['middleName'] +
-        ' ' +
+        ' - ' +
         this.cfLatestDataRowFromClientSideTable['lastName']
+
+      obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
+    },
+  },
+  methods: {
+    mfEditIconClicked(pRowId) {
+      console.log(pRowId)
+      this.mfOpenEditCtInEditLayer(pRowId, 'name - edit')
     },
   },
 }
