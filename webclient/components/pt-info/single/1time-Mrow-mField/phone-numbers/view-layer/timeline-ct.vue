@@ -84,6 +84,7 @@
 <script>
 import clientSideTable from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
+import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 
 export default {
   mixins: [clInvokeMixin],
@@ -92,10 +93,11 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfVl() {
-      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'phone numbers')
-      const idx = arOfCardsInPtsOfVl.indexOf(obj)
-      return idx
+      const arFromClientSideTable = clientSideTblOfRightSideCards
+        .query()
+        .where('name', 'reminders')
+        .get()
+      return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
       const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
