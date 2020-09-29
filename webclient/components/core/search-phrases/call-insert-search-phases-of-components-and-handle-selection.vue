@@ -188,8 +188,6 @@ export default {
             vIfState: 1,
           },
         })
-
-        this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
         // Change layer
         this.$store.commit('mtfShowNewFirstTabInEditLayer', objCtToAdd)
