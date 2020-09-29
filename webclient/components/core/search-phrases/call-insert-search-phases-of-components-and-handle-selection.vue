@@ -35,6 +35,7 @@
 
     <!-- 1time-Mrow-mField/others -->
     <insertPhoneNumberComponentSearchPhrases />
+    <insertDignosisComponentSearchPhrases />
 
     <el-autocomplete
       v-model="searchKeyword"
@@ -86,6 +87,7 @@ import insertSsComponentSearchPhrases from '@/components/pt-info/single/1time-Mr
 
 // 1time-Mrow-mField
 import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertDignosisComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/diagnosis/db/client-side/static-data/search-phrases-ct.vue'
 
 export default {
   components: {
@@ -122,6 +124,7 @@ export default {
 
     // 1time-Mrow-mField
     insertPhoneNumberComponentSearchPhrases,
+    insertDignosisComponentSearchPhrases,
   },
   data() {
     return { searchKeyword: '' }
