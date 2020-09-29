@@ -27,7 +27,7 @@
       </el-button-group>
     </div>
     <div :class="mfGetTopMostCardBodyGrid()" v-if="toggleSwitchShowBodyContent === 1">
-      <slot></slot>
+      <slot name="body" />
       <el-card
         v-for="card in propChildCardsArray"
         :key="card.clientSideUniqRowId"
