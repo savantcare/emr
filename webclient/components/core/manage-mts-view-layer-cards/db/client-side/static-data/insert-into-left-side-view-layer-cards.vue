@@ -13,7 +13,7 @@ export default {
     clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
-        ctToShowPath: 'core/mts-view-layer-header/sub-ct-container-design2.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShowPath: 'core/mts-view-layer-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfLeftSideCards.insert({
