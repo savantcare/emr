@@ -3,7 +3,7 @@
     <showContentInCardComponent
       propMainCardName="Correlate"
       :propClientSideTableLevelActions="[
-        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
+        { actionDescription: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[{}]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"

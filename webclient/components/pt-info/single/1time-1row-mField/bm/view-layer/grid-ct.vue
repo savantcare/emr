@@ -4,11 +4,11 @@
       propMainCardName="Body measurement"
       :propChildCardsArray="cfArOfBMComponentsForDisplay"
       :propClientSideTableLevelActions="[
-        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
+        { actionDescription: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[
-        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
-        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
+        { actionDescription: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
+        { actionDescription: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
   </div>

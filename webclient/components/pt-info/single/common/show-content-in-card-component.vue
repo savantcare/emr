@@ -16,10 +16,10 @@
       <el-button-group style="float: right; display: none">
         <el-tooltip
           v-for="tableLevelAction in propClientSideTableLevelActions"
-          :key="tableLevelAction.content"
+          :key="tableLevelAction.actionDescription"
           class="item"
           effect="light"
-          :content="tableLevelAction.content"
+          :content="tableLevelAction.actionDescription"
           placement="top-end"
           :open-delay="500"
         >
@@ -27,7 +27,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnTableLevelIconClicked(tableLevelAction.content)"
+            @click="mfActOnTableLevelIconClicked(tableLevelAction.actionDescription)"
             :class="tableLevelAction.elementIoIconClass"
           ></el-button>
         </el-tooltip>
@@ -54,10 +54,10 @@
         <el-button-group style="float: right; display: none">
           <el-tooltip
             v-for="rowLevelAction in propClientSideRowLevelActions"
-            :key="rowLevelAction.content"
+            :key="rowLevelAction.actionDescription"
             class="item"
             effect="light"
-            :content="rowLevelAction.content"
+            :content="rowLevelAction.actionDescription"
             placement="top-end"
             :open-delay="500"
           >
@@ -66,7 +66,7 @@
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
-              @click="mfActOnRowLevelIconClicked(rowLevelAction.content)"
+              @click="mfActOnRowLevelIconClicked(rowLevelAction.actionDescription)"
             ></el-button>
           </el-tooltip>
         </el-button-group>

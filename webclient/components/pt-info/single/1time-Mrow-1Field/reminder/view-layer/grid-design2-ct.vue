@@ -5,16 +5,16 @@
       propMainCardName="Reminders"
       :propChildCardsArray="cfArOfRemForDisplayInTable"
       :propClientSideTableLevelActions="[
-        { content: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
-        { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
-        { content: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
-        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
-        { content: 'Show deleted', elementIoIconClass: 'el-icon-delete' },
+        { actionDescription: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
+        { actionDescription: 'Multi edit', elementIoIconClass: 'el-icon-money' },
+        { actionDescription: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
+        { actionDescription: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
+        { actionDescription: 'Show deleted', elementIoIconClass: 'el-icon-delete' },
       ]"
       :propClientSideRowLevelActions="[
-        { content: 'Edit', elementIoIconClass: 'el-icon-edit' },
-        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
-        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
+        { actionDescription: 'Edit', elementIoIconClass: 'el-icon-edit' },
+        { actionDescription: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
+        { actionDescription: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
       ]"
     ></showContentInCardComponent>
 
