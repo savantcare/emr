@@ -75,8 +75,6 @@ export default {
         'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue').default
       arrayOfBodyMeasurementComponentsForDisplay.push(obj)
 
-      console.log(arrayOfBodyMeasurementComponentsForDisplay)
-      // return arrayOfComponentsToShow
       return arrayOfBodyMeasurementComponentsForDisplay
     },
   },
