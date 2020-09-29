@@ -4,7 +4,7 @@
     <el-card
       shadow="hover"
       v-for="(allMentalStatusExamInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfMentalStatusExamGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfMentalStatusExamGrouped"
       :key="allMentalStatusExamInsideAGroup.id"
     >
       <div slot="header" class="clearfix">
@@ -19,7 +19,8 @@
                 size="mini"
                 @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
                 type="primary"
-              >{{ ms.mentalStatusExamDescription }}</el-button>
+                >{{ ms.mentalStatusExamDescription }}</el-button
+              >
             </div>
             <div v-else>
               <el-input
@@ -31,9 +32,7 @@
           <div v-else>
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
               <el-button size="mini" @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)">
-                {{
-                ms.mentalStatusExamDescription
-                }}
+                {{ ms.mentalStatusExamDescription }}
               </el-button>
             </div>
             <div v-else>
@@ -51,8 +50,8 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
-import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   data() {
@@ -62,9 +61,9 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfMentalStatusExamGrouped() {
+    cfGetMasterRowsOfMentalStatusExamGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterMentalStatusExam
+      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterMentalStatusExam
         .query()
         .with('tblMentalStatusExamForPatientLink')
         .where('ROW_END', 2147483647.999999)
@@ -82,7 +81,7 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one "Modality of Psychotherapy" exists PatientMentalStatusExam table then do not show others
-      let modalityOfPsychotherapyExists = clientSideTblPatientMentalStatusExam
+      let modalityOfPsychotherapyExists = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
@@ -115,7 +114,7 @@ export default {
       }
 
       // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = clientSideTblPatientMentalStatusExam
+      let timeInPsychotherapyExists = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
@@ -147,7 +146,7 @@ export default {
       }
 
       // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = clientSideTblPatientMentalStatusExam
+      let totalTimeWithPatientExists = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
@@ -216,20 +215,20 @@ export default {
       return false
     },
     mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
-      const exists = clientSideTblPatientMentalStatusExam
+      const exists = clientSideTblOfPatientMentalStatusExam
         .query()
         .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        clientSideTblPatientMentalStatusExam.update({
+        clientSideTblOfPatientMentalStatusExam.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        clientSideTblPatientMentalStatusExam.insert({
+        clientSideTblOfPatientMentalStatusExam.insert({
           data: {
             mentalStatusExamMasterId: pMentalStatusExamMasterId,
           },

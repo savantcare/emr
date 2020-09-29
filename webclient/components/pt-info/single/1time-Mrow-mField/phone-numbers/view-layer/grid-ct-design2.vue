@@ -9,10 +9,12 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenACtInCl"
+            @click="mxOpenAddCtInEditLayer"
             class="el-icon-circle-plus-outline"
           ></el-button>
-          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
+            >M</el-button
+          >
           <el-button
             style="padding: 3px"
             plain
@@ -24,7 +26,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenXCtInCl"
+            @click="mxOpenTrashCanCtInEditLayer"
             class="el-icon-delete"
           ></el-button>
         </el-button-group>
@@ -33,7 +35,7 @@
         <div
           v-for="rem in cfArOfRemForDisplayInTable"
           :key="rem.id"
-          :style="mfGetCssClassName(rem)"
+          :style="mfGetCssClassNameForEachDataRow(rem)"
         >
           <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
@@ -46,7 +48,7 @@
               style="padding: 3px"
               plain
               tabindex="-1"
-              @click="mxOpenCCtInCl(rem.id)"
+              @click="mxOpenEditCtInEditLayer(rem.id)"
               class="el-icon-edit"
             ></el-button>
             <el-button
@@ -142,7 +144,7 @@ export default {
       this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow) {
+    mfGetCssClassNameForEachDataRow(pRow) {
       const strOfNumber = pRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {

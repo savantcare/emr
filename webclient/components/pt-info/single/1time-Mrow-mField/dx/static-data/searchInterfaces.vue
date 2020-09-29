@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 
 export default {
   data() {
@@ -13,28 +13,28 @@ export default {
   },
   mounted() {
     // Search interfaces to this component
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adddx',
         ctToShow: 'pt-info/single/dx/edit-layer/ctAddDx.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
         ctToShow: 'pt-info/single/dx/dx-vl.vue',
-        displayLocation: 'ptsVl',
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblSearchPhrasesOfCt.insert({
+    clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'multichange dx assessment',
         ctAbbr: 'mcdxa',
         ctToShow: 'pt-info/single/dx/edit-layer/ctMultiChangeDxa.vue',
-        displayLocation: 'cl',
+        displayLocation: 'edit-layer',
       },
     })
   },

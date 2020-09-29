@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
       v-for="(allPsychReviewOfSystemsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterListOfPsychReviewOfSystemsGrouped"
+      groupNameGivenAsIndex) in cfGetMasterRowsOfPsychReviewOfSystemsGrouped"
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import clientSideTblMasterPsychReviewOfSystems from '../db/client-side/structure/table-master-list-of-psych-review-of-systems.js'
-import clientSideTblPatientPsychReviewOfSystems from '../db/client-side/structure/table-psych-review-of-systems-of-a-patient.js'
+import clientSideTblOfMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientSideTblOfPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 export default {
   data() {
@@ -76,9 +76,9 @@ export default {
     }
   },
   computed: {
-    cfGetMasterListOfPsychReviewOfSystemsGrouped() {
+    cfGetMasterRowsOfPsychReviewOfSystemsGrouped() {
       console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblMasterPsychReviewOfSystems
+      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483647.999999)
@@ -96,7 +96,7 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one "Modality of Psychotherapy" exists PatientPsychReviewOfSystems table then do not show others
-      let modalityOfPsychotherapyExists = clientSideTblPatientPsychReviewOfSystems
+      let modalityOfPsychotherapyExists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .whereHas('tblPsychReviewOfSystemsMasterLink', (query) => {
@@ -131,7 +131,7 @@ export default {
       }
 
       // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = clientSideTblPatientPsychReviewOfSystems
+      let timeInPsychotherapyExists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .whereHas('tblPsychReviewOfSystemsMasterLink', (query) => {
@@ -165,7 +165,7 @@ export default {
       }
 
       // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = clientSideTblPatientPsychReviewOfSystems
+      let totalTimeWithPatientExists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .whereHas('tblPsychReviewOfSystemsMasterLink', (query) => {
@@ -236,20 +236,20 @@ export default {
       return false
     },
     mfTogglePsychReviewOfSystems(pPsychReviewOfSystemsMasterId) {
-      const exists = clientSideTblPatientPsychReviewOfSystems
+      const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
       if (exists.length > 0) {
-        clientSideTblPatientPsychReviewOfSystems.update({
+        clientSideTblOfPatientPsychReviewOfSystems.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },
         })
       } else {
-        clientSideTblPatientPsychReviewOfSystems.insert({
+        clientSideTblOfPatientPsychReviewOfSystems.insert({
           data: {
             psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
           },

@@ -1,17 +1,17 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import clientSideTable from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
+import clientSideTable from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   methods: {
-    mxOpenACtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mxOpenAddCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add reminder',
       })
     },
-    mxOpenMCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mxOpenMultiEditCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'multi edit reminder',
       })
     },
@@ -50,7 +50,7 @@ export default {
           console.log('multi delete cancelled')
         })
     },
-    async mxOpenXCtInCl() {
+    async mxOpenTrashCanCtInEditLayer() {
       const deletedRows = await clientSideTable.fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
@@ -68,7 +68,7 @@ export default {
         drawerData: arDrawerData,
       })
     },
-    mxOpenCCtInCl(pOrmDataRowId) {
+    mxOpenEditCtInEditLayer(pOrmDataRowId) {
       /*
        We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
        Option 1: Send the whole data row
@@ -81,7 +81,7 @@ export default {
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
       const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pOrmDataRowId }
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', payload)
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pOrmDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pOrmDataRowId)

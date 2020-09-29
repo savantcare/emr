@@ -418,7 +418,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
   */
   static fnPutFldValueInCache(pEvent, pClientSideRowId, pFldName) {
-    // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setfldInClientSideTableOnTimeOut
+    // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setfldInEditLayerientSideTableOnTimeOut
 
     /*
       Q) Why we are using three dimensional array of arOrmRowsCached?
@@ -451,7 +451,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     /*
       Method 3 of updating cache:
-      this.arOrmRowsCached[pClientSideRowId] = newRow // vue does not react. Now add.vue:115:setfldInClientSideTableOnTimeOut needs this.$forceUpdate
+      this.arOrmRowsCached[pClientSideRowId] = newRow // vue does not react. Now add.vue:115:setfldInEditLayerientSideTableOnTimeOut needs this.$forceUpdate
       */
     /* 
       Method 4 of updating cache:

@@ -10,7 +10,7 @@
           <el-col :span="10" :class="ormRow.validationClass">
             <el-input
               ref="phone number"
-              :class="mfGetCssClassName(ormRow.id)"
+              :class="mfGetCssClassNameForEachDataRow(ormRow.id)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the phoneNumber .."
               :value="mfGetFldValue(ormRow.id, 'phoneNumber')"
@@ -25,7 +25,7 @@
           <el-col :span="10" :class="ormRow.validationClass">
             <el-input
               ref="country code"
-              :class="mfGetCssClassName(ormRow.id)"
+              :class="mfGetCssClassNameForEachDataRow(ormRow.id)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the country code .."
               :value="mfGetFldValue(ormRow.id, 'countryCode')"
@@ -41,17 +41,19 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInClientSideTable(ormRow.id)"
+              @click="mfDeleteRowInEditLayerientSideTable(ormRow.id)"
               >Remove</el-button
             >
           </el-col>
         </el-form-item>
       </div>
       <!-- If there are no edit state rows then create a empty row for faster data input -->
-      <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
+      <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
-        <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable">Add more</el-button>
+        <el-button type="primary" plain @click="mfAddEmptyRowInEditLayerientSideTable"
+          >Add more</el-button
+        >
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
@@ -108,7 +110,7 @@ export default {
     },
   },
   methods: {
-    async mfAddEmptyRowInClientSideTable() {
+    async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable.insert({
         data: {
@@ -139,7 +141,7 @@ export default {
       clientSideTable.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassName(pClientSideRowId) {
+    mfGetCssClassNameForEachDataRow(pClientSideRowId) {
       const arFromClientSideTable = clientSideTable.find(pClientSideRowId)
       if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
@@ -147,7 +149,7 @@ export default {
       }
       return ''
     },
-    async mfDeleteRowInClientSideTable(pClientSideRowId) {
+    async mfDeleteRowInEditLayerientSideTable(pClientSideRowId) {
       await clientSideTable.delete(pClientSideRowId)
       this.mfManageFocus()
     },

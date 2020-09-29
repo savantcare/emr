@@ -74,7 +74,7 @@ export default {
     },
     getMasterScreenList() {
       const masterScreenList = []
-      const dbMasterScreenList = this.$store.state.screening.screenMasterList
+      const dbMasterScreenList = this.$store.state.screening.screenMasterRows
       const currentScreenList = this.$store.state.screening.screeningList
       dbMasterScreenList.forEach((list) => {
         if (

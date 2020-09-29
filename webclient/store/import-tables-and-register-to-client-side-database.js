@@ -4,12 +4,22 @@ import { Database } from '@vuex-orm/core'
 const database = new Database()
 
 // Core tables
-import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import tableStructureForLifeCycle from '~/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForCommon from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 database.register(tableStructureForSearch)
 database.register(tableStructureForLifeCycle)
 database.register(tableStructureForCommon)
+
+// Appointments
+import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
+database.register(clientSideTblOfAppointments)
+
+// table that decides which cards to show
+import tableStructureForLeftSideView from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import tableStructureForRightSideView from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
+database.register(tableStructureForLeftSideView)
+database.register(tableStructureForRightSideView)
 
 // body measurement tables
 import tableStructureForWeight from '~/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/structure/table.js'
@@ -36,25 +46,25 @@ database.register(tableStructureForScr)
 database.register(tableStructureForPhq9)
 
 // Service statement tables
-import tableStructureForSSMaster from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-master-list-of-service-statements.js'
-import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/table-service-statements-of-a-patient.js'
+import tableStructureForSSMaster from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/master-table-of-service-statements.js'
+import tableStructureForSSOfPatient from '~/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
 // Mental status exam tables
-import tableStructureForMSEMaster from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-master-list-of-mental-status-exam.js'
-import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import tableStructureForMSEMaster from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
+import tableStructureForMSEOfPatient from '~/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables
-import tableStructureForPROSMaster from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-master-list-of-psych-review-of-systems.js'
-import tableStructureForPROSOfPatient from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/table-psych-review-of-systems-of-a-patient.js'
+import tableStructureForPROSMaster from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import tableStructureForPROSOfPatient from '~/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/rem-table.js'
+import tableStructureForRem from '~/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import tableStructureForName from '~/components/pt-info/single/1time-1row-mField/name/db/client-side/structure/table.js'
 import tableStructureForDob from '~/components/pt-info/single/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
 import tableStructureForRec from '~/components/pt-info/single/1time-Mrow-1Field/rec/db/client-side/structure/model.js'

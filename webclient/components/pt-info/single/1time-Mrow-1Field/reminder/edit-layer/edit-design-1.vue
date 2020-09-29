@@ -44,8 +44,8 @@
   </div>
 </template>
 <script>
-import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 export default {
   /* 
     Q) Why is firstProp needed?
@@ -232,7 +232,7 @@ export default {
         /**
          * Send socket id to the server for update from socket
          */
-        const socketClientObj = await objCommonOrm.find(1)
+        const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
 
         const response = await fetch(clientSideTable.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
           method: 'PUT',

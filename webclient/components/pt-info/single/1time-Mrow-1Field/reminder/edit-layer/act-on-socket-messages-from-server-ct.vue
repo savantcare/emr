@@ -2,8 +2,8 @@
   <div></div>
 </template>
 <script>
-import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   mounted() {
@@ -26,7 +26,7 @@ export default {
 
       // if clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = socketIdInMsgRecdFromServer then return withiout making any changes.
 
-      const socketClientObj = await objCommonOrm.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
 
       if (
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
@@ -47,12 +47,12 @@ export default {
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const primaryKeyValue = arFromClientSideTable.rem[0].id
+        const clientSidePrimaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
-            scope.fnSetRowStatus(primaryKeyValue)
+            scope.fnSetRowStatus(clientSidePrimaryKeyValue)
           },
-          1000, // setting timeout of 1 s
+          2000, // setting timeout of 2 s
           this
         )
       }
@@ -80,7 +80,7 @@ export default {
         pDataArr
       )
 
-      const socketClientObj = await objCommonOrm.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
 
       if (
         socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
@@ -114,9 +114,9 @@ export default {
     },
   },
   methods: {
-    fnSetRowStatus(pPrimaryKeyValue) {
+    fnSetRowStatus(pClientSidePrimaryKeyValue) {
       clientSideTable.update({
-        where: pPrimaryKeyValue,
+        where: pClientSidePrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/core/crud/forms.md
         },

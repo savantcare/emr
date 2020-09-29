@@ -5,6 +5,8 @@ import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientSideTable from '../db/client-side/structure/table.js'
+import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
+
 export default {
   mixins: [mxFullSyncWithDbServer],
   data() {
@@ -28,10 +30,11 @@ export default {
     },
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
-      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === clientSideTable.entity)
-      const idx = arOfCardsInPtsOfVl.indexOf(obj)
-      return idx
+      const arFromClientSideTable = clientSideTblOfRightSideCards
+        .query()
+        .where('name', 'reminders')
+        .get()
+      return arFromClientSideTable['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
       return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
@@ -70,11 +73,11 @@ export default {
     }
   },
   methods: {
-    mfOpenCCtInCl(pOrmId) {
+    mfOpenEditCtInEditLayer(pOrmId) {
       console.log(pOrmId)
       const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: searchString,
       })
     },

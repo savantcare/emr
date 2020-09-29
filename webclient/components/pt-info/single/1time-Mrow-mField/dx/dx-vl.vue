@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import ormDx from '@/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
 import ormDxa from '@/components/pt-info/single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 
@@ -115,9 +115,9 @@ export default {
 
       // console.log(dxList);
     },
-    mfOpenACtInCl() {
+    mfOpenACtInEditLayer() {
       console.log('show add dialog')
-      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+      const arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
         .search('add diagnosis')
         .get()
@@ -131,9 +131,9 @@ export default {
       }
       this.$store.commit('mtfShowNewFirstTabInL2', tab)
     },
-    mfOpenMCtInCl() {
+    mfOpenMCtInEditLayer() {
       console.log('show multi change dialog')
-      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt
+      const arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
         .search('Multichange dx assessment')
         .get()

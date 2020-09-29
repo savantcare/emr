@@ -9,10 +9,12 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenACtInCl"
+            @click="mxOpenAddCtInEditLayer"
             class="el-icon-circle-plus-outline"
           ></el-button>
-          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
+            >M</el-button
+          >
           <el-button
             style="padding: 3px"
             plain
@@ -24,7 +26,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenXCtInCl"
+            @click="mxOpenTrashCanCtInEditLayer"
             class="el-icon-delete"
           ></el-button>
         </el-button-group>
@@ -35,7 +37,7 @@
         size="mini"
         style="width: 100%"
         :stripe="true"
-        :row-class-name="mfGetCssClassName"
+        :row-class-name="mfGetCssClassNameForEachDataRow"
         @selection-change="mfHandleSelectionForDelete"
       >
         <el-table-column type="selection" width="42" tabindex="-1"> </el-table-column>
@@ -77,7 +79,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
                 style="padding: 3px"
                 plain
                 tabindex="-1"
-                @click="mxOpenCCtInCl(props.row.id)"
+                @click="mxOpenEditCtInEditLayer(props.row.id)"
                 class="el-icon-edit"
               ></el-button>
               <el-button
@@ -107,7 +109,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
@@ -182,7 +184,7 @@ export default {
       this.daSelectedRemForDelete = val
     },
     // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow, pIndex) {
+    mfGetCssClassNameForEachDataRow(pRow, pIndex) {
       const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {

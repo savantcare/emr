@@ -19,10 +19,12 @@
           style="padding: 3px"
           plain
           tabindex="-1"
-          @click="mxOpenACtInCl"
+          @click="mxOpenAddCtInEditLayer"
           class="el-icon-circle-plus-outline"
         ></el-button>
-        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMCtInCl">M</el-button>
+        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
+          >M</el-button
+        >
         <el-button
           style="padding: 3px"
           plain
@@ -34,7 +36,7 @@
           style="padding: 3px"
           plain
           tabindex="-1"
-          @click="mxOpenXCtInCl"
+          @click="mxOpenTrashCanCtInEditLayer"
           class="el-icon-delete"
         ></el-button>
       </el-button-group>
@@ -62,7 +64,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenCCtInCl(row.id)"
+            @click="mxOpenEditCtInEditLayer(row.id)"
             class="el-icon-edit"
           ></el-button>
           <el-button
@@ -81,9 +83,10 @@
 </template>
 
 <script>
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
+import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 
 export default {
   components: { ctActOnSocketMessages },
@@ -94,10 +97,11 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfVl() {
-      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'reminders')
-      const idx = arOfCardsInPtsOfVl.indexOf(obj)
-      return idx
+      const arFromClientSideTable = clientSideTblOfRightSideCards
+        .query()
+        .where('name', 'reminders')
+        .get()
+      return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
       const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
@@ -136,20 +140,20 @@ export default {
       console.log(e, rowId)
       if (rowId === 'header') {
         if (e.code === 'KeyA') {
-          this.mxOpenACtInCl()
+          this.mxOpenAddCtInEditLayer()
         }
         if (e.code === 'KeyM') {
-          this.mxOpenMCtInCl()
+          this.mxOpenMultiEditCtInEditLayer()
         }
         if (e.code === 'KeyD') {
           this.mxOpenDDialog()
         }
         if (e.code === 'KeyX') {
-          this.mxOpenXCtInCl()
+          this.mxOpenTrashCanCtInEditLayer()
         }
       } else {
         if (e.code === 'KeyC') {
-          this.mxOpenCCtInCl(rowId)
+          this.mxOpenEditCtInEditLayer(rowId)
         }
         if (e.code === 'KeyD') {
           this.mxOpenDPrompt(rowId)

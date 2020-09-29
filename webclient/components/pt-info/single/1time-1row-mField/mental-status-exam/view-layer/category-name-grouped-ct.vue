@@ -6,7 +6,7 @@
         <el-button
           style="float: right; padding: 3px 0"
           type="text"
-          @click="mfOpenCCtInCl"
+          @click="mfOpenEditCtInEditLayer"
           class="el-icon-edit"
         ></el-button>
       </div>
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import clientSideTblMasterMentalStatusExam from '../db/client-side/structure/table-master-list-of-mental-status-exam.js'
-import clientSideTblPatientMentalStatusExam from '../db/client-side/structure/table-mental-status-exam-of-a-patient.js'
+import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblPatientMentalStatusExam
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483647.999999)
@@ -72,15 +72,15 @@ export default {
       }, {}) // {} is the initial value of the storage
     },
     mfDeleteMentalStatusExam(pClientSideUniqRowId) {
-      clientSideTblPatientMentalStatusExam.update({
+      clientSideTblOfPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
         },
       })
     },
-    mfOpenCCtInCl() {
-      this.$store.commit('mtfShowNewFirstTabInClFromSearchPhrase', {
+    mfOpenEditCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit mental status exam',
       })
     },

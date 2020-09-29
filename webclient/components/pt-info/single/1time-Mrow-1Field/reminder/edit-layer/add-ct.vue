@@ -14,7 +14,7 @@
             <el-input
               ref="description"
               type="textarea"
-              :class="mfGetCssClassName(ormRow.clientSideUniqRowId)"
+              :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
               :autosize="{ minRows: 2, maxRows: 10 }"
               placeholder="Please enter the reminder .."
               :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
@@ -33,17 +33,19 @@
               plain
               type="warning"
               style="float: right"
-              @click="mfDeleteRowInClientSideTable(ormRow.clientSideUniqRowId)"
+              @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
               >Remove</el-button
             >
           </el-col>
         </el-form-item>
       </div>
       <!-- If there are no edit state rows then create a empty row for faster data input -->
-      <p v-else>{{ mfAddEmptyRowInClientSideTable() }}</p>
+      <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
-        <el-button type="primary" plain @click="mfAddEmptyRowInClientSideTable">Add more</el-button>
+        <el-button type="primary" plain @click="mfAddEmptyRowInEditLayerientSideTable"
+          >Add more</el-button
+        >
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
@@ -78,7 +80,7 @@
   </div>
 </template>
 <script>
-import clientSideTable from '../db/client-side/structure/rem-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 
 export default {
   computed: {
@@ -100,7 +102,7 @@ export default {
     },
   },
   methods: {
-    async mfAddEmptyRowInClientSideTable() {
+    async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable.insert({
         data: {
@@ -131,7 +133,7 @@ export default {
       clientSideTable.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassName(pClientSideRowId) {
+    mfGetCssClassNameForEachDataRow(pClientSideRowId) {
       const arFromClientSideTable = clientSideTable.find(pClientSideRowId)
       if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
@@ -139,7 +141,7 @@ export default {
       }
       return ''
     },
-    async mfDeleteRowInClientSideTable(pClientSideRowId) {
+    async mfDeleteRowInEditLayerientSideTable(pClientSideRowId) {
       await clientSideTable.delete(pClientSideRowId)
       this.mfManageFocus()
     },

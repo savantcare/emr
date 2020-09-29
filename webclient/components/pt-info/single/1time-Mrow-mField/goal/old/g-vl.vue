@@ -38,7 +38,7 @@
 
 <script>
 // import addGoal from './layer-2/addGoal.vue'
-import clientSideTblSearchPhrasesOfCt from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
 import ormGoal from '@/components/pt-info/single/1time-Mrow-mField/goal/db/client-side/structure/Goal.js'
 
 // const { GOAL_API_URL } = 'http://localhost:8000/goals'
@@ -77,9 +77,9 @@ export default {
         console.log('failed')
       }
     },
-    mfOpenACtInCl() {
+    mfOpenACtInEditLayer() {
       console.log('show add dialog')
-      const arFromClientSideTable = clientSideTblSearchPhrasesOfCt.query().search('add goal').get()
+      const arFromClientSideTable = clientSideTblOfCtSearchPhrases.query().search('add goal').get()
       const objRowFromOrm = arFromClientSideTable[0]
       const tab = {
         label: objRowFromOrm.value,
@@ -88,7 +88,7 @@ export default {
         id: objRowFromOrm.id,
         closable: true,
       }
-      this.$store.commit('mtfShowNewFirstTabInCl', tab)
+      this.$store.commit('mtfShowNewFirstTabInEditLayer', tab)
     },
   },
 }

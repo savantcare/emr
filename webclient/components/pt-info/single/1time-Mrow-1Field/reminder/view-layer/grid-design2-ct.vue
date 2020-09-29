@@ -1,23 +1,37 @@
 <!-- Reference implementation -->
 <template>
-  <showContentInCard
-    mainCardName="Reminders"
-    :childCardsArray="cfArOfRemForDisplayInTable"
-    clientSideDBLevelTableActions="edit"
-    clientSideCardLevelActions="remove, info"
-  />
+  <div>
+    <showContentInCardComponent
+      propMainCardName="Reminders"
+      :propChildCardsArray="cfArOfRemForDisplayInTable"
+      :propClientSideTableLevelActions="[
+        { content: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
+        { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
+        { content: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
+        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        { content: 'Show deleted', elementIoIconClass: 'el-icon-delete' },
+      ]"
+      :propClientSideRowLevelActions="[
+        { content: 'Edit', elementIoIconClass: 'el-icon-edit' },
+        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
+        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
+      ]"
+    ></showContentInCardComponent>
+
+    <ctActOnSocketMessages></ctActOnSocketMessages>
+  </div>
 </template>
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
-import clientSideTable from '../db/client-side/structure/rem-table.js'
+import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import objCommonOrm from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import showContentInCard from '@/components/pt-info/single/common/show-content-in-card-ct.vue'
+import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
-  components: { ctActOnSocketMessages, showContentInCard },
+  components: { ctActOnSocketMessages, showContentInCardComponent },
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
   data() {
     return {
@@ -70,7 +84,7 @@ export default {
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
           obj.clientSideUniqRowId = arFromClientSideTable[i].clientSideUniqRowId
-          obj.cardContent = obj.description
+          obj.cardContentOfTypeStringToShowInBodyOfCards = obj.description
           arRemsForDisplay.push(obj)
         }
       }
@@ -89,16 +103,6 @@ export default {
     },
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
-    },
-    // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'color: #E6A23C;'
-      } else {
-        return 'color: #202020;'
-      }
     },
   },
 }
