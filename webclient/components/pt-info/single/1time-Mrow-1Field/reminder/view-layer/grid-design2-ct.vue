@@ -84,7 +84,7 @@ export default {
           obj.uuid = arFromClientSideTable[i].serverSideRowUuid
           obj.$id = arFromClientSideTable[i].$id
           obj.clientSideUniqRowId = arFromClientSideTable[i].clientSideUniqRowId
-          obj.cardContent = obj.description
+          obj.cardContentOfTypeStringToShowInBodyOfCards = obj.description
           arRemsForDisplay.push(obj)
         }
       }

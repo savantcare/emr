@@ -2,7 +2,7 @@
   <el-card
     shadow="hover"
     class="box-card s-css-class-top-most-card"
-    v-if="flipSwitchShowCard === 1"
+    v-if="OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh === 1"
   >
     <!-- H E A D E R -->
 
@@ -38,7 +38,7 @@
     <!-- B O D Y -->
 
     <div :class="mfGetTopMostCardBodyGrid()" v-if="toggleSwitchShowBodyContent === 1">
-      <slot name="bodySlotContentFromParent" />
+      <slot name="bodySlotContentFromParentToShowAboveChildCards" />
       <el-card
         v-for="card in propChildCardsArray"
         :key="card.clientSideUniqRowId"
@@ -69,8 +69,12 @@
             ></el-button>
           </el-tooltip>
         </el-button-group>
-        <div v-if="card.cardContent">{{ card.cardContent }}</div>
-        <div v-else><component :is="card.componentObj"></component></div>
+        <div v-if="card.cardContentOfTypeStringToShowInBodyOfCards">
+          {{ card.cardContentOfTypeStringToShowInBodyOfCards }}
+        </div>
+        <div v-else>
+          <component :is="card.cardContentOfTypeComponentObjectToShowInBodyOfCards"></component>
+        </div>
       </el-card>
     </div>
   </el-card>
@@ -88,7 +92,7 @@ export default {
   data: function () {
     return {
       toggleSwitchShowBodyContent: 1,
-      flipSwitchShowCard: 1,
+      OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh: 1,
     }
   },
   computed: {},
@@ -129,7 +133,9 @@ export default {
       if (pAction === 'Toggle card')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
       if (pAction === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
-      if (pAction === 'Close card') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
+      if (pAction === 'Close card')
+        this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh =
+          1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh
 
       return
     },

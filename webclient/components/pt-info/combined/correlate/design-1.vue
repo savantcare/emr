@@ -8,7 +8,7 @@
       :propClientSideRowLevelActions="[{}]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
-      <div slot="bodySlotContentFromParent"><graph></graph></div>
+      <div slot="bodySlotContentFromParentToShowAboveChildCards"><graph></graph></div>
     </showContentInCardComponent>
   </div>
 </template>

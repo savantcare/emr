@@ -26,7 +26,7 @@ export default {
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['cardContent'] =
+        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
           ': ' +
           arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementDescription
