@@ -1,7 +1,20 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">Name</h5>
+    <showContentInCardComponent
+      propMainCardName="Name"
+      :propChildCardsArray="cfArOfNameForDisplay"
+      :propClientSideTableLevelActions="[
+        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        { content: 'Close card', elementIoIconClass: 'el-icon-close' },
+      ]"
+      :propClientSideRowLevelActions="[
+        { content: 'Edit', elementIoIconClass: 'el-icon-edit' },
+        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
+        { content: 'Submit', elementIoIconClass: 'el-icon-check' },
+        { content: 'Reset', elementIoIconClass: 'el-icon-refresh' },
+      ]"
+    />
     <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
     <el-button
       :type="mfTypeOfButton('firstName')"
@@ -12,7 +25,6 @@
     <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfDataRow['middleName'] }}</el-button>
     <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfDataRow['lastName'] }}</el-button>
     <el-button
-      v-if="formType === 'stand-alone'"
       type="primary"
       size="mini"
       style="padding: 3px"
@@ -22,7 +34,7 @@
       class="el-icon-edit"
     ></el-button>
     <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="success"
       size="mini"
       style="padding: 3px"
@@ -32,7 +44,7 @@
       >S</el-button
     >
     <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
+      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
       type="danger"
       size="mini"
       style="padding: 3px"
@@ -45,17 +57,17 @@
 </template>
 
 <script>
-/* Option1: 
+/* Option1:
 
 import mxTable from '@/components/pt-info/single/1time-1row-mField/com-mx/mixins/view-layer.js'
 
 Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
-But inside /com-mx/mixins/view-layer.js I am not able to import the correct 
+But inside /com-mx/mixins/view-layer.js I am not able to import the correct
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 
 Since relative paths current working directory is /com-mx/
 
-Posted the question on 
+Posted the question on
 stackoverflow: https://stackoverflow.com/questions/63373084/relative-path-getting-resolved-from-location-of-imported-file
 Discord: https://discord.com/channels/325477692906536972/325479107012067328/743027109659672616
 
@@ -71,16 +83,18 @@ const mxTable = require('../com-mx/view-layer.js')('weight').default -> Does not
 
 /* Option3: Working. But in this option the same file '../com-mx/view-layer.js' has to be kept in each folder like height weight name */
 import mxViewLayer from '../com-mx/view-layer.js'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
+  components: { showContentInCardComponent },
   mixins: [mxViewLayer],
-  props: {
-    formType: {
-      default: 'stand-alone',
-      type: String,
-    },
-    date: {
-      ctName: 'name', // this is supposed to be used by import mxTable from '@/components/pt-info/single/1time-1row-mField/com-mx/mixins/view-layer.js so that the same mixin cab be used by name height and weight
+  computed: {
+    cfArOfNameForDisplay() {
+      let arOfObjectsFromClientSideDB = new Array()
+      let obj = new Object()
+      obj['cardContentOfTypeStringToShowInBodyOfCards'] = 'jai kali ma'
+      arOfObjectsFromClientSideDB.push(obj)
+      return arOfObjectsFromClientSideDB
     },
   },
 }

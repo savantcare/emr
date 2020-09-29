@@ -288,6 +288,24 @@ Component           |  Side        | Location     | From front  | From back
   font-size: 1.5rem;
 }
 
+/* Used for SUBMIT-ROW at: 
+Component           |  Side        | Location     | From front  | From back
+  name              |  Flexible    |  Row         |  3          |  -2
+  */
+.el-icon-check:hover {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
+/* Used for RESET-ROW at: 
+Component           |  Side        | Location     | From front  | From back
+  name              |  Flexible    |  Row         |  4          |  -1
+  */
+.el-icon-refresh:hover {
+  color: #f56c6c !important;
+  font-size: 1.5rem;
+}
+
 /* Used for CLOSE at: 
 Component          |  Side         | Position    | From front  | Front back
 Service statement  |  Flexible     | Header      |   3         |    -1
