@@ -92,7 +92,12 @@ export default {
     cfArOfNameForDisplay() {
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()
-      obj['cardContentOfTypeStringToShowInBodyOfCards'] = 'jai kali ma'
+      obj['cardContentOfTypeStringToShowInBodyOfCards'] =
+        this.cfDataRow['firstName'] +
+        ' ' +
+        this.cfDataRow['middleName'] +
+        ' ' +
+        this.cfDataRow['lastName']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
     },
