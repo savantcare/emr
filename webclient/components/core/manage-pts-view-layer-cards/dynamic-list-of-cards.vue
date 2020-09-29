@@ -18,7 +18,7 @@
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
             -->
-      <component :is="card.ctToShowObj"></component>
+      <component :is="card.componentToShowObject"></component>
     </div>
     <!-- ctVlSearchBox as per glossary is Component View layer search box 
              Top or bottom of the for loop -> determines if search comes at top or bottom of the other cards
@@ -60,9 +60,9 @@ export default {
       console.log(arOfObjectsFromClientSideDB)
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
+        if (!arOfObjectsFromClientSideDB[i]['componentToShowObject']) {
           console.log('loading the Ct Obj')
-          arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
+          arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
             arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
         }
       }

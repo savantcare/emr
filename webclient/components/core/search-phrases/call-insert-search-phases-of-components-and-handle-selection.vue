@@ -183,8 +183,8 @@ export default {
         // ptsvl -> Current state of view layer
         clientSideTblOfRightSideCards.insert({
           data: {
-            name: 'Appt note',
-            ctToShowPath: 'pt-info/combined/note-preview/design-1.vue', // PtsVl -> Present time state - part of - view layer
+            name: pSelectedSuggestion.value,
+            ctToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
             vIfState: 1,
           },
         })
