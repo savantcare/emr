@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'phq9 - edit',
         ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
         ctWidthInEditLayer: 'large',
