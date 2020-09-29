@@ -103,7 +103,8 @@ export default {
         this.currentActiveButtonClientSideRowId = pClientSideRowId
       }
 
-      // This update will lead to the card visibility getting toggled
+      // This update will lead to the note card visibility getting toggled
+      // Writing this in client Side DB since another component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
         vIfState: this.currentActiveButtonClientSideRowId,

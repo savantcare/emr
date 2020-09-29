@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/mc-ct.vue',
+        ctToShow: 'pt-info/single/1time-Mrow-1Field/reminder/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

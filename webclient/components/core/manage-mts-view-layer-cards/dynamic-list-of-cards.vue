@@ -23,6 +23,10 @@ export default {
   },
   computed: {
     cfArCardsInCsOfVl() {
+      /* Needs following where clauses:
+       if type of Ct is Health or Other
+       Which user role it is. Since each user role has access to a different set of cards.
+       */
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('vIfState', (value) => value > 0)
