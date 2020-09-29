@@ -125,10 +125,10 @@ export default {
     mfActOnIconClicked(pAction) {
       if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
       if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
-      if (pAction === 'Trash can') this.$parent.mxOpenTrashCanCtInEditLayer()
+
       if (pAction === 'Toggle card')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
-
+      if (pAction === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
       if (pAction === 'Close card') this.flipSwitchShowCard = 1 - this.flipSwitchShowCard
 
       return
@@ -282,18 +282,6 @@ Component           |  Side        | Location     | From front  | From back
   font-size: 1.5rem;
 }
 
-/* Used for MINIMIZE at: 
-Component           |  Side        | Location     | From front  | From back
-  Reminder          |  Fixed       |  Header      |  4          |  -1
-  Corelate          |  Fixed       |  Header      |  1          |  -1
-  Body measurement  |  Fixed       |  Header      |  1          |  -1
-  Service statement |  Flexible    |  Header      |  2          |  -2
-  */
-.el-icon-remove-outline:hover {
-  color: #909399 !important;
-  font-size: 1.5rem;
-}
-
 /* Used for CLOSE at: 
 Component          |  Side         | Position    | From front  | Front back
 Service statement  |  Flexible     | Header      |   3         |    -1
@@ -332,9 +320,21 @@ Component          |  Side        | Position    | From front  | Front back
   font-size: 1.5rem;
 }
 
+/* Used for MINIMIZE at: 
+Component           |  Side        | Location     | From front  | From back
+  Reminder          |  Fixed       |  Header      |  4          |  -1
+  Corelate          |  Fixed       |  Header      |  1          |  -1
+  Body measurement  |  Fixed       |  Header      |  1          |  -1
+  Service statement |  Flexible    |  Header      |  2          |  -2
+  */
+.el-icon-remove-outline:hover {
+  color: #909399 !important;
+  font-size: 1.5rem;
+}
+
 /*  Used for TRASH-CAN at: 
 Component          |  Side        | Position    | From front  | Front back
-Reminder           |  Fixed       |  Header     |   5 
+Reminder           |  Fixed       |  Header     |   5         | -1
 */
 .el-icon-delete:hover {
   color: #909399 !important;
