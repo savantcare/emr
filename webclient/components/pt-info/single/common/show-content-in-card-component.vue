@@ -4,16 +4,14 @@
     class="box-card s-css-class-top-most-card"
     v-if="flipSwitchShowCard === 1"
   >
+    <!-- H E A D E R -->
+
     <div
       slot="header"
       class="s-css-class-top-most-card-header clearfix"
       v-if="!$slots.headerSlotContentFromParent"
     >
-      <!-- If this is     
-<div class="s-css-class-top-most-card-header clearfix">
-then there will be no line below the header 
-But the body content starts to shift, when mouse is taken over the icon in the header
--->
+      <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
@@ -36,6 +34,9 @@ But the body content starts to shift, when mouse is taken over the icon in the h
       </el-button-group>
     </div>
     <div v-else><slot name="headerSlotContentFromParent" /></div>
+
+    <!-- B O D Y -->
+
     <div :class="mfGetTopMostCardBodyGrid()" v-if="toggleSwitchShowBodyContent === 1">
       <slot name="bodySlotContentFromParent" />
       <el-card
