@@ -5,6 +5,11 @@
     v-if="flipSwitchShowCard === 1"
   >
     <div slot="header" class="s-css-class-top-most-card-header clearfix">
+      <!-- If this is     
+<div class="s-css-class-top-most-card-header clearfix">
+then there will be no line below the header 
+But the body content starts to shift, when mouse is taken over the icon
+-->
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
