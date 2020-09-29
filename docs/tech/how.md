@@ -451,3 +451,35 @@ The not locked but in future are in blue color.
 First not locked in past is in red color.
 
 On clicking the circle the appt can be locked. All the reviewed on dates have to be > then the previos appt that is locked.
+
+## Q17) How should time be stored in 1. mariadb 2. vuex-orm 3. JS
+
+Things given to us:
+A. There are 2 different types of timestamp?
+
+1. unix_timestamp / epoch_time -> Numbr of seconds since '1970-01-01 00:00:00' epoch => start of unix
+2. JS timestamp -> JS expects timeStamp to be in millisecond format. # of milliseconds since '1970-01-01 00:00:00'
+
+B. 2147483647.999999 is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+
+C. MariaDB stores values that use the TIMESTAMP data type as unix_timestamp
+
+D. For datetime fields there are 2 precision values. DATETIME(6) for microseconds and DATETIME(3) for milliseconds
+
+Inferences:
+A. Cannot use timestamp as field type in mariaDB since it will not work after 2038
+
+B. Hence only option is to use datetime as the fieldtype in mariaDB.
+
+C. Decided to use DATETIME(3) since JS has timestamp in milliseconds. Here 3 is the amount of precision. This will make mysql store the value with millisecond precision
+Hence for MariaDB -> weight->timeOfMeasurement-> field type will be -> dateTime(3)
+
+D. internal data transfer is in the millisecond integer format. Why? 1. Integers are fast for comparison 2. String format has many different formats.
+
+E. data flow is: mariadb -> dateTime(3) -> select as milli-seconds -> node js -> milli-seconds -> vue -> vuex-orm field type number -> element.io -> date component
+For e.g: 1. /Users/vk-tech/gt/sc-prog-repos/emr/utils/db/json-server-mock-db.json timeOfMeasurement is milliseconds from epoch 2. /emr/webclient/cts/pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue no need to multiply by 1000 to convert from seconds to milliseconds.
+
+F. In the datetime field the value is always in UTC. Hence timezone need not be stored.
+
+We want to do minimum # of conversions
+From unix timestamp to get the human readable format we can use: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
