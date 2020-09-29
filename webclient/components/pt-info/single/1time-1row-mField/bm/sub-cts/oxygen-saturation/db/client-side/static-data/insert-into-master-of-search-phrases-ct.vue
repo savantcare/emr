@@ -21,7 +21,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'oxygen Saturation - change',
+        value: 'oxygen Saturation - edit',
         ctAbbr: 'wc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/edit-layer/edit-design-1.vue', // Cl -> Change layer

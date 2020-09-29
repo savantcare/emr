@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'height - change',
+        value: 'height - edit',
         ctAbbr: 'hc',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'edit-layer',

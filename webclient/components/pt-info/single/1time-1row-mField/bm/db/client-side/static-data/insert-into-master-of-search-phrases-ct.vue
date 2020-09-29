@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'body measurement - change',
+        value: 'body measurement - edit',
         ctAbbr: 'bmcc',
         ctToShow: 'pt-info/single/1time-1row-mField/bm/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'edit-layer',

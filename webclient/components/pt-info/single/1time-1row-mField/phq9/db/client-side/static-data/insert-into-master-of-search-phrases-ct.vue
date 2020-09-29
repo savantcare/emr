@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'phq9 - change',
+        value: 'phq9 - edit',
         ctAbbr: 'hc',
         ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'edit-layer',

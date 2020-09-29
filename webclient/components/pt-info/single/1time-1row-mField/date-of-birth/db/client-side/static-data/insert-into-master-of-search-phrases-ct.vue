@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'date of birth - change',
+        value: 'date of birth - edit',
         ctAbbr: 'wc',
         ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/edit-layer/edit-design-1.vue', // Cl -> Change layer
         displayLocation: 'edit-layer',

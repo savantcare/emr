@@ -20,7 +20,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'temperature - change',
+        value: 'temperature - edit',
         ctAbbr: 'wc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/edit-layer/edit-design-1.vue', // Cl -> Change layer

@@ -21,7 +21,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood pressure - change',
+        value: 'blood pressure - edit',
         ctAbbr: 'bpc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/edit-layer/edit-design-1.vue', // Cl -> Change layer
