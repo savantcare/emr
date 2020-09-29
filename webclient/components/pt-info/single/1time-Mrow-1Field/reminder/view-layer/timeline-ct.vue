@@ -86,6 +86,7 @@
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
+import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 
 export default {
   components: { ctActOnSocketMessages },
@@ -96,10 +97,11 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfVl() {
-      const arOfCardsInPtsOfVl = this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      const obj = arOfCardsInPtsOfVl.find((x) => x.label === 'reminders')
-      const idx = arOfCardsInPtsOfVl.indexOf(obj)
-      return idx
+      const arFromClientSideTable = clientSideTblOfRightSideCards
+        .query()
+        .where('name', 'reminders')
+        .get()
+      return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
       const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
