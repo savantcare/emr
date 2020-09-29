@@ -5,14 +5,23 @@
       propMainCardName="Name"
       :propChildCardsArray="cfArOfNameForDisplay"
       :propClientSideTableLevelActions="[
-        { actionDescription: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
-        { actionDescription: 'Close card', elementIoIconClass: 'el-icon-close' },
+        {
+          actionDescription: 'Toggle card display',
+          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        },
+        {
+          actionDescription: 'Close card',
+          actionUIByElementIoIconClass: 'el-icon-close',
+        },
       ]"
       :propClientSideRowLevelActions="[
-        { actionDescription: 'Edit', elementIoIconClass: 'el-icon-edit' },
-        { actionDescription: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
-        { actionDescription: 'Submit', elementIoIconClass: 'el-icon-check' },
-        { actionDescription: 'Reset', elementIoIconClass: 'el-icon-refresh' },
+        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
+        {
+          actionDescription: 'Show data timeline',
+          actionUIByElementIoIconClass: 'el-icon-discover',
+        },
+        { actionDescription: 'Submit', actionUIByElementIoIconClass: 'el-icon-check' },
+        { actionDescription: 'Reset', actionUIByElementIoIconClass: 'el-icon-refresh' },
       ]"
     />
     <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
