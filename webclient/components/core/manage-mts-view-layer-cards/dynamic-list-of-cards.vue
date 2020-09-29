@@ -32,8 +32,11 @@ export default {
         .where('vIfState', (value) => value > 0)
         .get()
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
-          arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
+        if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
+          console.log('loading the Ct Obj')
+          arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
+            arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
+        }
       }
 
       return arOfObjectsFromClientSideDB

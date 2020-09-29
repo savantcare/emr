@@ -17,7 +17,9 @@ database.register(clientSideTblOfAppointments)
 
 // table that decides which cards to show
 import tableStructureForLeftSideView from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import tableStructureForRightSideView from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 database.register(tableStructureForLeftSideView)
+database.register(tableStructureForRightSideView)
 
 // body measurement tables
 import tableStructureForWeight from '~/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/structure/table.js'

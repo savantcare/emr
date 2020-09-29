@@ -10,7 +10,7 @@
             Similar working code:
             https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components?file=/index.html:296-321
           -->
-    <div v-for="card in cfArCardsInCsOfVl" :key="card.id" style="margin: 10px">
+    <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -18,7 +18,7 @@
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
             -->
-      <component :is="card.ctToShow"></component>
+      <component :is="card.ctToShowObj"></component>
     </div>
     <!-- ctVlSearchBox as per glossary is Component View layer search box 
              Top or bottom of the for loop -> determines if search comes at top or bottom of the other cards
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import clientSideTblOfViewCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
 import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {
@@ -50,13 +51,25 @@ export default {
     return {}
   },
   computed: {
-    cfArCardsInCsOfVl: {
-      get() {
-        return this.$store.state.vstObjCardsInPtsOfVl.arOfCardsInPtsOfVl
-      },
-      set(value) {
-        this.$store.commit('mtfSetArCardsInCsOfVl', value)
-      },
+    cfArCardsInCsOfVl() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
+        .query()
+        .where('vIfState', (value) => value > 0)
+        .get()
+
+      console.log(arOfObjectsFromClientSideDB)
+
+      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
+          console.log('loading the Ct Obj')
+          arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
+            arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
+        }
+      }
+
+      console.log(arOfObjectsFromClientSideDB)
+
+      return arOfObjectsFromClientSideDB
     },
   },
 }

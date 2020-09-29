@@ -10,9 +10,6 @@ import VuexORMAxios from '@vuex-orm/plugin-axios'
 // Ref: https://github.com/eldomagan/vuex-orm-localforage#installation
 import vstOfTabsAndDialogInEditLayerModule from '~/components/core/manage-edit-layer-tabs/vst-of-tabs-and-dialog-in-cl'
 
-// Full form: Vue State Of Cards In Current state Of View layer Module
-import vstOfCardsInPtsOfVlModule from '~/components/core/manage-pts-view-layer-cards/vst-of-cards-in-pts-of-vl'
-
 import VueStateOfFeedDrawerModule from '~/components/pt-info/combined/feed/vue-state-of-feed-drawer'
 import VueStateOfMapDrawerModule from '~/components/pt-info/combined/map/vue-state-of-map-drawer'
 import VueStateOfDeletedDrawerModule from '~/components/core/ct-deleted-rows/vue-state-of-deleted-drawer'
@@ -43,9 +40,6 @@ const createStore = () => {
       vstObjFeedDrawer: VueStateOfFeedDrawerModule,
       vstObjMapDrawer: VueStateOfMapDrawerModule,
       vstObjDeletedDrawer: VueStateOfDeletedDrawerModule,
-
-      // Full form: view state object cards in current state of view layer
-      vstObjCardsInPtsOfVl: vstOfCardsInPtsOfVlModule,
     },
     plugins: [VuexORM.install(database)],
   })

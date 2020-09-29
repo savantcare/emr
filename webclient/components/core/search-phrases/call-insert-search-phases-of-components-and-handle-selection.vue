@@ -87,6 +87,8 @@ import insertSsComponentSearchPhrases from '@/components/pt-info/single/1time-Mr
 // 1time-Mrow-mField
 import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/static-data/insert-into-master-of-search-phrases-ct.vue'
 
+import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/table.js'
+
 export default {
   components: {
     // core
@@ -179,6 +181,14 @@ export default {
       }
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // ptsvl -> Current state of view layer
+        clientSideTblOfRightSideCards.insert({
+          data: {
+            name: 'Appt note',
+            ctToShowPath: 'pt-info/combined/note-preview/design-1.vue', // PtsVl -> Present time state - part of - view layer
+            vIfState: 1,
+          },
+        })
+
         this.$store.commit('mtfShowCardInCsVl', objCtToAdd)
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
         // Change layer
