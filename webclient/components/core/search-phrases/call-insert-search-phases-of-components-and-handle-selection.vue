@@ -180,6 +180,17 @@ export default {
         closable: true,
       }
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
+        // delete if this card is already existing
+        const arFromClientSideTable = clientSideTblOfRightSideCards
+          .query()
+          .where('name', pSelectedSuggestion.value)
+          .get()
+
+        if (arFromClientSideTable.length > 0) {
+          if (arFromClientSideTable[0]['clientSideUniqRowId']) {
+            clientSideTblOfRightSideCards.delete(arFromClientSideTable[0]['clientSideUniqRowId'])
+          }
+        }
         // ptsvl -> Current state of view layer
         clientSideTblOfRightSideCards.insert({
           data: {
