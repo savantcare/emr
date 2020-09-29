@@ -27,7 +27,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnIconClicked(tableLevelAction.content)"
+            @click="mfActOnTableLevelIconClicked(tableLevelAction.content)"
             :class="tableLevelAction.elementIoIconClass"
           ></el-button>
         </el-tooltip>
@@ -66,6 +66,7 @@
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
+              @click="mfActOnRowLevelIconClicked(rowLevelAction.content)"
             ></el-button>
           </el-tooltip>
         </el-button-group>
@@ -97,13 +98,6 @@ export default {
   },
   computed: {},
   methods: {
-    mfOpenEditCtInEditLayer() {
-      this.$parent.mfOpenEditCtInEditLayer()
-    },
-    mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
-      this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)
-    },
-
     // Goal: Change container font color as per client side row status
     mfGetCssClassNameForEachDataRow(clientSideDataRow) {
       if (!clientSideDataRow.vnRowStateInSession) return
@@ -126,7 +120,7 @@ export default {
       }
       return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
     },
-    mfActOnIconClicked(pAction) {
+    mfActOnTableLevelIconClicked(pAction) {
       if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
       if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
 
@@ -136,6 +130,11 @@ export default {
       if (pAction === 'Close card')
         this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh =
           1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh
+
+      return
+    },
+    mfActOnRowLevelIconClicked(pAction) {
+      if (pAction === 'Edit') this.$parent.mfOpenEditCtInEditLayer()
 
       return
     },
