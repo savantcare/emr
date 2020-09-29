@@ -54,7 +54,7 @@ import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/
 // Goal: Get the search terms from each component
 
 // core
-import insertClearComponentSearchPhrases from '@/components/core/clear/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertClearComponentSearchPhrases from '@/components/core/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
 import insertFeedComponentSearchPhrases from '@/components/pt-info/combined/feed/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -62,7 +62,7 @@ import insertMapComponentSearchPhrases from '@/components/pt-info/combined/map/s
 
 // 1time-1row-mField/PII
 import insertDobComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/date-of-birth/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertNameComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/name/static-data/insert-into-master-of-search-phrases-ct.vue'
+import insertNameComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/body-measurement
 import insertBloodPressureComponentSearchPhrases from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/static-data/insert-into-master-of-search-phrases-ct.vue'
