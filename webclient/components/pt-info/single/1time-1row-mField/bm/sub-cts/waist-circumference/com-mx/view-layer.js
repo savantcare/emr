@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    cfDataRow() {
+    cfLatestDataRowFromClientSideTable() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
       const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
@@ -72,7 +72,7 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {

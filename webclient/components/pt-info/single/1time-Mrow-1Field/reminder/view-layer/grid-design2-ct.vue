@@ -8,7 +8,7 @@
         { content: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
         { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
         { content: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
-        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
         { content: 'Show deleted', elementIoIconClass: 'el-icon-delete' },
       ]"
       :propClientSideRowLevelActions="[

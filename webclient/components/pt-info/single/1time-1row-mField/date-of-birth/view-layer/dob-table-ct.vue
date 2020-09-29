@@ -12,7 +12,7 @@ Code synced with ref implementation on 4th august 2020
       >{{ cfFormatDateOfBirth }}</el-button
     >
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
-      cfDataRow['notes']
+      cfLatestDataRowFromClientSideTable['notes']
     }}</el-button>
     <el-button
       type="primary"
@@ -20,7 +20,7 @@ Code synced with ref implementation on 4th august 2020
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfDataRow['id'])"
+      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['id'])"
       class="el-icon-edit"
     ></el-button>
     <el-button
@@ -60,7 +60,9 @@ export default {
   },
   computed: {
     cfFormatDateOfBirth() {
-      return moment(this.cfDataRow.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientSideTable.dateOfBirthInMilliseconds).format(
+        'MMM DD YYYY'
+      ) // parse integer
     },
   },
 }

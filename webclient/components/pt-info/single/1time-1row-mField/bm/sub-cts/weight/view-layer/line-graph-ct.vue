@@ -8,7 +8,7 @@
         style="padding: 3px"
         plain
         tabindex="-1"
-        @click="mfOpenEditCtInEditLayer(cfDataRow['id'])"
+        @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['id'])"
         class="el-icon-edit"
       ></el-button>
       <el-button

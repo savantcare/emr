@@ -16,7 +16,7 @@ export default {
     }
   },
   computed: {
-    cfDataRow() {
+    cfLatestDataRowFromClientSideTable() {
       if (!this.isMounted) return ''
       const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
       if (arFromClientSideTable.length) {
@@ -37,7 +37,7 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfDataRow.timeOfMeasurement).format('MMM YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurement).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {

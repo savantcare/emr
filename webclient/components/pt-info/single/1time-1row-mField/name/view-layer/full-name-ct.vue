@@ -5,7 +5,7 @@
       propMainCardName="Name"
       :propChildCardsArray="cfArOfNameForDisplay"
       :propClientSideTableLevelActions="[
-        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
         { content: 'Close card', elementIoIconClass: 'el-icon-close' },
       ]"
       :propClientSideRowLevelActions="[
@@ -20,17 +20,21 @@
       :type="mfTypeOfButton('firstName')"
       plain
       :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
-      >{{ cfDataRow['firstName'] }}</el-button
+      >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
     >
-    <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfDataRow['middleName'] }}</el-button>
-    <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfDataRow['lastName'] }}</el-button>
+    <el-button :type="mfTypeOfButton('middleName')" plain>{{
+      cfLatestDataRowFromClientSideTable['middleName']
+    }}</el-button>
+    <el-button :type="mfTypeOfButton('lastName')" plain>{{
+      cfLatestDataRowFromClientSideTable['lastName']
+    }}</el-button>
     <el-button
       type="primary"
       size="mini"
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfDataRow['id'])"
+      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['id'])"
       class="el-icon-edit"
     ></el-button>
     <el-button
@@ -93,11 +97,11 @@ export default {
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()
       obj['cardContentOfTypeStringToShowInBodyOfCards'] =
-        this.cfDataRow['firstName'] +
+        this.cfLatestDataRowFromClientSideTable['firstName'] +
         ' ' +
-        this.cfDataRow['middleName'] +
+        this.cfLatestDataRowFromClientSideTable['middleName'] +
         ' ' +
-        this.cfDataRow['lastName']
+        this.cfLatestDataRowFromClientSideTable['lastName']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
     },

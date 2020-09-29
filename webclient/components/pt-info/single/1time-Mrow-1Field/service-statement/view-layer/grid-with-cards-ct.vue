@@ -4,7 +4,7 @@
     :propChildCardsArray="cfArOfServiceStatementForDisplay"
     :propClientSideTableLevelActions="[
       { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
-      { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+      { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
       { content: 'Close card', elementIoIconClass: 'el-icon-close' },
     ]"
     :propClientSideRowLevelActions="[{}]"

@@ -4,7 +4,7 @@
       propMainCardName="Body measurement"
       :propChildCardsArray="cfArOfBMComponentsForDisplay"
       :propClientSideTableLevelActions="[
-        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        { content: 'Toggle card display', elementIoIconClass: 'el-icon-remove-outline' },
       ]"
       :propClientSideRowLevelActions="[
         { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
