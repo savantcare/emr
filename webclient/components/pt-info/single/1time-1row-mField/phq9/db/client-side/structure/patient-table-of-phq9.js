@@ -9,15 +9,16 @@ const intUniqueID = () => ++count
 export default class phq9ForPatientClass extends clientSideTableManage {
   static entity = 'tblPhq9Patient'
   static apiUrl = 'http://localhost:8000/public/api/phq9/v20/'
-  static primaryKey = 'clientSideUniqRowId'
+  static primaryKey = 'clientSideUniqueRowId'
   static graphSeries1Unit = 'unit'
 
   static fields() {
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
-      patientUUID: this.uid(() => uuidv1()),
+      clientSideUniqueRowId: this.uid(() => intUniqueID()),
+      serverSideRowUuid: this.uid(() => uuidv1()),
+      patientUUID: this.string(null),
 
       phq9QuestionMasterId: this.number(null),
       optionValueChosenByPatient: this.number(null),
