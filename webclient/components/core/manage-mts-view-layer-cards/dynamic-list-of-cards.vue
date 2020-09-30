@@ -16,6 +16,8 @@
 <script>
 import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
 import clientSideTblOfViewCardsInit from '@/components/core/manage-mts-view-layer-cards/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
+import clientSideTblCommonForAllComponents from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+
 export default {
   components: { clientSideTblOfViewCardsInit },
   data() {
@@ -28,14 +30,27 @@ export default {
        Which user role it is. Since each user role has access to a different set of cards.
        */
 
-      // Goal: Find out what classification of Components does the user want to see
-      const vClassification = 'other'
+      // Goal 1: Find out what classification of Components does the user want to see
+      //      debugger
+      let vComponentClassificationToShowUser = null
+      const arOfObjectsFromCommonForAllComponents = clientSideTblCommonForAllComponents
+        .query()
+        .where('fieldName', 'classificationOfComponentToShowOnMultiTimeStateSide')
+        .get()
 
-      // Goal2: Find all components for that classification
+      console.log(arOfObjectsFromCommonForAllComponents)
+
+      if (arOfObjectsFromCommonForAllComponents.length > 0) {
+        vComponentClassificationToShowUser = arOfObjectsFromCommonForAllComponents[0]['fieldValue']
+      }
+      if (!vComponentClassificationToShowUser) vComponentClassificationToShowUser = 'health'
+
+      // Goal 2: Find all components for that classification
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('vIfState', (value) => value > 0)
-        .where('classificationOfComponent', vClassification)
+        .where('classificationOfComponent', vComponentClassificationToShowUser)
+        .orWhere('classificationOfComponent', 'commonForHealthAndOther')
         .get()
 
       // Goal3: Make an array of Ct objects

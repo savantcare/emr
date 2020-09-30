@@ -14,6 +14,7 @@ export default {
       data: {
         name: 'Header',
         componentToShowPath: 'core/mts-view-layer-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
+        classificationOfComponent: 'commonForHealthAndOther',
       },
     })
     clientSideTblOfLeftSideCards.insert({

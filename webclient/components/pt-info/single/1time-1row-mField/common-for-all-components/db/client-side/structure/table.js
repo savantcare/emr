@@ -15,15 +15,16 @@ export default class commonForAllComponents extends Model {
   static fields() {
     return {
       clientSideUniqRowId: this.uid(() => intUniqueID()),
-
-      clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this.string(
-        ''
-      ),
-
-      loggedInUserUuid: this.string(null),
-      // currentBrowserTabPatientUuid  is not stored here since it is better to get it always from URL
-
-      classificationOfComponentToShowOnMultiTimeStateSide: this.string('health'),
+      fieldName: this.string(''),
+      fieldValue: this.string(''),
     }
   }
 }
+
+/*
+The fields that are stored as rows are:
+
+clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+loggedInUserUuid
+classificationOfComponentToShowOnMultiTimeStateSide
+*/

@@ -13,6 +13,7 @@
 
 <script>
 import clientSideTblOfLeftSideCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -24,7 +25,30 @@ export default {
   methods: {
     handleChangeToggleButtonEvent() {
       const type = this.componentType === true ? 'health' : 'other'
-      this.$store.commit('setComponentType', type)
+
+      // Goal: Decide if I need to do update or insert
+      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'classificationOfComponentToShowOnMultiTimeStateSide')
+        .get()
+
+      if (arOfObjectsFromCommonForAllComponents.length > 0) {
+        // Goal: The row already exists so I need to update it
+        clientSideTableOfCommonForAllComponents.update({
+          data: {
+            clientSideUniqRowId: arOfObjectsFromCommonForAllComponents[0]['clientSideUniqRowId'],
+            fieldValue: type,
+          },
+        })
+      } else {
+        // Goal: The row does not exist so I need to insert it
+        clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName: 'classificationOfComponentToShowOnMultiTimeStateSide',
+            fieldValue: type,
+          },
+        })
+      }
     },
   },
 }
