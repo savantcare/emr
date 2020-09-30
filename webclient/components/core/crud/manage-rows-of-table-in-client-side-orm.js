@@ -636,7 +636,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendDeleteDataToServer(pOrmDataRowId, rowUUID, deletedNote) {
+  static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUUID, deletedNote) {
     try {
       const socketClientObj = await tableCommonForAllComponents.find(1)
 
@@ -657,7 +657,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         return 0
       } else {
         this.update({
-          where: pOrmDataRowId,
+          where: pClientSideDataRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
           },

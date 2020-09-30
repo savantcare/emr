@@ -125,6 +125,9 @@ export default {
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
     },
+    mfEditIconClicked(pClientSideDataRowId) {
+      this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
+    },
   },
 }
 </script>
