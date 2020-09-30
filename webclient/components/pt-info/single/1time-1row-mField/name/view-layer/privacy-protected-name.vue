@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import mxViewLayer from '../com-mx/view-layer.js'
+import mxViewLayer from '../code-common-for-all-1r-mf/view-layer.js'
 
 export default {
   mixins: [mxViewLayer],

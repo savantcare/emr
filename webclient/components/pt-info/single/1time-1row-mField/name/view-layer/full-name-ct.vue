@@ -82,15 +82,15 @@ Discord: https://discord.com/channels/325477692906536972/325479107012067328/7430
 */
 
 /* option 2:
-const mxTable = require('../com-mx/view-layer.js').default         -> Works
+const mxTable = require('../code-common-for-all-1r-mf/view-layer.js').default         -> Works
 Why use this?
 Require allows to pass variable names Ref: https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module
 Problem:
-const mxTable = require('../com-mx/view-layer.js')('weight').default -> Does not work
+const mxTable = require('../code-common-for-all-1r-mf/view-layer.js')('weight').default -> Does not work
 */
 
-/* Option3: Working. But in this option the same file '../com-mx/view-layer.js' has to be kept in each folder like height weight name */
-import mxViewLayer from '../com-mx/view-layer.js'
+/* Option3: Working. But in this option the same file '../code-common-for-all-1r-mf/view-layer.js' has to be kept in each folder like height weight name */
+import mxViewLayer from '../code-common-for-all-1r-mf/view-layer.js'
 import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import mxLineG from '../com-mx/line-graph.js'
+import mxLineG from '../code-common-for-all-1r-mf/line-graph.js'
 
 export default {
   mixins: [mxLineG],

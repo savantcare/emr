@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import editMixin from '../com-mx/edit-layer.js'
+import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
 
 export default {
   mixins: [editMixin],
