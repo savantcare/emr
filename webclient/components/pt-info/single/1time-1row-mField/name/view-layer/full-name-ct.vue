@@ -9,20 +9,9 @@
           actionDescription: 'Toggle card display',
           actionUIByElementIoIconClass: 'el-icon-remove-outline',
         },
-        {
-          actionDescription: 'Close card',
-          actionUIByElementIoIconClass: 'el-icon-close',
-        },
+        { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
       ]"
-      :propClientSideRowLevelActions="[
-        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
-        {
-          actionDescription: 'Show data timeline',
-          actionUIByElementIoIconClass: 'el-icon-discover',
-        },
-        { actionDescription: 'Submit', actionUIByElementIoIconClass: 'el-icon-check' },
-        { actionDescription: 'Reset', actionUIByElementIoIconClass: 'el-icon-refresh' },
-      ]"
+      :propClientSideRowLevelActions="cfClientSideRowLevelActions"
     />
     <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
     <el-button
@@ -93,6 +82,18 @@ export default {
   components: { showContentInCardComponent },
   mixins: [mxViewLayer],
   computed: {
+    cfClientSideRowLevelActions() {
+      const actions = [
+        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
+        {
+          actionDescription: 'Show data timeline',
+          actionUIByElementIoIconClass: 'el-icon-discover',
+        },
+        { actionDescription: 'Submit', actionUIByElementIoIconClass: 'el-icon-check' },
+        { actionDescription: 'Reset', actionUIByElementIoIconClass: 'el-icon-refresh' },
+      ]
+      return actions
+    },
     cfArOfNameForDisplay() {
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()

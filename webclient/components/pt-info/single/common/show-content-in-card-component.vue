@@ -149,7 +149,7 @@ export default {
  Generation 1                                      |
 ==============                     _________________________________
                                   |                                |
-                    .s-css-class-top-most-card-header                |
+                    .s-css-class-top-most-card-header              |
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
