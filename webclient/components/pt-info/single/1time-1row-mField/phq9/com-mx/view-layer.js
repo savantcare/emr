@@ -59,22 +59,22 @@ export default {
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
     if (arFromClientSideTable.length) {
       const rowtoReturn = arFromClientSideTable[0]
-      const vnOrmIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
+      const vnClientSideIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
         rowtoReturn.uuid
       )
-      if (vnOrmIdOfCopiedRowBeingChanged === false) {
+      if (vnClientSideIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
           rowtoReturn.id,
-          vnOrmIdOfCopiedRowBeingChanged
+          vnClientSideIdOfCopiedRowBeingChanged
         )
       }
       this.isMounted = true
     }
   },
   methods: {
-    mfOpenEditCtInEditLayer(pOrmId) {
-      console.log(pOrmId)
+    mfOpenEditCtInEditLayer(pClientSideId) {
+      console.log(pClientSideId)
       const searchString = [clientSideTable.entity, 'change'].join(' - ')
       console.log(searchString)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
@@ -93,7 +93,7 @@ export default {
       const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(
         eventName,
-        this.dataFldsOfToChangeAndCopiedRowsAreSame.vnOrmIdOfCopiedRowBeingChanged
+        this.dataFldsOfToChangeAndCopiedRowsAreSame.vnClientSideIdOfCopiedRowBeingChanged
       )
     },
     mfSendResetFormEvent() {
