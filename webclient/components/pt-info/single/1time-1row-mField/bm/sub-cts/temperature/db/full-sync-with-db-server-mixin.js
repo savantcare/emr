@@ -5,7 +5,7 @@ import clientSideTable from '~/components/pt-info/single/1time-1row-mField/bm/su
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '/1')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl)
       if (pro.ok) {
       }
     },

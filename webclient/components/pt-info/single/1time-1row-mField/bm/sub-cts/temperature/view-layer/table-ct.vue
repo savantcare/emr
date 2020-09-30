@@ -11,7 +11,7 @@ Code synced with ref implementation on 4th august 2020
       size="small"
       >{{ cfLatestDataRowFromClientSideTable['temperatureInFarehnite'] }}</el-button
     >
-    <el-button :type="mfTypeOfButton('timeOfMeasurement')" plain size="small">{{
+    <el-button :type="mfTypeOfButton('timeOfMeasurementInMilliseconds')" plain size="small">{{
       cfTimeOfMeasurement
     }}</el-button>
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
