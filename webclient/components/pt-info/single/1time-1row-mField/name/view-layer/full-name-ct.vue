@@ -3,7 +3,6 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Name"
-      :propChildCardsArray="cfArOfNameForDisplay"
       :propClientSideTableLevelActions="[
         {
           actionDescription: 'Toggle card display',
@@ -12,40 +11,54 @@
         { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
       ]"
       :propClientSideRowLevelActions="cfClientSideRowLevelActions"
-    />
-    <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
-    <el-button
-      :type="mfTypeOfButton('firstName')"
-      plain
-      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
-      >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
     >
-    <el-button :type="mfTypeOfButton('middleName')" plain>{{
-      cfLatestDataRowFromClientSideTable['middleName']
-    }}</el-button>
-    <el-button :type="mfTypeOfButton('lastName')" plain>{{
-      cfLatestDataRowFromClientSideTable['lastName']
-    }}</el-button>
-    <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
-      type="success"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="mfSendReviewedEvent()"
-      >S</el-button
-    >
-    <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
-      type="danger"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="mfSendResetFormEvent()"
-      >R</el-button
-    >
+      <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
+      <div slot="bodySlotContentFromParentToShowAboveChildCards">
+        <el-button-group style="float: right">
+          <el-button
+            type="primary"
+            size="mini"
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mfEditIconClicked(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+            class="el-icon-edit"
+          />
+          <el-button
+            v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
+            type="success"
+            size="mini"
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mfSendReviewedEvent()"
+            >S</el-button
+          >
+          <el-button
+            v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
+            type="danger"
+            size="mini"
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mfSendResetFormEvent()"
+            >R</el-button
+          >
+        </el-button-group>
+        <el-button
+          :type="mfTypeOfButton('firstName')"
+          plain
+          :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+          >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
+        >
+        <el-button :type="mfTypeOfButton('middleName')" plain>{{
+          cfLatestDataRowFromClientSideTable['middleName']
+        }}</el-button>
+        <el-button :type="mfTypeOfButton('lastName')" plain>{{
+          cfLatestDataRowFromClientSideTable['lastName']
+        }}</el-button>
+      </div>
+    </showContentInCardComponent>
   </div>
 </template>
 
