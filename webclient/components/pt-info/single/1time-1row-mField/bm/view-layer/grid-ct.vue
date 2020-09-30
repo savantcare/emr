@@ -9,19 +9,62 @@
         },
       ]"
     >
-      <div
+      <el-card
         slot="bodySlotContentFromParentToShowAboveChildCards"
         class="box-card sc-individual-child-card"
+        shadow="hover"
       >
         <ctWeightGraph form-type="embedded"></ctWeightGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctHeightGraph form-type="embedded"></ctHeightGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctTemperatureGraph form-type="embedded"></ctTemperatureGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctBloodPressureGraph form-type="embedded"></ctBloodPressureGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctBloodSugarGraph form-type="embedded"></ctBloodSugarGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctWaistCircumferenceGraph form-type="embedded"></ctWaistCircumferenceGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctPulseGraph form-type="embedded"></ctPulseGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
         <ctOxygenSaturationGraph form-type="embedded"></ctOxygenSaturationGraph>
-      </div>
+      </el-card>
     </showContentInCardComponent>
   </div>
 </template>
