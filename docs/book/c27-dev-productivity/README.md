@@ -25,3 +25,7 @@ Following things cover in this video
 6. Header appt note active button should not be plain
 7. Icons to display in header are decided by parent ct
 8. Body of the template can be 3 different things
+
+# Code review for diagnosis component:
+
+https://youtu.be/9qFz1zys-EY
