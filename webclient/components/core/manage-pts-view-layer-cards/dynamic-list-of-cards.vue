@@ -60,11 +60,9 @@ export default {
       console.log(arOfObjectsFromClientSideDB)
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        if (!arOfObjectsFromClientSideDB[i]['componentToShowObject']) {
-          console.log('loading the Ct Obj')
-          arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
-        }
+        console.log('loading the Ct Obj')
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
+          arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
       }
 
       console.log(arOfObjectsFromClientSideDB)
