@@ -38,6 +38,21 @@
             <el-tooltip
               class="item"
               effect="light"
+              content="Click to edit"
+              placement="top-start"
+              :open-delay="500"
+            >
+              <el-button
+                style="padding: 3px; color: #c0c4cc; border: none"
+                plain
+                @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+                class="el-icon-edit"
+              >
+              </el-button>
+            </el-tooltip>
+            <el-tooltip
+              class="item"
+              effect="light"
               content="info"
               placement="top-end"
               :open-delay="500"
@@ -45,7 +60,7 @@
               <el-button
                 style="padding: 3px; color: #c0c4cc; border: none"
                 plain
-                class="el-icon-info"
+                class="el-icon-discover"
               >
               </el-button>
             </el-tooltip>
@@ -60,22 +75,7 @@
                 style="padding: 3px; color: #c0c4cc; border: none"
                 plain
                 @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
-                class="el-icon-error custom-close-icon"
-              >
-              </el-button>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to edit"
-              placement="top-start"
-              :open-delay="500"
-            >
-              <el-button
-                style="padding: 3px; color: #c0c4cc; border: none"
-                plain
-                @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
-                class="el-icon-edit"
+                class="el-icon-circle-close"
               >
               </el-button>
             </el-tooltip>
