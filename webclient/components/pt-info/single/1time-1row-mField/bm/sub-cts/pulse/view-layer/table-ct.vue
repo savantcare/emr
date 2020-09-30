@@ -22,7 +22,7 @@ Code synced with ref implementation on 4th august 2020
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['id'])"
+      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
       class="el-icon-edit"
     ></el-button>
     <el-button
