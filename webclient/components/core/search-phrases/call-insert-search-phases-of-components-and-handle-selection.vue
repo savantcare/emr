@@ -195,7 +195,7 @@ export default {
         clientSideTblOfRightSideCards.insert({
           data: {
             name: pSelectedSuggestion.value,
-            ctToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
+            componentToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
             vIfState: 1,
           },
         })

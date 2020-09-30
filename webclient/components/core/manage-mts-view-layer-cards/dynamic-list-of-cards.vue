@@ -35,7 +35,7 @@ export default {
         if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
           console.log('loading the Ct Obj')
           arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
+            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
         }
       }
 
