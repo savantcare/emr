@@ -75,13 +75,13 @@ export default {
               3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
     */
 
-  props: ['firstProp', 'formType'], // firstProp is the OrmIdOfRowToChange
+  props: ['firstProp', 'formType'], // firstProp is the ClientSideIdOfRowToChange
   data() {
     return {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
-      dnOrmIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
-      dnOrmIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/edit-layer.js approx line 15
+      dnClientSideIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
+      dnClientSideIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/edit-layer.js approx line 15
     }
   },
   computed: {
@@ -133,14 +133,14 @@ export default {
       immediate: true,
       handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
-        this.dnOrmIdOfRowToChange = pNVal
-        this.dnOrmIdOfCopiedRowBeingChanged = null
+        this.dnClientSideIdOfRowToChange = pNVal
+        this.dnClientSideIdOfCopiedRowBeingChanged = null
       },
     },
 
     /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
-    By the time this watchFn exits this.dnOrmIdOfCopiedRowBeingChanged will have a valid value */
-    dnOrmIdOfCopiedRowBeingChanged: {
+    By the time this watchFn exits this.dnClientSideIdOfCopiedRowBeingChanged will have a valid value */
+    dnClientSideIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
       /*  In V1 getting id of copied row was part of mounted, that is sequential programming,
           In V2 getting id of copied row is part of watch, this is "act on state" programming.
@@ -155,23 +155,23 @@ export default {
 
       async handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value
-        if (this.dnOrmIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnOrmIdOfRowToChange. Look at date section.
+        if (this.dnClientSideIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnClientSideIdOfRowToChange. Look at date section.
 
         if (pNVal === null) {
-          /* When called first time this.dnOrmIdOfRowToChange is assigned in the data section
-              When called 2nd time this.dnOrmIdOfRowToChange is the previous row that just got saved. */
-          const arOrmRowToChange = clientSideTable.find(this.dnOrmIdOfRowToChange)
+          /* When called first time this.dnClientSideIdOfRowToChange is assigned in the data section
+              When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
+          const arOrmRowToChange = clientSideTable.find(this.dnClientSideIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
           const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
             arOrmRowToChange.serverSideRowUuid
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
               arOrmRowToChange.clientSideUniqRowId
             )
           } else {
-            this.dnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
+            this.dnClientSideIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
       },
@@ -180,7 +180,7 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
         pOrmRowToChange.clientSideUniqRowId
       )
     },
@@ -208,13 +208,13 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
-      return clientSideTable.fnGetFldValue(this.dnOrmIdOfCopiedRowBeingChanged, pFldName)
+      return clientSideTable.fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
       clientSideTable.fnSetFldValue(
         pEvent,
-        this.dnOrmIdOfCopiedRowBeingChanged,
+        this.dnClientSideIdOfCopiedRowBeingChanged,
         pFldName,
         rowStatus
       )
@@ -223,7 +223,7 @@ export default {
     async mfSendDataToServer() {
       try {
         await clientSideTable.update({
-          where: this.dnOrmIdOfCopiedRowBeingChanged,
+          where: this.dnClientSideIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: '345',
           },
@@ -250,7 +250,7 @@ export default {
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           clientSideTable.update({
-            where: this.dnOrmIdOfCopiedRowBeingChanged,
+            where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 3458,
             },
@@ -259,7 +259,7 @@ export default {
         } else {
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
-            dnOrmIdOfRowToChange is = firstProp. So dnOrmIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+            dnClientSideIdOfRowToChange is = firstProp. So dnClientSideIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
               option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
               option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
@@ -307,7 +307,7 @@ export default {
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           clientSideTable.update({
-            where: this.dnOrmIdOfCopiedRowBeingChanged,
+            where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 34571,
             },
@@ -320,8 +320,8 @@ export default {
             According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into clientSideTable and it displayed on the top of timeline.
             When change api request then we should need to insert a duplicate row (copy of row) again in clientSideTable for further change.
           */
-        this.dnOrmIdOfRowToChange = this.dnOrmIdOfCopiedRowBeingChanged
-        this.dnOrmIdOfCopiedRowBeingChanged = null
+        this.dnClientSideIdOfRowToChange = this.dnClientSideIdOfCopiedRowBeingChanged
+        this.dnClientSideIdOfCopiedRowBeingChanged = null
         this.mfManageFocus()
       } catch (ex) {
         console.log('update error', ex)

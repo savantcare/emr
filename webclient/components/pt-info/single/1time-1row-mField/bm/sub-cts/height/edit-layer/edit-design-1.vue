@@ -43,10 +43,10 @@ and graph related doc is at weight
 </template>
 
 <script>
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 
 export default {
-  mixins: [mxc],
+  mixins: [editMixin],
   data() {
     return {
       pickerOptions: {

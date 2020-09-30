@@ -12,19 +12,17 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'oxygen Saturation',
+        value: 'weight',
         ctAbbr: 'w',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue',
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'oxygen Saturation - change',
+        value: 'weight - edit',
         ctAbbr: 'wc',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

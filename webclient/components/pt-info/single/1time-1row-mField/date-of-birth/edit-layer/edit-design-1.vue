@@ -52,9 +52,9 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 export default {
-  mixins: [mxc],
+  mixins: [editMixin],
   data() {
     return {
       pickerOptions: {

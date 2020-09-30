@@ -1,5 +1,3 @@
-<!-- Reference implementation for non numeric hence no graph -->
-
 <template>
   <div></div>
 </template>
@@ -14,17 +12,17 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'name',
-        ctAbbr: 'n',
-        ctToShow: 'pt-info/single/1time-1row-mField/name/view-layer/full-name-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        value: 'body measurement',
+        ctAbbr: 'bm',
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/view-layer/tabs-ct.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'name - change',
-        ctAbbr: 'nc',
-        ctToShow: 'pt-info/single/1time-1row-mField/name/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        value: 'body measurement - edit',
+        ctAbbr: 'bmcc',
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

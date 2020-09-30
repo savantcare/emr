@@ -12,17 +12,19 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'date of birth',
-        ctAbbr: 'w',
-        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/view-layer/dob-table-ct.vue',
+        value: 'blood Sugar',
+        ctAbbr: 'bs',
+        ctToShow:
+          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'date of birth - change',
-        ctAbbr: 'wc',
-        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        value: 'blood Sugar - edit',
+        ctAbbr: 'bsc',
+        ctToShow:
+          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

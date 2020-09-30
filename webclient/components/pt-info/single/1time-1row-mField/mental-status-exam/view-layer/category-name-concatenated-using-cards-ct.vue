@@ -3,9 +3,18 @@
     propMainCardName="Mental status exam"
     :propChildCardsArray="cfArOfMentalStatusExamForDisplay"
     :propClientSideTableLevelActions="[
-      { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
-      { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
-      { content: 'Close card', elementIoIconClass: 'el-icon-close' },
+      {
+        actionDescription: 'Multi edit',
+        actionUIByElementIoIconClass: 'el-icon-money',
+      },
+      {
+        actionDescription: 'Toggle card display',
+        actionUIByElementIoIconClass: 'el-icon-remove-outline',
+      },
+      {
+        actionDescription: 'Close card',
+        actionUIByElementIoIconClass: 'el-icon-close',
+      },
     ]"
     :propClientSideRowLevelActions="[{}]"
   />

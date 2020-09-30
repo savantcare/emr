@@ -3,20 +3,97 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Reminders"
-      :propChildCardsArray="cfArOfRemForDisplayInTable"
       :propClientSideTableLevelActions="[
-        { content: 'Add', elementIoIconClass: 'el-icon-circle-plus-outline' },
-        { content: 'Multi edit', elementIoIconClass: 'el-icon-money' },
-        { content: 'Multi delete', elementIoIconClass: 'el-icon-document-delete' },
-        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
-        { content: 'Show deleted', elementIoIconClass: 'el-icon-delete' },
+        {
+          actionDescription: 'Add',
+          actionUIByElementIoIconClass: 'el-icon-circle-plus-outline',
+        },
+        {
+          actionDescription: 'Multi edit',
+          actionUIByElementIoIconClass: 'el-icon-money',
+        },
+        {
+          actionDescription: 'Multi delete',
+          actionUIByElementIoIconClass: 'el-icon-document-delete',
+        },
+        {
+          actionDescription: 'Toggle card display',
+          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        },
+        {
+          actionDescription: 'Show deleted',
+          actionUIByElementIoIconClass: 'el-icon-delete',
+        },
       ]"
-      :propClientSideRowLevelActions="[
-        { content: 'Edit', elementIoIconClass: 'el-icon-edit' },
-        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
-        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
-      ]"
-    ></showContentInCardComponent>
+    >
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        v-for="rem in cfArOfRemForDisplayInTable"
+        :key="rem.id"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+        :style="mfGetCssClassName(rem)"
+      >
+        <el-button-group style="float: right; display: none">
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to edit"
+            placement="top-start"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+              class="el-icon-edit"
+            >
+            </el-button>
+          </el-tooltip>
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="info"
+            placement="top-end"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              class="el-icon-discover"
+            >
+            </el-button>
+          </el-tooltip>
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to delete"
+            placement="top-end"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
+              class="el-icon-circle-close"
+            >
+            </el-button>
+          </el-tooltip>
+        </el-button-group>
+
+        <!-- <el-button type="text">{{ rem.description }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
+            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
+          -->
+        <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+        <div v-else>
+          {{ rem.description }}
+        </div>
+      </el-card>
+    </showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
@@ -103,6 +180,18 @@ export default {
     },
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
+    },
+    mfEditIconClicked(pClientSideDataRowId) {
+      this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
+    },
+    mfGetCssClassName(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'color: #E6A23C;'
+      } else {
+        return 'color: #202020;'
+      }
     },
   },
 }

@@ -8,25 +8,25 @@ export default {
 
   data() {
     return {
-      vnOrmIdOfRowToChange: -1,
-      vnOrmIdOfCopiedRowBeingChanged: -1,
+      vnClientSideIdOfRowToChange: -1,
+      vnClientSideIdOfCopiedRowBeingChanged: -1,
     }
   },
   computed: {
     cfHasSomeFldChanged() {
-      if (this.vnOrmIdOfCopiedRowBeingChanged === -1) return true
-      if (this.vnOrmIdOfCopiedRowBeingChanged === null) return true
+      if (this.vnClientSideIdOfCopiedRowBeingChanged === -1) return true
+      if (this.vnClientSideIdOfCopiedRowBeingChanged === null) return true
 
       const objFldsComparisonResults = clientSideTable.fnIsDataFldsOfRowsSame(
-        this.vnOrmIdOfRowToChange,
-        this.vnOrmIdOfCopiedRowBeingChanged
+        this.vnClientSideIdOfRowToChange,
+        this.vnClientSideIdOfCopiedRowBeingChanged
       )
 
       if (objFldsComparisonResults === true) {
         const eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-same'].join('-')
         this.$root.$emit(eventName)
       } else {
-        objFldsComparisonResults.vnOrmIdOfCopiedRowBeingChanged = this.vnOrmIdOfCopiedRowBeingChanged
+        objFldsComparisonResults.vnClientSideIdOfCopiedRowBeingChanged = this.vnClientSideIdOfCopiedRowBeingChanged
         const eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-diff'].join('-')
         this.$root.$emit(eventName, objFldsComparisonResults)
       }
@@ -39,21 +39,24 @@ export default {
     },
   },
   watch: {
-    vnOrmIdOfCopiedRowBeingChanged: {
-      async handler(pOrmIdOfCopiedRowBeingChangedNVal, pOrmIdOfCopiedRowBeingChangedOVal) {
-        if (this.vnOrmIdOfRowToChange === -1) return
+    vnClientSideIdOfCopiedRowBeingChanged: {
+      async handler(
+        pClientSideIdOfCopiedRowBeingChangedNVal,
+        pClientSideIdOfCopiedRowBeingChangedOVal
+      ) {
+        if (this.vnClientSideIdOfRowToChange === -1) return
 
-        if (pOrmIdOfCopiedRowBeingChangedNVal === null) {
-          const arOrmRowToChange = clientSideTable.find(this.vnOrmIdOfRowToChange)
+        if (pClientSideIdOfCopiedRowBeingChangedNVal === null) {
+          const arOrmRowToChange = clientSideTable.find(this.vnClientSideIdOfRowToChange)
           const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
             arOrmRowToChange.serverSideRowUuid
           )
           if (vnExistingChangeRowId === false) {
-            this.vnOrmIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+            this.vnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
               arOrmRowToChange.clientSideUniqRowId
             )
           } else {
-            this.vnOrmIdOfCopiedRowBeingChanged = vnExistingChangeRowId
+            this.vnClientSideIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
         }
       },
@@ -66,13 +69,13 @@ export default {
       await this.mxGetDataFromDb()
     }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
-    this.vnOrmIdOfRowToChange = arFromClientSideTable[0].id
-    this.vnOrmIdOfCopiedRowBeingChanged = null
+    this.vnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
+    this.vnClientSideIdOfCopiedRowBeingChanged = null
   },
   mounted() {
     let eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
     this.$root.$on(eventName, (pRowID) => {
-      this.vnOrmIdOfCopiedRowBeingChanged = pRowID
+      this.vnClientSideIdOfCopiedRowBeingChanged = pRowID
       this.mfOnReviewed()
     })
 
@@ -83,7 +86,7 @@ export default {
   },
   methods: {
     async mfOnReviewed() {
-      const rowToUpsert = clientSideTable.find(this.vnOrmIdOfCopiedRowBeingChanged)
+      const rowToUpsert = clientSideTable.find(this.vnClientSideIdOfCopiedRowBeingChanged)
       const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
         method: 'PUT',
         headers: {
@@ -120,34 +123,40 @@ export default {
           },
         })
         clientSideTable.update({
-          where: this.vnOrmIdOfCopiedRowBeingChanged,
+          where: this.vnClientSideIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
           },
         })
-        this.vnOrmIdOfRowToChange = this.vnOrmIdOfCopiedRowBeingChanged
-        this.vnOrmIdOfCopiedRowBeingChanged = null
+        this.vnClientSideIdOfRowToChange = this.vnClientSideIdOfCopiedRowBeingChanged
+        this.vnClientSideIdOfCopiedRowBeingChanged = null
       }
     },
     mfOnResetForm() {
       clientSideTable.fnDeleteChangeRowsInEditState()
-      this.vnOrmIdOfCopiedRowBeingChanged = null
+      this.vnClientSideIdOfCopiedRowBeingChanged = null
       clientSideTable.arOrmRowsCached = []
     },
     mfGetCopiedRowBeingChangedFldVal(pFldName) {
-      const value = clientSideTable.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFldName)
+      const value = clientSideTable.fnGetFldValue(
+        this.vnClientSideIdOfCopiedRowBeingChanged,
+        pFldName
+      )
       return value
     },
     mfGetCopiedRowFldNumericValue(pFieldName) {
-      const value = clientSideTable.fnGetFldValue(this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
-      console.log(value, this.vnOrmIdOfCopiedRowBeingChanged, pFieldName)
+      const value = clientSideTable.fnGetFldValue(
+        this.vnClientSideIdOfCopiedRowBeingChanged,
+        pFieldName
+      )
+      console.log(value, this.vnClientSideIdOfCopiedRowBeingChanged, pFieldName)
       return parseInt(value)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
       clientSideTable.fnSetFldValue(
         pEvent,
-        this.vnOrmIdOfCopiedRowBeingChanged,
+        this.vnClientSideIdOfCopiedRowBeingChanged,
         pFldName,
         rowStatus
       )

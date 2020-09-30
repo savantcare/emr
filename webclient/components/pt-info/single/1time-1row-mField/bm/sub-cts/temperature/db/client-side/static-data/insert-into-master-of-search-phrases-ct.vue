@@ -12,17 +12,18 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'weight',
+        value: 'temperature',
         ctAbbr: 'w',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'weight - change',
+        value: 'temperature - edit',
         ctAbbr: 'wc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/weight/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        ctToShow:
+          'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

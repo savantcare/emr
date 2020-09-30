@@ -73,6 +73,8 @@ export default {
         .get()
       const objSearchRowFromOrm = arFromClientSideTable[0]
 
+      console.log(objSearchRowFromOrm)
+
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
       // /cts/core/manage-edit-layer-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
@@ -92,7 +94,7 @@ export default {
 
         ctToShow: require('@/components/' + objSearchRowFromOrm.ctToShow).default,
         ctAbbr: objSearchRowFromOrm.ctAbbr, // TODO: Should be called vsCtAbbr
-        id: objSearchRowFromOrm.id, // This id comes from search phrases UI to Ct. TODO: should be called vnID
+        id: objSearchRowFromOrm.clientSideUniqRowId, // This id comes from search phrases UI to Ct. TODO: should be called vnID
         vstPropsToGiveToCt: pPayload.pPropsToGiveToCt, // This holds all the data for the record we want to change in cl
         closable: true, // TODO: Should be called blClosable
         ctWidthInEditLayer: objSearchRowFromOrm.ctWidthInEditLayer,

@@ -12,19 +12,19 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood pressure',
-        ctAbbr: 'bp',
+        value: 'oxygen Saturation',
+        ctAbbr: 'w',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/line-graph-ct.vue',
+          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood pressure - change',
-        ctAbbr: 'bpc',
+        value: 'oxygen Saturation - edit',
+        ctAbbr: 'wc',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/edit-layer/edit-design-1.vue', // Cl -> Change layer
+          'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

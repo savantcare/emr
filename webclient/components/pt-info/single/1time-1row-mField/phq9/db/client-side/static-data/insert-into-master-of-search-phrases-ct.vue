@@ -12,19 +12,20 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'height',
+        value: 'phq9',
         ctAbbr: 'h',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/line-graph-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'height - change',
+        value: 'phq9 - edit',
         ctAbbr: 'hc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        ctToShow: 'pt-info/single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
+        ctWidthInEditLayer: 'large',
       },
     })
   },

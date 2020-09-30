@@ -76,9 +76,9 @@ unique to this ct Code synced with ref implementation on 18th august 2020
   </div>
 </template>
 <script>
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 
 export default {
-  mixins: [mxc],
+  mixins: [editMixin],
 }
 </script>

@@ -12,17 +12,17 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'body measurement',
-        ctAbbr: 'bm',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/view-layer/tabs-ct.vue', // PtsVl -> Present time state - part of - view layer
-        displayLocation: 'PresentTimeStateViewLayer',
+        value: 'height',
+        ctAbbr: 'h',
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/line-graph-ct.vue',
+        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'body measurement - change',
-        ctAbbr: 'bmcc',
-        ctToShow: 'pt-info/single/1time-1row-mField/bm/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        value: 'height - edit',
+        ctAbbr: 'hc',
+        ctToShow: 'pt-info/single/1time-1row-mField/bm/sub-cts/height/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

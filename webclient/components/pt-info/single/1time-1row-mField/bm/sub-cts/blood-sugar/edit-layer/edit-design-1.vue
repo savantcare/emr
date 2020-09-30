@@ -66,11 +66,11 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import ctBloodSugarGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue'
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 
 export default {
   components: { ctBloodSugarGraph },
-  mixins: [mxc],
+  mixins: [editMixin],
   data() {
     return {
       pickerOptions: {

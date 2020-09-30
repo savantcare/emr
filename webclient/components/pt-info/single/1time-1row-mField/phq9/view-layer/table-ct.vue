@@ -15,7 +15,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
         :type="mfTypeOfButton(question.name)"
         plain
         :tabindex="index === 0 ? cfPosInArCardsInPtsOfVl * 100 + 1 : null"
-        >{{ cfDataRow[question.name] }}</el-button
+        >{{ cfLatestDataRowFromClientSideTable[question.name] }}</el-button
       >
     </span>
 
@@ -26,7 +26,7 @@ unique to this ct Code synced with ref implementation on 18th august 2020
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfDataRow['id'])"
+      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
       class="el-icon-edit"
     ></el-button>
     <el-button

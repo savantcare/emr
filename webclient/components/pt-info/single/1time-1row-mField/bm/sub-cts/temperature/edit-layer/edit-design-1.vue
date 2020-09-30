@@ -50,11 +50,11 @@ For graph related work the reference implementation is weight.
 
 <script>
 import ctTemperatureGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/line-graph-ct.vue'
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 
 export default {
   components: { ctTemperatureGraph },
-  mixins: [mxc],
+  mixins: [editMixin],
   data() {
     return {
       pickerOptions: {

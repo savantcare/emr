@@ -2,81 +2,54 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Body measurement"
-      :propChildCardsArray="cfArOfBMComponentsForDisplay"
       :propClientSideTableLevelActions="[
-        { content: 'Toggle card', elementIoIconClass: 'el-icon-remove-outline' },
+        {
+          actionDescription: 'Toggle card display',
+          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        },
       ]"
-      :propClientSideRowLevelActions="[
-        { content: 'Show data timeline', elementIoIconClass: 'el-icon-discover' },
-        { content: 'Delete row', elementIoIconClass: 'el-icon-circle-close' },
-      ]"
-    ></showContentInCardComponent>
+    >
+      <div
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
+        <ctWeightGraph form-type="embedded"></ctWeightGraph>
+        <ctHeightGraph form-type="embedded"></ctHeightGraph>
+        <ctTemperatureGraph form-type="embedded"></ctTemperatureGraph>
+        <ctBloodPressureGraph form-type="embedded"></ctBloodPressureGraph>
+        <ctBloodSugarGraph form-type="embedded"></ctBloodSugarGraph>
+        <ctWaistCircumferenceGraph form-type="embedded"></ctWaistCircumferenceGraph>
+        <ctPulseGraph form-type="embedded"></ctPulseGraph>
+        <ctOxygenSaturationGraph form-type="embedded"></ctOxygenSaturationGraph>
+      </div>
+    </showContentInCardComponent>
   </div>
 </template>
 
 <script>
 import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
-
+import ctWeightGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue'
+import ctHeightGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/line-graph-ct.vue'
+import ctTemperatureGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/line-graph-ct.vue'
+import ctBloodPressureGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/line-graph-ct.vue'
+import ctBloodSugarGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue'
+import ctWaistCircumferenceGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue'
+import ctPulseGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/line-graph-ct.vue'
+import ctOxygenSaturationGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue'
 export default {
   components: {
     showContentInCardComponent,
+    ctWeightGraph,
+    ctHeightGraph,
+    ctTemperatureGraph,
+    ctBloodPressureGraph,
+    ctBloodSugarGraph,
+    ctWaistCircumferenceGraph,
+    ctPulseGraph,
+    ctOxygenSaturationGraph,
   },
   data: function () {
     return {}
-  },
-  computed: {
-    cfArOfBMComponentsForDisplay() {
-      var arrayOfBodyMeasurementComponentsForDisplay = new Array()
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/weight/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/temperature/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/pulse/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      var obj = new Object()
-
-      obj.cardContentOfTypeComponentObjectToShowInBodyOfCards = require('@/components/' +
-        'pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/table-ct.vue').default
-      arrayOfBodyMeasurementComponentsForDisplay.push(obj)
-
-      return arrayOfBodyMeasurementComponentsForDisplay
-    },
   },
   methods: {
     mfTablePageChanged(pNewPageNumber) {

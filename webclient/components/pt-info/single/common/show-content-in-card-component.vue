@@ -16,10 +16,10 @@
       <el-button-group style="float: right; display: none">
         <el-tooltip
           v-for="tableLevelAction in propClientSideTableLevelActions"
-          :key="tableLevelAction.content"
+          :key="tableLevelAction.actionDescription"
           class="item"
           effect="light"
-          :content="tableLevelAction.content"
+          :content="tableLevelAction.actionDescription"
           placement="top-end"
           :open-delay="500"
         >
@@ -27,8 +27,8 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnIconClicked(tableLevelAction.content)"
-            :class="tableLevelAction.elementIoIconClass"
+            @click="mfActOnTableLevelIconClicked(tableLevelAction.actionDescription)"
+            :class="tableLevelAction.actionUIByElementIoIconClass"
           ></el-button>
         </el-tooltip>
       </el-button-group>
@@ -54,18 +54,19 @@
         <el-button-group style="float: right; display: none">
           <el-tooltip
             v-for="rowLevelAction in propClientSideRowLevelActions"
-            :key="rowLevelAction.content"
+            :key="rowLevelAction.actionDescription"
             class="item"
             effect="light"
-            :content="rowLevelAction.content"
+            :content="rowLevelAction.actionDescription"
             placement="top-end"
             :open-delay="500"
           >
             <el-button
-              :class="rowLevelAction.elementIoIconClass"
+              :class="rowLevelAction.actionUIByElementIoIconClass"
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
+              @click="mfActOnRowLevelIconClicked(rowLevelAction.actionDescription, card)"
             ></el-button>
           </el-tooltip>
         </el-button-group>
@@ -97,13 +98,6 @@ export default {
   },
   computed: {},
   methods: {
-    mfOpenEditCtInEditLayer() {
-      this.$parent.mfOpenEditCtInEditLayer()
-    },
-    mfIconDeleteClickedOnChildCard(pChildCardUniqId) {
-      this.$parent.mfIconDeleteClickedOnChildCard(pChildCardUniqId)
-    },
-
     // Goal: Change container font color as per client side row status
     mfGetCssClassNameForEachDataRow(clientSideDataRow) {
       if (!clientSideDataRow.vnRowStateInSession) return
@@ -126,16 +120,21 @@ export default {
       }
       return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
     },
-    mfActOnIconClicked(pAction) {
-      if (pAction === 'Add') this.$parent.mxOpenAddCtInEditLayer()
-      if (pAction === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
+    mfActOnTableLevelIconClicked(pActionDescription) {
+      if (pActionDescription === 'Add') this.$parent.mxOpenAddCtInEditLayer()
+      if (pActionDescription === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
 
-      if (pAction === 'Toggle card')
+      if (pActionDescription === 'Toggle card display')
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
-      if (pAction === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
-      if (pAction === 'Close card')
+      if (pActionDescription === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
+      if (pActionDescription === 'Close card')
         this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh =
           1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh
+
+      return
+    },
+    mfActOnRowLevelIconClicked(pActionDescription, pCard) {
+      if (pActionDescription === 'Edit') this.$parent.mfEditIconClicked(pCard.clientSideUniqRowId)
 
       return
     },
@@ -150,7 +149,7 @@ export default {
  Generation 1                                      |
 ==============                     _________________________________
                                   |                                |
-                    .s-css-class-top-most-card-header                |
+                    .s-css-class-top-most-card-header              |
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
@@ -284,6 +283,24 @@ Component           |  Side        | Location     | From front  | From back
   Reminder          |  Fixed       |  Row         |  3          |  -1
   */
 .el-icon-circle-close:hover {
+  color: #f56c6c !important;
+  font-size: 1.5rem;
+}
+
+/* Used for SUBMIT-ROW at: 
+Component           |  Side        | Location     | From front  | From back
+  name              |  Flexible    |  Row         |  3          |  -2
+  */
+.el-icon-check:hover {
+  color: #67c23a !important;
+  font-size: 1.5rem;
+}
+
+/* Used for RESET-ROW at: 
+Component           |  Side        | Location     | From front  | From back
+  name              |  Flexible    |  Row         |  4          |  -1
+  */
+.el-icon-refresh:hover {
   color: #f56c6c !important;
   font-size: 1.5rem;
 }

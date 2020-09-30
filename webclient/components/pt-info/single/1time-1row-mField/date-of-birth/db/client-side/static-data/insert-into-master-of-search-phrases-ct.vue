@@ -12,19 +12,17 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'waist circumference',
-        ctAbbr: 'wc',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
+        value: 'date of birth',
+        ctAbbr: 'w',
+        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/view-layer/dob-table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit waist circumference',
-        ctAbbr: 'wcc',
-        ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // Cl -> Change layer
+        value: 'date of birth - edit',
+        ctAbbr: 'wc',
+        ctToShow: 'pt-info/single/1time-1row-mField/date-of-birth/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

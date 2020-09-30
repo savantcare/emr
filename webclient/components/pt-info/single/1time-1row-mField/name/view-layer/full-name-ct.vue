@@ -1,61 +1,81 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
   <div>
-    <h5 v-if="formType === 'stand-alone'">Name</h5>
-    <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
-    <el-button
-      :type="mfTypeOfButton('firstName')"
-      plain
-      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
-      >{{ cfDataRow['firstName'] }}</el-button
+    <showContentInCardComponent
+      propMainCardName="Name"
+      :propClientSideTableLevelActions="[
+        {
+          actionDescription: 'Toggle card display',
+          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        },
+        { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
+      ]"
+      :propClientSideRowLevelActions="cfClientSideRowLevelActions"
+      propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
-    <el-button :type="mfTypeOfButton('middleName')" plain>{{ cfDataRow['middleName'] }}</el-button>
-    <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfDataRow['lastName'] }}</el-button>
-    <el-button
-      v-if="formType === 'stand-alone'"
-      type="primary"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfDataRow['id'])"
-      class="el-icon-edit"
-    ></el-button>
-    <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
-      type="success"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="mfSendReviewedEvent()"
-      >S</el-button
-    >
-    <el-button
-      v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true && formType === 'stand-alone'"
-      type="danger"
-      size="mini"
-      style="padding: 3px"
-      plain
-      tabindex="-1"
-      @click="mfSendResetFormEvent()"
-      >R</el-button
-    >
+      <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
+      <div
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
+        <el-button-group style="float: right; display: none">
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            tabindex="-1"
+            @click="mfEditIconClicked(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+            class="el-icon-edit"
+          />
+          <el-button
+            v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
+            type="success"
+            size="mini"
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mfSendReviewedEvent()"
+            >S</el-button
+          >
+          <el-button
+            v-if="dataFldsOfToChangeAndCopiedRowsAreSame !== true"
+            type="danger"
+            size="mini"
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mfSendResetFormEvent()"
+            >R</el-button
+          >
+        </el-button-group>
+        <el-button
+          :type="mfTypeOfButton('firstName')"
+          plain
+          :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+          >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
+        >
+        <el-button :type="mfTypeOfButton('middleName')" plain>{{
+          cfLatestDataRowFromClientSideTable['middleName']
+        }}</el-button>
+        <el-button :type="mfTypeOfButton('lastName')" plain>{{
+          cfLatestDataRowFromClientSideTable['lastName']
+        }}</el-button>
+      </div>
+    </showContentInCardComponent>
   </div>
 </template>
 
 <script>
-/* Option1: 
+/* Option1:
 
 import mxTable from '@/components/pt-info/single/1time-1row-mField/com-mx/mixins/view-layer.js'
 
 Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
-But inside /com-mx/mixins/view-layer.js I am not able to import the correct 
+But inside /com-mx/mixins/view-layer.js I am not able to import the correct
 import mxFullSyncWithDbServer from './db/full-sync-with-db-server-mixin'
 
 Since relative paths current working directory is /com-mx/
 
-Posted the question on 
+Posted the question on
 stackoverflow: https://stackoverflow.com/questions/63373084/relative-path-getting-resolved-from-location-of-imported-file
 Discord: https://discord.com/channels/325477692906536972/325479107012067328/743027109659672616
 
@@ -71,16 +91,43 @@ const mxTable = require('../com-mx/view-layer.js')('weight').default -> Does not
 
 /* Option3: Working. But in this option the same file '../com-mx/view-layer.js' has to be kept in each folder like height weight name */
 import mxViewLayer from '../com-mx/view-layer.js'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
+  components: { showContentInCardComponent },
   mixins: [mxViewLayer],
-  props: {
-    formType: {
-      default: 'stand-alone',
-      type: String,
+  computed: {
+    cfClientSideRowLevelActions() {
+      const actions = [
+        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
+        {
+          actionDescription: 'Show data timeline',
+          actionUIByElementIoIconClass: 'el-icon-discover',
+        },
+        { actionDescription: 'Submit', actionUIByElementIoIconClass: 'el-icon-check' },
+        { actionDescription: 'Reset', actionUIByElementIoIconClass: 'el-icon-refresh' },
+      ]
+      return actions
     },
-    date: {
-      ctName: 'name', // this is supposed to be used by import mxTable from '@/components/pt-info/single/1time-1row-mField/com-mx/mixins/view-layer.js so that the same mixin cab be used by name height and weight
+    cfArOfNameForDisplay() {
+      let arOfObjectsFromClientSideDB = new Array()
+      let obj = new Object()
+      obj['cardContentOfTypeStringToShowInBodyOfCards'] =
+        this.cfLatestDataRowFromClientSideTable['firstName'] +
+        ' - ' +
+        this.cfLatestDataRowFromClientSideTable['middleName'] +
+        ' - ' +
+        this.cfLatestDataRowFromClientSideTable['lastName']
+
+      obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
+      arOfObjectsFromClientSideDB.push(obj)
+      return arOfObjectsFromClientSideDB
+    },
+  },
+  methods: {
+    mfEditIconClicked(pRowId) {
+      console.log(pRowId)
+      this.mfOpenEditCtInEditLayer(pRowId, 'name - edit')
     },
   },
 }

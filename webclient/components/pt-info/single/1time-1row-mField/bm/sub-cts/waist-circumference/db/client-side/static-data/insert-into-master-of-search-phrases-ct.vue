@@ -12,19 +12,19 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood Sugar',
-        ctAbbr: 'bs',
+        value: 'waist circumference',
+        ctAbbr: 'wc',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/view-layer/line-graph-ct.vue',
+          'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'blood Sugar - change',
-        ctAbbr: 'bsc',
+        value: 'edit waist circumference',
+        ctAbbr: 'wcc',
         ctToShow:
-          'pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/edit-layer/edit-design-1.vue', // Cl -> Change layer
+          'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

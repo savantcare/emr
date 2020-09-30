@@ -65,11 +65,11 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import ctWaistCircumferenceGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/view-layer/line-graph-ct.vue'
-import mxc from '../com-mx/edit-layer.js'
+import editMixin from '../com-mx/edit-layer.js'
 
 export default {
   components: { ctWaistCircumferenceGraph },
-  mixins: [mxc],
+  mixins: [editMixin],
   data() {
     return {
       pickerOptions: {
