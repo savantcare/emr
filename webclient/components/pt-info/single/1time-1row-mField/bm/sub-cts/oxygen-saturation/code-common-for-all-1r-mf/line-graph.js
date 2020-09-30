@@ -19,7 +19,7 @@ export default {
 
       // if (!arDataToShowOnGraph) return {} // In this case the tooltip will not come property formatted. Since during 2nd run it is updating the data but not some of the other chartOptions
 
-      console.log(arDataToShowOnGraph)
+      // console.log(arDataToShowOnGraph)
 
       // Ref: https://www.tutorialspoint.com/highcharts/highcharts_spline_time.htm
       const chartOptions = {

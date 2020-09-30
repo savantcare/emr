@@ -66,7 +66,7 @@ export default {
           const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
-        console.log(arDataToShowOnGraph)
+        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -93,7 +93,7 @@ export default {
             (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
-        console.log(arDataToShowOnGraph)
+        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -121,7 +121,7 @@ export default {
             (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
           arDataToShowOnGraph.push([timeOfMeasurement, graphData])
         }
-        console.log(arDataToShowOnGraph)
+        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -179,7 +179,7 @@ export default {
         arDataToShowOnGraph.push([arOfObjectsFromClientSideDB[i].ROW_START, 0])
       }
 
-      console.log(arDataToShowOnGraph)
+      // console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {

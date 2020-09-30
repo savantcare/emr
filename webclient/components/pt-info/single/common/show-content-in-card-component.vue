@@ -114,7 +114,6 @@ export default {
       }
     },
     mfGetTopMostCardBodyGrid() {
-      console.log(this.propClientSideTableLevelActions)
       if (this.propGridDesignTopMostParentBody) {
         return this.propGridDesignTopMostParentBody
       }

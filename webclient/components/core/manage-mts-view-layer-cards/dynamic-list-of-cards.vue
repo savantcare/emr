@@ -40,8 +40,6 @@ export default {
         .where('fieldName', 'classificationOfComponentToShowOnMultiTimeStateSide')
         .get()
 
-      console.log(arOfObjectsFromCommonForAllComponents)
-
       if (arOfObjectsFromCommonForAllComponents.length > 0) {
         vComponentClassificationToShowUser = arOfObjectsFromCommonForAllComponents[0]['fieldValue']
       }

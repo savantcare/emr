@@ -48,7 +48,10 @@ export default {
     ctVlSearchBox,
   },
   data() {
-    return {}
+    return {
+      dArOfComponentObjectsCached: [], // first dimension is the componentToShowPath and second is the cache of the object
+      // When same command is given twice the prev command is deleted and hence clientSideUniqRowId changes.
+    }
   },
   computed: {
     cfArCardsInCsOfVl() {
@@ -57,15 +60,21 @@ export default {
         .where('componentCurrentViewState', (value) => value > 0)
         .get()
 
-      console.log(arOfObjectsFromClientSideDB)
+      let componentToShowPath = ''
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        console.log('loading the Ct Obj')
-        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
-          arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
-      }
+        componentToShowPath = arOfObjectsFromClientSideDB[i]['componentToShowPath']
+        if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
+          console.log('requring the Ct Obj')
 
-      console.log(arOfObjectsFromClientSideDB)
+          this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
+            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+        }
+
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[
+          componentToShowPath
+        ]
+      }
 
       return arOfObjectsFromClientSideDB
     },
