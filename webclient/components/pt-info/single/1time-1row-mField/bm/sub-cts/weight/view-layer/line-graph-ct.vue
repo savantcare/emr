@@ -8,7 +8,12 @@
         style="padding: 3px"
         plain
         tabindex="-1"
-        @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+        @click="
+          mfOpenEditCtInEditLayer(
+            cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
+            'weight - edit'
+          )
+        "
         class="el-icon-edit"
       ></el-button>
       <el-button
@@ -37,7 +42,7 @@
 </template>
 
 <script>
-import mxLineG from '../com-mx/line-graph.js'
+import mxLineG from '../code-common-for-all-1r-mf/line-graph.js'
 
 export default {
   mixins: [mxLineG],

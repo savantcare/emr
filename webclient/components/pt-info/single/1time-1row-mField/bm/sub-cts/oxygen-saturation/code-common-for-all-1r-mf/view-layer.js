@@ -64,7 +64,6 @@ export default {
         2nd the card 2 will focus
       */
     cfPosInArCardsInPtsOfVl() {
-      if (!this.isMounted) return false
       const arFromClientSideTable = clientSideTblOfRightSideCards
         .query()
         .where('name', 'reminders')
@@ -104,13 +103,13 @@ export default {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromClientSideTable[0]
       const dnClientSideIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
-        rowtoReturn.uuid
+        rowtoReturn.serverSideRowUuid
       )
       if (dnClientSideIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
-          rowtoReturn.id,
+          rowtoReturn.clientSideUniqRowId,
           dnClientSideIdOfCopiedRowBeingChanged
         )
       }
@@ -119,7 +118,6 @@ export default {
   },
   methods: {
     mfOpenEditCtInEditLayer(pClientSideId, pCtToInvoke) {
-      console.log(pClientSideId)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: pCtToInvoke,
       })

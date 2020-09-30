@@ -52,7 +52,7 @@ Code synced with ref implementation on 4th august 2020
 </template>
 
 <script>
-import editMixin from '../com-mx/edit-layer.js'
+import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
 export default {
   mixins: [editMixin],
   data() {

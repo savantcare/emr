@@ -66,7 +66,7 @@ Code synced with ref implementation on 4th august 2020
 
 <script>
 import ctOxygenSaturationGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/view-layer/line-graph-ct.vue'
-import editMixin from '../com-mx/edit-layer.js'
+import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
 
 export default {
   components: { ctOxygenSaturationGraph },

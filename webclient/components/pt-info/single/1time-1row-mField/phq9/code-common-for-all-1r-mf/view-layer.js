@@ -60,12 +60,12 @@ export default {
     if (arFromClientSideTable.length) {
       const rowtoReturn = arFromClientSideTable[0]
       const vnClientSideIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
-        rowtoReturn.uuid
+        rowtoReturn.serverSideRowUuid
       )
       if (vnClientSideIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
-          rowtoReturn.id,
+          rowtoReturn.clientSideUniqRowId,
           vnClientSideIdOfCopiedRowBeingChanged
         )
       }
