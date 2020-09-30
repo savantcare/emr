@@ -26,74 +26,73 @@
         },
       ]"
     >
-      <div slot="bodySlotContentFromParentToShowAboveChildCards">
-        <el-card
-          v-for="rem in cfArOfRemForDisplayInTable"
-          :key="rem.id"
-          class="box-card sc-individual-child-card"
-          shadow="hover"
-          :style="mfGetCssClassName(rem)"
-        >
-          <el-button-group style="float: right; display: none">
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to edit"
-              placement="top-start"
-              :open-delay="500"
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        v-for="rem in cfArOfRemForDisplayInTable"
+        :key="rem.id"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+        :style="mfGetCssClassName(rem)"
+      >
+        <el-button-group style="float: right; display: none">
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to edit"
+            placement="top-start"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+              class="el-icon-edit"
             >
-              <el-button
-                style="padding: 3px; color: #c0c4cc; border: none"
-                plain
-                @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
-                class="el-icon-edit"
-              >
-              </el-button>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="info"
-              placement="top-end"
-              :open-delay="500"
+            </el-button>
+          </el-tooltip>
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="info"
+            placement="top-end"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              class="el-icon-discover"
             >
-              <el-button
-                style="padding: 3px; color: #c0c4cc; border: none"
-                plain
-                class="el-icon-discover"
-              >
-              </el-button>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="light"
-              content="Click to delete"
-              placement="top-end"
-              :open-delay="500"
+            </el-button>
+          </el-tooltip>
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to delete"
+            placement="top-end"
+            :open-delay="500"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
+              class="el-icon-circle-close"
             >
-              <el-button
-                style="padding: 3px; color: #c0c4cc; border: none"
-                plain
-                @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
-                class="el-icon-circle-close"
-              >
-              </el-button>
-            </el-tooltip>
-          </el-button-group>
+            </el-button>
+          </el-tooltip>
+        </el-button-group>
 
-          <!-- <el-button type="text">{{ rem.description }}</el-button> 
+        <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
           if rowStateInThisSession == 9 then the div should have a orange border
           Why we are doing this?
             Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
             Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
           -->
-          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-          <div v-else>
-            {{ rem.description }}
-          </div>
-        </el-card>
-      </div>
+        <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+        <div v-else>
+          {{ rem.description }}
+        </div>
+      </el-card>
     </showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>
