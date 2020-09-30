@@ -47,6 +47,12 @@ export default {
         ctToShowPath: 'pt-info/single/1time-Mrow-mField/scr/view-layer/table-ct.vue',
       },
     })
+    clientSideTblOfLeftSideCards.insert({
+      data: {
+        name: 'Contacts',
+        ctToShowPath: 'pt-info/single/1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
+      },
+    })
   },
 }
 </script>
