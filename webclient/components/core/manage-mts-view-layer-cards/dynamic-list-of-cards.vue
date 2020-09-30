@@ -27,15 +27,23 @@ export default {
        if type of Ct is Health or Other
        Which user role it is. Since each user role has access to a different set of cards.
        */
+
+      // Goal: Find out what classification of Components does the user want to see
+      const vClassification = 'other'
+
+      // Goal2: Find all components for that classification
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('vIfState', (value) => value > 0)
+        .where('classificationOfComponent', vClassification)
         .get()
+
+      // Goal3: Make an array of Ct objects
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
           console.log('loading the Ct Obj')
           arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['ctToShowPath']).default
+            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
         }
       }
 

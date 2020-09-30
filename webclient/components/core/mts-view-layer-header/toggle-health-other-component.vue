@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import clientSideTblOfLeftSideCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+
 export default {
   data() {
     // KT: Why is this a function and not a object? Ref: https://vuejs.org/v2/style-guide/#Component-data-essential

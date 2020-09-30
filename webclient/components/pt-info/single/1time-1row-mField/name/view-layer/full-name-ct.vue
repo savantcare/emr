@@ -10,7 +10,6 @@
         },
         { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
       ]"
-      :propClientSideRowLevelActions="cfClientSideRowLevelActions"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
       <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
@@ -23,7 +22,12 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfEditIconClicked(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+            @click="
+              mfOpenEditCtInEditLayer(
+                cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
+                'name - edit'
+              )
+            "
             class="el-icon-edit"
           />
           <el-button
@@ -97,18 +101,6 @@ export default {
   components: { showContentInCardComponent },
   mixins: [mxViewLayer],
   computed: {
-    cfClientSideRowLevelActions() {
-      const actions = [
-        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
-        {
-          actionDescription: 'Show data timeline',
-          actionUIByElementIoIconClass: 'el-icon-discover',
-        },
-        { actionDescription: 'Submit', actionUIByElementIoIconClass: 'el-icon-check' },
-        { actionDescription: 'Reset', actionUIByElementIoIconClass: 'el-icon-refresh' },
-      ]
-      return actions
-    },
     cfArOfNameForDisplay() {
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()
@@ -122,12 +114,6 @@ export default {
       obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
-    },
-  },
-  methods: {
-    mfEditIconClicked(pRowId) {
-      console.log(pRowId)
-      this.mfOpenEditCtInEditLayer(pRowId, 'name - edit')
     },
   },
 }
