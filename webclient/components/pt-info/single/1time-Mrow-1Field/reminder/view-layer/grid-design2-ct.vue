@@ -3,7 +3,6 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Reminders"
-      :propChildCardsArray="cfArOfRemForDisplayInTable"
       :propClientSideTableLevelActions="[
         {
           actionDescription: 'Add',
@@ -26,18 +25,74 @@
           actionUIByElementIoIconClass: 'el-icon-delete',
         },
       ]"
-      :propClientSideRowLevelActions="[
-        { actionDescription: 'Edit', actionUIByElementIoIconClass: 'el-icon-edit' },
-        {
-          actionDescription: 'Show data timeline',
-          actionUIByElementIoIconClass: 'el-icon-discover',
-        },
-        {
-          actionDescription: 'Delete row',
-          actionUIByElementIoIconClass: 'el-icon-circle-close',
-        },
-      ]"
-    ></showContentInCardComponent>
+    >
+      <div slot="bodySlotContentFromParentToShowAboveChildCards">
+        <el-card
+          v-for="rem in cfArOfRemForDisplayInTable"
+          :key="rem.id"
+          class="box-card content-card"
+          shadow="hover"
+          :style="mfGetCssClassName(rem)"
+        >
+          <div class="info-icon">
+            <el-button type="text">
+              <el-tooltip
+                class="item"
+                effect="light"
+                content="info"
+                placement="top-end"
+                :open-delay="500"
+              >
+                <i class="el-icon-info custom-info-icon"></i>
+              </el-tooltip>
+            </el-button>
+          </div>
+          <div class="delete-icon">
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="Click to delete"
+              placement="top-end"
+              :open-delay="500"
+            >
+              <el-button
+                type="text"
+                @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
+                class="el-icon-error custom-close-icon"
+              >
+              </el-button>
+            </el-tooltip>
+          </div>
+
+          <el-tooltip
+            class="item"
+            effect="light"
+            content="Click to edit"
+            placement="top-start"
+            :open-delay="500"
+          >
+            <el-button
+              type="text"
+              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+              class="el-icon-edit"
+            >
+            </el-button>
+          </el-tooltip>
+
+          <!-- <el-button type="text">{{ rem.description }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
+            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
+          -->
+          <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
+          <div v-else>
+            {{ rem.description }}
+          </div>
+        </el-card>
+      </div>
+    </showContentInCardComponent>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>
@@ -127,6 +182,15 @@ export default {
     },
     mfEditIconClicked(pClientSideDataRowId) {
       this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
+    },
+    mfGetCssClassName(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'color: #E6A23C;'
+      } else {
+        return 'color: #202020;'
+      }
     },
   },
 }

@@ -13,12 +13,13 @@
       :propClientSideRowLevelActions="cfClientSideRowLevelActions"
     >
       <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
-      <div slot="bodySlotContentFromParentToShowAboveChildCards">
-        <el-button-group style="float: right">
+      <div
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
+        <el-button-group style="float: right; display: none">
           <el-button
-            type="primary"
-            size="mini"
-            style="padding: 3px"
+            style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
             @click="mfEditIconClicked(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
