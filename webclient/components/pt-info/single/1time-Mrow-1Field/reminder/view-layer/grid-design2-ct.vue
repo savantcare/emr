@@ -30,11 +30,11 @@
         <el-card
           v-for="rem in cfArOfRemForDisplayInTable"
           :key="rem.id"
-          class="box-card content-card"
+          class="box-card sc-individual-child-card"
           shadow="hover"
           :style="mfGetCssClassName(rem)"
         >
-          <div class="info-icon">
+          <el-button-group style="float: right; display: none">
             <el-button type="text">
               <el-tooltip
                 class="item"
@@ -46,8 +46,6 @@
                 <i class="el-icon-info custom-info-icon"></i>
               </el-tooltip>
             </el-button>
-          </div>
-          <div class="delete-icon">
             <el-tooltip
               class="item"
               effect="light"
@@ -62,22 +60,21 @@
               >
               </el-button>
             </el-tooltip>
-          </div>
-
-          <el-tooltip
-            class="item"
-            effect="light"
-            content="Click to edit"
-            placement="top-start"
-            :open-delay="500"
-          >
-            <el-button
-              type="text"
-              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
-              class="el-icon-edit"
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="Click to edit"
+              placement="top-start"
+              :open-delay="500"
             >
-            </el-button>
-          </el-tooltip>
+              <el-button
+                type="text"
+                @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+                class="el-icon-edit"
+              >
+              </el-button>
+            </el-tooltip>
+          </el-button-group>
 
           <!-- <el-button type="text">{{ rem.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
