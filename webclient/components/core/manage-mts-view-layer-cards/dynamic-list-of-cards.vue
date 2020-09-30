@@ -9,7 +9,7 @@
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
             -->
-      <component :is="card.ctToShowObj"></component>
+      <component :is="card.componentToShowObject"></component>
     </div>
   </div>
 </template>
@@ -55,9 +55,9 @@ export default {
 
       // Goal3: Make an array of Ct objects
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        if (!arOfObjectsFromClientSideDB[i]['ctToShowObj']) {
+        if (!arOfObjectsFromClientSideDB[i]['componentToShowObject']) {
           console.log('loading the Ct Obj')
-          arOfObjectsFromClientSideDB[i]['ctToShowObj'] = require('@/components/' +
+          arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
             arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
         }
       }
