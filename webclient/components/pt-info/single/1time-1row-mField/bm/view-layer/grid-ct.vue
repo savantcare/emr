@@ -9,19 +9,54 @@
         },
       ]"
     >
-      <div
+      <el-card
         slot="bodySlotContentFromParentToShowAboveChildCards"
         class="box-card sc-individual-child-card"
       >
         <ctWeightGraph form-type="embedded"></ctWeightGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctHeightGraph form-type="embedded"></ctHeightGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctTemperatureGraph form-type="embedded"></ctTemperatureGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctBloodPressureGraph form-type="embedded"></ctBloodPressureGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctBloodSugarGraph form-type="embedded"></ctBloodSugarGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctWaistCircumferenceGraph form-type="embedded"></ctWaistCircumferenceGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctPulseGraph form-type="embedded"></ctPulseGraph>
+      </el-card>
+      <el-card
+        slot="bodySlotContentFromParentToShowAboveChildCards"
+        class="box-card sc-individual-child-card"
+      >
         <ctOxygenSaturationGraph form-type="embedded"></ctOxygenSaturationGraph>
-      </div>
+      </el-card>
     </showContentInCardComponent>
   </div>
 </template>
