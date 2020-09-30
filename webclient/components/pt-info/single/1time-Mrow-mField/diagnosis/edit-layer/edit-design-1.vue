@@ -43,19 +43,20 @@ export default {
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
-        .orderBy('parity', 'desc')
+        .orderBy('priority', 'desc')
         .get();
         return arOfObjectsFromClientSideMasterDB;
     }
   },
-  mounted() {},
+  mounted() {
+    this.fnSetMasterDataPriority();
+  },
   methods: {
-    fnSetMasterDataParity() {
+    fnSetMasterDataPriority() {
       const checkselectedData = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
         .where('ROW_END', 2147483647.999999).get();
-        console.log('checkselectedData', checkselectedData);
       if(checkselectedData.length > 0) {
         for (let index = 0; index < checkselectedData.length; index++) {
           const element = checkselectedData[index];
@@ -63,14 +64,14 @@ export default {
             clientSideTblMasterDiagnosis.update({
               where: element.masterDiagnosisId,
               data: {
-                parity: 1,
+                priority: 1,
               },
             })
           } else {
             clientSideTblMasterDiagnosis.update({
               where: element.masterDiagnosisId,
               data: {
-                parity: 0,
+                priority: 0,
               },
             })
           }

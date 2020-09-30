@@ -11,9 +11,9 @@
         </el-tooltip>
       </div>
       <div class="">
-        <div v-if="bindDisplayData.length > 0">
+        <div v-if="cfArOfDiagnosisForDisplay.length > 0">
           <el-table
-            :data="bindDisplayData"
+            :data="cfArOfDiagnosisForDisplay"
             :show-header="false"
             style="width: 100%">
             <!-- <el-table-column type="expand" v-if="assesment">
@@ -37,7 +37,7 @@
                     style="padding: 3px"
                     plain
                     tabindex="-1"
-                    @click="fnDiscontinue(props.row.$id)"
+                    @click="mfIconDeleteClickedOnChildCard(props.row.$id)"
                   >D</el-button>
 
                 </el-tooltip>
@@ -57,7 +57,7 @@ import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-t
 
 export default {
   computed: { 
-    bindDisplayData: function() {
+    cfArOfDiagnosisForDisplay: function() {
       const getData = clientSideTblPatientDiagnosis
         .query()
         .with('linkWithMaster')
@@ -67,7 +67,7 @@ export default {
     },
    },
   methods: {
-    fnDiscontinue(id) {
+    mfIconDeleteClickedOnChildCard(id) {
       const arResultsFromOrm = clientSideTblPatientDiagnosis.query().with('linkWithMaster').where(id).first();
 
       this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Discontinue diagnosis', {
