@@ -21,7 +21,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit waist circumference',
+        value: 'waist circumference - edit',
         ctAbbr: 'wcc',
         ctToShow:
           'pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // El -> Edit layer

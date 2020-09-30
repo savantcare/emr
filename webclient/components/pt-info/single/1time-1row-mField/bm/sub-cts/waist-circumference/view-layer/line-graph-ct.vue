@@ -8,7 +8,12 @@
         style="padding: 3px"
         plain
         tabindex="-1"
-        @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+        @click="
+          mfOpenEditCtInEditLayer(
+            cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
+            'waist circumference - edit'
+          )
+        "
         class="el-icon-edit"
       ></el-button>
       <el-button

@@ -117,11 +117,9 @@ export default {
     }
   },
   methods: {
-    mfOpenEditCtInEditLayer(pClientSideId) {
-      const searchString = [clientSideTable.entity, 'change'].join(' - ')
-      console.log(searchString)
+    mfOpenEditCtInEditLayer(pClientSideId, pCtToInvoke) {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: searchString,
+        searchTerm: pCtToInvoke,
       })
     },
     mfTypeOfButton(pFldName) {
