@@ -11,6 +11,7 @@
         { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
       ]"
       :propClientSideRowLevelActions="cfClientSideRowLevelActions"
+      propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
       <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
       <div
