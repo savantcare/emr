@@ -55,11 +55,8 @@ export default {
 
       // Goal3: Make an array of Ct objects
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        if (!arOfObjectsFromClientSideDB[i]['componentToShowObject']) {
-          console.log('loading the Ct Obj')
-          arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
-        }
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
+          arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
       }
 
       return arOfObjectsFromClientSideDB
