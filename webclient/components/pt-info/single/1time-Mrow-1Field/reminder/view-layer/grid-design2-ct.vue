@@ -35,17 +35,20 @@
           :style="mfGetCssClassName(rem)"
         >
           <el-button-group style="float: right; display: none">
-            <el-button type="text">
-              <el-tooltip
-                class="item"
-                effect="light"
-                content="info"
-                placement="top-end"
-                :open-delay="500"
+            <el-tooltip
+              class="item"
+              effect="light"
+              content="info"
+              placement="top-end"
+              :open-delay="500"
+            >
+              <el-button
+                style="padding: 3px; color: #c0c4cc; border: none"
+                plain
+                class="el-icon-info"
               >
-                <i class="el-icon-info custom-info-icon"></i>
-              </el-tooltip>
-            </el-button>
+              </el-button>
+            </el-tooltip>
             <el-tooltip
               class="item"
               effect="light"
@@ -54,7 +57,8 @@
               :open-delay="500"
             >
               <el-button
-                type="text"
+                style="padding: 3px; color: #c0c4cc; border: none"
+                plain
                 @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
                 class="el-icon-error custom-close-icon"
               >
@@ -68,7 +72,8 @@
               :open-delay="500"
             >
               <el-button
-                type="text"
+                style="padding: 3px; color: #c0c4cc; border: none"
+                plain
                 @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
                 class="el-icon-edit"
               >
