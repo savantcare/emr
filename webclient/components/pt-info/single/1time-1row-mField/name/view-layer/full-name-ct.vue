@@ -22,7 +22,12 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfEditIconClicked(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+            @click="
+              mfOpenEditCtInEditLayer(
+                cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
+                'name - edit'
+              )
+            "
             class="el-icon-edit"
           />
           <el-button
@@ -109,12 +114,6 @@ export default {
       obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
-    },
-  },
-  methods: {
-    mfEditIconClicked(pRowId) {
-      console.log(pRowId)
-      this.mfOpenEditCtInEditLayer(pRowId, 'name - edit')
     },
   },
 }
