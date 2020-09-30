@@ -48,7 +48,7 @@ export default {
       // Goal 2: Find all components for that classification
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
-        .where('vIfState', (value) => value > 0)
+        .where('componentCurrentViewState', (value) => value > 0)
         .where('classificationOfComponent', vComponentClassificationToShowUser)
         .orWhere('classificationOfComponent', 'commonForHealthAndOther')
         .get()

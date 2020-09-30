@@ -54,7 +54,7 @@ export default {
     cfArCardsInCsOfVl() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
-        .where('vIfState', (value) => value > 0)
+        .where('componentCurrentViewState', (value) => value > 0)
         .get()
 
       console.log(arOfObjectsFromClientSideDB)

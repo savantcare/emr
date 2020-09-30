@@ -21,7 +21,7 @@ export default {
       data: {
         name: 'Appt note',
         componentToShowPath: 'pt-info/combined/note-preview/design-1.vue', // PtsVl -> Present time state - part of - view layer
-        vIfState: 0,
+        componentCurrentViewState: 0,
       },
     })
     clientSideTblOfLeftSideCards.insert({

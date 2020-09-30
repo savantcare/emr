@@ -97,7 +97,7 @@ export default {
       const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
 
       // Goal: Keep the button highlighted that has been clicked
-      if (noteCurrentValue['vIfState'] === pClientSideRowId) {
+      if (noteCurrentValue['componentCurrentViewState'] === pClientSideRowId) {
         this.currentActiveButtonClientSideRowId = 0
       } else {
         this.currentActiveButtonClientSideRowId = pClientSideRowId
@@ -107,7 +107,7 @@ export default {
       // Writing this in client Side DB since another component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
-        vIfState: this.currentActiveButtonClientSideRowId,
+        componentCurrentViewState: this.currentActiveButtonClientSideRowId,
       })
     },
   },
