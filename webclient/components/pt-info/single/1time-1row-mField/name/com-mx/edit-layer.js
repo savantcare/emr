@@ -104,7 +104,7 @@ export default {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
-    this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].id
+    this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.dnClientSideIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },

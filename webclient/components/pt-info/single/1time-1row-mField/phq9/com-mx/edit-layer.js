@@ -69,7 +69,7 @@ export default {
       await this.mxGetDataFromDb()
     }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
-    this.vnClientSideIdOfRowToChange = arFromClientSideTable[0].id
+    this.vnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.vnClientSideIdOfCopiedRowBeingChanged = null
   },
   mounted() {
