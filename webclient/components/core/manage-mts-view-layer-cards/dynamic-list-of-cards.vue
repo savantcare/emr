@@ -21,7 +21,9 @@ import clientSideTblCommonForAllComponents from '~/components/pt-info/single/1ti
 export default {
   components: { clientSideTblOfViewCardsInit },
   data() {
-    return {}
+    return {
+      dArOfComponentObjectsCached: [], // first dimension is the clientSideUniqRowId and second is the cache of the object
+    }
   },
   computed: {
     cfArCardsInCsOfVl() {
@@ -54,9 +56,20 @@ export default {
         .get()
 
       // Goal3: Make an array of Ct objects
+
+      let rowId = 0
+
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = require('@/components/' +
-          arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+        rowId = arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
+
+        if (!this.dArOfComponentObjectsCached[rowId]) {
+          this.dArOfComponentObjectsCached[rowId] = require('@/components/' +
+            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+        }
+
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[
+          rowId
+        ]
       }
 
       return arOfObjectsFromClientSideDB

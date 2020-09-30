@@ -28,15 +28,5 @@ export default {
   data: function () {
     return {}
   },
-  computed: {
-    methods: {
-      mfTablePageChanged(pNewPageNumber) {
-        this.tablePageNumber = pNewPageNumber
-      },
-      mfIconMultiDeleteClickedOnChildCard(val) {
-        this.daSelectedRemForDelete = val
-      },
-    },
-  },
 }
 </script>
