@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/table.js'
+import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import clientSideTblOfViewCardsInit from '@/components/core/manage-mts-view-layer-cards/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
 import clientSideTblCommonForAllComponents from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
