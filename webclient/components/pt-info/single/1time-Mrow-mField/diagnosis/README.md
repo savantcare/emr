@@ -1,0 +1,1 @@
+Diagnosis skill created by @MK
