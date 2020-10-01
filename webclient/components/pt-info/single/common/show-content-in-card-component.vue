@@ -1,14 +1,14 @@
 <template>
   <el-card
     shadow="hover"
-    class="box-card s-css-class-top-most-card"
+    class="box-card s-css-class-outer-most-card"
     v-if="OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh === 1"
   >
     <!-- H E A D E R -->
 
     <div
       slot="header"
-      class="s-css-class-top-most-card-header clearfix"
+      class="s-css-class-outer-most-card-header clearfix"
       v-if="!$slots.headerSlotContentFromParent"
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
@@ -117,7 +117,7 @@ export default {
       if (this.propGridDesignTopMostParentBody) {
         return this.propGridDesignTopMostParentBody
       }
-      return 's-css-class-top-most-card-body-grid-min-200px-max-1fr'
+      return 's-css-class-outer-most-card-body-grid-min-200px-max-1fr'
     },
     mfActOnTableLevelIconClicked(pActionDescription) {
       if (pActionDescription === 'Add') this.$parent.mxOpenAddCtInEditLayer()
@@ -144,15 +144,15 @@ export default {
 <style>
 /* Generation ->
 ==============
-                                       .s-css-class-top-most-card
+                                       .s-css-class-outer-most-card
  Generation 1                                      |
 ==============                     _________________________________
                                   |                                |
-                    .s-css-class-top-most-card-header              |
+                    .s-css-class-outer-most-card-header              |
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
-                  ..s-css-class-top-most-card-body-grid-min-200px-max-1fr
+                  ..s-css-class-outer-most-card-body-grid-min-200px-max-1fr
 ==============                    |
                                   |
                    .sc-individual-child-card
@@ -165,16 +165,16 @@ Generatiobn 3                     |
 */
 
 /* Generation Level 1. 
-s-css-class-top-most-card  class is applied in Line 4 of this file
+s-css-class-outer-most-card  class is applied in Line 4 of this file
 Every card in element.io has the class .el-card__header so .el-card__header is not explicitly applied.
 */
-.s-css-class-top-most-card .el-card__header {
+.s-css-class-outer-most-card .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
   padding: 0.5rem !important;
 }
 
 /* Every card in element.io has the class .el-card__body so .el-card__body is not explicitly applied. */
-.s-css-class-top-most-card .el-card__body {
+.s-css-class-outer-most-card .el-card__body {
   /* Goal: Manage  Distance from border to content in body*/
   padding: 0.5rem !important;
 }
@@ -182,28 +182,28 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 /* Generation Level 2. This is Gen Level 2 since card has a header. Card is Gen 1 and Header is Gen 2. */
 
 /* Goal: The header of the parent card should be 1.2 of the font size of the browser */
-.s-css-class-top-most-card-header {
+.s-css-class-outer-most-card-header {
   font-size: 1.2rem;
 }
 
 /* When anywhere inside the card make the action icons in the card header -> level 1 visual */
-.el-card__header:hover .s-css-class-top-most-card-header .el-button-group {
+.el-card__header:hover .s-css-class-outer-most-card-header .el-button-group {
   display: inline-block !important;
 }
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .s-css-class-top-most-card-header .el-icon-edit {
+.el-card__header:hover .s-css-class-outer-most-card-header .el-icon-edit {
   color: #409eff !important;
   font-size: 1.5rem;
 }
-.el-card__header:hover .s-css-class-top-most-card-header .el-icon-s-grid {
+.el-card__header:hover .s-css-class-outer-most-card-header .el-icon-s-grid {
   color: #409eff !important;
 }
 
 /* Generation Level 2 / Child 2 */
 
 /* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
-.s-css-class-top-most-card-body-grid-min-200px-max-1fr {
+.s-css-class-outer-most-card-body-grid-min-200px-max-1fr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
@@ -216,7 +216,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
   margin: 0.1rem;
 }
 
-.s-css-class-top-most-card-body-grid {
+.s-css-class-outer-most-card-body-grid {
   display: grid;
   /* Some other grid-template-columns options are :
   grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
