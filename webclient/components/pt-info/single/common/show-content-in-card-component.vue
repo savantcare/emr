@@ -182,7 +182,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 2. This element has .el-card__header
 
 .s-css-class-outer-most-card.el-card__header => This will mean apply to an element that has both
-1. s-css-class-outer-most-card.
+1. s-css-class-outer-most-card
 2. el-card__header
 */
 .s-css-class-outer-most-card .el-card__header {
@@ -198,12 +198,14 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 
 /* Generation Level 2. This is Gen Level 2 since card has a header. Card is Gen 1 and Header is Gen 2. */
 
-/* Goal: The header of the parent card should be 1.2 of the font size of the browser */
+/* Goal: The font of the header of the outer most card should be 1.2 of the font size of the browser */
 .s-css-class-outer-most-card-header {
   font-size: 1.2rem;
 }
 
-/* When anywhere inside the card make the action icons in the card header -> level 1 visual */
+/* When anywhere inside the outer most card header make the action icons in the card header visible 
+When you look in chrome developer tools you will see that "s-css-class-outer-most-card-header" is contained inside "el-card__header"
+*/
 .el-card__header:hover .s-css-class-outer-most-card-header .el-button-group {
   display: inline-block !important;
 }
