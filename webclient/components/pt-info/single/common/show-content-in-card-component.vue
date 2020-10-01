@@ -164,18 +164,22 @@ Generatiobn 3                     |
 ==============
 */
 
-/* Generation Level 1 */
+/* Generation Level 1. 
+s-css-class-top-most-card  class is applied in Line 4 of this file
+Every card in element.io has the class .el-card__header so .el-card__header is not explicitly applied.
+*/
 .s-css-class-top-most-card .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
   padding: 0.5rem !important;
 }
 
+/* Every card in element.io has the class .el-card__body so .el-card__body is not explicitly applied. */
 .s-css-class-top-most-card .el-card__body {
   /* Goal: Manage  Distance from border to content in body*/
   padding: 0.5rem !important;
 }
 
-/* Generation Level 2 / Child 1 == Goal: Header icon management */
+/* Generation Level 2. This is Gen Level 2 since card has a header. Card is Gen 1 and Header is Gen 2. */
 
 /* Goal: The header of the parent card should be 1.2 of the font size of the browser */
 .s-css-class-top-most-card-header {
