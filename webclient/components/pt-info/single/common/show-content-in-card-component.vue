@@ -215,9 +215,6 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
   color: #409eff !important;
   font-size: 1.5rem;
 }
-.el-card__header:hover .s-css-class-outer-most-card-header .el-icon-s-grid {
-  color: #409eff !important;
-}
 
 /* Generation Level 2 / Child 2 */
 
