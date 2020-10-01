@@ -206,11 +206,6 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 .s-css-class-outer-most-card-body-grid-min-200px-max-1fr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* Some other grid-template-columns options are :
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
-  */
   grid-gap: 0.1rem;
   grid-auto-flow: row; /* This is default value */
   margin: 0.1rem;
@@ -218,11 +213,6 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 
 .s-css-class-outer-most-card-body-grid {
   display: grid;
-  /* Some other grid-template-columns options are :
-  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-columns: repeat(auto-fit, max(200px)); compared to minmax(200px, 1fr) there is more magin between cols and less content fits.
-  */
   grid-gap: 0.1rem;
   grid-auto-flow: row; /* This is default value */
   margin: 0.1rem;
