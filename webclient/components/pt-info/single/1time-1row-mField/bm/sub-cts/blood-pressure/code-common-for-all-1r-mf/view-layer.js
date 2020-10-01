@@ -65,7 +65,6 @@ export default {
       */
     cfPosInArCardsInPtsOfVl() {
       if (!this.isMounted) return false
-
       const arFromClientSideTable = clientSideTblOfRightSideCards
         .query()
         .where('name', 'reminders')
