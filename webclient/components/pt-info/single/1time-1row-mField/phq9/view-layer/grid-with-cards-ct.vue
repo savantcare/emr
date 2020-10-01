@@ -46,9 +46,9 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideUniqueRowId) {
       clientSideTblOfPatientPhq9.update({
-        where: pClientSideUniqRowId,
+        where: pClientSideUniqueRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
         },
