@@ -30,13 +30,13 @@ Code synced with ref implementation on 4th august 2020
              value-format="timestamp"
         -->
             <el-date-picker
-              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
+              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
               type="date"
               placeholder="Pick a day"
               :picker-options="pickerOptions"
               format="yyyy/MM/dd"
               value-format="timestamp"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
             >
             </el-date-picker>
             <el-input

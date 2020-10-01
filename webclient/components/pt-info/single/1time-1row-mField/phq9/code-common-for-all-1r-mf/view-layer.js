@@ -37,7 +37,9 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurement).format('MMM YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurementInMilliseconds).format(
+        'MMM YYYY'
+      ) // parse integer
     },
   },
   async mounted() {

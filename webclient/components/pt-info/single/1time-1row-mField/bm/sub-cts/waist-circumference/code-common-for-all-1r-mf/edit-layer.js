@@ -136,7 +136,9 @@ export default {
         },
         body: JSON.stringify({
           waistCircumferenceInInches: rowToUpsert.waistCircumferenceInInches,
-          timeOfMeasurement: new Date(rowToUpsert.timeOfMeasurement).toISOString().slice(0, 10),
+          timeOfMeasurementInMilliseconds: new Date(rowToUpsert.timeOfMeasurementInMilliseconds)
+            .toISOString()
+            .slice(0, 10),
           notes: rowToUpsert.notes,
         }),
       })

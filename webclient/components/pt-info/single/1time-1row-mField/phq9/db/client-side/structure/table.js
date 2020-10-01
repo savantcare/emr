@@ -35,7 +35,7 @@ export default class ptPhq9 extends clientSideTableManage {
       thoughtsThatYouWouldBeBetterOffDead: this.string(null),
       ifYouCheckedOffAnyProblems: this.string(null),
 
-      // timeOfMeasurement: this.number(null),
+      // timeOfMeasurementInMilliseconds: this.number(null),
       // notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

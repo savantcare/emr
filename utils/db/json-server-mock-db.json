@@ -29,21 +29,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "weightInPounds": 122.2,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Jai kali ma"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "weightInPounds": 200,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "Jai durga ma"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "weightInPounds": 122,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Jai kali ma"
     }
   ],
@@ -52,21 +52,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "pulseInBpm": 40,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "pulse notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "pulseInBpm": 50,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "pulse notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "pulseInBpm": 70,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "pulse notes 3"
     }
   ],
@@ -75,21 +75,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "bloodPressureInBpm": 60,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "BP Notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "bloodPressureInBpm": 70,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "BP Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "bloodPressureInBpm": 80,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "BP Notes 3"
     }
   ],
@@ -98,21 +98,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "bloodSugarInBpm": 90,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "BS Notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "bloodSugarInBpm": 92,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "BS Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "bloodSugarInBpm": 80,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "BS Notes 3"
     }
   ],
@@ -121,21 +121,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "waistCircumferenceInInches": 36,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "WC Notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "waistCircumferenceInInches": 38,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "WC Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "waistCircumferenceInInches": 40,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "WC Notes 3"
     }
   ],
@@ -144,21 +144,21 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "oxygenSaturationInSpo2": 36,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Oxygen Saturation Notes 1"
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "oxygenSaturationInSpo2": 38,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "Oxygen Saturation Notes 2"
     },
     {
       "uuid": 3,
       "ptUUID": "efgh",
       "oxygenSaturationInSpo2": 40,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Oxygen Saturation Notes 3"
     }
   ],
@@ -167,14 +167,14 @@
       "uuid": 1,
       "ptUUID": "abcd",
       "heightInInches": 66,
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Height measured "
     },
     {
       "uuid": 2,
       "ptUUID": "abcd",
       "heightInInches": 67,
-      "timeOfMeasurement": 1599998301000,
+      "timeOfMeasurementInMilliseconds": 1599998301000,
       "notes": "Jai durga ma"
     }
   ],
@@ -183,7 +183,7 @@
       "uuid": 1,
       "littleInterestOrPleasureInDoingThings": "2",
       "feelingDownDepressedOrHopeless": "3",
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "phq9 measured change 2"
     }
   ],
@@ -191,13 +191,13 @@
     {
       "uuid": 1,
       "temperatureInFarehnite": "101",
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Jai kali ma"
     },
     {
       "uuid": 2,
       "temperatureInFarehnite": "120",
-      "timeOfMeasurement": 1596926301000,
+      "timeOfMeasurementInMilliseconds": 1596926301000,
       "notes": "Jai durga ma"
     }
   ]

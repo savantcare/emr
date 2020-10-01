@@ -13,13 +13,13 @@ and graph related doc is at weight
         </el-input>
         <!-- Why is valur format timestamp? see weight/edit-layer/edit-design-1.vue -->
         <el-date-picker
-          :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurement')"
+          :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
           type="date"
           placeholder="Pick a day"
           :picker-options="pickerOptions"
           format="yyyy/MM/dd"
           value-format="timestamp"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurement')"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
         >
         </el-date-picker>
         <el-input

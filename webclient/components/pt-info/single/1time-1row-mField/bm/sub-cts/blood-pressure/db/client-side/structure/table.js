@@ -23,7 +23,7 @@ export default class ptBloodPressure extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       bloodPressureInBpm: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurement: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
+      timeOfMeasurementInMilliseconds: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

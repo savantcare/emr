@@ -62,9 +62,9 @@ export default {
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurement = data[i].timeOfMeasurement
+          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
           const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
-          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
@@ -88,10 +88,10 @@ export default {
         }
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurement = data[i].timeOfMeasurement
+          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
           const graphData =
             (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
-          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
@@ -116,10 +116,10 @@ export default {
         }
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurement = data[i].timeOfMeasurement
+          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
           const graphData =
             (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
-          arDataToShowOnGraph.push([timeOfMeasurement, graphData])
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
