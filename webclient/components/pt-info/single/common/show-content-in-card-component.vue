@@ -211,8 +211,7 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
 }
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .s-css-class-outer-most-card-header .el-icon-edit {
-  color: #409eff !important;
+.el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-default-action {
   font-size: 1.5rem;
 }
 

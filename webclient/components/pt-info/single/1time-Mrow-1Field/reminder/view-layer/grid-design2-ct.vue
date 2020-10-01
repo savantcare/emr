@@ -6,7 +6,7 @@
       :propClientSideTableLevelActions="[
         {
           actionDescription: 'Add',
-          actionUIByElementIoIconClass: 'el-icon-circle-plus-outline',
+          actionUIByElementIoIconClass: 'el-icon-circle-plus-outline s-css-class-default-action',
         },
         {
           actionDescription: 'Multi edit',
