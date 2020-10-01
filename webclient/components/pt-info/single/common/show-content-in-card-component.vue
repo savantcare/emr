@@ -189,7 +189,7 @@ Generatiobn 3                     |
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
 .el-card__header:hover .s-css-class-top-most-card-header .el-icon-edit {
-  color: #67c23a !important;
+  color: #409eff !important;
   font-size: 1.5rem;
 }
 .el-card__header:hover .s-css-class-top-most-card-header .el-icon-s-grid {
@@ -329,7 +329,7 @@ Component          |  Side        | Position    | From front  | Front back
  Service statement |  Flexible    |  Header     |   1         |    -3
  */
 .el-icon-money:hover {
-  color: #67c23a !important;
+  color: #409eff !important;
   font-size: 1.5rem;
 }
 
