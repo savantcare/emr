@@ -1,7 +1,6 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Service statement"
-    :propChildCardsArray="cfArOfServiceStatementForDisplay"
     :propClientSideTableLevelActions="[
       {
         actionDescription: 'Multi edit',
@@ -9,7 +8,7 @@
       },
       {
         actionDescription: 'Toggle card display',
-        actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        actionUIByElementIoIconClass: 'el-icon-serviceStatementove-outline',
       },
       {
         actionDescription: 'Close card',
@@ -17,7 +16,62 @@
       },
     ]"
     :propClientSideRowLevelActions="[{}]"
-  />
+  >
+    <el-card
+      slot="bodySlotContentFromParentToShowAboveChildCards"
+      v-for="serviceStatement in cfArOfServiceStatementForDisplay"
+      :key="serviceStatement.id"
+      class="box-card sc-individual-child-card"
+      shadow="hover"
+      :style="mfGetCssClassNameForEachDataRow(serviceStatement)"
+    >
+      <el-button-group style="float: right; display: none">
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Click to delete"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            @click="mfIconDeleteClickedOnChildCard(serviceStatement.clientSideUniqRowId)"
+            class="el-icon-circle-close"
+          >
+          </el-button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="info"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            class="el-icon-discover"
+          >
+          </el-button>
+        </el-tooltip>
+      </el-button-group>
+
+      <!-- <el-button type="text">{{ serviceStatement.description }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new serviceStatement appears. That is a confusing event.
+            Instead if the new serviceStatement that came on screen gets a orange border with top right corner saying "New serviceStatement added from socket" that is much better UX.
+          -->
+      <div v-if="serviceStatement.vnRowStateInSession === 9">
+        Added from socket {{ serviceStatement.description }}
+      </div>
+      <div v-else>
+        {{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}
+      </div>
+    </el-card>
+  </showContentInCardComponent>
 </template>
 
 <script>

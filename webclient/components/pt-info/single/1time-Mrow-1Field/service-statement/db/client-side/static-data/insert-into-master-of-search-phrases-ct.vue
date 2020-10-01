@@ -19,7 +19,7 @@ export default {
         value: 'service statements',
         ctAbbr: 'ss',
         ctToShow:
-          'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/grid-with-cards-ct.vue', // PtsVl -> Present time state - part of - view layer
+          'pt-info/single/1time-Mrow-1Field/service-statement/view-layer/ss-design-1-ct.vue', // PtsVl -> Present time state - part of - view layer
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

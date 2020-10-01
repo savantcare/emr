@@ -32,7 +32,7 @@
         :key="rem.id"
         class="box-card sc-individual-child-card"
         shadow="hover"
-        :style="mfGetCssClassName(rem)"
+        :style="mfGetCssClassNameForEachDataRow(rem)"
       >
         <el-button-group style="float: right; display: none">
           <el-tooltip
@@ -183,7 +183,7 @@ export default {
     mfEditIconClicked(pClientSideDataRowId) {
       this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
     },
-    mfGetCssClassName(pRow) {
+    mfGetCssClassNameForEachDataRow(pRow) {
       const strOfNumber = pRow.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
