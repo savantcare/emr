@@ -183,7 +183,7 @@ Generatiobn 3                     |
 }
 
 /* When anywhere inside the card make the action icons in the card header -> level 1 visual */
-.el-card:hover .s-css-class-top-most-card-header .el-button-group {
+.el-card__header:hover .s-css-class-top-most-card-header .el-button-group {
   display: inline-block !important;
 }
 
@@ -252,7 +252,7 @@ Generatiobn 3                     |
 }
 
 /* Goal: Header icon management  */
-.el-card:hover .sc-individual-child-card .el-button-group {
+.sc-individual-child-card:hover .el-button-group {
   display: inline-block !important;
   position: absolute;
   top: 0px;
