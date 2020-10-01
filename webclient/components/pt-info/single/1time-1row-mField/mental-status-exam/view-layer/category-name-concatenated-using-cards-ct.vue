@@ -1,7 +1,6 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Mental status exam"
-    :propChildCardsArray="cfArOfMentalStatusExamForDisplay"
     :propClientSideTableLevelActions="[
       {
         actionDescription: 'Multi edit',
@@ -17,7 +16,62 @@
       },
     ]"
     :propClientSideRowLevelActions="[{}]"
-  />
+  >
+    <el-card
+      slot="bodySlotContentFromParentToShowAboveChildCards"
+      v-for="mentalStatusExam in cfArOfMentalStatusExamForDisplay"
+      :key="mentalStatusExam.id"
+      class="box-card sc-individual-child-card"
+      shadow="hover"
+      :style="mfGetCssClassNameForEachDataRow(mentalStatusExam)"
+    >
+      <el-button-group style="float: right; display: none">
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="Click to delete"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            @click="mfIconDeleteClickedOnChildCard(mentalStatusExam.clientSideUniqRowId)"
+            class="el-icon-circle-close"
+          >
+          </el-button>
+        </el-tooltip>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="info"
+          placement="top-end"
+          :open-delay="500"
+        >
+          <el-button
+            style="padding: 3px; color: #c0c4cc; border: none"
+            plain
+            class="el-icon-discover"
+          >
+          </el-button>
+        </el-tooltip>
+      </el-button-group>
+
+      <!-- <el-button type="text">{{ mentalStatusExam.description }}</el-button> 
+          if I use the button then a long text is not getting divided into multiple lines
+          if rowStateInThisSession == 9 then the div should have a orange border
+          Why we are doing this?
+            Doctor is sitting infront of computer suddenly a new mentalStatusExam appears. That is a confusing event.
+            Instead if the new mentalStatusExam that came on screen gets a orange border with top right corner saying "New mentalStatusExam added from socket" that is much better UX.
+          -->
+      <div v-if="mentalStatusExam.vnRowStateInSession === 9">
+        Added from socket {{ mentalStatusExam.description }}
+      </div>
+      <div v-else>
+        {{ mentalStatusExam.cardContentOfTypeStringToShowInBodyOfCards }}
+      </div>
+    </el-card>
+  </showContentInCardComponent>
 </template>
 
 <script>
