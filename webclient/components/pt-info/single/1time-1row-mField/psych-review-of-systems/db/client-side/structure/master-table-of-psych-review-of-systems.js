@@ -21,7 +21,7 @@ export default class psychReviewOfSystemsMasterClass extends clientSideTableMana
       psychReviewOfSystemsMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each psych review of systems
       psychReviewOfSystemsDescription: this.string(null),
       psychReviewOfSystemsCategory: this.string(null),
-
+      psychReviewOfSystemsFieldType: this.string('radio'), // valid values are bool, radio, textarea
       ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       /* Q) Why is this relationship needed ?
