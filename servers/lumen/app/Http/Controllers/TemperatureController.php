@@ -43,8 +43,9 @@ class TemperatureController extends Controller
     {
         $temperatureObj = Temperature::findOrFail($id);
         $requestData = $request->all();
-        $requestData['rowToUpsert']['recordChangedFromIPAddress'] = $this->get_client_ip();
-        print_r($requestData);
+        $requestData['rowToUpsert']['recordChangedFromIPAddress'] = $this->get_client_ip();$timeOfMeasurement = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']) / 1000;
+        $requestData['rowToUpsert']['timeOfMeasurementInMilliseconds'] = date('Y-m-d H:i:s', $timeOfMeasurement);
+        
         $temperatureObj->update($requestData['rowToUpsert']);
 
         return response()->json($requestData['rowToUpsert'], 200);
