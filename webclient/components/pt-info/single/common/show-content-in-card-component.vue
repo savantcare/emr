@@ -264,7 +264,7 @@ Component           |  Side        | Location     | From front  | From back
   Reminder          |  Fixed       |  Row         |     1       |  -3
   */
 .el-icon-edit:hover {
-  color: #909399 !important;
+  color: #409eff !important;
   font-size: 1.5rem;
 }
 
