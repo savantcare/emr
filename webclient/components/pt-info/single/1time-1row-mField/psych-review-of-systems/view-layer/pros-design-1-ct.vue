@@ -47,7 +47,7 @@ export default {
         },
       })
     },
-    mfOpenEditCtInEditLayer() {
+    mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'edit psych review of systems',
       })
