@@ -1,18 +1,18 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Service statement"
-    :propClientSideTableLevelActions="[
+    :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
-        actionUIByElementIoIconClass: 'el-icon-money',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-money',
       },
       {
         actionDescription: 'Toggle card display',
-        actionUIByElementIoIconClass: 'el-icon-serviceStatementove-outline',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-serviceStatementove-outline',
       },
       {
         actionDescription: 'Close card',
-        actionUIByElementIoIconClass: 'el-icon-close',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-close',
       },
     ]"
     :propClientSideRowLevelActions="[{}]"

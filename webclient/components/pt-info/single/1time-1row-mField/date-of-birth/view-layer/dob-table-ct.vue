@@ -5,12 +5,15 @@ Code synced with ref implementation on 4th august 2020
   <div>
     <showContentInCardComponent
       propMainCardName="Date of birth"
-      :propClientSideTableLevelActions="[
+      :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
-          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
         },
-        { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
+        {
+          actionDescription: 'Close card',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-close',
+        },
       ]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >

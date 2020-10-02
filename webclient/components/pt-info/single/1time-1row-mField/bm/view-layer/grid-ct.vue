@@ -2,10 +2,11 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Body measurement"
-      :propClientSideTableLevelActions="[
+      :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
-          actionUIByElementIoIconClass: 'el-icon-remove-outline s-css-class-default-action',
+          actionUIRepresentedByElementIoIconClass:
+            'el-icon-remove-outline s-css-class-default-action',
         },
       ]"
     >

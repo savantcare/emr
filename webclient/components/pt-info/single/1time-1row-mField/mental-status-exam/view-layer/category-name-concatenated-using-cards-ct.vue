@@ -1,18 +1,18 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Mental status exam"
-    :propClientSideTableLevelActions="[
+    :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
-        actionUIByElementIoIconClass: 'el-icon-money',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-money',
       },
       {
         actionDescription: 'Toggle card display',
-        actionUIByElementIoIconClass: 'el-icon-remove-outline',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
       },
       {
         actionDescription: 'Close card',
-        actionUIByElementIoIconClass: 'el-icon-close',
+        actionUIRepresentedByElementIoIconClass: 'el-icon-close',
       },
     ]"
     :propClientSideRowLevelActions="[{}]"

@@ -2,7 +2,7 @@
   <el-card
     shadow="hover"
     class="box-card s-css-class-outer-most-card"
-    v-if="OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh === 1"
+    v-if="OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh === 1"
   >
     <!-- H E A D E R -->
 
@@ -16,11 +16,11 @@
       <span>{{ propMainCardName }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
-          v-for="tableLevelAction in propClientSideTableLevelActions"
-          :key="tableLevelAction.actionDescription"
+          v-for="singleCardHeaderAction in propActionsThatCanBeInvokedFromCardHeader"
+          :key="singleCardHeaderAction.actionDescription"
           class="item"
           effect="light"
-          :content="tableLevelAction.actionDescription"
+          :content="singleCardHeaderAction.actionDescription"
           placement="top-end"
           :open-delay="500"
         >
@@ -28,8 +28,8 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnTableLevelIconClicked(tableLevelAction.actionDescription)"
-            :class="tableLevelAction.actionUIByElementIoIconClass"
+            @click="mfActOnTableLevelIconClicked(singleCardHeaderAction.actionDescription)"
+            :class="singleCardHeaderAction.actionUIRepresentedByElementIoIconClass"
           ></el-button>
         </el-tooltip>
       </el-button-group>
@@ -63,7 +63,7 @@
             :open-delay="500"
           >
             <el-button
-              :class="rowLevelAction.actionUIByElementIoIconClass"
+              :class="rowLevelAction.actionUIRepresentedByElementIoIconClass"
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
@@ -88,23 +88,25 @@ export default {
     propMainCardName: String,
     propChildCardsArray: Array,
     propGridDesignTopMostParentBody: String,
-    propClientSideTableLevelActions: Array,
+    propActionsThatCanBeInvokedFromCardHeader: Array,
     propClientSideRowLevelActions: Array,
   },
   data: function () {
     return {
       toggleSwitchShowBodyContent: 1,
-      OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh: 1,
+      OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
     }
   },
   computed: {},
   methods: {
     mfOuterMostCardHeaderClicked() {
-      for (let i = 0; i < this.propClientSideTableLevelActions.length; i++) {
-        const className = this.propClientSideTableLevelActions[i]['actionUIByElementIoIconClass']
+      for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
+        const className = this.propActionsThatCanBeInvokedFromCardHeader[i][
+          'actionUIRepresentedByElementIoIconClass'
+        ]
         if (className.includes('default')) {
           this.mfActOnTableLevelIconClicked(
-            this.propClientSideTableLevelActions[i]['actionDescription']
+            this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
           )
         }
       }
@@ -140,8 +142,8 @@ export default {
         this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
       if (pActionDescription === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
       if (pActionDescription === 'Close card')
-        this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh =
-          1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnRefresh
+        this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh =
+          1 - this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh
 
       return
     },

@@ -3,26 +3,27 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Reminders"
-      :propClientSideTableLevelActions="[
+      :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Add',
-          actionUIByElementIoIconClass: 'el-icon-circle-plus-outline s-css-class-default-action',
+          actionUIRepresentedByElementIoIconClass:
+            'el-icon-circle-plus-outline s-css-class-default-action',
         },
         {
           actionDescription: 'Multi edit',
-          actionUIByElementIoIconClass: 'el-icon-money',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-money',
         },
         {
           actionDescription: 'Multi delete',
-          actionUIByElementIoIconClass: 'el-icon-document-delete',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-document-delete',
         },
         {
           actionDescription: 'Toggle card display',
-          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
         },
         {
           actionDescription: 'Show deleted',
-          actionUIByElementIoIconClass: 'el-icon-delete',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-delete',
         },
       ]"
     >

@@ -3,12 +3,15 @@
   <div>
     <showContentInCardComponent
       propMainCardName="Name"
-      :propClientSideTableLevelActions="[
+      :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
-          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
         },
-        { actionDescription: 'Close card', actionUIByElementIoIconClass: 'el-icon-close' },
+        {
+          actionDescription: 'Close card',
+          actionUIRepresentedByElementIoIconClass: 'el-icon-close',
+        },
       ]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
