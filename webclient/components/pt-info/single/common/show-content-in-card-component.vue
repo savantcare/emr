@@ -124,14 +124,12 @@ export default {
           defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i][
             'actionDescription'
           ]
-          console.log(defaultActionDescription)
         }
       }
 
       // If following condition is false means no icon has been selected and hence we should be highlighting the default icon
       if (this.actionIconBelowMousePointer) {
         // I come here if there is a icon that is below the mouse. There are 2 possibilities this is the default actior or not the default action
-        console.log(this.actionIconBelowMousePointer)
         if (this.actionIconBelowMousePointer !== defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
@@ -151,11 +149,9 @@ export default {
   methods: {
     mfHandleNewMouseOverEvent(pDescription) {
       this.actionIconBelowMousePointer = pDescription
-      console.log('CSS mouse enter icon is', this.actionIconBelowMousePointer)
     },
     mfHandleNewMouseOutEvent(pDescription) {
       this.actionIconBelowMousePointer = null
-      console.log('CSS mouse enter icon is', this.actionIconBelowMousePointer)
     },
 
     mfOuterMostCardHeaderClicked() {
@@ -319,7 +315,14 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
   display: inline-block !important;
 }
 
-/* When cursor is inside the top most card header then make the default action icon in the card header larger size */
+/* When cursor is inside the top most card header then make the default action icon in the card header larger size 
+
+vue sets the font-size based on following logic:
+1. If the mouse over some other icon then font-size = 1
+2. If the mouse is over this icon or in the header then font-size = 1.5
+)
+
+*/
 .el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-icon-of-default-action {
   font-size: var(--size-of-icon-that-represents-default-action-of-header);
   color: var(--color-of-icon-that-represents-default-action-of-header) !important;
