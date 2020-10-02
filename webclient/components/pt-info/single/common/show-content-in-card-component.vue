@@ -299,7 +299,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 */
 .s-css-class-outer-most-card .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
-  padding: 0.5rem !important;
+  padding: 0.1rem !important;
 }
 
 /* Every card in element.io has the class .el-card__body so .el-card__body is not explicitly applied. */
@@ -312,7 +312,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 
 /* Goal: The font of the header of the outer most card should be 1.2 of the font size of the browser */
 .s-css-class-outer-most-card-header {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 /* When cursor is inside the outer most card header make the action icons in the card header visible 
