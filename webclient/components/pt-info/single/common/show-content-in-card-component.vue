@@ -11,6 +11,7 @@
       class="s-css-class-outer-most-card-header clearfix"
       v-if="!$slots.headerSlotContentFromParent"
       v-on:click="mfOuterMostCardHeaderClicked"
+      :style="sendCssVariablesToStyleSheet"
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
@@ -28,7 +29,9 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)"
+            @click.stop="
+              mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)
+            "
             :class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)"
           ></el-button>
         </el-tooltip>
@@ -95,9 +98,30 @@ export default {
     return {
       toggleSwitchShowBodyContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
+      textColor: 'red',
     }
   },
-  computed: {},
+  computed: {
+    sendCssVariablesToStyleSheet() {
+      const headerDefaultActionColor = ''
+      let colorChart = {}
+      colorChart['Add'] = '#67c23a'
+      colorChart['Toggle card display'] = '#909399'
+      colorChart['Multi edit'] = '#409eff'
+      colorChart['Multi delete'] = '#f56c6c'
+      colorChart['Show deleted'] = '#909399'
+      colorChart['Close card'] = '#f56c6c'
+
+      for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
+        if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
+          const action = this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
+          return {
+            '--color-of-icon-that-represents-default-action-of-header': colorChart[action],
+          }
+        }
+      }
+    },
+  },
   methods: {
     mfOuterMostCardHeaderClicked() {
       for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
@@ -253,16 +277,17 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
   font-size: 1.2rem;
 }
 
-/* When anywhere inside the outer most card header make the action icons in the card header visible 
+/* When cursor is inside the outer most card header make the action icons in the card header visible 
 When you look in chrome developer tools you will see that "s-css-class-outer-most-card-header" is contained inside "el-card__header"
 */
 .el-card__header:hover .s-css-class-outer-most-card-header .el-button-group {
   display: inline-block !important;
 }
 
-/* When inside the top most card header then make the default action icon in the card header larger size */
+/* When cursor is inside the top most card header then make the default action icon in the card header larger size */
 .el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-icon-of-default-action {
   font-size: 1.5rem;
+  color: var(--color-of-icon-that-represents-default-action-of-header) !important;
 }
 
 /* Generation Level 2 / Child 2 */
@@ -400,7 +425,7 @@ Reminder           |  Fixed       |  Header     |   5         | -1
   font-size: 1.5rem;
 }
 
-/* Used for MINIMIZE at: 
+/* Used for Toggle card display at: 
 Component           |  Side        | Location     | From front  | From back
   Reminder          |  Fixed       |  Header      |  4          |  -1
   Corelate          |  Fixed       |  Header      |  1          |  -1
