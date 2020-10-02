@@ -109,8 +109,22 @@ export default {
     sendCssVariablesToStyleSheet() {
       // For basic knowledge read: https://www.telerik.com/blogs/passing-variables-to-css-on-a-vue-component
 
+      let defaultActionDescription = ''
+
+      for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
+        if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
+          defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i][
+            'actionDescription'
+          ]
+          console.log(defaultActionDescription)
+        }
+      }
+
+      // If following condition is false means no icon has been selected and hence we should be highlighting the default icon
       if (this.iconBelowMouse) {
-        if (this.iconBelowMouse !== 'Add') {
+        // I come here if there is a icon that is below the mouse. There are 2 possibilities this is the default actior or not the default action
+        console.log(this.iconBelowMouse)
+        if (this.iconBelowMouse !== defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
             '--color-of-icon-that-represents-default-action-of-header': 'unset',
@@ -127,14 +141,10 @@ export default {
       colorChart['Show deleted'] = '#909399'
       colorChart['Close card'] = '#f56c6c'
 
-      for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
-        if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
-          const action = this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
-          return {
-            '--color-of-icon-that-represents-default-action-of-header': colorChart[action],
-            '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
-          }
-        }
+      return {
+        '--color-of-icon-that-represents-default-action-of-header':
+          colorChart[defaultActionDescription],
+        '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
       }
     },
   },
