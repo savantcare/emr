@@ -5,7 +5,7 @@
       :propClientSideTableLevelActions="[
         {
           actionDescription: 'Toggle card display',
-          actionUIByElementIoIconClass: 'el-icon-remove-outline',
+          actionUIByElementIoIconClass: 'el-icon-remove-outline s-css-class-default-action',
         },
       ]"
     >
