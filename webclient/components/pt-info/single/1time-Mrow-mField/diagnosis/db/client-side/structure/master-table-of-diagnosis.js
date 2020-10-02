@@ -20,7 +20,7 @@ export default class clientSideTblMasterDiagnosis extends clientSideTableManage 
       masterDiagnosisId: this.uid(() => intUniqueID()),
       diagnosisName: this.string(null),
 
-      priority: this.number(0),
+      displayListPriority: this.number(0), // display master data list Priority
       ROW_END: this.number(2147483647.999999),
 
       linkWithPatient: this.hasOne(
