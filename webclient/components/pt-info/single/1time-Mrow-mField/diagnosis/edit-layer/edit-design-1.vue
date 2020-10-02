@@ -43,7 +43,7 @@ export default {
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
-        .orderBy('priority', 'desc')
+        .orderBy('displayListPriority', 'desc')
         .get();
         return arOfObjectsFromClientSideMasterDB;
     }
@@ -64,14 +64,14 @@ export default {
             clientSideTblMasterDiagnosis.update({
               where: element.masterDiagnosisId,
               data: {
-                priority: 1,
+                displayListPriority: 1,
               },
             })
           } else {
             clientSideTblMasterDiagnosis.update({
               where: element.masterDiagnosisId,
               data: {
-                priority: 0,
+                displayListPriority: 0,
               },
             })
           }
