@@ -17,12 +17,12 @@
             }}</el-button>
           </div>
           <div v-else>
-            {{ ros.psychReviewOfSystemsDescription }} {{ ros.psychReviewOfSystemsMasterId }}
+            {{ ros.psychReviewOfSystemsDescription }}
             <el-slider
               v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
-              :min="1"
-              :max="3"
-              :step="1"
+              :min="0"
+              :max="1"
+              :step="0.5"
               :width="10"
               show-stops
               @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
@@ -50,7 +50,7 @@ export default {
   mounted() {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowID) => {
-      this.patientClientSideFieldValueModel[pRowID] = -1
+      this.patientClientSideFieldValueModel[pRowID] = 0
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 
