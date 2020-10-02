@@ -88,7 +88,17 @@ export default {
       })
       .get()
 
-    // Goal2: Initialize field names with the previous field values
+    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
+    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
+      .query()
+      .where('ROW_END', 2147483647.999999)
+      .get()
+
+    for (let i = 0; i < allPatientValues.length; i++) {
+      this.patientClientSideFieldValueModel[
+        allPatientValues[i]['psychReviewOfSystemsMasterId']
+      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+    }
 
     // Apply rules given by doctors
 
@@ -98,7 +108,6 @@ export default {
 
     const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
 
-    console.log(ar)
     this.masterROSArray = ar
   },
   computed: {},
@@ -132,7 +141,6 @@ export default {
       return false
     },
     mfSetValueInClientSideTable(pValue, pPsychReviewOfSystemsMasterId) {
-      console.log(pValue, pPsychReviewOfSystemsMasterId)
       const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
@@ -153,21 +161,6 @@ export default {
             psychReviewOfSystemsFieldValue: pValue,
           },
         })
-      }
-    },
-    mfGetFieldValueFromClientSideTable(pPsychReviewOfSystemsMasterId) {
-      const exists = clientSideTblOfPatientPsychReviewOfSystems
-        .query()
-        .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
-        .where('ROW_END', 2147483647.999999)
-        .get()
-
-      console.log(exists)
-
-      if (exists.length > 0) {
-        return exists[0].psychReviewOfSystemsFieldValue
-      } else {
-        return 1
       }
     },
   },
