@@ -28,7 +28,6 @@
             @mouseenter="
               mfHandleNewMouseEnterEventInCardHeader(singleCardHeaderAction.actionDescription)
             "
-            @mouseout="mfHandleNewMouseOutEventInCardHeader()"
           >
             <!-- class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)" is made dynamic so I can chose which action will get the 
             class of s-css-class-this-is-icon-of-default-action-in-this-card-header -->
