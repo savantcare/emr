@@ -2,8 +2,7 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
-      v-for="(allPsychReviewOfSystemsInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterRowsOfPsychReviewOfSystemsGrouped"
+      v-for="(allPsychReviewOfSystemsInsideAGroup, groupNameGivenAsIndex) in this.masterROSArray"
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
@@ -23,7 +22,7 @@
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
               <el-slider
-                v-model="value2[ros.psychReviewOfSystemsMasterId]"
+                v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
                 :min="0"
                 :max="2"
                 :step="1"
@@ -43,7 +42,7 @@
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
               <el-slider
-                v-model="value2[ros.psychReviewOfSystemsMasterId]"
+                v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
                 :min="0"
                 :max="2"
                 :step="1"
@@ -68,40 +67,41 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
-      descriptionModal: [],
-      value2: [],
+      patientClientSideFieldValueModel: [],
+      masterROSArray: [],
     }
   },
-  computed: {
-    cfGetMasterRowsOfPsychReviewOfSystemsGrouped() {
-      console.log('cf called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
-        .query()
-        .with('tblPsychReviewOfSystemsForPatientLink')
-        .where('ROW_END', 2147483647.999999)
-        .where((_record, query) => {
-          query
-            .where('psychReviewOfSystemsCategory', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
-            )
-            .orWhere('psychReviewOfSystemsDescription', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
-            )
-        })
-        .get()
+  mounted() {
+    // Goal1: Get the master field names
+    const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+      .query()
+      .with('tblPsychReviewOfSystemsForPatientLink')
+      .where('ROW_END', 2147483647.999999)
+      .where((_record, query) => {
+        query
+          .where('psychReviewOfSystemsCategory', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
+          .orWhere('psychReviewOfSystemsDescription', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
+      })
+      .get()
 
-      // Apply rules given by doctors
+    // Goal2: Initialize field names with the previous field values
 
-      // End rules given by doctors
+    // Apply rules given by doctors
 
-      // Now group the SS
+    // End rules given by doctors
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
+    // Now group the SS
 
-      console.log(ar)
-      return ar
-    },
+    const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
+
+    console.log(ar)
+    this.masterROSArray = ar
   },
+  computed: {},
   methods: {
     groupBy(data, key) {
       // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
