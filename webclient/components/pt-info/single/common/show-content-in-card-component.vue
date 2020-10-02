@@ -15,6 +15,9 @@
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
+      <span class="helpMessageCardInHeader" style="font-size: 10px; display: none"
+        >Click to {{ this.defaultActionDescription }}</span
+      >
       <el-button-group style="float: right; display: none">
         <el-tooltip
           v-for="singleCardHeaderAction in propActionsThatCanBeInvokedFromCardHeader"
@@ -322,6 +325,10 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 When you look in chrome developer tools you will see that "s-css-class-outer-most-card-header" is contained inside "el-card__header"
 */
 .el-card__header:hover .s-css-class-outer-most-card-header .el-button-group {
+  display: inline-block !important;
+}
+
+.el-card__header:hover .s-css-class-outer-most-card-header .helpMessageCardInHeader {
   display: inline-block !important;
 }
 
