@@ -92,7 +92,9 @@ export default {
             .psychReviewOfSystemsCategory +
           ': ' +
           arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink
-            .psychReviewOfSystemsDescription
+            .psychReviewOfSystemsDescription +
+          ' - ' +
+          arOfObjectsFromClientSideDB[i].psychReviewOfSystemsFieldValue
       }
 
       return arOfObjectsFromClientSideDB
