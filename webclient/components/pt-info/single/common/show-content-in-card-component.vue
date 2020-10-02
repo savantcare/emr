@@ -10,6 +10,7 @@
       slot="header"
       class="s-css-class-outer-most-card-header clearfix"
       v-if="!$slots.headerSlotContentFromParent"
+      v-on:click="mfOuterMostCardHeaderClicked"
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
@@ -98,6 +99,18 @@ export default {
   },
   computed: {},
   methods: {
+    mfOuterMostCardHeaderClicked() {
+      for (let i = 0; i < this.propClientSideTableLevelActions.length; i++) {
+        const className = this.propClientSideTableLevelActions[i]['actionUIByElementIoIconClass']
+        if (className.includes('default')) {
+          this.mfActOnTableLevelIconClicked(
+            this.propClientSideTableLevelActions[i]['actionDescription']
+          )
+        }
+      }
+      // There is no default action given in the card header so nothing to do
+    },
+
     // Goal: Change container font color as per client side row status
     mfGetCssClassNameForEachDataRow(clientSideDataRow) {
       if (!clientSideDataRow.vnRowStateInSession) return
