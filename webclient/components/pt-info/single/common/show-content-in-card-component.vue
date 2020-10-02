@@ -25,8 +25,8 @@
           placement="top-end"
           :open-delay="500"
           ><span
-            @mouseenter="mfNewMouseOver(singleCardHeaderAction.actionDescription)"
-            @mouseout="mfNewMouseOut()"
+            @mouseenter="mfHandleNewMouseOverEvent(singleCardHeaderAction.actionDescription)"
+            @mouseout="mfHandleNewMouseOutEvent()"
           >
             <el-button
               style="padding: 3px; color: #c0c4cc; border: none"
@@ -102,7 +102,7 @@ export default {
     return {
       toggleSwitchShowBodyContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
-      iconBelowMouse: null,
+      actionIconBelowMousePointer: null,
     }
   },
   computed: {
@@ -121,10 +121,10 @@ export default {
       }
 
       // If following condition is false means no icon has been selected and hence we should be highlighting the default icon
-      if (this.iconBelowMouse) {
+      if (this.actionIconBelowMousePointer) {
         // I come here if there is a icon that is below the mouse. There are 2 possibilities this is the default actior or not the default action
-        console.log(this.iconBelowMouse)
-        if (this.iconBelowMouse !== defaultActionDescription) {
+        console.log(this.actionIconBelowMousePointer)
+        if (this.actionIconBelowMousePointer !== defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
             '--color-of-icon-that-represents-default-action-of-header': '#c0c4cc',
@@ -148,13 +148,13 @@ export default {
     },
   },
   methods: {
-    mfNewMouseOver(pDescription) {
-      this.iconBelowMouse = pDescription
-      console.log('CSS mouse enter icon is', this.iconBelowMouse)
+    mfHandleNewMouseOverEvent(pDescription) {
+      this.actionIconBelowMousePointer = pDescription
+      console.log('CSS mouse enter icon is', this.actionIconBelowMousePointer)
     },
-    mfNewMouseOut(pDescription) {
-      this.iconBelowMouse = null
-      console.log('CSS mouse enter icon is', this.iconBelowMouse)
+    mfHandleNewMouseOutEvent(pDescription) {
+      this.actionIconBelowMousePointer = null
+      console.log('CSS mouse enter icon is', this.actionIconBelowMousePointer)
     },
 
     mfOuterMostCardHeaderClicked() {
