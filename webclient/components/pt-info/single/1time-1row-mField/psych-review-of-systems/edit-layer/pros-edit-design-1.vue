@@ -149,14 +149,23 @@ export default {
         .with('tblPsychReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      console.log(arOfObjectsFromClientSideMasterDB)
       let groupTotal = []
       let catName = ''
       let value = 0
       for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
         catName = arOfObjectsFromClientSideMasterDB[i]['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
-        value = 1
-        groupTotal[catName] = groupTotal[catName] + value
+        if (
+          arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'] !== null
+        ) {
+          value =
+            arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'][
+              'psychReviewOfSystemsFieldValue'
+            ]
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
       }
       this.groupTotal = groupTotal
     },
@@ -164,6 +173,7 @@ export default {
     mfGetValue(pGroupName) {
       const groupName = pGroupName['groupNameGivenAsIndex']
       const value = this.groupTotal[groupName]
+      console.log('value is', value)
       return value
     },
   },
