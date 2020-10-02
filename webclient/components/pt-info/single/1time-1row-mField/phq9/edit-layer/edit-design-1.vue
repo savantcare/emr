@@ -40,6 +40,7 @@
         <el-row>
           <strong>{{ objQuestion.phq9QuestionFullText }}</strong>
           <br />
+          <br />
           <el-radio-group
             :value="mfGetAnswerValueFromClientSideTblPatient(objQuestion)"
             @input="
@@ -101,7 +102,7 @@ export default {
       console.log(exists)
       if (exists.length > 0) {
         clientSideTblOfPatientPhq9.update({
-          where: exists[0].clientSideUniqueRowId,
+          where: exists[0].clientSideUniqRowId,
           data: {
             optionValueChosenByPatient: pEvent,
           },
