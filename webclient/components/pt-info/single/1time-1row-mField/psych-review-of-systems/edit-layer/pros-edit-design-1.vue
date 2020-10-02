@@ -143,12 +143,14 @@ export default {
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
+            psychReviewOfSystemsFieldValue: pValue,
           },
         })
       } else {
         clientSideTblOfPatientPsychReviewOfSystems.insert({
           data: {
             psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
+            psychReviewOfSystemsFieldValue: pValue,
           },
         })
       }
