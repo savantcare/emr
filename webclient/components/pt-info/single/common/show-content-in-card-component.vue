@@ -28,7 +28,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfActOnTableLevelIconClicked(singleCardHeaderAction.actionDescription)"
+            @click="mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)"
             :class="singleCardHeaderAction.actionUIRepresentedByElementIoIconClass"
           ></el-button>
         </el-tooltip>
@@ -105,7 +105,7 @@ export default {
           'actionUIRepresentedByElementIoIconClass'
         ]
         if (className.includes('default')) {
-          this.mfActOnTableLevelIconClicked(
+          this.mfActOnCardHeaderActionIconClicked(
             this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
           )
         }
@@ -134,7 +134,7 @@ export default {
       }
       return 's-css-class-outer-most-card-body-grid-min-200px-max-1fr'
     },
-    mfActOnTableLevelIconClicked(pActionDescription) {
+    mfActOnCardHeaderActionIconClicked(pActionDescription) {
       if (pActionDescription === 'Add') this.$parent.mxOpenAddCtInEditLayer()
       if (pActionDescription === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
 
