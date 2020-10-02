@@ -110,7 +110,7 @@ export default {
   },
   // Goal: Set up event listeners so view layer can ask to submit data or reset form
   mounted() {
-    // these events are sent from view layer when "S" or "R" buttons are clicked in the VL
+    // These events are sent from view layer when "S" or "R" buttons are clicked in the View layer
 
     let eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
     // A sample event name is: 'event-from-ct-name-vl-save-this-row'
