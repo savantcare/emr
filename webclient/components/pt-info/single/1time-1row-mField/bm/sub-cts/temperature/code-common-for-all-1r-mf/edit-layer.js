@@ -103,8 +103,21 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
-    this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
+
+    /**
+     * Whenever user enters a data temporal DB saves it as current data.
+     * In case user enters a historical data after entering current data, the current data in temporal DB will be marked as discontinued and historical data will be there in temporal DB.
+     * This will cause problem while showing up in form since now current data in temporal DB is actually represents old data.
+     * Following code is to prevent such problem.
+     * Here we are fetching data based on 'timeOfMeasurementInMilliseconds' in descending order and first data is being shown in the form as current data.
+     */
+    const arFromClientSideTable = clientSideTable
+      .query()
+      .orderBy('timeOfMeasurementInMilliseconds', 'desc')
+      .first()
+
+    this.dnClientSideIdOfRowToChange = arFromClientSideTable.clientSideUniqRowId
+
     this.dnClientSideIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },

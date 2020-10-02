@@ -11,7 +11,7 @@ class TemperatureController extends Controller
 {
     public function showAllTemperatures()
     {
-        $temperatureQuery = DB::select(DB::raw('SELECT *, UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $temperatureQuery = DB::select(DB::raw('SELECT *, UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL order by timeOfMeasurementInMilliseconds desc'));
 
         return response()->json($temperatureQuery);
     }
