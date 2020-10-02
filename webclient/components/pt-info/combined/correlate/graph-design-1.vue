@@ -12,6 +12,10 @@ import clientSideTblWeight from '@/components/pt-info/single/1time-1row-mField/b
 import clientSideTblHeight from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/db/client-side/structure/table.js'
 import clientSideTblOxygenSaturation from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
+// For pros
+import clientSideTblOfMasterPsychReviewOfSystems from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientSideTblOfPatientPsychReviewOfSystems from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -47,6 +51,11 @@ export default {
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
           { data: this.cfGetWeightDataForGraph, name: 'Weight', dashStyle: 'longdash' },
           { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2', dashStyle: 'shortdot' },
+          {
+            data: this.cfGetProsDepressionDataForGraph,
+            name: 'pros: depression',
+            dashStyle: 'shortdot',
+          },
         ],
 
         credits: {
@@ -56,6 +65,39 @@ export default {
 
       return chart
     },
+
+    cfGetProsDepressionDataForGraph() {
+      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+        .query()
+        .with('tblPsychReviewOfSystemsForPatientLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+        catName = arOfObjectsFromClientSideMasterDB[i]['psychReviewOfSystemsCategory']
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        if (
+          arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'] !== null
+        ) {
+          value =
+            arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'][
+              'psychReviewOfSystemsFieldValue'
+            ]
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
+      }
+
+      const arDataToShowOnGraph = []
+      const numberOfPointsOnGraph = 1
+      const timeOfMeasurementInMilliseconds = 2147483647
+      const graphData = groupTotal['Depression']
+      arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+      return arDataToShowOnGraph
+    },
+
     cfGetHeightDataForGraph() {
       const arDataToShowOnGraph = []
       const data = clientSideTblHeight.all()

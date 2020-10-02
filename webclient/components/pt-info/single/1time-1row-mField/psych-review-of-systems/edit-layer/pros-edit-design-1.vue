@@ -150,7 +150,6 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      console.log(arOfObjectsFromClientSideMasterDB)
       let groupTotal = []
       let catName = ''
       let value = 0
@@ -173,7 +172,7 @@ export default {
     mfGetValue(pGroupName) {
       const groupName = pGroupName['groupNameGivenAsIndex']
       const value = this.groupTotal[groupName]
-      console.log('value is', value)
+      console.log('value is', value) // Unknown: When I load this Ct this gets called 130 times
       return value
     },
   },
