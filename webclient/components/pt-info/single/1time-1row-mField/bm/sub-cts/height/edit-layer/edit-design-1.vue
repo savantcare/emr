@@ -1,51 +1,64 @@
-<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. 
+<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue.
 and graph related doc is at weight
 -->
 <template>
   <div>
-    <el-form>
-      <el-form-item>
-        <el-input
-          placeholder="Height in inches"
-          :value="mfGetCopiedRowBeingChangedFldVal('heightInInches')"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'heightInInches')"
-        >
-        </el-input>
-        <!-- Why is valur format timestamp? see weight/edit-layer/edit-design-1.vue -->
-        <el-date-picker
-          :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
-          type="date"
-          placeholder="Pick a day"
-          :picker-options="pickerOptions"
-          format="yyyy/MM/dd"
-          value-format="timestamp"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
-        >
-        </el-date-picker>
-        <el-input
-          placeholder="Notes"
-          type="textarea"
-          :autosize="{ minRows: 2 }"
-          :value="mfGetCopiedRowBeingChangedFldVal('notes')"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
-        ></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed"
-          >Reviewed</el-button
-        >
-        <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
-          >Reset form</el-button
-        >
-      </el-form-item>
-    </el-form>
+    <el-row :gutter="20">
+      <el-col :span="12">
+      <el-form>
+          <el-form-item>
+            <el-input
+              placeholder="Height in inches"
+              :value="mfGetCopiedRowBeingChangedFldVal('heightInInches')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'heightInInches')"
+            ></el-input>
+            <!-- Why is valur format timestamp? see weight/edit-layer/edit-design-1.vue -->
+            <el-date-picker
+              :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
+              type="date"
+              placeholder="Pick a day"
+              :picker-options="pickerOptions"
+              format="yyyy/MM/dd"
+              value-format="timestamp"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
+            ></el-date-picker>
+            <el-input
+              placeholder="Notes"
+              type="textarea"
+              :autosize="{ minRows: 2 }"
+              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              :disabled="cfHasSomeFldChanged"
+              type="primary"
+              plain
+              @click="mfOnReviewed"
+            >Reviewed</el-button>
+            <el-button
+              :disabled="cfHasSomeFldChanged"
+              type="warning"
+              plain
+              @click="mfOnResetForm"
+            >Reset form</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="12">
+        <ctHeightGraph form-type="sub-part-of-another-form"></ctHeightGraph>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import ctHeightGraph from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/view-layer/line-graph-ct.vue'
 import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
 
 export default {
+  components: { ctHeightGraph },
   mixins: [editMixin],
   data() {
     return {
