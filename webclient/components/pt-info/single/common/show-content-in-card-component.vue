@@ -29,7 +29,7 @@
             plain
             tabindex="-1"
             @click="mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)"
-            :class="singleCardHeaderAction.actionUIRepresentedByElementIoIconClass"
+            :class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)"
           ></el-button>
         </el-tooltip>
       </el-button-group>
@@ -101,10 +101,7 @@ export default {
   methods: {
     mfOuterMostCardHeaderClicked() {
       for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
-        const className = this.propActionsThatCanBeInvokedFromCardHeader[i][
-          'actionUIRepresentedByElementIoIconClass'
-        ]
-        if (className.includes('default')) {
+        if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
           this.mfActOnCardHeaderActionIconClicked(
             this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
           )
@@ -147,6 +144,44 @@ export default {
 
       return
     },
+    mfGetClassForCardHeaderActionIcon(pAction) {
+      if (pAction.actionDescription === 'Add') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-circle-plus-outline s-css-class-icon-of-default-action'
+        } else return 'el-icon-circle-plus-outline'
+      }
+
+      if (pAction.actionDescription === 'Multi edit') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-money s-css-class-icon-of-default-action'
+        } else return 'el-icon-money'
+      }
+
+      if (pAction.actionDescription === 'Multi delete') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-document-delete s-css-class-icon-of-default-action'
+        } else return 'el-icon-document-delete'
+      }
+
+      if (pAction.actionDescription === 'Toggle card display') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-remove-outline s-css-class-icon-of-default-action'
+        } else return 'el-icon-remove-outline'
+      }
+
+      if (pAction.actionDescription === 'Show deleted') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-delete s-css-class-icon-of-default-action'
+        } else return 'el-icon-delete'
+      }
+
+      if (pAction.actionDescription === 'Close card') {
+        if (pAction.isDefaultAction) {
+          return 'el-icon-close s-css-class-icon-of-default-action'
+        } else return 'el-icon-close'
+      }
+    },
+
     mfActOnRowLevelIconClicked(pActionDescription, pCard) {
       if (pActionDescription === 'Edit') this.$parent.mfEditIconClicked(pCard.clientSideUniqRowId)
 

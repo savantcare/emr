@@ -8,11 +8,10 @@ Code synced with ref implementation on 4th august 2020
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
+          isDefaultAction: true,
         },
         {
           actionDescription: 'Close card',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-close',
         },
       ]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"

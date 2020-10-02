@@ -5,8 +5,7 @@
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
-          actionUIRepresentedByElementIoIconClass:
-            'el-icon-remove-outline s-css-class-icon-of-default-action',
+          isDefaultAction: true,
         },
       ]"
       :propClientSideRowLevelActions="[{}]"

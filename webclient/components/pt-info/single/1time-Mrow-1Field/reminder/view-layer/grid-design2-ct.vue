@@ -6,6 +6,7 @@
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Add',
+          isDefaultAction: true,
         },
         {
           actionDescription: 'Multi edit',

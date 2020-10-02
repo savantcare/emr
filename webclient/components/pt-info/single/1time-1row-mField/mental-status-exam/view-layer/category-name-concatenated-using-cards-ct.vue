@@ -4,6 +4,7 @@
     :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
+        isDefaultAction: true,
       },
       {
         actionDescription: 'Toggle card display',
