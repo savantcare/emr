@@ -18,7 +18,7 @@
     <el-card
       slot="bodySlotContentFromParentToShowAboveChildCards"
       v-for="pros in cfArOfPsychReviewOfSystemsForDisplay"
-      :key="pros.id"
+      :key="pros.clientSideUniqRowId"
       class="box-card sc-individual-child-card"
       shadow="hover"
       :style="mfGetCssClassNameForEachDataRow(pros)"
@@ -34,7 +34,7 @@
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
-            @click="mfIconDeleteClickedOnChildCard(pros.clientSideUniqRowId)"
+            @click="mfIconDeleteClickedOnChildCard(pros)"
             class="el-icon-circle-close"
           >
           </el-button>
@@ -99,9 +99,9 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pros) {
       clientSideTblOfPatientPsychReviewOfSystems.update({
-        where: pClientSideUniqRowId,
+        where: pros.clientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now() / 1000),
         },
@@ -109,7 +109,10 @@ export default {
 
       // send event to the client
       const eventName = 'event-from-ct-pros-delete-row'
-      this.$root.$emit(eventName, pClientSideUniqRowId)
+      this.$root.$emit(
+        eventName,
+        pros.tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsMasterId
+      )
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

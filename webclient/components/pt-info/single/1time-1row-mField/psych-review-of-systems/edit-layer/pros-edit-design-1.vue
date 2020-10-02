@@ -17,7 +17,7 @@
             }}</el-button>
           </div>
           <div v-else>
-            {{ ros.psychReviewOfSystemsDescription }}
+            {{ ros.psychReviewOfSystemsDescription }} {{ ros.psychReviewOfSystemsMasterId }}
             <el-slider
               v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
               :min="0"
@@ -50,10 +50,8 @@ export default {
   mounted() {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowID) => {
-      console.log(pRowID)
-      console.log(this.patientClientSideFieldValueModel)
       this.patientClientSideFieldValueModel[pRowID] = 0
-      console.log(this.patientClientSideFieldValueModel)
+      this.$forceUpdate() // without this the view layer only updates when I make some change in it.
     })
 
     // Goal1: Get the master field names
