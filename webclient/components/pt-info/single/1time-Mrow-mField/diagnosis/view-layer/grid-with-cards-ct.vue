@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <strong>Diagnosis</strong>
-        <el-tooltip content="Add diagnosis"
-                    effect="light"
-                    :open-delay="300"
-                    placement="top">
-            <el-button style="float: right; padding: 3px 0" type="text" @click="fnOpenAddModule" icon="el-icon-circle-plus-outline"></el-button>
-        </el-tooltip>
-      </div>
-      <div class="">
+  <showContentInCardComponent
+    propMainCardName="Diagnosis"
+    :propActionsThatCanBeInvokedFromCardHeader="[
+      {
+        actionDescription: 'Add',
+        isDefaultAction: true,
+      },
+      {
+        actionDescription: 'Toggle card display',
+      },
+      {
+        actionDescription: 'Close card',
+      },
+    ]"
+    :propClientSideRowLevelActions="[]"
+  >
+    <el-card slot="bodySlotContentFromParentToShowAboveChildCards" class="box-card">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
           <el-table
             :data="cfArOfDiagnosisForDisplay"
             :show-header="false"
             style="width: 100%">
-            <!-- <el-table-column type="expand" v-if="assesment">
-              <template slot-scope="props">
-                <p><span>Assesment:</span> <span>{{ props.row.assesment }}</span></p>
-              </template>
-            </el-table-column> -->
             <el-table-column
               prop="linkWithMaster.diagnosisName">
             </el-table-column>
@@ -46,16 +46,17 @@
           </el-table>
         </div>
         <div v-else class="emptyRow">Not added yet</div>
-      </div>
     </el-card>
-  </div>
+  </showContentInCardComponent>
 </template>
 
 <script>
 
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
+import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
+  components: { showContentInCardComponent },
   computed: { 
     cfArOfDiagnosisForDisplay: function() {
       const getData = clientSideTblPatientDiagnosis
@@ -63,6 +64,7 @@ export default {
         .with('linkWithMaster')
         .where('ROW_END', 2147483647.999999)
         .get();
+        console.log('getData', getData);
       return getData;
     },
    },
@@ -93,7 +95,7 @@ export default {
           console.log('Discontinue cancelled')
         })
     },
-    fnOpenAddModule() {
+    mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add diagnosis', //pPropsToGiveToCt: 1
       })

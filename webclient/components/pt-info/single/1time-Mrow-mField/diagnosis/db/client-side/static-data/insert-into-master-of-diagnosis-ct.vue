@@ -5,12 +5,10 @@
 
 <script>
 import clientSideTblMasterDiagnosis from '../structure/master-table-of-diagnosis'
-// import jsonMasterDataOfDiagnosis from './matserDataOfDiagnosis.json'
 
 export default {
   data() {
     return {
-      // masterDataOfDiagnosis: jsonMasterDataOfDiagnosis.data
       masterDataOfDiagnosis: [
         {
           name: 'Academic or educational problem'
@@ -65,7 +63,7 @@ export default {
         const element = array[index];
         clientSideTblMasterDiagnosis.insert({
           data: {
-            diagnosisName: element.name,
+            diagnosisName: element.name
           },
         })
       }
