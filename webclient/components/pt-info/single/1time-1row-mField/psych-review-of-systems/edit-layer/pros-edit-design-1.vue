@@ -20,8 +20,8 @@
             {{ ros.psychReviewOfSystemsDescription }} {{ ros.psychReviewOfSystemsMasterId }}
             <el-slider
               v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
-              :min="-1"
-              :max="2"
+              :min="1"
+              :max="3"
               :step="1"
               :width="10"
               show-stops
@@ -119,22 +119,23 @@ export default {
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      // marking the old data as stale.
       if (exists.length > 0) {
         clientSideTblOfPatientPsychReviewOfSystems.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now() / 1000),
-            psychReviewOfSystemsFieldValue: pValue,
-          },
-        })
-      } else {
-        clientSideTblOfPatientPsychReviewOfSystems.insert({
-          data: {
-            psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
-            psychReviewOfSystemsFieldValue: pValue,
           },
         })
       }
+
+      clientSideTblOfPatientPsychReviewOfSystems.insert({
+        data: {
+          psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
+          psychReviewOfSystemsFieldValue: pValue,
+        },
+      })
     },
   },
 }
