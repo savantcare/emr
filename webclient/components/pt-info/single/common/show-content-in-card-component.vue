@@ -23,11 +23,15 @@
           effect="light"
           :content="singleCardHeaderAction.actionDescription"
           placement="top-end"
-          :open-delay="500"
+          :open-delay="1000"
           ><span
-            @mouseenter="mfHandleNewMouseOverEvent(singleCardHeaderAction.actionDescription)"
-            @mouseout="mfHandleNewMouseOutEvent()"
+            @mouseenter="
+              mfHandleNewMouseOverEventInCardHeader(singleCardHeaderAction.actionDescription)
+            "
+            @mouseout="mfHandleNewMouseOutEventInCardHeader()"
           >
+            <!-- class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)" is made dynamic so I can chose which action will get the 
+            class of s-css-class-this-is-icon-of-default-action-in-this-card-header -->
             <el-button
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
@@ -67,7 +71,7 @@
             effect="light"
             :content="rowLevelAction.actionDescription"
             placement="top-end"
-            :open-delay="500"
+            :open-delay="1000"
           >
             <el-button
               :class="rowLevelAction.actionUIRepresentedByElementIoIconClass"
@@ -129,7 +133,8 @@ export default {
 
       // If following condition is false means no icon has been selected and hence we should be highlighting the default icon
       if (this.actionIconBelowMousePointer) {
-        // I come here if there is a icon that is below the mouse. There are 2 possibilities this is the default actior or not the default action
+        // I come here if there is a icon below the mouse.
+        // Now there are 2 possibilities. Possibility 1: This is the default action Possibility2: This is not default action
         if (this.actionIconBelowMousePointer !== defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
@@ -138,7 +143,9 @@ export default {
         }
       }
 
+      // This is true means the deault icon should be highlighted in its default color
       return {
+        // This find the color of the default icon
         '--color-of-icon-that-represents-default-action-of-header': this.actionIconColorChart[
           defaultActionDescription
         ],
@@ -147,10 +154,10 @@ export default {
     },
   },
   methods: {
-    mfHandleNewMouseOverEvent(pDescription) {
+    mfHandleNewMouseOverEventInCardHeader(pDescription) {
       this.actionIconBelowMousePointer = pDescription
     },
-    mfHandleNewMouseOutEvent(pDescription) {
+    mfHandleNewMouseOutEventInCardHeader(pDescription) {
       this.actionIconBelowMousePointer = null
     },
 
@@ -202,37 +209,37 @@ export default {
     mfGetClassForCardHeaderActionIcon(pAction) {
       if (pAction.actionDescription === 'Add') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-circle-plus-outline s-css-class-icon-of-default-action'
+          return 'el-icon-circle-plus-outline s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-circle-plus-outline'
       }
 
       if (pAction.actionDescription === 'Multi edit') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-money s-css-class-icon-of-default-action'
+          return 'el-icon-money s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-money'
       }
 
       if (pAction.actionDescription === 'Multi delete') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-document-delete s-css-class-icon-of-default-action'
+          return 'el-icon-document-delete s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-document-delete'
       }
 
       if (pAction.actionDescription === 'Toggle card display') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-remove-outline s-css-class-icon-of-default-action'
+          return 'el-icon-remove-outline s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-remove-outline'
       }
 
       if (pAction.actionDescription === 'Show deleted') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-delete s-css-class-icon-of-default-action'
+          return 'el-icon-delete s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-delete'
       }
 
       if (pAction.actionDescription === 'Close card') {
         if (pAction.isDefaultAction) {
-          return 'el-icon-close s-css-class-icon-of-default-action'
+          return 'el-icon-close s-css-class-this-is-icon-of-default-action-in-this-card-header'
         } else return 'el-icon-close'
       }
     },
@@ -323,7 +330,9 @@ vue sets the font-size based on following logic:
 )
 
 */
-.el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-icon-of-default-action {
+.el-card__header:hover
+  .s-css-class-outer-most-card-header
+  .s-css-class-this-is-icon-of-default-action-in-this-card-header {
   font-size: var(--size-of-icon-that-represents-default-action-of-header);
   color: var(--color-of-icon-that-represents-default-action-of-header) !important;
 }
@@ -471,7 +480,7 @@ Component           |  Side        | Location     | From front  | From back
   Service statement |  Flexible    |  Header      |  2          |  -2
   */
 .el-icon-remove-outline:hover {
-  color: #909399 !important;
+  color: #e6a23c !important;
   font-size: 1.5rem;
 }
 
