@@ -6,7 +6,6 @@
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      {{ groupTotal.groupNameGivenAsIndex }}
       {{ mfGetValue({ groupNameGivenAsIndex }) }}
 
       <div class="sc-psych-review-of-systems-all-content-divs">
@@ -143,14 +142,13 @@ export default {
 
       this.mfCalculateGroupTotalValue()
     },
-    mfCalculateGroupTotalValue(pGroupName) {
-      console.log('mfCalculateGroupTotalValue called with', pGroupName)
+    mfCalculateGroupTotalValue() {
+      console.log('mfCalculateGroupTotalValue called')
       const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483647.999999)
         .get()
-
       let groupTotal = []
       let catName = ''
       let value = 0
@@ -160,20 +158,12 @@ export default {
         value = 1
         groupTotal[catName] = groupTotal[catName] + value
       }
-
       this.groupTotal = groupTotal
-
-      console.log(arOfObjectsFromClientSideMasterDB)
-      console.log(groupTotal)
-      console.log(this.groupTotal)
-      return groupTotal
     },
+
     mfGetValue(pGroupName) {
-      console.log('mfGetValue called with', pGroupName['groupNameGivenAsIndex'])
       const groupName = pGroupName['groupNameGivenAsIndex']
-      console.log(this.groupTotal)
       const value = this.groupTotal[groupName]
-      console.log(value)
       return value
     },
   },
