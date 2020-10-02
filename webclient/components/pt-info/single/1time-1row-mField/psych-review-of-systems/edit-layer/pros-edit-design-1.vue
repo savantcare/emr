@@ -6,6 +6,9 @@
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
+      {{ groupTotal.groupNameGivenAsIndex }}
+      {{ mfGetValue({ groupNameGivenAsIndex }) }}
+
       <div class="sc-psych-review-of-systems-all-content-divs">
         <div
           v-for="ros in allPsychReviewOfSystemsInsideAGroup"
@@ -45,6 +48,8 @@ export default {
       userTypedKeyword: '',
       patientClientSideFieldValueModel: [],
       masterROSArray: [],
+      groupTotal: [],
+      depressionTotal: 10,
     }
   },
   mounted() {
@@ -92,7 +97,6 @@ export default {
 
     this.masterROSArray = ar
   },
-  computed: {},
   methods: {
     groupBy(data, key) {
       // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
@@ -136,6 +140,41 @@ export default {
           psychReviewOfSystemsFieldValue: pValue,
         },
       })
+
+      this.mfCalculateGroupTotalValue()
+    },
+    mfCalculateGroupTotalValue(pGroupName) {
+      console.log('mfCalculateGroupTotalValue called with', pGroupName)
+      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+        .query()
+        .with('tblPsychReviewOfSystemsForPatientLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+        catName = arOfObjectsFromClientSideMasterDB[i]['psychReviewOfSystemsCategory']
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        value = 1
+        groupTotal[catName] = groupTotal[catName] + value
+      }
+
+      this.groupTotal = groupTotal
+
+      console.log(arOfObjectsFromClientSideMasterDB)
+      console.log(groupTotal)
+      console.log(this.groupTotal)
+      return groupTotal
+    },
+    mfGetValue(pGroupName) {
+      console.log('mfGetValue called with', pGroupName['groupNameGivenAsIndex'])
+      const groupName = pGroupName['groupNameGivenAsIndex']
+      console.log(this.groupTotal)
+      const value = this.groupTotal[groupName]
+      console.log(value)
+      return value
     },
   },
 }
