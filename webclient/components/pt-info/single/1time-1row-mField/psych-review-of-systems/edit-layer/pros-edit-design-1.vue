@@ -23,13 +23,13 @@
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
               <el-slider
-                v-model="value2"
+                v-model="value2[ros.psychReviewOfSystemsMasterId]"
                 :min="0"
                 :max="2"
                 :step="1"
                 :width="10"
                 show-stops
-                @change="mfChange($event, ros.psychReviewOfSystemsMasterId)"
+                @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
               >
               </el-slider>
             </div>
@@ -43,13 +43,13 @@
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
               <el-slider
-                v-model="value2"
+                v-model="value2[ros.psychReviewOfSystemsMasterId]"
                 :min="0"
                 :max="2"
                 :step="1"
                 :width="10"
                 show-stops
-                @change="mfChange($event, ros.psychReviewOfSystemsMasterId)"
+                @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
               >
               </el-slider>
             </div>
@@ -69,7 +69,7 @@ export default {
     return {
       userTypedKeyword: '',
       descriptionModal: [],
-      value2: 0,
+      value2: [],
     }
   },
   computed: {
@@ -131,7 +131,7 @@ export default {
       }
       return false
     },
-    mfChange(pValue, pPsychReviewOfSystemsMasterId) {
+    mfSetValueInClientSideTable(pValue, pPsychReviewOfSystemsMasterId) {
       console.log(pValue, pPsychReviewOfSystemsMasterId)
       const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
@@ -153,6 +153,21 @@ export default {
             psychReviewOfSystemsFieldValue: pValue,
           },
         })
+      }
+    },
+    mfGetFieldValueFromClientSideTable(pPsychReviewOfSystemsMasterId) {
+      const exists = clientSideTblOfPatientPsychReviewOfSystems
+        .query()
+        .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      console.log(exists)
+
+      if (exists.length > 0) {
+        return exists[0].psychReviewOfSystemsFieldValue
+      } else {
+        return 1
       }
     },
   },
