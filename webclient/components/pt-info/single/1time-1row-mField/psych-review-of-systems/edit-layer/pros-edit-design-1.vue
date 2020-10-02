@@ -11,47 +11,23 @@
           v-for="ros in allPsychReviewOfSystemsInsideAGroup"
           :key="ros.psychReviewOfSystemsMasterId"
         >
-          <div v-if="mfCheckIfThisExistsInChildTable(ros)">
-            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
-              <el-button
-                @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
-                type="primary"
-                >{{ ros.psychReviewOfSystemsDescription }}</el-button
-              >
-            </div>
-            <div v-else>
-              {{ ros.psychReviewOfSystemsDescription }}
-              <el-slider
-                v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
-                :min="0"
-                :max="2"
-                :step="1"
-                :width="10"
-                show-stops
-                @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
-              >
-              </el-slider>
-            </div>
+          <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+            <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
+              ros.psychReviewOfSystemsDescription
+            }}</el-button>
           </div>
           <div v-else>
-            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
-              <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
-                ros.psychReviewOfSystemsDescription
-              }}</el-button>
-            </div>
-            <div v-else>
-              {{ ros.psychReviewOfSystemsDescription }}
-              <el-slider
-                v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
-                :min="0"
-                :max="2"
-                :step="1"
-                :width="10"
-                show-stops
-                @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
-              >
-              </el-slider>
-            </div>
+            {{ ros.psychReviewOfSystemsDescription }}
+            <el-slider
+              v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
+              :min="0"
+              :max="2"
+              :step="1"
+              :width="10"
+              show-stops
+              @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
+            >
+            </el-slider>
           </div>
         </div>
       </div>
@@ -130,15 +106,6 @@ export default {
         // return the updated storage to the reduce function, which will then loop through the next
         return storage
       }, {}) // {} is the initial value of the storage
-    },
-    mfCheckIfThisExistsInChildTable(pros) {
-      // I am able to get the data from child table.
-      if (pros.tblPsychReviewOfSystemsForPatientLink) {
-        if (pros.tblPsychReviewOfSystemsForPatientLink.ROW_END === 2147483647.999999) {
-          return true
-        }
-      }
-      return false
     },
     mfSetValueInClientSideTable(pValue, pPsychReviewOfSystemsMasterId) {
       const exists = clientSideTblOfPatientPsychReviewOfSystems
