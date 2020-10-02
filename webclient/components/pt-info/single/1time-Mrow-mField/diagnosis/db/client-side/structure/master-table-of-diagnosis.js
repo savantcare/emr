@@ -9,7 +9,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class clientSideTblMasterDiagnosis extends clientSideTableManage {
-  static entity = 'tableMasterOfDiagnosis'
+  static entity = 'tblMasterOfDiagnosis'
 
   static primaryKey = 'masterDiagnosisId'
 
