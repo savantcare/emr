@@ -103,6 +103,14 @@ export default {
       toggleSwitchShowBodyContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
       actionIconBelowMousePointer: null,
+      actionIconColorChart: {
+        Add: '#67c23a',
+        'Toggle card display': '#909399',
+        'Multi edit': '#409eff',
+        'Multi delete': '#f56c6c',
+        'Show deleted': '#909399',
+        'Close card': '#f56c6c',
+      },
     }
   },
   computed: {
@@ -132,17 +140,10 @@ export default {
         }
       }
 
-      let actionIconColorChart = {}
-      actionIconColorChart['Add'] = '#67c23a'
-      actionIconColorChart['Toggle card display'] = '#909399'
-      actionIconColorChart['Multi edit'] = '#409eff'
-      actionIconColorChart['Multi delete'] = '#f56c6c'
-      actionIconColorChart['Show deleted'] = '#909399'
-      actionIconColorChart['Close card'] = '#f56c6c'
-
       return {
-        '--color-of-icon-that-represents-default-action-of-header':
-          actionIconColorChart[defaultActionDescription],
+        '--color-of-icon-that-represents-default-action-of-header': this.actionIconColorChart[
+          defaultActionDescription
+        ],
         '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
       }
     },
