@@ -24,16 +24,20 @@
           :content="singleCardHeaderAction.actionDescription"
           placement="top-end"
           :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            tabindex="-1"
-            @click.stop="
-              mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)
-            "
-            :class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)"
-          ></el-button>
+          ><span
+            @mouseenter="mfNewMouseOver(singleCardHeaderAction.actionDescription)"
+            @mouseout="mfNewMouseOut()"
+          >
+            <el-button
+              style="padding: 3px; color: #c0c4cc; border: none"
+              plain
+              tabindex="-1"
+              @click.stop="
+                mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)
+              "
+              :class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)"
+            ></el-button>
+          </span>
         </el-tooltip>
       </el-button-group>
     </div>
@@ -98,12 +102,22 @@ export default {
     return {
       toggleSwitchShowBodyContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
-      textColor: 'red',
+      iconBelowMouse: null,
     }
   },
   computed: {
     sendCssVariablesToStyleSheet() {
       // For basic knowledge read: https://www.telerik.com/blogs/passing-variables-to-css-on-a-vue-component
+
+      if (this.iconBelowMouse) {
+        if (this.iconBelowMouse !== 'Add') {
+          return {
+            '--size-of-icon-that-represents-default-action-of-header': '1rem',
+            '--color-of-icon-that-represents-default-action-of-header': 'unset',
+          }
+        }
+      }
+
       const headerDefaultActionColor = ''
       let colorChart = {}
       colorChart['Add'] = '#67c23a'
@@ -118,12 +132,22 @@ export default {
           const action = this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
           return {
             '--color-of-icon-that-represents-default-action-of-header': colorChart[action],
+            '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
           }
         }
       }
     },
   },
   methods: {
+    mfNewMouseOver(pDescription) {
+      this.iconBelowMouse = pDescription
+      console.log('CSS mouse enter icon is', this.iconBelowMouse)
+    },
+    mfNewMouseOut(pDescription) {
+      this.iconBelowMouse = null
+      console.log('CSS mouse enter icon is', this.iconBelowMouse)
+    },
+
     mfOuterMostCardHeaderClicked() {
       for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
         if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
@@ -287,7 +311,7 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
 
 /* When cursor is inside the top most card header then make the default action icon in the card header larger size */
 .el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-icon-of-default-action {
-  font-size: 1.5rem;
+  font-size: var(--size-of-icon-that-represents-default-action-of-header);
   color: var(--color-of-icon-that-represents-default-action-of-header) !important;
 }
 
