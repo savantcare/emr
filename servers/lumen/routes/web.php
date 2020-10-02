@@ -85,15 +85,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      * Routing for Temperature
      */
     $router->get('temperature/v20/',  ['uses' => 'TemperatureController@showAllTemperatures']);
-    $router->get('temperature/v20/{id}', ['uses' => 'TemperatureController@showOneTemperature']);
+    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@showOneTemperature']);
     $router->post('temperature/v20/', ['uses' => 'TemperatureController@create']);
-    $router->put('temperature/v20/{id}', ['uses' => 'TemperatureController@update']);
+    $router->put('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@update']);
     $router->options('temperature/v20', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('temperature/v20/{id}', function () {
+    $router->options('temperature/v20/{serverSideRowUuid}', function () {
       return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');

@@ -12,42 +12,47 @@ class TemperatureController extends Controller
     public function showAllTemperatures()
     {
         $temperatureQuery = DB::select(DB::raw('SELECT *, UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL order by ROW_START desc'));
+
         return response()->json($temperatureQuery);
     }
 
-    public function showOneTemperature($id)
+    public function showOneTemperature($serverSideRowUuid)
     {
-        return response()->json(Temperature::find($id));
+        $temperatureQuery = DB::select(DB::raw("SELECT *, UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
+
+        return response()->json($temperatureQuery);
     }
 
     public function create(Request $request)
     {
         $requestData = $request->all();
 
-        $temperatureData = array(
-            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUUID' => $requestData['data']['ptUUID'],
-            'temperatureInFarehnite' => $requestData['data']['temperatureInFarehnite'],
-            'timeOfMeasurementInMilliseconds' => $requestData['data']['timeOfMeasurementInMilliseconds'],
-            'notes' => $requestData['data']['notes'],
-            'recordChangedByUUID' => $requestData['data']['recordChangedByUUID'],
-            'recordChangedFromIPAddress' => $this->get_client_ip()
-        );
+        $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
+        $ptUUID = $requestData['data']['ptUUID'];
+        $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
+        $temperatureInFarehnite = $requestData['data']['temperatureInFarehnite'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUUID = $requestData['data']['recordChangedByUUID'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $temperatureObj = Temperature::insertGetId($temperatureData);
+        $insertTempereture = DB::statement("INSERT INTO `sc_body_measurement`.`temperature` (`serverSideRowUuid`, `ptUUID`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUUID}', {$temperatureInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
 
-        return response()->json($temperatureObj, 201);
+        return response()->json($insertTempereture, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
-        $temperatureObj = Temperature::findOrFail($id);
         $requestData = $request->all();
-        $requestData['rowToUpsert']['recordChangedFromIPAddress'] = $this->get_client_ip();
-        print_r($requestData);
-        $temperatureObj->update($requestData['rowToUpsert']);
 
-        return response()->json($requestData['rowToUpsert'], 200);
+        $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
+        $temperatureInFarehnite = $requestData['rowToUpsert']['temperatureInFarehnite'];
+        $notes = $requestData['rowToUpsert']['notes'];
+        $recordChangedByUUID = $requestData['rowToUpsert']['recordChangedByUUID'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
+
+        $updateTempereture = DB::statement("UPDATE `sc_body_measurement`.`temperature` SET `temperatureInFarehnite` = {$temperatureInFarehnite}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUUID` = '{$recordChangedByUUID}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `temperature`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
+
+        return response()->json($updateTempereture, 200);
     }
 
     public function get_client_ip() {
