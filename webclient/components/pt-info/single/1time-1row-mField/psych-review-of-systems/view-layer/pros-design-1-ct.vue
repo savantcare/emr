@@ -86,8 +86,6 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
 
-      console.log(arOfObjectsFromClientSideDB)
-
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink
@@ -96,8 +94,6 @@ export default {
           arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink
             .psychReviewOfSystemsDescription
       }
-
-      console.log(arOfObjectsFromClientSideDB)
 
       return arOfObjectsFromClientSideDB
     },
@@ -110,6 +106,10 @@ export default {
           ROW_END: Math.floor(Date.now() / 1000),
         },
       })
+
+      // send event to the client
+      const eventName = 'event-from-ct-pros-delete-row'
+      this.$root.$emit(eventName, pClientSideUniqRowId)
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

@@ -48,6 +48,14 @@ export default {
     }
   },
   mounted() {
+    let eventName = 'event-from-ct-pros-delete-row'
+    this.$root.$on(eventName, (pRowID) => {
+      console.log(pRowID)
+      console.log(this.patientClientSideFieldValueModel)
+      this.patientClientSideFieldValueModel[pRowID] = 0
+      console.log(this.patientClientSideFieldValueModel)
+    })
+
     // Goal1: Get the master field names
     const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
       .query()
