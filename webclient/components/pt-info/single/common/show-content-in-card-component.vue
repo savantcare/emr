@@ -127,23 +127,22 @@ export default {
         if (this.iconBelowMouse !== defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
-            '--color-of-icon-that-represents-default-action-of-header': 'unset',
+            '--color-of-icon-that-represents-default-action-of-header': '#c0c4cc',
           }
         }
       }
 
-      const headerDefaultActionColor = ''
-      let colorChart = {}
-      colorChart['Add'] = '#67c23a'
-      colorChart['Toggle card display'] = '#909399'
-      colorChart['Multi edit'] = '#409eff'
-      colorChart['Multi delete'] = '#f56c6c'
-      colorChart['Show deleted'] = '#909399'
-      colorChart['Close card'] = '#f56c6c'
+      let actionIconColorChart = {}
+      actionIconColorChart['Add'] = '#67c23a'
+      actionIconColorChart['Toggle card display'] = '#909399'
+      actionIconColorChart['Multi edit'] = '#409eff'
+      actionIconColorChart['Multi delete'] = '#f56c6c'
+      actionIconColorChart['Show deleted'] = '#909399'
+      actionIconColorChart['Close card'] = '#f56c6c'
 
       return {
         '--color-of-icon-that-represents-default-action-of-header':
-          colorChart[defaultActionDescription],
+          actionIconColorChart[defaultActionDescription],
         '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
       }
     },
