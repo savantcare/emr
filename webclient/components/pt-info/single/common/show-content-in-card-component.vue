@@ -26,7 +26,7 @@
           :open-delay="1000"
           ><span
             @mouseenter="
-              mfHandleNewMouseOverEventInCardHeader(singleCardHeaderAction.actionDescription)
+              mfHandleNewMouseEnterEventInCardHeader(singleCardHeaderAction.actionDescription)
             "
             @mouseout="mfHandleNewMouseOutEventInCardHeader()"
           >
@@ -107,7 +107,8 @@ export default {
       toggleSwitchShowBodyContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
       actionIconBelowMousePointer: null,
-      actionIconColorChart: {
+      defaultActionDescription: null,
+      iconColorChartWhenOnClickWillExecuteThisAction: {
         Add: '#67c23a',
         'Toggle card display': '#909399',
         'Multi edit': '#409eff',
@@ -121,13 +122,13 @@ export default {
     sendCssVariablesToStyleSheet() {
       // For basic knowledge read: https://www.telerik.com/blogs/passing-variables-to-css-on-a-vue-component
 
-      let defaultActionDescription = ''
-
-      for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
-        if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
-          defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i][
-            'actionDescription'
-          ]
+      if (!this.defaultActionDescription) {
+        for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
+          if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
+            this.defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i][
+              'actionDescription'
+            ]
+          }
         }
       }
 
@@ -135,7 +136,7 @@ export default {
       if (this.actionIconBelowMousePointer) {
         // I come here if there is a icon below the mouse.
         // Now there are 2 possibilities. Possibility 1: This is the default action Possibility2: This is not default action
-        if (this.actionIconBelowMousePointer !== defaultActionDescription) {
+        if (this.actionIconBelowMousePointer !== this.defaultActionDescription) {
           return {
             '--size-of-icon-that-represents-default-action-of-header': '1rem',
             '--color-of-icon-that-represents-default-action-of-header': '#c0c4cc',
@@ -143,18 +144,20 @@ export default {
         }
       }
 
-      // This is true means the deault icon should be highlighted in its default color
+      /* This is true means:
+        1. The mouse is not over any icon 
+        2. Hence, the deault icon should be highlighted in its default color
+       */
       return {
         // This find the color of the default icon
-        '--color-of-icon-that-represents-default-action-of-header': this.actionIconColorChart[
-          defaultActionDescription
-        ],
+        '--color-of-icon-that-represents-default-action-of-header': this
+          .iconColorChartWhenOnClickWillExecuteThisAction[this.defaultActionDescription],
         '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
       }
     },
   },
   methods: {
-    mfHandleNewMouseOverEventInCardHeader(pDescription) {
+    mfHandleNewMouseEnterEventInCardHeader(pDescription) {
       this.actionIconBelowMousePointer = pDescription
     },
     mfHandleNewMouseOutEventInCardHeader(pDescription) {
@@ -322,19 +325,31 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
   display: inline-block !important;
 }
 
-/* When cursor is inside the top most card header then make the default action icon in the card header larger size 
+/* Goal: 
+1. When cursor is inside the top most card header then make the default action icon in the card header larger size 
+2. When cursor goes over any other icon then make the default action back to normal size.
 
-vue sets the font-size based on following logic:
-1. If the mouse over some other icon then font-size = 1
-2. If the mouse is over this icon or in the header then font-size = 1.5
-)
-
+Logic sequence is
+Step1: Apply a unique class to the defailt action.
+        Done by mfGetClassForCardHeaderActionIcon
+Step2: Inside this class make font-size a css/vue variable
+        See line 345
+Step3: Make this vue variable take value of 1 or 1.5 depending on where the mouse pointer is
+       Done by sendCssVariablesToStyleSheet      
+Step4: Inner working of sendCssVariablesToStyleSheet
+      vue sets the font-size based on following logic:
+      1. If the mouse over some other icon then font-size = 1
+      2. If the mouse is over this icon or in the header then font-size = 1.5
 */
 .el-card__header:hover
   .s-css-class-outer-most-card-header
   .s-css-class-this-is-icon-of-default-action-in-this-card-header {
-  font-size: var(--size-of-icon-that-represents-default-action-of-header);
+  font-size: var(
+    --size-of-icon-that-represents-default-action-of-header
+  ); /* only 2 possibilities Possibility1: 1rem  Possibility2: 1.5rem */
   color: var(--color-of-icon-that-represents-default-action-of-header) !important;
+  /* only 2 possibilities Possibility1: Grey color  Possibility2: Color assocaited with that action. 
+  For the different colors associated with the actions see the colorChart at show-contnet-in-card-components:111 */
 }
 
 /* Generation Level 2 / Child 2 */
