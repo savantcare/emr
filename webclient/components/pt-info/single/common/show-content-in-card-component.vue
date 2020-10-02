@@ -330,7 +330,7 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
 2. When cursor goes over any other icon then make the default action back to normal size.
 
 Logic sequence is
-Step1: Apply a unique class to the defailt action.
+Step1: Apply a unique class to the default action.
         Done by mfGetClassForCardHeaderActionIcon
 Step2: Inside this class make font-size a css/vue variable
         See line 345
