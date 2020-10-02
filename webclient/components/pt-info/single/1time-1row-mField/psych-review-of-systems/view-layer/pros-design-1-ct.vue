@@ -1,7 +1,6 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Psych review of systems"
-    :propChildCardsArray="cfArOfPsychReviewOfSystemsForDisplay"
     :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
@@ -104,7 +103,7 @@ export default {
     },
   },
   methods: {
-    mfDeletePsychReviewOfSystems(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblOfPatientPsychReviewOfSystems.update({
         where: pClientSideUniqRowId,
         data: {
