@@ -6,7 +6,7 @@
         {
           actionDescription: 'Toggle card display',
           actionUIRepresentedByElementIoIconClass:
-            'el-icon-remove-outline s-css-class-default-action',
+            'el-icon-remove-outline s-css-class-icon-of-default-action',
         },
       ]"
       :propClientSideRowLevelActions="[{}]"

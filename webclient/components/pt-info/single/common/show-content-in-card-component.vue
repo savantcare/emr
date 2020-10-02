@@ -225,8 +225,8 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
   display: inline-block !important;
 }
 
-/* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-default-action {
+/* When inside the top most card header then make the default action icon in the card header larger size */
+.el-card__header:hover .s-css-class-outer-most-card-header .s-css-class-icon-of-default-action {
   font-size: 1.5rem;
 }
 

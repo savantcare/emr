@@ -7,7 +7,7 @@
         {
           actionDescription: 'Add',
           actionUIRepresentedByElementIoIconClass:
-            'el-icon-circle-plus-outline s-css-class-default-action',
+            'el-icon-circle-plus-outline s-css-class-icon-of-default-action',
         },
         {
           actionDescription: 'Multi edit',
