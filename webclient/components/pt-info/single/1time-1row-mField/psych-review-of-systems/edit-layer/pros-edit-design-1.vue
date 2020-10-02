@@ -21,10 +21,7 @@
               >
             </div>
             <div v-else>
-              <el-input
-                :placeholder="ros.psychReviewOfSystemsDescription"
-                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
-              ></el-input>
+              {{ ros.psychReviewOfSystemsDescription }}
               <vue-slider
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
                 :marks="false"
@@ -46,6 +43,7 @@
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
               <vue-slider
+                @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
                 v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
                 :marks="false"
                 :min="0"
@@ -135,6 +133,7 @@ export default {
       return false
     },
     mfTogglePsychReviewOfSystems(pPsychReviewOfSystemsMasterId) {
+      console.log(pPsychReviewOfSystemsMasterId)
       const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
