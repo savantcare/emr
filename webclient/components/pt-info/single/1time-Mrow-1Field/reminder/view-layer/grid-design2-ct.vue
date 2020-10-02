@@ -6,24 +6,18 @@
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Add',
-          actionUIRepresentedByElementIoIconClass:
-            'el-icon-circle-plus-outline s-css-class-icon-of-default-action',
         },
         {
           actionDescription: 'Multi edit',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-money',
         },
         {
           actionDescription: 'Multi delete',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-document-delete',
         },
         {
           actionDescription: 'Toggle card display',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
         },
         {
           actionDescription: 'Show deleted',
-          actionUIRepresentedByElementIoIconClass: 'el-icon-delete',
         },
       ]"
     >

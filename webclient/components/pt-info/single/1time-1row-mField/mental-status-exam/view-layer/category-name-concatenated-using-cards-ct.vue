@@ -4,15 +4,12 @@
     :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
-        actionUIRepresentedByElementIoIconClass: 'el-icon-money',
       },
       {
         actionDescription: 'Toggle card display',
-        actionUIRepresentedByElementIoIconClass: 'el-icon-remove-outline',
       },
       {
         actionDescription: 'Close card',
-        actionUIRepresentedByElementIoIconClass: 'el-icon-close',
       },
     ]"
     :propClientSideRowLevelActions="[{}]"
