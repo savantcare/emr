@@ -20,7 +20,7 @@
             {{ ros.psychReviewOfSystemsDescription }} {{ ros.psychReviewOfSystemsMasterId }}
             <el-slider
               v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
-              :min="0"
+              :min="-1"
               :max="2"
               :step="1"
               :width="10"
@@ -50,8 +50,8 @@ export default {
   mounted() {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowID) => {
-      this.patientClientSideFieldValueModel[pRowID] = 0
-      this.$forceUpdate() // without this the view layer only updates when I make some change in it.
+      this.patientClientSideFieldValueModel[pRowID] = -1
+      this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 
     // Goal1: Get the master field names
