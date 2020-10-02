@@ -8,7 +8,7 @@ const intUniqueID = () => ++count
 
 export default class ptDateOfBirth extends clientSideTableManage {
   static entity = 'tblDateOfBirth'
-  static apiUrl = 'http://localhost:3000/date-of-birth'
+  static apiUrl = 'http://localhost:8000/public/api/dob/v20'
 
   static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
   static graphSeries1Unit = 'Lbs'

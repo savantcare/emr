@@ -19,23 +19,21 @@ Code synced with ref implementation on 4th august 2020
       <el-col :span="12">
         <el-form>
           <el-form-item>
-            <el-input
-              placeholder="Date of birth"
+          <el-date-picker
               :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
+              type="date"
+              placeholder="Pick a day"
+              :picker-options="pickerOptions"
+              format="yyyy/MM/dd"
+              value-format="timestamp"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
             >
-            </el-input>
+          </el-date-picker> 
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
         -->
-            <el-input
-              placeholder="Notes"
-              type="textarea"
-              :autosize="{ minRows: 2 }"
-              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
-            ></el-input>
+            
           </el-form-item>
           <el-form-item>
             <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed"

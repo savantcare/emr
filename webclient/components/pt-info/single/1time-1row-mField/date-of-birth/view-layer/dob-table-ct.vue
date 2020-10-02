@@ -64,9 +64,7 @@ Code synced with ref implementation on 4th august 2020
           size="small"
           >{{ cfFormatDateOfBirth }}</el-button
         >
-        <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
-          cfLatestDataRowFromClientSideTable['notes']
-        }}</el-button>
+      
       </div>
     </showContentInCardComponent>
   </div>

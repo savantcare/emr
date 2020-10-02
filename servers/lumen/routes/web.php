@@ -188,4 +188,36 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+     /**
+     * Routing for Name
+     */
+    $router->get('name/v20/{id}', ['uses' => 'NameController@showUserName']);
+    $router->put('name/v20/{id}', ['uses' => 'NameController@update']);
+    $router->options('name/v20', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('name/v20/{id}', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+     /**
+     * Routing for DateOfBirth
+     */
+    $router->get('dob/v20/{id}', ['uses' => 'DateofbirthController@showUserDateofBirth']);
+    $router->put('dob/v20/{id}', ['uses' => 'DateofbirthController@update']);
+    $router->options('dob/v20', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('dob/v20/{id}', function () {
+      return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
   });

@@ -12,7 +12,7 @@ export default {
         3. The .api function is provided by vuex-orm-axios
       */
 
-      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '/1')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '/bfe041fa-073b-4223-8c69-0540ee678ff8')
       if (pro.ok) {
       }
     },
