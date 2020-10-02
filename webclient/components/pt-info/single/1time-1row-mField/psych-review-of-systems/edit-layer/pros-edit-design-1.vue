@@ -22,16 +22,16 @@
             </div>
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
-              <vue-slider
-                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
-                :marks="false"
+              <el-slider
+                v-model="value2"
                 :min="0"
                 :max="2"
-                :width="150"
-                :absord="true"
-                :included="true"
-                :tooltip="'none'"
-              ></vue-slider>
+                :step="1"
+                :width="10"
+                show-stops
+                @change="mfChange($event, ros.psychReviewOfSystemsMasterId)"
+              >
+              </el-slider>
             </div>
           </div>
           <div v-else>
@@ -42,18 +42,16 @@
             </div>
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
-              <vue-slider
-                @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)"
-                v-model="descriptionModal[ros.psychReviewOfSystemsMasterId]"
-                :marks="false"
+              <el-slider
+                v-model="value2"
                 :min="0"
                 :max="2"
-                :width="150"
-                :absord="true"
-                :included="true"
-                :tooltip="'none'"
-                :height="10"
-              ></vue-slider>
+                :step="1"
+                :width="10"
+                show-stops
+                @change="mfChange($event, ros.psychReviewOfSystemsMasterId)"
+              >
+              </el-slider>
             </div>
           </div>
         </div>
@@ -71,6 +69,7 @@ export default {
     return {
       userTypedKeyword: '',
       descriptionModal: [],
+      value2: 0,
     }
   },
   computed: {
@@ -99,7 +98,7 @@ export default {
 
       const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
 
-      // console.log(ar)
+      console.log(ar)
       return ar
     },
   },
@@ -132,8 +131,8 @@ export default {
       }
       return false
     },
-    mfTogglePsychReviewOfSystems(pPsychReviewOfSystemsMasterId) {
-      console.log(pPsychReviewOfSystemsMasterId)
+    mfChange(pValue, pPsychReviewOfSystemsMasterId) {
+      console.log(pValue, pPsychReviewOfSystemsMasterId)
       const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
