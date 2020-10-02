@@ -328,16 +328,6 @@ Component           |  Side        | Location     | From front  | From back
   font-size: 1.5rem;
 }
 
-/* Used for CLOSE at: 
-Component          |  Side         | Position    | From front  | Front back
-Service statement  |  Flexible     | Header      |   3         |    -1
-Mental status exam |  Flexible     | Header      |   3         |    -1
-*/
-.el-icon-close:hover {
-  font-size: 1.5rem;
-  color: #f56c6c !important;
-}
-
 /* Used for ADD at: 
 Component         |  Side           | Position    | From front  | Front back
 Reminder          |  Fixed          |  Header     |  1 
@@ -366,6 +356,15 @@ Component          |  Side        | Position    | From front  | Front back
   font-size: 1.5rem;
 }
 
+/*  Used for TRASH-CAN at: 
+Component          |  Side        | Position    | From front  | Front back
+Reminder           |  Fixed       |  Header     |   5         | -1
+*/
+.el-icon-delete:hover {
+  color: #909399 !important;
+  font-size: 1.5rem;
+}
+
 /* Used for MINIMIZE at: 
 Component           |  Side        | Location     | From front  | From back
   Reminder          |  Fixed       |  Header      |  4          |  -1
@@ -378,12 +377,13 @@ Component           |  Side        | Location     | From front  | From back
   font-size: 1.5rem;
 }
 
-/*  Used for TRASH-CAN at: 
-Component          |  Side        | Position    | From front  | Front back
-Reminder           |  Fixed       |  Header     |   5         | -1
+/* Used for CLOSE at: 
+Component          |  Side         | Position    | From front  | Front back
+Service statement  |  Flexible     | Header      |   3         |    -1
+Mental status exam |  Flexible     | Header      |   3         |    -1
 */
-.el-icon-delete:hover {
-  color: #909399 !important;
+.el-icon-close:hover {
   font-size: 1.5rem;
+  color: #f56c6c !important;
 }
 </style>
