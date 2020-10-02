@@ -103,6 +103,7 @@ export default {
   },
   computed: {
     sendCssVariablesToStyleSheet() {
+      // For basic knowledge read: https://www.telerik.com/blogs/passing-variables-to-css-on-a-vue-component
       const headerDefaultActionColor = ''
       let colorChart = {}
       colorChart['Add'] = '#67c23a'
