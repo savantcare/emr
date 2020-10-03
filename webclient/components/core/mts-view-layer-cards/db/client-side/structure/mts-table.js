@@ -21,7 +21,7 @@ export default class leftSideViewLayer extends clientSideTableManage {
       componentToShowPath: this.string(null),
       classificationOfComponent: this.string('health'),
 
-      componentCurrentViewState: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
+      componentCurrentValueForCustomizingViewState: this.number(1), // when > 0 it will display. Using v-if since more efficient then v-show
 
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

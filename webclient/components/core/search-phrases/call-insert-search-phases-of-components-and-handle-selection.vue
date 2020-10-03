@@ -196,7 +196,7 @@ export default {
           data: {
             name: pSelectedSuggestion.value,
             componentToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
-            componentCurrentViewState: 1,
+            componentCurrentValueForCustomizingViewState: 1,
           },
         })
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {

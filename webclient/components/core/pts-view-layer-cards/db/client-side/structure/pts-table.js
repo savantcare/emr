@@ -19,7 +19,7 @@ export default class leftSideViewLayer extends clientSideTableManage {
       clientSideUniqRowId: this.uid(() => intUniqueID()),
       name: this.string(null),
       componentToShowPath: this.string(null),
-      componentCurrentViewState: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
+      componentCurrentValueForCustomizingViewState: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
 
       recordChangedByUUID: this.string(null),
       recordChangedFromIPAddress: this.string(null),

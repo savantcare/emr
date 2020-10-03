@@ -57,7 +57,7 @@ export default {
     cfArCardsInCsOfVl() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
-        .where('componentCurrentViewState', (value) => value > 0)
+        .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)
         .get()
 
       let componentToShowPath = ''

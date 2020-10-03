@@ -99,7 +99,8 @@ export default {
 
       // Goal: Keep the button highlighted that has been clicked
       if (
-        apptNoteComponentVisibilityCurrentValue['componentCurrentViewState'] === pClientSideRowId
+        apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState'] ===
+        pClientSideRowId
       ) {
         // This case is when the button was already active. And clicking it should make it in-active
         this.currentActiveButtonClientSideRowId = 0
@@ -112,7 +113,7 @@ export default {
       // Writing this in client Side DB since appt-note-view-in-printable-state component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
-        componentCurrentViewState: this.currentActiveButtonClientSideRowId,
+        componentCurrentValueForCustomizingViewState: this.currentActiveButtonClientSideRowId,
       })
     },
   },
