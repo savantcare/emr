@@ -117,11 +117,13 @@ export default {
       return false
     },
     mfToggleServiceStatement(pServiceStatementMasterId) {
+      // Goal1: Check if it already exists
       const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483648000)
         .get()
+
       if (exists.length > 0) {
         clientSideTblOfPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,
@@ -133,6 +135,7 @@ export default {
         clientSideTblOfPatientServiceStatements.insert({
           data: {
             serviceStatementMasterId: pServiceStatementMasterId,
+            ROW_START: Math.floor(Date.now()),
           },
         })
       }
