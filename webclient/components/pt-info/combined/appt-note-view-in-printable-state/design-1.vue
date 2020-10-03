@@ -44,11 +44,24 @@ import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer
 import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
+  data() {
+    return {
+      apptDetails: [],
+    }
+  },
   computed: {
     cfGetApptDetails() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
-      return apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
+      const apptID =
+        apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
+
+      // get appt details from appt table
+      this.apptDetails = clientSideTblOfAppointments.find(apptID)
+
+      console.log(this.apptDetails)
+
+      return apptID
     },
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
