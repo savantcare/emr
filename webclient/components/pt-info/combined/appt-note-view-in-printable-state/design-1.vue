@@ -201,11 +201,17 @@ export default {
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfArOfServiceStatementForDisplay() {
+      if (this.apptObj['apptStatus'] === 'un-locked') {
+        this.apptObj['ROW_END'] = Math.floor(Date.now())
+      }
+
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
-        .where('ROW_END', 2147483648000)
+        .where('ROW_END', (value) => value > this.apptObj['ROW_END'])
+        .where('ROW_START', (value) => value < this.apptObj['ROW_END'])
         .get()
+      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
 
