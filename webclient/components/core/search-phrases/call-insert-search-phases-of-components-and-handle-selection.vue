@@ -87,7 +87,7 @@ import insertSsComponentSearchPhrases from '@/components/pt-info/single/1time-Mr
 // 1time-Mrow-mField
 import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
-import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 
 export default {
   components: {

@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import clientSideTblOfViewCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfViewCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {

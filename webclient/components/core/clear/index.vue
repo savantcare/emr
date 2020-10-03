@@ -1,7 +1,7 @@
 <template><div></div></template>
 
 <script>
-import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 
 export default {
   data() {

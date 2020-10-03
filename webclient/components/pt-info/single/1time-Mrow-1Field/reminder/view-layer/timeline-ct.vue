@@ -86,7 +86,7 @@
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientSideTblOfRightSideCards from '@/components/core/manage-pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 
 export default {
   components: { ctActOnSocketMessages },
