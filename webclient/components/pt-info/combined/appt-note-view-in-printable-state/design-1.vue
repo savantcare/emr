@@ -29,24 +29,56 @@
     </div>
 
     <!-- SECTOION 5 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Service statements
+      <el-popover placement="right" width="400" v-model="visible1">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
     <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
 
     <!-- SECTOION 6 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Mental status exam</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Mental status exam
+      <el-popover placement="right" width="400" v-model="visible2">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
     <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="row.clientSideUniqRowId">
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
     </div>
 
     <!-- SECTOION 7 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Psych review of systems</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Psych review of systems
+      <el-popover placement="right" width="400" v-model="visible3">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
 
     <!-- SECTOION 8 REMINDERS -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Reminders</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Reminders
+      <el-popover placement="right" width="400" v-model="visible4">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
     <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
       {{ row['description'] }}
     </div>
@@ -79,13 +111,37 @@
     </div>
 
     <!-- SECTOION 9 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Recommendations</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Recommendations
+      <el-popover placement="right" width="400" v-model="visible5">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
 
     <!-- SECTOION 10 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Medications</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Medications
+      <el-popover placement="right" width="400" v-model="visible6">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
 
     <!-- SECTOION 11 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px">Body measurements</h3>
+    <h3 style="padding-top: 20px; padding-bottom: 5px">
+      Body measurements
+      <el-popover placement="right" width="400" v-model="visible7">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+        </div>
+        <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
+      </el-popover>
+    </h3>
 
     <!-- SECTOION 12 -->
     <div v-if="apptObj['apptStatus'] !== 'locked'">
@@ -114,6 +170,14 @@ export default {
     return {
       apptObj: [],
       debug: false,
+      data: '',
+      visible1: true,
+      visible2: true,
+      visible3: true,
+      visible4: true,
+      visible5: true,
+      visible6: true,
+      visible7: true,
     }
   },
   filters: {
