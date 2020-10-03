@@ -3,8 +3,7 @@
 <template></template>
 
 <script>
-import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
-
+import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 // This will become dynamic
 
 export default {
