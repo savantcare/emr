@@ -68,6 +68,13 @@
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
     </h3>
+    <div
+      v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
+      :key="`mse - ${row.clientSideUniqRowId}`"
+    >
+      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
+      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
+    </div>
 
     <!-- SECTOION 8 REMINDERS -->
     <h3 style="padding-top: 20px; padding-bottom: 5px">
@@ -157,6 +164,7 @@
 import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfPsychReviewOfSystems from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 // init tables
 import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
@@ -255,6 +263,26 @@ export default {
       }
       return arOfObjectsFromClientSideDB
     },
+
+    cfArOfPsychReviewOfSystemsForDisplay() {
+      let arOfObjectsFromClientSideDB = []
+      if (this.patientApptObj['apptStatus'] === 'un-locked') {
+        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .get()
+      }
+      return arOfObjectsFromClientSideDB
+    },
+
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
