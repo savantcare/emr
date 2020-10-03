@@ -18,7 +18,7 @@ export default class phq9MasterClass extends clientSideTableManage {
       phq9QuestionMasterId: this.uid(() => intUniqueID()),
       phq9QuestionFullText: this.string(null),
 
-      ROW_END: this.number(2147483647.999999),
+      ROW_END: this.number(2147483648000),
 
       tblPhq9ForPatientLink: this.hasOne(phq9ForPatientClass, 'phq9QuestionMasterId'),
     }

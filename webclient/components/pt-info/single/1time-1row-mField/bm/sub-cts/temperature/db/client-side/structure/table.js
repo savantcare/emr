@@ -34,7 +34,7 @@ export default class ptTemperature extends clientSideTableManage {
       recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
-      ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
     }
   }
 }

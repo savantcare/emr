@@ -21,12 +21,9 @@ export default class clientSideTblMasterDiagnosis extends clientSideTableManage 
       diagnosisName: this.string(null),
 
       priority: this.number(0),
-      ROW_END: this.number(2147483647.999999),
+      ROW_END: this.number(2147483648000),
 
-      linkWithPatient: this.hasOne(
-        clientSideTblPatientDiagnosis,
-        'masterDiagnosisId'
-      ),
+      linkWithPatient: this.hasOne(clientSideTblPatientDiagnosis, 'masterDiagnosisId'),
     }
   }
 }

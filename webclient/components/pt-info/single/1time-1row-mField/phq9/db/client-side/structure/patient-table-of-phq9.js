@@ -28,7 +28,7 @@ export default class phq9ForPatientClass extends clientSideTableManage {
       recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
-      ROW_END: this.number(2147483647.999999),
+      ROW_END: this.number(2147483648000),
 
       tblPhq9MasterLink: this.belongsTo(
         phq9MasterClass,

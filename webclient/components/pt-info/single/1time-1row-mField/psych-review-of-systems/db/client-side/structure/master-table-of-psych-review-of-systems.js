@@ -22,7 +22,7 @@ export default class psychReviewOfSystemsMasterClass extends clientSideTableMana
       psychReviewOfSystemsDescription: this.string(null),
       psychReviewOfSystemsCategory: this.string(null),
       psychReviewOfSystemsFieldType: this.string('radio'), // valid values are bool, radio, textarea
-      ROW_END: this.number(2147483647.999999), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       /* Q) Why is this relationship needed ?
         Currently this relationship is used at only one place.

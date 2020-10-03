@@ -38,7 +38,7 @@ export default class ptName extends clientSideTableManage {
       recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
-      ROW_END: this.number(2147483647.999999),
+      ROW_END: this.number(2147483648000),
     }
   }
 }
