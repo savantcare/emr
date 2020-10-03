@@ -15,7 +15,7 @@ class ReminderController extends Controller
 
     public function showAllReminders()
     {
-        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM rems FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($remQuery);
         // return response()->json(Reminder::all());
     }
