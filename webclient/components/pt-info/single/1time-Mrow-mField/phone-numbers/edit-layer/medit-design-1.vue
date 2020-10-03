@@ -126,7 +126,7 @@ export default {
   },
   mounted() {
     console.log('In mounted function')
-    const resultArFromOrm = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
+    const resultArFromOrm = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
         this.daUniqueIDOfEachRowFromOrm.push(resultArFromOrm[i].$id)

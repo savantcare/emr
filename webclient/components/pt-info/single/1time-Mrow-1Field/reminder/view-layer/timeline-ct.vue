@@ -104,7 +104,9 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
+      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows(
+        'description'
+      )
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

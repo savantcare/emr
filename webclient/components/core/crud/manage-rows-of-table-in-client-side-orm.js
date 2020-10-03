@@ -203,7 +203,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
           this means that the row has not been deleted.
   */
-  static fnGetValidUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
+  static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
       .where('ROW_END', 2147483647.999999)
@@ -233,7 +233,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return uniqueUuidRows
   }
 
-  static fnGetValidUniqueUuidRows() {
+  static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query().where('ROW_END', 2147483647.999999).get()
     const uniqueUuidRows = []
@@ -293,7 +293,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     const arDeletedRows = []
     const arDeletedRowUniqueUuid = []
-    const currentUniqueUuidRows = this.fnGetValidUniqueUuidRows()
+    const currentUniqueUuidRows = this.fnGetPresentUniqueUuidRows()
 
     arFromORM.forEach((item) => {
       let foundInArToReturn = false

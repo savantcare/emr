@@ -122,13 +122,15 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidRows()
+      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidRows()
       return arFromClientSideTable.length
     },
 
     cfArOfRemForDisplayInTable() {
       // Whenever clientSideTable will change this will get called. Even when there are 100 rows in the table when clientSideTable rem changes this gets called once'
-      const arFromClientSideTable = clientSideTable.fnGetValidUniqueUuidNotEmptyRows('description')
+      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows(
+        'description'
+      )
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
