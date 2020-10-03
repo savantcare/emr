@@ -20,7 +20,7 @@ export default {
     clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Appt note',
-        componentToShowPath: 'pt-info/combined/note-preview/design-1.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath: 'pt-info/combined/appt-note-view-in-printable-state/design-1.vue', // PtsVl -> Present time state - part of - view layer
         componentCurrentViewState: 0,
       },
     })

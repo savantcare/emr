@@ -94,17 +94,22 @@ export default {
       if (pApptStatus === 'no-show') return
       if (pApptStatus === 'cancellation') return
 
-      const noteCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
+      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
 
       // Goal: Keep the button highlighted that has been clicked
-      if (noteCurrentValue['componentCurrentViewState'] === pClientSideRowId) {
+      if (
+        apptNoteComponentVisibilityCurrentValue['componentCurrentViewState'] === pClientSideRowId
+      ) {
+        // This case is when the button was already active. And clicking it should make it in-active
         this.currentActiveButtonClientSideRowId = 0
       } else {
+        // This case is when the button was not active. And clicking it should make it Active
         this.currentActiveButtonClientSideRowId = pClientSideRowId
       }
 
       // This update will lead to the note card visibility getting toggled
-      // Writing this in client Side DB since another component depends on this data.
+      // Writing this in client Side DB since appt-note-view-in-printable-state component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
         componentCurrentViewState: this.currentActiveButtonClientSideRowId,
