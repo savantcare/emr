@@ -17,6 +17,7 @@ export default class tblAppointments extends clientSideTableManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueID()),
+      serverSideRowUuid: this.uid(() => uuidv1()),
 
       apptStartMilliSecondsOnCalendar: this.number(2147483647.999999),
       apptProviderUUID: this.string(null),
