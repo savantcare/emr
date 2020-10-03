@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class leftSideViewLayer extends clientSideTableManage {
+export default class multiTimeStateViewLayer extends clientSideTableManage {
   static entity = 'tblRightSideViewLayer'
   static apiUrl = 'http://localhost:3000/'
 

@@ -3,53 +3,53 @@
 <template></template>
 
 <script>
-import clientSideTblOfLeftSideCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiTimeStateCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Header',
         componentToShowPath: 'core/mts-view-layer-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Appt note',
         componentToShowPath: 'pt-info/combined/appt-note-view-in-printable-state/design-1.vue', // PtsVl -> Present time state - part of - view layer
         componentCurrentValueForCustomizingViewState: 0,
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Correlate',
         componentToShowPath: 'pt-info/combined/correlate/design-1.vue',
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Body measurement',
         componentToShowPath: 'pt-info/single/1time-1row-mField/bm/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Reminder',
         componentToShowPath:
           'pt-info/single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Screening',
         componentToShowPath: 'pt-info/single/1time-Mrow-mField/scr/view-layer/table-ct.vue',
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Contacts',
         componentToShowPath:
