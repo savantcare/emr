@@ -15,58 +15,41 @@
     ]"
     :propClientSideRowLevelActions="[{}]"
   >
-    <el-card
-      slot="bodySlotContentFromParentToShowAboveChildCards"
-      v-for="pros in cfArOfPsychReviewOfSystemsForDisplay"
-      :key="pros.clientSideUniqRowId"
-      class="box-card sc-individual-child-card"
-      shadow="hover"
-      :style="mfGetCssClassNameForEachDataRow(pros)"
-    >
-      <el-button-group style="float: right; display: none">
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Click to delete"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            @click="mfIconDeleteClickedOnChildCard(pros)"
-            class="el-icon-circle-close"
-          >
-          </el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="info"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            class="el-icon-discover"
-          >
-          </el-button>
-        </el-tooltip>
-      </el-button-group>
+    <div slot="bodySlotContentFromParentToShowAboveChildCards">
+      <el-card
+        v-for="(allPsychReviewOfSystemsInsideAGroup, groupNameGivenAsIndex) in this.masterROSArray"
+        :key="allPsychReviewOfSystemsInsideAGroup.id"
+        class="box-card sc-individual-child-card"
+        shadow="hover"
+      >
 
-      <!-- <el-button type="text">{{ pros.description }}</el-button> 
-          if I use the button then a long text is not getting divided into multiple lines
-          if rowStateInThisSession == 9 then the div should have a orange border
-          Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new pros appears. That is a confusing event.
-            Instead if the new pros that came on screen gets a orange border with top right corner saying "New pros added from socket" that is much better UX.
-          -->
-      <div v-if="pros.vnRowStateInSession === 9">Added from socket {{ pros.description }}</div>
-      <div v-else>
-        {{ pros.cardContentOfTypeStringToShowInBodyOfCards }}
-      </div>
-    </el-card>
+  <div slot="header" class="clearfix">
+    <span>    {{ groupNameGivenAsIndex }}</span>
+</div>
+    
+        <!-- Ref https://forum.vuejs.org/t/how-to-pass-data-to-the-parameters-of-the-function/3060 -->
+        {{ mfGetGroupToalForAGivenGroup({ groupNameGivenAsIndex }) }}
+
+        <div class="sc-psych-review-of-systems-all-content-divs">
+          <div
+            v-for="ros in allPsychReviewOfSystemsInsideAGroup"
+            :key="ros.psychReviewOfSystemsMasterId"
+          >
+            <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
+              <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
+                ros.psychReviewOfSystemsDescription
+              }}</el-button>
+            </div>
+            <div v-else>
+              {{ ros.psychReviewOfSystemsDescription }}
+              {{ patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]}}
+              
+              </el-slider>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </div>
   </showContentInCardComponent>
 </template>
 
@@ -76,6 +59,16 @@ import clientSideTblOfPatientPsychReviewOfSystems from '../db/client-side/struct
 import showContentInCardComponent from '@/components/pt-info/single/common/show-content-in-card-component.vue'
 
 export default {
+  data() {
+    return {
+      userTypedKeyword: '',
+      patientClientSideFieldValueModel: [],
+      masterROSArray: [],
+      groupTotal: [],
+      depressionTotal: 10,
+    }
+  },
+
   components: { showContentInCardComponent },
 
   computed: {
@@ -99,6 +92,21 @@ export default {
 
       return arOfObjectsFromClientSideDB
     },
+    cfPatientValuesUpdate() {
+
+      console.log("fn called")
+          // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
+    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
+      .query()
+      .where('ROW_END', 2147483647.999999)
+      .get()
+
+    for (let i = 0; i < allPatientValues.length; i++) {
+      this.patientClientSideFieldValueModel[
+        allPatientValues[i]['psychReviewOfSystemsMasterId']
+      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+    }
+    }
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pros) {
@@ -131,7 +139,108 @@ export default {
         return 'color: #202020;'
       }
     },
+    groupBy(data, key) {
+      // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
+      // `data` is an array of objects, `key` is the key (or property accessor) to group by
+      // reduce runs this anonymous function on each element of `data` (the `item` parameter,
+      // returning the `storage` parameter at the end
+      return data.reduce(function (storage, item) {
+        // get the first instance of the key by which we're grouping
+        var group = item[key]
+
+        // set `storage` for this instance of group to the outer scope (if not empty) or initialize it
+        storage[group] = storage[group] || []
+
+        // add this item to its group within `storage`
+        storage[group].push(item)
+
+        // return the updated storage to the reduce function, which will then loop through the next
+        return storage
+      }, {}) // {} is the initial value of the storage
+    },
+    mfCalculateGroupTotalValue() {
+      console.log('mfCalculateGroupTotalValue called')
+      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
+        .query()
+        .with('tblPsychReviewOfSystemsMasterLink')
+        .where('ROW_END', 2147483647.999999)
+        .get()
+
+      //  console.log(arOfObjectsFromClientSidePatientDB)
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
+        catName =
+          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
+            'psychReviewOfSystemsCategory'
+          ]
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
+      }
+
+      this.groupTotal = groupTotal
+    },
+
+    mfGetGroupToalForAGivenGroup(pGroupName) {
+      // console.log(this.groupTotal) // Unknown: When I load this Ct this fn gets called 130 times
+      const groupName = pGroupName['groupNameGivenAsIndex']
+      const value = this.groupTotal[groupName]
+      // console.log('value is', value)
+      return value
+    },
   },
-  async mounted() {},
+  mounted() {
+    let eventName = 'event-from-ct-pros-delete-row'
+    this.$root.$on(eventName, (pRowID) => {
+      this.patientClientSideFieldValueModel[pRowID] = 0
+      this.mfSetValueInClientSideTable(-1, pRowID) // -1 indicates not looked at.
+      this.$forceUpdate() // without this the view layer only updates when I make some change
+    })
+
+    // Goal1: Get the master field names
+    const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+      .query()
+      .with('tblPsychReviewOfSystemsForPatientLink')
+      .where('ROW_END', 2147483647.999999)
+      .where((_record, query) => {
+        query
+          .where('psychReviewOfSystemsCategory', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
+          .orWhere('psychReviewOfSystemsDescription', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
+      })
+      .get()
+
+    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
+    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
+      .query()
+      .where('ROW_END', 2147483647.999999)
+      .get()
+
+    for (let i = 0; i < allPatientValues.length; i++) {
+      this.patientClientSideFieldValueModel[
+        allPatientValues[i]['psychReviewOfSystemsMasterId']
+      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+    }
+
+    // Apply rules given by doctors
+
+    // End rules given by doctors
+
+    // Now group the SS
+
+    console.log(this.patientClientSideFieldValueModel)
+
+    const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
+
+    this.masterROSArray = ar
+  },
 }
 </script>
