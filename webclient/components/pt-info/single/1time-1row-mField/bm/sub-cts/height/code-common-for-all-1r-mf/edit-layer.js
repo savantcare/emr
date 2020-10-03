@@ -155,7 +155,7 @@ export default {
             )
           },
           data: {
-            ROW_END: Math.floor(Date.now() / 1000),
+            ROW_END: Math.floor(Date.now()),
           },
         })
         /* Goal: Update the value of copied row to success or failure depending on the api response */

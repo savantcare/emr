@@ -48,7 +48,7 @@ export default {
       clientSideTblOfPatientPhq9.update({
         where: pClientSideUniqueRowId,
         data: {
-          ROW_END: Math.floor(Date.now() / 1000),
+          ROW_END: Math.floor(Date.now()),
         },
       })
     },

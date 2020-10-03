@@ -1,24 +1,22 @@
 <template>
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
-    <div style="padding-top: 5px;">
+    <div style="padding-top: 5px">
       <el-table
-            :data="cfGetMasterListOfDiagnosis"
-            :show-header="false"
-            :row-class-name="fnRowToggleClass"
-            height="300"
-            @row-click="fnSelectionToggle"
-            style="width: 100%">
-            <el-table-column
-              prop="diagnosisName">
-            </el-table-column>
-          </el-table>
+        :data="cfGetMasterListOfDiagnosis"
+        :show-header="false"
+        :row-class-name="fnRowToggleClass"
+        height="300"
+        @row-click="fnSelectionToggle"
+        style="width: 100%"
+      >
+        <el-table-column prop="diagnosisName"> </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
 
 <script>
-
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
 import clientSideTblMasterDiagnosis from '../db/client-side/structure/master-table-of-diagnosis'
 
@@ -27,40 +25,39 @@ export default {
   data() {
     return {
       dnOrmIdOfRowToChange: this.firstProp,
-      userTypedKeyword: ''
+      userTypedKeyword: '',
     }
   },
   computed: {
-    cfGetMasterListOfDiagnosis: function() {
-      
+    cfGetMasterListOfDiagnosis: function () {
       let arOfObjectsFromClientSideMasterDB = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
         .where('ROW_END', 2147483647.999999)
         .where((_record, query) => {
-          query
-            .where('diagnosisName', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
-            )
+          query.where('diagnosisName', (value) =>
+            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+          )
         })
         .orderBy('priority', 'desc')
-        .get();
-        return arOfObjectsFromClientSideMasterDB;
-    }
+        .get()
+      return arOfObjectsFromClientSideMasterDB
+    },
   },
   mounted() {
-    this.fnSetMasterDataPriority();
+    this.fnSetMasterDataPriority()
   },
   methods: {
     fnSetMasterDataPriority() {
       const checkselectedData = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
-        .where('ROW_END', 2147483647.999999).get();
-      if(checkselectedData.length > 0) {
+        .where('ROW_END', 2147483647.999999)
+        .get()
+      if (checkselectedData.length > 0) {
         for (let index = 0; index < checkselectedData.length; index++) {
-          const element = checkselectedData[index];
-          if(element.linkWithPatient != null) {
+          const element = checkselectedData[index]
+          if (element.linkWithPatient != null) {
             clientSideTblMasterDiagnosis.update({
               where: element.masterDiagnosisId,
               data: {
@@ -86,13 +83,13 @@ export default {
         .get()
     },
     fnSelectionToggle(rowData) {
-      let masterDiagnosisId = rowData.masterDiagnosisId;
+      let masterDiagnosisId = rowData.masterDiagnosisId
       const exists = this.fnCheckExistsDiagnosis(masterDiagnosisId)
       if (exists.length > 0) {
         clientSideTblPatientDiagnosis.update({
           where: exists[0].clientSideUniqRowId,
           data: {
-            ROW_END: Math.floor(Date.now() / 1000),
+            ROW_END: Math.floor(Date.now()),
           },
         })
       } else {
@@ -100,28 +97,28 @@ export default {
           data: {
             masterDiagnosisId: masterDiagnosisId,
             patientUUID: 1,
-          }
-        });
+          },
+        })
       }
     },
     fnRowToggleClass(prData) {
-      let masterDiagnosisId = prData.row.masterDiagnosisId;
+      let masterDiagnosisId = prData.row.masterDiagnosisId
       const exists = this.fnCheckExistsDiagnosis(masterDiagnosisId)
       if (exists.length > 0) {
-        return 'row-selected-success';
+        return 'row-selected-success'
       }
-      return '';
+      return ''
     },
   },
 }
 </script>
 <style>
-  .row-selected-success {
-    background-color: #409EFF !important;
-    color: #fff !important;
-  }
-  .row-selected-success:hover {
-    color: #409EFF !important;
-    font-weight: bold;
-  }
+.row-selected-success {
+  background-color: #409eff !important;
+  color: #fff !important;
+}
+.row-selected-success:hover {
+  color: #409eff !important;
+  font-weight: bold;
+}
 </style>

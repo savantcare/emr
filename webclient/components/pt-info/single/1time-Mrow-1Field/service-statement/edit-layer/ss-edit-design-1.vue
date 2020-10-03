@@ -126,7 +126,7 @@ export default {
         clientSideTblOfPatientServiceStatements.update({
           where: exists[0].clientSideUniqRowId,
           data: {
-            ROW_END: Math.floor(Date.now() / 1000),
+            ROW_END: Math.floor(Date.now()),
           },
         })
       } else {

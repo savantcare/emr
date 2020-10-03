@@ -658,7 +658,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         this.update({
           where: pClientSideDataRowId,
           data: {
-            ROW_END: Math.floor(Date.now() / 1000),
+            ROW_END: Math.floor(Date.now()),
           },
         })
         return 1

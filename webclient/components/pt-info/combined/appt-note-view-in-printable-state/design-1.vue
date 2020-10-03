@@ -7,8 +7,8 @@
     <h3>Appt Date: {{ cfGetApptDetails }}</h3>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
-    <div v-if="apptDetails['ROW_END'] !== 2147483647.999999">
-      <h3>Appt locked: {{ cfFormatDate }}</h3>
+    <div v-if="apptDetails['apptStatus'] === 'locked'">
+      <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
     </div>
     <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
 
@@ -81,10 +81,15 @@ export default {
     },
 
     cfArOfRemindersForDisplay() {
+      const apptLockDate = this.apptDetails['ROW_END']
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', (value) => value > apptLockDate)
         .get()
+
+      console.log(apptLockDate)
+      console.log(arOfObjectsFromClientSideDB)
+
       return arOfObjectsFromClientSideDB
     },
     cfArOfMentalStatusExamForDisplay() {
@@ -95,7 +100,7 @@ export default {
         .get()
       return arOfObjectsFromClientSideDB
     },
-    cfFormatDate() {
+    cfApptLockDateInHumanReadableFormat() {
       return moment(this.apptDetails['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },

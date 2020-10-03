@@ -42,7 +42,7 @@ export default {
       clientSideTblOfPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {
-          ROW_END: Math.floor(Date.now() / 1000),
+          ROW_END: Math.floor(Date.now()),
         },
       })
     },

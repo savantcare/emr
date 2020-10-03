@@ -3,34 +3,27 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <strong>Diagnosis</strong>
-        <el-tooltip content="Add diagnosis"
-                    effect="light"
-                    :open-delay="300"
-                    placement="top">
-            <el-button style="float: right; padding: 3px 0" type="text" @click="fnOpenAddModule" icon="el-icon-circle-plus-outline"></el-button>
+        <el-tooltip content="Add diagnosis" effect="light" :open-delay="300" placement="top">
+          <el-button
+            style="float: right; padding: 3px 0"
+            type="text"
+            @click="fnOpenAddModule"
+            icon="el-icon-circle-plus-outline"
+          ></el-button>
         </el-tooltip>
       </div>
       <div class="">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
-          <el-table
-            :data="cfArOfDiagnosisForDisplay"
-            :show-header="false"
-            style="width: 100%">
+          <el-table :data="cfArOfDiagnosisForDisplay" :show-header="false" style="width: 100%">
             <!-- <el-table-column type="expand" v-if="assesment">
               <template slot-scope="props">
                 <p><span>Assesment:</span> <span>{{ props.row.assesment }}</span></p>
               </template>
             </el-table-column> -->
-            <el-table-column
-              prop="linkWithMaster.diagnosisName">
-            </el-table-column>
+            <el-table-column prop="linkWithMaster.diagnosisName"> </el-table-column>
             <el-table-column label="Actions" width="28">
               <template slot-scope="props">
-                <el-tooltip content="Discontinue"
-                    effect="light"
-                    :open-delay="300"
-                    placement="top">
-                    
+                <el-tooltip content="Discontinue" effect="light" :open-delay="300" placement="top">
                   <el-button
                     type="danger"
                     size="mini"
@@ -38,8 +31,8 @@
                     plain
                     tabindex="-1"
                     @click="mfIconDeleteClickedOnChildCard(props.row.$id)"
-                  >D</el-button>
-
+                    >D</el-button
+                  >
                 </el-tooltip>
               </template>
             </el-table-column>
@@ -52,23 +45,26 @@
 </template>
 
 <script>
-
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
 
 export default {
-  computed: { 
-    cfArOfDiagnosisForDisplay: function() {
+  computed: {
+    cfArOfDiagnosisForDisplay: function () {
       const getData = clientSideTblPatientDiagnosis
         .query()
         .with('linkWithMaster')
         .where('ROW_END', 2147483647.999999)
-        .get();
-      return getData;
+        .get()
+      return getData
     },
-   },
+  },
   methods: {
     mfIconDeleteClickedOnChildCard(id) {
-      const arResultsFromOrm = clientSideTblPatientDiagnosis.query().with('linkWithMaster').where(id).first();
+      const arResultsFromOrm = clientSideTblPatientDiagnosis
+        .query()
+        .with('linkWithMaster')
+        .where(id)
+        .first()
 
       this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Discontinue diagnosis', {
         confirmButtonText: 'Discontinue',
@@ -80,13 +76,13 @@ export default {
             where: id,
             data: {
               discontinueNote: value,
-              ROW_END: Math.floor(Date.now() / 1000),
+              ROW_END: Math.floor(Date.now()),
             },
           })
           this.$message({
-              type: 'success',
-              message: 'Diagnosis discontinue.',
-            })
+            type: 'success',
+            message: 'Diagnosis discontinue.',
+          })
           // console.log('delete status ======> ', value)
         })
         .catch(() => {
@@ -103,7 +99,7 @@ export default {
 }
 </script>
 <style scoped>
-  .emptyRow {
-    color: #b1b1b1;
-  }
+.emptyRow {
+  color: #b1b1b1;
+}
 </style>

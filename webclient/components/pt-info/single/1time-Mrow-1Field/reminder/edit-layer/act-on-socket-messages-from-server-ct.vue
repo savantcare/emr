@@ -68,7 +68,7 @@ export default {
       clientSideTable.update({
         where: (record) => record.serverSideRowUuid === pDataArr.serverSideRowUuid,
         data: {
-          ROW_END: Math.floor(Date.now() / 1000),
+          ROW_END: Math.floor(Date.now()),
         },
       })
     },
@@ -99,7 +99,7 @@ export default {
             )
           },
           data: {
-            ROW_END: Math.floor(Date.now() / 1000),
+            ROW_END: Math.floor(Date.now()),
           },
         })
 
