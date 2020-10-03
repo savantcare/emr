@@ -120,7 +120,7 @@ export default {
       if (arOfObjectsFromClientSideDB.length === 0) {
         clientSideTblOfAppointments.insert({
           data: {
-            apptStartMilliSecondsOnCalendar: 200,
+            apptStartMilliSecondsOnCalendar: Math.floor(Date.now()) + 65000,
             apptProviderUUID: 1,
             apptStatus: 'un-locked',
           },
