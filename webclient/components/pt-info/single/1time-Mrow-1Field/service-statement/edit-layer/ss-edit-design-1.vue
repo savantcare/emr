@@ -110,7 +110,7 @@ export default {
     mfCheckIfThisExistsInChildTable(pSS) {
       // I am able to get the data from child table.
       if (pSS.tblServiceStatementsForPatientLink) {
-        if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483647.999999) {
+        if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
@@ -164,7 +164,7 @@ export default {
               // Handling Possibility 1:  This element is there in SS of patient
               pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null &&
               pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink.ROW_END ==
-                '2147483647.999999'
+                '2147483648000'
             ) {
             } else {
               // Handling Possibility 2: This element is not there in SS of patient

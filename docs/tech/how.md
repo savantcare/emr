@@ -460,7 +460,7 @@ A. There are 2 different types of timestamp?
 1. unix_timestamp / epoch_time -> Numbr of seconds since '1970-01-01 00:00:00' epoch => start of unix
 2. JS timestamp -> JS expects timeStamp to be in millisecond format. # of milliseconds since '1970-01-01 00:00:00'
 
-B. 2147483647.999999 is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+B. 2147483648000 is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
 C. MariaDB stores values that use the TIMESTAMP data type as unix_timestamp
 

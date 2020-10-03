@@ -86,7 +86,7 @@ export default {
     mfGetAnswerValueFromClientSideTblPatient(pObjQuestion) {
       // console.log(pObjQuestion)
       if (pObjQuestion.tblPhq9ForPatientLink) {
-        if (pObjQuestion.tblPhq9ForPatientLink.ROW_END === 2147483647.999999) {
+        if (pObjQuestion.tblPhq9ForPatientLink.ROW_END === 2147483648000) {
           return parseInt(pObjQuestion.tblPhq9ForPatientLink.optionValueChosenByPatient)
         }
       }

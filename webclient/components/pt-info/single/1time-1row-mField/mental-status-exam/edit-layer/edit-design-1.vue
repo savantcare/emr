@@ -208,7 +208,7 @@ export default {
     mfCheckIfThisExistsInChildTable(pSS) {
       // I am able to get the data from child table.
       if (pSS.tblMentalStatusExamForPatientLink) {
-        if (pSS.tblMentalStatusExamForPatientLink.ROW_END === 2147483647.999999) {
+        if (pSS.tblMentalStatusExamForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
