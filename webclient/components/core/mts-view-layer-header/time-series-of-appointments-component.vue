@@ -84,8 +84,11 @@ export default {
             arOfObjectsFromClientSideDB[i]['toolTip'] +
             ' by ' +
             arOfObjectsFromClientSideDB[i]['apptProviderUUID']
-        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'un-locked') {
-          arOfObjectsFromClientSideDB[i]['toolTip'] +
+        }
+
+        if (arOfObjectsFromClientSideDB[i].apptStatus.includes('un-locked')) {
+          arOfObjectsFromClientSideDB[i]['toolTip'] =
+            arOfObjectsFromClientSideDB[i]['toolTip'] +
             ' Provider: ' +
             arOfObjectsFromClientSideDB[i]['apptProviderUUID']
         }
