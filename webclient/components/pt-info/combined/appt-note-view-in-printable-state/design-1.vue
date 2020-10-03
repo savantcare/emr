@@ -61,8 +61,6 @@ export default {
       // get appt details from appt table
       this.apptDetails = clientSideTblOfAppointments.find(apptID)
 
-      console.log(this.apptDetails)
-
       return apptID
     },
     cfArOfServiceStatementForDisplay() {
@@ -87,7 +85,6 @@ export default {
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
@@ -95,12 +92,28 @@ export default {
     lockButtonClicked() {
       console.log('lock button clicked')
       const clientSideUniqRowId = this.apptDetails['clientSideUniqRowId']
-      const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.update({
+      let arOfObjectsFromClientSideDB = clientSideTblOfAppointments.update({
         where: clientSideUniqRowId,
         data: {
           apptStatus: 'locked',
         },
       })
+
+      // In case there are no more appt then insert a appt. This is for testing.
+      arOfObjectsFromClientSideDB = clientSideTblOfAppointments
+        .query()
+        .where('apptStatus', 'un-locked')
+        .get()
+
+      if (arOfObjectsFromClientSideDB.length === 0) {
+        clientSideTblOfAppointments.insert({
+          data: {
+            apptStartMilliSecondsOnCalendar: 200,
+            apptProviderUUID: 1,
+            apptStatus: 'un-locked',
+          },
+        })
+      }
     },
   },
 }
