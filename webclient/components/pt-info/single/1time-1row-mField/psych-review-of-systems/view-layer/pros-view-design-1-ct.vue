@@ -40,8 +40,10 @@
               }}</el-button>
             </div>
             <div v-else>
-              {{ ros.psychReviewOfSystemsDescription }}
-              {{ cfPatientValuesUpdate[ros.psychReviewOfSystemsMasterId] }}
+              <div v-if="cfPatientValuesUpdate[ros.psychReviewOfSystemsMasterId]">
+                {{ ros.psychReviewOfSystemsDescription }}
+                {{ cfPatientValuesUpdate[ros.psychReviewOfSystemsMasterId] }}
+              </div>
             </div>
           </div>
         </div>
