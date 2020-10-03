@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 5 -->
+    <!-- SECTOION 5  SERVICE STATEMENTS -->
     <h3 style="padding-top: 20px; padding-bottom: 5px">
       Service statements
       <el-popover placement="right" width="400" v-model="visible1">
