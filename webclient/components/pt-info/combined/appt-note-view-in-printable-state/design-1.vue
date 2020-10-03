@@ -9,21 +9,22 @@
     <h3>Age: 42</h3>
 
     <!-- SECTOION 3 -->
-    <h3>Appt Date: {{ cfGetApptDetails }}</h3>
+    <h3>Appt Date: {{ cfGetapptObj }}</h3>
     <div v-if="debug">
       Debug data. <br />
-      1) Appt start time is -> {{ apptDetails['apptStartMilliSecondsOnCalendar'] }}
+      1) Appt start time is -> {{ apptObj['apptStartMilliSecondsOnCalendar'] | moment }} <br />
+      2) Appt end (lock) time is -> {{ apptObj['ROW_END'] | moment }}
     </div>
 
     <!-- SECTOION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
-    <div v-if="apptDetails['apptStatus'] === 'locked'">
+    <div v-if="apptObj['apptStatus'] === 'locked'">
       <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
       <div v-if="debug">
         Debug data. <br />
-        1) ROW END value for appointments is -> {{ apptDetails['ROW_END'] }} <br />
+        1) ROW END value for appointments is -> {{ apptObj['ROW_END'] }} <br />
         2) Difference between calendar time and lock time is ->
-        {{ apptDetails['ROW_END'] - apptDetails['apptStartMilliSecondsOnCalendar'] }}
+        {{ apptObj['ROW_END'] - apptObj['apptStartMilliSecondsOnCalendar'] }}
       </div>
     </div>
 
@@ -46,23 +47,26 @@
 
     <!-- SECTOION 8 REMINDERS -->
     <h3 style="padding-top: 20px; padding-bottom: 5px">Reminders</h3>
-    <div v-for="row in cfArOfRemindersForDisplay[1]" :key="row.clientSideUniqRowId">
+    <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
       {{ row['description'] }}
     </div>
     <div v-if="debug">
       Debug data. <br />
-      1. Data to show: rem was created before the end date and rem was deleted after the end date
+      1. Conditions to show a reminder: <br />
+      A. rem was created before the apptlock time(= ROW_END of appt) <br />
+      B. rem was deleted (ROW_END of rem) after the apptlock time(= ROW_END of appt)
       <br />
       2.
-      <div v-for="rem in cfArOfRemindersForDisplay[2]" :key="rem.clientSideUniqRowId">
-        {{ rem }} <br />
-        Reminder Creation milliseconds: {{ rem['ROW_START'] }} <br />
-        Was this reminder created before the appt ended:
-        {{ rem['ROW_START'] - apptDetails['ROW_END'] }}
+      <div v-for="rem in cfArOfRemindersForDisplay[1]" :key="rem.clientSideUniqRowId">
+        {{ rem }} <br /><br />
+        Reminder Created at: {{ rem['ROW_START'] | moment }} <br />
+        Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
+        {{ apptObj['ROW_END'] | moment }} (Following should be +ve):
+        {{ apptObj['ROW_END'] - rem['ROW_START'] }}
         <br />
-        Reminder Deletion milliseconds: {{ rem['ROW_END'] }} <br />
-        Was this reminder deleted after the appt ended:
-        {{ rem['ROW_END'] - apptDetails['ROW_END'] }}
+        Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
+        Was this reminder deleted after the appt ended (Following should be +ve):
+        {{ rem['ROW_END'] - apptObj['ROW_END'] }}
       </div>
     </div>
 
@@ -76,7 +80,7 @@
     <h3 style="padding-top: 20px; padding-bottom: 5px">Body measurements</h3>
 
     <!-- SECTOION 12 -->
-    <div v-if="apptDetails['apptStatus'] !== 'locked'">
+    <div v-if="apptObj['apptStatus'] !== 'locked'">
       <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
     </div>
 
@@ -100,23 +104,28 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      apptDetails: [],
-      debug: true,
+      apptObj: [],
+      debug: false,
     }
   },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm:ss a')
+    },
+  },
   computed: {
-    cfGetApptDetails() {
+    cfGetapptObj() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
       const apptID =
         apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
 
       // get appt details from appt table
-      this.apptDetails = clientSideTblOfAppointments.find(apptID)
+      this.apptObj = clientSideTblOfAppointments.find(apptID)
 
-      console.log(this.apptDetails)
+      console.log(this.apptObj)
 
-      const apptStartMilliSeconds = this.apptDetails['apptStartMilliSecondsOnCalendar']
+      const apptStartMilliSeconds = this.apptObj['apptStartMilliSecondsOnCalendar']
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfArOfServiceStatementForDisplay() {
@@ -129,27 +138,21 @@ export default {
     },
 
     cfArOfRemindersForDisplay() {
-      const apptLockTimeInMilliseconds = this.apptDetails['ROW_END'] // When a appt is locked then the row is deleted from DB
-
       let reminderArray = []
 
-      if (apptLockTimeInMilliseconds === 2147483648000) {
-        apptLockTimeInMilliseconds = Math.floor(Date.now())
+      if (this.apptObj['apptStatus'] === 'un-locked') {
+        this.apptObj['ROW_END'] = Math.floor(Date.now())
       }
-
-      console.log(apptLockTimeInMilliseconds)
-
       const arOfPresentObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
-        .where('ROW_END', (value) => value > apptLockTimeInMilliseconds)
-        .where('ROW_START', (value) => value < apptLockTimeInMilliseconds)
+        .where('ROW_END', (value) => value > this.apptObj['ROW_END'])
+        .where('ROW_START', (value) => value < this.apptObj['ROW_END'])
         .get()
 
       const arOfAllObjectsFromClientSideDB = clientSideTblOfPatientReminders.query().get()
 
-      reminderArray[0] = apptLockTimeInMilliseconds
-      reminderArray[1] = arOfPresentObjectsFromClientSideDB
-      reminderArray[2] = arOfAllObjectsFromClientSideDB
+      reminderArray[0] = arOfPresentObjectsFromClientSideDB
+      reminderArray[1] = arOfAllObjectsFromClientSideDB
       return reminderArray
     },
     cfArOfMentalStatusExamForDisplay() {
@@ -161,13 +164,13 @@ export default {
       return arOfObjectsFromClientSideDB
     },
     cfApptLockDateInHumanReadableFormat() {
-      return moment(this.apptDetails['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
+      return moment(this.apptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
   methods: {
     lockButtonClicked() {
       console.log('lock button clicked')
-      const clientSideUniqRowId = this.apptDetails['clientSideUniqRowId']
+      const clientSideUniqRowId = this.apptObj['clientSideUniqRowId']
       let arOfObjectsFromClientSideDB = clientSideTblOfAppointments.update({
         where: clientSideUniqRowId,
         data: {
