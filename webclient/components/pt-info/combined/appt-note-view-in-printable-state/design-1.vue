@@ -70,7 +70,7 @@
     </h3>
     <div
       v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
-      :key="`mse - ${row.clientSideUniqRowId}`"
+      :key="`ros - ${row.clientSideUniqRowId}`"
     >
       {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
       {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
@@ -202,8 +202,6 @@ export default {
 
       // get appt details from appt table
       this.patientApptObj = clientSideTblOfAppointments.find(apptID)
-
-      console.log(this.patientApptObj)
 
       const apptStartMilliSeconds = this.patientApptObj['apptStartMilliSecondsOnCalendar']
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
