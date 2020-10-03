@@ -1,15 +1,15 @@
 <!-- Reference implementation -->
 <!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
-  <div><insertIntoMasterRowsOfDiagnosisCt /></div>
+  <div><insertIntoMasterTblOfDiagnosisDuringInitOfCt /></div>
 </template>
 
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
-import insertIntoMasterRowsOfDiagnosisCt from './insert-into-master-of-diagnosis-ct'
+import insertIntoMasterTblOfDiagnosisDuringInitOfCt from './insert-into-master-of-diagnosis-ct'
 
 export default {
-  components: { insertIntoMasterRowsOfDiagnosisCt },
+  components: { insertIntoMasterTblOfDiagnosisDuringInitOfCt },
   data() {
     return {}
   },

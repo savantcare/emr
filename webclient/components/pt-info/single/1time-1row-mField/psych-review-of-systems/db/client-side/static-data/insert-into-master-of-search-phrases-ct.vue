@@ -1,15 +1,15 @@
 <!-- Reference implementation -->
 <!-- To understand how this works call-insert-search-phases-of-components-and-handle-selection.vue -->
 <template>
-  <div><insertIntoMasterRowsOfPsychReviewOfSystemsCt /></div>
+  <div><insertIntoMasterTblOfPsychReviewOfSystemsDuringInitOfCt /></div>
 </template>
 
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
-import insertIntoMasterRowsOfPsychReviewOfSystemsCt from './insert-into-master-of-psych-review-of-systems-ct.vue'
+import insertIntoMasterTblOfPsychReviewOfSystemsDuringInitOfCt from './insert-into-master-of-psych-review-of-systems-ct'
 
 export default {
-  components: { insertIntoMasterRowsOfPsychReviewOfSystemsCt },
+  components: { insertIntoMasterTblOfPsychReviewOfSystemsDuringInitOfCt },
   data() {
     return {}
   },

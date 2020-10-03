@@ -1,15 +1,15 @@
 <!-- To understand how this works read call-insert-search-phases-of-components-and-handle-selection.vue -->
 <template>
   <div>
-    <insertIntoMasterRowsOfPhq9Ct />
+    <insertIntoMasterTblOfPhq9DuringInitOfCt />
   </div>
 </template>
 
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
-import insertIntoMasterRowsOfPhq9Ct from './insert-into-master-of-phq9-ct.vue'
+import insertIntoMasterTblOfPhq9DuringInitOfCt from './insert-into-master-of-phq9-ct'
 export default {
-  components: { insertIntoMasterRowsOfPhq9Ct },
+  components: { insertIntoMasterTblOfPhq9DuringInitOfCt },
   data() {
     return {}
   },

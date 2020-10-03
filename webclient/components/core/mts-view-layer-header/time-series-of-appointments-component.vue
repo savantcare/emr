@@ -3,7 +3,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
   <div class="content-wrap">
-    <clientSideTblOfAppointmentsInit />
+    <clientSideTblOfAppointmentsInsertData />
     <div v-for="appt in cfAllAppointments" :key="appt.clientSideUniqRowId">
       <el-tooltip
         class="item"
@@ -42,7 +42,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 <script>
 import clientSideTblOfMultiStateViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfAppointmentsInit from '@/components/core/mts-view-layer-header/db/client-side/static-data/insert-into-appointment-client-side-table.vue'
+import clientSideTblOfAppointmentsInsertData from '@/components/core/mts-view-layer-header/db/client-side/static-data/insert-into-appointment-client-side-table.vue'
 
 export default {
   data() {
@@ -50,7 +50,7 @@ export default {
       currentActiveButtonClientSideRowId: 0,
     }
   },
-  components: { clientSideTblOfAppointmentsInit },
+  components: { clientSideTblOfAppointmentsInsertData },
   computed: {
     cfAllAppointments() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()

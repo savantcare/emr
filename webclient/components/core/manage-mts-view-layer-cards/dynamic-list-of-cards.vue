@@ -1,6 +1,6 @@
 <template>
   <div>
-    <clientSideTblOfViewCardsInit />
+    <clientSideTblOfViewCardsInsertData />
     <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
@@ -15,11 +15,11 @@
 </template>
 <script>
 import clientSideTblOfViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
-import clientSideTblOfViewCardsInit from '@/components/core/manage-mts-view-layer-cards/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
+import clientSideTblOfViewCardsInsertData from '@/components/core/manage-mts-view-layer-cards/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
 import clientSideTblCommonForAllComponents from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
-  components: { clientSideTblOfViewCardsInit },
+  components: { clientSideTblOfViewCardsInsertData },
   data() {
     return {
       dArOfComponentObjectsCached: [], // first dimension is the clientSideUniqRowId and second is the cache of the object
