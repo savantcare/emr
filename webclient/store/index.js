@@ -8,7 +8,7 @@ import axios from 'axios'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
 
 // Ref: https://github.com/eldomagan/vuex-orm-localforage#installation
-import vstOfTabsAndDialogInEditLayerModule from '~/components/core/manage-edit-layer-tabs/vst-of-tabs-and-dialog-in-cl'
+import vstOfTabsAndDialogInEditLayerModule from '~/components/core/edit-layer-tabs/vst-of-tabs-and-dialog-in-cl'
 
 import VueStateOfFeedDrawerModule from '~/components/pt-info/combined/feed/vue-state-of-feed-drawer'
 import VueStateOfMapDrawerModule from '~/components/pt-info/combined/map/vue-state-of-map-drawer'
