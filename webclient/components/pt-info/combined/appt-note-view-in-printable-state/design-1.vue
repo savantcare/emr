@@ -237,11 +237,21 @@ export default {
       return reminderArray
     },
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
-        .query()
-        .with('tblMentalStatusExamMasterLink')
-        .where('ROW_END', 2147483648000)
-        .get()
+      let arOfObjectsFromClientSideDB = []
+      if (this.apptObj['apptStatus'] === 'un-locked') {
+        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+          .query()
+          .with('tblMentalStatusExamMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+          .query()
+          .with('tblMentalStatusExamMasterLink')
+          .where('ROW_END', (value) => value > this.apptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.apptObj['ROW_END'])
+          .get()
+      }
       return arOfObjectsFromClientSideDB
     },
     cfApptLockDateInHumanReadableFormat() {
