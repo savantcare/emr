@@ -1,8 +1,8 @@
-use sc_rem;
+use sc_reminders;
 
-DROP TABLE IF EXISTS `rems`;
+DROP TABLE IF EXISTS `reminders`;
 
-CREATE TABLE `rems` (
+CREATE TABLE `reminders` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci DEFAULT NULL,

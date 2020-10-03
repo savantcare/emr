@@ -2,7 +2,7 @@ use sc_service_statement;
 
 DROP TABLE IF EXISTS `service_statements`;
 
-CREATE TABLE `rems` (
+CREATE TABLE `reminders` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ssID` text COLLATE utf8_unicode_ci DEFAULT NULL,

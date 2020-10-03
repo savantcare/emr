@@ -22,7 +22,7 @@
 
 vuex clientSideTable field: vnRowStateInSession of type int
 
-e.g. cts/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/rems:71
+e.g. cts/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/reminders:71
 
 # Q3) What are the different possible values for vnRowStateInSession?
 
@@ -123,7 +123,7 @@ New record after data is saved on server. vnRowStateInSession = 23461
         -ves:
           Scenario 1: Suppose doctor has added 1 rem but that is only on indexDB since doctor did not hit submit
                       Suppose doctor closes laptop for 2 days
-                      when they come back after 2 days there are 3 new rems on the server
+                      when they come back after 2 days there are 3 new reminders on the server
                       When doctor starts the browser, in the code I will have to:
                         1. Get data from mysql server.
                         2. Find data from indexDB where the isDirty or isNew flag is true

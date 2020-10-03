@@ -1,10 +1,10 @@
 # Reference implementation for non numeric hence no graph
 
-use sc_rem;
+use sc_reminders;
 
-DROP TABLE IF EXISTS `rems`;
+DROP TABLE IF EXISTS `reminders`;
 
-CREATE TABLE `rems` (
+CREATE TABLE `reminders` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `firstName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `middleName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
