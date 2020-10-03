@@ -12,10 +12,10 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
         placement="top-end"
         :open-delay="500"
       >
-        <template v-if="appt.clientSideUniqRowId === currentActiveButtonClientSideRowId">
+        <template v-if="appt.clientSideUniqRowId === dCurrentActiveButtonClientSideRowId">
           <el-button
-            :type="buttonTypes[appt.apptStatus]"
-            :class="iconClass[appt.apptStatus]"
+            :type="dButtonTypes[appt.apptStatus]"
+            :class="dIconClass[appt.apptStatus]"
             :plain="false"
             circle
             size="mini"
@@ -25,8 +25,8 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
         </template>
         <template v-else>
           <el-button
-            :type="buttonTypes[appt.apptStatus]"
-            :class="iconClass[appt.apptStatus]"
+            :type="dButtonTypes[appt.apptStatus]"
+            :class="dIconClass[appt.apptStatus]"
             :plain="true"
             circle
             size="mini"
@@ -47,26 +47,21 @@ import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-
 export default {
   data() {
     return {
-      currentActiveButtonClientSideRowId: 0,
-      buttonTypes: [],
-      iconClass: [],
+      dCurrentActiveButtonClientSideRowId: 0,
+      dButtonTypes: [],
+      dIconClass: [],
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
   mounted: function () {
-    const buttonTypes = []
-    buttonTypes['late-cancellation'] = 'danger'
-    buttonTypes['cancellation'] = 'warning'
-    buttonTypes['no-show'] = 'danger'
-    buttonTypes['un-locked'] = 'success'
-    buttonTypes['locked'] = 'success'
+    this.dButtonTypes['late-cancellation'] = 'danger'
+    this.dButtonTypes['cancellation'] = 'warning'
+    this.dButtonTypes['no-show'] = 'danger'
+    this.dButtonTypes['un-locked'] = 'success'
+    this.dButtonTypes['locked'] = 'success'
 
-    const iconClass = []
-    iconClass['un-locked'] = 'el-icon-unlock'
-    iconClass['locked'] = 'el-icon-lock'
-
-    this.buttonTypes = buttonTypes
-    this.iconClass = iconClass
+    this.dIconClass['un-locked'] = 'el-icon-unlock'
+    this.dIconClass['locked'] = 'el-icon-lock'
   },
   computed: {
     cfAllAppointments() {
@@ -112,17 +107,17 @@ export default {
         pClientSideRowId
       ) {
         // This case is when the button was already active. And clicking it should make it in-active
-        this.currentActiveButtonClientSideRowId = 0
+        this.dCurrentActiveButtonClientSideRowId = 0
       } else {
         // This case is when the button was not active. And clicking it should make it Active
-        this.currentActiveButtonClientSideRowId = pClientSideRowId
+        this.dCurrentActiveButtonClientSideRowId = pClientSideRowId
       }
 
       // This update will lead to the note card visibility getting toggled
       // Writing this in client Side DB since appt-note-view-in-printable-state component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
-        componentCurrentValueForCustomizingViewState: this.currentActiveButtonClientSideRowId,
+        componentCurrentValueForCustomizingViewState: this.dCurrentActiveButtonClientSideRowId,
       })
     },
   },
