@@ -26,7 +26,7 @@ import ctSlider from './time-series-of-appointments-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 
 export default {
-  components: { ctName, ctAge, ctTogleHealthOther, ctSlider },
+  components: { ctName, ctAge, ctSlider, ctTogleHealthOther },
 }
 </script>
 
