@@ -6,8 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueID = () => ++count
 
-export default class tblAppointements extends clientSideTableManage {
-  static entity = 'tblAppointements'
+export default class tblAppointments extends clientSideTableManage {
+  static entity = 'tblAppointments'
   static apiUrl = 'http://localhost:3000/date-of-birth'
 
   static primaryKey = 'clientSideUniqRowId'
