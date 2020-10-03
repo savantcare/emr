@@ -94,6 +94,13 @@ export default {
   methods: {
     lockButtonClicked() {
       console.log('lock button clicked')
+      const clientSideUniqRowId = this.apptDetails['clientSideUniqRowId']
+      const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.update({
+        where: clientSideUniqRowId,
+        data: {
+          apptStatus: 'locked',
+        },
+      })
     },
   },
 }
