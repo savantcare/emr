@@ -22,11 +22,10 @@
         class="box-card sc-individual-child-card"
         shadow="hover"
       >
+        <div slot="header" class="clearfix">
+          <span> {{ groupNameGivenAsIndex }}</span>
+        </div>
 
-  <div slot="header" class="clearfix">
-    <span>    {{ groupNameGivenAsIndex }}</span>
-</div>
-    
         <!-- Ref https://forum.vuejs.org/t/how-to-pass-data-to-the-parameters-of-the-function/3060 -->
         {{ mfGetGroupToalForAGivenGroup({ groupNameGivenAsIndex }) }}
 
@@ -42,9 +41,7 @@
             </div>
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
-              {{ patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]}}
-              
-              </el-slider>
+              {{ patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId] }}
             </div>
           </div>
         </div>
@@ -93,20 +90,19 @@ export default {
       return arOfObjectsFromClientSideDB
     },
     cfPatientValuesUpdate() {
+      console.log('fn called')
+      // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
+      const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
+        .query()
+        .where('ROW_END', 2147483647.999999)
+        .get()
 
-      console.log("fn called")
-          // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
-    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
-      .query()
-      .where('ROW_END', 2147483647.999999)
-      .get()
-
-    for (let i = 0; i < allPatientValues.length; i++) {
-      this.patientClientSideFieldValueModel[
-        allPatientValues[i]['psychReviewOfSystemsMasterId']
-      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
-    }
-    }
+      for (let i = 0; i < allPatientValues.length; i++) {
+        this.patientClientSideFieldValueModel[
+          allPatientValues[i]['psychReviewOfSystemsMasterId']
+        ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+      }
+    },
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pros) {
