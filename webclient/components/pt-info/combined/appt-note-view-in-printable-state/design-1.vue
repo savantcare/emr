@@ -86,6 +86,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
         .where('ROW_END', (value) => value > apptLockTimeInMilliseconds)
+        .where('ROW_START', (value) => value < apptLockTimeInMilliseconds)
         .get()
 
       return arOfObjectsFromClientSideDB
