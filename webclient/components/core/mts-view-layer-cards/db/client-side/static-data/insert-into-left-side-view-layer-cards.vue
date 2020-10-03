@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientSideTblOfLeftSideCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import clientSideTblOfLeftSideCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 
 export default {
   data() {

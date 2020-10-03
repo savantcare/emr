@@ -16,7 +16,7 @@ import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header
 database.register(clientSideTblOfAppointments)
 
 // table that decides which cards to show
-import tableStructureForLeftSideView from '~/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import tableStructureForLeftSideView from '~/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import tableStructureForRightSideView from '~/components/core/manage-pts-view-layer-cards/db/client-side/structure/pts-table.js'
 database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)

@@ -40,7 +40,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 </template>
 
 <script>
-import clientSideTblOfMultiStateViewCards from '@/components/core/manage-mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointments from '@/components/core/mts-view-layer-header/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfAppointmentsInsertData from '@/components/core/mts-view-layer-header/db/client-side/static-data/insert-into-appointment-client-side-table.vue'
 
