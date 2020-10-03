@@ -67,34 +67,41 @@ export default {
     },
 
     cfGetProsDepressionDataForGraph() {
-      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+      // Where clause  needs to change to not reviewed time
+      // Also need to run it for everytime the note has been reviewed
+
+      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
-        .with('tblPsychReviewOfSystemsForPatientLink')
+        .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      //  console.log(arOfObjectsFromClientSidePatientDB)
+
+      const maxValue = 8
 
       let groupTotal = []
       let catName = ''
       let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-        catName = arOfObjectsFromClientSideMasterDB[i]['psychReviewOfSystemsCategory']
+      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
+        catName =
+          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
+            'psychReviewOfSystemsCategory'
+          ]
         if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (
-          arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'] !== null
-        ) {
-          value =
-            arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'][
-              'psychReviewOfSystemsFieldValue'
-            ]
+        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
           groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
         }
       }
 
       const arDataToShowOnGraph = []
       const numberOfPointsOnGraph = 1
-      const timeOfMeasurementInMilliseconds = 2147483647
-      const graphData = groupTotal['Depression']
+      // This will need to change to not reviewed time
+      const timeOfMeasurementInMilliseconds = 1601702631025
+      const graphData = (groupTotal['Depression'] / maxValue) * 100
       arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+      //console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
 
@@ -135,7 +142,7 @@ export default {
             (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        // console.log(arDataToShowOnGraph)
+        //console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null

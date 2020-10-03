@@ -142,7 +142,10 @@ export default {
           data: {
             psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
             psychReviewOfSystemsFieldValue: pValue,
-            ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+            ROW_START: Math.floor(Date.now()),
+            /* Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+            Everywhere inside the code timeInMilliseconds is used. Read how/Q17
+            */
           },
         })
       }
