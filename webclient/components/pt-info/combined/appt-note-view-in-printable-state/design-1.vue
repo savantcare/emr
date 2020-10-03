@@ -63,14 +63,15 @@
         <hr />
         {{ rem }} <br />
         <hr />
-        Condition 1: Reminder Created at: {{ rem['ROW_START'] | moment }} <br />
+        Condition 1: <br />
         Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
         {{ apptObj['ROW_END'] | moment }} (Following should be +ve):
         {{ apptObj['ROW_END'] - rem['ROW_START'] }}
         <br />
         <hr />
         Condition 2: Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
-        Was this reminder deleted after the appt ended (Following should be +ve):
+        Was this reminder deleted {{ rem['ROW_END'] }} after the appt ended
+        {{ apptObj['ROW_END'] | moment }} (Following should be +ve):
         {{ rem['ROW_END'] - apptObj['ROW_END'] }}
         <br />
         <hr />
@@ -112,7 +113,7 @@ export default {
   data() {
     return {
       apptObj: [],
-      debug: true,
+      debug: false,
     }
   },
   filters: {
@@ -195,7 +196,7 @@ export default {
       if (arOfObjectsFromClientSideDB.length === 0) {
         clientSideTblOfAppointments.insert({
           data: {
-            apptStartMilliSecondsOnCalendar: Math.floor(Date.now()) + 65000,
+            apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
             apptProviderUUID: 1,
             apptStatus: 'un-locked',
           },
