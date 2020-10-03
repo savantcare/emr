@@ -224,9 +224,28 @@ export default {
 
     // Now group the SS
 
-    console.log(this.patientClientSideFieldValueModel)
-
     const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
+
+    /*
+    // Goal: fromn the array remove empty groups
+    console.log(ar)
+
+    let a = []
+    let b = []
+    for (a in ar) {
+      console.log(a)
+      for (let j = 0; j < ar[a].length; j++) {
+        if (ar[a][j]['tblPsychReviewOfSystemsForPatientLink']) {
+          if (ar[a][j]['tblPsychReviewOfSystemsForPatientLink']['psychReviewOfSystemsFieldValue']) {
+            console.log(ar[a][j])
+            continue
+          }
+        }
+      }
+      console.log('deleting', ar[a])
+      array.delete(ar[a])
+    }
+  // End goal */
 
     this.masterROSArray = ar
   },
