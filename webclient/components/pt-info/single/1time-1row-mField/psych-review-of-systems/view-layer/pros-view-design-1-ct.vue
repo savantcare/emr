@@ -41,7 +41,7 @@
             </div>
             <div v-else>
               {{ ros.psychReviewOfSystemsDescription }}
-              {{ patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId] }}
+              {{ cfPatientValuesUpdate[ros.psychReviewOfSystemsMasterId] }}
             </div>
           </div>
         </div>
@@ -91,6 +91,7 @@ export default {
     },
     cfPatientValuesUpdate() {
       console.log('fn called')
+      let patientClientSideFieldValueModel = []
       // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
       const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
         .query()
@@ -98,10 +99,11 @@ export default {
         .get()
 
       for (let i = 0; i < allPatientValues.length; i++) {
-        this.patientClientSideFieldValueModel[
+        patientClientSideFieldValueModel[
           allPatientValues[i]['psychReviewOfSystemsMasterId']
-        ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+        ] = parseFloat(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
       }
+      return patientClientSideFieldValueModel
     },
   },
   methods: {
@@ -213,18 +215,6 @@ export default {
           )
       })
       .get()
-
-    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
-    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
-      .query()
-      .where('ROW_END', 2147483647.999999)
-      .get()
-
-    for (let i = 0; i < allPatientValues.length; i++) {
-      this.patientClientSideFieldValueModel[
-        allPatientValues[i]['psychReviewOfSystemsMasterId']
-      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
-    }
 
     // Apply rules given by doctors
 
