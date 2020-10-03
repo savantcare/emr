@@ -35,7 +35,7 @@ export default {
         const arFromClientSideTable = await clientSideTable.insert({
           data: {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/core/crud/forms.md
-            ROW_START: Math.floor(Date.now() / 1000), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+            ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
             description: pDataArr.description,
             serverSideRowUuid: pDataArr.serverSideRowUuid,
           },
@@ -105,7 +105,7 @@ export default {
 
         await clientSideTable.insert({
           data: {
-            ROW_START: Math.floor(Date.now() / 1000),
+            ROW_START: Math.floor(Date.now()),
             description: pDataArr.description,
             serverSideRowUuid: pDataArr.serverSideRowUuid,
           },

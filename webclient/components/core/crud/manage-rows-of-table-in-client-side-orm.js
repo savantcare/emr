@@ -285,7 +285,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     Need to discuss
     */
     // Following query makes sure I get all the discontimued rows
-    const currentTime = Math.floor(Date.now() / 1000)
+    const currentTime = Math.floor(Date.now())
     const arFromORM = this.query()
       .where('ROW_END', (value) => value < currentTime)
       .orderBy('ROW_END', 'desc')
@@ -510,7 +510,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     // Since primary key is internally set as UUID.row_start
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
-    arToCopy.ROW_START = Math.floor(Date.now() / 1000) // set ROW_START to now
+    arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
     arToCopy.vnRowStateInSession = 3 // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
