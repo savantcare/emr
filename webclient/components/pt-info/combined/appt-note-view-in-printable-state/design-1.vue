@@ -38,7 +38,7 @@
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
     </h3>
-    <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
+    <div v-for="row in cfArOfServiceStatementForDisplay" :key="`ss-${row.clientSideUniqRowId}`">
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
@@ -53,11 +53,10 @@
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
     </h3>
-    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="row.clientSideUniqRowId">
+    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
     </div>
-
     <!-- SECTOION 7 -->
     <h3 style="padding-top: 20px; padding-bottom: 5px">
       Psych review of systems
@@ -201,17 +200,21 @@ export default {
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfArOfServiceStatementForDisplay() {
+      let arOfObjectsFromClientSideDB = []
       if (this.apptObj['apptStatus'] === 'un-locked') {
-        this.apptObj['ROW_END'] = Math.floor(Date.now())
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+          .query()
+          .with('tblServiceStatementsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+          .query()
+          .with('tblServiceStatementsMasterLink')
+          .where('ROW_END', (value) => value > this.apptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.apptObj['ROW_END'])
+          .get()
       }
-
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
-        .query()
-        .with('tblServiceStatementsMasterLink')
-        .where('ROW_END', (value) => value > this.apptObj['ROW_END'])
-        .where('ROW_START', (value) => value < this.apptObj['ROW_END'])
-        .get()
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
 
