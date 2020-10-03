@@ -14,8 +14,8 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
       >
         <template v-if="appt.clientSideUniqRowId === currentActiveButtonClientSideRowId">
           <el-button
-            :type="appt.buttonType"
-            :class="appt.iconClass"
+            :type="buttonTypes[appt.apptStatus]"
+            :class="iconClass[appt.apptStatus]"
             :plain="false"
             circle
             size="mini"
@@ -25,8 +25,8 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
         </template>
         <template v-else>
           <el-button
-            :type="appt.buttonType"
-            :class="appt.iconClass"
+            :type="buttonTypes[appt.apptStatus]"
+            :class="iconClass[appt.apptStatus]"
             :plain="true"
             circle
             size="mini"
@@ -48,9 +48,26 @@ export default {
   data() {
     return {
       currentActiveButtonClientSideRowId: 0,
+      buttonTypes: [],
+      iconClass: [],
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
+  mounted: function () {
+    const buttonTypes = []
+    buttonTypes['late-cancellation'] = 'danger'
+    buttonTypes['cancellation'] = 'warning'
+    buttonTypes['no-show'] = 'danger'
+    buttonTypes['un-locked'] = 'success'
+    buttonTypes['locked'] = 'success'
+
+    const iconClass = []
+    iconClass['un-locked'] = 'el-icon-unlock'
+    iconClass['locked'] = 'el-icon-lock'
+
+    this.buttonTypes = buttonTypes
+    this.iconClass = iconClass
+  },
   computed: {
     cfAllAppointments() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
@@ -63,25 +80,14 @@ export default {
           arOfObjectsFromClientSideDB[i]['apptStatus']
 
         if (arOfObjectsFromClientSideDB[i].apptStatus === 'locked') {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'success'
           arOfObjectsFromClientSideDB[i]['toolTip'] =
             arOfObjectsFromClientSideDB[i]['toolTip'] +
             ' by ' +
             arOfObjectsFromClientSideDB[i]['apptProviderUUID']
-
-          arOfObjectsFromClientSideDB[i]['iconClass'] = 'el-icon-lock'
         } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'un-locked') {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'success'
           arOfObjectsFromClientSideDB[i]['toolTip'] +
             ' Provider: ' +
             arOfObjectsFromClientSideDB[i]['apptProviderUUID']
-          arOfObjectsFromClientSideDB[i]['iconClass'] = 'el-icon-unlock'
-        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'late-cancellation') {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'danger'
-        } else if (arOfObjectsFromClientSideDB[i].apptStatus === 'no-show') {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'danger'
-        } else {
-          arOfObjectsFromClientSideDB[i]['buttonType'] = 'warning'
         }
       }
       return arOfObjectsFromClientSideDB
