@@ -6,7 +6,8 @@
       :key="allPsychReviewOfSystemsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      {{ mfGetValue({ groupNameGivenAsIndex }) }}
+      <!-- Ref https://forum.vuejs.org/t/how-to-pass-data-to-the-parameters-of-the-function/3060 -->
+      {{ mfGetGroupToalForAGivenGroup({ groupNameGivenAsIndex }) }}
 
       <div class="sc-psych-review-of-systems-all-content-divs">
         <div
@@ -144,35 +145,37 @@ export default {
     },
     mfCalculateGroupTotalValue() {
       console.log('mfCalculateGroupTotalValue called')
-      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
-        .with('tblPsychReviewOfSystemsForPatientLink')
+        .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483647.999999)
         .get()
+
+      //  console.log(arOfObjectsFromClientSidePatientDB)
 
       let groupTotal = []
       let catName = ''
       let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-        catName = arOfObjectsFromClientSideMasterDB[i]['psychReviewOfSystemsCategory']
+      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
+        catName =
+          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
+            'psychReviewOfSystemsCategory'
+          ]
         if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (
-          arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'] !== null
-        ) {
-          value =
-            arOfObjectsFromClientSideMasterDB[i]['tblPsychReviewOfSystemsForPatientLink'][
-              'psychReviewOfSystemsFieldValue'
-            ]
+        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
           groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
         }
       }
+
       this.groupTotal = groupTotal
     },
 
-    mfGetValue(pGroupName) {
+    mfGetGroupToalForAGivenGroup(pGroupName) {
+      // console.log(this.groupTotal) // Unknown: When I load this Ct this fn gets called 130 times
       const groupName = pGroupName['groupNameGivenAsIndex']
       const value = this.groupTotal[groupName]
-      console.log('value is', value) // Unknown: When I load this Ct this gets called 130 times
+      // console.log('value is', value)
       return value
     },
   },
