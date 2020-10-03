@@ -5,6 +5,7 @@
     <h3 style="padding-top: 20px">Name: Vikas K</h3>
     <h3>Age: 42</h3>
     <h3>Appt Date: 31st Jan 2020 {{ cfGetApptDetails }}</h3>
+    <h3>Appt locked: {{ apptDetails['ROW_END'] }}</h3>
 
     <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
 
@@ -96,6 +97,7 @@ export default {
         where: clientSideUniqRowId,
         data: {
           apptStatus: 'locked',
+          ROW_END: Math.floor(Date.now()), // Everywhere in the code time has to be in milliseconds
         },
       })
 
