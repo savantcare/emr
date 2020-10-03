@@ -66,7 +66,7 @@ export default {
       const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterMentalStatusExam
         .query()
         .with('tblMentalStatusExamForPatientLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query
             .where('mentalStatusExamCategory', (value) =>
@@ -87,7 +87,7 @@ export default {
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('mentalStatusExamCategory', 'Modality of Psychotherapy')
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       //  (query) => { query.where('mentalStatusExamCategory', 'Modality of Psychotherapy') })
@@ -120,7 +120,7 @@ export default {
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('mentalStatusExamCategory', 'Time in psychotherapy')
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       console.log('timeInPsychotherapyExists', timeInPsychotherapyExists)
@@ -152,7 +152,7 @@ export default {
         .whereHas('tblMentalStatusExamMasterLink', (query) => {
           query.where('mentalStatusExamCategory', 'Total time with patient')
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       console.log('timeInPsychotherapyExists', totalTimeWithPatientExists)
@@ -218,7 +218,7 @@ export default {
       const exists = clientSideTblOfPatientMentalStatusExam
         .query()
         .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       if (exists.length > 0) {
         clientSideTblOfPatientMentalStatusExam.update({

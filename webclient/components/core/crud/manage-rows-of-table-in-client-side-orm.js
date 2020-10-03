@@ -149,7 +149,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483647.999999)
+      .where('ROW_END', 2147483648000)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     return arFromClientSideTable
@@ -158,7 +158,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483647.999999)
+      .where('ROW_END', 2147483648000)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
 
@@ -180,7 +180,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetRowsToChange() {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query().where('ROW_END', 2147483647.999999).get()
+    const arFromClientSideTable = this.query().where('ROW_END', 2147483648000).get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
 
@@ -206,7 +206,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483647.999999)
+      .where('ROW_END', 2147483648000)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     const uniqueUuidRows = []
@@ -235,7 +235,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query().where('ROW_END', 2147483647.999999).get()
+    const arFromClientSideTable = this.query().where('ROW_END', 2147483648000).get()
     const uniqueUuidRows = []
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID

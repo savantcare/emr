@@ -71,7 +71,7 @@ export default {
       let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPhq9
         .query()
         .with('tblPhq9ForPatientLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query.where('phq9QuestionFullText', (value) =>
             value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
@@ -96,7 +96,7 @@ export default {
       const exists = clientSideTblOfPatientPhq9
         .query()
         .where('phq9QuestionMasterId', pQuestionMasterId)
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       console.log(exists)
       if (exists.length > 0) {

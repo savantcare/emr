@@ -75,7 +75,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       return arOfObjectsFromClientSideDB
     },
@@ -94,7 +94,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       return arOfObjectsFromClientSideDB
     },

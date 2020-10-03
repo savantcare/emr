@@ -32,7 +32,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       return arOfObjectsFromClientSideDB
     },

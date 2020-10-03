@@ -73,7 +73,7 @@ export default {
       const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       //  console.log(arOfObjectsFromClientSidePatientDB)
@@ -184,7 +184,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       return arOfObjectsFromClientSideDB
     },
@@ -221,7 +221,7 @@ export default {
     cfArOfRemindersForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       console.log(arOfObjectsFromClientSideDB)
 
@@ -238,7 +238,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       console.log(arOfObjectsFromClientSideDB)
       const data = [10, 10, 10]

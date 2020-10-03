@@ -75,7 +75,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
@@ -97,7 +97,7 @@ export default {
       // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
       const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
         .query()
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       for (let i = 0; i < allPatientValues.length; i++) {
@@ -163,7 +163,7 @@ export default {
       const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       //  console.log(arOfObjectsFromClientSidePatientDB)
@@ -206,7 +206,7 @@ export default {
     const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
       .query()
       .with('tblPsychReviewOfSystemsForPatientLink')
-      .where('ROW_END', 2147483647.999999)
+      .where('ROW_END', 2147483648000)
       .where((_record, query) => {
         query
           .where('psychReviewOfSystemsCategory', (value) =>

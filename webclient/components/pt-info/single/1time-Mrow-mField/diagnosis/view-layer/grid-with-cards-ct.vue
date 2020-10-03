@@ -53,7 +53,7 @@ export default {
       const getData = clientSideTblPatientDiagnosis
         .query()
         .with('linkWithMaster')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       return getData
     },

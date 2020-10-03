@@ -33,7 +33,7 @@ export default {
       let arOfObjectsFromClientSideMasterDB = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query.where('diagnosisName', (value) =>
             value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
@@ -52,7 +52,7 @@ export default {
       const checkselectedData = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       if (checkselectedData.length > 0) {
         for (let index = 0; index < checkselectedData.length; index++) {
@@ -79,7 +79,7 @@ export default {
       return clientSideTblPatientDiagnosis
         .query()
         .where('masterDiagnosisId', masterDiagnosisId)
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
     },
     fnSelectionToggle(rowData) {

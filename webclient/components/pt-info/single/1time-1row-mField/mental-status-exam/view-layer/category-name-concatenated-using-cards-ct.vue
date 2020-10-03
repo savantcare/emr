@@ -84,7 +84,7 @@ export default {
       let arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {

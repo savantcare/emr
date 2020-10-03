@@ -43,7 +43,7 @@ export default {
       let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterServiceStatements
         .query()
         .with('tblServiceStatementsForPatientLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query
             .where('serviceStatementCategory', (value) =>
@@ -120,7 +120,7 @@ export default {
       const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       if (exists.length > 0) {
         clientSideTblOfPatientServiceStatements.update({
@@ -148,7 +148,7 @@ export default {
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', pServiceStatementCategoryToApplyRuleOn)
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
@@ -190,7 +190,7 @@ export default {
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Total minutes in psychotherapy')
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       /**
@@ -246,7 +246,7 @@ export default {
         .whereHas('tblServiceStatementsMasterLink', (query) => {
           query.where('serviceStatementCategory', 'Total minutes with patient')
         })
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
 
       /**

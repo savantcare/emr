@@ -31,7 +31,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientPhq9
         .query()
         .with('tblPhq9MasterLink')
-        .where('ROW_END', 2147483647.999999)
+        .where('ROW_END', 2147483648000)
         .get()
       console.log(arOfObjectsFromClientSideDB)
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
