@@ -56,6 +56,7 @@ export default {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowID) => {
       this.patientClientSideFieldValueModel[pRowID] = 0
+      this.mfSetValueInClientSideTable(-1, pRowID) // -1 indicates not looked at.
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 
@@ -134,13 +135,16 @@ export default {
         })
       }
 
-      clientSideTblOfPatientPsychReviewOfSystems.insert({
-        data: {
-          psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
-          psychReviewOfSystemsFieldValue: pValue,
-        },
-      })
-
+      if (pValue === -1) {
+        // -1 indicates not looked at. Hence I should not add a new row.
+      } else {
+        clientSideTblOfPatientPsychReviewOfSystems.insert({
+          data: {
+            psychReviewOfSystemsMasterId: pPsychReviewOfSystemsMasterId,
+            psychReviewOfSystemsFieldValue: pValue,
+          },
+        })
+      }
       this.mfCalculateGroupTotalValue()
     },
     mfCalculateGroupTotalValue() {
