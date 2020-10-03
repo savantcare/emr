@@ -31,7 +31,7 @@
 
     <!-- 1time-Mrow-1Field/others -->
     <insertRemComponentSearchPhrases />
-    <insertSsComponentSearchPhrases />
+    <initializeServiceStatementComponent />
 
     <!-- 1time-Mrow-mField/others -->
     <insertPhoneNumberComponentSearchPhrases />
@@ -82,7 +82,7 @@ import insertProsComponentSearchPhrases from '@/components/pt-info/single/1time-
 
 // 1time-Mrow-1Field
 import insertRemComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import insertSsComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeServiceStatementComponent from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
 import insertPhoneNumberComponentSearchPhrases from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -120,7 +120,7 @@ export default {
 
     // 1time-Mrow-1Field
     insertRemComponentSearchPhrases,
-    insertSsComponentSearchPhrases,
+    initializeServiceStatementComponent,
 
     // 1time-Mrow-mField
     insertPhoneNumberComponentSearchPhrases,
