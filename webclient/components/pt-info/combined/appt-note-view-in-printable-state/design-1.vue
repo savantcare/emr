@@ -5,8 +5,11 @@
     <h3 style="padding-top: 20px">Name: Vikas K</h3>
     <h3>Age: 42</h3>
     <h3>Appt Date: 31st Jan 2020 {{ cfGetApptDetails }}</h3>
-    <h3>Appt locked: {{ apptDetails['ROW_END'] }}</h3>
 
+    <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
+    <div v-if="apptDetails['ROW_END'] !== 2147483647.999999">
+      <h3>Appt locked: {{ cfFormatDate }}</h3>
+    </div>
     <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
 
     <div v-for="row in cfArOfServiceStatementForDisplay" :key="row.clientSideUniqRowId">
@@ -45,6 +48,9 @@ import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1
 // init tables
 import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+
+// Library
+import moment from 'moment'
 
 export default {
   data() {
@@ -87,6 +93,9 @@ export default {
         .where('ROW_END', 2147483647.999999)
         .get()
       return arOfObjectsFromClientSideDB
+    },
+    cfFormatDate() {
+      return moment(this.apptDetails['ROW_END']).format('MMM DD YYYY') // parse integer
     },
   },
   methods: {
