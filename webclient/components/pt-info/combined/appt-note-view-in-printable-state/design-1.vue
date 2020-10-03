@@ -4,7 +4,7 @@
 
     <h3 style="padding-top: 20px">Name: Vikas K</h3>
     <h3>Age: 42</h3>
-    <h3>Appt Date: 31st Jan 2020</h3>
+    <h3>Appt Date: 31st Jan 2020 {{ cfGetApptDetails }}</h3>
 
     <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
 
@@ -34,14 +34,22 @@
 </template>
 
 <script>
+// Data tables
 import clientSideTblOfPatientServiceStatements from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
-
 import clientSideTblOfPatientReminders from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-
 import clientSideTblOfMentalStatusExam from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+
+// init tables
+import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
   computed: {
+    cfGetApptDetails() {
+      // Goal1 -> Find the appt ID chosen by the user
+      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      return apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
+    },
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
