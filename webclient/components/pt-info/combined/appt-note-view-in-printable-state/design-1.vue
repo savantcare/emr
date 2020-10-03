@@ -82,14 +82,11 @@ export default {
 
     cfArOfRemindersForDisplay() {
       const apptLockTimeInMilliseconds = this.apptDetails['ROW_END']
-      console.log(apptLockTimeInMilliseconds)
 
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
         .where('ROW_END', (value) => value > apptLockTimeInMilliseconds)
         .get()
-
-      console.log(arOfObjectsFromClientSideDB)
 
       return arOfObjectsFromClientSideDB
     },
