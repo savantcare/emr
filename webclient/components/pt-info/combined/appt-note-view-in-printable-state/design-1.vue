@@ -51,22 +51,29 @@
       {{ row['description'] }}
     </div>
     <div v-if="debug">
+      <hr />
       Debug data. <br />
-      1. Conditions to show a reminder: <br />
-      A. rem was created before the apptlock time(= ROW_END of appt) <br />
-      B. rem was deleted (ROW_END of rem) after the apptlock time(= ROW_END of appt)
+      Conditions to show a reminder: <br />
+      Condition 1: rem was created before the apptlock time(= ROW_END of appt) <br />
+      Condition 2: rem was deleted (ROW_END of rem) after the apptlock time(= ROW_END of appt)
       <br />
-      2.
+      <hr />
       <div v-for="rem in cfArOfRemindersForDisplay[1]" :key="rem.clientSideUniqRowId">
-        {{ rem }} <br /><br />
-        Reminder Created at: {{ rem['ROW_START'] | moment }} <br />
+        Loop start
+        <hr />
+        {{ rem }} <br />
+        <hr />
+        Condition 1: Reminder Created at: {{ rem['ROW_START'] | moment }} <br />
         Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
         {{ apptObj['ROW_END'] | moment }} (Following should be +ve):
         {{ apptObj['ROW_END'] - rem['ROW_START'] }}
         <br />
-        Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
+        <hr />
+        Condition 2: Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
         Was this reminder deleted after the appt ended (Following should be +ve):
         {{ rem['ROW_END'] - apptObj['ROW_END'] }}
+        <br />
+        <hr />
       </div>
     </div>
 
@@ -105,7 +112,7 @@ export default {
   data() {
     return {
       apptObj: [],
-      debug: false,
+      debug: true,
     }
   },
   filters: {
