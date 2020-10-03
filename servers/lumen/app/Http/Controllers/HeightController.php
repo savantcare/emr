@@ -14,7 +14,7 @@ class HeightController extends Controller
 {
     public function showAllHeights()
     {
-        $heightQuery = DB::select(DB::raw('SELECT *,UNIX_TIMESTAMP(ROW_START) as ROW_START, UNIX_TIMESTAMP(ROW_END) as ROW_END FROM sc_body_measurement.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $heightQuery = DB::select(DB::raw('SELECT *,round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_body_measurement.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($heightQuery);
 
         // return response()->json(Height::all());
