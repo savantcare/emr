@@ -81,7 +81,11 @@ export default {
     },
 
     cfArOfRemindersForDisplay() {
-      const apptLockTimeInMilliseconds = this.apptDetails['ROW_END']
+      const apptLockTimeInMilliseconds = this.apptDetails['ROW_END'] // When a appt is locked then the row is deleted from DB
+
+      if (apptLockTimeInMilliseconds === 2147483648000) {
+        apptLockTimeInMilliseconds = Math.floor(Date.now())
+      }
 
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
         .query()
@@ -111,7 +115,7 @@ export default {
         where: clientSideUniqRowId,
         data: {
           apptStatus: 'locked',
-          ROW_END: Math.floor(Date.now()), // Everywhere in the code time has to be in milliseconds
+          ROW_END: Math.floor(Date.now()), // The query sent to server is "delete"
         },
       })
 
