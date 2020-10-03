@@ -231,6 +231,7 @@ export default {
         clientSideTblOfPatientMentalStatusExam.insert({
           data: {
             mentalStatusExamMasterId: pMentalStatusExamMasterId,
+            ROW_START: Math.floor(Date.now()),
           },
         })
       }
