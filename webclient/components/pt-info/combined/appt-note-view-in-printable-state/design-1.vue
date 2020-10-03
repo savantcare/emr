@@ -4,7 +4,7 @@
 
     <h3 style="padding-top: 20px">Name: Vikas K</h3>
     <h3>Age: 42</h3>
-    <h3>Appt Date: 31st Jan 2020 {{ cfGetApptDetails }}</h3>
+    <h3>Appt Date: {{ cfGetApptDetails }}</h3>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
     <div v-if="apptDetails['ROW_END'] !== 2147483647.999999">
@@ -68,7 +68,8 @@ export default {
       // get appt details from appt table
       this.apptDetails = clientSideTblOfAppointments.find(apptID)
 
-      return apptID
+      const apptStartMilliSeconds = this.apptDetails['apptStartMilliSecondsOnCalendar']
+      return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements

@@ -13,35 +13,35 @@ export default {
   mounted() {
     clientSideTblOfAppointments.insert({
       data: {
-        apptStartMilliSecondsOnCalendar: 100,
+        apptStartMilliSecondsOnCalendar: 1601726467558,
         apptProviderUUID: 1,
         apptStatus: 'locked',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
-        apptStartMilliSecondsOnCalendar: 200,
+        apptStartMilliSecondsOnCalendar: 1601726477658,
         apptProviderUUID: 1,
         apptStatus: 'no-show',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
-        apptStartMilliSecondsOnCalendar: 300,
+        apptStartMilliSecondsOnCalendar: 1601726477758,
         apptProviderUUID: 1,
         apptStatus: 'late-cancellation',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
-        apptStartMilliSecondsOnCalendar: 400,
+        apptStartMilliSecondsOnCalendar: 1601726477858,
         apptProviderUUID: 1,
         apptStatus: 'cancellation',
       },
     })
     clientSideTblOfAppointments.insert({
       data: {
-        apptStartMilliSecondsOnCalendar: 500,
+        apptStartMilliSecondsOnCalendar: 1601726677958,
         apptProviderUUID: 1,
         apptStatus: 'un-locked',
       },
