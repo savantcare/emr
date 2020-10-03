@@ -7,7 +7,7 @@ let count = 0
 const intUniqueID = () => ++count
 
 export default class leftSideViewLayer extends clientSideTableManage {
-  static entity = 'tblMultiTimeStateViewLayer'
+  static entity = 'tblMultiTimeStateViewLayerCards'
   static apiUrl = 'http://localhost:3000/'
 
   static primaryKey = 'clientSideUniqRowId'
