@@ -99,7 +99,8 @@ export default {
       const numberOfPointsOnGraph = 1
       // This will need to change to not reviewed time
       const timeOfMeasurementInMilliseconds = 1601702631025
-      const graphData = (groupTotal['Depression'] / maxValue) * 100
+      let graphData = (groupTotal['Depression'] / maxValue) * 100
+      graphData = Math.round(graphData)
       arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
       //console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
@@ -140,6 +141,7 @@ export default {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
           const graphData =
             (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
+          graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         //console.log(arDataToShowOnGraph)
@@ -168,6 +170,7 @@ export default {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
           const graphData =
             (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
+          graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         // console.log(arDataToShowOnGraph)
