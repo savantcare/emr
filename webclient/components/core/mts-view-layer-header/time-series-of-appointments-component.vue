@@ -16,7 +16,11 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
       :minApptStartMilliseconds="0"
       :maxApptStartMilliseconds="100"
       :tooltip-formatter="sliderTooltipFormatter"
-    ></vue-slider>
+    >
+      <template v-slot:label="{ label, active }">
+        <button type="success" :class="label" circle></button>
+      </template>
+    </vue-slider>
   </div>
 </template>
 
@@ -88,25 +92,27 @@ export default {
 
         console.log(percentage)
 
-        // get the icon for that slider mark
-        let icon = 'unknown'
+        // get the labelAtEachMark for that slider mark
+        let labelAtEachMark = ''
+        // inside the slot this is available inside the variable label
+        // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
-          icon = 'locked'
+          labelAtEachMark = 'el-icon-lock'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
-          icon = 'un-locked'
+          labelAtEachMark = 'el-icon-unlock'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          icon = 'no-show'
+          labelAtEachMark = 'el-icon-circle-close'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          icon = 'cancellation'
+          labelAtEachMark = 'el-icon-close'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-          icon = 'late-cancellation'
+          labelAtEachMark = 'el-icon-circle-close'
         }
 
-        this.sliderMarks[percentage] = icon
+        this.sliderMarks[percentage] = labelAtEachMark
         this.sliderMarksclientSideUniqRowId[percentage] =
           arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
         this.sliderMarksApptStatus[percentage] = arOfObjectsFromClientSideDB[i]['apptStatus']
