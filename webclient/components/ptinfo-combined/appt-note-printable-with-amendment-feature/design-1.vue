@@ -177,7 +177,7 @@ export default {
   data() {
     return {
       patientApptObj: [],
-      debug: true,
+      debug: false,
       amendmentData: '',
       visible1: true,
       visible2: true,

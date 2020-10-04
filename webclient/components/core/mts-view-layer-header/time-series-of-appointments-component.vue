@@ -20,6 +20,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
       <template v-slot:label="{ label, active }">
         <button
           type="button"
+          @click="sliderEvent"
           style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
           :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
         ></button>
