@@ -34,7 +34,7 @@
       Service statements
       <el-popover placement="right" width="400" v-model="visible1">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -49,7 +49,7 @@
       Mental status exam
       <el-popover placement="right" width="400" v-model="visible2">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -63,7 +63,7 @@
       Psych review of systems
       <el-popover placement="right" width="400" v-model="visible3">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -81,7 +81,7 @@
       Reminders
       <el-popover placement="right" width="400" v-model="visible4">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -122,7 +122,7 @@
       Recommendations
       <el-popover placement="right" width="400" v-model="visible5">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -133,7 +133,7 @@
       Medications
       <el-popover placement="right" width="400" v-model="visible6">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -144,7 +144,7 @@
       Body measurements
       <el-popover placement="right" width="400" v-model="visible7">
         <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="data"></el-input>
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
         </div>
         <el-button slot="reference" class="el-icon-edit-outline" size="mini" circle></el-button>
       </el-popover>
@@ -177,8 +177,8 @@ export default {
   data() {
     return {
       patientApptObj: [],
-      debug: false,
-      data: '',
+      debug: true,
+      amendmentData: '',
       visible1: true,
       visible2: true,
       visible3: true,
@@ -229,18 +229,19 @@ export default {
       let reminderArray = []
 
       if (this.patientApptObj['apptStatus'] === 'un-locked') {
-        this.patientApptObj['ROW_END'] = Math.floor(Date.now())
+        reminderArray[0] = clientSideTblOfPatientReminders
+          .query()
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        reminderArray[0] = clientSideTblOfPatientReminders
+          .query()
+          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .get()
       }
-      const arOfPresentObjectsFromClientSideDB = clientSideTblOfPatientReminders
-        .query()
-        .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
-        .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
-        .get()
+      reminderArray[1] = clientSideTblOfPatientReminders.query().get()
 
-      const arOfAllObjectsFromClientSideDB = clientSideTblOfPatientReminders.query().get()
-
-      reminderArray[0] = arOfPresentObjectsFromClientSideDB
-      reminderArray[1] = arOfAllObjectsFromClientSideDB
       return reminderArray
     },
     cfArOfMentalStatusExamForDisplay() {
