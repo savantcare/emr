@@ -188,7 +188,7 @@ export default {
       }
 
       // This update will lead to the note card visibility getting toggled
-      // Writing this in client Side DB since appt-note-view-in-printable-state component depends on this data.
+      // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
       const updateState = await clientSideTblOfMultiStateViewCards.update({
         clientSideUniqRowId: 2,
         componentCurrentValueForCustomizingViewState: this.dCurrentActiveButtonClientSideRowId,

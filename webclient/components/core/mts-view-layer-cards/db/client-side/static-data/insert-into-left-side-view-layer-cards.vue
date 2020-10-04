@@ -20,7 +20,8 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Appt note',
-        componentToShowPath: 'ptinfo-combined/appt-note-view-in-printable-state/design-1.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath:
+          'ptinfo-combined/appt-note-printable-with-amendment-feature/design-1.vue',
         componentCurrentValueForCustomizingViewState: 0,
       },
     })
