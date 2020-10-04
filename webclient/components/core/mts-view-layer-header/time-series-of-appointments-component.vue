@@ -36,7 +36,6 @@ export default {
     return {
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
-      dIconClass: [],
       sliderValue: 0,
       sliderMarks: {},
       maxApptStartMilliseconds: -1,
@@ -53,9 +52,6 @@ export default {
     this.dButtonTypes['no-show'] = 'danger'
     this.dButtonTypes['un-locked'] = 'success'
     this.dButtonTypes['locked'] = 'success'
-
-    this.dIconClass['un-locked'] = 'el-icon-unlock'
-    this.dIconClass['locked'] = 'el-icon-lock'
   },
   computed: {
     cfSliderMarks() {
@@ -126,7 +122,11 @@ export default {
     sliderTooltipFormatter(value) {
       //      return this.sliderMarksApptCalendarTime[value]
 
-      return moment(this.sliderMarksApptCalendarTime[value]).format('MMMM Do YYYY, h:mm a')
+      return (
+        this.sliderMarksApptStatus[value] +
+        ' : ' +
+        moment(this.sliderMarksApptCalendarTime[value]).format('MMMM Do YYYY, h:mm a')
+      )
     },
 
     sliderEvent(pEventValue) {
