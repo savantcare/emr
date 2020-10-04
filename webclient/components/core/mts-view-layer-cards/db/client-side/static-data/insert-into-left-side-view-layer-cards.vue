@@ -20,40 +20,40 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Appt note',
-        componentToShowPath: 'pt-info/combined/appt-note-view-in-printable-state/design-1.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath: 'ptinfo-combined/appt-note-view-in-printable-state/design-1.vue', // PtsVl -> Present time state - part of - view layer
         componentCurrentValueForCustomizingViewState: 0,
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Correlate',
-        componentToShowPath: 'pt-info/combined/correlate/design-1.vue',
+        componentToShowPath: 'ptinfo-combined/correlate/design-1.vue',
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Body measurement',
-        componentToShowPath: 'pt-info/single/1time-1row-mField/bm/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath: 'ptinfo-single/1time-1row-mField/bm/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Reminder',
         componentToShowPath:
-          'pt-info/single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct.vue', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Screening',
-        componentToShowPath: 'pt-info/single/1time-Mrow-mField/scr/view-layer/table-ct.vue',
+        componentToShowPath: 'ptinfo-single/1time-Mrow-mField/scr/view-layer/table-ct.vue',
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Contacts',
         componentToShowPath:
-          'pt-info/single/1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
+          'ptinfo-single/1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
         classificationOfComponent: 'other',
       },
     })

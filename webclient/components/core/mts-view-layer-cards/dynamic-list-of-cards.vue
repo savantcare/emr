@@ -16,7 +16,7 @@
 <script>
 import clientSideTblOfViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
 import clientSideTblOfViewCardsInsertData from '@/components/core/mts-view-layer-cards/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
-import clientSideTblCommonForAllComponents from '~/components/pt-info/single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTblCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: { clientSideTblOfViewCardsInsertData },

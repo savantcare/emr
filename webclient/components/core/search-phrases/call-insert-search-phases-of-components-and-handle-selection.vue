@@ -57,35 +57,35 @@ import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/
 import initializeClearComponent from '@/components/core/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
-import initializeFeedComponent from '@/components/pt-info/combined/feed/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeMapComponent from '@/components/pt-info/combined/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeFeedComponent from '@/components/ptinfo-combined/feed/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeMapComponent from '@/components/ptinfo-combined/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/PII
-import initializeDobComponent from '@/components/pt-info/single/1time-1row-mField/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeNameComponent from '@/components/pt-info/single/1time-1row-mField/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDobComponent from '@/components/ptinfo-single/1time-1row-mField/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeNameComponent from '@/components/ptinfo-single/1time-1row-mField/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/body-measurement
-import initializeBloodPressureComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-pressure/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeBloodSugarComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/blood-sugar/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeBmComponent from '@/components/pt-info/single/1time-1row-mField/bm/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeHeightComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeOxygenSaturationComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializePulseComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeTemperatureComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWaistCircumferenceComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWeightComponent from '@/components/pt-info/single/1time-1row-mField/bm/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBloodPressureComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/blood-pressure/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBloodSugarComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/blood-sugar/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBmComponent from '@/components/ptinfo-single/1time-1row-mField/bm/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeHeightComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeOxygenSaturationComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePulseComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeTemperatureComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWaistCircumferenceComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWeightComponent from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/others
-import initializeMseComponent from '@/components/pt-info/single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializePhq9Component from '@/components/pt-info/single/1time-1row-mField/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeProsComponent from '@/components/pt-info/single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeMseComponent from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePhq9Component from '@/components/ptinfo-single/1time-1row-mField/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeProsComponent from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
-import initializeRemComponent from '@/components/pt-info/single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeServiceStatementComponent from '@/components/pt-info/single/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
+import initializeRemComponent from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeServiceStatementComponent from '@/components/ptinfo-single/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
-import initializePhoneNumberComponent from '@/components/pt-info/single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePhoneNumberComponent from '@/components/ptinfo-single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 

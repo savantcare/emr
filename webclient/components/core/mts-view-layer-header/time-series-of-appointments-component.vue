@@ -30,8 +30,8 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 
 <script>
 import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
-import clientSideTblOfAppointmentsInsertData from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
-import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointmentsInsertData from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
 

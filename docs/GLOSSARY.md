@@ -10,7 +10,7 @@
 - pf: Patient file
 - ctRem: Rem is a component
 - pRem: Rem is a parameter to a function
-- [ormRem](https://github.com/savantcare/emr/blob/5a821d5a7fb76bf4f41051319a6851f07474d1d2/webclient/cts/pt-info/single/1time-Mrow-1Field/reminder/view-layer/table-ct.vue#L89): Rem is [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) created with [vuex-orm](https://vuex-orm.org/)
+- [ormRem](https://github.com/savantcare/emr/blob/5a821d5a7fb76bf4f41051319a6851f07474d1d2/webclient/cts/ptinfo-single/1time-Mrow-1Field/reminder/view-layer/table-ct.vue#L89): Rem is [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) created with [vuex-orm](https://vuex-orm.org/)
 - mc: multi change
 - c: change
 - d: delete
@@ -50,13 +50,13 @@ In the following examples age is a function inside a component
 
 ### Component short forms
 
-- dx: [Diagnosis](/webclient/cts/pt-info/single/dx/)
+- dx: [Diagnosis](/webclient/cts/ptinfo-single/dx/)
 - dxa: Diagnosis assessment
 - g: goal
-- [bm](https://github.com/savantcare/emr/tree/master/webclient/cts/pt-info/single/bm): [Body measurement](/webclient/cts/pt-info/single/bm/)
-- [rec](https://github.com/savantcare/emr/tree/master/webclient/cts/pt-info/single/rec): Recommendation
+- [bm](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/bm): [Body measurement](/webclient/cts/ptinfo-single/bm/)
+- [rec](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/rec): Recommendation
 - recs: Recommendations
-- [rem](https://github.com/savantcare/emr/tree/master/webclient/cts/pt-info/single/rem): Reminder
+- [rem](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/rem): Reminder
 - rems: Reminders
 - sh: Social history. This is both plural and singular.
 - mse: Mental status exam

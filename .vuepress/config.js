@@ -123,25 +123,25 @@ module.exports = {
             sidebarDepth: 0,
             children: [
               {
-                path: "/webclient/cts/pt-info/single/allergies/",
+                path: "/webclient/cts/ptinfo-single/allergies/",
                 title: "Allergies",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/webclient/cts/pt-info/single/allergies/design/design",
+                      "/webclient/cts/ptinfo-single/allergies/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/bm/",
+                path: "/webclient/cts/ptinfo-single/bm/",
                 title: "Body measurements",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/pt-info/single/bm/design/design",
+                    path: "/webclient/cts/ptinfo-single/bm/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
@@ -153,114 +153,112 @@ module.exports = {
                 sidebarDepth: 0,
                 children: [
                   {
-                    path:
-                      "/webclient/cts/pt-info/single/contacts/design/design",
+                    path: "/webclient/cts/ptinfo-single/contacts/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/dx/",
+                path: "/webclient/cts/ptinfo-single/dx/",
                 title: "Diagnosis",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/pt-info/single/dx/design/design",
+                    path: "/webclient/cts/ptinfo-single/dx/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/documents/",
+                path: "/webclient/cts/ptinfo-single/documents/",
                 title: "Documents",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/webclient/cts/pt-info/single/documents/design/design",
+                      "/webclient/cts/ptinfo-single/documents/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/family-history/",
+                path: "/webclient/cts/ptinfo-single/family-history/",
                 title: "Family history",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/webclient/cts/pt-info/single/family-history/design/design",
+                      "/webclient/cts/ptinfo-single/family-history/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/medications/",
+                path: "/webclient/cts/ptinfo-single/medications/",
                 title: "Medication",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/webclient/cts/pt-info/single/medications/design/design",
+                      "/webclient/cts/ptinfo-single/medications/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/mse/",
+                path: "/webclient/cts/ptinfo-single/mse/",
                 title: "Mental status exam",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/pt-info/single/mse/design/design",
+                    path: "/webclient/cts/ptinfo-single/mse/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/pharmacy/",
+                path: "/webclient/cts/ptinfo-single/pharmacy/",
                 title: "Pharmacy",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path:
-                      "/webclient/cts/pt-info/single/pharmacy/design/design",
+                    path: "/webclient/cts/ptinfo-single/pharmacy/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/psych-review-of-systems/",
+                path: "/webclient/cts/ptinfo-single/psych-review-of-systems/",
                 title: "Psych review of systems",
                 sidebarDepth: 0,
                 children: [
                   {
                     path:
-                      "/webclient/cts/pt-info/single/psych-review-of-systems/design/design",
+                      "/webclient/cts/ptinfo-single/psych-review-of-systems/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
                 ],
               },
               {
-                path: "/webclient/cts/pt-info/single/rec/",
+                path: "/webclient/cts/ptinfo-single/rec/",
                 title: "Recommendations",
                 sidebarDepth: 0,
               },
               {
-                path: "/webclient/cts/pt-info/single/scr/",
+                path: "/webclient/cts/ptinfo-single/scr/",
                 title: "Screening",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/pt-info/single/scr/design/design",
+                    path: "/webclient/cts/ptinfo-single/scr/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },
