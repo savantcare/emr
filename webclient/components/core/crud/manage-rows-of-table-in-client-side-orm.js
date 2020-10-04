@@ -616,6 +616,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
     try {
       const response = await fetch(this.apiUrl, {
+        // @raj TODO Why not using User.api().post(url, data, config) from https://vuex-orm.github.io/plugin-axios/guide/usage.html#performing-requests
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
