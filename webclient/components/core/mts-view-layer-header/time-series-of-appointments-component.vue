@@ -18,7 +18,11 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
       :tooltip-formatter="sliderTooltipFormatter"
     >
       <template v-slot:label="{ label, active }">
-        <button type="success" :class="label" circle></button>
+        <button
+          type="button"
+          style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
+          :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
+        ></button>
       </template>
     </vue-slider>
   </div>
@@ -121,7 +125,7 @@ export default {
           labelAtEachMark = 'el-icon-circle-close'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          labelAtEachMark = 'el-icon-close'
+          labelAtEachMark = 'el-icon-remove-outline'
         }
         if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
           labelAtEachMark = 'el-icon-circle-close'

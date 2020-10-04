@@ -495,11 +495,12 @@ Reminder           |  Fixed       |  Header     |   5         | -1
 }
 
 /* Used for Toggle card display at: 
-Component           |  Side        | Location     | From front  | From back
-  Reminder          |  Fixed       |  Header      |  4          |  -1
-  Corelate          |  Fixed       |  Header      |  1          |  -1
-  Body measurement  |  Fixed       |  Header      |  1          |  -1
-  Service statement |  Flexible    |  Header      |  2          |  -2
+Component           |  Side        | Location     | From front  | From back | Notes
+  Reminder          |  Fixed       |  Header      |  4          |  -1       |
+  Corelate          |  Fixed       |  Header      |  1          |  -1       |
+  Body measurement  |  Fixed       |  Header      |  1          |  -1       |
+  Service statement |  Flexible    |  Header      |  2          |  -2       | 
+  mts slider        |  top         |  Header      |  NA         |  NA       | For cancellation appts
   */
 .el-icon-remove-outline:hover {
   color: #e6a23c !important;
@@ -514,5 +515,15 @@ Mental status exam |  Flexible     | Header      |   3         |    -1
 .el-icon-close:hover {
   font-size: 1.5rem;
   color: #f56c6c !important;
+}
+
+/* Used in header slider */
+.el-icon-lock:hover {
+  font-size: 1.5rem;
+  color: #67c23a !important;
+}
+.el-icon-unlock:hover {
+  font-size: 1.5rem;
+  color: #409eff !important;
 }
 </style>
