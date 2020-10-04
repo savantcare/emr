@@ -38,7 +38,7 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      configProportionalOrEquiDistant: 'Proportional',
+      configProportionalOrEquiDistant: 'EquiDistant',
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
       sliderValue: 0,
