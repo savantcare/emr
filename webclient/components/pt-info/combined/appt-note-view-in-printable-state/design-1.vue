@@ -309,6 +309,7 @@ export default {
             apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
             apptProviderUUID: 1,
             apptStatus: 'un-locked',
+            ROW_START: Math.floor(Date.now()),
           },
         })
       }

@@ -7,7 +7,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
     <!-- TODO: need to move it to init file -->
     <vue-slider
       v-model="sliderValue"
-      :marks="sliderMarks"
+      :marks="cfSliderMarks"
       container="true"
       absorb="true"
       :included="true"
@@ -52,94 +52,68 @@ export default {
 
     this.dIconClass['un-locked'] = 'el-icon-unlock'
     this.dIconClass['locked'] = 'el-icon-lock'
-
-    const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
-
-    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-      const apptStartMilliSecondsOnCalendar =
-        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
-
-      if (this.minApptStartMilliseconds === -1) {
-        this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
-      }
-
-      if (this.maxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
-        this.maxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
-      }
-      if (this.minApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
-        this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
-      }
-    }
-
-    const spread = this.maxApptStartMilliseconds - this.minApptStartMilliseconds
-
-    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-      // Update the slider component
-      const apptStartMilliSecondsOnCalendar =
-        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
-
-      const percentage =
-        ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
-
-      percentage = Math.round(percentage)
-
-      console.log(percentage)
-
-      // get the icon for that slider mark
-      let icon = 'unknown'
-      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
-        icon = 'locked'
-      }
-      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
-        icon = 'un-locked'
-      }
-      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-        icon = 'no-show'
-      }
-      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-        icon = 'cancellation'
-      }
-      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-        icon = 'late-cancellation'
-      }
-
-      this.sliderMarks[percentage] = icon
-      this.sliderMarksclientSideUniqRowId[percentage] =
-        arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
-      this.sliderMarksApptStatus[percentage] = arOfObjectsFromClientSideDB[i]['apptStatus']
-      this.sliderMarksApptCalendarTime[percentage] =
-        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
-    }
-
-    console.log(this.sliderMarks)
-    //this.sliderMarks
   },
   computed: {
-    cfAllAppointments() {
+    cfSliderMarks() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
+      this.sliderMarks = {}
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['toolTip'] =
-          'On ' +
-          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar'] +
-          ' ' +
-          arOfObjectsFromClientSideDB[i]['apptStatus']
+        const apptStartMilliSecondsOnCalendar =
+          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
 
-        if (arOfObjectsFromClientSideDB[i].apptStatus === 'locked') {
-          arOfObjectsFromClientSideDB[i]['toolTip'] =
-            arOfObjectsFromClientSideDB[i]['toolTip'] +
-            ' by ' +
-            arOfObjectsFromClientSideDB[i]['apptProviderUUID']
+        if (this.minApptStartMilliseconds === -1) {
+          this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
 
-        if (arOfObjectsFromClientSideDB[i].apptStatus.includes('un-locked')) {
-          arOfObjectsFromClientSideDB[i]['toolTip'] =
-            arOfObjectsFromClientSideDB[i]['toolTip'] +
-            ' Provider: ' +
-            arOfObjectsFromClientSideDB[i]['apptProviderUUID']
+        if (this.maxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
+          this.maxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        }
+        if (this.minApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
+          this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
       }
-      return arOfObjectsFromClientSideDB
+
+      const spread = this.maxApptStartMilliseconds - this.minApptStartMilliseconds
+
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        // Update the slider component
+        const apptStartMilliSecondsOnCalendar =
+          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+
+        const percentage =
+          ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
+
+        percentage = Math.round(percentage)
+
+        console.log(percentage)
+
+        // get the icon for that slider mark
+        let icon = 'unknown'
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
+          icon = 'locked'
+        }
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
+          icon = 'un-locked'
+        }
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+          icon = 'no-show'
+        }
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+          icon = 'cancellation'
+        }
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+          icon = 'late-cancellation'
+        }
+
+        this.sliderMarks[percentage] = icon
+        this.sliderMarksclientSideUniqRowId[percentage] =
+          arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
+        this.sliderMarksApptStatus[percentage] = arOfObjectsFromClientSideDB[i]['apptStatus']
+        this.sliderMarksApptCalendarTime[percentage] =
+          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+      }
+      return this.sliderMarks
     },
   },
   methods: {
