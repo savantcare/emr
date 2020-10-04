@@ -1,1 +1,1 @@
-create database sc_service_statement
+create database sc_service_statements

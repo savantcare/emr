@@ -1,8 +1,8 @@
-use sc_service_statement;
+use sc_service_statements;
 
 DROP TABLE IF EXISTS `service_statements`;
 
-CREATE TABLE `reminders` (
+CREATE TABLE `service_statements` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ssID` text COLLATE utf8_unicode_ci DEFAULT NULL,
