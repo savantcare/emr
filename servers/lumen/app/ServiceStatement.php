@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 
 class Reminder extends Model
 {
-    protected $table = 'reminders';
+    protected $table = 'service_statements';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -19,7 +19,7 @@ class Reminder extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'description', 'notes', 'recordChangedByUUID',
+        'ptUUID', 'recordChangedByUUID',
     ];
 
     /**

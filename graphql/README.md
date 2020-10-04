@@ -27,3 +27,6 @@ content
 # How to implement ith mysql?
 
 https://www.serverless.com/blog/graphql-api-mysql-postgres-aurora
+
+Auto generation of APIs:
+https://github.com/xgenecloud/xgenecloud

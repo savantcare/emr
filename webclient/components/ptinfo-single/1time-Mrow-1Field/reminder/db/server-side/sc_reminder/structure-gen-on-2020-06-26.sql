@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS `reminders`;
 
 CREATE TABLE `reminders` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `ptUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ptUUID` char(36) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `notes` text DEFAULT NULL,
   `priority` int(11) DEFAULT NULL,
   `isAutoRem` int(11) DEFAULT NULL,
