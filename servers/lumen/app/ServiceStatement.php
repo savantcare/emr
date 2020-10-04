@@ -5,8 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Reminder extends Model
+class ServiceStatement extends Model
 {
+    protected $connection = 'serviceStatementDB';
     protected $table = 'service_statements';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';

@@ -7,6 +7,7 @@ use Ramsey\Uuid\Uuid;
 
 class Reminder extends Model
 {
+    protected $connection = 'reminderDB';
     protected $table = 'reminders';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
