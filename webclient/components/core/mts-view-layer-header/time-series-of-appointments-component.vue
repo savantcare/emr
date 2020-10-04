@@ -34,7 +34,7 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      configProportionalOrEquiDistant: 'EquiDistant',
+      configProportionalOrEquiDistant: 'Proportional',
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
       sliderValue: 0,
@@ -80,17 +80,32 @@ export default {
 
       const spread = this.maxApptStartMilliseconds - this.minApptStartMilliseconds
 
+      console.log(arOfObjectsFromClientSideDB)
+      // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
+      arOfObjectsFromClientSideDB.sort(function (a, b) {
+        return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
+          ? 1
+          : b.apptStartMilliSecondsOnCalendar > a.apptStartMilliSecondsOnCalendar
+          ? -1
+          : 0
+      })
+
+      console.log(arOfObjectsFromClientSideDB)
+
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         // Update the slider component
         const apptStartMilliSecondsOnCalendar =
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
 
-        const percentage =
-          ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
+        let markPoint = null
+        if (this.configProportionalOrEquiDistant === 'EquiDistant') {
+          markPoint = (i / arOfObjectsFromClientSideDB.length) * 100
+        } else {
+          const percentage =
+            ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
 
-        const markPoint = Math.round(percentage)
-
-        console.log(markPoint)
+          markPoint = Math.round(percentage)
+        }
 
         // get the labelAtEachMark for that slider mark
         let labelAtEachMark = ''
@@ -135,7 +150,6 @@ export default {
 
     sliderEvent(pEventValue) {
       const valueOfSlider = this.sliderValue
-      console.log(this.sliderMarksclientSideUniqRowId[this.sliderValue])
 
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (
@@ -143,8 +157,6 @@ export default {
         this.sliderMarksApptStatus[valueOfSlider] == 'late-cancellation' ||
         this.sliderMarksApptStatus[valueOfSlider] == 'no-show'
       ) {
-        console.log(this.sliderMarksApptStatus[valueOfSlider])
-        console.log('returning')
         // unsert the previous note window if there is any
         const updateState = clientSideTblOfMultiStateViewCards.update({
           clientSideUniqRowId: 2,
