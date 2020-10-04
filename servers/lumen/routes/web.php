@@ -112,7 +112,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
-    // Routing for Oxygen Saturation
+    // Oxygen Saturation
     $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@showAllOxygenSaturations']);
     $router->get('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@showOneOxygenSaturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
@@ -127,6 +127,24 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+
+    // Service statement
+    $router->get('serviceStatement/v20/', ['uses' => 'ServiceStatementController@showAllServiceStatements']);
+    $router->get('serviceStatement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@showOneServiceStatement']);
+    $router->post('serviceStatement/v20/', ['uses' => 'ServiceStatementController@create']);
+    $router->put('serviceStatement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
+    $router->options('serviceStatement/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('serviceStatement/v20/{serverSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+
 
     // Temperature
     $router->get('temperature/v20/', ['uses' => 'TemperatureController@showAllTemperatures']);
