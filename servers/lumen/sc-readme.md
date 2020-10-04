@@ -20,3 +20,7 @@ vk-tech@vk-mini-layer2-3 ~/g/s/e/s/lumen>php -S localhost:8000 -t .
 
 brew install php-cs-fixer
 Ref: https://github.com/FriendsOfPHP/PHP-CS-Fixer 9K github star
+
+# Q4) How to get graphql response from laravel?
+
+https://lighthouse-php.com/tutorial/#what-is-lighthouse

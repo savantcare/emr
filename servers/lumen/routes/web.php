@@ -130,16 +130,16 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 
     // Service statement
-    $router->get('serviceStatement/v20/', ['uses' => 'ServiceStatementController@showAllServiceStatements']);
-    $router->get('serviceStatement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@showOneServiceStatement']);
-    $router->post('serviceStatement/v20/', ['uses' => 'ServiceStatementController@create']);
-    $router->put('serviceStatement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
-    $router->options('serviceStatement/v20', function () {
+    $router->get('service-statement/v20/', ['uses' => 'ServiceStatementController@showAllServiceStatements']);
+    $router->get('service-statement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@showOneServiceStatement']);
+    $router->post('service-statement/v20/', ['uses' => 'ServiceStatementController@create']);
+    $router->put('service-statement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
+    $router->options('service-statement/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-    $router->options('serviceStatement/v20/{serverSideRowUuid}', function () {
+    $router->options('service-statement/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');

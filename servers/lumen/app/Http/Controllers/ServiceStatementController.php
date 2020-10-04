@@ -11,18 +11,18 @@ use Predis\Autoloader;
 \Predis\Autoloader::register();
 
 
-class ReminderController extends Controller
+class ServiceStatementController extends Controller
 {
-    public function showAllReminders()
+    public function showAllServiceStatements()
     {
         $ServiceStatementQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM service_statements FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($ServiceStatementQuery);
-        // return response()->json(Reminder::all());
+        // return response()->json(ServiceStatement::all());
     }
 
-    public function showOneReminder($id)
+    public function showOneServiceStatement($id)
     {
-        return response()->json(Reminder::find($id));
+        return response()->json(ServiceStatement::find($id));
     }
 
     public function create(Request $request)
@@ -36,9 +36,9 @@ class ReminderController extends Controller
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );
        
-        $ServiceStatement = Reminder::insertGetId($serviceStatementData);
+        $ServiceStatement = ServiceStatement::insertGetId($serviceStatementData);
 
-        $channel = 'MsgFromSktForRemToAdd';
+        $channel = 'MsgFromSktForServiceStatementToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
@@ -48,20 +48,20 @@ class ReminderController extends Controller
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        // $ServiceStatement = Reminder::create($request->all());
+        // $ServiceStatement = ServiceStatement::create($request->all());
         return response()->json($ServiceStatement, 201);
     }
 
     public function update($id, Request $request)
     {
-        $ServiceStatement = Reminder::findOrFail($id);
+        $ServiceStatement = ServiceStatement::findOrFail($id);
         $ServiceStatement->update($request->all());
 
         /**
          * Send data to socket
          */
         $requestData = $request->all();
-        $channel = 'MsgFromSktForRemToChange';
+        $channel = 'MsgFromSktForServiceStatementToChange';
         $message = array(
             'serverSideRowUuid' => $id,
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
@@ -77,7 +77,7 @@ class ReminderController extends Controller
  
     public function delete($id, Request $request)
     {
-        $ServiceStatement = Reminder::findOrFail($id);
+        $ServiceStatement = ServiceStatement::findOrFail($id);
         $requestData = $request->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
@@ -92,7 +92,7 @@ class ReminderController extends Controller
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForRemToDelete';
+        $channel = 'MsgFromSktForServiceStatementToDelete';
         $message = array(
             'serverSideRowUuid' => $id,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
