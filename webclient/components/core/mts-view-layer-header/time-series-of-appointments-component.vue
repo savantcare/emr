@@ -2,40 +2,21 @@
 https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
-  <div class="content-wrap">
+  <div>
     <clientSideTblOfAppointmentsInsertData />
-    <div v-for="appt in cfAllAppointments" :key="appt.clientSideUniqRowId">
-      <el-tooltip
-        class="item"
-        effect="light"
-        :content="appt.toolTip"
-        placement="top-end"
-        :open-delay="500"
-      >
-        <template v-if="appt.clientSideUniqRowId === dCurrentActiveButtonClientSideRowId">
-          <el-button
-            :type="dButtonTypes[appt.apptStatus]"
-            :class="dIconClass[appt.apptStatus]"
-            :plain="false"
-            circle
-            size="mini"
-            icon1
-            @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
-          ></el-button>
-        </template>
-        <template v-else>
-          <el-button
-            :type="dButtonTypes[appt.apptStatus]"
-            :class="dIconClass[appt.apptStatus]"
-            :plain="true"
-            circle
-            size="mini"
-            icon1
-            @click="handleClickEvent(appt.clientSideUniqRowId, appt.apptStatus)"
-          ></el-button>
-        </template>
-      </el-tooltip>
-    </div>
+    <!-- TODO: need to move it to init file -->
+    <vue-slider
+      v-model="sliderValue"
+      :marks="sliderMarks"
+      container="true"
+      absorb="true"
+      :included="true"
+      @drag-start="sliderEvent"
+      @change="sliderEvent"
+      :minApptStartMilliseconds="0"
+      :maxApptStartMilliseconds="100"
+      :tooltip-formatter="sliderTooltipFormatter"
+    ></vue-slider>
   </div>
 </template>
 
@@ -44,12 +25,21 @@ import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer
 import clientSideTblOfAppointmentsInsertData from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 import clientSideTblOfAppointments from '@/components/pt-info/single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
+import moment from 'moment'
+
 export default {
   data() {
     return {
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
       dIconClass: [],
+      sliderValue: 0,
+      sliderMarks: {},
+      maxApptStartMilliseconds: -1,
+      minApptStartMilliseconds: -1,
+      sliderMarksclientSideUniqRowId: [],
+      sliderMarksApptStatus: [],
+      sliderMarksApptCalendarTime: [],
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
@@ -62,6 +52,67 @@ export default {
 
     this.dIconClass['un-locked'] = 'el-icon-unlock'
     this.dIconClass['locked'] = 'el-icon-lock'
+
+    const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
+
+    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+      const apptStartMilliSecondsOnCalendar =
+        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+
+      if (this.minApptStartMilliseconds === -1) {
+        this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+      }
+
+      if (this.maxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
+        this.maxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+      }
+      if (this.minApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
+        this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+      }
+    }
+
+    const spread = this.maxApptStartMilliseconds - this.minApptStartMilliseconds
+
+    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+      // Update the slider component
+      const apptStartMilliSecondsOnCalendar =
+        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+
+      const percentage =
+        ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
+
+      percentage = Math.round(percentage)
+
+      console.log(percentage)
+
+      // get the icon for that slider mark
+      let icon = 'unknown'
+      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
+        icon = 'locked'
+      }
+      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
+        icon = 'un-locked'
+      }
+      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+        icon = 'no-show'
+      }
+      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+        icon = 'cancellation'
+      }
+      if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+        icon = 'late-cancellation'
+      }
+
+      this.sliderMarks[percentage] = icon
+      this.sliderMarksclientSideUniqRowId[percentage] =
+        arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
+      this.sliderMarksApptStatus[percentage] = arOfObjectsFromClientSideDB[i]['apptStatus']
+      this.sliderMarksApptCalendarTime[percentage] =
+        arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+    }
+
+    console.log(this.sliderMarks)
+    //this.sliderMarks
   },
   computed: {
     cfAllAppointments() {
@@ -92,12 +143,35 @@ export default {
     },
   },
   methods: {
-    async handleClickEvent(pClientSideRowId, pApptStatus) {
-      // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
-      if (pApptStatus === 'late-cancellation') return
-      if (pApptStatus === 'no-show') return
-      if (pApptStatus === 'cancellation') return
+    sliderTooltipFormatter(value) {
+      //      return this.sliderMarksApptCalendarTime[value]
 
+      return moment(this.sliderMarksApptCalendarTime[value]).format('MMMM Do YYYY, h:mm a')
+    },
+
+    sliderEvent(pEventValue) {
+      const valueOfSlider = this.sliderValue
+      console.log(this.sliderMarksclientSideUniqRowId[this.sliderValue])
+
+      // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
+      if (
+        this.sliderMarksApptStatus[valueOfSlider] == 'cancellation' ||
+        this.sliderMarksApptStatus[valueOfSlider] == 'late-cancellation' ||
+        this.sliderMarksApptStatus[valueOfSlider] == 'no-show'
+      ) {
+        console.log(this.sliderMarksApptStatus[valueOfSlider])
+        console.log('returning')
+        // unsert the previous note window if there is any
+        const updateState = clientSideTblOfMultiStateViewCards.update({
+          clientSideUniqRowId: 2,
+          componentCurrentValueForCustomizingViewState: 0,
+        })
+        return
+      }
+
+      this.toggleApptNoteDisplay(this.sliderMarksclientSideUniqRowId[this.sliderValue])
+    },
+    async toggleApptNoteDisplay(pClientSideRowId) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
 
