@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
 use Predis\Autoloader;
+
 \Predis\Autoloader::register();
 
 
 class ReminderController extends Controller
 {
-
     public function showAllReminders()
     {
-        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM service_statements FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($remQuery);
         // return response()->json(Reminder::all());
     }
@@ -29,33 +29,33 @@ class ReminderController extends Controller
     {
         $requestData = $request->all();
         
-        $remData = array(
+        $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUUID' => $requestData['data']['ptUUID'],
-            'description' => $requestData['data']['description'],
+            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );
        
-        $Reminder = Reminder::insertGetId($remData);
+        $ServiceStatement = Reminder::insertGetId($serviceStatementData);
 
         $channel = 'MsgFromSktForRemToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'description' => $requestData['data']['description'],
+            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        // $Reminder = Reminder::create($request->all());
-        return response()->json($Reminder, 201);
+        // $ServiceStatement = Reminder::create($request->all());
+        return response()->json($ServiceStatement, 201);
     }
 
     public function update($id, Request $request)
     {
-        $Reminder = Reminder::findOrFail($id);
-        $Reminder->update($request->all());
+        $ServiceStatement = Reminder::findOrFail($id);
+        $ServiceStatement->update($request->all());
 
         /**
          * Send data to socket
@@ -64,31 +64,30 @@ class ReminderController extends Controller
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
             'serverSideRowUuid' => $id,
-            'description' => $requestData['description'],
+            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 
         $redis = new \Predis\Client();
         $redis->publish($channel, json_encode($message));
 
-        return response()->json($Reminder, 200);
+        return response()->json($ServiceStatement, 200);
     }
 
  
     public function delete($id, Request $request)
     {
-        $Reminder = Reminder::findOrFail($id);
+        $ServiceStatement = Reminder::findOrFail($id);
         $requestData = $request->all();
 
-        if(isset($requestData['dNotes']) && !empty($requestData['dNotes']))
-        {
+        if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
-            $Reminder->update($updateData);
+            $ServiceStatement->update($updateData);
         }
 
-        $Reminder->delete();
+        $ServiceStatement->delete();
 
         /**
          * Send data to socket
