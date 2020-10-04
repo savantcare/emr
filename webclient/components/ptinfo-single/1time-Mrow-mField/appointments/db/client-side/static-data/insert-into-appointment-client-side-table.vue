@@ -38,7 +38,7 @@ export default {
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601728477858,
-        ROW_END: 1601726867558,
+        ROW_END: 1601726867558, // This is the time when the record was deleted.
         apptProviderUUID: 1,
         apptStatus: 'cancellation',
       },
@@ -46,7 +46,7 @@ export default {
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601729677958,
-        ROW_END: 1601726967558,
+        ROW_END: 2147483648000, // un-locked means the record has not been deleted
         apptProviderUUID: 1,
         apptStatus: 'un-locked',
       },
