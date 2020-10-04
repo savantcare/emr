@@ -34,15 +34,16 @@ import moment from 'moment'
 export default {
   data() {
     return {
+      configProportionalOrEquiDistant: 'EquiDistant',
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
       sliderValue: 0,
       sliderMarks: {},
       maxApptStartMilliseconds: -1,
       minApptStartMilliseconds: -1,
-      sliderMarksclientSideUniqRowId: [],
-      sliderMarksApptStatus: [],
-      sliderMarksApptCalendarTime: [],
+      sliderMarksclientSideUniqRowId: {},
+      sliderMarksApptStatus: {},
+      sliderMarksApptCalendarTime: {},
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
@@ -57,6 +58,9 @@ export default {
     cfSliderMarks() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
       this.sliderMarks = {}
+      this.sliderMarksclientSideUniqRowId = {}
+      this.sliderMarksApptStatus = {}
+      this.sliderMarksApptCalendarTime = {}
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         const apptStartMilliSecondsOnCalendar =
@@ -84,9 +88,9 @@ export default {
         const percentage =
           ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
 
-        percentage = Math.round(percentage)
+        const markPoint = Math.round(percentage)
 
-        console.log(percentage)
+        console.log(markPoint)
 
         // get the labelAtEachMark for that slider mark
         let labelAtEachMark = ''
@@ -108,11 +112,11 @@ export default {
           labelAtEachMark = 'el-icon-circle-close'
         }
 
-        this.sliderMarks[percentage] = labelAtEachMark
-        this.sliderMarksclientSideUniqRowId[percentage] =
+        this.sliderMarks[markPoint] = labelAtEachMark
+        this.sliderMarksclientSideUniqRowId[markPoint] =
           arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
-        this.sliderMarksApptStatus[percentage] = arOfObjectsFromClientSideDB[i]['apptStatus']
-        this.sliderMarksApptCalendarTime[percentage] =
+        this.sliderMarksApptStatus[markPoint] = arOfObjectsFromClientSideDB[i]['apptStatus']
+        this.sliderMarksApptCalendarTime[markPoint] =
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
       }
       return this.sliderMarks
