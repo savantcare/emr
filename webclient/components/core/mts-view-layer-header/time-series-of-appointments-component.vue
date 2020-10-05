@@ -55,7 +55,22 @@ __proto__: Object
         <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant"
           >Equi distant</el-radio
         ></span
-      >
+      ><br />
+      <br />
+
+      <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
+        <el-checkbox label="Locked"></el-checkbox>
+        <el-checkbox label="Un-Locked"></el-checkbox>
+        <el-checkbox label="Late cancellation"></el-checkbox>
+        <el-checkbox label="No show"></el-checkbox>
+        <el-checkbox label="Cancellation"></el-checkbox> </el-checkbox-group
+      ><br />
+      <br />
+
+      <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
+        <el-checkbox label="All providers"></el-checkbox>
+        <el-checkbox label="Only me"></el-checkbox>
+      </el-checkbox-group>
     </el-dialog>
   </div>
 </template>
@@ -70,7 +85,6 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      dConfigProportionalOrEquiDistant: 'EquiDistant',
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
       currentSliderValue: 0,
@@ -81,6 +95,11 @@ export default {
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
       dIsDialogVisible: false,
+
+      // Settings for slider
+      dConfigProportionalOrEquiDistant: 'EquiDistant',
+      dConfigChecklistOfApptTypesToShow: [],
+      dConfigProviderTypesToShow: [],
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
