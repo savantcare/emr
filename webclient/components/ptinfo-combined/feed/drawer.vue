@@ -15,11 +15,12 @@
     <div class="block">
       <el-timeline :reverse="reverse">
         <el-timeline-item
-          v-for="(activity, index) in activities"
+          v-for="(activity, index) in cfArOfFeedForDisplayInDrawer"
           :key="index"
           :timestamp="activity.timestamp"
         >
-          {{ activity.content }}
+          {{ activity.component }} -
+          {{ activity.description }}
         </el-timeline-item>
       </el-timeline>
     </div>
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
+
 export default {
   data() {
     return {
@@ -49,6 +52,10 @@ export default {
     }
   },
   computed: {
+    cfArOfFeedForDisplayInDrawer() {
+      const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
+      return arFromClientSideTable
+    },
     cfDrawerVisibility: {
       get() {
         return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible

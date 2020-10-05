@@ -1,5 +1,6 @@
 import { Model } from '@vuex-orm/core'
 import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -598,6 +599,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             if (index > -1) {
               this.arOrmRowIdSendToServer.splice(index, 1)
             }
+
+            /**
+             * Insert into feed
+             */
+            tableStructureForStoreMessageFromOtherComponent.insert({
+              data: {
+                description: row.description,
+                component: this.entity,
+              },
+            })
           }
         }
       } catch (err) {
