@@ -27,12 +27,13 @@
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
     <button v-shortkey="['f1']" @shortkey="theAction()" @click="theAction()">Open</button>
-    <el-dialog title="Tips" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-      <span>This is a message</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
-      </span>
+    <el-dialog
+      title="SC Brain"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input>This is a message</el-input>
     </el-dialog>
   </div>
 </template>
@@ -86,8 +87,6 @@ Vue.use(
 
 Vue.component('VueSlider', VueSlider)
 
-Vue.use(require('vue-shortkey'))
-
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
@@ -113,7 +112,7 @@ export default {
   },
   methods: {
     handleClose() {
-      this.dialogVisible = true
+      this.dialogVisible = false
       console.log('handleClose')
     },
     theAction() {

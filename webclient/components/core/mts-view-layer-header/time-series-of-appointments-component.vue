@@ -120,12 +120,9 @@ export default {
   },
   computed: {
     sendCssVariablesToStyleSheet() {
-      console.log('css send called', this.dCurrentSliderValue)
       const selectedSize = '2rem'
       const defaultSize = '1.5rem'
       let obj = {}
-
-      console.log(this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue])
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'locked') {
         obj['--size-of-lock-icon'] = selectedSize
@@ -174,8 +171,6 @@ export default {
       if (this.arOfObjectsFromClientSideDB.length < 1) {
         this.arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
       }
-
-      console.log(this.arOfObjectsFromClientSideDB)
 
       this.dMarksOnSlider = {}
       this.dClientSideUniqRowIdAtEachSliderMark = {}
@@ -279,7 +274,6 @@ export default {
           'apptStartMilliSecondsOnCalendar'
         ]
       }
-      console.log(this.dMarksOnSlider)
       this.dMarksOnSlider[100] = 'el-icon-setting'
       this.dApptStatusAtEachSliderMark[100] = 'settings-placeholder'
 
