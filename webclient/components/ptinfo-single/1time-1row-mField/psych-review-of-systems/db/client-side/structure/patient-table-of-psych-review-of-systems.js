@@ -29,7 +29,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientSideTable
       psychReviewOfSystemsMasterId: this.number(0), // This is psych review of systems ID assigned to this patient coming from master table
       psychReviewOfSystemsFieldValue: this.string(null),
       patientUUID: this.string(null),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

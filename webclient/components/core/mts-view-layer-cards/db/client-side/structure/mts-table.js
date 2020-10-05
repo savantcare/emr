@@ -23,7 +23,7 @@ export default class multiTimeStateViewLayer extends clientSideTableManage {
 
       componentCurrentValueForCustomizingViewState: this.number(1), // when > 0 it will display. Using v-if since more efficient then v-show
 
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

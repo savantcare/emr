@@ -29,7 +29,7 @@ export default class ptTemperature extends clientSideTableManage {
       temperatureInFarehnite: this.number(null),
       timeOfMeasurementInMilliseconds: this.number(null),
       notes: this.string(null),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

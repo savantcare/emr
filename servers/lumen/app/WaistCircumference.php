@@ -20,7 +20,7 @@ class WaistCircumference extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurement', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurement', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

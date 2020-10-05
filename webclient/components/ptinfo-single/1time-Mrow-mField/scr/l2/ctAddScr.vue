@@ -130,7 +130,7 @@ export default {
               screenUUID: item.value,
               patientUUID: vm.id,
               notes: 'test note',
-              recordChangedByUUID: this.getUserId,
+              recordChangedByUuid: this.getUserId,
               recordChangedFromIPAddress: '',
             })
           })

@@ -9,7 +9,7 @@ CREATE TABLE `reminders` (
   `notes` text DEFAULT NULL,
   `priority` int(11) DEFAULT NULL,
   `isAutoRem` int(11) DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
   PRIMARY KEY (`serverSideRowUuid`)

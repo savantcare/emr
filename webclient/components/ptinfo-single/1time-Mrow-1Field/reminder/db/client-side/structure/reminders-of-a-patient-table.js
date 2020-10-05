@@ -42,7 +42,7 @@ export default class reminders extends clientSideTableManage {
       notes: this.string(null),
       priority: this.number(0),
       isAutoRem: this.number(0),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

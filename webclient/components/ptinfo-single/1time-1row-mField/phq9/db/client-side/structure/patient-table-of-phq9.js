@@ -23,7 +23,7 @@ export default class phq9ForPatientClass extends clientSideTableManage {
       phq9QuestionMasterId: this.number(null),
       optionValueChosenByPatient: this.number(null),
 
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

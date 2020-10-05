@@ -1,6 +1,6 @@
 use sc_reminders;
 
-INSERT INTO `reminders` (`serverSideRowUuid`, `ptUuid`, `description`, `notes`, `priority`, `isAutoRem`, `recordChangedByUUID`, `recordChangedFromIPAddress`, `recordChangedFromSection`) VALUES
+INSERT INTO `reminders` (`serverSideRowUuid`, `ptUuid`, `description`, `notes`, `priority`, `isAutoRem`, `recordChangedByUuid`, `recordChangedFromIPAddress`, `recordChangedFromSection`) VALUES
 ('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 'Jai kali ma', NULL, 1, 1, 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL, 'patientFile'),
 ('084e11a0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 'Jai durga ma', NULL, 1, 1, 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL, 'patientFile'),
 ('0bf64730-c1f1-11ea-8787-81321e2ac714', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 'test', NULL, 1, 1, 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL, 'patientFile'),

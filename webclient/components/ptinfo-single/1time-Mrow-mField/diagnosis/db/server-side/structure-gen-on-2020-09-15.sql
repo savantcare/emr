@@ -14,7 +14,7 @@ CREATE TABLE `assignedDiagnosis` (
   `patientUUID` char(36) NOT NULL,
   `masterDiagnosisId` int(11) NOT NULL,
   `discontinueNote` varchar(255) DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='sample diagnosis table for assigned to patent for p20 create';
 

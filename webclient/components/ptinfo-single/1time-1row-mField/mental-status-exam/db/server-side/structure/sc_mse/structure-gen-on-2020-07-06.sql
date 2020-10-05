@@ -22,7 +22,7 @@ CREATE TABLE `affect` (
   `tearful` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
   `dysthymic` enum('yes','no') NOT NULL DEFAULT 'no',
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -42,7 +42,7 @@ CREATE TABLE `appearence` (
   `disheveled-unkempt` enum('yes','no') NOT NULL DEFAULT 'no',
   `malodorus` enum('yes','no') NOT NULL DEFAULT 'no',
   `others` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -59,7 +59,7 @@ CREATE TABLE `attitude` (
   `apathetic` enum('yes','no') NOT NULL DEFAULT 'no',
   `disorganized-behavior` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -72,7 +72,7 @@ CREATE TABLE `cognition` (
   `impaired` enum('yes','no') NOT NULL DEFAULT 'no',
   `fluctuating` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -83,7 +83,7 @@ CREATE TABLE `constitutional` (
   `ptUuid` char(36) NOT NULL,
   `vitals-signs-stable` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -97,7 +97,7 @@ CREATE TABLE `eye-contact` (
   `intense` enum('yes','no') NOT NULL DEFAULT 'no',
   `fleeting` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -113,7 +113,7 @@ CREATE TABLE `impulse-control` (
   `impaired` enum('yes','no') NOT NULL DEFAULT 'no',
   `limited` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -129,7 +129,7 @@ CREATE TABLE `insight` (
   `impaired` enum('yes','no') NOT NULL DEFAULT 'no',
   `limited` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -145,7 +145,7 @@ CREATE TABLE `judgement` (
   `impaired` enum('yes','no') NOT NULL DEFAULT 'no',
   `limited` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -157,7 +157,7 @@ CREATE TABLE `neurological` (
   `gait-and-station-normal` enum('yes','no') NOT NULL DEFAULT 'no',
   `gait-and-station-abnormal` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -171,7 +171,7 @@ CREATE TABLE `perception` (
   `command-ah` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT '+Command AH',
   `vh` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT '+VH',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -184,7 +184,7 @@ CREATE TABLE `psychomotor` (
   `agitated` enum('yes','no') NOT NULL DEFAULT 'no',
   `retarded` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -200,7 +200,7 @@ CREATE TABLE `speech` (
   `pressured` enum('yes','no') NOT NULL DEFAULT 'no',
   `mumbling` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -223,7 +223,7 @@ CREATE TABLE `thought-content` (
   `obsessions` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT '+obsessions',
   `passive-death-wish` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'Passive death wish',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)
@@ -240,7 +240,7 @@ CREATE TABLE `thought-process` (
   `flight-of-ideas` enum('yes','no') NOT NULL DEFAULT 'no',
   `poverty-of-thought` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
   PRIMARY KEY (`ptUuid`)

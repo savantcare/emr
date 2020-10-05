@@ -7,7 +7,7 @@ CREATE TABLE `bloodPressure` (
   `diastolicValue` int(11) NOT NULL COMMENT 'mm Hg',
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -19,7 +19,7 @@ CREATE TABLE `bloodSugar` (
   `relationToMeal` enum('Before breakfast','After breakfast','Before lunch','After lunch','Before dinner','After dinner','Bed time','Other') NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
    PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -30,7 +30,7 @@ CREATE TABLE `BMI` (
   `bmiValue` decimal(10,2) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -42,7 +42,7 @@ CREATE TABLE `height` (
   `heightInInch` int(4) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -54,7 +54,7 @@ CREATE TABLE `oxygenSaturation` (
   `oxygenSaturation` int(11) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -66,7 +66,7 @@ CREATE TABLE `pulse` (
   `beatsPerMinuteValue` int(4) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -78,7 +78,7 @@ CREATE TABLE `temperature` (
   `temperatureInFarehnite` decimal(10,0) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
    PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -90,7 +90,7 @@ CREATE TABLE `waistCircumference` (
   `waistCircumferenceInInches` decimal(10,2) NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -102,7 +102,7 @@ CREATE TABLE `weight` (
   `weightInPounds` decimal(10,2) NOT NULL,
   `timeOfEvaluation` date DEFAULT NULL,
   `Notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

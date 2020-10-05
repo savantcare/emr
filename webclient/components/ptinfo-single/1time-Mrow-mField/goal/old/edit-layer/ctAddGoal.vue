@@ -190,7 +190,7 @@ export default {
               score: item.score,
               patientUUID: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
               // uuid: uniqid(),
-              recordChangedByUUID: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+              recordChangedByUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
             })
           })
           console.log('goalList=> ', goalList)

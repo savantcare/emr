@@ -20,7 +20,7 @@ export default class clientSideTblPatientDiagnosis extends clientSideTableManage
       masterDiagnosisId: this.number(null),
       patientUUID: this.string(null),
       discontinueNote: this.string(null),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

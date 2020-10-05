@@ -29,7 +29,7 @@ class TemperatureController extends Controller
     To check temperature/create in postman make a post request with the following JSON:
     Open postman desktop app and then:
     URL: http://localhost:8000/public/api/temperature/v20/
-    Post / Body raw: {"rowToUpsert":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","temperatureInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUUID":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
+    Post / Body raw: {"rowToUpsert":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","temperatureInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
     */
 
 
@@ -43,10 +43,10 @@ class TemperatureController extends Controller
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $temperatureInFarehnite = $requestData['data']['temperatureInFarehnite'];
         $notes = $requestData['data']['notes'];
-        $recordChangedByUUID = $requestData['data']['recordChangedByUUID'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertTempereture = DB::statement("INSERT INTO `sc_body_measurements`.`temperature` (`serverSideRowUuid`, `ptUuid`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$temperatureInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
+        $insertTempereture = DB::statement("INSERT INTO `sc_body_measurements`.`temperature` (`serverSideRowUuid`, `ptUuid`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$temperatureInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertTempereture, 201);
     }
@@ -55,7 +55,7 @@ class TemperatureController extends Controller
     To check temperature/update in postman make a put request with the following JSON:
     Open postman desktop app and then:
     URL: http://localhost:8000/public/api/temperature/v20/
-    Put / Body JSON: {"rowToUpsert":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","temperatureInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUUID":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
+    Put / Body JSON: {"rowToUpsert":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","temperatureInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
     */
 
 
@@ -67,10 +67,10 @@ class TemperatureController extends Controller
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
         $temperatureInFarehnite = $requestData['rowToUpsert']['temperatureInFarehnite'];
         $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUUID = $requestData['rowToUpsert']['recordChangedByUUID'];
+        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateTempereture = DB::statement("UPDATE `sc_body_measurements`.`temperature` SET `temperatureInFarehnite` = {$temperatureInFarehnite}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUUID` = '{$recordChangedByUUID}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `temperature`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
+        $updateTempereture = DB::statement("UPDATE `sc_body_measurements`.`temperature` SET `temperatureInFarehnite` = {$temperatureInFarehnite}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `temperature`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
 
         return response()->json($updateTempereture, 200);
     }

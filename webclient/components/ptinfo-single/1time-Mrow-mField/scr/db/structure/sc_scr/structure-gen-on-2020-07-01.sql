@@ -14,7 +14,7 @@ CREATE TABLE `phq9PtResponses` (
   `question8` enum('0','1','2','3') DEFAULT NULL,
   `question9` enum('0','1','2','3') DEFAULT NULL,
   `question10` enum('0','1','2','3') DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -26,7 +26,7 @@ CREATE TABLE `scrAssignedToPts` (
   `scrUUID` char(36) DEFAULT NULL,
   `ptUuid` char(36) DEFAULT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

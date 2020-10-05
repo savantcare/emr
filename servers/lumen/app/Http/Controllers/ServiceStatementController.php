@@ -33,7 +33,7 @@ class ServiceStatementController extends Controller
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
-            'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
        
         $ServiceStatement = ServiceStatement::insertGetId($serviceStatementData);

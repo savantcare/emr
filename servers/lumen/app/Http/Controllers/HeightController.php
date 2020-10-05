@@ -36,7 +36,7 @@ class HeightController extends Controller
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
-            'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
        
         $Height = Height::insertGetId($heightData);

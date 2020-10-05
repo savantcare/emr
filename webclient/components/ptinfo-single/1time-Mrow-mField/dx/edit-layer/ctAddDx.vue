@@ -195,7 +195,7 @@ export default {
             this.updateData.startDate = this.daDxForm.diagnosis[0].startDate
             this.updateData.score = this.daDxForm.diagnosis[0].score
             this.updateData.deletedByUserId = this.userId
-            this.updateData.recordChangedByUUID = this.userId
+            this.updateData.recordChangedByUuid = this.userId
             this.$store.dispatch('updateGoal', {
               data: this.updateData,
               notify: this.$notify,
@@ -210,7 +210,7 @@ export default {
                 score: item.score,
                 patientUUID: vm.id,
                 // uuid: uniqid(),
-                recordChangedByUUID: this.userId,
+                recordChangedByUuid: this.userId,
               })
             })
             await this.$store.dispatch('addGoal', {

@@ -9,7 +9,7 @@ CREATE TABLE `ctMaster`
 (255) DEFAULT NULL,
   `name` varchar
 (255) DEFAULT NULL,
-  `recordChangedByUUID` CHAR
+  `recordChangedByUuid` CHAR
 (36) NOT NULL,
   `recordChangedFromIPAddress` varchar
 (20) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `ctAllowedToAccessByEachUserRole`
 (36) NOT NULL,
   `msvlImportance` float NOT NULL COMMENT 'higher comes up on page',
   `csvlImportance` float NOT NULL
-  `recordChangedByUUID` char
+  `recordChangedByUuid` char
 (36) NOT NULL,
   `recordChangedFromIPAddress` varchar
 (255) DEFAULT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `search`
 (255) DEFAULT NULL,
   `action` varchar
 (255) NOT NULL,
-  `recordChangedByUUID` char
+  `recordChangedByUuid` char
 (36) NOT NULL,
   `recordChangedFromIPAddress` varchar
 (20) NOT NULL

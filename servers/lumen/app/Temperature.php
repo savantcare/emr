@@ -19,7 +19,7 @@ class Temperature extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'temperatureInFarehnite', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUuid', 'temperatureInFarehnite', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -37,4 +37,4 @@ class Temperature extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}  
+}

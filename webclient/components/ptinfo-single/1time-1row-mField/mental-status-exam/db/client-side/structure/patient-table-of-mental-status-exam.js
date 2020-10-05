@@ -28,7 +28,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
           When doctor assigns 2 to this patient then in this table mentalStatusExamMasterId = 2 */
       mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is mental status exam ID assigned to this patient coming from master table
       patientUUID: this.string(null),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

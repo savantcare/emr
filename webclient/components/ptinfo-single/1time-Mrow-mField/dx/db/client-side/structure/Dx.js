@@ -14,7 +14,7 @@ export default class Dx extends Model {
       dxOnDate: this.string(null).nullable(),
       // patientUUID: this.belongsTo(Patient, 'uid'),
       patientUUID: this.attr(null),
-      recordChangedByUUID: this.attr(null),
+      recordChangedByUuid: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),
       // Why store time as a number? Since vuex-orm does not understand dates.
       // The data types that vuex-orm understands are given at: https://vuex-orm.org/guide/model/defining-models.html#generic-type

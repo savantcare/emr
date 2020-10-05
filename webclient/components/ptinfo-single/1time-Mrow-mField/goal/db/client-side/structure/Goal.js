@@ -13,7 +13,7 @@ export default class Goals extends Model {
       uuid: this.attr(null),
       patientUUID: this.attr(null),
       description: this.attr(null),
-      recordChangedByUUID: this.attr(null),
+      recordChangedByUuid: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),
       score: this.number(0),
       // Why store time as a number? Since vuex-orm does not understand dates.

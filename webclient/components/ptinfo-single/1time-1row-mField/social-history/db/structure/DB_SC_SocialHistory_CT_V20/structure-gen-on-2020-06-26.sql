@@ -23,7 +23,7 @@ CREATE TABLE `birthplace` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -40,7 +40,7 @@ CREATE TABLE `currentEmploymentStatus` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -74,7 +74,7 @@ CREATE TABLE `educationHistories` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedOnDateTime` datetime DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
@@ -91,7 +91,7 @@ CREATE TABLE `employmentHistories` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedOnDateTime` datetime DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
@@ -124,7 +124,7 @@ CREATE TABLE `highestEducation` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -141,7 +141,7 @@ CREATE TABLE `livesIn` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) DEFAULT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -158,7 +158,7 @@ CREATE TABLE `livesWith` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -175,7 +175,7 @@ CREATE TABLE `maritalHistories` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedOnDateTime` datetime DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
@@ -191,7 +191,7 @@ CREATE TABLE `numberOfChildren` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedOnDateTime` datetime DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
@@ -208,7 +208,7 @@ CREATE TABLE `numberOfLivingChildren` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -225,7 +225,7 @@ CREATE TABLE `otherMajorLifeEvents` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedOnDateTime` datetime DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
@@ -257,7 +257,7 @@ CREATE TABLE `socialHistoryFamily` (
   `value` varchar(255) NOT NULL,
   `relationship` varchar(20) DEFAULT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -274,7 +274,7 @@ CREATE TABLE `socialHistoryFreeText` (
   `uuidOfPatient` char(36) NOT NULL,
   `description` mediumtext NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -308,7 +308,7 @@ CREATE TABLE `socialHistoryMultiPointChild` (
   `timeValue` varchar(128) NOT NULL,
   `startDate` varchar(255) NOT NULL,
   `notes` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -328,7 +328,7 @@ CREATE TABLE `socialHistoryMultiPointEducation` (
   `timeValue` varchar(128) NOT NULL,
   `startDate` varchar(255) NOT NULL,
   `endDate` varchar(255) NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -349,7 +349,7 @@ CREATE TABLE `socialHistoryMultiPointEmployment` (
   `startDate` varchar(255) NOT NULL,
   `endDate` varchar(255) NOT NULL,
   `notes` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -370,7 +370,7 @@ CREATE TABLE `socialHistoryMultiPointMarital` (
   `startDate` varchar(255) NOT NULL,
   `endDate` varchar(255) NOT NULL,
   `notes` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -392,7 +392,7 @@ CREATE TABLE `socialHistoryOtherMajorLifeEvents` (
   `notes` text DEFAULT NULL,
   `description` text DEFAULT NULL,
   `entryCreatedFrom` enum('intake_psychiatrist','intake_therapist','intake_rehab','') DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -409,7 +409,7 @@ CREATE TABLE `userDateOfBirth` (
   `uuidOfPatient` char(36) NOT NULL,
   `dateOfBirth` date DEFAULT NULL,
   `dateOfBirthNotes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -426,7 +426,7 @@ CREATE TABLE `userGender` (
   `uuidOfPatient` char(36) NOT NULL,
   `genderTypeID` char(36) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)

@@ -31,7 +31,7 @@ class WaistCircumferenceController extends Controller
             'waistCircumferenceInInches' => $requestData['data']['waistCircumferenceInInches'],
             'timeOfMeasurement' => $requestData['data']['timeOfMeasurement'],
             'notes' => $requestData['data']['notes'],
-            'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
 
         $waistCircumferenceObj = WaistCircumference::insertGetId($waistCircumferenceData);

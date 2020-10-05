@@ -29,7 +29,7 @@ CREATE TABLE `patientAppointments` (
   `providerUUID` char(36) DEFAULT NULL,
   `dateTimeOfAppt` datetime DEFAULT NULL,
   `stateOfAppt` enum('apptScheduled','apptCancelled','apptNoteNotLocked','apptNoteLocked') DEFAULT NULL,
-  `recordChangedByUUID` char(36) DEFAULT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT '',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

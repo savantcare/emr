@@ -10,7 +10,7 @@ CREATE TABLE `dx` (
   `icd10Code` varchar(50) DEFAULT NULL,
   `dxDeleteNotes` varchar(255) DEFAULT NULL,
   `dxOnDate` datetime DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -23,7 +23,7 @@ CREATE TABLE `dxa` (
   `dxId` int(11) NOT NULL,
   `uid` char(36) NOT NULL,
   `assessment` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -36,7 +36,7 @@ CREATE TABLE `dsmMasterCodes` (
   `name` varchar(128) DEFAULT NULL,
   `dsm5Code` varchar(50) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -48,7 +48,7 @@ CREATE TABLE `icd10AndScreenMappingDetails` (
   `uuid` char(36) NOT NULL,
   `icd10ID` int(11) NOT NULL,
   `screenID` int(11) NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -60,7 +60,7 @@ CREATE TABLE `icd10MasterCodes` (
   `uuid` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `icd10Code` varchar(255) NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -79,7 +79,7 @@ CREATE TABLE `ptReportedDx` (
   `endDate` date DEFAULT NULL,
   `agree` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -91,7 +91,7 @@ CREATE TABLE `ptReportedDxNote` (
   `uuid` char(36) NOT NULL,
   `dxReportedId` char(36) NOT NULL,
   `note` text NOT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -111,7 +111,7 @@ CREATE TABLE `ruledOutDx` (
   `endDate` timestamp NULL DEFAULT NULL,
   `ruledOutBy` int(10) UNSIGNED DEFAULT NULL,
   `ruledOutOn` datetime DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
@@ -124,7 +124,7 @@ CREATE TABLE `ruledOutNotes` (
   `uuid` char(36) NOT NULL,
   `ruledOutId` char(36) NOT NULL,
   `note` text DEFAULT NULL,
-  `recordChangedByUUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

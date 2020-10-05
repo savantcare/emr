@@ -229,7 +229,7 @@ export default {
       // create screen data rowSet
       // responseUUID: uniqid(),
       screenDetailData.patientUUID = this.$route.query.patient_id
-      screenDetailData.recordChangedByUUID = this.getUserId
+      screenDetailData.recordChangedByUuid = this.getUserId
       screenDetailData.recordChangedFromIPAddress = ''
       screenDetailData.question10 = this.question10 == null ? null : String(this.question10)
 

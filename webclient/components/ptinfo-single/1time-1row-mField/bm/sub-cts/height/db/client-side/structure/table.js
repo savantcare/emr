@@ -32,7 +32,7 @@ export default class ptHeight extends clientSideTableManage {
       timeOfMeasurementInMilliseconds: this.number(null),
       notes: this.string(null),
 
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

@@ -11,7 +11,7 @@ CREATE TABLE `doctorRecsForPts` (
   `priority` int(11) DEFAULT NULL,
   `isAutoRec` int(11) DEFAULT NULL,
   `autoRecsOrderId` int(11) DEFAULT NULL,
-  `recordChangedByUUID` CHAR(36) NOT NULL,
+  `recordChangedByUuid` CHAR(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

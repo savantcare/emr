@@ -24,7 +24,7 @@ export default class ptDateOfBirth extends clientSideTableManage {
 
       dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/structure/table.js
       notes: this.string(null),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 

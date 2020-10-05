@@ -27,7 +27,7 @@ export default class phoneNumbers extends clientSideTableManage {
       phoneNumber: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
-      recordChangedByUUID: this.string(null),
+      recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 
