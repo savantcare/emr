@@ -4,7 +4,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 
 <template>
   <div>
-    <el-card>
+    <el-card style="overflow: visible; height: 65px">
       <el-col :span="6" class="ml-2" style="display: flex; align-items: center">
         <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
         <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
