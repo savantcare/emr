@@ -2,7 +2,7 @@
 https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
-  <div :style="sendCssVariablesToStyleSheet">
+  <div>
     <clientSideTblOfAppointmentsInsertData />
     <!-- TODO: need to move it to init file 
       To use vue-slider the key concepts are 
@@ -119,6 +119,22 @@ export default {
     this.dButtonTypes['locked'] = 'success'
   },
   computed: {
+    sendCssVariablesToStyleSheet() {
+      console.log('css send called', this.dCurrentSliderValue)
+      const selectedSize = '2rem'
+      const defaultSize = '1.5rem'
+
+      if (this.dCurrentSliderValue == 0) {
+        return {
+          '--size-of-lock-icon': selectedSize,
+        }
+      } else {
+        return {
+          '--size-of-lock-icon': defaultSize,
+        }
+      }
+    },
+
     cfGetAllMarksForSlider() {
       if (this.arOfObjectsFromClientSideDB.length < 1) {
         this.arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
@@ -273,13 +289,6 @@ export default {
         this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentSliderValue]
       )
     },
-    sendCssVariablesToStyleSheet() {
-      console.log('css send called')
-      return {
-        // This find the color of the default icon
-        '--size-of-lock-icon': '15rem',
-      }
-    },
 
     async toggleApptNoteDisplay(pClientSideRowId) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
@@ -309,6 +318,8 @@ export default {
 </script>
 
 <style>
+/*  */
+
 .el-icon-lock {
   font-size: var(--size-of-lock-icon) !important;
   color: #67c23a !important;
