@@ -32,7 +32,7 @@ export default {
   css: ['element-ui/lib/theme-chalk/index.css'],
 
   // Section 5: Plugins to load before mounting the App https://nuxtjs.org/guide/plugins
-  plugins: ['@/plugins/element-ui'],
+  plugins: ['@/plugins/element-ui', { src: '@/plugins/vue-shortkey.js', mode: 'client' }],
 
   // Section 6: Auto import components https://nuxtjs.org/api/configuration-components
   components: true,

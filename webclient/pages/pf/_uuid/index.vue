@@ -26,6 +26,14 @@
     <ctFeedDrawer></ctFeedDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
+    <button v-shortkey="['f1']" @shortkey="theAction()" @click="theAction()">Open</button>
+    <el-dialog title="Tips" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+      <span>This is a message</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -78,6 +86,8 @@ Vue.use(
 
 Vue.component('VueSlider', VueSlider)
 
+Vue.use(require('vue-shortkey'))
+
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
@@ -92,7 +102,9 @@ export default {
     ctDeletedDrawer,
   },
   data() {
-    return {}
+    return {
+      dialogVisible: true,
+    }
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
@@ -100,6 +112,14 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
+    handleClose() {
+      this.dialogVisible = true
+      console.log('handleClose')
+    },
+    theAction() {
+      this.dialogVisible = true
+      console.log('Shortkey action')
+    },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
