@@ -99,6 +99,14 @@ export default {
       this.dApptStatusAtEachSliderMark = {}
       this.dApptCalendarTimeAtEachSliderMark = {}
 
+      // Goal: Rmeove types user does not want
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+          arOfObjectsFromClientSideDB.splice(i, 1)
+        }
+      }
+
+      // Get max and min values. Probablyt nor needed for equidistant
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         const apptStartMilliSecondsOnCalendar =
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
@@ -188,14 +196,6 @@ export default {
         ' : ' +
         moment(this.dApptCalendarTimeAtEachSliderMark[value]).format('MMMM Do YYYY, h:mm a')
       )
-    },
-
-    handleCloseOfSettingsDialog(done) {
-      this.dConfigProportionalOrEquiDistant = 'Proportional'
-      this.dIsDialogVisible = false
-      // If I do not call the computed function the slider does not update itself.
-      this.cfGetAllMarksForSlider
-      console.log('settings closed')
     },
 
     mfHandleUserGeneratedSliderEvent(pEventValue) {
