@@ -188,7 +188,7 @@ export default {
     // This is a lifecycle hook. Other lifecycle hooks are created, updated etc. Ref: https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
 
     const params = {
-      patientUUID: this.$route.query.patient_id,
+      patientUuid: this.$route.query.patient_id,
       screentype: 'PHQ9',
       notify: this.$notify,
     }
@@ -228,7 +228,7 @@ export default {
 
       // create screen data rowSet
       // responseUUID: uniqid(),
-      screenDetailData.patientUUID = this.$route.query.patient_id
+      screenDetailData.patientUuid = this.$route.query.patient_id
       screenDetailData.recordChangedByUuid = this.getUserId
       screenDetailData.recordChangedFromIPAddress = ''
       screenDetailData.question10 = this.question10 == null ? null : String(this.question10)
@@ -246,7 +246,7 @@ export default {
       await this.$store.dispatch('storeScreeningDetail', {
         data: [screenDetailData],
         notify: this.$notify,
-        patientUUID: this.$route.query.patient_id,
+        patientUuid: this.$route.query.patient_id,
         updateFlag: this.updateFlag,
         screentype: 'PHQ9',
         // date: apptDate

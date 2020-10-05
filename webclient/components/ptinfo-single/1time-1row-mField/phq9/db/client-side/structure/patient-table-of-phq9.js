@@ -18,7 +18,7 @@ export default class phq9ForPatientClass extends clientSideTableManage {
 
       clientSideUniqueRowId: this.uid(() => intUniqueID()),
       serverSideRowUuid: this.uid(() => uuidv1()),
-      patientUUID: this.string(null),
+      patientUuid: this.string(null),
 
       phq9QuestionMasterId: this.number(null),
       optionValueChosenByPatient: this.number(null),

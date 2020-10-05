@@ -25,7 +25,7 @@ CREATE TABLE `ctAllowedToAccessByEachUserRole`
 (36) NOT NULL ,
   `roleUUID` char
 (36) NOT NULL,
-  `componentUUID` char
+  `componentUuid` char
 (36) NOT NULL,
   `msvlImportance` float NOT NULL COMMENT 'higher comes up on page',
   `csvlImportance` float NOT NULL
@@ -42,7 +42,7 @@ CREATE TABLE `search`
 (
   `uuid` char
 (36) NOT NULL,
-  `componentUUID` char
+  `componentUuid` char
 (36) DEFAULT NULL,
   `searchText` varchar
 (255) DEFAULT NULL,

@@ -19,6 +19,6 @@ SET time_zone = "+00:00";
 -- Dumping data for table `patientAppointments`
 --
 
-INSERT INTO `patientAppointments` (`uuid`, `patientUUID`, `providerUUID`, `dateTimeOfAppt`, `stateOfAppt`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `patientAppointments` (`uuid`, `patientUuid`, `providerUUID`, `dateTimeOfAppt`, `stateOfAppt`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('ae339746-87c8-4214-92ad-cc219f8b21b1', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '1', '2020-08-11 17:42:41', 'apptScheduled', '2', ''),
 ('df7a3d43-edf0-4f8c-a1f3-a0807109ec51', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '1', '2020-05-11 17:42:41', 'apptScheduled', '2', '');

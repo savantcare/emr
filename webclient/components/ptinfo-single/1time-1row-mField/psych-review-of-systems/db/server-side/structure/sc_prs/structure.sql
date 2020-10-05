@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `adhd` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `inattention` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: INATTENTION',
   `hyperactivity` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: HYPERACTIVITY',
   `careless-mistakes-or-poor-attention-to-detail` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Careless mistakes or poor attention to detail',
@@ -53,7 +53,7 @@ CREATE TABLE `adhd` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `adhd` (
 --
 
 CREATE TABLE `anorexia` (  
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `food-restriction-leading-to-significantly-low-weight` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Food restriction leading to significantly low weight',
   `intense-fear-of-gaining-weight` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Intense fear of gaining weight or behavior that interferes with wt gain',
   `body-image-disturbance-or-excess-influence-of-shape` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Body image disturbance, or excess influence of shape on self evaluation, or denial of seriousness of low body weight',
@@ -71,7 +71,7 @@ CREATE TABLE `anorexia` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -81,14 +81,14 @@ CREATE TABLE `anorexia` (
 --
 
 CREATE TABLE `bulimia` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `binge-eating-large-quantity-and-lack-of-control-of-eating` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Binge eating (large quantity and lack of control of eating)',
   `compensatory-behaviors-vomiting-laxatives-fasting-exercise` enum('0','.5','1','2','3','4') NOT NULL COMMENT 'Selectbox type, 0, .5, 1 to 4. Q: Compensatory behaviors (vomiting, laxatives, fasting, exercise)',
   `self-evaluation-highly-influenced-by-shape` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Self evaluation highly influenced by shape',
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -98,11 +98,11 @@ CREATE TABLE `bulimia` (
 --
 
 CREATE TABLE `dementia` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE `dementia` (
 --
 
 CREATE TABLE `depression` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `depressive-mood` enum('not present','sub syndromal','syndromal') NOT NULL,
   `interest` enum('not present','sub syndromal','syndromal') NOT NULL,
   `sleep` enum('not present','sub syndromal','syndromal') NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE `depression` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -135,7 +135,7 @@ CREATE TABLE `depression` (
 --
 
 CREATE TABLE `gad` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `excess-worry-or-anxiety` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'This is selectbox type. Q: Excess worry or anxiety',
   `difficult-to-control-worry` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Difficult to control worry',
   `restless-or-on-edge` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type. Q: Restless or on edge',
@@ -147,7 +147,7 @@ CREATE TABLE `gad` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -157,7 +157,7 @@ CREATE TABLE `gad` (
 --
 
 CREATE TABLE `gateway-mood-symptoms` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `num-days-felt-depressed-in-past-ten-days` tinyint(1) NOT NULL COMMENT 'Selectbox, 0 to 10. Q: In the past 10 days, how many days have you felt depressed for most of the day?',
   `num-days-felt-low-interest-or-motivation-in-past-ten-days` tinyint(1) NOT NULL COMMENT 'Selectbox, 0 to 10. Q: In the past 10 days, how many days have you felt low interest or motivation throughout most of the day?',
   `num-days-abnormally-irritable-in-past-ten-days` tinyint(1) NOT NULL COMMENT 'Selectbox, 0 to 10. Q: In the past 10 days, how many days have you been abnormally irritable throughout most of the day?',
@@ -166,7 +166,7 @@ CREATE TABLE `gateway-mood-symptoms` (
   `how-difficult-to-the-above-symptoms-make-your-day-to-day-life` enum('Not at all','Somewhat difficult','Very difficult','Extremely difficult','Incapacitating') NOT NULL COMMENT 'Selectbox. Q: How difficult to the above symptoms make your day to day life?',
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -176,12 +176,12 @@ CREATE TABLE `gateway-mood-symptoms` (
 --
 
 CREATE TABLE `homicide-assessment` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `does-patient-report-homicidal-ideations` enum('yes','no') NOT NULL COMMENT 'Selectbox type Q: Does patient report homicidal ideations ?',
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -191,7 +191,7 @@ CREATE TABLE `homicide-assessment` (
 --
 
 CREATE TABLE `mania-hypomania` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `mood-elevation` enum('not present','sub syndromal','syndromal') NOT NULL,
   `irritable` enum('not present','sub syndromal','syndromal') NOT NULL,
   `energy-or-gda-or-pma` enum('not present','sub syndromal','syndromal') NOT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `mania-hypomania` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -213,7 +213,7 @@ CREATE TABLE `mania-hypomania` (
 --
 
 CREATE TABLE `ocd` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `obsessions` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'This is selectbox type. Q: Obsessions',
   `compulsions` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Compulsions',
   `distressing-or-impairing-or-time-consuming-more-than-1hr-per-day` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type. Q: Distressing or Impairing or Time-Consuming ( > 1 hr/day)',
@@ -221,7 +221,7 @@ CREATE TABLE `ocd` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 
@@ -232,14 +232,14 @@ CREATE TABLE `ocd` (
 --
 
 CREATE TABLE `panic-attacks` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `panic-attacks-per-month` text NOT NULL COMMENT 'This is textarea type. Q: Panic Attacks Per Month',
   `impairment-caused-by-panic-attacks` tinyint(1) NOT NULL COMMENT 'Selectbox type, 0 to 4. Q: Impairment Caused by Panic Attacks',
   `intensity-of-panic-attacks` tinyint(1) NOT NULL COMMENT 'Selectbox type, 0 to 4. Q: Intensity of Panic Attacks',
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -249,7 +249,7 @@ CREATE TABLE `panic-attacks` (
 --
 
 CREATE TABLE `psychosis` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `delusions` enum('not present','sub syndromal','syndromal') NOT NULL,
   `hallucinations` enum('not present','sub syndromal','syndromal') NOT NULL,
   `disorganized-speech` enum('not present','sub syndromal','syndromal') NOT NULL,
@@ -258,7 +258,7 @@ CREATE TABLE `psychosis` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -268,7 +268,7 @@ CREATE TABLE `psychosis` (
 --
 
 CREATE TABLE `ptsd` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `re-experiencing-symptoms` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Re-experiencing Symptoms',
   `avoidance-symptoms` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Avoidance Symptoms',
   `arousal-symptoms` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Arousal Symptoms',
@@ -276,7 +276,7 @@ CREATE TABLE `ptsd` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -286,12 +286,12 @@ CREATE TABLE `ptsd` (
 --
 
 CREATE TABLE `sleep` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `average-number-of-hours-slept-per-night-doctors-assessment` text NOT NULL,
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -301,7 +301,7 @@ CREATE TABLE `sleep` (
 --
 
 CREATE TABLE `social-anxiety` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `marked-anxiety-about-1-or-more-social-situations` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'This is selectbox type. Q: Marked anxiety about 1 or more social situations',
   `fear-that-will-act-in-a-way-that-will-be-negatively-evaluated` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type Q: Fear that will act in a way that will be negatively evaluated',
   `social-situations-almost-always-provokes-anxiety` enum('not present','sub syndromal','syndromal') NOT NULL COMMENT 'Selectbox type. Q: Social situation(s) almost always provokes anxiety',
@@ -310,7 +310,7 @@ CREATE TABLE `social-anxiety` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -320,11 +320,11 @@ CREATE TABLE `social-anxiety` (
 --
 
 CREATE TABLE `subjective` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -334,7 +334,7 @@ CREATE TABLE `subjective` (
 --
 
 CREATE TABLE `substance-use` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `used-in-larger-amounts-or-over-longer-period-than-intended` enum('yes','no') NOT NULL COMMENT 'This is checkbox type. Q: Used in larger amounts or over longer period than intended',
   `persistent-desire-or-unsuccessful-efforts-to-cut-down-or-control` enum('yes','no') NOT NULL COMMENT 'Checkbox type Q: persistent desire or unsuccessful efforts to cut down or control use',
   `a-great-deal-of-time-spent-in-activities-necessary-to-obtain-sub` enum('yes','no') NOT NULL COMMENT 'checkbox type. Q: A great deal of time spent in activities necessary to obtain substance, use substance or recover from its effects',
@@ -348,7 +348,7 @@ CREATE TABLE `substance-use` (
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 -- --------------------------------------------------------
@@ -358,10 +358,10 @@ CREATE TABLE `substance-use` (
 --
 
 CREATE TABLE `suicide-assessment` (
-  `patientUUID` varchar(64) NOT NULL,
+  `patientUuid` varchar(64) NOT NULL,
   `does-patient-report-suicidal-ideations` enum('yes','no') NOT NULL COMMENT 'Selectbox type Q: Does patient report suicidal ideations ?',
   `note` text NOT NULL,
   `recordChangedByUuid` varchar(64) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
-  PRIMARY KEY (`patientUUID`)
+  PRIMARY KEY (`patientUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

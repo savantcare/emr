@@ -65,7 +65,7 @@ export default {
           if (dnCountG === 0) {
             await ormGoal
               .api()
-              .get('http://localhost:8000/goals?patientUUID=bfe041fa-073b-4223-8c69-0540ee678ff8')
+              .get('http://localhost:8000/goals?patientUuid=bfe041fa-073b-4223-8c69-0540ee678ff8')
 
             console.log('Number of goal in model =>', ormGoal.query().count())
             const arGoalEvalList = ormGoal.query().get()

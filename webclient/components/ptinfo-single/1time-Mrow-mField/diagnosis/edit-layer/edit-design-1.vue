@@ -96,7 +96,7 @@ export default {
         clientSideTblPatientDiagnosis.insert({
           data: {
             masterDiagnosisId: masterDiagnosisId,
-            patientUUID: 1,
+            patientUuid: 1,
           },
         })
       }

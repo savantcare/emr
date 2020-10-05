@@ -8,7 +8,7 @@ export default class Screening extends Model {
   static fields() {
     return {
       screenUUID: this.attr(null),
-      patientUUID: this.string(''),
+      patientUuid: this.string(''),
       screenName: this.string(''),
       scientificName: this.string(''),
       clinicalStudies: this.string(''),

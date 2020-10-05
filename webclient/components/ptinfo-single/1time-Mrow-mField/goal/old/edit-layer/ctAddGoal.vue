@@ -188,7 +188,7 @@ export default {
               description: item.description,
               startDate: item.startDate,
               score: item.score,
-              patientUUID: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+              patientUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
               // uuid: uniqid(),
               recordChangedByUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
             })
@@ -203,7 +203,7 @@ export default {
               },
               body: JSON.stringify({
                 data: goalList,
-                patientUUID: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+                patientUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
               }),
             })
             console.log('response=> ', response)

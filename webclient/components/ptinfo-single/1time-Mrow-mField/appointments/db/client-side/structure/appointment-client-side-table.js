@@ -20,7 +20,7 @@ export default class tblAppointments extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       apptStartMilliSecondsOnCalendar: this.number(2147483648000),
-      apptProviderUUID: this.string(null),
+      apptProviderUuid: this.string(null),
       apptStatus: this.string(null), // values can be cancelled / late-cancellation /  no-show / not-ready-for-lock / locked / not-locked
 
       recordChangedByUuid: this.string(null),

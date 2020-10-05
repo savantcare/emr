@@ -27,7 +27,7 @@ export default class ptName extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software. 
-      Each browser tab will only work for 1 patient. So no need to store patientUUID inside vue state 
+      Each browser tab will only work for 1 patient. So no need to store patientUuid inside vue state 
       ptUuid: this.string(null), */
 
       firstName: this.string(null),

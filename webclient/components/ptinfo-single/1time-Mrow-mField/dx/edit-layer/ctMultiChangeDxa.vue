@@ -73,7 +73,7 @@ export default {
         assessmentList: dx.assessmentList,
         currentAssessment: dx.currentAssessment,
         recordChangedByUuid: this.userId,
-        patientUUID: this.$route.query.patient_id,
+        patientUuid: this.$route.query.patient_id,
       }
       await this.$store.dispatch('changeDiagnosisAssessment', {
         data: newAssementData,

@@ -11,7 +11,7 @@ export default class Goals extends Model {
   static fields() {
     return {
       uuid: this.attr(null),
-      patientUUID: this.attr(null),
+      patientUuid: this.attr(null),
       description: this.attr(null),
       recordChangedByUuid: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),

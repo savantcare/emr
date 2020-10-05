@@ -128,7 +128,7 @@ export default {
             screenList.push({
               // uuid: uniqid(),
               screenUUID: item.value,
-              patientUUID: vm.id,
+              patientUuid: vm.id,
               notes: 'test note',
               recordChangedByUuid: this.getUserId,
               recordChangedFromIPAddress: '',
@@ -140,7 +140,7 @@ export default {
           await this.$store.dispatch('addPatientScreen', {
             data: screenList,
             notify: this.$notify,
-            patientUUID: vm.id,
+            patientUuid: vm.id,
             date: apptDate,
           })
 

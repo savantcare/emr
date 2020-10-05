@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `patientAppointments` (
   `uuid` char(36) NOT NULL,
-  `patientUUID` char(36) DEFAULT NULL,
+  `patientUuid` char(36) DEFAULT NULL,
   `providerUUID` char(36) DEFAULT NULL,
   `dateTimeOfAppt` datetime DEFAULT NULL,
   `stateOfAppt` enum('apptScheduled','apptCancelled','apptNoteNotLocked','apptNoteLocked') DEFAULT NULL,

@@ -11,7 +11,7 @@ export default class Dxa extends Model {
       uuid: this.uid(),
       dxUUID: this.attr(null),
       dx: this.belongsTo(Dx, 'dxUUID'),
-      patientUUID: this.attr(null),
+      patientUuid: this.attr(null),
       dxAssessment: this.string(null).nullable(),
       recordChangedByUuid: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),

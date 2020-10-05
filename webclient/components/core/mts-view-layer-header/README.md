@@ -86,7 +86,7 @@ timeOfApptLock is the ROW_START when stateOfAppt changes to 'apptNoteLocked'
         weightsEvalAtEachRowEnd[mts(20th Feb 10:30 AM)] = 190,mts(2nd Jan 11AM)
 
         To generate the above array the query executed on the mariaDB server is:
-        SELECT *,ROW_END FROM weights FOR SYSTEM_TIME ALL where patientUUID=current_patient_UUID;
+        SELECT *,ROW_END FROM weights FOR SYSTEM_TIME ALL where patientUuid=current_patient_UUID;
 
         To show data on graph:
         Take all values from weightsEvalAtEachRowEnd as the Y axis and all EvalTime as X axis.
@@ -137,10 +137,10 @@ Ref: https://github.com/vuejs/vuex/issues/414
 
 When the page loads for first time we look inside the map called "patientStateMap"
 
-if there is an existing patientUUID then we use the corresponding stateUUID
-If there is no patientUUID then we create the stateUUID and make a new entry in "patientStateMap"
+if there is an existing patientUuid then we use the corresponding stateUUID
+If there is no patientUuid then we create the stateUUID and make a new entry in "patientStateMap"
 
-patientUUID | stateUUID
+patientUuid | stateUUID
 zxcv | state_for_zxcv  
  swed | state_for_swed
 

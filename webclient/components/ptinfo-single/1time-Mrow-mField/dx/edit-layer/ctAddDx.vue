@@ -208,7 +208,7 @@ export default {
                 description: item.description,
                 startDate: item.startDate,
                 score: item.score,
-                patientUUID: vm.id,
+                patientUuid: vm.id,
                 // uuid: uniqid(),
                 recordChangedByUuid: this.userId,
               })
@@ -216,10 +216,10 @@ export default {
             await this.$store.dispatch('addGoal', {
               data: goalList,
               notify: this.$notify,
-              patientUUID: this.id,
+              patientUuid: this.id,
             })
             await this.$store.dispatch('getGoals', {
-              patientUUID: this.id,
+              patientUuid: this.id,
               notify: this.$notify,
             })
             this.daDxForm = {

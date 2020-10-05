@@ -15,7 +15,7 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 1601725467558,
         ROW_END: 1601726467558, // This is the time when the appt has been locked. This happens when the row is deleted.
-        apptProviderUUID: 1,
+        apptProviderUuid: 1,
         apptStatus: 'locked',
       },
     })
@@ -23,7 +23,7 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 1601726577658,
         ROW_END: 1601726667558,
-        apptProviderUUID: 1,
+        apptProviderUuid: 1,
         apptStatus: 'no-show',
       },
     })
@@ -31,7 +31,7 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 1601727477758,
         ROW_END: 1601726767558,
-        apptProviderUUID: 1,
+        apptProviderUuid: 1,
         apptStatus: 'late-cancellation',
       },
     })
@@ -39,7 +39,7 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 1601728477858,
         ROW_END: 1601726867558, // This is the time when the record was deleted.
-        apptProviderUUID: 1,
+        apptProviderUuid: 1,
         apptStatus: 'cancellation',
       },
     })
@@ -47,7 +47,7 @@ export default {
       data: {
         apptStartMilliSecondsOnCalendar: 1601729677958,
         ROW_END: 2147483648000, // un-locked means the record has not been deleted
-        apptProviderUUID: 1,
+        apptProviderUuid: 1,
         apptStatus: 'un-locked',
       },
     })

@@ -12,8 +12,8 @@ export default class Dx extends Model {
       icd10Code: this.string(null).nullable(),
       dxDeleteNotes: this.string(null).nullable(),
       dxOnDate: this.string(null).nullable(),
-      // patientUUID: this.belongsTo(Patient, 'uid'),
-      patientUUID: this.attr(null),
+      // patientUuid: this.belongsTo(Patient, 'uid'),
+      patientUuid: this.attr(null),
       recordChangedByUuid: this.attr(null),
       recordChangedFromIPAddress: this.attr(null),
       // Why store time as a number? Since vuex-orm does not understand dates.

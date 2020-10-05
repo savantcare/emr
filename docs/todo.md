@@ -93,7 +93,7 @@ Ref: cts/patient/Recommendations/stateDBSocket.js:6 Using apollo solves this pro
    There is a button to Lock appt when the point on the slider is clicked.
 
 4. Stage 3: Store addendums in the DB
-   apptUuid, componentUUID, AddendumText, recordChangedByUuid, recordChangedOnDateTime, recordChangedFromIPAddress
+   apptUuid, componentUuid, AddendumText, recordChangedByUuid, recordChangedOnDateTime, recordChangedFromIPAddress
 
 5. Not reverting back in case of failure to update
 
