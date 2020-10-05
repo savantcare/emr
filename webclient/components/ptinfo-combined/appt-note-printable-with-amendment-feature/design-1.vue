@@ -215,7 +215,7 @@ export default {
     },
     cfArOfServiceStatementForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
@@ -235,7 +235,7 @@ export default {
     cfArOfRemindersForDisplay() {
       let userSelectedApptReminderArray = []
 
-      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
         userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
           .query()
           .where('ROW_END', 2147483648000)
@@ -257,7 +257,7 @@ export default {
     },
     cfArOfMentalStatusExamForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
@@ -276,7 +276,7 @@ export default {
 
     cfArOfPsychReviewOfSystemsForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
@@ -312,7 +312,7 @@ export default {
       // In case there are no more appt then insert a appt. This is for testing.
       arOfObjectsFromClientSideDB = await clientSideTblOfAppointments
         .query()
-        .where('apptStatus', 'un-locked')
+        .where('apptStatus', 'unlocked')
         .get()
 
       if (arOfObjectsFromClientSideDB.length === 0) {
@@ -320,7 +320,7 @@ export default {
           data: {
             apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
             apptProviderUuid: 1,
-            apptStatus: 'un-locked',
+            apptStatus: 'unlocked',
             ROW_START: Math.floor(Date.now()),
           },
         })

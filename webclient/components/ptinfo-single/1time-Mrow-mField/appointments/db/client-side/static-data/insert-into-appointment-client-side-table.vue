@@ -46,9 +46,9 @@ export default {
     clientSideTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601729677958,
-        ROW_END: 2147483648000, // un-locked means the record has not been deleted
+        ROW_END: 2147483648000, // unlocked means the record has not been deleted
         apptProviderUuid: 1,
-        apptStatus: 'un-locked',
+        apptStatus: 'unlocked',
       },
     })
   },

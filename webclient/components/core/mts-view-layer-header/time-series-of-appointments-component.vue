@@ -61,7 +61,7 @@ __proto__: Object
 
       <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
         <el-checkbox label="locked">Locked</el-checkbox>
-        <el-checkbox label="un-locked">Un Locked</el-checkbox>
+        <el-checkbox label="unlocked">Unlocked</el-checkbox>
         <el-checkbox label="late-cancellation">Late cancellation</el-checkbox>
         <el-checkbox label="no-show">No show</el-checkbox>
         <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
@@ -102,7 +102,7 @@ export default {
       dConfigProportionalOrEquiDistant: 'EquiDistant',
       dConfigChecklistOfApptTypesToShow: [
         'locked',
-        'un-locked',
+        'unlocked',
         'no-show',
         'late-cancellation',
         'cancellation',
@@ -115,7 +115,7 @@ export default {
     this.dButtonTypes['late-cancellation'] = 'danger'
     this.dButtonTypes['cancellation'] = 'warning'
     this.dButtonTypes['no-show'] = 'danger'
-    this.dButtonTypes['un-locked'] = 'success'
+    this.dButtonTypes['unlocked'] = 'success'
     this.dButtonTypes['locked'] = 'success'
   },
   computed: {
@@ -135,7 +135,7 @@ export default {
         obj['--color-of-lock-icon'] = 'rgb(192, 196, 204)'
       }
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'un-locked') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'unlocked') {
         obj['--size-of-unlock-icon'] = selectedSize
         obj['--color-of-unlock-icon'] = '#409eff' // main color from https://element.eleme.io/#/en-US/component/color
       } else {
@@ -251,7 +251,7 @@ export default {
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
           labelAtEachMarkToStoreIconClass = 'el-icon-lock'
         }
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
           labelAtEachMarkToStoreIconClass = 'el-icon-unlock'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
