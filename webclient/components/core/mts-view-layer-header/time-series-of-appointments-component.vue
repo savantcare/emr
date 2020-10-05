@@ -29,8 +29,8 @@ __proto__: Object
       container="true"
       absorb="true"
       :included="true"
-      @drag-start="mfHandleSliderEvent"
-      @change="mfHandleSliderEvent"
+      @drag-start="mfHandleUserGeneratedSliderEvent"
+      @change="mfHandleUserGeneratedSliderEvent"
       :dMinApptStartMilliseconds="0"
       :dMaxApptStartMilliseconds="100"
       :tooltip-formatter="getTooltipForThisMark"
@@ -38,7 +38,7 @@ __proto__: Object
       <template v-slot:label="{ label, active }">
         <button
           type="button"
-          @click="mfHandleSliderEvent"
+          @click="mfHandleUserGeneratedSliderEvent"
           style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
           :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
         ></button>
@@ -106,7 +106,6 @@ export default {
 
       const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
 
-      console.log(arOfObjectsFromClientSideDB)
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
       arOfObjectsFromClientSideDB.sort(function (a, b) {
         return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
@@ -115,8 +114,6 @@ export default {
           ? -1
           : 0
       })
-
-      console.log(arOfObjectsFromClientSideDB)
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         // Update the slider component
@@ -161,6 +158,7 @@ export default {
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
       }
       console.log(this.dMarksOnSlider)
+      this.dMarksOnSlider[100] = 'el-icon-setting'
       return this.dMarksOnSlider
     },
   },
@@ -175,7 +173,7 @@ export default {
       )
     },
 
-    mfHandleSliderEvent(pEventValue) {
+    mfHandleUserGeneratedSliderEvent(pEventValue) {
       const valueOfSlider = this.currentSliderValue
 
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
