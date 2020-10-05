@@ -26,16 +26,12 @@
     <ctFeedDrawer></ctFeedDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
-    <button
-      v-shortkey="['f1']"
-      @shortkey="actOnF1ShortKeyPressed()"
-      @click="actOnF1ShortKeyPressed()"
-    >
-      Open
-    </button>
+
     <el-dialog
+      v-shortkey="['f1']"
+      @shortkey.native="actOnF1ShortKeyPressed()"
       title="SC Brain"
-      :visible.sync="controlVisibilityOfScBrainDialog"
+      :visible.sync="currentVisibilityStatusOfScBrainDialog"
       width="30%"
       :before-close="actOnScBrainDialogClosed"
     >
@@ -108,7 +104,7 @@ export default {
   },
   data() {
     return {
-      controlVisibilityOfScBrainDialog: true,
+      currentVisibilityStatusOfScBrainDialog: false,
     }
   },
   mounted() {
@@ -118,11 +114,11 @@ export default {
   },
   methods: {
     actOnScBrainDialogClosed() {
-      this.controlVisibilityOfScBrainDialog = false
+      this.currentVisibilityStatusOfScBrainDialog = false
       console.log('actOnScBrainDialogClosed')
     },
     actOnF1ShortKeyPressed() {
-      this.controlVisibilityOfScBrainDialog = !this.controlVisibilityOfScBrainDialog
+      this.currentVisibilityStatusOfScBrainDialog = !this.currentVisibilityStatusOfScBrainDialog
       console.log('Shortkey action')
     },
     mfUpdateSocketClientId() {
