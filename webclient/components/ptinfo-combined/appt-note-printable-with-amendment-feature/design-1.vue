@@ -69,11 +69,16 @@
     </div>
 
     <!-- SECTOION 5  SERVICE STATEMENTS -->
-    <el-row type="flex" justify="space-between" class="ssh3">
-      <el-col :span="10">
-        <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
+    <el-row
+      type="flex"
+      justify="left"
+      class="ssh3"
+      style="padding-top: 20px; padding-bottom: 10px; border: 1"
+    >
+      <el-col :span="8">
+        <h3>Service statements</h3>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="2">
         <el-popover placement="right" width="400" v-model="visible1">
           <div style="text-align: right; margin: 0">
             <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
@@ -82,8 +87,7 @@
             slot="reference"
             class="el-icon-edit-outline"
             size="mini"
-            circle
-            style="display: none"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
           ></el-button>
         </el-popover>
       </el-col>
@@ -94,41 +98,59 @@
     </div>
 
     <!-- SECTOION 6 MENTAL STATUS EXAM-->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="mseh3">
-      Mental status exam
-      <el-popover placement="right" width="400" v-model="visible2">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <el-row
+      type="flex"
+      justify="left"
+      class="mseh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8">
+        <h3>Mental status exam</h3>
+      </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible2">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            size="mini"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          >
+          </el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
     <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
     </div>
     <!-- SECTOION 7 Psych review of systems  -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="prosh3">
-      Psych review of systems
-      <el-popover placement="right" width="400" v-model="visible3">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <el-row
+      type="flex"
+      justify="left"
+      class="prosh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8">
+        <h3>Psych review of systems</h3>
+      </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible3">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            size="mini"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
+
     <div
       v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
       :key="`ros - ${row.clientSideUniqRowId}`"
@@ -138,21 +160,28 @@
     </div>
 
     <!-- SECTOION 8 REMINDERS -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="remindersh3">
-      Reminders
-      <el-popover placement="right" width="400" v-model="visible4">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <el-row
+      type="flex"
+      justify="left"
+      class="remindersh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8">
+        <h3 class="remindersh3">Reminders</h3>
+      </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible4">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
     <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
       {{ row['description'] }}
     </div>
@@ -184,56 +213,71 @@
       </div>
     </div>
 
-    <!-- SECTOION 9 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="recommendationsh3">
-      Recommendations
-      <el-popover placement="right" width="400" v-model="visible5">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <!-- SECTOION 9: Recommendations -->
+    <el-row
+      type="flex"
+      justify="left"
+      class="recommendationsh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8"> <h3>Recommendations</h3> </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible5">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
 
-    <!-- SECTOION 10 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="medicationsh3">
-      Medications
-      <el-popover placement="right" width="400" v-model="visible6">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <!-- SECTOION 10: Medications -->
+    <el-row
+      type="flex"
+      justify="left"
+      class="medicationsh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8"> <h3>Medications</h3> </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible6">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
 
     <!-- SECTOION 11 -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="vitalsh3">
-      Vitals
-      <el-popover placement="right" width="400" v-model="visible7">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <el-row
+      type="flex"
+      justify="left"
+      class="vitalsh3"
+      style="padding-top: 20px; padding-bottom: 10px"
+    >
+      <el-col :span="8"> <h3>Vitals</h3> </el-col>
+      <el-col :span="2">
+        <el-popover placement="right" width="400" v-model="visible7">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
 
     <!-- SECTOION 12 -->
     <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
@@ -264,13 +308,13 @@ export default {
       patientCurrentApptObj: [],
       debug: false,
       amendmentData: '',
-      visible1: true,
-      visible2: true,
-      visible3: true,
-      visible4: true,
-      visible5: true,
-      visible6: true,
-      visible7: true,
+      visible1: false,
+      visible2: false,
+      visible3: false,
+      visible4: false,
+      visible5: false,
+      visible6: false,
+      visible7: false,
     }
   },
   filters: {
