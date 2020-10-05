@@ -5,7 +5,7 @@ import mentalStatusExamForPatientClass from './patient-table-of-mental-status-ex
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class mentalStatusExamMasterClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamMaster'
@@ -18,7 +18,7 @@ export default class mentalStatusExamMasterClass extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      mentalStatusExamMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each mental status exam
+      mentalStatusExamMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each mental status exam
       mentalStatusExamDescription: this.string(null),
       mentalStatusExamCategory: this.string(null),
       mentalStatusExamFieldType: this.string('bool'),

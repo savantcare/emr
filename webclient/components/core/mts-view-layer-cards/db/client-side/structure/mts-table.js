@@ -4,7 +4,7 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class multiTimeStateViewLayer extends clientSideTableManage {
   static entity = 'tblMultiTimeStateViewLayerCards'
@@ -16,7 +16,7 @@ export default class multiTimeStateViewLayer extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueId()),
       name: this.string(null),
       componentToShowPath: this.string(null),
       classificationOfComponent: this.string('health'),

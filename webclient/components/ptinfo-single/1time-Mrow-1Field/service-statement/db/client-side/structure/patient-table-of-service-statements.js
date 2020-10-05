@@ -4,7 +4,7 @@ import serviceStatementsMasterClass from './master-table-of-service-statements.j
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class serviceStatementsForPatientClass extends clientSideTableManage {
   static entity = 'tblServiceStatementsOfPatient'
@@ -17,7 +17,7 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
 
       /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementMasterId
          E.g: The  tblServiceStatementsMaster has:

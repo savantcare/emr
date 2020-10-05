@@ -4,7 +4,7 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class ptDateOfBirth extends clientSideTableManage {
   static entity = 'tblDateOfBirth'
@@ -19,7 +19,7 @@ export default class ptDateOfBirth extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/structure/table.js

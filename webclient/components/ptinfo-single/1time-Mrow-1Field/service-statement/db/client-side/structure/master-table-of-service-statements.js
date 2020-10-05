@@ -5,7 +5,7 @@ import serviceStatementsForPatientClass from './patient-table-of-service-stateme
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class serviceStatementsMasterClass extends clientSideTableManage {
   static entity = 'tblServiceStatementsMaster'
@@ -18,7 +18,7 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
     return {
       ...super.fields(),
 
-      serviceStatementMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      serviceStatementMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementDescription: this.string(null),
       serviceStatementCategory: this.string(null),
 

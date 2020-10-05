@@ -4,7 +4,7 @@ import phq9MasterClass from './master-table-of-phq9.js'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class phq9ForPatientClass extends clientSideTableManage {
   static entity = 'tblPhq9Patient'
@@ -16,7 +16,7 @@ export default class phq9ForPatientClass extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      clientSideUniqueRowId: this.uid(() => intUniqueID()),
+      clientSideUniqueRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
       patientUuid: this.string(null),
 

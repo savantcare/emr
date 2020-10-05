@@ -2,7 +2,7 @@
 import { Model } from '@vuex-orm/core'
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class commonForAllComponents extends Model {
   static entity = 'tblCommonForAllComponents'
@@ -14,7 +14,7 @@ export default class commonForAllComponents extends Model {
 
   static fields() {
     return {
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueId()),
       fieldName: this.string(''),
       fieldValue: this.string(''),
     }

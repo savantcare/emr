@@ -4,7 +4,7 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class ptBloodSugar extends clientSideTableManage {
   static entity = 'tblBloodSugar'
@@ -19,7 +19,7 @@ export default class ptBloodSugar extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       bloodSugarInBpm: this.number(null), // number type of vuex-orm will also store decimals

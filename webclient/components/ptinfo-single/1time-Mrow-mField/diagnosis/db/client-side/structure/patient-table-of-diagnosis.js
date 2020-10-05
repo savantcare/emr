@@ -5,7 +5,7 @@ import clientSideTblMasterDiagnosis from './master-table-of-diagnosis'
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class clientSideTblPatientDiagnosis extends clientSideTableManage {
   static entity = 'tablePatientOfDiagnosis'
@@ -16,7 +16,7 @@ export default class clientSideTblPatientDiagnosis extends clientSideTableManage
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()),
+      clientSideUniqRowId: this.uid(() => intUniqueId()),
       masterDiagnosisId: this.number(null),
       patientUuid: this.string(null),
       discontinueNote: this.string(null),

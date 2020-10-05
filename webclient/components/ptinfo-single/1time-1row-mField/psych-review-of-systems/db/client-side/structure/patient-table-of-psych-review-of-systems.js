@@ -4,7 +4,7 @@ import psychReviewOfSystemsMasterClass from './master-table-of-psych-review-of-s
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class psychReviewOfSystemsForPatientClass extends clientSideTableManage {
   static entity = 'tblPsychReviewOfSystemsOfPatient'
@@ -17,7 +17,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientSideTable
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
 
       /* This field is used to store the value of tblPsychReviewOfSystemsMaster/psychReviewOfSystemsMasterId
          E.g: The  tblPsychReviewOfSystemsMaster has:

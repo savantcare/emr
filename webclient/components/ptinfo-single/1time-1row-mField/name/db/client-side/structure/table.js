@@ -5,7 +5,7 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class ptName extends clientSideTableManage {
   static entity = 'tblName' // this shows up in "vue dev console" -> vuex -> entities -> tblName
@@ -23,7 +23,7 @@ export default class ptName extends clientSideTableManage {
     return {
       ...super.fields(),
 
-      clientSideUniqRowId: this.uid(() => intUniqueID()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
+      clientSideUniqRowId: this.uid(() => intUniqueId()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software. 

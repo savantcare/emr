@@ -5,7 +5,7 @@ import psychReviewOfSystemsForPatientClass from './patient-table-of-psych-review
 const { v1: uuidv1 } = require('uuid')
 
 let count = 0
-const intUniqueID = () => ++count
+const intUniqueId = () => ++count
 
 export default class psychReviewOfSystemsMasterClass extends clientSideTableManage {
   static entity = 'tblPsychReviewOfSystemsMaster'
@@ -18,7 +18,7 @@ export default class psychReviewOfSystemsMasterClass extends clientSideTableMana
     return {
       ...super.fields(),
 
-      psychReviewOfSystemsMasterId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work This is the unique ID for each psych review of systems
+      psychReviewOfSystemsMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each psych review of systems
       psychReviewOfSystemsDescription: this.string(null),
       psychReviewOfSystemsCategory: this.string(null),
       psychReviewOfSystemsFieldType: this.string('radio'), // valid values are bool, radio, textarea

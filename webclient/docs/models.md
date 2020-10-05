@@ -58,8 +58,8 @@
 # Q4) How to give numeric ID to each row ?
 
       Solution comes from cue on slack given on 10th July 2020
-        The closure passed into this.uid(() => intUniqueID()) simply invokes the closure when the model is instructed to generate a uid. The callback simply needs to return a value.
+        The closure passed into this.uid(() => intUniqueId()) simply invokes the closure when the model is instructed to generate a uid. The callback simply needs to return a value.
         In it’s simplest form, all you need for a primitive value is:
         let count = 0
-        const intUniqueID = () => ++count
-        this.uid(() => intUniqueID())
+        const intUniqueId = () => ++count
+        this.uid(() => intUniqueId())
