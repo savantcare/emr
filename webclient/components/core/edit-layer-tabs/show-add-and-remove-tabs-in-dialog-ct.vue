@@ -234,11 +234,11 @@ export default {
       }
     },
     // #endregion kbselect
-    mfHandleTabRemove(pTabBeingRemovedID) {
+    mfHandleTabRemove(pTabBeingRemovedId) {
       let tabToRemoveFoundAt = false // this is needed to find which tab to activate
       let loopCount = 0
       const arNewTabs = this.cfArTabsInEditLayer.filter((tab) => {
-        if (tab.id !== pTabBeingRemovedID) {
+        if (tab.id !== pTabBeingRemovedId) {
           loopCount++
           return true
         } else {

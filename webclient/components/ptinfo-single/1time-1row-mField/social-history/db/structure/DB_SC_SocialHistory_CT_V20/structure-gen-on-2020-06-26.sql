@@ -57,7 +57,7 @@ CREATE TABLE `currentMartialStatus` (
   `uuidOfPatient` char(36) NOT NULL,
   `value` varchar(255) NOT NULL,
   `notes` text DEFAULT NULL,
-  `recordChangedByUID` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   PRIMARY KEY (`uuid`)
@@ -424,7 +424,7 @@ CREATE TABLE `userDateOfBirth` (
 CREATE TABLE `userGender` (
   `uuid` char(36) NOT NULL,
   `uuidOfPatient` char(36) NOT NULL,
-  `genderTypeID` char(36) NOT NULL,
+  `genderTypeId` char(36) NOT NULL,
   `notes` text DEFAULT NULL,
   `recordChangedByUuid` char(36) NOT NULL,
   `recordChangedOnDateTime` datetime NOT NULL DEFAULT current_timestamp(),

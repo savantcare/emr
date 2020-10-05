@@ -655,7 +655,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUUID, deletedNote) {
+  static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUuid, deletedNote) {
     try {
       const socketClientObj = await clientSideTableOfCommonForAllComponents
         .query()
@@ -665,7 +665,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         )
         .first()
 
-      const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
+      const response = await fetch(`${this.apiUrl}/${rowUuid}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
