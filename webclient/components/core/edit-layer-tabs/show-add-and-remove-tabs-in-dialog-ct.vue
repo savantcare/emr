@@ -185,6 +185,8 @@ export default {
   methods: {
     // #region kbselect
     selectActiveTabFromKeyboard(pEvent) {
+      /*
+      Try to get this working with vue-shortkey. Note added by VK oct 5th 2020
       if (this.vblIsdialogHoldingTabsInEditLayerVisible === false) {
         // Rejection reason 1: 2nd layer not active
         return
@@ -232,6 +234,7 @@ export default {
       } else {
         // Rejection reason 3: User entered # is higher then max tabs
       }
+      */
     },
     // #endregion kbselect
     mfHandleTabRemove(pTabBeingRemovedId) {

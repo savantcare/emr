@@ -1,21 +1,39 @@
 <template>
   <div class="A4">
-    <el-row>
-      <el-col :span="2"
-        ><div class="grid-content" style="display: none">
-          <i class="el-icon-arrow-left"></i>
-
-          <i class="el-icon-document-copy"></i></div
-      ></el-col>
-      <el-col :span="20"
+    <el-row type="flex" justify="space-between">
+      <el-col :span="4"
+        ><div class="grid-content">
+          <el-button-group class="h1" style="float: left; display: none">
+            <el-button
+              class="el-icon-arrow-left"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+            <el-button
+              class="el-icon-document-copy"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+          </el-button-group>
+        </div>
+      </el-col>
+      <el-col :span="16"
         ><div class="grid-content">
           <h1 style="text-align: center">Appt Note (Confidential)</h1>
         </div></el-col
       >
-      <el-col :span="2"
-        ><div class="grid-content" style="display: none">
-          <i class="el-icon-document-copy"></i>
-          <i class="el-icon-arrow-right"></i></div
+      <el-col :span="4"
+        ><div class="grid-content">
+          <el-button-group class="h1" style="display: none">
+            <el-button
+              size="small"
+              class="el-icon-document-copy"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+            <el-button
+              size="small"
+              class="el-icon-arrow-right"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+          </el-button-group></div
       ></el-col>
     </el-row>
 
@@ -403,7 +421,7 @@ export default {
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
 }
 
-.el-row:hover .grid-content {
+.el-row:hover .h1 {
   display: inline-block !important;
 }
 
