@@ -1,7 +1,7 @@
 <template>
   <div>
     <showContentInCardComponent
-      propMainCardName="Body measurement"
+      propMainCardName="Vitals"
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Toggle card display',
