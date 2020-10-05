@@ -1,7 +1,7 @@
 use sc_bm;
 
-DROP TABLE IF EXISTS `bloodPressures`;
-CREATE TABLE `bloodPressures` (
+DROP TABLE IF EXISTS `bloodPressureLevels`;
+CREATE TABLE `bloodPressureLevels` (
   `ptUuid` char(36) NOT NULL,
   `systolicValue` int(11) NOT NULL COMMENT 'mm Hg',
   `diastolicValue` int(11) NOT NULL COMMENT 'mm Hg',
@@ -12,10 +12,10 @@ CREATE TABLE `bloodPressures` (
   PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
-DROP TABLE IF EXISTS `bloodSugar`;
-CREATE TABLE `bloodSugar` (
+DROP TABLE IF EXISTS `bloodSugarLevels`;
+CREATE TABLE `bloodSugarLevels` (
   `ptUuid` char(36) NOT NULL,
-  `bloodSugar` int(11) NOT NULL,
+  `bloodSugarLevels` int(11) NOT NULL,
   `relationToMeal` enum('Before breakfast','After breakfast','Before lunch','After lunch','Before dinner','After dinner','Bed time','Other') NOT NULL,
   `timeOfEvaluation` date NOT NULL,
   `Notes` text DEFAULT NULL,

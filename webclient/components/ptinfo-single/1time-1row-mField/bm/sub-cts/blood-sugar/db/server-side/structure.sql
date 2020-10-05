@@ -1,8 +1,8 @@
 use sc_body_measurements;
 
-DROP TABLE IF EXISTS `bloodSugar`;
+DROP TABLE IF EXISTS `bloodSugarLevels`;
 
-CREATE TABLE `bloodSugar` (
+CREATE TABLE `bloodSugarLevels` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `bloodSugarInBpm` int(11) DEFAULT NULL,
@@ -14,8 +14,8 @@ CREATE TABLE `bloodSugar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
 
 --
--- Dumping data for table `bloodSugar`
+-- Dumping data for table `bloodSugarLevels`
 --
 
-INSERT INTO `bloodSugar` (`serverSideRowUuid`, `ptUuid`, `bloodSugarInBpm`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `bloodSugarLevels` (`serverSideRowUuid`, `ptUuid`, `bloodSugarInBpm`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 75, 'test', 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL); 
