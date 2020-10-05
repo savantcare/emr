@@ -51,7 +51,7 @@ export default {
     Q) Why is firstProp needed?
         There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder 
         the user wants to change.
-        So firstProp is the remID being changed. The remID is the primary key coming from vuexOrm
+        So firstProp is the remId being changed. The remId is the primary key coming from vuexOrm
     
     Q) Why is this called firstProp?
         This Ct is called in a for loop. In the same for loop other Ct are also called.

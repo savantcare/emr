@@ -20,7 +20,7 @@ Every time the slide is changed the mfGetRemDescUsingCache() is again called 204
 How to solve this?
 1. Load with getNumOfCarouselSlides as 2. 
 2. Each time prev and next is clicked increment or descrement the local variable currentSlideNumber.
-3. getArrayOfRemIDsToShowInThisCard depends on this.diVirtualSlideNumber
+3. getArrayOfRemIdsToShowInThisCard depends on this.diVirtualSlideNumber
 
 -->
 <template>
@@ -60,10 +60,10 @@ How to solve this?
           -->
 
         <el-row type="flex" :gutter="20">
-          <el-col v-for="remID in getArrayOfRemIDsToShowInThisCard" :key="remID">
+          <el-col v-for="remId in getArrayOfRemIdsToShowInThisCard" :key="remId">
             <el-card>
               <!-- For diff types of formType see remcl/edit-design-1.vue -->
-              <ctChangeRem :first-prop="remID" form-type="embedded"></ctChangeRem>
+              <ctChangeRem :first-prop="remId" form-type="embedded"></ctChangeRem>
             </el-card>
           </el-col>
         </el-row>
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
-    getArrayOfRemIDsToShowInThisCard() {
+    getArrayOfRemIdsToShowInThisCard() {
       // TODO: Need to know when I am at the last cards
       console.log('The virtual slide number is', this.diVirtualSlideNumber)
       const firstCard = this.diVirtualSlideNumber * 3
