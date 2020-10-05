@@ -48,11 +48,14 @@ __proto__: Object
       </template>
     </vue-slider>
     <el-dialog title="Slider settings" :visible.sync="dIsDialogVisible" width="30%">
-      <span>Proportial or Equidistant</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dIsDialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="handleCloseOfSettingsDialog">Submit</el-button>
-      </span>
+      <span
+        ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional"
+          >Proportional</el-radio
+        >
+        <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant"
+          >Equi distant</el-radio
+        ></span
+      >
     </el-dialog>
   </div>
 </template>
