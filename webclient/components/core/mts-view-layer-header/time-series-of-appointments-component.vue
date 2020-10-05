@@ -123,16 +123,51 @@ export default {
       console.log('css send called', this.dCurrentSliderValue)
       const selectedSize = '2rem'
       const defaultSize = '1.5rem'
+      let obj = {}
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] == 'locked') {
-        return {
-          '--size-of-lock-icon': selectedSize,
-        }
+      console.log(this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue])
+
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'locked') {
+        obj['--size-of-lock-icon'] = selectedSize
+        obj['--color-of-lock-icon'] = '#67c23a'
       } else {
-        return {
-          '--size-of-lock-icon': defaultSize,
-        }
+        obj['--size-of-lock-icon'] = defaultSize
+        obj['--color-of-lock-icon'] = 'rgb(192, 196, 204)'
       }
+
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'un-locked') {
+        obj['--size-of-unlock-icon'] = selectedSize
+        obj['--color-of-unlock-icon'] = '#409eff'
+      } else {
+        obj['--size-of-unlock-icon'] = defaultSize
+        obj['--color-of-unlock-icon'] = 'rgb(192, 196, 204)'
+      }
+
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'late-cancellation') {
+        obj['--size-of-circle-close-icon'] = selectedSize
+        obj['--color-of-circle-close-icon'] = '#f56c6c'
+      } else {
+        obj['--size-of-circle-close-icon'] = defaultSize
+        obj['--color-of-circle-close-icon'] = 'rgb(192, 196, 204)'
+      }
+
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'cancellation') {
+        obj['--size-of-remove-outline-icon'] = selectedSize
+        obj['--color-of-remove-outline-icon'] = '#e6a23c'
+      } else {
+        obj['--size-of-remove-outline-icon'] = defaultSize
+        obj['--color-of-remove-outline-icon'] = 'rgb(192, 196, 204)'
+      }
+
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'no-show') {
+        obj['--size-of-warning-outline-icon'] = selectedSize
+        obj['--color-of-warning-outline-icon'] = '#f56c6c'
+      } else {
+        obj['--size-of-warning-outline-icon'] = defaultSize
+        obj['--color-of-warning-outline-icon'] = 'rgb(192, 196, 204)'
+      }
+
+      return obj
     },
 
     cfGetAllMarksForSlider() {
@@ -219,7 +254,7 @@ export default {
           labelAtEachMarkToStoreIconClass = 'el-icon-unlock'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-circle-close'
+          labelAtEachMarkToStoreIconClass = 'el-icon-warning-outline'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
           labelAtEachMarkToStoreIconClass = 'el-icon-remove-outline'
@@ -322,6 +357,24 @@ export default {
 
 .el-icon-lock {
   font-size: var(--size-of-lock-icon) !important;
-  color: #67c23a !important;
+  color: var(--color-of-lock-icon) !important;
+}
+
+.el-icon-unlock {
+  font-size: var(--size-of-unlock-icon) !important;
+  color: var(--color-of-unlock-icon) !important;
+}
+.el-icon-warning-outline {
+  font-size: var(--size-of-warning-outline-icon) !important;
+  color: var(--color-of-warning-outline-icon) !important;
+}
+.el-icon-remove-outline {
+  font-size: var(--size-of-remove-outline-icon) !important;
+  color: var(--color-of-remove-outline-icon) !important;
+}
+
+.el-icon-circle-close {
+  font-size: var(--size-of-circle-close-icon) !important;
+  color: var(--color-of-circle-close-icon) !important;
 }
 </style>
