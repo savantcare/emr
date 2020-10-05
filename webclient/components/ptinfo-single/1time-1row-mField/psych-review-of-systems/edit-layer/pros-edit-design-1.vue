@@ -54,9 +54,9 @@ export default {
   },
   mounted() {
     let eventName = 'event-from-ct-pros-delete-row'
-    this.$root.$on(eventName, (pRowID) => {
-      this.patientClientSideFieldValueModel[pRowID] = 0
-      this.mfSetValueInClientSideTable(-1, pRowID) // -1 indicates not looked at.
+    this.$root.$on(eventName, (pRowId) => {
+      this.patientClientSideFieldValueModel[pRowId] = 0
+      this.mfSetValueInClientSideTable(-1, pRowId) // -1 indicates not looked at.
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 

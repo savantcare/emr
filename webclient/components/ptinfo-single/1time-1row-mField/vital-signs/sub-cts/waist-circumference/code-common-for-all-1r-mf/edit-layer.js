@@ -114,8 +114,8 @@ export default {
 
     let eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
     // A sample event name is: 'event-from-ct-name-vl-save-this-row'
-    this.$root.$on(eventName, (pRowID) => {
-      this.dnClientSideIdOfCopiedRowBeingChanged = pRowID
+    this.$root.$on(eventName, (pRowId) => {
+      this.dnClientSideIdOfCopiedRowBeingChanged = pRowId
       this.mfOnReviewed()
     })
 
