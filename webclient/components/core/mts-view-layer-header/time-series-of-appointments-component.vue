@@ -124,7 +124,7 @@ export default {
       const selectedSize = '2rem'
       const defaultSize = '1.5rem'
 
-      if (this.dCurrentSliderValue == 0) {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] == 'locked') {
         return {
           '--size-of-lock-icon': selectedSize,
         }
