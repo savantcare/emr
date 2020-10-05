@@ -23,8 +23,10 @@
 <script>
 import clientSideTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
 import showContentInCardComponent from '@/components/ptinfo-single/common/show-content-in-card-component.vue'
+import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin.js'
 
 export default {
+  mixins: [mxFullSyncWithDbServer],
   components: { showContentInCardComponent },
   computed: {
     cfArOfphq9ForDisplay() {
@@ -44,9 +46,9 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqueRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblOfPatientPhq9.update({
-        where: pClientSideUniqueRowId,
+        where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },
@@ -57,21 +59,12 @@ export default {
         searchTerm: 'phq9 edit',
       })
     },
-    // This is used to make the rows that are in change state a orange background.
-    mfGetCssClassName(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'color: #E6A23C;'
-      } else {
-        return 'color: #202020;'
-      }
-    },
-    mfShowTimeLine: () => {
-      alert('Timeline of this data')
-      return false
-    },
   },
-  async mounted() {},
+  async mounted() {
+     if (clientSideTblOfPatientPhq9.query().count() > 0) {
+    } else {
+      await this.mxGetDataFromDb()
+    }
+  },
 }
 </script>

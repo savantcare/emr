@@ -1,14 +1,13 @@
-use sc_reminders;
+use sc_scr;
+DROP TABLE IF EXISTS `phq9PtResponses`;
 
-DROP TABLE IF EXISTS `reminders`;
-
-CREATE TABLE `reminders` (
-  `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `firstName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `middleName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `lastName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
-  PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
+CREATE TABLE `phq9PtResponses` (
+ `serverSideRowUuid` char(36) NOT NULL,
+ `ptUUID` char(36) NOT NULL,
+ `questionUUID` char(36) NOT NULL,
+ `answerValue` enum('0','1','2','3') DEFAULT NULL,
+ `submittedOnDateTimeInMilliseconds` datetime(3) DEFAULT NULL,
+ `recordChangedByUUID` char(36) DEFAULT NULL,
+ `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
+ PRIMARY KEY (`serverSideRowUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING

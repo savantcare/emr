@@ -25,7 +25,7 @@ export default {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
         value: 'phq9 edit',
-        ctAbbr: 'hc',
+        ctAbbr: 'cphq9',
         ctToShow: 'ptinfo-single/1time-1row-mField/phq9/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
