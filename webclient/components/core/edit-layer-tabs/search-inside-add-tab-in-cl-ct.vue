@@ -32,21 +32,21 @@ export default {
     return { keyword: '' }
   },
   computed: {
-    cfFireWhenActiveTabIDChanges() {
+    cfFireWhenActiveTabIdChanges() {
       return this.$store.state.vstObjTabsInCL.vsSelectedTabId
     },
   },
   watch: {
     // Why? el-input has autofocus property but el-autocomplete does not have auto-focus
     // How? Ref: https://stackoverflow.com/questions/43270159/vue-js-2-how-to-watch-store-values-from-vuex
-    cfFireWhenActiveTabIDChanges(newTabID, oldTabID) {
+    cfFireWhenActiveTabIdChanges(newTabId, oldTabId) {
       // get the CL selected tab and update the dialog width accoding to the tab width
       const clSelectedTab = this.$store.state.vstObjTabsInCL.arTabs.find(
-        (element) => element.id === newTabID
+        (element) => element.id === newTabId
       )
       this.$store.commit('mtfSetTabDialogWidth', clSelectedTab.ctWidthInEditLayer)
 
-      if (newTabID === '0') {
+      if (newTabId === '0') {
         this.$refs.searchbox.focus()
         this.keyword = '' // when this tab is activated 2nd time the search box will be empty
       }
