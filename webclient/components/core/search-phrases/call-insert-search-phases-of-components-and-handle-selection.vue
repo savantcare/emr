@@ -35,6 +35,7 @@
 
     <!-- 1time-Mrow-mField/others -->
     <initializePhoneNumberComponent />
+    <initializeDiagnosisComponent />
 
     <el-autocomplete
       v-model="searchKeyword"
@@ -86,6 +87,7 @@ import initializeServiceStatementComponent from '@/components/ptinfo-single/1tim
 
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/ptinfo-single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDiagnosisComponent from '@/components/ptinfo-single/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
 import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 
@@ -124,6 +126,7 @@ export default {
 
     // 1time-Mrow-mField
     initializePhoneNumberComponent,
+    initializeDiagnosisComponent,
   },
   data() {
     return { searchKeyword: '' }
