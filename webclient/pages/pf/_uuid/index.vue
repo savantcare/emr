@@ -105,8 +105,9 @@ export default {
 
       clientSideTable.insert({
         data: {
-          clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange: this
-            .$socket.id,
+          fieldName:
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange',
+          fieldValue: this.$socket.id,
         },
       })
 

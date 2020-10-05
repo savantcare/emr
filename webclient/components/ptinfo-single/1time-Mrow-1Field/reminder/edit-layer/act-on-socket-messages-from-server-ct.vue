@@ -26,10 +26,16 @@ export default {
 
       // if clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = socketIdInMsgRecdFromServer then return withiout making any changes.
 
-      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents
+        .query()
+        .where(
+          'fieldName',
+          'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+        )
+        .first()
 
       if (
-        socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
+        socketClientObj.fieldValue !==
         pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
       ) {
         const arFromClientSideTable = await clientSideTable.insert({
@@ -80,10 +86,16 @@ export default {
         pDataArr
       )
 
-      const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents
+        .query()
+        .where(
+          'fieldName',
+          'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+        )
+        .first()
 
       if (
-        socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange !==
+        socketClientObj.fieldValue !==
         pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
       ) {
         /**

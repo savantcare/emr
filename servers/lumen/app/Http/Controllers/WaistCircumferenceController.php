@@ -39,9 +39,9 @@ class WaistCircumferenceController extends Controller
         return response()->json($waistCircumferenceObj, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
-        $waistCircumferenceObj = WaistCircumference::findOrFail($id);
+        $waistCircumferenceObj = WaistCircumference::findOrFail($serverSideRowUuid);
         $waistCircumferenceObj->update($request->all());
 
         return response()->json($waistCircumferenceObj, 200);
