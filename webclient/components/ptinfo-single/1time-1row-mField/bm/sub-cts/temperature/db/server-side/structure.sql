@@ -1,4 +1,4 @@
-use sc_body_measurement;
+use sc_body_measurements;
 
 DROP TABLE IF EXISTS `temperature`;
 
