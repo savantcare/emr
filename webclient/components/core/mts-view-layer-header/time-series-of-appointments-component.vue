@@ -49,14 +49,14 @@ __proto__: Object
     </vue-slider>
     <el-dialog
       title="Slider settings"
-      :visible.sync="dialogVisible"
+      :visible.sync="dIsDialogVisible"
       width="30%"
-      :before-close="handleClose"
+      :before-close="handleCloseOfSettingsDialog"
     >
       <span>Proportial or Equidistant</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">Submit</el-button>
+        <el-button @click="dIsDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dIsDialogVisible = false">Submit</el-button>
       </span>
     </el-dialog>
   </div>
@@ -82,7 +82,7 @@ export default {
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
-      dialogVisible: false,
+      dIsDialogVisible: false,
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
@@ -192,7 +192,7 @@ export default {
       )
     },
 
-    handleClose(done) {
+    handleCloseOfSettingsDialog(done) {
       this.dConfigProportionalOrEquiDistant = 'Proportional'
       console.log('settings closed')
     },
@@ -215,7 +215,7 @@ export default {
 
         if (this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder') {
           console.log('setting')
-          this.dialogVisible = true
+          this.dIsDialogVisible = true
         }
 
         return
