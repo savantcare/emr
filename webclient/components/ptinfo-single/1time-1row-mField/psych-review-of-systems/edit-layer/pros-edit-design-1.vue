@@ -76,7 +76,7 @@ export default {
       })
       .get()
 
-    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterID] = value
+    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterId] = value
     const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
       .query()
       .where('ROW_END', 2147483648000)

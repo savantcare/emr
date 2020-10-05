@@ -24,7 +24,7 @@ How to solve this?
 
 -->
 <template>
-  <div v-if="daUniqueIDOfEachRowFromOrm.length > 0" class="block">
+  <div v-if="daUniqueIdOfEachRowFromOrm.length > 0" class="block">
     <!-- 
       Q) Why we are using :arrow dynamic in slider?
       -- If number of slide in slider is 1 (computed function 'getNumOfCarouselSlides' return 1) then no need to show arrow in slider. In this case 'dsSliderArrowVisiblity' should be 'never'.
@@ -79,7 +79,7 @@ export default {
   components: { ctChangeRem },
   data() {
     return {
-      daUniqueIDOfEachRowFromOrm: [],
+      daUniqueIdOfEachRowFromOrm: [],
       diVirtualSlideNumber: 0,
       dsSliderArrowVisiblity: 'never',
     }
@@ -91,15 +91,15 @@ export default {
       console.log('The virtual slide number is', this.diVirtualSlideNumber)
       const firstCard = this.diVirtualSlideNumber * 3
       console.log('First rem card', firstCard)
-      const arr = this.daUniqueIDOfEachRowFromOrm.slice(firstCard, firstCard + 3)
+      const arr = this.daUniqueIdOfEachRowFromOrm.slice(firstCard, firstCard + 3)
       return arr
     },
     getNumOfCarouselSlides() {
       /* Important performance matter here
-          If I return the actual length of this.daUniqueIDOfEachRowFromOrm.length
+          If I return the actual length of this.daUniqueIdOfEachRowFromOrm.length
           say the length is 100 then 300 times the change component will get called with different params.
         */
-      const count = this.daUniqueIDOfEachRowFromOrm.length / 3
+      const count = this.daUniqueIdOfEachRowFromOrm.length / 3
       const intValue = Math.ceil(count)
       console.log('number of slides in carousel are', count, intValue)
       return intValue
@@ -129,10 +129,10 @@ export default {
     const resultArFromOrm = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
-        this.daUniqueIDOfEachRowFromOrm.push(resultArFromOrm[i].$id)
+        this.daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)
       }
     }
-    console.log(this.daUniqueIDOfEachRowFromOrm)
+    console.log(this.daUniqueIdOfEachRowFromOrm)
   },
   methods: {
     slideChanged(newSlideNumber, oldSlideNumber) {
