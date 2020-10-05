@@ -59,9 +59,9 @@ class HeightController extends Controller
         return response()->json($Height, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
-        $Height = Height::findOrFail($id);
+        $Height = Height::findOrFail($serverSideRowUuid);
         $Height->update($request->all());
 
         /**
@@ -70,7 +70,7 @@ class HeightController extends Controller
         $requestData = $request->all();
         $channel = 'MsgFromSktForHeightToChange';
         $message = array(
-            'uuid' => $id,
+            'uuid' => $serverSideRowUuid,
             'ptUuid' => $requestData['data']['ptUuid'],
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
@@ -84,9 +84,9 @@ class HeightController extends Controller
         return response()->json($Height, 200);
     }
 
-    public function delete($id, Request $request)
+    public function delete($serverSideRowUuid, Request $request)
     {
-        $Height = Height::findOrFail($id);
+        $Height = Height::findOrFail($serverSideRowUuid);
         $requestData = $request->all();
 
         if(isset($requestData['dNotes']) && !empty($requestData['dNotes']))
@@ -104,7 +104,7 @@ class HeightController extends Controller
          */
         $channel = 'MsgFromSktForRemToDelete';
         $message = array(
-            'uuid' => $id,
+            'uuid' => $serverSideRowUuid,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 

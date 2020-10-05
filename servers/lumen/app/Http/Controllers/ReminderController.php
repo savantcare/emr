@@ -29,7 +29,7 @@ class ReminderController extends Controller
 
     To check postman/post/ URL: http://localhost:8000/public/api/reminders/v20/
     Body / Json
-    {"data":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange":"1"}}
+    {"data":{"$serverSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange":"1"}}
     Wiki has a video on youtube
     */
     public function create(Request $request)
@@ -82,9 +82,9 @@ class ReminderController extends Controller
     }
 
  
-    public function delete($id, Request $request)
+    public function delete($serverSideRowUuid, Request $request)
     {
-        $Reminder = Reminder::findOrFail($id);
+        $Reminder = Reminder::findOrFail($serverSideRowUuid);
         $requestData = $request->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
@@ -101,7 +101,7 @@ class ReminderController extends Controller
          */
         $channel = 'MsgFromSktForRemToDelete';
         $message = array(
-            'serverSideRowUuid' => $id,
+            'serverSideRowUuid' => $serverSideRowUuid,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 

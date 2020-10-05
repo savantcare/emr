@@ -52,9 +52,9 @@ class ServiceStatementController extends Controller
         return response()->json($ServiceStatement, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
-        $ServiceStatement = ServiceStatement::findOrFail($id);
+        $ServiceStatement = ServiceStatement::findOrFail($serverSideRowUuid);
         $ServiceStatement->update($request->all());
 
         /**
@@ -63,7 +63,7 @@ class ServiceStatementController extends Controller
         $requestData = $request->all();
         $channel = 'MsgFromSktForServiceStatementToChange';
         $message = array(
-            'serverSideRowUuid' => $id,
+            'serverSideRowUuid' => $serverSideRowUuid,
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
@@ -75,9 +75,9 @@ class ServiceStatementController extends Controller
     }
 
  
-    public function delete($id, Request $request)
+    public function delete($serverSideRowUuid, Request $request)
     {
-        $ServiceStatement = ServiceStatement::findOrFail($id);
+        $ServiceStatement = ServiceStatement::findOrFail($serverSideRowUuid);
         $requestData = $request->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
@@ -94,7 +94,7 @@ class ServiceStatementController extends Controller
          */
         $channel = 'MsgFromSktForServiceStatementToDelete';
         $message = array(
-            'serverSideRowUuid' => $id,
+            'serverSideRowUuid' => $serverSideRowUuid,
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );
 
