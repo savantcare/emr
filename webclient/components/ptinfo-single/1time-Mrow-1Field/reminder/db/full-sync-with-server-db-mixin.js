@@ -9,7 +9,9 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
       */
+      console.log('reminders req sent')
       const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+      console.log('reminders recd')
       if (proRemsFromDB.ok) {
       }
     },
