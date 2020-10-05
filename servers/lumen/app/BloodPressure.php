@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 class BloodPressure extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'bloodPressure';
+    protected $table = 'bloodPressures';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';

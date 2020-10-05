@@ -1,6 +1,6 @@
 use sc_bm;
 
-INSERT INTO `bloodPressure` (`ptUuid`, `systolicValue`, `diastolicValue`, `timeOfEvaluation`, `Notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `bloodPressures` (`ptUuid`, `systolicValue`, `diastolicValue`, `timeOfEvaluation`, `Notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('bfe041fa-073b-4223-8c69-0540ee678ff8', 130, 80, '2020-06-29', NULL, '1', '210.121.187.8');
 
 

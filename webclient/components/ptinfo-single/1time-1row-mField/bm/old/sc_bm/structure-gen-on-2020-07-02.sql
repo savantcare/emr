@@ -1,7 +1,7 @@
 use sc_bm;
 
-DROP TABLE IF EXISTS `bloodPressure`;
-CREATE TABLE `bloodPressure` (
+DROP TABLE IF EXISTS `bloodPressures`;
+CREATE TABLE `bloodPressures` (
   `ptUuid` char(36) NOT NULL,
   `systolicValue` int(11) NOT NULL COMMENT 'mm Hg',
   `diastolicValue` int(11) NOT NULL COMMENT 'mm Hg',
