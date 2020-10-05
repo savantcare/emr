@@ -159,12 +159,18 @@ export default {
       }
       console.log(this.dMarksOnSlider)
       this.dMarksOnSlider[100] = 'el-icon-setting'
+      this.dApptStatusAtEachSliderMark[100] = 'settings-placeholder'
+
       return this.dMarksOnSlider
     },
   },
   methods: {
     getTooltipForThisMark(value) {
       //      return this.dApptCalendarTimeAtEachSliderMark[value]
+
+      if (value == 100) {
+        return 'Slider settings'
+      }
 
       return (
         this.dApptStatusAtEachSliderMark[value] +
@@ -180,7 +186,8 @@ export default {
       if (
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'cancellation' ||
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'late-cancellation' ||
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show' ||
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder'
       ) {
         // unsert the previous note window if there is any
         const updateState = clientSideTblOfMultiStateViewCards.update({
@@ -219,41 +226,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.content-wrap {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 1em;
-  overflow: hidden;
-}
-
-.content-wrap::before {
-  position: absolute;
-  top: calc(50% - 1px);
-  right: 0;
-  left: 0;
-  content: '';
-  background-color: grey;
-  height: 2px;
-}
-
-.icon1 {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 6rem;
-  height: 6rem;
-  font-size: 3rem;
-  color: #777;
-  border: 2px solid #777777;
-  border-radius: 50%;
-  padding: 1rem;
-  background: #f9f9f9;
-  box-shadow: 0 0 0 0.5em #f9f9f9;
-}
-</style>
+<style scoped></style>
