@@ -9,23 +9,27 @@
     <h3>Age: 42</h3>
 
     <!-- SECTOION 3 -->
-    <h3>Appt Date: {{ cfGetPatientApptObj }}</h3>
+    <h3>Appt Date: {{ cfGetpatientCurrentApptObj }}</h3>
     <div v-if="debug">
       Debug data. <br />
-      1) Appt start time is -> {{ patientApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
+      1) Appt start time is ->
+      {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
       <br />
-      2) Appt end (lock) time is -> {{ patientApptObj['ROW_END'] | moment }}
+      2) Appt end (lock) time is -> {{ patientCurrentApptObj['ROW_END'] | moment }}
     </div>
 
     <!-- SECTOION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
-    <div v-if="patientApptObj['apptStatus'] === 'locked'">
+    <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
       <div v-if="debug">
         Debug data. <br />
-        1) ROW END value for appointments is -> {{ patientApptObj['ROW_END'] }} <br />
+        1) ROW END value for appointments is -> {{ patientCurrentApptObj['ROW_END'] }} <br />
         2) Difference between calendar time and lock time is ->
-        {{ patientApptObj['ROW_END'] - patientApptObj['apptStartMilliSecondsOnCalendar'] }}
+        {{
+          patientCurrentApptObj['ROW_END'] -
+          patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
+        }}
       </div>
     </div>
 
@@ -104,14 +108,14 @@
         <hr />
         Condition 1: <br />
         Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
-        {{ patientApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ patientApptObj['ROW_END'] - rem['ROW_START'] }}
+        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
+        {{ patientCurrentApptObj['ROW_END'] - rem['ROW_START'] }}
         <br />
         <hr />
         Condition 2: Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
         Was this reminder deleted {{ rem['ROW_END'] }} after the appt ended
-        {{ patientApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ rem['ROW_END'] - patientApptObj['ROW_END'] }}
+        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
+        {{ rem['ROW_END'] - patientCurrentApptObj['ROW_END'] }}
         <br />
         <hr />
       </div>
@@ -151,7 +155,7 @@
     </h3>
 
     <!-- SECTOION 12 -->
-    <div v-if="patientApptObj['apptStatus'] !== 'locked'">
+    <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
       <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
     </div>
 
@@ -176,7 +180,7 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      patientApptObj: [],
+      patientCurrentApptObj: [],
       debug: false,
       amendmentData: '',
       visible1: true,
@@ -194,21 +198,24 @@ export default {
     },
   },
   computed: {
-    cfGetPatientApptObj() {
+    cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
-      const apptID =
+      const currentApptId =
         apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
 
-      // get appt details from appt table
-      this.patientApptObj = clientSideTblOfAppointments.find(apptID)
+      /* Goal: Show green around data that has been added. Red around data that has been deleted */
+      // Finding the prev and next appt ID
 
-      const apptStartMilliSeconds = this.patientApptObj['apptStartMilliSecondsOnCalendar']
+      // get appt details from appt table
+      this.patientCurrentApptObj = clientSideTblOfAppointments.find(currentApptId)
+
+      const apptStartMilliSeconds = this.patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfArOfServiceStatementForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
@@ -218,35 +225,39 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
     },
 
     cfArOfRemindersForDisplay() {
-      let reminderArray = []
+      let userSelectedApptReminderArray = []
 
-      if (this.patientApptObj['apptStatus'] === 'un-locked') {
-        reminderArray[0] = clientSideTblOfPatientReminders
+      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
+        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
           .query()
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        reminderArray[0] = clientSideTblOfPatientReminders
+        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
           .query()
-          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
           .get()
       }
-      reminderArray[1] = clientSideTblOfPatientReminders.query().get()
+      userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
 
-      return reminderArray
+      // Create the reminder array for previous appt
+
+      // create the reminder array for next appt
+
+      return userSelectedApptReminderArray
     },
     cfArOfMentalStatusExamForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
@@ -256,8 +267,8 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
@@ -265,7 +276,7 @@ export default {
 
     cfArOfPsychReviewOfSystemsForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientApptObj['apptStatus'] === 'un-locked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'un-locked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
@@ -275,21 +286,21 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > this.patientApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
     },
 
     cfApptLockDateInHumanReadableFormat() {
-      return moment(this.patientApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
+      return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
   methods: {
     async lockButtonClicked() {
       console.log('lock button clicked')
-      const clientSideUniqRowId = this.patientApptObj['clientSideUniqRowId']
+      const clientSideUniqRowId = this.patientCurrentApptObj['clientSideUniqRowId']
       let arOfObjectsFromClientSideDB = await clientSideTblOfAppointments.update({
         where: clientSideUniqRowId,
         data: {
