@@ -24,7 +24,7 @@ __proto__: Object
           3. Tooltip
     -->
     <vue-slider
-      v-model="currentSliderValue"
+      v-model="dCurrentSliderValue"
       :marks="cfGetAllMarksForSlider"
       container="true"
       absorb="true"
@@ -87,7 +87,7 @@ export default {
     return {
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
-      currentSliderValue: 0,
+      dCurrentSliderValue: 0,
       dMaxApptStartMilliseconds: -1,
       dMinApptStartMilliseconds: -1,
       dMarksOnSlider: {},
@@ -95,6 +95,7 @@ export default {
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
       dIsDialogVisible: false,
+      arOfObjectsFromClientSideDB: [],
 
       // Settings for slider
       dConfigProportionalOrEquiDistant: 'EquiDistant',
@@ -118,7 +119,10 @@ export default {
   },
   computed: {
     cfGetAllMarksForSlider() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
+      if (this.arOfObjectsFromClientSideDB.length < 1) {
+        this.arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
+      }
+
       this.dMarksOnSlider = {}
       this.dClientSideUniqRowIdAtEachSliderMark = {}
       this.dApptStatusAtEachSliderMark = {}
@@ -132,19 +136,21 @@ export default {
       3: "late-cancellation"
       4: "cancellation"
       */
-      console.log(this.dConfigChecklistOfApptTypesToShow)
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        const currentApptStatus = arOfObjectsFromClientSideDB[i]['apptStatus']
-        if (this.dConfigChecklistOfApptTypesToShow.includes(currentApptStatus)) {
+      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
+        const currentApptStatus = this.arOfObjectsFromClientSideDB[i]['apptStatus']
+        if (this.dConfigChecklistOfApptTypesToShow.indexOf(currentApptStatus) !== -1) {
+          // console.log('User wants to see', currentApptStatus)
         } else {
-          arOfObjectsFromClientSideDB.splice(i, 1)
+          this.arOfObjectsFromClientSideDB.splice(i, 1)
+          // console.log('removing from array')
         }
       }
 
       // Get max and min values. Probablyt nor needed for equidistant
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        const apptStartMilliSecondsOnCalendar =
-          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
+        const apptStartMilliSecondsOnCalendar = this.arOfObjectsFromClientSideDB[i][
+          'apptStartMilliSecondsOnCalendar'
+        ]
 
         if (this.dMinApptStartMilliseconds === -1) {
           this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
@@ -161,7 +167,7 @@ export default {
       const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
 
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
-      arOfObjectsFromClientSideDB.sort(function (a, b) {
+      this.arOfObjectsFromClientSideDB.sort(function (a, b) {
         return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
           ? 1
           : b.apptStartMilliSecondsOnCalendar > a.apptStartMilliSecondsOnCalendar
@@ -169,14 +175,15 @@ export default {
           : 0
       })
 
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
         // Update the slider component
-        const apptStartMilliSecondsOnCalendar =
-          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+        const apptStartMilliSecondsOnCalendar = this.arOfObjectsFromClientSideDB[i][
+          'apptStartMilliSecondsOnCalendar'
+        ]
 
         let markPoint = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
-          markPoint = (i / arOfObjectsFromClientSideDB.length) * 100
+          markPoint = (i / this.arOfObjectsFromClientSideDB.length) * 100
         } else {
           const percentage =
             ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
@@ -188,28 +195,32 @@ export default {
         let labelAtEachMark = ''
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
           labelAtEachMark = 'el-icon-lock'
         }
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
           labelAtEachMark = 'el-icon-unlock'
         }
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
           labelAtEachMark = 'el-icon-circle-close'
         }
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
           labelAtEachMark = 'el-icon-remove-outline'
         }
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
           labelAtEachMark = 'el-icon-circle-close'
         }
 
         this.dMarksOnSlider[markPoint] = labelAtEachMark
-        this.dClientSideUniqRowIdAtEachSliderMark[markPoint] =
-          arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
-        this.dApptStatusAtEachSliderMark[markPoint] = arOfObjectsFromClientSideDB[i]['apptStatus']
-        this.dApptCalendarTimeAtEachSliderMark[markPoint] =
-          arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+        this.dClientSideUniqRowIdAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
+          'clientSideUniqRowId'
+        ]
+        this.dApptStatusAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
+          'apptStatus'
+        ]
+        this.dApptCalendarTimeAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
+          'apptStartMilliSecondsOnCalendar'
+        ]
       }
       console.log(this.dMarksOnSlider)
       this.dMarksOnSlider[100] = 'el-icon-setting'
@@ -234,7 +245,7 @@ export default {
     },
 
     mfHandleUserGeneratedSliderEvent(pEventValue) {
-      const valueOfSlider = this.currentSliderValue
+      const valueOfSlider = this.dCurrentSliderValue
 
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (
@@ -257,7 +268,9 @@ export default {
         return
       }
 
-      this.toggleApptNoteDisplay(this.dClientSideUniqRowIdAtEachSliderMark[this.currentSliderValue])
+      this.toggleApptNoteDisplay(
+        this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentSliderValue]
+      )
     },
     async toggleApptNoteDisplay(pClientSideRowId) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
