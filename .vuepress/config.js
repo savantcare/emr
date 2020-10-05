@@ -136,12 +136,13 @@ module.exports = {
                 ],
               },
               {
-                path: "/webclient/cts/ptinfo-single/bm/",
+                path: "/webclient/cts/ptinfo-single/vital-signs/",
                 title: "Body measurements",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/ptinfo-single/bm/design/design",
+                    path:
+                      "/webclient/cts/ptinfo-single/vital-signs/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },

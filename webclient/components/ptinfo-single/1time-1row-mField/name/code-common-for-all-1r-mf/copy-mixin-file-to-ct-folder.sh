@@ -1,10 +1,10 @@
 #!/bin/bash
 
-mkdir -p ../../blood-pressure/com-mx/
-cp * ../../blood-pressure/com-mx/ 
+mkdir -p ../../blood-pressure-levels/com-mx/
+cp * ../../blood-pressure-levels/com-mx/ 
 
-mkdir -p ../../blood-sugar/com-mx/
-cp * ../../blood-sugar/com-mx/
+mkdir -p ../../blood-sugar-levels/com-mx/
+cp * ../../blood-sugar-levels/com-mx/
 
 mkdir -p ../../height/com-mx/ 
 cp * ../../height/com-mx/

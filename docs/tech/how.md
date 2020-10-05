@@ -479,7 +479,7 @@ Hence for MariaDB -> weight->timeOfMeasurement-> field type will be -> dateTime(
 E. Internal data transfer is in the millisecond integer format. Why? 1. Integers are fast for comparison 2. String format for date has many different types to write date.
 
 F. Data flow is: mariadb -> dateTime(3) -> select as milli-seconds -> node js -> milli-seconds -> vue -> vuex-orm field type number -> element.io -> date component
-For e.g: 1. /Users/vk-tech/gt/sc-prog-repos/emr/utils/db/json-server-mock-db.json timeOfMeasurement is milliseconds from epoch 2. /emr/webclient/cts/ptinfo-single/1time-1row-mField/bm/sub-cts/weight/view-layer/line-graph-ct.vue no need to multiply by 1000 to convert from seconds to milliseconds.
+For e.g: 1. /Users/vk-tech/gt/sc-prog-repos/emr/utils/db/json-server-mock-db.json timeOfMeasurement is milliseconds from epoch 2. /emr/webclient/cts/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/weight/view-layer/line-graph-ct.vue no need to multiply by 1000 to convert from seconds to milliseconds.
 
 G. In the datetime field the value is always in UTC. Hence timezone need not be stored.
 

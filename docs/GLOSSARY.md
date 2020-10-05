@@ -53,7 +53,7 @@ In the following examples age is a function inside a component
 - dx: [Diagnosis](/webclient/cts/ptinfo-single/dx/)
 - dxa: Diagnosis assessment
 - g: goal
-- [bm](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/bm): [Body measurement](/webclient/cts/ptinfo-single/bm/)
+- [bm](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/bm): [Body measurement](/webclient/cts/ptinfo-single/vital-signs/)
 - [rec](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/rec): Recommendation
 - recs: Recommendations
 - [rem](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/rem): Reminder

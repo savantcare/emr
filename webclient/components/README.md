@@ -30,7 +30,7 @@
 | 2   | [Goals](./ptinfo-single/goal/)                     | Raj        | UI and DB final. Feature Under dev |
 | 3   | [Diagnosis](./ptinfo-single/dx/)                   | Anirban    | UI and DB final. Feature Under dev |
 | 4   | [Screening](./ptinfo-single/scr/)                  | Jana       | UI and DB final. Feature Under dev |
-| 5   | [Body measurement](./ptinfo-single/bm/)            | Alexey     | Need to bring to nuxt              |
+| 5   | [Body measurement](./ptinfo-single/vital-signs/)   | Alexey     | Need to bring to nuxt              |
 | 6   | [Mental status exam](./ptinfo-single/mse/)         | Alexey     | Need to bring to nuxt              |
 | 7   | [Reminders](./ptinfo-single/1time-Mrow-1Field/rem) |            |                                    |
 | 8   | [Medication](./ptinfo-single/medications/)         |            |                                    |

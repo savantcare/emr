@@ -34,7 +34,7 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Body measurement',
-        componentToShowPath: 'ptinfo-single/1time-1row-mField/bm/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath: 'ptinfo-single/1time-1row-mField/vital-signs/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({

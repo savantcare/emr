@@ -8,9 +8,9 @@ import clientSideTblOfPatientServiceStatements from '@/components/ptinfo-single/
 import clientSideTblOfPatientReminders from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
 import clientSideTblOfMentalStatusExam from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
-import clientSideTblWeight from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/weight/db/client-side/structure/table.js'
-import clientSideTblHeight from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/height/db/client-side/structure/table.js'
-import clientSideTblOxygenSaturation from '@/components/ptinfo-single/1time-1row-mField/bm/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import clientSideTblWeight from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import clientSideTblHeight from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import clientSideTblOxygenSaturation from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
 // For pros
 import clientSideTblOfMasterPsychReviewOfSystems from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
