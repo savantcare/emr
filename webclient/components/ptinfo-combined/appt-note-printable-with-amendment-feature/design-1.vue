@@ -24,12 +24,10 @@
         ><div class="grid-content">
           <el-button-group class="h1" style="display: none">
             <el-button
-              size="small"
               class="el-icon-document-copy"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
             <el-button
-              size="small"
               class="el-icon-arrow-right"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
@@ -69,27 +67,24 @@
     </div>
 
     <!-- SECTOION 5  SERVICE STATEMENTS -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="ssh3"
-      style="padding-top: 20px; padding-bottom: 10px; border: 1"
-    >
+    <el-row type="flex" justify="left" class="ssh3" style="padding-top: 20px; padding-bottom: 10px">
       <el-col :span="8">
         <h3>Service statements</h3>
       </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible1">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            size="mini"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible1">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              size="mini"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
     <div v-for="row in cfArOfServiceStatementForDisplay" :key="`ss-${row.clientSideUniqRowId}`">
@@ -107,19 +102,21 @@
       <el-col :span="8">
         <h3>Mental status exam</h3>
       </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible2">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            size="mini"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          >
-          </el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible2">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              size="mini"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            >
+            </el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
     <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
@@ -136,18 +133,20 @@
       <el-col :span="8">
         <h3>Psych review of systems</h3>
       </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible3">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            size="mini"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible3">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              size="mini"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
 
@@ -169,17 +168,19 @@
       <el-col :span="8">
         <h3 class="remindersh3">Reminders</h3>
       </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible4">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible4">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
     <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
@@ -221,17 +222,19 @@
       style="padding-top: 20px; padding-bottom: 10px"
     >
       <el-col :span="8"> <h3>Recommendations</h3> </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible5">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible5">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
 
@@ -243,17 +246,19 @@
       style="padding-top: 20px; padding-bottom: 10px"
     >
       <el-col :span="8"> <h3>Medications</h3> </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible6">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible6">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
 
@@ -265,17 +270,19 @@
       style="padding-top: 20px; padding-bottom: 10px"
     >
       <el-col :span="8"> <h3>Vitals</h3> </el-col>
-      <el-col :span="2">
-        <el-popover placement="right" width="400" v-model="visible7">
-          <div style="text-align: right; margin: 0">
-            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-          </div>
-          <el-button
-            slot="reference"
-            class="el-icon-edit-outline"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
-        </el-popover>
+      <el-col :span="2"
+        ><div class="grid-content">
+          <el-popover placement="right" width="400" v-model="visible7">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+            </div>
+            <el-button
+              slot="reference"
+              class="el-icon-edit-outline"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+            ></el-button>
+          </el-popover>
+        </div>
       </el-col>
     </el-row>
 
