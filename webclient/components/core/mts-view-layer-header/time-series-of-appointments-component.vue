@@ -70,6 +70,7 @@ export default {
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
+      dSettingsPopoverVisible: false,
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
@@ -194,6 +195,12 @@ export default {
           clientSideUniqRowId: 2,
           componentCurrentValueForCustomizingViewState: 0,
         })
+
+        if (this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder') {
+          console.log('setting')
+          this.dSettingsPopoverVisible = true
+        }
+
         return
       }
 
