@@ -1,4 +1,4 @@
-use sc_body_measurements;
+use sc_vital_signs;
 
 DROP TABLE IF EXISTS `bloodPressureLevels`;
 
