@@ -72,19 +72,19 @@
               <div class="map-grid-content body-measurement">
                 <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
-                    <span>Body measurement</span>
+                    <span>Vital</span>
                   </div>
                   <div
-                    v-for="(bm, index) in arBmData"
+                    v-for="(bm, index) in cfArOfVitalSignForDisplayInMapDrawer"
                     :key="bm.id"
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                   >
                     <el-row>
-                      <el-col :span="12">
+                      <el-col :span="18">
                         <div class="">{{ bm.label }}</div>
                       </el-col>
-                      <el-col :span="12">
+                      <el-col :span="6">
                         <div class="">{{ bm.value }}</div>
                       </el-col>
                     </el-row>
@@ -164,13 +164,13 @@
                     <span>Reminders</span>
                   </div>
                   <div
-                    v-for="(rem, index) in arRemData"
-                    :key="rem.id"
+                    v-for="(rem, index) in cfArOfRemForDisplayInMapDrawer"
+                    :key="rem.clientSideUniqRowId"
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
-                    :title="rem.label"
+                    :title="rem.description"
                   >
-                    {{ rem.label }}
+                    {{ rem.description }}
                   </div>
                 </el-card>
               </div>
@@ -497,6 +497,11 @@
 </template>
 
 <script>
+import clientSideTableForReminder from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTableForTemperature from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import clientSideTableForBloodPressure from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import clientSideTableForBloodSugar from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+
 export default {
   data() {
     return {
@@ -991,6 +996,61 @@ export default {
     }
   },
   computed: {
+    cfArOfRemForDisplayInMapDrawer() {
+      const arFromClientSideTable = clientSideTableForReminder.fnGetPresentUniqueUuidNotEmptyRows(
+        'description'
+      )
+      return arFromClientSideTable
+    },
+    cfArOfVitalSignForDisplayInMapDrawer() {
+      const arVitalSignsForDisplay = []
+      let index = 1
+
+      /**
+       * Getting temperature value
+       */
+      const arFromClientSideTableForTemperature = clientSideTableForTemperature.fnGetRowsToChange()
+      if (arFromClientSideTableForTemperature.length > 0) {
+        const objTemperature = {}
+        objTemperature.id = index
+        objTemperature.label = 'Temperature'
+        objTemperature.value = arFromClientSideTableForTemperature[0].temperatureInFarehnite
+        arVitalSignsForDisplay.push(objTemperature)
+
+        index = index + 1
+      }
+
+      /**
+       * Getting blood pressure value
+       */
+      const arFromClientSideTableForBloodPressure = clientSideTableForBloodPressure.fnGetRowsToChange()
+      if (arFromClientSideTableForBloodPressure.length > 0) {
+        const objBloodPressure = {}
+        objBloodPressure.id = index
+        objBloodPressure.label = 'Blood pressure'
+        objBloodPressure.value = arFromClientSideTableForBloodPressure[0].bloodPressureInBpm
+        arVitalSignsForDisplay.push(objBloodPressure)
+
+        index = index + 1
+      }
+
+      /**
+       * Getting blood sugar value
+       */
+      const arFromClientSideTableForBloodSugar = clientSideTableForBloodSugar.fnGetRowsToChange()
+      if (arFromClientSideTableForBloodSugar.length > 0) {
+        const objBloodSugar = {}
+        objBloodSugar.id = index
+        objBloodSugar.label = 'Blood sugar'
+        objBloodSugar.value = arFromClientSideTableForBloodSugar[0].bloodSugarInBpm
+        arVitalSignsForDisplay.push(objBloodSugar)
+
+        index = index + 1
+      }
+
+      console.log(arVitalSignsForDisplay)
+      return arVitalSignsForDisplay
+    },
     cfMapDrawerVisibility: {
       get() {
         return this.$store.state.vstObjMapDrawer.vblIsMapDrawerVisible
