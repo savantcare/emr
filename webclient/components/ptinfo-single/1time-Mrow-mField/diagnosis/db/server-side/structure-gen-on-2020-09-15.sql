@@ -27,4 +27,4 @@ CREATE TABLE `assignedDiagnosis` (
 --
 ALTER TABLE `assignedDiagnosis`
   ADD PRIMARY KEY (`serverSideRowUuid`),
-  ADD KEY `ptUuid` (`serverSideRowUuid`);
+  ADD KEY `ptUid` (`ptUuid`);
