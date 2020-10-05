@@ -19,7 +19,7 @@ class Temperature extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'temperatureInFarehnite', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUuid', 'temperatureInFarehnite', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
     ];
 
     /**

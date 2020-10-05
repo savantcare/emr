@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `dx`;
 
 CREATE TABLE `dx` (
   `uuid` char(36) NOT NULL,
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `dxName` varchar(255) DEFAULT NULL,
   `icd10Code` varchar(50) DEFAULT NULL,
   `dxDeleteNotes` varchar(255) DEFAULT NULL,

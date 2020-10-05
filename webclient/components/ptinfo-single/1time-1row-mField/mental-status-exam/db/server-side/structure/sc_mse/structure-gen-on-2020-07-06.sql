@@ -2,7 +2,7 @@ use sc_mse;
 
 DROP TABLE IF EXISTS `affect`;
 CREATE TABLE `affect` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `euthymic` enum('yes','no') NOT NULL DEFAULT 'no',
   `dysphoric` enum('yes','no') NOT NULL DEFAULT 'no',
   `irritable` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -25,12 +25,12 @@ CREATE TABLE `affect` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `appearence`;
 CREATE TABLE `appearence` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `good-grooming-and-hygiene` enum('yes','no') NOT NULL DEFAULT 'no',
   `no-apparent-distress` enum('yes','no') NOT NULL DEFAULT 'no',
   `well-developed-well-nourished` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -45,12 +45,12 @@ CREATE TABLE `appearence` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `attitude`;
 CREATE TABLE `attitude` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `pleasant-and-cooperative` enum('yes','no') NOT NULL DEFAULT 'no',
   `uncooperative` enum('yes','no') NOT NULL DEFAULT 'no',
   `hostile-or-defiant` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -62,12 +62,12 @@ CREATE TABLE `attitude` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `cognition`;
 CREATE TABLE `cognition` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `grossly-intact-no-memory-impairment-adequate-fund-of-knowledge-n` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'Grossly intact, no memory impairment, adequate fund of knowledge, no language deficit, normal attention',
   `impaired` enum('yes','no') NOT NULL DEFAULT 'no',
   `fluctuating` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -75,23 +75,23 @@ CREATE TABLE `cognition` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `constitutional`;
 CREATE TABLE `constitutional` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `vitals-signs-stable` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `eye-contact`;
 CREATE TABLE `eye-contact` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `appropriate` enum('yes','no') NOT NULL DEFAULT 'no',
   `downcast` enum('yes','no') NOT NULL DEFAULT 'no',
   `intense` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -100,12 +100,12 @@ CREATE TABLE `eye-contact` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `impulse-control`;
 CREATE TABLE `impulse-control` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `good` enum('yes','no') NOT NULL DEFAULT 'no',
   `fair` enum('yes','no') NOT NULL DEFAULT 'no',
   `questionable` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -116,12 +116,12 @@ CREATE TABLE `impulse-control` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `insight`;
 CREATE TABLE `insight` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `good` enum('yes','no') NOT NULL DEFAULT 'no',
   `fair` enum('yes','no') NOT NULL DEFAULT 'no',
   `questionable` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -132,12 +132,12 @@ CREATE TABLE `insight` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `judgement`;
 CREATE TABLE `judgement` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `good` enum('yes','no') NOT NULL DEFAULT 'no',
   `fair` enum('yes','no') NOT NULL DEFAULT 'no',
   `questionable` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -148,24 +148,24 @@ CREATE TABLE `judgement` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `neurological`;
 CREATE TABLE `neurological` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `gait-and-station-normal` enum('yes','no') NOT NULL DEFAULT 'no',
   `gait-and-station-abnormal` enum('yes','no') NOT NULL DEFAULT 'no',
   `other` text NOT NULL,
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `perception`;
 CREATE TABLE `perception` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `no-avh` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'No AVH',
   `ah` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT '+AH',
   `command-ah` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT '+Command AH',
@@ -174,12 +174,12 @@ CREATE TABLE `perception` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `psychomotor`;
 CREATE TABLE `psychomotor` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `normal` enum('yes','no') NOT NULL DEFAULT 'no',
   `agitated` enum('yes','no') NOT NULL DEFAULT 'no',
   `retarded` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -187,12 +187,12 @@ CREATE TABLE `psychomotor` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `speech`;
 CREATE TABLE `speech` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `regular-rate-and-rhythm` enum('yes','no') NOT NULL DEFAULT 'no',
   `fluent` enum('yes','no') NOT NULL DEFAULT 'no',
   `incoherent` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -203,12 +203,12 @@ CREATE TABLE `speech` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `thought-content`;
 CREATE TABLE `thought-content` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `no-si-intent-or-plan` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'No SI, intent or plan',
   `no-passive-death-wish` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'No passive death wish',
   `no-hi-intent-or-plan` enum('yes','no') NOT NULL DEFAULT 'no' COMMENT 'No HI, intent or plan',
@@ -226,12 +226,12 @@ CREATE TABLE `thought-content` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 DROP TABLE IF EXISTS `thought-process`;
 CREATE TABLE `thought-process` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `linear-logical-and-goal-directed` enum('yes','no') NOT NULL DEFAULT 'no',
   `disorganized` enum('yes','no') NOT NULL DEFAULT 'no',
   `circumstantial` enum('yes','no') NOT NULL DEFAULT 'no',
@@ -243,5 +243,5 @@ CREATE TABLE `thought-process` (
   `recordChangedByUUID` char(36) NOT NULL,
   `recordChangedFromIPAddress` varchar(20) NOT NULL,
   `timeOfEvaluation` datetime NOT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;

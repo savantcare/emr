@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `g`;
 
 CREATE TABLE `g` (
   `uuid` CHAR(36) NOT NULL,
-  `ptUUID` CHAR(36) NOT NULL,
+  `ptUuid` CHAR(36) NOT NULL,
   `description` text DEFAULT NULL,
   `startDate` datetime DEFAULT NULL,
   `score` int(11) DEFAULT NULL,

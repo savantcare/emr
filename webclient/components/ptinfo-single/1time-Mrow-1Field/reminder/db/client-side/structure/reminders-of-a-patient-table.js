@@ -37,7 +37,7 @@ export default class reminders extends clientSideTableManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-      ptUUID: this.string(null),
+      ptUuid: this.string(null),
       description: this.string(''),
       notes: this.string(null),
       priority: this.number(0),

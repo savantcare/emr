@@ -27,7 +27,7 @@ class WaistCircumferenceController extends Controller
 
         $waistCircumferenceData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'waistCircumferenceInInches' => $requestData['data']['waistCircumferenceInInches'],
             'timeOfMeasurement' => $requestData['data']['timeOfMeasurement'],
             'notes' => $requestData['data']['notes'],

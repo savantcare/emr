@@ -22,7 +22,7 @@ export default class phoneNumbers extends clientSideTableManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueID()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-      ptUUID: this.string(null),
+      ptUuid: this.string(null),
       countryCode: this.string(''),
       phoneNumber: this.string(''),
       notes: this.string(null),

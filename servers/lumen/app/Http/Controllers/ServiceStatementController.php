@@ -31,7 +31,7 @@ class ServiceStatementController extends Controller
         
         $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );

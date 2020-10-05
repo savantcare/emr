@@ -28,14 +28,14 @@ class BloodPressureController extends Controller
         $requestData = $request->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
-        $ptUUID = $requestData['data']['ptUUID'];
+        $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $bloodPressureInBpm = $requestData['data']['bloodPressureInBpm'];
         $notes = $requestData['data']['notes'];
         $recordChangedByUUID = $requestData['data']['recordChangedByUUID'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertBloodPressure = DB::statement("INSERT INTO `sc_body_measurement`.`bloodPressure` (`serverSideRowUuid`, `ptUUID`, `bloodPressureInBpm`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUUID}', {$bloodPressureInBpm}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
+        $insertBloodPressure = DB::statement("INSERT INTO `sc_body_measurement`.`bloodPressure` (`serverSideRowUuid`, `ptUuid`, `bloodPressureInBpm`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$bloodPressureInBpm}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertBloodPressure, 201);
     }

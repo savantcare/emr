@@ -3,7 +3,7 @@ USE `sc_scr`;
 
 DROP TABLE IF EXISTS `phq9PtResponses`;
 CREATE TABLE `phq9PtResponses` (
-  `ptUUID` char(36) NOT NULL,
+  `ptUuid` char(36) NOT NULL,
   `question1` enum('0','1','2','3') DEFAULT NULL,
   `question2` enum('0','1','2','3') DEFAULT NULL,
   `question3` enum('0','1','2','3') DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `phq9PtResponses` (
   `question10` enum('0','1','2','3') DEFAULT NULL,
   `recordChangedByUUID` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`ptUUID`)
+  PRIMARY KEY (`ptUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
 
 
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `scrAssignedToPts`;
 CREATE TABLE `scrAssignedToPts` (
   `uuid` char(36) NOT NULL,
   `scrUUID` char(36) DEFAULT NULL,
-  `ptUUID` char(36) DEFAULT NULL,
+  `ptUuid` char(36) DEFAULT NULL,
   `notes` text DEFAULT NULL,
   `recordChangedByUUID` char(36) DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,

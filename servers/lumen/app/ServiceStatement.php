@@ -20,7 +20,7 @@ class ServiceStatement extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'recordChangedByUUID',
+        'ptUuid', 'recordChangedByUUID',
     ];
 
     /**

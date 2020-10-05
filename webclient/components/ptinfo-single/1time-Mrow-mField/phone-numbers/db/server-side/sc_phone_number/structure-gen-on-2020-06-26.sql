@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `numbers`;
 
 CREATE TABLE `numbers` (
   `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `ptUUID` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ptUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `countryCode` char(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phoneNumber` char(15) DEFAULT NULL,
   `notes` text DEFAULT NULL,

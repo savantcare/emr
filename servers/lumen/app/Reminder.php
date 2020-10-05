@@ -20,7 +20,7 @@ class Reminder extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'description', 'notes', 'recordChangedByUUID',
+        'ptUuid', 'description', 'notes', 'recordChangedByUUID',
     ];
 
     /**

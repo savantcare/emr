@@ -32,7 +32,7 @@ class HeightController extends Controller
 
         $heightData = array(
             'uuid' => $uuid,
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
@@ -47,7 +47,7 @@ class HeightController extends Controller
         $channel = 'MsgFromSktForHeightToAdd';
         $message = array(
             'uuid' => $uuid,
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],
@@ -71,7 +71,7 @@ class HeightController extends Controller
         $channel = 'MsgFromSktForHeightToChange';
         $message = array(
             'uuid' => $id,
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'heightInInch' => $requestData['data']['heightInInch'],
             'measurementDate' => $requestData['data']['measurementDate'],
             'notes' => $requestData['data']['notes'],

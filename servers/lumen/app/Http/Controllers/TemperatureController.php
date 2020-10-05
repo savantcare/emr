@@ -28,14 +28,14 @@ class TemperatureController extends Controller
         $requestData = $request->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
-        $ptUUID = $requestData['data']['ptUUID'];
+        $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $temperatureInFarehnite = $requestData['data']['temperatureInFarehnite'];
         $notes = $requestData['data']['notes'];
         $recordChangedByUUID = $requestData['data']['recordChangedByUUID'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertTempereture = DB::statement("INSERT INTO `sc_body_measurement`.`temperature` (`serverSideRowUuid`, `ptUUID`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUUID}', {$temperatureInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
+        $insertTempereture = DB::statement("INSERT INTO `sc_body_measurement`.`temperature` (`serverSideRowUuid`, `ptUuid`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$temperatureInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertTempereture, 201);
     }

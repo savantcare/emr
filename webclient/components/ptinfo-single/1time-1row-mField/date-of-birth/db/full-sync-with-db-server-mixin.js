@@ -4,7 +4,7 @@ import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/date-o
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '?ptUUID=abcd')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '?ptUuid=abcd')
       if (pro.ok) {
       }
     },

@@ -31,7 +31,7 @@ class ReminderController extends Controller
         
         $remData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUUID' => $requestData['data']['ptUUID'],
+            'ptUuid' => $requestData['data']['ptUuid'],
             'description' => $requestData['data']['description'],
             'recordChangedByUUID' => $requestData['data']['recordChangedByUUID']
         );

@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `MentalStatusExam`;
 
 CREATE TABLE `height` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ptUUID` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ptUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `heightInInches` int(11) DEFAULT NULL,
   `timeOfMeasurementInMilliseconds` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `notes` text DEFAULT NULL,
@@ -17,5 +17,5 @@ CREATE TABLE `height` (
 -- Dumping data for table `height`
 --
 
-INSERT INTO `height` (`serverSideRowUuid`, `ptUUID`, `heightInInches`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `height` (`serverSideRowUuid`, `ptUuid`, `heightInInches`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES
 ('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 75, 'test', 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL); 

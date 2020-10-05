@@ -20,7 +20,7 @@ class Height extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'heightInInch', 'measurementDate', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
+        'ptUuid', 'heightInInch', 'measurementDate', 'notes', 'recordChangedByUUID', 'recordChangedFromIPAddress'
     ];
 
     /**
