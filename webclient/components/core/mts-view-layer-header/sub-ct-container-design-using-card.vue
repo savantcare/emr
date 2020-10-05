@@ -4,6 +4,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 
 <template>
   <div>
+    <!-- Following el-card style is set to overflow visible and height 65px. This is because tooltip on appointment slider wasn't fully visible as el-card overflow property by default set to hidden. Also since slider is generating on the fly, it was causing malformation on mouse overing/tooltip. Hence overflow is visible and height set to 65px. -->
     <el-card style="overflow: visible; height: 65px">
       <el-col :span="6" class="ml-2" style="display: flex; align-items: center">
         <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
