@@ -59,9 +59,9 @@ class ReminderController extends Controller
         return response()->json($Reminder, 201);
     }
 
-    public function update($id, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
-        $Reminder = Reminder::findOrFail($id);
+        $Reminder = Reminder::findOrFail($serverSideRowUuid);
         $Reminder->update($request->all());
 
         /**
@@ -70,7 +70,7 @@ class ReminderController extends Controller
         $requestData = $request->all();
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
-            'serverSideRowUuid' => $id,
+            'serverSideRowUuid' => $serverSideRowUuid,
             'description' => $requestData['description'],
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
         );

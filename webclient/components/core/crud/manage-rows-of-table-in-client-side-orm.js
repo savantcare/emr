@@ -1,4 +1,5 @@
 import { Model } from '@vuex-orm/core'
+import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -608,12 +609,19 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static async fnMakeApiCAll(pOrmRowArray) {
-    const socketClientObj = await tableCommonForAllComponents.find(1)
+    const socketClientObj = await clientSideTableOfCommonForAllComponents
+      .query()
+      .where(
+        'fieldName',
+        'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+      )
+      .first()
+
     // console.log(tableCommonForAllComponents)
     pOrmRowArray.ptUuid = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
     pOrmRowArray.recordChangedByUuid = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     pOrmRowArray.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange =
-      socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+      socketClientObj.fieldValue
     try {
       const response = await fetch(this.apiUrl, {
         // @raj TODO Why not using User.api().post(url, data, config) from https://vuex-orm.github.io/plugin-axios/guide/usage.html#performing-requests
@@ -638,7 +646,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUUID, deletedNote) {
     try {
-      const socketClientObj = await tableCommonForAllComponents.find(1)
+      const socketClientObj = await clientSideTableOfCommonForAllComponents
+        .query()
+        .where(
+          'fieldName',
+          'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+        )
+        .first()
 
       const response = await fetch(`${this.apiUrl}/${rowUUID}`, {
         method: 'PATCH',
@@ -650,7 +664,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           dNotes: deletedNote,
           patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
           clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
-            socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
+            socketClientObj.fieldValue,
         }),
       })
       if (!response.ok) {

@@ -232,7 +232,13 @@ export default {
         /**
          * Send socket id to the server for update from socket
          */
-        const socketClientObj = await clientSideTableOfCommonForAllComponents.find(1)
+        const socketClientObj = await clientSideTableOfCommonForAllComponents
+          .query()
+          .where(
+            'fieldName',
+            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+          )
+          .first()
 
         const response = await fetch(clientSideTable.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
           method: 'PUT',
@@ -243,7 +249,7 @@ export default {
           body: JSON.stringify({
             description: this.mfGetCopiedRowBeingChangedFldVal('description'),
             clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
-              socketClientObj.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange,
+              socketClientObj.fieldValue,
           }),
         })
 
