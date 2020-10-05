@@ -4,23 +4,41 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 <template>
   <div>
     <clientSideTblOfAppointmentsInsertData />
-    <!-- TODO: need to move it to init file -->
+    <!-- TODO: need to move it to init file 
+      To use vue-slider the key concepts are 
+      A "slider" has many "marks". Each mark is of the format "number:text"
+
+```
+{0: "el-icon-lock", 20: "el-icon-circle-close", 40: "el-icon-circle-close", 60: "el-icon-remove-outline", 80: "el-icon-unlock", __ob__: Observer}
+0: "el-icon-lock"
+20: "el-icon-circle-close"
+40: "el-icon-circle-close"
+60: "el-icon-remove-outline"
+80: "el-icon-unlock"
+__ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
+__proto__: Object
+```   
+        Each mark has 3 things associated with it:L
+          1. label 
+          2. dot
+          3. Tooltip
+    -->
     <vue-slider
-      v-model="sliderValue"
-      :marks="cfSliderMarks"
+      v-model="currentSliderValue"
+      :marks="cfGetAllMarksForSlider"
       container="true"
       absorb="true"
       :included="true"
-      @drag-start="sliderEvent"
-      @change="sliderEvent"
-      :minApptStartMilliseconds="0"
-      :maxApptStartMilliseconds="100"
-      :tooltip-formatter="sliderTooltipFormatter"
+      @drag-start="mfHandleSliderEvent"
+      @change="mfHandleSliderEvent"
+      :dMinApptStartMilliseconds="0"
+      :dMaxApptStartMilliseconds="100"
+      :tooltip-formatter="getTooltipForThisMark"
     >
       <template v-slot:label="{ label, active }">
         <button
           type="button"
-          @click="sliderEvent"
+          @click="mfHandleSliderEvent"
           style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
           :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
         ></button>
@@ -39,16 +57,16 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      configProportionalOrEquiDistant: 'EquiDistant',
+      dConfigProportionalOrEquiDistant: 'EquiDistant',
       dCurrentActiveButtonClientSideRowId: 0,
       dButtonTypes: [],
-      sliderValue: 0,
-      sliderMarks: {},
-      maxApptStartMilliseconds: -1,
-      minApptStartMilliseconds: -1,
-      sliderMarksclientSideUniqRowId: {},
-      sliderMarksApptStatus: {},
-      sliderMarksApptCalendarTime: {},
+      currentSliderValue: 0,
+      dMaxApptStartMilliseconds: -1,
+      dMinApptStartMilliseconds: -1,
+      dMarksOnSlider: {},
+      dClientSideUniqRowIdAtEachSliderMark: {},
+      dApptStatusAtEachSliderMark: {},
+      dApptCalendarTimeAtEachSliderMark: {},
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
@@ -60,30 +78,30 @@ export default {
     this.dButtonTypes['locked'] = 'success'
   },
   computed: {
-    cfSliderMarks() {
+    cfGetAllMarksForSlider() {
       const arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
-      this.sliderMarks = {}
-      this.sliderMarksclientSideUniqRowId = {}
-      this.sliderMarksApptStatus = {}
-      this.sliderMarksApptCalendarTime = {}
+      this.dMarksOnSlider = {}
+      this.dClientSideUniqRowIdAtEachSliderMark = {}
+      this.dApptStatusAtEachSliderMark = {}
+      this.dApptCalendarTimeAtEachSliderMark = {}
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         const apptStartMilliSecondsOnCalendar =
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
 
-        if (this.minApptStartMilliseconds === -1) {
-          this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMinApptStartMilliseconds === -1) {
+          this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
 
-        if (this.maxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
-          this.maxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMaxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
+          this.dMaxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
-        if (this.minApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
-          this.minApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMinApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
+          this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
       }
 
-      const spread = this.maxApptStartMilliseconds - this.minApptStartMilliseconds
+      const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
 
       console.log(arOfObjectsFromClientSideDB)
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
@@ -103,11 +121,11 @@ export default {
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
 
         let markPoint = null
-        if (this.configProportionalOrEquiDistant === 'EquiDistant') {
+        if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
           markPoint = (i / arOfObjectsFromClientSideDB.length) * 100
         } else {
           const percentage =
-            ((apptStartMilliSecondsOnCalendar - this.minApptStartMilliseconds) / spread) * 100
+            ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
 
           markPoint = Math.round(percentage)
         }
@@ -132,35 +150,36 @@ export default {
           labelAtEachMark = 'el-icon-circle-close'
         }
 
-        this.sliderMarks[markPoint] = labelAtEachMark
-        this.sliderMarksclientSideUniqRowId[markPoint] =
+        this.dMarksOnSlider[markPoint] = labelAtEachMark
+        this.dClientSideUniqRowIdAtEachSliderMark[markPoint] =
           arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
-        this.sliderMarksApptStatus[markPoint] = arOfObjectsFromClientSideDB[i]['apptStatus']
-        this.sliderMarksApptCalendarTime[markPoint] =
+        this.dApptStatusAtEachSliderMark[markPoint] = arOfObjectsFromClientSideDB[i]['apptStatus']
+        this.dApptCalendarTimeAtEachSliderMark[markPoint] =
           arOfObjectsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
       }
-      return this.sliderMarks
+      console.log(this.dMarksOnSlider)
+      return this.dMarksOnSlider
     },
   },
   methods: {
-    sliderTooltipFormatter(value) {
-      //      return this.sliderMarksApptCalendarTime[value]
+    getTooltipForThisMark(value) {
+      //      return this.dApptCalendarTimeAtEachSliderMark[value]
 
       return (
-        this.sliderMarksApptStatus[value] +
+        this.dApptStatusAtEachSliderMark[value] +
         ' : ' +
-        moment(this.sliderMarksApptCalendarTime[value]).format('MMMM Do YYYY, h:mm a')
+        moment(this.dApptCalendarTimeAtEachSliderMark[value]).format('MMMM Do YYYY, h:mm a')
       )
     },
 
-    sliderEvent(pEventValue) {
-      const valueOfSlider = this.sliderValue
+    mfHandleSliderEvent(pEventValue) {
+      const valueOfSlider = this.currentSliderValue
 
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (
-        this.sliderMarksApptStatus[valueOfSlider] == 'cancellation' ||
-        this.sliderMarksApptStatus[valueOfSlider] == 'late-cancellation' ||
-        this.sliderMarksApptStatus[valueOfSlider] == 'no-show'
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'cancellation' ||
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'late-cancellation' ||
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
       ) {
         // unsert the previous note window if there is any
         const updateState = clientSideTblOfMultiStateViewCards.update({
@@ -170,7 +189,7 @@ export default {
         return
       }
 
-      this.toggleApptNoteDisplay(this.sliderMarksclientSideUniqRowId[this.sliderValue])
+      this.toggleApptNoteDisplay(this.dClientSideUniqRowIdAtEachSliderMark[this.currentSliderValue])
     },
     async toggleApptNoteDisplay(pClientSideRowId) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
