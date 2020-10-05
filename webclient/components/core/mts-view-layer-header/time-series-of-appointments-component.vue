@@ -2,7 +2,7 @@
 https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
-  <div>
+  <div :style="sendCssVariablesToStyleSheet">
     <clientSideTblOfAppointmentsInsertData />
     <!-- TODO: need to move it to init file 
       To use vue-slider the key concepts are 
@@ -34,6 +34,7 @@ __proto__: Object
       :dMinApptStartMilliseconds="0"
       :dMaxApptStartMilliseconds="100"
       :tooltip-formatter="getTooltipForThisMark"
+      :style="sendCssVariablesToStyleSheet"
     >
       <template v-slot:label="{ label, active }">
         <button
@@ -192,26 +193,26 @@ export default {
         }
 
         // get the labelAtEachMark for that slider mark
-        let labelAtEachMark = ''
+        let labelAtEachMarkToStoreIconClass = ''
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
-          labelAtEachMark = 'el-icon-lock'
+          labelAtEachMarkToStoreIconClass = 'el-icon-lock'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'un-locked') {
-          labelAtEachMark = 'el-icon-unlock'
+          labelAtEachMarkToStoreIconClass = 'el-icon-unlock'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          labelAtEachMark = 'el-icon-circle-close'
+          labelAtEachMarkToStoreIconClass = 'el-icon-circle-close'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          labelAtEachMark = 'el-icon-remove-outline'
+          labelAtEachMarkToStoreIconClass = 'el-icon-remove-outline'
         }
         if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-          labelAtEachMark = 'el-icon-circle-close'
+          labelAtEachMarkToStoreIconClass = 'el-icon-circle-close'
         }
 
-        this.dMarksOnSlider[markPoint] = labelAtEachMark
+        this.dMarksOnSlider[markPoint] = labelAtEachMarkToStoreIconClass
         this.dClientSideUniqRowIdAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
           'clientSideUniqRowId'
         ]
@@ -272,6 +273,14 @@ export default {
         this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentSliderValue]
       )
     },
+    sendCssVariablesToStyleSheet() {
+      console.log('css send called')
+      return {
+        // This find the color of the default icon
+        '--size-of-lock-icon': '15rem',
+      }
+    },
+
     async toggleApptNoteDisplay(pClientSideRowId) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
@@ -299,4 +308,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style>
+.el-icon-lock {
+  font-size: var(--size-of-lock-icon) !important;
+  color: #67c23a !important;
+}
+</style>
