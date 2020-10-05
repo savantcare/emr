@@ -43,6 +43,9 @@ __proto__: Object
           :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
         ></button>
       </template>
+      <template v-slot:dot="{ value, focus }">
+        <div></div>
+      </template>
     </vue-slider>
   </div>
 </template>
