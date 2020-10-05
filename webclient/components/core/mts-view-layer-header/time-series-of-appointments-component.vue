@@ -59,11 +59,11 @@ __proto__: Object
       <br />
 
       <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
-        <el-checkbox label="Locked"></el-checkbox>
-        <el-checkbox label="Un-Locked"></el-checkbox>
-        <el-checkbox label="Late cancellation"></el-checkbox>
-        <el-checkbox label="No show"></el-checkbox>
-        <el-checkbox label="Cancellation"></el-checkbox> </el-checkbox-group
+        <el-checkbox label="locked">Locked</el-checkbox>
+        <el-checkbox label="un-Locked">Un Locked</el-checkbox>
+        <el-checkbox label="late-cancellation">Late cancellation</el-checkbox>
+        <el-checkbox label="no-show">No show</el-checkbox>
+        <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
       ><br />
       <br />
 
