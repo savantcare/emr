@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
 use Predis\Autoloader;
+
 \Predis\Autoloader::register();
 
 
 class ReminderController extends Controller
 {
-
     public function getAllTemporalReminders()
     {
         $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
@@ -25,6 +25,13 @@ class ReminderController extends Controller
         return response()->json(Reminder::find($pServerSideRowUuid));
     }
 
+    /*
+
+    To check postman/post/ URL: http://localhost:8000/public/api/reminders/v20/
+    Body / Json
+    {"data":{"$id":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUUID":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange":"1"}}
+    Wiki has a video on youtube
+    */
     public function create(Request $request)
     {
         $requestData = $request->all();
@@ -80,8 +87,7 @@ class ReminderController extends Controller
         $Reminder = Reminder::findOrFail($id);
         $requestData = $request->all();
 
-        if(isset($requestData['dNotes']) && !empty($requestData['dNotes']))
-        {
+        if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
