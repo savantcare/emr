@@ -190,6 +190,8 @@ export default {
     handleCloseOfSettingsDialog(done) {
       this.dConfigProportionalOrEquiDistant = 'Proportional'
       this.dIsDialogVisible = false
+      // If I do not call the computed function the slider does not update itself.
+      this.cfGetAllMarksForSlider
       console.log('settings closed')
     },
 
