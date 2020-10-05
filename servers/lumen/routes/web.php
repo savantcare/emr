@@ -32,15 +32,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
    
     // Blood Pressure
     $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@getAllTemporalBloodPressures']);
-    $router->get('blood-pressure/v20/{id}', ['uses' => 'BloodPressureController@getOneBloodPressure']);
+    $router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@getOneBloodPressure']);
     $router->post('blood-pressure/v20/', ['uses' => 'BloodPressureController@create']);
-    $router->put('blood-pressure/v20/{id}', ['uses' => 'BloodPressureController@update']);
+    $router->put('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@update']);
     $router->options('blood-pressure/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('blood-pressure/v20/{id}', function () {
+    $router->options('blood-pressure/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -48,15 +48,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Blood Sugar
     $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@getAllTemporalBloodSugars']);
-    $router->get('blood-sugar/v20/{id}', ['uses' => 'BloodSugarController@getOneBloodSugar']);
+    $router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@getOneBloodSugar']);
     $router->post('blood-sugar/v20/', ['uses' => 'BloodSugarController@create']);
-    $router->put('blood-sugar/v20/{id}', ['uses' => 'BloodSugarController@update']);
+    $router->put('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@update']);
     $router->options('blood-sugar/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('blood-sugar/v20/{id}', function () {
+    $router->options('blood-sugar/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -64,15 +64,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
   
     // HEIGHT
     $router->get('height/v20/', ['uses' => 'HeightController@getAllTemporalHeights']);
-    $router->get('height/v20/{id}', ['uses' => 'HeightController@getOneHeight']);
+    $router->get('height/v20/{serverSideRowUuid}', ['uses' => 'HeightController@getOneHeight']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
-    $router->put('height/v20/{id}', ['uses' => 'HeightController@update']);
+    $router->put('height/v20/{serverSideRowUuid}', ['uses' => 'HeightController@update']);
     $router->options('height/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('height/v20/{id}', function () {
+    $router->options('height/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -80,15 +80,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Pulse
     $router->get('pulse/v20/', ['uses' => 'PulseController@getAllTemporalPulses']);
-    $router->get('pulse/v20/{id}', ['uses' => 'PulseController@getOnePulse']);
+    $router->get('pulse/v20/{serverSideRowUuid}', ['uses' => 'PulseController@getOnePulse']);
     $router->post('pulse/v20/', ['uses' => 'PulseController@create']);
-    $router->put('pulse/v20/{id}', ['uses' => 'PulseController@update']);
+    $router->put('pulse/v20/{serverSideRowUuid}', ['uses' => 'PulseController@update']);
     $router->options('pulse/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('pulse/v20/{id}', function () {
+    $router->options('pulse/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -96,17 +96,17 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // REMINDERS
     $router->get('reminders/v20/', ['uses' => 'ReminderController@getAllTemporalReminders']);
-    $router->get('reminders/v20/{id}', ['uses' => 'ReminderController@getOneReminder']);
+    $router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@getOneReminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
-    $router->delete('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
-    $router->put('reminders/v20/{id}', ['uses' => 'ReminderController@update']);
-    $router->patch('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
+    $router->delete('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
+    $router->put('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@update']);
+    $router->patch('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
     $router->options('reminders/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('reminders/v20/{id}', function () {
+    $router->options('reminders/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -114,15 +114,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Oxygen Saturation
     $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@getAllTemporalOxygenSaturations']);
-    $router->get('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
+    $router->get('oxygen-saturation/v20/{serverSideRowUuid}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
-    $router->put('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@update']);
+    $router->put('oxygen-saturation/v20/{serverSideRowUuid}', ['uses' => 'OxygenSaturationController@update']);
     $router->options('oxygen-saturation/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('oxygen-saturation/v20/{id}', function () {
+    $router->options('oxygen-saturation/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -164,15 +164,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     
     // Waist Circumference
     $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@getAllTemporalWaistCircumferences']);
-    $router->get('waist-circumference/v20/{id}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
+    $router->get('waist-circumference/v20/{serverSideRowUuid}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
     $router->post('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@create']);
-    $router->put('waist-circumference/v20/{id}', ['uses' => 'WaistCircumferenceController@update']);
+    $router->put('waist-circumference/v20/{serverSideRowUuid}', ['uses' => 'WaistCircumferenceController@update']);
     $router->options('waist-circumference/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('waist-circumference/v20/{id}', function () {
+    $router->options('waist-circumference/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -180,15 +180,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // WEIGHT
     $router->get('weight/v20/', ['uses' => 'WeightController@getAllTemporalWeights']);
-    $router->get('weight/v20/{id}', ['uses' => 'WeightController@getOneWeight']);
+    $router->get('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
-    $router->put('weight/v20/{id}', ['uses' => 'WeightController@update']);
+    $router->put('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('weight/v20/{id}', function () {
+    $router->options('weight/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
