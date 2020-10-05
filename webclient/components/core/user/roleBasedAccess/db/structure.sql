@@ -23,7 +23,7 @@ CREATE TABLE `ctAllowedToAccessByEachUserRole`
 (
   `uuid` char
 (36) NOT NULL ,
-  `roleUUID` char
+  `roleUuid` char
 (36) NOT NULL,
   `componentUuid` char
 (36) NOT NULL,

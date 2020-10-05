@@ -9,8 +9,8 @@ export default class Dxa extends Model {
   static fields() {
     return {
       uuid: this.uid(),
-      dxUUID: this.attr(null),
-      dx: this.belongsTo(Dx, 'dxUUID'),
+      dxUuid: this.attr(null),
+      dx: this.belongsTo(Dx, 'dxUuid'),
       patientUuid: this.attr(null),
       dxAssessment: this.string(null).nullable(),
       recordChangedByUuid: this.attr(null),

@@ -40,7 +40,7 @@
 
             update with composite primary ley:
              ormRem.update({
-              where: [remUUID, this.reminderRowStart],    // The index is bigger and it will take longer to match
+              where: [remUuid, this.reminderRowStart],    // The index is bigger and it will take longer to match
               data: {
                 description: pEvent,
                 },

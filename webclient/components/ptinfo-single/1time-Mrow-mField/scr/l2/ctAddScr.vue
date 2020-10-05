@@ -127,7 +127,7 @@ export default {
           this.screenForm.screenings.forEach((item) => {
             screenList.push({
               // uuid: uniqid(),
-              screenUUID: item.value,
+              screenUuid: item.value,
               patientUuid: vm.id,
               notes: 'test note',
               recordChangedByUuid: this.getUserId,

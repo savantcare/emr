@@ -23,7 +23,7 @@ CREATE TABLE `phq9PtResponses` (
 DROP TABLE IF EXISTS `scrAssignedToPts`;
 CREATE TABLE `scrAssignedToPts` (
   `uuid` char(36) NOT NULL,
-  `scrUUID` char(36) DEFAULT NULL,
+  `scrUuid` char(36) DEFAULT NULL,
   `ptUuid` char(36) DEFAULT NULL,
   `notes` text DEFAULT NULL,
   `recordChangedByUuid` char(36) DEFAULT NULL,
