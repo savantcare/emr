@@ -129,7 +129,7 @@ export default {
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'locked') {
         obj['--size-of-lock-icon'] = selectedSize
-        obj['--color-of-lock-icon'] = '#67c23a'
+        obj['--color-of-lock-icon'] = '#67c23a' // success color from https://element.eleme.io/#/en-US/component/color
       } else {
         obj['--size-of-lock-icon'] = defaultSize
         obj['--color-of-lock-icon'] = 'rgb(192, 196, 204)'
@@ -137,7 +137,7 @@ export default {
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'un-locked') {
         obj['--size-of-unlock-icon'] = selectedSize
-        obj['--color-of-unlock-icon'] = '#409eff'
+        obj['--color-of-unlock-icon'] = '#409eff' // main color from https://element.eleme.io/#/en-US/component/color
       } else {
         obj['--size-of-unlock-icon'] = defaultSize
         obj['--color-of-unlock-icon'] = 'rgb(192, 196, 204)'
@@ -145,7 +145,7 @@ export default {
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'late-cancellation') {
         obj['--size-of-circle-close-icon'] = selectedSize
-        obj['--color-of-circle-close-icon'] = '#f56c6c'
+        obj['--color-of-circle-close-icon'] = '#f56c6c' // danger color from https://element.eleme.io/#/en-US/component/color
       } else {
         obj['--size-of-circle-close-icon'] = defaultSize
         obj['--color-of-circle-close-icon'] = 'rgb(192, 196, 204)'
@@ -153,7 +153,7 @@ export default {
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'cancellation') {
         obj['--size-of-remove-outline-icon'] = selectedSize
-        obj['--color-of-remove-outline-icon'] = '#e6a23c'
+        obj['--color-of-remove-outline-icon'] = '#e6a23c' // Warning color
       } else {
         obj['--size-of-remove-outline-icon'] = defaultSize
         obj['--color-of-remove-outline-icon'] = 'rgb(192, 196, 204)'
@@ -161,7 +161,7 @@ export default {
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'no-show') {
         obj['--size-of-warning-outline-icon'] = selectedSize
-        obj['--color-of-warning-outline-icon'] = '#f56c6c'
+        obj['--color-of-warning-outline-icon'] = '#f56c6c' // Danger color
       } else {
         obj['--size-of-warning-outline-icon'] = defaultSize
         obj['--color-of-warning-outline-icon'] = 'rgb(192, 196, 204)'

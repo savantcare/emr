@@ -526,4 +526,9 @@ Mental status exam |  Flexible     | Header      |   3         |    -1
   font-size: 1.5rem;
   color: #409eff !important;
 }
+
+.el-icon-warning-outline:hover {
+  font-size: 1.5rem;
+  color: #f56c6c !important;
+}
 </style>
