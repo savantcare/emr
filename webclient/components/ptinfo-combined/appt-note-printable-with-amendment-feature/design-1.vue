@@ -69,21 +69,25 @@
     </div>
 
     <!-- SECTOION 5  SERVICE STATEMENTS -->
-    <h3 style="padding-top: 20px; padding-bottom: 5px" class="ssh3">
-      Service statements
-      <el-popover placement="right" width="400" v-model="visible1">
-        <div style="text-align: right; margin: 0">
-          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-        </div>
-        <el-button
-          slot="reference"
-          class="el-icon-edit-outline"
-          size="mini"
-          circle
-          style="display: none"
-        ></el-button>
-      </el-popover>
-    </h3>
+    <el-row type="flex" justify="space-between" class="ssh3">
+      <el-col :span="10">
+        <h3 style="padding-top: 20px; padding-bottom: 5px">Service statements</h3>
+      </el-col>
+      <el-col :span="10">
+        <el-popover placement="right" width="400" v-model="visible1">
+          <div style="text-align: right; margin: 0">
+            <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          </div>
+          <el-button
+            slot="reference"
+            class="el-icon-edit-outline"
+            size="mini"
+            circle
+            style="display: none"
+          ></el-button>
+        </el-popover>
+      </el-col>
+    </el-row>
     <div v-for="row in cfArOfServiceStatementForDisplay" :key="`ss-${row.clientSideUniqRowId}`">
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
