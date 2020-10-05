@@ -60,7 +60,7 @@ __proto__: Object
 
       <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
         <el-checkbox label="locked">Locked</el-checkbox>
-        <el-checkbox label="un-Locked">Un Locked</el-checkbox>
+        <el-checkbox label="un-locked">Un Locked</el-checkbox>
         <el-checkbox label="late-cancellation">Late cancellation</el-checkbox>
         <el-checkbox label="no-show">No show</el-checkbox>
         <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
@@ -98,7 +98,13 @@ export default {
 
       // Settings for slider
       dConfigProportionalOrEquiDistant: 'EquiDistant',
-      dConfigChecklistOfApptTypesToShow: [],
+      dConfigChecklistOfApptTypesToShow: [
+        'locked',
+        'un-locked',
+        'no-show',
+        'late-cancellation',
+        'cancellation',
+      ],
       dConfigProviderTypesToShow: [],
     }
   },
@@ -118,9 +124,19 @@ export default {
       this.dApptStatusAtEachSliderMark = {}
       this.dApptCalendarTimeAtEachSliderMark = {}
 
-      // Goal: Rmeove types user does not want
+      /* Goal: Rmeove types user does not want
+      The array looks like this:
+      0: "locked"
+      1: "un-Locked"
+      2: "no-show"
+      3: "late-cancellation"
+      4: "cancellation"
+      */
+      console.log(this.dConfigChecklistOfApptTypesToShow)
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        if (arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+        const currentApptStatus = arOfObjectsFromClientSideDB[i]['apptStatus']
+        if (this.dConfigChecklistOfApptTypesToShow.includes(currentApptStatus)) {
+        } else {
           arOfObjectsFromClientSideDB.splice(i, 1)
         }
       }
