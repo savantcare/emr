@@ -78,6 +78,8 @@ import tableStructureForDx from '~/components/ptinfo-single/1time-Mrow-mField/dx
 import tableStructureForDxa from '~/components/ptinfo-single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 import tableStructureForGoal from '~/components/ptinfo-single/1time-Mrow-mField/goal/db/client-side/structure/Goal'
 import tableStructureForPhoneNumbers from '~/components/ptinfo-single/1time-Mrow-mField/phone-numbers/db/client-side/structure/table.js'
+import tableStructureForPatientDiagnosis from '~/components/ptinfo-single/1time-Mrow-mField/diagnosis/db/client-side/structure/patient-table-of-diagnosis'
+import tableStructureForMasterDiagnosis from '~/components/ptinfo-single/1time-Mrow-mField/diagnosis/db/client-side/structure/master-table-of-diagnosis'
 database.register(tableStructureForRem)
 database.register(tableStructureForName)
 database.register(tableStructureForDob)
@@ -86,5 +88,7 @@ database.register(tableStructureForDx)
 database.register(tableStructureForGoal)
 database.register(tableStructureForDxa)
 database.register(tableStructureForPhoneNumbers)
+database.register(tableStructureForPatientDiagnosis)
+database.register(tableStructureForMasterDiagnosis)
 
 export default database
