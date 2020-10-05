@@ -12,7 +12,7 @@ use Predis\Autoloader;
 
 class HeightController extends Controller
 {
-    public function showAllHeights()
+    public function getAllTemporalHeights()
     {
         $heightQuery = DB::select(DB::raw('SELECT *,round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_body_measurement.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($heightQuery);
@@ -20,9 +20,9 @@ class HeightController extends Controller
         // return response()->json(Height::all());
     }
 
-    public function showOneHeight($id)
+    public function getOneHeight($pServerSideRowUuid)
     {
-        return response()->json(Height::find($id));
+        return response()->json(Height::find($pServerSideRowUuid));
     }
 
     public function create(Request $request)

@@ -10,14 +10,14 @@ use Predis\Autoloader;
 
 class BloodSugarController extends Controller
 {
-    public function showAllBloodSugars()
+    public function getAllTemporalBloodSugars()
     {
         $bloodSugarQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.bloodSugar FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($bloodSugarQuery);
     }
 
-    public function showOneBloodSugar($id)
+    public function getOneBloodSugar($pServerSideRowUuid)
     {
         $bloodSugarQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.bloodSugar FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$id}' order by ROW_START desc"));
 

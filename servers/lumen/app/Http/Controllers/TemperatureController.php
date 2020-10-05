@@ -9,14 +9,14 @@ use Predis\Autoloader;
 
 class TemperatureController extends Controller
 {
-    public function showAllTemperatures()
+    public function getAllTemporalTemperatures()
     {
         $temperatureQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($temperatureQuery);
     }
 
-    public function showOneTemperature($serverSideRowUuid)
+    public function getOneTemperature($pServerSideRowUuid)
     {
         $temperatureQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.temperature FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
 

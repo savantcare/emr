@@ -9,14 +9,14 @@ use Predis\Autoloader;
 
 class BloodPressureController extends Controller
 {
-    public function showAllBloodPressures()
+    public function getAllTemporalBloodPressures()
     {
         $bloodPressureQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.bloodPressure FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($bloodPressureQuery);
     }
 
-    public function showOneBloodPressure($id)
+    public function getOneBloodPressure($pServerSideRowUuid)
     {
         $bloodPressureQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_body_measurement.bloodPressure FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$id}' order by ROW_START desc"));
 

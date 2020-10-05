@@ -31,8 +31,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
    
     // Blood Pressure
-    $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@showAllBloodPressures']);
-    $router->get('blood-pressure/v20/{id}', ['uses' => 'BloodPressureController@showOneBloodPressure']);
+    $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@getAllTemporalBloodPressures']);
+    $router->get('blood-pressure/v20/{id}', ['uses' => 'BloodPressureController@getOneBloodPressure']);
     $router->post('blood-pressure/v20/', ['uses' => 'BloodPressureController@create']);
     $router->put('blood-pressure/v20/{id}', ['uses' => 'BloodPressureController@update']);
     $router->options('blood-pressure/v20', function () {
@@ -47,8 +47,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Blood Sugar
-    $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@showAllBloodSugars']);
-    $router->get('blood-sugar/v20/{id}', ['uses' => 'BloodSugarController@showOneBloodSugar']);
+    $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@getAllTemporalBloodSugars']);
+    $router->get('blood-sugar/v20/{id}', ['uses' => 'BloodSugarController@getOneBloodSugar']);
     $router->post('blood-sugar/v20/', ['uses' => 'BloodSugarController@create']);
     $router->put('blood-sugar/v20/{id}', ['uses' => 'BloodSugarController@update']);
     $router->options('blood-sugar/v20', function () {
@@ -63,8 +63,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
   
     // HEIGHT
-    $router->get('height/v20/', ['uses' => 'HeightController@showAllHeights']);
-    $router->get('height/v20/{id}', ['uses' => 'HeightController@showOneHeight']);
+    $router->get('height/v20/', ['uses' => 'HeightController@getAllTemporalHeights']);
+    $router->get('height/v20/{id}', ['uses' => 'HeightController@getOneHeight']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
     $router->put('height/v20/{id}', ['uses' => 'HeightController@update']);
     $router->options('height/v20', function () {
@@ -79,8 +79,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Pulse
-    $router->get('pulse/v20/', ['uses' => 'PulseController@showAllPulses']);
-    $router->get('pulse/v20/{id}', ['uses' => 'PulseController@showOnePulse']);
+    $router->get('pulse/v20/', ['uses' => 'PulseController@getAllTemporalPulses']);
+    $router->get('pulse/v20/{id}', ['uses' => 'PulseController@getOnePulse']);
     $router->post('pulse/v20/', ['uses' => 'PulseController@create']);
     $router->put('pulse/v20/{id}', ['uses' => 'PulseController@update']);
     $router->options('pulse/v20', function () {
@@ -95,8 +95,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // REMINDERS
-    $router->get('reminders/v20/', ['uses' => 'ReminderController@showAllReminders']);
-    $router->get('reminders/v20/{id}', ['uses' => 'ReminderController@showOneReminder']);
+    $router->get('reminders/v20/', ['uses' => 'ReminderController@getAllTemporalReminders']);
+    $router->get('reminders/v20/{id}', ['uses' => 'ReminderController@getOneReminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
     $router->delete('reminders/v20/{id}', ['uses' => 'ReminderController@delete']);
     $router->put('reminders/v20/{id}', ['uses' => 'ReminderController@update']);
@@ -113,8 +113,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Oxygen Saturation
-    $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@showAllOxygenSaturations']);
-    $router->get('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@showOneOxygenSaturation']);
+    $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@getAllTemporalOxygenSaturations']);
+    $router->get('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
     $router->put('oxygen-saturation/v20/{id}', ['uses' => 'OxygenSaturationController@update']);
     $router->options('oxygen-saturation/v20', function () {
@@ -130,8 +130,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 
     // Service statement
-    $router->get('service-statement/v20/', ['uses' => 'ServiceStatementController@showAllServiceStatements']);
-    $router->get('service-statement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@showOneServiceStatement']);
+    $router->get('service-statement/v20/', ['uses' => 'ServiceStatementController@getAllTemporalServiceStatements']);
+    $router->get('service-statement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@getOneServiceStatement']);
     $router->post('service-statement/v20/', ['uses' => 'ServiceStatementController@create']);
     $router->put('service-statement/v20/{serverSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
     $router->options('service-statement/v20', function () {
@@ -147,8 +147,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 
     // Temperature
-    $router->get('temperature/v20/', ['uses' => 'TemperatureController@showAllTemperatures']);
-    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@showOneTemperature']);
+    $router->get('temperature/v20/', ['uses' => 'TemperatureController@getAllTemporalTemperatures']);
+    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@getOneTemperature']);
     $router->post('temperature/v20/', ['uses' => 'TemperatureController@create']);
     $router->put('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@update']);
     $router->options('temperature/v20', function () {
@@ -163,8 +163,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
     
     // Waist Circumference
-    $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@showAllWaistCircumferences']);
-    $router->get('waist-circumference/v20/{id}', ['uses' => 'WaistCircumferenceController@showOneWaistCircumference']);
+    $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@getAllTemporalWaistCircumferences']);
+    $router->get('waist-circumference/v20/{id}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
     $router->post('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@create']);
     $router->put('waist-circumference/v20/{id}', ['uses' => 'WaistCircumferenceController@update']);
     $router->options('waist-circumference/v20', function () {
@@ -179,8 +179,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // WEIGHT
-    $router->get('weight/v20/', ['uses' => 'WeightController@showAllWeights']);
-    $router->get('weight/v20/{id}', ['uses' => 'WeightController@showOneWeight']);
+    $router->get('weight/v20/', ['uses' => 'WeightController@getAllTemporalWeights']);
+    $router->get('weight/v20/{id}', ['uses' => 'WeightController@getOneWeight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
     $router->put('weight/v20/{id}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {

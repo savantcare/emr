@@ -10,15 +10,15 @@ use Predis\Autoloader;
 
 class WaistCircumferenceController extends Controller
 {
-    public function showAllWaistCircumferences()
+    public function getAllTemporalWaistCircumferences()
     {
         $waistCircumferenceQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_body_measurement.waistCircumference FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($waistCircumferenceQuery);
     }
 
-    public function showOneWaistCircumference($id)
+    public function getOneWaistCircumference($pServerSideRowUuid)
     {
-        return response()->json(WaistCircumference::find($id));
+        return response()->json(WaistCircumference::find($pServerSideRowUuid));
     }
 
     public function create(Request $request)

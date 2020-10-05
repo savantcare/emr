@@ -13,16 +13,16 @@ use Predis\Autoloader;
 class ReminderController extends Controller
 {
 
-    public function showAllReminders()
+    public function getAllTemporalReminders()
     {
         $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
         return response()->json($remQuery);
         // return response()->json(Reminder::all());
     }
 
-    public function showOneReminder($id)
+    public function getOneReminder($pServerSideRowUuid)
     {
-        return response()->json(Reminder::find($id));
+        return response()->json(Reminder::find($pServerSideRowUuid));
     }
 
     public function create(Request $request)
