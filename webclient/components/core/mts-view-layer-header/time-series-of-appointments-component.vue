@@ -175,6 +175,8 @@ export default {
         this.arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
       }
 
+      console.log(this.arOfObjectsFromClientSideDB)
+
       this.dMarksOnSlider = {}
       this.dClientSideUniqRowIdAtEachSliderMark = {}
       this.dApptStatusAtEachSliderMark = {}
@@ -191,10 +193,9 @@ export default {
       for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
         const currentApptStatus = this.arOfObjectsFromClientSideDB[i]['apptStatus']
         if (this.dConfigChecklistOfApptTypesToShow.indexOf(currentApptStatus) !== -1) {
-          // console.log('User wants to see', currentApptStatus)
+          this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = true
         } else {
-          this.arOfObjectsFromClientSideDB.splice(i, 1)
-          // console.log('removing from array')
+          this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = false
         }
       }
 
@@ -263,7 +264,11 @@ export default {
           labelAtEachMarkToStoreIconClass = 'el-icon-circle-close'
         }
 
-        this.dMarksOnSlider[markPoint] = labelAtEachMarkToStoreIconClass
+        if (this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
+        } else {
+          this.dMarksOnSlider[markPoint] = labelAtEachMarkToStoreIconClass
+        }
+
         this.dClientSideUniqRowIdAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
           'clientSideUniqRowId'
         ]
