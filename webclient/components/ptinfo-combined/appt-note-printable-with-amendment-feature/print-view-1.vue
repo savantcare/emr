@@ -70,7 +70,12 @@
     </div>
 
     <!-- SECTOION 5  SERVICE STATEMENTS -->
-    <el-row type="flex" justify="left" class="ssh3" style="padding-top: 20px; padding-bottom: 10px">
+    <el-row
+      type="flex"
+      justify="left"
+      class="ssh3"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+    >
       <el-col :span="8">
         <h3>Service statements</h3>
       </el-col>
@@ -79,6 +84,15 @@
           <el-popover placement="right" width="400" v-model="visible1">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'serviceStatements')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -94,13 +108,20 @@
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
+    <br />
+    <div
+      v-for="row in cfArOfAmendmentForDisplay('serviceStatements')"
+      :key="row.clientSideUniqRowId"
+    >
+      {{ row.description }}
+    </div>
 
     <!-- SECTOION 6 MENTAL STATUS EXAM-->
     <el-row
       type="flex"
       justify="left"
       class="mseh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8">
         <h3>Mental status exam</h3>
@@ -110,6 +131,15 @@
           <el-popover placement="right" width="400" v-model="visible2">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'mentalStatusExam')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -126,12 +156,19 @@
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
       {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
     </div>
+    <br />
+    <div
+      v-for="row in cfArOfAmendmentForDisplay('mentalStatusExam')"
+      :key="row.clientSideUniqRowId"
+    >
+      {{ row.description }}
+    </div>
     <!-- SECTOION 7 Psych review of systems  -->
     <el-row
       type="flex"
       justify="left"
       class="prosh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8">
         <h3>Psych review of systems</h3>
@@ -141,6 +178,15 @@
           <el-popover placement="right" width="400" v-model="visible3">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'psychReviewOfSystems')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -160,13 +206,20 @@
       {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
       {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
     </div>
+    <br />
+    <div
+      v-for="row in cfArOfAmendmentForDisplay('psychReviewOfSystems')"
+      :key="row.clientSideUniqRowId"
+    >
+      {{ row.description }}
+    </div>
 
     <!-- SECTOION 8 REMINDERS -->
     <el-row
       type="flex"
       justify="left"
       class="remindersh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8">
         <h3 class="remindersh3">Reminders</h3>
@@ -176,6 +229,15 @@
           <el-popover placement="right" width="400" v-model="visible4">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'reminder')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -189,6 +251,10 @@
     <div :style="cfGetReminderStyle">
       <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
         {{ row['description'] }}
+      </div>
+      <br />
+      <div v-for="row in cfArOfAmendmentForDisplay('reminder')" :key="row.clientSideUniqRowId">
+        {{ row.description }}
       </div>
     </div>
     <div v-if="debug">
@@ -224,7 +290,7 @@
       type="flex"
       justify="left"
       class="recommendationsh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8"> <h3>Recommendations</h3> </el-col>
       <el-col :span="2"
@@ -232,6 +298,15 @@
           <el-popover placement="right" width="400" v-model="visible5">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'recommendations')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -242,13 +317,16 @@
         </div>
       </el-col>
     </el-row>
-
+    <br />
+    <div v-for="row in cfArOfAmendmentForDisplay('recommendations')" :key="row.clientSideUniqRowId">
+      {{ row.description }}
+    </div>
     <!-- SECTOION 10: Medications -->
     <el-row
       type="flex"
       justify="left"
       class="medicationsh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8"> <h3>Medications</h3> </el-col>
       <el-col :span="2"
@@ -256,6 +334,15 @@
           <el-popover placement="right" width="400" v-model="visible6">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'medications')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -266,13 +353,17 @@
         </div>
       </el-col>
     </el-row>
+    <br />
+    <div v-for="row in cfArOfAmendmentForDisplay('medications')" :key="row.clientSideUniqRowId">
+      {{ row.description }}
+    </div>
 
     <!-- SECTOION 11 -->
     <el-row
       type="flex"
       justify="left"
       class="vitalsh3"
-      style="padding-top: 20px; padding-bottom: 10px"
+      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
     >
       <el-col :span="8"> <h3>Vitals</h3> </el-col>
       <el-col :span="2"
@@ -280,6 +371,15 @@
           <el-popover placement="right" width="400" v-model="visible7">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+              <el-button
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
+                size="mini"
+                @click="mfSaveAmendment(amendmentData, 'vitals')"
+                circle
+              ></el-button>
             </div>
             <el-button
               slot="reference"
@@ -290,6 +390,10 @@
         </div>
       </el-col>
     </el-row>
+    <br />
+    <div v-for="row in cfArOfAmendmentForDisplay('vitals')" :key="row.clientSideUniqRowId">
+      {{ row.description }}
+    </div>
 
     <!-- SECTOION 12 -->
     <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
@@ -306,6 +410,7 @@ import clientSideTblOfPatientServiceStatements from '@/components/ptinfo-single/
 import clientSideTblOfPatientReminders from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTblOfMentalStatusExam from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientSideTblOfAmendments from '~/components/ptinfo-single/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
 import clientSideTblOfMultiStateViewCards from '@/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
@@ -334,6 +439,7 @@ export default {
       drawerToShowComparisonOf2Notes: false,
       lastComparisonReminderArrayReceived: null,
       reminderArray: null,
+      appointmentIdForThisNote: 0,
     }
   },
   props: ['showNoteForApptId'],
@@ -352,6 +458,27 @@ export default {
     })
   },
   computed: {
+    cfArOfAmendmentForDisplay() {
+      const arFromClientSideTblOfAmendments = clientSideTblOfAmendments
+        .query()
+        .where('appointmentId', this.appointmentIdForThisNote)
+        .orderBy('ROW_START', 'asc')
+        .get()
+
+      const arAmendments = []
+      arFromClientSideTblOfAmendments.forEach((row) => {
+        if (typeof arAmendments[row.component] === 'undefined') {
+          arAmendments[row.component] = []
+        }
+        arAmendments[row.component].push(row)
+      })
+
+      /**
+       * component is computed function parameter
+       * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
+       */
+      return (component) => arAmendments[`${component}`]
+    },
     cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
@@ -364,6 +491,8 @@ export default {
         currentApptId =
           apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
       }
+
+      this.appointmentIdForThisNote = currentApptId
       /* Goal: Show green around data that has been added. Red around data that has been deleted */
       // Finding the prev and next appt ID
 
@@ -562,6 +691,18 @@ export default {
           },
         })
       }
+    },
+    mfSaveAmendment(pAmendmentData, component) {
+      clientSideTblOfAmendments.insert({
+        data: {
+          appointmentId: this.appointmentIdForThisNote,
+          component: component,
+          description: pAmendmentData,
+        },
+      })
+
+      // remove modal value after save
+      this.amendmentData = ''
     },
   },
 }
