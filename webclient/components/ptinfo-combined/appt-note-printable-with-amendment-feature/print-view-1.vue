@@ -186,8 +186,10 @@
         </div>
       </el-col>
     </el-row>
-    <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
-      {{ row['description'] }}
+    <div :style="cfGetReminderStyle">
+      <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
+        {{ row['description'] }}
+      </div>
     </div>
     <div v-if="debug">
       <hr />
@@ -328,6 +330,7 @@ export default {
       visible5: false,
       visible6: false,
       visible7: false,
+      reminderDataAdded: null,
       drawerToShowComparisonOf2Notes: false,
     }
   },
@@ -379,6 +382,16 @@ export default {
       return arOfObjectsFromClientSideDB
     },
 
+    cfGetReminderStyle() {
+      if (this.reminderDataAdded === true) {
+        return 'border:1px solid #67C23A'
+      } else if (this.reminderDataAdded === false) {
+        return 'border:1px solid #E6A23C'
+      } else {
+        return ''
+      }
+    },
+
     cfArOfRemindersForDisplay() {
       let userSelectedApptReminderArray = []
 
@@ -394,11 +407,39 @@ export default {
           .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
           .get()
       }
-      userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
 
-      // Create the reminder array for previous appt
+      // The following line is used for debugging
+      if (this.debug) {
+        userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
+      }
 
-      // create the reminder array for next appt
+      // send event for others what my reminder array looks like
+      this.$root.$emit(
+        'event-from-ct-note-print-view-1-data-to-show-diff',
+        userSelectedApptReminderArray
+      )
+
+      // catch event
+      let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
+      this.$root.$on(eventName, (pUserSelectedApptReminderArray) => {
+        if (userSelectedApptReminderArray.length > pUserSelectedApptReminderArray.length) {
+          console.log(
+            'true',
+            this.patientCurrentApptObj['clientSideUniqRowId'],
+            userSelectedApptReminderArray,
+            pUserSelectedApptReminderArray
+          )
+          this.reminderDataAdded = true
+        } else {
+          console.log(
+            'false',
+            this.patientCurrentApptObj['clientSideUniqRowId'],
+            userSelectedApptReminderArray,
+            pUserSelectedApptReminderArray
+          )
+          this.reminderDataAdded = false
+        }
+      })
 
       return userSelectedApptReminderArray
     },
