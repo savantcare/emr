@@ -433,16 +433,58 @@ export default {
   },
   methods: {
     mfLeftArrowClickedLetUsGoToPrevAppt() {
-      const updateState = clientSideTblOfMultiStateViewCards.update({
-        clientSideUniqRowId: 2,
-        componentCurrentValueForCustomizingViewState: 1,
-      })
+      const currentApptId = this.patientCurrentApptObj['clientSideUniqRowId']
+
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < currentApptId) {
+          const updateState = clientSideTblOfMultiStateViewCards.update({
+            clientSideUniqRowId: 2,
+            componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
+          })
+        }
+      }
+      return
     },
     mfRightArrowClickedLetUsGoToNextAppt() {
-      const updateState = clientSideTblOfMultiStateViewCards.update({
-        clientSideUniqRowId: 2,
-        componentCurrentValueForCustomizingViewState: 5,
-      })
+      // From appts table find if there is a ID greater then this in the state of locked or unlocked
+
+      const currentApptId = this.patientCurrentApptObj['clientSideUniqRowId']
+
+      /* TODO @raj The followijg query does not work
+      Becasue the query does not work I have to run another for loop in line 485
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .where('clientSideUniqRowId', (value) => parseint(value) < currentApptId)
+        .get()
+
+      */
+
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > currentApptId) {
+          const updateState = clientSideTblOfMultiStateViewCards.update({
+            clientSideUniqRowId: 2,
+            componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
+          })
+        }
+      }
+      return
     },
 
     async lockButtonClicked() {
