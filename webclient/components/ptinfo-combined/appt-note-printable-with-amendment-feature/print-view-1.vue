@@ -416,12 +416,14 @@ export default {
       // send event for others what my reminder array looks like
       this.$root.$emit(
         'event-from-ct-note-print-view-1-data-to-show-diff',
-        userSelectedApptReminderArray
+        userSelectedApptReminderArray,
+        this.patientCurrentApptObj['clientSideUniqRowId']
       )
 
       // catch event
       let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
-      this.$root.$on(eventName, (pUserSelectedApptReminderArray) => {
+      this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
+        if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
         if (userSelectedApptReminderArray.length > pUserSelectedApptReminderArray.length) {
           console.log(
             'true',
