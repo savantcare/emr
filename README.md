@@ -15,7 +15,10 @@
 
 Todo:
 
-1. Slider value changes when prev and next inside note is clicked
-2. Dont show prev and next if that is not possible
-3. Show 2 notes side by side.
-4. On load the icon should be at unlocked state.
+1. There is some jumping in print view of the note on mouseover.
+2. Show 2 notes side by side.
+3. Amerndment feature. table will be appt id, component id, amerndedment note
+4. Dont show prev and next if it is the first or last note.
+5. Slider value does not change when prev and next inside note is clicked
+6. On some prev and next multiple icons on the timeline are becoming green
+7. On page load none of the actions should be active in the header slider.
