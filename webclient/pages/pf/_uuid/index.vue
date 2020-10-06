@@ -33,7 +33,6 @@
       title="SC Brain"
       :visible.sync="currentVisibilityStatusOfScBrainComponentContainingDialog"
       width="30%"
-      :before-close="actOnScBrainDialogClosed"
     >
       <ctVlSearchBox></ctVlSearchBox>
     </el-dialog>
@@ -116,10 +115,6 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
-    actOnScBrainDialogClosed() {
-      this.currentVisibilityStatusOfScBrainComponentContainingDialog = false
-      console.log('actOnScBrainDialogClosed')
-    },
     actOnF1ShortKeyPressed() {
       this.currentVisibilityStatusOfScBrainComponentContainingDialog = !this
         .currentVisibilityStatusOfScBrainComponentContainingDialog
