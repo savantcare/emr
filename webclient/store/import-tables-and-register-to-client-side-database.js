@@ -15,9 +15,10 @@ database.register(tableStructureForCommon)
 database.register(tableStructureForStoreMessageFromOtherComponent)
 
 // Appointments
-
 import clientSideTblOfAppointments from '~/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAmendments from '~/components/ptinfo-single/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 database.register(clientSideTblOfAppointments)
+database.register(clientSideTblOfAmendments)
 
 // table that decides which cards to show
 import tableStructureForMultiTimeStateView from '~/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
