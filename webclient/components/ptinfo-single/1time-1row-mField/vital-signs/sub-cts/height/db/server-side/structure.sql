@@ -1,6 +1,6 @@
 use sc_vital_signs;
 
-DROP TABLE IF EXISTS `MentalStatusExam`;
+DROP TABLE IF EXISTS `height`;
 
 CREATE TABLE `height` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -18,4 +18,4 @@ CREATE TABLE `height` (
 --
 
 INSERT INTO `height` (`serverSideRowUuid`, `ptUuid`, `heightInInches`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
-('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 75, 'test', 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL); 
+('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 75, 'test', 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL);
