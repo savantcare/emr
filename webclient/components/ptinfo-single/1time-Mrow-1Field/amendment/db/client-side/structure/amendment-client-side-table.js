@@ -20,6 +20,7 @@ export default class tblAmendment extends clientSideTableManage {
       appointmentId: this.number(0),
       component: this.string(null),
       description: this.string(''),
+      addedBy: this.string('Vidushi savant'),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
