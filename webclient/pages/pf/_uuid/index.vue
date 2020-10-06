@@ -31,7 +31,7 @@
       v-shortkey="['f1']"
       @shortkey.native="actOnF1ShortKeyPressed()"
       title="SC Brain"
-      :visible.sync="currentVisibilityStatusOfScBrainDialog"
+      :visible.sync="currentVisibilityStatusOfScBrainComponentContainingDialog"
       width="30%"
       :before-close="actOnScBrainDialogClosed"
     >
@@ -107,7 +107,7 @@ export default {
   },
   data() {
     return {
-      currentVisibilityStatusOfScBrainDialog: false,
+      currentVisibilityStatusOfScBrainComponentContainingDialog: false,
     }
   },
   mounted() {
@@ -117,11 +117,12 @@ export default {
   },
   methods: {
     actOnScBrainDialogClosed() {
-      this.currentVisibilityStatusOfScBrainDialog = false
+      this.currentVisibilityStatusOfScBrainComponentContainingDialog = false
       console.log('actOnScBrainDialogClosed')
     },
     actOnF1ShortKeyPressed() {
-      this.currentVisibilityStatusOfScBrainDialog = !this.currentVisibilityStatusOfScBrainDialog
+      this.currentVisibilityStatusOfScBrainComponentContainingDialog = !this
+        .currentVisibilityStatusOfScBrainComponentContainingDialog
       console.log('Shortkey action')
     },
     mfUpdateSocketClientId() {
