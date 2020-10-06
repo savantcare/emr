@@ -328,20 +328,23 @@ export default {
       )
     },
 
-    async toggleApptNoteDisplay(pClientSideRowId) {
+    async toggleApptNoteDisplay(pClientSideUniqRowIdAtThisSliderMark) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
-      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(
+        2
+      )
 
       // Goal: Keep the button highlighted that has been clicked
       if (
-        apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState'] ===
-        pClientSideRowId
+        cardOfApptNoteComponentVisibilityCurrentValue[
+          'componentCurrentValueForCustomizingViewState'
+        ] === pClientSideUniqRowIdAtThisSliderMark
       ) {
         // This case is when the button was already active. And clicking it should make it in-active
         this.dCurrentActiveButtonClientSideRowId = 0
       } else {
         // This case is when the button was not active. And clicking it should make it Active
-        this.dCurrentActiveButtonClientSideRowId = pClientSideRowId
+        this.dCurrentActiveButtonClientSideRowId = pClientSideUniqRowIdAtThisSliderMark
       }
 
       // This update will lead to the note card visibility getting toggled
