@@ -331,6 +331,7 @@ export default {
       drawerToShowComparisonOf2Notes: false,
     }
   },
+  props: ['showNoteForApptId'],
   filters: {
     moment: function (date) {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
@@ -341,9 +342,15 @@ export default {
     cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
-      const currentApptId =
-        apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
 
+      let currentApptId = 0
+
+      if (this.showNoteForApptId) {
+        currentApptId = this.showNoteForApptId
+      } else {
+        currentApptId =
+          apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
+      }
       /* Goal: Show green around data that has been added. Red around data that has been deleted */
       // Finding the prev and next appt ID
 
