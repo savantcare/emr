@@ -35,7 +35,7 @@
       width="30%"
       :before-close="actOnScBrainDialogClosed"
     >
-      <el-input>This is a message</el-input>
+      <ctVlSearchBox></ctVlSearchBox>
     </el-dialog>
   </div>
 </template>
@@ -44,6 +44,8 @@
 import Vue from 'vue'
 
 /* External Cts */
+
+import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 /* 1/4 Why needed? Split mtsvl and ptsvl  */
 import VueSplit from 'vue-split-panel'
@@ -101,6 +103,7 @@ export default {
     ctFeedDrawer,
     ctMapDrawer,
     ctDeletedDrawer,
+    ctVlSearchBox,
   },
   data() {
     return {

@@ -1,7 +1,9 @@
 import Vue from 'vue'
 const ShortKey = require('vue-shortkey')
+Vue.use(ShortKey)
 
-// add any custom shortkey config settings here
+/* To ignore some keys I can say
 Vue.use(ShortKey, { prevent: ['input', 'textarea'] })
+*/
 
 export default ShortKey
