@@ -167,10 +167,14 @@ export default {
       return obj
     },
 
+    cfGetLatestDataInClientSideDB() {
+      // this is an expensice OP so kept this in computed prop so it will return without running if nothing has changed.
+      return clientSideTblOfAppointments.query().get()
+    },
+
     cfGetAllMarksForSlider() {
-      if (this.arOfObjectsFromClientSideDB.length < 1) {
-        this.arOfObjectsFromClientSideDB = clientSideTblOfAppointments.query().get()
-      }
+      // this saved a lot of expensive operations, and hence makes the system more responsive.
+      this.arOfObjectsFromClientSideDB = this.cfGetLatestDataInClientSideDB
 
       this.dMarksOnSlider = {}
       this.dClientSideUniqRowIdAtEachSliderMark = {}
