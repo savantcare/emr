@@ -35,9 +35,32 @@
       width="30%"
     >
       <ctVlSearchBox></ctVlSearchBox>
+      <br /><br />
+      <tags-input
+        element-id="tags"
+        v-model="selectedTags"
+        :existing-tags="[
+          { key: 'add', value: 'Add' },
+          { key: 'reminder', value: 'Reminder' },
+          { key: 'recommendation', value: 'Recommendation' },
+          { key: 'service-statement', value: 'Service statement' },
+          { key: 'diagnosis', value: 'Diagnosis' },
+          { key: 'email', value: 'email' },
+          { key: 'weight', value: 'weight' },
+        ]"
+        :typeahead="true"
+        :typeahead-activation-threshold="0"
+        placeholder="Lets get it done .."
+        typeahead-style="dropdown"
+        typeahead-hide-discard="true"
+      ></tags-input>
     </el-dialog>
   </div>
 </template>
+
+<style scoped>
+@import 'https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.4.0/dist/style.css';
+</style>
 
 <script>
 import Vue from 'vue'
@@ -70,6 +93,11 @@ import 'vue-slider-component/theme/default.css'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 import VueSocketIO from 'vue-socket.io'
+
+// Ref: https://github.com/voerro/vue-tagsinput
+import VoerroTagsInput from '@voerro/vue-tagsinput'
+
+Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctMtsVlCards from '@/components/core/mts-view-layer-cards/dynamic-list-of-cards.vue'
