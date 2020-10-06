@@ -12,3 +12,10 @@
 [Demo](http://116.203.134.163/pf/abcd)
 
 [Documentation](https://savantcare.github.io)
+
+Todo:
+
+1. Slider value changes when prev and next inside note is clicked
+2. Dont show prev and next if that is not possible
+3. Show 2 notes side by side.
+4. On load the icon should be at unlocked state.
