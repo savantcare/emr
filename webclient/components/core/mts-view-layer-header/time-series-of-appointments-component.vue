@@ -48,7 +48,7 @@ __proto__: Object
         <div></div>
       </template>
     </vue-slider>
-    <el-dialog title="Slider settings" :visible.sync="dIsDialogVisible" width="30%">
+    <el-dialog title="Slider settings" :visible.sync="dIsSettingsDialogVisible" width="30%">
       <span
         ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional"
           >Proportional</el-radio
@@ -95,7 +95,7 @@ export default {
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
-      dIsDialogVisible: false,
+      dIsSettingsDialogVisible: false,
       arOfObjectsFromClientSideDB: [],
 
       // Settings for slider
@@ -317,7 +317,7 @@ export default {
 
         if (this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder') {
           console.log('setting')
-          this.dIsDialogVisible = true
+          this.dIsSettingsDialogVisible = true
         }
 
         return
