@@ -332,6 +332,8 @@ export default {
       visible7: false,
       reminderDataAdded: null,
       drawerToShowComparisonOf2Notes: false,
+      lastComparisonReminderArrayReceived: null,
+      reminderArray: null,
     }
   },
   props: ['showNoteForApptId'],
@@ -341,6 +343,14 @@ export default {
     },
   },
   components: { apptNotePrintableView },
+  mounted() {
+    // catch event
+    let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
+    this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
+      if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
+      this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
+    })
+  },
   computed: {
     cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
@@ -383,12 +393,20 @@ export default {
     },
 
     cfGetReminderStyle() {
-      if (this.reminderDataAdded === true) {
+      // send event for others what my reminder array looks like
+      this.$root.$emit(
+        'event-from-ct-note-print-view-1-data-to-show-diff',
+        this.reminderArray,
+        this.patientCurrentApptObj['clientSideUniqRowId']
+      )
+
+      if (this.lastComparisonReminderArrayReceived === null) return
+      if (this.reminderArray === null) return
+
+      if (this.reminderArray[0].length > this.lastComparisonReminderArrayReceived[0].length) {
         return 'border:1px solid #67C23A'
-      } else if (this.reminderDataAdded === false) {
-        return 'border:1px solid #E6A23C'
       } else {
-        return ''
+        return 'border:1px solid #E6A23C'
       }
     },
 
@@ -413,36 +431,7 @@ export default {
         userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
       }
 
-      // send event for others what my reminder array looks like
-      this.$root.$emit(
-        'event-from-ct-note-print-view-1-data-to-show-diff',
-        userSelectedApptReminderArray,
-        this.patientCurrentApptObj['clientSideUniqRowId']
-      )
-
-      // catch event
-      let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
-      this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
-        if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
-        if (userSelectedApptReminderArray.length > pUserSelectedApptReminderArray.length) {
-          console.log(
-            'true',
-            this.patientCurrentApptObj['clientSideUniqRowId'],
-            userSelectedApptReminderArray,
-            pUserSelectedApptReminderArray
-          )
-          this.reminderDataAdded = true
-        } else {
-          console.log(
-            'false',
-            this.patientCurrentApptObj['clientSideUniqRowId'],
-            userSelectedApptReminderArray,
-            pUserSelectedApptReminderArray
-          )
-          this.reminderDataAdded = false
-        }
-      })
-
+      this.reminderArray = userSelectedApptReminderArray
       return userSelectedApptReminderArray
     },
     cfArOfMentalStatusExamForDisplay() {
