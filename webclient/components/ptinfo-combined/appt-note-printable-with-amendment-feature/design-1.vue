@@ -5,6 +5,7 @@
         ><div class="grid-content">
           <el-button-group class="h1" style="float: left; display: none">
             <el-button
+              @click="mfLeftArrowClickedLetUsGoToPrevAppt"
               class="el-icon-arrow-left"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
@@ -30,6 +31,7 @@
             <el-button
               class="el-icon-arrow-right"
               style="padding: 3px; color: #c0c4cc; border: none"
+              @click="mfRightArrowClickedLetUsGoToNextAppt"
             ></el-button>
           </el-button-group></div
       ></el-col>
@@ -430,6 +432,19 @@ export default {
     },
   },
   methods: {
+    mfLeftArrowClickedLetUsGoToPrevAppt() {
+      const updateState = clientSideTblOfMultiStateViewCards.update({
+        clientSideUniqRowId: 2,
+        componentCurrentValueForCustomizingViewState: 1,
+      })
+    },
+    mfRightArrowClickedLetUsGoToNextAppt() {
+      const updateState = clientSideTblOfMultiStateViewCards.update({
+        clientSideUniqRowId: 2,
+        componentCurrentValueForCustomizingViewState: 5,
+      })
+    },
+
     async lockButtonClicked() {
       console.log('lock button clicked')
       const clientSideUniqRowId = this.patientCurrentApptObj['clientSideUniqRowId']
