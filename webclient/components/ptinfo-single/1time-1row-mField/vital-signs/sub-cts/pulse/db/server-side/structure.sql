@@ -1,14 +1,21 @@
-use sc_reminders;
+use sc_vital_signs;
 
-DROP TABLE IF EXISTS `reminders`;
+DROP TABLE IF EXISTS `pulse`;
 
-CREATE TABLE `reminders` (
-  `uuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `firstName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `middleName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `lastName` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
-  PRIMARY KEY (`uuid`)
+CREATE TABLE `pulse` (
+  `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ptUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pulseInBpm` int(11) DEFAULT NULL,
+  `timeOfMeasurementInMilliseconds` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  `notes` text DEFAULT NULL,
+  `recordChangedByUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`serverSideRowUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
+
+--
+-- Dumping data for table `pulse`
+--
+
+INSERT INTO `pulse` (`serverSideRowUuid`, `ptUuid`, `pulseInBpm`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 75, 'test', 'bfe041fa-073b-4223-8c69-0540ee678ff8', NULL);
