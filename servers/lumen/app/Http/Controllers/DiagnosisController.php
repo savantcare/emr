@@ -12,7 +12,10 @@ class DiagnosisController extends Controller
 {
     public function getAllDiagnosis()
     {
-        return response()->json(Diagnosis::all());
+        
+        $dignosisQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL order by ROW_START desc'));
+
+        return response()->json($dignosisQuery);
     }
 
     public function getOneDiagnosis($pServerSideRowUuid)
