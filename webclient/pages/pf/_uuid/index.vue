@@ -110,10 +110,7 @@ export default {
     ctQuickMovement,
   },
   data() {
-    return {
-      dLayer1LeftSideSplitSize: 50,
-      dLayer1RightSideSplitSize: 50,
-    }
+    return {}
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
@@ -123,10 +120,20 @@ export default {
 
   computed: {
     cfLayer1LeftSideSplitSize() {
-      return this.dLayer1LeftSideSplitSize
+      const splitSize = clientSideTableOfCommonForAllComponents.find('layer1-left-side-split-size')
+      console.log(splitSize)
+      if (splitSize) {
+        return parseInt(splitSize['fieldValue'])
+      }
+      return 50
     },
     cfLayer1RightSideSplitSize() {
-      return this.dLayer1RightSideSplitSize
+      const splitSize = clientSideTableOfCommonForAllComponents.find('layer1-right-side-split-size')
+      console.log(splitSize)
+      if (splitSize) {
+        return parseInt(splitSize['fieldValue'])
+      }
+      return 50
     },
   },
   methods: {

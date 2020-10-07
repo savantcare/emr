@@ -39,15 +39,12 @@ export default {
 
     // Goal: Catch KB events
     actOnF1ShortKeyPressed() {
-      console.log('shortkey')
       this.goToDashboardMode()
     },
     actOnF2ShortKeyPressed() {
-      console.log('shortkey')
       this.goToWorkProductMode()
     },
     actOnF3ShortKeyPressed() {
-      console.log('shortkey')
       this.goToAnalysisMode()
     },
 
@@ -58,6 +55,16 @@ export default {
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
+
+      // set the split dimensions
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
+      })
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
+      })
     },
 
     goToWorkProductMode() {
@@ -72,6 +79,9 @@ export default {
 
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 65 }],
+      })
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 35 }],
       })
     },
@@ -85,9 +95,11 @@ export default {
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
 
       // set the split dimensions
-
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 35 }],
+      })
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 65 }],
       })
     },
