@@ -1,13 +1,5 @@
 <template>
-  <div>
-    <el-card
-      slot="bodySlotContentFromParentToShowAboveChildCards"
-      class="box-card sc-individual-child-card"
-      shadow="hover"
-    >
-      <highcharts :options="chartOptions"></highcharts>
-    </el-card>
-  </div>
+  <highcharts :options="chartOptions"></highcharts>
 </template>
 
 <script>
