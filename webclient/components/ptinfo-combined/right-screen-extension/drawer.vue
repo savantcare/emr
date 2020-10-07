@@ -14,14 +14,14 @@
     :wrapperClosable="false"
   >
     <div class="block">
-      <ctVlSearchBox></ctVlSearchBox>
+      <ctSearchBoxInsideRightScreenExtension></ctSearchBoxInsideRightScreenExtension>
     </div>
   </el-drawer>
 </template>
 
 <script>
 import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/right-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
-import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import ctSearchBoxInsideRightScreenExtension from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
@@ -31,7 +31,7 @@ export default {
     }
   },
   components: {
-    ctVlSearchBox,
+    ctSearchBoxInsideRightScreenExtension,
   },
   computed: {
     cfDrawerVisibility() {

@@ -131,7 +131,6 @@ export default {
   data() {
     return { searchKeyword: '' }
   },
-
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromClientSideTable = {}
@@ -200,6 +199,7 @@ export default {
             name: pSelectedSuggestion.value,
             componentToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
             componentCurrentValueForCustomizingViewState: 1,
+            identifierOfparentComponentThatIncludedThisSearchComponent: this.$options._componentTag,
           },
         })
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
