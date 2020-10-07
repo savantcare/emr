@@ -23,7 +23,8 @@
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
-    <ctFeedDrawer></ctFeedDrawer>
+    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
 
@@ -103,7 +104,8 @@ Vue.component('tags-input', VoerroTagsInput)
 import ctMtsVlCards from '@/components/core/mts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctCsVlCards from '@/components/core/pts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctFeedDrawer from '@/components/ptinfo-combined/left-screen-extension/drawer.vue'
+import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/drawer.vue'
+import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
 import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
@@ -127,7 +129,8 @@ export default {
     ctMtsVlCards,
     ctCsVlCards,
     ctTabsInDialogInCL,
-    ctFeedDrawer,
+    ctLeftScreenExtensionDrawer,
+    ctRightScreenExtensionDrawer,
     ctMapDrawer,
     ctDeletedDrawer,
     ctVlSearchBox,
