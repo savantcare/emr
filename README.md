@@ -17,6 +17,13 @@ Todo:
 
 1. Correlate graph to be responsive @raj
 2. Left side scroll when work product drawer is open @raj
+   1. Possible solution?
+      1. https://stackoverflow.com/questions/52384666/vuetify-non-scrolling-navigation-drawer
+      2. https://github.com/ElemeFE/element/issues/17713
+      3. https://stackoverflow.com/questions/27230955/how-to-disable-scrolling-in-the-background-when-the-mobile-menu-is-open
+   2. Should I just use divs instead of drawer.
+      1. Negatives
+         1. The slide in effect is not there for Divs
 3. Marks where the mouse movement will invoke a component @mithun
 4. From current note invoke change component where I can add / change
 5. Content assist

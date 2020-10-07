@@ -78,7 +78,7 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
-import ctMtsVlCards from '@/components/core/mts-view-layer-cards/dynamic-list-of-cards.vue'
+import ctMtsVlCards from '@/components/core/layer-1-left-side-components/dynamic-list-of-cards.vue'
 import ctCsVlCards from '@/components/core/pts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/left-drawer.vue'

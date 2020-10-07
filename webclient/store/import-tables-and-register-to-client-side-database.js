@@ -21,7 +21,7 @@ database.register(clientSideTblOfAppointments)
 database.register(clientSideTblOfAmendments)
 
 // table that decides which cards to show
-import tableStructureForMultiTimeStateView from '~/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
+import tableStructureForMultiTimeStateView from '~/components/core/layer-1-left-side-components/db/client-side/structure/mts-table.js'
 import tableStructureForRightSideView from '~/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 database.register(tableStructureForMultiTimeStateView)
 database.register(tableStructureForRightSideView)
