@@ -14,55 +14,36 @@
     :wrapperClosable="false"
   >
     <div class="block">
-      <ctVlSearchBox></ctVlSearchBox>
+      <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
+        <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
+        <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
+                Sorrounding component with keepAlive does not help. Since previous rendering of rex
+                is not hidden. When user types rex 2 times, rex is being displayed 2 times
 
-      <el-timeline :reverse="reverse">
-        <el-timeline-item
-          v-for="(activity, index) in cfArOfFeedForDisplayInDrawer"
-          :key="index"
-          :timestamp="activity.timestamp"
-        >
-          {{ activity.component }} -
-          {{ activity.description }}
-        </el-timeline-item>
-      </el-timeline>
+                The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
+            -->
+        <component :is="card.componentToShowObject"></component>
+      </div>
+      <ctVlSearchBox></ctVlSearchBox>
     </div>
   </el-drawer>
 </template>
 
 <script>
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/left-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
+import clientSideTblOfViewCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
 import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {
   data() {
     return {
       direction: 'ltr',
-      reverse: false,
-      activities: [
-        {
-          content: 'HDR sent for rescheduling appointment',
-          timestamp: '2018-04-15',
-        },
-        {
-          content: 'New appt booked',
-          timestamp: '2018-04-13',
-        },
-        {
-          content: 'Patient called to say will arrive 10 mins late',
-          timestamp: '2018-04-11',
-        },
-      ],
+      dArOfComponentObjectsCached: [],
     }
   },
   components: {
     ctVlSearchBox,
   },
   computed: {
-    cfArOfFeedForDisplayInDrawer() {
-      const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
-      return arFromClientSideTable
-    },
     cfDrawerVisibility: {
       get() {
         return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
@@ -70,6 +51,30 @@ export default {
       set(value) {
         this.$store.commit('mtfSetFeedDrawerVisibility', value)
       },
+    },
+    cfArCardsInCsOfVl() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
+        .query()
+        .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)
+        .get()
+
+      let componentToShowPath = ''
+
+      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        componentToShowPath = arOfObjectsFromClientSideDB[i]['componentToShowPath']
+        if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
+          console.log('requring the Ct Obj')
+
+          this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
+            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+        }
+
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[
+          componentToShowPath
+        ]
+      }
+
+      return arOfObjectsFromClientSideDB
     },
   },
   mounted() {
