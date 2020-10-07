@@ -17,17 +17,17 @@ export default class feed extends clientSideTableManage {
     On 8001 php/lumen/eloquent is running
     
     To check if the api is working you can enter this in the browser:
-    http://127.0.0.1:8000/left-screen-extension/getAll
+    http://127.0.0.1:8000/right-screen-extension/getAll
 
     To make post request:
-    enter http://127.0.0.1:8000/left-screen-extension/getAll in https://hoppscotch.io/
+    enter http://127.0.0.1:8000/right-screen-extension/getAll in https://hoppscotch.io/
 
     Options:
     1. static apiUrl = process.env.baseUrl + '/feed'
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/left-screen-extension/v20'
+  static apiUrl = 'http://localhost:8000/public/api/right-screen-extension/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
