@@ -80,7 +80,7 @@ export default {
     cfDrawerVisibility() {
       const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
         .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .where('fieldName', 'rightScreenExtensionDrawerVisibility')
         .get()
 
       if (arOfObjectsFromCommonForAllComponents.length > 0) {
@@ -98,7 +98,7 @@ export default {
   methods: {
     handleClose(done) {
       clientSideTableOfCommonForAllComponents.update({
-        where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+        where: (record) => record.fieldName === 'rightScreenExtensionDrawerVisibility',
         data: {
           fieldValue: false,
         },

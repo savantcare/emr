@@ -50,7 +50,7 @@ export default {
 
     goToDashboardMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
@@ -76,7 +76,7 @@ export default {
 
     goToWorkProductMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: true }],
+        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: true }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
@@ -102,7 +102,7 @@ export default {
 
     goToAnalysisMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
