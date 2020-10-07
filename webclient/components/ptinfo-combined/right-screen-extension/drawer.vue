@@ -6,7 +6,7 @@
   <el-drawer
     title="Analysis"
     :visible="cfDrawerVisibility"
-    direction="ltr"
+    direction="rtl"
     :before-close="handleClose"
     :modal="false"
     :close-on-press-escape="true"
@@ -33,6 +33,7 @@
 <script>
 import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/right-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
 import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -63,13 +64,19 @@ export default {
       const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
       return arFromClientSideTable
     },
-    cfDrawerVisibility: {
-      get() {
-        return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
-      },
-      set(value) {
-        this.$store.commit('mtfSetFeedDrawerVisibility', value)
-      },
+    cfDrawerVisibility() {
+      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      if (arOfObjectsFromCommonForAllComponents.length > 0) {
+        if (arOfObjectsFromCommonForAllComponents[0]['fieldValue'] === 'true') {
+          return true
+        } else {
+          return false
+        }
+      }
     },
   },
   mounted() {
