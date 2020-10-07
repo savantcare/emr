@@ -1,5 +1,5 @@
 <template>
-  <div id="manage-ptsvl-cards">
+  <div id="manage-layer1-right-side-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
 
     <!-- core -->
@@ -197,7 +197,7 @@ export default {
         clientSideTblOfRightSideCards.insert({
           data: {
             name: pSelectedSuggestion.value,
-            componentToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
+            componentToShowPath: pSelectedSuggestion.ctToShow,
             componentCurrentValueForCustomizingViewState: 1,
             identifierOfparentComponentThatIncludedThisSearchComponent: this.$options._componentTag,
           },
@@ -228,7 +228,7 @@ export default {
         force: true,
         cancelable: true,
       }
-      this.$scrollTo('#manage-ptsvl-cards', 500, options)
+      this.$scrollTo('#manage-layer1-right-side-cards', 500, options)
     },
   },
 }

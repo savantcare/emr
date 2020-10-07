@@ -16,7 +16,7 @@ export default {
         ctAbbr: 'bs',
         ctToShow:
           'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/view-layer/line-graph-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

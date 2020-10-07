@@ -14,7 +14,7 @@ export default {
       data: {
         name: 'Header',
         componentToShowPath:
-          'others/layer-1-left-side-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
+          'others/layer-1-left-side-header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

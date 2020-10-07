@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
-        ctToShow: 'ptinfo-single/1time-Mrow-1Field/service-statement/view-layer/ss-design-1-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'ptinfo-single/1time-Mrow-1Field/service-statement/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

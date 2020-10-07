@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'ptinfo-single/1time-Mrow-1Field/reminder/view-layer/timeline-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'ptinfo-single/1time-Mrow-1Field/reminder/view-layer/timeline-ct.vue', 
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

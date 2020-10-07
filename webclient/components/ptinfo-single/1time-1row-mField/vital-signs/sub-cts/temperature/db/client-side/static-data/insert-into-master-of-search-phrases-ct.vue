@@ -15,7 +15,7 @@ export default {
         value: 'temperature',
         ctAbbr: 'w',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/temperature/view-layer/table-ct.vue', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/temperature/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

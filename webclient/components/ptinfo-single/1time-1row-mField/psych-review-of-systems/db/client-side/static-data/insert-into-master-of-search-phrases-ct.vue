@@ -19,7 +19,7 @@ export default {
         value: 'psych review of systems',
         ctAbbr: 'ss',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

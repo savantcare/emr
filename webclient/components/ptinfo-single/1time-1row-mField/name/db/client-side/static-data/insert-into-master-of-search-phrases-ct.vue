@@ -17,7 +17,7 @@ export default {
         value: 'name',
         ctAbbr: 'n',
         ctToShow: 'ptinfo-single/1time-1row-mField/name/view-layer/full-name-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

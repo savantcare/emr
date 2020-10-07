@@ -5,7 +5,7 @@
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
-            when go from mtsvl to ptsvl the event gets fired.
+            when go from Layer1LeftSide to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
@@ -23,7 +23,7 @@
       -->
     <Split style="height: 900px; width: 1400px" :gutter-size="4">
       <SplitArea :size="leftSplitSize">
-        <ctMtsVlCards></ctMtsVlCards>
+        <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
       <SplitArea id="ptsvl" :size="rightSplitSize">
         <ctCsVlCards></ctCsVlCards>
@@ -55,12 +55,12 @@ import Vue from 'vue'
 
 import ctVlSearchBox from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
-/* 1/4 Why needed? Split mtsvl and ptsvl  */
+/* 1/4 Why needed? Split Layer1LeftSide and ptsvl  */
 import VueSplit from 'vue-split-panel'
 
 /*  2/4 Why needed?
   Say the user enter the rex command 10 times. I need to scroll to the bottom of the cards
-  So search box is given a ID and then #manage-ptsvl-cards is used to scroll down.
+  So search box is given a ID and then #manage-layer1-right-side-cards is used to scroll down.
   */
 import VueScrollTo from 'vue-scrollto' // Ref: https://github.com/rigor789/vue-scrollto#as-a-vue-directive
 
@@ -86,7 +86,7 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
-import ctMtsVlCards from '@/components/others/layer-1-left-side-components/dynamic-list-of-cards.vue'
+import ctLayer1LeftSideCards from '@/components/others/layer-1-left-side-components/dynamic-list-of-cards.vue'
 import ctCsVlCards from '@/components/others/layer-1-right-side-components/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/others/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/others/left-screen-extension/left-drawer.vue'
@@ -111,7 +111,7 @@ Vue.use(ToggleButton)
 
 export default {
   components: {
-    ctMtsVlCards,
+    ctLayer1LeftSideCards,
     ctCsVlCards,
     ctTabsInDialogInCL,
     ctLeftScreenExtensionDrawer,
