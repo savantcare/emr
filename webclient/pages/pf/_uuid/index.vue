@@ -8,7 +8,7 @@
             when go from mtsvl to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div @mouseleave="mouseleave">
+  <div @mouseleave="mouseleave" v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -24,12 +24,12 @@
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
     <ctLeftScreenExtensionDrawer
-      v-shortkey="['f1']"
-      @shortkey.native="actOnF1ShortKeyPressed()"
-    ></ctLeftScreenExtensionDrawer>
-    <ctRightScreenExtensionDrawer
       v-shortkey="['f2']"
       @shortkey.native="actOnF2ShortKeyPressed()"
+    ></ctLeftScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer
+      v-shortkey="['f3']"
+      @shortkey.native="actOnF3ShortKeyPressed()"
     ></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
@@ -123,14 +123,6 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
-    actOnF1ShortKeyPressed() {
-      console.log('shortkey')
-      this.toggleLeftSideScreenExtensionDrawer()
-    },
-    actOnF2ShortKeyPressed() {
-      console.log('shortkey')
-      this.toggleRightSideScreenExtensionDrawer()
-    },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
@@ -147,6 +139,8 @@ export default {
     log(message) {
       console.log(message)
     },
+
+    // Goal: Catch mouse events
     mouseleave(event) {
       // console.log('mouse leave', event)
 
@@ -163,6 +157,92 @@ export default {
         }
       }
     },
+
+    // Goal: Catch KB events
+    actOnF1ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToDashboardMode()
+    },
+    actOnF2ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToWorkProductMode()
+    },
+    actOnF3ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToAnalysisMode()
+    },
+
+    goToDashboardMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make false. If false will update to false. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        }
+      }
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+    },
+
+    goToWorkProductMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'false') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: true,
+            },
+          })
+        }
+      }
+
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+    },
+
+    goToAnalysisMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        }
+      }
+
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', true)
+    },
+
     toggleLeftSideScreenExtensionDrawer() {
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
     },
