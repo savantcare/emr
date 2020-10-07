@@ -22,10 +22,10 @@
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
     <Split style="height: 900px; width: 1400px" :gutter-size="4">
-      <SplitArea :size="leftSplitSize">
+      <SplitArea :size="layer1LeftSideSplitSize">
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
-      <SplitArea id="layer1RightSide" :size="rightSplitSize">
+      <SplitArea id="layer1RightSide" :size="layer1RightSideSplitSize">
         <ctLayer1RightSideCards></ctLayer1RightSideCards>
       </SplitArea>
     </Split>
@@ -123,8 +123,8 @@ export default {
   data() {
     return {
       currentVisibilityStatusOfScBrainComponentContainingDialog: false,
-      dLeftSplitSize: 50,
-      dRightSplitSize: 50,
+      dLayer1LeftSideSplitSize: 50,
+      dLayer1RightSideSplitSize: 50,
     }
   },
   mounted() {
@@ -134,11 +134,11 @@ export default {
   },
 
   computed: {
-    leftSplitSize() {
-      return this.dLeftSplitSize
+    layer1LeftSideSplitSize() {
+      return this.dLayer1LeftSideSplitSize
     },
-    rightSplitSize() {
-      return this.dRightSplitSize
+    layer1RightSideSplitSize() {
+      return this.dLayer1RightSideSplitSize
     },
   },
   methods: {
@@ -204,8 +204,8 @@ export default {
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
 
-      this.dLeftSplitSize = 50
-      this.dRightSplitSize = 50
+      this.dLayer1LeftSideSplitSize = 50
+      this.dLayer1RightSideSplitSize = 50
     },
 
     goToWorkProductMode() {
@@ -238,8 +238,8 @@ export default {
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
 
-      this.dLeftSplitSize = 65
-      this.dRightSplitSize = 35
+      this.dLayer1LeftSideSplitSize = 65
+      this.dLayer1RightSideSplitSize = 35
     },
 
     goToAnalysisMode() {
@@ -264,8 +264,8 @@ export default {
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
-      this.dLeftSplitSize = 35
-      this.dRightSplitSize = 65
+      this.dLayer1LeftSideSplitSize = 35
+      this.dLayer1RightSideSplitSize = 65
     },
 
     toggleLeftSideScreenExtensionDrawer() {
