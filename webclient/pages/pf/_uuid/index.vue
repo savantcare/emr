@@ -10,11 +10,11 @@
     -->
   <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
     <span
-      @mouseover="mouseover('analysis')"
+      @mouseover="actOnMouseOverSpan('analysis')"
       style="position: absolute; width: 4px; height: 50px; background-color: blue"
     ></span>
     <span
-      @mouseover="mouseover('production')"
+      @mouseover="actOnMouseOverSpan('production')"
       style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
     ></span>
     <!-- Prop explanation:
@@ -160,7 +160,7 @@ export default {
     },
 
     // Goal: Catch mouse events
-    mouseover(mode) {
+    actOnMouseOverSpan(mode) {
       if (mode == 'analysis') {
         this.goToAnalysisMode()
       } else if (mode == 'production') {
