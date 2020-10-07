@@ -115,8 +115,8 @@ export default {
   data() {
     return {
       currentVisibilityStatusOfScBrainComponentContainingDialog: false,
-      leftSplitSize: 50,
-      rightSplitSize: 50,
+      dLeftSplitSize: 50,
+      dRightSplitSize: 50,
     }
   },
   mounted() {
@@ -127,10 +127,10 @@ export default {
 
   computed: {
     leftSplitSize() {
-      return this.leftSplitSize
+      return this.dLeftSplitSize
     },
     rightSplitSize() {
-      return this.rightSplitSize
+      return this.dRightSplitSize
     },
   },
   methods: {
@@ -205,8 +205,8 @@ export default {
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
 
-      this.leftSplitSize = 50
-      this.rightSplitSize = 50
+      this.dLeftSplitSize = 50
+      this.dRightSplitSize = 50
     },
 
     goToWorkProductMode() {
@@ -239,8 +239,8 @@ export default {
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
 
-      this.leftSplitSize = 65
-      this.rightSplitSize = 35
+      this.dLeftSplitSize = 65
+      this.dRightSplitSize = 35
     },
 
     goToAnalysisMode() {
@@ -265,8 +265,8 @@ export default {
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
-      this.leftSplitSize = 35
-      this.rightSplitSize = 65
+      this.dLeftSplitSize = 35
+      this.dRightSplitSize = 65
     },
 
     toggleLeftSideScreenExtensionDrawer() {
