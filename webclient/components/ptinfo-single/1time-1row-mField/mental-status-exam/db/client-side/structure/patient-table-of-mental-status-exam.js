@@ -2,7 +2,6 @@
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 import mentalStatusExamMasterClass from './master-table-of-mental-status-exam.js'
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 

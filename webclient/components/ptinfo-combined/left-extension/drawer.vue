@@ -4,15 +4,18 @@
   -->
 <template>
   <el-drawer
-    title="Feed"
+    title="Analysis"
     :visible="cfDrawerVisibility"
     direction="ltr"
     :before-close="handleClose"
     :modal="false"
     :close-on-press-escape="true"
-    :show-close="false"
+    :show-close="true"
+    :wrapperClosable="false"
   >
     <div class="block">
+      <ctVlSearchBox></ctVlSearchBox>
+
       <el-timeline :reverse="reverse">
         <el-timeline-item
           v-for="(activity, index) in cfArOfFeedForDisplayInDrawer"
@@ -28,7 +31,8 @@
 </template>
 
 <script>
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/left-extension/db/client-side/structure/store-messages-from-other-components.js'
+import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {
   data() {
@@ -50,6 +54,9 @@ export default {
         },
       ],
     }
+  },
+  components: {
+    ctVlSearchBox,
   },
   computed: {
     cfArOfFeedForDisplayInDrawer() {

@@ -2,11 +2,12 @@
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
+
 let count = 0
 const intUniqueId = () => ++count
 
-export default class reminders extends clientSideTableManage {
-  static entity = 'tblReminders'
+export default class feed extends clientSideTableManage {
+  static entity = 'tblFeed'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -16,17 +17,17 @@ export default class reminders extends clientSideTableManage {
     On 8001 php/lumen/eloquent is running
     
     To check if the api is working you can enter this in the browser:
-    http://127.0.0.1:8000/reminders/getAll
+    http://127.0.0.1:8000/left-extension/getAll
 
     To make post request:
-    enter http://127.0.0.1:8000/reminders/getAll in https://hoppscotch.io/
+    enter http://127.0.0.1:8000/left-extension/getAll in https://hoppscotch.io/
 
     Options:
-    1. static apiUrl = process.env.baseUrl + '/reminders'
+    1. static apiUrl = process.env.baseUrl + '/feed'
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/reminders/v20'
+  static apiUrl = 'http://localhost:8000/public/api/left-extension/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -38,9 +39,7 @@ export default class reminders extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
-      notes: this.string(null),
-      priority: this.number(0),
-      isAutoRem: this.number(0),
+      component: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

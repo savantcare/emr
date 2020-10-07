@@ -4,7 +4,6 @@ To see response from server: http://127.0.0.1:8000/phone-numbers/getAll
 import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 

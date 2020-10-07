@@ -3,7 +3,6 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 
 import clientSideTblMasterDiagnosis from './master-table-of-diagnosis'
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 
