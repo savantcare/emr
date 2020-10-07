@@ -540,7 +540,7 @@ export default {
       appointmentIdForThisNote: 0,
     }
   },
-  props: ['showNoteForApptId'],
+  props: ['propShowNoteForApptId'],
   filters: {
     moment: function (date) {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
@@ -583,8 +583,8 @@ export default {
 
       let currentApptId = 0
 
-      if (this.showNoteForApptId) {
-        currentApptId = this.showNoteForApptId
+      if (this.propShowNoteForApptId) {
+        currentApptId = this.propShowNoteForApptId
       } else {
         currentApptId =
           apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']

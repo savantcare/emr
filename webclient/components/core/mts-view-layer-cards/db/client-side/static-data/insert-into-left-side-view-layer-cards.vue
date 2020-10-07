@@ -22,32 +22,7 @@ export default {
         name: 'Appt note',
         componentToShowPath:
           'ptinfo-combined/appt-note-printable-with-amendment-feature/design-1.vue',
-        componentCurrentValueForCustomizingViewState: 0,
-      },
-    })
-    clientSideTblOfMultiTimeStateCards.insert({
-      data: {
-        name: 'Correlate',
-        componentToShowPath: 'ptinfo-combined/correlate/design-1.vue',
-      },
-    })
-    clientSideTblOfMultiTimeStateCards.insert({
-      data: {
-        name: 'Body measurement',
-        componentToShowPath: 'ptinfo-single/1time-1row-mField/vital-signs/view-layer/grid-ct.vue', // PtsVl -> Present time state - part of - view layer
-      },
-    })
-    clientSideTblOfMultiTimeStateCards.insert({
-      data: {
-        name: 'Reminder',
-        componentToShowPath:
-          'ptinfo-single/1time-Mrow-1Field/reminder/view-layer/grid-design2-ct.vue', // PtsVl -> Present time state - part of - view layer
-      },
-    })
-    clientSideTblOfMultiTimeStateCards.insert({
-      data: {
-        name: 'Screening',
-        componentToShowPath: 'ptinfo-single/1time-Mrow-mField/scr/view-layer/table-ct.vue',
+        componentCurrentValueForCustomizingViewState: 5,
       },
     })
     clientSideTblOfMultiTimeStateCards.insert({
