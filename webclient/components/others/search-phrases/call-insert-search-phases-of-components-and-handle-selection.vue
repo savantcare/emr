@@ -193,7 +193,7 @@ export default {
             clientSideTblOfRightSideCards.delete(arFromClientSideTable[0]['clientSideUniqRowId'])
           }
         }
-        // ptsvl -> Current state of view layer
+
         clientSideTblOfRightSideCards.insert({
           data: {
             name: pSelectedSuggestion.value,
@@ -222,7 +222,7 @@ export default {
 
       /* Goal: scrolling to top of the search input box */
       const options = {
-        container: '#ptsvl',
+        container: '#layer1RightSide',
         easing: 'ease-in',
         offset: 6000, // if offset is negative I do not come on top of search box. Not sure what this means
         force: true,

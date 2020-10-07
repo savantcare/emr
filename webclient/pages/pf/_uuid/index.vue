@@ -5,7 +5,7 @@
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
-            when go from Layer1LeftSide to ptsvl the event gets fired.
+            when go from Layer1LeftSide to layer1RightSide the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
@@ -25,7 +25,7 @@
       <SplitArea :size="leftSplitSize">
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
-      <SplitArea id="ptsvl" :size="rightSplitSize">
+      <SplitArea id="layer1RightSide" :size="rightSplitSize">
         <ctCsVlCards></ctCsVlCards>
       </SplitArea>
     </Split>
@@ -55,7 +55,7 @@ import Vue from 'vue'
 
 import ctVlSearchBox from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
-/* 1/4 Why needed? Split Layer1LeftSide and ptsvl  */
+/* 1/4 Why needed? Split Layer1LeftSide and layer1RightSide  */
 import VueSplit from 'vue-split-panel'
 
 /*  2/4 Why needed?
