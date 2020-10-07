@@ -22,7 +22,7 @@ database.register(clientSideTblOfAmendments)
 
 // table that decides which cards to show
 import tableStructureForMultiTimeStateView from '~/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
-import tableStructureForRightSideView from '~/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import tableStructureForRightSideView from '~/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 database.register(tableStructureForMultiTimeStateView)
 database.register(tableStructureForRightSideView)
 
