@@ -40,7 +40,6 @@ import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/
 export default {
   data() {
     return {
-      direction: 'ltr',
       dArOfComponentObjectsCached: [],
     }
   },
@@ -63,8 +62,6 @@ export default {
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         componentToShowPath = arOfObjectsFromClientSideDB[i]['componentToShowPath']
         if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
-          console.log('requring the Ct Obj')
-
           this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
             arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
         }
@@ -78,18 +75,17 @@ export default {
     },
 
     cfDrawerVisibility() {
-      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'rightScreenExtensionDrawerVisibility')
-        .get()
+      const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
+        'rightScreenExtensionDrawerVisibility'
+      )
 
-      if (arOfObjectsFromCommonForAllComponents.length > 0) {
-        if (arOfObjectsFromCommonForAllComponents[0]['fieldValue'] === 'true') {
+      if (drawerVisibility) {
+        if (drawerVisibility['fieldValue'] == 'true') {
           return true
-        } else {
-          return false
         }
       }
+
+      return false
     },
   },
   mounted() {
@@ -97,11 +93,15 @@ export default {
   },
   methods: {
     handleClose(done) {
-      clientSideTableOfCommonForAllComponents.update({
-        where: (record) => record.fieldName === 'rightScreenExtensionDrawerVisibility',
-        data: {
-          fieldValue: false,
-        },
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
+      })
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
     },
   },

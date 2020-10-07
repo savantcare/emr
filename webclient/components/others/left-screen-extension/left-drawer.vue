@@ -37,7 +37,6 @@ import ctSearchBoxInsideLeftScreenExtension from '@/components/others/search-phr
 export default {
   data() {
     return {
-      direction: 'ltr',
       dArOfComponentObjectsCached: [],
     }
   },
