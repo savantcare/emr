@@ -314,3 +314,10 @@ export default {
   },
 }
 </script>
+
+<style>
+body .el-drawer__wrapper {
+  left: unset;
+  width: 700px;
+}
+</style>
