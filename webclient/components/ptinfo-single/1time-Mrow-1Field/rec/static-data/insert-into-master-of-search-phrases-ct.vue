@@ -1,5 +1,5 @@
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import tblCTLifeCycle from '@/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 
 export default {
