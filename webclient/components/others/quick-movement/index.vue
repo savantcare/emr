@@ -65,6 +65,13 @@ export default {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
+      this.$notify.success({
+        message: 'Welcome to dashboard',
+        position: 'top-left',
+        duration: 1000,
+        showClose: false,
+        type: 'success',
+      })
     },
 
     goToWorkProductMode() {
@@ -84,6 +91,13 @@ export default {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 35 }],
       })
+      this.$notify.success({
+        message: 'Welcome to work product mode',
+        position: 'top-left',
+        duration: 1000,
+        showClose: false,
+        type: 'success',
+      })
     },
 
     goToAnalysisMode() {
@@ -101,6 +115,13 @@ export default {
 
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 65 }],
+      })
+      this.$notify.success({
+        message: 'Welcome to analysis mode',
+        position: 'top-left',
+        duration: 1000,
+        showClose: false,
+        type: 'success',
       })
     },
   },
