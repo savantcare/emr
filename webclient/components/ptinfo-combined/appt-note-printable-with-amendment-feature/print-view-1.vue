@@ -823,7 +823,7 @@ export default {
   height: 29.7cm;
   display: block;
   margin: 0 auto;
-  padding: 2cm;
+  padding: 2cm; /* During print set padding: 2cm. Padding may be dynamic depending on viewport for seeing this on 13" screen of doctor laptops with resolution of 1440x1368 */
   font-size: 12px;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
