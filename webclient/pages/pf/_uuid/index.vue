@@ -149,11 +149,11 @@ export default {
         // This is when the mouse leave from the left
         if (event.clientY <= 200) {
           // This is the top corner
-          this.$store.commit('mtfSetFeedDrawerVisibility', true)
+          this.goToAnalysisMode()
         }
       } else if (event.clientX <= window.innerWidth) {
         if (event.clientY <= 200) {
-          this.toggleRightSideScreenExtensionDrawer()
+          this.goToWorkProductMode()
         }
       }
     },
