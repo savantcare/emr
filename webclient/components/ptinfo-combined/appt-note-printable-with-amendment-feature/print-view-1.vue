@@ -70,6 +70,7 @@
     </div>
 
     <!-- SECTOION 5  SERVICE STATEMENTS -->
+    <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
     <el-row
       type="flex"
       justify="left"
@@ -110,10 +111,24 @@
     </div>
     <br />
     <div
-      v-for="row in cfArOfAmendmentForDisplay('serviceStatements')"
-      :key="row.clientSideUniqRowId"
+      v-if="
+        cfArOfAmendmentForDisplay('serviceStatements') &&
+        cfArOfAmendmentForDisplay('serviceStatements').length > 0
+      "
     >
-      {{ row.description }}
+      <h4>Amendment:</h4>
+      <div
+        v-for="row in cfArOfAmendmentForDisplay('serviceStatements')"
+        :key="row.clientSideUniqRowId"
+      >
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- SECTOION 6 MENTAL STATUS EXAM-->
@@ -158,10 +173,24 @@
     </div>
     <br />
     <div
-      v-for="row in cfArOfAmendmentForDisplay('mentalStatusExam')"
-      :key="row.clientSideUniqRowId"
+      v-if="
+        cfArOfAmendmentForDisplay('mentalStatusExam') &&
+        cfArOfAmendmentForDisplay('mentalStatusExam').length > 0
+      "
     >
-      {{ row.description }}
+      <h4>Amendment:</h4>
+      <div
+        v-for="row in cfArOfAmendmentForDisplay('mentalStatusExam')"
+        :key="row.clientSideUniqRowId"
+      >
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
     <!-- SECTOION 7 Psych review of systems  -->
     <el-row
@@ -208,10 +237,24 @@
     </div>
     <br />
     <div
-      v-for="row in cfArOfAmendmentForDisplay('psychReviewOfSystems')"
-      :key="row.clientSideUniqRowId"
+      v-if="
+        cfArOfAmendmentForDisplay('psychReviewOfSystems') &&
+        cfArOfAmendmentForDisplay('psychReviewOfSystems').length > 0
+      "
     >
-      {{ row.description }}
+      <h4>Amendment:</h4>
+      <div
+        v-for="row in cfArOfAmendmentForDisplay('psychReviewOfSystems')"
+        :key="row.clientSideUniqRowId"
+      >
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- SECTOION 8 REMINDERS -->
@@ -253,8 +296,21 @@
         {{ row['description'] }}
       </div>
       <br />
-      <div v-for="row in cfArOfAmendmentForDisplay('reminder')" :key="row.clientSideUniqRowId">
-        {{ row.description }}
+      <div
+        v-if="
+          cfArOfAmendmentForDisplay('reminder') && cfArOfAmendmentForDisplay('reminder').length > 0
+        "
+      >
+        <h4>Amendment:</h4>
+        <div v-for="row in cfArOfAmendmentForDisplay('reminder')" :key="row.clientSideUniqRowId">
+          <div style="margin: 5px 0">
+            {{ row.description }}
+            <br />
+            <span style="font-size: 10px"
+              >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+            >
+          </div>
+        </div>
       </div>
     </div>
     <div v-if="debug">
@@ -318,8 +374,25 @@
       </el-col>
     </el-row>
     <br />
-    <div v-for="row in cfArOfAmendmentForDisplay('recommendations')" :key="row.clientSideUniqRowId">
-      {{ row.description }}
+    <div
+      v-if="
+        cfArOfAmendmentForDisplay('recommendations') &&
+        cfArOfAmendmentForDisplay('recommendations').length > 0
+      "
+    >
+      <h4>Amendment:</h4>
+      <div
+        v-for="row in cfArOfAmendmentForDisplay('recommendations')"
+        :key="row.clientSideUniqRowId"
+      >
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
     <!-- SECTOION 10: Medications -->
     <el-row
@@ -354,8 +427,22 @@
       </el-col>
     </el-row>
     <br />
-    <div v-for="row in cfArOfAmendmentForDisplay('medications')" :key="row.clientSideUniqRowId">
-      {{ row.description }}
+    <div
+      v-if="
+        cfArOfAmendmentForDisplay('medications') &&
+        cfArOfAmendmentForDisplay('medications').length > 0
+      "
+    >
+      <h4>Amendment:</h4>
+      <div v-for="row in cfArOfAmendmentForDisplay('medications')" :key="row.clientSideUniqRowId">
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- SECTOION 11 -->
@@ -391,8 +478,19 @@
       </el-col>
     </el-row>
     <br />
-    <div v-for="row in cfArOfAmendmentForDisplay('vitals')" :key="row.clientSideUniqRowId">
-      {{ row.description }}
+    <div
+      v-if="cfArOfAmendmentForDisplay('vitals') && cfArOfAmendmentForDisplay('vitals').length > 0"
+    >
+      <h4>Amendment:</h4>
+      <div v-for="row in cfArOfAmendmentForDisplay('vitals')" :key="row.clientSideUniqRowId">
+        <div style="margin: 5px 0">
+          {{ row.description }}
+          <br />
+          <span style="font-size: 10px"
+            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          >
+        </div>
+      </div>
     </div>
 
     <!-- SECTOION 12 -->
@@ -698,6 +796,7 @@ export default {
           appointmentId: this.appointmentIdForThisNote,
           component: component,
           description: pAmendmentData,
+          ROW_START: Math.floor(Date.now()),
         },
       })
 

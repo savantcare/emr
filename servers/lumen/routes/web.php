@@ -29,7 +29,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
-   
+
     // Blood Pressure
     $router->get('blood-pressure-levels/v20/', ['uses' => 'BloodPressureController@getAllTemporalBloodPressures']);
     $router->get('blood-pressure-levels/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@getOneBloodPressure']);
@@ -61,18 +61,18 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-  
+
     // HEIGHT
     $router->get('height/v20/', ['uses' => 'HeightController@getAllTemporalHeights']);
-    $router->get('height/v20/{serverSideRowUuid}', ['uses' => 'HeightController@getOneHeight']);
+    $router->get('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@getOneHeight']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
-    $router->put('height/v20/{serverSideRowUuid}', ['uses' => 'HeightController@update']);
+    $router->put('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@update']);
     $router->options('height/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('height/v20/{serverSideRowUuid}', function () {
+    $router->options('height/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -80,15 +80,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Pulse
     $router->get('pulse/v20/', ['uses' => 'PulseController@getAllTemporalPulses']);
-    $router->get('pulse/v20/{serverSideRowUuid}', ['uses' => 'PulseController@getOnePulse']);
+    $router->get('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@getOnePulse']);
     $router->post('pulse/v20/', ['uses' => 'PulseController@create']);
-    $router->put('pulse/v20/{serverSideRowUuid}', ['uses' => 'PulseController@update']);
+    $router->put('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@update']);
     $router->options('pulse/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('pulse/v20/{serverSideRowUuid}', function () {
+    $router->options('pulse/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -161,7 +161,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-    
+
     // Waist Circumference
     $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@getAllTemporalWaistCircumferences']);
     $router->get('waist-circumference/v20/{serverSideRowUuid}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);

@@ -10,7 +10,7 @@ import VuexORMAxios from '@vuex-orm/plugin-axios'
 // Ref: https://github.com/eldomagan/vuex-orm-localforage#installation
 import vstOfTabsAndDialogInEditLayerModule from '~/components/core/edit-layer-tabs/vst-of-tabs-and-dialog-in-cl'
 
-import VueStateOfFeedDrawerModule from '~/components/ptinfo-combined/feed/vue-state-of-feed-drawer'
+import VueStateOfFeedDrawerModule from '~/components/ptinfo-combined/left-screen-extension/vue-state-of-feed-drawer'
 import VueStateOfMapDrawerModule from '~/components/ptinfo-combined/map/vue-state-of-map-drawer'
 import VueStateOfDeletedDrawerModule from '~/components/core/ct-deleted-rows/vue-state-of-deleted-drawer'
 
@@ -18,7 +18,6 @@ import database from '~/store/import-tables-and-register-to-client-side-database
 
 // Ref: https://stackoverflow.com/a/62247034
 const { v1: uuidv1 } = require('uuid')
-
 VuexORM.use(VuexORMAxios, { axios })
 VuexORM.use(VuexclientSideTblOfCtSearchPhrases, {
   tokenize: true, // Ref: https://github.com/client-side/plugin-search#configurations needed so "goal add" works when list has "add goal"

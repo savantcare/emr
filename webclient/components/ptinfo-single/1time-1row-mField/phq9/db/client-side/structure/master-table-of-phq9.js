@@ -2,7 +2,6 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 import phq9ForPatientClass from './patient-table-of-phq9.js'
 
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 

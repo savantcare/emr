@@ -58,7 +58,7 @@ import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/
 import initializeClearComponent from '@/components/core/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
-import initializeFeedComponent from '@/components/ptinfo-combined/feed/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeFeedComponent from '@/components/ptinfo-combined/left-screen-extension/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeMapComponent from '@/components/ptinfo-combined/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/PII

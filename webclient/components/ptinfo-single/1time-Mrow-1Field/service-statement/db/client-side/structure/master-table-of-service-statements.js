@@ -3,7 +3,6 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 import serviceStatementsForPatientClass from './patient-table-of-service-statements.js'
 
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 

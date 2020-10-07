@@ -1,6 +1,6 @@
 import { Model } from '@vuex-orm/core'
 import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/left-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
 
 class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class

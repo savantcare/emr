@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Height;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
 use DB;
 use Predis\Autoloader;
+
 \Predis\Autoloader::register();
 
 
@@ -14,103 +14,69 @@ class HeightController extends Controller
 {
     public function getAllTemporalHeights()
     {
-        $heightQuery = DB::select(DB::raw('SELECT *,round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_vital_signs.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($heightQuery);
+        $heightQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
-        // return response()->json(Height::all());
+        return response()->json($heightQuery);
     }
 
     public function getOneHeight($pServerSideRowUuid)
     {
-        return response()->json(Height::find($pServerSideRowUuid));
+
+        $heightQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
+
+        return response()->json($heightQuery);
     }
 
     public function create(Request $request)
     {
         $requestData = $request->all();
-        $uuid = Uuid::uuid4();
 
-        $heightData = array(
-            'uuid' => $uuid,
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'heightInInch' => $requestData['data']['heightInInch'],
-            'measurementDate' => $requestData['data']['measurementDate'],
-            'notes' => $requestData['data']['notes'],
-            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
-        );
-       
-        $Height = Height::insertGetId($heightData);
+        $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
+        $ptUuid = $requestData['data']['ptUuid'];
+        $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
+        $heightInInches = $requestData['data']['heightInInches'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
 
-        /**
-         * Send data to socket
-         */
-        $channel = 'MsgFromSktForHeightToAdd';
-        $message = array(
-            'uuid' => $uuid,
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'heightInInch' => $requestData['data']['heightInInch'],
-            'measurementDate' => $requestData['data']['measurementDate'],
-            'notes' => $requestData['data']['notes'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $insertHeight = DB::statement("INSERT INTO `sc_vital_signs`.`height` (`serverSideRowUuid`, `ptUuid`, `heightInInches`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$heightInInches}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
-        return response()->json($Height, 201);
+        return response()->json($insertHeight, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $request)
     {
-        $Height = Height::findOrFail($serverSideRowUuid);
-        $Height->update($request->all());
-
-        /**
-         * Send data to socket
-         */
         $requestData = $request->all();
-        $channel = 'MsgFromSktForHeightToChange';
-        $message = array(
-            'uuid' => $serverSideRowUuid,
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'heightInInch' => $requestData['data']['heightInInch'],
-            'measurementDate' => $requestData['data']['measurementDate'],
-            'notes' => $requestData['data']['notes'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
 
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
+        $heightInInches = $requestData['rowToUpsert']['heightInInches'];
+        $notes = $requestData['rowToUpsert']['notes'];
+        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
 
-        return response()->json($Height, 200);
+        $updateHeight = DB::statement("UPDATE `sc_vital_signs`.`height` SET `heightInInches` = {$heightInInches}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `height`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+
+        return response()->json($updateHeight, 200);
     }
 
-    public function delete($serverSideRowUuid, Request $request)
+    public function get_client_ip()
     {
-        $Height = Height::findOrFail($serverSideRowUuid);
-        $requestData = $request->all();
-
-        if(isset($requestData['dNotes']) && !empty($requestData['dNotes']))
-        {
-            $updateData = array(
-                'notes' => $requestData['dNotes']
-            );
-            $Height->update($updateData);
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipaddress = 'UNKNOWN';
         }
-
-        $Height->delete();
-
-        /**
-         * Send data to socket
-         */
-        $channel = 'MsgFromSktForRemToDelete';
-        $message = array(
-            'uuid' => $serverSideRowUuid,
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        return response('Deleted successfully', 200);
+        return $ipaddress;
     }
 }

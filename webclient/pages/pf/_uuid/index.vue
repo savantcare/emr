@@ -23,7 +23,8 @@
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
-    <ctFeedDrawer></ctFeedDrawer>
+    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
 
@@ -35,9 +36,32 @@
       width="30%"
     >
       <ctVlSearchBox></ctVlSearchBox>
+      <br /><br />
+      <tags-input
+        element-id="tags"
+        v-model="selectedTags"
+        :existing-tags="[
+          { key: 'add', value: 'Add' },
+          { key: 'reminder', value: 'Reminder' },
+          { key: 'recommendation', value: 'Recommendation' },
+          { key: 'service-statement', value: 'Service statement' },
+          { key: 'diagnosis', value: 'Diagnosis' },
+          { key: 'email', value: 'email' },
+          { key: 'weight', value: 'weight' },
+        ]"
+        :typeahead="true"
+        :typeahead-activation-threshold="0"
+        placeholder="Lets get it done .."
+        typeahead-style="dropdown"
+        typeahead-hide-discard="true"
+      ></tags-input>
     </el-dialog>
   </div>
 </template>
+
+<style scoped>
+@import 'https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.4.0/dist/style.css';
+</style>
 
 <script>
 import Vue from 'vue'
@@ -71,11 +95,17 @@ import 'vue-slider-component/theme/default.css'
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 import VueSocketIO from 'vue-socket.io'
 
+// Ref: https://github.com/voerro/vue-tagsinput
+import VoerroTagsInput from '@voerro/vue-tagsinput'
+
+Vue.component('tags-input', VoerroTagsInput)
+
 // Internal Cts
 import ctMtsVlCards from '@/components/core/mts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctCsVlCards from '@/components/core/pts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctFeedDrawer from '@/components/ptinfo-combined/feed/drawer.vue'
+import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/drawer.vue'
+import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
 import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
@@ -99,7 +129,8 @@ export default {
     ctMtsVlCards,
     ctCsVlCards,
     ctTabsInDialogInCL,
-    ctFeedDrawer,
+    ctLeftScreenExtensionDrawer,
+    ctRightScreenExtensionDrawer,
     ctMapDrawer,
     ctDeletedDrawer,
     ctVlSearchBox,

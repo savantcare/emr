@@ -3,7 +3,6 @@ import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-i
 import psychReviewOfSystemsForPatientClass from './patient-table-of-psych-review-of-systems.js'
 
 const { v1: uuidv1 } = require('uuid')
-
 let count = 0
 const intUniqueId = () => ++count
 
