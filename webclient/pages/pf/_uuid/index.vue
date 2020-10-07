@@ -9,31 +9,16 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <!-- Goal: Implement "system preferences -> Mission control -> hot corners" concept of MacOS on the view area -->
-    <span
-      @mouseover="actOnMouseOverSpan('analysis')"
-      style="position: absolute; width: 4px; height: 50px; background-color: blue"
-    ></span>
-    <span
-      @mouseover="actOnMouseOverSpan('production')"
-      style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
-    ></span>
-    <!-- END of hot corner area defination -->
-
-    <!-- Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
-    <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()"></div>
-    <div v-shortkey="['f2']" @shortkey="actOnF2ShortKeyPressed()"></div>
-    <div v-shortkey="['f3']" @shortkey="actOnF3ShortKeyPressed()"></div>
-
+    <ctQuickMovement></ctQuickMovement>
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
     <Split style="height: 900px; width: 1400px" :gutter-size="4">
-      <SplitArea :size="layer1LeftSideSplitSize">
+      <SplitArea :size="cfLayer1LeftSideSplitSize">
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
-      <SplitArea id="layer1RightSide" :size="layer1RightSideSplitSize">
+      <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
         <ctLayer1RightSideCards></ctLayer1RightSideCards>
       </SplitArea>
     </Split>
@@ -96,6 +81,7 @@ import ctRightScreenExtensionDrawer from '@/components/others/right-screen-exten
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import ctQuickMovement from '~/components/others/quick-movement/index.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -121,10 +107,10 @@ export default {
     ctMapDrawer,
     ctDeletedDrawer,
     ctVlSearchBox,
+    ctQuickMovement,
   },
   data() {
     return {
-      currentVisibilityStatusOfScBrainComponentContainingDialog: false,
       dLayer1LeftSideSplitSize: 50,
       dLayer1RightSideSplitSize: 50,
     }
@@ -136,10 +122,10 @@ export default {
   },
 
   computed: {
-    layer1LeftSideSplitSize() {
+    cfLayer1LeftSideSplitSize() {
       return this.dLayer1LeftSideSplitSize
     },
-    layer1RightSideSplitSize() {
+    cfLayer1RightSideSplitSize() {
       return this.dLayer1RightSideSplitSize
     },
   },
@@ -159,158 +145,6 @@ export default {
     },
     log(message) {
       console.log(message)
-    },
-
-    // Goal: Catch mouse events
-    actOnMouseOverSpan(mode) {
-      if (mode == 'analysis') {
-        this.goToAnalysisMode()
-      } else if (mode == 'production') {
-        this.goToWorkProductMode()
-      }
-    },
-
-    // Goal: Catch KB events
-    actOnF1ShortKeyPressed() {
-      console.log('shortkey')
-      this.goToDashboardMode()
-    },
-    actOnF2ShortKeyPressed() {
-      console.log('shortkey')
-      this.goToWorkProductMode()
-    },
-    actOnF3ShortKeyPressed() {
-      console.log('shortkey')
-      this.goToAnalysisMode()
-    },
-
-    goToDashboardMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
-
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make false. If false will update to false. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        }
-      }
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', false)
-
-      this.dLayer1LeftSideSplitSize = 50
-      this.dLayer1RightSideSplitSize = 50
-    },
-
-    goToWorkProductMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
-
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'false') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: true,
-            },
-          })
-        }
-      } else {
-        clientSideTableOfCommonForAllComponents.insert({
-          data: {
-            fieldName: 'setRightScreenExtensionDrawerVisibility',
-            fieldValue: true,
-          },
-        })
-      }
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', false)
-
-      this.dLayer1LeftSideSplitSize = 65
-      this.dLayer1RightSideSplitSize = 35
-    },
-
-    goToAnalysisMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
-
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        }
-      }
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', true)
-      this.dLayer1LeftSideSplitSize = 35
-      this.dLayer1RightSideSplitSize = 65
-    },
-
-    toggleLeftSideScreenExtensionDrawer() {
-      this.$store.commit('mtfSetFeedDrawerVisibility', true)
-    },
-    toggleRightSideScreenExtensionDrawer() {
-      // Open right screen extension drawer
-      if (
-        clientSideTableOfCommonForAllComponents
-          .query()
-          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-          .count()
-      ) {
-        const obj = clientSideTableOfCommonForAllComponents
-          .query()
-          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-          .get()
-
-        console.log(obj)
-
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        } else {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: true,
-            },
-          })
-        }
-      } else {
-        clientSideTableOfCommonForAllComponents.insert({
-          data: {
-            fieldName: 'setRightScreenExtensionDrawerVisibility',
-            fieldValue: true,
-          },
-        })
-      }
     },
   },
 }
