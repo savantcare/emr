@@ -177,6 +177,16 @@ export default {
           // This is the top corner
           this.$store.commit('mtfSetFeedDrawerVisibility', true)
         }
+      } else if (event.clientX <= window.innerWidth) {
+        if (event.clientY <= 200) {
+          // Open right screen extension drawer
+          clientSideTable.insert({
+            data: {
+              fieldName: 'setRightScreenExtensionDrawerVisibility',
+              fieldValue: true,
+            },
+          })
+        }
       }
     },
   },
