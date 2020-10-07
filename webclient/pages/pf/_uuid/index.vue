@@ -9,8 +9,14 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
-    <span @mouseover="mouseover('analysis')" style="position:absolute;width:8px;height:50px;background-color:red"></span>
-    <span @mouseover="mouseover('production')" style="position:absolute;width:8px;height:50px;background-color:green;right:0"></span>
+    <span
+      @mouseover="mouseover('analysis')"
+      style="position: absolute; width: 4px; height: 50px; background-color: blue"
+    ></span>
+    <span
+      @mouseover="mouseover('production')"
+      style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
+    ></span>
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -155,15 +161,11 @@ export default {
 
     // Goal: Catch mouse events
     mouseover(mode) {
-   
-       if(mode=="analysis")
-       {
-          this.goToAnalysisMode()
-       }
-       else if(mode=="production")
-       {
-          this.goToWorkProductMode()
-       }
+      if (mode == 'analysis') {
+        this.goToAnalysisMode()
+      } else if (mode == 'production') {
+        this.goToWorkProductMode()
+      }
     },
 
     // Goal: Catch KB events
