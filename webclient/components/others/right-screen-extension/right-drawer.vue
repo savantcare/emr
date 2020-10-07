@@ -12,7 +12,7 @@
     :close-on-press-escape="true"
     :show-close="true"
     :wrapperClosable="false"
-    size="35%"
+    size="100%"
     :lock-scroll="false"
   >
     <div class="block">
