@@ -1,5 +1,13 @@
 <template>
-  <highcharts :options="chartOptions"></highcharts>
+  <div>
+    <el-card
+      slot="bodySlotContentFromParentToShowAboveChildCards"
+      class="box-card sc-individual-child-card"
+      shadow="hover"
+    >
+      <highcharts :options="chartOptions"></highcharts>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -57,7 +65,9 @@ export default {
             dashStyle: 'shortdot',
           },
         ],
-
+        chart: {
+          width: 700, // on page load default width should be 50% of page width, ie; 700px
+        },
         credits: {
           enabled: false,
         },
@@ -248,17 +258,17 @@ export default {
 }
 </script>
 
-<style scoped>
-/* Ref: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html  */
-.A4 {
-  background: white;
-  width: 21cm;
-  height: 29.7cm;
-  display: block;
-  margin: 0 auto;
-  padding: 2cm;
-  font-size: 12px;
-  margin-bottom: 0.5cm;
-  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+<style>
+/**
+css for responsive correlate graph
+Ref: https://www.highcharts.com/forum/viewtopic.php?t=25780
+ */
+div.highcharts-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+svg.highcharts-root {
+  width: 100%;
+  height: 100%;
 }
 </style>
