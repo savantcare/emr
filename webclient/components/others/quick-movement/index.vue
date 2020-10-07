@@ -24,19 +24,9 @@ import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/
 
 export default {
   data() {
-    return {
-      dLayer1LeftSideSplitSize: 50,
-      dLayer1RightSideSplitSize: 50,
-    }
+    return {}
   },
-  computed: {
-    layer1LeftSideSplitSize() {
-      return this.dLayer1LeftSideSplitSize
-    },
-    layer1RightSideSplitSize() {
-      return this.dLayer1RightSideSplitSize
-    },
-  },
+  computed: {},
   methods: {
     // Goal: Catch mouse events
     actOnMouseOverSpan(mode) {
@@ -62,132 +52,44 @@ export default {
     },
 
     goToDashboardMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
 
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make false. If false will update to false. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        }
-      }
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
-
-      this.dLayer1LeftSideSplitSize = 50
-      this.dLayer1RightSideSplitSize = 50
     },
 
     goToWorkProductMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
-
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'false') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: true,
-            },
-          })
-        }
-      } else {
-        clientSideTableOfCommonForAllComponents.insert({
-          data: {
-            fieldName: 'setRightScreenExtensionDrawerVisibility',
-            fieldValue: true,
-          },
-        })
-      }
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: true }],
+      })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
 
-      this.dLayer1LeftSideSplitSize = 65
-      this.dLayer1RightSideSplitSize = 35
+      // set the split dimensions
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 65 }],
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 35 }],
+      })
     },
 
     goToAnalysisMode() {
-      const obj = clientSideTableOfCommonForAllComponents
-        .query()
-        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-        .get()
-
-      console.log(obj)
-
-      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
-      if (obj[0]) {
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        }
-      }
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'setRightScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
-      this.dLayer1LeftSideSplitSize = 35
-      this.dLayer1RightSideSplitSize = 65
-    },
 
-    toggleLeftSideScreenExtensionDrawer() {
-      this.$store.commit('mtfSetFeedDrawerVisibility', true)
-    },
-    toggleRightSideScreenExtensionDrawer() {
-      // Open right screen extension drawer
-      if (
-        clientSideTableOfCommonForAllComponents
-          .query()
-          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-          .count()
-      ) {
-        const obj = clientSideTableOfCommonForAllComponents
-          .query()
-          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-          .get()
+      // set the split dimensions
 
-        console.log(obj)
-
-        if (obj[0]['fieldValue'] === 'true') {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: false,
-            },
-          })
-        } else {
-          clientSideTableOfCommonForAllComponents.update({
-            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-            data: {
-              fieldValue: true,
-            },
-          })
-        }
-      } else {
-        clientSideTableOfCommonForAllComponents.insert({
-          data: {
-            fieldName: 'setRightScreenExtensionDrawerVisibility',
-            fieldValue: true,
-          },
-        })
-      }
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 35 }],
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 65 }],
+      })
     },
   },
 }
