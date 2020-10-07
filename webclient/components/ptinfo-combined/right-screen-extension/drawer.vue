@@ -15,17 +15,6 @@
   >
     <div class="block">
       <ctVlSearchBox></ctVlSearchBox>
-
-      <el-timeline :reverse="reverse">
-        <el-timeline-item
-          v-for="(activity, index) in cfArOfFeedForDisplayInDrawer"
-          :key="index"
-          :timestamp="activity.timestamp"
-        >
-          {{ activity.component }} -
-          {{ activity.description }}
-        </el-timeline-item>
-      </el-timeline>
     </div>
   </el-drawer>
 </template>
@@ -39,31 +28,12 @@ export default {
   data() {
     return {
       direction: 'ltr',
-      reverse: false,
-      activities: [
-        {
-          content: 'HDR sent for rescheduling appointment',
-          timestamp: '2018-04-15',
-        },
-        {
-          content: 'New appt booked',
-          timestamp: '2018-04-13',
-        },
-        {
-          content: 'Patient called to say will arrive 10 mins late',
-          timestamp: '2018-04-11',
-        },
-      ],
     }
   },
   components: {
     ctVlSearchBox,
   },
   computed: {
-    cfArOfFeedForDisplayInDrawer() {
-      const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
-      return arFromClientSideTable
-    },
     cfDrawerVisibility() {
       const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
         .query()
@@ -84,8 +54,12 @@ export default {
   },
   methods: {
     handleClose(done) {
-      // console.log('In the handle close function')
-      this.cfDrawerVisibility = false
+      clientSideTableOfCommonForAllComponents.update({
+        where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+        data: {
+          fieldValue: false,
+        },
+      })
     },
   },
 }

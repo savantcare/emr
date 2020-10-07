@@ -108,7 +108,7 @@ import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-scree
 import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
-import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -154,7 +154,7 @@ export default {
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
-      clientSideTable.insert({
+      clientSideTableOfCommonForAllComponents.insert({
         data: {
           fieldName:
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange',
@@ -162,7 +162,7 @@ export default {
         },
       })
 
-      console.log(clientSideTable)
+      console.log(clientSideTableOfCommonForAllComponents)
     },
     log(message) {
       console.log(message)
@@ -180,12 +180,26 @@ export default {
       } else if (event.clientX <= window.innerWidth) {
         if (event.clientY <= 200) {
           // Open right screen extension drawer
-          clientSideTable.insert({
-            data: {
-              fieldName: 'setRightScreenExtensionDrawerVisibility',
-              fieldValue: true,
-            },
-          })
+          if (
+            clientSideTableOfCommonForAllComponents
+              .query()
+              .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+              .count()
+          ) {
+            clientSideTableOfCommonForAllComponents.update({
+              where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+              data: {
+                fieldValue: true,
+              },
+            })
+          } else {
+            clientSideTableOfCommonForAllComponents.insert({
+              data: {
+                fieldName: 'setRightScreenExtensionDrawerVisibility',
+                fieldValue: true,
+              },
+            })
+          }
         }
       }
     },
