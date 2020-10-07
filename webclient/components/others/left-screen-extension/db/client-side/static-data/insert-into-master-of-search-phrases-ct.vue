@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'feed',
         ctAbbr: 'fd',
-        ctToShow: 'ptinfo-combined/left-screen-extension/invoke.vue',
+        ctToShow: 'others/left-screen-extension/invoke.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
