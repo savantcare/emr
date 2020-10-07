@@ -14,10 +14,10 @@
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
     <Split style="height: 900px; width: 1400px" :gutter-size="4">
-      <SplitArea :size="50">
+      <SplitArea :size="leftSplitSize">
         <ctMtsVlCards></ctMtsVlCards>
       </SplitArea>
-      <SplitArea id="ptsvl" :size="50">
+      <SplitArea id="ptsvl" :size="rightSplitSize">
         <ctCsVlCards></ctCsVlCards>
       </SplitArea>
     </Split>
@@ -115,12 +115,23 @@ export default {
   data() {
     return {
       currentVisibilityStatusOfScBrainComponentContainingDialog: false,
+      leftSplitSize: 50,
+      rightSplitSize: 50,
     }
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
     this.$store.commit('mtfSetTabDialogVisibility', false)
     this.mfUpdateSocketClientId()
+  },
+
+  computed: {
+    leftSplitSize() {
+      return this.leftSplitSize
+    },
+    rightSplitSize() {
+      return this.rightSplitSize
+    },
   },
   methods: {
     mfUpdateSocketClientId() {
@@ -193,6 +204,9 @@ export default {
       }
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
+
+      this.leftSplitSize = 50
+      this.rightSplitSize = 50
     },
 
     goToWorkProductMode() {
@@ -224,6 +238,9 @@ export default {
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', false)
+
+      this.leftSplitSize = 65
+      this.rightSplitSize = 35
     },
 
     goToAnalysisMode() {
@@ -248,6 +265,8 @@ export default {
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       this.$store.commit('mtfSetFeedDrawerVisibility', true)
+      this.leftSplitSize = 35
+      this.rightSplitSize = 65
     },
 
     toggleLeftSideScreenExtensionDrawer() {

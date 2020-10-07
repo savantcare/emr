@@ -12,6 +12,7 @@
     :close-on-press-escape="true"
     :show-close="true"
     :wrapperClosable="false"
+    size="35%"
   >
     <div class="block">
       <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
