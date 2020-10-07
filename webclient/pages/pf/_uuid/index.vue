@@ -8,7 +8,7 @@
             when go from Layer1LeftSide to layer1RightSide the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
+  <div>
     <!-- Goal: Implement "system preferences -> Mission control -> hot corners" concept of MacOS on the view area -->
     <span
       @mouseover="actOnMouseOverSpan('analysis')"
@@ -19,6 +19,11 @@
       style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
     ></span>
     <!-- END of hot corner area defination -->
+
+    <!-- Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
+    <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()"></div>
+    <div v-shortkey="['f2']" @shortkey="actOnF2ShortKeyPressed()"></div>
+    <div v-shortkey="['f3']" @shortkey="actOnF3ShortKeyPressed()"></div>
 
     <!-- Prop explanation:
         :gutterSize="0"
@@ -34,14 +39,8 @@
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
-    <ctLeftScreenExtensionDrawer
-      v-shortkey="['f2']"
-      @shortkey.native="actOnF2ShortKeyPressed()"
-    ></ctLeftScreenExtensionDrawer>
-    <ctRightScreenExtensionDrawer
-      v-shortkey="['f3']"
-      @shortkey.native="actOnF3ShortKeyPressed()"
-    ></ctRightScreenExtensionDrawer>
+    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
   </div>
