@@ -511,7 +511,7 @@ import clientSideTblOfPsychReviewOfSystems from '@/components/ptinfo-single/1tim
 import clientSideTblOfAmendments from '~/components/ptinfo-single/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
-import clientSideTblOfMultiStateViewCards from '@/components/core/layer-1-left-side-components/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiStateViewCards from '@/components/others/layer-1-left-side-components/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side

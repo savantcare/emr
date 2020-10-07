@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 // Goal: Get the search terms from each component
 
 // core
-import initializeClearComponent from '@/components/core/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeClearComponent from '@/components/others/clear/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // combined
 import initializeFeedComponent from '@/components/ptinfo-combined/left-screen-extension/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -89,7 +89,7 @@ import initializeServiceStatementComponent from '@/components/ptinfo-single/1tim
 import initializePhoneNumberComponent from '@/components/ptinfo-single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/ptinfo-single/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
-import clientSideTblOfRightSideCards from '@/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientSideTblOfRightSideCards from '@/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   components: {

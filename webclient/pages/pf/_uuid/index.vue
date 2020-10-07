@@ -45,7 +45,7 @@ import Vue from 'vue'
 
 /* External Cts */
 
-import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import ctVlSearchBox from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 /* 1/4 Why needed? Split mtsvl and ptsvl  */
 import VueSplit from 'vue-split-panel'
@@ -78,13 +78,13 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
-import ctMtsVlCards from '@/components/core/layer-1-left-side-components/dynamic-list-of-cards.vue'
-import ctCsVlCards from '@/components/core/layer-1-right-side-components/dynamic-list-of-cards.vue'
-import ctTabsInDialogInCL from '@/components/core/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
+import ctMtsVlCards from '@/components/others/layer-1-left-side-components/dynamic-list-of-cards.vue'
+import ctCsVlCards from '@/components/others/layer-1-right-side-components/dynamic-list-of-cards.vue'
+import ctTabsInDialogInCL from '@/components/others/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/left-drawer.vue'
 import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
-import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
+import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation

@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import clientSideTblOfViewCards from '@/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
-import ctSearchBoxInsideLeftScreenExtension from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import clientSideTblOfViewCards from '@/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import ctSearchBoxInsideLeftScreenExtension from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {
   data() {

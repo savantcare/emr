@@ -1,4 +1,4 @@
-// import clientSideTableManage from '~/cts/core/crud/row-manage.js'
+// import clientSideTableManage from '~/cts/others/crud/row-manage.js'
 import { Model } from '@vuex-orm/core'
 
 let count = 0

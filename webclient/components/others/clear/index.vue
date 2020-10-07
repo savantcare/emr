@@ -1,7 +1,7 @@
 <template><div></div></template>
 
 <script>
-import clientSideTblOfRightSideCards from '@/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientSideTblOfRightSideCards from '@/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   data() {

@@ -13,7 +13,7 @@ I have:
 
 class clientSideTableManage extends Model {
   static arOrmRowsCached = []
-(https://github.com/savantcare/emr/blob/master/webclient/cts/core/crud/row-manage.js#L5)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/others/crud/row-manage.js#L5)
 
 export default class ptHeight extends clientSideTableManage {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)

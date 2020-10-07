@@ -1,4 +1,4 @@
-import clientSideTblOfCtSearchPhrases from '~/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '~/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   state: {
@@ -76,7 +76,7 @@ export default {
       console.log(objSearchRowFromOrm)
 
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
-      // /cts/core/edit-layer-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
+      // /cts/others/edit-layer-tabs/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
         label: objSearchRowFromOrm.value, // TODO: Should be called vsLabel
 

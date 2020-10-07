@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientSideTblOfMultiTimeStateCards from '@/components/core/layer-1-left-side-components/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiTimeStateCards from '@/components/others/layer-1-left-side-components/db/client-side/structure/mts-table.js'
 
 export default {
   data() {
@@ -13,7 +13,8 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Header',
-        componentToShowPath: 'core/layer-1-left-side-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath:
+          'others/layer-1-left-side-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })

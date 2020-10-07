@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/core/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientSideTableManage from '~/components/others/crud/manage-rows-of-table-in-client-side-orm.js'
 
 import clientSideTblPatientDiagnosis from './patient-table-of-diagnosis'
 
