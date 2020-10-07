@@ -23,7 +23,10 @@
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
-    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+    <ctLeftScreenExtensionDrawer
+      v-shortkey="['f1']"
+      @shortkey.native="actOnF1ShortKeyPressed()"
+    ></ctLeftScreenExtensionDrawer>
     <ctRightScreenExtensionDrawer
       v-shortkey="['f2']"
       @shortkey.native="actOnF2ShortKeyPressed()"
@@ -120,6 +123,10 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
+    actOnF1ShortKeyPressed() {
+      console.log('shortkey')
+      this.toggleLeftSideScreenExtensionDrawer()
+    },
     actOnF2ShortKeyPressed() {
       console.log('shortkey')
       this.toggleRightSideScreenExtensionDrawer()
@@ -155,6 +162,9 @@ export default {
           this.toggleRightSideScreenExtensionDrawer()
         }
       }
+    },
+    toggleLeftSideScreenExtensionDrawer() {
+      this.$store.commit('mtfSetFeedDrawerVisibility', true)
     },
     toggleRightSideScreenExtensionDrawer() {
       // Open right screen extension drawer
