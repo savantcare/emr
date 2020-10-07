@@ -213,6 +213,13 @@ export default {
             },
           })
         }
+      } else {
+        clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName: 'setRightScreenExtensionDrawerVisibility',
+            fieldValue: true,
+          },
+        })
       }
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
