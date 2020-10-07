@@ -8,7 +8,9 @@
             when go from mtsvl to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div @mouseleave="mouseleave" v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
+  <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
+    <span @mouseover="mouseover('analysis')" style="position:absolute;width:8px;height:50px;background-color:red"></span>
+    <span @mouseover="mouseover('production')" style="position:absolute;width:8px;height:50px;background-color:green;right:0"></span>
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -152,21 +154,16 @@ export default {
     },
 
     // Goal: Catch mouse events
-    mouseleave(event) {
-      // console.log('mouse leave', event)
-
-      // How to identify which side the mouse left https://stackoverflow.com/a/48281888
-      if (event.clientX <= 0) {
-        // This is when the mouse leave from the left
-        if (event.clientY <= 200) {
-          // This is the top corner
+    mouseover(mode) {
+   
+       if(mode=="analysis")
+       {
           this.goToAnalysisMode()
-        }
-      } else if (event.clientX <= window.innerWidth) {
-        if (event.clientY <= 200) {
+       }
+       else if(mode=="production")
+       {
           this.goToWorkProductMode()
-        }
-      }
+       }
     },
 
     // Goal: Catch KB events
