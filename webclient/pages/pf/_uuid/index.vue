@@ -24,38 +24,12 @@
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
     <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
-    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer
+      v-shortkey="['f2']"
+      @shortkey.native="actOnF2ShortKeyPressed()"
+    ></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
-
-    <el-dialog
-      v-shortkey="['f1']"
-      @shortkey.native="actOnF1ShortKeyPressed()"
-      title="SC Brain"
-      :visible.sync="currentVisibilityStatusOfScBrainComponentContainingDialog"
-      width="30%"
-    >
-      <ctVlSearchBox></ctVlSearchBox>
-      <br /><br />
-      <tags-input
-        element-id="tags"
-        v-model="selectedTags"
-        :existing-tags="[
-          { key: 'add', value: 'Add' },
-          { key: 'reminder', value: 'Reminder' },
-          { key: 'recommendation', value: 'Recommendation' },
-          { key: 'service-statement', value: 'Service statement' },
-          { key: 'diagnosis', value: 'Diagnosis' },
-          { key: 'email', value: 'email' },
-          { key: 'weight', value: 'weight' },
-        ]"
-        :typeahead="true"
-        :typeahead-activation-threshold="0"
-        placeholder="Lets get it done .."
-        typeahead-style="dropdown"
-        typeahead-hide-discard="true"
-      ></tags-input>
-    </el-dialog>
   </div>
 </template>
 
@@ -146,10 +120,9 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
-    actOnF1ShortKeyPressed() {
-      this.currentVisibilityStatusOfScBrainComponentContainingDialog = !this
-        .currentVisibilityStatusOfScBrainComponentContainingDialog
-      console.log('Shortkey action')
+    actOnF2ShortKeyPressed() {
+      console.log('shortkey')
+      this.toggleRightSideScreenExtensionDrawer()
     },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
@@ -179,28 +152,47 @@ export default {
         }
       } else if (event.clientX <= window.innerWidth) {
         if (event.clientY <= 200) {
-          // Open right screen extension drawer
-          if (
-            clientSideTableOfCommonForAllComponents
-              .query()
-              .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
-              .count()
-          ) {
-            clientSideTableOfCommonForAllComponents.update({
-              where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
-              data: {
-                fieldValue: true,
-              },
-            })
-          } else {
-            clientSideTableOfCommonForAllComponents.insert({
-              data: {
-                fieldName: 'setRightScreenExtensionDrawerVisibility',
-                fieldValue: true,
-              },
-            })
-          }
+          this.toggleRightSideScreenExtensionDrawer()
         }
+      }
+    },
+    toggleRightSideScreenExtensionDrawer() {
+      // Open right screen extension drawer
+      if (
+        clientSideTableOfCommonForAllComponents
+          .query()
+          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+          .count()
+      ) {
+        const obj = clientSideTableOfCommonForAllComponents
+          .query()
+          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+          .get()
+
+        console.log(obj)
+
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        } else {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: true,
+            },
+          })
+        }
+      } else {
+        clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName: 'setRightScreenExtensionDrawerVisibility',
+            fieldValue: true,
+          },
+        })
       }
     },
   },
