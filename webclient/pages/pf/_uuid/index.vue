@@ -26,7 +26,7 @@
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
       <SplitArea id="layer1RightSide" :size="rightSplitSize">
-        <ctCsVlCards></ctCsVlCards>
+        <ctLayer1RightSideCards></ctLayer1RightSideCards>
       </SplitArea>
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
@@ -87,7 +87,7 @@ Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctLayer1LeftSideCards from '@/components/others/layer-1-left-side-components/dynamic-list-of-cards.vue'
-import ctCsVlCards from '@/components/others/layer-1-right-side-components/dynamic-list-of-cards.vue'
+import ctLayer1RightSideCards from '@/components/others/layer-1-right-side-components/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/others/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/others/left-screen-extension/left-drawer.vue'
 import ctRightScreenExtensionDrawer from '@/components/others/right-screen-extension/right-drawer.vue'
@@ -112,7 +112,7 @@ Vue.use(ToggleButton)
 export default {
   components: {
     ctLayer1LeftSideCards,
-    ctCsVlCards,
+    ctLayer1RightSideCards,
     ctTabsInDialogInCL,
     ctLeftScreenExtensionDrawer,
     ctRightScreenExtensionDrawer,

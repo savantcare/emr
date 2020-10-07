@@ -28,7 +28,7 @@ CREATE TABLE `ctAllowedToAccessByEachUserRole`
   `componentUuid` char
 (36) NOT NULL,
   `msvlImportance` float NOT NULL COMMENT 'higher comes up on page',
-  `csvlImportance` float NOT NULL
+  `layer1RightSideImportance` float NOT NULL
   `recordChangedByUuid` char
 (36) NOT NULL,
   `recordChangedFromIPAddress` varchar

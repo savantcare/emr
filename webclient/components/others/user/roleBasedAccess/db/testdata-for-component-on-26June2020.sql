@@ -15,7 +15,7 @@ uuid`,
 
 INSERT INTO `ctAllowedToAccessByEachUserRole` (`
 uuid`,`roleUuid
-`, `componentUuid`, `msvlImportance`, `csvlImportance`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+`, `componentUuid`, `msvlImportance`, `layer1RightSideImportance`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('1', '897d25c6-2c84-47fe-9236-2c3cc9c70bdf', '1', '1', '3', '1', '10.10.10.1'),
 ('2', '897d25c6-2c84-47fe-9236-2c3cc9c70bdf', '2', '2', '2', '1', '10.10.10.1'),
 ('3', '897d25c6-2c84-47fe-9236-2c3cc9c70bdf', '3', '3', '1', '1', '10.10.10.1');

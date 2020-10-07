@@ -172,7 +172,7 @@ export default {
     },
 
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
-      // Goal: Add the card in CsVl (Current state in View layer) or tab in edit layer (Change layer)
+      // Goal: Add the card in Layer1RightSide (Current state in View layer) or tab in edit layer (Change layer)
 
       const objCtToAdd = {
         label: pSelectedSuggestion.value,

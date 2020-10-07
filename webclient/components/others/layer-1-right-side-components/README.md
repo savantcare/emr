@@ -1,6 +1,6 @@
 [[toc]]
 
-## How is the search term go to a card is CsVl?
+## How is the search term go to a card is Layer1RightSide?
 
 Step 1: All CTs have a file for e.g. rec/searchInterfaces.vue
 
