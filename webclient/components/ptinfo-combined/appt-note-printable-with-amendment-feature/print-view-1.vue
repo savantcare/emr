@@ -577,25 +577,33 @@ export default {
        */
       return (component) => arAmendments[`${component}`]
     },
-    cfGetpatientCurrentApptObj() {
+    async cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
       const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
 
-      let currentApptId = 0
+      console.log(apptNoteComponentVisibilityCurrentValue)
+
+      let apptIdForWhichNoteNeedsToBeShown = 0
 
       if (this.propShowNoteForApptId) {
-        currentApptId = this.propShowNoteForApptId
+        apptIdForWhichNoteNeedsToBeShown = this.propShowNoteForApptId
       } else {
-        currentApptId =
+        apptIdForWhichNoteNeedsToBeShown =
           apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
       }
 
-      this.appointmentIdForThisNote = currentApptId
+      console.log(apptIdForWhichNoteNeedsToBeShown)
+
+      this.appointmentIdForThisNote = apptIdForWhichNoteNeedsToBeShown
       /* Goal: Show green around data that has been added. Red around data that has been deleted */
       // Finding the prev and next appt ID
 
       // get appt details from appt table
-      this.patientCurrentApptObj = clientSideTblOfAppointments.find(currentApptId)
+      this.patientCurrentApptObj = await clientSideTblOfAppointments.find(
+        apptIdForWhichNoteNeedsToBeShown
+      )
+
+      console.log(this.patientCurrentApptObj)
 
       const apptStartMilliSeconds = this.patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
@@ -708,7 +716,7 @@ export default {
       this.$root.$emit('event-from-ct-note-print-view-1-show-comparison-drawer')
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
-      const currentApptId = this.patientCurrentApptObj['clientSideUniqRowId']
+      const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']
 
       const clientSideArray = clientSideTblOfAppointments
         .query()
@@ -718,7 +726,7 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] < currentApptId) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < apptIdForWhichNoteNeedsToBeShown) {
           const updateState = clientSideTblOfMultiStateViewCards.update({
             clientSideUniqRowId: 2,
             componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
@@ -730,7 +738,7 @@ export default {
     mfRightArrowClickedLetUsGoToNextAppt() {
       // From appts table find if there is a ID greater then this in the state of locked or unlocked
 
-      const currentApptId = this.patientCurrentApptObj['clientSideUniqRowId']
+      const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']
 
       /* TODO @raj The followijg query does not work
       Becasue the query does not work I have to run another for loop in line 485
@@ -739,7 +747,7 @@ export default {
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
         })
-        .where('clientSideUniqRowId', (value) => parseint(value) < currentApptId)
+        .where('clientSideUniqRowId', (value) => parseint(value) < apptIdForWhichNoteNeedsToBeShown)
         .get()
 
       */
@@ -752,7 +760,7 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > currentApptId) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > apptIdForWhichNoteNeedsToBeShown) {
           const updateState = clientSideTblOfMultiStateViewCards.update({
             clientSideUniqRowId: 2,
             componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
