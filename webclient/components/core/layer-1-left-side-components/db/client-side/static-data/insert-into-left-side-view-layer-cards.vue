@@ -13,7 +13,7 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Header',
-        componentToShowPath: 'core/mts-view-layer-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
+        componentToShowPath: 'core/layer-1-left-side-header/sub-ct-container-design-using-card.vue', // PtsVl -> Present time state - part of - view layer
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
