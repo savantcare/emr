@@ -13,6 +13,7 @@
     :show-close="true"
     :wrapperClosable="false"
     size="35%"
+    :lock-scroll="false"
   >
     <div class="block">
       <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
