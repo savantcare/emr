@@ -1,7 +1,7 @@
 <template>
   <!--  Prop explanation:
           v-on:mouseleave="mouseleave"
-          Goal: Make it very easy to get the feed
+          Goal: Make it very easy to switch between the 3 modes 1. Dashboard 2. Work product mode 3. Analysis mode
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
@@ -9,6 +9,7 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
+    <!-- Goal: Implement "system preferences -> Mission control -> hot corners" concept of MacOS on the view area -->
     <span
       @mouseover="actOnMouseOverSpan('analysis')"
       style="position: absolute; width: 4px; height: 50px; background-color: blue"
@@ -17,6 +18,8 @@
       @mouseover="actOnMouseOverSpan('production')"
       style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
     ></span>
+    <!-- END of hot corner area defination -->
+
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
