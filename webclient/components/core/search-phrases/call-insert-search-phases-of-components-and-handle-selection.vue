@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
+import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 // Goal: Get the search terms from each component
 
@@ -89,7 +89,7 @@ import initializeServiceStatementComponent from '@/components/ptinfo-single/1tim
 import initializePhoneNumberComponent from '@/components/ptinfo-single/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/ptinfo-single/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
-import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '@/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   components: {
@@ -131,7 +131,6 @@ export default {
   data() {
     return { searchKeyword: '' }
   },
-
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromClientSideTable = {}
@@ -200,6 +199,7 @@ export default {
             name: pSelectedSuggestion.value,
             componentToShowPath: pSelectedSuggestion.ctToShow, // PtsVl -> Present time state - part of - view layer
             componentCurrentValueForCustomizingViewState: 1,
+            identifierOfparentComponentThatIncludedThisSearchComponent: this.$options._componentTag,
           },
         })
       } else if (pSelectedSuggestion.displayLocation === 'edit-layer') {

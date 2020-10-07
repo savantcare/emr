@@ -84,7 +84,7 @@
 <script>
 import clientSideTable from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientSideTblOfRightSideCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '@/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   mixins: [clInvokeMixin],

@@ -8,54 +8,31 @@
             when go from mtsvl to ptsvl the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div @mouseleave="mouseleave">
+  <div @mouseleave="mouseleave" v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()">
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
     <Split style="height: 900px; width: 1400px" :gutter-size="4">
-      <SplitArea :size="65">
+      <SplitArea :size="50">
         <ctMtsVlCards></ctMtsVlCards>
       </SplitArea>
-      <SplitArea id="ptsvl" :size="35">
+      <SplitArea id="ptsvl" :size="50">
         <ctCsVlCards></ctCsVlCards>
       </SplitArea>
     </Split>
     <!-- tab-dialog is present in patientFile.vue but in hidden state -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
-    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
-    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
+    <ctLeftScreenExtensionDrawer
+      v-shortkey="['f2']"
+      @shortkey.native="actOnF2ShortKeyPressed()"
+    ></ctLeftScreenExtensionDrawer>
+    <ctRightScreenExtensionDrawer
+      v-shortkey="['f3']"
+      @shortkey.native="actOnF3ShortKeyPressed()"
+    ></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
-
-    <el-dialog
-      v-shortkey="['f1']"
-      @shortkey.native="actOnF1ShortKeyPressed()"
-      title="SC Brain"
-      :visible.sync="currentVisibilityStatusOfScBrainComponentContainingDialog"
-      width="30%"
-    >
-      <ctVlSearchBox></ctVlSearchBox>
-      <br /><br />
-      <tags-input
-        element-id="tags"
-        v-model="selectedTags"
-        :existing-tags="[
-          { key: 'add', value: 'Add' },
-          { key: 'reminder', value: 'Reminder' },
-          { key: 'recommendation', value: 'Recommendation' },
-          { key: 'service-statement', value: 'Service statement' },
-          { key: 'diagnosis', value: 'Diagnosis' },
-          { key: 'email', value: 'email' },
-          { key: 'weight', value: 'weight' },
-        ]"
-        :typeahead="true"
-        :typeahead-activation-threshold="0"
-        placeholder="Lets get it done .."
-        typeahead-style="dropdown"
-        typeahead-hide-discard="true"
-      ></tags-input>
-    </el-dialog>
   </div>
 </template>
 
@@ -104,11 +81,11 @@ Vue.component('tags-input', VoerroTagsInput)
 import ctMtsVlCards from '@/components/core/mts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctCsVlCards from '@/components/core/pts-view-layer-cards/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/core/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/drawer.vue'
-import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/drawer.vue'
+import ctLeftScreenExtensionDrawer from '@/components/ptinfo-combined/left-screen-extension/left-drawer.vue'
+import ctRightScreenExtensionDrawer from '@/components/ptinfo-combined/right-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/core/ct-deleted-rows/drawer.vue'
-import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -146,15 +123,10 @@ export default {
     this.mfUpdateSocketClientId()
   },
   methods: {
-    actOnF1ShortKeyPressed() {
-      this.currentVisibilityStatusOfScBrainComponentContainingDialog = !this
-        .currentVisibilityStatusOfScBrainComponentContainingDialog
-      console.log('Shortkey action')
-    },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
-      clientSideTable.insert({
+      clientSideTableOfCommonForAllComponents.insert({
         data: {
           fieldName:
             'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange',
@@ -162,11 +134,13 @@ export default {
         },
       })
 
-      console.log(clientSideTable)
+      console.log(clientSideTableOfCommonForAllComponents)
     },
     log(message) {
       console.log(message)
     },
+
+    // Goal: Catch mouse events
     mouseleave(event) {
       // console.log('mouse leave', event)
 
@@ -175,8 +149,147 @@ export default {
         // This is when the mouse leave from the left
         if (event.clientY <= 200) {
           // This is the top corner
-          this.$store.commit('mtfSetFeedDrawerVisibility', true)
+          this.goToAnalysisMode()
         }
+      } else if (event.clientX <= window.innerWidth) {
+        if (event.clientY <= 200) {
+          this.goToWorkProductMode()
+        }
+      }
+    },
+
+    // Goal: Catch KB events
+    actOnF1ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToDashboardMode()
+    },
+    actOnF2ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToWorkProductMode()
+    },
+    actOnF3ShortKeyPressed() {
+      console.log('shortkey')
+      this.goToAnalysisMode()
+    },
+
+    goToDashboardMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make false. If false will update to false. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        }
+      }
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+    },
+
+    goToWorkProductMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'false') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: true,
+            },
+          })
+        }
+      } else {
+        clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName: 'setRightScreenExtensionDrawerVisibility',
+            fieldValue: true,
+          },
+        })
+      }
+
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+    },
+
+    goToAnalysisMode() {
+      const obj = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      console.log(obj)
+
+      // This will take care of 3 scenarios. If true will make true. If false will update to true. If not exit then fail siliently
+      if (obj[0]) {
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        }
+      }
+
+      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
+      this.$store.commit('mtfSetFeedDrawerVisibility', true)
+    },
+
+    toggleLeftSideScreenExtensionDrawer() {
+      this.$store.commit('mtfSetFeedDrawerVisibility', true)
+    },
+    toggleRightSideScreenExtensionDrawer() {
+      // Open right screen extension drawer
+      if (
+        clientSideTableOfCommonForAllComponents
+          .query()
+          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+          .count()
+      ) {
+        const obj = clientSideTableOfCommonForAllComponents
+          .query()
+          .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+          .get()
+
+        console.log(obj)
+
+        if (obj[0]['fieldValue'] === 'true') {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: false,
+            },
+          })
+        } else {
+          clientSideTableOfCommonForAllComponents.update({
+            where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+            data: {
+              fieldValue: true,
+            },
+          })
+        }
+      } else {
+        clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName: 'setRightScreenExtensionDrawerVisibility',
+            fieldValue: true,
+          },
+        })
       }
     },
   },

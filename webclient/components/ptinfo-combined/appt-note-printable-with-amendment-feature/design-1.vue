@@ -2,8 +2,8 @@
   <div>
     <el-drawer :visible.sync="drawerToShowComparisonOf2Notes" direction="ttb" size="90%">
       <el-row>
-        <el-col :span="12"><apptNotePrintableView showNoteForApptId="1" key="2" /> </el-col
-        ><el-col :span="12"><apptNotePrintableView showNoteForApptId="5" key="5" /></el-col>
+        <el-col :span="12"><apptNotePrintableView propShowNoteForApptId="1" key="2" /> </el-col
+        ><el-col :span="12"><apptNotePrintableView propShowNoteForApptId="5" key="5" /></el-col>
       </el-row>
     </el-drawer>
 

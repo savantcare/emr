@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/right-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
 import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
 
 export default {

@@ -24,7 +24,10 @@ export default class commonForAllComponents extends Model {
 /*
 The fields that are stored as rows are:
 
-clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
-loggedInUserUuid
-classificationOfComponentToShowOnMultiTimeStateSide
+1. clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+2. loggedInUserUuid
+3. classificationOfComponentToShowOnMultiTimeStateSide
+4. visibilityOfLeftScreenExtension
+5. visibilityOfRightScreenExtension
+6. visibilityOfTopScreenExtension
 */

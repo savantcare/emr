@@ -25,7 +25,7 @@ Step 8: User sees the desired HTML
 
 The state of tabs is in CL (Change layer) is maintained in cts/edit-layer-tabs/vstOfTabsAndDialogInEditLayer.js
 
-When autocomplete is done by user in cts/search-phrases/db/client-side/structure/search-phrases-of-components-table:mfHandleSuggestionSelectedByUser
+When autocomplete is done by user in cts/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components:mfHandleSuggestionSelectedByUser
 
 A new object is added to vstOfTabsAndDialogInEditLayer.js
 

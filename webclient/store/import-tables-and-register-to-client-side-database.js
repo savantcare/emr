@@ -4,7 +4,7 @@ import { Database } from '@vuex-orm/core'
 const database = new Database()
 
 // Core tables
-import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/search-phrases-of-components-table.js'
+import tableStructureForSearch from '~/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import tableStructureForLifeCycle from '~/components/core/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForCommon from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/left-screen-extension/db/client-side/structure/store-messages-from-other-components.js'
@@ -22,7 +22,7 @@ database.register(clientSideTblOfAmendments)
 
 // table that decides which cards to show
 import tableStructureForMultiTimeStateView from '~/components/core/mts-view-layer-cards/db/client-side/structure/mts-table.js'
-import tableStructureForRightSideView from '~/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import tableStructureForRightSideView from '~/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 database.register(tableStructureForMultiTimeStateView)
 database.register(tableStructureForRightSideView)
 

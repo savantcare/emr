@@ -21,7 +21,7 @@ import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientSideTable from '../db/client-side/structure/table.js'
-import clientSideTblOfRightSideCards from '~/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
+import clientSideTblOfRightSideCards from '~/components/core/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],

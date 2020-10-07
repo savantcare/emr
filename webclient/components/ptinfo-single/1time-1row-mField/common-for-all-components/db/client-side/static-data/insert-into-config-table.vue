@@ -1,11 +1,10 @@
-<!-- Reference implementation -->
-<!-- To understand how this works call-insert-search-phases-of-components-and-handle-selection.vue -->
 <template>
   <div></div>
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+/*
+import clientSideTblOfCtConfig from '@/components/'
 
 export default {
   data() {
@@ -39,24 +38,6 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
-      data: {
-        value: 'multi edit reminders',
-        ctAbbr: 'mcrem',
-        ctToShow: 'ptinfo-single/1time-Mrow-1Field/reminder/edit-layer/medit-design-1.vue',
-        displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'large',
-      },
-    })
-    clientSideTblOfCtSearchPhrases.insert({
-      data: {
-        value: 'deleted reminders',
-        ctAbbr: 'drem',
-        ctToShow: 'ptinfo-single/1time-Mrow-1Field/reminder/view-layer/deleted.vue',
-        displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'large',
-      },
-    })
   },
-}
+}*/
 </script>
