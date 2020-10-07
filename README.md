@@ -15,8 +15,7 @@
 
 Todo:
 
-1. Correlate graph to be responsive @raj
-2. Left side scroll when work product drawer is open @raj
+1. Left side scroll when work product drawer is open @raj
    1. Possible solution?
       1. https://stackoverflow.com/questions/52384666/vuetify-non-scrolling-navigation-drawer
       2. https://github.com/ElemeFE/element/issues/17713
@@ -24,13 +23,13 @@ Todo:
    2. Should I just use divs instead of drawer.
       1. Negatives
          1. The slide in effect is not there for Divs
-3. Marks where the mouse movement will invoke a component @mithun
-4. From current note invoke change component where I can add / change
-5. Content assist
-6. Dont show prev and next if it is the first or last note.
-7. Slider value does not change when prev and next inside note is clicked
-8. On some prev and next multiple icons on the timeline are becoming green
-9. On page load none of the actions should be active in the header slider.
+2. Marks where the mouse movement will invoke a component @mithun
+3. From current note invoke change component where I can add / change
+4. Content assist
+5. Dont show prev and next if it is the first or last note.
+6. Slider value does not change when prev and next inside note is clicked
+7. On some prev and next multiple icons on the timeline are becoming green
+8. On page load none of the actions should be active in the header slider.
 
 Asked question on internet:
 
