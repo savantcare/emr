@@ -6,7 +6,7 @@
   <el-drawer
     title="Analysis"
     :visible="cfDrawerVisibility"
-    direction="ltr"
+    direction="rtl"
     :before-close="handleClose"
     :modal="false"
     :close-on-press-escape="true"
@@ -24,14 +24,17 @@
             -->
         <component :is="card.componentToShowObject"></component>
       </div>
-      <ctSearchBoxInsideLeftScreenExtension></ctSearchBoxInsideLeftScreenExtension>
+
+      <ctSearchBoxInsideRightScreenExtension></ctSearchBoxInsideRightScreenExtension>
     </div>
   </el-drawer>
 </template>
 
 <script>
 import clientSideTblOfViewCards from '@/components/core/pts-view-layer-cards/db/client-side/structure/pts-table.js'
-import ctSearchBoxInsideLeftScreenExtension from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+
+import ctSearchBoxInsideRightScreenExtension from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -41,21 +44,17 @@ export default {
     }
   },
   components: {
-    ctSearchBoxInsideLeftScreenExtension,
+    ctSearchBoxInsideRightScreenExtension,
   },
   computed: {
-    cfDrawerVisibility: {
-      get() {
-        return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
-      },
-      set(value) {
-        this.$store.commit('mtfSetFeedDrawerVisibility', value)
-      },
-    },
     cfArCardsInCsOfVl() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)
+        .where(
+          'identifierOfparentComponentThatIncludedThisSearchComponent',
+          'ctSearchBoxInsideRightScreenExtension'
+        )
         .get()
 
       let componentToShowPath = ''
@@ -76,14 +75,33 @@ export default {
 
       return arOfObjectsFromClientSideDB
     },
+
+    cfDrawerVisibility() {
+      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
+        .query()
+        .where('fieldName', 'setRightScreenExtensionDrawerVisibility')
+        .get()
+
+      if (arOfObjectsFromCommonForAllComponents.length > 0) {
+        if (arOfObjectsFromCommonForAllComponents[0]['fieldValue'] === 'true') {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
   },
   mounted() {
     // console.log('Drawer ct mounted')
   },
   methods: {
     handleClose(done) {
-      // console.log('In the handle close function')
-      this.cfDrawerVisibility = false
+      clientSideTableOfCommonForAllComponents.update({
+        where: (record) => record.fieldName === 'setRightScreenExtensionDrawerVisibility',
+        data: {
+          fieldValue: false,
+        },
+      })
     },
   },
 }
