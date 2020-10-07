@@ -40,7 +40,7 @@ export default {
     // Why? el-input has autofocus property but el-autocomplete does not have auto-focus
     // How? Ref: https://stackoverflow.com/questions/43270159/vue-js-2-how-to-watch-store-values-from-vuex
     cfFireWhenActiveTabIdChanges(newTabId, oldTabId) {
-      // get the CL selected tab and update the dialog width accoding to the tab width
+      // get the edit layer selected tab and update the dialog width accoding to the tab width
       const clSelectedTab = this.$store.state.vstObjTabsInCL.arTabs.find(
         (element) => element.id === newTabId
       )

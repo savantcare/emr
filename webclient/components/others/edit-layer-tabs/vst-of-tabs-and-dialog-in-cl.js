@@ -5,7 +5,7 @@ export default {
     vblIsdialogHoldingTabsInEditLayerVisible: false,
     arTabs: [], // Template has a for loop running on this. // TODO: Can name be more readable
     vsSelectedTabId: '', // arTabs might have 10 tabs. Out of those which tab is active needs to be stored outside the array of 10 tabs
-    vsDialogWidth: 'small', // set default CL dialog width // TODO: Can this be removed? Since arTabs already has this.
+    vsDialogWidth: 'small', // set default edit layer dialog width // TODO: Can this be removed? Since arTabs already has this.
   },
   mutations: {
     mtfSetTabDialogVisibility(state, value) {

@@ -16,7 +16,7 @@ dialog
 
         Goal: make it easy to read view layer and also show change layer as a seperate layer
           custom-class="multi-tab-dialog"
-          :modal=false creates issue to CL close functionality by 'Esc' button
+          :modal=false creates issue to edit layer close functionality by 'Esc' button
           setting :modal=true  fixed the 'Esc' button issue but creates shadow in background
           which is fixed by css in line 285
           :modal="true"
@@ -40,7 +40,7 @@ dialog
         Goal: Dont scroll the parent when model is scrolled.
           :lock-scroll="true"
 
-        Goal: CL needs to become smaller or bigger depending on the child ct
+        Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
     -->
   <el-dialog
@@ -155,7 +155,7 @@ export default {
     vsDialogWidth: {
       get() {
         /*
-        get the Cl dialog width based on tab width
+        get the edit layer dialog width based on tab width
         if tab width is 'large' then dialog width will be 80%
         for tab width is 'small' dialog width will be 50%
         */
