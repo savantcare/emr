@@ -118,7 +118,7 @@ export default {
       })
       this.$notify.success({
         message: 'Welcome to analysis mode',
-        position: 'top-left',
+        position: 'top-right',
         duration: 1000,
         showClose: false,
         type: 'success',

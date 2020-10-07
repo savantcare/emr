@@ -4,7 +4,6 @@
   -->
 <template>
   <el-drawer
-    title="Work product mode"
     :visible="cfDrawerVisibility"
     direction="rtl"
     :before-close="handleClose"
