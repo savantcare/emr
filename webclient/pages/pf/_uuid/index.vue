@@ -9,7 +9,7 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <v-tour name="myTour" :steps="steps"></v-tour>
+    <v-tour name="myTour" :steps="steps" :options="{ highlight: true }"></v-tour>
 
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
     <!-- Prop explanation:
