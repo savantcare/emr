@@ -19,12 +19,10 @@ const mxFullSyncWithDbServer = require('@/components/ptinfo-single/1time-1row-mF
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientSideTable from '../db/client-side/structure/table.js'
 import clientSideTblOfRightSideCards from '~/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  

@@ -1,9 +1,6 @@
 import clientSideTable from '../db/client-side/structure/table.js'
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
-
   data() {
     return {
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.

@@ -180,15 +180,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // WEIGHT
     $router->get('weight/v20/', ['uses' => 'WeightController@getAllTemporalWeights']);
-    $router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
+    $router->get('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
-    $router->put('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@update']);
+    $router->put('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('weight/v20/{pServerSideRowUuid}', function () {
+    $router->options('weight/v20/{serverSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');

@@ -17,9 +17,9 @@ class WeightController extends Controller
         return response()->json($weightQuery);
     }
 
-    public function getOneWeight($pServerSideRowUuid)
+    public function getOneWeight($serverSideRowUuid)
     {
-        $weightQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.weight FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
+        $weightQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.weight FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
 
         return response()->json($weightQuery);
     }
@@ -29,7 +29,7 @@ class WeightController extends Controller
     To check weight/create in postman make a post request with the following JSON:
     Open postman desktop app and then:
     URL: http://localhost:8000/public/api/weight/v20/
-    Post / Body raw: {"rowToUpsert":{"$pServerSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"pServerSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","weightInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
+    Post / Body raw: {"rowToUpsert":{"$serverSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01817fb0-c1ef-11ea-a3a5-f36fe4d74da4","weightInFarehnite":100,"timeOfMeasurementInMilliseconds":1601876131994,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ROW_START":1601877241687,"ROW_END":2147483648000}}
     */
 
 
@@ -38,7 +38,7 @@ class WeightController extends Controller
     {
         $requestData = $request->all();
 
-        $pServerSideRowUuid = $requestData['data']['pServerSideRowUuid'];
+        $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $weightInFarehnite = $requestData['data']['weightInFarehnite'];
@@ -46,7 +46,7 @@ class WeightController extends Controller
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertTempereture = DB::statement("INSERT INTO `sc_vital_signs`.`weight` (`pServerSideRowUuid`, `ptUuid`, `weightInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$pServerSideRowUuid}', '{$ptUuid}', {$weightInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertTempereture = DB::statement("INSERT INTO `sc_vital_signs`.`weight` (`serverSideRowUuid`, `ptUuid`, `weightInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$weightInFarehnite}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertTempereture, 201);
     }
@@ -60,7 +60,7 @@ class WeightController extends Controller
 
 
 
-    public function update($pServerSideRowUuid, Request $request)
+    public function update($serverSideRowUuid, Request $request)
     {
         $requestData = $request->all();
 
@@ -70,7 +70,7 @@ class WeightController extends Controller
         $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateTempereture = DB::statement("UPDATE `sc_vital_signs`.`weight` SET `weightInPounds` = {$weightInPounds}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `weight`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+        $updateTempereture = DB::statement("UPDATE `sc_vital_signs`.`weight` SET `weightInPounds` = {$weightInPounds}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `weight`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
 
         return response()->json($updateTempereture, 200);
     }
