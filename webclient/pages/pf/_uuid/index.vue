@@ -9,6 +9,8 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
+    <v-tour name="myTour" :steps="steps"></v-tour>
+
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
     <!-- Prop explanation:
         :gutterSize="0"
@@ -73,6 +75,11 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 
 Vue.component('tags-input', VoerroTagsInput)
 
+// Ref: https://github.com/pulsardev/vue-tour
+import VueTour from 'vue-tour'
+require('vue-tour/dist/vue-tour.css')
+Vue.use(VueTour)
+
 // Internal Cts
 import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
 import ctLayer1LeftSideCards from '@/components/others/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
@@ -113,10 +120,27 @@ export default {
     ctFeed,
   },
   data() {
-    return {}
+    return {
+      steps: [
+        {
+          target: '.el-icon-setting',
+          content: 'Use this to decide which notes show up in the appointment',
+        },
+        {
+          target: '[data-v-step="2"]',
+          content:
+            'This is the appointment timeline. Use this to compare notes between appointment ',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+          },
+        },
+      ],
+    }
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
+    this.$tours['myTour'].start()
+
     this.$store.commit('mtfSetTabDialogVisibility', false)
     this.mfUpdateSocketClientId()
   },
