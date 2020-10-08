@@ -9,7 +9,7 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <ctQuickMovement></ctQuickMovement>
+    <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -81,7 +81,7 @@ import ctRightScreenExtensionDrawer from '@/components/others/screen-extension-o
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import ctQuickMovement from '~/components/others/quick-movement/index.vue'
+import ctToGiveQuickAccessToFeatures from '~/components/others/quick-access-to-features/index.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -107,7 +107,7 @@ export default {
     ctMapDrawer,
     ctDeletedDrawer,
     ctVlSearchBox,
-    ctQuickMovement,
+    ctToGiveQuickAccessToFeatures,
   },
   data() {
     return {}
