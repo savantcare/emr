@@ -82,7 +82,7 @@ import initializePhq9Component from '@/components/ptinfo-single/1time-1row-mFiel
 import initializeProsComponent from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
-import initializeRemComponent from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeRemComponent from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/initialize-on-first-load.vue'
 import initializeServiceStatementComponent from '@/components/ptinfo-single/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
