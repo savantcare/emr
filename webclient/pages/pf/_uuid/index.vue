@@ -73,11 +73,11 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
-import ctLayer1LeftSideCards from '@/components/others/layer-1-left-side-components/dynamic-list-of-cards.vue'
-import ctLayer1RightSideCards from '@/components/others/layer-1-right-side-components/dynamic-list-of-cards.vue'
-import ctTabsInDialogInCL from '@/components/others/edit-layer-tabs/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctLeftScreenExtensionDrawer from '@/components/others/screen-extension-on-left/left-drawer.vue'
-import ctRightScreenExtensionDrawer from '@/components/others/screen-extension-on-right/right-drawer.vue'
+import ctLayer1LeftSideCards from '@/components/others/components-container-on-lhs-of-layer1/dynamic-list-of-cards.vue'
+import ctLayer1RightSideCards from '@/components/others/components-container-on-rhs-of-layer1/dynamic-list-of-cards.vue'
+import ctTabsInDialogInCL from '@/components/others/components-container-on-edit-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
+import ctLeftScreenExtensionDrawer from '@/components/others/components-container-on-lhs-screen-extension/left-drawer.vue'
+import ctRightScreenExtensionDrawer from '@/components/others/components-container-on-rhs-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'

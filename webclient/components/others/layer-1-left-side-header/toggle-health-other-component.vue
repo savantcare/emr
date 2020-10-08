@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import clientSideTblOfMultiTimeStateCards from '@/components/others/layer-1-left-side-components/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiTimeStateCards from '@/components/others/components-container-on-lhs-of-layer1/db/client-side/structure/mts-table.js'
 import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {

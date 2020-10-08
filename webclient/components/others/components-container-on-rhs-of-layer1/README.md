@@ -23,7 +23,7 @@ Step 8: User sees the desired HTML
 
 ## How is the search term go to a tab in CL?
 
-The state of tabs is in edit layer (Change layer) is maintained in cts/edit-layer-tabs/vstOfTabsAndDialogInEditLayer.js
+The state of tabs is in edit layer (Change layer) is maintained in cts/components-container-on-edit-layer/vstOfTabsAndDialogInEditLayer.js
 
 When autocomplete is done by user in cts/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components:mfHandleSuggestionSelectedByUser
 
