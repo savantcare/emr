@@ -46,7 +46,7 @@ class DiagnosisController extends Controller
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
-                'discontinueNote' => $requestData['dNotes']
+                'deletedNote' => $requestData['dNotes']
             );
             $diagnosis->update($updateData);
         }

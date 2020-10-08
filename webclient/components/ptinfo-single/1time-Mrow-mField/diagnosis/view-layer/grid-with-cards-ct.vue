@@ -73,8 +73,8 @@ export default {
         .where(id)
         .first()
 
-      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Discontinue diagnosis', {
-        confirmButtonText: 'Discontinue',
+      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Deleted diagnosis', {
+        confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter reasen',
       })
@@ -87,7 +87,7 @@ export default {
           if (status === 1) {
             this.$message({
               type: 'success',
-              message: 'Diagnosis discontinue.',
+              message: 'Diagnosis deleted.',
             })
           } else {
             this.$message({
@@ -95,23 +95,10 @@ export default {
               message: 'Something went wrong. Please try again later.',
             })
           }
-          console.log('delete status ======> ', status)
-
-          // clientSideTblPatientDiagnosis.update({
-          //   where: id,
-          //   data: {
-          //     discontinueNote: value,
-          //     ROW_END: Math.floor(Date.now()),
-          //   },
-          // })
-          // this.$message({
-          //   type: 'success',
-          //   message: 'Diagnosis discontinue.',
-          // })
-          // console.log('delete status ======> ', value)
+          
         })
         .catch(() => {
-          console.log('Discontinue cancelled')
+          console.log('Delete cancelled')
         })
     },
     fnOpenAddModule() {

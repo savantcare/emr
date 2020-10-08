@@ -20,7 +20,7 @@ class Diagnosis extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'masterDiagnosisId', 'discontinueNote', 'recordChangedByUuid', 'recordChangedFromIPAddress',
+        'ptUuid', 'masterDiagnosisId', 'deletedNote', 'recordChangedByUuid', 'recordChangedFromIPAddress',
     ];
 
     /**
