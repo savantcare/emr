@@ -43,7 +43,7 @@ export default {
         },
         {
           target: '[data-v-step="appt-timeline"]',
-          content: 'Click on any of the dots to see the appointment on that date',
+          content: 'Click on any of the dots to see the printable NOTE on that date',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
@@ -51,7 +51,8 @@ export default {
         },
         {
           target: '[data-v-step="appt-timeline"]',
-          content: 'Click on the icon to add a reminder',
+          content:
+            'You can click on the icons inside the printable note to add information like a reminder',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
@@ -65,24 +66,6 @@ export default {
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
           },
         },
-        {
-          target: '.el-icon-setting',
-          content: 'Use this to decide which notes show up in the timeline',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F1 gets you the dashboard</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-
         {
           target: '.el-icon-setting',
           /**
@@ -102,6 +85,15 @@ export default {
           target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F3 gets you analysis mode</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F1 gets you the dashboard</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
@@ -181,17 +173,14 @@ export default {
       this.actOnCurrentStep(pCurrentStep - 1)
     },
     actOnCurrentStep(pCurrentStep) {
-      if (pCurrentStep === 2) {
+      if (pCurrentStep === 6) {
         this.$root.$emit('from-product-tour-start-dashboard-mode')
-      }
-      if (pCurrentStep === 3) {
-        this.$root.$emit('from-product-tour-start-work-product-mode')
       }
       if (pCurrentStep === 4) {
-        this.$root.$emit('from-product-tour-start-analysis-mode')
+        this.$root.$emit('from-product-tour-start-work-product-mode')
       }
       if (pCurrentStep === 5) {
-        this.$root.$emit('from-product-tour-start-dashboard-mode')
+        this.$root.$emit('from-product-tour-start-analysis-mode')
       }
     },
   },
