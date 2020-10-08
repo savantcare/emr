@@ -1,4 +1,4 @@
-<!-- To understand how this works read call-insert-search-phases-of-components-and-handle-selection.vue -->
+<!-- To understand how this works read call-init-of-components-and-handle-search-selection.vue -->
 <template>
   <div>
     <insertIntoMasterTblOfPhq9DuringInitOfCt />

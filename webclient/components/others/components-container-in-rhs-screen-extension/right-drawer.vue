@@ -11,7 +11,7 @@
     :close-on-press-escape="true"
     :show-close="true"
     :wrapperClosable="false"
-    size="35%"
+    size="40%"
     :lock-scroll="false"
   >
     <div class="block">
@@ -34,7 +34,7 @@
 <script>
 import clientSideTblOfViewCards from '@/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import ctSearchBoxInsideRightScreenExtension from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import ctSearchBoxInsideRightScreenExtension from '@/components/others/search-phrases/call-init-of-components-and-handle-search-selection.vue'
 import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {

@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- To understand how this works call-insert-search-phases-of-components-and-handle-selection.vue -->
+<!-- To understand how this works call-init-of-components-and-handle-search-selection.vue -->
 <template></template>
 
 <script>

@@ -16,20 +16,25 @@
 Todo:
 
 1. Left side scroll when work product drawer is open @raj
+
    1. Possible solution?
       1. https://stackoverflow.com/questions/52384666/vuetify-non-scrolling-navigation-drawer
       2. https://github.com/ElemeFE/element/issues/17713
       3. https://stackoverflow.com/questions/27230955/how-to-disable-scrolling-in-the-background-when-the-mobile-menu-is-open
-   2. Should I just use divs instead of drawer.
-      1. Negatives
-         1. The slide in effect is not there for Divs
-2. Marks where the mouse movement will invoke a component @mithun
-3. From current note invoke change component where I can add / change
-4. Content assist
-5. Dont show prev and next if it is the first or last note.
-6. Slider value does not change when prev and next inside note is clicked
-7. On some prev and next multiple icons on the timeline are becoming green
-8. On page load none of the actions should be active in the header slider.
+   2. Should I just use divs instead of drawer. 1. Negatives 1. The slide in effect is not there for Divs
+      Maybe solved by 1. Marks where the mouse movement will invoke a component -> If analysis mode is active I cannot activate the analysis mode.
+
+2. For the unlocked note the amendment icon will behave differently. Invoke reminder command if I click on the amendment icon
+
+3. Content assist @vikas
+
+4. Dont show prev and next if it is the first or last note.
+
+5. Slider value does not change when prev and next inside note is clicked
+
+6. On some prev and next multiple icons on the timeline are becoming green
+
+7. On page load in the appt slider the unlocked note should be active.
 
 Asked question on internet:
 

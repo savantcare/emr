@@ -96,7 +96,6 @@
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
@@ -104,7 +103,7 @@ import showContentInCardComponent from '@/components/ptinfo-single/common/show-c
 
 export default {
   components: { ctActOnSocketMessages, showContentInCardComponent },
-  mixins: [clInvokeMixin, mxFullSyncWithDbServer],
+  mixins: [clInvokeMixin],
   data() {
     return {
       tablePageNumber: 1,
@@ -165,12 +164,7 @@ export default {
       return arRemsForDisplay
     },
   },
-  async mounted() {
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb()
-    }
-  },
+  async mounted() {},
   methods: {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber

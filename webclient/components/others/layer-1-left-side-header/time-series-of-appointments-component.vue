@@ -24,6 +24,7 @@ __proto__: Object
           3. Tooltip
     -->
     <vue-slider
+      data-v-step="2"
       v-model="dCurrentSliderValue"
       :marks="cfGetAllMarksForSlider"
       container="true"

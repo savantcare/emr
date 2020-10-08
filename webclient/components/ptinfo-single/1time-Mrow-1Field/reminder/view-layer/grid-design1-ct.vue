@@ -61,11 +61,10 @@
 </template>
 
 <script>
-import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
-  mixins: [clInvokeMixin, mxFullSyncWithDbServer],
+  mixins: [clInvokeMixin],
   data() {
     return {
       tablePageNumber: 1,
@@ -125,12 +124,7 @@ export default {
       return arRemsForDisplay
     },
   },
-  async mounted() {
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb()
-    }
-  },
+  async mounted() {},
   methods: {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber

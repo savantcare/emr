@@ -89,11 +89,11 @@ export default {
       // set the split dimensions
 
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 65 }],
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 60 }],
       })
 
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 35 }],
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 40 }],
       })
       this.$notify.success({
         message: 'Welcome to work product mode',
