@@ -122,6 +122,6 @@ Why I have added the following css?
  */
 body .el-drawer__wrapper {
   left: unset;
-  width: 700px;
+  width: 560px;
 }
 </style>
