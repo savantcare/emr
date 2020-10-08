@@ -54,7 +54,9 @@ export default {
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
 
       // set the split dimensions
 
@@ -80,7 +82,9 @@ export default {
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', false)
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
 
       // set the split dimensions
 
@@ -106,7 +110,9 @@ export default {
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      this.$store.commit('mtfSetFeedDrawerVisibility', true)
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: true }],
+      })
 
       // set the split dimensions
       clientSideTableOfCommonForAllComponents.insertOrUpdate({

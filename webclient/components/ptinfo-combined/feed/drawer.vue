@@ -65,10 +65,7 @@ export default {
     },
     cfDrawerVisibility: {
       get() {
-        return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
-      },
-      set(value) {
-        this.$store.commit('mtfSetFeedDrawerVisibility', value)
+        return false
       },
     },
   },

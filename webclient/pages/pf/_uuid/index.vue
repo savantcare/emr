@@ -121,7 +121,6 @@ export default {
   computed: {
     cfLayer1LeftSideSplitSize() {
       const splitSize = clientSideTableOfCommonForAllComponents.find('layer1-left-side-split-size')
-      console.log(splitSize)
       if (splitSize) {
         return parseInt(splitSize['fieldValue'])
       }
@@ -129,7 +128,6 @@ export default {
     },
     cfLayer1RightSideSplitSize() {
       const splitSize = clientSideTableOfCommonForAllComponents.find('layer1-right-side-split-size')
-      console.log(splitSize)
       if (splitSize) {
         return parseInt(splitSize['fieldValue'])
       }

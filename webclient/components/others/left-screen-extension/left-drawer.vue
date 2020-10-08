@@ -33,6 +33,7 @@
 <script>
 import clientSideTblOfViewCards from '@/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 import ctSearchBoxInsideLeftScreenExtension from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -44,14 +45,6 @@ export default {
     ctSearchBoxInsideLeftScreenExtension,
   },
   computed: {
-    cfDrawerVisibility: {
-      get() {
-        return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
-      },
-      set(value) {
-        this.$store.commit('mtfSetFeedDrawerVisibility', value)
-      },
-    },
     cfArCardsInCsOfVl() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
@@ -81,14 +74,35 @@ export default {
 
       return arOfObjectsFromClientSideDB
     },
+    cfDrawerVisibility() {
+      const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
+        'leftScreenExtensionDrawerVisibility'
+      )
+
+      if (drawerVisibility) {
+        if (drawerVisibility['fieldValue'] == 'true') {
+          return true
+        }
+      }
+
+      return false
+    },
   },
   mounted() {
     // console.log('Drawer ct mounted')
   },
   methods: {
     handleClose(done) {
-      // console.log('In the handle close function')
-      this.cfDrawerVisibility = false
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+      })
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
+      })
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
+      })
     },
   },
 }
