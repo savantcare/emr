@@ -34,8 +34,7 @@ export default {
       steps: [
         {
           target: '[data-v-step="appt-timeline"]',
-          content:
-            'This is the appointment timeline. Use this to compare notes between appointment ',
+          content: 'This is the appointment timeline. Each dot represents a different appointment',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
