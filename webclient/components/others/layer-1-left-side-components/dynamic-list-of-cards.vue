@@ -1,6 +1,7 @@
 <template>
   <div>
     <clientSideTblOfViewCardsInsertData />
+    <!-- this 10px is the distance between the card and all other 4 sides. -->
     <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 

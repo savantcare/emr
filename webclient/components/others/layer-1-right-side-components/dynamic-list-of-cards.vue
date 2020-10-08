@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div><ctCorrelate /></div>
-    <div><vitals /></div>
+    <!-- this 10px is the distance between the card and all other 4 sides. -->
+
+    <div style="margin: 10px"><ctCorrelate /></div>
+    <div style="margin: 10px"><vitals /></div>
   </div>
 </template>
 <script>
