@@ -75,13 +75,15 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 
 Vue.component('tags-input', VoerroTagsInput)
 
-// Ref: https://github.com/pulsardev/vue-tour
-
+/* Ref: https://github.com/pulsardev/vue-tour
+Why download the source code and then run it?
+I wanted to use element.io UI and that was not possible with a npm package.
+v-tour has slots that allow some customization. But it was not possible to bring the complete look of element.ui
+*/
 import VTour from '@/components/others/external/vue-tour/components/vTour.vue'
 import VStep from '@/components/others/external/vue-tour/components/VStep.vue'
+// The folloiwng line makes $tours available to each component
 Vue.prototype.$tours = {}
-// Option 2
-// import vTour from '@/components/others/external/vue-tour/main.js'
 
 // Internal Cts
 import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
@@ -134,7 +136,7 @@ export default {
 
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
+            enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
           },
         },
         {

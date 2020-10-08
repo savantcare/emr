@@ -15,14 +15,7 @@
 
 Todo:
 
-1. Left side scroll when work product drawer is open @raj
-
-   1. Possible solution?
-      1. https://stackoverflow.com/questions/52384666/vuetify-non-scrolling-navigation-drawer
-      2. https://github.com/ElemeFE/element/issues/17713
-      3. https://stackoverflow.com/questions/27230955/how-to-disable-scrolling-in-the-background-when-the-mobile-menu-is-open
-   2. Should I just use divs instead of drawer. 1. Negatives 1. The slide in effect is not there for Divs
-      Maybe solved by 1. Marks where the mouse movement will invoke a component -> If analysis mode is active I cannot activate the analysis mode.
+1. Right side scroll when work product drawer is open @raj
 
 2. For the unlocked note the amendment icon will behave differently. Invoke reminder command if I click on the amendment icon
 
