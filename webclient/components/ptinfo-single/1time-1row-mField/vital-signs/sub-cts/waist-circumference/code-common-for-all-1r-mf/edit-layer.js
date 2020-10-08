@@ -135,11 +135,7 @@ export default {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          waistCircumferenceInInches: rowToUpsert.waistCircumferenceInInches,
-          timeOfMeasurementInMilliseconds: new Date(rowToUpsert.timeOfMeasurementInMilliseconds)
-            .toISOString()
-            .slice(0, 10),
-          notes: rowToUpsert.notes,
+          rowToUpsert
         }),
       })
       if (response.status === 200) {
