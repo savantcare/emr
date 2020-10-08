@@ -9,6 +9,8 @@ const intUniqueId = () => ++count
 export default class clientSideTblPatientDiagnosis extends clientSideTableManage {
   static entity = 'tablePatientOfDiagnosis'
 
+  static apiUrl = 'http://localhost:8000/public/api/diagnosis/v20'
+
   static primaryKey = 'clientSideUniqRowId'
 
   static fields() {
@@ -16,6 +18,7 @@ export default class clientSideTblPatientDiagnosis extends clientSideTableManage
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueId()),
+      serverSideRowUuid: this.uid(() => uuidv1()),
       masterDiagnosisId: this.number(null),
       patientUuid: this.string(null),
       discontinueNote: this.string(null),

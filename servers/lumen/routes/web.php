@@ -196,7 +196,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     
     // DIAGNOSIS
-    $router->get('diagnosis/v20/', ['uses' => 'DiagnosisController@getAllDiagnosis']);
+    $router->get('diagnosis/v20/', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
     $router->get('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@getOneDiagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
     $router->delete('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@delete']);

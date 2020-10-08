@@ -10,6 +10,8 @@ const intUniqueId = () => ++count
 export default class clientSideTblMasterDiagnosis extends clientSideTableManage {
   static entity = 'tableMasterOfDiagnosis'
 
+  static apiUrl = 'http://localhost:8000/public/api/diagnosis/v20'
+  
   static primaryKey = 'masterDiagnosisId'
 
   static fields() {

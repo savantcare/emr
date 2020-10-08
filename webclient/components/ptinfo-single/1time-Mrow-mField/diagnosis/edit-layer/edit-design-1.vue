@@ -82,24 +82,33 @@ export default {
         .where('ROW_END', 2147483648000)
         .get()
     },
-    fnSelectionToggle(rowData) {
+    async fnSelectionToggle(rowData) {
       let masterDiagnosisId = rowData.masterDiagnosisId
       const exists = this.fnCheckExistsDiagnosis(masterDiagnosisId)
       if (exists.length > 0) {
+        // Delete dignosiis
         clientSideTblPatientDiagnosis.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now()),
           },
         })
+        // const status = await clientSideTblPatientDiagnosis.fnSendDeleteDataToServer(
+        //     exists[0].clientSideUniqRowId,
+        //     exists[0].serverSideRowUuid,
+        //     ''
+        //   )
       } else {
+        // Add diagnosis
         clientSideTblPatientDiagnosis.insert({
           data: {
             masterDiagnosisId: masterDiagnosisId,
             patientUuid: 1,
+            vnRowStateInSession: '2457',
           },
         })
       }
+      await clientSideTblPatientDiagnosis.fnSendToServer();
     },
     fnRowToggleClass(prData) {
       let masterDiagnosisId = prData.row.masterDiagnosisId

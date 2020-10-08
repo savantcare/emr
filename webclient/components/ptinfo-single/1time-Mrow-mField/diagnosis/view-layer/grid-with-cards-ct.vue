@@ -38,7 +38,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div v-else class="emptyRow">Not added yet</div>
+        <div v-else class="emptyRow">{{displayDataMessage}}</div>
       </div>
     </el-card>
   </div>
@@ -46,8 +46,15 @@
 
 <script>
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
+import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
 
 export default {
+  mixins: [mxFullSyncWithDbServer],
+  data() {
+    return {
+      displayDataMessage: 'Loading...'
+    }
+  },
   computed: {
     cfArOfDiagnosisForDisplay: function () {
       const getData = clientSideTblPatientDiagnosis
@@ -72,17 +79,35 @@ export default {
         inputPlaceholder: 'Enter reasen',
       })
         .then(async ({ value }) => {
-          clientSideTblPatientDiagnosis.update({
-            where: id,
-            data: {
-              discontinueNote: value,
-              ROW_END: Math.floor(Date.now()),
-            },
-          })
-          this.$message({
-            type: 'success',
-            message: 'Diagnosis discontinue.',
-          })
+          const status = await clientSideTblPatientDiagnosis.fnSendDeleteDataToServer(
+            id,
+            arResultsFromOrm.serverSideRowUuid,
+            value
+          )
+          if (status === 1) {
+            this.$message({
+              type: 'success',
+              message: 'Diagnosis discontinue.',
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: 'Something went wrong. Please try again later.',
+            })
+          }
+          console.log('delete status ======> ', status)
+
+          // clientSideTblPatientDiagnosis.update({
+          //   where: id,
+          //   data: {
+          //     discontinueNote: value,
+          //     ROW_END: Math.floor(Date.now()),
+          //   },
+          // })
+          // this.$message({
+          //   type: 'success',
+          //   message: 'Diagnosis discontinue.',
+          // })
           // console.log('delete status ======> ', value)
         })
         .catch(() => {
@@ -95,7 +120,14 @@ export default {
       })
     },
   },
-  async mounted() {},
+  async mounted() {
+    if (clientSideTblPatientDiagnosis.query().count() > 0) {
+      this.displayDataMessage = 'Not added yet';
+    } else {
+      await this.mxGetDataFromDb()
+      this.displayDataMessage = 'Not added yet';
+    }
+  },
 }
 </script>
 <style scoped>
