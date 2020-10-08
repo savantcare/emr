@@ -23,7 +23,7 @@
             <el-table-column prop="linkWithMaster.diagnosisName"> </el-table-column>
             <el-table-column label="Actions" width="28">
               <template slot-scope="props">
-                <el-tooltip content="Discontinue" effect="light" :open-delay="300" placement="top">
+                <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
                   <el-button
                     type="danger"
                     size="mini"
