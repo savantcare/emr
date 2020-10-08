@@ -28,6 +28,7 @@
     <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
     <ctMapDrawer></ctMapDrawer>
     <ctDeletedDrawer></ctDeletedDrawer>
+    <ctFeed></ctFeed>
   </div>
 </template>
 
@@ -73,6 +74,7 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
+import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
 import ctLayer1LeftSideCards from '@/components/others/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
 import ctLayer1RightSideCards from '@/components/others/components-container-in-rhs-of-layer1/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/others/components-container-in-edit-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
@@ -108,6 +110,7 @@ export default {
     ctDeletedDrawer,
     ctVlSearchBox,
     ctToGiveQuickAccessToFeatures,
+    ctFeed,
   },
   data() {
     return {}
