@@ -27,6 +27,15 @@ export default {
     return {}
   },
   computed: {},
+  mounted() {
+    this.$root.$on('from-product-tour-start-work-product-mode', (pRowId) => {
+      this.goToWorkProductMode()
+    })
+
+    this.$root.$on('from-product-tour-start-analysis-mode', (pRowId) => {
+      this.goToAnalysisMode()
+    })
+  },
   methods: {
     // Goal: Catch mouse events
     actOnMouseOverSpan(mode) {

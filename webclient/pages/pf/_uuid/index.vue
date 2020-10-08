@@ -277,19 +277,25 @@ export default {
   },
   methods: {
     myCustomPreviousStepCallback(currentStep) {
+      console.log('prev step called')
       if (currentStep === 2) {
         console.log('[Vue Tour] Go to work product mode')
+        this.$root.$emit('from-product-tour-start-work-product-mode')
       }
       if (currentStep === 3) {
         console.log('[Vue Tour] Go to analysis mode')
+        this.$root.$emit('from-product-tour-start-analysis-mode')
       }
     },
     myCustomNextStepCallback(currentStep) {
+      console.log('next step called')
       if (currentStep === 2) {
         console.log('[Vue Tour] Go to work product mode')
+        this.$root.$emit('from-product-tour-start-work-product-mode')
       }
       if (currentStep === 3) {
         console.log('[Vue Tour] Go to analysis mode')
+        this.$root.$emit('from-product-tour-start-analysis-mode')
       }
     },
     mfUpdateSocketClientId() {
