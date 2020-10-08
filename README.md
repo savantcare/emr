@@ -15,19 +15,21 @@
 
 Todo:
 
-1. Right side scroll when work product drawer is open @raj
+1. Side scroll when work product drawer is open @raj
 
-2. For the unlocked note the amendment icon will behave differently. Invoke reminder command if I click on the amendment icon
+2. help slide show z-index
 
-3. Content assist @vikas
+3. For the unlocked note the amendment icon will behave differently. Invoke reminder command if I click on the amendment icon
 
-4. Dont show prev and next if it is the first or last note.
+4. Content assist @vikas
 
-5. Slider value does not change when prev and next inside note is clicked
+5. Dont show prev and next if it is the first or last note.
 
-6. On some prev and next multiple icons on the timeline are becoming green
+6. Slider value does not change when prev and next inside note is clicked
 
-7. On page load in the appt slider the unlocked note should be active.
+7. On some prev and next multiple icons on the timeline are becoming green
+
+8. On page load in the appt slider the unlocked note should be active.
 
 Asked question on internet:
 
