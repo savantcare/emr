@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfMentalStatusExamDuringInitOfCt from './insert-into-master-of-mental-status-exam-ct'
 
 export default {
@@ -19,7 +19,7 @@ export default {
         value: 'mental status exam',
         ctAbbr: 'mse',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -28,7 +28,7 @@ export default {
         value: 'mental status exam v2',
         ctAbbr: 'mse',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

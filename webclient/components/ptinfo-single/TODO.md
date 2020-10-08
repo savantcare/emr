@@ -36,7 +36,7 @@
 
 # Others
 
-1. In cl the tab number to come on top right corner.
+1. In edit layer the tab number to come on top right corner.
 
 2. Focus option in card header of each card on right.
 

@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- For design see webclient/cts/core/crud/forms.md -->
+<!-- For design see webclient/cts/others/crud/forms.md -->
 <template>
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
@@ -114,7 +114,7 @@ export default {
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable.insert({
         data: {
-          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/core/crud/forms.md
+          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/others/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
@@ -139,7 +139,7 @@ export default {
     mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24
       clientSideTable.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/core/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/others/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientSideRowId) {
       const arFromClientSideTable = clientSideTable.find(pClientSideRowId)

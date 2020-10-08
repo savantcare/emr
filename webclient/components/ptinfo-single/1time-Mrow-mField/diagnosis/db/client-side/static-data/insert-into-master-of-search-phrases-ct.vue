@@ -1,11 +1,11 @@
 <!-- Reference implementation -->
-<!-- To understand how this works read manage-ptsvl-cards/load-search-phrases-and-handle-selection.vue -->
+<!-- To understand how this works read manage-layer1-right-side-cards/load-search-phrases-and-handle-selection.vue -->
 <template>
   <div><insertIntoMasterTblOfDiagnosisDuringInitOfCt /></div>
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfDiagnosisDuringInitOfCt from './insert-into-master-of-diagnosis-ct'
 
 export default {
@@ -18,7 +18,7 @@ export default {
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/diagnosis/view-layer/grid-with-cards-ct.vue', // PtsVl -> Present time state - part of - view layer
+        ctToShow: 'ptinfo-single/1time-Mrow-mField/diagnosis/view-layer/grid-with-cards-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

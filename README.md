@@ -15,30 +15,32 @@
 
 Todo:
 
-1. Correlate graph to be responsive
-2. Store split value used in \_pf/index.vue inside commonForAllCt
-3. when left drawer opens make this value 65% for the right side and vice versa.
+1. Left side scroll when work product drawer is open @raj
+   1. Possible solution?
+      1. https://stackoverflow.com/questions/52384666/vuetify-non-scrolling-navigation-drawer
+      2. https://github.com/ElemeFE/element/issues/17713
+      3. https://stackoverflow.com/questions/27230955/how-to-disable-scrolling-in-the-background-when-the-mobile-menu-is-open
+   2. Should I just use divs instead of drawer.
+      1. Negatives
+         1. The slide in effect is not there for Divs
+2. Marks where the mouse movement will invoke a component @mithun
+3. From current note invoke change component where I can add / change
+4. Content assist
+5. Dont show prev and next if it is the first or last note.
+6. Slider value does not change when prev and next inside note is clicked
+7. On some prev and next multiple icons on the timeline are becoming green
+8. On page load none of the actions should be active in the header slider.
 
-4. right click menu: https://vmaimone.github.io/vue-context-menu/
-5. From current note invoke change component where I can add / change
-6. Content assist
-7. Dont show prev and next if it is the first or last note.
-8. Slider value does not change when prev and next inside note is clicked
-9. On some prev and next multiple icons on the timeline are becoming green
-10. On page load none of the actions should be active in the header slider.
+Asked question on internet:
 
-Context menu features needed:
+1. right click menu: https://github.com/rawilk/vue-context/issues/72
 
-1. Tree of menus
-
-https://randallwilk.dev/docs/vue-context/v6/demos/advanced#nested-menus: Yes
-
-2. Cut and paste still works
+# Should there be a context menu?
 
 ```
 
-Comparisons                                   Stars
-https://github.com/rawilk/vue-context           254
-https://github.com/vmaimone/vue-context-menu    205
+Comparisons                                   Stars     Weekly download  Last update       Tree of menu      Retain native cut/copy/paste
+https://github.com/rawilk/vue-context           205        8047          16 days ago           Yes                 Not sure
+https://github.com/vmaimone/vue-context-menu    254        1506            July 17
 
 ```

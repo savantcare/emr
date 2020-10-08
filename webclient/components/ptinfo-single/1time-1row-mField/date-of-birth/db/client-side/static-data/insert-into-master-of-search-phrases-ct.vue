@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
         value: 'date of birth',
         ctAbbr: 'w',
         ctToShow: 'ptinfo-single/1time-1row-mField/date-of-birth/view-layer/dob-table-ct.vue',
-        displayLocation: 'PresentTimeStateViewLayer', // PtsVl -> Present time state - part of - view layer
+        displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({

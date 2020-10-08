@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfPsychReviewOfSystemsDuringInitOfCt from './insert-into-master-of-psych-review-of-systems-ct'
 
 export default {
@@ -19,7 +19,7 @@ export default {
         value: 'psych review of systems',
         ctAbbr: 'ss',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue', // PtsVl -> Present time state - part of - view layer
+          'ptinfo-single/1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

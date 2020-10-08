@@ -1,4 +1,4 @@
-// import clientSideTableManage from '~/cts/core/crud/row-manage.js'
+// import clientSideTableManage from '~/cts/others/crud/row-manage.js'
 import { Model } from '@vuex-orm/core'
 
 let count = 0
@@ -10,11 +10,10 @@ export default class commonForAllComponents extends Model {
 
   // static clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = '' // this.$socket.id
 
-  static primaryKey = 'clientSideUniqRowId'
+  static primaryKey = 'fieldName' // primarykey is fieldname so that insertOrUpdate queries work
 
   static fields() {
     return {
-      clientSideUniqRowId: this.uid(() => intUniqueId()),
       fieldName: this.string(''),
       fieldValue: this.string(''),
     }

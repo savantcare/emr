@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/core/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfPhq9DuringInitOfCt from './insert-into-master-of-phq9-ct'
 export default {
   components: { insertIntoMasterTblOfPhq9DuringInitOfCt },

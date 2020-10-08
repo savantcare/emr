@@ -4,7 +4,7 @@
   -->
 <template>
   <el-drawer
-    title="Analysis"
+    title="Feed"
     :visible="cfDrawerVisibility"
     direction="ltr"
     :before-close="handleClose"
@@ -14,8 +14,6 @@
     :wrapperClosable="false"
   >
     <div class="block">
-      <ctVlSearchBox></ctVlSearchBox>
-
       <el-timeline :reverse="reverse">
         <el-timeline-item
           v-for="(activity, index) in cfArOfFeedForDisplayInDrawer"
@@ -32,7 +30,7 @@
 
 <script>
 import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
-import ctVlSearchBox from '@/components/core/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -55,21 +53,21 @@ export default {
       ],
     }
   },
-  components: {
-    ctVlSearchBox,
-  },
+  components: {},
   computed: {
     cfArOfFeedForDisplayInDrawer() {
       const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
       return arFromClientSideTable
     },
-    cfDrawerVisibility: {
-      get() {
-        return this.$store.state.vstObjFeedDrawer.vblIsFeedDrawerVisible
-      },
-      set(value) {
-        this.$store.commit('mtfSetFeedDrawerVisibility', value)
-      },
+    cfDrawerVisibility() {
+      const visible = clientSideTableOfCommonForAllComponents.find('vblIsFeedDrawerVisible')
+      if (visible) {
+        if (visible['fieldValue'] == 'true') {
+          return true
+        } else {
+          return false
+        }
+      }
     },
   },
   mounted() {
@@ -77,8 +75,9 @@ export default {
   },
   methods: {
     handleClose(done) {
-      // console.log('In the handle close function')
-      this.cfDrawerVisibility = false
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'vblIsFeedDrawerVisible', fieldValue: false }],
+      })
     },
   },
 }
