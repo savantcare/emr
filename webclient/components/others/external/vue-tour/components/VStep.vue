@@ -20,27 +20,31 @@
         <el-button
           @click.prevent="skip"
           v-if="!isLast && isButtonEnabled('buttonSkip')"
-          class="v-step__button v-step__button-skip"
-          >{{ labels.buttonSkip }}</el-button
-        >
+          circle
+          icon="el-icon-circle-close"
+          >{{
+        }}</el-button>
         <el-button
+          circle
+          icon="el-icon-back"
+          type="primary"
           @click.prevent="previousStep"
           v-if="!isFirst && isButtonEnabled('buttonPrevious')"
-          class="v-step__button v-step__button-previous"
-          >{{ labels.buttonPrevious }}</el-button
-        >
+        ></el-button>
         <el-button
           @click.prevent="nextStep"
           v-if="!isLast && isButtonEnabled('buttonNext')"
-          class="v-step__button v-step__button-next"
-          >{{ labels.buttonNext }}</el-button
-        >
+          type="success"
+          circle
+          icon="el-icon-right"
+        ></el-button>
         <el-button
           @click.prevent="finish"
           v-if="isLast && isButtonEnabled('buttonStop')"
-          class="v-step__button v-step__button-stop"
-          >{{ labels.buttonStop }}</el-button
-        >
+          circle
+          icon="el-icon-circle-check"
+          >{{
+        }}</el-button>
       </div>
     </slot>
 
