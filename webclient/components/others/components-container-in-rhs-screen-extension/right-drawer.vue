@@ -2,6 +2,12 @@
       Goal: Do not show the shadow so doctor can read the view layer.
             modal=false means -> Do now show shadowing layer
   -->
+
+<!--
+  Why we change drawer size from 35% to 100%?
+  -- Previously, drawer width was not fixed. That means, drawer size would be 35% of page width.
+  But now, I have fixed the drawer width as 700px, css given on the bottom of page. That means, drawer size should be 100% of drawer width ie; 700px.
+  -->
 <template>
   <el-drawer
     :visible="cfDrawerVisibility"
@@ -11,7 +17,7 @@
     :close-on-press-escape="true"
     :show-close="true"
     :wrapperClosable="false"
-    size="35%"
+    size="100%"
     :lock-scroll="false"
   >
     <div class="block">
@@ -107,3 +113,15 @@ export default {
   },
 }
 </script>
+
+<style>
+/**
+Why I have added the following css?
+  1. 'left: unset;' -> Remove overlay from remaining part of the page which is not covered by drawer.
+  2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1400px X 900px.
+ */
+body .el-drawer__wrapper {
+  left: unset;
+  width: 700px;
+}
+</style>
