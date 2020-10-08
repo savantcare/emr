@@ -1,3 +1,4 @@
+<!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="A4">
     <el-row type="flex" justify="space-between">
@@ -816,7 +817,9 @@ export default {
 </script>
 
 <style scoped>
-/* Ref: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html  */
+/* Ref: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html  
+https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
+*/
 .A4 {
   background: white;
   width: 21cm;
