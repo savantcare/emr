@@ -1,59 +1,54 @@
 <template>
-  <div class="v-step" :id="'v-step-' + hash" :ref="'v-step-' + hash">
-    <slot name="header">
-      <div v-if="step.header" class="v-step__header">
-        <div v-if="step.header.title" v-html="step.header.title"></div>
-      </div>
-    </slot>
+  <div :id="'v-step-' + hash" :ref="'v-step-' + hash">
+    <el-card class="v-step">
+      <slot name="header">
+        <div v-if="step.header" class="v-step__header">
+          <div v-if="step.header.title" v-html="step.header.title"></div>
+        </div>
+      </slot>
 
-    <slot name="content">
-      <el-card>
+      <slot name="content">
         <div class="v-step__content">
           <div v-if="step.content" v-html="step.content"></div>
           <div v-else>
             This is a demo step! The id of this step is {{ hash }} and it targets {{ step.target }}.
           </div>
         </div>
-      </el-card>
-    </slot>
+      </slot>
 
-    <slot name="actions">
-      <div class="v-step__buttons">
-        <el-button
-          @click.prevent="skip"
-          v-if="!isLast && isButtonEnabled('buttonSkip')"
-          circle
-          icon="el-icon-circle-close"
-          >{{
-        }}</el-button>
-        <el-button
-          circle
-          icon="el-icon-back"
-          type="primary"
-          @click.prevent="previousStep"
-          v-if="!isFirst && isButtonEnabled('buttonPrevious')"
-        ></el-button>
-        <el-button
-          @click.prevent="nextStep"
-          v-if="!isLast && isButtonEnabled('buttonNext')"
-          type="success"
-          circle
-          icon="el-icon-right"
-        ></el-button>
-        <el-button
-          @click.prevent="finish"
-          v-if="isLast && isButtonEnabled('buttonStop')"
-          circle
-          icon="el-icon-circle-check"
-          >{{
-        }}</el-button>
-      </div>
-    </slot>
-
-    <div
-      class="v-step__arrow"
-      :class="{ 'v-step__arrow--dark': step.header && step.header.title }"
-    ></div>
+      <slot name="actions">
+        <div class="v-step__buttons">
+          <el-button
+            @click.prevent="skip"
+            v-if="!isLast && isButtonEnabled('buttonSkip')"
+            circle
+            icon="el-icon-circle-close"
+            >{{
+          }}</el-button>
+          <el-button
+            circle
+            icon="el-icon-back"
+            type="primary"
+            @click.prevent="previousStep"
+            v-if="!isFirst && isButtonEnabled('buttonPrevious')"
+          ></el-button>
+          <el-button
+            @click.prevent="nextStep"
+            v-if="!isLast && isButtonEnabled('buttonNext')"
+            type="success"
+            circle
+            icon="el-icon-right"
+          ></el-button>
+          <el-button
+            @click.prevent="finish"
+            v-if="isLast && isButtonEnabled('buttonStop')"
+            circle
+            icon="el-icon-circle-check"
+            >{{
+          }}</el-button>
+        </div>
+      </slot>
+    </el-card>
   </div>
 </template>
 
@@ -242,13 +237,6 @@ export default {
 
 <style lang="scss" scoped>
 .v-step {
-  background: #50596c; /* #ffc107, #35495e */
-  color: white;
-  max-width: 320px;
-  border-radius: 3px;
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-  padding: 1rem;
-  text-align: center;
   z-index: 10000;
 }
 
