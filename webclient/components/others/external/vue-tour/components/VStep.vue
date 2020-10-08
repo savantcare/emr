@@ -18,7 +18,7 @@
 
       <slot name="actions">
         <div>
-          <el-tooltip content="Skip tour" open-delay="500" effect="light">
+          <el-tooltip content="Skip tour" :open-delay="500" effect="light">
             <el-button
               @click.prevent="skip"
               v-if="!isLast && isButtonEnabled('buttonSkip')"
@@ -29,7 +29,7 @@
               >{{
             }}</el-button>
           </el-tooltip>
-          <el-tooltip content="Previous" open-delay="500" effect="light">
+          <el-tooltip content="Previous" :open-delay="500" effect="light">
             <el-button
               circle
               style="font-size: 1.5rem"
@@ -39,7 +39,7 @@
               v-if="!isFirst && isButtonEnabled('buttonPrevious')"
             ></el-button>
           </el-tooltip>
-          <el-tooltip content="Next" open-delay="500" effect="light">
+          <el-tooltip content="Next" :open-delay="500" effect="light">
             <el-button
               style="font-size: 1.5rem"
               @click.prevent="nextStep"
@@ -49,7 +49,7 @@
               icon="el-icon-right"
             ></el-button>
           </el-tooltip>
-          <el-tooltip content="" open-delay="500" effect="light">
+          <el-tooltip content="" :open-delay="500" effect="light">
             <div slot="content">Well done!! <i class="el-icon-star-off" /></div>
             <el-button
               style="font-size: 1.5rem"

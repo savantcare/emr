@@ -9,7 +9,12 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <VTour name="myTour" :steps="steps" :options="{ highlight: true }"></VTour>
+    <VTour
+      name="myTour"
+      :steps="steps"
+      :options="{ highlight: true }"
+      :callbacks="myCallbacks"
+    ></VTour>
 
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
     <!-- Prop explanation:
@@ -128,6 +133,10 @@ export default {
   },
   data() {
     return {
+      myCallbacks: {
+        onPreviousStep: this.myCustomPreviousStepCallback,
+        onNextStep: this.myCustomNextStepCallback,
+      },
       steps: [
         {
           target: '[data-v-step="appt-timeline"]',
@@ -267,6 +276,22 @@ export default {
     },
   },
   methods: {
+    myCustomPreviousStepCallback(currentStep) {
+      if (currentStep === 2) {
+        console.log('[Vue Tour] Go to work product mode')
+      }
+      if (currentStep === 3) {
+        console.log('[Vue Tour] Go to analysis mode')
+      }
+    },
+    myCustomNextStepCallback(currentStep) {
+      if (currentStep === 2) {
+        console.log('[Vue Tour] Go to work product mode')
+      }
+      if (currentStep === 3) {
+        console.log('[Vue Tour] Go to analysis mode')
+      }
+    },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
