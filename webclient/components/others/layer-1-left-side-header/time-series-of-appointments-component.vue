@@ -77,7 +77,7 @@ __proto__: Object
 </template>
 
 <script>
-import clientSideTblOfMultiStateViewCards from '@/components/others/components-container-on-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import clientSideTblOfMultiStateViewCards from '@/components/others/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointmentsInsertData from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
