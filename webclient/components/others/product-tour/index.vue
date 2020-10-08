@@ -36,7 +36,30 @@ export default {
           target: '[data-v-step="appt-timeline"]',
           content:
             'This is the appointment timeline. Use this to compare notes between appointment ',
-
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
+          },
+        },
+        {
+          target: '[data-v-step="appt-timeline"]',
+          content: 'Click on any of the dots to see the appointment on that date',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
+          },
+        },
+        {
+          target: '[data-v-step="appt-timeline"]',
+          content: 'Click on the icon to add a reminder',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
+          },
+        },
+        {
+          target: '[data-v-step="appt-timeline"]',
+          content: 'Click on the blue button to lock the note',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps

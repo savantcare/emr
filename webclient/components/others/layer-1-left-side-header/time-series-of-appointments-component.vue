@@ -121,8 +121,8 @@ export default {
   },
   computed: {
     sendCssVariablesToStyleSheet() {
-      const selectedSize = '2rem'
-      const defaultSize = '1.5rem'
+      const selectedSize = '1.5rem'
+      const defaultSize = '1rem'
       let obj = {}
 
       if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'locked') {
