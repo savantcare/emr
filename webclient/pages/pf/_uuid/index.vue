@@ -9,7 +9,7 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <v-tour name="myTour" :steps="steps" :options="{ highlight: true }"></v-tour>
+    <VTour name="myTour" :steps="steps" :options="{ highlight: true }"></VTour>
 
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
     <!-- Prop explanation:
@@ -76,9 +76,12 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Ref: https://github.com/pulsardev/vue-tour
-import VueTour from 'vue-tour'
-require('vue-tour/dist/vue-tour.css')
-Vue.use(VueTour)
+
+import VTour from '@/components/others/external/vue-tour/components/vTour.vue'
+import VStep from '@/components/others/external/vue-tour/components/VStep.vue'
+Vue.prototype.$tours = {}
+// Option 2
+// import vTour from '@/components/others/external/vue-tour/main.js'
 
 // Internal Cts
 import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
@@ -118,6 +121,8 @@ export default {
     ctVlSearchBox,
     ctToGiveQuickAccessToFeatures,
     ctFeed,
+    VTour,
+    VStep,
   },
   data() {
     return {
@@ -138,9 +143,10 @@ export default {
     }
   },
   mounted() {
-    // when page first loads the change layer tabs are set to not show
+    // this initialized the vuetour. The $tours is abailable to all Cts as it has been added as Vue.prototype.$tours = {} see line 82
     this.$tours['myTour'].start()
 
+    // when page first loads the change layer tabs are set to not show
     this.$store.commit('mtfSetTabDialogVisibility', false)
     this.mfUpdateSocketClientId()
   },
