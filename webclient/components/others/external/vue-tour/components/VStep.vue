@@ -17,22 +17,26 @@
       </slot>
 
       <slot name="actions">
-        <div class="v-step__buttons">
+        <div>
           <el-button
             @click.prevent="skip"
             v-if="!isLast && isButtonEnabled('buttonSkip')"
             circle
+            type="warning"
             icon="el-icon-circle-close"
+            style="font-size: 1.5rem"
             >{{
           }}</el-button>
           <el-button
             circle
+            style="font-size: 1.5rem"
             icon="el-icon-back"
             type="primary"
             @click.prevent="previousStep"
             v-if="!isFirst && isButtonEnabled('buttonPrevious')"
           ></el-button>
           <el-button
+            style="font-size: 1.5rem"
             @click.prevent="nextStep"
             v-if="!isLast && isButtonEnabled('buttonNext')"
             type="success"
@@ -40,9 +44,11 @@
             icon="el-icon-right"
           ></el-button>
           <el-button
+            style="font-size: 1.5rem"
             @click.prevent="finish"
             v-if="isLast && isButtonEnabled('buttonStop')"
             circle
+            type="success"
             icon="el-icon-circle-check"
             >{{
           }}</el-button>
@@ -337,7 +343,7 @@ export default {
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   height: 1.8rem;
   line-height: 1rem;
   outline: none;
