@@ -10,6 +10,7 @@
   -->
 <template>
   <el-drawer
+    class="rightScreenExtensionDrawer"
     :visible="cfDrawerVisibility"
     direction="rtl"
     :before-close="handleClose"
@@ -120,7 +121,7 @@ Why I have added the following css?
   1. 'left: unset;' -> Remove overlay from remaining part of the page which is not covered by drawer.
   2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1400px X 900px.
  */
-body .el-drawer__wrapper {
+body .rightScreenExtensionDrawer {
   left: unset;
   width: 560px;
 }
