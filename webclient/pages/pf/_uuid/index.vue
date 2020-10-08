@@ -41,7 +41,7 @@ import Vue from 'vue'
 
 /* External Cts */
 
-import ctVlSearchBox from '@/components/others/search-phrases/call-insert-search-phases-of-components-and-handle-selection.vue'
+import ctVlSearchBox from '@/components/others/search-phrases/call-init-of-components-and-handle-search-selection.vue'
 
 /* 1/4 Why needed? Split Layer1LeftSide and layer1RightSide  */
 import VueSplit from 'vue-split-panel'
