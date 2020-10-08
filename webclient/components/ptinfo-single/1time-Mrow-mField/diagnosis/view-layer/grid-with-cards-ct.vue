@@ -73,7 +73,7 @@ export default {
         .where(id)
         .first()
 
-      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Deleted diagnosis', {
+      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Delete diagnosis', {
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter reasen',
