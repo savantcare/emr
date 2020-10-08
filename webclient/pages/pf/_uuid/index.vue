@@ -145,6 +145,30 @@ export default {
             enableScrolling: false,
           },
         },
+        {
+          target: '.el-icon-setting',
+          content: 'Use this to go to work product mode',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content: 'Use this to go to analysis mode',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content: 'Use this to toggle between health and other components',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
       ],
     }
   },
