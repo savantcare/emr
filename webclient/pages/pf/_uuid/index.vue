@@ -178,7 +178,61 @@ export default {
         {
           target: '.el-icon-setting',
           content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F4 totoggle between health and other components</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F4 Compares current note with previous note</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F5 Is the quickest way to add a task</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F6 Is the quickest way to add a medication order</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F7 Is the quickest way to add a reminder</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F8 Is the quickest way to add a recommendation</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F9 Is the quickest way to do MSE</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F10 totoggle between health and other components</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
