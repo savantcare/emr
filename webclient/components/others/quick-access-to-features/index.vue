@@ -32,6 +32,10 @@ export default {
       this.goToWorkProductMode()
     })
 
+    this.$root.$on('from-product-tour-start-dashboard-mode', (pRowId) => {
+      this.goToDashboardMode()
+    })
+
     this.$root.$on('from-product-tour-start-analysis-mode', (pRowId) => {
       this.goToAnalysisMode()
     })

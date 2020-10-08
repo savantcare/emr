@@ -94,7 +94,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F5 Is the quickest way to add a task</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -103,7 +103,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F6 Is the quickest way to add a medication order</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -112,7 +112,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F7 Is the quickest way to add a reminder</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -121,7 +121,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F8 Is the quickest way to add a recommendation</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -130,7 +130,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F9 Is the quickest way to do MSE</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -139,7 +139,7 @@ export default {
           },
         },
         {
-          target: '#layer1RightSide .s-css-class-outer-most-card-header',
+          target: '.el-icon-setting',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F10 totoggle between health and other components</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -151,26 +151,24 @@ export default {
     }
   },
   methods: {
-    myCustomPreviousStepCallback(currentStep) {
-      console.log('prev step called')
-      if (currentStep === 2) {
-        console.log('[Vue Tour] Go to work product mode')
-        this.$root.$emit('from-product-tour-start-work-product-mode')
-      }
-      if (currentStep === 3) {
-        console.log('[Vue Tour] Go to analysis mode')
-        this.$root.$emit('from-product-tour-start-analysis-mode')
-      }
+    myCustomNextStepCallback(pCurrentStep) {
+      this.actOnCurrentStep(pCurrentStep + 1)
     },
-    myCustomNextStepCallback(currentStep) {
-      console.log('next step called')
-      if (currentStep === 2) {
-        console.log('[Vue Tour] Go to work product mode')
+    myCustomPreviousStepCallback(pCurrentStep) {
+      this.actOnCurrentStep(pCurrentStep - 1)
+    },
+    actOnCurrentStep(pCurrentStep) {
+      if (pCurrentStep === 2) {
+        this.$root.$emit('from-product-tour-start-dashboard-mode')
+      }
+      if (pCurrentStep === 3) {
         this.$root.$emit('from-product-tour-start-work-product-mode')
       }
-      if (currentStep === 3) {
-        console.log('[Vue Tour] Go to analysis mode')
+      if (pCurrentStep === 4) {
         this.$root.$emit('from-product-tour-start-analysis-mode')
+      }
+      if (pCurrentStep === 5) {
+        this.$root.$emit('from-product-tour-start-dashboard-mode')
       }
     },
   },
