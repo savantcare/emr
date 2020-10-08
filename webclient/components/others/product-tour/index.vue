@@ -13,7 +13,7 @@ Why download the source code and then run it?
 I wanted to use element.io UI and that was not possible with a npm package.
 v-tour has slots that allow some customization. But it was not possible to bring the complete look of element.ui
 */
-import VTour from '@/components/others/external/vue-tour/components/vTour.vue'
+import VTour from '@/components/others/external/vue-tour/components/VTour.vue'
 import VStep from '@/components/others/external/vue-tour/components/VStep.vue'
 
 export default {
