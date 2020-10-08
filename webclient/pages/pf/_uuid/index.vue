@@ -9,14 +9,8 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
-    <VTour
-      name="myTour"
-      :steps="steps"
-      :options="{ highlight: true }"
-      :callbacks="myCallbacks"
-    ></VTour>
-
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
+    <ctToGiveProductTour></ctToGiveProductTour>
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -45,6 +39,11 @@
 
 <script>
 import Vue from 'vue'
+/* The folloiwng line makes $tours available to each component
+Ref: https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example
+This is needed by vue toue to work
+*/
+Vue.prototype.$tours = {}
 
 /* External Cts */
 
@@ -80,16 +79,6 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 
 Vue.component('tags-input', VoerroTagsInput)
 
-/* Ref: https://github.com/pulsardev/vue-tour
-Why download the source code and then run it?
-I wanted to use element.io UI and that was not possible with a npm package.
-v-tour has slots that allow some customization. But it was not possible to bring the complete look of element.ui
-*/
-import VTour from '@/components/others/external/vue-tour/components/vTour.vue'
-import VStep from '@/components/others/external/vue-tour/components/VStep.vue'
-// The folloiwng line makes $tours available to each component
-Vue.prototype.$tours = {}
-
 // Internal Cts
 import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
 import ctLayer1LeftSideCards from '@/components/others/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
@@ -101,6 +90,8 @@ import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
 import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import ctToGiveQuickAccessToFeatures from '~/components/others/quick-access-to-features/index.vue'
+
+import ctToGiveProductTour from '~/components/others/product-tour/index.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -128,132 +119,12 @@ export default {
     ctVlSearchBox,
     ctToGiveQuickAccessToFeatures,
     ctFeed,
-    VTour,
-    VStep,
+    ctToGiveProductTour,
   },
   data() {
-    return {
-      myCallbacks: {
-        onPreviousStep: this.myCustomPreviousStepCallback,
-        onNextStep: this.myCustomNextStepCallback,
-      },
-      steps: [
-        {
-          target: '[data-v-step="appt-timeline"]',
-          content:
-            'This is the appointment timeline. Use this to compare notes between appointment ',
-
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content: 'Use this to decide which notes show up in the timeline',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F1 gets you the dashboard</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F2 gets you work product mode</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F3 gets you analysis mode</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F4 Compares current note with previous note</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F5 Is the quickest way to add a task</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F6 Is the quickest way to add a medication order</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F7 Is the quickest way to add a reminder</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F8 Is the quickest way to add a recommendation</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F9 Is the quickest way to do MSE</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-        {
-          target: '.el-icon-setting',
-          content:
-            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F10 totoggle between health and other components</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
-          params: {
-            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
-            enableScrolling: false,
-          },
-        },
-      ],
-    }
+    return {}
   },
   mounted() {
-    // this initialized the vuetour. The $tours is abailable to all Cts as it has been added as Vue.prototype.$tours = {} see line 82
-    this.$tours['myTour'].start()
-
     // when page first loads the change layer tabs are set to not show
     this.$store.commit('mtfSetTabDialogVisibility', false)
     this.mfUpdateSocketClientId()
@@ -276,28 +147,6 @@ export default {
     },
   },
   methods: {
-    myCustomPreviousStepCallback(currentStep) {
-      console.log('prev step called')
-      if (currentStep === 2) {
-        console.log('[Vue Tour] Go to work product mode')
-        this.$root.$emit('from-product-tour-start-work-product-mode')
-      }
-      if (currentStep === 3) {
-        console.log('[Vue Tour] Go to analysis mode')
-        this.$root.$emit('from-product-tour-start-analysis-mode')
-      }
-    },
-    myCustomNextStepCallback(currentStep) {
-      console.log('next step called')
-      if (currentStep === 2) {
-        console.log('[Vue Tour] Go to work product mode')
-        this.$root.$emit('from-product-tour-start-work-product-mode')
-      }
-      if (currentStep === 3) {
-        console.log('[Vue Tour] Go to analysis mode')
-        this.$root.$emit('from-product-tour-start-analysis-mode')
-      }
-    },
     mfUpdateSocketClientId() {
       console.log('Socker ID is', this.$socket.id)
 
