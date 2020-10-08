@@ -147,7 +147,18 @@ export default {
         },
         {
           target: '.el-icon-setting',
-          content: 'Use this to go to work product mode',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F1 gets you the dashboard</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+
+        {
+          target: '.el-icon-setting',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F2 gets you work product mode</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
@@ -155,7 +166,8 @@ export default {
         },
         {
           target: '.el-icon-setting',
-          content: 'Use this to go to analysis mode',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F3 gets you analysis mode</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
@@ -163,7 +175,8 @@ export default {
         },
         {
           target: '.el-icon-setting',
-          content: 'Use this to toggle between health and other components',
+          content:
+            '<el-card class="box-card"><div slot="header" class="clearfix"><span>F4 totoggle between health and other components</span></div><div><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></el-card>',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
