@@ -18,7 +18,7 @@
 
       <slot name="actions">
         <div>
-          <el-tooltip content="Skip" open-delay="500" effect="light">
+          <el-tooltip content="Skip tour" open-delay="500" effect="light">
             <el-button
               @click.prevent="skip"
               v-if="!isLast && isButtonEnabled('buttonSkip')"
