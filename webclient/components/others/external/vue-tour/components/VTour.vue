@@ -18,6 +18,8 @@
       <!--Default slot {{ currentStep }}-->
       <v-step
         v-if="steps[currentStep]"
+        :currentStep="currentStep"
+        :totalNumberOfSteps="totalNumberOfSteps"
         :step="steps[currentStep]"
         :key="currentStep"
         :previous-step="previousStep"
@@ -34,9 +36,6 @@
         :debug="customOptions.debug"
         @targetNotFound="$emit('targetNotFound', $event)"
       >
-        <!--<div v-if="index === 2" slot="actions">
-          <a @click="nextStep">Next step</a>
-        </div>-->
       </v-step>
     </slot>
   </div>
@@ -71,6 +70,7 @@ export default {
   data() {
     return {
       currentStep: -1,
+      totalNumberOfSteps: 0,
     }
   },
   mounted() {
@@ -109,6 +109,7 @@ export default {
       return this.currentStep === 0
     },
     isLast() {
+      this.totalNumberOfSteps = this.steps.length
       return this.currentStep === this.steps.length - 1
     },
     numberOfSteps() {

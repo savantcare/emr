@@ -60,6 +60,7 @@
               icon="el-icon-trophy"
             ></el-button>
           </el-tooltip>
+          <div>{{ currentStep + 1 }}/{{ totalNumberOfSteps }}</div>
         </div>
       </slot>
     </el-card>
@@ -75,6 +76,12 @@ import { DEFAULT_STEP_OPTIONS, HIGHLIGHT } from '../shared/constants'
 export default {
   name: 'v-step',
   props: {
+    currentStep: {
+      type: Number,
+    },
+    totalNumberOfSteps: {
+      type: Number,
+    },
     step: {
       type: Object,
     },
