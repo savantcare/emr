@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class ptWeight extends clientSideTableManage {
   static entity = 'tblWeight'
-  static apiUrl = 'http://localhost:3000/weight'
+  static apiUrl = 'http://localhost:8000/public/api/weight/v20'
 
   static graphSeries1FieldName = 'weightInPounds'
   static graphSeries1Unit = 'Lbs'

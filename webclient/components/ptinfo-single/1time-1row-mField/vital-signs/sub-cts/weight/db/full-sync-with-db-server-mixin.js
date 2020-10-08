@@ -4,7 +4,7 @@ import clientSideTable from '~/components/ptinfo-single/1time-1row-mField/vital-
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '?ptUuid=abcd')
+      const pro = await clientSideTable.api().get(clientSideTable.apiUrl)
       if (pro.ok) {
       }
     },
