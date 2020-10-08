@@ -128,15 +128,21 @@ export default {
     return {
       steps: [
         {
-          target: '.el-icon-setting',
-          content: 'Use this to decide which notes show up in the appointment',
-        },
-        {
-          target: '[data-v-step="2"]',
+          target: '[data-v-step="appt-timeline"]',
           content:
             'This is the appointment timeline. Use this to compare notes between appointment ',
+
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
+          },
+        },
+        {
+          target: '.el-icon-setting',
+          content: 'Use this to decide which notes show up in the appointment',
+          params: {
+            placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
+            enableScrolling: false,
           },
         },
       ],

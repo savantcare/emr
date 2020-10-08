@@ -18,40 +18,48 @@
 
       <slot name="actions">
         <div>
-          <el-button
-            @click.prevent="skip"
-            v-if="!isLast && isButtonEnabled('buttonSkip')"
-            circle
-            type="warning"
-            icon="el-icon-circle-close"
-            style="font-size: 1.5rem"
-            >{{
-          }}</el-button>
-          <el-button
-            circle
-            style="font-size: 1.5rem"
-            icon="el-icon-back"
-            type="primary"
-            @click.prevent="previousStep"
-            v-if="!isFirst && isButtonEnabled('buttonPrevious')"
-          ></el-button>
-          <el-button
-            style="font-size: 1.5rem"
-            @click.prevent="nextStep"
-            v-if="!isLast && isButtonEnabled('buttonNext')"
-            type="success"
-            circle
-            icon="el-icon-right"
-          ></el-button>
-          <el-button
-            style="font-size: 1.5rem"
-            @click.prevent="finish"
-            v-if="isLast && isButtonEnabled('buttonStop')"
-            circle
-            type="success"
-            icon="el-icon-circle-check"
-            >{{
-          }}</el-button>
+          <el-tooltip content="Skip" open-delay="500" effect="light">
+            <el-button
+              @click.prevent="skip"
+              v-if="!isLast && isButtonEnabled('buttonSkip')"
+              circle
+              type="warning"
+              icon="el-icon-circle-close"
+              style="font-size: 1.5rem"
+              >{{
+            }}</el-button>
+          </el-tooltip>
+          <el-tooltip content="Previous" open-delay="500" effect="light">
+            <el-button
+              circle
+              style="font-size: 1.5rem"
+              icon="el-icon-back"
+              type="primary"
+              @click.prevent="previousStep"
+              v-if="!isFirst && isButtonEnabled('buttonPrevious')"
+            ></el-button>
+          </el-tooltip>
+          <el-tooltip content="Next" open-delay="500" effect="light">
+            <el-button
+              style="font-size: 1.5rem"
+              @click.prevent="nextStep"
+              v-if="!isLast && isButtonEnabled('buttonNext')"
+              type="success"
+              circle
+              icon="el-icon-right"
+            ></el-button>
+          </el-tooltip>
+          <el-tooltip content="" open-delay="500" effect="light">
+            <div slot="content">Well done!! <i class="el-icon-star-off" /></div>
+            <el-button
+              style="font-size: 1.5rem"
+              @click.prevent="finish"
+              v-if="isLast && isButtonEnabled('buttonStop')"
+              circle
+              type="success"
+              icon="el-icon-trophy"
+            ></el-button>
+          </el-tooltip>
         </div>
       </slot>
     </el-card>

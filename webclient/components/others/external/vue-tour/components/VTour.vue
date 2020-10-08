@@ -50,33 +50,37 @@ export default {
   props: {
     steps: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     name: {
-      type: String
+      type: String,
     },
     options: {
       type: Object,
-      default: () => { return DEFAULT_OPTIONS }
+      default: () => {
+        return DEFAULT_OPTIONS
+      },
     },
     callbacks: {
       type: Object,
-      default: () => { return DEFAULT_CALLBACKS }
-    }
+      default: () => {
+        return DEFAULT_CALLBACKS
+      },
+    },
   },
-  data () {
+  data() {
     return {
-      currentStep: -1
+      currentStep: -1,
     }
   },
-  mounted () {
+  mounted() {
     this.$tours[this.name] = this
 
     if (this.customOptions.useKeyboardNavigation) {
       window.addEventListener('keyup', this.handleKeyup)
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     // Remove the keyup listener if it has been defined
     if (this.customOptions.useKeyboardNavigation) {
       window.removeEventListener('keyup', this.handleKeyup)
@@ -85,48 +89,49 @@ export default {
   computed: {
     // Allow us to define custom options and merge them with the default options.
     // Since options is a computed property, it is reactive and can be updated during runtime.
-    customOptions () {
+    customOptions() {
       return {
         ...DEFAULT_OPTIONS,
-        ...this.options
+        ...this.options,
       }
     },
-    customCallbacks () {
+    customCallbacks() {
       return {
         ...DEFAULT_CALLBACKS,
-        ...this.callbacks
+        ...this.callbacks,
       }
     },
     // Return true if the tour is active, which means that there's a VStep displayed
-    isRunning () {
+    isRunning() {
       return this.currentStep > -1 && this.currentStep < this.numberOfSteps
     },
-    isFirst () {
+    isFirst() {
       return this.currentStep === 0
     },
-    isLast () {
+    isLast() {
       return this.currentStep === this.steps.length - 1
     },
-    numberOfSteps () {
+    numberOfSteps() {
       return this.steps.length
     },
-    step () {
+    step() {
       return this.steps[this.currentStep]
-    }
+    },
   },
   methods: {
-    async start (startStep) {
+    async start(startStep) {
       // Wait for the DOM to be loaded, then start the tour
       startStep = typeof startStep !== 'undefined' ? parseInt(startStep, 10) : 0
       let step = this.steps[startStep]
 
-      let process = () => new Promise((resolve, reject) => {
-        setTimeout(() => {
-          this.customCallbacks.onStart()
-          this.currentStep = startStep
-          resolve()
-        }, this.customOptions.startTimeout)
-      })
+      let process = () =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            this.customCallbacks.onStart()
+            this.currentStep = startStep
+            resolve()
+          }, this.customOptions.startTimeout)
+        })
 
       if (typeof step.before !== 'undefined') {
         try {
@@ -139,14 +144,15 @@ export default {
 
       return Promise.resolve()
     },
-    async previousStep () {
+    async previousStep() {
       let futureStep = this.currentStep - 1
 
-      let process = () => new Promise((resolve, reject) => {
-        this.customCallbacks.onPreviousStep(this.currentStep)
-        this.currentStep = futureStep
-        resolve()
-      })
+      let process = () =>
+        new Promise((resolve, reject) => {
+          this.customCallbacks.onPreviousStep(this.currentStep)
+          this.currentStep = futureStep
+          resolve()
+        })
 
       if (futureStep > -1) {
         let step = this.steps[futureStep]
@@ -162,14 +168,15 @@ export default {
 
       return Promise.resolve()
     },
-    async nextStep () {
+    async nextStep() {
       let futureStep = this.currentStep + 1
 
-      let process = () => new Promise((resolve, reject) => {
-        this.customCallbacks.onNextStep(this.currentStep)
-        this.currentStep = futureStep
-        resolve()
-      })
+      let process = () =>
+        new Promise((resolve, reject) => {
+          this.customCallbacks.onNextStep(this.currentStep)
+          this.currentStep = futureStep
+          resolve()
+        })
 
       if (futureStep < this.numberOfSteps && this.currentStep !== -1) {
         let step = this.steps[futureStep]
@@ -185,21 +192,21 @@ export default {
 
       return Promise.resolve()
     },
-    stop () {
+    stop() {
       this.customCallbacks.onStop()
       document.body.classList.remove('v-tour--active')
       this.currentStep = -1
     },
-    skip () {
+    skip() {
       this.customCallbacks.onSkip()
       this.stop()
     },
-    finish () {
+    finish() {
       this.customCallbacks.onFinish()
       this.stop()
     },
 
-    handleKeyup (e) {
+    handleKeyup(e) {
       if (this.customOptions.debug) {
         console.log('[Vue Tour] A keyup event occured:', e)
       }
@@ -215,30 +222,39 @@ export default {
           break
       }
     },
-    isKeyEnabled (key) {
+    isKeyEnabled(key) {
       const { enabledNavigationKeys } = this.customOptions
       return enabledNavigationKeys.hasOwnProperty(key) ? enabledNavigationKeys[key] : true
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-  body.v-tour--active {
-    pointer-events: none;
-  }
+body.v-tour--active {
+  pointer-events: none;
+}
 
-  .v-tour {
-    pointer-events: auto;
-  }
+.v-tour {
+  pointer-events: auto;
+}
 
-  .v-tour__target--highlighted {
-    box-shadow: 0 0 0 4px rgba(0,0,0,.4);
-    pointer-events: auto;
-    z-index: 9999;
-  }
+/*
+ Ref: https://github.com/pulsardev/vue-tour/wiki/Features#customization
+.v-tour__target--highlighted {
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.4);
+}
+*/
 
-  .v-tour__target--relative {
-    position: relative;
-  }
+/* Default on the github repo */
+
+.v-tour__target--highlighted {
+  box-shadow: 0 0 0 2px green;
+  pointer-events: auto;
+  z-index: 9999;
+}
+
+.v-tour__target--relative {
+  position: relative;
+}
 </style>
