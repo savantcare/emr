@@ -38,13 +38,13 @@
       ></el-col>
     </el-row>
 
-    <!-- SECTOION 1 -->
+    <!-- SECTION 1 -->
     <h3 style="padding-top: 20px">Name: Vikas K</h3>
 
-    <!-- SECTOION 2 -->
+    <!-- SECTION 2 -->
     <h3>Age: 42</h3>
 
-    <!-- SECTOION 3 -->
+    <!-- SECTION 3 -->
     <h3>Appt Date: {{ cfGetpatientCurrentApptObj }}</h3>
     <div v-if="debug">
       Debug data. <br />
@@ -54,7 +54,7 @@
       2) Appt end (lock) time is -> {{ patientCurrentApptObj['ROW_END'] | moment }}
     </div>
 
-    <!-- SECTOION 4 -->
+    <!-- SECTION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 5  SERVICE STATEMENTS -->
+    <!-- SECTION 5  SERVICE STATEMENTS -->
     <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
     <el-row
       type="flex"
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 6 MENTAL STATUS EXAM-->
+    <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
       type="flex"
       justify="left"
@@ -192,7 +192,7 @@
         </div>
       </div>
     </div>
-    <!-- SECTOION 7 Psych review of systems  -->
+    <!-- SECTION 7 Psych review of systems  -->
     <el-row
       type="flex"
       justify="left"
@@ -257,7 +257,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 8 REMINDERS -->
+    <!-- SECTION 8 REMINDERS -->
     <el-row
       type="flex"
       justify="left"
@@ -341,7 +341,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 9: Recommendations -->
+    <!-- SECTION 9: Recommendations -->
     <el-row
       type="flex"
       justify="left"
@@ -394,7 +394,7 @@
         </div>
       </div>
     </div>
-    <!-- SECTOION 10: Medications -->
+    <!-- SECTION 10: Medications -->
     <el-row
       type="flex"
       justify="left"
@@ -445,7 +445,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 11 -->
+    <!-- SECTION 11 -->
     <el-row
       type="flex"
       justify="left"
@@ -493,7 +493,7 @@
       </div>
     </div>
 
-    <!-- SECTOION 12 -->
+    <!-- SECTION 12 -->
     <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
       <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
     </div>
