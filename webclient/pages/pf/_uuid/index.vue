@@ -139,7 +139,7 @@ export default {
         },
         {
           target: '.el-icon-setting',
-          content: 'Use this to decide which notes show up in the appointment',
+          content: 'Use this to decide which notes show up in the timeline',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
