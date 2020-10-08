@@ -1,4 +1,5 @@
 Current choice of OSS:
+https://github.com/SAP/chevrotain
 https://nearley.js.org/
 https://github.com/voerro/vue-tagsinput
 
@@ -58,3 +59,8 @@ The lexer is context unaware, it lexes each token (pattern) individually.
 This has many grammers
 Each grammer is a railroad diagram
 One grammar can container other grammer.
+
+## AST
+
+The parser produces a abstract syntax tree.
+Ref: https://tomassetti.me/parsing-in-javascript/
