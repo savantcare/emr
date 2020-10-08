@@ -26,13 +26,13 @@ class DiagnosisController extends Controller
     public function create(Request $request)
     {
         $requestData = $request->all();
-        $getQeruestIp = $request->ip();
+        $getRequestIp = $request->ip();
         $insertData = [
             'serverSideRowUuid'=>$requestData['data']['serverSideRowUuid'],
             'ptUuid'=>$requestData['data']['ptUuid'],
             'masterDiagnosisId'=>$requestData['data']['masterDiagnosisId'],
             'recordChangedByUuid'=>$requestData['data']['recordChangedByUuid'],
-            'recordChangedFromIPAddress'=>$getQeruestIp
+            'recordChangedFromIPAddress'=>$getRequestIp
         ];
 
         $diagnosis = Diagnosis::insert($insertData);
