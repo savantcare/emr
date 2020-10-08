@@ -62,15 +62,21 @@ export default {
 
         {
           target: '.el-icon-setting',
+          /**
+           * In the example given in the el-card it is used as a template which generates a html content dynamically at the time of app load.
+           * But when el-card is used as a content it gets loaded as it is written in the content and cannot generate dynamic html format.
+           * So, we have used the rendered html format of el-card as a content.
+           */
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F2 gets you work product mode</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
+
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false,
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F3 gets you analysis mode</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -79,7 +85,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F4 Compares current note with previous note</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -88,7 +94,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F5 Is the quickest way to add a task</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -97,7 +103,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F6 Is the quickest way to add a medication order</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -106,7 +112,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F7 Is the quickest way to add a reminder</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -115,7 +121,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F8 Is the quickest way to add a recommendation</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -124,7 +130,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F9 Is the quickest way to do MSE</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -133,7 +139,7 @@ export default {
           },
         },
         {
-          target: '.el-icon-setting',
+          target: '#layer1RightSide .s-css-class-outer-most-card-header',
           content:
             '<div class="el-card box-card is-always-shadow"><div class="el-card__header"><div class="clearfix"><span>F10 totoggle between health and other components</span> </div></div><div class="el-card__body"> <div class="text item"><img src=https://cdn.osxdaily.com/wp-content/uploads/2011/01/quick-system-preferences-option-key-macbook.jpg height=300px class="image"></div></div></div>',
           params: {
@@ -174,8 +180,9 @@ export default {
 <style>
 /**
   I have added the following css to display tour guide div on the top most layer
+  The z-index of the drawer is changing dynamically and taking values of more than 2000 like 2001,2013,2020 etc. There is no pattern found for this z-index logic. To make help tour guide appear on top of the drawer i need to give z-index that will always be more than the drawer z-index. I have put 99999 to be safe.
 */
 body .v-tour > div {
-  z-index: 2014;
+  z-index: 99999;
 }
 </style>
