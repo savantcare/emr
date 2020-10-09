@@ -748,6 +748,10 @@ https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
   display: block;
   margin: 0 auto;
   padding: 2cm; /* During print set padding: 2cm. Padding may be dynamic depending on viewport for seeing this on 13" screen of doctor laptops with resolution of 1440x1368 */
+  /* What is the right printer margin? 
+  As per https://stackoverflow.com/questions/3503615/what-are-the-minimum-margins-most-printers-can-handle it should be .25" or .39 inches. This A4 stlye given at https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
+  gives .78 inches. 
+  */
   font-size: 12px;
   margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
