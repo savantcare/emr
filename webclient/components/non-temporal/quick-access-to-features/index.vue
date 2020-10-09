@@ -15,6 +15,7 @@
     <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()"></div>
     <div v-shortkey="['f2']" @shortkey="actOnF2ShortKeyPressed()"></div>
     <div v-shortkey="['f3']" @shortkey="actOnF3ShortKeyPressed()"></div>
+    <div v-shortkey="['f10']" @shortkey="actOnF10ShortKeyPressed()"></div>
     <!-- End of defining short cut keys -->
   </div>
 </template>
@@ -60,7 +61,9 @@ export default {
     actOnF3ShortKeyPressed() {
       this.goToAnalysisMode()
     },
-
+    actOnF10ShortKeyPressed() {
+      this.toggleBetweenHealthAndOtherComponents()
+    },
     goToDashboardMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
@@ -142,6 +145,43 @@ export default {
         showClose: false,
         type: 'success',
       })
+    },
+    toggleBetweenHealthAndOtherComponents() {
+      // Goal: Decide if I need to do update or insert
+      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents.find(
+        'classification-of-component-to-show-on-left-hand-side'
+      )
+
+      if (arOfObjectsFromCommonForAllComponents) {
+        if (arOfObjectsFromCommonForAllComponents['fieldValue'] == 'health') {
+          clientSideTableOfCommonForAllComponents.insertOrUpdate({
+            data: [
+              {
+                fieldName: 'classification-of-component-to-show-on-left-hand-side',
+                fieldValue: 'other',
+              },
+            ],
+          })
+        } else {
+          clientSideTableOfCommonForAllComponents.insertOrUpdate({
+            data: [
+              {
+                fieldName: 'classification-of-component-to-show-on-left-hand-side',
+                fieldValue: 'health',
+              },
+            ],
+          })
+        }
+      } else {
+        clientSideTableOfCommonForAllComponents.insertOrUpdate({
+          data: [
+            {
+              fieldName: 'classification-of-component-to-show-on-left-hand-side',
+              fieldValue: 'other',
+            },
+          ],
+        })
+      }
     },
   },
 }
