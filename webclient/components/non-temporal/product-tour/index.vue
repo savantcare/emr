@@ -194,4 +194,12 @@ export default {
 body .v-tour > div {
   z-index: 99999;
 }
+
+/**
+  To make tooltip appear on the top of the tour guide I need to give z-index more than tour guide z-index which is given 99999 in the above css line no.:- 195. 
+  I have put 100000 to appear on the top lavel.
+ */
+.el-tooltip__popper {
+  z-index: 100000 !important;
+}
 </style>
