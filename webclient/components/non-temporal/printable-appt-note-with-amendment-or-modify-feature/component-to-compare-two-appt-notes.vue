@@ -25,7 +25,6 @@ export default {
   },
   mounted() {
     let eventName = ['event-from-ct-note-print-view-1-show-comparison-drawer']
-    // A sample event name is: 'event-from-ct-name-vl-save-this-row'
     this.$root.$on(eventName, (pRowId) => {
       this.dUidrawerToShowComparisonOf2Notes = true
     })

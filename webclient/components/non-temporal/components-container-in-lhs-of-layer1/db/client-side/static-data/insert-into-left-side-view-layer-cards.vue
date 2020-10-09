@@ -22,7 +22,7 @@ export default {
       data: {
         name: 'Appt note',
         componentToShowPath:
-          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/design-1.vue',
+          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/component-to-compare-two-appt-notes.vue',
         componentCurrentValueForCustomizingViewState: 5,
       },
     })
