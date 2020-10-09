@@ -15,7 +15,7 @@
 
 <script>
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/ptinfo-combined/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
+import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
 
 export default {
   data() {

@@ -80,13 +80,13 @@ import VoerroTagsInput from '@voerro/vue-tagsinput'
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
-import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
+import ctFeed from '@/components/non-temporal/feed/drawer.vue'
 import ctLayer1LeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
 import ctLayer1RightSideCards from '@/components/non-temporal/components-container-in-rhs-of-layer1/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-edit-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
 import ctRightScreenExtensionDrawer from '@/components/non-temporal/components-container-in-rhs-screen-extension/right-drawer.vue'
-import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
+import ctMapDrawer from '@/components/non-temporal/map/drawer.vue'
 import ctDeletedDrawer from '@/components/non-temporal/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import ctToGiveQuickAccessToFeatures from '~/components/non-temporal/quick-access-to-features/index.vue'

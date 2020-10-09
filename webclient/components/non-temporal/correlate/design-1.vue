@@ -18,7 +18,7 @@
 
 <script>
 import showContentInCardComponent from '@/components/ptinfo-single/common/show-content-in-card-component.vue'
-import graph from '@/components/ptinfo-combined/correlate/graph-design-1.vue'
+import graph from '@/components/non-temporal/correlate/graph-design-1.vue'
 
 export default {
   components: {

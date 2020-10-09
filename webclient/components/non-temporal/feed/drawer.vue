@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {

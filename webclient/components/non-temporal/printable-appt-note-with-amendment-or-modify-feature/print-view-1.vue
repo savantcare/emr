@@ -453,7 +453,7 @@ import clientSideTblOfMultiStateViewCards from '@/components/non-temporal/compon
 import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/ptinfo-combined/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
+import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
 
 // smaller sections
 import serviceStatementPageSection from './page-section-of-service-statement.vue'

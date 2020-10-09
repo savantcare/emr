@@ -7,7 +7,7 @@ const database = new Database()
 import tableStructureForSearch from '~/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 //import tableStructureForLifeCycle from '~/components/non-temporal/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForCommon from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
+import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 database.register(tableStructureForSearch)
 //database.register(tableStructureForLifeCycle)
