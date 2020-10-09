@@ -69,68 +69,7 @@
         }}
       </div>
     </div>
-
-    <!-- SECTION 5  SERVICE STATEMENTS -->
-    <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="ssh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
-    >
-      <el-col :span="8">
-        <h3>Service statements</h3>
-      </el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible1">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAmendment(amendmentData, 'serviceStatements')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              size="mini"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <div v-for="row in cfArOfServiceStatementForDisplay" :key="`ss-${row.clientSideUniqRowId}`">
-      {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
-      {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
-    </div>
-    <br />
-    <div
-      v-if="
-        cfArOfAmendmentForDisplay('serviceStatements') &&
-        cfArOfAmendmentForDisplay('serviceStatements').length > 0
-      "
-    >
-      <h4>Amendment:</h4>
-      <div
-        v-for="row in cfArOfAmendmentForDisplay('serviceStatements')"
-        :key="row.clientSideUniqRowId"
-      >
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
+    <serviceStatementPageSection></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
@@ -504,8 +443,6 @@
 </template>
 
 <script>
-// Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/ptinfo-single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfPatientReminders from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTblOfMentalStatusExam from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
@@ -516,7 +453,10 @@ import clientSideTblOfMultiStateViewCards from '@/components/others/components-c
 import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/ptinfo-combined/appt-note-printable-with-amendment-feature/print-view-1.vue'
+import apptNotePrintableView from '@/components/ptinfo-combined/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
+
+// smaller sections
+import serviceStatementPageSection from './page-section-of-service-statement.vue'
 
 // Library
 import moment from 'moment'
@@ -547,7 +487,7 @@ export default {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
   },
-  components: { apptNotePrintableView },
+  components: { apptNotePrintableView, serviceStatementPageSection },
   mounted() {
     // catch event
     let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
@@ -609,25 +549,6 @@ export default {
       const apptStartMilliSeconds = this.patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
       return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
-    cfArOfServiceStatementForDisplay() {
-      let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
-          .query()
-          .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
-          .query()
-          .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
-          .get()
-      }
-      return arOfObjectsFromClientSideDB
-    },
-
     cfGetReminderStyle() {
       // send event for others what my reminder array looks like
       this.$root.$emit(
