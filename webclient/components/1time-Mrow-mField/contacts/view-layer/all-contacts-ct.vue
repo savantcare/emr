@@ -51,7 +51,7 @@ const mxTable = require('../code-common-for-all-1r-mf/view-layer.js')('weight').
 */
 
 /* Option3: Working. But in this option the same file '../code-common-for-all-1r-mf/view-layer.js' has to be kept in each folder like height weight name */
-import showContentInCardComponent from '@/components/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },

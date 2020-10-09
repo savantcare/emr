@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import showContentInCardComponent from '@/components/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 import ctWeightGraph from '@/components/1time-1row-mField/vital-signs/sub-cts/weight/view-layer/line-graph-ct.vue'
 import ctHeightGraph from '@/components/1time-1row-mField/vital-signs/sub-cts/height/view-layer/line-graph-ct.vue'
 import ctTemperatureGraph from '@/components/1time-1row-mField/vital-signs/sub-cts/temperature/view-layer/line-graph-ct.vue'

@@ -99,7 +99,7 @@
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import showContentInCardComponent from '@/components/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { ctActOnSocketMessages, showContentInCardComponent },

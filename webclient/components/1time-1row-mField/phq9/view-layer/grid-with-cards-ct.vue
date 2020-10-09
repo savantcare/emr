@@ -22,7 +22,7 @@
 
 <script>
 import clientSideTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
-import showContentInCardComponent from '@/components/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },

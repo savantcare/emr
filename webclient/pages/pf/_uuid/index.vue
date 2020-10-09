@@ -61,12 +61,12 @@ import VueScrollTo from 'vue-scrollto' // Ref: https://github.com/rigor789/vue-s
 /* 3/4 Why needed?
    Used to toggle between Health and Other components.
    Why not use element.io inbuilt switch?
-   Read: src/components/common/TheMultiStateDisplayAreaHeader.vue:48
+   Read: src/components/non-temporal/display-manager/TheMultiStateDisplayAreaHeader.vue:48
 */
 import ToggleButton from 'vue-js-toggle-button' // Ref: http://vue-js-toggle-button.yev.io/
 
 /* 4/4 Why use a different slider instead of slider from elemenet.io?
-    Read: src/components/common/TheMultiStateDisplayAreaHeader.vue:23
+    Read: src/components/non-temporal/display-manager/TheMultiStateDisplayAreaHeader.vue:23
 */
 import VueSlider from 'vue-slider-component' // Ref: github.com/NightCatSama/vue-slider-component
 import 'vue-slider-component/theme/default.css'

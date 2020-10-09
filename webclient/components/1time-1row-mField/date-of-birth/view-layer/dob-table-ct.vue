@@ -75,7 +75,7 @@ Code synced with ref implementation on 4th august 2020
 <script>
 import moment from 'moment'
 import mxViewLayer from '../code-common-for-all-1r-mf/view-layer.js'
-import showContentInCardComponent from '@/components/common/show-content-in-card-component.vue'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
