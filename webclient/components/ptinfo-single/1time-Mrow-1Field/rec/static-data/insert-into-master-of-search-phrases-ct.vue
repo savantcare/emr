@@ -1,6 +1,5 @@
 <script>
 import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
-import tblCTLifeCycle from '@/components/others/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 
 export default {
   data() {
@@ -9,12 +8,7 @@ export default {
     }
   },
   mounted() {
-    tblCTLifeCycle.insert({
-      data: {
-        name: 'recommendations',
-        status: 3,
-      },
-    })
+  
 
     // Step 2/3: Inserting Search interfaces to this component
     clientSideTblOfCtSearchPhrases.insert({

@@ -1,30 +1,23 @@
 /* 
 Goal:
 When this mixin is used by height and weight component the import statement has to be:
-1. import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
-2. import mxFullSyncWithDbServer from '../weight/db/full-sync-with-db-server-mixin'
 
 So I need to figure out how to do:
-import mxFullSyncWithDbServer from '../' + ctName + 'weight/db/full-sync-with-db-server-mixin'
 
 Known:
 1. import statment does not work with variables but require statement works with variables.
 2. The following statement works:
 const mxFullSyncWithDbServer = require('@/components/ptinfo-single/1time-1row-mField/' + 
-            this.ctName + 
-            '/db/full-sync-with-db-server-mixin').default, 
             // does not give compilation error but at run time the value this.ctName is not available. 
 3. parameters can be sent when doing a require.
 */
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientSideTable from '../db/client-side/structure/table.js'
 import clientSideTblOfRightSideCards from '~/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
@@ -90,10 +83,6 @@ export default {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
     /* Goal: Maybe change name was invoked before this and some flds are in change state. I want to find those flds.
       Why doing this in mounted function?
         Finding the diff flds only needs to happen when the Ct is loaded.

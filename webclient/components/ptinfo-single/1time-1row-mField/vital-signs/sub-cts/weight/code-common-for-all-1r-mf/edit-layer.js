@@ -1,9 +1,6 @@
 import clientSideTable from '../db/client-side/structure/table.js'
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
-
   data() {
     return {
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
@@ -99,10 +96,6 @@ export default {
   // Goal: Load the data from DB
   async created() {
     // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
     this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.dnClientSideIdOfCopiedRowBeingChanged = null
@@ -128,17 +121,14 @@ export default {
     async mfOnReviewed() {
       // Since only one valid row is possible there may be other deleted rows
       const rowToUpsert = clientSideTable.find(this.dnClientSideIdOfCopiedRowBeingChanged)
-      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
+      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          uuid: rowToUpsert.uuid,
-          firstName: rowToUpsert.firstName,
-          middleName: rowToUpsert.middleName,
-          lastName: rowToUpsert.lastName,
+          rowToUpsert,
         }),
       })
       if (response.status === 200) {
@@ -146,7 +136,7 @@ export default {
         await clientSideTable.update({
           where: (record) => {
             return (
-              record.uuid === rowToUpsert.uuid &&
+              record.serverSideRowUuid === rowToUpsert.serverSideRowUuid &&
               (record.vnRowStateInSession === 1 /* Came from DB */ ||
                 record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||

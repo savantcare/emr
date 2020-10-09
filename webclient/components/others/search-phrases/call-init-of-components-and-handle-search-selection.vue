@@ -74,7 +74,7 @@ import initializeOxygenSaturationComponent from '@/components/ptinfo-single/1tim
 import initializePulseComponent from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeTemperatureComponent from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeWaistCircumferenceComponent from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWeightComponent from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWeightComponent from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/initialize-on-first-load.vue'
 
 // 1time-1row-mField/others
 import initializeMseComponent from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
