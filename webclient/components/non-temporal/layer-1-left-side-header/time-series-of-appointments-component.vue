@@ -49,7 +49,11 @@ __proto__: Object
         <div></div>
       </template>
     </vue-slider>
-    <el-dialog title="Slider settings" :visible.sync="dIsSettingsDialogVisible" width="30%">
+    <el-dialog title="Settings" :visible.sync="dIsSettingsDialogVisible" width="30%">
+      <hr />
+      <br />
+      <h3>Slider</h3>
+      <br />
       <span
         ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional"
           >Proportional</el-radio
@@ -67,12 +71,21 @@ __proto__: Object
         <el-checkbox label="no-show">No show</el-checkbox>
         <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
       ><br />
-      <br />
 
       <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
         <el-checkbox label="All providers"></el-checkbox>
-        <el-checkbox label="Only me"></el-checkbox>
-      </el-checkbox-group>
+        <el-checkbox label="Only me"></el-checkbox> </el-checkbox-group
+      ><br />
+      <hr />
+      <br />
+      <h3>Font tize</h3>
+      <div class="block">
+        <el-slider v-model="value" show-input> </el-slider>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <el-checkbox v-model="checked">Invoke tutorial at start</el-checkbox>
     </el-dialog>
   </div>
 </template>
@@ -109,6 +122,8 @@ export default {
         'cancellation',
       ],
       dConfigProviderTypesToShow: [],
+      checked: true,
+      value: 0,
     }
   },
   components: { clientSideTblOfAppointmentsInsertData },
