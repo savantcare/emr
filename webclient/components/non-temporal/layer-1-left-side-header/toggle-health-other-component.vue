@@ -29,7 +29,7 @@ export default {
       // Goal: Decide if I need to do update or insert
       const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
         .query()
-        .where('fieldName', 'classificationOfComponentToShowOnMultiTimeStateSide')
+        .where('fieldName', 'classification-of-component-to-show-on-right-hand-side')
         .get()
 
       if (arOfObjectsFromCommonForAllComponents.length > 0) {
@@ -44,7 +44,7 @@ export default {
         // Goal: The row does not exist so I need to insert it
         clientSideTableOfCommonForAllComponents.insert({
           data: {
-            fieldName: 'classificationOfComponentToShowOnMultiTimeStateSide',
+            fieldName: 'classification-of-component-to-show-on-right-hand-side',
             fieldValue: type,
           },
         })

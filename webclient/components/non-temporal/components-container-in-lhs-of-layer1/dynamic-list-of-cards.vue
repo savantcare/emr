@@ -38,7 +38,7 @@ export default {
       let vComponentClassificationToShowUser = null
       const arOfObjectsFromCommonForAllComponents = clientSideTblCommonForAllComponents
         .query()
-        .where('fieldName', 'classificationOfComponentToShowOnMultiTimeStateSide')
+        .where('fieldName', 'classification-of-component-to-show-on-right-hand-side')
         .get()
 
       if (arOfObjectsFromCommonForAllComponents.length > 0) {
