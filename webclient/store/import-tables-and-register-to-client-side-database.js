@@ -6,7 +6,7 @@ const database = new Database()
 // Core tables
 import tableStructureForSearch from '~/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 //import tableStructureForLifeCycle from '~/components/non-temporal/ctMaster/db/client-side/structure/orm-ct-life-cycle'
-import tableStructureForCommon from '~/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import tableStructureForCommon from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 database.register(tableStructureForSearch)

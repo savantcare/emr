@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import clientSideTableOfCommonForAllComponents from '@/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 class clientSideTableManage extends Model {

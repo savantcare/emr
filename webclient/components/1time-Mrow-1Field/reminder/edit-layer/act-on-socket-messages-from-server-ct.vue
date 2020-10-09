@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import clientSideTableOfCommonForAllComponents from '@/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
