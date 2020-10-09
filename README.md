@@ -16,14 +16,13 @@
 Todo:
 
 1. help slide
-   1. images come below other content
-   2. layer1-rhs comes over the complete popup
-2. For the unlocked note the amendment icon will behave differently. Invoke reminder command if I click on the amendment icon
-3. Content assist @vikas
-4. Dont show prev and next if it is the first or last note.
-5. Slider value does not change when prev and next inside note is clicked
-6. On some prev and next multiple icons on the timeline are becoming green
-7. On page load in the appt slider the unlocked note should be active.
+   1. tooltip z-index.
+2. For the unlocked note the amendment icon will not be there. Instead of the amendment icon, show row level and card level actions on mouseover.
+3. Dont show prev and next if it is the first or last note.
+4. Slider value does not change when prev and next inside note is clicked
+5. On some prev and next multiple icons on the timeline are becoming green
+6. On page load in the appt slider the unlocked note should be active.
+7. Content assist @vikas
 
 Asked question on internet:
 
