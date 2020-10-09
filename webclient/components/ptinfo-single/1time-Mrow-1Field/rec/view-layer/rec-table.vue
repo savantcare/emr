@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import tblCTLifeCycle from '@/components/others/ctMaster/db/client-side/structure/orm-ct-life-cycle'
+import tblCTLifeCycle from '@/components/non-temporal/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 export default {
   data() {
     return {

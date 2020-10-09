@@ -4,13 +4,13 @@ import { Database } from '@vuex-orm/core'
 const database = new Database()
 
 // Core tables
-import tableStructureForSearch from '~/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
-import tableStructureForLifeCycle from '~/components/others/vault/ctMaster/db/client-side/structure/orm-ct-life-cycle'
+import tableStructureForSearch from '~/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+//import tableStructureForLifeCycle from '~/components/non-temporal/ctMaster/db/client-side/structure/orm-ct-life-cycle'
 import tableStructureForCommon from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/ptinfo-combined/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 database.register(tableStructureForSearch)
-database.register(tableStructureForLifeCycle)
+//database.register(tableStructureForLifeCycle)
 database.register(tableStructureForCommon)
 database.register(tableStructureForStoreMessageFromOtherComponent)
 
@@ -21,8 +21,8 @@ database.register(clientSideTblOfAppointments)
 database.register(clientSideTblOfAmendments)
 
 // table that decides which cards to show
-import tableStructureForMultiTimeStateView from '~/components/others/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
-import tableStructureForRightSideView from '~/components/others/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import tableStructureForMultiTimeStateView from '~/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import tableStructureForRightSideView from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 database.register(tableStructureForMultiTimeStateView)
 database.register(tableStructureForRightSideView)
 

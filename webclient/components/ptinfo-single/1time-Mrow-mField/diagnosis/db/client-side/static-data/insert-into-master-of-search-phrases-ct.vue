@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfDiagnosisDuringInitOfCt from './insert-into-master-of-diagnosis-ct'
 
 export default {

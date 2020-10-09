@@ -135,7 +135,7 @@ export default {
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          rowToUpsert
+          rowToUpsert,
         }),
       })
       if (response.status === 200) {
@@ -199,7 +199,7 @@ export default {
         pFldName,
         rowStatus
       )
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/others/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },
 }

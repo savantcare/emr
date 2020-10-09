@@ -47,7 +47,7 @@ Vue.prototype.$tours = {}
 
 /* External Cts */
 
-import ctVlSearchBox from '@/components/others/search-phrases/call-init-of-components-and-handle-search-selection.vue'
+import ctVlSearchBox from '@/components/non-temporal/search-phrases/call-init-of-components-and-handle-search-selection.vue'
 
 /* 1/4 Why needed? Split Layer1LeftSide and layer1RightSide  */
 import VueSplit from 'vue-split-panel'
@@ -81,17 +81,17 @@ Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctFeed from '@/components/ptinfo-combined/feed/drawer.vue'
-import ctLayer1LeftSideCards from '@/components/others/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
-import ctLayer1RightSideCards from '@/components/others/components-container-in-rhs-of-layer1/dynamic-list-of-cards.vue'
-import ctTabsInDialogInCL from '@/components/others/components-container-in-edit-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
-import ctLeftScreenExtensionDrawer from '@/components/others/components-container-in-lhs-screen-extension/left-drawer.vue'
-import ctRightScreenExtensionDrawer from '@/components/others/components-container-in-rhs-screen-extension/right-drawer.vue'
+import ctLayer1LeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/dynamic-list-of-cards.vue'
+import ctLayer1RightSideCards from '@/components/non-temporal/components-container-in-rhs-of-layer1/dynamic-list-of-cards.vue'
+import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-edit-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
+import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
+import ctRightScreenExtensionDrawer from '@/components/non-temporal/components-container-in-rhs-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/ptinfo-combined/map/drawer.vue'
-import ctDeletedDrawer from '@/components/others/ct-deleted-rows/drawer.vue'
+import ctDeletedDrawer from '@/components/non-temporal/ct-deleted-rows/drawer.vue'
 import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
-import ctToGiveQuickAccessToFeatures from '~/components/others/quick-access-to-features/index.vue'
+import ctToGiveQuickAccessToFeatures from '~/components/non-temporal/quick-access-to-features/index.vue'
 
-import ctToGiveProductTour from '~/components/others/product-tour/index.vue'
+import ctToGiveProductTour from '~/components/non-temporal/product-tour/index.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(

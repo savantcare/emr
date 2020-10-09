@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/others/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import ormDx from '@/components/ptinfo-single/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
 import ormDxa from '@/components/ptinfo-single/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 
