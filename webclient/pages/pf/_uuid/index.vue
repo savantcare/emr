@@ -15,7 +15,7 @@
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
-    <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air */
+    <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
     <Split style="height: 900px; width: 1440px" :gutter-size="4">
       <SplitArea :size="cfLayer1LeftSideSplitSize">
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
