@@ -443,14 +443,14 @@
 </template>
 
 <script>
-import clientSideTblOfPatientReminders from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTblOfMentalStatusExam from '@/components/ptinfo-single/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
-import clientSideTblOfPsychReviewOfSystems from '@/components/ptinfo-single/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
-import clientSideTblOfAmendments from '~/components/ptinfo-single/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
 import clientSideTblOfMultiStateViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
-import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '~/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {

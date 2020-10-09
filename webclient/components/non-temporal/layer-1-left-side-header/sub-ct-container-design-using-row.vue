@@ -18,8 +18,8 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
-import ctName from '@/components/ptinfo-single/1time-1row-mField/name/view-layer/privacy-protected-name.vue'
-import ctAge from '@/components/ptinfo-single/1time-1row-mField/date-of-birth/view-layer/age.vue'
+import ctName from '@/components/1time-1row-mField/name/view-layer/privacy-protected-name.vue'
+import ctAge from '@/components/1time-1row-mField/date-of-birth/view-layer/age.vue'
 import ctSlider from './time-series-of-appointments-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 

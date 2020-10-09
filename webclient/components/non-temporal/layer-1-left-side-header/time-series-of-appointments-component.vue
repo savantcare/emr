@@ -79,8 +79,8 @@ __proto__: Object
 
 <script>
 import clientSideTblOfMultiStateViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
-import clientSideTblOfAppointmentsInsertData from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
-import clientSideTblOfAppointments from '@/components/ptinfo-single/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointmentsInsertData from '@/components/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
 

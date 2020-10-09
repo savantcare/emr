@@ -497,10 +497,10 @@
 </template>
 
 <script>
-import clientSideTableForReminder from '@/components/ptinfo-single/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTableForTemperature from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
-import clientSideTableForBloodPressure from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
-import clientSideTableForBloodSugar from '@/components/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+import clientSideTableForReminder from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTableForTemperature from '@/components/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import clientSideTableForBloodPressure from '@/components/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import clientSideTableForBloodSugar from '@/components/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
 
 export default {
   data() {

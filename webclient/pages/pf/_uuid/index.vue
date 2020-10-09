@@ -88,7 +88,7 @@ import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-co
 import ctRightScreenExtensionDrawer from '@/components/non-temporal/components-container-in-rhs-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/non-temporal/map/drawer.vue'
 import ctDeletedDrawer from '@/components/non-temporal/ct-deleted-rows/drawer.vue'
-import clientSideTableOfCommonForAllComponents from '~/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '~/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import ctToGiveQuickAccessToFeatures from '~/components/non-temporal/quick-access-to-features/index.vue'
 
 import ctToGiveProductTour from '~/components/non-temporal/product-tour/index.vue'

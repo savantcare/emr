@@ -66,8 +66,8 @@
 
 <script>
 // Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/ptinfo-single/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
-import clientSideTblOfAmendments from '~/components/ptinfo-single/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 export default {
   data() {

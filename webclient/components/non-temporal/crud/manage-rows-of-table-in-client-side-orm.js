@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import clientSideTableOfCommonForAllComponents from '@/components/ptinfo-single/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
+import clientSideTableOfCommonForAllComponents from '@/components/1time-1row-mField/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 class clientSideTableManage extends Model {
@@ -16,10 +16,10 @@ class clientSideTableManage extends Model {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/non-temporal/crud/row-manage.js#L5)
 
 export default class ptHeight extends clientSideTableManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
 
 export default class ptWeight extends clientSideTableManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/ptinfo-single/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached
