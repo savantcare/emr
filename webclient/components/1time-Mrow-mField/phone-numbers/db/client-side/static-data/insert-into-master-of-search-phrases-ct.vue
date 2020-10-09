@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/view-layer/table-ct.vue',
+        ctToShow: '1time-Mrow-mField/phone-numbers/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/edit-layer/add-ct.vue',
+        ctToShow: '1time-Mrow-mField/phone-numbers/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit phone number',
         ctAbbr: 'cpn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-Mrow-mField/phone-numbers/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit phone numbers',
         ctAbbr: 'mcpn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/edit-layer/mc-ct.vue',
+        ctToShow: '1time-Mrow-mField/phone-numbers/edit-layer/mc-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted phone numbers',
         ctAbbr: 'dpn',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/phone-numbers/view-layer/deleted.vue',
+        ctToShow: '1time-Mrow-mField/phone-numbers/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

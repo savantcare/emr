@@ -21,7 +21,7 @@ export default {
       data: {
         value: 'recommendations',
         ctAbbr: 'rex',
-        ctToShow: 'ptinfo-single/rec/view-layer/timeline.vue',
+        ctToShow: 'rec/view-layer/timeline.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -30,7 +30,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arex',
-        ctToShow: 'ptinfo-single/rec/view-layer/table-ct.vue',
+        ctToShow: 'rec/view-layer/table-ct.vue',
         displayLocation: 'edit-layer',
       },
     })

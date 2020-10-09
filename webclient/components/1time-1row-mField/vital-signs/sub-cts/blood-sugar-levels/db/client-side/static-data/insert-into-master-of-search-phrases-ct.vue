@@ -15,7 +15,7 @@ export default {
         value: 'blood Sugar',
         ctAbbr: 'bs',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/view-layer/line-graph-ct.vue',
+          '1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
         value: 'blood Sugar - edit',
         ctAbbr: 'bsc',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
+          '1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

@@ -15,7 +15,7 @@ export default {
         value: 'blood pressure',
         ctAbbr: 'bp',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/view-layer/line-graph-ct.vue',
+          '1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
         value: 'blood pressure - edit',
         ctAbbr: 'bpc',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
+          '1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

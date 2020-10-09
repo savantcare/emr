@@ -15,7 +15,7 @@ export default {
         value: 'waist circumference',
         ctAbbr: 'wc',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
+          '1time-1row-mField/vital-signs/sub-cts/waist-circumference/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
         value: 'waist circumference - edit',
         ctAbbr: 'wcc',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // El -> Edit layer
+          '1time-1row-mField/vital-signs/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

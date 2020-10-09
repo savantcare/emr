@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'name',
         ctAbbr: 'n',
-        ctToShow: 'ptinfo-single/1time-1row-mField/name/view-layer/full-name-ct.vue',
+        ctToShow: '1time-1row-mField/name/view-layer/full-name-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'name - edit',
         ctAbbr: 'nc',
-        ctToShow: 'ptinfo-single/1time-1row-mField/name/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: '1time-1row-mField/name/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

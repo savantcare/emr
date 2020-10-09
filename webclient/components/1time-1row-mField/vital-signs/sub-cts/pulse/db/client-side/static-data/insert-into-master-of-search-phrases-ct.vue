@@ -14,8 +14,7 @@ export default {
       data: {
         value: 'pulse',
         ctAbbr: 'w',
-        ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/pulse/view-layer/line-graph-ct.vue',
+        ctToShow: '1time-1row-mField/vital-signs/sub-cts/pulse/view-layer/line-graph-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -23,8 +22,7 @@ export default {
       data: {
         value: 'pulse - edit',
         ctAbbr: 'wc',
-        ctToShow:
-          'ptinfo-single/1time-1row-mField/vital-signs/sub-cts/pulse/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: '1time-1row-mField/vital-signs/sub-cts/pulse/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

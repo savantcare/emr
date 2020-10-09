@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'body measurement',
         ctAbbr: 'bm',
-        ctToShow: 'ptinfo-single/1time-1row-mField/vital-signs/view-layer/tabs-ct.vue',
+        ctToShow: '1time-1row-mField/vital-signs/view-layer/tabs-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'body measurement - edit',
         ctAbbr: 'bmcc',
-        ctToShow: 'ptinfo-single/1time-1row-mField/vital-signs/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: '1time-1row-mField/vital-signs/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

@@ -19,7 +19,7 @@ export default {
         value: 'mental status exam',
         ctAbbr: 'mse',
         ctToShow:
-          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct',
+          '1time-1row-mField/mental-status-exam/view-layer/category-name-concatenated-using-cards-ct',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -27,8 +27,7 @@ export default {
       data: {
         value: 'mental status exam v2',
         ctAbbr: 'mse',
-        ctToShow:
-          'ptinfo-single/1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct',
+        ctToShow: '1time-1row-mField/mental-status-exam/view-layer/category-name-grouped-ct',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -36,7 +35,7 @@ export default {
       data: {
         value: 'edit mental status exam',
         ctAbbr: 'cmse',
-        ctToShow: 'ptinfo-single/1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-1row-mField/mental-status-exam/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',

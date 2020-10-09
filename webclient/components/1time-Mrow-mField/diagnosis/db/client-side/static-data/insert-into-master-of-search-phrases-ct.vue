@@ -18,7 +18,7 @@ export default {
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/diagnosis/view-layer/grid-with-cards-ct.vue',
+        ctToShow: '1time-Mrow-mField/diagnosis/view-layer/grid-with-cards-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -26,7 +26,7 @@ export default {
     //   data: {
     //     value: 'change diagnosis',
     //     ctAbbr: 'cdx',
-    //     ctToShow: 'ptinfo-single/1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
+    //     ctToShow: '1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
     //     displayLocation: 'edit-layer',
     //     ctWidthInCl: 'large', // small
     //     needsRowIdToWork: 'yes',
@@ -36,7 +36,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adx',
-        ctToShow: 'ptinfo-single/1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInCl: 'small', // small
       },

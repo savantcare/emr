@@ -29,8 +29,7 @@ export default {
     clientSideTblOfMultiTimeStateCards.insert({
       data: {
         name: 'Contacts',
-        componentToShowPath:
-          'ptinfo-single/1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
+        componentToShowPath: '1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
         classificationOfComponent: 'other',
       },
     })

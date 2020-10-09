@@ -18,8 +18,7 @@ export default {
       data: {
         value: 'psych review of systems',
         ctAbbr: 'ss',
-        ctToShow:
-          'ptinfo-single/1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue',
+        ctToShow: '1time-1row-mField/psych-review-of-systems/view-layer/pros-view-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -27,8 +26,7 @@ export default {
       data: {
         value: 'edit psych review of systems',
         ctAbbr: 'css',
-        ctToShow:
-          'ptinfo-single/1time-1row-mField/psych-review-of-systems/edit-layer/pros-edit-design-1.vue',
+        ctToShow: '1time-1row-mField/psych-review-of-systems/edit-layer/pros-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
