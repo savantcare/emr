@@ -119,10 +119,10 @@ export default {
 /**
 Why I have added the following css?
   1. 'left: unset;' -> Remove overlay from remaining part of the page which is not covered by drawer.
-  2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1400px X 900px.
+  2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1440px X 900px.
  */
 body .leftScreenExtensionDrawer {
   right: unset;
-  width: 490px;
+  width: 504px; /* This is 35% of total screen widfth of 1440px. Since when we show the left drawer in the analysis mode we give the drawer 35% of the total available space. We give 65 to graphs */
 }
 </style>

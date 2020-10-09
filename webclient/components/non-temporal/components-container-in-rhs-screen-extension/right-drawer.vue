@@ -119,10 +119,10 @@ export default {
 /**
 Why I have added the following css?
   1. 'left: unset;' -> Remove overlay from remaining part of the page which is not covered by drawer.
-  2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1400px X 900px.
+  2. 'width: 700px;' -> The width of drawer should be 50% of page width, ie; 700px. We have developed this software to run on 1440px X 900px.
  */
 body .rightScreenExtensionDrawer {
   left: unset;
-  width: 560px;
+  width: 576px; /* This is 40% of toal width. When we go to product the space distribution is 1.60% to the appt note printable view 2. scBrain 40% */
 }
 </style>

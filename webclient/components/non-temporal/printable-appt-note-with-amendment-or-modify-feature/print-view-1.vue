@@ -784,4 +784,22 @@ https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
 .vitalsh3:hover .el-icon-edit-outline {
   display: inline-block !important;
 }
+/* Goal: Content that does not fit on A4 one page should go to 2nd page
+Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html */
+@media print {
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+  size: A4 portrait;
+}
+
+@media print {
+  .noprint {
+    display: none;
+  }
+  .enable-print {
+    display: block;
+  }
+}
 </style>
