@@ -153,7 +153,7 @@ export default {
       clientSideTableOfCommonForAllComponents.insert({
         data: {
           fieldName:
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange',
+            'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change',
           fieldValue: this.$socket.id,
         },
       })

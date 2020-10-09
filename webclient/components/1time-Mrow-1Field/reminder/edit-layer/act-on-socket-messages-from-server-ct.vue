@@ -24,19 +24,21 @@ export default {
         pDataArr
       )
 
-      // if clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange = socketIdInMsgRecdFromServer then return withiout making any changes.
+      // if client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change = socketIdInMsgRecdFromServer then return withiout making any changes.
 
       const socketClientObj = await clientSideTableOfCommonForAllComponents
         .query()
         .where(
           'fieldName',
-          'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+          'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
         )
         .first()
 
       if (
         socketClientObj.fieldValue !==
-        pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+        pDataArr[
+          'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
+        ]
       ) {
         const arFromClientSideTable = await clientSideTable.insert({
           data: {
@@ -90,13 +92,15 @@ export default {
         .query()
         .where(
           'fieldName',
-          'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+          'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
         )
         .first()
 
       if (
         socketClientObj.fieldValue !==
-        pDataArr.clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange
+        pDataArr[
+          'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
+        ]
       ) {
         /**
          * Goal:

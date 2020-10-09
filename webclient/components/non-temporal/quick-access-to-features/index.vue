@@ -63,12 +63,12 @@ export default {
 
     goToDashboardMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // set the split dimensions
@@ -91,12 +91,12 @@ export default {
 
     goToWorkProductMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: true }],
+        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: true }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // set the split dimensions
@@ -119,12 +119,12 @@ export default {
 
     goToAnalysisMode() {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'rightScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: true }],
+        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: true }],
       })
 
       // set the split dimensions

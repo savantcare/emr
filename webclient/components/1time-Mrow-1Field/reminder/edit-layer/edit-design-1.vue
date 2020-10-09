@@ -47,26 +47,26 @@
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 export default {
-  /* 
+  /*
     Q) Why is firstProp needed?
-        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder 
+        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder
         the user wants to change.
         So firstProp is the remId being changed. The remId is the primary key coming from vuexOrm
-    
+
     Q) Why is this called firstProp?
         This Ct is called in a for loop. In the same for loop other Ct are also called.
         So the prop name has to be generic and cannot be unique to each Ct
-    
+
     Q) Why is firstprop not needed in 1r type Cts?
         Since we definitely know which row is being edited. I do not need to get a incoming ID.
-        In 1r Cts the change form can be invoked directly. But for Mr change can only be invoked by clicking on an 
+        In 1r Cts the change form can be invoked directly. But for Mr change can only be invoked by clicking on an
         action button in the view layer. Since when action button in VL is clicked i get the ormID of that row
 
     Q) Why we are using 'formType' props?
-        This change component has a method named 'mfManageFocus' and it is focusing a form field. 
-        Change component is also being used in multi change component. Over there this component is being iterated several times within a slider. 
-        The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work. 
-        To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfManageFocus' method we are bypassing the entire 
+        This change component has a method named 'mfManageFocus' and it is focusing a form field.
+        Change component is also being used in multi change component. Over there this component is being iterated several times within a slider.
+        The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work.
+        To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfManageFocus' method we are bypassing the entire
         logic if formType value is set to 'embedded'.
 
     Q) What are the diff possible values for formtype?
@@ -236,7 +236,7 @@ export default {
           .query()
           .where(
             'fieldName',
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange'
+            'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
           )
           .first()
 
@@ -248,7 +248,7 @@ export default {
           },
           body: JSON.stringify({
             description: this.mfGetCopiedRowBeingChangedFldVal('description'),
-            clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange:
+            client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
               socketClientObj.fieldValue,
           }),
         })
@@ -263,21 +263,21 @@ export default {
           })
           console.log('Failed to update')
         } else {
-          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful 
+          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
             dnClientSideIdOfRowToChange is = firstProp. So dnClientSideIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
               option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
               option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
                         Option 2 is rejected. Since ID2 will now require update in following 3 cases:
-                          1. When ID 3 is created it will require changing state of id 2. 
-                          2. Also when id3 is deleted without saving to DB. 
-                          3. Or ID 3 is saved to DB. 
+                          1. When ID 3 is created it will require changing state of id 2.
+                          2. Also when id3 is deleted without saving to DB.
+                          3. Or ID 3 is saved to DB.
 
             Q): Why following where clause needed?
-            A): 
-                Whenever we change a record and hit save button, we get two records in clientSideTable with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp. 
-                In real time 3 cases may happen. 
+            A):
+                Whenever we change a record and hit save button, we get two records in clientSideTable with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
+                In real time 3 cases may happen.
                   1. User changes an existing record. i.e. rowState = 1
                   2. User already changed a record and then again changes that record i.e. rowState = 34571
                   3. User adds a record and then changes that newly added record again i.e. rowState = 24571
@@ -291,9 +291,9 @@ export default {
                   "exp A" -> search record from clientSideTable whose uuid = this.dnOrmUuidOfRowToChange
                   "exp B1" -> "vnRowStateInSession === 1",
                       clientSideTable record that came from database (Case: User changes an existing record)
-                  "exp B2" -> "vnRowStateInSession === 34571", 
-                      clientSideTable record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record) 
-                  "exp B3" -> "vnRowStateInSession === 24571", 
+                  "exp B2" -> "vnRowStateInSession === 34571",
+                      clientSideTable record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
+                  "exp B3" -> "vnRowStateInSession === 24571",
                       clientSideTable record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
          */
           await clientSideTable.update({

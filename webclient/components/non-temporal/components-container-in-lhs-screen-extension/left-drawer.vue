@@ -83,7 +83,7 @@ export default {
     },
     cfDrawerVisibility() {
       const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
-        'leftScreenExtensionDrawerVisibility'
+        'left-screen-extension-drawer-visibility'
       )
 
       if (drawerVisibility) {
@@ -101,7 +101,7 @@ export default {
   methods: {
     handleClose(done) {
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'leftScreenExtensionDrawerVisibility', fieldValue: false }],
+        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
       })
       clientSideTableOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
