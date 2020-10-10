@@ -2,7 +2,11 @@
   <div>
     <clientSideTblOfViewCardsInsertData />
     <!-- this 10px is the distance between the card and all other 4 sides. -->
-    <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
+    <div
+      v-for="card in cfArCardsInLeftSideOfViewLayer"
+      :key="card.clientSideUniqRowId"
+      style="margin: 10px"
+    >
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -27,7 +31,7 @@ export default {
     }
   },
   computed: {
-    cfArCardsInCsOfVl() {
+    cfArCardsInLeftSideOfViewLayer() {
       /* Needs following where clauses:
        if type of Ct is Health or Other
        Which user role it is. Since each user role has access to a different set of cards.
@@ -46,7 +50,11 @@ export default {
       }
       if (!vComponentClassificationToShowUser) vComponentClassificationToShowUser = 'health'
 
-      // Goal 2: Find all components for that classification
+      /* Goal 2: Find all components that match following conditions:
+      1. Match the classification that user chose
+      2. componentCurrentValueForCustomizingViewState is > 0. Since 0 is reserved to mark the component as not to show.
+
+      */
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)

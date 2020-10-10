@@ -56,7 +56,7 @@
         <el-button
           :type="mfTypeOfButton('firstName')"
           plain
-          :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+          :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
           >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
         >
         <el-button :type="mfTypeOfButton('middleName')" plain>{{

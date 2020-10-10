@@ -63,7 +63,7 @@ export default {
         first Card 1 will focus
         2nd the card 2 will focus
       */
-    cfPosInArCardsInPtsOfVl() {
+    cfPosInArCardsInPtsOfViewLayer() {
       const arFromClientSideTable = clientSideTblOfRightSideCards
         .query()
         .where('name', 'reminders')

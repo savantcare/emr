@@ -13,7 +13,7 @@ Step 4: In component/manage-layer1-right-side-cards the dropdown for search uses
 Step 5: User makes a selection based on autocomplete
 cts/vl-serach-box/index.vue:32/mfQuerySearchTerms
 
-Step 6: Once the user selection is finalized the state of vstObjCardsInPtsOfVl (Full form: vue state Object of cards in current state of view layer)
+Step 6: Once the user selection is finalized the state of vstObjCardsInPtsOfViewLayer (Full form: vue state Object of cards in current state of view layer)
 is updated cts/manage-layer1-right-side-cards/index.vue:47/mfHandleSuggestionSelectedByUser
 
 Step 7: This activates pages/pf/\_id/index.vue:30

@@ -3,9 +3,13 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <el-button type="text" plain :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1" size="small">{{
-      cfAge
-    }}</el-button>
+    <el-button
+      type="text"
+      plain
+      :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
+      size="small"
+      >{{ cfAge }}</el-button
+    >
   </div>
 </template>
 

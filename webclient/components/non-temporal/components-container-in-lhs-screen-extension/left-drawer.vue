@@ -22,7 +22,11 @@
     :lock-scroll="false"
   >
     <div class="block">
-      <div v-for="card in cfArCardsInCsOfVl" :key="card.clientSideUniqRowId" style="margin: 10px">
+      <div
+        v-for="card in cfArCardsInLeftSideOfViewLayer"
+        :key="card.clientSideUniqRowId"
+        style="margin: 10px"
+      >
         <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
         <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -52,7 +56,7 @@ export default {
     ctSearchBoxInsideLeftScreenExtension,
   },
   computed: {
-    cfArCardsInCsOfVl() {
+    cfArCardsInLeftSideOfViewLayer() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)

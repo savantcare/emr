@@ -8,7 +8,9 @@
     -->
     <el-card class="box-card" :body-style="{ paddingLeft: '3px' }">
       <div slot="header" class="clearfix">
-        <span :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1" @keyup="mfKeyPress($event, 'header')"
+        <span
+          :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
+          @keyup="mfKeyPress($event, 'header')"
           >Phone Number</span
         >
         <el-button-group style="float: right">
@@ -51,7 +53,7 @@
           :key="row.id"
           :timestamp="row.createdAt"
           :type="row.type"
-          :tabindex="cfPosInArCardsInPtsOfVl * 100 + 2"
+          :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 2"
           @keyup.native="mfKeyPress($event, row.id, row.description)"
         >
           {{ row.description }}
@@ -92,7 +94,7 @@ export default {
     return {}
   },
   computed: {
-    cfPosInArCardsInPtsOfVl() {
+    cfPosInArCardsInPtsOfViewLayer() {
       const arFromClientSideTable = clientSideTblOfRightSideCards
         .query()
         .where('name', 'reminders')

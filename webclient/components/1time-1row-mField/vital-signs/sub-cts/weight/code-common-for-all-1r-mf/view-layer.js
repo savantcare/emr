@@ -63,7 +63,7 @@ export default {
         first Card 1 will focus
         2nd the card 2 will focus
       */
-    cfPosInArCardsInPtsOfVl() {
+    cfPosInArCardsInPtsOfViewLayer() {
       if (!this.isMounted) return false
       const arFromClientSideTable = clientSideTblOfRightSideCards
         .query()

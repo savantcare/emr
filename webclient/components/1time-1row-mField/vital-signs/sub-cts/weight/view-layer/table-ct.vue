@@ -7,7 +7,7 @@ Code synced with ref implementation on 4th august 2020
     <el-button
       :type="mfTypeOfButton('weightInPounds')"
       plain
-      :tabindex="cfPosInArCardsInPtsOfVl * 100 + 1"
+      :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
       size="small"
       >{{ cfLatestDataRowFromClientSideTable['weightInPounds'] }}</el-button
     >
