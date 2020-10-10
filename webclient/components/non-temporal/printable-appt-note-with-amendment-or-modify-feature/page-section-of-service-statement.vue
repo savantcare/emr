@@ -90,7 +90,10 @@ export default {
     }
   },
   props: {
-    propApptStatus: String,
+    propApptStatus: Object,
+  },
+  mounted() {
+    console.log(this.propApptStatus)
   },
 
   computed: {

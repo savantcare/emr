@@ -69,7 +69,11 @@
         }}
       </div>
     </div>
-    <serviceStatementPageSection></serviceStatementPageSection>
+
+    <!-- SECTION 5 Service statement -->
+    <serviceStatementPageSection
+      :propApptStatus="patientCurrentApptObj"
+    ></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
@@ -464,7 +468,7 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      patientCurrentApptObj: [],
+      patientCurrentApptObj: {},
       debug: false,
       amendmentData: '',
       visible1: false,
@@ -738,23 +742,34 @@ export default {
 </script>
 
 <style scoped>
-/* Ref: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html  
+/* Ref: 
+https://stackoverflow.com/a/30345808
 https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
+https://github.com/cognitom/paper-css/blob/master/paper.css
 */
 .A4 {
-  background: white;
-  width: 21cm;
+  /* Goal 1: Give dimensions: International standard size of A4 is 210x197mm Ref: https://en.wikipedia.org/wiki/Paper_size */
+  width: 17cm; /* Default value for this in papercss is 21cm */
   height: 29.7cm;
-  display: block;
+
+  /* Goal 2: Give margin and padding */
   margin: 0 auto;
-  padding: 2cm; /* During print set padding: 2cm. Padding may be dynamic depending on viewport for seeing this on 13" screen of doctor laptops with resolution of 1440x1368 */
-  /* What is the right printer margin? 
+  margin-bottom: 0.5cm;
+  padding: 0.5cm; /* In SO/30345808 this is set as 2cm. 
+  What is the right printer margin? 
   As per https://stackoverflow.com/questions/3503615/what-are-the-minimum-margins-most-printers-can-handle it should be .25" or .39 inches. This A4 stlye given at https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
   gives .78 inches. 
   */
+
+  /* Goal3: Give background color and font size */
+  background: white;
   font-size: 12px;
-  margin-bottom: 0.5cm;
+
+  /* Goal4: Box shadow to give it the look of a page */
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+
+  /* Goal5: Give a line break before and after the element */
+  display: block;
 }
 
 .el-row:hover .h1 {
