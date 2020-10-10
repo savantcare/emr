@@ -449,7 +449,7 @@ import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/
 import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
-import clientSideTblOfMultiStateViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
@@ -520,7 +520,7 @@ export default {
     },
     async cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
-      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(2)
+      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
 
       console.log(apptNoteComponentVisibilityCurrentValue)
 
@@ -649,7 +649,7 @@ export default {
 
       for (let i = 0; i < clientSideArray.length; i++) {
         if (clientSideArray[i]['clientSideUniqRowId'] < apptIdForWhichNoteNeedsToBeShown) {
-          const updateState = clientSideTblOfMultiStateViewCards.update({
+          const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
             componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
           })
@@ -683,7 +683,7 @@ export default {
 
       for (let i = 0; i < clientSideArray.length; i++) {
         if (clientSideArray[i]['clientSideUniqRowId'] > apptIdForWhichNoteNeedsToBeShown) {
-          const updateState = clientSideTblOfMultiStateViewCards.update({
+          const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
             componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
           })

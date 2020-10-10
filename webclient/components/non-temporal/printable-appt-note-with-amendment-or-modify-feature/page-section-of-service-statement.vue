@@ -89,10 +89,14 @@ export default {
       appointmentIdForThisNote: 0,
     }
   },
+  props: {
+    propApptStatus: String,
+  },
+
   computed: {
     cfArOfServiceStatementForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
+      if (this.propApptStatus === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')

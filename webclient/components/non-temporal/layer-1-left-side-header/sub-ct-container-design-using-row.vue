@@ -3,7 +3,7 @@ should begin with the The prefix, to denote that there can be only one. Ref:
 https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recommended */
 
 <template>
-  <el-row id="TheMultiStateDisplayAreaHeader" type="grid" align="middle">
+  <el-row id="TheLeftSideDisplayAreaHeader" type="grid" align="middle">
     <el-col :span="6" class="ml-2" style="display: flex; align-items: center">
       <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
       <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-#TheMultiStateDisplayAreaHeader {
+#TheLeftSideDisplayAreaHeader {
   height: 30px;
   margin-bottom: 6px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

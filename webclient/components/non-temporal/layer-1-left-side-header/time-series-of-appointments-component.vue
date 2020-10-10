@@ -91,7 +91,7 @@ __proto__: Object
 </template>
 
 <script>
-import clientSideTblOfMultiStateViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
 import clientSideTblOfAppointmentsInsertData from '@/components/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
@@ -325,8 +325,8 @@ export default {
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show' ||
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder'
       ) {
-        // unsert the previous note window if there is any
-        const updateState = clientSideTblOfMultiStateViewCards.update({
+        // Remove the previous note window if there is any
+        const updateState = clientSideTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           componentCurrentValueForCustomizingViewState: 0,
         })
@@ -346,9 +346,7 @@ export default {
 
     async toggleApptNoteDisplay(pClientSideUniqRowIdAtThisSliderMark) {
       // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
-      const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfMultiStateViewCards.find(
-        2
-      )
+      const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
 
       // Goal: Keep the button highlighted that has been clicked
       if (
@@ -365,7 +363,7 @@ export default {
 
       // This update will lead to the note card visibility getting toggled
       // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
-      const updateState = await clientSideTblOfMultiStateViewCards.update({
+      const updateState = await clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         componentCurrentValueForCustomizingViewState: this.dCurrentActiveButtonClientSideRowId,
       })
