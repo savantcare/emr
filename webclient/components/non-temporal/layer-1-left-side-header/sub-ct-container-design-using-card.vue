@@ -10,8 +10,11 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
         <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
       </el-col>
-      <el-col :span="18">
+      <el-col :span="16">
         <ctSlider></ctSlider>
+      </el-col>
+      <el-col :span="2">
+        <ctSettings></ctSettings>
       </el-col>
     </el-card>
   </div>
@@ -21,10 +24,11 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 import ctName from '@/components/1time-1row-mField/name/view-layer/privacy-protected-name.vue'
 import ctAge from '@/components/1time-1row-mField/date-of-birth/view-layer/age.vue'
 import ctSlider from './time-series-of-appointments-component.vue'
+import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 
 export default {
-  components: { ctName, ctAge, ctSlider, ctTogleHealthOther },
+  components: { ctName, ctAge, ctSlider, ctSettings },
 }
 </script>
 
