@@ -112,7 +112,7 @@ import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/c
 import ctToGiveQuickAccessToFeatures from '~/components/non-temporal/quick-access-to-features/index.vue'
 
 import ctToGiveProductTour from '~/components/non-temporal/product-tour/index.vue'
-import ctInitOfComponents from './init-of-components.vue'
+import ctInitOfComponents from './central-file-to-initialize-of-components.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
