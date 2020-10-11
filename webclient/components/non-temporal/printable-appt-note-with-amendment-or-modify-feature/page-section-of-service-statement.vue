@@ -68,6 +68,7 @@
 // Data tables
 import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
   data() {
@@ -82,24 +83,23 @@ export default {
       visible5: false,
       visible6: false,
       visible7: false,
-      reminderDataAdded: null,
       drawerToShowComparisonOf2Notes: false,
       lastComparisonReminderArrayReceived: null,
-      reminderArray: null,
-      appointmentIdForThisNote: 0,
     }
   },
   props: {
     propApptID: Number,
   },
-  mounted() {
+  async mounted() {
     console.log(this.propApptID)
+    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptID)
+    console.log(this.patientCurrentApptObj)
   },
 
   computed: {
     cfArOfServiceStatementForDisplay() {
       let arOfObjectsFromClientSideDB = []
-      if (this.propApptStatus === 'unlocked') {
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
@@ -118,7 +118,7 @@ export default {
     cfArOfAmendmentForDisplay() {
       const arFromClientSideTblOfAmendments = clientSideTblOfAmendments
         .query()
-        .where('appointmentId', this.appointmentIdForThisNote)
+        .where('appointmentId', this.propApptID)
         .orderBy('ROW_START', 'asc')
         .get()
 
