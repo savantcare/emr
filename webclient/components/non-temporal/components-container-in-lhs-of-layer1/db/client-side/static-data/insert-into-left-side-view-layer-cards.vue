@@ -3,14 +3,14 @@
 <template></template>
 
 <script>
-import clientSideTblOfMultiTimeStateCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import clientSideTblOfLeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblOfMultiTimeStateCards.insert({
+    clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
         componentToShowPath:
@@ -18,7 +18,7 @@ export default {
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
-    clientSideTblOfMultiTimeStateCards.insert({
+    clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Appt note',
         componentToShowPath:
@@ -26,7 +26,7 @@ export default {
         componentCurrentValueForCustomizingViewState: 5,
       },
     })
-    clientSideTblOfMultiTimeStateCards.insert({
+    clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Contacts',
         componentToShowPath: '1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
