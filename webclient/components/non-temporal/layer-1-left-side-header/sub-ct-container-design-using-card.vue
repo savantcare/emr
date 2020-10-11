@@ -13,7 +13,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
       <el-col :span="17">
         <ctSlider></ctSlider>
       </el-col>
-      <el-col :span="1">
+      <el-col :span="1" style="display: flex; align-items: right; padding-left: 8px">
         <ctSettings></ctSettings>
       </el-col>
     </el-card>
