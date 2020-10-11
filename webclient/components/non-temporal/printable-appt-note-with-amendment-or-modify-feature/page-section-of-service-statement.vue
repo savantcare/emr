@@ -13,7 +13,7 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible1">
+          <el-popover placement="right" width="400" v-model="isAmendmentPopoverVisible">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -76,7 +76,7 @@ export default {
       patientCurrentApptObj: [],
       debug: false,
       amendmentData: '',
-      visible1: false,
+      isAmendmentPopoverVisible: false,
     }
   },
   props: {
