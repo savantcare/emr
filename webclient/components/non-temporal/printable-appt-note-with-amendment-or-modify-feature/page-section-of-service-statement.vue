@@ -13,32 +13,36 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="isAmendmentPopoverVisible">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
+            <el-popover placement="right" width="400" v-model="isAmendmentPopoverVisible">
+              <div style="text-align: right; margin: 0">
+                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                <el-button
+                  v-if="amendmentData.length > 0"
+                  type="success"
+                  icon="el-icon-check"
+                  style="position: absolute; bottom: 15px; right: 15px"
+                  size="mini"
+                  @click="mfSaveAmendment(amendmentData, 'serviceStatements')"
+                  circle
+                ></el-button>
+              </div>
               <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
+                slot="reference"
+                class="el-icon-edit-outline"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'serviceStatements')"
-                circle
+                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
               ></el-button>
-            </div>
+            </el-popover>
+          </div>
+          <div v-else>
             <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
+              class="el-icon-money"
               size="mini"
+              @click="mfOpenMultiEditCtInEditLayer"
               style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
             ></el-button>
-          </el-popover>
-          <el-button
-            class="el-icon-money"
-            size="mini"
-            @click="mfOpenMultiEditCtInEditLayer"
-            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-          ></el-button>
+          </div>
         </div>
       </el-col>
     </el-row>
