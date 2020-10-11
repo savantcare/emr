@@ -77,8 +77,6 @@ export default {
       debug: false,
       amendmentData: '',
       visible1: false,
-      drawerToShowComparisonOf2Notes: false,
-      lastComparisonReminderArrayReceived: null,
     }
   },
   props: {
