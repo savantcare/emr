@@ -56,7 +56,7 @@
     </div>
 
     <!-- SECTION 4 -->
-    <!-- Goal: If appt is not locked then do not show "Appt Lick date" -->
+    <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
       <div v-if="debug">
@@ -72,7 +72,7 @@
 
     <!-- SECTION 5 Service statement -->
     <serviceStatementPageSection
-      :propApptStatus="patientCurrentApptObj"
+      :propApptID="appointmentIdForThisNote"
     ></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
