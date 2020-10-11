@@ -775,10 +775,6 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   display: inline-block !important;
 }
 
-.ssh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-}
-
 .mseh3:hover .el-icon-edit-outline {
   display: inline-block !important;
 }

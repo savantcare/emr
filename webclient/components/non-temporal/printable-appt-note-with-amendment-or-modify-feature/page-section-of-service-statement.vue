@@ -131,3 +131,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.ssh3:hover .el-icon-edit-outline {
+  display: inline-block !important;
+}
+</style>
