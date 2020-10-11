@@ -33,6 +33,12 @@
               style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
             ></el-button>
           </el-popover>
+          <el-button
+            class="el-icon-money"
+            size="mini"
+            @click="mfOpenMultiEditCtInEditLayer"
+            style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+          ></el-button>
         </div>
       </el-col>
     </el-row>
@@ -87,7 +93,13 @@ export default {
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptID)
     console.log(this.patientCurrentApptObj)
   },
-
+  methods: {
+    mfOpenMultiEditCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+        searchTerm: 'edit service statement',
+      })
+    },
+  },
   computed: {
     cfArOfServiceStatementForDisplay() {
       let arOfObjectsFromClientSideDB = []
@@ -134,6 +146,9 @@ export default {
 
 <style scoped>
 .ssh3:hover .el-icon-edit-outline {
+  display: inline-block !important;
+}
+.ssh3:hover .el-icon-money {
   display: inline-block !important;
 }
 </style>
