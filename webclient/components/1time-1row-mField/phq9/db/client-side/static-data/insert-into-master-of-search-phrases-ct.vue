@@ -1,4 +1,4 @@
-<!-- To understand how this works read call-init-of-components-and-handle-search-selection.vue -->
+<!-- To understand how this works read show-auto-complete-search-box-and-handle-search-selection.vue -->
 <template>
   <div>
     <insertIntoMasterTblOfPhq9DuringInitOfCt />

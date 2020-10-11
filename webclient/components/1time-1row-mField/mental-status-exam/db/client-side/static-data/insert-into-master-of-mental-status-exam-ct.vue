@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- To understand how this works call-init-of-components-and-handle-search-selection.vue -->
+<!-- To understand how this works show-auto-complete-search-box-and-handle-search-selection.vue -->
 <template>
   <div></div>
 </template>

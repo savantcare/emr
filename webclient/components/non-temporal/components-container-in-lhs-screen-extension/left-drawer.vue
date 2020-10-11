@@ -43,7 +43,7 @@
 
 <script>
 import clientSideTblOfViewCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
-import ctSearchBoxInsideLeftScreenExtension from '@/components/non-temporal/search-phrases/call-init-of-components-and-handle-search-selection.vue'
+import ctSearchBoxInsideLeftScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
