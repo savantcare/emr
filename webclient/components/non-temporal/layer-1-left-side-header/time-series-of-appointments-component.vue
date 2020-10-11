@@ -24,7 +24,7 @@ __proto__: Object
     -->
     <vue-slider
       data-v-step="appt-timeline"
-      v-model="dCurrentSliderValue"
+      v-model="dCurrentValueOnTheSlider"
       :marks="cfGetAllMarksForSlider"
       container="true"
       absorb="true"
@@ -34,7 +34,7 @@ __proto__: Object
       :dMinApptStartMilliseconds="0"
       :dMaxApptStartMilliseconds="100"
       :tooltip-formatter="getTooltipForThisMark"
-      :style="sendCssVariablesToStyleSheet"
+      :style="sendCssVariablesForIconColorAndSizeToStyleSheet"
     >
       <template v-slot:label="{ label, active }">
         <button
@@ -61,15 +61,14 @@ export default {
   data() {
     return {
       dCurrentActiveButtonClientSideRowId: 0,
-      dButtonTypes: [],
-      dCurrentSliderValue: 0,
+      dCurrentValueOnTheSlider: 0,
       dMaxApptStartMilliseconds: -1,
       dMinApptStartMilliseconds: -1,
       dMarksOnSlider: {},
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
-      arOfObjectsFromClientSideDB: [],
+      arOfAppointmentsFromClientSideDB: [],
 
       // Settings for slider
       dConfigProportionalOrEquiDistant: 'EquiDistant',
@@ -85,20 +84,15 @@ export default {
       value: 0,
     }
   },
-  mounted: function () {
-    this.dButtonTypes['late-cancellation'] = 'danger'
-    this.dButtonTypes['cancellation'] = 'warning'
-    this.dButtonTypes['no-show'] = 'danger'
-    this.dButtonTypes['unlocked'] = 'success'
-    this.dButtonTypes['locked'] = 'success'
-  },
+  mounted: function () {},
   computed: {
-    sendCssVariablesToStyleSheet() {
+    sendCssVariablesForIconColorAndSizeToStyleSheet() {
+      /* Goal: 1. Make icon selected on slider bigger 2. Give the selected icon a vibrant color and remove the grey color from the selected icon */
       const selectedSize = '1.5rem'
       const defaultSize = '1rem'
       let obj = {}
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'locked') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'locked') {
         obj['--size-of-lock-icon'] = selectedSize
         obj['--color-of-lock-icon'] = '#67c23a' // success color from https://element.eleme.io/#/en-US/component/color
       } else {
@@ -106,7 +100,7 @@ export default {
         obj['--color-of-lock-icon'] = 'rgb(192, 196, 204)'
       }
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'unlocked') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'unlocked') {
         obj['--size-of-unlock-icon'] = selectedSize
         obj['--color-of-unlock-icon'] = '#409eff' // main color from https://element.eleme.io/#/en-US/component/color
       } else {
@@ -114,7 +108,7 @@ export default {
         obj['--color-of-unlock-icon'] = 'rgb(192, 196, 204)'
       }
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'late-cancellation') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'late-cancellation') {
         obj['--size-of-circle-close-icon'] = selectedSize
         obj['--color-of-circle-close-icon'] = '#f56c6c' // danger color from https://element.eleme.io/#/en-US/component/color
       } else {
@@ -122,7 +116,7 @@ export default {
         obj['--color-of-circle-close-icon'] = 'rgb(192, 196, 204)'
       }
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'cancellation') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'cancellation') {
         obj['--size-of-remove-outline-icon'] = selectedSize
         obj['--color-of-remove-outline-icon'] = '#e6a23c' // Warning color
       } else {
@@ -130,7 +124,7 @@ export default {
         obj['--color-of-remove-outline-icon'] = 'rgb(192, 196, 204)'
       }
 
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentSliderValue] === 'no-show') {
+      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'no-show') {
         obj['--size-of-warning-outline-icon'] = selectedSize
         obj['--color-of-warning-outline-icon'] = '#f56c6c' // Danger color
       } else {
@@ -141,14 +135,14 @@ export default {
       return obj
     },
 
-    cfGetLatestDataInClientSideDB() {
-      // this is an expensice OP so kept this in computed prop so it will return without running if nothing has changed.
+    cfGetLatestAppointmentsFromInClientSideDB() {
+      // this is an expensive OP so kept this in computed prop so it will return without running if nothing has changed.
       return clientSideTblOfAppointments.query().get()
     },
 
     cfGetAllMarksForSlider() {
       // this saved a lot of expensive operations, and hence makes the system more responsive.
-      this.arOfObjectsFromClientSideDB = this.cfGetLatestDataInClientSideDB
+      this.arOfAppointmentsFromClientSideDB = this.cfGetLatestAppointmentsFromInClientSideDB
 
       this.dMarksOnSlider = {}
       this.dClientSideUniqRowIdAtEachSliderMark = {}
@@ -163,18 +157,18 @@ export default {
       3: "late-cancellation"
       4: "cancellation"
       */
-      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
-        const currentApptStatus = this.arOfObjectsFromClientSideDB[i]['apptStatus']
+      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
+        const currentApptStatus = this.arOfAppointmentsFromClientSideDB[i]['apptStatus']
         if (this.dConfigChecklistOfApptTypesToShow.indexOf(currentApptStatus) !== -1) {
-          this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = true
+          this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = true
         } else {
-          this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = false
+          this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = false
         }
       }
 
-      // Get max and min values. Probablyt nor needed for equidistant
-      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
-        const apptStartMilliSecondsOnCalendar = this.arOfObjectsFromClientSideDB[i][
+      // Goal: Get max and min values. Probably nor needed for equidistant
+      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
+        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientSideDB[i][
           'apptStartMilliSecondsOnCalendar'
         ]
 
@@ -193,7 +187,7 @@ export default {
       const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
 
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
-      this.arOfObjectsFromClientSideDB.sort(function (a, b) {
+      this.arOfAppointmentsFromClientSideDB.sort(function (a, b) {
         return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
           ? 1
           : b.apptStartMilliSecondsOnCalendar > a.apptStartMilliSecondsOnCalendar
@@ -201,15 +195,15 @@ export default {
           : 0
       })
 
-      for (let i = 0; i < this.arOfObjectsFromClientSideDB.length; i++) {
+      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
         // Update the slider component
-        const apptStartMilliSecondsOnCalendar = this.arOfObjectsFromClientSideDB[i][
+        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientSideDB[i][
           'apptStartMilliSecondsOnCalendar'
         ]
 
         let markPoint = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
-          markPoint = (i / this.arOfObjectsFromClientSideDB.length) * 100
+          markPoint = (i / this.arOfAppointmentsFromClientSideDB.length) * 100
         } else {
           const percentage =
             ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
@@ -218,39 +212,39 @@ export default {
         }
 
         // get the labelAtEachMark for that slider mark
-        let labelAtEachMarkToStoreIconClass = ''
+        let labelAtEachMarkUsedToStoreIconClass = ''
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'locked') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-lock'
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock'
         }
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-unlock'
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock'
         }
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-warning-outline'
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-warning-outline'
         }
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-remove-outline'
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-remove-outline'
         }
-        if (this.arOfObjectsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-          labelAtEachMarkToStoreIconClass = 'el-icon-circle-close'
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-circle-close'
         }
 
-        if (this.arOfObjectsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
+        if (this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
         } else {
-          this.dMarksOnSlider[markPoint] = labelAtEachMarkToStoreIconClass
+          this.dMarksOnSlider[markPoint] = labelAtEachMarkUsedToStoreIconClass
         }
 
-        this.dClientSideUniqRowIdAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
-          'clientSideUniqRowId'
-        ]
-        this.dApptStatusAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
+        this.dClientSideUniqRowIdAtEachSliderMark[
+          markPoint
+        ] = this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId']
+        this.dApptStatusAtEachSliderMark[markPoint] = this.arOfAppointmentsFromClientSideDB[i][
           'apptStatus'
         ]
-        this.dApptCalendarTimeAtEachSliderMark[markPoint] = this.arOfObjectsFromClientSideDB[i][
-          'apptStartMilliSecondsOnCalendar'
-        ]
+        this.dApptCalendarTimeAtEachSliderMark[markPoint] = this.arOfAppointmentsFromClientSideDB[
+          i
+        ]['apptStartMilliSecondsOnCalendar']
       }
       return this.dMarksOnSlider
     },
@@ -271,14 +265,13 @@ export default {
     },
 
     mfHandleUserGeneratedSliderEvent(pEventValue) {
-      const valueOfSlider = this.dCurrentSliderValue
+      const valueOfSlider = this.dCurrentValueOnTheSlider
 
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'cancellation' ||
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'late-cancellation' ||
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show' ||
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder'
+        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
       ) {
         // Remove the previous note window if there is any
         const updateState = clientSideTblOfLeftSideViewCards.update({
@@ -289,8 +282,9 @@ export default {
         return
       }
 
+      // Goal: If a visible appt icon is clicked again then remove it. Otherwise show the appt note for that icon.
       this.toggleApptNoteDisplay(
-        this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentSliderValue]
+        this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentValueOnTheSlider]
       )
     },
 
