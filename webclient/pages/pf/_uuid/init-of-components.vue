@@ -36,6 +36,8 @@
     <!-- 1time-Mrow-mField/others -->
     <initializePhoneNumberComponent />
     <initializeDiagnosisComponent />
+
+    <clientSideTblOfAppointmentsInsertData />
   </div>
 </template>
 
@@ -81,6 +83,8 @@ import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnos
 
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
+import clientSideTblOfAppointmentsInsertData from '@/components/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+
 export default {
   components: {
     // core
@@ -93,7 +97,7 @@ export default {
     // 1time-1row-mField/PII
     initializeDobComponent,
     initializeNameComponent,
-
+    clientSideTblOfAppointmentsInsertData,
     // 1time-1row-mField/body-measurement
     initializeBloodPressureComponent,
     initializeBloodSugarComponent,
