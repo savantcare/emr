@@ -71,7 +71,6 @@ export default {
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
-      dIsSettingsDialogVisible: false,
       arOfObjectsFromClientSideDB: [],
 
       // Settings for slider
@@ -289,11 +288,6 @@ export default {
           clientSideUniqRowId: 2,
           componentCurrentValueForCustomizingViewState: 0,
         })
-
-        if (this.dApptStatusAtEachSliderMark[valueOfSlider] == 'settings-placeholder') {
-          console.log('setting')
-          this.dIsSettingsDialogVisible = true
-        }
 
         return
       }

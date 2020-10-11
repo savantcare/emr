@@ -10,10 +10,10 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
         <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
       </el-col>
-      <el-col :span="16">
+      <el-col :span="17">
         <ctSlider></ctSlider>
       </el-col>
-      <el-col :span="2">
+      <el-col :span="1">
         <ctSettings></ctSettings>
       </el-col>
     </el-card>

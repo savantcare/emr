@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="el-icon-setting"></button>
+    <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
     <el-dialog title="Settings" :visible.sync="dIsSettingsDialogVisible" width="30%">
       <hr />
       <br />
@@ -43,5 +43,28 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      dIsSettingsDialogVisible: false,
+      dConfigProportionalOrEquiDistant: 'EquiDistant',
+      dConfigChecklistOfApptTypesToShow: [
+        'locked',
+        'unlocked',
+        'no-show',
+        'late-cancellation',
+        'cancellation',
+      ],
+      dConfigProviderTypesToShow: [],
+      checked: true,
+      value: 0,
+    }
+  },
+  methods: {
+    handleClickOnSettingsIcon() {
+      console.log('setting to true')
+      this.dIsSettingsDialogVisible = true
+    },
+  },
+}
 </script>
