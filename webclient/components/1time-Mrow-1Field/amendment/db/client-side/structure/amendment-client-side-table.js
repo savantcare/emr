@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class tblAmendment extends clientSideTableManage {
-  static entity = 'tblAmendments'
+export default class tblAddendum extends clientSideTableManage {
+  static entity = 'tblAddendums'
   static primaryKey = 'clientSideUniqRowId'
 
   static fields() {

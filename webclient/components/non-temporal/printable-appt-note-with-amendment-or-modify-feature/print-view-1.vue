@@ -96,7 +96,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'mentalStatusExam')"
+                @click="mfSaveAddendum(amendmentData, 'mentalStatusExam')"
                 circle
               ></el-button>
             </div>
@@ -118,13 +118,13 @@
     <br />
     <div
       v-if="
-        cfArOfAmendmentForDisplay('mentalStatusExam') &&
-        cfArOfAmendmentForDisplay('mentalStatusExam').length > 0
+        cfArOfAddendumForDisplay('mentalStatusExam') &&
+        cfArOfAddendumForDisplay('mentalStatusExam').length > 0
       "
     >
-      <h4>Amendment:</h4>
+      <h4>Addendum:</h4>
       <div
-        v-for="row in cfArOfAmendmentForDisplay('mentalStatusExam')"
+        v-for="row in cfArOfAddendumForDisplay('mentalStatusExam')"
         :key="row.clientSideUniqRowId"
       >
         <div style="margin: 5px 0">
@@ -157,7 +157,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'psychReviewOfSystems')"
+                @click="mfSaveAddendum(amendmentData, 'psychReviewOfSystems')"
                 circle
               ></el-button>
             </div>
@@ -182,13 +182,13 @@
     <br />
     <div
       v-if="
-        cfArOfAmendmentForDisplay('psychReviewOfSystems') &&
-        cfArOfAmendmentForDisplay('psychReviewOfSystems').length > 0
+        cfArOfAddendumForDisplay('psychReviewOfSystems') &&
+        cfArOfAddendumForDisplay('psychReviewOfSystems').length > 0
       "
     >
-      <h4>Amendment:</h4>
+      <h4>Addendum:</h4>
       <div
-        v-for="row in cfArOfAmendmentForDisplay('psychReviewOfSystems')"
+        v-for="row in cfArOfAddendumForDisplay('psychReviewOfSystems')"
         :key="row.clientSideUniqRowId"
       >
         <div style="margin: 5px 0">
@@ -222,7 +222,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'reminder')"
+                @click="mfSaveAddendum(amendmentData, 'reminder')"
                 circle
               ></el-button>
             </div>
@@ -242,11 +242,11 @@
       <br />
       <div
         v-if="
-          cfArOfAmendmentForDisplay('reminder') && cfArOfAmendmentForDisplay('reminder').length > 0
+          cfArOfAddendumForDisplay('reminder') && cfArOfAddendumForDisplay('reminder').length > 0
         "
       >
-        <h4>Amendment:</h4>
-        <div v-for="row in cfArOfAmendmentForDisplay('reminder')" :key="row.clientSideUniqRowId">
+        <h4>Addendum:</h4>
+        <div v-for="row in cfArOfAddendumForDisplay('reminder')" :key="row.clientSideUniqRowId">
           <div style="margin: 5px 0">
             {{ row.description }}
             <br />
@@ -304,7 +304,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'recommendations')"
+                @click="mfSaveAddendum(amendmentData, 'recommendations')"
                 circle
               ></el-button>
             </div>
@@ -320,13 +320,13 @@
     <br />
     <div
       v-if="
-        cfArOfAmendmentForDisplay('recommendations') &&
-        cfArOfAmendmentForDisplay('recommendations').length > 0
+        cfArOfAddendumForDisplay('recommendations') &&
+        cfArOfAddendumForDisplay('recommendations').length > 0
       "
     >
-      <h4>Amendment:</h4>
+      <h4>Addendum:</h4>
       <div
-        v-for="row in cfArOfAmendmentForDisplay('recommendations')"
+        v-for="row in cfArOfAddendumForDisplay('recommendations')"
         :key="row.clientSideUniqRowId"
       >
         <div style="margin: 5px 0">
@@ -357,7 +357,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'medications')"
+                @click="mfSaveAddendum(amendmentData, 'medications')"
                 circle
               ></el-button>
             </div>
@@ -373,12 +373,12 @@
     <br />
     <div
       v-if="
-        cfArOfAmendmentForDisplay('medications') &&
-        cfArOfAmendmentForDisplay('medications').length > 0
+        cfArOfAddendumForDisplay('medications') &&
+        cfArOfAddendumForDisplay('medications').length > 0
       "
     >
-      <h4>Amendment:</h4>
-      <div v-for="row in cfArOfAmendmentForDisplay('medications')" :key="row.clientSideUniqRowId">
+      <h4>Addendum:</h4>
+      <div v-for="row in cfArOfAddendumForDisplay('medications')" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
@@ -408,7 +408,7 @@
                 icon="el-icon-check"
                 style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                @click="mfSaveAmendment(amendmentData, 'vitals')"
+                @click="mfSaveAddendum(amendmentData, 'vitals')"
                 circle
               ></el-button>
             </div>
@@ -422,11 +422,9 @@
       </el-col>
     </el-row>
     <br />
-    <div
-      v-if="cfArOfAmendmentForDisplay('vitals') && cfArOfAmendmentForDisplay('vitals').length > 0"
-    >
-      <h4>Amendment:</h4>
-      <div v-for="row in cfArOfAmendmentForDisplay('vitals')" :key="row.clientSideUniqRowId">
+    <div v-if="cfArOfAddendumForDisplay('vitals') && cfArOfAddendumForDisplay('vitals').length > 0">
+      <h4>Addendum:</h4>
+      <div v-for="row in cfArOfAddendumForDisplay('vitals')" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
@@ -450,7 +448,7 @@
 import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
-import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
@@ -500,26 +498,26 @@ export default {
     })
   },
   computed: {
-    cfArOfAmendmentForDisplay() {
-      const arFromClientSideTblOfAmendments = clientSideTblOfAmendments
+    cfArOfAddendumForDisplay() {
+      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.appointmentIdForThisNote)
         .orderBy('ROW_START', 'asc')
         .get()
 
-      const arAmendments = []
-      arFromClientSideTblOfAmendments.forEach((row) => {
-        if (typeof arAmendments[row.component] === 'undefined') {
-          arAmendments[row.component] = []
+      const arAddendums = []
+      arFromClientSideTblOfAddendums.forEach((row) => {
+        if (typeof arAddendums[row.component] === 'undefined') {
+          arAddendums[row.component] = []
         }
-        arAmendments[row.component].push(row)
+        arAddendums[row.component].push(row)
       })
 
       /**
        * component is computed function parameter
        * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
        */
-      return (component) => arAmendments[`${component}`]
+      return (component) => arAddendums[`${component}`]
     },
     async cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
@@ -723,12 +721,12 @@ export default {
         })
       }
     },
-    mfSaveAmendment(pAmendmentData, component) {
-      clientSideTblOfAmendments.insert({
+    mfSaveAddendum(pAddendumData, component) {
+      clientSideTblOfAddendums.insert({
         data: {
           appointmentId: this.appointmentIdForThisNote,
           component: component,
-          description: pAmendmentData,
+          description: pAddendumData,
           ROW_START: Math.floor(Date.now()),
         },
       })

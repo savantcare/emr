@@ -14,7 +14,7 @@
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="isAmendmentPopoverVisible">
+            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
                 <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
                 <el-button
@@ -23,7 +23,7 @@
                   icon="el-icon-check"
                   style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  @click="mfSaveAmendment(amendmentData, 'serviceStatements')"
+                  @click="mfSaveAddendum(amendmentData, 'serviceStatements')"
                   circle
                 ></el-button>
               </div>
@@ -53,13 +53,13 @@
     <br />
     <div
       v-if="
-        cfArOfAmendmentForDisplay('serviceStatements') &&
-        cfArOfAmendmentForDisplay('serviceStatements').length > 0
+        cfArOfAddendumForDisplay('serviceStatements') &&
+        cfArOfAddendumForDisplay('serviceStatements').length > 0
       "
     >
-      <h4>Amendment:</h4>
+      <h4>Addendum:</h4>
       <div
-        v-for="row in cfArOfAmendmentForDisplay('serviceStatements')"
+        v-for="row in cfArOfAddendumForDisplay('serviceStatements')"
         :key="row.clientSideUniqRowId"
       >
         <div style="margin: 5px 0">
@@ -77,7 +77,7 @@
 <script>
 // Data tables
 import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
-import clientSideTblOfAmendments from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
@@ -86,7 +86,7 @@ export default {
       patientCurrentApptObj: [],
       debug: false,
       amendmentData: '',
-      isAmendmentPopoverVisible: false,
+      isAddendumPopoverVisible: false,
     }
   },
   props: {
@@ -103,12 +103,12 @@ export default {
         searchTerm: 'edit service statement',
       })
     },
-    mfSaveAmendment(pAmendmentData, component) {
-      clientSideTblOfAmendments.insert({
+    mfSaveAddendum(pAddendumData, component) {
+      clientSideTblOfAddendums.insert({
         data: {
           appointmentId: this.patientCurrentApptObj.clientSideUniqRowId,
           component: component,
-          description: pAmendmentData,
+          description: pAddendumData,
           ROW_START: Math.floor(Date.now()),
         },
       })
@@ -136,26 +136,26 @@ export default {
       }
       return arOfObjectsFromClientSideDB
     },
-    cfArOfAmendmentForDisplay() {
-      const arFromClientSideTblOfAmendments = clientSideTblOfAmendments
+    cfArOfAddendumForDisplay() {
+      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptID)
         .orderBy('ROW_START', 'asc')
         .get()
 
-      const arAmendments = []
-      arFromClientSideTblOfAmendments.forEach((row) => {
-        if (typeof arAmendments[row.component] === 'undefined') {
-          arAmendments[row.component] = []
+      const arAddendums = []
+      arFromClientSideTblOfAddendums.forEach((row) => {
+        if (typeof arAddendums[row.component] === 'undefined') {
+          arAddendums[row.component] = []
         }
-        arAmendments[row.component].push(row)
+        arAddendums[row.component].push(row)
       })
 
       /**
        * component is computed function parameter
        * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
        */
-      return (component) => arAmendments[`${component}`]
+      return (component) => arAddendums[`${component}`]
     },
   },
 }
