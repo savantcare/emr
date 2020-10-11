@@ -1,7 +1,7 @@
 <template>
   <!--  Prop explanation:
           v-on:mouseleave="mouseleave"
-          Goal: Make it very easy to switch between the 3 modes 1. Dashboard 2. Work product mode 3. Analysis mode
+          GOAL: Make it very easy to switch between the 3 modes 1. Dashboard 2. Work product mode 3. Analysis mode
           When the user takes the mouse to the left edge of the browser then bring the feed up
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
@@ -9,8 +9,13 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div>
+    <!-- GOAL1: Initialize the keyboard and mouse controls -->
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
+
+    <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
     <ctToGiveProductTour></ctToGiveProductTour>
+
+    <!-- GOAL3: Open the default cards on left side and right side -->
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
@@ -24,13 +29,27 @@
         <ctLayer1RightSideCards></ctLayer1RightSideCards>
       </SplitArea>
     </Split>
-    <!-- tab-dialog is present in patientFile.vue but in hidden state -->
+
+    <!-- GOAL4: Init component to show tabs in edit layer -->
     <ctTabsInDialogInCL></ctTabsInDialogInCL>
+
+    <!-- GOAL5: Init component to show components in left extension -->
     <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+
+    <!-- GOAL6: Init component to show components in right extension -->
     <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
+
+    <!-- GOAL7: Init drawer component -->
     <ctMapDrawer></ctMapDrawer>
+
+    <!-- GOAL8: Init -->
     <ctDeletedDrawer></ctDeletedDrawer>
+
+    <!-- GOAL9: Init -->
     <ctFeed></ctFeed>
+
+    <!-- GOAL10: Init -->
+    <ctVlSearchBox></ctVlSearchBox>
   </div>
 </template>
 
