@@ -103,6 +103,19 @@ export default {
         searchTerm: 'edit service statement',
       })
     },
+    mfSaveAmendment(pAmendmentData, component) {
+      clientSideTblOfAmendments.insert({
+        data: {
+          appointmentId: this.appointmentIdForThisNote,
+          component: component,
+          description: pAmendmentData,
+          ROW_START: Math.floor(Date.now()),
+        },
+      })
+
+      // remove modal value after save
+      this.amendmentData = ''
+    },
   },
   computed: {
     cfArOfServiceStatementForDisplay() {
