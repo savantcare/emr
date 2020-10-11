@@ -471,7 +471,6 @@ export default {
       patientCurrentApptObj: {},
       debug: false,
       amendmentData: '',
-      visible1: false,
       visible2: false,
       visible3: false,
       visible4: false,
