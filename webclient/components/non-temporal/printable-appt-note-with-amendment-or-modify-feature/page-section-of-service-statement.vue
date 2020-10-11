@@ -106,7 +106,7 @@ export default {
     mfSaveAmendment(pAmendmentData, component) {
       clientSideTblOfAmendments.insert({
         data: {
-          appointmentId: this.appointmentIdForThisNote,
+          appointmentId: this.patientCurrentApptObj.clientSideUniqRowId,
           component: component,
           description: pAmendmentData,
           ROW_START: Math.floor(Date.now()),
