@@ -51,9 +51,7 @@ export default {
   },
   methods: {
     sendEventToShow2Notes() {
-      this.$root.$emit(
-        'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer'
-      )
+      this.$root.$emit('event-from-print-note-header-show-comparison-drawer')
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       const clientSideArray = clientSideTblOfAppointments

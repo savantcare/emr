@@ -30,9 +30,7 @@ export default {
   components: { apptNotePrintableView },
 
   created() {
-    let eventName = [
-      'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer',
-    ]
+    let eventName = ['event-from-print-note-header-show-comparison-drawer']
     this.$root.$on((eventName) => {
       this.dUidrawerToShowComparisonOf2Notes = true
     })
