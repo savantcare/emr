@@ -482,7 +482,12 @@ export default {
       appointmentIdForThisNote: 0,
     }
   },
-  props: ['propShowNoteForApptId'],
+  props: {
+    propShowNoteForApptId: {
+      type: Number,
+      required: true,
+    },
+  },
   filters: {
     moment: function (date) {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
