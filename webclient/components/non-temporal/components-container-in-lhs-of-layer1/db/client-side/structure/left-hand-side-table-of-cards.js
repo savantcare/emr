@@ -20,8 +20,8 @@ export default class multiTimeStateViewLayer extends clientSideTableManage {
       componentToShowPath: this.string(null),
       classificationOfComponent: this.string('health'),
 
-      componentCurrentValueForCustomizingViewState: this.number(1), // when > 0 it will display. Using v-if since more efficient then v-show
-
+      currentDisplayStateOfComponent: this.number(1), // when > 0 it will display. Using v-if since more efficient then v-show
+      parametersGivenToComponentBeforeMounting: this.number(1),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

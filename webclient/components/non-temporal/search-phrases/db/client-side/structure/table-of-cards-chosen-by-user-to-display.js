@@ -18,7 +18,7 @@ export default class multiTimeStateViewLayer extends clientSideTableManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()),
       name: this.string(null),
       componentToShowPath: this.string(null),
-      componentCurrentValueForCustomizingViewState: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
+      currentDisplayStateOfComponent: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
       identifierOfparentComponentThatIncludedThisSearchComponent: this.string(''),
 
       recordChangedByUuid: this.string(null),

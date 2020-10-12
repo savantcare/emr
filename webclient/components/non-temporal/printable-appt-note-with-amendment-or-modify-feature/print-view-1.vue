@@ -531,7 +531,7 @@ export default {
         apptIdForWhichNoteNeedsToBeShown = this.propShowNoteForApptId
       } else {
         apptIdForWhichNoteNeedsToBeShown =
-          apptNoteComponentVisibilityCurrentValue['componentCurrentValueForCustomizingViewState']
+          apptNoteComponentVisibilityCurrentValue['parametersGivenToComponentBeforeMounting']
       }
 
       console.log(apptIdForWhichNoteNeedsToBeShown)
@@ -652,7 +652,7 @@ export default {
         if (clientSideArray[i]['clientSideUniqRowId'] < apptIdForWhichNoteNeedsToBeShown) {
           const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
-            componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
+            currentDisplayStateOfComponent: clientSideArray[i]['clientSideUniqRowId'],
           })
         }
       }
@@ -686,7 +686,7 @@ export default {
         if (clientSideArray[i]['clientSideUniqRowId'] > apptIdForWhichNoteNeedsToBeShown) {
           const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
-            componentCurrentValueForCustomizingViewState: clientSideArray[i]['clientSideUniqRowId'],
+            currentDisplayStateOfComponent: clientSideArray[i]['clientSideUniqRowId'],
           })
         }
       }

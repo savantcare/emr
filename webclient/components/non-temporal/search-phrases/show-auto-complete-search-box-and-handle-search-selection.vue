@@ -92,7 +92,7 @@ export default {
           data: {
             name: pSelectedSuggestion.value,
             componentToShowPath: pSelectedSuggestion.ctToShow,
-            componentCurrentValueForCustomizingViewState: 1,
+            currentDisplayStateOfComponent: 1,
             identifierOfparentComponentThatIncludedThisSearchComponent: this.$options._componentTag,
           },
         })

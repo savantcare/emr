@@ -276,7 +276,7 @@ export default {
         // Remove the previous note window if there is any
         const updateState = clientSideTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
-          componentCurrentValueForCustomizingViewState: 0,
+          currentDisplayStateOfComponent: 0,
         })
 
         return
@@ -289,19 +289,23 @@ export default {
     },
 
     async toggleApptNoteDisplay(pClientSideUniqRowIdAtThisSliderMark) {
-      // id 2 is 'Appt note' See: insert-into-appointment-client-side-table:22
+      /* There are following possibilities:
+      1. This mark is alaready active
+      2. This mark is not active and should be made active */
+
       const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
 
-      // Goal: Keep the button highlighted that has been clicked
       if (
         cardOfApptNoteComponentVisibilityCurrentValue[
-          'componentCurrentValueForCustomizingViewState'
-        ] === pClientSideUniqRowIdAtThisSliderMark
+          'parametersGivenToComponentBeforeMounting'
+        ] === pClientSideUniqRowIdAtThisSliderMark &&
+        cardOfApptNoteComponentVisibilityCurrentValue['currentDisplayStateOfComponent'] == 1
       ) {
         // This case is when the button was already active. And clicking it should make it in-active
-        this.dCurrentActiveButtonClientSideRowId = 0
+        this.currentDisplayStateOfComponent = 0
       } else {
         // This case is when the button was not active. And clicking it should make it Active
+        this.currentDisplayStateOfComponent = 1
         this.dCurrentActiveButtonClientSideRowId = pClientSideUniqRowIdAtThisSliderMark
       }
 
@@ -309,7 +313,8 @@ export default {
       // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
       const updateState = await clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
-        componentCurrentValueForCustomizingViewState: this.dCurrentActiveButtonClientSideRowId,
+        currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
+        parametersGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
       })
     },
   },

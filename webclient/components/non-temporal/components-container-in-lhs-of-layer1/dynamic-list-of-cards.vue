@@ -52,12 +52,12 @@ export default {
 
       /* Goal 2: Find all components that match following conditions:
       1. Match the classification that user chose
-      2. componentCurrentValueForCustomizingViewState is > 0. Since 0 is reserved to mark the component as not to show.
+      2. currentDisplayStateOfComponent is > 0. Since 0 is reserved to mark the component as not to show.
 
       */
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
-        .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)
+        .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('classificationOfComponent', vComponentClassificationToShowUser)
         .orWhere('classificationOfComponent', 'commonForHealthAndOther')
         .get()

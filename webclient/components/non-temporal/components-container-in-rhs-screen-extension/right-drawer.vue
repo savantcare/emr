@@ -61,7 +61,7 @@ export default {
     cfArCardsInLeftSideOfViewLayer() {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
-        .where('componentCurrentValueForCustomizingViewState', (value) => value > 0)
+        .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where(
           'identifierOfparentComponentThatIncludedThisSearchComponent',
           'ctSearchBoxInsideRightScreenExtension'
