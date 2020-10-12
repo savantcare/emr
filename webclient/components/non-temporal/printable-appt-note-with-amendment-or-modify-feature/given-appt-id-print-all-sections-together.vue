@@ -1,11 +1,11 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="A4">
-    <headerPrintSection></headerPrintSection>
+    <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
 
-    <namePrintSection> </namePrintSection>
+    <namePrintSection :propApptId="propShowNoteForApptId"> </namePrintSection>
 
-    <agePrintSection> </agePrintSection>
+    <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
 
     <!-- SECTION 3 -->
     <h3>Appt Date: {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}</h3>

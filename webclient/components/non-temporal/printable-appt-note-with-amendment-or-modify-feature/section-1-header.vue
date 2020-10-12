@@ -39,7 +39,16 @@
 </template>
 
 <script>
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+
 export default {
+  props: {
+    propApptId: {
+      type: Number,
+      required: true,
+    },
+  },
   methods: {
     sendEventToShow2Notes() {
       this.$root.$emit(
@@ -47,8 +56,6 @@ export default {
       )
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
-      const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']
-
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -57,10 +64,11 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] < apptIdForWhichNoteNeedsToBeShown) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < this.propApptId) {
           const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
-            currentDisplayStateOfComponent: clientSideArray[i]['clientSideUniqRowId'],
+            currentDisplayStateOfComponent: 1,
+            parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
         }
       }
@@ -68,8 +76,6 @@ export default {
     },
     mfRightArrowClickedLetUsGoToNextAppt() {
       // From appts table find if there is a ID greater then this in the state of locked or unlocked
-
-      const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']
 
       /* TODO @raj The followijg query does not work
       Becasue the query does not work I have to run another for loop in line 485
@@ -91,10 +97,10 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > apptIdForWhichNoteNeedsToBeShown) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > this.propApptId) {
           const updateState = clientSideTblOfLeftSideViewCards.update({
-            clientSideUniqRowId: 2,
-            currentDisplayStateOfComponent: clientSideArray[i]['clientSideUniqRowId'],
+            currentDisplayStateOfComponent: 2,
+            parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
         }
       }
