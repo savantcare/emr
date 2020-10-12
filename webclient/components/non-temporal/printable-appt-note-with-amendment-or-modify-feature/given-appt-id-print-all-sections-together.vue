@@ -453,7 +453,7 @@ import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/componen
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-all-sections-together.vue'
+import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
 
 // smaller sections
 import serviceStatementPrintSection from './section-5-service-statement.vue'
@@ -500,7 +500,9 @@ export default {
   },
   async created() {
     // catch event
-    let eventName = ['event-from-ct-note-print-all-sections-together.vue-data-to-show-diff']
+    let eventName = [
+      'event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff',
+    ]
     this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
       if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
       this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
@@ -542,7 +544,7 @@ export default {
     cfGetReminderStyle() {
       // send event for others what my reminder array looks like
       this.$root.$emit(
-        'event-from-ct-note-print-all-sections-together.vue-data-to-show-diff',
+        'event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff',
         this.reminderArray,
         this.patientCurrentApptObj['clientSideUniqRowId']
       )
@@ -625,7 +627,9 @@ export default {
   },
   methods: {
     sendEventToShow2Notes() {
-      this.$root.$emit('event-from-ct-note-print-all-sections-together.vue-show-comparison-drawer')
+      this.$root.$emit(
+        'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer'
+      )
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']

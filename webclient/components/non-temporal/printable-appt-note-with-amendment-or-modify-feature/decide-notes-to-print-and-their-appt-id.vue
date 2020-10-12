@@ -15,7 +15,7 @@
 
 <script>
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-all-sections-together.vue'
+import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
@@ -27,7 +27,9 @@ export default {
     }
   },
   created() {
-    let eventName = ['event-from-ct-note-print-all-sections-together.vue-show-comparison-drawer']
+    let eventName = [
+      'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer',
+    ]
     this.$root.$on(eventName, (pRowId) => {
       this.dUidrawerToShowComparisonOf2Notes = true
     })
