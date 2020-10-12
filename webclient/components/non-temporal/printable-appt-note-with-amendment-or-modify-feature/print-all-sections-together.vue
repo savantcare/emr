@@ -455,7 +455,7 @@ import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/componen
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-view-1.vue'
+import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-all-sections-together.vue'
 
 // smaller sections
 import serviceStatementPageSection from './print-section-of-service-statement.vue'
@@ -491,7 +491,7 @@ export default {
   components: { apptNotePrintableView, serviceStatementPageSection },
   async created() {
     // catch event
-    let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
+    let eventName = ['event-from-ct-note-print-all-sections-together.vue-data-to-show-diff']
     this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
       if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
       this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
@@ -537,7 +537,7 @@ export default {
     cfGetReminderStyle() {
       // send event for others what my reminder array looks like
       this.$root.$emit(
-        'event-from-ct-note-print-view-1-data-to-show-diff',
+        'event-from-ct-note-print-all-sections-together.vue-data-to-show-diff',
         this.reminderArray,
         this.patientCurrentApptObj['clientSideUniqRowId']
       )
@@ -620,7 +620,7 @@ export default {
   },
   methods: {
     sendEventToShow2Notes() {
-      this.$root.$emit('event-from-ct-note-print-view-1-show-comparison-drawer')
+      this.$root.$emit('event-from-ct-note-print-all-sections-together.vue-show-comparison-drawer')
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       const apptIdForWhichNoteNeedsToBeShown = this.patientCurrentApptObj['clientSideUniqRowId']
