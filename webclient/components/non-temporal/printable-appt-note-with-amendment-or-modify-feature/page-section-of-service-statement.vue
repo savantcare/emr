@@ -90,13 +90,16 @@ export default {
     }
   },
   props: {
-    propApptId: Number,
+    propApptId: {
+      type: Number,
+      required: true,
+    },
   },
   async mounted() {
-    console.log('== FROM SS ==', this.propApptId)
-    if (this.propApptId === 0) {
+    if (!this.propApptId === 0) {
       return
     }
+    console.log('== FROM SS ==', this.propApptId)
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
     console.log(this.patientCurrentApptObj)
   },

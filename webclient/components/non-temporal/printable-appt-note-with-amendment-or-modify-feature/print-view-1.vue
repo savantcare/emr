@@ -71,9 +71,7 @@
     </div>
 
     <!-- SECTION 5 Service statement -->
-    <serviceStatementPageSection
-      :propApptId="appointmentIdForThisNote"
-    ></serviceStatementPageSection>
+    <serviceStatementPageSection :propApptId="5"></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
@@ -489,7 +487,7 @@ export default {
     },
   },
   components: { apptNotePrintableView, serviceStatementPageSection },
-  async mounted() {
+  async created() {
     // catch event
     let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
     this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
