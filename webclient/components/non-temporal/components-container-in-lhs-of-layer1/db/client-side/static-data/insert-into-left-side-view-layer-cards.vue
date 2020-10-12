@@ -22,7 +22,7 @@ export default {
       data: {
         name: 'Appt note',
         componentToShowPath:
-          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/component-to-display-one-note-or-two-appt-notes-together.vue',
+          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/manage-appt-id-and-number-of-print-notes.vue',
         currentDisplayStateOfComponent: 1,
         parametersGivenToComponentBeforeMounting: 0,
       },

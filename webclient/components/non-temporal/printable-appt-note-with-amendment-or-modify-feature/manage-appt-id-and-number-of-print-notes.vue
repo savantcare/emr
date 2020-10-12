@@ -62,6 +62,8 @@ export default {
     this.apptIdForWhichNoteNeedsToBeShown = apptIdForWhichNoteNeedsToBeShown
 
     console.log(this.apptIdForWhichNoteNeedsToBeShown)
+
+    if (!this.apptIdForWhichNoteNeedsToBeShown) return false
   },
   components: { apptNotePrintableView },
 }
