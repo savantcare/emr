@@ -221,9 +221,15 @@ export default {
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock'
+
+          // Goal: the highest lock or unlock should the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
+          this.dCurrentValueOnTheSlider = markPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock'
+
+          // Goal: the highest lock or unlock should the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
+          this.dCurrentValueOnTheSlider = markPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-warning-outline'
