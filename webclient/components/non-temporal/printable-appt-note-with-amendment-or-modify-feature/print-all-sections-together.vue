@@ -456,7 +456,7 @@ import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointm
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-all-sections-together.vue'
 
 // smaller sections
-import serviceStatementPageSection from './print-service-statement-section.vue'
+import serviceStatementPageSection from './section-5-service-statement.vue'
 
 // Library
 import moment from 'moment'
