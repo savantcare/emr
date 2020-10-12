@@ -3,11 +3,12 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
   <div>
-    <!-- TODO: need to move it to init file 
+    <!-- 
       To use vue-slider the key concepts are 
       A "slider" has many "marks". Each mark is of the format "number:text"
 
 ```
+The object being sent to vue-slider looks like this:
 {0: "el-icon-lock", 20: "el-icon-circle-close", 40: "el-icon-circle-close", 60: "el-icon-remove-outline", 80: "el-icon-unlock", __ob__: Observer}
 0: "el-icon-lock"
 20: "el-icon-circle-close"
@@ -17,7 +18,7 @@ https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 __ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
 __proto__: Object
 ```   
-        Each mark has 3 things associated with it:L
+        Each mark has 3 things associated with it:
           1. label 
           2. dot
           3. Tooltip
@@ -37,7 +38,8 @@ __proto__: Object
       :style="sendCssVariablesForIconColorAndSizeToStyleSheet"
     >
       <template v-slot:label="{ label, active }">
-        <!-- Label stores the icon for this type of appointment-->
+        <!-- Goal: By default each marker has a label. The label is the text displayed below the marker. Instead of text I want to display a icon 
+        Label stores the icon for this type of appointment-->
         <button
           type="button"
           @click="mfHandleUserGeneratedSliderEvent"
@@ -45,6 +47,7 @@ __proto__: Object
           :class="`el-button el-button--default is-plain ${label}`"
         ></button>
       </template>
+      <!-- This slot shows a dot at the current selected point ion the slider. I just highlight the icon below the slider. So i do not need this -->
       <template v-slot:dot="{ value, focus }">
         <div></div>
       </template>
