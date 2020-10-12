@@ -26,6 +26,7 @@
         <el-button-group class="h1" style="display: none">
           <el-button
             class="el-icon-document-copy"
+            @click="sendEventToShow2Notes"
             style="padding: 3px; color: #c0c4cc; border: none"
           ></el-button>
           <el-button
@@ -51,6 +52,7 @@ export default {
   },
   methods: {
     sendEventToShow2Notes() {
+      console.log('event sent')
       this.$root.$emit('event-from-print-note-header-show-comparison-drawer')
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {

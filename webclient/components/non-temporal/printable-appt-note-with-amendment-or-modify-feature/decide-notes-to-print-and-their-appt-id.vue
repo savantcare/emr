@@ -29,11 +29,15 @@ export default {
 
   components: { apptNotePrintableView },
 
-  created() {
-    let eventName = ['event-from-print-note-header-show-comparison-drawer']
-    this.$root.$on((eventName) => {
-      this.dUidrawerToShowComparisonOf2Notes = true
-    })
+  mounted: function () {
+    console.log('defining event')
+    this.$root.$on(
+      'event-from-print-note-header-show-comparison-drawer',
+      (pClientSideUniqRowId) => {
+        console.log('event recd')
+        this.dUidrawerToShowComparisonOf2Notes = true
+      }
+    )
   },
   computed: {
     cfGetApptId() {
