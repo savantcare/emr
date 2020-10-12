@@ -99,7 +99,8 @@ export default {
       for (let i = 0; i < clientSideArray.length; i++) {
         if (clientSideArray[i]['clientSideUniqRowId'] > this.propApptId) {
           const updateState = clientSideTblOfLeftSideViewCards.update({
-            currentDisplayStateOfComponent: 2,
+            clientSideUniqRowId: 2,
+            currentDisplayStateOfComponent: 1,
             parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
         }
