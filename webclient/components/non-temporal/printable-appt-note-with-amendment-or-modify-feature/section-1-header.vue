@@ -2,20 +2,20 @@
   <el-row type="flex" justify="space-between">
     <el-col :span="4"
       ><div class="grid-content">
-        <el-button-group class="h1" style="float: left; display: none">
-          <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
+        <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
+          <el-button-group class="h1" style="float: left; display: none">
             <el-button
               @click="mfLeftArrowClickedLetUsGoToPrevAppt"
               class="el-icon-arrow-left"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
-          </div>
-          <el-button
-            class="el-icon-document-copy"
-            @click="sendEventToShow2Notes"
-            style="padding: 3px; color: #c0c4cc; border: none"
-          ></el-button>
-        </el-button-group>
+            <el-button
+              class="el-icon-document-copy"
+              @click="sendEventToShow2Notes"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+          </el-button-group>
+        </div>
       </div>
     </el-col>
     <el-col :span="16"
@@ -25,21 +25,22 @@
     >
     <el-col :span="4"
       ><div class="grid-content">
-        <el-button-group class="h1" style="display: none">
-          <el-button
-            class="el-icon-document-copy"
-            @click="sendEventToShow2Notes"
-            style="padding: 3px; color: #c0c4cc; border: none"
-          ></el-button>
-          <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
+        <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
+          <el-button-group class="h1" style="display: none">
+            <el-button
+              class="el-icon-document-copy"
+              @click="sendEventToShow2Notes"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
             <el-button
               class="el-icon-arrow-right"
               style="padding: 3px; color: #c0c4cc; border: none"
               @click="mfRightArrowClickedLetUsGoToNextAppt"
             ></el-button>
-          </div>
-        </el-button-group></div
-    ></el-col>
+          </el-button-group>
+        </div>
+      </div>
+    </el-col>
   </el-row>
 </template>
 
