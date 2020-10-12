@@ -15,3 +15,6 @@ This video covers:
 
 1. How to compare two appointment notes side-by-side
 2. How to trigger and receive event in vue app
+
+How to make A4 responsive:
+https://stackoverflow.com/questions/45544221/responsive-a4-css-code
