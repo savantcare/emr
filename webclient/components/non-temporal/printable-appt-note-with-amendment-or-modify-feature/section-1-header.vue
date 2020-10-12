@@ -56,9 +56,33 @@ export default {
   },
   computed: {
     isThisLastAppointmentInLockedOrUnlockedState() {
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > this.propApptId) {
+          return 'no'
+        }
+      }
       return 'yes'
     },
     isThisFirstAppointmentInLockedOrUnlockedState() {
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < this.propApptId) {
+          return 'no'
+        }
+      }
       return 'yes'
     },
   },
