@@ -71,9 +71,7 @@
     </div>
 
     <!-- SECTION 5 Service statement -->
-    <serviceStatementPageSection
-      :propApptId="appointmentIdForThisNote"
-    ></serviceStatementPageSection>
+    <serviceStatementPageSection :propApptId="propShowNoteForApptId"></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
@@ -479,7 +477,6 @@ export default {
       drawerToShowComparisonOf2Notes: false,
       lastComparisonReminderArrayReceived: null,
       reminderArray: null,
-      appointmentIdForThisNote: 0,
     }
   },
   props: {
@@ -504,24 +501,20 @@ export default {
 
     // Goal1 -> Find the appt ID chosen by the user
 
-    this.appointmentIdForThisNote = this.propShowNoteForApptId
-
-    if (!this.appointmentIdForThisNote) return
+    if (!this.propShowNoteForApptId) return
 
     /* Goal: Show green around data that has been added. Red around data that has been deleted */
     // Finding the prev and next appt ID
 
     // get appt details from appt table
-    console.log(this.appointmentIdForThisNote)
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(
-      this.appointmentIdForThisNote
-    )
+    console.log(this.propShowNoteForApptId)
+    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
   },
   computed: {
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
-        .where('appointmentId', this.appointmentIdForThisNote)
+        .where('appointmentId', this.propShowNoteForApptId)
         .orderBy('ROW_START', 'asc')
         .get()
 
@@ -713,7 +706,7 @@ export default {
     mfSaveAddendum(pAddendumData, component) {
       clientSideTblOfAddendums.insert({
         data: {
-          appointmentId: this.appointmentIdForThisNote,
+          appointmentId: this.propShowNoteForApptId,
           component: component,
           description: pAddendumData,
           ROW_START: Math.floor(Date.now()),
