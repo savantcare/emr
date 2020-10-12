@@ -8,7 +8,7 @@
     </el-drawer>
 
     <div>
-      <apptNotePrintableView :propShowNoteForApptId="apptIdForWhichNoteNeedsToBeShown" key="5" />
+      <apptNotePrintableView :propShowNoteForApptId="cfGetApptId" :key="cfGetApptId" />
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
       apptIdForWhichNoteNeedsToBeShown: 0,
     }
   },
+
+  components: { apptNotePrintableView },
+
   created() {
     let eventName = [
       'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer',
@@ -33,40 +36,46 @@ export default {
     this.$root.$on(eventName, (pRowId) => {
       this.dUidrawerToShowComparisonOf2Notes = true
     })
+  },
+  computed: {
+    cfGetApptId() {
+      // this needs to be in a computed fn since clicking prev or next will change the value in DB and then the note needs to get update
 
-    /* get the appointment ID for which the printable note needs to be shown
+      /* Goal : Get the appointment ID for which the printable note needs to be shown
        Possibilities
        1. parametersGivenToComponentBeforeMounting has a value or has 0
        2. If parametersGivenToComponentBeforeMounting is 0 then take the highest appt ID
       */
 
-    const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
 
-    console.log(apptNoteComponentObj)
+      console.log(apptNoteComponentObj)
 
-    let apptIdForWhichNoteNeedsToBeShown = 0
-    apptIdForWhichNoteNeedsToBeShown =
-      apptNoteComponentObj['parametersGivenToComponentBeforeMounting']
+      let apptIdForWhichNoteNeedsToBeShown = 0
+      apptIdForWhichNoteNeedsToBeShown =
+        apptNoteComponentObj['parametersGivenToComponentBeforeMounting']
 
-    console.log(apptIdForWhichNoteNeedsToBeShown)
-
-    if (apptIdForWhichNoteNeedsToBeShown > 0) {
-    } else {
-      const apptObj = clientSideTblOfAppointments
-        .query()
-        .where('apptStatus', 'locked')
-        .orWhere('apptStatus', 'unlocked')
-        .orderBy('clientSideUniqRowId', 'desc')
-        .get()
-      apptIdForWhichNoteNeedsToBeShown = apptObj[0]['clientSideUniqRowId']
       console.log(apptIdForWhichNoteNeedsToBeShown)
-    }
-    this.apptIdForWhichNoteNeedsToBeShown = apptIdForWhichNoteNeedsToBeShown
 
-    console.log(this.apptIdForWhichNoteNeedsToBeShown)
+      if (apptIdForWhichNoteNeedsToBeShown > 0) {
+      } else {
+        const apptObj = clientSideTblOfAppointments
+          .query()
+          .where('apptStatus', 'locked')
+          .orWhere('apptStatus', 'unlocked')
+          .orderBy('clientSideUniqRowId', 'desc')
+          .get()
+        apptIdForWhichNoteNeedsToBeShown = apptObj[0]['clientSideUniqRowId']
+        console.log(apptIdForWhichNoteNeedsToBeShown)
+      }
+      this.apptIdForWhichNoteNeedsToBeShown = apptIdForWhichNoteNeedsToBeShown
 
-    if (!this.apptIdForWhichNoteNeedsToBeShown) return false
+      console.log(this.apptIdForWhichNoteNeedsToBeShown)
+
+      if (!this.apptIdForWhichNoteNeedsToBeShown) return 0
+
+      return this.apptIdForWhichNoteNeedsToBeShown
+    },
   },
-  components: { apptNotePrintableView },
 }
 </script>
