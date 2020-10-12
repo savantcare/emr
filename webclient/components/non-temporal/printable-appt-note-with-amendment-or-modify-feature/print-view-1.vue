@@ -46,7 +46,7 @@
     <h3>Age: 42</h3>
 
     <!-- SECTION 3 -->
-    <h3>Appt Date: {{ cfGetpatientCurrentApptObj }}</h3>
+    <h3>Appt Date: {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}</h3>
     <div v-if="debug">
       Debug data. <br />
       1) Appt start time is ->
@@ -489,13 +489,28 @@ export default {
     },
   },
   components: { apptNotePrintableView, serviceStatementPageSection },
-  mounted() {
+  async mounted() {
     // catch event
     let eventName = ['event-from-ct-note-print-view-1-data-to-show-diff']
     this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
       if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
       this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
     })
+
+    // Goal1 -> Find the appt ID chosen by the user
+
+    this.appointmentIdForThisNote = this.propShowNoteForApptId
+
+    if (!this.appointmentIdForThisNote) return
+
+    /* Goal: Show green around data that has been added. Red around data that has been deleted */
+    // Finding the prev and next appt ID
+
+    // get appt details from appt table
+    console.log(this.appointmentIdForThisNote)
+    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(
+      this.appointmentIdForThisNote
+    )
   },
   computed: {
     cfArOfAddendumForDisplay() {
@@ -518,54 +533,6 @@ export default {
        * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
        */
       return (component) => arAddendums[`${component}`]
-    },
-    async cfGetpatientCurrentApptObj() {
-      // Goal1 -> Find the appt ID chosen by the user
-      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
-
-      console.log(apptNoteComponentObj)
-
-      let apptIdForWhichNoteNeedsToBeShown = 0
-
-      /* Possibilities
-          1. This has been called with some props
-          2. If parametersGivenToComponentBeforeMounting is 0 then take the highest appt ID
-          3. parametersGivenToComponentBeforeMounting has a value or has 0
-      */
-
-      if (this.propShowNoteForApptId) {
-        apptIdForWhichNoteNeedsToBeShown = this.propShowNoteForApptId
-      } else {
-        apptIdForWhichNoteNeedsToBeShown =
-          apptNoteComponentObj['parametersGivenToComponentBeforeMounting']
-        if (apptIdForWhichNoteNeedsToBeShown > 0) {
-        } else {
-          const apptObj = clientSideTblOfAppointments
-            .query()
-            .where('apptStatus', 'locked')
-            .orWhere('apptStatus', 'unlocked')
-            .orderBy('clientSideUniqRowId', 'desc')
-            .get()
-          apptIdForWhichNoteNeedsToBeShown = apptObj[0]['clientSideUniqRowId']
-          console.log(apptIdForWhichNoteNeedsToBeShown)
-        }
-      }
-
-      console.log(apptIdForWhichNoteNeedsToBeShown)
-
-      this.appointmentIdForThisNote = apptIdForWhichNoteNeedsToBeShown
-      /* Goal: Show green around data that has been added. Red around data that has been deleted */
-      // Finding the prev and next appt ID
-
-      // get appt details from appt table
-      this.patientCurrentApptObj = await clientSideTblOfAppointments.find(
-        apptIdForWhichNoteNeedsToBeShown
-      )
-
-      console.log(this.patientCurrentApptObj)
-
-      const apptStartMilliSeconds = this.patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
-      return moment(apptStartMilliSeconds).format('MMM DD YYYY HH:mm') // parse integer
     },
     cfGetReminderStyle() {
       // send event for others what my reminder array looks like
