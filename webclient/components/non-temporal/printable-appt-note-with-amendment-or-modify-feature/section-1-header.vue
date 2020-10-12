@@ -88,7 +88,7 @@ export default {
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
         })
-        .where('clientSideUniqRowId', (value) => parseint(value) < apptIdForWhichNoteNeedsToBeShown)
+        .where('clientSideUniqRowId', (value) => parseint(value) > this.propApptId)
         .get()
 
       */

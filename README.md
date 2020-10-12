@@ -19,8 +19,7 @@ Todo:
 2. Only do for reminders. For the unlocked note the amendment icon will not be there. Instead of the amendment icon, show row level and card level actions on mouseover.
 3. For appt note of multiple pages there is contnet overflow. Similar question answered on stackoverflow at: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
 4. Dont show prev and next if it is the first or last note.
-5. Slider value does not change when prev and next inside note is clicked
-6. Content assist @vikas
+5. Content assist @vikas
 
 Asked question on internet:
 
