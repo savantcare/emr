@@ -22,7 +22,7 @@ export default {
       data: {
         name: 'Appt note',
         componentToShowPath:
-          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/manage-appt-id-and-number-of-print-notes.vue',
+          'non-temporal/printable-appt-note-with-amendment-or-modify-feature/manage-print-notes-and-their-appt-id.vue',
         currentDisplayStateOfComponent: 1,
         parametersGivenToComponentBeforeMounting: 0,
       },
