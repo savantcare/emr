@@ -85,7 +85,7 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible2">
+          <el-popover placement="right" width="400" v-model="popoverVisible2">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -146,7 +146,7 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible3">
+          <el-popover placement="right" width="400" v-model="popoverVisible3">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -211,7 +211,7 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible4">
+          <el-popover placement="right" width="400" v-model="popoverVisible4">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -293,7 +293,7 @@
       <el-col :span="8"> <h3>Recommendations</h3> </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible5">
+          <el-popover placement="right" width="400" v-model="popoverVisible5">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -346,7 +346,7 @@
       <el-col :span="8"> <h3>Medications</h3> </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible6">
+          <el-popover placement="right" width="400" v-model="popoverVisible6">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -397,7 +397,7 @@
       <el-col :span="8"> <h3>Vitals</h3> </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="visible7">
+          <el-popover placement="right" width="400" v-model="popoverVisible7">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -467,12 +467,12 @@ export default {
       patientCurrentApptObj: {},
       debug: false,
       amendmentData: '',
-      visible2: false,
-      visible3: false,
-      visible4: false,
-      visible5: false,
-      visible6: false,
-      visible7: false,
+      popoverVisible2: false,
+      popoverVisible3: false,
+      popoverVisible4: false,
+      popoverVisible5: false,
+      popoverVisible6: false,
+      popoverVisible7: false,
       reminderDataAdded: null,
       drawerToShowComparisonOf2Notes: false,
       lastComparisonReminderArrayReceived: null,
