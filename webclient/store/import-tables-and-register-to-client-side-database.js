@@ -21,7 +21,7 @@ database.register(clientSideTblOfAppointments)
 database.register(clientSideTblOfAddendums)
 
 // table that decides which cards to show
-import tableStructureForLeftSideView from '~/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import tableStructureForLeftSideView from '~/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import tableStructureForRightSideView from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)

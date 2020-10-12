@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import clientSideTblOfViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/mts-table.js'
+import clientSideTblOfViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientSideTblOfViewCardsInsertData from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
 import clientSideTblCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
