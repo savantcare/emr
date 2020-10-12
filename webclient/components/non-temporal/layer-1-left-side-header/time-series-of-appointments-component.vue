@@ -37,11 +37,12 @@ __proto__: Object
       :style="sendCssVariablesForIconColorAndSizeToStyleSheet"
     >
       <template v-slot:label="{ label, active }">
+        <!-- Label stores the icon for this type of appointment-->
         <button
           type="button"
           @click="mfHandleUserGeneratedSliderEvent"
           style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
-          :class="`el-button el-button--default is-plain ${label} s-css-class-this-is-icon-of-default-action-in-this-card-header`"
+          :class="`el-button el-button--default is-plain ${label}`"
         ></button>
       </template>
       <template v-slot:dot="{ value, focus }">
