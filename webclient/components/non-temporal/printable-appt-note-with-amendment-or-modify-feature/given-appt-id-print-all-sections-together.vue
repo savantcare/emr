@@ -32,73 +32,15 @@
       </div>
     </div>
 
-    <!-- SECTION 5 Service statement -->
+    <!-- SECTION 6 Service statement -->
     <serviceStatementPrintSection
       :propApptId="propShowNoteForApptId"
     ></serviceStatementPrintSection>
+    <mentalStatusExamPrintSection
+      :propApptId="propShowNoteForApptId"
+    ></mentalStatusExamPrintSection>
 
-    <!-- SECTION 6 MENTAL STATUS EXAM-->
-    <el-row
-      type="flex"
-      justify="left"
-      class="mseh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
-    >
-      <el-col :span="8">
-        <h3>Mental status exam</h3>
-      </el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible2">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'mentalStatusExam')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              size="mini"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            >
-            </el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
-    </div>
-    <br />
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('mentalStatusExam') &&
-        cfArOfAddendumForDisplay('mentalStatusExam').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('mentalStatusExam')"
-        :key="row.clientSideUniqRowId"
-      >
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
-    <!-- SECTION 7 Psych review of systems  -->
+    <!-- SECTION 8 Psych review of systems  -->
     <el-row
       type="flex"
       justify="left"
@@ -163,7 +105,7 @@
       </div>
     </div>
 
-    <!-- SECTION 8 REMINDERS -->
+    <!-- SECTION 9 REMINDERS -->
     <el-row
       type="flex"
       justify="left"
@@ -247,7 +189,7 @@
       </div>
     </div>
 
-    <!-- SECTION 9: Recommendations -->
+    <!-- SECTION 10: Recommendations -->
     <el-row
       type="flex"
       justify="left"
@@ -300,7 +242,7 @@
         </div>
       </div>
     </div>
-    <!-- SECTION 10: Medications -->
+    <!-- SECTION 11: Medications -->
     <el-row
       type="flex"
       justify="left"
@@ -351,7 +293,7 @@
       </div>
     </div>
 
-    <!-- SECTION 11 -->
+    <!-- SECTION 12 -->
     <el-row
       type="flex"
       justify="left"
@@ -397,7 +339,7 @@
       </div>
     </div>
 
-    <!-- SECTION 12 -->
+    <!-- SECTION 13 -->
     <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
       <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
     </div>
@@ -408,7 +350,6 @@
 
 <script>
 import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
@@ -421,9 +362,10 @@ import apptNotePrintableView from '@/components/non-temporal/printable-appt-note
 
 // smaller sections
 import headerPrintSection from './section-1-header.vue'
-import namePrintSection from './section-1-name.vue'
-import agePrintSection from './section-2-age.vue'
-import serviceStatementPrintSection from './section-5-service-statement.vue'
+import namePrintSection from './section-2-name.vue'
+import agePrintSection from './section-3-age.vue'
+import serviceStatementPrintSection from './section-6-service-statement.vue'
+import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
 
 // Library
 import moment from 'moment'
@@ -463,6 +405,7 @@ export default {
     namePrintSection,
     agePrintSection,
     headerPrintSection,
+    mentalStatusExamPrintSection,
   },
   async created() {
     // catch event
@@ -549,25 +492,6 @@ export default {
       this.reminderArray = userSelectedApptReminderArray
       return userSelectedApptReminderArray
     },
-    cfArOfMentalStatusExamForDisplay() {
-      let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
-          .query()
-          .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
-          .query()
-          .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
-          .get()
-      }
-      return arOfObjectsFromClientSideDB
-    },
-
     cfArOfPsychReviewOfSystemsForDisplay() {
       let arOfObjectsFromClientSideDB = []
       if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
@@ -666,10 +590,6 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal5: Give a line break before and after the element */
   display: block;
-}
-
-.mseh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
 }
 
 .prosh3:hover .el-icon-edit-outline {
