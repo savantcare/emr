@@ -89,9 +89,9 @@ export default {
     }
   },
   mounted: function () {
-    let eventName = ['event-with-new-value-of-slider']
+    let eventName = ['incoming-event-with-new-value-of-slider']
     this.$root.$on(eventName, (pNewValueOfSlider) => {
-      this.dCurrentValueOnTheSlider = pNewValueOfSlider
+      this.dCurrentValueOnTheSlider = 0
     })
   },
   computed: {
