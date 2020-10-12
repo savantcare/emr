@@ -39,11 +39,9 @@
       ></el-col>
     </el-row>
 
-    <!-- SECTION 1 -->
-    <h3 style="padding-top: 20px">Name: Vikas K</h3>
+    <namePrintSection> </namePrintSection>
 
-    <!-- SECTION 2 -->
-    <h3>Age: 42</h3>
+    <agePrintSection> </agePrintSection>
 
     <!-- SECTION 3 -->
     <h3>Appt Date: {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}</h3>
@@ -71,7 +69,9 @@
     </div>
 
     <!-- SECTION 5 Service statement -->
-    <serviceStatementPageSection :propApptId="propShowNoteForApptId"></serviceStatementPageSection>
+    <serviceStatementPrintSection
+      :propApptId="propShowNoteForApptId"
+    ></serviceStatementPrintSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
@@ -456,7 +456,9 @@ import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointm
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/print-all-sections-together.vue'
 
 // smaller sections
-import serviceStatementPageSection from './section-5-service-statement.vue'
+import serviceStatementPrintSection from './section-5-service-statement.vue'
+import namePrintSection from './section-1-name.vue'
+import agePrintSection from './section-2-age.vue'
 
 // Library
 import moment from 'moment'
@@ -490,7 +492,12 @@ export default {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
   },
-  components: { apptNotePrintableView, serviceStatementPageSection },
+  components: {
+    apptNotePrintableView,
+    serviceStatementPrintSection,
+    namePrintSection,
+    agePrintSection,
+  },
   async created() {
     // catch event
     let eventName = ['event-from-ct-note-print-all-sections-together.vue-data-to-show-diff']
