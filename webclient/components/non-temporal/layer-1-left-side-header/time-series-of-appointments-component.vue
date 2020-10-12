@@ -215,20 +215,20 @@ export default {
           markPoint = Math.round(percentage)
         }
 
-        // get the labelAtEachMark for that slider mark
+        // Goal: Get the icon to show at each slider mark
         let labelAtEachMarkUsedToStoreIconClass = ''
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock'
 
-          // Goal: the highest lock or unlock should the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
+          // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
           this.dCurrentValueOnTheSlider = markPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock'
 
-          // Goal: the highest lock or unlock should the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
+          // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
           this.dCurrentValueOnTheSlider = markPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
@@ -241,11 +241,13 @@ export default {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-circle-close'
         }
 
+        // Goal: For some appts user does not want to see the slider mark. Hence skip those
         if (this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
         } else {
           this.dMarksOnSlider[markPoint] = labelAtEachMarkUsedToStoreIconClass
         }
 
+        // Goal: For each markpoint store 1. Appt ID 2. Appt status 3. Appt Calendar time
         this.dClientSideUniqRowIdAtEachSliderMark[
           markPoint
         ] = this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId']
