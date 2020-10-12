@@ -90,14 +90,14 @@ export default {
     }
   },
   props: {
-    propApptID: Number,
+    propApptId: Number,
   },
   async mounted() {
-    console.log('== FROM SS ==', this.propApptID)
-    if (this.propApptID === 0) {
+    console.log('== FROM SS ==', this.propApptId)
+    if (this.propApptId === 0) {
       return
     }
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptID)
+    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
     console.log(this.patientCurrentApptObj)
   },
   methods: {
@@ -142,7 +142,7 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
-        .where('appointmentId', this.propApptID)
+        .where('appointmentId', this.propApptId)
         .orderBy('ROW_START', 'asc')
         .get()
 

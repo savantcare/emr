@@ -72,7 +72,7 @@
 
     <!-- SECTION 5 Service statement -->
     <serviceStatementPageSection
-      :propApptID="appointmentIdForThisNote"
+      :propApptId="appointmentIdForThisNote"
     ></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
