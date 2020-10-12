@@ -71,7 +71,9 @@
     </div>
 
     <!-- SECTION 5 Service statement -->
-    <serviceStatementPageSection :propApptId="5"></serviceStatementPageSection>
+    <serviceStatementPageSection
+      :propApptId="appointmentIdForThisNote"
+    ></serviceStatementPageSection>
 
     <!-- SECTION 6 MENTAL STATUS EXAM-->
     <el-row
