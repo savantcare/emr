@@ -94,6 +94,9 @@ export default {
   },
   async mounted() {
     console.log('== FROM SS ==', this.propApptID)
+    if (this.propApptID === 0) {
+      return
+    }
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptID)
     console.log(this.patientCurrentApptObj)
   },

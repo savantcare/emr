@@ -521,17 +521,34 @@ export default {
     },
     async cfGetpatientCurrentApptObj() {
       // Goal1 -> Find the appt ID chosen by the user
-      const apptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
 
-      console.log(apptNoteComponentVisibilityCurrentValue)
+      console.log(apptNoteComponentObj)
 
       let apptIdForWhichNoteNeedsToBeShown = 0
+
+      /* Possibilities
+          1. This has been called with some props
+          2. If parametersGivenToComponentBeforeMounting is 0 then take the highest appt ID
+          3. parametersGivenToComponentBeforeMounting has a value or has 0
+      */
 
       if (this.propShowNoteForApptId) {
         apptIdForWhichNoteNeedsToBeShown = this.propShowNoteForApptId
       } else {
         apptIdForWhichNoteNeedsToBeShown =
-          apptNoteComponentVisibilityCurrentValue['parametersGivenToComponentBeforeMounting']
+          apptNoteComponentObj['parametersGivenToComponentBeforeMounting']
+        if (apptIdForWhichNoteNeedsToBeShown > 0) {
+        } else {
+          const apptObj = clientSideTblOfAppointments
+            .query()
+            .where('apptStatus', 'locked')
+            .orWhere('apptStatus', 'unlocked')
+            .orderBy('clientSideUniqRowId', 'desc')
+            .get()
+          apptIdForWhichNoteNeedsToBeShown = apptObj[0]['clientSideUniqRowId']
+          console.log(apptIdForWhichNoteNeedsToBeShown)
+        }
       }
 
       console.log(apptIdForWhichNoteNeedsToBeShown)

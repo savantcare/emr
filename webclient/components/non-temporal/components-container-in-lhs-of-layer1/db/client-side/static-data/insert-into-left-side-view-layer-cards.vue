@@ -24,7 +24,7 @@ export default {
         componentToShowPath:
           'non-temporal/printable-appt-note-with-amendment-or-modify-feature/component-to-display-one-note-or-two-appt-notes-together.vue',
         currentDisplayStateOfComponent: 1,
-        parametersGivenToComponentBeforeMounting: 5,
+        parametersGivenToComponentBeforeMounting: 0,
       },
     })
     clientSideTblOfLeftSideCards.insert({
