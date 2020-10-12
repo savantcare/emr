@@ -88,7 +88,12 @@ export default {
       value: 0,
     }
   },
-  mounted: function () {},
+  mounted: function () {
+    let eventName = ['event-with-new-value-of-slider']
+    this.$root.$on(eventName, (pNewValueOfSlider) => {
+      this.dCurrentValueOnTheSlider = pNewValueOfSlider
+    })
+  },
   computed: {
     sendCssVariablesForIconColorAndSizeToStyleSheet() {
       /* Goal: 1. Make icon selected on slider bigger 2. Give the selected icon a vibrant color and remove the grey color from the selected icon */

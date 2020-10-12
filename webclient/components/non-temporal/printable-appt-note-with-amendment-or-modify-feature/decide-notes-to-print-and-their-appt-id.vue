@@ -33,7 +33,7 @@ export default {
     let eventName = [
       'event-from-ct-note-given-appt-id-print-all-sections-together.vue-show-comparison-drawer',
     ]
-    this.$root.$on(eventName, (pRowId) => {
+    this.$root.$on((eventName) => {
       this.dUidrawerToShowComparisonOf2Notes = true
     })
   },
