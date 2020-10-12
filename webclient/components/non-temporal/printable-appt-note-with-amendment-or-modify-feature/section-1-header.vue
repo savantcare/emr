@@ -70,7 +70,10 @@ export default {
             currentDisplayStateOfComponent: 1,
             parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
-          this.$root.$emit('incoming-event-with-new-value-of-slider', 10)
+          this.$root.$emit(
+            'incoming-event-with-new-value-of-slider',
+            clientSideArray[i]['clientSideUniqRowId']
+          )
         }
       }
       return
@@ -104,6 +107,10 @@ export default {
             currentDisplayStateOfComponent: 1,
             parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
+          this.$root.$emit(
+            'incoming-event-with-new-value-of-slider',
+            clientSideArray[i]['clientSideUniqRowId']
+          )
         }
       }
       return

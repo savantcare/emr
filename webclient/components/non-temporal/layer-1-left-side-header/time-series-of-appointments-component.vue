@@ -90,8 +90,11 @@ export default {
   },
   mounted: function () {
     let eventName = ['incoming-event-with-new-value-of-slider']
-    this.$root.$on(eventName, (pNewValueOfSlider) => {
-      this.dCurrentValueOnTheSlider = 0
+    this.$root.$on(eventName, (pClientSideUniqRowId) => {
+      for (var key of Object.keys(this.dClientSideUniqRowIdAtEachSliderMark)) {
+        if (this.dClientSideUniqRowIdAtEachSliderMark[key] === pClientSideUniqRowId)
+          this.dCurrentValueOnTheSlider = key
+      }
     })
   },
   computed: {
