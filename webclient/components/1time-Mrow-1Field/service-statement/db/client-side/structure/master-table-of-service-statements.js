@@ -11,13 +11,13 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
-  static primaryKey = 'serviceStatementMasterId'
+  static primaryKey = 'serviceStatementFieldIdFromServiceStatementMaster'
 
   static fields() {
     return {
       ...super.fields(),
 
-      serviceStatementMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      serviceStatementFieldIdFromServiceStatementMaster: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementDescription: this.string(null),
       serviceStatementCategory: this.string(null),
 
@@ -33,7 +33,7 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
       */
       tblServiceStatementsForPatientLink: this.hasOne(
         serviceStatementsForPatientClass,
-        'serviceStatementMasterId'
+        'serviceStatementFieldIdFromServiceStatementMaster'
       ),
     }
   }

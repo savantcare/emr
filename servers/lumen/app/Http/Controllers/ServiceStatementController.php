@@ -25,81 +25,44 @@ class ServiceStatementController extends Controller
         return response()->json(ServiceStatement::find($pServerSideRowUuid));
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
         
         $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUuid' => $requestData['data']['ptUuid'],
+            'patientUuid' => $requestData['data']['patientUuid'],
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
        
-        $ServiceStatement = ServiceStatement::insertGetId($serviceStatementData);
-
-        $channel = 'MsgFromSktForServiceStatementToAdd';
-        $message = array(
-            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        // $ServiceStatement = ServiceStatement::create($request->all());
-        return response()->json($ServiceStatement, 201);
+        $serviceStatement = ServiceStatement::insertGetId($serviceStatementData);
+        // $serviceStatement = ServiceStatement::create($pRequest->all());
+        return response()->json($serviceStatement, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $ServiceStatement = ServiceStatement::findOrFail($serverSideRowUuid);
-        $ServiceStatement->update($request->all());
+        $serviceStatement = ServiceStatement::findOrFail($pServerSideRowUuid);
+        $serviceStatement->update($pRequest->all());
 
-        /**
-         * Send data to socket
-         */
-        $requestData = $request->all();
-        $channel = 'MsgFromSktForServiceStatementToChange';
-        $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
-            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        return response()->json($ServiceStatement, 200);
+        return response()->json($serviceStatement, 200);
     }
 
  
-    public function delete($serverSideRowUuid, Request $request)
+    public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $ServiceStatement = ServiceStatement::findOrFail($serverSideRowUuid);
-        $requestData = $request->all();
+        $serviceStatement = ServiceStatement::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
-            $ServiceStatement->update($updateData);
+            $serviceStatement->update($updateData);
         }
 
-        $ServiceStatement->delete();
-
-        /**
-         * Send data to socket
-         */
-        $channel = 'MsgFromSktForServiceStatementToDelete';
-        $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $serviceStatement->delete();
 
         return response('Deleted successfully', 200);
     }

@@ -8,18 +8,24 @@
     >
       {{ groupNameGivenAsIndex }}
       <div class="sc-service-statement-all-content-body">
-        <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
+        <div
+          v-for="ss in allServiceStatementsInsideAGroup"
+          :key="ss.serviceStatementFieldIdFromServiceStatementMaster"
+        >
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
-              @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
+              @click="mfToggleServiceStatement(ss.serviceStatementFieldIdFromServiceStatementMaster)"
               type="primary"
-              >{{ ss.serviceStatementDescription }}</el-button
-            >
+            >{{ ss.serviceStatementDescription }}</el-button>
           </div>
           <div v-else>
-            <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
+            <el-button
+              @click="mfToggleServiceStatement(ss.serviceStatementFieldIdFromServiceStatementMaster)"
+            >
+              {{
               ss.serviceStatementDescription
-            }}</el-button>
+              }}
+            </el-button>
           </div>
         </div>
       </div>
@@ -116,28 +122,59 @@ export default {
       }
       return false
     },
-    mfToggleServiceStatement(pServiceStatementMasterId) {
+    async mfToggleServiceStatement(pServiceStatementMasterId) {
+      
       // Goal1: Check if it already exists
       const exists = clientSideTblOfPatientServiceStatements
         .query()
-        .where('serviceStatementMasterId', pServiceStatementMasterId)
+        .where('serviceStatementFieldIdFromServiceStatementMaster', pServiceStatementMasterId)
         .where('ROW_END', 2147483648000)
         .get()
-
-      if (exists.length > 0) {
-        clientSideTblOfPatientServiceStatements.update({
-          where: exists[0].clientSideUniqRowId,
-          data: {
-            ROW_END: Math.floor(Date.now()),
+      
+      if (exists.length > 0) {     
+        const rowToUpsert = clientSideTblOfPatientServiceStatements.find(pServiceStatementMasterId);
+        const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
           },
+          body: JSON.stringify({
+            rowToUpsert,
+          }),
         })
-      } else {
-        clientSideTblOfPatientServiceStatements.insert({
+        if (response.status === 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: exists[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+        }
+
+      } else {        
+        
+        const clientSideTblOfPatientServiceStatementsRow = await clientSideTblOfPatientServiceStatements.insert({
           data: {
-            serviceStatementMasterId: pServiceStatementMasterId,
+            serviceStatementFieldIdFromServiceStatementMaster: pServiceStatementMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          // "Authorization": "Bearer " + TOKEN
+        },
+        body: JSON.stringify({
+          data:{
+            serverSideRowUuid:clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
+            patientUuid:'bfe041fa-073b-4223-8c69-0540ee678ff8',
+            serviceStatementFieldIdFromServiceStatementMaster:pServiceStatementMasterId,
+            recordChangedByUuid:'bua674fa-073b-4223-8c69-0540ee786kj8'
+          },
+        }),
+      })
       }
     },
 

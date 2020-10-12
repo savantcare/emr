@@ -36,8 +36,7 @@
             plain
             @click="mfIconDeleteClickedOnChildCard(serviceStatement.clientSideUniqRowId)"
             class="el-icon-circle-close"
-          >
-          </el-button>
+          ></el-button>
         </el-tooltip>
         <el-tooltip
           class="item"
@@ -50,8 +49,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             class="el-icon-discover"
-          >
-          </el-button>
+          ></el-button>
         </el-tooltip>
       </el-button-group>
 
@@ -61,13 +59,11 @@
           Why we are doing this?
             Doctor is sitting infront of computer suddenly a new serviceStatement appears. That is a confusing event.
             Instead if the new serviceStatement that came on screen gets a orange border with top right corner saying "New serviceStatement added from socket" that is much better UX.
-          -->
-      <div v-if="serviceStatement.vnRowStateInSession === 9">
-        Added from socket {{ serviceStatement.description }}
-      </div>
-      <div v-else>
-        {{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}
-      </div>
+      -->
+      <div
+        v-if="serviceStatement.vnRowStateInSession === 9"
+      >Added from socket {{ serviceStatement.description }}</div>
+      <div v-else>{{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}</div>
     </el-card>
   </showContentInCardComponent>
 </template>
@@ -85,7 +81,7 @@ export default {
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-
+      console.log("here",arOfObjectsFromClientSideDB);
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +

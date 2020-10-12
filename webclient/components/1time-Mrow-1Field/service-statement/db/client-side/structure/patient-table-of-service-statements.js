@@ -25,7 +25,8 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table serviceStatementMasterId = 2 */
-      serviceStatementMasterId: this.uid(() => uuidv1()), // This is service statement ID assigned to this patient coming from master table
+      serverSideRowUuid: this.uid(() => uuidv1()),
+      serviceStatementFieldIdFromServiceStatementMaster: this.uid(() => uuidv1()), // This is service statement ID assigned to this patient coming from master table
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -52,8 +53,8 @@ export default class serviceStatementsForPatientClass extends clientSideTableMan
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
       tblServiceStatementsMasterLink: this.belongsTo(
         serviceStatementsMasterClass,
-        'serviceStatementMasterId',
-        'serviceStatementMasterId'
+        'serviceStatementFieldIdFromServiceStatementMaster',
+        'serviceStatementFieldIdFromServiceStatementMaster'
       ),
     }
   }
