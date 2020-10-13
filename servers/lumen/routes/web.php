@@ -193,4 +193,23 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+    // NAME
+    $router->get('name/v20/{pServerSideRowUuid}', ['uses' => 'NameController@getUserFullName']);
+    $router->put('name/v20/{pServerSideRowUuid}', ['uses' => 'NameController@update']);
+    $router->options('name/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // DATE OF BIRTH
+    $router->get('date-of-birth/v20/{pServerSideRowUuid}', ['uses' => 'DateOfBirthController@getUserDateOfBirth']);
+    $router->put('date-of-birth/v20/{pServerSideRowUuid}', ['uses' => 'DateOfBirthController@update']);
+    $router->options('date-of-birth/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
 });

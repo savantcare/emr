@@ -14,7 +14,7 @@ export default class ptName extends clientSideTableManage {
    static apiUrl = process.env.baseUrl + '/name'
    */
 
-  static apiUrl = 'http://localhost:3000/name'
+  static apiUrl = 'http://localhost:8000/public/api/name/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
