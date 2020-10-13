@@ -13,7 +13,7 @@
             <el-button
               v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
-              @click="sendEventToShow2Notes('prev')"
+              @click="setUpStateToCompare2Notes('prev')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
           </el-button-group>
@@ -33,7 +33,7 @@
             <el-button
               v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
-              @click="sendEventToShow2Notes('next')"
+              @click="setUpStateToCompare2Notes('next')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
             <el-button
@@ -100,88 +100,84 @@ export default {
     },
   },
   methods: {
-    sendEventToShow2Notes(pCompareWith) {
+    mfGetPrevApptId(pApptClientSideUniqRowId) {
+      let secondNoteForComparisonClientSideUniqRowId = 0
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientSideUniqRowId) {
+          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        }
+      }
+      return secondNoteForComparisonClientSideUniqRowId
+    },
+    mfGetNextApptId(pApptClientSideUniqRowId) {
+      let secondNoteForComparisonClientSideUniqRowId = 0
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
+          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        }
+      }
+      return secondNoteForComparisonClientSideUniqRowId
+    },
+    setUpStateToCompare2Notes(pCompareWithDirection) {
+      let comparisonId = 0
+
+      if (pCompareWithDirection === 'prev') {
+        comparisonId = this.mfGetPrevApptId(this.propApptId)
+      } else {
+        comparisonId = this.mfGetNextApptId(this.propApptId)
+      }
+
       const updateState = clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,
-        secondParameterGivenToComponentBeforeMounting: 5,
+        firstParameterGivenToComponentBeforeMounting: this.propApptId,
+        secondParameterGivenToComponentBeforeMounting: comparisonId,
       })
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       if (this.isThisNoteBeingCompared) {
-        this.$root.$emit(
-          'event-from-print-note-header-replace-me-with-another-note',
-          this.propApptId,
-          'prev'
-        )
         return
       }
-      const clientSideArray = clientSideTblOfAppointments
-        .query()
-        .where((record) => {
-          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-        })
-        .get()
 
-      for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] < this.propApptId) {
-          const updateState = clientSideTblOfLeftSideViewCards.update({
-            clientSideUniqRowId: 2,
-            currentDisplayStateOfComponent: 1,
-            firstParameterGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
-          })
-          this.$root.$emit(
-            'incoming-event-with-new-value-of-slider',
-            clientSideArray[i]['clientSideUniqRowId']
-          )
-        }
-      }
-      return
+      let comparisonId = 0
+      comparisonId = this.mfGetPrevApptId(this.propApptId)
+
+      const updateState = clientSideTblOfLeftSideViewCards.update({
+        clientSideUniqRowId: 2,
+        currentDisplayStateOfComponent: 1,
+        firstParameterGivenToComponentBeforeMounting: comparisonId,
+      })
+      this.$root.$emit('incoming-event-with-new-value-of-slider', comparisonId)
     },
+
     mfRightArrowClickedLetUsGoToNextAppt() {
-      // From appts table find if there is a ID greater then this in the state of locked or unlocked
-
-      /* TODO @raj The followijg query does not work
-      Becasue the query does not work I have to run another for loop in line 485
-      const clientSideArray = clientSideTblOfAppointments
-        .query()
-        .where((record) => {
-          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-        })
-        .where('clientSideUniqRowId', (value) => parseint(value) > this.propApptId)
-        .get()
-
-      */
       if (this.isThisNoteBeingCompared) {
-        this.$root.$emit(
-          'event-from-print-note-header-replace-me-with-another-note',
-          this.propApptId,
-          'next'
-        )
         return
       }
+      let comparisonId = 0
+      comparisonId = this.mfGetNextApptId(this.propApptId)
 
-      const clientSideArray = clientSideTblOfAppointments
-        .query()
-        .where((record) => {
-          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-        })
-        .get()
+      const updateState = clientSideTblOfLeftSideViewCards.update({
+        clientSideUniqRowId: 2,
+        currentDisplayStateOfComponent: 1,
+        firstParameterGivenToComponentBeforeMounting: comparisonId,
+      })
 
-      for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > this.propApptId) {
-          const updateState = clientSideTblOfLeftSideViewCards.update({
-            clientSideUniqRowId: 2,
-            currentDisplayStateOfComponent: 1,
-            firstParameterGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
-          })
-          this.$root.$emit(
-            'incoming-event-with-new-value-of-slider',
-            clientSideArray[i]['clientSideUniqRowId']
-          )
-        }
-      }
-      return
+      this.$root.$emit('incoming-event-with-new-value-of-slider', comparisonId)
     },
   },
 }
