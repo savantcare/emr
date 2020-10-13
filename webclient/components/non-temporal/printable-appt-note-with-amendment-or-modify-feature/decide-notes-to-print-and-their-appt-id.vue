@@ -1,24 +1,25 @@
 <template>
   <div>
-    <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
-      <el-row>
-        <el-col :span="12"
-          ><apptNotePrintableView
-            :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-            :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
-            key="2"
-          /> </el-col
-        ><el-col :span="12"
-          ><apptNotePrintableView
-            :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
-            :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
-            key="5"
-        /></el-col>
-      </el-row>
-    </el-drawer>
-
-    <div>
-      <apptNotePrintableView :propShowNoteForApptId="cfGetApptId" :key="cfGetApptId" />
+    <div v-if="cfNumberOfNotesToCompare > 1">
+      <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
+        <el-row>
+          <el-col :span="12"
+            ><apptNotePrintableView
+              :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+              :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
+              key="2"
+            /> </el-col
+          ><el-col :span="12"
+            ><apptNotePrintableView
+              :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
+              :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
+              key="5"
+          /></el-col>
+        </el-row>
+      </el-drawer>
+    </div>
+    <div v-else>
+      <apptNotePrintableView :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId" />
     </div>
   </div>
 </template>
@@ -77,26 +78,23 @@ export default {
     },
   },
   computed: {
-    cfGetApptId() {
-      // this needs to be in a computed fn since clicking prev or next will change the value in DB and then the note needs to get update
-
-      /* Goal : Get the appointment ID for which the printable note needs to be shown
-       Possibilities
-       1. firstParameterGivenToComponentBeforeMounting has a value or has 0
-       2. If firstParameterGivenToComponentBeforeMounting is 0 then take the highest appt ID
-      */
-
+    cfNumberOfNotesToCompare() {
+      let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
-
       console.log(apptNoteComponentObj)
 
-      let apptIdForWhichNoteNeedsToBeShown = 0
-      apptIdForWhichNoteNeedsToBeShown =
-        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']
+      if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']) {
+        numberOfNotesToCompare++
+        this.firstNoteForComparisonClientSideUniqRowId =
+          apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']
+      }
+      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
+        numberOfNotesToCompare++
+        this.secondNoteForComparisonClientSideUniqRowId =
+          apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']
+      }
 
-      console.log(apptIdForWhichNoteNeedsToBeShown)
-
-      if (apptIdForWhichNoteNeedsToBeShown > 0) {
+      if (this.firstNoteForComparisonClientSideUniqRowId > 0) {
       } else {
         const apptObj = clientSideTblOfAppointments
           .query()
@@ -104,16 +102,19 @@ export default {
           .orWhere('apptStatus', 'unlocked')
           .orderBy('clientSideUniqRowId', 'desc')
           .get()
-        apptIdForWhichNoteNeedsToBeShown = apptObj[0]['clientSideUniqRowId']
-        console.log(apptIdForWhichNoteNeedsToBeShown)
+
+        console.log(apptObj)
+
+        const updateState = clientSideTblOfLeftSideViewCards.update({
+          clientSideUniqRowId: 2,
+          currentDisplayStateOfComponent: 1,
+          firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],
+        })
+
+        this.firstNoteForComparisonClientSideUniqRowId = apptObj[0]['clientSideUniqRowId']
       }
-      this.apptIdForWhichNoteNeedsToBeShown = apptIdForWhichNoteNeedsToBeShown
 
-      console.log(this.apptIdForWhichNoteNeedsToBeShown)
-
-      if (!this.apptIdForWhichNoteNeedsToBeShown) return 0
-
-      return this.apptIdForWhichNoteNeedsToBeShown
+      return numberOfNotesToCompare
     },
   },
 }
