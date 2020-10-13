@@ -5,12 +5,10 @@
     <el-row
       type="flex"
       justify="left"
-      class="ssh3"
-      style="min-height: 53px; padding: 0rem; margin: 0rem"
+      class="ssh3 sectionHeader"
+      style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8">
-        <h3>Service statements</h3>
-      </el-col>
+      <el-col :span="8" class="sectionHeading">Service statements </el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -32,7 +30,7 @@
                 slot="reference"
                 class="el-icon-edit-outline"
                 size="mini"
-                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+                style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
               ></el-button>
             </el-popover>
           </div>
@@ -41,7 +39,7 @@
               class="el-icon-money"
               size="mini"
               @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
             ></el-button>
           </div>
         </div>
@@ -229,9 +227,11 @@ export default {
 <style scoped>
 .ssh3:hover .el-icon-edit-outline {
   display: inline-block !important;
+  position: absolute;
 }
 .ssh3:hover .el-icon-money {
   display: inline-block !important;
+  position: absolute;
 }
 h3 {
   border-bottom: 1px solid #1375b0;
@@ -239,5 +239,14 @@ h3 {
   width: 100%;
   float: none;
   display: flex;
+}
+.sectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #1375b0;
+}
+.sectionHeading {
+  font-size: 1rem;
+  font-weight: bold;
 }
 </style>
