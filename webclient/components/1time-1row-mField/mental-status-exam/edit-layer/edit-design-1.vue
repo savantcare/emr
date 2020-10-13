@@ -104,10 +104,10 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfCheckIfThisExistsInChildTable(pSS) {
+    mfCheckIfThisExistsInChildTable(pMSE) {
       // I am able to get the data from child table.
-      if (pSS.tblMentalStatusExamForPatientLink) {
-        if (pSS.tblMentalStatusExamForPatientLink.ROW_END === 2147483648000) {
+      if (pMSE.tblMentalStatusExamForPatientLink) {
+        if (pMSE.tblMentalStatusExamForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
