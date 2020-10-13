@@ -98,9 +98,7 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    console.log('== FROM MSE ==', this.propApptId)
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
-    console.log(this.patientCurrentApptObj)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {

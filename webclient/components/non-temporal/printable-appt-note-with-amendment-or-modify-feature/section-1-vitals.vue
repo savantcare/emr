@@ -1,9 +1,8 @@
 <template>
   <div>
     <h3>Vitals</h3>
-    Height
-    {{ mfGetHeightData(this.currentApptObj)[1] }} inches measured on:
-    {{ mfGetHeightData(this.currentApptObj)[0] }} <br />Weight
+    Height:
+    {{ mfGetHeightData(this.currentApptObj) }} <br />Weight
     {{ mfGetWeightData(this.currentApptObj) }} <br />Oxygen Saturation
     {{ mfGetOxygenSaturationData(this.currentApptObj) }}
   </div>
@@ -36,6 +35,15 @@ export default {
   },
   methods: {
     mfGetHeightData(pApptObj) {
+      if (!pApptObj) {
+        console.log('no valid param')
+        return
+      }
+      if (!pApptObj[['apptStatus']]) {
+        console.log('no valid param')
+        return
+      }
+
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
@@ -51,12 +59,18 @@ export default {
           .get()
       }
 
+      if (arOfObjectsFromClientSideDB.length > 0) {
+      } else {
+        return
+      }
+
       let arr = []
       arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
         'MMM DD YYYY'
       )
       arr[1] = arOfObjectsFromClientSideDB[0]['heightInInches']
-      return arr
+
+      return arr[1] + ' inches on ' + arr[0]
     },
 
     mfGetWeightData(pApptObj) {
