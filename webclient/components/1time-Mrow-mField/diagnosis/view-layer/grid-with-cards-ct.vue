@@ -54,6 +54,7 @@ export default {
         .query()
         .with('linkWithMaster')
         .where('ROW_END', 2147483648000)
+        .where('masterDiagnosisId', '!=', null)
         .get()
       return getData
     },
