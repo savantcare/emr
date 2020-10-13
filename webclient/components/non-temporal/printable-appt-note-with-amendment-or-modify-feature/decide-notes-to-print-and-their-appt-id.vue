@@ -5,11 +5,13 @@
         <el-col :span="12"
           ><apptNotePrintableView
             :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+            :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
             key="2"
           /> </el-col
         ><el-col :span="12"
           ><apptNotePrintableView
             :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
+            :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
             key="5"
         /></el-col>
       </el-row>

@@ -393,6 +393,11 @@ export default {
       type: Number,
       required: true,
     },
+    propComparisonNoteApptId: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
   },
   filters: {
     moment: function (date) {
