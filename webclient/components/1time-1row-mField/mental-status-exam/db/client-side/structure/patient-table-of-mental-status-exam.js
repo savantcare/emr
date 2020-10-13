@@ -43,8 +43,8 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
       Second place used
       =================
 
-     When displaying the add ct.  if 1 SS of category is already added the other SS of category should not come.
-     So after I get the list of all master SS. I find all the SS that have been added in the client and there mentalStatusExamCategory has a max 1 limit
+     When displaying the add ct.  if 1 MSE of category is already added the other MSE of category should not come.
+     So after I get the list of all master MSE. I find all the MSE that have been added in the client and there mentalStatusExamCategory has a max 1 limit
      If found then I remove those extra rows from master.
 
       add-ct.vue/cfGetMasterRowsOfMentalStatusExamGrouped
