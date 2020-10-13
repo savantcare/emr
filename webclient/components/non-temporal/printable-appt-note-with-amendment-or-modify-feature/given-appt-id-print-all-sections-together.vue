@@ -34,77 +34,15 @@
     </div>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
-    <!-- SECTION 6 Service statement -->
     <serviceStatementPrintSection
       :propApptId="propShowNoteForApptId"
     ></serviceStatementPrintSection>
     <mentalStatusExamPrintSection
       :propApptId="propShowNoteForApptId"
     ></mentalStatusExamPrintSection>
-
-    <!-- SECTION 8 Psych review of systems  -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="prosh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible3">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'psychReviewOfSystems')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              size="mini"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-
-    <div
-      v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
-      :key="`ros - ${row.clientSideUniqRowId}`"
-    >
-      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
-      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
-    </div>
-    <br />
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('psychReviewOfSystems') &&
-        cfArOfAddendumForDisplay('psychReviewOfSystems').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('psychReviewOfSystems')"
-        :key="row.clientSideUniqRowId"
-      >
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
-
+    <psychReviewOfSystemsPrintSection
+      :propApptId="propShowNoteForApptId"
+    ></psychReviewOfSystemsPrintSection>
     <!-- SECTION 9 REMINDERS -->
     <el-row
       type="flex"
@@ -302,7 +240,6 @@
 
 <script>
 import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
@@ -320,6 +257,7 @@ import namePrintSection from './section-2-name.vue'
 import agePrintSection from './section-3-age.vue'
 import serviceStatementPrintSection from './section-6-service-statement.vue'
 import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
+import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-systems.vue'
 
 // Library
 import moment from 'moment'
@@ -362,6 +300,7 @@ export default {
     mentalStatusExamPrintSection,
     chiefComplaintPrintSection,
     vitalsPrintSection,
+    psychReviewOfSystemsPrintSection,
   },
   async created() {
     // catch event
@@ -448,25 +387,6 @@ export default {
       this.reminderArray = userSelectedApptReminderArray
       return userSelectedApptReminderArray
     },
-    cfArOfPsychReviewOfSystemsForDisplay() {
-      let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
-          .get()
-      }
-      return arOfObjectsFromClientSideDB
-    },
-
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },

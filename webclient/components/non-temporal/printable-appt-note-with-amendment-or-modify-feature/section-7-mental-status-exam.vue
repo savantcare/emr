@@ -11,7 +11,7 @@
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="popoverVisible2">
+            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
                 <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
                 <el-button
@@ -85,7 +85,6 @@ export default {
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
-      popoverVisible2: false,
     }
   },
   props: {

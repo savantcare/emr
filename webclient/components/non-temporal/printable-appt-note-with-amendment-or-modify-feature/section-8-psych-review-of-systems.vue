@@ -1,63 +1,56 @@
 <template>
-  <!-- SECTION 7 MENTAL STATUS EXAM-->
   <div>
+    <!-- SECTION 8 Psych review of systems  -->
     <el-row
       type="flex"
       justify="left"
-      class="mseh3 sectionHeader"
+      class="prosh3 sectionHeader"
       style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8" class="sectionHeading"> Mental status exam </el-col>
+      <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="popoverVisible2">
-              <div style="text-align: right; margin: 0">
-                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-                <el-button
-                  v-if="amendmentData.length > 0"
-                  type="success"
-                  icon="el-icon-check"
-                  style="position: absolute; bottom: 15px; right: 15px"
-                  size="mini"
-                  @click="mfSaveAddendum(amendmentData, 'mentalStatusExam')"
-                  circle
-                ></el-button>
-              </div>
+          <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+            <div style="text-align: right; margin: 0">
+              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
-                slot="reference"
-                class="el-icon-edit-outline"
+                v-if="amendmentData.length > 0"
+                type="success"
+                icon="el-icon-check"
+                style="position: absolute; bottom: 15px; right: 15px"
                 size="mini"
-                style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
-              >
-              </el-button>
-            </el-popover>
-          </div>
-          <div v-else>
+                @click="mfSaveAddendum(amendmentData, 'psychReviewOfSystems')"
+                circle
+              ></el-button>
+            </div>
             <el-button
-              class="el-icon-money"
+              slot="reference"
+              class="el-icon-edit-outline"
               size="mini"
-              @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
+              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
             ></el-button>
-          </div>
+          </el-popover>
         </div>
       </el-col>
     </el-row>
-    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
+
+    <div
+      v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
+      :key="`ros - ${row.clientSideUniqRowId}`"
+    >
+      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
+      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
     </div>
     <br />
     <div
       v-if="
-        cfArOfAddendumForDisplay('mentalStatusExam') &&
-        cfArOfAddendumForDisplay('mentalStatusExam').length > 0
+        cfArOfAddendumForDisplay('psychReviewOfSystems') &&
+        cfArOfAddendumForDisplay('psychReviewOfSystems').length > 0
       "
     >
       <h4>Addendum:</h4>
       <div
-        v-for="row in cfArOfAddendumForDisplay('mentalStatusExam')"
+        v-for="row in cfArOfAddendumForDisplay('psychReviewOfSystems')"
         :key="row.clientSideUniqRowId"
       >
         <div style="margin: 5px 0">
@@ -73,78 +66,24 @@
 </template>
 
 <script>
-// Data tables
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 export default {
   data() {
     return {
-      patientCurrentApptObj: [],
+      patientCurrentApptObj: {},
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
-      popoverVisible2: false,
     }
-  },
-  props: {
-    propApptId: {
-      type: Number,
-      required: true,
-    },
-  },
-  async mounted() {
-    if (!this.propApptId === 0) {
-      return
-    }
-    console.log('== FROM MSE ==', this.propApptId)
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
-    console.log(this.patientCurrentApptObj)
-  },
-  methods: {
-    mfOpenMultiEditCtInEditLayer() {
-      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'edit mental status exam',
-      })
-    },
-    mfSaveAddendum(pAddendumData, component) {
-      clientSideTblOfAddendums.insert({
-        data: {
-          appointmentId: this.patientCurrentApptObj.clientSideUniqRowId,
-          component: component,
-          description: pAddendumData,
-          ROW_START: Math.floor(Date.now()),
-        },
-      })
-
-      // remove modal value after save
-      this.amendmentData = ''
-    },
   },
   computed: {
-    cfArOfMentalStatusExamForDisplay() {
-      let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
-          .query()
-          .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
-          .query()
-          .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
-          .get()
-      }
-      return arOfObjectsFromClientSideDB
-    },
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
-        .where('appointmentId', this.propApptId)
+        .where('appointmentId', this.propShowNoteForApptId)
         .orderBy('ROW_START', 'asc')
         .get()
 
@@ -161,6 +100,24 @@ export default {
        * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
        */
       return (component) => arAddendums[`${component}`]
+    },
+    cfArOfPsychReviewOfSystemsForDisplay() {
+      let arOfObjectsFromClientSideDB = []
+      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
+          .get()
+      }
+      return arOfObjectsFromClientSideDB
     },
   },
 }
