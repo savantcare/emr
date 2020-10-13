@@ -19,8 +19,8 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
       */
-    const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
-    if (proRemsFromDB.ok) {
+    const proMseFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    if (proMseFromDB.ok) {
     }
   },
 }
