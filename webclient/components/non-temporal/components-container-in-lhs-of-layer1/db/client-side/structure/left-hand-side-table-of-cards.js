@@ -21,7 +21,8 @@ export default class leftHandISideViewLayer extends clientSideTableManage {
       classificationOfComponent: this.string('health'),
 
       currentDisplayStateOfComponent: this.number(1), // when > 0 it will display. Using v-if since more efficient then v-show
-      parametersGivenToComponentBeforeMounting: this.number(1),
+      firstParameterGivenToComponentBeforeMounting: this.number(0),
+      secondParameterGivenToComponentBeforeMounting: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

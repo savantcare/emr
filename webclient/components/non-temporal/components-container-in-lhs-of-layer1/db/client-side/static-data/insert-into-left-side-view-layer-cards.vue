@@ -24,7 +24,8 @@ export default {
         componentToShowPath:
           'non-temporal/printable-appt-note-with-amendment-or-modify-feature/decide-notes-to-print-and-their-appt-id.vue',
         currentDisplayStateOfComponent: 1,
-        parametersGivenToComponentBeforeMounting: 0,
+        firstParameterGivenToComponentBeforeMounting: 0,
+        secondParameterGivenToComponentBeforeMounting: 0,
       },
     })
     clientSideTblOfLeftSideCards.insert({

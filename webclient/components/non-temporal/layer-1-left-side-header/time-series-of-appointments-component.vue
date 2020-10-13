@@ -317,7 +317,7 @@ export default {
 
       if (
         cardOfApptNoteComponentVisibilityCurrentValue[
-          'parametersGivenToComponentBeforeMounting'
+          'firstParameterGivenToComponentBeforeMounting'
         ] === pClientSideUniqRowIdAtThisSliderMark &&
         cardOfApptNoteComponentVisibilityCurrentValue['currentDisplayStateOfComponent'] == 1
       ) {
@@ -334,7 +334,8 @@ export default {
       const updateState = await clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
-        parametersGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
+        firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
+        secondParameterGivenToComponentBeforeMounting: 0,
       })
     },
   },
