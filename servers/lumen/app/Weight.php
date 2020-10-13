@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class WaistCircumference extends Model
+class Weight extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'waistCircumference';
+    protected $table = 'weight';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class WaistCircumference extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUUID', 'weightInPounds', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class WaistCircumference extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}
+}   

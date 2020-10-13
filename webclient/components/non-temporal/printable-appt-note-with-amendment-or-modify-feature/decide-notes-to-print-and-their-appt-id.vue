@@ -6,13 +6,11 @@
           <el-col :span="12"
             ><apptNotePrintableView
               :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-              :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
               :key="firstNoteForComparisonClientSideUniqRowId"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
               :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
-              :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
               :key="secondNoteForComparisonClientSideUniqRowId"
           /></el-col>
         </el-row>

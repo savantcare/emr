@@ -87,6 +87,7 @@ export default {
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
+      popoverVisible2: false,
     }
   },
   props: {

@@ -1,14 +1,14 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="A4">
-    <headerPrintSection
-      :propApptId="propShowNoteForApptId"
-      :propComparisonNoteApptId="propComparisonNoteApptId"
-    ></headerPrintSection>
+    <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
 
     <namePrintSection :propApptId="propShowNoteForApptId"> </namePrintSection>
 
     <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
+    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+
+    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
     <!-- SECTION 3 -->
     <h3>Appt Date: {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}</h3>
@@ -365,6 +365,8 @@ import apptNotePrintableView from '@/components/non-temporal/printable-appt-note
 
 // smaller sections
 import headerPrintSection from './section-1-header.vue'
+import chiefComplaintPrintSection from './section-1-chief-complaint.vue'
+import vitalsPrintSection from './section-1-vitals.vue'
 import namePrintSection from './section-2-name.vue'
 import agePrintSection from './section-3-age.vue'
 import serviceStatementPrintSection from './section-6-service-statement.vue'
@@ -396,11 +398,6 @@ export default {
       type: Number,
       required: true,
     },
-    propComparisonNoteApptId: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
   },
   filters: {
     moment: function (date) {
@@ -414,6 +411,8 @@ export default {
     agePrintSection,
     headerPrintSection,
     mentalStatusExamPrintSection,
+    chiefComplaintPrintSection,
+    vitalsPrintSection,
   },
   async created() {
     // catch event

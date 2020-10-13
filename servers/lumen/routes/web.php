@@ -114,15 +114,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Oxygen Saturation
     $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@getAllTemporalOxygenSaturations']);
-    $router->get('oxygen-saturation/v20/{serverSideRowUuid}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
+    $router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
-    $router->put('oxygen-saturation/v20/{serverSideRowUuid}', ['uses' => 'OxygenSaturationController@update']);
+    $router->put('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@update']);
     $router->options('oxygen-saturation/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('oxygen-saturation/v20/{serverSideRowUuid}', function () {
+    $router->options('oxygen-saturation/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -164,15 +164,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Waist Circumference
     $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@getAllTemporalWaistCircumferences']);
-    $router->get('waist-circumference/v20/{serverSideRowUuid}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
+    $router->get('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
     $router->post('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@create']);
-    $router->put('waist-circumference/v20/{serverSideRowUuid}', ['uses' => 'WaistCircumferenceController@update']);
+    $router->put('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@update']);
     $router->options('waist-circumference/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('waist-circumference/v20/{serverSideRowUuid}', function () {
+    $router->options('waist-circumference/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -180,15 +180,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // WEIGHT
     $router->get('weight/v20/', ['uses' => 'WeightController@getAllTemporalWeights']);
-    $router->get('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
+    $router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
-    $router->put('weight/v20/{serverSideRowUuid}', ['uses' => 'WeightController@update']);
+    $router->put('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('weight/v20/{serverSideRowUuid}', function () {
+    $router->options('weight/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');

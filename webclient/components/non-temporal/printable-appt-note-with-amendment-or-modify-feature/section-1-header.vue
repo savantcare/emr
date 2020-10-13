@@ -58,15 +58,15 @@ export default {
       type: Number,
       required: true,
     },
-    propComparisonNoteApptId: {
-      type: Number,
-      required: false,
-    },
   },
   computed: {
     isThisNoteBeingCompared() {
-      console.log(this.propComparisonNoteApptId)
-      return this.propComparisonNoteApptId
+      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
+        return true
+      } else {
+        return false
+      }
     },
     isThisLastAppointmentInLockedOrUnlockedState() {
       const clientSideArray = clientSideTblOfAppointments
