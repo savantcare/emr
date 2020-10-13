@@ -41,62 +41,7 @@ export default {
 
   components: { apptNotePrintableView },
 
-  mounted: function () {
-    console.log('defining event')
-    this.$root.$on(
-      'event-from-print-note-header-show-comparison-drawer',
-      (pInitiatedByClientSideUniqRowId, pSecondNoteCompareWithDirection) => {
-        /* pSecondNoteCompareWithDirection has the value prev or next */
-
-        let secondNoteForComparisonClientSideUniqRowId = 0
-
-        if (pSecondNoteCompareWithDirection === 'prev') {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(
-            pInitiatedByClientSideUniqRowId
-          )
-        } else {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(
-            pInitiatedByClientSideUniqRowId
-          )
-        }
-
-        // During comparison the lower appt ID should be on the left
-        if (pInitiatedByClientSideUniqRowId < secondNoteForComparisonClientSideUniqRowId) {
-          this.firstNoteForComparisonClientSideUniqRowId = pInitiatedByClientSideUniqRowId
-          this.secondNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
-        } else {
-          this.firstNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
-          this.secondNoteForComparisonClientSideUniqRowId = pInitiatedByClientSideUniqRowId
-        }
-
-        this.dUidrawerToShowComparisonOf2Notes = true
-      }
-    )
-
-    this.$root.$on(
-      'event-from-print-note-header-replace-me-with-another-note',
-      (pInitiatedByClientSideUniqRowId, pDirection) => {
-        console.log(pInitiatedByClientSideUniqRowId, pDirection)
-        let secondNoteForComparisonClientSideUniqRowId = 0
-
-        if (pDirection === 'prev') {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(
-            pInitiatedByClientSideUniqRowId
-          )
-        } else {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(
-            pInitiatedByClientSideUniqRowId
-          )
-        }
-
-        if (this.firstNoteForComparisonClientSideUniqRowId === pInitiatedBy) {
-          this.firstNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
-        } else {
-          this.secondNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
-        }
-      }
-    )
-  },
+  mounted: function () {},
   methods: {
     mfGetPrevAppt(pApptClientSideUniqRowId) {
       let secondNoteForComparisonClientSideUniqRowId = 0
@@ -114,22 +59,22 @@ export default {
       }
       return secondNoteForComparisonClientSideUniqRowId
     },
-  },
-  mfGetNextAppt(pApptClientSideUniqRowId) {
-    let secondNoteForComparisonClientSideUniqRowId = 0
-    const clientSideArray = clientSideTblOfAppointments
-      .query()
-      .where((record) => {
-        return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-      })
-      .get()
+    mfGetNextAppt(pApptClientSideUniqRowId) {
+      let secondNoteForComparisonClientSideUniqRowId = 0
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
 
-    for (let i = 0; i < clientSideArray.length; i++) {
-      if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
-        secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
+          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        }
       }
-    }
-    return secondNoteForComparisonClientSideUniqRowId
+      return secondNoteForComparisonClientSideUniqRowId
+    },
   },
   computed: {
     cfGetApptId() {

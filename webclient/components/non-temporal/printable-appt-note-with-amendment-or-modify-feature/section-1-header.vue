@@ -101,12 +101,11 @@ export default {
   },
   methods: {
     sendEventToShow2Notes(pCompareWith) {
-      console.log('event sent')
-      this.$root.$emit(
-        'event-from-print-note-header-show-comparison-drawer',
-        this.propApptId,
-        pCompareWith
-      )
+      const updateState = clientSideTblOfLeftSideViewCards.update({
+        clientSideUniqRowId: 2,
+        currentDisplayStateOfComponent: 1,
+        secondParameterGivenToComponentBeforeMounting: 5,
+      })
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       if (this.isThisNoteBeingCompared) {
@@ -129,7 +128,7 @@ export default {
           const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
             currentDisplayStateOfComponent: 1,
-            parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
+            firstParameterGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
           this.$root.$emit(
             'incoming-event-with-new-value-of-slider',
@@ -174,7 +173,7 @@ export default {
           const updateState = clientSideTblOfLeftSideViewCards.update({
             clientSideUniqRowId: 2,
             currentDisplayStateOfComponent: 1,
-            parametersGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
+            firstParameterGivenToComponentBeforeMounting: clientSideArray[i]['clientSideUniqRowId'],
           })
           this.$root.$emit(
             'incoming-event-with-new-value-of-slider',
