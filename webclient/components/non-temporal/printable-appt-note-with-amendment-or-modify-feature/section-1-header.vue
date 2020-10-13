@@ -54,12 +54,15 @@ export default {
       type: Number,
       required: true,
     },
-    propCompareWithApptId: {
+    propComparisonNoteApptId: {
       type: Number,
       required: false,
     },
   },
   computed: {
+    ifThisNoteBeingCompared() {
+      return propComparisonNoteApptId
+    },
     isThisLastAppointmentInLockedOrUnlockedState() {
       const clientSideArray = clientSideTblOfAppointments
         .query()
