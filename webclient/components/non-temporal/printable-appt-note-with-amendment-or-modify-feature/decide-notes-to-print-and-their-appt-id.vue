@@ -5,21 +5,24 @@
         <el-row>
           <el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="cfNumberOfNotesToCompare[0]"
-              :propComparisonNoteApptId="cfNumberOfNotesToCompare[1]"
-              key="2"
+              :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+              :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
+              :key="firstNoteForComparisonClientSideUniqRowId"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="cfNumberOfNotesToCompare[1]"
-              :propComparisonNoteApptId="cfNumberOfNotesToCompare[0]"
-              key="5"
+              :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
+              :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
+              :key="secondNoteForComparisonClientSideUniqRowId"
           /></el-col>
         </el-row>
       </el-drawer>
     </div>
     <div v-else>
-      <apptNotePrintableView :propShowNoteForApptId="cfGetFirstNote" />
+      <apptNotePrintableView
+        :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+        :key="firstNoteForComparisonClientSideUniqRowId"
+      />
     </div>
   </div>
 </template>
