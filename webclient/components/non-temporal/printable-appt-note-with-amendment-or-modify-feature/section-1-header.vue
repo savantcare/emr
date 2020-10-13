@@ -11,7 +11,7 @@
             ></el-button>
             <el-button
               class="el-icon-document-copy"
-              @click="sendEventToShow2Notes"
+              @click="sendEventToShow2Notes('prev')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
           </el-button-group>
@@ -29,7 +29,7 @@
           <el-button-group class="h1" style="display: none">
             <el-button
               class="el-icon-document-copy"
-              @click="sendEventToShow2Notes"
+              @click="sendEventToShow2Notes('next')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
             <el-button
@@ -53,6 +53,10 @@ export default {
     propApptId: {
       type: Number,
       required: true,
+    },
+    propCompareWithApptId: {
+      type: Number,
+      required: false,
     },
   },
   computed: {
@@ -88,9 +92,13 @@ export default {
     },
   },
   methods: {
-    sendEventToShow2Notes() {
+    sendEventToShow2Notes(pCompareWith) {
       console.log('event sent')
-      this.$root.$emit('event-from-print-note-header-show-comparison-drawer')
+      this.$root.$emit(
+        'event-from-print-note-header-show-comparison-drawer',
+        this.propApptId,
+        pCompareWith
+      )
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
       const clientSideArray = clientSideTblOfAppointments

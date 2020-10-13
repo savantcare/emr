@@ -2,8 +2,16 @@
   <div>
     <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
       <el-row>
-        <el-col :span="12"><apptNotePrintableView propShowNoteForApptId="1" key="2" /> </el-col
-        ><el-col :span="12"><apptNotePrintableView propShowNoteForApptId="5" key="5" /></el-col>
+        <el-col :span="12"
+          ><apptNotePrintableView
+            :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+            key="2"
+          /> </el-col
+        ><el-col :span="12"
+          ><apptNotePrintableView
+            :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
+            key="5"
+        /></el-col>
       </el-row>
     </el-drawer>
 
@@ -24,6 +32,8 @@ export default {
     return {
       dUidrawerToShowComparisonOf2Notes: false,
       apptIdForWhichNoteNeedsToBeShown: 0,
+      firstNoteForComparisonClientSideUniqRowId: 0,
+      secondNoteForComparisonClientSideUniqRowId: 0,
     }
   },
 
@@ -33,8 +43,45 @@ export default {
     console.log('defining event')
     this.$root.$on(
       'event-from-print-note-header-show-comparison-drawer',
-      (pClientSideUniqRowId) => {
-        console.log('event recd')
+      (pFirstNoteForComparisonClientSideUniqRowId, pSecondNoteCompareWithDirection) => {
+        this.firstNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
+        /* pSecondNoteCompareWithDirection has the value prev or next */
+        if (pSecondNoteCompareWithDirection === 'prev') {
+          const clientSideArray = clientSideTblOfAppointments
+            .query()
+            .where((record) => {
+              return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+            })
+            .get()
+
+          for (let i = 0; i < clientSideArray.length; i++) {
+            if (
+              clientSideArray[i]['clientSideUniqRowId'] <
+              this.firstNoteForComparisonClientSideUniqRowId
+            ) {
+              this.secondNoteForComparisonClientSideUniqRowId =
+                clientSideArray[i]['clientSideUniqRowId']
+            }
+          }
+        } else {
+          const clientSideArray = clientSideTblOfAppointments
+            .query()
+            .where((record) => {
+              return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+            })
+            .get()
+
+          for (let i = 0; i < clientSideArray.length; i++) {
+            if (
+              clientSideArray[i]['clientSideUniqRowId'] >
+              this.firstNoteForComparisonClientSideUniqRowId
+            ) {
+              this.secondNoteForComparisonClientSideUniqRowId =
+                clientSideArray[i]['clientSideUniqRowId']
+            }
+          }
+        }
+
         this.dUidrawerToShowComparisonOf2Notes = true
       }
     )
