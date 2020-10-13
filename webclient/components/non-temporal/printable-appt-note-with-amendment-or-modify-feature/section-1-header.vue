@@ -13,7 +13,7 @@
             <el-button
               v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
-              @click="setUpStateToCompare2Notes('prev')"
+              @click="compareIconClickedInHeaderSoSetUpStateToCompare('prev')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
           </el-button-group>
@@ -33,7 +33,7 @@
             <el-button
               v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
-              @click="setUpStateToCompare2Notes('next')"
+              @click="compareIconClickedInHeaderSoSetUpStateToCompare('next')"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
             <el-button
@@ -132,7 +132,7 @@ export default {
       }
       return secondNoteForComparisonClientSideUniqRowId
     },
-    setUpStateToCompare2Notes(pCompareWithDirection) {
+    compareIconClickedInHeaderSoSetUpStateToCompare(pCompareWithDirection) {
       let comparisonId = 0
 
       if (pCompareWithDirection === 'prev') {
@@ -149,35 +149,47 @@ export default {
       })
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
-      if (this.isThisNoteBeingCompared) {
-        return
+      // left arrow can be clicked in 2 situations. This is in comparison state or it is not in comparison state.
+      // So goal is to replace my value in the state with the new value.
+      // Once I do that it will take care of both the above cases.
+
+      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+
+      let prevId = 0
+      prevId = this.mfGetPrevApptId(this.propApptId)
+
+      if (
+        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
+      ) {
+        const updateState = clientSideTblOfLeftSideViewCards.update({
+          clientSideUniqRowId: 2,
+          firstParameterGivenToComponentBeforeMounting: prevId,
+        })
+      } else {
+        const updateState = clientSideTblOfLeftSideViewCards.update({
+          clientSideUniqRowId: 2,
+          secondParameterGivenToComponentBeforeMounting: prevId,
+        })
       }
-
-      let comparisonId = 0
-      comparisonId = this.mfGetPrevApptId(this.propApptId)
-
-      const updateState = clientSideTblOfLeftSideViewCards.update({
-        clientSideUniqRowId: 2,
-        currentDisplayStateOfComponent: 1,
-        firstParameterGivenToComponentBeforeMounting: comparisonId,
-      })
-      this.$root.$emit('incoming-event-with-new-value-of-slider', comparisonId)
+      if (!this.isThisNoteBeingCompared) {
+        this.$root.$emit('incoming-event-with-new-value-of-slider', prevId)
+      }
     },
 
     mfRightArrowClickedLetUsGoToNextAppt() {
       if (this.isThisNoteBeingCompared) {
         return
       }
-      let comparisonId = 0
-      comparisonId = this.mfGetNextApptId(this.propApptId)
+      let nextId = 0
+      nextId = this.mfGetNextApptId(this.propApptId)
 
       const updateState = clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,
-        firstParameterGivenToComponentBeforeMounting: comparisonId,
+        firstParameterGivenToComponentBeforeMounting: nextId,
       })
 
-      this.$root.$emit('incoming-event-with-new-value-of-slider', comparisonId)
+      this.$root.$emit('incoming-event-with-new-value-of-slider', nextId)
     },
   },
 }

@@ -80,10 +80,6 @@ export default {
     },
   },
   computed: {
-    cfGetFirstNote() {
-      console.log('new ID', this.firstNoteForComparisonClientSideUniqRowId)
-      return this.firstNoteForComparisonClientSideUniqRowId
-    },
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
