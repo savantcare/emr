@@ -10,32 +10,42 @@
       <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          <div v-if="currentApptObj['apptStatus'] === 'locked'">
+            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+              <div style="text-align: right; margin: 0">
+                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                <el-button
+                  v-if="amendmentData.length > 0"
+                  type="success"
+                  icon="el-icon-check"
+                  style="position: absolute; bottom: 15px; right: 15px"
+                  size="mini"
+                  @click="mfSaveAddendum(amendmentData, 'psychReviewOfSystems')"
+                  circle
+                ></el-button>
+              </div>
               <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
+                slot="reference"
+                class="el-icon-edit-outline"
                 size="mini"
-                @click="mfSaveAddendum(amendmentData, 'psychReviewOfSystems')"
-                circle
+                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
               ></el-button>
-            </div>
+            </el-popover>
+          </div>
+          <div v-else>
             <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
+              class="el-icon-money"
               size="mini"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+              @click="mfOpenMultiEditCtInEditLayer"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
             ></el-button>
-          </el-popover>
+          </div>
         </div>
       </el-col>
     </el-row>
 
     <div
-      v-for="row in cfArOfPsychReviewOfSystemsForDisplay"
+      v-for="row in mfGetArOfPsychReviewOfSystems(this.currentApptObj)"
       :key="`ros - ${row.clientSideUniqRowId}`"
     >
       {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
@@ -73,11 +83,23 @@ import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/
 export default {
   data() {
     return {
-      patientCurrentApptObj: {},
+      currentApptObj: {},
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
     }
+  },
+  props: {
+    propApptId: {
+      type: Number,
+      required: true,
+    },
+  },
+  async mounted() {
+    if (!this.propApptId === 0) {
+      return
+    }
+    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
   computed: {
     cfArOfAddendumForDisplay() {
@@ -101,9 +123,31 @@ export default {
        */
       return (component) => arAddendums[`${component}`]
     },
-    cfArOfPsychReviewOfSystemsForDisplay() {
+  },
+  methods: {
+    mfOpenMultiEditCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+        searchTerm: 'edit psych review of systems',
+      })
+    },
+    mfSaveAddendum(pAddendumData, component) {
+      clientSideTblOfAddendums.insert({
+        data: {
+          appointmentId: this.currentApptObj.clientSideUniqRowId,
+          component: component,
+          description: pAddendumData,
+          ROW_START: Math.floor(Date.now()),
+        },
+      })
+
+      // remove modal value after save
+      this.amendmentData = ''
+    },
+    mfGetArOfPsychReviewOfSystems(pApptObj) {
+      if (!pApptObj) return
+
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
+      if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
@@ -113,8 +157,8 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.currentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.currentApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
@@ -124,11 +168,12 @@ export default {
 </script>
 
 <style scoped>
-.mseh3:hover .el-icon-edit-outline {
+.prosh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
 }
-.mseh3:hover .el-icon-money {
+
+.prosh3:hover .el-icon-money {
   display: inline-block !important;
   position: absolute;
 }

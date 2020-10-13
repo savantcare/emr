@@ -504,11 +504,6 @@ h3 {
   font-weight: bold;
 }
 
-.prosh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-  position: absolute;
-}
-
 .remindersh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
