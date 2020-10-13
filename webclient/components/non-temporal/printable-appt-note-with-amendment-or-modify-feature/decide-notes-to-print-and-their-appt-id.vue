@@ -6,7 +6,12 @@
       <transition name="slide-fade" mode="out-in">
         <div :key="firstNoteForComparisonClientSideUniqRowId">
           {{ cfNumberOfNotesToCompare }}
-          <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
+          <el-drawer
+            :visible.sync="dUidrawerToShowComparisonOf2Notes"
+            direction="ttb"
+            size="90%"
+            @close="handleDrawerClosed()"
+          >
             <el-row>
               <el-col :span="12"
                 ><apptNotePrintableView
@@ -50,6 +55,13 @@ export default {
 
   mounted: function () {},
   methods: {
+    handleDrawerClosed() {
+      // Once drawer is closed I need to empty the 2nd param so the prev and next button work properly and do not open the drawer
+      const updateState = clientSideTblOfLeftSideViewCards.update({
+        clientSideUniqRowId: 2,
+        secondParameterGivenToComponentBeforeMounting: 0,
+      })
+    },
     mfGetPrevAppt(pApptClientSideUniqRowId) {
       let secondNoteForComparisonClientSideUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
