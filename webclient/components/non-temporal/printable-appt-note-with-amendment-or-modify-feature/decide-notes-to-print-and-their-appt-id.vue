@@ -1,26 +1,32 @@
 <template>
   <div>
-    <div v-if="cfNumberOfNotesToCompare.length > 1">
-      <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
-        <el-row>
-          <el-col :span="12"
-            ><apptNotePrintableView
-              :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-              :key="firstNoteForComparisonClientSideUniqRowId"
-            /> </el-col
-          ><el-col :span="12"
-            ><apptNotePrintableView
-              :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
-              :key="secondNoteForComparisonClientSideUniqRowId"
-          /></el-col>
-        </el-row>
-      </el-drawer>
-    </div>
-    <div v-else>
-      <apptNotePrintableView
-        :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-        :key="firstNoteForComparisonClientSideUniqRowId"
-      />
+    <div v-if="cfNumberOfNotesToCompare.length > 1"></div>
+
+    <div>
+      <transition name="slide-fade" mode="out-in">
+        <div :key="firstNoteForComparisonClientSideUniqRowId">
+          {{ cfNumberOfNotesToCompare }}
+          <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
+            <el-row>
+              <el-col :span="12"
+                ><apptNotePrintableView
+                  :propShowNoteForApptId="lowerValueForComparisonClientSideUniqRowId"
+                  :key="lowerValueForComparisonClientSideUniqRowId"
+                /> </el-col
+              ><el-col :span="12"
+                ><apptNotePrintableView
+                  :propShowNoteForApptId="higherValueForComparisonClientSideUniqRowId"
+                  :key="higherValueForComparisonClientSideUniqRowId"
+              /></el-col>
+            </el-row>
+          </el-drawer>
+
+          <apptNotePrintableView
+            :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+            :key="firstNoteForComparisonClientSideUniqRowId"
+          />
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -78,6 +84,27 @@ export default {
     },
   },
   computed: {
+    lowerValueForComparisonClientSideUniqRowId() {
+      if (
+        this.firstNoteForComparisonClientSideUniqRowId >
+        this.secondNoteForComparisonClientSideUniqRowId
+      )
+        return this.secondNoteForComparisonClientSideUniqRowId
+      else {
+        return this.firstNoteForComparisonClientSideUniqRowId
+      }
+    },
+    higherValueForComparisonClientSideUniqRowId() {
+      if (
+        this.firstNoteForComparisonClientSideUniqRowId >
+        this.secondNoteForComparisonClientSideUniqRowId
+      )
+        return this.firstNoteForComparisonClientSideUniqRowId
+      else {
+        return this.secondNoteForComparisonClientSideUniqRowId
+      }
+    },
+
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
@@ -126,3 +153,16 @@ export default {
   },
 }
 </script>
+<style>
+.slide-fade-enter-active {
+  transition: all 0.1s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+</style>
