@@ -16,6 +16,8 @@ import clientSideTblOxygenSaturation from '@/components/1time-1row-mField/vital-
 import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
 import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -24,6 +26,45 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    mfGetProsOnApptLockDate(pApptObj) {
+      if (!pApptObj) return
+
+      let arOfObjectsFromClientSideRos = []
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      console.log(arOfObjectsFromClientSideRos)
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientSideRos.length; i++) {
+        catName =
+          arOfObjectsFromClientSideRos[i]['tblPsychReviewOfSystemsMasterLink'][
+            'psychReviewOfSystemsCategory'
+          ]
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        if (arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue']
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
+      }
+      return groupTotal['Depression']
+    },
   },
   computed: {
     chartOptions() {
@@ -77,39 +118,30 @@ export default {
       // Where clause  needs to change to not reviewed time
       // Also need to run it for everytime the note has been reviewed
 
-      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
-        .query()
-        .with('tblPsychReviewOfSystemsMasterLink')
-        .where('ROW_END', 2147483648000)
-        .get()
+      // Goal: Find all times in the appt table when the appt was locked.
 
-      //  console.log(arOfObjectsFromClientSidePatientDB)
+      //  console.log(arOfObjectsFromClientSideRos)
+      const arOfApts = clientSideTblOfAppointments
+        .query()
+        .where('apptStatus', 'locked')
+        .orWhere('apptStatus', 'unlocked')
+        .get()
+      console.log(arOfApts)
 
       const maxValue = 8
 
-      let groupTotal = []
-      let catName = ''
-      let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
-        catName =
-          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
-            'psychReviewOfSystemsCategory'
-          ]
-        if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
-          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
-        }
+      const arDataToShowOnGraph = []
+
+      for (let i = 0; i < arOfApts.length; i++) {
+        let depressionScore = this.mfGetProsOnApptLockDate(arOfApts[i])
+        console.log(depressionScore)
+        let graphData = (depressionScore / maxValue) * 100
+        const timeOfMeasurementInMilliseconds = arOfApts[i]['ROW_END']
+        graphData = Math.round(graphData)
+        arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
       }
 
-      const arDataToShowOnGraph = []
-      const numberOfPointsOnGraph = 1
-      // This will need to change to not reviewed time
-      const timeOfMeasurementInMilliseconds = 1601702631025
-      let graphData = (groupTotal['Depression'] / maxValue) * 100
-      graphData = Math.round(graphData)
-      arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-      //console.log(arDataToShowOnGraph)
+      console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
 
