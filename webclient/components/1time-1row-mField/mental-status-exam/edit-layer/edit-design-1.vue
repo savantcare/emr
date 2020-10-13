@@ -77,8 +77,6 @@ export default {
         })
         .get()
 
-      // End: Now group the SS
-
       const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'mentalStatusExamCategory')
 
       return ar
