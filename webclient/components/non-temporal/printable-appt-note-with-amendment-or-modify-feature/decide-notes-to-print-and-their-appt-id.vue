@@ -45,7 +45,7 @@ export default {
     console.log('defining event')
     this.$root.$on(
       'event-from-print-note-header-show-comparison-drawer',
-      (pFirstNoteForComparisonClientSideUniqRowId, pSecondNoteCompareWithDirection) => {
+      (pInitiatedByClientSideUniqRowId, pSecondNoteCompareWithDirection) => {
         /* pSecondNoteCompareWithDirection has the value prev or next */
 
         let secondNoteForComparisonClientSideUniqRowId = 0
@@ -57,14 +57,12 @@ export default {
         }
 
         // During comparison the lower appt ID should be on the left
-        if (
-          pFirstNoteForComparisonClientSideUniqRowId < secondNoteForComparisonClientSideUniqRowId
-        ) {
-          this.firstNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
+        if (pInitiatedByClientSideUniqRowId < secondNoteForComparisonClientSideUniqRowId) {
+          this.firstNoteForComparisonClientSideUniqRowId = pInitiatedByClientSideUniqRowId
           this.secondNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
         } else {
           this.firstNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
-          this.secondNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
+          this.secondNoteForComparisonClientSideUniqRowId = pInitiatedByClientSideUniqRowId
         }
 
         this.dUidrawerToShowComparisonOf2Notes = true
@@ -79,7 +77,7 @@ export default {
     )
   },
   computed: {
-    cfGetPrevAppt(pFirstNoteForComparisonClientSideUniqRowId) {
+    cfGetPrevAppt(pApptClientSideUniqRowId) {
       let secondNoteForComparisonClientSideUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
@@ -89,16 +87,14 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (
-          clientSideArray[i]['clientSideUniqRowId'] < pFirstNoteForComparisonClientSideUniqRowId
-        ) {
+        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientSideUniqRowId) {
           secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
       return secondNoteForComparisonClientSideUniqRowId
     },
 
-    cfGetNextAppt(pFirstNoteForComparisonClientSideUniqRowId) {
+    cfGetNextAppt(pApptClientSideUniqRowId) {
       let secondNoteForComparisonClientSideUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
@@ -108,9 +104,7 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (
-          clientSideArray[i]['clientSideUniqRowId'] > pFirstNoteForComparisonClientSideUniqRowId
-        ) {
+        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
           secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
