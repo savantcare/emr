@@ -46,12 +46,10 @@
     <el-row
       type="flex"
       justify="left"
-      class="prosh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+      class="prosh3 sectionHeader"
+      style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8">
-        <h3>Psych review of systems</h3>
-      </el-col>
+      <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <el-popover placement="right" width="400" v-model="popoverVisible3">
@@ -111,12 +109,10 @@
     <el-row
       type="flex"
       justify="left"
-      class="remindersh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+      class="remindersh3 sectionHeader"
+      style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8">
-        <h3 class="remindersh3">Reminders</h3>
-      </el-col>
+      <el-col :span="8" class="sectionHeading"> Reminders </el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <el-popover placement="right" width="400" v-model="popoverVisible4">
@@ -195,10 +191,10 @@
     <el-row
       type="flex"
       justify="left"
-      class="recommendationsh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+      class="recommendationsh3 sectionHeader"
+      style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8"> <h3>Recommendations</h3> </el-col>
+      <el-col :span="8" class="sectionHeading">Recommendations</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <el-popover placement="right" width="400" v-model="popoverVisible5">
@@ -248,10 +244,10 @@
     <el-row
       type="flex"
       justify="left"
-      class="medicationsh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+      class="medicationsh3 sectionHeader"
+      style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8"> <h3>Medications</h3> </el-col>
+      <el-col :span="8" class="sectionHeading">Medications</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <el-popover placement="right" width="400" v-model="popoverVisible6">
@@ -578,23 +574,38 @@ h3 {
   display: flex;
 }
 
+.sectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
+}
+.sectionHeading {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .prosh3:hover .el-icon-edit-outline {
   display: inline-block !important;
+  position: absolute;
 }
 
 .remindersh3:hover .el-icon-edit-outline {
   display: inline-block !important;
+  position: absolute;
 }
 
 .recommendationsh3:hover .el-icon-edit-outline {
   display: inline-block !important;
+  position: absolute;
 }
 
 .medicationsh3:hover .el-icon-edit-outline {
   display: inline-block !important;
+  position: absolute;
 }
 
 .vitalsh3:hover .el-icon-edit-outline {
+  position: absolute;
   display: inline-block !important;
 }
 /* Goal: Content that does not fit on A4 one page should go to 2nd page
