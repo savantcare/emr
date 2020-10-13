@@ -132,11 +132,20 @@ export default {
 
       const arDataToShowOnGraph = []
 
+      let timeOfMeasurementInMilliseconds = 0
+
       for (let i = 0; i < arOfApts.length; i++) {
         let depressionScore = this.mfGetProsOnApptLockDate(arOfApts[i])
         console.log(depressionScore)
+        if (!depressionScore) continue
         let graphData = (depressionScore / maxValue) * 100
-        const timeOfMeasurementInMilliseconds = arOfApts[i]['ROW_END']
+        console.log(arOfApts[i]['ROW_END'])
+        if (arOfApts[i]['ROW_END'] === 2147483648000) {
+          // This means it is current data
+          timeOfMeasurementInMilliseconds = Math.floor(Date.now())
+        } else {
+          timeOfMeasurementInMilliseconds = arOfApts[i]['ROW_END']
+        }
         graphData = Math.round(graphData)
         arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
       }
