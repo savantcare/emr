@@ -9,7 +9,7 @@ const intUniqueId = () => ++count
 export default class mentalStatusExamMasterClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamMaster'
 
-  static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
+  static apiUrl = 'http://localhost:8000/public/api/mental-status-exams/v20'
 
   static primaryKey = 'mentalStatusExamMasterId'
 
@@ -33,6 +33,7 @@ export default class mentalStatusExamMasterClass extends clientSideTableManage {
       */
       tblMentalStatusExamForPatientLink: this.hasOne(
         mentalStatusExamForPatientClass,
+        'mentalStatusExamMasterId',
         'mentalStatusExamMasterId'
       ),
     }

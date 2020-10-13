@@ -98,13 +98,53 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+    async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
       clientSideTblOfPatientMentalStatusExam.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },
       })
+
+      const exists = clientSideTblOfPatientMentalStatusExam
+        .query()
+        .where('clientSideUniqRowId', pClientSideUniqRowId)
+        .get()
+
+      const response = await fetch(
+        clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+        }
+      )
+
+      if (!response.ok) {
+        // this block execute when response return fail status
+        clientSideTblOfPatientMentalStatusExam.update({
+          where: exists[0].clientSideUniqRowId,
+          data: {
+            ROW_END: 2147483648000,
+          },
+        })
+        this.$notify({
+          title: 'Error',
+          message: 'Not updated on server',
+          type: 'Error',
+          duration: 3000,
+        })
+      } else {
+        // this block execute when response return success status
+        this.$notify({
+          title: 'Success',
+          message: 'Updated on server',
+          type: 'success',
+          duration: 3000,
+        })
+      }
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

@@ -145,6 +145,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Connection', 'keep-alive');
     });
 
+    // Mental status exam
+    $router->get('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
+    $router->post('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@create']);
+    $router->delete('mental-status-exams/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
+    $router->options('mental-status-exams/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('mental-status-exams/v20/{serverSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
 
     // Temperature
     $router->get('temperature/v20/', ['uses' => 'TemperatureController@getAllTemporalTemperatures']);

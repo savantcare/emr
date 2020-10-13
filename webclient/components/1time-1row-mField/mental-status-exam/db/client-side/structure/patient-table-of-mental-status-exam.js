@@ -8,7 +8,7 @@ const intUniqueId = () => ++count
 export default class mentalStatusExamForPatientClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamOfPatient'
 
-  static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
+  static apiUrl = 'http://localhost:8000/public/api/mental-status-exams/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -25,6 +25,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table mentalStatusExamMasterId = 2 */
+      serverSideRowUuid: this.uid(() => uuidv1()),
       mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is mental status exam ID assigned to this patient coming from master table
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
