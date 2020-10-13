@@ -63,6 +63,11 @@ export default {
         credits: {
           enabled: false,
         },
+        tooltip: {
+          formatter: function () {
+            return this.point.series.name + ' ' + this.y + '% of max</b>'
+          },
+        },
       }
 
       return chart
