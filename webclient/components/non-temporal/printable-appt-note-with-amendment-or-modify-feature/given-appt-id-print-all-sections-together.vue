@@ -229,10 +229,7 @@
       </div>
     </div>
 
-    <!-- SECTION 13 -->
-    <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
-      <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
-    </div>
+    <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
 
     <!-- End of template -->
   </div>
@@ -258,6 +255,7 @@ import agePrintSection from './section-3-age.vue'
 import serviceStatementPrintSection from './section-6-service-statement.vue'
 import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
 import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-systems.vue'
+import lockButtonPrintSection from './section-13-allow-note-lock.vue'
 
 // Library
 import moment from 'moment'
@@ -301,6 +299,7 @@ export default {
     chiefComplaintPrintSection,
     vitalsPrintSection,
     psychReviewOfSystemsPrintSection,
+    lockButtonPrintSection,
   },
   async created() {
     // catch event
@@ -392,34 +391,6 @@ export default {
     },
   },
   methods: {
-    async lockButtonClicked() {
-      console.log('lock button clicked')
-      const clientSideUniqRowId = this.patientCurrentApptObj['clientSideUniqRowId']
-      let arOfObjectsFromClientSideDB = await clientSideTblOfAppointments.update({
-        where: clientSideUniqRowId,
-        data: {
-          apptStatus: 'locked',
-          ROW_END: Math.floor(Date.now()), // The query sent to server is "delete"
-        },
-      })
-
-      // In case there are no more appt then insert a appt. This is for testing.
-      arOfObjectsFromClientSideDB = await clientSideTblOfAppointments
-        .query()
-        .where('apptStatus', 'unlocked')
-        .get()
-
-      if (arOfObjectsFromClientSideDB.length === 0) {
-        await clientSideTblOfAppointments.insert({
-          data: {
-            apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
-            apptProviderUuid: 1,
-            apptStatus: 'unlocked',
-            ROW_START: Math.floor(Date.now()),
-          },
-        })
-      }
-    },
     mfSaveAddendum(pAddendumData, component) {
       clientSideTblOfAddendums.insert({
         data: {
