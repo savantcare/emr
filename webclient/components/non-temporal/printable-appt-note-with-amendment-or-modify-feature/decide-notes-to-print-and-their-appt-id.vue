@@ -1,36 +1,31 @@
 <template>
   <div>
-    <div v-if="cfNumberOfNotesToCompare.length > 1"></div>
-
-    <div>
-      <transition name="slide-fade" mode="out-in">
-        <div :key="firstNoteForComparisonClientSideUniqRowId">
-          <el-drawer
-            :visible.sync="dUidrawerToShowComparisonOf2Notes"
-            direction="ttb"
-            size="90%"
-            @close="handleDrawerClosed()"
-          >
-            <el-row>
-              <el-col :span="12"
-                ><apptNotePrintableView
-                  :propShowNoteForApptId="lowerValueForComparisonClientSideUniqRowId"
-                  :key="lowerValueForComparisonClientSideUniqRowId"
-                /> </el-col
-              ><el-col :span="12"
-                ><apptNotePrintableView
-                  :propShowNoteForApptId="higherValueForComparisonClientSideUniqRowId"
-                  :key="higherValueForComparisonClientSideUniqRowId"
-              /></el-col>
-            </el-row>
-          </el-drawer>
-
-          <apptNotePrintableView
-            :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-            :key="firstNoteForComparisonClientSideUniqRowId"
-          />
-        </div>
-      </transition>
+    <div v-if="cfNumberOfNotesToCompare.length > 1">
+      <el-drawer
+        :visible.sync="dUidrawerToShowComparisonOf2Notes"
+        direction="ttb"
+        size="90%"
+        @close="handleDrawerClosed()"
+      >
+        <el-row>
+          <el-col :span="12"
+            ><apptNotePrintableView
+              :propShowNoteForApptId="lowerValueForComparisonClientSideUniqRowId"
+              :key="lowerValueForComparisonClientSideUniqRowId"
+            /> </el-col
+          ><el-col :span="12"
+            ><apptNotePrintableView
+              :propShowNoteForApptId="higherValueForComparisonClientSideUniqRowId"
+              :key="higherValueForComparisonClientSideUniqRowId"
+          /></el-col>
+        </el-row>
+      </el-drawer>
+    </div>
+    <div v-else>
+      <apptNotePrintableView
+        :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
+        :key="firstNoteForComparisonClientSideUniqRowId"
+      />
     </div>
   </div>
 </template>
@@ -99,9 +94,9 @@ export default {
       if (
         this.firstNoteForComparisonClientSideUniqRowId >
         this.secondNoteForComparisonClientSideUniqRowId
-      )
+      ) {
         return this.secondNoteForComparisonClientSideUniqRowId
-      else {
+      } else {
         return this.firstNoteForComparisonClientSideUniqRowId
       }
     },
@@ -109,9 +104,9 @@ export default {
       if (
         this.firstNoteForComparisonClientSideUniqRowId >
         this.secondNoteForComparisonClientSideUniqRowId
-      )
+      ) {
         return this.firstNoteForComparisonClientSideUniqRowId
-      else {
+      } else {
         return this.secondNoteForComparisonClientSideUniqRowId
       }
     },
