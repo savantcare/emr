@@ -52,22 +52,13 @@
         {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
       </div>
     </div>
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('psychReviewOfSystems') &&
-        cfArOfAddendumForDisplay('psychReviewOfSystems').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('psychReviewOfSystems')"
-        :key="row.clientSideUniqRowId"
-      >
+    <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
+      <div class="subSectionHeader">Addendum:</div>
+      <div v-for="row in cfArOfAddendumForDisplay" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+          <span style="font-size: 10px; float: right"
+            >(Added by {{ row.addedBy }} at {{ row.ROW_START | moment }})</span
           >
         </div>
       </div>
@@ -80,6 +71,7 @@ import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/d
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import moment from 'moment'
 
 export default {
   data() {
@@ -89,6 +81,11 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
     }
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm a')
+    },
   },
   props: {
     propApptId: {
@@ -163,23 +160,13 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
-        .where('appointmentId', this.propShowNoteForApptId)
+        .where('appointmentId', this.propApptId)
+        .where('component', 'psychReviewOfSystems')
         .orderBy('ROW_START', 'asc')
         .get()
 
-      const arAddendums = []
-      arFromClientSideTblOfAddendums.forEach((row) => {
-        if (typeof arAddendums[row.component] === 'undefined') {
-          arAddendums[row.component] = []
-        }
-        arAddendums[row.component].push(row)
-      })
-
-      /**
-       * component is computed function parameter
-       * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
-       */
-      return (component) => arAddendums[`${component}`]
+      console.log(arFromClientSideTblOfAddendums)
+      return arFromClientSideTblOfAddendums
     },
   },
   methods: {
@@ -250,5 +237,10 @@ h3 {
 .sectionHeading {
   font-size: 1rem;
   font-weight: bold;
+}
+.subSectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
 }
 </style>
