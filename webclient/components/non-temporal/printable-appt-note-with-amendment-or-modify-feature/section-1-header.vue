@@ -177,19 +177,27 @@ export default {
     },
 
     mfRightArrowClickedLetUsGoToNextAppt() {
-      if (this.isThisNoteBeingCompared) {
-        return
-      }
+      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
       let nextId = 0
       nextId = this.mfGetNextApptId(this.propApptId)
 
-      const updateState = clientSideTblOfLeftSideViewCards.update({
-        clientSideUniqRowId: 2,
-        currentDisplayStateOfComponent: 1,
-        firstParameterGivenToComponentBeforeMounting: nextId,
-      })
+      if (
+        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
+      ) {
+        const updateState = clientSideTblOfLeftSideViewCards.update({
+          clientSideUniqRowId: 2,
+          firstParameterGivenToComponentBeforeMounting: nextId,
+        })
+      } else {
+        const updateState = clientSideTblOfLeftSideViewCards.update({
+          clientSideUniqRowId: 2,
+          secondParameterGivenToComponentBeforeMounting: nextId,
+        })
+      }
 
-      this.$root.$emit('incoming-event-with-new-value-of-slider', nextId)
+      if (!this.isThisNoteBeingCompared) {
+        this.$root.$emit('incoming-event-with-new-value-of-slider', nextId)
+      }
     },
   },
 }
