@@ -43,15 +43,15 @@
         </div>
       </el-col>
     </el-row>
-
-    <div
-      v-for="row in mfGetArOfPsychReviewOfSystems(this.currentApptObj)"
-      :key="`ros - ${row.clientSideUniqRowId}`"
-    >
-      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
-      {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
+    <div :style="cfGetPsychReviewOfSystemsStyle">
+      <div
+        v-for="row in mfGetArOfPsychReviewOfSystems(this.currentApptObj)"
+        :key="`ros - ${row.clientSideUniqRowId}`"
+      >
+        {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
+        {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
+      </div>
     </div>
-    <br />
     <div
       v-if="
         cfArOfAddendumForDisplay('psychReviewOfSystems') &&
@@ -79,6 +79,7 @@
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
@@ -102,6 +103,63 @@ export default {
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
   computed: {
+    cfGetPsychReviewOfSystemsStyle() {
+      let comparedApptObj = {}
+      let comparedPsychReviewOfSystems = {}
+
+      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+
+      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
+      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        // Handle the case when the current ID matches with the second param Need to compare with first
+        comparedApptObj = clientSideTblOfAppointments.find(
+          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        )
+        comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
+        if (
+          comparedPsychReviewOfSystems.length >
+          this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
+        ) {
+          return 'border:1px solid #E6A23C'
+        } else if (
+          comparedPsychReviewOfSystems.length <
+          this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
+        ) {
+          return 'border:1px solid #67C23A'
+        } else {
+          return ''
+        }
+      } else {
+        //
+        // Case when this appt is not the 2nd param so it is the first param
+        //
+
+        // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
+        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+          // Need to compare with second
+          comparedApptObj = clientSideTblOfAppointments.find(
+            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          )
+
+          comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
+          if (
+            comparedPsychReviewOfSystems.length >
+            this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #E6A23C'
+          } else if (
+            comparedPsychReviewOfSystems.length <
+            this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #67C23A'
+          } else {
+            return
+          }
+        }
+      }
+      // Nothing to compare with
+    },
+
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()

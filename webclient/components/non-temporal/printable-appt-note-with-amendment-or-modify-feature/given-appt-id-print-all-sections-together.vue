@@ -21,7 +21,7 @@
     <!-- SECTION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-      <b>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</b>
+      <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
       <div v-if="debug">
         Debug data. <br />
         1) ROW END value for appointments is -> {{ patientCurrentApptObj['ROW_END'] }} <br />
