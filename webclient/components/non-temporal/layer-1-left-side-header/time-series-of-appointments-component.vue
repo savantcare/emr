@@ -335,6 +335,7 @@ export default {
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
         firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
+        secondParameterGivenToComponentBeforeMounting: 0,
       })
     },
   },
