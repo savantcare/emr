@@ -51,20 +51,7 @@ export default {
         let secondNoteForComparisonClientSideUniqRowId = 0
 
         if (pSecondNoteCompareWithDirection === 'prev') {
-          const clientSideArray = clientSideTblOfAppointments
-            .query()
-            .where((record) => {
-              return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-            })
-            .get()
-
-          for (let i = 0; i < clientSideArray.length; i++) {
-            if (
-              clientSideArray[i]['clientSideUniqRowId'] < pFirstNoteForComparisonClientSideUniqRowId
-            ) {
-              secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
-            }
-          }
+          secondNoteForComparisonClientSideUniqRowId = cfGetPrevAppt()
         } else {
           const clientSideArray = clientSideTblOfAppointments
             .query()
@@ -96,8 +83,34 @@ export default {
         this.dUidrawerToShowComparisonOf2Notes = true
       }
     )
+
+    this.$root.$on(
+      'event-from-print-note-header-replace-me-with-another-note',
+      (pInitiatedBy, pDirection) => {
+        console.log(pInitiatedBy, pDirection)
+      }
+    )
   },
   computed: {
+    cfGetPrevAppt(pFirstNoteForComparisonClientSideUniqRowId) {
+      let secondNoteForComparisonClientSideUniqRowId = 0
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (
+          clientSideArray[i]['clientSideUniqRowId'] < pFirstNoteForComparisonClientSideUniqRowId
+        ) {
+          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        }
+      }
+      return secondNoteForComparisonClientSideUniqRowId
+    },
+
     cfGetApptId() {
       // this needs to be in a computed fn since clicking prev or next will change the value in DB and then the note needs to get update
 

@@ -109,6 +109,14 @@ export default {
       )
     },
     mfLeftArrowClickedLetUsGoToPrevAppt() {
+      if (this.isThisNoteBeingCompared) {
+        this.$root.$emit(
+          'event-from-print-note-header-replace-me-with-another-note',
+          this.propApptId,
+          'prev'
+        )
+        return
+      }
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -145,6 +153,14 @@ export default {
         .get()
 
       */
+      if (this.isThisNoteBeingCompared) {
+        this.$root.$emit(
+          'event-from-print-note-header-replace-me-with-another-note',
+          this.propApptId,
+          'next'
+        )
+        return
+      }
 
       const clientSideArray = clientSideTblOfAppointments
         .query()
