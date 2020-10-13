@@ -24,9 +24,9 @@ export default {
         const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
       */
     console.log('service statement req sent')
-    const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    const proSsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
     console.log('service statement recd')
-    if (proRemsFromDB.ok) {
+    if (proSsFromDB.ok) {
     }
   },
 }

@@ -134,6 +134,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@getOneServiceStatement']);
     $router->post('service-statements/v20/', ['uses' => 'ServiceStatementController@create']);
     $router->put('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
+    $router->delete('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@delete']);
     $router->options('service-statements/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')

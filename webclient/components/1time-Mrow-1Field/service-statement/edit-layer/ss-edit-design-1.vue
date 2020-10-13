@@ -133,7 +133,7 @@ export default {
       
       if (exists.length > 0) {     
         const rowToUpsert = clientSideTblOfPatientServiceStatements.find(pServiceStatementMasterId);
-        const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -160,21 +160,30 @@ export default {
             ROW_START: Math.floor(Date.now()),
           },
         })
+
         const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
-        },
-        body: JSON.stringify({
-          data:{
-            serverSideRowUuid:clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
-            patientUuid:'bfe041fa-073b-4223-8c69-0540ee678ff8',
-            serviceStatementFieldIdFromServiceStatementMaster:pServiceStatementMasterId,
-            recordChangedByUuid:'bua674fa-073b-4223-8c69-0540ee786kj8'
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
           },
-        }),
-      })
+          body: JSON.stringify({
+            data:{
+              serverSideRowUuid:clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
+              patientUuid:'bfe041fa-073b-4223-8c69-0540ee678ff8',
+              serviceStatementFieldIdFromServiceStatementMaster:pServiceStatementMasterId,
+              recordChangedByUuid:'bua674fa-073b-4223-8c69-0540ee786kj8'
+            },
+          }),
+        })
+        if (response.status !== 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: exists[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+        }
       }
     },
 

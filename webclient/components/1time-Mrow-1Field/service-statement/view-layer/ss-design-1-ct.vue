@@ -93,13 +93,33 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblOfPatientServiceStatements.update({
-        where: pClientSideUniqRowId,
-        data: {
-          ROW_END: Math.floor(Date.now()),
-        },
-      })
+    async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+
+      const exists = clientSideTblOfPatientServiceStatements
+        .query()
+        .where('clientSideUniqRowId', pClientSideUniqRowId)
+        .where('ROW_END', 2147483648000)
+        .get()
+      if (exists.length > 0) {
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: "",
+        })
+        if (response.status === 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: pClientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+        }
+      }
+      
+      
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

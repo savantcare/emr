@@ -15,8 +15,8 @@ class ServiceStatementController extends Controller
 {
     public function getAllTemporalServiceStatements()
     {
-        $ServiceStatementQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($ServiceStatementQuery);
+        $serviceStatementQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        return response()->json($serviceStatementQueryResultObj);
         // return response()->json(ServiceStatement::all());
     }
 
