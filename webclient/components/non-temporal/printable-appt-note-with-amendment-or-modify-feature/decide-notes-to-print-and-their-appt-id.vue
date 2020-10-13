@@ -125,7 +125,7 @@ export default {
         noteIDs[0] = this.secondNoteForComparisonClientSideUniqRowId
       }
 
-      console.log(noteIDs)
+      if (noteIDs.length === 2) this.dUidrawerToShowComparisonOf2Notes = true
 
       return noteIDs
     },
