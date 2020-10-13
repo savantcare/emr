@@ -20,7 +20,7 @@ class WaistCircumference extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurement', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class WaistCircumference extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-} 
+}
