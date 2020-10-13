@@ -51,9 +51,13 @@ export default {
         let secondNoteForComparisonClientSideUniqRowId = 0
 
         if (pSecondNoteCompareWithDirection === 'prev') {
-          secondNoteForComparisonClientSideUniqRowId = cfGetPrevAppt()
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(
+            pInitiatedByClientSideUniqRowId
+          )
         } else {
-          secondNoteForComparisonClientSideUniqRowId = cfGetNextAppt()
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(
+            pInitiatedByClientSideUniqRowId
+          )
         }
 
         // During comparison the lower appt ID should be on the left
@@ -73,11 +77,24 @@ export default {
       'event-from-print-note-header-replace-me-with-another-note',
       (pInitiatedBy, pDirection) => {
         console.log(pInitiatedBy, pDirection)
+        let secondNoteForComparisonClientSideUniqRowId = 0
+
+        if (pDirection === 'prev') {
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(pInitiatedBy)
+        } else {
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(pInitiatedBy)
+        }
+
+        if (this.firstNoteForComparisonClientSideUniqRowId === pInitiatedBy) {
+          this.firstNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
+        } else {
+          this.secondNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
+        }
       }
     )
   },
-  computed: {
-    cfGetPrevAppt(pApptClientSideUniqRowId) {
+  methods: {
+    mfGetPrevAppt(pApptClientSideUniqRowId) {
       let secondNoteForComparisonClientSideUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
@@ -93,24 +110,24 @@ export default {
       }
       return secondNoteForComparisonClientSideUniqRowId
     },
+  },
+  mfGetNextAppt(pApptClientSideUniqRowId) {
+    let secondNoteForComparisonClientSideUniqRowId = 0
+    const clientSideArray = clientSideTblOfAppointments
+      .query()
+      .where((record) => {
+        return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+      })
+      .get()
 
-    cfGetNextAppt(pApptClientSideUniqRowId) {
-      let secondNoteForComparisonClientSideUniqRowId = 0
-      const clientSideArray = clientSideTblOfAppointments
-        .query()
-        .where((record) => {
-          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-        })
-        .get()
-
-      for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
-          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
-        }
+    for (let i = 0; i < clientSideArray.length; i++) {
+      if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
+        secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
       }
-      return secondNoteForComparisonClientSideUniqRowId
-    },
-
+    }
+    return secondNoteForComparisonClientSideUniqRowId
+  },
+  computed: {
     cfGetApptId() {
       // this needs to be in a computed fn since clicking prev or next will change the value in DB and then the note needs to get update
 
