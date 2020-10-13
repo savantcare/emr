@@ -178,7 +178,7 @@ export default {
         })
         if (response.status !== 200) {
           clientSideTblOfPatientServiceStatements.update({
-            where: exists[0].clientSideUniqRowId,
+            where: clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].clientSideUniqRowId,
             data: {
               ROW_END: Math.floor(Date.now()),
             },
