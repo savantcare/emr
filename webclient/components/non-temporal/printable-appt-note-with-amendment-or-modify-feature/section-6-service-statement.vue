@@ -13,7 +13,7 @@
       </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
+          <div v-if="currentApptObj['apptStatus'] === 'locked'">
             <!-- Show area to add addendum -->
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
@@ -49,7 +49,11 @@
     </el-row>
 
     <!-- Goal: Show service statements -->
-    <div v-for="row in cfArOfServiceStatementForDisplay" :key="`ss-${row.clientSideUniqRowId}`">
+    <div
+      v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)"
+      :key="`ss-${row.clientSideUniqRowId}`"
+      :style="cfGetServiceStatementStyle"
+    >
       {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
       {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
     </div>
@@ -84,11 +88,12 @@
 import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
     return {
-      patientCurrentApptObj: [],
+      currentApptObj: [],
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
@@ -105,8 +110,8 @@ export default {
       return
     }
     console.log('== FROM SS ==', this.propApptId)
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
-    console.log(this.patientCurrentApptObj)
+    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    console.log(this.currentApptObj)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {
@@ -117,7 +122,7 @@ export default {
     mfSaveAddendum(pAddendumData, component) {
       clientSideTblOfAddendums.insert({
         data: {
-          appointmentId: this.patientCurrentApptObj.clientSideUniqRowId,
+          appointmentId: this.currentApptObj.clientSideUniqRowId,
           component: component,
           description: pAddendumData,
           ROW_START: Math.floor(Date.now()),
@@ -127,11 +132,11 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-  },
-  computed: {
-    cfArOfServiceStatementForDisplay() {
+    mfGetArrayOfServiceStatements(pApptObj) {
+      if (!pApptObj) return
+      console.log(pApptObj)
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
+      if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
@@ -141,12 +146,39 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
           .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
     },
+  },
+  computed: {
+    cfGetServiceStatementStyle() {
+      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        /* Need to compare with first */
+        this.comparedApptObj = clientSideTblOfAppointments.find(
+          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        )
+
+        return 'border:1px solid #67C23A'
+      } else {
+        apptNoteCardObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
+
+        // there may or may not be a second paramters
+        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+          /* Need to compare with second */
+          this.comparedApptObj = clientSideTblOfAppointments.find(
+            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          )
+          return 'border:1px solid #E6A23C'
+        }
+
+        /* Nothing to compare with */
+      }
+    },
+
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
