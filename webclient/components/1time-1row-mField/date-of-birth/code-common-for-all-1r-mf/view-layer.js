@@ -19,12 +19,10 @@ const mxFullSyncWithDbServer = require('@/components/1time-1row-mField/' +
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientSideTable from '../db/client-side/structure/table.js'
 import clientSideTblOfRightSideCards from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
@@ -90,10 +88,6 @@ export default {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
     /* Goal: Maybe change name was invoked before this and some flds are in change state. I want to find those flds.
       Why doing this in mounted function?
         Finding the diff flds only needs to happen when the Ct is loaded.
