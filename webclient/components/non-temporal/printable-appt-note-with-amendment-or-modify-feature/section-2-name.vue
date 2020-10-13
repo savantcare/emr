@@ -1,3 +1,3 @@
 <template>
-  <h3 style="padding-top: 20px">Name: Vikas K</h3>
+  <h3>Name: Vikas K</h3>
 </template>

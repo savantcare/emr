@@ -6,7 +6,7 @@
       type="flex"
       justify="left"
       class="ssh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
+      style="min-height: 53px; padding: 0rem; margin: 0rem"
     >
       <el-col :span="8">
         <h3>Service statements</h3>
@@ -232,5 +232,12 @@ export default {
 }
 .ssh3:hover .el-icon-money {
   display: inline-block !important;
+}
+h3 {
+  border-bottom: 1px solid #1375b0;
+  margin-top: 1rem;
+  width: 100%;
+  float: none;
+  display: flex;
 }
 </style>

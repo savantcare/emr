@@ -8,10 +8,8 @@
     <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
     <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
 
-    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
-
     <!-- SECTION 3 -->
-    <h3>Appt Date: {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}</h3>
+    <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
     <div v-if="debug">
       Debug data. <br />
       1) Appt start time is ->
@@ -23,7 +21,7 @@
     <!-- SECTION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-      <h3>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</h3>
+      <b>Appt locked: {{ cfApptLockDateInHumanReadableFormat }}</b>
       <div v-if="debug">
         Debug data. <br />
         1) ROW END value for appointments is -> {{ patientCurrentApptObj['ROW_END'] }} <br />
@@ -34,6 +32,7 @@
         }}
       </div>
     </div>
+    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
     <!-- SECTION 6 Service statement -->
     <serviceStatementPrintSection
@@ -296,52 +295,6 @@
       </div>
     </div>
 
-    <!-- SECTION 12 -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="vitalsh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
-    >
-      <el-col :span="8"> <h3>Vitals</h3> </el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible7">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'vitals')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <br />
-    <div v-if="cfArOfAddendumForDisplay('vitals') && cfArOfAddendumForDisplay('vitals').length > 0">
-      <h4>Addendum:</h4>
-      <div v-for="row in cfArOfAddendumForDisplay('vitals')" :key="row.clientSideUniqRowId">
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
-
     <!-- SECTION 13 -->
     <div v-if="patientCurrentApptObj['apptStatus'] !== 'locked'">
       <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
@@ -569,7 +522,16 @@ export default {
 </script>
 
 <style scoped>
-/* Ref: 
+/*
+Style architecture:
+
+A4
+H1
+H3
+
+*/
+
+/* Ref:
 https://stackoverflow.com/a/30345808
 https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
 https://github.com/cognitom/paper-css/blob/master/paper.css
@@ -582,10 +544,10 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   /* Goal 2: Give margin and padding */
   margin: 0 auto;
   margin-bottom: 0.5cm;
-  padding: 0.5cm; /* In SO/30345808 this is set as 2cm. 
-  What is the right printer margin? 
+  padding: 0.5cm; /* In SO/30345808 this is set as 2cm.
+  What is the right printer margin?
   As per https://stackoverflow.com/questions/3503615/what-are-the-minimum-margins-most-printers-can-handle it should be .25" or .39 inches. This A4 stlye given at https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
-  gives .78 inches. 
+  gives .78 inches.
   */
 
   /* Goal3: Give background color and font size */
@@ -597,6 +559,21 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal5: Give a line break before and after the element */
   display: block;
+}
+
+h1 {
+  margin-top: 1rem;
+  width: 100%;
+  float: none;
+  display: flex;
+}
+
+h3 {
+  border-bottom: 1px solid #1375b0;
+  margin-top: 1rem;
+  width: 100%;
+  float: none;
+  display: flex;
 }
 
 .prosh3:hover .el-icon-edit-outline {

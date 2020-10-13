@@ -1,3 +1,3 @@
 <template>
-  <h3>Age: 42</h3>
+  <div><b>Age:</b> 42</div>
 </template>

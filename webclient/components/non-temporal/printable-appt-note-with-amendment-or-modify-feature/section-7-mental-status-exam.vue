@@ -1,12 +1,7 @@
 <template>
   <!-- SECTION 7 MENTAL STATUS EXAM-->
   <div>
-    <el-row
-      type="flex"
-      justify="left"
-      class="mseh3"
-      style="padding-top: 20px; padding-bottom: 10px; min-height: 53px"
-    >
+    <el-row type="flex" justify="left" class="mseh3" style="min-height: 53px">
       <el-col :span="8">
         <h3>Mental status exam</h3>
       </el-col>
@@ -174,5 +169,12 @@ export default {
 }
 .mseh3:hover .el-icon-money {
   display: inline-block !important;
+}
+h3 {
+  border-bottom: 1px solid #1375b0;
+  margin-top: 1rem;
+  width: 100%;
+  float: none;
+  display: flex;
 }
 </style>

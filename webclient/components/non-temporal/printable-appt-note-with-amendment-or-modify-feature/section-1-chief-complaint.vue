@@ -1,5 +1,5 @@
 <template>
-  <div><h3>Chief Complaint</h3></div>
+  <div><b>Chief Complaint:</b></div>
 </template>
 
 <script></script>
