@@ -53,20 +53,7 @@ export default {
         if (pSecondNoteCompareWithDirection === 'prev') {
           secondNoteForComparisonClientSideUniqRowId = cfGetPrevAppt()
         } else {
-          const clientSideArray = clientSideTblOfAppointments
-            .query()
-            .where((record) => {
-              return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
-            })
-            .get()
-
-          for (let i = 0; i < clientSideArray.length; i++) {
-            if (
-              clientSideArray[i]['clientSideUniqRowId'] > pFirstNoteForComparisonClientSideUniqRowId
-            ) {
-              secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
-            }
-          }
+          secondNoteForComparisonClientSideUniqRowId = cfGetNextAppt()
         }
 
         // During comparison the lower appt ID should be on the left
@@ -104,6 +91,25 @@ export default {
       for (let i = 0; i < clientSideArray.length; i++) {
         if (
           clientSideArray[i]['clientSideUniqRowId'] < pFirstNoteForComparisonClientSideUniqRowId
+        ) {
+          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        }
+      }
+      return secondNoteForComparisonClientSideUniqRowId
+    },
+
+    cfGetNextAppt(pFirstNoteForComparisonClientSideUniqRowId) {
+      let secondNoteForComparisonClientSideUniqRowId = 0
+      const clientSideArray = clientSideTblOfAppointments
+        .query()
+        .where((record) => {
+          return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
+        })
+        .get()
+
+      for (let i = 0; i < clientSideArray.length; i++) {
+        if (
+          clientSideArray[i]['clientSideUniqRowId'] > pFirstNoteForComparisonClientSideUniqRowId
         ) {
           secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
