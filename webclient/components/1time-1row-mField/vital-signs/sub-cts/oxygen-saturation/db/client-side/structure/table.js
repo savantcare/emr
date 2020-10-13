@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class ptOxygenSaturation extends clientSideTableManage {
   static entity = 'tblOxygenSaturation'
-  static apiUrl = 'http://localhost:3000/oxygen-saturation'
+  static apiUrl = 'http://localhost:8000/public/api/oxygen-saturation/v20'
 
   static graphSeries1FieldName = 'oxygenSaturationInSpo2'
   static graphSeries1Unit = 'SpO2'
