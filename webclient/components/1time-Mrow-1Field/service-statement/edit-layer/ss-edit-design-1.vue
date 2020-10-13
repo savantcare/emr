@@ -114,6 +114,7 @@ export default {
       }, {}) // {} is the initial value of the storage
     },
     mfCheckIfThisExistsInChildTable(pSS) {
+      console.log("condition",pSS);
       // I am able to get the data from child table.
       if (pSS.tblServiceStatementsForPatientLink) {
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483648000) {
@@ -131,17 +132,14 @@ export default {
         .where('ROW_END', 2147483648000)
         .get()
       
-      if (exists.length > 0) {     
-        const rowToUpsert = clientSideTblOfPatientServiceStatements.find(pServiceStatementMasterId);
-        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
-          method: 'PUT',
+      if (exists.length > 0) {    
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             // "Authorization": "Bearer " + TOKEN
           },
-          body: JSON.stringify({
-            rowToUpsert,
-          }),
+          body: "",
         })
         if (response.status === 200) {
           clientSideTblOfPatientServiceStatements.update({

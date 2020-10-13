@@ -81,7 +81,7 @@ export default {
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      console.log("here",arOfObjectsFromClientSideDB);
+      
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
