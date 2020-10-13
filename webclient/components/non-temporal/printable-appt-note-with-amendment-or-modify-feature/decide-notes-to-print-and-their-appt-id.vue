@@ -75,14 +75,18 @@ export default {
 
     this.$root.$on(
       'event-from-print-note-header-replace-me-with-another-note',
-      (pInitiatedBy, pDirection) => {
-        console.log(pInitiatedBy, pDirection)
+      (pInitiatedByClientSideUniqRowId, pDirection) => {
+        console.log(pInitiatedByClientSideUniqRowId, pDirection)
         let secondNoteForComparisonClientSideUniqRowId = 0
 
         if (pDirection === 'prev') {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(pInitiatedBy)
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetPrevAppt(
+            pInitiatedByClientSideUniqRowId
+          )
         } else {
-          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(pInitiatedBy)
+          secondNoteForComparisonClientSideUniqRowId = this.mfGetNextAppt(
+            pInitiatedByClientSideUniqRowId
+          )
         }
 
         if (this.firstNoteForComparisonClientSideUniqRowId === pInitiatedBy) {
