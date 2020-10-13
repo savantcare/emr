@@ -49,13 +49,14 @@
     </el-row>
 
     <!-- Goal: Show service statements -->
-    <div
-      v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)"
-      :key="`ss-${row.clientSideUniqRowId}`"
-      :style="cfGetServiceStatementStyle"
-    >
-      {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
-      {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
+    <div :style="cfGetServiceStatementStyle">
+      <div
+        v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)"
+        :key="`ss-${row.clientSideUniqRowId}`"
+      >
+        {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
+        {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
+      </div>
     </div>
     <br />
 
@@ -109,9 +110,7 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    console.log('== FROM SS ==', this.propApptId)
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
-    console.log(this.currentApptObj)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {
@@ -134,7 +133,6 @@ export default {
     },
     mfGetArrayOfServiceStatements(pApptObj) {
       if (!pApptObj) return
-      console.log(pApptObj)
       let arOfObjectsFromClientSideDB = []
       if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
@@ -155,28 +153,52 @@ export default {
   },
   computed: {
     cfGetServiceStatementStyle() {
+      let comparedApptObj = {}
+      let comparedSS = {}
+
       const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+
+      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
       if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
-        /* Need to compare with first */
-        this.comparedApptObj = clientSideTblOfAppointments.find(
+        // Handle the case when the current ID matches with the second param Need to compare with first
+        comparedApptObj = clientSideTblOfAppointments.find(
           apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-
-        return 'border:1px solid #67C23A'
+        comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
+        if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+          return 'border:1px solid #E6A23C'
+        } else if (
+          comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+        ) {
+          return 'border:1px solid #67C23A'
+        } else {
+          return ''
+        }
       } else {
-        apptNoteCardObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
+        //
+        // Case when this appt is not the 2nd param so it is the first param
+        //
 
-        // there may or may not be a second paramters
+        // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
         if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
-          /* Need to compare with second */
-          this.comparedApptObj = clientSideTblOfAppointments.find(
+          // Need to compare with second
+          comparedApptObj = clientSideTblOfAppointments.find(
             apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
           )
-          return 'border:1px solid #E6A23C'
-        }
 
-        /* Nothing to compare with */
+          comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
+          if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+            return 'border:1px solid #E6A23C'
+          } else if (
+            comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #67C23A'
+          } else {
+            return
+          }
+        }
       }
+      // Nothing to compare with
     },
 
     cfArOfAddendumForDisplay() {
