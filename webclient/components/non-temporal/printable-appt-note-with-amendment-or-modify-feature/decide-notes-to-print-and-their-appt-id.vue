@@ -46,8 +46,10 @@ export default {
     this.$root.$on(
       'event-from-print-note-header-show-comparison-drawer',
       (pFirstNoteForComparisonClientSideUniqRowId, pSecondNoteCompareWithDirection) => {
-        this.firstNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
         /* pSecondNoteCompareWithDirection has the value prev or next */
+
+        let secondNoteForComparisonClientSideUniqRowId = 0
+
         if (pSecondNoteCompareWithDirection === 'prev') {
           const clientSideArray = clientSideTblOfAppointments
             .query()
@@ -58,11 +60,9 @@ export default {
 
           for (let i = 0; i < clientSideArray.length; i++) {
             if (
-              clientSideArray[i]['clientSideUniqRowId'] <
-              this.firstNoteForComparisonClientSideUniqRowId
+              clientSideArray[i]['clientSideUniqRowId'] < pFirstNoteForComparisonClientSideUniqRowId
             ) {
-              this.secondNoteForComparisonClientSideUniqRowId =
-                clientSideArray[i]['clientSideUniqRowId']
+              secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
             }
           }
         } else {
@@ -75,13 +75,22 @@ export default {
 
           for (let i = 0; i < clientSideArray.length; i++) {
             if (
-              clientSideArray[i]['clientSideUniqRowId'] >
-              this.firstNoteForComparisonClientSideUniqRowId
+              clientSideArray[i]['clientSideUniqRowId'] > pFirstNoteForComparisonClientSideUniqRowId
             ) {
-              this.secondNoteForComparisonClientSideUniqRowId =
-                clientSideArray[i]['clientSideUniqRowId']
+              secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
             }
           }
+        }
+
+        // During comparison the lower appt ID should be on the left
+        if (
+          pFirstNoteForComparisonClientSideUniqRowId < secondNoteForComparisonClientSideUniqRowId
+        ) {
+          this.firstNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
+          this.secondNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
+        } else {
+          this.firstNoteForComparisonClientSideUniqRowId = secondNoteForComparisonClientSideUniqRowId
+          this.secondNoteForComparisonClientSideUniqRowId = pFirstNoteForComparisonClientSideUniqRowId
         }
 
         this.dUidrawerToShowComparisonOf2Notes = true
