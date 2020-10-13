@@ -178,7 +178,7 @@ export default {
 
         // Goal: get user ip
 
-        fetch('https://api.ipify.org?format=json')
+        await fetch('https://api.ipify.org?format=json')
           .then((x) => x.json())
           .then(({ ip }) => {
             this.userIp = ip
