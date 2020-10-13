@@ -1,25 +1,25 @@
 <template>
   <div>
-    <div v-if="cfNumberOfNotesToCompare > 1">
+    <div v-if="cfNumberOfNotesToCompare.length > 1">
       <el-drawer :visible.sync="dUidrawerToShowComparisonOf2Notes" direction="ttb" size="90%">
         <el-row>
           <el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-              :propComparisonNoteApptId="secondNoteForComparisonClientSideUniqRowId"
+              :propShowNoteForApptId="cfNumberOfNotesToCompare[0]"
+              :propComparisonNoteApptId="cfNumberOfNotesToCompare[1]"
               key="2"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="secondNoteForComparisonClientSideUniqRowId"
-              :propComparisonNoteApptId="firstNoteForComparisonClientSideUniqRowId"
+              :propShowNoteForApptId="cfNumberOfNotesToCompare[1]"
+              :propComparisonNoteApptId="cfNumberOfNotesToCompare[0]"
               key="5"
           /></el-col>
         </el-row>
       </el-drawer>
     </div>
     <div v-else>
-      <apptNotePrintableView :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId" />
+      <apptNotePrintableView :propShowNoteForApptId="cfGetFirstNote" />
     </div>
   </div>
 </template>
@@ -34,7 +34,6 @@ export default {
   data() {
     return {
       dUidrawerToShowComparisonOf2Notes: false,
-      apptIdForWhichNoteNeedsToBeShown: 0,
       firstNoteForComparisonClientSideUniqRowId: 0,
       secondNoteForComparisonClientSideUniqRowId: 0,
     }
@@ -78,22 +77,32 @@ export default {
     },
   },
   computed: {
+    cfGetFirstNote() {
+      console.log('new ID', this.firstNoteForComparisonClientSideUniqRowId)
+      return this.firstNoteForComparisonClientSideUniqRowId
+    },
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
       console.log(apptNoteComponentObj)
 
+      let noteIDs = new Array()
+
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']) {
         numberOfNotesToCompare++
         this.firstNoteForComparisonClientSideUniqRowId =
           apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']
+
+        noteIDs.push(this.firstNoteForComparisonClientSideUniqRowId)
       }
       if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
         numberOfNotesToCompare++
         this.secondNoteForComparisonClientSideUniqRowId =
           apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']
+        noteIDs.push(this.firstNoteForComparisonClientSideUniqRowId)
       }
 
+      // If this ct was asked to display itself without the note ID then the high locked or unlockjed note id will be its ID
       if (this.firstNoteForComparisonClientSideUniqRowId > 0) {
       } else {
         const apptObj = clientSideTblOfAppointments
@@ -103,8 +112,6 @@ export default {
           .orderBy('clientSideUniqRowId', 'desc')
           .get()
 
-        console.log(apptObj)
-
         const updateState = clientSideTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           currentDisplayStateOfComponent: 1,
@@ -112,9 +119,12 @@ export default {
         })
 
         this.firstNoteForComparisonClientSideUniqRowId = apptObj[0]['clientSideUniqRowId']
+        noteIDs[0] = this.secondNoteForComparisonClientSideUniqRowId
       }
 
-      return numberOfNotesToCompare
+      console.log(noteIDs)
+
+      return noteIDs
     },
   },
 }
