@@ -553,6 +553,8 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   /* Goal3: Give background color and font size */
   background: white;
   font-size: 12px;
+  color: #1f2f3d;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB;
 
   /* Goal4: Box shadow to give it the look of a page */
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
@@ -569,7 +571,7 @@ h1 {
 }
 
 h3 {
-  border-bottom: 1px solid #1375b0;
+  border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
   width: 100%;
   float: none;

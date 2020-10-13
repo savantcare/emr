@@ -56,8 +56,6 @@
         {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
       </div>
     </div>
-    <br />
-
     <!-- Goal: Show addendum if there is any -->
     <div
       v-if="
@@ -234,7 +232,7 @@ export default {
   position: absolute;
 }
 h3 {
-  border-bottom: 1px solid #1375b0;
+  border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
   width: 100%;
   float: none;
@@ -243,7 +241,7 @@ h3 {
 .sectionHeader {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
-  border-bottom: 1px solid #1375b0;
+  border-bottom: 1px solid #dcdfe6;
 }
 .sectionHeading {
   font-size: 1rem;

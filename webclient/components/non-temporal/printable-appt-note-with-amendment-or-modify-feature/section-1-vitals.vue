@@ -120,7 +120,7 @@ export default {
 </script>
 <style scoped>
 h3 {
-  border-bottom: 1px solid #1375b0;
+  border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
   width: 100%;
   float: none;
