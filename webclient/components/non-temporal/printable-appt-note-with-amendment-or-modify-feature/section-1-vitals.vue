@@ -1,8 +1,9 @@
 <template>
   <div>
     <h3>Vitals</h3>
-    Height {{ mfGetHeightData() }} Weight {{ mfGetWeightData() }} Oxygen Saturation
-    {{ mfGetOxygenSaturationData() }}
+    Height {{ mfGetHeightData(this.currentApptObj) }} Weight
+    {{ mfGetWeightData(this.currentApptObj) }} Oxygen Saturation
+    {{ mfGetOxygenSaturationData(this.currentApptObj) }}
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
   methods: {
-    mfGetHeightData() {
+    mfGetHeightData(pApptObj) {
       const arDataToShow = []
       const data = clientSideTblHeight.all()
       const numberOfPoints = data.length
@@ -47,7 +48,7 @@ export default {
       }
     },
 
-    mfGetWeightData() {
+    mfGetWeightData(pApptObj) {
       const arDataToShow = []
       const data = clientSideTblWeight.all()
       const numberOfPoints = data.length
@@ -75,7 +76,7 @@ export default {
       }
     },
 
-    mfGetOxygenSaturationData() {
+    mfGetOxygenSaturationData(pApptObj) {
       const arDataToShow = []
       const data = clientSideTblOxygenSaturation.all()
       const numberOfPoints = data.length
