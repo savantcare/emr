@@ -1,10 +1,7 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="A4">
-    <headerPrintSection
-      :propApptId="propShowNoteForApptId"
-      :propComparisonNoteApptId="propComparisonNoteApptId"
-    ></headerPrintSection>
+    <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
 
     <namePrintSection :propApptId="propShowNoteForApptId"> </namePrintSection>
 
@@ -395,11 +392,6 @@ export default {
     propShowNoteForApptId: {
       type: Number,
       required: true,
-    },
-    propComparisonNoteApptId: {
-      type: Number,
-      required: false,
-      default: 0,
     },
   },
   filters: {
