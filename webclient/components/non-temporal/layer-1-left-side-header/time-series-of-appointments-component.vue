@@ -213,14 +213,14 @@ export default {
           'apptStartMilliSecondsOnCalendar'
         ]
 
-        let markPoint = null
+        let sliderMarkPoint = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
-          markPoint = (i / this.arOfAppointmentsFromClientSideDB.length) * 100
+          sliderMarkPoint = (i / this.arOfAppointmentsFromClientSideDB.length) * 100
         } else {
           const percentage =
             ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
 
-          markPoint = Math.round(percentage)
+          sliderMarkPoint = Math.round(percentage)
         }
 
         // Goal: Get the icon to show at each slider mark
@@ -228,43 +228,43 @@ export default {
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
-          labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock'
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock ' + sliderMarkPoint // sending the sliderMarkPoint since need to distinuish between 2 locked appt marks on the slider.
 
           // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
-          this.dCurrentValueOnTheSlider = markPoint
+          this.dCurrentValueOnTheSlider = sliderMarkPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
-          labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock'
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock ' + sliderMarkPoint
 
           // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
-          this.dCurrentValueOnTheSlider = markPoint
+          this.dCurrentValueOnTheSlider = sliderMarkPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          labelAtEachMarkUsedToStoreIconClass = 'el-icon-warning-outline'
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-warning-outline ' + sliderMarkPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          labelAtEachMarkUsedToStoreIconClass = 'el-icon-remove-outline'
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-remove-outline ' + sliderMarkPoint
         }
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-          labelAtEachMarkUsedToStoreIconClass = 'el-icon-circle-close'
+          labelAtEachMarkUsedToStoreIconClass = 'el-icon-circle-close ' + sliderMarkPoint
         }
 
         // Goal: For some appts user does not want to see the slider mark. Hence skip those
         if (this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
         } else {
-          this.dMarksOnSlider[markPoint] = labelAtEachMarkUsedToStoreIconClass
+          this.dMarksOnSlider[sliderMarkPoint] = labelAtEachMarkUsedToStoreIconClass
         }
 
-        // Goal: For each markpoint store 1. Appt ID 2. Appt status 3. Appt Calendar time
+        // Goal: For each sliderMarkPoint store 1. Appt ID 2. Appt status 3. Appt Calendar time
         this.dClientSideUniqRowIdAtEachSliderMark[
-          markPoint
+          sliderMarkPoint
         ] = this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId']
-        this.dApptStatusAtEachSliderMark[markPoint] = this.arOfAppointmentsFromClientSideDB[i][
-          'apptStatus'
-        ]
-        this.dApptCalendarTimeAtEachSliderMark[markPoint] = this.arOfAppointmentsFromClientSideDB[
+        this.dApptStatusAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientSideDB[
           i
-        ]['apptStartMilliSecondsOnCalendar']
+        ]['apptStatus']
+        this.dApptCalendarTimeAtEachSliderMark[
+          sliderMarkPoint
+        ] = this.arOfAppointmentsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
       }
       return this.dMarksOnSlider
     },
