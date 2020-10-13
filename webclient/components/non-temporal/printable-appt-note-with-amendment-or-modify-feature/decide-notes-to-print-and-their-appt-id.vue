@@ -82,8 +82,8 @@ export default {
 
       /* Goal : Get the appointment ID for which the printable note needs to be shown
        Possibilities
-       1. parametersGivenToComponentBeforeMounting has a value or has 0
-       2. If parametersGivenToComponentBeforeMounting is 0 then take the highest appt ID
+       1. firstParameterGivenToComponentBeforeMounting has a value or has 0
+       2. If firstParameterGivenToComponentBeforeMounting is 0 then take the highest appt ID
       */
 
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
@@ -92,7 +92,7 @@ export default {
 
       let apptIdForWhichNoteNeedsToBeShown = 0
       apptIdForWhichNoteNeedsToBeShown =
-        apptNoteComponentObj['parametersGivenToComponentBeforeMounting']
+        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']
 
       console.log(apptIdForWhichNoteNeedsToBeShown)
 
