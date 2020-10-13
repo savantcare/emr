@@ -148,6 +148,19 @@ export default {
               ROW_END: Math.floor(Date.now()),
             },
           })
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
         }
 
       } else {        
@@ -180,6 +193,19 @@ export default {
             data: {
               ROW_END: Math.floor(Date.now()),
             },
+          })
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
           })
         }
       }
