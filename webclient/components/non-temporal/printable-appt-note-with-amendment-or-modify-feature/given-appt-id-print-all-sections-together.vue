@@ -1,7 +1,10 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="A4">
-    <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
+    <headerPrintSection
+      :propApptId="propShowNoteForApptId"
+      :propComparisonNoteApptId="propComparisonNoteApptId"
+    ></headerPrintSection>
 
     <namePrintSection :propApptId="propShowNoteForApptId"> </namePrintSection>
 
