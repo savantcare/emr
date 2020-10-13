@@ -9,7 +9,9 @@
               class="el-icon-arrow-left"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
+            <!-- If this note is being compared then do not show the comparison icon -->
             <el-button
+              v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
               @click="sendEventToShow2Notes('prev')"
               style="padding: 3px; color: #c0c4cc; border: none"
@@ -27,7 +29,9 @@
       ><div class="grid-content">
         <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
           <el-button-group class="h1" style="display: none">
+            <!-- If this note is being compared then do not show the comparison icon -->
             <el-button
+              v-if="!isThisNoteBeingCompared"
               class="el-icon-document-copy"
               @click="sendEventToShow2Notes('next')"
               style="padding: 3px; color: #c0c4cc; border: none"
@@ -60,8 +64,9 @@ export default {
     },
   },
   computed: {
-    ifThisNoteBeingCompared() {
-      return propComparisonNoteApptId
+    isThisNoteBeingCompared() {
+      console.log(this.propComparisonNoteApptId)
+      return this.propComparisonNoteApptId
     },
     isThisLastAppointmentInLockedOrUnlockedState() {
       const clientSideArray = clientSideTblOfAppointments
