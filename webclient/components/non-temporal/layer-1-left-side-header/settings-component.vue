@@ -31,8 +31,9 @@
       <hr />
       <br />
       <h3>Font tize</h3>
+      (In percentage)
       <div class="block">
-        <el-slider v-model="value" show-input> </el-slider>
+        <el-slider v-model="fontSizeValue" :min="0" :max="200" show-input> </el-slider>
       </div>
       <br />
       <hr />
@@ -57,7 +58,7 @@ export default {
       ],
       dConfigProviderTypesToShow: [],
       checked: true,
-      value: 0,
+      fontSizeValue: 100,
     }
   },
   methods: {
