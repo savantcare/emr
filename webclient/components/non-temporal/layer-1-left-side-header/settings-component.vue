@@ -33,7 +33,14 @@
       <h3>Font tize</h3>
       (In percentage)
       <div class="block">
-        <el-slider v-model="fontSizeValue" :min="0" :max="200" show-input> </el-slider>
+        <el-slider
+          v-model="fontSizeValue"
+          :min="0"
+          :max="200"
+          show-input
+          @change="fontSliderChanged"
+        >
+        </el-slider>
       </div>
       <br />
       <hr />
@@ -44,6 +51,8 @@
 </template>
 
 <script>
+import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+
 export default {
   data() {
     return {
@@ -58,10 +67,28 @@ export default {
       ],
       dConfigProviderTypesToShow: [],
       checked: true,
-      fontSizeValue: 100,
+      fontSizeValue: null,
+    }
+  },
+  mounted() {
+    this.fontSizeValue = clientSideTableOfCommonForAllComponents.find(
+      'font-size-customized-by-user-value-in-percentage'
+    )
+    if (!this.fontSizeValue) {
+      this.fontSizeValue = 100
     }
   },
   methods: {
+    fontSliderChanged() {
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [
+          {
+            fieldName: 'font-size-customized-by-user-value-in-percentage',
+            fieldValue: this.fontSizeValue,
+          },
+        ],
+      })
+    },
     handleClickOnSettingsIcon() {
       console.log('setting to true')
       this.dIsSettingsDialogVisible = true
