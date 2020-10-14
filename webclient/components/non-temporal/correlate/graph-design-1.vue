@@ -123,8 +123,10 @@ export default {
             data: this.cfArOfServiceStatementsForGraph,
             dashStyle: 'shortdot',
             tooltip: {
+              headerFormat: '<small>Service statement: {point.key}</small><br>',
               pointFormatter: function () {
-                return this.series.name + ' ' + this.tooltip
+                // console.log(this) // To see , what data you can access
+                return this.tooltip
               },
             },
           },
