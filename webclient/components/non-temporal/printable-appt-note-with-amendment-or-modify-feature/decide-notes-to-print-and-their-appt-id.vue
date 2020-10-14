@@ -114,7 +114,6 @@ export default {
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
-      console.log(apptNoteComponentObj)
 
       let noteIDs = new Array()
 

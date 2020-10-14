@@ -1048,7 +1048,6 @@ export default {
         index = index + 1
       }
 
-      console.log(arVitalSignsForDisplay)
       return arVitalSignsForDisplay
     },
     cfMapDrawerVisibility: {
@@ -1060,12 +1059,9 @@ export default {
       },
     },
   },
-  mounted() {
-    // console.log('Drawer ct mounted')
-  },
+  mounted() {},
   methods: {
     handleClose(done) {
-      // console.log('In the handle close function')
       this.cfMapDrawerVisibility = false
     },
   },

@@ -168,7 +168,6 @@ export default {
         .orderBy('ROW_START', 'asc')
         .get()
 
-      console.log(arFromClientSideTblOfAddendums)
       return arFromClientSideTblOfAddendums
     },
   },
@@ -214,7 +213,6 @@ export default {
           .get()
       }
 
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
     cfApptLockDateInHumanReadableFormat() {

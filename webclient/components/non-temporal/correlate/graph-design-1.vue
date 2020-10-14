@@ -47,8 +47,6 @@ export default {
           .get()
       }
 
-      console.log(arOfObjectsFromClientSideRos)
-
       let groupTotal = []
       let catName = ''
       let value = 0
@@ -120,13 +118,11 @@ export default {
 
       // Goal: Find all times in the appt table when the appt was locked.
 
-      //  console.log(arOfObjectsFromClientSideRos)
       const arOfApts = clientSideTblOfAppointments
         .query()
         .where('apptStatus', 'locked')
         .orWhere('apptStatus', 'unlocked')
         .get()
-      console.log(arOfApts)
 
       const maxValue = 8
 
@@ -136,10 +132,8 @@ export default {
 
       for (let i = 0; i < arOfApts.length; i++) {
         let depressionScore = this.mfGetProsOnApptLockDate(arOfApts[i])
-        console.log(depressionScore)
         if (!depressionScore) continue
         let graphData = (depressionScore / maxValue) * 100
-        console.log(arOfApts[i]['ROW_END'])
         if (arOfApts[i]['ROW_END'] === 2147483648000) {
           // This means it is current data
           timeOfMeasurementInMilliseconds = Math.floor(Date.now())
@@ -150,7 +144,6 @@ export default {
         arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
       }
 
-      console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
 
@@ -164,7 +157,6 @@ export default {
           const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -174,7 +166,6 @@ export default {
     cfGetWeightDataForGraph() {
       const arDataToShowOnGraph = []
       const data = clientSideTblWeight.all() // .all is built into vuex-orm and will return all records
-      console.log(data)
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
@@ -193,7 +184,6 @@ export default {
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -222,7 +212,6 @@ export default {
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -261,8 +250,6 @@ export default {
       secondError['value'] = 8
       data.push(secondError)
 
-      console.log(data)
-
       // Only 2,2 and 4,4 will be shown on graph
 
       return data
@@ -272,7 +259,6 @@ export default {
         .query()
         .where('ROW_END', 2147483648000)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
 
       var arDataToShowOnGraph = new Array()
 
@@ -280,7 +266,6 @@ export default {
         arDataToShowOnGraph.push([arOfObjectsFromClientSideDB[i].ROW_START, 0])
       }
 
-      // console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {
@@ -289,7 +274,6 @@ export default {
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
       const data = [10, 10, 10]
       return data
     },

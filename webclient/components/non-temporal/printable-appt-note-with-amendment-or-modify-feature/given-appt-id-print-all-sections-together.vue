@@ -111,7 +111,6 @@ export default {
     // Finding the prev and next appt ID
 
     // get appt details from appt table
-    console.log(this.propShowNoteForApptId)
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
   },
   computed: {

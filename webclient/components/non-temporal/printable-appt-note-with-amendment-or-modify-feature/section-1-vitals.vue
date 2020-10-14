@@ -36,11 +36,9 @@ export default {
   methods: {
     mfGetHeightData(pApptObj) {
       if (!pApptObj) {
-        console.log('no valid param')
         return
       }
       if (!pApptObj[['apptStatus']]) {
-        console.log('no valid param')
         return
       }
 
@@ -75,11 +73,9 @@ export default {
 
     mfGetWeightData(pApptObj) {
       if (!pApptObj) {
-        console.log('no valid param')
         return
       }
       if (!pApptObj[['apptStatus']]) {
-        console.log('no valid param')
         return
       }
 
@@ -114,11 +110,9 @@ export default {
 
     mfGetOxygenSaturationData(pApptObj) {
       if (!pApptObj) {
-        console.log('no valid param')
         return
       }
       if (!pApptObj[['apptStatus']]) {
-        console.log('no valid param')
         return
       }
 
