@@ -261,10 +261,13 @@ export default {
         arDataToShowOnGraph.push({
           x: timeOfMeasurementInMilliseconds,
           y: 50,
-          tooltip: 'jaikalima',
+          tooltip:
+            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+            ' ' +
+            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink
+              .serviceStatementDescription,
         })
       }
-      console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
 
