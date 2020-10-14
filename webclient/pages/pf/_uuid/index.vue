@@ -178,8 +178,6 @@ export default {
   },
   methods: {
     mfUpdateSocketClientId() {
-      console.log('Socker ID is', this.$socket.id)
-
       clientSideTableOfCommonForAllComponents.insert({
         data: {
           fieldName:
@@ -187,8 +185,6 @@ export default {
           fieldValue: this.$socket.id,
         },
       })
-
-      console.log(clientSideTableOfCommonForAllComponents)
     },
     log(message) {
       console.log(message)
