@@ -26,7 +26,7 @@ __proto__: Object
     <vue-slider
       data-v-step="appt-timeline"
       v-model="dCurrentValueOnTheSlider"
-      :marks="cfGetAllMarksForSlider"
+      :marks="cfGetAllSliderMarks"
       container="true"
       absorb="true"
       :included="true"
@@ -152,7 +152,7 @@ export default {
       return clientSideTblOfAppointments.query().get()
     },
 
-    cfGetAllMarksForSlider() {
+    cfGetAllSliderMarks() {
       // this saved a lot of expensive operations, and hence makes the system more responsive.
       this.arOfAppointmentsFromClientSideDB = this.cfGetLatestAppointmentsFromInClientSideDB
 
