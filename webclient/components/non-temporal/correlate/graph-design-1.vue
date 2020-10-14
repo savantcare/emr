@@ -91,6 +91,15 @@ export default {
           {
             name: 'Weight',
             data: this.cfGetWeightDataForGraph,
+            events: {
+              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+              click: function (event) {
+                console.log(event.point)
+
+                var pointId = event.point.x
+                event.point.remove()
+              },
+            },
             dashStyle: 'longdash',
             tooltip: {
               headerFormat: '<small>Weight: {point.key}</small><br>',
@@ -102,6 +111,15 @@ export default {
           {
             name: 'Spo2',
             data: this.cfGetOxygenSaturationDataForGraph,
+            events: {
+              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+              click: function (event) {
+                console.log(event.point)
+
+                var pointId = event.point.x
+                event.point.remove()
+              },
+            },
             dashStyle: 'shortdot',
             tooltip: {
               headerFormat: '<small>SPo2: {point.key}</small><br>',
@@ -113,6 +131,15 @@ export default {
           {
             name: 'pros: depression',
             data: this.cfGetProsDepressionDataForGraph,
+            events: {
+              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+              click: function (event) {
+                console.log(event.point)
+
+                var pointId = event.point.x
+                event.point.remove()
+              },
+            },
             dashStyle: 'shortdot',
             tooltip: {
               headerFormat: '<small>PROS Depression: {point.key}</small><br>',
@@ -124,6 +151,15 @@ export default {
           {
             name: 'service statements',
             data: this.cfArOfServiceStatementsForGraph,
+            events: {
+              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+              click: function (event) {
+                console.log(event.point)
+
+                var pointId = event.point.x
+                event.point.remove()
+              },
+            },
             dashStyle: 'shortdot',
             tooltip: {
               headerFormat: '<small>Service statement: {point.key}</small><br>',
