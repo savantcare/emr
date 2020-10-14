@@ -45,59 +45,7 @@
     ></psychReviewOfSystemsPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
-    <!-- SECTION 10: Recommendations -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="recommendationsh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading">Recommendations</el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible5">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'recommendations')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <br />
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('recommendations') &&
-        cfArOfAddendumForDisplay('recommendations').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('recommendations')"
-        :key="row.clientSideUniqRowId"
-      >
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
+    <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
     <!-- SECTION 11: Medications -->
     <el-row
       type="flex"
@@ -176,6 +124,8 @@ import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
 import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-systems.vue'
 import lockButtonPrintSection from './section-13-allow-note-lock.vue'
 import remindersPrintSection from './section-9-reminders.vue'
+import recommendationsPrintSection from './section-10-recommendations.vue'
+
 // Library
 import moment from 'moment'
 
@@ -212,7 +162,9 @@ export default {
     psychReviewOfSystemsPrintSection,
     lockButtonPrintSection,
     remindersPrintSection,
+    recommendationsPrintSection,
   },
+
   async created() {
     // catch event
     let eventName = [
