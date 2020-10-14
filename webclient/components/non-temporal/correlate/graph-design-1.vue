@@ -124,7 +124,7 @@ export default {
             dashStyle: 'shortdot',
             tooltip: {
               pointFormatter: function () {
-                return this.series.name + ' '
+                return this.series.name + ' ' + this.tooltip
               },
             },
           },
@@ -257,9 +257,13 @@ export default {
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         const timeOfMeasurementInMilliseconds = arOfObjectsFromClientSideDB[i].ROW_START
-        arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, 50])
-      }
 
+        arDataToShowOnGraph.push({
+          x: timeOfMeasurementInMilliseconds,
+          y: 50,
+          tooltip: 'jaikalima',
+        })
+      }
       console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
