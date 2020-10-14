@@ -50,33 +50,6 @@
         </div>
       </div>
     </div>
-    <div v-if="debug">
-      <hr />
-      Debug data. <br />
-      Conditions to show a reminder: <br />
-      Condition 1: rem was created before the apptlock time(= ROW_END of appt) <br />
-      Condition 2: rem was deleted (ROW_END of rem) after the apptlock time(= ROW_END of appt)
-      <br />
-      <hr />
-      <div v-for="rem in cfArOfRemindersForDisplay[1]" :key="rem.clientSideUniqRowId">
-        Loop start
-        <hr />
-        {{ rem }} <br />
-        <hr />
-        Condition 1: <br />
-        Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
-        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ patientCurrentApptObj['ROW_END'] - rem['ROW_START'] }}
-        <br />
-        <hr />
-        Condition 2: Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
-        Was this reminder deleted {{ rem['ROW_END'] }} after the appt ended
-        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ rem['ROW_END'] - patientCurrentApptObj['ROW_END'] }}
-        <br />
-        <hr />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -92,7 +65,6 @@ export default {
   data() {
     return {
       currentApptObj: {},
-      debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
     }
