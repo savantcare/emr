@@ -95,6 +95,11 @@ export default {
             name: 'pros: depression',
             dashStyle: 'shortdot',
           },
+          {
+            data: this.cfArOfServiceStatementsForGraph,
+            name: 'service statements',
+            dashStyle: 'shortdot',
+          },
         ],
         chart: {
           width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
@@ -218,13 +223,22 @@ export default {
       }
     },
 
-    cfArOfServiceStatementForDisplay() {
+    cfArOfServiceStatementsForGraph() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      return arOfObjectsFromClientSideDB
+
+      const arDataToShowOnGraph = []
+
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        const timeOfMeasurementInMilliseconds = arOfObjectsFromClientSideDB[i].ROW_START
+        arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, 50])
+      }
+
+      console.log(arDataToShowOnGraph)
+      return arDataToShowOnGraph
     },
 
     cfBasicConcept() {
