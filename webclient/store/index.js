@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 
 import VuexclientSideTblOfCtSearchPhrases from '@vuex-orm/plugin-search'
 import VuexORM from '@vuex-orm/core'
+import VuexORMLocalForage from 'vuex-orm-localforage'
+
 import axios from 'axios'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
 
@@ -27,6 +29,7 @@ VuexORM.use(VuexclientSideTblOfCtSearchPhrases, {
 Vue.use(uuidv1)
 
 Vue.use(Vuex)
+VuexORM.use(VuexORMLocalForage, { database })
 
 const createStore = () => {
   return new Vuex.Store({

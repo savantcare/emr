@@ -70,17 +70,22 @@ export default {
       fontSizeValue: null,
     }
   },
-  mounted() {
-    this.fontSizeValue = clientSideTableOfCommonForAllComponents.find(
+  async mounted() {
+    await clientSideTableOfCommonForAllComponents.$fetch()
+
+    const fontObject = clientSideTableOfCommonForAllComponents.find(
       'font-size-customized-by-user-value-in-percentage'
     )
+
+    this.fontSizeValue = parseInt(fontObject['fieldValue'])
+
     if (!this.fontSizeValue) {
       this.fontSizeValue = 100
     }
   },
   methods: {
     fontSliderChanged() {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientSideTableOfCommonForAllComponents.$update({
         data: [
           {
             fieldName: 'font-size-customized-by-user-value-in-percentage',
