@@ -88,17 +88,45 @@ export default {
           // { data: [0, 0, 0], name: 'Appointments' },
           // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          { data: this.cfGetWeightDataForGraph, name: 'Weight', dashStyle: 'longdash' },
-          { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2', dashStyle: 'shortdot' },
           {
-            data: this.cfGetProsDepressionDataForGraph,
-            name: 'pros: depression',
-            dashStyle: 'shortdot',
+            name: 'Weight',
+            data: this.cfGetWeightDataForGraph,
+            dashStyle: 'longdash',
+            tooltip: {
+              pointFormatter: function () {
+                return this.series.name + ' ' + this.y + '% of max</b>'
+              },
+            },
           },
           {
-            data: this.cfArOfServiceStatementsForGraph,
-            name: 'service statements',
+            name: 'Spo2',
+            data: this.cfGetOxygenSaturationDataForGraph,
             dashStyle: 'shortdot',
+            tooltip: {
+              pointFormatter: function () {
+                return this.series.name + ' ' + this.y + '% of max</b>'
+              },
+            },
+          },
+          {
+            name: 'pros: depression',
+            data: this.cfGetProsDepressionDataForGraph,
+            dashStyle: 'shortdot',
+            tooltip: {
+              pointFormatter: function () {
+                return this.series.name + ' ' + this.y + '% of max</b>'
+              },
+            },
+          },
+          {
+            name: 'service statements',
+            data: this.cfArOfServiceStatementsForGraph,
+            dashStyle: 'shortdot',
+            tooltip: {
+              pointFormatter: function () {
+                return this.series.name + ' '
+              },
+            },
           },
         ],
         chart: {
@@ -106,11 +134,6 @@ export default {
         },
         credits: {
           enabled: false,
-        },
-        tooltip: {
-          formatter: function () {
-            return this.point.series.name + ' ' + this.y + '% of max</b>'
-          },
         },
       }
 
