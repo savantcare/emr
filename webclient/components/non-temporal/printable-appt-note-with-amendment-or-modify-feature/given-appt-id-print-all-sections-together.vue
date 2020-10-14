@@ -156,7 +156,6 @@
 </template>
 
 <script>
-import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
@@ -264,48 +263,6 @@ export default {
        * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
        */
       return (component) => arAddendums[`${component}`]
-    },
-    cfGetReminderStyle() {
-      // send event for others what my reminder array looks like
-      this.$root.$emit(
-        'event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff',
-        this.reminderArray,
-        this.patientCurrentApptObj['clientSideUniqRowId']
-      )
-
-      if (this.lastComparisonReminderArrayReceived === null) return
-      if (this.reminderArray === null) return
-
-      if (this.reminderArray[0].length > this.lastComparisonReminderArrayReceived[0].length) {
-        return 'border:1px solid #67C23A'
-      } else {
-        return 'border:1px solid #E6A23C'
-      }
-    },
-
-    cfArOfRemindersForDisplay() {
-      let userSelectedApptReminderArray = []
-
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
-        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
-          .query()
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
-          .get()
-      }
-
-      // The following line is used for debugging
-      if (this.debug) {
-        userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
-      }
-
-      this.reminderArray = userSelectedApptReminderArray
-      return userSelectedApptReminderArray
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer

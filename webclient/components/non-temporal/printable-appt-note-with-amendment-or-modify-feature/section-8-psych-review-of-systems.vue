@@ -202,8 +202,8 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > this.currentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.currentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB

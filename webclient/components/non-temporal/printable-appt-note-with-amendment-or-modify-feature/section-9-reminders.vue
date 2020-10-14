@@ -10,7 +10,7 @@
       <el-col :span="8" class="sectionHeading"> Reminders </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible4">
+          <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
             <div style="text-align: right; margin: 0">
               <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
               <el-button
@@ -33,17 +33,13 @@
       </el-col>
     </el-row>
     <div :style="cfGetReminderStyle">
-      <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
+      <div v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
         {{ row['description'] }}
       </div>
       <br />
-      <div
-        v-if="
-          cfArOfAddendumForDisplay('reminder') && cfArOfAddendumForDisplay('reminder').length > 0
-        "
-      >
+      <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
-        <div v-for="row in cfArOfAddendumForDisplay('reminder')" :key="row.clientSideUniqRowId">
+        <div v-for="row in cfArOfAddendumForDisplay" :key="row.clientSideUniqRowId">
           <div style="margin: 5px 0">
             {{ row.description }}
             <br />
@@ -87,8 +83,9 @@
 <script>
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+
 import moment from 'moment'
 
 export default {
@@ -118,68 +115,14 @@ export default {
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
   computed: {
-    cfGetPsychReviewOfSystemsStyle() {
-      let comparedApptObj = {}
-      let comparedPsychReviewOfSystems = {}
-
-      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
-
-      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
-        // Handle the case when the current ID matches with the second param Need to compare with first
-        comparedApptObj = clientSideTblOfAppointments.find(
-          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
-        )
-        comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
-        if (
-          comparedPsychReviewOfSystems.length >
-          this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
-        ) {
-          return 'border:1px solid #E6A23C'
-        } else if (
-          comparedPsychReviewOfSystems.length <
-          this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
-        ) {
-          return 'border:1px solid #67C23A'
-        } else {
-          return ''
-        }
-      } else {
-        //
-        // Case when this appt is not the 2nd param so it is the first param
-        //
-
-        // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
-        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
-          // Need to compare with second
-          comparedApptObj = clientSideTblOfAppointments.find(
-            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
-          )
-
-          comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
-          if (
-            comparedPsychReviewOfSystems.length >
-            this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
-          ) {
-            return 'border:1px solid #E6A23C'
-          } else if (
-            comparedPsychReviewOfSystems.length <
-            this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
-          ) {
-            return 'border:1px solid #67C23A'
-          } else {
-            return
-          }
-        }
-      }
-      // Nothing to compare with
+    cfGetReminderStyle() {
+      return 'border:1px solid #67C23A'
     },
-
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
-        .where('component', 'psychReviewOfSystems')
+        .where('component', 'reminders')
         .orderBy('ROW_START', 'asc')
         .get()
 
@@ -206,25 +149,34 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-    mfGetArOfPsychReviewOfSystems(pApptObj) {
+    mfGetArOfReminders(pApptObj) {
       if (!pApptObj) return
 
-      let arOfObjectsFromClientSideDB = []
+      let userSelectedApptReminderArray = []
+
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
           .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
           .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > this.currentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.currentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
-      return arOfObjectsFromClientSideDB
+
+      // The following line is used for debugging
+      if (this.debug) {
+        userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
+      }
+
+      this.reminderArray = userSelectedApptReminderArray
+      return userSelectedApptReminderArray
+    },
+    cfApptLockDateInHumanReadableFormat() {
+      return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
 }
