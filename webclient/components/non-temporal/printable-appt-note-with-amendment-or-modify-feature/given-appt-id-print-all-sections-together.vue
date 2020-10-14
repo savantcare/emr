@@ -185,16 +185,8 @@ export default {
       patientCurrentApptObj: {},
       debug: false,
       amendmentData: '',
-      popoverVisible2: false,
-      popoverVisible3: false,
-      popoverVisible4: false,
       popoverVisible5: false,
       popoverVisible6: false,
-      popoverVisible7: false,
-      reminderDataAdded: null,
-      drawerToShowComparisonOf2Notes: false,
-      lastComparisonReminderArrayReceived: null,
-      reminderArray: null,
     }
   },
   props: {
@@ -317,7 +309,7 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal3: Give background color and font size */
   background: white;
-  font-size: 12px;
+  font-size: 0.8rem;
   color: #1f2f3d;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB;
 
