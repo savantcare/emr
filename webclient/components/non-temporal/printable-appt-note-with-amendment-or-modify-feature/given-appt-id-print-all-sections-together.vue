@@ -10,27 +10,11 @@
 
     <!-- SECTION 3 -->
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
-    <div v-if="debug">
-      Debug data. <br />
-      1) Appt start time is ->
-      {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
-      <br />
-      2) Appt end (lock) time is -> {{ patientCurrentApptObj['ROW_END'] | moment }}
-    </div>
 
     <!-- SECTION 4 -->
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
-      <div v-if="debug">
-        Debug data. <br />
-        1) ROW END value for appointments is -> {{ patientCurrentApptObj['ROW_END'] }} <br />
-        2) Difference between calendar time and lock time is ->
-        {{
-          patientCurrentApptObj['ROW_END'] -
-          patientCurrentApptObj['apptStartMilliSecondsOnCalendar']
-        }}
-      </div>
     </div>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
@@ -46,57 +30,7 @@
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
-    <!-- SECTION 11: Medications -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="medicationsh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading">Medications</el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible6">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'medications')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <br />
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('medications') &&
-        cfArOfAddendumForDisplay('medications').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div v-for="row in cfArOfAddendumForDisplay('medications')" :key="row.clientSideUniqRowId">
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
-        </div>
-      </div>
-    </div>
-
+    <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
 
     <!-- End of template -->
@@ -125,6 +59,7 @@ import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-system
 import lockButtonPrintSection from './section-13-allow-note-lock.vue'
 import remindersPrintSection from './section-9-reminders.vue'
 import recommendationsPrintSection from './section-10-recommendations.vue'
+import medicationsPrintSection from './section-11-medications.vue'
 
 // Library
 import moment from 'moment'
@@ -133,10 +68,6 @@ export default {
   data() {
     return {
       patientCurrentApptObj: {},
-      debug: false,
-      amendmentData: '',
-      popoverVisible5: false,
-      popoverVisible6: false,
     }
   },
   props: {
@@ -163,6 +94,7 @@ export default {
     lockButtonPrintSection,
     remindersPrintSection,
     recommendationsPrintSection,
+    medicationsPrintSection,
   },
 
   async created() {
@@ -187,46 +119,11 @@ export default {
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
   },
   computed: {
-    cfArOfAddendumForDisplay() {
-      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
-        .query()
-        .where('appointmentId', this.propShowNoteForApptId)
-        .orderBy('ROW_START', 'asc')
-        .get()
-
-      const arAddendums = []
-      arFromClientSideTblOfAddendums.forEach((row) => {
-        if (typeof arAddendums[row.component] === 'undefined') {
-          arAddendums[row.component] = []
-        }
-        arAddendums[row.component].push(row)
-      })
-
-      /**
-       * component is computed function parameter
-       * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
-       */
-      return (component) => arAddendums[`${component}`]
-    },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
-  methods: {
-    mfSaveAddendum(pAddendumData, component) {
-      clientSideTblOfAddendums.insert({
-        data: {
-          appointmentId: this.propShowNoteForApptId,
-          component: component,
-          description: pAddendumData,
-          ROW_START: Math.floor(Date.now()),
-        },
-      })
-
-      // remove modal value after save
-      this.amendmentData = ''
-    },
-  },
+  methods: {},
 }
 </script>
 
