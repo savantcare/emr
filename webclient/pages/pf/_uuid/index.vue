@@ -167,7 +167,9 @@ export default {
       }
       return 50
     },
+
     sendCssVariablesForRootFontSizeToStyleSheet() {
+      // Is this needed since the user can change font size using the browser?
       /*let obj = {}
 
       obj['--font-size-of-root'] = '20px'
