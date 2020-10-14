@@ -23,12 +23,11 @@ Code synced with ref implementation on 4th august 2020
               placeholder="Weight in pounds"
               :value="mfGetCopiedRowBeingChangedFldVal('weightInPounds')"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'weightInPounds')"
-            >
-            </el-input>
+            ></el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
-        -->
+            -->
             <el-date-picker
               :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
               type="date"
@@ -37,8 +36,7 @@ Code synced with ref implementation on 4th august 2020
               format="yyyy/MM/dd"
               value-format="timestamp"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
-            >
-            </el-date-picker>
+            ></el-date-picker>
             <el-input
               placeholder="Notes"
               type="textarea"
@@ -48,14 +46,44 @@ Code synced with ref implementation on 4th august 2020
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed"
-              >Reviewed</el-button
-            >
-            <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
-              >Reset form</el-button
-            >
+            <el-button
+              :disabled="cfHasSomeFldChanged"
+              type="primary"
+              plain
+              @click="mfOnReviewed"
+            >Reviewed</el-button>
+            <el-button
+              :disabled="cfHasSomeFldChanged"
+              type="warning"
+              plain
+              @click="mfOnResetForm"
+            >Reset form</el-button>
           </el-form-item>
         </el-form>
+
+        <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
+        <el-timeline style="padding-inline-start: 20px">
+          <el-timeline-item
+            v-for="row in cfTimeLineDataAr"
+            :key="row.ROW_START"
+            :timestamp="row.createdAt"
+            :type="row.type"
+          >
+            {{ row.weightInPounds }}
+            <!-- The following come on right of the description that comes in the timeline. 
+        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
+        and it is not "Sending to server"
+            -->
+            <span
+              v-if="row.vnRowStateInSession == 345"
+              class="api-response-message el-button--warning"
+            >sending to server</span>
+            <span
+              v-if="row.vnRowStateInSession == 34571"
+              class="api-response-message el-button--success"
+            >saved this session</span>
+          </el-timeline-item>
+        </el-timeline>
       </el-col>
       <el-col :span="12">
         <ctWeightGraph form-type="sub-part-of-another-form"></ctWeightGraph>
