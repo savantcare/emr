@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <initializeRecommendationComponent />
+  </div>
+</template>
+
+<script>
+import initializeRecommendationComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import clientSideTable from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
+
+export default {
+  components: {
+    initializeRecommendationComponent,
+  },
+  async mounted() {
+    /*
+        TODO: Need to restrict the load to current patient
+        api is vuex-orm-axios plugin function
+        When using json-server backend the code is:
+        const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
+      */
+    console.log('recommendations req sent')
+    const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    console.log('recommendations recd')
+    if (proRemsFromDB.ok) {
+    }
+  },
+}
+</script>
