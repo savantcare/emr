@@ -8,7 +8,7 @@
             when go from Layer1LeftSide to layer1RightSide the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div>
+  <div :style="sendCssVariablesForRootFontSizeToStyleSheet">
     <!-- GOAL1: Initialize the keyboard and mouse controls -->
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
@@ -167,6 +167,14 @@ export default {
       }
       return 50
     },
+    sendCssVariablesForRootFontSizeToStyleSheet() {
+      /*let obj = {}
+
+      obj['--font-size-of-root'] = '20px'
+      console.log(obj)
+      return obj*/
+      return { '--font-size-of-root': '40px' }
+    },
   },
   methods: {
     mfUpdateSocketClientId() {
@@ -188,3 +196,10 @@ export default {
   },
 }
 </script>
+
+<style>
+:root {
+  font-size: var(--font-size-of-root) !important;
+  /*font-size: 30px !important; */
+}
+</style>
