@@ -43,87 +43,7 @@
     <psychReviewOfSystemsPrintSection
       :propApptId="propShowNoteForApptId"
     ></psychReviewOfSystemsPrintSection>
-    <!-- SECTION 9 REMINDERS -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="remindersh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading"> Reminders </el-col>
-      <el-col :span="2"
-        ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="popoverVisible4">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-              <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'reminder')"
-                circle
-              ></el-button>
-            </div>
-            <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-            ></el-button>
-          </el-popover>
-        </div>
-      </el-col>
-    </el-row>
-    <div :style="cfGetReminderStyle">
-      <div v-for="row in cfArOfRemindersForDisplay[0]" :key="row.clientSideUniqRowId">
-        {{ row['description'] }}
-      </div>
-      <br />
-      <div
-        v-if="
-          cfArOfAddendumForDisplay('reminder') && cfArOfAddendumForDisplay('reminder').length > 0
-        "
-      >
-        <h4>Addendum:</h4>
-        <div v-for="row in cfArOfAddendumForDisplay('reminder')" :key="row.clientSideUniqRowId">
-          <div style="margin: 5px 0">
-            {{ row.description }}
-            <br />
-            <span style="font-size: 10px"
-              >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="debug">
-      <hr />
-      Debug data. <br />
-      Conditions to show a reminder: <br />
-      Condition 1: rem was created before the apptlock time(= ROW_END of appt) <br />
-      Condition 2: rem was deleted (ROW_END of rem) after the apptlock time(= ROW_END of appt)
-      <br />
-      <hr />
-      <div v-for="rem in cfArOfRemindersForDisplay[1]" :key="rem.clientSideUniqRowId">
-        Loop start
-        <hr />
-        {{ rem }} <br />
-        <hr />
-        Condition 1: <br />
-        Was this reminder created {{ rem['ROW_START'] | moment }} before the appt ended
-        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ patientCurrentApptObj['ROW_END'] - rem['ROW_START'] }}
-        <br />
-        <hr />
-        Condition 2: Reminder Deleted at: {{ rem['ROW_END'] | moment }} <br />
-        Was this reminder deleted {{ rem['ROW_END'] }} after the appt ended
-        {{ patientCurrentApptObj['ROW_END'] | moment }} (Following should be +ve):
-        {{ rem['ROW_END'] - patientCurrentApptObj['ROW_END'] }}
-        <br />
-        <hr />
-      </div>
-    </div>
+    <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
     <!-- SECTION 10: Recommendations -->
     <el-row
@@ -256,7 +176,7 @@ import serviceStatementPrintSection from './section-6-service-statement.vue'
 import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
 import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-systems.vue'
 import lockButtonPrintSection from './section-13-allow-note-lock.vue'
-
+import remindersPrintSection from './section-9-reminders.vue'
 // Library
 import moment from 'moment'
 
@@ -300,6 +220,7 @@ export default {
     vitalsPrintSection,
     psychReviewOfSystemsPrintSection,
     lockButtonPrintSection,
+    remindersPrintSection,
   },
   async created() {
     // catch event
