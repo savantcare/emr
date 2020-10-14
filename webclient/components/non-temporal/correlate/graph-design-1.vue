@@ -94,8 +94,6 @@ export default {
             events: {
               // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
               click: function (event) {
-                console.log(event.point)
-
                 var pointId = event.point.x
                 event.point.remove()
               },
@@ -114,8 +112,6 @@ export default {
             events: {
               // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
               click: function (event) {
-                console.log(event.point)
-
                 var pointId = event.point.x
                 event.point.remove()
               },
@@ -134,8 +130,6 @@ export default {
             events: {
               // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
               click: function (event) {
-                console.log(event.point)
-
                 var pointId = event.point.x
                 event.point.remove()
               },
@@ -154,8 +148,6 @@ export default {
             events: {
               // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
               click: function (event) {
-                console.log(event.point)
-
                 var pointId = event.point.x
                 event.point.remove()
               },
