@@ -88,7 +88,50 @@ export default {
   },
   computed: {
     cfGetReminderStyle() {
-      return 'border:1px solid #67C23A'
+      let comparedApptObj = {}
+      let comparedReminders = {}
+
+      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+
+      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
+      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        // Handle the case when the current ID matches with the second param Need to compare with first
+        comparedApptObj = clientSideTblOfAppointments.find(
+          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        )
+        comparedReminders = this.mfGetArOfReminders(comparedApptObj)
+        if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+          return 'border:1px solid #E6A23C'
+        } else if (comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
+          return 'border:1px solid #67C23A'
+        } else {
+          return ''
+        }
+      } else {
+        //
+        // Case when this appt is not the 2nd param so it is the first param
+        //
+
+        // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
+        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+          // Need to compare with second
+          comparedApptObj = clientSideTblOfAppointments.find(
+            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          )
+
+          comparedReminders = this.mfGetArOfReminders(comparedApptObj)
+          if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+            return 'border:1px solid #E6A23C'
+          } else if (
+            comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #67C23A'
+          } else {
+            return
+          }
+        }
+      }
+      // Nothing to compare with
     },
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
