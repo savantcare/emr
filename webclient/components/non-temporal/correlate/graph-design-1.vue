@@ -173,10 +173,11 @@ export default {
 
     cfGetWeightDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTblWeight.all()
+      const data = clientSideTblWeight.all() // .all is built into vuex-orm and will return all records
+      console.log(data)
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
-        // find the max value
+        // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
@@ -192,7 +193,7 @@ export default {
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        //console.log(arDataToShowOnGraph)
+        console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null

@@ -128,6 +128,9 @@ export default {
     async mfOnReviewed() {
       // Since only one valid row is possible there may be other deleted rows
       const rowToUpsert = clientSideTable.find(this.dnClientSideIdOfCopiedRowBeingChanged)
+
+      // This will come from the form so no need to change the 'timeOfMeasurementInMilliseconds'
+
       const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
         method: 'PUT',
         headers: {
