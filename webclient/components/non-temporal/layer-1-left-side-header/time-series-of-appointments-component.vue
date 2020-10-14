@@ -2,7 +2,7 @@
 https://stackoverflow.com/questions/47893905/draw-a-line-in-css-between-fa-icons
 -->
 <template>
-  <div>
+  <div style="padding-right: 20px">
     <!-- 
       To use vue-slider the key concepts are 
       A "slider" has many "marks". Each mark is of the format "number:text"
@@ -66,8 +66,8 @@ export default {
     return {
       dCurrentActiveButtonClientSideRowId: 0,
       dCurrentValueOnTheSlider: 0,
-      dMaxApptStartMilliseconds: -1,
-      dMinApptStartMilliseconds: -1,
+      dMaxApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
+      dMinApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
       dMarksOnSlider: {},
       dClientSideUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
@@ -178,7 +178,7 @@ export default {
         }
       }
 
-      // Goal: Get max and min values. Probably nor needed for equidistant
+      // Goal: Get max and min values. This is needed to calculate the percentages. Probably nor needed for equidistant
       for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
         const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientSideDB[i][
           'apptStartMilliSecondsOnCalendar'
@@ -186,6 +186,10 @@ export default {
 
         if (this.dMinApptStartMilliseconds === -1) {
           this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        }
+
+        if (this.dMaxApptStartMilliseconds === -1) {
+          this.dMaxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
         }
 
         if (this.dMaxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
@@ -214,10 +218,11 @@ export default {
         ]
 
         let sliderMarkPoint = null
+        let percentage = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
-          sliderMarkPoint = (i / this.arOfAppointmentsFromClientSideDB.length) * 100
+          sliderMarkPoint = (i / (this.arOfAppointmentsFromClientSideDB.length - 1)) * 100
         } else {
-          const percentage =
+          percentage =
             ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
 
           sliderMarkPoint = Math.round(percentage)
