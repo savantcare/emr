@@ -7,28 +7,44 @@
       class="remindersh3 sectionHeader"
       style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8" class="sectionHeading"> Reminders </el-col>
+      <el-col :span="8" class="sectionHeading">Reminders</el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-            <div style="text-align: right; margin: 0">
-              <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          <div v-if="currentApptObj['apptStatus'] === 'locked'">
+            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+              <div style="text-align: right; margin: 0">
+                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                <el-button
+                  v-if="amendmentData.length > 0"
+                  type="success"
+                  icon="el-icon-check"
+                  style="position: absolute; bottom: 15px; right: 15px"
+                  size="mini"
+                  @click="mfSaveAddendum(amendmentData, 'reminder')"
+                  circle
+                ></el-button>
+              </div>
               <el-button
-                v-if="amendmentData.length > 0"
-                type="success"
-                icon="el-icon-check"
-                style="position: absolute; bottom: 15px; right: 15px"
-                size="mini"
-                @click="mfSaveAddendum(amendmentData, 'reminder')"
-                circle
+                slot="reference"
+                class="el-icon-edit-outline"
+                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
               ></el-button>
-            </div>
+            </el-popover>
+          </div>
+          <div v-else>
             <el-button
-              slot="reference"
-              class="el-icon-edit-outline"
-              style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
+              class="el-icon-money"
+              size="mini"
+              @click="mfOpenMultiEditCtInEditLayer"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none"
             ></el-button>
-          </el-popover>
+            <el-button
+              class="el-icon-circle-plus-outline"
+              size="mini"
+              @click="mfOpenAddInEditLayer"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none"
+            ></el-button>
+          </div>
         </div>
       </el-col>
     </el-row>
@@ -148,7 +164,12 @@ export default {
   methods: {
     mfOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'edit psych review of systems',
+        searchTerm: 'multi edit reminders',
+      })
+    },
+    mfOpenAddInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+        searchTerm: 'add reminder',
       })
     },
     mfSaveAddendum(pAddendumData, component) {
@@ -193,15 +214,21 @@ export default {
 </script>
 
 <style scoped>
-.prosh3:hover .el-icon-edit-outline {
+.remindersh3:hover .el-icon-money {
   display: inline-block !important;
   position: absolute;
 }
 
-.prosh3:hover .el-icon-money {
+.remindersh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
 }
+
+.remindersh3:hover .el-icon-circle-plus-outline {
+  display: inline-block !important;
+  position: absolute;
+}
+
 h3 {
   border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;

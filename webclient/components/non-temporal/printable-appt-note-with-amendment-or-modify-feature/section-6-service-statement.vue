@@ -8,7 +8,7 @@
       class="ssh3 sectionHeader"
       style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8" class="sectionHeading">Service statements </el-col>
+      <el-col :span="8" class="sectionHeading">Service statements</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">

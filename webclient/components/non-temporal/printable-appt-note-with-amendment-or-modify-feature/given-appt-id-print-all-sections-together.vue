@@ -353,11 +353,6 @@ h3 {
   font-weight: bold;
 }
 
-.remindersh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-  position: absolute;
-}
-
 .recommendationsh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
