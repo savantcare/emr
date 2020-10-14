@@ -16,6 +16,8 @@ import clientSideTblOxygenSaturation from '@/components/1time-1row-mField/vital-
 import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
 import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
+import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -24,6 +26,43 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    mfGetProsOnApptLockDate(pApptObj) {
+      if (!pApptObj) return
+
+      let arOfObjectsFromClientSideRos = []
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientSideRos.length; i++) {
+        catName =
+          arOfObjectsFromClientSideRos[i]['tblPsychReviewOfSystemsMasterLink'][
+            'psychReviewOfSystemsCategory'
+          ]
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        if (arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue']
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
+      }
+      return groupTotal['Depression']
+    },
   },
   computed: {
     chartOptions() {
@@ -49,12 +88,50 @@ export default {
           // { data: [0, 0, 0], name: 'Appointments' },
           // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          { data: this.cfGetWeightDataForGraph, name: 'Weight', dashStyle: 'longdash' },
-          { data: this.cfGetOxygenSaturationDataForGraph, name: 'Spo2', dashStyle: 'shortdot' },
           {
-            data: this.cfGetProsDepressionDataForGraph,
-            name: 'pros: depression',
+            name: 'Weight',
+            data: this.cfGetWeightDataForGraph,
+            dashStyle: 'longdash',
+            tooltip: {
+              headerFormat: '<small>Weight: {point.key}</small><br>',
+              pointFormatter: function () {
+                return this.y + '% of max</b>'
+              },
+            },
+          },
+          {
+            name: 'Spo2',
+            data: this.cfGetOxygenSaturationDataForGraph,
             dashStyle: 'shortdot',
+            tooltip: {
+              headerFormat: '<small>SPo2: {point.key}</small><br>',
+              pointFormatter: function () {
+                return this.y + '% of max</b>'
+              },
+            },
+          },
+          {
+            name: 'pros: depression',
+            data: this.cfGetProsDepressionDataForGraph,
+            dashStyle: 'shortdot',
+            tooltip: {
+              headerFormat: '<small>PROS Depression: {point.key}</small><br>',
+              pointFormatter: function () {
+                return this.y + '% of max</b>'
+              },
+            },
+          },
+          {
+            name: 'service statements',
+            data: this.cfArOfServiceStatementsForGraph,
+            dashStyle: 'shortdot',
+            tooltip: {
+              headerFormat: '<small>Service statement: {point.key}</small><br>',
+              pointFormatter: function () {
+                // console.log(this) // To see , what data you can access
+                return this.tooltip
+              },
+            },
           },
         ],
         chart: {
@@ -72,39 +149,34 @@ export default {
       // Where clause  needs to change to not reviewed time
       // Also need to run it for everytime the note has been reviewed
 
-      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
-        .query()
-        .with('tblPsychReviewOfSystemsMasterLink')
-        .where('ROW_END', 2147483648000)
-        .get()
+      // Goal: Find all times in the appt table when the appt was locked.
 
-      //  console.log(arOfObjectsFromClientSidePatientDB)
+      const arOfApts = clientSideTblOfAppointments
+        .query()
+        .where('apptStatus', 'locked')
+        .orWhere('apptStatus', 'unlocked')
+        .get()
 
       const maxValue = 8
 
-      let groupTotal = []
-      let catName = ''
-      let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
-        catName =
-          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
-            'psychReviewOfSystemsCategory'
-          ]
-        if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
-          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+      const arDataToShowOnGraph = []
+
+      let timeOfMeasurementInMilliseconds = 0
+
+      for (let i = 0; i < arOfApts.length; i++) {
+        let depressionScore = this.mfGetProsOnApptLockDate(arOfApts[i])
+        if (!depressionScore) continue
+        let graphData = (depressionScore / maxValue) * 100
+        if (arOfApts[i]['ROW_END'] === 2147483648000) {
+          // This means it is current data
+          timeOfMeasurementInMilliseconds = Math.floor(Date.now())
+        } else {
+          timeOfMeasurementInMilliseconds = arOfApts[i]['ROW_END']
         }
+        graphData = Math.round(graphData)
+        arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
       }
 
-      const arDataToShowOnGraph = []
-      const numberOfPointsOnGraph = 1
-      // This will need to change to not reviewed time
-      const timeOfMeasurementInMilliseconds = 1601702631025
-      let graphData = (groupTotal['Depression'] / maxValue) * 100
-      graphData = Math.round(graphData)
-      arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-      //console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
 
@@ -118,7 +190,6 @@ export default {
           const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -127,10 +198,10 @@ export default {
 
     cfGetWeightDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTblWeight.all()
+      const data = clientSideTblWeight.all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
-        // find the max value
+        // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
@@ -146,7 +217,6 @@ export default {
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        //console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
@@ -175,20 +245,35 @@ export default {
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
-        // console.log(arDataToShowOnGraph)
         return arDataToShowOnGraph
       } else {
         return null
       }
     },
 
-    cfArOfServiceStatementForDisplay() {
+    cfArOfServiceStatementsForGraph() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      return arOfObjectsFromClientSideDB
+
+      const arDataToShowOnGraph = []
+
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        const timeOfMeasurementInMilliseconds = arOfObjectsFromClientSideDB[i].ROW_START
+
+        arDataToShowOnGraph.push({
+          x: timeOfMeasurementInMilliseconds,
+          y: 50,
+          tooltip:
+            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+            ' ' +
+            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink
+              .serviceStatementDescription,
+        })
+      }
+      return arDataToShowOnGraph
     },
 
     cfBasicConcept() {
@@ -214,8 +299,6 @@ export default {
       secondError['value'] = 8
       data.push(secondError)
 
-      console.log(data)
-
       // Only 2,2 and 4,4 will be shown on graph
 
       return data
@@ -225,7 +308,6 @@ export default {
         .query()
         .where('ROW_END', 2147483648000)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
 
       var arDataToShowOnGraph = new Array()
 
@@ -233,7 +315,6 @@ export default {
         arDataToShowOnGraph.push([arOfObjectsFromClientSideDB[i].ROW_START, 0])
       }
 
-      // console.log(arDataToShowOnGraph)
       return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {
@@ -242,7 +323,6 @@ export default {
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
       const data = [10, 10, 10]
       return data
     },

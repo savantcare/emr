@@ -1,16 +1,16 @@
 <template>
   <div>
-    <initializeReminderComponent />
+    <initializeRecommendationComponent />
   </div>
 </template>
 
 <script>
-import initializeReminderComponent from '@/components/1time-Mrow-1Field/reminder/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientSideTable from '~/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+import initializeRecommendationComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import clientSideTable from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {
   components: {
-    initializeReminderComponent,
+    initializeRecommendationComponent,
   },
   async mounted() {
     /*

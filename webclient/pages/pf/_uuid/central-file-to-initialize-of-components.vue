@@ -31,6 +31,7 @@
 
     <!-- 1time-Mrow-1Field/others -->
     <initializeRemComponent />
+    <initializeRecComponent />
     <initializeServiceStatementComponent />
 
     <!-- 1time-Mrow-mField/others -->
@@ -75,6 +76,8 @@ import initializeProsComponent from '@/components/1time-1row-mField/psych-review
 
 // 1time-Mrow-1Field
 import initializeRemComponent from '@/components/1time-Mrow-1Field/reminder/db/client-side/initialize-on-first-load.vue'
+import initializeRecComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/initialize-on-first-load.vue'
+
 import initializeServiceStatementComponent from '@/components/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
@@ -116,6 +119,7 @@ export default {
 
     // 1time-Mrow-1Field
     initializeRemComponent,
+    initializeRecComponent,
     initializeServiceStatementComponent,
 
     // 1time-Mrow-mField

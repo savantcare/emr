@@ -1,18 +1,16 @@
 <template>
-  <!-- SECTION 5  SERVICE STATEMENTS -->
-  <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
+  <!-- SECTION 9 REMINDERS -->
   <div>
     <el-row
       type="flex"
       justify="left"
-      class="ssh3 sectionHeader"
+      class="recommendationsh3 sectionHeader"
       style="padding: 0rem; margin: 0rem"
     >
-      <el-col :span="8" class="sectionHeading">Service statements</el-col>
+      <el-col :span="8" class="sectionHeading">Recommendations</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
-            <!-- Show area to add addendum -->
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
                 <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
@@ -22,15 +20,14 @@
                   icon="el-icon-check"
                   style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, 'serviceStatements')"
+                  @click="mfSaveAddendum(amendmentData, 'recommendation')"
                   circle
                 ></el-button>
               </div>
               <el-button
                 slot="reference"
                 class="el-icon-edit-outline"
-                size="mini"
-                style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
+                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
               ></el-button>
             </el-popover>
           </div>
@@ -39,41 +36,36 @@
               class="el-icon-money"
               size="mini"
               @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 0px; color: #c0c4cc; border: none; display: none; float: left"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none"
+            ></el-button>
+            <el-button
+              class="el-icon-circle-plus-outline"
+              size="mini"
+              @click="mfOpenAddInEditLayer"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none"
             ></el-button>
           </div>
         </div>
       </el-col>
     </el-row>
-
-    <!-- Goal: Show service statements -->
-    <div :style="cfGetServiceStatementStyle">
+    <div :style="cfGetReminderStyle">
       <div
-        v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)"
-        :key="`ss-${row.clientSideUniqRowId}`"
-      >
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
-      </div>
-    </div>
-    <!-- Goal: Show addendum if there is any -->
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('serviceStatements') &&
-        cfArOfAddendumForDisplay('serviceStatements').length > 0
-      "
-    >
-      <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('serviceStatements')"
+        v-for="row in mfGetArOfRecommendations(this.currentApptObj)"
         :key="row.clientSideUniqRowId"
       >
-        <div style="margin: 5px 0">
-          {{ row.description }}
-          <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
+        {{ row['description'] }}
+      </div>
+      <br />
+      <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
+        <h4>Addendum:</h4>
+        <div v-for="row in cfArOfAddendumForDisplay" :key="row.clientSideUniqRowId">
+          <div style="margin: 5px 0">
+            {{ row.description }}
+            <br />
+            <span style="font-size: 10px"
+              >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -81,20 +73,25 @@
 </template>
 
 <script>
-// Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientSideTblOfPatientRecommendations from '@/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
+
+import moment from 'moment'
 
 export default {
   data() {
     return {
-      currentApptObj: [],
-      debug: false,
+      currentApptObj: {},
       amendmentData: '',
       isAddendumPopoverVisible: false,
     }
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm a')
+    },
   },
   props: {
     propApptId: {
@@ -108,49 +105,10 @@ export default {
     }
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
-  methods: {
-    mfOpenMultiEditCtInEditLayer() {
-      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'edit service statement',
-      })
-    },
-    mfSaveAddendum(pAddendumData, component) {
-      clientSideTblOfAddendums.insert({
-        data: {
-          appointmentId: this.currentApptObj.clientSideUniqRowId,
-          component: component,
-          description: pAddendumData,
-          ROW_START: Math.floor(Date.now()),
-        },
-      })
-
-      // remove modal value after save
-      this.amendmentData = ''
-    },
-    mfGetArrayOfServiceStatements(pApptObj) {
-      if (!pApptObj) return
-      let arOfObjectsFromClientSideDB = []
-      if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
-          .query()
-          .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
-          .query()
-          .with('tblServiceStatementsMasterLink')
-          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
-          .get()
-      }
-      return arOfObjectsFromClientSideDB
-    },
-  },
   computed: {
-    cfGetServiceStatementStyle() {
+    cfGetReminderStyle() {
       let comparedApptObj = {}
-      let comparedSS = {}
+      let comparedRecommendations = {}
 
       const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -160,11 +118,13 @@ export default {
         comparedApptObj = clientSideTblOfAppointments.find(
           apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
-        if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+        comparedRecommendations = this.mfGetArOfRecommendations(comparedApptObj)
+        if (
+          comparedRecommendations.length > this.mfGetArOfRecommendations(this.currentApptObj).length
+        ) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+          comparedRecommendations.length < this.mfGetArOfRecommendations(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
         } else {
@@ -182,11 +142,15 @@ export default {
             apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
-          if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+          comparedRecommendations = this.mfGetArOfRecommendations(comparedApptObj)
+          if (
+            comparedRecommendations.length >
+            this.mfGetArOfRecommendations(this.currentApptObj).length
+          ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+            comparedRecommendations.length <
+            this.mfGetArOfRecommendations(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
           } else {
@@ -196,41 +160,84 @@ export default {
       }
       // Nothing to compare with
     },
-
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
+        .where('component', 'recommendations')
         .orderBy('ROW_START', 'asc')
         .get()
 
-      const arAddendums = []
-      arFromClientSideTblOfAddendums.forEach((row) => {
-        if (typeof arAddendums[row.component] === 'undefined') {
-          arAddendums[row.component] = []
-        }
-        arAddendums[row.component].push(row)
+      return arFromClientSideTblOfAddendums
+    },
+  },
+  methods: {
+    mfOpenMultiEditCtInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+        searchTerm: 'multi edit recommendations',
+      })
+    },
+    mfOpenAddInEditLayer() {
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+        searchTerm: 'add recommendation',
+      })
+    },
+    mfSaveAddendum(pAddendumData, component) {
+      clientSideTblOfAddendums.insert({
+        data: {
+          appointmentId: this.currentApptObj.clientSideUniqRowId,
+          component: component,
+          description: pAddendumData,
+          ROW_START: Math.floor(Date.now()),
+        },
       })
 
-      /**
-       * component is computed function parameter
-       * ref: https://ednsquare.com/question/how-to-pass-parameters-in-computed-properties-in-vue-js-------MQVlHT
-       */
-      return (component) => arAddendums[`${component}`]
+      // remove modal value after save
+      this.amendmentData = ''
+    },
+    mfGetArOfRecommendations(pApptObj) {
+      if (!pApptObj) return
+
+      let arOfObjectsFromClientSideDB = []
+
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientRecommendations
+          .query()
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientRecommendations
+          .query()
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      return arOfObjectsFromClientSideDB
+    },
+    cfApptLockDateInHumanReadableFormat() {
+      return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
 }
 </script>
 
 <style scoped>
-.ssh3:hover .el-icon-edit-outline {
+.recommendationsh3:hover .el-icon-money {
   display: inline-block !important;
   position: absolute;
 }
-.ssh3:hover .el-icon-money {
+
+.recommendationsh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
 }
+
+.recommendationsh3:hover .el-icon-circle-plus-outline {
+  display: inline-block !important;
+  position: absolute;
+}
+
 h3 {
   border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
@@ -246,5 +253,10 @@ h3 {
 .sectionHeading {
   font-size: 1rem;
   font-weight: bold;
+}
+.subSectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
 }
 </style>

@@ -36,11 +36,9 @@ export default {
   methods: {
     mfGetHeightData(pApptObj) {
       if (!pApptObj) {
-        console.log('no valid param')
         return
       }
       if (!pApptObj[['apptStatus']]) {
-        console.log('no valid param')
         return
       }
 
@@ -74,60 +72,77 @@ export default {
     },
 
     mfGetWeightData(pApptObj) {
-      const arDataToShow = []
-      const data = clientSideTblWeight.all()
-      const numberOfPoints = data.length
-      if (numberOfPoints > 0) {
-        // find the max value
-        let maxGraphData = 0
-        for (let i = 0; i < numberOfPoints; i++) {
-          const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
-          if (graphData > maxGraphData) {
-            maxGraphData = graphData
-          }
-        }
-
-        for (let i = 0; i < numberOfPoints; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData =
-            (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
-          graphData = Math.round(graphData)
-          arDataToShow.push([timeOfMeasurementInMilliseconds, graphData])
-        }
-        //console.log(arDataToShow)
-        return arDataToShow
-      } else {
-        return null
+      if (!pApptObj) {
+        return
       }
+      if (!pApptObj[['apptStatus']]) {
+        return
+      }
+
+      let arOfObjectsFromClientSideDB = []
+
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideDB = clientSideTblWeight
+          .query()
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblWeight
+          .query()
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      if (arOfObjectsFromClientSideDB.length > 0) {
+      } else {
+        return
+      }
+
+      let arr = []
+      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
+        'MMM DD YYYY'
+      )
+      arr[1] = arOfObjectsFromClientSideDB[0]['weightInPounds']
+
+      return arr[1] + ' pounds on ' + arr[0]
     },
 
     mfGetOxygenSaturationData(pApptObj) {
-      const arDataToShow = []
-      const data = clientSideTblOxygenSaturation.all()
-      const numberOfPoints = data.length
-
-      if (numberOfPoints > 0) {
-        // find the max value
-        let maxGraphData = 0
-        for (let i = 0; i < numberOfPoints; i++) {
-          const graphData = data[i][clientSideTblOxygenSaturation.graphSeries1FieldName]
-          if (graphData > maxGraphData) {
-            maxGraphData = graphData
-          }
-        }
-
-        for (let i = 0; i < numberOfPoints; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData =
-            (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
-          graphData = Math.round(graphData)
-          arDataToShow.push([timeOfMeasurementInMilliseconds, graphData])
-        }
-        // console.log(arDataToShow)
-        return arDataToShow
-      } else {
-        return null
+      if (!pApptObj) {
+        return
       }
+      if (!pApptObj[['apptStatus']]) {
+        return
+      }
+
+      let arOfObjectsFromClientSideDB = []
+
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation
+          .query()
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation
+          .query()
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      if (arOfObjectsFromClientSideDB.length > 0) {
+      } else {
+        return
+      }
+
+      let arr = []
+      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
+        'MMM DD YYYY'
+      )
+      arr[1] = arOfObjectsFromClientSideDB[0]['oxygenSaturationInSpo2']
+
+      return arr[1] + ' spO2 on ' + arr[0]
     },
   },
 }

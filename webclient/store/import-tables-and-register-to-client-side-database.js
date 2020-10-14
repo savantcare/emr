@@ -72,24 +72,33 @@ database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
 import tableStructureForRem from '~/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import tableStructureForName from '~/components/1time-1row-mField/name/db/client-side/structure/table.js'
-import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
-import tableStructureForRec from '~/components/1time-Mrow-1Field/rec/db/client-side/structure/model.js'
-import tableStructureForDx from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
-import tableStructureForDxa from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
-import tableStructureForGoal from '~/components/1time-Mrow-mField/goal/db/client-side/structure/Goal'
-import tableStructureForPhoneNumbers from '~/components/1time-Mrow-mField/phone-numbers/db/client-side/structure/table.js'
-import tableStructureForPatientDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/patient-table-of-diagnosis'
-import tableStructureForMasterDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/master-table-of-diagnosis'
 database.register(tableStructureForRem)
-database.register(tableStructureForName)
-database.register(tableStructureForDob)
+
+import tableStructureForRec from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForRec)
+
+import tableStructureForName from '~/components/1time-1row-mField/name/db/client-side/structure/table.js'
+database.register(tableStructureForName)
+
+import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
+database.register(tableStructureForDob)
+
+import tableStructureForDx from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
 database.register(tableStructureForDx)
-database.register(tableStructureForGoal)
+
+import tableStructureForDxa from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
 database.register(tableStructureForDxa)
+
+import tableStructureForGoal from '~/components/1time-Mrow-mField/goal/db/client-side/structure/Goal'
+database.register(tableStructureForGoal)
+
+import tableStructureForPhoneNumbers from '~/components/1time-Mrow-mField/phone-numbers/db/client-side/structure/table.js'
 database.register(tableStructureForPhoneNumbers)
+
+import tableStructureForPatientDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/patient-table-of-diagnosis'
 database.register(tableStructureForPatientDiagnosis)
+
+import tableStructureForMasterDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/master-table-of-diagnosis'
 database.register(tableStructureForMasterDiagnosis)
 
 export default database

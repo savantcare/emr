@@ -6,11 +6,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
   <div>
     <!-- Following el-card style is set to overflow visible and height 65px. This is because tooltip on appointment slider wasn't fully visible as el-card overflow property by default set to hidden. Also since slider is generating on the fly, it was causing malformation on mouse overing/tooltip. Hence overflow is visible and height set to 65px. -->
     <el-card style="overflow: visible; height: 65px">
-      <el-col :span="6" class="ml-2" style="display: flex; align-items: center">
-        <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
-        <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
-      </el-col>
-      <el-col :span="17">
+      <el-col :span="23">
         <ctSlider></ctSlider>
       </el-col>
       <el-col :span="1" style="display: flex; align-items: right; padding-left: 8px">
@@ -21,14 +17,12 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
-import ctName from '@/components/1time-1row-mField/name/view-layer/privacy-protected-name.vue'
-import ctAge from '@/components/1time-1row-mField/date-of-birth/view-layer/age.vue'
 import ctSlider from './time-series-of-appointments-component.vue'
 import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 
 export default {
-  components: { ctName, ctAge, ctSlider, ctSettings },
+  components: { ctSlider, ctSettings },
 }
 </script>
 
