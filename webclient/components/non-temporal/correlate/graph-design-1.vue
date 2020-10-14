@@ -93,8 +93,9 @@ export default {
             data: this.cfGetWeightDataForGraph,
             dashStyle: 'longdash',
             tooltip: {
+              headerFormat: '<small>Weight: {point.key}</small><br>',
               pointFormatter: function () {
-                return this.series.name + ' ' + this.y + '% of max</b>'
+                return this.y + '% of max</b>'
               },
             },
           },
@@ -103,8 +104,9 @@ export default {
             data: this.cfGetOxygenSaturationDataForGraph,
             dashStyle: 'shortdot',
             tooltip: {
+              headerFormat: '<small>SPo2: {point.key}</small><br>',
               pointFormatter: function () {
-                return this.series.name + ' ' + this.y + '% of max</b>'
+                return this.y + '% of max</b>'
               },
             },
           },
@@ -113,8 +115,9 @@ export default {
             data: this.cfGetProsDepressionDataForGraph,
             dashStyle: 'shortdot',
             tooltip: {
+              headerFormat: '<small>PROS Depression: {point.key}</small><br>',
               pointFormatter: function () {
-                return this.series.name + ' ' + this.y + '% of max</b>'
+                return this.y + '% of max</b>'
               },
             },
           },
