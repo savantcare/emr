@@ -3,8 +3,6 @@
   <div class="A4">
     <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
 
-    <namePrintSection :propApptId="propShowNoteForApptId"> </namePrintSection>
-
     <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
     <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
 
@@ -51,7 +49,6 @@ import apptNotePrintableView from '@/components/non-temporal/printable-appt-note
 import headerPrintSection from './section-1-header.vue'
 import chiefComplaintPrintSection from './section-1-chief-complaint.vue'
 import vitalsPrintSection from './section-1-vitals.vue'
-import namePrintSection from './section-2-name.vue'
 import agePrintSection from './section-3-age.vue'
 import serviceStatementPrintSection from './section-6-service-statement.vue'
 import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
@@ -84,7 +81,6 @@ export default {
   components: {
     apptNotePrintableView,
     serviceStatementPrintSection,
-    namePrintSection,
     agePrintSection,
     headerPrintSection,
     mentalStatusExamPrintSection,

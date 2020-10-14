@@ -22,7 +22,7 @@
     </el-col>
     <el-col :span="16"
       ><div class="grid-content">
-        <h2 style="text-align: center">Appt Note (Confidential)</h2>
+        <h2 style="text-align: center">Vikas K</h2>
       </div></el-col
     >
     <el-col :span="4"
