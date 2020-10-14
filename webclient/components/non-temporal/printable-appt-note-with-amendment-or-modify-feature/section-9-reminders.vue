@@ -152,28 +152,23 @@ export default {
     mfGetArOfReminders(pApptObj) {
       if (!pApptObj) return
 
-      let userSelectedApptReminderArray = []
+      let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
           .query()
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        userSelectedApptReminderArray[0] = clientSideTblOfPatientReminders
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      // The following line is used for debugging
-      if (this.debug) {
-        userSelectedApptReminderArray[1] = clientSideTblOfPatientReminders.query().get()
-      }
-
-      this.reminderArray = userSelectedApptReminderArray
-      return userSelectedApptReminderArray
+      console.log(arOfObjectsFromClientSideDB)
+      return arOfObjectsFromClientSideDB
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
