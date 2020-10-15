@@ -36,7 +36,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adx',
-        ctToShow: '1time-Mrow-mField/diagnosis/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-Mrow-mField/diagnosis/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInCl: 'small', // small
       },
