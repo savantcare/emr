@@ -14,25 +14,38 @@
       </div>
       <div class="">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
-          <el-table :data="cfArOfDiagnosisForDisplay" :show-header="false" style="width: 100%">
-            <!-- <el-table-column type="expand" v-if="assesment">
+          <el-table :data="cfArOfDiagnosisForDisplay" 
+            ref="table"
+            :show-header="false" 
+            style="width: 100%"
+            :row-class-name="tableRowClassName"
+            :default-expand-all="defaultExpandAll">
+            
+            <el-table-column type="expand" style="padding: 5px 15px" :width="25">
               <template slot-scope="props">
-                <p><span>Assesment:</span> <span>{{ props.row.assesment }}</span></p>
+                <p>
+                  <span v-if="props.row.assessment != ''">{{ props.row.assessment }}</span>
+                  <span v-else class="emptyRow"> Assessment empty!</span>
+                </p>
               </template>
-            </el-table-column> -->
+            </el-table-column>
             <el-table-column prop="linkWithMaster.diagnosisName"> </el-table-column>
-            <el-table-column label="Actions" width="28">
+            <!-- <el-table-column prop="startDate" width="110"> </el-table-column> -->
+            <el-table-column :width="115">
+              <div slot-scope="{row}" class="td-number">
+                {{fnFormatDateOfStartDate(row.startDate)}}
+              </div>
+            </el-table-column>
+            <el-table-column label="Actions" :align="'right'" :width="50">
               <template slot-scope="props">
-                <el-tooltip content="Discontinue" effect="light" :open-delay="300" placement="top">
+                <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
                   <el-button
-                    type="danger"
-                    size="mini"
                     style="padding: 3px"
                     plain
                     tabindex="-1"
                     @click="mfIconDeleteClickedOnChildCard(props.row.$id)"
-                    >D</el-button
-                  >
+                    class="el-icon-document-delete"
+                  ></el-button>
                 </el-tooltip>
               </template>
             </el-table-column>
@@ -45,21 +58,48 @@
 </template>
 
 <script>
+import moment from 'moment'
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
+import clientSideTblMasterDiagnosis from '../db/client-side/structure/master-table-of-diagnosis'
 
 export default {
+  data() {
+    return {
+      defaultExpandAll: true,
+    }
+  },
   computed: {
     cfArOfDiagnosisForDisplay: function () {
       const getData = clientSideTblPatientDiagnosis
         .query()
         .with('linkWithMaster')
         .where('ROW_END', 2147483648000)
-        .where('masterDiagnosisId', '!=', null)
+        .where('masterDiagnosisId', (value) => value > 0)
         .get()
+      console.log('display view data', getData);
       return getData
     },
   },
   methods: {
+    expandRow(row, isExpanded) {
+      console.log('row', row);
+      return true;
+      // this.$refs.tab.store.states.expandRows = isExpanded ? [row] : []
+    },
+    fnFormatDateOfStartDate(time) {
+      return moment(time).format(
+        'MMM DD YYYY'
+      )
+    },
+
+    tableRowClassName({row, rowIndex}) {
+      if (row.vnRowStateInSession === 24) {
+        return 'warning-row';
+      } else if (row.vnRowStateInSession === 2456) {
+        return 'danger-row';
+      }
+      return '';
+    },
     mfIconDeleteClickedOnChildCard(id) {
       const arResultsFromOrm = clientSideTblPatientDiagnosis
         .query()
@@ -67,8 +107,8 @@ export default {
         .where(id)
         .first()
 
-      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Discontinue diagnosis', {
-        confirmButtonText: 'Discontinue',
+      this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Delete diagnosis', {
+        confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter reasen',
       })
@@ -76,18 +116,25 @@ export default {
           clientSideTblPatientDiagnosis.update({
             where: id,
             data: {
-              discontinueNote: value,
+              deleteNote: value,
               ROW_END: Math.floor(Date.now()),
             },
           })
+          await clientSideTblMasterDiagnosis.update({
+              where: (record) =>
+                record.masterDiagnosisId === arResultsFromOrm.masterDiagnosisId,
+              data: {
+                ROW_END: 2147483648000
+              },
+            })
           this.$message({
             type: 'success',
-            message: 'Diagnosis discontinue.',
+            message: 'Diagnosis deleted.',
           })
           // console.log('delete status ======> ', value)
         })
         .catch(() => {
-          console.log('Discontinue cancelled')
+          console.log('Delete cancelled')
         })
     },
     fnOpenAddModule() {
@@ -99,8 +146,23 @@ export default {
   async mounted() {},
 }
 </script>
-<style scoped>
-.emptyRow {
-  color: #b1b1b1;
-}
+<style>
+  /* .warning-row {
+    background-color: #E6A23C !important;
+  }
+  .danger-row {
+    background-color: #F56C6C !important;
+  } */
+  .el-table .warning-row {
+    background: oldlace;
+  }
+  .el-table .danger-row {
+    background: #ffdcdc;
+  }
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
+  .emptyRow {
+    color: #b1b1b1;
+  }
 </style>

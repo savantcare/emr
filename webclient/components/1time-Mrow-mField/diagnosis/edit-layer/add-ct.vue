@@ -43,6 +43,8 @@
           <el-col :span="20">
             <el-date-picker
               ref="startDate"
+              format="MMM dd yyyy"
+              value-format="timestamp"
               type="date"
               :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'startDate')"
               @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'startDate')"
@@ -52,7 +54,7 @@
           
 
           <!-- Other row -->
-          <el-col>
+          <el-col style="margin-top: 2px;">
             <el-input
               ref="assessment"
               type="textarea"
@@ -156,13 +158,13 @@ export default {
         .get()
       return arOfObjectsFromClientSideMasterDB
     },
-    async fnChangeDiagnosis(selectItem, clientSideUniqRowId) {
+    async fnChangeDiagnosis(selectMasterDiagnosisId, clientSideUniqRowId) {
       // rowItem.masterDiagnosisId = selectItem;
       await clientSideTblPatientDiagnosis.update({
         where: (record) =>
           record.clientSideUniqRowId === clientSideUniqRowId,
         data: {
-          masterDiagnosisId: selectItem
+          masterDiagnosisId: selectMasterDiagnosisId
         },
       })
     },
@@ -193,9 +195,11 @@ export default {
         const lastElement = this.$refs.masterDiagnosisId.length
         if(this.$refs.masterDiagnosisId[lastElement - 1].value === 0) {
           // set select diagnosis field value blank
-          this.$refs.masterDiagnosisId[lastElement - 1].value = '';
+          setTimeout(()=>{
+            // console.log('set value blank', this.$refs.masterDiagnosisId[lastElement - 1])
+            this.$refs.masterDiagnosisId[lastElement - 1].value = '';
+          }, 100);
         }
-        console.log('this.isClickReviewed', this.isClickReviewed);
         if(this.isClickReviewed != true) {
           this.$refs.masterDiagnosisId[lastElement - 1].focus()
         }
@@ -233,7 +237,6 @@ export default {
       const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientSideTblPatientDiagnosis since get benefit of caching.
       if (arFromClientSideTable.length) {
         this.isClickReviewed = true;
-        console.log('unsaved data found', arFromClientSideTable)
         for (let i = 0; i < arFromClientSideTable.length; i++) {
           if (arFromClientSideTable[i].masterDiagnosisId == 0 || arFromClientSideTable[i].masterDiagnosisId == '') {
             // Validation check
@@ -254,6 +257,13 @@ export default {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server
                 isValidationError: false,
+              },
+            })
+            await clientSideTblMasterDiagnosis.update({
+              where: (record) =>
+                record.masterDiagnosisId === arFromClientSideTable[i].masterDiagnosisId,
+              data: {
+                ROW_END: Math.floor(Date.now())
               },
             })
           }
