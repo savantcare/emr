@@ -1,7 +1,15 @@
-Current choice of OSS:
+# Current choice of OSS:
+
+## UI
+
+https://github.com/voerro/vue-tagsinput
+
+## Grammar
+
 https://github.com/SAP/chevrotain
 https://nearley.js.org/
-https://github.com/voerro/vue-tagsinput
+
+# Others
 
 Demo of simple grammar:
 Subject Verb Mod Demo -> https://omrelli.ug/nearley-playground/
