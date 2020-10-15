@@ -76,7 +76,6 @@ export default {
         .where('ROW_END', 2147483648000)
         .where('masterDiagnosisId', (value) => value > 0)
         .get()
-      console.log('display view data', getData);
       return getData
     },
   },
@@ -84,7 +83,6 @@ export default {
     expandRow(row, isExpanded) {
       console.log('row', row);
       return true;
-      // this.$refs.tab.store.states.expandRows = isExpanded ? [row] : []
     },
     fnFormatDateOfStartDate(time) {
       return moment(time).format(
@@ -131,7 +129,6 @@ export default {
             type: 'success',
             message: 'Diagnosis deleted.',
           })
-          // console.log('delete status ======> ', value)
         })
         .catch(() => {
           console.log('Delete cancelled')
@@ -147,12 +144,6 @@ export default {
 }
 </script>
 <style>
-  /* .warning-row {
-    background-color: #E6A23C !important;
-  }
-  .danger-row {
-    background-color: #F56C6C !important;
-  } */
   .el-table .warning-row {
     background: oldlace;
   }
