@@ -106,3 +106,11 @@ export default {
   },
 }
 </script>
+
+<style>
+span.api-response-message {
+  padding: 3px 8px 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+</style>
