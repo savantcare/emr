@@ -116,6 +116,11 @@ import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-t
 import clientSideTblMasterDiagnosis from '../db/client-side/structure/master-table-of-diagnosis'
 
 export default {
+  data() {
+    return {
+      isClickReviewed: false
+    }
+  },
   computed: {
     // clientSideTblPatientDiagnosis functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientSideTableNewRowsInEditState() {
@@ -190,7 +195,10 @@ export default {
           // set select diagnosis field value blank
           this.$refs.masterDiagnosisId[lastElement - 1].value = '';
         }
-        this.$refs.masterDiagnosisId[lastElement - 1].focus()
+        console.log('this.isClickReviewed', this.isClickReviewed);
+        if(this.isClickReviewed != true) {
+          this.$refs.masterDiagnosisId[lastElement - 1].focus()
+        }
       }
     },
     // Cannot call clientSideTblPatientDiagnosis function directly from template so need to have a method function to act as a pipe between template and the ORM function
@@ -224,6 +232,7 @@ export default {
       */
       const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientSideTblPatientDiagnosis since get benefit of caching.
       if (arFromClientSideTable.length) {
+        this.isClickReviewed = true;
         console.log('unsaved data found', arFromClientSideTable)
         for (let i = 0; i < arFromClientSideTable.length; i++) {
           if (arFromClientSideTable[i].masterDiagnosisId == 0 || arFromClientSideTable[i].masterDiagnosisId == '') {
@@ -249,9 +258,11 @@ export default {
             })
           }
         }
+        
+        // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
+        // await clientSideTblPatientDiagnosis.fnSendToServer()
+        setTimeout(() => this.isClickReviewed = false, 200);
       }
-      // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      // await clientSideTblPatientDiagnosis.fnSendToServer()
     },
   },
 }
