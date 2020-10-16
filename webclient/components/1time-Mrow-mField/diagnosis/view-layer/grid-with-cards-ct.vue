@@ -13,7 +13,8 @@
         actionDescription: 'Close card',
       },
     ]">
-    <el-card class="box-card" slot="bodySlotContentFromParentToShowAboveChildCards">
+    <div slot="bodySlotContentFromParentToShowAboveChildCards">
+    <!-- <el-card class="box-card"> -->
       <!-- <div slot="header" class="clearfix">
         <strong>Diagnosis</strong>
         <el-tooltip content="Add diagnosis" effect="light" :open-delay="300" placement="top">
@@ -25,7 +26,7 @@
           ></el-button>
         </el-tooltip>
       </div> -->
-      <div class="">
+      <div class="diagnosis body">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
           <el-table :data="cfArOfDiagnosisForDisplay" 
             ref="table"
@@ -66,7 +67,8 @@
         </div>
         <div v-else class="emptyRow">Not added yet</div>
       </div>
-    </el-card>
+    <!-- </el-card> -->
+    </div>
   </showContentInCardComponent>
 </template>
 
