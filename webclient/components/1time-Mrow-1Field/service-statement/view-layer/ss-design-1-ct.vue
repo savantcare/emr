@@ -36,8 +36,7 @@
             plain
             @click="mfIconDeleteClickedOnChildCard(serviceStatement.clientSideUniqRowId)"
             class="el-icon-circle-close"
-          >
-          </el-button>
+          ></el-button>
         </el-tooltip>
         <el-tooltip
           class="item"
@@ -50,8 +49,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             class="el-icon-discover"
-          >
-          </el-button>
+          ></el-button>
         </el-tooltip>
       </el-button-group>
 
@@ -61,13 +59,11 @@
           Why we are doing this?
             Doctor is sitting infront of computer suddenly a new serviceStatement appears. That is a confusing event.
             Instead if the new serviceStatement that came on screen gets a orange border with top right corner saying "New serviceStatement added from socket" that is much better UX.
-          -->
-      <div v-if="serviceStatement.vnRowStateInSession === 9">
-        Added from socket {{ serviceStatement.description }}
-      </div>
-      <div v-else>
-        {{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}
-      </div>
+      -->
+      <div
+        v-if="serviceStatement.vnRowStateInSession === 9"
+      >Added from socket {{ serviceStatement.description }}</div>
+      <div v-else>{{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}</div>
     </el-card>
   </showContentInCardComponent>
 </template>
@@ -85,7 +81,7 @@ export default {
         .with('tblServiceStatementsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-
+      
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
@@ -97,13 +93,46 @@ export default {
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblOfPatientServiceStatements.update({
-        where: pClientSideUniqRowId,
-        data: {
-          ROW_END: Math.floor(Date.now()),
-        },
-      })
+    async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+
+      const exists = clientSideTblOfPatientServiceStatements
+        .query()
+        .where('clientSideUniqRowId', pClientSideUniqRowId)
+        .where('ROW_END', 2147483648000)
+        .get()
+      if (exists.length > 0) {
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: "",
+        })
+        if (response.status === 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: pClientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        }
+      }
+      
+      
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
