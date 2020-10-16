@@ -62,7 +62,6 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfMentalStatusExamGrouped() {
-      console.log('cf called')
       const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterMentalStatusExam
         .query()
         .with('tblMentalStatusExamForPatientLink')
@@ -78,110 +77,8 @@ export default {
         })
         .get()
 
-      // Apply rules given by doctors
-
-      // Rule1: If one "Modality of Psychotherapy" exists PatientMentalStatusExam table then do not show others
-      let modalityOfPsychotherapyExists = clientSideTblOfPatientMentalStatusExam
-        .query()
-        .with('tblMentalStatusExamMasterLink')
-        .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('mentalStatusExamCategory', 'Modality of Psychotherapy')
-        })
-        .where('ROW_END', 2147483648000)
-        .get()
-
-      //  (query) => { query.where('mentalStatusExamCategory', 'Modality of Psychotherapy') })
-
-      console.log('modalityOfPsychotherapyExists', modalityOfPsychotherapyExists)
-
-      if (modalityOfPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          if (
-            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
-            'Modality of Psychotherapy'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row category=Modality of psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
-
-      // Rule2: If one Time in psychotherapy then do not show others
-      let timeInPsychotherapyExists = clientSideTblOfPatientMentalStatusExam
-        .query()
-        .with('tblMentalStatusExamMasterLink')
-        .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('mentalStatusExamCategory', 'Time in psychotherapy')
-        })
-        .where('ROW_END', 2147483648000)
-        .get()
-
-      console.log('timeInPsychotherapyExists', timeInPsychotherapyExists)
-
-      if (timeInPsychotherapyExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          console.log(arOfObjectsFromClientSideMasterDB[i])
-          if (
-            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
-            'Time in psychotherapy'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
-
-      // Rule3: If one Time in psychotherapy then do not show others
-      let totalTimeWithPatientExists = clientSideTblOfPatientMentalStatusExam
-        .query()
-        .with('tblMentalStatusExamMasterLink')
-        .whereHas('tblMentalStatusExamMasterLink', (query) => {
-          query.where('mentalStatusExamCategory', 'Total time with patient')
-        })
-        .where('ROW_END', 2147483648000)
-        .get()
-
-      console.log('timeInPsychotherapyExists', totalTimeWithPatientExists)
-
-      if (totalTimeWithPatientExists.length > 0) {
-        for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-          console.log(arOfObjectsFromClientSideMasterDB[i])
-          if (
-            arOfObjectsFromClientSideMasterDB[i].mentalStatusExamCategory ===
-            'Total time with patient'
-          ) {
-            if (arOfObjectsFromClientSideMasterDB[i].tblMentalStatusExamForPatientLink !== null) {
-              console.log('row is there in client table.')
-            } else {
-              console.log(
-                'delete the row where category=Time in psychotherapy from array of SS allowed to be chosen by patient'
-              )
-              arOfObjectsFromClientSideMasterDB.splice(i, 1)
-              i = i - 1
-            }
-          }
-        }
-      }
-
-      // End: Now group the SS
-
       const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'mentalStatusExamCategory')
 
-      // console.log(ar)
       return ar
     },
   },
@@ -205,21 +102,26 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfCheckIfThisExistsInChildTable(pSS) {
+    mfCheckIfThisExistsInChildTable(pMSE) {
       // I am able to get the data from child table.
-      if (pSS.tblMentalStatusExamForPatientLink) {
-        if (pSS.tblMentalStatusExamForPatientLink.ROW_END === 2147483648000) {
+      if (pMSE.tblMentalStatusExamForPatientLink) {
+        if (pMSE.tblMentalStatusExamForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
       return false
     },
-    mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
+    async mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
       const exists = clientSideTblOfPatientMentalStatusExam
         .query()
         .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
         .where('ROW_END', 2147483648000)
         .get()
+
+      /* Goal: 
+      1. If data already added then remove the data
+      2. If data not added then insert the data */
+
       if (exists.length > 0) {
         clientSideTblOfPatientMentalStatusExam.update({
           where: exists[0].clientSideUniqRowId,
@@ -227,13 +129,106 @@ export default {
             ROW_END: Math.floor(Date.now()),
           },
         })
+
+        // execute delete api to remove the data
+
+        const response = await fetch(
+          clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid,
+          {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              // "Authorization": "Bearer " + TOKEN
+            },
+          }
+        )
+
+        if (!response.ok) {
+          // this block execute when response return fail status
+          clientSideTblOfPatientMentalStatusExam.update({
+            where: exists[0].clientSideUniqRowId,
+            data: {
+              ROW_END: 2147483648000,
+            },
+          })
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        }
       } else {
+        // this block execute when response return success status
         clientSideTblOfPatientMentalStatusExam.insert({
           data: {
             mentalStatusExamMasterId: pMentalStatusExamMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
+
+        // Goal: get user ip
+
+        await fetch('https://api.ipify.org?format=json')
+          .then((x) => x.json())
+          .then(({ ip }) => {
+            this.userIp = ip
+          })
+
+        const lastInsertedMSEData = clientSideTblOfPatientMentalStatusExam
+          .query()
+          .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
+          .where('ROW_END', 2147483648000)
+          .orderBy('ROW_START', 'desc')
+          .first()
+
+        // execute post api to add the data
+
+        const response = await fetch(clientSideTblOfPatientMentalStatusExam.apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: JSON.stringify({
+            serverSideRowUuid: lastInsertedMSEData.serverSideRowUuid,
+            mentalStatusExamFieldIdFromMentalStatusExamMaster: pMentalStatusExamMasterId,
+            patientUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+            recordChangedByUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
+            recordChangedFromIPAddress: this.userIp, // set user ip
+          }),
+        })
+
+        if (!response.ok) {
+          // this block execute when response return fail status
+          clientSideTblOfPatientMentalStatusExam.update({
+            data: {
+              mentalStatusExamMasterId: pMentalStatusExamMasterId,
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        } else {
+          // this block execute when response return success status
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        }
       }
     },
   },

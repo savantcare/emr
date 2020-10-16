@@ -35,8 +35,6 @@ export default {
         .where('ROW_END', 2147483648000)
         .get()
 
-      console.log(arOfObjectsFromClientSideDB)
-
       for (a in arOfObjectsFromClientSideDB) {
         a.mentalStatusExamCategory
       }
@@ -45,8 +43,6 @@ export default {
         arOfObjectsFromClientSideDB,
         'tblMentalStatusExamMasterLink.mentalStatusExamCategory'
       )
-
-      console.log(ar)
 
       return ar
     },

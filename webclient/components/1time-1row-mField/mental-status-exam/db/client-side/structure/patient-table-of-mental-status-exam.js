@@ -8,7 +8,7 @@ const intUniqueId = () => ++count
 export default class mentalStatusExamForPatientClass extends clientSideTableManage {
   static entity = 'tblMentalStatusExamOfPatient'
 
-  static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
+  static apiUrl = 'http://localhost:8000/public/api/mental-status-exams/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -25,6 +25,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table mentalStatusExamMasterId = 2 */
+      serverSideRowUuid: this.uid(() => uuidv1()),
       mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is mental status exam ID assigned to this patient coming from master table
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -42,8 +43,8 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
       Second place used
       =================
 
-     When displaying the add ct.  if 1 SS of category is already added the other SS of category should not come.
-     So after I get the list of all master SS. I find all the SS that have been added in the client and there mentalStatusExamCategory has a max 1 limit
+     When displaying the add ct.  if 1 MSE of category is already added the other MSE of category should not come.
+     So after I get the list of all master MSE. I find all the MSE that have been added in the client and there mentalStatusExamCategory has a max 1 limit
      If found then I remove those extra rows from master.
 
       add-ct.vue/cfGetMasterRowsOfMentalStatusExamGrouped
