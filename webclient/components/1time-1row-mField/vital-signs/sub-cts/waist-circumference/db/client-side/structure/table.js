@@ -22,7 +22,7 @@ export default class ptWaistCircumference extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
 
       waistCircumferenceInInches: this.number(null), // number type of vuex-orm will also store decimals
-      timeOfMeasurementInMilliseconds: this.string(null), // refer to /name/db/structure/table.js notes for ROW_END
+      timeOfMeasurementInMilliseconds: this.number(null), // refer to /name/db/structure/table.js notes for ROW_END
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
