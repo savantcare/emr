@@ -12,9 +12,9 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'past psych historys',
+        value: 'past psych history',
         ctAbbr: 'ss',
-        ctToShow: '1time-Mrow-1Field/service-statement/view-layer/ss-design-1-ct.vue',
+        ctToShow: '1time-1row-mField/past-psych-history/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit past psych history',
         ctAbbr: 'sse',
-        ctToShow: '1time-Mrow-1Field/service-statement/edit-layer/ss-edit-design-1.vue',
+        ctToShow: '1time-1row-mField/past-psych-history/edit-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -30,9 +30,9 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted past psych historys',
+        value: 'deleted past psych history',
         ctAbbr: 'dss',
-        ctToShow: '1time-Mrow-1Field/service-statement/view-layer/deleted.vue',
+        ctToShow: '1time-1row-mField/past-psych-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

@@ -1,15 +1,15 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
-import pastPsychHistorysForPatientClass from './patient-table-of-service-statements.js'
+import pastPsychHistoryForPatientClass from './patient-table-of-past-psych-history.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class pastPsychHistorysMasterClass extends clientSideTableManage {
-  static entity = 'tblPastPsychHistorysMaster'
+export default class pastPsychHistoryMasterClass extends clientSideTableManage {
+  static entity = 'tblPastPsychHistoryMaster'
 
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
+  static apiUrl = 'http://localhost:8000/public/api/past-psych-history/v20'
 
   static primaryKey = 'pastPsychHistoryMasterId'
 
@@ -29,10 +29,10 @@ export default class pastPsychHistorysMasterClass extends clientSideTableManage 
         ================
         When all SS are displayed I want to show the selected SS in button primary color.
         So I want to create a big row that has data from master and child
-        see add-ct.vue/cfGetMasterRowsOfPastPsychHistorysGrouped
+        see add-ct.vue/cfGetMasterRowsOfPastPsychHistoryGrouped
       */
-      tblPastPsychHistorysForPatientLink: this.hasOne(
-        pastPsychHistorysForPatientClass,
+      tblPastPsychHistoryForPatientLink: this.hasOne(
+        pastPsychHistoryForPatientClass,
         'pastPsychHistoryMasterId'
       ),
     }

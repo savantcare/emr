@@ -2,13 +2,13 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
-      v-for="(allPastPsychHistorysInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistorysGrouped"
-      :key="allPastPsychHistorysInsideAGroup.id"
+      v-for="(allPastPsychHistoryInsideAGroup,
+      groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
+      :key="allPastPsychHistoryInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="sc-service-statement-all-content-body">
-        <div v-for="ss in allPastPsychHistorysInsideAGroup" :key="ss.pastPsychHistoryMasterId">
+      <div class="sc-past-psych-history-all-content-body">
+        <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
               @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)"
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPastPsychHistorys from '../db/client-side/structure/master-table-of-service-statements.js'
-import clientSideTblOfPatientPastPsychHistorys from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfMasterPastPsychHistory from '../db/client-side/structure/master-table-of-past-psych-history.js'
+import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 
 export default {
   data() {
@@ -38,11 +38,11 @@ export default {
     }
   },
   computed: {
-    cfGetMasterRowsOfPastPsychHistorysGrouped() {
+    cfGetMasterRowsOfPastPsychHistoryGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistorys
+      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
         .query()
-        .with('tblPastPsychHistorysForPatientLink')
+        .with('tblPastPsychHistoryForPatientLink')
         .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query
@@ -109,8 +109,8 @@ export default {
     },
     mfCheckIfThisExistsInChildTable(pSS) {
       // I am able to get the data from child table.
-      if (pSS.tblPastPsychHistorysForPatientLink) {
-        if (pSS.tblPastPsychHistorysForPatientLink.ROW_END === 2147483648000) {
+      if (pSS.tblPastPsychHistoryForPatientLink) {
+        if (pSS.tblPastPsychHistoryForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
@@ -118,21 +118,21 @@ export default {
     },
     mfTogglePastPsychHistory(pPastPsychHistoryMasterId) {
       // Goal1: Check if it already exists
-      const exists = clientSideTblOfPatientPastPsychHistorys
+      const exists = clientSideTblOfPatientPastPsychHistory
         .query()
         .where('pastPsychHistoryMasterId', pPastPsychHistoryMasterId)
         .where('ROW_END', 2147483648000)
         .get()
 
       if (exists.length > 0) {
-        clientSideTblOfPatientPastPsychHistorys.update({
+        clientSideTblOfPatientPastPsychHistory.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now()),
           },
         })
       } else {
-        clientSideTblOfPatientPastPsychHistorys.insert({
+        clientSideTblOfPatientPastPsychHistory.insert({
           data: {
             pastPsychHistoryMasterId: pPastPsychHistoryMasterId,
             ROW_START: Math.floor(Date.now()),
@@ -145,10 +145,10 @@ export default {
       pArOfObjectsFromClientSideMasterDB,
       pPastPsychHistoryCategoryToApplyRuleOn
     ) {
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistorys
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
         .query()
-        .with('tblPastPsychHistorysMasterLink')
-        .whereHas('tblPastPsychHistorysMasterLink', (query) => {
+        .with('tblPastPsychHistoryMasterLink')
+        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
           query.where('pastPsychHistoryCategory', pPastPsychHistoryCategoryToApplyRuleOn)
         })
         .where('ROW_END', 2147483648000)
@@ -162,8 +162,8 @@ export default {
             // master list has 10 entries. Once the category has matched there are 2 possibilityes. P1: This element is there in SS  of patient P2: This element is not there in SS of patient
             if (
               // Handling Possibility 1:  This element is there in SS of patient
-              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistorysForPatientLink !== null &&
-              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistorysForPatientLink.ROW_END ==
+              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink !== null &&
+              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink.ROW_END ==
                 '2147483648000'
             ) {
             } else {
@@ -187,10 +187,10 @@ export default {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistorys
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
         .query()
-        .with('tblPastPsychHistorysMasterLink')
-        .whereHas('tblPastPsychHistorysMasterLink', (query) => {
+        .with('tblPastPsychHistoryMasterLink')
+        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
           query.where('pastPsychHistoryCategory', 'Total minutes in psychotherapy')
         })
         .where('ROW_END', 2147483648000)
@@ -202,7 +202,7 @@ export default {
        */
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         const categoryOfThisSetAssignedToPatient =
-          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistorysMasterLink
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistoryMasterLink
 
         /**
          * Step 3: Iterate past psych history master category object to process
@@ -243,10 +243,10 @@ export default {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistorys
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
         .query()
-        .with('tblPastPsychHistorysMasterLink')
-        .whereHas('tblPastPsychHistorysMasterLink', (query) => {
+        .with('tblPastPsychHistoryMasterLink')
+        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
           query.where('pastPsychHistoryCategory', 'Total minutes with patient')
         })
         .where('ROW_END', 2147483648000)
@@ -258,7 +258,7 @@ export default {
        */
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         const categoryOfThisSetAssignedToPatient =
-          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistorysMasterLink
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistoryMasterLink
 
         /**
          * Step 3: Iterate past psych history master category object to process
@@ -293,7 +293,7 @@ export default {
 </script>
 
 <style>
-.sc-service-statement-all-content-body {
+.sc-past-psych-history-all-content-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :

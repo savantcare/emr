@@ -73,24 +73,24 @@
 </template>
 
 <script>
-import clientSideTblOfPatientPastPsychHistorys from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfPastPsychHistoryForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistorys
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
         .query()
-        .with('tblPastPsychHistorysMasterLink')
+        .with('tblPastPsychHistoryMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblPastPsychHistorysMasterLink.pastPsychHistoryCategory +
+          arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink.pastPsychHistoryCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblPastPsychHistorysMasterLink.pastPsychHistoryDescription
+          arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink.pastPsychHistoryDescription
       }
 
       return arOfObjectsFromClientSideDB
@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblOfPatientPastPsychHistorys.update({
+      clientSideTblOfPatientPastPsychHistory.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
