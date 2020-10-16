@@ -65,9 +65,9 @@ export default {
         .where('serverSideRowUuid', arFromClientSideTableData.serverSideRowUuid)
         .orderBy('ROW_START', 'desc')
         .get()
-       console.log('Time line for uuid', arFromClientSideTable)
+      console.log('Time line for uuid', arFromClientSideTable)
       if (arFromClientSideTable.length) {
-        console.log('history array', arFromClientSideTable);
+        console.log('history array', arFromClientSideTable)
         let rowInTimeLine = []
         let date = ''
         for (let i = 0; i < arFromClientSideTable.length; i++) {
@@ -130,7 +130,7 @@ export default {
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/edit-design-1.vue approx line 108
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
               arFromClientSideTable.clientSideUniqRowId
             )
           } else {

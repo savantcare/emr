@@ -96,7 +96,6 @@ export default {
       }
       return timelineDataArray
     },
-
   },
   watch: {
     /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
@@ -130,7 +129,7 @@ export default {
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/edit-design-1.vue approx line 108
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
               arFromClientSideTable.clientSideUniqRowId
             )
           } else {

@@ -2,6 +2,22 @@ import { Model } from '@vuex-orm/core'
 import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
+// Start from new
+const Const_New = 2
+const Const_New_ChangedOnClient = 24
+const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide = 2456
+const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave = 2457
+const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB = 24571
+
+// Start from copy
+const Const_CreatedAsCopyOnClient = 3
+const Const_CreatedAsCopyOnClient_ChangedOnClient = 34
+const Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide = 3456
+
+// Others
+
+const Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted = 2147483648000
+
 class clientSideTableManage extends Model {
   // For Class syntax https://javascript.info/class
   static entity = 'clientSideTableManage'
@@ -72,9 +88,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInEditState() {
     const arFromClientSideTable = this.query()
-      .where('vnRowStateInSession', 2) // New
-      .orWhere('vnRowStateInSession', 24) // New -> Changed
-      .orWhere('vnRowStateInSession', 2456) // New -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', Const_New) // New
+      .orWhere('vnRowStateInSession', Const_New_ChangedOnClient) // New -> Changed
+      .orWhere(
+        'vnRowStateInSession',
+        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
+      ) // New -> Changed -> Requested save -> form error
       .get()
     return arFromClientSideTable
   }
@@ -88,28 +107,41 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientSideTable = this.query()
-      .where('vnRowStateInSession', 24) // New -> Changed
+      .where('vnRowStateInSession', Const_New_ChangedOnClient) // New -> Changed
       .get()
     return arFromClientSideTable
   }
 
   static fnGetNewRowsInApiSendingState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
-    const arFromClientSideTable = this.query().where('vnRowStateInSession', 2457).get()
+    const arFromClientSideTable = this.query()
+      .where(
+        'vnRowStateInSession',
+        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
+      )
+      .get()
     return arFromClientSideTable
   }
 
   static fnGetNewRowsInApiSuccessState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
-    const arFromClientSideTable = this.query().where('vnRowStateInSession', 24571).get()
+    const arFromClientSideTable = this.query()
+      .where(
+        'vnRowStateInSession',
+        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB
+      )
+      .get()
     return arFromClientSideTable
   }
 
   static fnGetAllChangeRowsInEditState() {
     const arFromClientSideTable = this.query()
-      .where('vnRowStateInSession', 3) // Copy(3)
-      .orWhere('vnRowStateInSession', 34) // Copy(3) -> Changed(4)
-      .orWhere('vnRowStateInSession', 3456) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
+      .where('vnRowStateInSession', Const_CreatedAsCopyOnClient) // Copy(3)
+      .orWhere('vnRowStateInSession', Const_CreatedAsCopyOnClient_ChangedOnClient) // Copy(3) -> Changed(4)
+      .orWhere(
+        'vnRowStateInSession',
+        Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
+      ) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
       .get()
     return arFromClientSideTable
   }
@@ -130,13 +162,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
-          record.vnRowStateInSession === 3 ||
-          record.vnRowStateInSession === 34 ||
-          record.vnRowStateInSession === 3456
+          record.vnRowStateInSession === Const_CreatedAsCopyOnClient ||
+          record.vnRowStateInSession === Const_CreatedAsCopyOnClient_ChangedOnClient ||
+          record.vnRowStateInSession ===
+            Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
         )
       })
       // .where('vnRowStateInSession', 3) // Copy
-      // .orWhere('vnRowStateInSession', 34) // Copy -> Changed
+      // .orWhere('vnRowStateInSession', Const_CreatedAsCopyOnClient_ChangedOnClient) // Copy -> Changed
       // .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
 
@@ -151,7 +184,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483648000)
+      .where(
+        'ROW_END',
+        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
+      )
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     return arFromClientSideTable
@@ -160,7 +196,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483648000)
+      .where(
+        'ROW_END',
+        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
+      )
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
 
@@ -182,7 +221,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetRowsToChange() {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query().where('ROW_END', 2147483648000).get()
+    const arFromClientSideTable = this.query()
+      .where(
+        'ROW_END',
+        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
+      )
+      .get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
 
@@ -208,7 +252,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where('ROW_END', 2147483648000)
+      .where(
+        'ROW_END',
+        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
+      )
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     const uniqueUuidRows = []
@@ -237,7 +284,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query().where('ROW_END', 2147483648000).get()
+    const arFromClientSideTable = this.query()
+      .where(
+        'ROW_END',
+        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
+      )
+      .get()
     const uniqueUuidRows = []
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
@@ -506,14 +558,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnCopyRow(pOrmSourceRowId) {
+  static async fnCopyRowAndGetCopiedRowId(pOrmSourceRowId) {
     // the copied row will have the same serverSideRowUuid as the first row
     // In temporal table when row is updated first a copy is made but UUID remains same
     // Since primary key is internally set as UUID.row_start
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
-    arToCopy.vnRowStateInSession = 3 // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.vnRowStateInSession = Const_CreatedAsCopyOnClient // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
     })
@@ -549,7 +601,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async fnSendToServer() {
     // API will return 1 (Success) or 0 (Failure)
-    const arFromClientSideTable = this.query().where('vnRowStateInSession', 2457).get()
+    const arFromClientSideTable = this.query()
+      .where(
+        'vnRowStateInSession',
+        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
+      )
+      .get()
 
     /*
       Q) Why we use promise in following code?
@@ -578,7 +635,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           this.arOrmRowIdSendToServer.push(row.clientSideUniqRowId)
           const status = await this.fnMakeApiCAll(row)
           if (status === 0) {
-            // Handle api returned success
+            // Handle api returned failure
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
@@ -586,11 +643,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               },
             })
           } else {
-            // Handle api returned failure
+            // Handle api returned success
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: '24571', // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession:
+                  'Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB', // New -> Changed -> Requested save -> Send to server -> API Success
               },
             })
 
