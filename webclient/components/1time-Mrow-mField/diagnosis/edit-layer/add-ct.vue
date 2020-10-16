@@ -155,6 +155,7 @@ export default {
         .query()
         .with('linkWithPatient')
         .where('ROW_END', 2147483648000)
+        .where('isAssignedToPatient', false)
         .get()
       return arOfObjectsFromClientSideMasterDB
     },
@@ -263,7 +264,7 @@ export default {
               where: (record) =>
                 record.masterDiagnosisId === arFromClientSideTable[i].masterDiagnosisId,
               data: {
-                ROW_END: Math.floor(Date.now())
+                isAssignedToPatient: true
               },
             })
           }

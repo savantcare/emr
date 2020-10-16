@@ -85,10 +85,6 @@ export default {
     },
   },
   methods: {
-    expandRow(row, isExpanded) {
-      console.log('row', row);
-      return true;
-    },
     fnFormatDateOfStartDate(time) {
       return moment(time).format(
         'MMM DD YYYY'
@@ -120,9 +116,9 @@ export default {
         })
         clientSideTblMasterDiagnosis.update({
             where: (record) =>
-              record.masterDiagnosisId === arResultsFromOrm.masterDiagnosisId,
+              record.masterDiagnosisId === arResultsFromOrm.linkWithMaster.masterDiagnosisId,
             data: {
-              ROW_END: 2147483648000
+              isAssignedToPatient: false
             },
         })
         return false;
@@ -141,9 +137,9 @@ export default {
           if (status === 1) {
             await clientSideTblMasterDiagnosis.update({
               where: (record) =>
-                record.masterDiagnosisId === arResultsFromOrm.masterDiagnosisId,
+                record.masterDiagnosisId === arResultsFromOrm.linkWithMaster.masterDiagnosisId,
               data: {
-                ROW_END: 2147483648000
+                isAssignedToPatient: false
               },
             })
             this.$message({
