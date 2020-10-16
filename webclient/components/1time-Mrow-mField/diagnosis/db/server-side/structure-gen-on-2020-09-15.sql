@@ -13,10 +13,13 @@ CREATE TABLE `assignedDiagnosis` (
   `serverSideRowUuid` char(36) NOT NULL,
   `ptUuid` char(36) NOT NULL,
   `masterDiagnosisId` int(11) NOT NULL,
-  `discontinueNote` varchar(255) DEFAULT NULL,
+  `assessment` varchar(255) DEFAULT NULL,
+  `startDate` datetime(3) DEFAULT NULL,
+  `deletedNote` varchar(255) DEFAULT NULL,
   `recordChangedByUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='sample diagnosis table for assigned to patent for p20 create';
+  `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`serverSideRowUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='diagnosis table for assigned to patient from p20, created by MK' WITH SYSTEM VERSIONING;
 
 --
 -- Indexes for dumped tables
@@ -25,6 +28,6 @@ CREATE TABLE `assignedDiagnosis` (
 --
 -- Indexes for table `assignedDiagnosis`
 --
-ALTER TABLE `assignedDiagnosis`
-  ADD PRIMARY KEY (`serverSideRowUuid`),
-  ADD KEY `ptUid` (`ptUuid`);
+-- ALTER TABLE `assignedDiagnosis`
+--   ADD PRIMARY KEY (`serverSideRowUuid`),
+--   ADD KEY `ptUid` (`ptUuid`);

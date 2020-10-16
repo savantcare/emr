@@ -1,6 +1,7 @@
 <template>
   <showContentInCardComponent
     propMainCardName="Diagnosis"
+    propGridDesignTopMostParentBody="diagnosi"
     :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Add',
@@ -14,18 +15,6 @@
       },
     ]">
     <div slot="bodySlotContentFromParentToShowAboveChildCards">
-    <!-- <el-card class="box-card"> -->
-      <!-- <div slot="header" class="clearfix">
-        <strong>Diagnosis</strong>
-        <el-tooltip content="Add diagnosis" effect="light" :open-delay="300" placement="top">
-          <el-button
-            style="float: right; padding: 3px 0"
-            type="text"
-            @click="fnOpenAddModule"
-            icon="el-icon-circle-plus-outline"
-          ></el-button>
-        </el-tooltip>
-      </div> -->
       <div class="diagnosis body">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
           <el-table :data="cfArOfDiagnosisForDisplay" 
@@ -67,7 +56,6 @@
         </div>
         <div v-else class="emptyRow">Not added yet</div>
       </div>
-    <!-- </el-card> -->
     </div>
   </showContentInCardComponent>
 </template>
