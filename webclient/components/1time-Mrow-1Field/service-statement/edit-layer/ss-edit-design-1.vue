@@ -13,13 +13,14 @@
             <el-button
               @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
               type="primary"
-              >{{ ss.serviceStatementDescription }}</el-button
-            >
+            >{{ ss.serviceStatementDescription }}</el-button>
           </div>
           <div v-else>
-            <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">{{
+            <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">
+              {{
               ss.serviceStatementDescription
-            }}</el-button>
+              }}
+            </el-button>
           </div>
         </div>
       </div>
@@ -108,6 +109,7 @@ export default {
       }, {}) // {} is the initial value of the storage
     },
     mfCheckIfThisExistsInChildTable(pSS) {
+      console.log("condition",pSS);
       // I am able to get the data from child table.
       if (pSS.tblServiceStatementsForPatientLink) {
         if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483648000) {
@@ -116,28 +118,91 @@ export default {
       }
       return false
     },
-    mfToggleServiceStatement(pServiceStatementMasterId) {
+    async mfToggleServiceStatement(pServiceStatementMasterId) {
+      
       // Goal1: Check if it already exists
       const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483648000)
         .get()
-
-      if (exists.length > 0) {
-        clientSideTblOfPatientServiceStatements.update({
-          where: exists[0].clientSideUniqRowId,
-          data: {
-            ROW_END: Math.floor(Date.now()),
+      
+      if (exists.length > 0) {    
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
           },
+          body: "",
         })
-      } else {
-        clientSideTblOfPatientServiceStatements.insert({
+        if (response.status === 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: exists[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        }
+
+      } else {        
+        
+        const clientSideTblOfPatientServiceStatementsRow = await clientSideTblOfPatientServiceStatements.insert({
           data: {
             serviceStatementMasterId: pServiceStatementMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
+
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: JSON.stringify({
+            data:{
+              serverSideRowUuid:clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
+              patientUuid:'bfe041fa-073b-4223-8c69-0540ee678ff8',
+              serviceStatementMasterId:pServiceStatementMasterId,
+              recordChangedByUuid:'bua674fa-073b-4223-8c69-0540ee786kj8'
+            },
+          }),
+        })
+        if (response.status !== 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        }
       }
     },
 

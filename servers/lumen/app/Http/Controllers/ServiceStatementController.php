@@ -15,8 +15,8 @@ class ServiceStatementController extends Controller
 {
     public function getAllTemporalServiceStatements()
     {
-        $ServiceStatementQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($ServiceStatementQuery);
+        $serviceStatementQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements order by ROW_START desc'));
+        return response()->json($serviceStatementQueryResultObj);
         // return response()->json(ServiceStatement::all());
     }
 
@@ -25,15 +25,16 @@ class ServiceStatementController extends Controller
         return response()->json(ServiceStatement::find($pServerSideRowUuid));
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
-        
+        $requestData = $pRequest->all();
+        $recordChangedFromIPAddress = $this->get_client_ip();
         $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
-            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
+            'patientUuid' => $requestData['data']['patientUuid'],
+            'serviceStatementMasterId' => $requestData['data']['serviceStatementMasterId'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
        
         $ServiceStatement = ServiceStatement::insertGetId($serviceStatementData);
@@ -41,7 +42,7 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
+            'serviceStatementMasterId' => $requestData['data']['serviceStatementMasterId'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
@@ -64,7 +65,7 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToChange';
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
-            'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
+            'serviceStatementMasterId' => $requestData['serviceStatementMasterId'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
@@ -75,16 +76,16 @@ class ServiceStatementController extends Controller
     }
 
  
-    public function delete($serverSideRowUuid, Request $request)
+    public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $ServiceStatement = ServiceStatement::findOrFail($serverSideRowUuid);
-        $requestData = $request->all();
+        $serviceStatement = ServiceStatement::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
-            $ServiceStatement->update($updateData);
+            $serviceStatement->update($updateData);
         }
 
         $ServiceStatement->delete();
@@ -102,5 +103,24 @@ class ServiceStatementController extends Controller
         $redis->publish($channel, json_encode($message));
 
         return response('Deleted successfully', 200);
+    }
+
+    public function get_client_ip() {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
     }
 }
