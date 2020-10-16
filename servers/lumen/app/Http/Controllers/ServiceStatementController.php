@@ -42,7 +42,7 @@ class ServiceStatementController extends Controller
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['data']['serviceStatementFieldIdFromServiceStatementMaster'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
@@ -65,7 +65,7 @@ class ServiceStatementController extends Controller
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
             'serviceStatementFieldIdFromServiceStatementMaster' => $requestData['serviceStatementFieldIdFromServiceStatementMaster'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
@@ -95,7 +95,7 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToDelete';
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();

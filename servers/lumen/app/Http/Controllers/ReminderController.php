@@ -29,7 +29,7 @@ class ReminderController extends Controller
 
     To check postman/post/ URL: http://localhost:8000/public/api/reminders/v20/
     Body / Json
-    {"data":{"$serverSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange":"1"}}
+    {"data":{"$serverSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change":"1"}}
     Wiki has a video on youtube
     */
     public function create(Request $request)
@@ -49,7 +49,7 @@ class ReminderController extends Controller
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'description' => $requestData['data']['description'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['data']['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
@@ -72,7 +72,7 @@ class ReminderController extends Controller
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
             'description' => $requestData['description'],
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
@@ -102,7 +102,7 @@ class ReminderController extends Controller
         $channel = 'MsgFromSktForRemToDelete';
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
-            'clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange' => $requestData['clientSideSocketIdToPreventDuplicateUIChangeOnClientThatRequestedServerForDataChange']
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();

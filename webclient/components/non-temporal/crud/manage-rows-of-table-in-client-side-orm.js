@@ -624,7 +624,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .query()
       .where(
         'fieldName',
-        'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
+        'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
       )
       .first()
 
@@ -632,7 +632,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     pOrmRowArray.ptUuid = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
     pOrmRowArray.recordChangedByUuid = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     pOrmRowArray[
-      'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
+      'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
     ] = socketClientObj.fieldValue
     try {
       const response = await fetch(this.apiUrl, {
@@ -662,7 +662,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         .query()
         .where(
           'fieldName',
-          'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change'
+          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
         )
         .first()
 
