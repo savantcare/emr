@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '@/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 
 import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
