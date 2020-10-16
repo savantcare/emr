@@ -82,7 +82,7 @@ import initializeServiceStatementComponent from '@/components/1time-Mrow-1Field/
 
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
+import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnosis/db/client-side/initialize-on-first-load'
 
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 

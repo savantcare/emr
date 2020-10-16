@@ -198,7 +198,7 @@ export default {
           setTimeout(()=>{
             // console.log('set value blank', this.$refs.masterDiagnosisId[lastElement - 1])
             this.$refs.masterDiagnosisId[lastElement - 1].value = '';
-          }, 100);
+          }, 200);
         }
         if(this.isClickReviewed != true) {
           this.$refs.masterDiagnosisId[lastElement - 1].focus()
@@ -270,7 +270,7 @@ export default {
         }
         
         // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-        // await clientSideTblPatientDiagnosis.fnSendToServer()
+        await clientSideTblPatientDiagnosis.fnSendToServer()
         setTimeout(() => this.isClickReviewed = false, 200);
       }
     },

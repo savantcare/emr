@@ -18,6 +18,7 @@ export default class clientSideTblPatientDiagnosis extends clientSideTableManage
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueId()),
+      serverSideRowUuid: this.uid(() => uuidv1()),
       masterDiagnosisId: this.number(null),
       patientUuid: this.string(null),
       assessment: this.string(''),

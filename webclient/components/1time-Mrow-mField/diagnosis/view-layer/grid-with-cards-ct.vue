@@ -98,7 +98,7 @@ export default {
     tableRowClassName({row, rowIndex}) {
       if (row.vnRowStateInSession === 24) {
         return 'warning-row';
-      } else if (row.vnRowStateInSession === 2456) {
+      } else if (row.vnRowStateInSession === 2456 || row.vnRowStateInSession === 24578) {
         return 'danger-row';
       }
       return '';
@@ -109,31 +109,53 @@ export default {
         .with('linkWithMaster')
         .where(id)
         .first()
-
+      let arStateInSession = [24, 2456, 24578];
+      if(arStateInSession.includes(arResultsFromOrm.vnRowStateInSession)) {
+        clientSideTblPatientDiagnosis.update({
+          where: id,
+          data: {
+            vnRowStateInSession: null,
+            ROW_END: Math.floor(Date.now()),
+          },
+        })
+        clientSideTblMasterDiagnosis.update({
+            where: (record) =>
+              record.masterDiagnosisId === arResultsFromOrm.masterDiagnosisId,
+            data: {
+              ROW_END: 2147483648000
+            },
+        })
+        return false;
+      }
       this.$prompt(arResultsFromOrm.linkWithMaster.diagnosisName, 'Delete diagnosis', {
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter reasen',
       })
         .then(async ({ value }) => {
-          clientSideTblPatientDiagnosis.update({
-            where: id,
-            data: {
-              deleteNote: value,
-              ROW_END: Math.floor(Date.now()),
-            },
-          })
-          await clientSideTblMasterDiagnosis.update({
+          const status = await clientSideTblPatientDiagnosis.fnSendDeleteDataToServer(
+            id,
+            arResultsFromOrm.serverSideRowUuid,
+            value
+          )
+          if (status === 1) {
+            await clientSideTblMasterDiagnosis.update({
               where: (record) =>
                 record.masterDiagnosisId === arResultsFromOrm.masterDiagnosisId,
               data: {
                 ROW_END: 2147483648000
               },
             })
-          this.$message({
-            type: 'success',
-            message: 'Diagnosis deleted.',
-          })
+            this.$message({
+              type: 'success',
+              message: 'Diagnosis deleted.',
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: 'Something went wrong. Please try again later.',
+            })
+          }
         })
         .catch(() => {
           console.log('Delete cancelled')
