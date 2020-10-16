@@ -21,7 +21,7 @@
               placeholder="Select diagnosis"
               @change="fnChangeDiagnosis(ormRow.masterDiagnosisId, ormRow.clientSideUniqRowId)">
               <el-option
-                v-for="item in cfGetMasterListOfDiagnosis()"
+                v-for="item in mfGetMasterListOfDiagnosis()"
                 :key="item.masterDiagnosisId"
                 :label="item.diagnosisName"
                 :value="item.masterDiagnosisId">
@@ -150,7 +150,7 @@ export default {
         
       return getMasterOfDiagnosis != null ? getMasterOfDiagnosis.diagnosisName : '';
     },
-    cfGetMasterListOfDiagnosis: function () {
+    mfGetMasterListOfDiagnosis: function () {
       let arOfObjectsFromClientSideMasterDB = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')

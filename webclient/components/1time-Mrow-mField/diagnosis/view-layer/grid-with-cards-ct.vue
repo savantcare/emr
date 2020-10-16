@@ -1,7 +1,20 @@
 <template>
-  <div>
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
+  <showContentInCardComponent
+    propMainCardName="Diagnosis"
+    :propActionsThatCanBeInvokedFromCardHeader="[
+      {
+        actionDescription: 'Add',
+        isDefaultAction: true,
+      },
+      {
+        actionDescription: 'Toggle card display',
+      },
+      {
+        actionDescription: 'Close card',
+      },
+    ]">
+    <el-card class="box-card" slot="bodySlotContentFromParentToShowAboveChildCards">
+      <!-- <div slot="header" class="clearfix">
         <strong>Diagnosis</strong>
         <el-tooltip content="Add diagnosis" effect="light" :open-delay="300" placement="top">
           <el-button
@@ -11,7 +24,7 @@
             icon="el-icon-circle-plus-outline"
           ></el-button>
         </el-tooltip>
-      </div>
+      </div> -->
       <div class="">
         <div v-if="cfArOfDiagnosisForDisplay.length > 0">
           <el-table :data="cfArOfDiagnosisForDisplay" 
@@ -54,15 +67,17 @@
         <div v-else class="emptyRow">Not added yet</div>
       </div>
     </el-card>
-  </div>
+  </showContentInCardComponent>
 </template>
 
 <script>
 import moment from 'moment'
+import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 import clientSideTblPatientDiagnosis from '../db/client-side/structure/patient-table-of-diagnosis'
 import clientSideTblMasterDiagnosis from '../db/client-side/structure/master-table-of-diagnosis'
 
 export default {
+  components: { showContentInCardComponent },
   data() {
     return {
       defaultExpandAll: true,
@@ -134,7 +149,7 @@ export default {
           console.log('Delete cancelled')
         })
     },
-    fnOpenAddModule() {
+    mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'add diagnosis', //pPropsToGiveToCt: 1
       })
