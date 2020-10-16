@@ -278,10 +278,6 @@ export default {
     getTooltipForThisMark(value) {
       //      return this.dApptCalendarTimeAtEachSliderMark[value]
 
-      if (value == 100) {
-        return 'Slider settings'
-      }
-
       return (
         this.dApptStatusAtEachSliderMark[value] +
         ' : ' +

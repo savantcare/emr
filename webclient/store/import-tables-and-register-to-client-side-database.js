@@ -58,6 +58,12 @@ import tableStructureForSSOfPatient from '~/components/1time-Mrow-1Field/service
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
+// Past psych history tables
+import tableStructureForPsychHistoryMaster from '~/components/1time-1row-mField/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
+import tableStructureForPsychHistoryOfPatient from '~/components/1time-1row-mField/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
+database.register(tableStructureForPsychHistoryMaster)
+database.register(tableStructureForPsychHistoryOfPatient)
+
 // Mental status exam tables
 import tableStructureForMSEMaster from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
 import tableStructureForMSEOfPatient from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'

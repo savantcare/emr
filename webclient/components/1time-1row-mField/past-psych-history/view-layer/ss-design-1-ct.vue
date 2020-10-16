@@ -1,6 +1,6 @@
 <template>
   <showContentInCardComponent
-    propMainCardName="Mental status exam"
+    propMainCardName="Past psych history"
     :propActionsThatCanBeInvokedFromCardHeader="[
       {
         actionDescription: 'Multi edit',
@@ -17,11 +17,11 @@
   >
     <el-card
       slot="bodySlotContentFromParentToShowAboveChildCards"
-      v-for="mentalStatusExam in cfArOfMentalStatusExamForDisplay"
-      :key="mentalStatusExam.id"
+      v-for="pastPsychHistory in cfArOfPastPsychHistoryForDisplay"
+      :key="pastPsychHistory.id"
       class="box-card sc-individual-child-card"
       shadow="hover"
-      :style="mfGetCssClassNameForEachDataRow(mentalStatusExam)"
+      :style="mfGetCssClassNameForEachDataRow(pastPsychHistory)"
     >
       <el-button-group style="float: right; display: none">
         <el-tooltip
@@ -34,7 +34,7 @@
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
-            @click="mfIconDeleteClickedOnChildCard(mentalStatusExam.clientSideUniqRowId)"
+            @click="mfIconDeleteClickedOnChildCard(pastPsychHistory.clientSideUniqRowId)"
             class="el-icon-circle-close"
           >
           </el-button>
@@ -55,100 +55,59 @@
         </el-tooltip>
       </el-button-group>
 
-      <!-- <el-button type="text">{{ mentalStatusExam.description }}</el-button> 
+      <!-- <el-button type="text">{{ pastPsychHistory.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
           if rowStateInThisSession == 9 then the div should have a orange border
           Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new mentalStatusExam appears. That is a confusing event.
-            Instead if the new mentalStatusExam that came on screen gets a orange border with top right corner saying "New mentalStatusExam added from socket" that is much better UX.
+            Doctor is sitting infront of computer suddenly a new pastPsychHistory appears. That is a confusing event.
+            Instead if the new pastPsychHistory that came on screen gets a orange border with top right corner saying "New pastPsychHistory added from socket" that is much better UX.
           -->
-      <div v-if="mentalStatusExam.vnRowStateInSession === 9">
-        Added from socket {{ mentalStatusExam.description }}
+      <div v-if="pastPsychHistory.vnRowStateInSession === 9">
+        Added from socket {{ pastPsychHistory.description }}
       </div>
       <div v-else>
-        {{ mentalStatusExam.cardContentOfTypeStringToShowInBodyOfCards }}
+        {{ pastPsychHistory.cardContentOfTypeStringToShowInBodyOfCards }}
       </div>
     </el-card>
   </showContentInCardComponent>
 </template>
 
 <script>
-import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
-    cfArOfMentalStatusExamForDisplay() {
-      let arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
+    cfArOfPastPsychHistoryForDisplay() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
         .query()
-        .with('tblMentalStatusExamMasterLink')
+        .with('tblPastPsychHistoryMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamCategory +
+          arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink.pastPsychHistoryCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamDescription
+          arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink.pastPsychHistoryDescription
       }
 
       return arOfObjectsFromClientSideDB
     },
   },
   methods: {
-    async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-      clientSideTblOfPatientMentalStatusExam.update({
+    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+      clientSideTblOfPatientPastPsychHistory.update({
         where: pClientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },
       })
-
-      const exists = clientSideTblOfPatientMentalStatusExam
-        .query()
-        .where('clientSideUniqRowId', pClientSideUniqRowId)
-        .get()
-
-      const response = await fetch(
-        clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            // "Authorization": "Bearer " + TOKEN
-          },
-        }
-      )
-
-      if (!response.ok) {
-        // this block execute when response return fail status
-        clientSideTblOfPatientMentalStatusExam.update({
-          where: exists[0].clientSideUniqRowId,
-          data: {
-            ROW_END: 2147483648000,
-          },
-        })
-        this.$notify({
-          title: 'Error',
-          message: 'Not updated on server',
-          type: 'Error',
-          duration: 3000,
-        })
-      } else {
-        // this block execute when response return success status
-        this.$notify({
-          title: 'Success',
-          message: 'Updated on server',
-          type: 'success',
-          duration: 3000,
-        })
-      }
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'edit mental status exam',
+        searchTerm: 'edit past psych history',
       })
     },
     // This is used to make the rows that are in change state a orange background.
@@ -160,6 +119,10 @@ export default {
       } else {
         return 'color: #202020;'
       }
+    },
+    mfShowTimeLine: () => {
+      alert('Timeline of this data')
+      return false
     },
   },
   async mounted() {},

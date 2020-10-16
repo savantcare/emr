@@ -53,6 +53,50 @@ export default {
         return false
       }
     },
+
+    cfTimeLineDataAr() {
+      const timelineDataArray = []
+
+      const arFromClientSideTableData = clientSideTable.find(this.dnClientSideIdOfRowToChange)
+
+      // TODO: timeline of UUID should be base class
+      // Insight: to create timeline the uuid will be same but id will be different.
+      const arFromClientSideTable = clientSideTable
+        .query()
+        .where('serverSideRowUuid', arFromClientSideTableData.serverSideRowUuid)
+        .orderBy('ROW_START', 'desc')
+        .get()
+      if (arFromClientSideTable.length) {
+        let rowInTimeLine = []
+        let date = ''
+        for (let i = 0; i < arFromClientSideTable.length; i++) {
+          rowInTimeLine = {}
+          rowInTimeLine.oxygenSaturationInSpo2 = arFromClientSideTable[i].oxygenSaturationInSpo2
+          date = new Date(arFromClientSideTable[i].ROW_START)
+          rowInTimeLine.createdAt =
+            date.toLocaleString('default', { month: 'long' }) +
+            '-' +
+            date.getDate() +
+            '-' +
+            date.getFullYear()
+          if (
+            arFromClientSideTable[i].vnRowStateInSession === 3 ||
+            arFromClientSideTable[i].vnRowStateInSession === 34 ||
+            arFromClientSideTable[i].vnRowStateInSession === 3456
+          ) {
+            rowInTimeLine.type = 'warning' // row is being edited and is not on server
+          } else {
+            rowInTimeLine.type = ''
+          }
+          rowInTimeLine.ROW_START = arFromClientSideTable[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
+
+          timelineDataArray.push(rowInTimeLine)
+        }
+      }
+      return timelineDataArray
+    },
+
   },
   watch: {
     /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.

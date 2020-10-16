@@ -167,7 +167,9 @@ export default {
       }
       return 50
     },
+
     sendCssVariablesForRootFontSizeToStyleSheet() {
+      // Is this needed since the user can change font size using the browser?
       /*let obj = {}
 
       obj['--font-size-of-root'] = '20px'
@@ -181,7 +183,7 @@ export default {
       clientSideTableOfCommonForAllComponents.insert({
         data: {
           fieldName:
-            'client-side-socketId-to-prevent-duplicate-UI-change-on-client-that-requested-server-for-data-change',
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change',
           fieldValue: this.$socket.id,
         },
       })

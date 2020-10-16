@@ -70,7 +70,7 @@ import initializeWaistCircumferenceComponent from '@/components/1time-1row-mFiel
 import initializeWeightComponent from '@/components/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/others
-import initializeMseComponent from '@/components/1time-1row-mField/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeMseComponent from '@/components/1time-1row-mField/mental-status-exam/db/client-side/initialize-on-first-load.vue'
 import initializePhq9Component from '@/components/1time-1row-mField/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeProsComponent from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
