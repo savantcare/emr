@@ -81,7 +81,7 @@
       style="width: 100%; background: #f0f9eb">
       <el-table-column label="Diagnosiss sending to server">
         <div slot-scope="{row}" class="td-number">
-          {{fnGetDiagnosisNameById(row.masterDiagnosisId)}}
+          {{mfGetDiagnosisNameById(row.masterDiagnosisId)}}
         </div>
       </el-table-column>
       <!-- <el-table-column prop="diagnosisName" label="Diagnosiss sending to server"></el-table-column> -->
@@ -94,7 +94,7 @@
       style="width: 100%; background: #f0f9eb">
       <el-table-column label="Diagnosiss added this session">
         <div slot-scope="{row}" class="td-number">
-          {{fnGetDiagnosisNameById(row.masterDiagnosisId)}}
+          {{mfGetDiagnosisNameById(row.masterDiagnosisId)}}
         </div>
       </el-table-column>
     </el-table>
@@ -106,7 +106,7 @@
     >
     <el-table-column label="Error: Diagnosiss attempted but failed to save">
       <div slot-scope="{row}" class="td-number">
-        {{fnGetDiagnosisNameById(row.masterDiagnosisId)}}
+        {{mfGetDiagnosisNameById(row.masterDiagnosisId)}}
       </div>
     </el-table-column>
     </el-table>
@@ -142,7 +142,7 @@ export default {
     },
   },
   methods: {
-    fnGetDiagnosisNameById(masterDiagnosisId) {
+    mfGetDiagnosisNameById(masterDiagnosisId) {
       let getMasterOfDiagnosis = clientSideTblMasterDiagnosis
         .query()
         .where('masterDiagnosisId', masterDiagnosisId)
