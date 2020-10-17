@@ -9,38 +9,24 @@
   But now, I have fixed the drawer width as 700px, css given on the bottom of page. That means, drawer size should be 100% of drawer width ie; 700px.
   -->
 <template>
-  <el-drawer
-    class="rightScreenExtensionDrawer"
-    :visible="cfDrawerVisibility"
-    direction="rtl"
-    :before-close="handleClose"
-    :modal="false"
-    :close-on-press-escape="true"
-    :show-close="true"
-    :with-header="false"
-    :wrapperClosable="false"
-    size="100%"
-    :lock-scroll="false"
-  >
-    <div class="block">
-      <div
-        v-for="card in cfArCardsInLeftSideOfViewLayer"
-        :key="card.clientSideUniqRowId"
-        style="margin: 10px"
-      >
-        <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
-        <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
+  <div class="block">
+    <div
+      v-for="card in cfArCardsInLeftSideOfViewLayer"
+      :key="card.clientSideUniqRowId"
+      style="margin: 10px"
+    >
+      <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
+      <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
                 is not hidden. When user types rex 2 times, rex is being displayed 2 times
 
                 The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
             -->
-        <component :is="card.componentToShowObject"></component>
-      </div>
-
-      <ctSearchBoxInsideRightScreenExtension></ctSearchBoxInsideRightScreenExtension>
+      <component :is="card.componentToShowObject"></component>
     </div>
-  </el-drawer>
+
+    <ctSearchBoxInsideRightScreenExtension></ctSearchBoxInsideRightScreenExtension>
+  </div>
 </template>
 
 <script>

@@ -26,7 +26,13 @@
         <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
       </SplitArea>
       <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
-        <ctLayer1RightSideCards></ctLayer1RightSideCards>
+        <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
+        drawer. When there is a veritical bar that can be moved around but the drawer does not response. It becomes very confusing
+        for the user-->
+        <div v-if="cfRightScreenExtensionVisibility"><ctRightScreenExtensionDrawer /></div>
+        <div v-else>
+          <ctLayer1RightSideCards></ctLayer1RightSideCards>
+        </div>
       </SplitArea>
     </Split>
 
@@ -35,9 +41,6 @@
 
     <!-- GOAL5: Init component to show components in left extension -->
     <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
-
-    <!-- GOAL6: Init component to show components in right extension -->
-    <ctRightScreenExtensionDrawer></ctRightScreenExtensionDrawer>
 
     <!-- GOAL7: Init drawer component -->
     <ctMapDrawer></ctMapDrawer>
@@ -166,6 +169,20 @@ export default {
         return parseInt(splitSize['fieldValue'])
       }
       return 50
+    },
+
+    cfRightScreenExtensionVisibility() {
+      const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
+        'right-screen-extension-drawer-visibility'
+      )
+
+      if (drawerVisibility) {
+        if (drawerVisibility['fieldValue'] == 'true') {
+          return true
+        }
+      }
+
+      return false
     },
 
     sendCssVariablesForRootFontSizeToStyleSheet() {
