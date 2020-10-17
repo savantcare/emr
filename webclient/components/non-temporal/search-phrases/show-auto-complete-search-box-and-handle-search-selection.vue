@@ -30,7 +30,7 @@ export default {
       let arFromClientSideTable = {}
       arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
-        .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+        .orderBy('searchPhraseUsageCount', 'desc')
         .get()
       const objRowFromOrm = arFromClientSideTable[0]
       if (objRowFromOrm) {
@@ -48,7 +48,7 @@ export default {
       if (!pQueryString) {
         const arFromClientSideTable = clientSideTblOfCtSearchPhrases
           .query()
-          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+          .orderBy('searchPhraseUsageCount', 'desc')
           .get()
         pCallBack(arFromClientSideTable)
       } else {
@@ -59,7 +59,7 @@ export default {
             // Search comes from vuex-orm plugn https://github.com/client-side/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
           })
-          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+          .orderBy('searchPhraseUsageCount', 'desc')
           .get() // trim is needed for "goal " to match "goal"
         pCallBack(arFromClientSideTable)
       }
@@ -104,10 +104,9 @@ export default {
       /* Goal: Increase the usageCount of the search term so I can order them better
         Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
       clientSideTblOfCtSearchPhrases.update({
-        where: pSelectedSuggestion.id,
+        where: pSelectedSuggestion.clientSideUniqRowId,
         data: {
-          usageCountKeptInEditLayerientSideTable:
-            pSelectedSuggestion.usageCountKeptInEditLayerientSideTable + 1,
+          searchPhraseUsageCount: pSelectedSuggestion.searchPhraseUsageCount + 1,
         },
       })
 

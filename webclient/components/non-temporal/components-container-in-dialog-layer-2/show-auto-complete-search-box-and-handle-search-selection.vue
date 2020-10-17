@@ -30,7 +30,7 @@ export default {
       let arFromClientSideTable = {}
       arFromClientSideTable = clientSideTblOfCtSearchPhrases
         .query()
-        .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+        .orderBy('searchPhraseUsageCount', 'desc')
         .get()
       const objRowFromOrm = arFromClientSideTable[0]
       if (objRowFromOrm) {
@@ -48,7 +48,7 @@ export default {
       if (!pQueryString) {
         const arFromClientSideTable = clientSideTblOfCtSearchPhrases
           .query()
-          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+          .orderBy('searchPhraseUsageCount', 'desc')
           .get()
 
         console.log('sending in pCallBack', arFromClientSideTable)
@@ -61,7 +61,7 @@ export default {
             // Search comes from vuex-orm plugn https://github.com/client-side/plugin-search#during-query-chain
             keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
           })
-          .orderBy('usageCountKeptInEditLayerientSideTable', 'desc')
+          .orderBy('searchPhraseUsageCount', 'desc')
           .get() // trim is needed for "goal " to match "goal"
 
         console.log('sending in pCallBack', arFromClientSideTable)
@@ -114,8 +114,7 @@ export default {
       clientSideTblOfCtSearchPhrases.update({
         where: pSelectedSuggestion.id,
         data: {
-          usageCountKeptInEditLayerientSideTable:
-            pSelectedSuggestion.usageCountKeptInEditLayerientSideTable + 1,
+          searchPhraseUsageCount: pSelectedSuggestion.searchPhraseUsageCount + 1,
         },
       })
 
