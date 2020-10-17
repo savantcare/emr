@@ -88,11 +88,16 @@ export default {
   },
 
   async created() {
+    /* This is called everytimes the propID changes in the parent component. 
+    The parent compone is decide-notes-to-print-and-thier-appt-id*/
+
     // Goal1 -> If no ID has been sent then return
     if (!this.propShowNoteForApptId) return
 
     // Get appt details from appt table
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
+
+    console.log('Created again')
   },
   computed: {
     cfApptLockDateInHumanReadableFormat() {
