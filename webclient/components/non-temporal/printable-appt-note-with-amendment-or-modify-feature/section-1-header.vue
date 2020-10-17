@@ -141,6 +141,7 @@ export default {
         comparisonId = this.mfGetNextApptId(this.propApptId)
       }
 
+      // This state is picked up by decide-notes-to-print-and-their-appt-id in the same folder. That is the parent of this Ct.
       const updateState = clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,

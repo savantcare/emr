@@ -152,9 +152,13 @@ export default {
 
       const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
-      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
+      /* Goal: Find if current ID matches with firstParam or secondParam inside apptNoteCardObj. 
+       It has to match with either firstParameter or secondParameter inside  apptNoteCardObj */
       if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
-        // Handle the case when the current ID matches with the second param Need to compare with first
+        /* Handle the case when the current ID matches with the second param. 
+        Hence during comparison:
+        1. SecondParameter is primary. 
+        2. FirstParamter is Seconday  */
         comparedApptObj = clientSideTblOfAppointments.find(
           apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
         )
