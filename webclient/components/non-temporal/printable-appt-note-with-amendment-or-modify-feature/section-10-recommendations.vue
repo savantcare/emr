@@ -108,7 +108,7 @@ export default {
   computed: {
     cfGetReminderStyle() {
       let secondaryDuringComparisonApptObj = {}
-      let comparedRecommendations = {}
+      let secondaryDuringComparisonRecommendations = {}
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -121,13 +121,17 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedRecommendations = this.mfGetArOfRecommendations(secondaryDuringComparisonApptObj)
+        secondaryDuringComparisonRecommendations = this.mfGetArOfRecommendations(
+          secondaryDuringComparisonApptObj
+        )
         if (
-          comparedRecommendations.length > this.mfGetArOfRecommendations(this.currentApptObj).length
+          secondaryDuringComparisonRecommendations.length >
+          this.mfGetArOfRecommendations(this.currentApptObj).length
         ) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedRecommendations.length < this.mfGetArOfRecommendations(this.currentApptObj).length
+          secondaryDuringComparisonRecommendations.length <
+          this.mfGetArOfRecommendations(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
         } else {
@@ -145,14 +149,16 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedRecommendations = this.mfGetArOfRecommendations(secondaryDuringComparisonApptObj)
+          secondaryDuringComparisonRecommendations = this.mfGetArOfRecommendations(
+            secondaryDuringComparisonApptObj
+          )
           if (
-            comparedRecommendations.length >
+            secondaryDuringComparisonRecommendations.length >
             this.mfGetArOfRecommendations(this.currentApptObj).length
           ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedRecommendations.length <
+            secondaryDuringComparisonRecommendations.length <
             this.mfGetArOfRecommendations(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
