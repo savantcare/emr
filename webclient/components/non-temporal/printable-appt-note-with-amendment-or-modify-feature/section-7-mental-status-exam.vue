@@ -10,7 +10,7 @@
       <el-col :span="8" class="sectionHeading"> Mental status exam </el-col>
       <el-col :span="2"
         ><div class="grid-content">
-          <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
+          <div v-if="currentApptObj['apptStatus'] === 'locked'">
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
                 <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
@@ -44,11 +44,16 @@
         </div>
       </el-col>
     </el-row>
-    <div v-for="row in cfArOfMentalStatusExamForDisplay" :key="`mse - ${row.clientSideUniqRowId}`">
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
-      {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
+    <div :style="cfGetMentalStatusExamStyle">
+      <div
+        v-for="row in mfGetArOfMentalStatusExam(this.currentApptObj)"
+        :key="`mse - ${row.clientSideUniqRowId}`"
+      >
+        {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
+        {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
+      </div>
     </div>
-    <br />
+
     <div
       v-if="
         cfArOfAddendumForDisplay('mentalStatusExam') &&
@@ -77,11 +82,13 @@
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import moment from 'moment'
 
 export default {
   data() {
     return {
-      patientCurrentApptObj: [],
+      currentApptObj: [],
       debug: false,
       amendmentData: '',
       isAddendumPopoverVisible: false,
@@ -97,7 +104,7 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {
@@ -108,7 +115,7 @@ export default {
     mfSaveAddendum(pAddendumData, component) {
       clientSideTblOfAddendums.insert({
         data: {
-          appointmentId: this.patientCurrentApptObj.clientSideUniqRowId,
+          appointmentId: this.currentApptObj.clientSideUniqRowId,
           component: component,
           description: pAddendumData,
           ROW_START: Math.floor(Date.now()),
@@ -118,11 +125,10 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-  },
-  computed: {
-    cfArOfMentalStatusExamForDisplay() {
+
+    mfGetArOfMentalStatusExam(pApptObj) {
       let arOfObjectsFromClientSideDB = []
-      if (this.patientCurrentApptObj['apptStatus'] === 'unlocked') {
+      if (this.currentApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
@@ -132,12 +138,71 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', (value) => value > this.patientCurrentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.patientCurrentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > this.currentApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < this.currentApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
     },
+  },
+  computed: {
+    cfGetMentalStatusExamStyle() {
+      let comparedApptObj = {}
+      let comparedMentalStatusExam = {}
+
+      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+
+      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
+      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        // Handle the case when the current ID matches with the second param Need to compare with first
+        comparedApptObj = clientSideTblOfAppointments.find(
+          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        )
+        comparedMentalStatusExam = this.mfGetArOfMentalStatusExam(comparedApptObj)
+        if (
+          comparedMentalStatusExam.length >
+          this.mfGetArOfMentalStatusExam(this.currentApptObj).length
+        ) {
+          return 'border:1px solid #E6A23C'
+        } else if (
+          comparedMentalStatusExam.length <
+          this.mfGetArOfMentalStatusExam(this.currentApptObj).length
+        ) {
+          return 'border:1px solid #67C23A'
+        } else {
+          return ''
+        }
+      } else {
+        //
+        // Case when this appt is not the 2nd param so it is the first param
+        //
+
+        // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
+        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+          // Need to compare with second
+          comparedApptObj = clientSideTblOfAppointments.find(
+            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          )
+
+          comparedMentalStatusExam = this.mfGetArOfMentalStatusExam(comparedApptObj)
+          if (
+            comparedMentalStatusExam.length >
+            this.mfGetArOfMentalStatusExam(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #E6A23C'
+          } else if (
+            comparedMentalStatusExam.length <
+            this.mfGetArOfMentalStatusExam(this.currentApptObj).length
+          ) {
+            return 'border:1px solid #67C23A'
+          } else {
+            return
+          }
+        }
+      }
+      // Nothing to compare with
+    },
+
     cfArOfAddendumForDisplay() {
       const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
         .query()
