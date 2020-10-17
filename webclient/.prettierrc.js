@@ -10,8 +10,10 @@ module.exports = {
   semi: false, // https://prettier.io/docs/en/options.html#semicolons
   singleQuote: true,
   endOfLine: 'auto',
-  printWidth: 100,
-  /* Why is it 100 and not the default 80? We do the same thing as linux kernel. The kernel went from 80 to 100 in may 2020.
-      https://www.phoronix.com/scan.php?page=news_item&px=Linux-Kernel-Deprecates-80-Col
+  printWidth: 120,
+  /* Why go to 120? And not the default 80? 
+  The kernel went from 80 to 100 in may 2020. https://www.phoronix.com/scan.php?page=news_item&px=Linux-Kernel-Deprecates-80-Col
+  Kernel supports development in very old hardware.
+  So I went to 120. VK Oct 2020
   */
 }

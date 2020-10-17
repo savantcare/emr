@@ -16,15 +16,9 @@
     </div>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
-    <serviceStatementPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></serviceStatementPrintSection>
-    <mentalStatusExamPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></mentalStatusExamPrintSection>
-    <psychReviewOfSystemsPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></psychReviewOfSystemsPrintSection>
+    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
+    <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
+    <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
@@ -95,9 +89,7 @@ export default {
 
   async created() {
     // catch event
-    let eventName = [
-      'event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff',
-    ]
+    let eventName = ['event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff']
     this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
       if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
       this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
