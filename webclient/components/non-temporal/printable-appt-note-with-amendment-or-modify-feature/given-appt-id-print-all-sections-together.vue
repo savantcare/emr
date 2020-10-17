@@ -88,21 +88,10 @@ export default {
   },
 
   async created() {
-    // catch event
-    let eventName = ['event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff']
-    this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
-      if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
-      this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
-    })
-
-    // Goal1 -> Find the appt ID chosen by the user
-
+    // Goal1 -> If no ID has been sent then return
     if (!this.propShowNoteForApptId) return
 
-    /* Goal: Show green around data that has been added. Red around data that has been deleted */
-    // Finding the prev and next appt ID
-
-    // get appt details from appt table
+    // Get appt details from appt table
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
   },
   computed: {
