@@ -1,6 +1,10 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
-  <div>{{ cfLatestDataRowFromClientSideTable['firstName'] }} {{ initialMiddleName }} {{ initialLastName }}</div>
+  <div>
+    <template v-if="cfLatestDataRowFromClientSideTable">
+      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }}
+    </template>
+  </div>
 </template>
 
 <script>
@@ -21,7 +25,14 @@ export default {
       let arOfObjectsFromClientSideDB = clientSideTable.query().where('ROW_END', 2147483648000).get()
       return arOfObjectsFromClientSideDB[0]
     },
-
+    initialFirstName() {
+      // console.log(this.cfLatestDataRowFromClientSideTable.middleName)
+      if (this.cfLatestDataRowFromClientSideTable.firstName) {
+        return this.cfLatestDataRowFromClientSideTable.firstName
+      } else {
+        return ''
+      }
+    },
     initialMiddleName() {
       // console.log(this.cfLatestDataRowFromClientSideTable.middleName)
       if (this.cfLatestDataRowFromClientSideTable.middleName) {
