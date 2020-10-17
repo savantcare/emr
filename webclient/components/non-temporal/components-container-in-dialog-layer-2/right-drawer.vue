@@ -129,6 +129,7 @@ body .rightScreenExtensionDrawer {
   width: 576px; /* This is 40% of toal width. When we go to product the space distribution is 1.60% to the appt note printable view 2. scBrain 40% */
 }
 
+/* Make drawer scrollable */
 .el-drawer__body {
   height: 100%;
   box-sizing: border-box;

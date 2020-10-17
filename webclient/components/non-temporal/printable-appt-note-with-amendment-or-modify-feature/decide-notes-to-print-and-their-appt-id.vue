@@ -4,8 +4,9 @@
       <el-drawer
         :visible.sync="dUidrawerToShowComparisonOf2Notes"
         direction="ttb"
-        size="90%"
+        size="95%"
         @close="handleDrawerClosed()"
+        :with-header="false"
       >
         <el-row>
           <el-col :span="12"
@@ -159,6 +160,13 @@ export default {
 }
 </script>
 <style>
+/* Make drawer scrollable */
+.el-drawer__body {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
 .slide-fade-enter-active {
   transition: all 0.1s ease;
 }
