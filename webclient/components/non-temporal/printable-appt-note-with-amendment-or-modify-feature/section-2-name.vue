@@ -18,10 +18,7 @@ export default {
   },
   computed: {
     cfLatestDataRowFromClientSideTable() {
-      console.log('name ct')
       let arOfObjectsFromClientSideDB = clientSideTable.query().where('ROW_END', 2147483648000).get()
-
-      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB[0]
     },
 
