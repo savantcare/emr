@@ -147,29 +147,34 @@ export default {
   },
   computed: {
     cfGetMentalStatusExamStyle() {
-      let comparedApptObj = {}
-      let comparedMentalStatusExam = {}
+      let secondaryDuringComparisonApptObj = {}
+      let secondaryDuringComparisonMentalStatusExamArray = {}
 
-      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
-      /* Goal: Find if current ID matches with firstParam or secondParam inside apptNoteCardObj. 
-       It has to match with either firstParameter or secondParameter inside  apptNoteCardObj */
-      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      /* Goal: Find if current ID matches with firstParam or secondParam inside printableApptNoteComponentCardObj. 
+       It has to match with either firstParameter or secondParameter inside  printableApptNoteComponentCardObj */
+      if (
+        printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] ===
+        this.propApptId
+      ) {
         /* Handle the case when the current ID matches with the second param. 
         Hence during comparison:
         1. SecondParameter is primary. 
         2. FirstParamter is Seconday  */
-        comparedApptObj = clientSideTblOfAppointments.find(
-          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+          printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedMentalStatusExam = this.mfGetArOfMentalStatusExam(comparedApptObj)
+        secondaryDuringComparisonMentalStatusExamArray = this.mfGetArOfMentalStatusExam(
+          secondaryDuringComparisonApptObj
+        )
         if (
-          comparedMentalStatusExam.length >
+          secondaryDuringComparisonMentalStatusExamArray.length >
           this.mfGetArOfMentalStatusExam(this.currentApptObj).length
         ) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedMentalStatusExam.length <
+          secondaryDuringComparisonMentalStatusExamArray.length <
           this.mfGetArOfMentalStatusExam(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
@@ -182,20 +187,22 @@ export default {
         //
 
         // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
-        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+        if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']) {
           // Need to compare with second
-          comparedApptObj = clientSideTblOfAppointments.find(
-            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+            printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedMentalStatusExam = this.mfGetArOfMentalStatusExam(comparedApptObj)
+          secondaryDuringComparisonMentalStatusExamArray = this.mfGetArOfMentalStatusExam(
+            secondaryDuringComparisonApptObj
+          )
           if (
-            comparedMentalStatusExam.length >
+            secondaryDuringComparisonMentalStatusExamArray.length >
             this.mfGetArOfMentalStatusExam(this.currentApptObj).length
           ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedMentalStatusExam.length <
+            secondaryDuringComparisonMentalStatusExamArray.length <
             this.mfGetArOfMentalStatusExam(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'

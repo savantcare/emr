@@ -101,18 +101,23 @@ export default {
   },
   computed: {
     cfGetPsychReviewOfSystemsStyle() {
-      let comparedApptObj = {}
+      let secondaryDuringComparisonApptObj = {}
       let comparedPsychReviewOfSystems = {}
 
-      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      if (
+        printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] ===
+        this.propApptId
+      ) {
         // Handle the case when the current ID matches with the second param Need to compare with first
-        comparedApptObj = clientSideTblOfAppointments.find(
-          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+          printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
+        comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
+          secondaryDuringComparisonApptObj
+        )
         if (
           comparedPsychReviewOfSystems.length >
           this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
@@ -132,13 +137,15 @@ export default {
         //
 
         // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
-        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+        if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']) {
           // Need to compare with second
-          comparedApptObj = clientSideTblOfAppointments.find(
-            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+            printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(comparedApptObj)
+          comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
+            secondaryDuringComparisonApptObj
+          )
           if (
             comparedPsychReviewOfSystems.length >
             this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
