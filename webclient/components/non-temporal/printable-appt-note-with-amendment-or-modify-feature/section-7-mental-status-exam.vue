@@ -127,8 +127,10 @@ export default {
     },
 
     mfGetArOfMentalStatusExam(pApptObj) {
+      if (!pApptObj) return
+
       let arOfObjectsFromClientSideDB = []
-      if (this.currentApptObj['apptStatus'] === 'unlocked') {
+      if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
@@ -138,8 +140,8 @@ export default {
         arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
-          .where('ROW_END', (value) => value > this.currentApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < this.currentApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
       return arOfObjectsFromClientSideDB
