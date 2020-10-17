@@ -17,6 +17,7 @@
     :modal="false"
     :close-on-press-escape="true"
     :show-close="true"
+    :with-header="false"
     :wrapperClosable="false"
     size="100%"
     :lock-scroll="false"
