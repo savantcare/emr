@@ -105,7 +105,7 @@ export default {
   computed: {
     cfGetReminderStyle() {
       let secondaryDuringComparisonApptObj = {}
-      let comparedReminders = {}
+      let secondaryDuringComparisonReminders = {}
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -118,10 +118,18 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
-        if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+        secondaryDuringComparisonReminders = this.mfGetArOfReminders(
+          secondaryDuringComparisonApptObj
+        )
+        if (
+          secondaryDuringComparisonReminders.length >
+          this.mfGetArOfReminders(this.currentApptObj).length
+        ) {
           return 'border:1px solid #E6A23C'
-        } else if (comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
+        } else if (
+          secondaryDuringComparisonReminders.length <
+          this.mfGetArOfReminders(this.currentApptObj).length
+        ) {
           return 'border:1px solid #67C23A'
         } else {
           return ''
@@ -138,11 +146,17 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
-          if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+          secondaryDuringComparisonReminders = this.mfGetArOfReminders(
+            secondaryDuringComparisonApptObj
+          )
+          if (
+            secondaryDuringComparisonReminders.length >
+            this.mfGetArOfReminders(this.currentApptObj).length
+          ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length
+            secondaryDuringComparisonReminders.length <
+            this.mfGetArOfReminders(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
           } else {
