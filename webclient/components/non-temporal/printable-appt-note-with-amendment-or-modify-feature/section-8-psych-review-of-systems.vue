@@ -1,12 +1,7 @@
 <template>
   <div>
     <!-- SECTION 8 Psych review of systems  -->
-    <el-row
-      type="flex"
-      justify="left"
-      class="prosh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
+    <el-row type="flex" justify="left" class="prosh3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
       <el-col :span="2"
         ><div class="grid-content">
@@ -44,10 +39,7 @@
       </el-col>
     </el-row>
     <div :style="cfGetPsychReviewOfSystemsStyle">
-      <div
-        v-for="row in mfGetArOfPsychReviewOfSystems(this.currentApptObj)"
-        :key="`ros - ${row.clientSideUniqRowId}`"
-      >
+      <div v-for="row in mfGetArOfPsychReviewOfSystems(this.currentApptObj)" :key="`ros - ${row.clientSideUniqRowId}`">
         {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory'] }}
         {{ row['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsDescription'] }}
       </div>
@@ -106,12 +98,12 @@ export default {
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
-      // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (
-        printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] ===
-        this.propApptId
-      ) {
-        // Handle the case when the current ID matches with the second param Need to compare with first
+      /* Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
+        First comparing this.propApptId with 2nd parameter as that would mean there is a comparison going on.
+        If this.propApptId matches the 1st parameter there may or may not be a comparison going on.
+      */
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        // This is the case when this.propApptId matches with the second param Need to compare with first
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
@@ -129,7 +121,11 @@ export default {
         ) {
           return 'border:1px solid #67C23A'
         } else {
-          return ''
+          // The length of psych ros on left and right is same. This 90% probability means that they are same. On right the psych ros should be in light grey color.
+          // There are 2 possibilities this.propApptId appears on left or right.
+          // this.propApptId will appear on right if it is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+          if (this.propApptId > printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting'])
+            return 'color:grey;'
         }
       } else {
         //
@@ -157,7 +153,11 @@ export default {
           ) {
             return 'border:1px solid #67C23A'
           } else {
-            return
+            // The length of psych ros on left and right is same. This 90% probability means that they are same. On right the psych ros should be in light grey color.
+            // There are 2 possibilities this.propApptId appears on left or right.
+            // this.propApptId will appear on right if it is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+            if (this.propApptId > printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'])
+              return 'color:grey;'
           }
         }
       }

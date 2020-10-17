@@ -1,12 +1,7 @@
 <template>
   <!-- SECTION 7 MENTAL STATUS EXAM-->
   <div>
-    <el-row
-      type="flex"
-      justify="left"
-      class="mseh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
+    <el-row type="flex" justify="left" class="mseh3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <el-col :span="8" class="sectionHeading"> Mental status exam </el-col>
       <el-col :span="2"
         ><div class="grid-content">
@@ -45,32 +40,19 @@
       </el-col>
     </el-row>
     <div :style="cfGetMentalStatusExamStyle">
-      <div
-        v-for="row in mfGetArOfMentalStatusExam(this.currentApptObj)"
-        :key="`mse - ${row.clientSideUniqRowId}`"
-      >
+      <div v-for="row in mfGetArOfMentalStatusExam(this.currentApptObj)" :key="`mse - ${row.clientSideUniqRowId}`">
         {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamCategory'] }}
         {{ row['tblMentalStatusExamMasterLink']['mentalStatusExamDescription'] }}
       </div>
     </div>
 
-    <div
-      v-if="
-        cfArOfAddendumForDisplay('mentalStatusExam') &&
-        cfArOfAddendumForDisplay('mentalStatusExam').length > 0
-      "
-    >
+    <div v-if="cfArOfAddendumForDisplay('mentalStatusExam') && cfArOfAddendumForDisplay('mentalStatusExam').length > 0">
       <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('mentalStatusExam')"
-        :key="row.clientSideUniqRowId"
-      >
+      <div v-for="row in cfArOfAddendumForDisplay('mentalStatusExam')" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
+          <span style="font-size: 10px">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
         </div>
       </div>
     </div>
@@ -154,15 +136,12 @@ export default {
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
-      /* Goal: Find if current ID matches with firstParam or secondParam inside printableApptNoteComponentCardObj. 
+      /* Goal: Find if current ID matches with firstParam or secondParam inside printableApptNoteComponentCardObj.
        It has to match with either firstParameter or secondParameter inside  printableApptNoteComponentCardObj */
-      if (
-        printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] ===
-        this.propApptId
-      ) {
-        /* Handle the case when the current ID matches with the second param. 
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        /* Handle the case when the current ID matches with the second param.
         Hence during comparison:
-        1. SecondParameter is primary. 
+        1. SecondParameter is primary.
         2. FirstParamter is Seconday  */
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
@@ -181,7 +160,14 @@ export default {
         ) {
           return 'border:1px solid #67C23A'
         } else {
-          return ''
+          /* The length of MSE on left and right is same. This 90% probability means that they are same. ONLY on right the MSE should be in light grey color.
+           There are 2 possibilities this.propApptId appears on left or right.
+           this.propApptId is equqal to printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] 
+           Hence it will appear on right if:
+           this.propApptId is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+          */
+          if (this.propApptId > printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting'])
+            return 'color:grey;'
         }
       } else {
         //
@@ -209,7 +195,12 @@ export default {
           ) {
             return 'border:1px solid #67C23A'
           } else {
-            return
+            /* The length of psych ros on left and right is same. This 90% probability means that they are same. On right the psych ros should be in light grey color.
+             There are 2 possibilities this.propApptId appears on left or right.
+             this.propApptId will appear on right if it is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+             */
+            if (this.propApptId > printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'])
+              return 'color:grey;'
           }
         }
       }
