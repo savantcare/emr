@@ -102,7 +102,7 @@ export default {
   computed: {
     cfGetPsychReviewOfSystemsStyle() {
       let secondaryDuringComparisonApptObj = {}
-      let comparedPsychReviewOfSystems = {}
+      let secondaryDuringComparisonPsychReviewOfSystems = {}
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -115,16 +115,16 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
+        secondaryDuringComparisonPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
           secondaryDuringComparisonApptObj
         )
         if (
-          comparedPsychReviewOfSystems.length >
+          secondaryDuringComparisonPsychReviewOfSystems.length >
           this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
         ) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedPsychReviewOfSystems.length <
+          secondaryDuringComparisonPsychReviewOfSystems.length <
           this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
@@ -143,16 +143,16 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
+          secondaryDuringComparisonPsychReviewOfSystems = this.mfGetArOfPsychReviewOfSystems(
             secondaryDuringComparisonApptObj
           )
           if (
-            comparedPsychReviewOfSystems.length >
+            secondaryDuringComparisonPsychReviewOfSystems.length >
             this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
           ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedPsychReviewOfSystems.length <
+            secondaryDuringComparisonPsychReviewOfSystems.length <
             this.mfGetArOfPsychReviewOfSystems(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'

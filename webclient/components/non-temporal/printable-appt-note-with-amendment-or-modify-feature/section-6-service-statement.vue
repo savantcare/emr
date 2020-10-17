@@ -150,7 +150,7 @@ export default {
   computed: {
     cfGetServiceStatementStyle() {
       let secondaryDuringComparisonApptObj = {}
-      let comparedSS = {}
+      let secondaryDuringComparisonSS = {}
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -163,11 +163,17 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
-        if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+        secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(
+          secondaryDuringComparisonApptObj
+        )
+        if (
+          secondaryDuringComparisonSS.length >
+          this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+        ) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+          secondaryDuringComparisonSS.length <
+          this.mfGetArrayOfServiceStatements(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
         } else {
@@ -185,11 +191,17 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
-          if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+          secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(
+            secondaryDuringComparisonApptObj
+          )
+          if (
+            secondaryDuringComparisonSS.length >
+            this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+          ) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+            secondaryDuringComparisonSS.length <
+            this.mfGetArrayOfServiceStatements(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
           } else {
