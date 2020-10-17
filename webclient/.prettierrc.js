@@ -16,4 +16,7 @@ module.exports = {
   Kernel supports development in very old hardware.
   So I went to 120. VK Oct 2020
   */
+
+  /* Ref: https://prettier.io/docs/en/options.html#jsx-brackets */
+  jsxBracketSameLine: true,
 }

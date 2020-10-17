@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Goal: Print 2 notes side by side -->
     <div v-if="cfNumberOfNotesToCompare.length > 1">
       <el-drawer
         :visible.sync="dUidrawerToShowComparisonOf2Notes"
@@ -22,6 +23,7 @@
         </el-row>
       </el-drawer>
     </div>
+    <!-- Goal: Print a single note -->
     <div v-else>
       <apptNotePrintableView
         :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
@@ -91,21 +93,16 @@ export default {
     },
   },
   computed: {
+    // Goal: Lower appt ID should come on the left. Since lower ID means happened before.
     lowerValueForComparisonClientSideUniqRowId() {
-      if (
-        this.firstNoteForComparisonClientSideUniqRowId >
-        this.secondNoteForComparisonClientSideUniqRowId
-      ) {
+      if (this.firstNoteForComparisonClientSideUniqRowId > this.secondNoteForComparisonClientSideUniqRowId) {
         return this.secondNoteForComparisonClientSideUniqRowId
       } else {
         return this.firstNoteForComparisonClientSideUniqRowId
       }
     },
     higherValueForComparisonClientSideUniqRowId() {
-      if (
-        this.firstNoteForComparisonClientSideUniqRowId >
-        this.secondNoteForComparisonClientSideUniqRowId
-      ) {
+      if (this.firstNoteForComparisonClientSideUniqRowId > this.secondNoteForComparisonClientSideUniqRowId) {
         return this.firstNoteForComparisonClientSideUniqRowId
       } else {
         return this.secondNoteForComparisonClientSideUniqRowId
