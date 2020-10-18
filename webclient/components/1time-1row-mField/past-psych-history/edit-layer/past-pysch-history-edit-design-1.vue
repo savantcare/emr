@@ -59,51 +59,50 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
-    console.log(arOfObjectsFromClientSideDB)
-
     this.$set(this.liveTypeObjOfFields, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
     this.$set(this.liveTypeObjOfFields, 'Past_meds_trials', arOfObjectsFromClientSideDB[1]['fieldValue'])
-    /*    this.$set(this.liveTypeObjOfFields, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
+    this.$set(this.liveTypeObjOfFields, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
     this.$set(this.liveTypeObjOfFields, 'History_of_violence', arOfObjectsFromClientSideDB[3]['fieldValue'])
     this.$set(this.liveTypeObjOfFields, 'History_of_self_harm', arOfObjectsFromClientSideDB[4]['fieldValue'])
     this.$set(this.liveTypeObjOfFields, 'Past_substance_abuse', arOfObjectsFromClientSideDB[5]['fieldValue'])
-*/
-    this.secondaryObjOfFieldsForComparison = this.liveTypeObjOfFields
 
-    console.log(this.liveTypeObjOfFields)
-    console.log(this.secondaryObjOfFieldsForComparison)
+    // TODO: Dont know why this does not work
+    //    this.secondaryObjOfFieldsForComparison = this.liveTypeObjOfFields
 
-    /*    this.$set(
+    this.$set(
       this.secondaryObjOfFieldsForComparison,
       'Past_outpatient_treatment',
       arOfObjectsFromClientSideDB[0]['fieldValue']
-    )*/
+    )
+    this.$set(this.secondaryObjOfFieldsForComparison, 'Past_meds_trials', arOfObjectsFromClientSideDB[1]['fieldValue'])
+
+    this.$set(this.secondaryObjOfFieldsForComparison, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
+    this.$set(
+      this.secondaryObjOfFieldsForComparison,
+      'History_of_violence',
+      arOfObjectsFromClientSideDB[3]['fieldValue']
+    )
+    this.$set(
+      this.secondaryObjOfFieldsForComparison,
+      'History_of_self_harm',
+      arOfObjectsFromClientSideDB[4]['fieldValue']
+    )
+    this.$set(
+      this.secondaryObjOfFieldsForComparison,
+      'Past_substance_abuse',
+      arOfObjectsFromClientSideDB[5]['fieldValue']
+    )
   },
+
   watch: {
     'liveTypeObjOfFields.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
-        if (this.secondaryObjOfFieldsForComparison['Past_outpatient_treatment']) {
-          const diff = Diff.diffWords(this.secondaryObjOfFieldsForComparison['Past_outpatient_treatment'], newValue)
-          this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] = ''
-          diff.forEach((part) => {
-            // green for additions, red for deletions
-            // grey for common parts
-            const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-            this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] =
-              this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] + '<span style="color:' + color + '">'
-            this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] =
-              this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] + part.value
-            this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] =
-              this.fieldDiffWithSecondayObj['Past_outpatient_treatment'] + '</span>'
-          })
-        }
       },
     },
     'liveTypeObjOfFields.Past_meds_trials': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
-        console.log(this.liveTypeObjOfFields)
       },
     },
     'liveTypeObjOfFields.Hospitalization': {
@@ -129,7 +128,6 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistoryGrouped() {
-      console.log('cf called')
       let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
         .query()
         .with('tblPastPsychHistoryForPatientLink')
@@ -158,16 +156,21 @@ export default {
   methods: {
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
+      /* 
+        Task 1: Do debounce 
+      */
       if (this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) {
         clearTimeout(this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
         this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = false
       }
       this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = setTimeout(
         function (scope) {
-          // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
+          /* 
+            Task 2: Save to ORM
+          */
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
-            .where('fieldIdFromMaster', pFieldIdFromMaster)
+            .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
             .get()
           let status = null
           // clientSideRowUniqId will not have a value if this is being inserted first time
@@ -187,6 +190,24 @@ export default {
               data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue }],
             })
           }
+
+          /* 
+            Task 3: Do diff
+          */
+          if (scope.secondaryObjOfFieldsForComparison[pFieldName]) {
+            const diff = Diff.diffWords(scope.secondaryObjOfFieldsForComparison[pFieldName], newValue)
+            scope.fieldDiffWithSecondayObj[pFieldName] = ''
+            diff.forEach((part) => {
+              // green for additions, red for deletions
+              // grey for common parts
+              const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
+              scope.fieldDiffWithSecondayObj[pFieldName] =
+                scope.fieldDiffWithSecondayObj[pFieldName] + '<span style="color:' + color + '">'
+              scope.fieldDiffWithSecondayObj[pFieldName] = scope.fieldDiffWithSecondayObj[pFieldName] + part.value
+              scope.fieldDiffWithSecondayObj[pFieldName] = scope.fieldDiffWithSecondayObj[pFieldName] + '</span>'
+            })
+          }
+          console.log(scope.fieldDiffWithSecondayObj)
         },
         500, // setting timeout of 500 ms
         this
