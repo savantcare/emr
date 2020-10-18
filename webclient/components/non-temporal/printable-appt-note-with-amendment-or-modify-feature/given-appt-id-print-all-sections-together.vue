@@ -17,6 +17,7 @@
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+    <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
 
     <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
@@ -52,6 +53,7 @@ import lockButtonPrintSection from './section-13-allow-note-lock.vue'
 import remindersPrintSection from './section-9-reminders.vue'
 import recommendationsPrintSection from './section-10-recommendations.vue'
 import medicationsPrintSection from './section-11-medications.vue'
+import pastPsychHistoryPrintSection from './section-6-past-psych-history.vue'
 
 // Library
 import moment from 'moment'
@@ -78,10 +80,11 @@ export default {
     serviceStatementPrintSection,
     agePrintSection,
     headerPrintSection,
+    psychReviewOfSystemsPrintSection,
+    pastPsychHistoryPrintSection,
     mentalStatusExamPrintSection,
     chiefComplaintPrintSection,
     vitalsPrintSection,
-    psychReviewOfSystemsPrintSection,
     lockButtonPrintSection,
     remindersPrintSection,
     recommendationsPrintSection,
