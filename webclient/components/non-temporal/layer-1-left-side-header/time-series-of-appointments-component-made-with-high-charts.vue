@@ -1,4 +1,5 @@
 <!-- 1. Lock un-lock no-show cancellation to have different icon for the markers
+2. When outside prev and next is clicked then change the marker on the slider.
 -->
 
 <template>
@@ -69,11 +70,21 @@ export default {
             events: {
               // if point gets clicked
               click: function (event) {
-                var pClientSideUniqRowIdAtThisSliderMark = event.point.clientSideUniqRowId
+                // Goal: If it is 'cancellation' 'late-cancellation' or 'no-show' then return without changing the note being displayed
+                if (
+                  event.point.apptStatus === 'cancellation' ||
+                  event.point.apptStatus == 'late-cancellation' ||
+                  event.point.apptStatus == 'no-show'
+                ) {
+                  return
+                }
+
+                // Goal: if it is a locked or unlocked note then show the note
+                var clientSideUniqRowIdAtThisSliderMark = event.point.clientSideUniqRowId
                 const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
                 if (
                   cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
-                    pClientSideUniqRowIdAtThisSliderMark &&
+                    clientSideUniqRowIdAtThisSliderMark &&
                   cardOfApptNoteComponentVisibilityCurrentValue['currentDisplayStateOfComponent'] == 1
                 ) {
                   // This case is when the button was already active. And clicking it should make it in-active
@@ -81,7 +92,7 @@ export default {
                 } else {
                   // This case is when the button was not active. And clicking it should make it Active
                   this.currentDisplayStateOfComponent = 1
-                  this.dCurrentActiveButtonClientSideRowId = pClientSideUniqRowIdAtThisSliderMark
+                  this.dCurrentActiveButtonClientSideRowId = clientSideUniqRowIdAtThisSliderMark
                 }
 
                 // This update will lead to the note card visibility getting toggled
@@ -158,36 +169,14 @@ export default {
             ' on ' +
             moment(timeOnCalendar).format('MMMM Do YYYY, h:mm:ss a'),
           clientSideUniqRowId: this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId'],
+          apptStatus: this.arOfAppointmentsFromClientSideDB[i]['apptStatus'],
         })
       }
       console.log(data)
       return data
     },
   },
-  methods: {
-    mfHandleUserGeneratedSliderEvent(pEventValue) {
-      console.log('handle user generated event')
-      const valueOfSlider = this.dCurrentValueOnTheSlider
-
-      // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
-      if (
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'cancellation' ||
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'late-cancellation' ||
-        this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
-      ) {
-        // Remove the previous note window if there is any
-        const updateState = clientSideTblOfLeftSideViewCards.update({
-          clientSideUniqRowId: 2,
-          currentDisplayStateOfComponent: 0,
-        })
-
-        return
-      }
-
-      // Goal: If a visible appt icon is clicked again then remove it. Otherwise show the appt note for that icon.
-      this.toggleApptNoteDisplay(this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentValueOnTheSlider])
-    },
-  },
+  methods: {},
 }
 </script>
 
