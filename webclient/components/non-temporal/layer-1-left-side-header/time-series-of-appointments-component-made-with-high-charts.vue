@@ -1,7 +1,6 @@
 <!-- 1. Instead of images use style from element.io
 2. When outside prev and next is clicked then change the marker on the slider.
-3. The area where I can click to zoom needs to be made bigger.
-4. Clicking on some point is hard: If card_body padding is 0 then it works ok
+3. Left and right buttons or slider https://www.highcharts.com/forum/viewtopic.php?t=37574
 -->
 
 <template>
