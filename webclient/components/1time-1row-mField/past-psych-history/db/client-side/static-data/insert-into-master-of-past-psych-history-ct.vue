@@ -16,7 +16,7 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '60',
+        pastPsychHistoryDescription: 'Past outpatient treatment',
         pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -25,7 +25,7 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '55',
+        pastPsychHistoryDescription: 'Past meds trials',
         pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -34,7 +34,7 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '50',
+        pastPsychHistoryDescription: 'Hospitalization',
         pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -43,7 +43,7 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '45',
+        pastPsychHistoryDescription: 'History of violence',
         pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -52,7 +52,7 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '40',
+        pastPsychHistoryDescription: 'History of self-harm',
         pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
@@ -61,89 +61,8 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Client Centered',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Dialectical Behavior therapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Holistic Therapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Existential humanistic',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Bibilotherapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '60',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '55',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '50',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '45',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '40',
-        pastPsychHistoryCategory: 'Total minutes with patient',
+        pastPsychHistoryDescription: 'Past substance abuse',
+        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
       },
     })
   },
