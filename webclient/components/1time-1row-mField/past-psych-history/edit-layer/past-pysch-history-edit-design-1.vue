@@ -69,7 +69,7 @@ export default {
   watch: {
     'liveTypeAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Past_outpatient_treatment', newValue, 1)
+        this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
         if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
           const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
           this.textDifferenceBetweenTwo = ''
@@ -86,27 +86,27 @@ export default {
     },
     'liveTypeAr.Past_meds_trials': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Past_meds_trials', newValue, 2)
+        this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
       },
     },
     'liveTypeAr.Hospitalization': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Hospitalization', newValue, 3)
+        this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
       },
     },
     'liveTypeAr.History_of_violence': {
       handler: function (newValue, oldValue) {
-        this.debouncer('History_of_violence', newValue, 4)
+        this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
       },
     },
     'liveTypeAr.History_of_self_harm': {
       handler: function (newValue, oldValue) {
-        this.debouncer('History_of_self', newValue, 5)
+        this.debounceThenSaveToOrm('History_of_self', newValue, 5)
       },
     },
     'liveTypeAr.Past_substance_abuse': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Past_substance_abuse', newValue, 6)
+        this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
       },
     },
   },
@@ -139,7 +139,7 @@ export default {
     },
   },
   methods: {
-    debouncer(pFieldName, newValue, pFieldIdFromMaster) {
+    debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
       if (this.vOrmSaveScheduled[pFieldIdFromMaster]) {
         clearTimeout(this.vOrmSaveScheduled[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
         this.vOrmSaveScheduled[pFieldIdFromMaster] = false
