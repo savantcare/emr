@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input placeholder="Filter text" v-model="userTypedKeyword" />
+    <el-input placeholder="Filter text" v-model="userTypedSearchFilterKeyword" />
     <el-row :gutter="20">
       <el-col
         :span="8"
@@ -16,7 +16,7 @@
               <el-input
                 type="textarea"
                 :autosize="{ minRows: 4, maxRows: 14 }"
-                v-model="liveTypeAr[ss.formFieldName]"
+                v-model="liveTypeObjOfFields[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
@@ -42,8 +42,8 @@ export default {
   data() {
     return {
       vOrmSaveScheduled: [],
-      userTypedKeyword: '',
-      liveTypeAr: {},
+      userTypedSearchFilterKeyword: '',
+      liveTypeObjOfFields: {},
       textDifferenceBetweenTwo: '',
       secondaryArrayForComparison: [],
     }
@@ -59,7 +59,7 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
-    this.$set(this.liveTypeAr, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
+    this.$set(this.liveTypeObjOfFields, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
     this.$set(
       this.secondaryArrayForComparison,
       'Past_outpatient_treatment',
@@ -67,7 +67,7 @@ export default {
     )
   },
   watch: {
-    'liveTypeAr.Past_outpatient_treatment': {
+    'liveTypeObjOfFields.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
         if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
@@ -84,27 +84,28 @@ export default {
         }
       },
     },
-    'liveTypeAr.Past_meds_trials': {
+    'liveTypeObjOfFields.Past_meds_trials': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
+        console.log(this.liveTypeObjOfFields)
       },
     },
-    'liveTypeAr.Hospitalization': {
+    'liveTypeObjOfFields.Hospitalization': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
       },
     },
-    'liveTypeAr.History_of_violence': {
+    'liveTypeObjOfFields.History_of_violence': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
       },
     },
-    'liveTypeAr.History_of_self_harm': {
+    'liveTypeObjOfFields.History_of_self_harm': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_self', newValue, 5)
       },
     },
-    'liveTypeAr.Past_substance_abuse': {
+    'liveTypeObjOfFields.Past_substance_abuse': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
       },
@@ -120,10 +121,10 @@ export default {
         .where((_record, query) => {
           query
             .where('pastPsychHistoryCategory', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+              value.toLowerCase().includes(this.userTypedSearchFilterKeyword.toLowerCase())
             )
             .orWhere('pastPsychHistoryDescription', (value) =>
-              value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
+              value.toLowerCase().includes(this.userTypedSearchFilterKeyword.toLowerCase())
             )
         })
         .get()
@@ -134,11 +135,12 @@ export default {
         ].replace(/ /g, '_')
       }
 
-      const liveTypeAr = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
-      return liveTypeAr
+      const liveTypeObjOfFields = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
+      return liveTypeObjOfFields
     },
   },
   methods: {
+    // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
       if (this.vOrmSaveScheduled[pFieldIdFromMaster]) {
         clearTimeout(this.vOrmSaveScheduled[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
@@ -146,15 +148,14 @@ export default {
       }
       this.vOrmSaveScheduled[pFieldIdFromMaster] = setTimeout(
         function (scope) {
+          // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster)
             .get()
           let status = null
-          console.log(currentDataAr)
           // clientSideRowUniqId will not have a value if this is being inserted first time
           if (currentDataAr.length > 0) {
-            console.log('updating')
             status = clientSideTblOfPatientPastPsychHistory.update({
               data: [
                 {
@@ -166,7 +167,6 @@ export default {
             })
           } else {
             // first time this data has been entered by the user
-            console.log(pFieldIdFromMaster)
             status = clientSideTblOfPatientPastPsychHistory.insert({
               data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue }],
             })
@@ -206,7 +206,7 @@ export default {
     },
     mfSavePastPsychHistoryInDB(pfieldIdFromMaster) {
       //      console.log(pfieldIdFromMaster)
-      //     console.log(this.liveTypeAr)
+      //     console.log(this.liveTypeObjOfFields)
       /* Goal1: Check if it already exists
       const exists = clientSideTblOfPatientPastPsychHistory
         .query()
