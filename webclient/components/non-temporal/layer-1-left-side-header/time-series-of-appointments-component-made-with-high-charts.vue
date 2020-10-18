@@ -171,15 +171,15 @@ export default {
 
         let markerSymbol = ''
         if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
-          markerSymbol = 'url(http://localhost/outline_lock_black_18dp.png)'
+          markerSymbol = 'url(http://localhost/2x-outline_lock_black_18dp.png)'
         } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
-          markerSymbol = 'url(http://localhost/outline_lock_open_black_18dp.png)'
+          markerSymbol = 'url(http://localhost/2x-outline_lock_open_black_18dp.png)'
         } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
-          markerSymbol = 'url(http://localhost/outline_clear_black_18dp.png)'
+          markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
         } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
-          markerSymbol = 'url(http://localhost/outline_clear_black_18dp.png)'
+          markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
         } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
-          markerSymbol = 'url(http://localhost/outline_block_black_18dp.png)'
+          markerSymbol = 'url(http://localhost/1x-outline_block_black_18dp.png)'
         } else {
           markerSymbol = 'url(http://www.highcharts.com/samples/graphics/snow.png)'
         }
