@@ -88,8 +88,8 @@ export default {
                     clientSideUniqRowIdAtThisSliderMark &&
                   cardOfApptNoteComponentVisibilityCurrentValue['currentDisplayStateOfComponent'] == 1
                 ) {
-                  // This case is when the button was already active. And clicking it should make it in-active
-                  this.currentDisplayStateOfComponent = 0
+                  // This case is when the button was already active. And clicking it should keep it active
+                  //this.currentDisplayStateOfComponent = 0
                 } else {
                   // This case is when the button was not active. And clicking it should make it Active
                   this.currentDisplayStateOfComponent = 1
@@ -163,7 +163,8 @@ export default {
       for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
         const timeOnCalendar = this.arOfAppointmentsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
         data.push({
-          x: timeOnCalendar,
+          //          x: timeOnCalendar, // this makes it proportional
+          x: i, // this makes it equidistant
           y: 0,
           tooltip:
             this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] +
