@@ -64,6 +64,11 @@ import tableStructureForPsychHistoryOfPatient from '~/components/1time-1row-mFie
 database.register(tableStructureForPsychHistoryMaster)
 database.register(tableStructureForPsychHistoryOfPatient)
 
+import tableStructureForMedicalReviewOfSystemsMaster from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
+import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+database.register(tableStructureForMedicalReviewOfSystemsMaster)
+database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
+
 // Mental status exam tables
 import tableStructureForMSEMaster from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
 import tableStructureForMSEOfPatient from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'

@@ -34,6 +34,7 @@
     <initializeRecComponent />
     <initializeServiceStatementComponent />
     <initializePastPsychHistoryComponent />
+    <initializeMedicalReviewOfSystemsComponent />
 
     <!-- 1time-Mrow-mField/others -->
     <initializePhoneNumberComponent />
@@ -83,6 +84,8 @@ import initializeServiceStatementComponent from '@/components/1time-1row-mField/
 
 import initializePastPsychHistoryComponent from '@/components/1time-1row-mField/past-psych-history/db/client-side/initialize-on-first-load.vue'
 
+import initializeMedicalReviewOfSystemsComponent from '@/components/1time-1row-mField/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
+
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
@@ -125,6 +128,7 @@ export default {
     initializeRecComponent,
     initializeServiceStatementComponent,
     initializePastPsychHistoryComponent,
+    initializeMedicalReviewOfSystemsComponent,
 
     // 1time-Mrow-mField
     initializePhoneNumberComponent,
