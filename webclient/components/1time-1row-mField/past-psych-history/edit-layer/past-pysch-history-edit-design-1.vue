@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <el-row>
       <el-col
-        span="8"
+        :span="8"
         v-for="(allPastPsychHistoryInsideAGroup, groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
         :key="allPastPsychHistoryInsideAGroup.id"
       >

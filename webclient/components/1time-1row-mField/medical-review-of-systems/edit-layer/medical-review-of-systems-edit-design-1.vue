@@ -3,7 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <el-row>
       <el-col
-        span="8"
+        :span="8"
         v-for="(allMedicalReviewOfSystemsInsideAGroup,
         groupNameGivenAsIndex) in cfGetMasterRowsOfMedicalReviewOfSystemsGrouped"
         :key="allMedicalReviewOfSystemsInsideAGroup.id"
@@ -12,14 +12,18 @@
         <div class="sc-medical-review-of-systems-all-content-body">
           <div v-for="ss in allMedicalReviewOfSystemsInsideAGroup" :key="ss.medicalReviewOfSystemsMasterId">
             <div v-if="mfCheckIfThisExistsInChildTable(ss)">
-              <el-input @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)" type="textarea">{{
-                ss.medicalReviewOfSystemsDescription
-              }}</el-input>
+              <el-checkbox
+                @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)"
+                type="checkbox"
+                >{{ ss.medicalReviewOfSystemsDescription }}</el-checkbox
+              >
             </div>
             <div v-else>
-              <el-input type="textarea" @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)">{{
-                ss.medicalReviewOfSystemsDescription
-              }}</el-input>
+              <el-checkbox
+                type="checkbox"
+                @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)"
+                >{{ ss.medicalReviewOfSystemsDescription }}</el-checkbox
+              >
             </div>
           </div>
         </div>
