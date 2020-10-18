@@ -67,12 +67,13 @@ export default {
         //console.log(this.debouncedAr)
         this.debouncer('Past_outpatient_treatment', newValue)
         const diff = Diff.diffWords(one, newValue)
+        this.textDifferenceBetweenTwo = ''
         console.log(diff)
         diff.forEach((part) => {
           // green for additions, red for deletions
           // grey for common parts
           const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-          this.textDifferenceBetweenTwo = '<span style="color:' + color + '">'
+          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '<span style="color:' + color + '">'
           this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + part.value
           this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '</span>'
         })
