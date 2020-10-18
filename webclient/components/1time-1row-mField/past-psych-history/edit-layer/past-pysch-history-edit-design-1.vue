@@ -21,7 +21,7 @@
                 style="width: 400px"
               ></el-input>
               <el-card style="width: 400px">
-                <div class="show-diff" v-html="textDifferenceBetweenTwo"></div>
+                <div class="show-diff" v-html="diffBetweenTwoFields[ss.formFieldName]"></div>
               </el-card>
             </el-card>
           </div>
@@ -44,7 +44,7 @@ export default {
       vOrmSaveScheduledForDebounce: [],
       userTypedSearchFilterKeyword: '',
       liveTypeObjOfFields: {},
-      textDifferenceBetweenTwo: '',
+      diffBetweenTwoFields: {},
       secondaryArrayForComparison: [],
     }
   },
@@ -72,14 +72,17 @@ export default {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
         if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
           const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
-          this.textDifferenceBetweenTwo = ''
+          this.diffBetweenTwoFields['Past_outpatient_treatment'] = ''
           diff.forEach((part) => {
             // green for additions, red for deletions
             // grey for common parts
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '<span style="color:' + color + '">'
-            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + part.value
-            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '</span>'
+            this.diffBetweenTwoFields['Past_outpatient_treatment'] =
+              this.diffBetweenTwoFields['Past_outpatient_treatment'] + '<span style="color:' + color + '">'
+            this.diffBetweenTwoFields['Past_outpatient_treatment'] =
+              this.diffBetweenTwoFields['Past_outpatient_treatment'] + part.value
+            this.diffBetweenTwoFields['Past_outpatient_treatment'] =
+              this.diffBetweenTwoFields['Past_outpatient_treatment'] + '</span>'
           })
         }
       },
