@@ -17,7 +17,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'Past outpatient treatment',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'Past outpatient treatment',
       },
     })
 

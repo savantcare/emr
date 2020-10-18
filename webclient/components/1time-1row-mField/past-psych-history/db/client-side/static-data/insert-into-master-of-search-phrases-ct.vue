@@ -24,8 +24,7 @@ export default {
         ctAbbr: 'epsh',
         ctToShow: '1time-1row-mField/past-psych-history/edit-layer/past-pysch-history-edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'small',
-        needsRowIdToWork: 'yes',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
