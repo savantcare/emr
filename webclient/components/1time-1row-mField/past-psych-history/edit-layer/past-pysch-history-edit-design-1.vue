@@ -67,11 +67,12 @@ export default {
       },
     },
     'debouncedAr.Past_outpatient_treatment': {
-      handler: function (oldValue, newValue) {
+      handler: function (newValue, oldValue) {
         console.log('watching debouncedAr', this.debouncedAr.Past_outpatient_treatment)
-        clientSideTblOfPatientPastPsychHistory.insertOrUpdate({
+        const status = clientSideTblOfPatientPastPsychHistory.insertOrUpdate({
           data: [{ pastPsychHistoryMasterId: '1', fieldValue: newValue }],
         })
+        console.log('status')
       },
     },
     'ar.Past_meds_trials': {
