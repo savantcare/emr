@@ -44,7 +44,7 @@ export default {
       vOrmSaveScheduled: false,
       userTypedKeyword: '',
       liveTypeAr: {},
-      debouncedAr: [],
+      debouncedTypeAr: [],
       textDifferenceBetweenTwo: '',
       secondaryArrayForComparison: [],
     }
@@ -85,7 +85,7 @@ export default {
         }
       },
     },
-    'debouncedAr.Past_outpatient_treatment': {
+    'debouncedTypeAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         // get the existing ID. For the same fieldMasterId there maybe 10 fieldValues for historical data
         const currentDataAr = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
@@ -96,7 +96,7 @@ export default {
             data: [
               {
                 clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
-                fieldIdFromMaster: 1,
+                fieldIdFromMaster: 1, // For this 1 fieldId there might be 100 clientSideUniqRowId. Due to historical data
                 fieldValue: newValue,
               },
             ],
@@ -114,28 +114,28 @@ export default {
         this.debouncer('Past_meds_trials', newValue)
       },
     },
-    'debouncedAr.Past_meds_trials': {
+    'debouncedTypeAr.Past_meds_trials': {
       handler: function (newValue, oldValue) {
         console.log(newValue)
       },
     },
     'liveTypeAr.Hospitalization': {
-      handler: function (oldValue, newValue) {
+      handler: function (newValue, oldValue) {
         console.log('inside watch')
       },
     },
     'liveTypeAr.History_of_violence': {
-      handler: function (oldValue, newValue) {
+      handler: function (newValue, oldValue) {
         console.log('inside watch')
       },
     },
     'liveTypeAr.History_of_self': {
-      handler: function (oldValue, newValue) {
+      handler: function (newValue, oldValue) {
         console.log('inside watch')
       },
     },
     'liveTypeAr.Past_substance_abuse': {
-      handler: function (oldValue, newValue) {
+      handler: function (newValue, oldValue) {
         console.log('inside watch')
       },
     },
@@ -176,8 +176,8 @@ export default {
       }
       this.vOrmSaveScheduled = setTimeout(
         function (scope) {
-          scope.$set(scope.debouncedAr, pFieldName, newValue) // needed to make it reactive
-          console.log('array set', scope.debouncedAr)
+          scope.$set(scope.debouncedTypeAr, pFieldName, newValue) // needed to make it reactive
+          console.log('array set', scope.debouncedTypeAr)
         },
         500, // setting timeout of 500 ms
         this
