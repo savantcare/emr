@@ -1,6 +1,9 @@
-<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers https://stackoverflow.com/questions/23301997/custom-series-icons
+<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers 
+https://stackoverflow.com/questions/23301997/custom-series-icons
+https://stackoverflow.com/questions/46551316/highchart-how-to-change-the-icons-of-the-highchart-legend
 2. When outside prev and next is clicked then change the marker on the slider.
-3. The area where I can click to zoom is bigger.
+3. The area where I can click to zoom needs to be made bigger.
+4. Clicking on some point is hard: If card_body padding is 0 then it works ok
 -->
 
 <template>
@@ -114,6 +117,9 @@ export default {
             },
             allowPointSelect: true, // Goal: Give visual indication of what has been selected https://stackoverflow.com/questions/11193658/how-to-change-style-of-selected-point-in-highcharts
             marker: {
+              enabled: true,
+              symbol: 'circle',
+              radius: 7,
               states: {
                 select: {
                   fillColor: 'red',
