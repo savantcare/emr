@@ -148,7 +148,7 @@ export default {
         chart: {
           width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
           zoomType: 'x',
-          height: 40,
+          height: 70,
         },
         credits: {
           enabled: false,
