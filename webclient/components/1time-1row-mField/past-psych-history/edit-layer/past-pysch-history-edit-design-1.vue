@@ -88,13 +88,17 @@ export default {
     'debouncedAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         // get the existing ID. For the same fieldMasterId there maybe 10 fieldValues for historical data
-        const liveTypeAr = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
+        const currentDataAr = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
         let status = null
         // clientSideRowUniqId will not have a value if this is being inserted first time
-        if (liveTypeAr.length > 0) {
+        if (currentDataAr.length > 0) {
           status = clientSideTblOfPatientPastPsychHistory.update({
             data: [
-              { clientSideUniqRowId: liveTypeAr[0]['clientSideUniqRowId'], fieldIdFromMaster: 1, fieldValue: newValue },
+              {
+                clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
+                fieldIdFromMaster: 1,
+                fieldValue: newValue,
+              },
             ],
           })
         } else {
@@ -106,8 +110,13 @@ export default {
       },
     },
     'liveTypeAr.Past_meds_trials': {
-      handler: function (oldValue, newValue) {
-        console.log('inside watch')
+      handler: function (newValue, oldValue) {
+        this.debouncer('Past_meds_trials', newValue)
+      },
+    },
+    'debouncedAr.Past_meds_trials': {
+      handler: function (newValue, oldValue) {
+        console.log(newValue)
       },
     },
     'liveTypeAr.Hospitalization': {
