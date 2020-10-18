@@ -19,11 +19,23 @@
               }}</el-input>
             </div>
             <div v-else>
-              <el-input
-                type="textarea"
-                @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
-                :placeholder="ss.pastPsychHistoryDescription"
-              ></el-input>
+              <el-card style="width: 400px">
+                <el-input
+                  type="textarea"
+                  @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                  :placeholder="ss.pastPsychHistoryDescription"
+                  style="width: 400px"
+                ></el-input>
+                <el-timeline :reverse="reverse">
+                  <el-timeline-item
+                    v-for="(activity, index) in activities"
+                    :key="index"
+                    :timestamp="activity.timestamp"
+                  >
+                    {{ activity.content }}
+                  </el-timeline-item>
+                </el-timeline>
+              </el-card>
             </div>
           </div>
         </div>
@@ -40,6 +52,21 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
+      reverse: true,
+      activities: [
+        {
+          content: 'Event start',
+          timestamp: '2018-04-15',
+        },
+        {
+          content: 'Approved',
+          timestamp: '2018-04-13',
+        },
+        {
+          content: 'Success',
+          timestamp: '2018-04-11',
+        },
+      ],
     }
   },
   computed: {
