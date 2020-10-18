@@ -99,7 +99,7 @@ export default {
         this.debouncer('History_of_violence', newValue, 4)
       },
     },
-    'liveTypeAr.History_of_self': {
+    'liveTypeAr.History_of_self_harm': {
       handler: function (newValue, oldValue) {
         this.debouncer('History_of_self', newValue, 5)
       },

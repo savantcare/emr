@@ -52,8 +52,8 @@ export default {
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
-        pastPsychHistoryDescription: 'History of self-harm',
-        pastPsychHistoryCategory: 'History of self-harm',
+        pastPsychHistoryDescription: 'History of self harm',
+        pastPsychHistoryCategory: 'History of self harm',
       },
     })
 
