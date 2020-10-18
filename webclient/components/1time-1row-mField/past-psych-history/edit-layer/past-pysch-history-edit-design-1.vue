@@ -23,6 +23,7 @@
                 <el-input
                   type="textarea"
                   @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                  v-model="ar[ss.formFieldName]"
                   :placeholder="ss.pastPsychHistoryDescription"
                   style="width: 400px"
                 ></el-input>
@@ -53,6 +54,13 @@ export default {
     return {
       userTypedKeyword: '',
       reverse: true,
+      ar: [],
+      history_of_self_harm: '',
+      Past_meds_trials: '',
+      Hospitalization: '',
+      History_of_violence: '',
+      History_of_self: '',
+      Past_substance_abuse: '',
       activities: [
         {
           content: 'Event start',
@@ -86,6 +94,12 @@ export default {
             )
         })
         .get()
+
+      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
+        arOfObjectsFromClientSideMasterDB[i]['formFieldName'] = arOfObjectsFromClientSideMasterDB[i][
+          'pastPsychHistoryDescription'
+        ].replace(/ /g, '_')
+      }
 
       const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
 
