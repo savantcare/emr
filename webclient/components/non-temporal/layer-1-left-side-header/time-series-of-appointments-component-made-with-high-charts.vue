@@ -1,3 +1,6 @@
+<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers
+-->
+
 <template>
   <div>
     <highcharts :options="chartOptions"></highcharts>
@@ -17,24 +20,7 @@ export default {
   },
 
   data() {
-    return {
-      dCurrentActiveButtonClientSideRowId: 0,
-      dCurrentValueOnTheSlider: 0,
-      dMaxApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
-      dMinApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
-      dMarksOnSlider: {},
-      dClientSideUniqRowIdAtEachSliderMark: {},
-      dApptStatusAtEachSliderMark: {},
-      dApptCalendarTimeAtEachSliderMark: {},
-      arOfAppointmentsFromClientSideDB: [],
-
-      // Settings for slider
-      dConfigProportionalOrEquiDistant: 'EquiDistant',
-      dConfigChecklistOfApptTypesToShow: ['locked', 'unlocked', 'no-show', 'late-cancellation', 'cancellation'],
-      dConfigProviderTypesToShow: [],
-      checked: true,
-      value: 0,
-    }
+    return {}
   },
   mounted: function () {
     let eventName = ['incoming-event-with-new-value-of-slider']
@@ -114,6 +100,15 @@ export default {
                 return this.tooltip
               },
             },
+            allowPointSelect: true, // Goal: Give visual indication of what has been selected https://stackoverflow.com/questions/11193658/how-to-change-style-of-selected-point-in-highcharts
+            marker: {
+              states: {
+                select: {
+                  fillColor: 'red',
+                  lineWidth: 0,
+                },
+              },
+            },
             point: {
               events: {
                 click: function () {
@@ -191,12 +186,6 @@ export default {
 
       // Goal: If a visible appt icon is clicked again then remove it. Otherwise show the appt note for that icon.
       this.toggleApptNoteDisplay(this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentValueOnTheSlider])
-    },
-
-    async toggleApptNoteDisplay(pClientSideUniqRowIdAtThisSliderMark) {
-      /* There are following possibilities:
-      1. This mark is alaready active
-      2. This mark is not active and should be made active */
     },
   },
 }
