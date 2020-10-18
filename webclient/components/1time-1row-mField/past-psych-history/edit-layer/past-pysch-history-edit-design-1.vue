@@ -16,7 +16,7 @@
               <el-input
                 type="textarea"
                 :autosize="{ minRows: 4, maxRows: 14 }"
-                v-model="ar[ss.formFieldName]"
+                v-model="liveTypeAr[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
@@ -43,7 +43,7 @@ export default {
     return {
       vOrmSaveScheduled: false,
       userTypedKeyword: '',
-      ar: [],
+      liveTypeAr: {},
       debouncedAr: [],
       textDifferenceBetweenTwo: '',
       secondaryArrayForComparison: [],
@@ -58,45 +58,44 @@ export default {
       .where('ROW_END', 2147483648000)
       .get()
 
-    this.$set(this.ar, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
+    if (arOfObjectsFromClientSideDB.length === 0) return
+
+    this.$set(this.liveTypeAr, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
     this.$set(
       this.secondaryArrayForComparison,
       'Past_outpatient_treatment',
       arOfObjectsFromClientSideDB[0]['fieldValue']
     )
-    console.log(arOfObjectsFromClientSideDB)
-    console.log(this.ar)
   },
   watch: {
-    'ar.Past_outpatient_treatment': {
+    'liveTypeAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
-        //console.log(newValue)
-        //console.log(this.debouncedAr)
         this.debouncer('Past_outpatient_treatment', newValue)
-        const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
-        this.textDifferenceBetweenTwo = ''
-        console.log(diff)
-        diff.forEach((part) => {
-          // green for additions, red for deletions
-          // grey for common parts
-          const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '<span style="color:' + color + '">'
-          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + part.value
-          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '</span>'
-        })
+        if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
+          const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
+          this.textDifferenceBetweenTwo = ''
+          diff.forEach((part) => {
+            // green for additions, red for deletions
+            // grey for common parts
+            const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
+            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '<span style="color:' + color + '">'
+            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + part.value
+            this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '</span>'
+          })
+        }
       },
     },
     'debouncedAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
-        console.log('watching debouncedAr', this.debouncedAr.Past_outpatient_treatment)
-
         // get the existing ID. For the same fieldMasterId there maybe 10 fieldValues for historical data
-        const ar = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
+        const liveTypeAr = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
         let status = null
         // clientSideRowUniqId will not have a value if this is being inserted first time
-        if (ar.length > 0) {
+        if (liveTypeAr.length > 0) {
           status = clientSideTblOfPatientPastPsychHistory.update({
-            data: [{ clientSideUniqRowId: ar[0]['clientSideUniqRowId'], fieldIdFromMaster: 1, fieldValue: newValue }],
+            data: [
+              { clientSideUniqRowId: liveTypeAr[0]['clientSideUniqRowId'], fieldIdFromMaster: 1, fieldValue: newValue },
+            ],
           })
         } else {
           // first time this data has been entered by the user
@@ -106,39 +105,29 @@ export default {
         }
       },
     },
-    'ar.Past_meds_trials': {
+    'liveTypeAr.Past_meds_trials': {
       handler: function (oldValue, newValue) {
         console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
       },
     },
-    'ar.Hospitalization': {
+    'liveTypeAr.Hospitalization': {
       handler: function (oldValue, newValue) {
         console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
       },
     },
-    'ar.History_of_violence': {
+    'liveTypeAr.History_of_violence': {
       handler: function (oldValue, newValue) {
         console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
       },
     },
-    'ar.History_of_self': {
+    'liveTypeAr.History_of_self': {
       handler: function (oldValue, newValue) {
         console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
       },
     },
-    'ar.Past_substance_abuse': {
+    'liveTypeAr.Past_substance_abuse': {
       handler: function (oldValue, newValue) {
         console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
       },
     },
   },
@@ -166,10 +155,8 @@ export default {
         ].replace(/ /g, '_')
       }
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
-
-      // console.log(ar)
-      return ar
+      const liveTypeAr = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
+      return liveTypeAr
     },
   },
   methods: {
@@ -217,7 +204,7 @@ export default {
     },
     mfSavePastPsychHistoryInDB(pfieldIdFromMaster) {
       //      console.log(pfieldIdFromMaster)
-      //     console.log(this.ar)
+      //     console.log(this.liveTypeAr)
       /* Goal1: Check if it already exists
       const exists = clientSideTblOfPatientPastPsychHistory
         .query()
