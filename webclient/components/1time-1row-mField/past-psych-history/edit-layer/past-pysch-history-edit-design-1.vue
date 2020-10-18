@@ -59,12 +59,25 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
+    console.log(arOfObjectsFromClientSideDB)
+
     this.$set(this.liveTypeObjOfFields, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
-    this.$set(
+    this.$set(this.liveTypeObjOfFields, 'Past_meds_trials', arOfObjectsFromClientSideDB[1]['fieldValue'])
+    /*    this.$set(this.liveTypeObjOfFields, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
+    this.$set(this.liveTypeObjOfFields, 'History_of_violence', arOfObjectsFromClientSideDB[3]['fieldValue'])
+    this.$set(this.liveTypeObjOfFields, 'History_of_self_harm', arOfObjectsFromClientSideDB[4]['fieldValue'])
+    this.$set(this.liveTypeObjOfFields, 'Past_substance_abuse', arOfObjectsFromClientSideDB[5]['fieldValue'])
+*/
+    this.secondaryObjOfFieldsForComparison = this.liveTypeObjOfFields
+
+    console.log(this.liveTypeObjOfFields)
+    console.log(this.secondaryObjOfFieldsForComparison)
+
+    /*    this.$set(
       this.secondaryObjOfFieldsForComparison,
       'Past_outpatient_treatment',
       arOfObjectsFromClientSideDB[0]['fieldValue']
-    )
+    )*/
   },
   watch: {
     'liveTypeObjOfFields.Past_outpatient_treatment': {
