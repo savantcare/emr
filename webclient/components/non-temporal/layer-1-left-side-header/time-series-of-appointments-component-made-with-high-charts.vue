@@ -1,4 +1,4 @@
-<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers
+<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers https://stackoverflow.com/questions/23301997/custom-series-icons
 2. When outside prev and next is clicked then change the marker on the slider.
 3. The area where I can click to zoom is bigger.
 -->
