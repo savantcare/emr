@@ -15,7 +15,7 @@ export default {
     let i = 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past outpatient treatment',
         pastPsychHistoryCategory: 'Past outpatient treatment',
       },
@@ -24,7 +24,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past meds trials',
         pastPsychHistoryCategory: 'Past meds trials',
       },
@@ -33,7 +33,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Hospitalization',
         pastPsychHistoryCategory: 'Hospitalization',
       },
@@ -42,7 +42,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'History of violence',
         pastPsychHistoryCategory: 'History of violence',
       },
@@ -51,7 +51,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'History of self-harm',
         pastPsychHistoryCategory: 'History of self-harm',
       },
@@ -60,7 +60,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
+        fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past substance abuse',
         pastPsychHistoryCategory: 'Past substance abuse',
       },

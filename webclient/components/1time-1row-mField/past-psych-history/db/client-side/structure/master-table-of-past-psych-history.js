@@ -11,13 +11,13 @@ export default class pastPsychHistoryMasterClass extends clientSideTableManage {
 
   static apiUrl = 'http://localhost:8000/public/api/past-psych-history/v20'
 
-  static primaryKey = 'pastPsychHistoryMasterId'
+  static primaryKey = 'fieldIdFromMaster'
 
   static fields() {
     return {
       ...super.fields(),
 
-      pastPsychHistoryMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each past psych history
+      fieldIdFromMaster: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each past psych history
       pastPsychHistoryDescription: this.string(null),
       pastPsychHistoryCategory: this.string(null),
 
@@ -31,10 +31,7 @@ export default class pastPsychHistoryMasterClass extends clientSideTableManage {
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfPastPsychHistoryGrouped
       */
-      tblPastPsychHistoryForPatientLink: this.hasOne(
-        pastPsychHistoryForPatientClass,
-        'pastPsychHistoryMasterId'
-      ),
+      tblPastPsychHistoryForPatientLink: this.hasOne(pastPsychHistoryForPatientClass, 'fieldIdFromMaster'),
     }
   }
 }

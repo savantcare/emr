@@ -9,7 +9,7 @@
       >
         {{ groupNameGivenAsIndex }}
         <div class="sc-past-psych-history-all-content-body">
-          <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
+          <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.fieldIdFromMaster">
             <el-card style="width: 400px">
               <el-input
                 type="textarea"
@@ -70,7 +70,7 @@ export default {
       handler: function (newValue, oldValue) {
         console.log('watching debouncedAr', this.debouncedAr.Past_outpatient_treatment)
         const status = clientSideTblOfPatientPastPsychHistory.insertOrUpdate({
-          data: [{ pastPsychHistoryMasterId: '1', fieldValue: newValue }],
+          data: [{ fieldIdFromMaster: '1', fieldValue: newValue }],
         })
         console.log('status')
       },
@@ -184,13 +184,13 @@ export default {
       }
       return false
     },
-    mfSavePastPsychHistoryInDB(pPastPsychHistoryMasterId) {
-      //      console.log(pPastPsychHistoryMasterId)
+    mfSavePastPsychHistoryInDB(pfieldIdFromMaster) {
+      //      console.log(pfieldIdFromMaster)
       //     console.log(this.ar)
       /* Goal1: Check if it already exists
       const exists = clientSideTblOfPatientPastPsychHistory
         .query()
-        .where('pastPsychHistoryMasterId', pPastPsychHistoryMasterId)
+        .where('fieldIdFromMaster', pfieldIdFromMaster)
         .where('ROW_END', 2147483648000)
         .get()
 
@@ -204,7 +204,7 @@ export default {
       } else {
         clientSideTblOfPatientPastPsychHistory.insert({
           data: {
-            pastPsychHistoryMasterId: pPastPsychHistoryMasterId,
+            fieldIdFromMaster: pfieldIdFromMaster,
             ROW_START: Math.floor(Date.now()),
           },
         })
