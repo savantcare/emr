@@ -11,14 +11,19 @@
         <div class="sc-past-psych-history-all-content-body">
           <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
             <div v-if="mfCheckIfThisExistsInChildTable(ss)">
-              <el-input @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)" type="textarea">{{
-                ss.pastPsychHistoryDescription
+              <el-input
+                @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                type="textarea"
+                :placeholder="ss.pastPsychHistoryDescription"
+                >{{
               }}</el-input>
             </div>
             <div v-else>
-              <el-input type="textarea" @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)">{{
-                ss.pastPsychHistoryDescription
-              }}</el-input>
+              <el-input
+                type="textarea"
+                @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                :placeholder="ss.pastPsychHistoryDescription"
+              ></el-input>
             </div>
           </div>
         </div>
