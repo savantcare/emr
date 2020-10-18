@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-right: 20px">
+  <div>
     <highcharts :options="chartOptions"></highcharts>
   </div>
 </template>
@@ -314,16 +314,6 @@ export default {
     },
   },
   methods: {
-    getTooltipForThisMark(value) {
-      //      return this.dApptCalendarTimeAtEachSliderMark[value]
-
-      return (
-        this.dApptStatusAtEachSliderMark[value] +
-        ' : ' +
-        moment(this.dApptCalendarTimeAtEachSliderMark[value]).format('MMMM Do YYYY, h:mm a')
-      )
-    },
-
     mfHandleUserGeneratedSliderEvent(pEventValue) {
       const valueOfSlider = this.dCurrentValueOnTheSlider
 
