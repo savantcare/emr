@@ -69,10 +69,21 @@ export default {
     'debouncedAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         console.log('watching debouncedAr', this.debouncedAr.Past_outpatient_treatment)
-        const status = clientSideTblOfPatientPastPsychHistory.insertOrUpdate({
-          data: [{ fieldIdFromMaster: '1', fieldValue: newValue }],
-        })
-        console.log('status')
+
+        // get the existing ID. For the same fieldMasterId there maybe 10 fieldValues for historical data
+        const ar = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
+        let status = null
+        // clientSideRowUniqId will not have a value if this is being inserted first time
+        if (ar.length > 0) {
+          status = clientSideTblOfPatientPastPsychHistory.update({
+            data: [{ clientSideUniqRowId: ar[0]['clientSideUniqRowId'], fieldIdFromMaster: 1, fieldValue: newValue }],
+          })
+        } else {
+          // first time this data has been entered by the user
+          status = clientSideTblOfPatientPastPsychHistory.insert({
+            data: [{ fieldIdFromMaster: 1, fieldValue: newValue }],
+          })
+        }
       },
     },
     'ar.Past_meds_trials': {

@@ -25,7 +25,7 @@ export default class pastPsychHistoryForPatientClass extends clientSideTableMana
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table fieldIdFromMaster = 2 */
-      fieldIdFromMaster: this.uid(() => uuidv1()), // This is past psych history ID coming from master table ./master-table-of-past-psych-history.js
+      fieldIdFromMaster: this.number(null), // This is past psych history ID coming from master table ./master-table-of-past-psych-history.js
       fieldValue: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
