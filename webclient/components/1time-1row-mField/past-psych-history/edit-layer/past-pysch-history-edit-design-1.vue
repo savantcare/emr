@@ -17,9 +17,7 @@
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
-              <div>
-                {{ textDifferenceBetweenTwo }}
-              </div>
+              <div class="show-diff" v-html="textDifferenceBetweenTwo"></div>
             </el-card>
           </div>
         </div>
@@ -69,11 +67,14 @@ export default {
         //console.log(this.debouncedAr)
         this.debouncer('Past_outpatient_treatment', newValue)
         const diff = Diff.diffWords(one, newValue)
+        console.log(diff)
         diff.forEach((part) => {
           // green for additions, red for deletions
           // grey for common parts
           const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-          this.textDifferenceBetweenTwo = part.value[color]
+          this.textDifferenceBetweenTwo = '<span style="color:' + color + '">'
+          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + part.value
+          this.textDifferenceBetweenTwo = this.textDifferenceBetweenTwo + '</span>'
         })
       },
     },
