@@ -10,35 +10,21 @@
         {{ groupNameGivenAsIndex }}
         <div class="sc-past-psych-history-all-content-body">
           <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
-            <div v-if="mfCheckIfThisExistsInChildTable(ss)">
+            <el-card style="width: 400px">
               <el-input
-                @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
                 type="textarea"
+                @input="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                v-model="ar[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
-                >{{
-              }}</el-input>
-            </div>
-            <div v-else>
-              <el-card style="width: 400px">
-                <el-input
-                  type="textarea"
-                  @input="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
-                  v-model="ar[ss.formFieldName]"
-                  :placeholder="ss.pastPsychHistoryDescription"
-                  style="width: 400px"
-                  debounce="500"
-                ></el-input>
-                <el-timeline :reverse="reverse">
-                  <el-timeline-item
-                    v-for="(activity, index) in activities"
-                    :key="index"
-                    :timestamp="activity.timestamp"
-                  >
-                    {{ activity.content }}
-                  </el-timeline-item>
-                </el-timeline>
-              </el-card>
-            </div>
+                style="width: 400px"
+                debounce="500"
+              ></el-input>
+              <el-timeline :reverse="reverse">
+                <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp">
+                  {{ activity.content }}
+                </el-timeline-item>
+              </el-timeline>
+            </el-card>
           </div>
         </div>
       </el-col>
