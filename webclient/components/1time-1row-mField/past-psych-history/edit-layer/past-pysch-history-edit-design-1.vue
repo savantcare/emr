@@ -22,10 +22,11 @@
               <el-card style="width: 400px">
                 <el-input
                   type="textarea"
-                  @click="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
+                  @input="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
                   v-model="ar[ss.formFieldName]"
                   :placeholder="ss.pastPsychHistoryDescription"
                   style="width: 400px"
+                  debounce="500"
                 ></el-input>
                 <el-timeline :reverse="reverse">
                   <el-timeline-item
@@ -55,12 +56,6 @@ export default {
       userTypedKeyword: '',
       reverse: true,
       ar: [],
-      history_of_self_harm: '',
-      Past_meds_trials: '',
-      Hospitalization: '',
-      History_of_violence: '',
-      History_of_self: '',
-      Past_substance_abuse: '',
       activities: [
         {
           content: 'Event start',
@@ -76,6 +71,12 @@ export default {
         },
       ],
     }
+  },
+  watch: {
+    Past_meds_trials(newMessage, oldMessage) {
+      console('inside watch')
+      console.log(newMessage)
+    },
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistoryGrouped() {
@@ -137,7 +138,9 @@ export default {
       return false
     },
     mfSavePastPsychHistoryInDB(pPastPsychHistoryMasterId) {
-      // Goal1: Check if it already exists
+      console.log(pPastPsychHistoryMasterId)
+      console.log(this.ar)
+      /* Goal1: Check if it already exists
       const exists = clientSideTblOfPatientPastPsychHistory
         .query()
         .where('pastPsychHistoryMasterId', pPastPsychHistoryMasterId)
@@ -158,7 +161,7 @@ export default {
             ROW_START: Math.floor(Date.now()),
           },
         })
-      }
+      } */
     },
   },
 }
