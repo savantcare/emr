@@ -1,6 +1,7 @@
 <!-- 1. Instead of images use style from element.io
 2. When outside prev and next is clicked then change the marker on the slider.
 3. Left and right buttons or slider https://www.highcharts.com/forum/viewtopic.php?t=37574
+4. selected icon needs to have a larger size.
 -->
 
 <template>
@@ -125,6 +126,7 @@ export default {
               },
             },
             point: {
+              // Goal: Show tooltip only on click and not on mouseover. Ref: https://www.highcharts.com/forum/viewtopic.php?t=43035
               events: {
                 click: function () {
                   this.series.chart.update({
