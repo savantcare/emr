@@ -237,6 +237,10 @@ export default {
         title: {
           text: '',
         },
+        tooltip: {
+          // Goal tooltip on click https://www.highcharts.com/forum/viewtopic.php?t=43035
+          enabled: false,
+        },
 
         series: [
           {
@@ -253,6 +257,24 @@ export default {
               headerFormat: '<small>Appointment on: <br>{point.key}</small><br>',
               pointFormatter: function () {
                 return this.tooltip
+              },
+            },
+            point: {
+              events: {
+                click: function () {
+                  this.series.chart.update({
+                    tooltip: {
+                      enabled: true,
+                    },
+                  })
+                },
+                mouseOut: function () {
+                  this.series.chart.update({
+                    tooltip: {
+                      enabled: false,
+                    },
+                  })
+                },
               },
             },
           },
