@@ -1,25 +1,25 @@
 // For docs read webclient/docs/models.md
 import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
-import pastPsychHistoryForPatientClass from './patient-table-of-medical-review-of-systems.js'
+import medicalReviewOfSystemsForPatientClass from './patient-table-of-medical-review-of-systems.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class pastPsychHistoryMasterClass extends clientSideTableManage {
+export default class medicalReviewOfSystemsMasterClass extends clientSideTableManage {
   static entity = 'tblMedicalReviewOfSystemsMaster'
 
   static apiUrl = 'http://localhost:8000/public/api/medical-review-of-systems/v20'
 
-  static primaryKey = 'pastPsychHistoryMasterId'
+  static primaryKey = 'medicalReviewOfSystemsMasterId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      pastPsychHistoryMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each Medical review of systems
-      pastPsychHistoryDescription: this.string(null),
-      pastPsychHistoryCategory: this.string(null),
+      medicalReviewOfSystemsMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each Medical review of systems
+      medicalReviewOfSystemsDescription: this.string(null),
+      medicalReviewOfSystemsCategory: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
@@ -31,7 +31,10 @@ export default class pastPsychHistoryMasterClass extends clientSideTableManage {
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfMedicalReviewOfSystemsGrouped
       */
-      tblMedicalReviewOfSystemsForPatientLink: this.hasOne(pastPsychHistoryForPatientClass, 'pastPsychHistoryMasterId'),
+      tblMedicalReviewOfSystemsForPatientLink: this.hasOne(
+        medicalReviewOfSystemsForPatientClass,
+        'medicalReviewOfSystemsMasterId'
+      ),
     }
   }
 }

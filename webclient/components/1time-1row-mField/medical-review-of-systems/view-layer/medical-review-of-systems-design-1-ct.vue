@@ -17,18 +17,18 @@
   >
     <el-card
       slot="bodySlotContentFromParentToShowAboveChildCards"
-      v-for="pastPsychHistory in cfArOfMedicalReviewOfSystemsForDisplay"
-      :key="pastPsychHistory.id"
+      v-for="medicalReviewOfSystems in cfArOfMedicalReviewOfSystemsForDisplay"
+      :key="medicalReviewOfSystems.id"
       class="box-card sc-individual-child-card"
       shadow="hover"
-      :style="mfGetCssClassNameForEachDataRow(pastPsychHistory)"
+      :style="mfGetCssClassNameForEachDataRow(medicalReviewOfSystems)"
     >
       <el-button-group style="float: right; display: none">
         <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
-            @click="mfIconDeleteClickedOnChildCard(pastPsychHistory.clientSideUniqRowId)"
+            @click="mfIconDeleteClickedOnChildCard(medicalReviewOfSystems.clientSideUniqRowId)"
             class="el-icon-circle-close"
           >
           </el-button>
@@ -38,16 +38,18 @@
         </el-tooltip>
       </el-button-group>
 
-      <!-- <el-button type="text">{{ pastPsychHistory.description }}</el-button> 
+      <!-- <el-button type="text">{{ medicalReviewOfSystems.description }}</el-button> 
           if I use the button then a long text is not getting divided into multiple lines
           if rowStateInThisSession == 9 then the div should have a orange border
           Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new pastPsychHistory appears. That is a confusing event.
-            Instead if the new pastPsychHistory that came on screen gets a orange border with top right corner saying "New pastPsychHistory added from socket" that is much better UX.
+            Doctor is sitting infront of computer suddenly a new medicalReviewOfSystems appears. That is a confusing event.
+            Instead if the new medicalReviewOfSystems that came on screen gets a orange border with top right corner saying "New medicalReviewOfSystems added from socket" that is much better UX.
           -->
-      <div v-if="pastPsychHistory.vnRowStateInSession === 9">Added from socket {{ pastPsychHistory.description }}</div>
+      <div v-if="medicalReviewOfSystems.vnRowStateInSession === 9">
+        Added from socket {{ medicalReviewOfSystems.description }}
+      </div>
       <div v-else>
-        {{ pastPsychHistory.cardContentOfTypeStringToShowInBodyOfCards }}
+        {{ medicalReviewOfSystems.cardContentOfTypeStringToShowInBodyOfCards }}
       </div>
     </el-card>
   </showContentInCardComponent>
@@ -69,9 +71,9 @@ export default {
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.pastPsychHistoryCategory +
+          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.pastPsychHistoryDescription
+          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsDescription
       }
 
       return arOfObjectsFromClientSideDB

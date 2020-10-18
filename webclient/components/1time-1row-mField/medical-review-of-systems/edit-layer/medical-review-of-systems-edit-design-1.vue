@@ -10,15 +10,15 @@
       >
         {{ groupNameGivenAsIndex }}
         <div class="sc-medical-review-of-systems-all-content-body">
-          <div v-for="ss in allMedicalReviewOfSystemsInsideAGroup" :key="ss.pastPsychHistoryMasterId">
+          <div v-for="ss in allMedicalReviewOfSystemsInsideAGroup" :key="ss.medicalReviewOfSystemsMasterId">
             <div v-if="mfCheckIfThisExistsInChildTable(ss)">
-              <el-input @click="mfSaveMedicalReviewOfSystemsInDB(ss.pastPsychHistoryMasterId)" type="textarea">{{
-                ss.pastPsychHistoryDescription
+              <el-input @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)" type="textarea">{{
+                ss.medicalReviewOfSystemsDescription
               }}</el-input>
             </div>
             <div v-else>
-              <el-input type="textarea" @click="mfSaveMedicalReviewOfSystemsInDB(ss.pastPsychHistoryMasterId)">{{
-                ss.pastPsychHistoryDescription
+              <el-input type="textarea" @click="mfSaveMedicalReviewOfSystemsInDB(ss.medicalReviewOfSystemsMasterId)">{{
+                ss.medicalReviewOfSystemsDescription
               }}</el-input>
             </div>
           </div>
@@ -47,16 +47,16 @@ export default {
         .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query
-            .where('pastPsychHistoryCategory', (value) =>
+            .where('medicalReviewOfSystemsCategory', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
-            .orWhere('pastPsychHistoryDescription', (value) =>
+            .orWhere('medicalReviewOfSystemsDescription', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
         .get()
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
+      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'medicalReviewOfSystemsCategory')
 
       // console.log(ar)
       return ar
@@ -95,7 +95,7 @@ export default {
       // Goal1: Check if it already exists
       const exists = clientSideTblOfPatientMedicalReviewOfSystems
         .query()
-        .where('pastPsychHistoryMasterId', pMedicalReviewOfSystemsMasterId)
+        .where('medicalReviewOfSystemsMasterId', pMedicalReviewOfSystemsMasterId)
         .where('ROW_END', 2147483648000)
         .get()
 
@@ -109,7 +109,7 @@ export default {
       } else {
         clientSideTblOfPatientMedicalReviewOfSystems.insert({
           data: {
-            pastPsychHistoryMasterId: pMedicalReviewOfSystemsMasterId,
+            medicalReviewOfSystemsMasterId: pMedicalReviewOfSystemsMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
