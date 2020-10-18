@@ -69,7 +69,10 @@ export default {
       .where('ROW_END', 2147483648000)
       .get()
 
-    this.$set(this.ar, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['jai durga ma jai kali ma'])
+    this.$set(this.ar, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
+
+    console.log(arOfObjectsFromClientSideDB)
+    console.log(this.ar)
   },
   watch: {
     'ar.Past_outpatient_treatment': {
