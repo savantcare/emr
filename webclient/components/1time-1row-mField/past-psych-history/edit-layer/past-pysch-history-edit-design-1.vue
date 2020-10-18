@@ -41,7 +41,7 @@ const Diff = require('diff')
 export default {
   data() {
     return {
-      vOrmSaveScheduled: false,
+      vOrmSaveScheduled: [],
       userTypedKeyword: '',
       liveTypeAr: {},
       textDifferenceBetweenTwo: '',
@@ -140,11 +140,11 @@ export default {
   },
   methods: {
     debouncer(pFieldName, newValue, pFieldIdFromMaster) {
-      if (this.vOrmSaveScheduled) {
-        clearTimeout(this.vOrmSaveScheduled) // this cancels the previously scheduled timeout
-        this.vOrmSaveScheduled = false
+      if (this.vOrmSaveScheduled[pFieldIdFromMaster]) {
+        clearTimeout(this.vOrmSaveScheduled[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
+        this.vOrmSaveScheduled[pFieldIdFromMaster] = false
       }
-      this.vOrmSaveScheduled = setTimeout(
+      this.vOrmSaveScheduled[pFieldIdFromMaster] = setTimeout(
         function (scope) {
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
