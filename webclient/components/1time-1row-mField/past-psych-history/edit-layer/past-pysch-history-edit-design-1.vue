@@ -1,23 +1,28 @@
 <template>
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
-    <el-row>
+    <el-row :gutter="20">
       <el-col
         :span="8"
         v-for="(allPastPsychHistoryInsideAGroup, groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
         :key="allPastPsychHistoryInsideAGroup.id"
       >
-        {{ groupNameGivenAsIndex }}
         <div class="sc-past-psych-history-all-content-body">
           <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.fieldIdFromMaster">
             <el-card style="width: 400px">
+              <div slot="header" class="clearfix">
+                <span>{{ groupNameGivenAsIndex }}</span>
+              </div>
               <el-input
                 type="textarea"
+                :autosize="{ minRows: 4, maxRows: 14 }"
                 v-model="ar[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
-              <div class="show-diff" v-html="textDifferenceBetweenTwo"></div>
+              <el-card style="width: 400px">
+                <div class="show-diff" v-html="textDifferenceBetweenTwo"></div>
+              </el-card>
             </el-card>
           </div>
         </div>
