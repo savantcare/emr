@@ -98,31 +98,37 @@ export default {
     'liveTypeObjOfFields.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
+        this.doDiff('Past_outpatient_treatment', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypeObjOfFields.Past_meds_trials': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
+        this.doDiff('Past_meds_trials', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypeObjOfFields.Hospitalization': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
+        this.doDiff('Hospitalization', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypeObjOfFields.History_of_violence': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
+        this.doDiff('History_of_violence', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypeObjOfFields.History_of_self_harm': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_self', newValue, 5)
+        this.doDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypeObjOfFields.Past_substance_abuse': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
+        this.doDiff('Past_substance_abuse', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
   },
@@ -190,28 +196,26 @@ export default {
               data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue }],
             })
           }
-
-          /* 
-            Task 3: Do diff
-          */
-          if (scope.secondaryObjOfFieldsForComparison[pFieldName]) {
-            const diff = Diff.diffWords(scope.secondaryObjOfFieldsForComparison[pFieldName], newValue)
-            scope.fieldDiffWithSecondayObj[pFieldName] = ''
-            diff.forEach((part) => {
-              // green for additions, red for deletions
-              // grey for common parts
-              const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-              scope.fieldDiffWithSecondayObj[pFieldName] =
-                scope.fieldDiffWithSecondayObj[pFieldName] + '<span style="color:' + color + '">'
-              scope.fieldDiffWithSecondayObj[pFieldName] = scope.fieldDiffWithSecondayObj[pFieldName] + part.value
-              scope.fieldDiffWithSecondayObj[pFieldName] = scope.fieldDiffWithSecondayObj[pFieldName] + '</span>'
-            })
-          }
-          console.log(scope.fieldDiffWithSecondayObj)
         },
         500, // setting timeout of 500 ms
         this
       )
+    },
+    doDiff(pFieldName, newValue) {
+      if (this.secondaryObjOfFieldsForComparison[pFieldName]) {
+        const diff = Diff.diffWords(this.secondaryObjOfFieldsForComparison[pFieldName], newValue)
+        this.fieldDiffWithSecondayObj[pFieldName] = ''
+        diff.forEach((part) => {
+          // green for additions, red for deletions
+          // grey for common parts
+          const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
+          this.fieldDiffWithSecondayObj[pFieldName] =
+            this.fieldDiffWithSecondayObj[pFieldName] + '<span style="color:' + color + '">'
+          this.fieldDiffWithSecondayObj[pFieldName] = this.fieldDiffWithSecondayObj[pFieldName] + part.value
+          this.fieldDiffWithSecondayObj[pFieldName] = this.fieldDiffWithSecondayObj[pFieldName] + '</span>'
+        })
+      }
+      console.log(this.fieldDiffWithSecondayObj)
     },
     groupBy(data, key) {
       // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
