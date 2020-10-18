@@ -2,6 +2,8 @@
 2. When outside prev and next is clicked then change the marker on the slider.
 3. Left and right buttons or slider https://www.highcharts.com/forum/viewtopic.php?t=37574
 4. selected icon needs to have a larger size.
+Ref: https://stackoverflow.com/questions/42038680/how-to-change-marker-symbol-and-datalabel-with-custom-style-in-highcharts
+https://stackoverflow.com/questions/31980710/unable-to-set-the-selected-state-in-highcharts-when-point-marker-is-disabled
 -->
 
 <template>
