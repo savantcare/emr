@@ -41,7 +41,7 @@ const Diff = require('diff')
 export default {
   data() {
     return {
-      vOrmSaveScheduled: [],
+      vOrmSaveScheduledForDebounce: [],
       userTypedSearchFilterKeyword: '',
       liveTypeObjOfFields: {},
       textDifferenceBetweenTwo: '',
@@ -142,11 +142,11 @@ export default {
   methods: {
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
-      if (this.vOrmSaveScheduled[pFieldIdFromMaster]) {
-        clearTimeout(this.vOrmSaveScheduled[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
-        this.vOrmSaveScheduled[pFieldIdFromMaster] = false
+      if (this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) {
+        clearTimeout(this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
+        this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = false
       }
-      this.vOrmSaveScheduled[pFieldIdFromMaster] = setTimeout(
+      this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = setTimeout(
         function (scope) {
           // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
