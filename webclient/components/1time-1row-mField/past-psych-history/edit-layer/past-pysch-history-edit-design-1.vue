@@ -17,11 +17,9 @@
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
-              <el-timeline :reverse="reverse">
-                <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp">
-                  {{ activity.content }}
-                </el-timeline-item>
-              </el-timeline>
+              <div>
+                {{ textDifferenceBetweenTwo }}
+              </div>
             </el-card>
           </div>
         </div>
@@ -34,6 +32,11 @@
 import clientSideTblOfMasterPastPsychHistory from '../db/client-side/structure/master-table-of-past-psych-history.js'
 import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 
+require('colors')
+const Diff = require('diff')
+
+const one = 'Jai kali ma'
+
 export default {
   data() {
     return {
@@ -42,6 +45,7 @@ export default {
       reverse: true,
       ar: [],
       debouncedAr: [],
+      textDifferenceBetweenTwo: '',
       activities: [
         {
           content: 'Event start',
@@ -64,6 +68,13 @@ export default {
         //console.log(newValue)
         //console.log(this.debouncedAr)
         this.debouncer('Past_outpatient_treatment', newValue)
+        const diff = Diff.diffWords(one, newValue)
+        diff.forEach((part) => {
+          // green for additions, red for deletions
+          // grey for common parts
+          const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
+          this.textDifferenceBetweenTwo = part.value[color]
+        })
       },
     },
     'debouncedAr.Past_outpatient_treatment': {
