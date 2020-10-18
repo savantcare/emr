@@ -13,11 +13,9 @@
             <el-card style="width: 400px">
               <el-input
                 type="textarea"
-                @input="mfSavePastPsychHistoryInDB(ss.pastPsychHistoryMasterId)"
                 v-model="ar[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
-                debounce="500"
               ></el-input>
               <el-timeline :reverse="reverse">
                 <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp">
@@ -39,9 +37,11 @@ import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/
 export default {
   data() {
     return {
+      vOrmSaveScheduled: false,
       userTypedKeyword: '',
       reverse: true,
       ar: [],
+      debouncedAr: [],
       activities: [
         {
           content: 'Event start',
@@ -60,10 +60,16 @@ export default {
   },
   watch: {
     'ar.Past_outpatient_treatment': {
+      handler: function (newValue, oldValue) {
+        //console.log(newValue)
+        //console.log(this.debouncedAr)
+        this.debouncer('Past_outpatient_treatment', newValue)
+      },
+    },
+    'debouncedAr.Past_outpatient_treatment': {
       handler: function (oldValue, newValue) {
-        console.log('inside watch')
-        console.log(oldValue)
-        console.log(newValue)
+        console.log('watching debouncedAr', this.debouncedAr.Past_outpatient_treatment)
+        clientSideTblOfPatientPastPsychHistory.upsert()
       },
     },
     'ar.Past_meds_trials': {
@@ -133,6 +139,20 @@ export default {
     },
   },
   methods: {
+    debouncer(pFieldName, newValue) {
+      if (this.vOrmSaveScheduled) {
+        clearTimeout(this.vOrmSaveScheduled) // this cancels the previously scheduled timeout
+        this.vOrmSaveScheduled = false
+      }
+      this.vOrmSaveScheduled = setTimeout(
+        function (scope) {
+          scope.$set(scope.debouncedAr, pFieldName, newValue) // needed to make it reactive
+          console.log('array set', scope.debouncedAr)
+        },
+        500, // setting timeout of 500 ms
+        this
+      )
+    },
     groupBy(data, key) {
       // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
       // `data` is an array of objects, `key` is the key (or property accessor) to group by
