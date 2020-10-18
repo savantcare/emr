@@ -73,9 +73,47 @@ export default {
     }
   },
   watch: {
-    Past_meds_trials(newMessage, oldMessage) {
-      console('inside watch')
-      console.log(newMessage)
+    'ar.Past_outpatient_treatment': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
+    },
+    'ar.Past_meds_trials': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
+    },
+    'ar.Hospitalization': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
+    },
+    'ar.History_of_violence': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
+    },
+    'ar.History_of_self': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
+    },
+    'ar.Past_substance_abuse': {
+      handler: function (oldValue, newValue) {
+        console.log('inside watch')
+        console.log(oldValue)
+        console.log(newValue)
+      },
     },
   },
   computed: {
@@ -138,8 +176,8 @@ export default {
       return false
     },
     mfSavePastPsychHistoryInDB(pPastPsychHistoryMasterId) {
-      console.log(pPastPsychHistoryMasterId)
-      console.log(this.ar)
+      //      console.log(pPastPsychHistoryMasterId)
+      //     console.log(this.ar)
       /* Goal1: Check if it already exists
       const exists = clientSideTblOfPatientPastPsychHistory
         .query()
