@@ -60,6 +60,17 @@ export default {
       ],
     }
   },
+  mounted() {
+    let arOfObjectsFromClientSideDB = []
+
+    arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
+      .query()
+      .with('tblPastPsychHistoryMasterLink')
+      .where('ROW_END', 2147483648000)
+      .get()
+
+    this.$set(this.ar, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['jai durga ma jai kali ma'])
+  },
   watch: {
     'ar.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
