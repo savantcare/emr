@@ -1,5 +1,5 @@
 <template>
-  <!-- SECTION 5  SERVICE STATEMENTS -->
+  <!-- SECTION 5  past psych history -->
   <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
   <div>
     <el-row type="flex" justify="left" class="ssh3 sectionHeader" style="padding: 0rem; margin: 0rem">
@@ -17,7 +17,7 @@
                   icon="el-icon-check"
                   style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, 'serviceStatements')"
+                  @click="mfSaveAddendum(amendmentData, 'PastPsychHistory')"
                   circle
                 ></el-button>
               </div>
@@ -41,14 +41,17 @@
       </el-col>
     </el-row>
 
-    <!-- Goal: Show service statements -->
-    <div :style="cfGetServiceStatementStyle"></div>
+    <!-- Goal: Show past psych history -->
+    <div :style="cfGetPastPsychHistorytyle">
+      <div v-for="row in mfGetArrayOfPastPsychHistory(this.currentApptObj)" :key="`ss-${row.clientSideUniqRowId}`">
+        {{ row['tblPastPsychHistoryMasterLink']['pastPsychHistoryCategory'] }}
+        {{ row['tblPastPsychHistoryMasterLink']['pastPsychHistoryDescription'] }}
+      </div>
+    </div>
     <!-- Goal: Show addendum if there is any -->
-    <div
-      v-if="cfArOfAddendumForDisplay('serviceStatements') && cfArOfAddendumForDisplay('serviceStatements').length > 0"
-    >
+    <div v-if="cfArOfAddendumForDisplay('PastPsychHistory') && cfArOfAddendumForDisplay('PastPsychHistory').length > 0">
       <h4>Addendum:</h4>
-      <div v-for="row in cfArOfAddendumForDisplay('serviceStatements')" :key="row.clientSideUniqRowId">
+      <div v-for="row in cfArOfAddendumForDisplay('PastPsychHistory')" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
@@ -61,10 +64,11 @@
 
 <script>
 // Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientSideTblOfPatientPastPsychHistory from '@/components/1time-1row-mField/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
+import clientSideTblOfMasterPastPsychHistory from '@/components/1time-1row-mField/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
 
 export default {
   data() {
@@ -106,28 +110,29 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-    mfGetArrayOfServiceStatements(pApptObj) {
+    mfGetArrayOfPastPsychHistory(pApptObj) {
       if (!pApptObj) return
       let arOfObjectsFromClientSideDB = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblPastPsychHistoryMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblPastPsychHistoryMasterLink')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
+      console.log(arOfObjectsFromClientSideDB)
       return arOfObjectsFromClientSideDB
     },
   },
   computed: {
-    cfGetServiceStatementStyle() {
+    cfGetPastPsychHistorytyle() {
       let secondaryDuringComparisonApptObj = {}
       let secondaryDuringComparisonSS = {}
 
@@ -140,12 +145,10 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
-        if (secondaryDuringComparisonSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+        secondaryDuringComparisonSS = this.mfGetArrayOfPastPsychHistory(secondaryDuringComparisonApptObj)
+        if (secondaryDuringComparisonSS.length > this.mfGetArrayOfPastPsychHistory(this.currentApptObj).length) {
           return 'border:1px solid #E6A23C'
-        } else if (
-          secondaryDuringComparisonSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
-        ) {
+        } else if (secondaryDuringComparisonSS.length < this.mfGetArrayOfPastPsychHistory(this.currentApptObj).length) {
           return 'border:1px solid #67C23A'
         } else {
           /* The length of MSE on left and right is same. This 90% probability means that they are same. ONLY on right the MSE should be in light grey color.
@@ -169,11 +172,11 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
-          if (secondaryDuringComparisonSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+          secondaryDuringComparisonSS = this.mfGetArrayOfPastPsychHistory(secondaryDuringComparisonApptObj)
+          if (secondaryDuringComparisonSS.length > this.mfGetArrayOfPastPsychHistory(this.currentApptObj).length) {
             return 'border:1px solid #E6A23C'
           } else if (
-            secondaryDuringComparisonSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+            secondaryDuringComparisonSS.length < this.mfGetArrayOfPastPsychHistory(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
           } else {
