@@ -2,24 +2,21 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
-      v-for="(allPastPsychHistoryInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
+      v-for="(allPastPsychHistoryInsideAGroup, groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
       :key="allPastPsychHistoryInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
       <div class="sc-past-psych-history-all-content-body">
         <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
-            <el-button
-              @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)"
-              type="primary"
-              >{{ ss.pastPsychHistoryDescription }}</el-button
-            >
+            <el-input @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)" type="textarea">{{
+              ss.pastPsychHistoryDescription
+            }}</el-input>
           </div>
           <div v-else>
-            <el-button @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)">{{
+            <el-input type="textarea" @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)">{{
               ss.pastPsychHistoryDescription
-            }}</el-button>
+            }}</el-input>
           </div>
         </div>
       </div>
@@ -156,15 +153,13 @@ export default {
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
           if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
-            pPastPsychHistoryCategoryToApplyRuleOn
+            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory === pPastPsychHistoryCategoryToApplyRuleOn
           ) {
             // master list has 10 entries. Once the category has matched there are 2 possibilityes. P1: This element is there in SS  of patient P2: This element is not there in SS of patient
             if (
               // Handling Possibility 1:  This element is there in SS of patient
               pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink !== null &&
-              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink.ROW_END ==
-                '2147483648000'
+              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink.ROW_END == '2147483648000'
             ) {
             } else {
               // Handling Possibility 2: This element is not there in SS of patient
@@ -181,9 +176,7 @@ export default {
      * Rule: If "Total minutes in psychotherapy" has been chosen to be N.
      * Then from "Total minutes with patient" remove elements that are less than N
      */
-    mfApplyTotalMinutesInPsychotherapyRuleOnPastPsychHistoryCategory(
-      pArOfObjectsFromClientSideMasterDB
-    ) {
+    mfApplyTotalMinutesInPsychotherapyRuleOnPastPsychHistoryCategory(pArOfObjectsFromClientSideMasterDB) {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
@@ -212,10 +205,7 @@ export default {
            * Step 4: Check if category is 'Total minutes with patient'.
            * Otherwise do not need to do any manipulation
            */
-          if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
-            'Total minutes with patient'
-          ) {
+          if (pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory === 'Total minutes with patient') {
             /**
              * Step 5: If "Total minutes in psychotherapy" has been assigned to the patient to be N.
              * Than remove "Total minutes with patient" elements that are less than N.
@@ -237,9 +227,7 @@ export default {
      * Rule: If "Total minutes with patient" has been chosen to be N.
      * Then from "Total minutes in psychotherapy" remove elements that are greater than N
      */
-    mfApplyTotalMinutesWithPatientRuleOnPastPsychHistoryCategory(
-      pArOfObjectsFromClientSideMasterDB
-    ) {
+    mfApplyTotalMinutesWithPatientRuleOnPastPsychHistoryCategory(pArOfObjectsFromClientSideMasterDB) {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
@@ -268,10 +256,7 @@ export default {
            * Step 4: Check if category is 'Total minutes in psychotherapy'.
            * Otherwise do not need to do any manipulation
            */
-          if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
-            'Total minutes in psychotherapy'
-          ) {
+          if (pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory === 'Total minutes in psychotherapy') {
             /**
              * Step 5: If "Total minutes with patient" has been assigned to the patient to be N.
              * Than remove "Total minutes in psychotherapy" elements that are greater than N.

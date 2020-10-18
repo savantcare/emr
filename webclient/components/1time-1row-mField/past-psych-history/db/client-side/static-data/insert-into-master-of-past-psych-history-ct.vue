@@ -26,7 +26,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'Past meds trials',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'Past meds trials',
       },
     })
 
@@ -35,7 +35,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'Hospitalization',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'Hospitalization',
       },
     })
 
@@ -44,7 +44,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'History of violence',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'History of violence',
       },
     })
 
@@ -53,7 +53,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'History of self-harm',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'History of self-harm',
       },
     })
 
@@ -62,7 +62,7 @@ export default {
       data: {
         pastPsychHistoryMasterId: i,
         pastPsychHistoryDescription: 'Past substance abuse',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        pastPsychHistoryCategory: 'Past substance abuse',
       },
     })
   },

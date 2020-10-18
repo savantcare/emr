@@ -16,9 +16,10 @@
     </div>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
+    <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+
     <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
-    <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
