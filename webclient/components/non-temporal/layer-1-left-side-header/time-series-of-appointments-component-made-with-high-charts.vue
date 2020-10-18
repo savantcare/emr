@@ -1,5 +1,6 @@
 <!-- 1. Lock un-lock no-show cancellation to have different icon for the markers
 2. When outside prev and next is clicked then change the marker on the slider.
+3. The area where I can click to zoom is bigger.
 -->
 
 <template>
