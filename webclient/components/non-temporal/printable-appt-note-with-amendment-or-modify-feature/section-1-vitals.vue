@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h3>Vitals</h3>
+    <el-row type="flex" justify="left" class="ssh3 sectionHeader" style="padding: 0rem; margin: 0rem">
+      <el-col class="sectionHeading">Vitals</el-col>
+    </el-row>
     Height:
-    {{ mfGetHeightData(this.currentApptObj) }} <br />Weight
-    {{ mfGetWeightData(this.currentApptObj) }} <br />Oxygen Saturation
+    {{ mfGetHeightData(this.currentApptObj) }} <br />Weight {{ mfGetWeightData(this.currentApptObj) }} <br />Oxygen
+    Saturation
     {{ mfGetOxygenSaturationData(this.currentApptObj) }}
   </div>
 </template>
@@ -45,10 +47,7 @@ export default {
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblHeight
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
+        arOfObjectsFromClientSideDB = clientSideTblHeight.query().where('ROW_END', 2147483648000).get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblHeight
           .query()
@@ -63,9 +62,7 @@ export default {
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
-        'MMM DD YYYY'
-      )
+      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
       arr[1] = arOfObjectsFromClientSideDB[0]['heightInInches']
 
       return arr[1] + ' inches on ' + arr[0]
@@ -82,10 +79,7 @@ export default {
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblWeight
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
+        arOfObjectsFromClientSideDB = clientSideTblWeight.query().where('ROW_END', 2147483648000).get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblWeight
           .query()
@@ -100,9 +94,7 @@ export default {
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
-        'MMM DD YYYY'
-      )
+      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
       arr[1] = arOfObjectsFromClientSideDB[0]['weightInPounds']
 
       return arr[1] + ' pounds on ' + arr[0]
@@ -119,10 +111,7 @@ export default {
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
+        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation.query().where('ROW_END', 2147483648000).get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation
           .query()
@@ -137,9 +126,7 @@ export default {
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format(
-        'MMM DD YYYY'
-      )
+      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
       arr[1] = arOfObjectsFromClientSideDB[0]['oxygenSaturationInSpo2']
 
       return arr[1] + ' spO2 on ' + arr[0]
@@ -154,5 +141,14 @@ h3 {
   width: 100%;
   float: none;
   display: flex;
+}
+.sectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
+}
+.sectionHeading {
+  font-size: 1rem;
+  color: #606266;
 }
 </style>

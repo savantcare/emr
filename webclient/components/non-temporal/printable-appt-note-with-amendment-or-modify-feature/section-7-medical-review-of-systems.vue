@@ -3,7 +3,8 @@
   <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
   <div>
     <el-row type="flex" justify="left" class="ssh3 sectionHeader" style="padding: 0rem; margin: 0rem">
-      <el-col :span="8" class="sectionHeading">Medical review of systems</el-col>
+      <el-col :span="9" class="sectionHeading">Medical review of systems</el-col>
+      <!-- If span is 8 then it breaks into 2 lines -->
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -237,6 +238,6 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 </style>

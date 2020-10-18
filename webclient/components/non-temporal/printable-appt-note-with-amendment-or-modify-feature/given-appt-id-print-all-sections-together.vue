@@ -180,7 +180,7 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 
 .recommendationsh3:hover .el-icon-edit-outline {

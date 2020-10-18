@@ -2,7 +2,7 @@
   <div>
     <!-- SECTION 8 Psych review of systems  -->
     <el-row type="flex" justify="left" class="prosh3 sectionHeader" style="padding: 0rem; margin: 0rem">
-      <el-col :span="8" class="sectionHeading">Psych review of systems </el-col>
+      <el-col :span="9" class="sectionHeading">Psych review of systems </el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -242,7 +242,7 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 .subSectionHeader {
   margin-top: 1rem !important;

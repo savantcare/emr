@@ -2,7 +2,7 @@
   <!-- SECTION 7 MENTAL STATUS EXAM-->
   <div>
     <el-row type="flex" justify="left" class="mseh3 sectionHeader" style="padding: 0rem; margin: 0rem">
-      <el-col :span="8" class="sectionHeading"> Mental status exam </el-col>
+      <el-col :span="9" class="sectionHeading"> Mental status exam </el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -255,6 +255,6 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 </style>
