@@ -33,31 +33,15 @@ import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/
 require('colors')
 const Diff = require('diff')
 
-const one = 'Jai kali ma'
-
 export default {
   data() {
     return {
       vOrmSaveScheduled: false,
       userTypedKeyword: '',
-      reverse: true,
       ar: [],
       debouncedAr: [],
       textDifferenceBetweenTwo: '',
-      activities: [
-        {
-          content: 'Event start',
-          timestamp: '2018-04-15',
-        },
-        {
-          content: 'Approved',
-          timestamp: '2018-04-13',
-        },
-        {
-          content: 'Success',
-          timestamp: '2018-04-11',
-        },
-      ],
+      secondaryArrayForComparison: [],
     }
   },
   mounted() {
@@ -70,7 +54,11 @@ export default {
       .get()
 
     this.$set(this.ar, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
-
+    this.$set(
+      this.secondaryArrayForComparison,
+      'Past_outpatient_treatment',
+      arOfObjectsFromClientSideDB[0]['fieldValue']
+    )
     console.log(arOfObjectsFromClientSideDB)
     console.log(this.ar)
   },
@@ -80,7 +68,7 @@ export default {
         //console.log(newValue)
         //console.log(this.debouncedAr)
         this.debouncer('Past_outpatient_treatment', newValue)
-        const diff = Diff.diffWords(one, newValue)
+        const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
         this.textDifferenceBetweenTwo = ''
         console.log(diff)
         diff.forEach((part) => {
