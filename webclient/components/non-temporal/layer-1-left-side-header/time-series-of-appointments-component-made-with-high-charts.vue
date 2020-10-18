@@ -1,6 +1,4 @@
-<!-- 1. Lock un-lock no-show cancellation to have different icon for the markers 
-https://stackoverflow.com/questions/23301997/custom-series-icons
-https://stackoverflow.com/questions/46551316/highchart-how-to-change-the-icons-of-the-highchart-legend
+<!-- 1. Instead of images use style from element.io
 2. When outside prev and next is clicked then change the marker on the slider.
 3. The area where I can click to zoom needs to be made bigger.
 4. Clicking on some point is hard: If card_body padding is 0 then it works ok
@@ -186,7 +184,7 @@ export default {
         data.push({
           //          x: timeOnCalendar, // this makes it proportional
           x: i, // this makes it equidistant
-          y: 0,
+          y: 1, // This makes the draggable area to zoom larger.
           tooltip:
             this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] +
             ' on ' +
@@ -230,5 +228,9 @@ export default {
 .el-icon-circle-close {
   font-size: var(--size-of-circle-close-icon) !important;
   color: var(--color-of-circle-close-icon) !important;
+}
+
+.el-card__body {
+  padding: 0px; /* By default this is 20px. Whern I do not change it, clicking on some points is difficult */
 }
 </style>
