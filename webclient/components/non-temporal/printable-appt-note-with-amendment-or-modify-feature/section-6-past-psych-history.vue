@@ -44,8 +44,8 @@
     <!-- Goal: Show past psych history -->
     <div :style="cfGetPastPsychHistorytyle">
       <div v-for="row in mfGetArrayOfPastPsychHistory(this.currentApptObj)" :key="`ss-${row.clientSideUniqRowId}`">
-        {{ row['tblPastPsychHistoryMasterLink']['pastPsychHistoryCategory'] }}
-        {{ row['tblPastPsychHistoryMasterLink']['pastPsychHistoryDescription'] }}
+        {{ row['tblPastPsychHistoryMasterLink']['pastPsychHistoryCategory'] }}:
+        {{ row['fieldValue'] }}
       </div>
     </div>
     <!-- Goal: Show addendum if there is any -->
