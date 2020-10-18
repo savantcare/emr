@@ -45,7 +45,7 @@ export default {
       userTypedSearchFilterKeyword: '',
       liveTypeObjOfFields: {},
       diffBetweenTwoFields: {},
-      secondaryArrayForComparison: [],
+      secondaryObjOfFieldsForComparison: [],
     }
   },
   mounted() {
@@ -61,7 +61,7 @@ export default {
 
     this.$set(this.liveTypeObjOfFields, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
     this.$set(
-      this.secondaryArrayForComparison,
+      this.secondaryObjOfFieldsForComparison,
       'Past_outpatient_treatment',
       arOfObjectsFromClientSideDB[0]['fieldValue']
     )
@@ -70,8 +70,8 @@ export default {
     'liveTypeObjOfFields.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
-        if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
-          const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
+        if (this.secondaryObjOfFieldsForComparison['Past_outpatient_treatment']) {
+          const diff = Diff.diffWords(this.secondaryObjOfFieldsForComparison['Past_outpatient_treatment'], newValue)
           this.diffBetweenTwoFields['Past_outpatient_treatment'] = ''
           diff.forEach((part) => {
             // green for additions, red for deletions
