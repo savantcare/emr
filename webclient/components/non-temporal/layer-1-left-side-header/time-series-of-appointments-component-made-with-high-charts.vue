@@ -168,6 +168,13 @@ export default {
 
       for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
         const timeOnCalendar = this.arOfAppointmentsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+
+        let markerSymbol = ''
+        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] == 'locked') {
+          markerSymbol = 'url(http://www.highcharts.com/samples/graphics/sun.png)'
+        } else {
+          markerSymbol = 'url(http://www.highcharts.com/samples/graphics/snow.png)'
+        }
         data.push({
           //          x: timeOnCalendar, // this makes it proportional
           x: i, // this makes it equidistant
@@ -178,6 +185,9 @@ export default {
             moment(timeOnCalendar).format('MMMM Do YYYY, h:mm:ss a'),
           clientSideUniqRowId: this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId'],
           apptStatus: this.arOfAppointmentsFromClientSideDB[i]['apptStatus'],
+          marker: {
+            symbol: markerSymbol,
+          },
         })
       }
       console.log(data)
