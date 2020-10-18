@@ -254,7 +254,7 @@ export default {
               },
             },
             tooltip: {
-              headerFormat: '<small>Appointment on: <br>{point.key}</small><br>',
+              headerFormat: '',
               pointFormatter: function () {
                 return this.tooltip
               },
@@ -303,7 +303,10 @@ export default {
         data.push({
           x: timeOnCalendar,
           y: 0,
-          tooltip: this.arOfAppointmentsFromClientSideDB[i]['apptStatus'],
+          tooltip:
+            this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] +
+            ' on ' +
+            moment(timeOnCalendar).format('MMMM Do YYYY, h:mm:ss a'),
         })
       }
       console.log(data)
