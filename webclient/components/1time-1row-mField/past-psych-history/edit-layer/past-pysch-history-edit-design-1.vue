@@ -44,7 +44,6 @@ export default {
       vOrmSaveScheduled: false,
       userTypedKeyword: '',
       liveTypeAr: {},
-      debouncedTypeAr: [],
       textDifferenceBetweenTwo: '',
       secondaryArrayForComparison: [],
     }
@@ -70,7 +69,7 @@ export default {
   watch: {
     'liveTypeAr.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Past_outpatient_treatment', newValue)
+        this.debouncer('Past_outpatient_treatment', newValue, 1)
         if (this.secondaryArrayForComparison['Past_outpatient_treatment']) {
           const diff = Diff.diffWords(this.secondaryArrayForComparison['Past_outpatient_treatment'], newValue)
           this.textDifferenceBetweenTwo = ''
@@ -85,58 +84,29 @@ export default {
         }
       },
     },
-    'debouncedTypeAr.Past_outpatient_treatment': {
-      handler: function (newValue, oldValue) {
-        // get the existing ID. For the same fieldMasterId there maybe 10 fieldValues for historical data
-        const currentDataAr = clientSideTblOfPatientPastPsychHistory.query().where('fieldIdFromMaster', 1).get()
-        let status = null
-        // clientSideRowUniqId will not have a value if this is being inserted first time
-        if (currentDataAr.length > 0) {
-          status = clientSideTblOfPatientPastPsychHistory.update({
-            data: [
-              {
-                clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
-                fieldIdFromMaster: 1, // For this 1 fieldId there might be 100 clientSideUniqRowId. Due to historical data
-                fieldValue: newValue,
-              },
-            ],
-          })
-        } else {
-          // first time this data has been entered by the user
-          status = clientSideTblOfPatientPastPsychHistory.insert({
-            data: [{ fieldIdFromMaster: 1, fieldValue: newValue }],
-          })
-        }
-      },
-    },
     'liveTypeAr.Past_meds_trials': {
       handler: function (newValue, oldValue) {
-        this.debouncer('Past_meds_trials', newValue)
-      },
-    },
-    'debouncedTypeAr.Past_meds_trials': {
-      handler: function (newValue, oldValue) {
-        console.log(newValue)
+        this.debouncer('Past_meds_trials', newValue, 2)
       },
     },
     'liveTypeAr.Hospitalization': {
       handler: function (newValue, oldValue) {
-        console.log('inside watch')
+        this.debouncer('Hospitalization', newValue, 3)
       },
     },
     'liveTypeAr.History_of_violence': {
       handler: function (newValue, oldValue) {
-        console.log('inside watch')
+        this.debouncer('History_of_violence', newValue, 4)
       },
     },
     'liveTypeAr.History_of_self': {
       handler: function (newValue, oldValue) {
-        console.log('inside watch')
+        this.debouncer('History_of_self', newValue, 5)
       },
     },
     'liveTypeAr.Past_substance_abuse': {
       handler: function (newValue, oldValue) {
-        console.log('inside watch')
+        this.debouncer('Past_substance_abuse', newValue, 6)
       },
     },
   },
@@ -169,15 +139,38 @@ export default {
     },
   },
   methods: {
-    debouncer(pFieldName, newValue) {
+    debouncer(pFieldName, newValue, pFieldIdFromMaster) {
       if (this.vOrmSaveScheduled) {
         clearTimeout(this.vOrmSaveScheduled) // this cancels the previously scheduled timeout
         this.vOrmSaveScheduled = false
       }
       this.vOrmSaveScheduled = setTimeout(
         function (scope) {
-          scope.$set(scope.debouncedTypeAr, pFieldName, newValue) // needed to make it reactive
-          console.log('array set', scope.debouncedTypeAr)
+          const currentDataAr = clientSideTblOfPatientPastPsychHistory
+            .query()
+            .where('fieldIdFromMaster', pFieldIdFromMaster)
+            .get()
+          let status = null
+          console.log(currentDataAr)
+          // clientSideRowUniqId will not have a value if this is being inserted first time
+          if (currentDataAr.length > 0) {
+            console.log('updating')
+            status = clientSideTblOfPatientPastPsychHistory.update({
+              data: [
+                {
+                  clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
+                  fieldIdFromMaster: pFieldIdFromMaster, // For this 1 fieldId there might be 100 clientSideUniqRowId. Due to historical data
+                  fieldValue: newValue,
+                },
+              ],
+            })
+          } else {
+            // first time this data has been entered by the user
+            console.log(pFieldIdFromMaster)
+            status = clientSideTblOfPatientPastPsychHistory.insert({
+              data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue }],
+            })
+          }
         },
         500, // setting timeout of 500 ms
         this
