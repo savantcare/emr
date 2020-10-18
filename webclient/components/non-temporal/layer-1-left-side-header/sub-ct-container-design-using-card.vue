@@ -1,5 +1,5 @@
-/* Single instance component names Components that should only ever have a single active instance
-should begin with the The prefix, to denote that there can be only one. Ref:
+/* Single instance component names Components that should only ever have a single active instance should begin with the
+The prefix, to denote that there can be only one. Ref:
 https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recommended */
 
 <template>
@@ -17,7 +17,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
-import ctSlider from './time-series-of-appointments-component.vue'
+import ctSlider from './time-series-of-appointments-component-made-with-high-charts.vue'
 import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 
