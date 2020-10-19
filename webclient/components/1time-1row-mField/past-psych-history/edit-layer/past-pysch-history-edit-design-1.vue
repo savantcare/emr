@@ -24,7 +24,7 @@
           ></el-button>
 
           <el-card style="width: 400px">
-            <div class="show-diff" v-html="dFieldDiffWithStakeObj[ss.formFieldName]"></div>
+            <div class="show-diff" v-html="dFieldDiffWithStakeObj[ss.fieldIdFromMaster]"></div>
           </el-card>
         </el-card>
       </el-col>
@@ -61,9 +61,7 @@ export default {
     if (arOfObjectsFromClientSideDB.length === 0) return
 
     for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-      const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
-        'pastPsychHistoryDescription'
-      ].replace(/ /g, '_')
+      const fieldName = arOfObjectsFromClientSideDB[i].clientSideUniqRowId
 
       const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
@@ -78,42 +76,42 @@ export default {
       // 'Past_outpatient_treatment'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 1)
-        this.mfDoDiff('Past_outpatient_treatment', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(1, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.2': {
       // 'Past_meds_trials'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 2)
-        this.mfDoDiff('Past_meds_trials', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(2, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.3': {
       // 'Hospitalization'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 3)
-        this.mfDoDiff('Hospitalization', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(3, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.4': {
       // 'History_of_violence'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 4)
-        this.mfDoDiff('History_of_violence', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(4, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.5': {
       // 'History_of_self_harm'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 5)
-        this.mfDoDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(5, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.6': {
       // 'Past_substance_abuse'
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm(newValue, 6)
-        this.mfDoDiff('Past_substance_abuse', newValue) // keeping this outside debounce to give immediate feedback
+        this.mfDoDiff(6, newValue) // keeping this outside debounce to give immediate feedback
       },
     },
   },
@@ -132,12 +130,6 @@ export default {
         })
         .get()
 
-      for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
-        arOfObjectsFromClientSideMasterDB[i]['formFieldName'] = arOfObjectsFromClientSideMasterDB[i][
-          'pastPsychHistoryDescription'
-        ].replace(/ /g, '_')
-      }
-
       return arOfObjectsFromClientSideMasterDB
     },
   },
@@ -153,9 +145,7 @@ export default {
       if (arOfObjectsFromClientSideDB.length === 0) return
 
       for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
-          'pastPsychHistoryDescription'
-        ].replace(/ /g, '_')
+        const fieldName = arOfObjectsFromClientSideDB[i].clientSideUniqRowId
 
         const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
