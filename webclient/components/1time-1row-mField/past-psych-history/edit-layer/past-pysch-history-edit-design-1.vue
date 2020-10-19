@@ -159,7 +159,8 @@ export default {
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
-            .where('vnRowStateInSession', (value) => value > 2) // I only write to copied row and not to original data
+            .where('vnRowStateInSession', (value) => /^3.*$/.test(value)) // I only write to copied row and not to original data
+            // This will match all numbers that start with 3. The number 3 means it is copied row.
             .get()
 
           console.log(currentDataAr)
