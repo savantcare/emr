@@ -18,6 +18,7 @@ export default class clientSideTblMasterDiagnosis extends clientSideTableManage 
 
       masterDiagnosisId: this.uid(() => intUniqueId()),
       diagnosisName: this.string(null),
+      // 'isAssignedToPatient' field use for when the diagnosis assigned to a patient then the diagnosis remove from the master list of diagnosis.
       isAssignedToPatient: this.boolean(false),
 
       ROW_END: this.number(2147483648000),
