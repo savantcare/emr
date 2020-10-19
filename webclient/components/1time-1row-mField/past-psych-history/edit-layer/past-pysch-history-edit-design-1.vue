@@ -10,16 +10,16 @@
           <el-input
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 14 }"
-            v-model="liveTypedValueOfFields[ss.formFieldName]"
+            v-model="liveTypedValueOfFields[ss.fieldIdFromMaster]"
             :placeholder="ss.pastPsychHistoryDescription"
             style="width: 400px"
           ></el-input>
           <el-button
-            v-if="mfHasDataChanged(ss.formFieldName)"
+            v-if="mfHasDataChanged(ss.fieldIdFromMaster)"
             type="success"
             icon="el-icon-check"
             size="mini"
-            @click="mfSave(ss.formFieldName, liveTypedValueOfFields[ss.formFieldName])"
+            @click="mfSave(ss.fieldIdFromMaster, liveTypedValueOfFields[ss.formFieldName])"
             circle
           ></el-button>
 
@@ -74,37 +74,37 @@ export default {
   },
 
   watch: {
-    'liveTypedValueOfFields.Past_outpatient_treatment': {
+    'liveTypedValueOfFields.1': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
         this.mfDoDiff('Past_outpatient_treatment', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypedValueOfFields.Past_meds_trials': {
+    'liveTypedValueOfFields.2': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
         this.mfDoDiff('Past_meds_trials', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypedValueOfFields.Hospitalization': {
+    'liveTypedValueOfFields.3': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
         this.mfDoDiff('Hospitalization', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypedValueOfFields.History_of_violence': {
+    'liveTypedValueOfFields.4': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
         this.mfDoDiff('History_of_violence', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypedValueOfFields.History_of_self_harm': {
+    'liveTypedValueOfFields.5': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_self_harm', newValue, 5)
         this.mfDoDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypedValueOfFields.Past_substance_abuse': {
+    'liveTypedValueOfFields.6': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
         this.mfDoDiff('Past_substance_abuse', newValue) // keeping this outside debounce to give immediate feedback
@@ -157,15 +157,7 @@ export default {
       }
     },
 
-    mfHasDataChanged(pFieldName) {
-      let fieldIdFromMaster = 0
-      if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
-      if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
-      if (pFieldName === 'Hospitalization') fieldIdFromMaster = 3
-      if (pFieldName === 'History_of_violence') fieldIdFromMaster = 4
-      if (pFieldName === 'History_of_self_harm') fieldIdFromMaster = 5
-      if (pFieldName === 'Past_substance_abuse') fieldIdFromMaster = 6
-
+    mfHasDataChanged(fieldIdFromMaster) {
       const currentDataAr = clientSideTblOfPatientPastPsychHistory
         .query()
         .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
@@ -175,15 +167,7 @@ export default {
 
       if (currentDataAr.length > 0) return true
     },
-    mfSave(pFieldName, pCurrentValue) {
-      let fieldIdFromMaster = 0
-      if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
-      if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
-      if (pFieldName === 'Hospitalization') fieldIdFromMaster = 3
-      if (pFieldName === 'History_of_violence') fieldIdFromMaster = 4
-      if (pFieldName === 'History_of_self_harm') fieldIdFromMaster = 5
-      if (pFieldName === 'Past_substance_abuse') fieldIdFromMaster = 6
-
+    mfSave(fieldIdFromMaster, pCurrentValue) {
       const currentDataAr = clientSideTblOfPatientPastPsychHistory
         .query()
         .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
@@ -210,6 +194,8 @@ export default {
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
+      console.log(pFieldName, newValue, pFieldIdFromMaster)
+
       /* 
         Task 1: Do debounce 
       */
