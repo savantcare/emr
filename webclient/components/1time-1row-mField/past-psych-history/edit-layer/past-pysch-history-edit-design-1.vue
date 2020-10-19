@@ -20,6 +20,14 @@
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
+              <el-button
+                type="success"
+                icon="el-icon-check"
+                size="mini"
+                @click="mfSave(ss.formFieldName)"
+                circle
+              ></el-button>
+
               <el-card style="width: 400px">
                 <div class="show-diff" v-html="fieldDiffWithSecondayObj[ss.formFieldName]"></div>
               </el-card>
@@ -142,6 +150,9 @@ export default {
     },
   },
   methods: {
+    mfSave(pFieldName) {
+      console.log(pFieldName)
+    },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
       /* 
