@@ -78,24 +78,7 @@ export default {
       this.$set(this.liveTypeObjOfFields, fieldName, fieldValue)
     }
 
-    // Comparison happens with data that is already in MariaDB
-    arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
-      .query()
-      .with('tblPastPsychHistoryMasterLink')
-      .where('vnRowStateInSession', 1) // This gives data already saved to DB
-      .get()
-
-    if (arOfObjectsFromClientSideDB.length === 0) return
-
-    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-      const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
-        'pastPsychHistoryDescription'
-      ].replace(/ /g, '_')
-
-      const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
-
-      this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
-    }
+    this.mfGetSecondaryObject()
   },
 
   watch: {
@@ -164,6 +147,27 @@ export default {
     },
   },
   methods: {
+    mfGetSecondaryObject() {
+      // Comparison happens with data that is already in MariaDB
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
+        .query()
+        .with('tblPastPsychHistoryMasterLink')
+        .where('vnRowStateInSession', 1) // This gives data already saved to DB
+        .get()
+
+      if (arOfObjectsFromClientSideDB.length === 0) return
+
+      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
+          'pastPsychHistoryDescription'
+        ].replace(/ /g, '_')
+
+        const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
+
+        this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
+      }
+    },
+
     dataHasChanged(pFieldName) {
       let fieldIdFromMaster = 0
       if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
