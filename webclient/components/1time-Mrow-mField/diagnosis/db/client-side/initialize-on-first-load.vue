@@ -1,17 +1,21 @@
 <template>
   <div>
-    <initializeDiagnosisComponent />
+    <step1_init_search_phrases />
+    <step2_init_ss_field_names />
   </div>
 </template>
 
 <script>
-import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
+import step1_init_search_phrases from './static-data/insert-into-master-of-search-phrases-ct'
+import step2_init_ss_field_names from './static-data/insert-into-master-of-diagnosis-ct'
+
 import clientSideTblPatientDiagnosis from './structure/patient-table-of-diagnosis'
 import clientSideTblMasterDiagnosis from './structure/master-table-of-diagnosis'
 
 export default {
   components: {
-    initializeDiagnosisComponent,
+    step1_init_search_phrases,
+    step2_init_ss_field_names,
   },
   async mounted() {
     const proDignosisFromDB = await clientSideTblPatientDiagnosis.api().get(clientSideTblPatientDiagnosis.apiUrl)
