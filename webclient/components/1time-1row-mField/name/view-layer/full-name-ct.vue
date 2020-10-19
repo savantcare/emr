@@ -60,10 +60,10 @@
         }}</el-button> -->
 
         <el-col v-for="name in cfArOfNameForDisplay" :key="name.id" :span="6">
-          <label style="font-size: 0.7rem; font-weight: 700">
+          <label style="font-size: 0.7rem; font-weight: 700; color: #888">
             {{ name.tblNameMasterLink.nameFieldDescription }}
           </label>
-          <el-button :type="mfTypeOfButton(name.tblNameMasterLink.nameFieldDescription)" style="width: 100%" plain>
+          <el-button :type="mfTypeOfButton(name.tblNameMasterLink.nameFieldDescription)" style="width: 95%" plain>
             {{ name.nameFieldValue }}
           </el-button>
         </el-col>
