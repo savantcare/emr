@@ -204,7 +204,7 @@ export default {
 
       // when update query is run on mariaDB this also creates a new row
       status = clientSideTblOfPatientPastPsychHistory.insert({
-        data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }],
+        data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }], // Setting this as 3 means there will be no submit button. A state of copy and copy+change are different.
       })
 
       this.mfGetStakeObjectForComparison()
@@ -244,9 +244,9 @@ export default {
               ],
             })
           } else {
-            // first time this data has been entered by the user
+            // first time this data has been entered by the user. I set this as 34 to distinguish this from the case where the data has just been copied after a new row was inserted.
             status = clientSideTblOfPatientPastPsychHistory.insert({
-              data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue, vnRowStateInSession: 3 }],
+              data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue, vnRowStateInSession: 34 }],
             })
           }
         },
