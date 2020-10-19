@@ -52,6 +52,7 @@ export default {
   mounted() {
     let arOfObjectsFromClientSideDB = []
 
+    // Goal: This Ct can be mounted and then removed and then mounted again. I need to load the latest data from clientSideDB
     arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
       .query()
       .with('tblPastPsychHistoryMasterLink')
@@ -60,6 +61,7 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
+    // Goal: In the field show user the latest data
     for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
       const fieldName = arOfObjectsFromClientSideDB[i].clientSideUniqRowId
 
@@ -181,6 +183,8 @@ export default {
         ],
       })
 
+      // Send the query to lumen
+
       // when update query is run on mariaDB, the temporal system of MariDB also creates a new row
       status = clientSideTblOfPatientPastPsychHistory.insert({
         data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }], // Setting this as 3 means there will be no submit button. A state of copy and copy+change are different.
@@ -188,13 +192,14 @@ export default {
 
       this.mfGetStakeObjectForComparison()
     },
-    // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(newValue, pFieldIdFromMaster) {
       console.log(newValue, pFieldIdFromMaster)
 
       /*
         Task 1: Do debounce
       */
+      // Logic? When call 1st time setTimeoput to execute. If call 2nd time very fast then clear clearTimeout . If call slow then let timer execute
+
       if (this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) {
         clearTimeout(this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
         this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = false
