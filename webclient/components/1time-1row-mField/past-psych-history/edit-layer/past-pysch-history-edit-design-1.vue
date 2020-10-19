@@ -59,39 +59,21 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
-    this.$set(this.liveTypeObjOfFields, 'Past_outpatient_treatment', arOfObjectsFromClientSideDB[0]['fieldValue'])
-    this.$set(this.liveTypeObjOfFields, 'Past_meds_trials', arOfObjectsFromClientSideDB[1]['fieldValue'])
-    this.$set(this.liveTypeObjOfFields, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
-    this.$set(this.liveTypeObjOfFields, 'History_of_violence', arOfObjectsFromClientSideDB[3]['fieldValue'])
-    this.$set(this.liveTypeObjOfFields, 'History_of_self_harm', arOfObjectsFromClientSideDB[4]['fieldValue'])
-    this.$set(this.liveTypeObjOfFields, 'Past_substance_abuse', arOfObjectsFromClientSideDB[5]['fieldValue'])
+    console.log(arOfObjectsFromClientSideDB)
 
-    // TODO: Dont know why this does not work
-    //    this.secondaryObjOfFieldsForComparison = this.liveTypeObjOfFields
+    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+      const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
+        'pastPsychHistoryDescription'
+      ].replace(/ /g, '_')
 
-    this.$set(
-      this.secondaryObjOfFieldsForComparison,
-      'Past_outpatient_treatment',
-      arOfObjectsFromClientSideDB[0]['fieldValue']
-    )
-    this.$set(this.secondaryObjOfFieldsForComparison, 'Past_meds_trials', arOfObjectsFromClientSideDB[1]['fieldValue'])
+      const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
-    this.$set(this.secondaryObjOfFieldsForComparison, 'Hospitalization', arOfObjectsFromClientSideDB[2]['fieldValue'])
-    this.$set(
-      this.secondaryObjOfFieldsForComparison,
-      'History_of_violence',
-      arOfObjectsFromClientSideDB[3]['fieldValue']
-    )
-    this.$set(
-      this.secondaryObjOfFieldsForComparison,
-      'History_of_self_harm',
-      arOfObjectsFromClientSideDB[4]['fieldValue']
-    )
-    this.$set(
-      this.secondaryObjOfFieldsForComparison,
-      'Past_substance_abuse',
-      arOfObjectsFromClientSideDB[5]['fieldValue']
-    )
+      this.$set(this.liveTypeObjOfFields, fieldName, fieldValue)
+
+      this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
+    }
+
+    console.log(this.liveTypeObjOfFields)
   },
 
   watch: {
@@ -178,7 +160,11 @@ export default {
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
             .where('vnRowStateInSession', 3) // I only write to copied row and not to original data
+            .orWhere('vnRowStateInSession', 34)
             .get()
+
+          console.log(currentDataAr)
+
           let status = null
           // clientSideRowUniqId will not have a value if this is being inserted first time
           if (currentDataAr.length > 0) {
