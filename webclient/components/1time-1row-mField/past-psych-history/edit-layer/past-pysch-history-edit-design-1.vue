@@ -216,6 +216,8 @@ export default {
       status = clientSideTblOfPatientPastPsychHistory.insert({
         data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }],
       })
+
+      this.mfGetSecondaryObject()
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
