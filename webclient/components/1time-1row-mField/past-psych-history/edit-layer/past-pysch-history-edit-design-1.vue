@@ -16,7 +16,7 @@
               <el-input
                 type="textarea"
                 :autosize="{ minRows: 4, maxRows: 14 }"
-                v-model="liveTypeObjOfFields[ss.formFieldName]"
+                v-model="liveTypedValueOfFields[ss.formFieldName]"
                 :placeholder="ss.pastPsychHistoryDescription"
                 style="width: 400px"
               ></el-input>
@@ -25,7 +25,7 @@
                 type="success"
                 icon="el-icon-check"
                 size="mini"
-                @click="mfSave(ss.formFieldName, liveTypeObjOfFields[ss.formFieldName])"
+                @click="mfSave(ss.formFieldName, liveTypedValueOfFields[ss.formFieldName])"
                 circle
               ></el-button>
 
@@ -52,7 +52,7 @@ export default {
     return {
       vOrmSaveScheduledForDebounce: [],
       userTypedSearchFilterKeyword: '',
-      liveTypeObjOfFields: {},
+      liveTypedValueOfFields: {},
       fieldDiffWithSecondayObj: {},
       secondaryObjOfFieldsForComparison: [],
     }
@@ -75,44 +75,44 @@ export default {
 
       const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
-      this.$set(this.liveTypeObjOfFields, fieldName, fieldValue)
+      this.$set(this.liveTypedValueOfFields, fieldName, fieldValue)
     }
 
     this.mfGetSecondaryObject()
   },
 
   watch: {
-    'liveTypeObjOfFields.Past_outpatient_treatment': {
+    'liveTypedValueOfFields.Past_outpatient_treatment': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
         this.mfDoDiff('Past_outpatient_treatment', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypeObjOfFields.Past_meds_trials': {
+    'liveTypedValueOfFields.Past_meds_trials': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
         this.mfDoDiff('Past_meds_trials', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypeObjOfFields.Hospitalization': {
+    'liveTypedValueOfFields.Hospitalization': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
         this.mfDoDiff('Hospitalization', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypeObjOfFields.History_of_violence': {
+    'liveTypedValueOfFields.History_of_violence': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
         this.mfDoDiff('History_of_violence', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypeObjOfFields.History_of_self_harm': {
+    'liveTypedValueOfFields.History_of_self_harm': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('History_of_self_harm', newValue, 5)
         this.mfDoDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
-    'liveTypeObjOfFields.Past_substance_abuse': {
+    'liveTypedValueOfFields.Past_substance_abuse': {
       handler: function (newValue, oldValue) {
         this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
         this.mfDoDiff('Past_substance_abuse', newValue) // keeping this outside debounce to give immediate feedback
@@ -142,8 +142,8 @@ export default {
         ].replace(/ /g, '_')
       }
 
-      const liveTypeObjOfFields = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
-      return liveTypeObjOfFields
+      const liveTypedValueOfFields = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
+      return liveTypedValueOfFields
     },
   },
   methods: {
