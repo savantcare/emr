@@ -2,7 +2,7 @@
   <div>
     <el-input placeholder="Filter text" v-model="liveTypedSearchFilterKeyword" />
     <el-row :gutter="20">
-      <el-col :span="8" v-for="ss in cfGetMasterRowsOfPastPsychHistoryGrouped" :key="ss.id">
+      <el-col :span="8" v-for="ss in cfGetMasterRowsOfPastPsychHistory" :key="ss.id">
         <el-card style="width: 400px">
           <div slot="header" class="clearfix">
             <span>{{ ss.pastPsychHistoryDescription }}</span>
@@ -112,7 +112,7 @@ export default {
     },
   },
   computed: {
-    cfGetMasterRowsOfPastPsychHistoryGrouped() {
+    cfGetMasterRowsOfPastPsychHistory() {
       let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
         .query()
         .where((_record, query) => {
