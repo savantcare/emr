@@ -24,7 +24,7 @@
                 type="success"
                 icon="el-icon-check"
                 size="mini"
-                @click="mfSave(ss.formFieldName)"
+                @click="mfSave(ss.formFieldName, liveTypeObjOfFields[ss.formFieldName])"
                 circle
               ></el-button>
 
@@ -62,7 +62,7 @@ export default {
     arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
       .query()
       .with('tblPastPsychHistoryMasterLink')
-      .where('ROW_END', 2147483648000)
+      .where('ROW_END', 2147483648000) // This gives current data
       .get()
 
     if (arOfObjectsFromClientSideDB.length === 0) return
@@ -146,7 +146,7 @@ export default {
     },
   },
   methods: {
-    mfSave(pFieldName) {
+    mfSave(pFieldName, pCurrentValue) {
       let fieldIdFromMaster = 0
       if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
       if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
@@ -167,8 +167,14 @@ export default {
           {
             clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
             vnRowStateInSession: 1,
+            ROW_END: Math.floor(Date.now()),
           },
         ],
+      })
+
+      // when update query is run on mariaDB this also creates a new row
+      status = clientSideTblOfPatientPastPsychHistory.insert({
+        data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }],
       })
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
