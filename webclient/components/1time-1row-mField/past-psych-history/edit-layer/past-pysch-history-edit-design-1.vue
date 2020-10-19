@@ -159,8 +159,7 @@ export default {
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
-            .where('vnRowStateInSession', 3) // I only write to copied row and not to original data
-            .orWhere('vnRowStateInSession', 34)
+            .where('vnRowStateInSession', (value) => value > 2) // I only write to copied row and not to original data
             .get()
 
           console.log(currentDataAr)
