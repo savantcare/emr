@@ -132,7 +132,6 @@ export default {
         ].replace(/ /g, '_')
       }
 
-      console.log(arOfObjectsFromClientSideMasterDB)
       return arOfObjectsFromClientSideMasterDB
     },
   },
