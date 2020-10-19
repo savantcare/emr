@@ -160,7 +160,7 @@ export default {
         for tab width is 'small' dialog width will be 50%
         */
         const cfDialogWidth = this.$store.state.vstObjTabsInCL.vsDialogWidth
-        return cfDialogWidth === '' || cfDialogWidth === 'small' ? '50%' : '80%'
+        return cfDialogWidth === '' || cfDialogWidth === 'small' ? '50%' : '95%'
       },
       set(value) {
         this.$store.commit('mtfSetTabDialogWidth', value)

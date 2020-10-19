@@ -12,27 +12,26 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'service statements',
-        ctAbbr: 'ss',
-        ctToShow: '1time-Mrow-1Field/service-statement/view-layer/ss-design-1-ct.vue',
+        value: 'medical review of systems',
+        ctAbbr: 'psh',
+        ctToShow: '1time-1row-mField/medical-review-of-systems/view-layer/medical-review-of-systems-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit service statement',
-        ctAbbr: 'sse',
-        ctToShow: '1time-Mrow-1Field/service-statement/edit-layer/ss-edit-design-1.vue',
+        value: 'edit medical review of systems',
+        ctAbbr: 'epsh',
+        ctToShow: '1time-1row-mField/medical-review-of-systems/edit-layer/medical-review-of-systems-edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'small',
-        needsRowIdToWork: 'yes',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted service statements',
-        ctAbbr: 'dss',
-        ctToShow: '1time-Mrow-1Field/service-statement/view-layer/deleted.vue',
+        value: 'deleted medical review of systems',
+        ctAbbr: 'dpsh',
+        ctToShow: '1time-1row-mField/medical-review-of-systems/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

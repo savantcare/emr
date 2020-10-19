@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class leftHandISideViewLayer extends clientSideTableManage {
-  static entity = 'tblRightSideViewLayer'
+export default class cardsFromSearch extends clientSideTableManage {
+  static entity = 'tblCardsFromSearch'
   static apiUrl = 'http://localhost:3000/'
 
   static primaryKey = 'clientSideUniqRowId'
@@ -19,7 +19,7 @@ export default class leftHandISideViewLayer extends clientSideTableManage {
       name: this.string(null),
       componentToShowPath: this.string(null),
       currentDisplayStateOfComponent: this.number(1), // when 1 it will display. Using v-if since more efficient then v-show
-      identifierOfparentComponentThatIncludedThisSearchComponent: this.string(''),
+      identifierOfparentComponentThatIncludedThisSearchComponent: this.string(''), // This allows this one table to store the cards selected by user either on left side or right side.
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),

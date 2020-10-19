@@ -1,10 +1,5 @@
 <template>
-  <VTour
-    name="myTour"
-    :steps="steps"
-    :options="{ highlight: true }"
-    :callbacks="myCallbacks"
-  ></VTour>
+  <VTour name="myTour" :steps="steps" :options="{ highlight: true }" :callbacks="myCallbacks"></VTour>
 </template>
 
 <script>
@@ -33,7 +28,7 @@ export default {
       },
       steps: [
         {
-          target: '[data-v-step="appt-timeline"]',
+          target: '.el-icon-setting',
           content: 'This is the appointment timeline. Each dot represents a different appointment',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
@@ -41,7 +36,7 @@ export default {
           },
         },
         {
-          target: '[data-v-step="appt-timeline"]',
+          target: '.el-icon-setting',
           content: 'Click on any of the dots to see the printable NOTE on that date',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
@@ -49,16 +44,15 @@ export default {
           },
         },
         {
-          target: '[data-v-step="appt-timeline"]',
-          content:
-            'You can click on the icons inside the printable note to add information like a reminder',
+          target: '.el-icon-setting',
+          content: 'You can click on the icons inside the printable note to add information like a reminder',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements
             enableScrolling: false, // Ref: https://github.com/pulsardev/vue-tour/wiki/Features#disable-scroll-between-steps
           },
         },
         {
-          target: '[data-v-step="appt-timeline"]',
+          target: '.el-icon-setting',
           content: 'Click on the blue button to lock the note',
           params: {
             placement: 'top', // Any valid Popper.js placement. See https://popper.js.org/popper-documentation.html#Popper.placements

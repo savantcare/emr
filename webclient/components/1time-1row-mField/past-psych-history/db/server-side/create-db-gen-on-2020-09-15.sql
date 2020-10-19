@@ -1,1 +1,1 @@
-create database sc_service_statements
+create database sc_past_psych_history

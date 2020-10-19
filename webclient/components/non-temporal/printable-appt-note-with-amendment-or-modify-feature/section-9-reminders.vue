@@ -1,13 +1,8 @@
 <template>
   <!-- SECTION 9 REMINDERS -->
   <div>
-    <el-row
-      type="flex"
-      justify="left"
-      class="remindersh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading">Reminders</el-col>
+    <el-row type="flex" justify="left" class="remindersh3 sectionHeader" style="padding: 0rem; margin: 0rem">
+      <el-col :span="9" class="sectionHeading">Reminders</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -59,9 +54,7 @@
           <div style="margin: 5px 0">
             {{ row.description }}
             <br />
-            <span style="font-size: 10px"
-              >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-            >
+            <span style="font-size: 10px">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
           </div>
         </div>
       </div>
@@ -104,21 +97,21 @@ export default {
   },
   computed: {
     cfGetReminderStyle() {
-      let comparedApptObj = {}
-      let comparedReminders = {}
+      let secondaryDuringComparisonApptObj = {}
+      let secondaryDuringComparisonReminders = {}
 
-      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
         // Handle the case when the current ID matches with the second param Need to compare with first
-        comparedApptObj = clientSideTblOfAppointments.find(
-          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+          printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedReminders = this.mfGetArOfReminders(comparedApptObj)
-        if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+        secondaryDuringComparisonReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
+        if (secondaryDuringComparisonReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
           return 'border:1px solid #E6A23C'
-        } else if (comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
+        } else if (secondaryDuringComparisonReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
           return 'border:1px solid #67C23A'
         } else {
           return ''
@@ -129,18 +122,16 @@ export default {
         //
 
         // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
-        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+        if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']) {
           // Need to compare with second
-          comparedApptObj = clientSideTblOfAppointments.find(
-            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+            printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedReminders = this.mfGetArOfReminders(comparedApptObj)
-          if (comparedReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+          secondaryDuringComparisonReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
+          if (secondaryDuringComparisonReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
             return 'border:1px solid #E6A23C'
-          } else if (
-            comparedReminders.length < this.mfGetArOfReminders(this.currentApptObj).length
-          ) {
+          } else if (secondaryDuringComparisonReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
             return 'border:1px solid #67C23A'
           } else {
             return
@@ -190,10 +181,7 @@ export default {
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
+        arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
           .query()
@@ -241,7 +229,7 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 .subSectionHeader {
   margin-top: 1rem !important;

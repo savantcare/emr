@@ -2,24 +2,25 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <div
-      v-for="(allPastPsychHistoryInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
-      :key="allPastPsychHistoryInsideAGroup.id"
+      v-for="(allServiceStatementsInsideAGroup,
+      groupNameGivenAsIndex) in cfGetMasterRowsOfServiceStatementsGrouped"
+      :key="allServiceStatementsInsideAGroup.id"
     >
       {{ groupNameGivenAsIndex }}
-      <div class="sc-past-psych-history-all-content-body">
-        <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.pastPsychHistoryMasterId">
+      <div class="sc-service-statement-all-content-body">
+        <div v-for="ss in allServiceStatementsInsideAGroup" :key="ss.serviceStatementMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ss)">
             <el-button
-              @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)"
+              @click="mfToggleServiceStatement(ss.serviceStatementMasterId)"
               type="primary"
-              >{{ ss.pastPsychHistoryDescription }}</el-button
-            >
+            >{{ ss.serviceStatementDescription }}</el-button>
           </div>
           <div v-else>
-            <el-button @click="mfTogglePastPsychHistory(ss.pastPsychHistoryMasterId)">{{
-              ss.pastPsychHistoryDescription
-            }}</el-button>
+            <el-button @click="mfToggleServiceStatement(ss.serviceStatementMasterId)">
+              {{
+              ss.serviceStatementDescription
+              }}
+            </el-button>
           </div>
         </div>
       </div>
@@ -28,8 +29,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPastPsychHistory from '../db/client-side/structure/master-table-of-past-psych-history.js'
-import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
+import clientSideTblOfMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 
 export default {
   data() {
@@ -38,18 +39,18 @@ export default {
     }
   },
   computed: {
-    cfGetMasterRowsOfPastPsychHistoryGrouped() {
+    cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
+      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterServiceStatements
         .query()
-        .with('tblPastPsychHistoryForPatientLink')
+        .with('tblServiceStatementsForPatientLink')
         .where('ROW_END', 2147483648000)
         .where((_record, query) => {
           query
-            .where('pastPsychHistoryCategory', (value) =>
+            .where('serviceStatementCategory', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
-            .orWhere('pastPsychHistoryDescription', (value) =>
+            .orWhere('serviceStatementDescription', (value) =>
               value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
             )
         })
@@ -58,30 +59,30 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one Time in psychotherapy then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnPastPsychHistoryCategory(
+      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes in psychotherapy'
       )
 
       // Rule2: If one Time in psychotherapy then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnPastPsychHistoryCategory(
+      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB,
         'Total minutes with patient'
       )
 
       // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
-      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnPastPsychHistoryCategory(
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB
       )
 
       // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
-      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnPastPsychHistoryCategory(
+      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
         arOfObjectsFromClientSideMasterDB
       )
 
       // End: Now group the SS
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
+      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'serviceStatementCategory')
 
       // console.log(ar)
       return ar
@@ -108,62 +109,126 @@ export default {
       }, {}) // {} is the initial value of the storage
     },
     mfCheckIfThisExistsInChildTable(pSS) {
+      console.log("condition",pSS);
       // I am able to get the data from child table.
-      if (pSS.tblPastPsychHistoryForPatientLink) {
-        if (pSS.tblPastPsychHistoryForPatientLink.ROW_END === 2147483648000) {
+      if (pSS.tblServiceStatementsForPatientLink) {
+        if (pSS.tblServiceStatementsForPatientLink.ROW_END === 2147483648000) {
           return true
         }
       }
       return false
     },
-    mfTogglePastPsychHistory(pPastPsychHistoryMasterId) {
+    async mfToggleServiceStatement(pServiceStatementMasterId) {
+      
       // Goal1: Check if it already exists
-      const exists = clientSideTblOfPatientPastPsychHistory
+      const exists = clientSideTblOfPatientServiceStatements
         .query()
-        .where('pastPsychHistoryMasterId', pPastPsychHistoryMasterId)
+        .where('serviceStatementMasterId', pServiceStatementMasterId)
         .where('ROW_END', 2147483648000)
         .get()
-
-      if (exists.length > 0) {
-        clientSideTblOfPatientPastPsychHistory.update({
-          where: exists[0].clientSideUniqRowId,
-          data: {
-            ROW_END: Math.floor(Date.now()),
+      
+      if (exists.length > 0) {    
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
           },
+          body: "",
         })
-      } else {
-        clientSideTblOfPatientPastPsychHistory.insert({
+        if (response.status === 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: exists[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        }
+
+      } else {        
+        
+        const clientSideTblOfPatientServiceStatementsRow = await clientSideTblOfPatientServiceStatements.insert({
           data: {
-            pastPsychHistoryMasterId: pPastPsychHistoryMasterId,
+            serviceStatementMasterId: pServiceStatementMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
+
+        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: JSON.stringify({
+            data:{
+              serverSideRowUuid:clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
+              patientUuid:'bfe041fa-073b-4223-8c69-0540ee678ff8',
+              serviceStatementMasterId:pServiceStatementMasterId,
+              recordChangedByUuid:'bua674fa-073b-4223-8c69-0540ee786kj8'
+            },
+          }),
+        })
+        if (response.status !== 200) {
+          clientSideTblOfPatientServiceStatements.update({
+            where: clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].clientSideUniqRowId,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          this.$notify({
+            title: 'Error',
+            message: 'Not updated on server',
+            type: 'Error',
+            duration: 3000,
+          })
+        } else {
+          this.$notify({
+            title: 'Success',
+            message: 'Updated on server',
+            type: 'success',
+            duration: 3000,
+          })
+        }
       }
     },
 
-    mfApplyOneEntryRuleOnPastPsychHistoryCategory(
+    mfApplyOneEntryRuleOnServiceStatementCategory(
       pArOfObjectsFromClientSideMasterDB,
-      pPastPsychHistoryCategoryToApplyRuleOn
+      pServiceStatementCategoryToApplyRuleOn
     ) {
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
-        .with('tblPastPsychHistoryMasterLink')
-        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
-          query.where('pastPsychHistoryCategory', pPastPsychHistoryCategoryToApplyRuleOn)
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', pServiceStatementCategoryToApplyRuleOn)
         })
         .where('ROW_END', 2147483648000)
         .get()
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
           if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
-            pPastPsychHistoryCategoryToApplyRuleOn
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
+            pServiceStatementCategoryToApplyRuleOn
           ) {
             // master list has 10 entries. Once the category has matched there are 2 possibilityes. P1: This element is there in SS  of patient P2: This element is not there in SS of patient
             if (
               // Handling Possibility 1:  This element is there in SS of patient
-              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink !== null &&
-              pArOfObjectsFromClientSideMasterDB[i].tblPastPsychHistoryForPatientLink.ROW_END ==
+              pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink !== null &&
+              pArOfObjectsFromClientSideMasterDB[i].tblServiceStatementsForPatientLink.ROW_END ==
                 '2147483648000'
             ) {
             } else {
@@ -181,31 +246,31 @@ export default {
      * Rule: If "Total minutes in psychotherapy" has been chosen to be N.
      * Then from "Total minutes with patient" remove elements that are less than N
      */
-    mfApplyTotalMinutesInPsychotherapyRuleOnPastPsychHistoryCategory(
+    mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementCategory(
       pArOfObjectsFromClientSideMasterDB
     ) {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
-        .with('tblPastPsychHistoryMasterLink')
-        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
-          query.where('pastPsychHistoryCategory', 'Total minutes in psychotherapy')
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes in psychotherapy')
         })
         .where('ROW_END', 2147483648000)
         .get()
 
       /**
        * Step 2: If 'Total minutes in psychotherapy' is assigned.
-       * Than store relative past psych history master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
+       * Than store relative service statement master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
        */
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         const categoryOfThisSetAssignedToPatient =
-          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistoryMasterLink
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
 
         /**
-         * Step 3: Iterate past psych history master category object to process
+         * Step 3: Iterate service statement master category object to process
          */
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
           /**
@@ -213,7 +278,7 @@ export default {
            * Otherwise do not need to do any manipulation
            */
           if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
             'Total minutes with patient'
           ) {
             /**
@@ -221,8 +286,8 @@ export default {
              * Than remove "Total minutes with patient" elements that are less than N.
              */
             if (
-              parseInt(pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryDescription) <
-              parseInt(categoryOfThisSetAssignedToPatient.pastPsychHistoryDescription)
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription) <
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription)
             ) {
               pArOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -237,31 +302,31 @@ export default {
      * Rule: If "Total minutes with patient" has been chosen to be N.
      * Then from "Total minutes in psychotherapy" remove elements that are greater than N
      */
-    mfApplyTotalMinutesWithPatientRuleOnPastPsychHistoryCategory(
+    mfApplyTotalMinutesWithPatientRuleOnServiceStatementCategory(
       pArOfObjectsFromClientSideMasterDB
     ) {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientPastPsychHistory
+      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
         .query()
-        .with('tblPastPsychHistoryMasterLink')
-        .whereHas('tblPastPsychHistoryMasterLink', (query) => {
-          query.where('pastPsychHistoryCategory', 'Total minutes with patient')
+        .with('tblServiceStatementsMasterLink')
+        .whereHas('tblServiceStatementsMasterLink', (query) => {
+          query.where('serviceStatementCategory', 'Total minutes with patient')
         })
         .where('ROW_END', 2147483648000)
         .get()
 
       /**
        * Step 2: If 'Total minutes with patient' is assigned.
-       * Than store relative past psych history master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
+       * Than store relative service statement master category detail in a variable named 'categoryOfThisSetAssignedToPatient'
        */
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
         const categoryOfThisSetAssignedToPatient =
-          elementsOfThisSetAlreadyAssignedToPatient[0].tblPastPsychHistoryMasterLink
+          elementsOfThisSetAlreadyAssignedToPatient[0].tblServiceStatementsMasterLink
 
         /**
-         * Step 3: Iterate past psych history master category object to process
+         * Step 3: Iterate service statement master category object to process
          */
         for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
           /**
@@ -269,7 +334,7 @@ export default {
            * Otherwise do not need to do any manipulation
            */
           if (
-            pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryCategory ===
+            pArOfObjectsFromClientSideMasterDB[i].serviceStatementCategory ===
             'Total minutes in psychotherapy'
           ) {
             /**
@@ -277,8 +342,8 @@ export default {
              * Than remove "Total minutes in psychotherapy" elements that are greater than N.
              */
             if (
-              parseInt(pArOfObjectsFromClientSideMasterDB[i].pastPsychHistoryDescription) >
-              parseInt(categoryOfThisSetAssignedToPatient.pastPsychHistoryDescription)
+              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementDescription) >
+              parseInt(categoryOfThisSetAssignedToPatient.serviceStatementDescription)
             ) {
               pArOfObjectsFromClientSideMasterDB.splice(i, 1)
               i = i - 1
@@ -293,7 +358,7 @@ export default {
 </script>
 
 <style>
-.sc-past-psych-history-all-content-body {
+.sc-service-statement-all-content-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :

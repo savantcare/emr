@@ -2,13 +2,8 @@
   <!-- SECTION 5  SERVICE STATEMENTS -->
   <!-- min-height is set to 53px. This is because there is icon in the el-row which becomes visible on mouse hover on the row and without min-height in el-row it was fluctuating. -->
   <div>
-    <el-row
-      type="flex"
-      justify="left"
-      class="ssh3 sectionHeader"
-      style="padding: 0rem; margin: 0rem"
-    >
-      <el-col :span="8" class="sectionHeading">Service statements</el-col>
+    <el-row type="flex" justify="left" class="ssh3 sectionHeader" style="padding: 0rem; margin: 0rem">
+      <el-col :span="9" class="sectionHeading">Service statements</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -48,32 +43,21 @@
 
     <!-- Goal: Show service statements -->
     <div :style="cfGetServiceStatementStyle">
-      <div
-        v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)"
-        :key="`ss-${row.clientSideUniqRowId}`"
-      >
+      <div v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)" :key="`ss-${row.clientSideUniqRowId}`">
         {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
         {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
       </div>
     </div>
     <!-- Goal: Show addendum if there is any -->
     <div
-      v-if="
-        cfArOfAddendumForDisplay('serviceStatements') &&
-        cfArOfAddendumForDisplay('serviceStatements').length > 0
-      "
+      v-if="cfArOfAddendumForDisplay('serviceStatements') && cfArOfAddendumForDisplay('serviceStatements').length > 0"
     >
       <h4>Addendum:</h4>
-      <div
-        v-for="row in cfArOfAddendumForDisplay('serviceStatements')"
-        :key="row.clientSideUniqRowId"
-      >
+      <div v-for="row in cfArOfAddendumForDisplay('serviceStatements')" :key="row.clientSideUniqRowId">
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
-          <span style="font-size: 10px"
-            >Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span
-          >
+          <span style="font-size: 10px">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
         </div>
       </div>
     </div>
@@ -82,7 +66,7 @@
 
 <script>
 // Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '@/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
@@ -149,26 +133,34 @@ export default {
   },
   computed: {
     cfGetServiceStatementStyle() {
-      let comparedApptObj = {}
-      let comparedSS = {}
+      let secondaryDuringComparisonApptObj = {}
+      let secondaryDuringComparisonSS = {}
 
-      const apptNoteCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+        // This means that the current note is to the right in the comparison UI
         // Handle the case when the current ID matches with the second param Need to compare with first
-        comparedApptObj = clientSideTblOfAppointments.find(
-          apptNoteCardObj['firstParameterGivenToComponentBeforeMounting']
+        secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+          printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
-        if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+        secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
+        if (secondaryDuringComparisonSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
           return 'border:1px solid #E6A23C'
         } else if (
-          comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+          secondaryDuringComparisonSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
         ) {
           return 'border:1px solid #67C23A'
         } else {
-          return ''
+          /* The length of MSE on left and right is same. This 90% probability means that they are same. ONLY on right the MSE should be in light grey color.
+           There are 2 possibilities this.propApptId appears on left or right.
+           this.propApptId is equqal to printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] 
+           Hence it will appear on right if:
+           this.propApptId is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+          */
+          if (this.propApptId > printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting'])
+            return 'color:grey;'
         }
       } else {
         //
@@ -176,21 +168,26 @@ export default {
         //
 
         // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
-        if (apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']) {
+        if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']) {
           // Need to compare with second
-          comparedApptObj = clientSideTblOfAppointments.find(
-            apptNoteCardObj['secondParameterGivenToComponentBeforeMounting']
+          secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+            printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          comparedSS = this.mfGetArrayOfServiceStatements(comparedApptObj)
-          if (comparedSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
+          secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
+          if (secondaryDuringComparisonSS.length > this.mfGetArrayOfServiceStatements(this.currentApptObj).length) {
             return 'border:1px solid #E6A23C'
           } else if (
-            comparedSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
+            secondaryDuringComparisonSS.length < this.mfGetArrayOfServiceStatements(this.currentApptObj).length
           ) {
             return 'border:1px solid #67C23A'
           } else {
-            return
+            /* The length of psych ros on left and right is same. This 90% probability means that they are same. On right the psych ros should be in light grey color.
+             There are 2 possibilities this.propApptId appears on left or right.
+             this.propApptId will appear on right if it is greateer then printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
+             */
+            if (this.propApptId > printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'])
+              return 'color:grey;'
           }
         }
       }
@@ -245,6 +242,6 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 </style>

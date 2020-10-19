@@ -33,6 +33,8 @@
     <initializeRemComponent />
     <initializeRecComponent />
     <initializeServiceStatementComponent />
+    <initializePastPsychHistoryComponent />
+    <initializeMedicalReviewOfSystemsComponent />
 
     <!-- 1time-Mrow-mField/others -->
     <initializePhoneNumberComponent />
@@ -56,7 +58,7 @@ import initializeMapComponent from '@/components/non-temporal/map/db/client-side
 
 // 1time-1row-mField/PII
 import initializeDobComponent from '@/components/1time-1row-mField/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeNameComponent from '@/components/1time-1row-mField/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeNameComponent from '@/components/1time-1row-mField/name/db/client-side/initialize-on-first-load.vue'
 
 // 1time-1row-mField/body-measurement
 import initializeBloodPressureComponent from '@/components/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -78,7 +80,11 @@ import initializeProsComponent from '@/components/1time-1row-mField/psych-review
 import initializeRemComponent from '@/components/1time-Mrow-1Field/reminder/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/initialize-on-first-load.vue'
 
-import initializeServiceStatementComponent from '@/components/1time-Mrow-1Field/service-statement/db/client-side/initialize-on-first-load.vue'
+import initializeServiceStatementComponent from '@/components/1time-1row-mField/service-statement/db/client-side/initialize-on-first-load.vue'
+
+import initializePastPsychHistoryComponent from '@/components/1time-1row-mField/past-psych-history/db/client-side/initialize-on-first-load.vue'
+
+import initializeMedicalReviewOfSystemsComponent from '@/components/1time-1row-mField/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -121,6 +127,8 @@ export default {
     initializeRemComponent,
     initializeRecComponent,
     initializeServiceStatementComponent,
+    initializePastPsychHistoryComponent,
+    initializeMedicalReviewOfSystemsComponent,
 
     // 1time-Mrow-mField
     initializePhoneNumberComponent,

@@ -18,15 +18,15 @@ export default class pastPsychHistoryForPatientClass extends clientSideTableMana
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
 
-      /* This field is used to store the value of tblPastPsychHistoryMaster/pastPsychHistoryMasterId
+      /* This field is used to store the value of tblPastPsychHistoryMaster/fieldIdFromMaster
          E.g: The  tblPastPsychHistoryMaster has:
-         pastPsychHistoryMasterId  |         pastPsychHistoryDescription    
+         fieldIdFromMaster  |         pastPsychHistoryDescription    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table pastPsychHistoryMasterId = 2 */
-      pastPsychHistoryMasterId: this.uid(() => uuidv1()), // This is past psych history ID coming from master table ./master-table-of-past-psych-history.js
-      patientUuid: this.string(null),
+          When doctor assigns 2 to this patient then in this table fieldIdFromMaster = 2 */
+      fieldIdFromMaster: this.number(null), // This is past psych history ID coming from master table ./master-table-of-past-psych-history.js
+      fieldValue: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -52,8 +52,8 @@ export default class pastPsychHistoryForPatientClass extends clientSideTableMana
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
       tblPastPsychHistoryMasterLink: this.belongsTo(
         pastPsychHistoryMasterClass,
-        'pastPsychHistoryMasterId',
-        'pastPsychHistoryMasterId'
+        'fieldIdFromMaster',
+        'fieldIdFromMaster'
       ),
     }
   }

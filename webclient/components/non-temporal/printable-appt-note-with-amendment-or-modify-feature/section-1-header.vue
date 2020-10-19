@@ -22,9 +22,8 @@
     </el-col>
     <el-col :span="16"
       ><div class="grid-content">
-        <h2 style="text-align: center">Vikas K</h2>
-      </div></el-col
-    >
+        <h2 style="text-align: center"><namePrintSection></namePrintSection></h2></div
+    ></el-col>
     <el-col :span="4"
       ><div class="grid-content">
         <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
@@ -51,6 +50,7 @@
 <script>
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import namePrintSection from './section-2-name.vue'
 
 export default {
   props: {
@@ -58,6 +58,9 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  components: {
+    namePrintSection,
   },
   computed: {
     isThisNoteBeingCompared() {
@@ -141,6 +144,7 @@ export default {
         comparisonId = this.mfGetNextApptId(this.propApptId)
       }
 
+      // This state is picked up by decide-notes-to-print-and-their-appt-id in the same folder. That is the parent of this Ct.
       const updateState = clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,
@@ -158,9 +162,7 @@ export default {
       let prevId = 0
       prevId = this.mfGetPrevApptId(this.propApptId)
 
-      if (
-        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
-      ) {
+      if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId) {
         const updateState = clientSideTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: prevId,
@@ -181,9 +183,7 @@ export default {
       let nextId = 0
       nextId = this.mfGetNextApptId(this.propApptId)
 
-      if (
-        apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId
-      ) {
+      if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId) {
         const updateState = clientSideTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: nextId,

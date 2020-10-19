@@ -53,8 +53,8 @@ database.register(tableStructureForPhq9Master)
 database.register(tableStructureForPhq9OfPatient)
 
 // Service statement tables
-import tableStructureForSSMaster from '~/components/1time-Mrow-1Field/service-statement/db/client-side/structure/master-table-of-service-statements.js'
-import tableStructureForSSOfPatient from '~/components/1time-Mrow-1Field/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import tableStructureForSSMaster from '~/components/1time-1row-mField/service-statement/db/client-side/structure/master-table-of-service-statements.js'
+import tableStructureForSSOfPatient from '~/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
@@ -63,6 +63,11 @@ import tableStructureForPsychHistoryMaster from '~/components/1time-1row-mField/
 import tableStructureForPsychHistoryOfPatient from '~/components/1time-1row-mField/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
 database.register(tableStructureForPsychHistoryMaster)
 database.register(tableStructureForPsychHistoryOfPatient)
+
+import tableStructureForMedicalReviewOfSystemsMaster from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
+import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+database.register(tableStructureForMedicalReviewOfSystemsMaster)
+database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
 // Mental status exam tables
 import tableStructureForMSEMaster from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'

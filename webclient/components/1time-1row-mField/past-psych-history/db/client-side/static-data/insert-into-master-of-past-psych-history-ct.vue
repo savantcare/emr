@@ -15,135 +15,54 @@ export default {
     let i = 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '60',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'Past outpatient treatment',
+        pastPsychHistoryCategory: 'Past outpatient treatment',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '55',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'Past meds trials',
+        pastPsychHistoryCategory: 'Past meds trials',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '50',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'Hospitalization',
+        pastPsychHistoryCategory: 'Hospitalization',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '45',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'History of violence',
+        pastPsychHistoryCategory: 'History of violence',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '40',
-        pastPsychHistoryCategory: 'Total minutes in psychotherapy',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'History of self harm',
+        pastPsychHistoryCategory: 'History of self harm',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterPastPsychHistory.insert({
       data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Client Centered',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Dialectical Behavior therapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Holistic Therapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Existential humanistic',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: 'Bibilotherapy',
-        pastPsychHistoryCategory: 'Modality of Psychotherapy',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '60',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '55',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '50',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '45',
-        pastPsychHistoryCategory: 'Total minutes with patient',
-      },
-    })
-
-    i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
-      data: {
-        pastPsychHistoryMasterId: i,
-        pastPsychHistoryDescription: '40',
-        pastPsychHistoryCategory: 'Total minutes with patient',
+        fieldIdFromMaster: i,
+        pastPsychHistoryDescription: 'Past substance abuse',
+        pastPsychHistoryCategory: 'Past substance abuse',
       },
     })
   },

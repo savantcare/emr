@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
@@ -35,6 +35,7 @@ Code synced with ref implementation on 4th august 2020
               placeholder="Pick a day"
               :picker-options="pickerOptions"
               format="yyyy/MM/dd"
+              value-format="timestamp"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'timeOfMeasurementInMilliseconds')"
             >
             </el-date-picker>
@@ -60,6 +61,30 @@ Code synced with ref implementation on 4th august 2020
         <ctWaistCircumferenceGraph form-type="sub-part-of-another-form"></ctWaistCircumferenceGraph>
       </el-col>
     </el-row>
+
+    <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
+    <el-timeline style="padding-inline-start: 20px">
+      <el-timeline-item
+        v-for="row in cfTimeLineDataAr"
+        :key="row.ROW_START"
+        :timestamp="row.createdAt"
+        :type="row.type"
+      >
+        {{ row.waistCircumferenceInInches }}
+        <!-- The following come on right of the description that comes in the timeline.
+        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
+        and it is not "Sending to server"
+        -->
+        <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
+          >sending to server</span
+        >
+        <span
+          v-if="row.vnRowStateInSession == 34571"
+          class="api-response-message el-button--success"
+          >saved this session</span
+        >
+      </el-timeline-item>
+    </el-timeline>
   </div>
 </template>
 
@@ -105,3 +130,11 @@ export default {
   },
 }
 </script>
+
+<style>
+span.api-response-message {
+  padding: 2px 8px 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+</style>

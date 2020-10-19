@@ -16,15 +16,13 @@
     </div>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
-    <serviceStatementPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></serviceStatementPrintSection>
-    <mentalStatusExamPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></mentalStatusExamPrintSection>
-    <psychReviewOfSystemsPrintSection
-      :propApptId="propShowNoteForApptId"
-    ></psychReviewOfSystemsPrintSection>
+    <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+    <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
+
+    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
+
+    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
+    <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
 
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
@@ -57,6 +55,8 @@ import lockButtonPrintSection from './section-13-allow-note-lock.vue'
 import remindersPrintSection from './section-9-reminders.vue'
 import recommendationsPrintSection from './section-10-recommendations.vue'
 import medicationsPrintSection from './section-11-medications.vue'
+import pastPsychHistoryPrintSection from './section-6-past-psych-history.vue'
+import medicalReviewOfSystemsPrintSection from './section-7-medical-review-of-systems.vue'
 
 // Library
 import moment from 'moment'
@@ -83,35 +83,29 @@ export default {
     serviceStatementPrintSection,
     agePrintSection,
     headerPrintSection,
+    psychReviewOfSystemsPrintSection,
+    pastPsychHistoryPrintSection,
     mentalStatusExamPrintSection,
     chiefComplaintPrintSection,
     vitalsPrintSection,
-    psychReviewOfSystemsPrintSection,
     lockButtonPrintSection,
     remindersPrintSection,
     recommendationsPrintSection,
     medicationsPrintSection,
+    medicalReviewOfSystemsPrintSection,
   },
 
   async created() {
-    // catch event
-    let eventName = [
-      'event-from-ct-note-given-appt-id-print-all-sections-together.vue-data-to-show-diff',
-    ]
-    this.$root.$on(eventName, (pUserSelectedApptReminderArray, pClientSideUniqRowId) => {
-      if (pClientSideUniqRowId === this.patientCurrentApptObj['clientSideUniqRowId']) return
-      this.lastComparisonReminderArrayReceived = pUserSelectedApptReminderArray
-    })
+    /* This is called everytimes the propID changes in the parent component. 
+    The parent compone is decide-notes-to-print-and-thier-appt-id*/
 
-    // Goal1 -> Find the appt ID chosen by the user
-
+    // Goal1 -> If no ID has been sent then return
     if (!this.propShowNoteForApptId) return
 
-    /* Goal: Show green around data that has been added. Red around data that has been deleted */
-    // Finding the prev and next appt ID
-
-    // get appt details from appt table
+    // Get appt details from appt table
     this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
+
+    console.log('Created again')
   },
   computed: {
     cfApptLockDateInHumanReadableFormat() {
@@ -186,7 +180,7 @@ h3 {
 }
 .sectionHeading {
   font-size: 1rem;
-  font-weight: bold;
+  color: #606266;
 }
 
 .recommendationsh3:hover .el-icon-edit-outline {

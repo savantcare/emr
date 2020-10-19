@@ -174,7 +174,7 @@ export default {
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
               arOrmRowToChange.clientSideUniqRowId
             )
           } else {
@@ -187,7 +187,7 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRow(
+      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
         pOrmRowToChange.clientSideUniqRowId
       )
     },

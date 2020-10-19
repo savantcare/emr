@@ -17,6 +17,8 @@
     "@vuex-orm/core": "^0.36.3",
     "@vuex-orm/plugin-axios": "^0.9.3",
     "@vuex-orm/plugin-search": "^0.24.1",
+    "colors": "^1.4.0",
+    "diff": "^4.0.2",
     "element-ui": "^2.13.2",
     "hard-source-webpack-plugin": "^0.13.1",
     "highcharts": "^8.2.0",
