@@ -67,8 +67,6 @@ export default {
 
     if (arOfObjectsFromClientSideDB.length === 0) return
 
-    console.log(arOfObjectsFromClientSideDB)
-
     for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
       const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
         'pastPsychHistoryDescription'
@@ -80,8 +78,6 @@ export default {
 
       this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
     }
-
-    console.log(this.liveTypeObjOfFields)
   },
 
   watch: {
@@ -111,7 +107,7 @@ export default {
     },
     'liveTypeObjOfFields.History_of_self_harm': {
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('History_of_self', newValue, 5)
+        this.debounceThenSaveToOrm('History_of_self_harm', newValue, 5)
         this.doDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
@@ -151,7 +147,29 @@ export default {
   },
   methods: {
     mfSave(pFieldName) {
-      console.log(pFieldName)
+      let fieldIdFromMaster = 0
+      if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
+      if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
+      if (pFieldName === 'Hospitalization') fieldIdFromMaster = 3
+      if (pFieldName === 'History_of_violence') fieldIdFromMaster = 4
+      if (pFieldName === 'History_of_self_harm') fieldIdFromMaster = 5
+      if (pFieldName === 'Past_substance_abuse') fieldIdFromMaster = 6
+
+      const currentDataAr = clientSideTblOfPatientPastPsychHistory
+        .query()
+        .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
+        .where('vnRowStateInSession', (value) => /^3.*$/.test(value)) // I only write to copied row and not to original data
+        // This will match all numbers that start with 3. The number 3 means it is copied row.
+        .get()
+
+      status = clientSideTblOfPatientPastPsychHistory.update({
+        data: [
+          {
+            clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
+            vnRowStateInSession: 1,
+          },
+        ],
+      })
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
@@ -173,8 +191,6 @@ export default {
             .where('vnRowStateInSession', (value) => /^3.*$/.test(value)) // I only write to copied row and not to original data
             // This will match all numbers that start with 3. The number 3 means it is copied row.
             .get()
-
-          console.log(currentDataAr)
 
           let status = null
           // clientSideRowUniqId will not have a value if this is being inserted first time
@@ -214,7 +230,6 @@ export default {
           this.fieldDiffWithSecondayObj[pFieldName] = this.fieldDiffWithSecondayObj[pFieldName] + '</span>'
         })
       }
-      console.log(this.fieldDiffWithSecondayObj)
     },
     groupBy(data, key) {
       // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
