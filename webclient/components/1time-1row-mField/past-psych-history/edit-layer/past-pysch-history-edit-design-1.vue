@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input placeholder="Filter text" v-model="userTypedSearchFilterKeyword" />
+    <el-input placeholder="Filter text" v-model="liveTypedSearchFilterKeyword" />
     <el-row :gutter="20">
       <el-col :span="8" v-for="ss in cfGetMasterRowsOfPastPsychHistoryGrouped" :key="ss.id">
         <el-card style="width: 400px">
@@ -43,10 +43,10 @@ export default {
   data() {
     return {
       vOrmSaveScheduledForDebounce: [],
-      userTypedSearchFilterKeyword: '',
+      liveTypedSearchFilterKeyword: '',
       liveTypedValueOfFields: {},
       dFieldDiffWithStakeObj: {},
-      secondaryObjOfFieldsForComparison: [],
+      stakeObjOfFieldsForComparison: [],
     }
   },
   mounted() {
@@ -113,7 +113,18 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistoryGrouped() {
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory.query().get()
+      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
+        .query()
+        .where((_record, query) => {
+          query
+            .where('pastPsychHistoryCategory', (value) =>
+              value.toLowerCase().includes(this.liveTypedSearchFilterKeyword.toLowerCase())
+            )
+            .orWhere('pastPsychHistoryDescription', (value) =>
+              value.toLowerCase().includes(this.liveTypedSearchFilterKeyword.toLowerCase())
+            )
+        })
+        .get()
 
       for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
         arOfObjectsFromClientSideMasterDB[i]['formFieldName'] = arOfObjectsFromClientSideMasterDB[i][
@@ -143,7 +154,7 @@ export default {
 
         const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
-        this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
+        this.$set(this.stakeObjOfFieldsForComparison, fieldName, fieldValue)
       }
     },
 
@@ -244,8 +255,8 @@ export default {
       )
     },
     mfDoDiff(pFieldName, newValue) {
-      if (this.secondaryObjOfFieldsForComparison[pFieldName]) {
-        const diff = Diff.diffWords(this.secondaryObjOfFieldsForComparison[pFieldName], newValue)
+      if (this.stakeObjOfFieldsForComparison[pFieldName]) {
+        const diff = Diff.diffWords(this.stakeObjOfFieldsForComparison[pFieldName], newValue)
         this.dFieldDiffWithStakeObj[pFieldName] = ''
         diff.forEach((part) => {
           // green for additions, red for deletions
