@@ -30,7 +30,7 @@
               ></el-button>
 
               <el-card style="width: 400px">
-                <div class="show-diff" v-html="fieldDiffWithSecondayObj[ss.formFieldName]"></div>
+                <div class="show-diff" v-html="dFieldDiffWithStakeObj[ss.formFieldName]"></div>
               </el-card>
             </el-card>
           </div>
@@ -53,7 +53,7 @@ export default {
       vOrmSaveScheduledForDebounce: [],
       userTypedSearchFilterKeyword: '',
       liveTypedValueOfFields: {},
-      fieldDiffWithSecondayObj: {},
+      dFieldDiffWithStakeObj: {},
       secondaryObjOfFieldsForComparison: [],
     }
   },
@@ -78,7 +78,7 @@ export default {
       this.$set(this.liveTypedValueOfFields, fieldName, fieldValue)
     }
 
-    this.mfGetSecondaryObject()
+    this.mfGetStakeObjectForComparison()
   },
 
   watch: {
@@ -147,7 +147,7 @@ export default {
     },
   },
   methods: {
-    mfGetSecondaryObject() {
+    mfGetStakeObjectForComparison() {
       // Comparison happens with data that is already in MariaDB
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
         .query()
@@ -217,7 +217,7 @@ export default {
         data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }],
       })
 
-      this.mfGetSecondaryObject()
+      this.mfGetStakeObjectForComparison()
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
     debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
@@ -267,15 +267,15 @@ export default {
     mfDoDiff(pFieldName, newValue) {
       if (this.secondaryObjOfFieldsForComparison[pFieldName]) {
         const diff = Diff.diffWords(this.secondaryObjOfFieldsForComparison[pFieldName], newValue)
-        this.fieldDiffWithSecondayObj[pFieldName] = ''
+        this.dFieldDiffWithStakeObj[pFieldName] = ''
         diff.forEach((part) => {
           // green for additions, red for deletions
           // grey for common parts
           const color = part.added ? 'green' : part.removed ? 'red' : 'grey'
-          this.fieldDiffWithSecondayObj[pFieldName] =
-            this.fieldDiffWithSecondayObj[pFieldName] + '<span style="color:' + color + '">'
-          this.fieldDiffWithSecondayObj[pFieldName] = this.fieldDiffWithSecondayObj[pFieldName] + part.value
-          this.fieldDiffWithSecondayObj[pFieldName] = this.fieldDiffWithSecondayObj[pFieldName] + '</span>'
+          this.dFieldDiffWithStakeObj[pFieldName] =
+            this.dFieldDiffWithStakeObj[pFieldName] + '<span style="color:' + color + '">'
+          this.dFieldDiffWithStakeObj[pFieldName] = this.dFieldDiffWithStakeObj[pFieldName] + part.value
+          this.dFieldDiffWithStakeObj[pFieldName] = this.dFieldDiffWithStakeObj[pFieldName] + '</span>'
         })
       }
     },
