@@ -185,7 +185,7 @@ export default {
         ],
       })
 
-      // when update query is run on mariaDB this also creates a new row
+      // when update query is run on mariaDB, the temporal system of MariDB also creates a new row
       status = clientSideTblOfPatientPastPsychHistory.insert({
         data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }], // Setting this as 3 means there will be no submit button. A state of copy and copy+change are different.
       })
