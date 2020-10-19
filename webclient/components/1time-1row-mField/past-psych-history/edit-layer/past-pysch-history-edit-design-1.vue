@@ -75,6 +75,23 @@ export default {
       const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
       this.$set(this.liveTypeObjOfFields, fieldName, fieldValue)
+    }
+
+    // Comparison happens with data that is already in MariaDB
+    arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
+      .query()
+      .with('tblPastPsychHistoryMasterLink')
+      .where('vnRowStateInSession', 1) // This gives data already saved to DB
+      .get()
+
+    if (arOfObjectsFromClientSideDB.length === 0) return
+
+    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+      const fieldName = arOfObjectsFromClientSideDB[i].tblPastPsychHistoryMasterLink[
+        'pastPsychHistoryDescription'
+      ].replace(/ /g, '_')
+
+      const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
 
       this.$set(this.secondaryObjOfFieldsForComparison, fieldName, fieldValue)
     }
