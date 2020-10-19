@@ -75,38 +75,44 @@ export default {
 
   watch: {
     'liveTypedValueOfFields.1': {
+      // 'Past_outpatient_treatment'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('Past_outpatient_treatment', newValue, 1)
+        this.debounceThenSaveToOrm(newValue, 1)
         this.mfDoDiff('Past_outpatient_treatment', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.2': {
+      // 'Past_meds_trials'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('Past_meds_trials', newValue, 2)
+        this.debounceThenSaveToOrm(newValue, 2)
         this.mfDoDiff('Past_meds_trials', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.3': {
+      // 'Hospitalization'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('Hospitalization', newValue, 3)
+        this.debounceThenSaveToOrm(newValue, 3)
         this.mfDoDiff('Hospitalization', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.4': {
+      // 'History_of_violence'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('History_of_violence', newValue, 4)
+        this.debounceThenSaveToOrm(newValue, 4)
         this.mfDoDiff('History_of_violence', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.5': {
+      // 'History_of_self_harm'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('History_of_self_harm', newValue, 5)
+        this.debounceThenSaveToOrm(newValue, 5)
         this.mfDoDiff('History_of_self_harm', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
     'liveTypedValueOfFields.6': {
+      // 'Past_substance_abuse'
       handler: function (newValue, oldValue) {
-        this.debounceThenSaveToOrm('Past_substance_abuse', newValue, 6)
+        this.debounceThenSaveToOrm(newValue, 6)
         this.mfDoDiff('Past_substance_abuse', newValue) // keeping this outside debounce to give immediate feedback
       },
     },
@@ -193,11 +199,11 @@ export default {
       this.mfGetStakeObjectForComparison()
     },
     // Logic call 1st time set timer to execute. If call 2nd time very fast then clear the timer. If call slow then let timer execute
-    debounceThenSaveToOrm(pFieldName, newValue, pFieldIdFromMaster) {
-      console.log(pFieldName, newValue, pFieldIdFromMaster)
+    debounceThenSaveToOrm(newValue, pFieldIdFromMaster) {
+      console.log(newValue, pFieldIdFromMaster)
 
-      /* 
-        Task 1: Do debounce 
+      /*
+        Task 1: Do debounce
       */
       if (this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) {
         clearTimeout(this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster]) // this cancels the previously scheduled timeout
@@ -205,7 +211,7 @@ export default {
       }
       this.vOrmSaveScheduledForDebounce[pFieldIdFromMaster] = setTimeout(
         function (scope) {
-          /* 
+          /*
             Task 2: Save to ORM
           */
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
