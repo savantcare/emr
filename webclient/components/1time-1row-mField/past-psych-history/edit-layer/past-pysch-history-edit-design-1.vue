@@ -21,7 +21,7 @@
                 style="width: 400px"
               ></el-input>
               <el-button
-                v-if="dataHasChanged(ss.formFieldName)"
+                v-if="mfHasDataChanged(ss.formFieldName)"
                 type="success"
                 icon="el-icon-check"
                 size="mini"
@@ -168,7 +168,7 @@ export default {
       }
     },
 
-    dataHasChanged(pFieldName) {
+    mfHasDataChanged(pFieldName) {
       let fieldIdFromMaster = 0
       if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
       if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
