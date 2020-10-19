@@ -177,6 +177,7 @@ export default {
           const currentDataAr = clientSideTblOfPatientPastPsychHistory
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
+            .where('vnRowStateInSession', 3) // I only write to copied row and not to original data
             .get()
           let status = null
           // clientSideRowUniqId will not have a value if this is being inserted first time
@@ -187,13 +188,14 @@ export default {
                   clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
                   fieldIdFromMaster: pFieldIdFromMaster, // For this 1 fieldId there might be 100 clientSideUniqRowId. Due to historical data
                   fieldValue: newValue,
+                  vnRowStateInSession: 34,
                 },
               ],
             })
           } else {
             // first time this data has been entered by the user
             status = clientSideTblOfPatientPastPsychHistory.insert({
-              data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue }],
+              data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue, vnRowStateInSession: 3 }],
             })
           }
         },
