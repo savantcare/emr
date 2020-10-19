@@ -1,17 +1,14 @@
 // For docs read webclient/docs/models.md
-// import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
-// import serviceStatementsForPatientClass from './patient-table-of-service-statements.js'
+import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import nameForPatientClass from './patient-table-of-name.js'
 
-const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class serviceStatementsMasterClass extends clientSideTableManage {
-  static entity = 'tblServiceStatementsMaster'
-
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
-
-  static primaryKey = 'serviceStatementMasterId'
+export default class nameMaster extends clientSideTableManage {
+  static entity = 'tblNameMaster'
+  static apiUrl = 'http://localhost:8000/public/api/name/v20'
+  static primaryKey = 'nameMasterId'
 
   static fields() {
     return {
@@ -30,10 +27,7 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
       */
-      tblServiceStatementsForPatientLink: this.hasOne(
-        serviceStatementsForPatientClass,
-        'serviceStatementMasterId'
-      ),
+      tblNameForPatientLink: this.hasOne(nameForPatientClass, 'nameMasterId'),
     }
   }
 }

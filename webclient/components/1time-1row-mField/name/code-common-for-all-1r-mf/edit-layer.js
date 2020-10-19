@@ -1,9 +1,6 @@
-import clientSideTable from '../db/client-side/structure/table.js'
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import clientSideTable from '../db/client-side/structure/patient-table-of-name.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
-
   data() {
     return {
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
@@ -70,10 +67,7 @@ export default {
             pClientSideIdOfCopiedRowBeingChangedNVal = null since any other function that wants a new row being copied sets it to null
             pClientSideIdOfCopiedRowBeingChangedOVal is the old value of pClientSideIdOfCopiedRowBeingChangedNVal. Hence previous row that was being edited  */
 
-      async handler(
-        pClientSideIdOfCopiedRowBeingChangedNVal,
-        pClientSideIdOfCopiedRowBeingChangedOVal
-      ) {
+      async handler(pClientSideIdOfCopiedRowBeingChangedNVal, pClientSideIdOfCopiedRowBeingChangedOVal) {
         // NVal => New value and OVal => Old Value
         if (this.dnClientSideIdOfRowToChange === -1) return // Data has not finished loading in the created()
 
@@ -98,11 +92,6 @@ export default {
   },
   // Goal: Load the data from DB
   async created() {
-    // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
     this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.dnClientSideIdOfCopiedRowBeingChanged = null
@@ -188,20 +177,12 @@ export default {
         console.log('When the Ct is first loaded let us see how many times if getfld called');
       */
       // There will always be an existing row that is already in change state
-      const value = clientSideTable.fnGetFldValue(
-        this.dnClientSideIdOfCopiedRowBeingChanged,
-        pFldName
-      )
+      const value = clientSideTable.fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      clientSideTable.fnSetFldValue(
-        pEvent,
-        this.dnClientSideIdOfCopiedRowBeingChanged,
-        pFldName,
-        rowStatus
-      )
+      clientSideTable.fnSetFldValue(pEvent, this.dnClientSideIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },

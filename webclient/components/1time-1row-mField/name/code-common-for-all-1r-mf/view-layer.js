@@ -19,12 +19,10 @@ const mxFullSyncWithDbServer = require('@/components/1time-1row-mField/' +
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/patient-table-of-name.js'
 import clientSideTblOfRightSideCards from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
   data() {
     return {
       /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
@@ -65,16 +63,11 @@ export default {
       */
     cfPosInArCardsInPtsOfViewLayer() {
       if (!this.isMounted) return false
-      const arFromClientSideTable = clientSideTblOfRightSideCards
-        .query()
-        .where('name', 'reminders')
-        .get()
+      const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurementInMilliseconds).format(
-        'MMM YYYY'
-      ) // parse integer
+      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurementInMilliseconds).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {
@@ -90,10 +83,6 @@ export default {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (clientSideTable.query().count() > 0) {
-    } else {
-      await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
-    }
     /* Goal: Maybe change name was invoked before this and some flds are in change state. I want to find those flds.
       Why doing this in mounted function?
         Finding the diff flds only needs to happen when the Ct is loaded.
@@ -136,10 +125,7 @@ export default {
     mfSendReviewedEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
-      this.$root.$emit(
-        eventName,
-        this.dataFldsOfToChangeAndCopiedRowsAreSame.dnClientSideIdOfCopiedRowBeingChanged
-      )
+      this.$root.$emit(eventName, this.dataFldsOfToChangeAndCopiedRowsAreSame.dnClientSideIdOfCopiedRowBeingChanged)
     },
     mfSendResetFormEvent() {
       const eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')

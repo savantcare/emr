@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import clientSideTable from '@/components/1time-1row-mField/name/db/client-side/structure/table.js'
+import clientSideTable from '@/components/1time-1row-mField/name/db/client-side/structure/patient-table-of-name.js'
 
 export default {
   props: {

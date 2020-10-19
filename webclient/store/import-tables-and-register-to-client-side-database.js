@@ -88,8 +88,10 @@ database.register(tableStructureForRem)
 import tableStructureForRec from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
-import tableStructureForName from '~/components/1time-1row-mField/name/db/client-side/structure/table.js'
-database.register(tableStructureForName)
+import tableStructureForNameMaster from '~/components/1time-1row-mField/name/db/client-side/structure/master-table-of-name.js'
+import tableStructureForNamePatient from '~/components/1time-1row-mField/name/db/client-side/structure/patient-table-of-name.js'
+database.register(tableStructureForNameMaster)
+database.register(tableStructureForNamePatient)
 
 import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
 database.register(tableStructureForDob)

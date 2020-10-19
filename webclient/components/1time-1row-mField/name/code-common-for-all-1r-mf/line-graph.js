@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/patient-table-of-name.js'
 import mxViewLayer from './view-layer.js'
 
 export default {

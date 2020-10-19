@@ -18,18 +18,14 @@
       <div
         slot="bodySlotContentFromParentToShowAboveChildCards"
         class="box-card sc-individual-child-card"
+        style="display: block; overflow: hidden"
       >
         <el-button-group style="float: right; display: none">
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="
-              mfOpenEditCtInEditLayer(
-                cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
-                'name - edit'
-              )
-            "
+            @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'], 'name - edit')"
             class="el-icon-edit"
           />
           <el-button
@@ -53,18 +49,24 @@
             >R</el-button
           >
         </el-button-group>
-        <el-button
-          :type="mfTypeOfButton('firstName')"
-          plain
-          :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
-          >{{ cfLatestDataRowFromClientSideTable['firstName'] }}</el-button
-        >
+        <!-- <el-button :type="mfTypeOfButton('firstName')" plain :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1">{{
+          cfLatestDataRowFromClientSideTable['firstName']
+        }}</el-button>
         <el-button :type="mfTypeOfButton('middleName')" plain>{{
           cfLatestDataRowFromClientSideTable['middleName']
         }}</el-button>
         <el-button :type="mfTypeOfButton('lastName')" plain>{{
           cfLatestDataRowFromClientSideTable['lastName']
-        }}</el-button>
+        }}</el-button> -->
+
+        <el-col v-for="name in cfArOfNameForDisplay" :key="name.id" :span="6">
+          <label style="font-size: 0.7rem; font-weight: 700">
+            {{ name.tblNameMasterLink.nameFieldDescription }}
+          </label>
+          <el-button :type="mfTypeOfButton(name.tblNameMasterLink.nameFieldDescription)" style="width: 100%" plain>
+            {{ name.nameFieldValue }}
+          </el-button>
+        </el-col>
       </div>
     </showContentInCardComponent>
   </div>
@@ -95,6 +97,7 @@ Problem:
 const mxTable = require('../code-common-for-all-1r-mf/view-layer.js')('weight').default -> Does not work
 */
 
+import clientSideTblOfPatientName from '../db/client-side/structure/patient-table-of-name.js'
 /* Option3: Working. But in this option the same file '../code-common-for-all-1r-mf/view-layer.js' has to be kept in each folder like height weight name */
 import mxViewLayer from '../code-common-for-all-1r-mf/view-layer.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
@@ -104,6 +107,22 @@ export default {
   mixins: [mxViewLayer],
   computed: {
     cfArOfNameForDisplay() {
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientName
+        .query()
+        .with('tblNameMasterLink')
+        .where('ROW_END', 2147483648000)
+        .get()
+
+      /* for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
+        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+          ': ' +
+          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementDescription
+      } */
+      console.log('arOfObjectsFromClientSideDB: - ', arOfObjectsFromClientSideDB)
+      return arOfObjectsFromClientSideDB
+
+      /*
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()
       obj['cardContentOfTypeStringToShowInBodyOfCards'] =
@@ -116,6 +135,7 @@ export default {
       obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
+      */
     },
   },
 }
