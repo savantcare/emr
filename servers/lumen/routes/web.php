@@ -225,4 +225,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
+    // NAME
+    $router->get('name/v20/{pPatientUuid}', ['uses' => 'NameController@getPatientName']);
+    $router->put('name/v20/{pServerSideRowUuid}', ['uses' => 'NameController@update']);
+    $router->options('name/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
 });
