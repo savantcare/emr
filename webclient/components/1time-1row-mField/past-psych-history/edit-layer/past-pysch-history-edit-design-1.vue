@@ -2,39 +2,31 @@
   <div>
     <el-input placeholder="Filter text" v-model="userTypedSearchFilterKeyword" />
     <el-row :gutter="20">
-      <el-col
-        :span="8"
-        v-for="(allPastPsychHistoryInsideAGroup, groupNameGivenAsIndex) in cfGetMasterRowsOfPastPsychHistoryGrouped"
-        :key="allPastPsychHistoryInsideAGroup.id"
-      >
-        <div class="sc-past-psych-history-all-content-body">
-          <div v-for="ss in allPastPsychHistoryInsideAGroup" :key="ss.fieldIdFromMaster">
-            <el-card style="width: 400px">
-              <div slot="header" class="clearfix">
-                <span>{{ groupNameGivenAsIndex }}</span>
-              </div>
-              <el-input
-                type="textarea"
-                :autosize="{ minRows: 4, maxRows: 14 }"
-                v-model="liveTypedValueOfFields[ss.formFieldName]"
-                :placeholder="ss.pastPsychHistoryDescription"
-                style="width: 400px"
-              ></el-input>
-              <el-button
-                v-if="mfHasDataChanged(ss.formFieldName)"
-                type="success"
-                icon="el-icon-check"
-                size="mini"
-                @click="mfSave(ss.formFieldName, liveTypedValueOfFields[ss.formFieldName])"
-                circle
-              ></el-button>
-
-              <el-card style="width: 400px">
-                <div class="show-diff" v-html="dFieldDiffWithStakeObj[ss.formFieldName]"></div>
-              </el-card>
-            </el-card>
+      <el-col :span="8" v-for="ss in cfGetMasterRowsOfPastPsychHistoryGrouped" :key="ss.id">
+        <el-card style="width: 400px">
+          <div slot="header" class="clearfix">
+            <span>{{ ss.pastPsychHistoryDescription }}</span>
           </div>
-        </div>
+          <el-input
+            type="textarea"
+            :autosize="{ minRows: 4, maxRows: 14 }"
+            v-model="liveTypedValueOfFields[ss.formFieldName]"
+            :placeholder="ss.pastPsychHistoryDescription"
+            style="width: 400px"
+          ></el-input>
+          <el-button
+            v-if="mfHasDataChanged(ss.formFieldName)"
+            type="success"
+            icon="el-icon-check"
+            size="mini"
+            @click="mfSave(ss.formFieldName, liveTypedValueOfFields[ss.formFieldName])"
+            circle
+          ></el-button>
+
+          <el-card style="width: 400px">
+            <div class="show-diff" v-html="dFieldDiffWithStakeObj[ss.formFieldName]"></div>
+          </el-card>
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -121,20 +113,7 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistoryGrouped() {
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
-        .query()
-        .with('tblPastPsychHistoryForPatientLink')
-        .where('ROW_END', 2147483648000)
-        .where((_record, query) => {
-          query
-            .where('pastPsychHistoryCategory', (value) =>
-              value.toLowerCase().includes(this.userTypedSearchFilterKeyword.toLowerCase())
-            )
-            .orWhere('pastPsychHistoryDescription', (value) =>
-              value.toLowerCase().includes(this.userTypedSearchFilterKeyword.toLowerCase())
-            )
-        })
-        .get()
+      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory.query().get()
 
       for (let i = 0; i < arOfObjectsFromClientSideMasterDB.length; i++) {
         arOfObjectsFromClientSideMasterDB[i]['formFieldName'] = arOfObjectsFromClientSideMasterDB[i][
@@ -142,8 +121,8 @@ export default {
         ].replace(/ /g, '_')
       }
 
-      const liveTypedValueOfFields = this.groupBy(arOfObjectsFromClientSideMasterDB, 'pastPsychHistoryCategory')
-      return liveTypedValueOfFields
+      console.log(arOfObjectsFromClientSideMasterDB)
+      return arOfObjectsFromClientSideMasterDB
     },
   },
   methods: {
@@ -278,25 +257,6 @@ export default {
           this.dFieldDiffWithStakeObj[pFieldName] = this.dFieldDiffWithStakeObj[pFieldName] + '</span>'
         })
       }
-    },
-    groupBy(data, key) {
-      // Ref: https://gist.github.com/robmathers/1830ce09695f759bf2c4df15c29dd22d
-      // `data` is an array of objects, `key` is the key (or property accessor) to group by
-      // reduce runs this anonymous function on each element of `data` (the `item` parameter,
-      // returning the `storage` parameter at the end
-      return data.reduce(function (storage, item) {
-        // get the first instance of the key by which we're grouping
-        var group = item[key]
-
-        // set `storage` for this instance of group to the outer scope (if not empty) or initialize it
-        storage[group] = storage[group] || []
-
-        // add this item to its group within `storage`
-        storage[group].push(item)
-
-        // return the updated storage to the reduce function, which will then loop through the next
-        return storage
-      }, {}) // {} is the initial value of the storage
     },
   },
 }
