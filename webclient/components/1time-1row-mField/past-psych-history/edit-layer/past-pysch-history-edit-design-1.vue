@@ -21,6 +21,7 @@
                 style="width: 400px"
               ></el-input>
               <el-button
+                v-if="dataHasChanged(ss.formFieldName)"
                 type="success"
                 icon="el-icon-check"
                 size="mini"
@@ -163,6 +164,24 @@ export default {
     },
   },
   methods: {
+    dataHasChanged(pFieldName) {
+      let fieldIdFromMaster = 0
+      if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
+      if (pFieldName === 'Past_meds_trials') fieldIdFromMaster = 2
+      if (pFieldName === 'Hospitalization') fieldIdFromMaster = 3
+      if (pFieldName === 'History_of_violence') fieldIdFromMaster = 4
+      if (pFieldName === 'History_of_self_harm') fieldIdFromMaster = 5
+      if (pFieldName === 'Past_substance_abuse') fieldIdFromMaster = 6
+
+      const currentDataAr = clientSideTblOfPatientPastPsychHistory
+        .query()
+        .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
+        .where('vnRowStateInSession', (value) => /^34.*$/.test(value)) // I only write to copied row and not to original data
+        // This will match all numbers that start with 3. The number 3 means it is copied row.
+        .get()
+
+      if (currentDataAr.length > 0) return true
+    },
     mfSave(pFieldName, pCurrentValue) {
       let fieldIdFromMaster = 0
       if (pFieldName === 'Past_outpatient_treatment') fieldIdFromMaster = 1
