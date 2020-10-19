@@ -273,41 +273,6 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfCheckIfThisExistsInChildTable(pSS) {
-      // I am able to get the data from child table.
-      if (pSS.tblPastPsychHistoryForPatientLink) {
-        if (pSS.tblPastPsychHistoryForPatientLink.ROW_END === 2147483648000) {
-          return true
-        }
-      }
-      return false
-    },
-    mfSavePastPsychHistoryInDB(pfieldIdFromMaster) {
-      //      console.log(pfieldIdFromMaster)
-      //     console.log(this.liveTypeObjOfFields)
-      /* Goal1: Check if it already exists
-      const exists = clientSideTblOfPatientPastPsychHistory
-        .query()
-        .where('fieldIdFromMaster', pfieldIdFromMaster)
-        .where('ROW_END', 2147483648000)
-        .get()
-
-      if (exists.length > 0) {
-        clientSideTblOfPatientPastPsychHistory.update({
-          where: exists[0].clientSideUniqRowId,
-          data: {
-            ROW_END: Math.floor(Date.now()),
-          },
-        })
-      } else {
-        clientSideTblOfPatientPastPsychHistory.insert({
-          data: {
-            fieldIdFromMaster: pfieldIdFromMaster,
-            ROW_START: Math.floor(Date.now()),
-          },
-        })
-      } */
-    },
   },
 }
 </script>
