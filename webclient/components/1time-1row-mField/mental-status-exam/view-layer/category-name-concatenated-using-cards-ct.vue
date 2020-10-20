@@ -24,13 +24,7 @@
       :style="mfGetCssClassNameForEachDataRow(mentalStatusExam)"
     >
       <el-button-group style="float: right; display: none">
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Click to delete"
-          placement="top-end"
-          :open-delay="500"
-        >
+        <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
@@ -39,19 +33,8 @@
           >
           </el-button>
         </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="info"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            class="el-icon-discover"
-          >
-          </el-button>
+        <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+          <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover"> </el-button>
         </el-tooltip>
       </el-button-group>
 
@@ -62,9 +45,7 @@
             Doctor is sitting infront of computer suddenly a new mentalStatusExam appears. That is a confusing event.
             Instead if the new mentalStatusExam that came on screen gets a orange border with top right corner saying "New mentalStatusExam added from socket" that is much better UX.
           -->
-      <div v-if="mentalStatusExam.vnRowStateInSession === 9">
-        Added from socket {{ mentalStatusExam.description }}
-      </div>
+      <div v-if="mentalStatusExam.vnRowStateInSession === 9">Added from socket {{ mentalStatusExam.description }}</div>
       <div v-else>
         {{ mentalStatusExam.cardContentOfTypeStringToShowInBodyOfCards }}
       </div>
@@ -88,10 +69,17 @@ export default {
         .get()
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamCategory +
-          ': ' +
-          arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamDescription
+        if (arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamFieldType === 'bool') {
+          arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+            arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamCategory +
+            ': ' +
+            arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamDescription
+        } else {
+          arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+            arOfObjectsFromClientSideDB[i].tblMentalStatusExamMasterLink.mentalStatusExamCategory +
+            ': ' +
+            arOfObjectsFromClientSideDB[i].description
+        }
       }
 
       return arOfObjectsFromClientSideDB
@@ -111,16 +99,13 @@ export default {
         .where('clientSideUniqRowId', pClientSideUniqRowId)
         .get()
 
-      const response = await fetch(
-        clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            // "Authorization": "Bearer " + TOKEN
-          },
-        }
-      )
+      const response = await fetch(clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          // "Authorization": "Bearer " + TOKEN
+        },
+      })
 
       if (!response.ok) {
         // this block execute when response return fail status
