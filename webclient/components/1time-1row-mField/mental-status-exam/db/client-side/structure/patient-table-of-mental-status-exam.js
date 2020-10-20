@@ -28,6 +28,7 @@ export default class mentalStatusExamForPatientClass extends clientSideTableMana
       serverSideRowUuid: this.uid(() => uuidv1()),
       mentalStatusExamMasterId: this.uid(() => uuidv1()), // This is mental status exam ID assigned to this patient coming from master table
       patientUuid: this.string(null),
+      description: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
