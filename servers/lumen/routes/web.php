@@ -112,6 +112,24 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // recommendations
+    $router->get('recommendations/v20/', ['uses' => 'RecommendationController@getAllTemporalRecommendations']);
+    $router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@getOneRecommendation']);
+    $router->post('recommendations/v20/', ['uses' => 'RecommendationController@create']);
+    $router->delete('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
+    $router->put('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@update']);
+    $router->patch('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
+    $router->options('recommendations/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('recommendations/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
     // Oxygen Saturation
     $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@getAllTemporalOxygenSaturations']);
     $router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
