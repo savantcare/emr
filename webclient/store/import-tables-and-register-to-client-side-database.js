@@ -91,7 +91,7 @@ database.register(tableStructureForRec)
 import tableStructureForName from '~/components/1time-1row-mField/name/db/client-side/structure/table.js'
 database.register(tableStructureForName)
 
-import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
+import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/patient-table-of-date-of-birth.js'
 database.register(tableStructureForDob)
 
 import tableStructureForDx from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'

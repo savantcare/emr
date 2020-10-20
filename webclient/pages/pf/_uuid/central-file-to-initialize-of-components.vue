@@ -57,7 +57,7 @@ import initializeFeedComponent from '@/components/non-temporal/feed/db/client-si
 import initializeMapComponent from '@/components/non-temporal/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-1row-mField/PII
-import initializeDobComponent from '@/components/1time-1row-mField/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDobComponent from '@/components/1time-1row-mField/date-of-birth/db/client-side/initialize-on-first-load.vue'
 import initializeNameComponent from '@/components/1time-1row-mField/name/db/client-side/initialize-on-first-load.vue'
 
 // 1time-1row-mField/body-measurement

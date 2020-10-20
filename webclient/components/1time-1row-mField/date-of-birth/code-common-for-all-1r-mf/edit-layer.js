@@ -1,8 +1,6 @@
-import clientSideTable from '../db/client-side/structure/table.js'
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import clientSideTable from '../db/client-side/structure/patient-table-of-date-of-birth.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
 
   data() {
     return {
@@ -128,17 +126,14 @@ export default {
     async mfOnReviewed() {
       // Since only one valid row is possible there may be other deleted rows
       const rowToUpsert = clientSideTable.find(this.dnClientSideIdOfCopiedRowBeingChanged)
-      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.uuid, {
+      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           // "Authorization": "Bearer " + TOKEN
         },
         body: JSON.stringify({
-          uuid: rowToUpsert.uuid,
-          firstName: rowToUpsert.firstName,
-          middleName: rowToUpsert.middleName,
-          lastName: rowToUpsert.lastName,
+          rowToUpsert,
         }),
       })
       if (response.status === 200) {
@@ -146,7 +141,7 @@ export default {
         await clientSideTable.update({
           where: (record) => {
             return (
-              record.uuid === rowToUpsert.uuid &&
+              record.serverSideRowUuid === rowToUpsert.serverSideRowUuid &&
               (record.vnRowStateInSession === 1 /* Came from DB */ ||
                 record.vnRowStateInSession ===
                   34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||

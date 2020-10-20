@@ -5,12 +5,9 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class ptDateOfBirth extends clientSideTableManage {
-  static entity = 'tblDateOfBirth'
-  static apiUrl = 'http://localhost:3000/date-of-birth'
-
-  static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
-  static graphSeries1Unit = 'Lbs'
+export default class dateOfBirthForPatient extends clientSideTableManage {
+  static entity = 'tblDateOfBirthForPatient'
+  static apiUrl = 'http://localhost:8000/public/api/date-of-birth/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

@@ -1,4 +1,4 @@
-<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct 
+<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct
 This acts as reference implementation for other Cts that use a graph.
 So the heierarchy is:
 
@@ -19,16 +19,20 @@ Code synced with ref implementation on 4th august 2020
       <el-col :span="12">
         <el-form>
           <el-form-item>
-            <el-input
+            <el-date-picker
               placeholder="Date of birth"
+              type="date"
+              :picker-options="pickerOptions"
+              format="yyyy/MM/dd"
+              value-format="timestamp"
               :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
               @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
             >
-            </el-input>
+            </el-date-picker>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
              Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
              value-format="timestamp"
-        -->
+            -->
             <el-input
               placeholder="Notes"
               type="textarea"

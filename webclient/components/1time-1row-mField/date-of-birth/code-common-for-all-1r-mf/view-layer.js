@@ -1,4 +1,4 @@
-/* 
+/*
 Goal:
 When this mixin is used by height and weight component the import statement has to be:
 1. import mxFullSyncWithDbServer from '../name/db/full-sync-with-db-server-mixin'
@@ -10,24 +10,22 @@ import mxFullSyncWithDbServer from '../' + ctName + 'weight/db/full-sync-with-db
 Known:
 1. import statment does not work with variables but require statement works with variables.
 2. The following statement works:
-const mxFullSyncWithDbServer = require('@/components/1time-1row-mField/' + 
-            this.ctName + 
-            '/db/full-sync-with-db-server-mixin').default, 
-            // does not give compilation error but at run time the value this.ctName is not available. 
+const mxFullSyncWithDbServer = require('@/components/1time-1row-mField/' +
+            this.ctName +
+            '/db/full-sync-with-db-server-mixin').default,
+            // does not give compilation error but at run time the value this.ctName is not available.
 3. parameters can be sent when doing a require.
 */
 
 import moment from 'moment'
 
-import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientSideTable from '../db/client-side/structure/patient-table-of-date-of-birth.js'
 import clientSideTblOfRightSideCards from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
-  mixins: [mxFullSyncWithDbServer],
   data() {
     return {
-      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.  
+      /* This helps stopping race conditions. We do not want to run certain functions till the time data has finished loading.
           JS is single threaded. But still a function B called After function A can execute before function A ends.
           Ref: https://www.youtube.com/watch?v=8aGhZQkoFbQ
       */
@@ -99,7 +97,7 @@ export default {
         Finding the diff flds only needs to happen when the Ct is loaded.
         Once loaded it will listen to change events and it will be informed by the change Ct
         that something has changed.
-    
+
     */
     const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
     if (arFromClientSideTable.length) {
