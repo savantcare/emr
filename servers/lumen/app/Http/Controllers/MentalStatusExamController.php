@@ -30,8 +30,21 @@ class MentalStatusExamController extends Controller
             'recordChangedByUuid' => $requestData['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $requestData['recordChangedFromIPAddress'],
         );
-       
-        $mentalStatusExam = MentalStatusExam::insertGetId($arMentalStatusExamData);
+        if(isset($requestData['description'])){
+            $arMentalStatusExamData['description']=$requestData['description'];
+        }
+
+        $currentMentalStatusExam=MentalStatusExam::select('serverSideRowUuid')
+        ->where('serverSideRowUuid',$requestData['serverSideRowUuid'])
+        ->first();
+
+        if($currentMentalStatusExam){
+            $currentMentalStatusExam->update($arMentalStatusExamData);
+        }
+        else{
+            $mentalStatusExam = MentalStatusExam::insertGetId($arMentalStatusExamData);
+        }
+        
 
         return response()->json($mentalStatusExam, 201);
     }
