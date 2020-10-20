@@ -20,7 +20,7 @@ class Name extends Model
      * @var array
      */
     protected $fillable = [
-        'serverSideRowUuid', 'patientUuid', 'nameMasterId', 'nameFieldValue', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'serverSideRowUuid', 'patientUuid', 'nameFieldMasterId', 'nameFieldValue', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
