@@ -15,7 +15,7 @@ export default {
     let i = 1
     clientSideTblOfMasterName.insert({
       data: {
-        nameMasterId: i,
+        nameFieldMasterId: i,
         nameFieldDescription: 'First name',
       },
     })
@@ -23,7 +23,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterName.insert({
       data: {
-        nameMasterId: i,
+        nameFieldMasterId: i,
         nameFieldDescription: 'Middle name',
       },
     })
@@ -31,7 +31,7 @@ export default {
     i = i + 1
     clientSideTblOfMasterName.insert({
       data: {
-        nameMasterId: i,
+        nameFieldMasterId: i,
         nameFieldDescription: 'Last name',
       },
     })

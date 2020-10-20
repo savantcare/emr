@@ -8,13 +8,13 @@ const intUniqueId = () => ++count
 export default class nameMaster extends clientSideTableManage {
   static entity = 'tblNameMaster'
   static apiUrl = 'http://localhost:8000/public/api/name/v20'
-  static primaryKey = 'nameMasterId'
+  static primaryKey = 'nameFieldMasterId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      nameMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      nameFieldMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       nameFieldDescription: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
@@ -27,7 +27,7 @@ export default class nameMaster extends clientSideTableManage {
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
       */
-      tblNameForPatientLink: this.hasOne(nameForPatientClass, 'nameMasterId'),
+      tblLinkToPatientFieldValues: this.hasOne(nameForPatientClass, 'nameFieldMasterId'),
     }
   }
 }

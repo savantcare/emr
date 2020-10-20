@@ -25,7 +25,7 @@ export default class nameForPatient extends clientSideTableManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-      nameMasterId: this.uid(() => uuidv1()), // This is name ID coming from master table ./master-table-of-name.js
+      nameFieldMasterId: this.uid(() => uuidv1()), // This is name ID coming from master table ./master-table-of-name.js
       nameFieldValue: this.string(null),
 
       /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software. 
@@ -40,7 +40,7 @@ export default class nameForPatient extends clientSideTableManage {
       ROW_END: this.number(2147483648000),
 
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
-      tblNameMasterLink: this.belongsTo(nameForMasterClass, 'nameMasterId', 'nameMasterId'),
+      tblLinkToMasterNameField: this.belongsTo(nameForMasterClass, 'nameFieldMasterId', 'nameFieldMasterId'),
     }
   }
 }
