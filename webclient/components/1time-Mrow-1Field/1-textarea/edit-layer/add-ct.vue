@@ -13,7 +13,7 @@
               type="textarea"
               :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
               :autosize="{ minRows: 2, maxRows: 10 }"
-              placeholder="Please enter the reminder .."
+              :placeholder="'Please enter the ' + propComponentName"
               :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
               @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
             ></el-input>
@@ -48,7 +48,7 @@
       :data="cfGetClientSideTableApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" label="Reminders sending to server"></el-table-column>
+      <el-table-column prop="description" label="propComponentName +  'sending to server'"></el-table-column>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
