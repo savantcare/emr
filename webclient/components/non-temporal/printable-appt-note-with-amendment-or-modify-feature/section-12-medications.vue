@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAddendums from '~/components/1time-oneField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfPatientRecommendations from '@/components/1time-Mrow-1Field/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import clientSideTblOfPatientRecommendations from '@/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 import moment from 'moment'
 

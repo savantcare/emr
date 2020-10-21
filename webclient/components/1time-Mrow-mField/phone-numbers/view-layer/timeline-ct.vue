@@ -113,7 +113,7 @@ export default {
         for (let i = 0; i < arFromClientSideTable.length; i++) {
           obj = {}
           obj.description = arFromClientSideTable[i].description
-          // For date format ref: /cts/1time-Mrow-1Field/1-textarea/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/1time-oneField-multiValues/1-textarea/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientSideTable[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession

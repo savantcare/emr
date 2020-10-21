@@ -16,7 +16,7 @@ database.register(tableStructureForStoreMessageFromOtherComponent)
 
 // Appointments
 import clientSideTblOfAppointments from '~/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfAddendums from '~/components/1time-Mrow-1Field/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAddendums from '~/components/1time-oneField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
 database.register(clientSideTblOfAppointments)
 database.register(clientSideTblOfAddendums)
 
@@ -82,10 +82,10 @@ database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/1time-Mrow-1Field/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import tableStructureForRem from '~/components/1time-oneField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
-import tableStructureForRec from '~/components/1time-Mrow-1Field/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import tableStructureForRec from '~/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
 import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
