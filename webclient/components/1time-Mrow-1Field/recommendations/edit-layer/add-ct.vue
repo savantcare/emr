@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <oneTextAreaAdd propName="recommendations"></oneTextAreaAdd>
+  <oneTextAreaAdd propComponentName="recommendations"></oneTextAreaAdd>
 </template>
 
 <script>
