@@ -15,10 +15,7 @@
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
       <!-- Passing name of the fld so mfTypeOfButton can decide if the fld is changed or not -->
-      <div
-        slot="bodySlotContentFromParentToShowAboveChildCards"
-        class="box-card sc-individual-child-card"
-      >
+      <div slot="bodySlotContentFromParentToShowAboveChildCards" class="box-card sc-individual-child-card">
         jai kali ma
       </div>
     </showContentInCardComponent>
@@ -28,7 +25,7 @@
 <script>
 /* Option1:
 
-import mxTable from '@/components/1time-1row-mField/com-mx/mixins/view-layer.js'
+import mxTable from '@/components/1time-eachField-1value/com-mx/mixins/view-layer.js'
 
 Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
 But inside /com-mx/mixins/view-layer.js I am not able to import the correct

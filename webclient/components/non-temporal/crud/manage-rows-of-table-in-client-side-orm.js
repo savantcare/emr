@@ -32,10 +32,10 @@ class clientSideTableManage extends Model {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/non-temporal/crud/row-manage.js#L5)
 
 export default class ptHeight extends clientSideTableManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-eachField-1value/vital-signs/sub-cts/height/db/table.js#L9)
 
 export default class ptWeight extends clientSideTableManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-1row-mField/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-eachField-1value/vital-signs/sub-cts/height/db/table.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached
@@ -184,10 +184,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where(
-        'ROW_END',
-        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
-      )
+      .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     return arFromClientSideTable
@@ -196,10 +193,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where(
-        'ROW_END',
-        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
-      )
+      .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
 
@@ -222,10 +216,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetRowsToChange() {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where(
-        'ROW_END',
-        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
-      )
+      .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
@@ -252,10 +243,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where(
-        'ROW_END',
-        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
-      )
+      .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     const uniqueUuidRows = []
@@ -285,10 +273,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientSideTable = this.query()
-      .where(
-        'ROW_END',
-        Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted
-      )
+      .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .get()
     const uniqueUuidRows = []
 
@@ -301,9 +286,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          if (
-            arFromClientSideTable[i].clientSideUniqRowId > uniqueUuidRows[j].clientSideUniqRowId
-          ) {
+          if (arFromClientSideTable[i].clientSideUniqRowId > uniqueUuidRows[j].clientSideUniqRowId) {
             uniqueUuidRows[j] = arFromClientSideTable[i]
           } else {
             // The existing data is newer hence not replacing
@@ -764,11 +747,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDeleteDataToServer(
-          row.clientSideUniqRowId,
-          row.serverSideRowUuid,
-          null
-        )
+        const status = await this.fnSendDeleteDataToServer(row.clientSideUniqRowId, row.serverSideRowUuid, null)
         if (status === 1) {
           success++
         } else {

@@ -27,14 +27,14 @@ database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)
 
 // body measurement tables
-import tableStructureForWeight from '~/components/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
-import tableStructureForWaistCircumference from '~/components/1time-1row-mField/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
-import tableStructureForBloodPressure from '~/components/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
-import tableStructureForBloodSugar from '~/components/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
-import tableStructureForOxygenSaturation from '~/components/1time-1row-mField/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
-import tableStructureForHeight from '~/components/1time-1row-mField/vital-signs/sub-cts/height/db/client-side/structure/table.js'
-import tableStructureForTemperature from '~/components/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
-import tableStructureForPulse from '~/components/1time-1row-mField/vital-signs/sub-cts/pulse/db/client-side/structure/table.js'
+import tableStructureForWeight from '~/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import tableStructureForWaistCircumference from '~/components/1time-eachField-1value/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
+import tableStructureForBloodPressure from '~/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import tableStructureForBloodSugar from '~/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+import tableStructureForOxygenSaturation from '~/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import tableStructureForHeight from '~/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import tableStructureForTemperature from '~/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import tableStructureForPulse from '~/components/1time-eachField-1value/vital-signs/sub-cts/pulse/db/client-side/structure/table.js'
 database.register(tableStructureForWeight)
 database.register(tableStructureForHeight)
 database.register(tableStructureForBloodPressure)
@@ -46,38 +46,38 @@ database.register(tableStructureForPulse)
 
 // Screening tables
 import tableStructureForScr from '~/components/1time-Mrow-mField/scr/db/client-side/structure/Screening'
-import tableStructureForPhq9Master from '~/components/1time-1row-mField/phq9/db/client-side/structure/master-table-of-phq9.js'
-import tableStructureForPhq9OfPatient from '~/components/1time-1row-mField/phq9/db/client-side/structure/patient-table-of-phq9.js'
+import tableStructureForPhq9Master from '~/components/1time-eachField-1value/phq9/db/client-side/structure/master-table-of-phq9.js'
+import tableStructureForPhq9OfPatient from '~/components/1time-eachField-1value/phq9/db/client-side/structure/patient-table-of-phq9.js'
 database.register(tableStructureForScr)
 database.register(tableStructureForPhq9Master)
 database.register(tableStructureForPhq9OfPatient)
 
 // Service statement tables
-import tableStructureForSSMaster from '~/components/1time-1row-mField/service-statement/db/client-side/structure/master-table-of-service-statements.js'
-import tableStructureForSSOfPatient from '~/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import tableStructureForSSMaster from '~/components/1time-eachField-1value/service-statement/db/client-side/structure/master-table-of-service-statements.js'
+import tableStructureForSSOfPatient from '~/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 database.register(tableStructureForSSMaster)
 database.register(tableStructureForSSOfPatient)
 
 // Past psych history tables
-import tableStructureForPsychHistoryMaster from '~/components/1time-1row-mField/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
-import tableStructureForPsychHistoryOfPatient from '~/components/1time-1row-mField/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
+import tableStructureForPsychHistoryMaster from '~/components/1time-eachField-1value/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
+import tableStructureForPsychHistoryOfPatient from '~/components/1time-eachField-1value/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
 database.register(tableStructureForPsychHistoryMaster)
 database.register(tableStructureForPsychHistoryOfPatient)
 
-import tableStructureForMedicalReviewOfSystemsMaster from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
-import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/1time-1row-mField/medical-review-of-systems/db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+import tableStructureForMedicalReviewOfSystemsMaster from '~/components/1time-eachField-1value/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
+import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/1time-eachField-1value/medical-review-of-systems/db/client-side/structure/patient-table-of-medical-review-of-systems.js'
 database.register(tableStructureForMedicalReviewOfSystemsMaster)
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
 // Mental status exam tables
-import tableStructureForMSEMaster from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
-import tableStructureForMSEOfPatient from '~/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import tableStructureForMSEMaster from '~/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
+import tableStructureForMSEOfPatient from '~/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables
-import tableStructureForPROSMaster from '~/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import tableStructureForPROSOfPatient from '~/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import tableStructureForPROSMaster from '~/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import tableStructureForPROSOfPatient from '~/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
@@ -88,10 +88,10 @@ database.register(tableStructureForRem)
 import tableStructureForRec from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
-import tableStructureForName from '~/components/1time-1row-mField/name/db/client-side/structure/table.js'
+import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
 database.register(tableStructureForName)
 
-import tableStructureForDob from '~/components/1time-1row-mField/date-of-birth/db/client-side/structure/table.js'
+import tableStructureForDob from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
 database.register(tableStructureForDob)
 
 import tableStructureForDx from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'

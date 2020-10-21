@@ -106,11 +106,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'top'" style="font-size: 12px">
-                      <el-tab-pane
-                        v-for="eachMed in arMedData"
-                        :key="eachMed.name"
-                        :label="eachMed.label"
-                      >
+                      <el-tab-pane v-for="eachMed in arMedData" :key="eachMed.name" :label="eachMed.label">
                         <!-- <el-row>
                           <el-col :span="7"><div class="med-table-header">Name</div></el-col>
                           <el-col :span="3"><div class="med-table-header">Quantity</div></el-col>
@@ -127,10 +123,7 @@
                           :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                         >
                           <el-col :span="24">
-                            <div
-                              class="med-name"
-                              :title="med.medName + ' [ Quantity : ' + med.quantity + ']'"
-                            >
+                            <div class="med-name" :title="med.medName + ' [ Quantity : ' + med.quantity + ']'">
                               {{ med.medName }}
                             </div>
                           </el-col>
@@ -226,11 +219,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
-                      <el-tab-pane
-                        v-for="eachMse in arMseData"
-                        :key="eachMse.name"
-                        :label="eachMse.label"
-                      >
+                      <el-tab-pane v-for="eachMse in arMseData" :key="eachMse.name" :label="eachMse.label">
                         <div v-if="eachMse.selectedValues.length > 0">
                           <div v-for="(value, index) in eachMse.selectedValues" :key="index">
                             {{ value }}
@@ -253,11 +242,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
-                      <el-tab-pane
-                        v-for="eachPros in arProsData"
-                        :key="eachPros.name"
-                        :label="eachPros.label"
-                      >
+                      <el-tab-pane v-for="eachPros in arProsData" :key="eachPros.name" :label="eachPros.label">
                         <div v-if="eachPros.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachPros.questionAnswers"
@@ -329,12 +314,7 @@
                             <div
                               class=""
                               :title="
-                                '[' +
-                                contact.contactType +
-                                '] ' +
-                                contact.belongingType +
-                                ' of ' +
-                                contact.contactName
+                                '[' + contact.contactType + '] ' + contact.belongingType + ' of ' + contact.contactName
                               "
                             >
                               {{ contact.value }}
@@ -361,11 +341,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
-                      <el-tab-pane
-                        v-for="eachScr in arScrData"
-                        :key="eachScr.name"
-                        :label="eachScr.label"
-                      >
+                      <el-tab-pane v-for="eachScr in arScrData" :key="eachScr.name" :label="eachScr.label">
                         <div v-if="eachScr.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachScr.questionAnswers"
@@ -426,12 +402,7 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="
-                      'With ' +
-                      appInfo.provider +
-                      ' on ' +
-                      appInfo.startTime +
-                      ' for duration' +
-                      appInfo.duration
+                      'With ' + appInfo.provider + ' on ' + appInfo.startTime + ' for duration' + appInfo.duration
                     "
                   >
                     <el-row>
@@ -498,9 +469,9 @@
 
 <script>
 import clientSideTableForReminder from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTableForTemperature from '@/components/1time-1row-mField/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
-import clientSideTableForBloodPressure from '@/components/1time-1row-mField/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
-import clientSideTableForBloodSugar from '@/components/1time-1row-mField/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+import clientSideTableForTemperature from '@/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import clientSideTableForBloodPressure from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import clientSideTableForBloodSugar from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -736,8 +707,7 @@ export default {
           questionAnswers: [
             {
               questionid: 1,
-              question:
-                'In the past 10 days, how many days have you felt depressed for most of the day?',
+              question: 'In the past 10 days, how many days have you felt depressed for most of the day?',
               answer: '1',
             },
             {
@@ -997,9 +967,7 @@ export default {
   },
   computed: {
     cfArOfRemForDisplayInMapDrawer() {
-      const arFromClientSideTable = clientSideTableForReminder.fnGetPresentUniqueUuidNotEmptyRows(
-        'description'
-      )
+      const arFromClientSideTable = clientSideTableForReminder.fnGetPresentUniqueUuidNotEmptyRows('description')
       return arFromClientSideTable
     },
     cfArOfVitalSignForDisplayInMapDrawer() {

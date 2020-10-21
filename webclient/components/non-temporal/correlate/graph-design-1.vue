@@ -3,18 +3,18 @@
 </template>
 
 <script>
-import clientSideTblOfPatientServiceStatements from '@/components/1time-1row-mField/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientSideTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 
 import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clientSideTblOfMentalStatusExam from '@/components/1time-1row-mField/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
-import clientSideTblWeight from '@/components/1time-1row-mField/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
-import clientSideTblHeight from '@/components/1time-1row-mField/vital-signs/sub-cts/height/db/client-side/structure/table.js'
-import clientSideTblOxygenSaturation from '@/components/1time-1row-mField/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import clientSideTblOfMentalStatusExam from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientSideTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import clientSideTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import clientSideTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
 // For pros
-import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-1row-mField/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 
