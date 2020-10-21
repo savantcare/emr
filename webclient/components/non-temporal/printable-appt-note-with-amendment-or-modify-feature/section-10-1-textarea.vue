@@ -1,5 +1,4 @@
 <template>
-  <!-- SECTION 9 REMINDERS -->
   <div>
     <el-row type="flex" justify="left" class="remindersh3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <el-col :span="9" class="sectionHeading">{{ propComponentName }}</el-col>
@@ -35,6 +34,12 @@
             ></el-button>
             <el-button
               class="el-icon-circle-plus-outline"
+              size="mini"
+              @click="mfOpenAddInEditLayer"
+              style="padding: 0px; color: #c0c4cc; border: none; display: none"
+            ></el-button>
+            <el-button
+              class="el-icon-minus"
               size="mini"
               @click="mfOpenAddInEditLayer"
               style="padding: 0px; color: #c0c4cc; border: none; display: none"

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: '1time-Mrow-1Field/reminders/view-layer/timeline-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminder',
         ctAbbr: 'arem',
-        ctToShow: '1time-Mrow-1Field/reminders/edit-layer/add-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit reminder',
         ctAbbr: 'crem',
-        ctToShow: '1time-Mrow-1Field/reminders/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit reminders',
         ctAbbr: 'mcrem',
-        ctToShow: '1time-Mrow-1Field/reminders/edit-layer/medit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted reminders',
         ctAbbr: 'drem',
-        ctToShow: '1time-Mrow-1Field/reminders/view-layer/deleted.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

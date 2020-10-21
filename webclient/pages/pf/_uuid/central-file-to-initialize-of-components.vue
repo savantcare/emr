@@ -29,7 +29,7 @@
     <initializePhq9Component />
     <initializeProsComponent />
 
-    <!-- 1time-Mrow-1Field/others -->
+    <!-- 1time-oneField-multiValues/others -->
     <initializeRemComponent />
     <initializeRecComponent />
     <initializeServiceStatementComponent />

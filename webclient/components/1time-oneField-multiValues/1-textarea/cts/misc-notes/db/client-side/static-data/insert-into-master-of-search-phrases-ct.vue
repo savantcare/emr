@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'misc-notes',
         ctAbbr: 'rem',
-        ctToShow: '1time-Mrow-1Field/misc-notes/view-layer/timeline-ct.vue',
+        ctToShow: '1time-oneField-multiValues/misc-notes/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add recommendation',
         ctAbbr: 'arem',
-        ctToShow: '1time-Mrow-1Field/misc-notes/edit-layer/add-ct.vue',
+        ctToShow: '1time-oneField-multiValues/misc-notes/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit recommendation',
         ctAbbr: 'crem',
-        ctToShow: '1time-Mrow-1Field/misc-notes/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/misc-notes/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit misc-notes',
         ctAbbr: 'mcrem',
-        ctToShow: '1time-Mrow-1Field/misc-notes/edit-layer/medit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/misc-notes/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted misc-notes',
         ctAbbr: 'drem',
-        ctToShow: '1time-Mrow-1Field/misc-notes/view-layer/deleted.vue',
+        ctToShow: '1time-oneField-multiValues/misc-notes/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
