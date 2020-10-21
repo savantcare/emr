@@ -7,7 +7,9 @@
     -->
   <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
-      <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">Reminders</span>
+      <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">{{
+        propComponentName
+      }}</span>
       <el-button-group style="float: right">
         <el-button
           style="padding: 3px"
