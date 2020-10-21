@@ -7,18 +7,18 @@ export default {
   methods: {
     mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'add phone number',
+        searchTerm: 'add reminder',
       })
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'multi edit phone numbers',
+        searchTerm: 'multi edit reminder',
       })
     },
     mxOpenDDialog() {
-      let confirmMessage = 'Are you sure you want to delete all the selected phone numbers?'
+      let confirmMessage = 'Are you sure you want to delete all the selected reminders?'
       if (this.daSelectedRemForDelete.length === 0) {
-        confirmMessage = 'No phoneNumber selected. Please select at least one phoneNumber.'
+        confirmMessage = 'No reminder selected. Please select at least one reminder.'
       }
 
       this.$confirm(confirmMessage, 'Multi delete', {
@@ -32,13 +32,13 @@ export default {
             if (status.success > 0) {
               this.$message({
                 type: 'success',
-                message: status.success + ' phoneNumber deleted.',
+                message: status.success + ' reminder deleted.',
               })
             }
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message: status.failed + ' phoneNumber failed to delete. Please try again later.',
+                message: status.failed + ' reminder failed to delete. Please try again later.',
               })
             }
           }
@@ -62,7 +62,7 @@ export default {
       console.log('deletedRows====>', deletedRows)
       this.$store.commit('mtfSetDeletedDrawerValue', {
         visibility: true,
-        drawerTitle: 'Deleted phone numbers',
+        drawerTitle: 'Deleted reminders',
         drawerData: arDrawerData,
       })
     },
@@ -72,19 +72,19 @@ export default {
        Option 1: Send the whole data row
        Option 2: Send just the ID in a prop.
         +ves:
-          1. At some places I may need to call change where I have the phoneNumber ID but
+          1. At some places I may need to call change where I have the reminder ID but
           i do not have the remainder of the data row. Hence this makes the Change Ct possible
           to use at other places
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit phone number', pPropsToGiveToCt: pClientSideDataRowId }
+      const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pClientSideDataRowId }
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
-    mxOpenDPrompt(pClientSideDataRowId) {
+    mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {
       const arResultsFromOrm = clientSideTable.find(pClientSideDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Delete phone number', {
+      this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter delete note',
@@ -92,7 +92,7 @@ export default {
         .then(async ({ value }) => {
           const status = await clientSideTable.fnSendDeleteDataToServer(
             pClientSideDataRowId,
-            arResultsFromOrm.uuid,
+            arResultsFromOrm.serverSideRowUuid,
             value
           )
           if (status === 1) {

@@ -82,10 +82,10 @@ database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import tableStructureForRem from '~/components/1time-Mrow-1Field/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
-import tableStructureForRec from '~/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import tableStructureForRec from '~/components/1time-Mrow-1Field/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
 import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
