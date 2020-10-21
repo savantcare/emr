@@ -91,7 +91,7 @@ export default {
       ) {
         /**
          * Goal:
-         * 1. Update ROW_END as now() of current active recommendation
+         * 1. Update ROW_END as now() of current active family-history
          * 2. Insert new row in orm with new description
          */
         await clientSideTable.update({

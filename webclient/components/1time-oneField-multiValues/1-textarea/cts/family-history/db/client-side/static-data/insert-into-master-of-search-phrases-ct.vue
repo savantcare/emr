@@ -16,24 +16,24 @@ export default {
       data: {
         value: 'family-history',
         ctAbbr: 'rem',
-        ctToShow: '1time-oneField-multiValues/family-history/view-layer/timeline-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add recommendation',
+        value: 'add family-history',
         ctAbbr: 'arem',
-        ctToShow: '1time-oneField-multiValues/family-history/edit-layer/add-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit recommendation',
+        value: 'edit family-history',
         ctAbbr: 'crem',
-        ctToShow: '1time-oneField-multiValues/family-history/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit family-history',
         ctAbbr: 'mcrem',
-        ctToShow: '1time-oneField-multiValues/family-history/edit-layer/medit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted family-history',
         ctAbbr: 'drem',
-        ctToShow: '1time-oneField-multiValues/family-history/view-layer/deleted.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

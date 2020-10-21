@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <oneTextAreaAdd propComponentName="family-history"></oneTextAreaAdd>
+  <oneTextAreaAdd propComponentName="family_history"></oneTextAreaAdd>
 </template>
 
 <script>

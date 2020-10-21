@@ -47,7 +47,7 @@ import clientSideTable from '../db/client-side/structure/family-history-of-a-pat
 export default {
   /*
     Q) Why is firstProp needed?
-        There are many family-history when a recommendation is to be changed there needs to be a way to find out which recommendation
+        There are many family-history when a family-history is to be changed there needs to be a way to find out which family-history
         the user wants to change.
         So firstProp is the remId being changed. The remId is the primary key coming from vuexOrm
 
@@ -250,7 +250,7 @@ export default {
           })
           console.log('Failed to update')
         } else {
-          /* Goal: Update old version of the recommendation's ROW_END to current timestamp if change is successful
+          /* Goal: Update old version of the family-history's ROW_END to current timestamp if change is successful
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
             dnClientSideIdOfRowToChange is = firstProp. So dnClientSideIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
