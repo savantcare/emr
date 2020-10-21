@@ -27,6 +27,10 @@
 
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
     <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
+    <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
+    <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
+    <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
+
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
 
     <!-- End of template -->
@@ -44,20 +48,22 @@ import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointm
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
 
 // smaller sections
-import headerPrintSection from './section-1-header.vue'
-import chiefComplaintPrintSection from './section-1-chief-complaint.vue'
-import vitalsPrintSection from './section-1-vitals.vue'
-import agePrintSection from './section-3-age.vue'
-import serviceStatementPrintSection from './section-6-service-statement.vue'
-import mentalStatusExamPrintSection from './section-7-mental-status-exam.vue'
-import psychReviewOfSystemsPrintSection from './section-8-psych-review-of-systems.vue'
-import lockButtonPrintSection from './section-13-allow-note-lock.vue'
-import remindersPrintSection from './section-9-reminders.vue'
-import recommendationsPrintSection from './section-10-recommendations.vue'
-import medicationsPrintSection from './section-11-medications.vue'
-import pastPsychHistoryPrintSection from './section-6-past-psych-history.vue'
-import medicalReviewOfSystemsPrintSection from './section-7-medical-review-of-systems.vue'
-
+import headerPrintSection from './section-2-header.vue'
+import chiefComplaintPrintSection from './section-5-chief-complaint.vue'
+import agePrintSection from './section-4-age.vue'
+import vitalsPrintSection from './section-6-vitals.vue'
+import serviceStatementPrintSection from './section-7-service-statement.vue'
+import medicalReviewOfSystemsPrintSection from './section-8-medical-review-of-systems.vue'
+import psychReviewOfSystemsPrintSection from './section-9-psych-review-of-systems.vue'
+import remindersPrintSection from './section-10-reminders.vue'
+import medicationsPrintSection from './section-12-medications.vue'
+import mentalStatusExamPrintSection from './section-13-mental-status-exam.vue'
+import processNotePrintSection from './section-14-process-notes.vue'
+import miscellaneousNotePrintSection from './section-15-miscellaneous-notes.vue'
+import planCommentsPrintSection from './section-16-plan-comments.vue'
+import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
+import recommendationsPrintSection from './section-18-recommendations.vue'
+import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 // Library
 import moment from 'moment'
 
@@ -93,10 +99,13 @@ export default {
     recommendationsPrintSection,
     medicationsPrintSection,
     medicalReviewOfSystemsPrintSection,
+    processNotePrintSection,
+    miscellaneousNotePrintSection,
+    planCommentsPrintSection,
   },
 
   async created() {
-    /* This is called everytimes the propID changes in the parent component. 
+    /* This is called everytimes the propID changes in the parent component.
     The parent compone is decide-notes-to-print-and-thier-appt-id*/
 
     // Goal1 -> If no ID has been sent then return
