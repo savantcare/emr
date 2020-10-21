@@ -43,7 +43,7 @@
     <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
 
     <!-- GOAL7: Init drawer component -->
-    <ctMapDrawer></ctMapDrawer>
+    <!--    <ctMapDrawer></ctMapDrawer> -->
 
     <!-- GOAL8: Init -->
     <ctDeletedDrawer></ctDeletedDrawer>
@@ -172,9 +172,7 @@ export default {
     },
 
     cfRightScreenExtensionVisibility() {
-      const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
-        'right-screen-extension-drawer-visibility'
-      )
+      const drawerVisibility = clientSideTableOfCommonForAllComponents.find('right-screen-extension-drawer-visibility')
 
       if (drawerVisibility) {
         if (drawerVisibility['fieldValue'] == 'true') {

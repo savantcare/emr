@@ -1,17 +1,11 @@
 <template>
-  <div>
-    <initializeReminderComponent />
-  </div>
+  <div></div>
 </template>
 
 <script>
-import initializeReminderComponent from '@/components/1time-Mrow-1Field/1-textarea/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientSideTable from '~/components/1time-Mrow-1Field/1-textarea/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
-  components: {
-    initializeReminderComponent,
-  },
   async mounted() {
     /*
         TODO: Need to restrict the load to current patient
