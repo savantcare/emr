@@ -82,6 +82,7 @@ const clientSideTable = {
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
   misc_notes: miscNotesClientSideTable,
+  process_notes: processNotesClientSideTable,
 } // 1st row
 
 export default {

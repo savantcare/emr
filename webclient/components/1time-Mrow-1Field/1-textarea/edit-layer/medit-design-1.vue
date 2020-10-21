@@ -79,6 +79,7 @@ const clientSideTable = {
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
   misc_notes: miscNotesClientSideTable,
+  process_notes: processNotesClientSideTable,
 } // 1st row
 
 import ctChangeRem from './edit-design-1.vue'
