@@ -1,6 +1,6 @@
 <template>
   <div>
-    <printNote propComponentName="plan-comments" :propApptId="propApptId"></printNote>
+    <printNote propComponentName="plan_comments" :propApptId="propApptId"></printNote>
   </div>
 </template>
 

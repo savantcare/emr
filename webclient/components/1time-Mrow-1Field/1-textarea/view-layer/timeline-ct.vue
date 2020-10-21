@@ -83,9 +83,15 @@ import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phra
 
 import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNoteClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import miscNotesClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientSideTable from '@/components/1time-Mrow-1Field/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 // defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
+const clientSideTable = {
+  reminders: reminderClientSideTable,
+  recommendations: recommendationClientSideTable,
+  plan_comments: planCommentsClientSideTable,
+  misc_notes: miscNotesClientSideTable,
+} // 1st row
 
 export default {
   components: { ctActOnSocketMessages },

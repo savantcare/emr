@@ -5,7 +5,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class plan-comments extends clientSideTableManage {
+export default class plan_comments extends clientSideTableManage {
   static entity = 'tblRecommendations'
 
   /* 
