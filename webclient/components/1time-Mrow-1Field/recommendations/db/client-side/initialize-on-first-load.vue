@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientSideTable from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
+import initializeRecommendationComponent from '@/components/1time-Mrow-1Field/recommendations/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import clientSideTable from '~/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {
   components: {

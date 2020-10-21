@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import clientSideTable from '~/components/1time-Mrow-1Field/recommendation/db/client-side/structure/recommendations-of-a-patient-table.js'
+import clientSideTable from '~/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {
   methods: {
@@ -28,9 +28,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientSideTable.fnSendMultiDeleteDataToServer(
-              this.daSelectedRemForDelete
-            )
+            const status = await clientSideTable.fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
             if (status.success > 0) {
               this.$message({
                 type: 'success',
@@ -40,8 +38,7 @@ export default {
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message:
-                  status.failed + ' recommendation failed to delete. Please try again later.',
+                message: status.failed + ' recommendation failed to delete. Please try again later.',
               })
             }
           }

@@ -29,11 +29,7 @@ export default class phq9ForPatientClass extends clientSideTableManage {
       ROW_START: this.number(0),
       ROW_END: this.number(2147483648000),
 
-      tblPhq9MasterLink: this.belongsTo(
-        phq9MasterClass,
-        'phq9QuestionMasterId',
-        'phq9QuestionMasterId'
-      ),
+      tblPhq9MasterLink: this.belongsTo(phq9MasterClass, 'phq9QuestionMasterId', 'phq9QuestionMasterId'),
     }
   }
 }

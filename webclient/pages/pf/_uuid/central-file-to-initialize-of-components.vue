@@ -78,7 +78,7 @@ import initializeProsComponent from '@/components/1time-eachField-1value/psych-r
 
 // 1time-Mrow-1Field
 import initializeRemComponent from '@/components/1time-Mrow-1Field/1-textarea/db/client-side/initialize-on-first-load.vue'
-import initializeRecComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/initialize-on-first-load.vue'
+import initializeRecComponent from '@/components/1time-Mrow-1Field/recommendations/db/client-side/initialize-on-first-load.vue'
 
 import initializeServiceStatementComponent from '@/components/1time-eachField-1value/service-statement/db/client-side/initialize-on-first-load.vue'
 
