@@ -75,10 +75,14 @@
 </template>
 
 <script>
-import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+
+import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+// defining all rows in this object
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
 
 export default {
   components: { ctActOnSocketMessages },
@@ -87,6 +91,13 @@ export default {
   data() {
     return {}
   },
+  props: {
+    propComponentName: {
+      type: String,
+      required: true,
+      validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+  }, // firstProp is the ClientSideIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
       const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()

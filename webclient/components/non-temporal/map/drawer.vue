@@ -468,7 +468,7 @@
 </template>
 
 <script>
-import clientSideTableForReminder from '@/components/1time-Mrow-1Field/1-textarea/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTableForReminder from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 import clientSideTableForTemperature from '@/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
 import clientSideTableForBloodPressure from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
 import clientSideTableForBloodSugar from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'

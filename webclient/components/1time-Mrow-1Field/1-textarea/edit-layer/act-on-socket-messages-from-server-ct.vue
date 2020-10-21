@@ -3,7 +3,11 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
+
+import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+// defining all rows in this object
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
 
 export default {
   mounted() {
@@ -16,13 +20,23 @@ export default {
     */
     console.log('The current socket event listeners are', this.$options.sockets)
   },
+  props: {
+    firstProp: {
+      type: String,
+    },
+    formType: {
+      type: String,
+    },
+    propComponentName: {
+      type: String,
+      required: true,
+      validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+  }, // firstProp is the ClientSideIdOfRowToChange
   sockets: {
     async MsgFromSktForRemToAdd(pData) {
       const pDataArr = JSON.parse(pData)
-      console.log(
-        'MsgFromSktForRemToAdd received from socket server. The data received is',
-        pDataArr
-      )
+      console.log('MsgFromSktForRemToAdd received from socket server. The data received is', pDataArr)
 
       // if client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change = socketIdInMsgRecdFromServer then return withiout making any changes.
 
@@ -36,9 +50,7 @@ export default {
 
       if (
         socketClientObj.fieldValue !==
-        pDataArr[
-          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
-        ]
+        pDataArr['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
       ) {
         const arFromClientSideTable = await clientSideTable.insert({
           data: {
@@ -68,10 +80,7 @@ export default {
 
     MsgFromSktForRemToDelete(pData) {
       const pDataArr = JSON.parse(pData)
-      console.log(
-        'MsgFromSktForRemToDelete received from socket server. The data received is',
-        pDataArr
-      )
+      console.log('MsgFromSktForRemToDelete received from socket server. The data received is', pDataArr)
 
       clientSideTable.update({
         where: (record) => record.serverSideRowUuid === pDataArr.serverSideRowUuid,
@@ -83,10 +92,7 @@ export default {
 
     async MsgFromSktForRemToChange(pData) {
       const pDataArr = JSON.parse(pData)
-      console.log(
-        'MsgFromSktForRemToChange received from socket server. The data received is',
-        pDataArr
-      )
+      console.log('MsgFromSktForRemToChange received from socket server. The data received is', pDataArr)
 
       const socketClientObj = await clientSideTableOfCommonForAllComponents
         .query()
@@ -98,9 +104,7 @@ export default {
 
       if (
         socketClientObj.fieldValue !==
-        pDataArr[
-          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
-        ]
+        pDataArr['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
       ) {
         /**
          * Goal:
@@ -109,10 +113,7 @@ export default {
          */
         await clientSideTable.update({
           where: (record) => {
-            return (
-              record.serverSideRowUuid === pDataArr.serverSideRowUuid &&
-              record.vnRowStateInSession === 1
-            )
+            return record.serverSideRowUuid === pDataArr.serverSideRowUuid && record.vnRowStateInSession === 1
           },
           data: {
             ROW_END: Math.floor(Date.now()),

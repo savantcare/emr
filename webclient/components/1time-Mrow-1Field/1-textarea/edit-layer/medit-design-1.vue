@@ -30,12 +30,7 @@ How to solve this?
       -- If number of slide in slider is 1 (computed function 'getNumOfCarouselSlides' return 1) then no need to show arrow in slider. In this case 'dsSliderArrowVisiblity' should be 'never'.
       Otherwise if number of slide in slider is greater then 1 then we need to show arrow for next/previous slide. In this case 'dsSliderArrowVisiblity' should be 'always'.
      -->
-    <el-carousel
-      :arrow="dsSliderArrowVisiblity"
-      trigger="click"
-      :autoplay="false"
-      @change="slideChanged"
-    >
+    <el-carousel :arrow="dsSliderArrowVisiblity" trigger="click" :autoplay="false" @change="slideChanged">
       <!-- Reason for v-bind to pass boolean value https://stackoverflow.com/questions/49225002/passing-boolean-vue-prop-value-in-html -->
       <el-carousel-item v-for="slide in getNumOfCarouselSlides" :key="slide">
         <!-- Performance analysis  TODO
@@ -73,7 +68,11 @@ How to solve this?
   <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
+import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+// defining all rows in this object
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
+
 import ctChangeRem from './edit-design-1.vue'
 export default {
   components: { ctChangeRem },
@@ -84,6 +83,14 @@ export default {
       dsSliderArrowVisiblity: 'never',
     }
   },
+  props: {
+    propComponentName: {
+      type: String,
+      required: true,
+      validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+  }, // firstProp is the ClientSideIdOfRowToChange
+
   computed: {
     console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
     getArrayOfRemIdsToShowInThisCard() {

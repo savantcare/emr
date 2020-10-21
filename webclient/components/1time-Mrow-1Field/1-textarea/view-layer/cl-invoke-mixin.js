@@ -1,9 +1,17 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import clientSideTable from '~/components/1time-Mrow-1Field/1-textarea/db/client-side/structure/reminders-of-a-patient-table.js'
+import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+// defining all rows in this object
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
 
 export default {
+  props: {
+    firstProp: {
+      type: String,
+    },
+  },
   methods: {
     mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

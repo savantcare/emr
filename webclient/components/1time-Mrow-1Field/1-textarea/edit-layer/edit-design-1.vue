@@ -34,9 +34,7 @@
         <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
           >sending to server</span
         >
-        <span
-          v-if="row.vnRowStateInSession == 34571"
-          class="api-response-message el-button--success"
+        <span v-if="row.vnRowStateInSession == 34571" class="api-response-message el-button--success"
           >saved this session</span
         >
       </el-timeline-item>
@@ -45,7 +43,11 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
+import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+// defining all rows in this object
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
+
 export default {
   /*
     Q) Why is firstProp needed?
@@ -75,7 +77,20 @@ export default {
               3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
     */
 
-  props: ['firstProp', 'formType'], // firstProp is the ClientSideIdOfRowToChange
+  props: {
+    firstProp: {
+      type: String,
+    },
+    formType: {
+      type: String,
+    },
+    propComponentName: {
+      type: String,
+      required: true,
+      validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+  }, // firstProp is the ClientSideIdOfRowToChange
+
   data() {
     return {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
@@ -104,11 +119,7 @@ export default {
           rowInTimeLine.description = arFromClientSideTable[i].description
           date = new Date(arFromClientSideTable[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
-            date.toLocaleString('default', { month: 'long' }) +
-            '-' +
-            date.getDate() +
-            '-' +
-            date.getFullYear()
+            date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
             arFromClientSideTable[i].vnRowStateInSession === 3 ||
             arFromClientSideTable[i].vnRowStateInSession === 34 ||
@@ -162,9 +173,7 @@ export default {
               When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
           const arOrmRowToChange = clientSideTable.find(this.dnClientSideIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
-          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
-            arOrmRowToChange.serverSideRowUuid
-          ) // For a given UUID there can be only 1 row in edit state.
+          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(arOrmRowToChange.serverSideRowUuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
             this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
@@ -212,12 +221,7 @@ export default {
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
-      clientSideTable.fnSetFldValue(
-        pEvent,
-        this.dnClientSideIdOfCopiedRowBeingChanged,
-        pFldName,
-        rowStatus
-      )
+      clientSideTable.fnSetFldValue(pEvent, this.dnClientSideIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     async mfSendDataToServer() {

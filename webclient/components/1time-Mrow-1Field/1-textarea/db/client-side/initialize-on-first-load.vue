@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import clientSideTable from '~/components/1time-Mrow-1Field/1-textarea/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTable from '~/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   async mounted() {
