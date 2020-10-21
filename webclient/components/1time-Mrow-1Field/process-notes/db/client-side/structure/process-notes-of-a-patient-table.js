@@ -5,7 +5,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class process-notes extends clientSideTableManage {
+export default class process_notes extends clientSideTableManage {
   static entity = 'tblRecommendations'
 
   /* 

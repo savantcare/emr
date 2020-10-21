@@ -74,6 +74,7 @@ import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db
 import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import miscNotesClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 import planCommentsClientSideTable from '@/components/1time-Mrow-1Field/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientSideTable from '@/components/1time-Mrow-1Field/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientSideTable = {
