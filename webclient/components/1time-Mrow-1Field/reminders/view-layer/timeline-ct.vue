@@ -7,9 +7,7 @@
     -->
   <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
-      <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')"
-        >Recommendations</span
-      >
+      <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">Reminders</span>
       <el-button-group style="float: right">
         <el-button
           style="padding: 3px"
@@ -157,33 +155,33 @@ export default {
 <style>
 /* Generation ->
 ==============
-                                       .sc-recommendation-all-content
+                                       .sc-reminder-all-content
  Generation 1                                      |
 ==============                     _________________________________
                                   |                                |
-                    .sc-recommendation-all-content-header                |
+                    .sc-reminder-all-content-header                |
  Generatiobn 2                                                     |
                                     _______________________________|
                                   |
-                  .sc-recommendation-all-content-body
+                  .sc-reminder-all-content-body
 ==============                    |
                                   |
-                   .sc-recommendation-individual-card
+                   .sc-reminder-individual-card
 Generatiobn 3                     |
                        ________________________________________________________________________________
                       |                                 |                                             |
-        .sc-recommendation-individual-card-content    .sc-recommendation-individual-card-info-icon           .sc-recommendation-individual-card-delete-icon
+        .sc-reminder-individual-card-content    .sc-reminder-individual-card-info-icon           .sc-reminder-individual-card-delete-icon
 
 ==============
 */
 
 /* Generation Level 1 */
-.sc-recommendation-all-content .el-card__header {
+.sc-reminder-all-content .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
   padding: 10px !important;
 }
 
-.sc-recommendation-all-content .el-card__body {
+.sc-reminder-all-content .el-card__body {
   /* Goal: Manage  Distance from border to content in body*/
   padding: 10px !important;
 }
@@ -191,29 +189,29 @@ Generatiobn 3                     |
 /* Generation Level 2 / Child 1 == Goal: Header icon management */
 
 /* When anywhere inside the card make the action icons in the card header -> level 1 visual */
-.el-card:hover .sc-recommendation-all-content-header .el-button-group {
+.el-card:hover .sc-reminder-all-content-header .el-button-group {
   display: inline-block !important;
 }
 
 /* When inside the card header make the action icons in the card header -> level 2 visual */
-.el-card__header:hover .sc-recommendation-all-content-header .el-icon-edit {
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-edit {
   color: #67c23a !important;
   font-size: 1.5rem;
 }
-.el-card__header:hover .sc-recommendation-all-content-header .el-icon-s-grid {
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-s-grid {
   color: #409eff !important;
 }
-.el-card__header:hover .sc-recommendation-all-content-header .el-icon-document-delete {
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-document-delete {
   color: #f56c6c !important;
 }
-.el-card__header:hover .sc-recommendation-all-content-header .el-icon-delete {
+.el-card__header:hover .sc-reminder-all-content-header .el-icon-delete {
   color: #909399 !important;
 }
 
 /* Generation Level 2 / Child 2 */
 
 /* Goal: When less space display 1 card in a row. When more space display 100 cards in a row. */
-.sc-recommendation-all-content-body {
+.sc-reminder-all-content-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* Some other grid-template-columns options are :
@@ -230,7 +228,7 @@ Generatiobn 3                     |
 
 /* Goal: Margin and padding of individual card */
 
-.sc-recommendation-individual-card {
+.sc-reminder-individual-card {
   cursor: pointer;
   overflow-wrap: break-word;
   position: relative;
@@ -239,18 +237,18 @@ Generatiobn 3                     |
 }
 
 /* Goal: Header icon management  */
-.el-card:hover .sc-recommendation-individual-card .el-button-group {
+.el-card:hover .sc-reminder-individual-card .el-button-group {
   display: inline-block !important;
   position: absolute;
   top: 0px;
   right: 0px;
 }
 
-.sc-recommendation-individual-card:hover .el-icon-discover {
+.sc-reminder-individual-card:hover .el-icon-discover {
   color: #909399 !important;
 }
 
-.sc-recommendation-individual-card:hover .el-icon-circle-close {
+.sc-reminder-individual-card:hover .el-icon-circle-close {
   color: #f56c6c !important;
   font-size: 1.5rem;
 }

@@ -50,7 +50,7 @@ export default {
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const clientSidePrimaryKeyValue = arFromClientSideTable.tblRecommendations[0].clientSideUniqRowId
+        const clientSidePrimaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
             scope.fnSetRowStatus(clientSidePrimaryKeyValue)
@@ -91,7 +91,7 @@ export default {
       ) {
         /**
          * Goal:
-         * 1. Update ROW_END as now() of current active recommendation
+         * 1. Update ROW_END as now() of current active reminder
          * 2. Insert new row in orm with new description
          */
         await clientSideTable.update({

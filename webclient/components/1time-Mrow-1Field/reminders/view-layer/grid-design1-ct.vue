@@ -3,7 +3,7 @@
   <div>
     <el-card class="box-card" shadow="hover">
       <div slot="header" class="clearfix">
-        <span>Recommendations</span>
+        <span>Reminders</span>
         <el-button-group style="float: right">
           <el-button
             style="padding: 3px"

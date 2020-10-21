@@ -2,7 +2,7 @@
 <template>
   <div>
     <showContentInCardComponent
-      propMainCardName="Recommendations"
+      propMainCardName="Reminders"
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
           actionDescription: 'Add',

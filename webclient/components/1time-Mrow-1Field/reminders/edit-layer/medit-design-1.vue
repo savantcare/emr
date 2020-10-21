@@ -5,7 +5,7 @@ The tree structure is:
 
 Carausel                           |
   -- Carausel item                 |   These are the slides
-    -- Cards                       |   Each card is a recommendation
+    -- Cards                       |   Each card is a reminder
 
 
 Performance:
@@ -65,7 +65,7 @@ How to solve this?
       </el-carousel-item>
     </el-carousel>
   </div>
-  <div v-else><el-alert title="No recommendation found." type="info" show-icon> </el-alert></div>
+  <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
 import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
