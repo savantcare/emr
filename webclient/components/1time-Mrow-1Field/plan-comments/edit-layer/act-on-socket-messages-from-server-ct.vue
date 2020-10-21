@@ -3,16 +3,11 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-
-import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNoteClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-// defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
+import clientSideTable from '../db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {
   mounted() {
-    console.log('mounted act-on-socket-messages-from-server-ct for reminders')
+    console.log('mounted act-on-socket-messages-from-server-ct for plan-comments')
 
     /*
       This ct is included by gird-ct-design2.vue and timeline-ct.vue
@@ -21,19 +16,6 @@ export default {
     */
     console.log('The current socket event listeners are', this.$options.sockets)
   },
-  props: {
-    firstProp: {
-      type: String,
-    },
-    formType: {
-      type: String,
-    },
-    propComponentName: {
-      type: String,
-      required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
-    },
-  }, // firstProp is the ClientSideIdOfRowToChange
   sockets: {
     async MsgFromSktForRemToAdd(pData) {
       const pDataArr = JSON.parse(pData)
@@ -68,7 +50,7 @@ export default {
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const clientSidePrimaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
+        const clientSidePrimaryKeyValue = arFromClientSideTable.tblRecommendations[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
             scope.fnSetRowStatus(clientSidePrimaryKeyValue)
@@ -109,7 +91,7 @@ export default {
       ) {
         /**
          * Goal:
-         * 1. Update ROW_END as now() of current active reminder
+         * 1. Update ROW_END as now() of current active recommendation
          * 2. Insert new row in orm with new description
          */
         await clientSideTable.update({

@@ -5,7 +5,7 @@ The tree structure is:
 
 Carausel                           |
   -- Carausel item                 |   These are the slides
-    -- Cards                       |   Each card is a reminder
+    -- Cards                       |   Each card is a recommendation
 
 
 Performance:
@@ -65,15 +65,10 @@ How to solve this?
       </el-carousel-item>
     </el-carousel>
   </div>
-  <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
+  <div v-else><el-alert title="No recommendation found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNoteClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-// defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
-
+import clientSideTable from '../db/client-side/structure/misc-notes-of-a-patient-table.js'
 import ctChangeRem from './edit-design-1.vue'
 export default {
   components: { ctChangeRem },
@@ -84,14 +79,6 @@ export default {
       dsSliderArrowVisiblity: 'never',
     }
   },
-  props: {
-    propComponentName: {
-      type: String,
-      required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
-    },
-  }, // firstProp is the ClientSideIdOfRowToChange
-
   computed: {
     console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
     getArrayOfRemIdsToShowInThisCard() {

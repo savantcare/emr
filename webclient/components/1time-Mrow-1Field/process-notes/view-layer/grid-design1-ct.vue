@@ -3,7 +3,7 @@
   <div>
     <el-card class="box-card" shadow="hover">
       <div slot="header" class="clearfix">
-        <span>Reminders</span>
+        <span>Recommendations</span>
         <el-button-group style="float: right">
           <el-button
             style="padding: 3px"
@@ -59,30 +59,17 @@
 </template>
 
 <script>
+import clientSideTable from '../db/client-side/structure/process-notes-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
-
-import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNoteClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-// defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
-
 export default {
   mixins: [clInvokeMixin],
   data() {
     return {
       tablePageNumber: 1,
+      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
     }
   },
-  props: {
-    propComponentName: {
-      type: String,
-      required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
-    },
-  }, // firstProp is the ClientSideIdOfRowToChange
-
   computed: {
     cfLengthOfDataArray() {
       const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidRows()
@@ -109,7 +96,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromClientSideTable.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.description = arFromClientSideTable[i].description
-          // For date format ref: /cts/1time-Mrow-1Field/1-textarea/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/1time-Mrow-1Field/process-notes/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientSideTable[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()

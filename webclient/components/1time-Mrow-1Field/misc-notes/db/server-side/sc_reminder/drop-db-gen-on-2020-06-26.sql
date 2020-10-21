@@ -1,0 +1,1 @@
+drop database sc_misc-notes

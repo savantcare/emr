@@ -43,16 +43,11 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNoteClientSideTable from '@/components/1time-Mrow-1Field/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-// defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
-
+import clientSideTable from '../db/client-side/structure/process-notes-of-a-patient-table.js'
 export default {
   /*
     Q) Why is firstProp needed?
-        There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder
+        There are many process-notes when a recommendation is to be changed there needs to be a way to find out which recommendation
         the user wants to change.
         So firstProp is the remId being changed. The remId is the primary key coming from vuexOrm
 
@@ -78,20 +73,7 @@ export default {
               3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
     */
 
-  props: {
-    firstProp: {
-      type: String,
-    },
-    formType: {
-      type: String,
-    },
-    propComponentName: {
-      type: String,
-      required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
-    },
-  }, // firstProp is the ClientSideIdOfRowToChange
-
+  props: ['firstProp', 'formType'], // firstProp is the ClientSideIdOfRowToChange
   data() {
     return {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
@@ -268,7 +250,7 @@ export default {
           })
           console.log('Failed to update')
         } else {
-          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
+          /* Goal: Update old version of the recommendation's ROW_END to current timestamp if change is successful
             Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
             dnClientSideIdOfRowToChange is = firstProp. So dnClientSideIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
             How to update the ROW_END for id = 2?
