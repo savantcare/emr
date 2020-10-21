@@ -5,17 +5,9 @@
     hence made it 3px
     This controls the space between edge of the card and the line that shows the dots
     -->
-  <el-card
-    class="box-card sc-service-statement-all-content"
-    :body-style="{ paddingLeft: '3px' }"
-    shadow="hover"
-  >
+  <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
-      <span
-        :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
-        @keyup="mfKeyPress($event, 'header')"
-        >Reminders</span
-      >
+      <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">Reminders</span>
       <el-button-group style="float: right">
         <el-button
           style="padding: 3px"
@@ -24,9 +16,7 @@
           @click="mxOpenAddCtInEditLayer"
           class="el-icon-circle-plus-outline"
         ></el-button>
-        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer"
-          >M</el-button
-        >
+        <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer">M</el-button>
         <el-button
           style="padding: 3px"
           plain
@@ -99,16 +89,11 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientSideTable = clientSideTblOfRightSideCards
-        .query()
-        .where('name', 'reminders')
-        .get()
+      const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows(
-        'description'
-      )
+      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -126,7 +111,7 @@ export default {
         for (let i = 0; i < arFromClientSideTable.length; i++) {
           obj = {}
           obj.description = arFromClientSideTable[i].description
-          // For date format ref: /cts/1time-Mrow-1Field/reminder/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/1time-Mrow-1Field/1-textarea/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientSideTable[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession

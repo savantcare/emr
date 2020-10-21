@@ -22,7 +22,7 @@
 
 vuex clientSideTable field: vnRowStateInSession of type int
 
-e.g. cts/1time-Mrow-1Field/reminder/db/client-side/reminders:71
+e.g. cts/1time-Mrow-1Field/1-textarea/db/client-side/reminders:71
 
 # Q3) What are the different possible values for vnRowStateInSession?
 

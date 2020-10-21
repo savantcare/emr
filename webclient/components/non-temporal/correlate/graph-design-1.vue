@@ -5,7 +5,7 @@
 <script>
 import clientSideTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 
-import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/reminder/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTblOfPatientReminders from '@/components/1time-Mrow-1Field/1-textarea/db/client-side/structure/reminders-of-a-patient-table.js'
 
 import clientSideTblOfMentalStatusExam from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 import clientSideTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'

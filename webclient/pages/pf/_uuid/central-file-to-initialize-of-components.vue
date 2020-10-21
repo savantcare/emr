@@ -77,7 +77,7 @@ import initializePhq9Component from '@/components/1time-eachField-1value/phq9/db
 import initializeProsComponent from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-Mrow-1Field
-import initializeRemComponent from '@/components/1time-Mrow-1Field/reminder/db/client-side/initialize-on-first-load.vue'
+import initializeRemComponent from '@/components/1time-Mrow-1Field/1-textarea/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/1time-Mrow-1Field/recommendation/db/client-side/initialize-on-first-load.vue'
 
 import initializeServiceStatementComponent from '@/components/1time-eachField-1value/service-statement/db/client-side/initialize-on-first-load.vue'
