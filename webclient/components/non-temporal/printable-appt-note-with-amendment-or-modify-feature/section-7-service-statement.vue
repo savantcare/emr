@@ -44,8 +44,8 @@
     <!-- Goal: Show service statements -->
     <div :style="cfGetServiceStatementStyle">
       <div v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)" :key="`ss-${row.clientSideUniqRowId}`">
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementCategory'] }}
-        {{ row['tblServiceStatementsMasterLink']['serviceStatementDescription'] }}
+        {{ row['tblLinkToServiceStatementFieldMaster']['serviceStatementFieldCategory'] }}
+        {{ row['tblLinkToServiceStatementFieldMaster']['serviceStatementDescription'] }}
       </div>
     </div>
     <!-- Goal: Show addendum if there is any -->
@@ -117,13 +117,13 @@ export default {
       if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()

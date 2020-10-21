@@ -24,13 +24,7 @@
       :style="mfGetCssClassNameForEachDataRow(serviceStatement)"
     >
       <el-button-group style="float: right; display: none">
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Click to delete"
-          placement="top-end"
-          :open-delay="500"
-        >
+        <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
           <el-button
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
@@ -38,18 +32,8 @@
             class="el-icon-circle-close"
           ></el-button>
         </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="info"
-          placement="top-end"
-          :open-delay="500"
-        >
-          <el-button
-            style="padding: 3px; color: #c0c4cc; border: none"
-            plain
-            class="el-icon-discover"
-          ></el-button>
+        <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+          <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover"></el-button>
         </el-tooltip>
       </el-button-group>
 
@@ -60,9 +44,7 @@
             Doctor is sitting infront of computer suddenly a new serviceStatement appears. That is a confusing event.
             Instead if the new serviceStatement that came on screen gets a orange border with top right corner saying "New serviceStatement added from socket" that is much better UX.
       -->
-      <div
-        v-if="serviceStatement.vnRowStateInSession === 9"
-      >Added from socket {{ serviceStatement.description }}</div>
+      <div v-if="serviceStatement.vnRowStateInSession === 9">Added from socket {{ serviceStatement.description }}</div>
       <div v-else>{{ serviceStatement.cardContentOfTypeStringToShowInBodyOfCards }}</div>
     </el-card>
   </showContentInCardComponent>
@@ -78,15 +60,15 @@ export default {
     cfArOfServiceStatementForDisplay() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
-        .with('tblServiceStatementsMasterLink')
+        .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
         .get()
-      
+
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+          arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementDescription
+          arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldDescription
       }
 
       return arOfObjectsFromClientSideDB
@@ -94,21 +76,23 @@ export default {
   },
   methods: {
     async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
-
       const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('clientSideUniqRowId', pClientSideUniqRowId)
         .where('ROW_END', 2147483648000)
         .get()
       if (exists.length > 0) {
-        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            // "Authorization": "Bearer " + TOKEN
-          },
-          body: "",
-        })
+        const response = await fetch(
+          clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid,
+          {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              // "Authorization": "Bearer " + TOKEN
+            },
+            body: '',
+          }
+        )
         if (response.status === 200) {
           clientSideTblOfPatientServiceStatements.update({
             where: pClientSideUniqRowId,
@@ -131,8 +115,6 @@ export default {
           })
         }
       }
-      
-      
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {

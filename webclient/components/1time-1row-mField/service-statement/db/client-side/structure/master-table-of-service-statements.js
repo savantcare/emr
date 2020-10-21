@@ -11,15 +11,15 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
-  static primaryKey = 'serviceStatementMasterId'
+  static primaryKey = 'serviceStatementFieldMasterId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      serviceStatementMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
-      serviceStatementDescription: this.string(null),
-      serviceStatementCategory: this.string(null),
+      serviceStatementFieldMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      serviceStatementFieldDescription: this.string(null),
+      serviceStatementFieldCategory: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
@@ -31,9 +31,9 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
       */
-      tblServiceStatementsForPatientLink: this.hasOne(
+      tblLinkToServiceStatementForPatientFieldValues: this.hasOne(
         serviceStatementsForPatientClass,
-        'serviceStatementMasterId'
+        'serviceStatementFieldMasterId'
       ),
     }
   }

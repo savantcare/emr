@@ -30,7 +30,7 @@ export default class serviceStatementsMasterClass extends clientSideTableManage 
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
       */
-      tblServiceStatementsForPatientLink: this.hasOne(
+      tblLinkToServiceStatementForPatientFieldValues: this.hasOne(
         serviceStatementsForPatientClass,
         'serviceStatementMasterId'
       ),

@@ -15,135 +15,135 @@ export default {
     let i = 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '60',
-        serviceStatementCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '60',
+        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '55',
-        serviceStatementCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '55',
+        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '50',
-        serviceStatementCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '50',
+        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '45',
-        serviceStatementCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '45',
+        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '40',
-        serviceStatementCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '40',
+        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: 'Client Centered',
-        serviceStatementCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: 'Client Centered',
+        serviceStatementFieldCategory: 'Modality of Psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: 'Dialectical Behavior therapy',
-        serviceStatementCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: 'Dialectical Behavior therapy',
+        serviceStatementFieldCategory: 'Modality of Psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: 'Holistic Therapy',
-        serviceStatementCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: 'Holistic Therapy',
+        serviceStatementFieldCategory: 'Modality of Psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: 'Existential humanistic',
-        serviceStatementCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: 'Existential humanistic',
+        serviceStatementFieldCategory: 'Modality of Psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: 'Bibilotherapy',
-        serviceStatementCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: 'Bibilotherapy',
+        serviceStatementFieldCategory: 'Modality of Psychotherapy',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '60',
-        serviceStatementCategory: 'Total minutes with patient',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '60',
+        serviceStatementFieldCategory: 'Total minutes with patient',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '55',
-        serviceStatementCategory: 'Total minutes with patient',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '55',
+        serviceStatementFieldCategory: 'Total minutes with patient',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '50',
-        serviceStatementCategory: 'Total minutes with patient',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '50',
+        serviceStatementFieldCategory: 'Total minutes with patient',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '45',
-        serviceStatementCategory: 'Total minutes with patient',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '45',
+        serviceStatementFieldCategory: 'Total minutes with patient',
       },
     })
 
     i = i + 1
     clientSideTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementMasterId: i,
-        serviceStatementDescription: '40',
-        serviceStatementCategory: 'Total minutes with patient',
+        serviceStatementFieldMasterId: i,
+        serviceStatementFieldDescription: '40',
+        serviceStatementFieldCategory: 'Total minutes with patient',
       },
     })
   },

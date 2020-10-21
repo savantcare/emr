@@ -51,10 +51,7 @@ export default {
       let catName = ''
       let value = 0
       for (let i = 0; i < arOfObjectsFromClientSideRos.length; i++) {
-        catName =
-          arOfObjectsFromClientSideRos[i]['tblPsychReviewOfSystemsMasterLink'][
-            'psychReviewOfSystemsCategory'
-          ]
+        catName = arOfObjectsFromClientSideRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
         if (arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
           value = arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue']
@@ -241,8 +238,7 @@ export default {
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData =
-            (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
+          const graphData = (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
@@ -269,8 +265,7 @@ export default {
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData =
-            (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
+          const graphData = (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
@@ -283,7 +278,7 @@ export default {
     cfArOfServiceStatementsForGraph() {
       const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
         .query()
-        .with('tblServiceStatementsMasterLink')
+        .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
         .get()
 
@@ -296,10 +291,9 @@ export default {
           x: timeOfMeasurementInMilliseconds,
           y: 50,
           tooltip:
-            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink.serviceStatementCategory +
+            arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
             ' ' +
-            arOfObjectsFromClientSideDB[i].tblServiceStatementsMasterLink
-              .serviceStatementDescription,
+            arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementDescription,
         })
       }
       return arDataToShowOnGraph
@@ -333,10 +327,7 @@ export default {
       return data
     },
     cfArOfRemindersForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders
-        .query()
-        .where('ROW_END', 2147483648000)
-        .get()
+      const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
 
       var arDataToShowOnGraph = new Array()
 

@@ -113,13 +113,13 @@ export default {
       if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
           .query()
-          .with('tblServiceStatementsMasterLink')
+          .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
