@@ -13,7 +13,18 @@
     <initializeDobComponent />
     <initializeNameComponent />
 
-    <!-- 1time-eachField-1value/body-measurement -->
+    <!-- At one time a set of fields has multiple values -->
+    <initializeRemComponent />
+    <initializeRecComponent />
+
+    <!-- At one time a set of fields has 1 value -->
+    <initializeMseComponent />
+    <initializePhq9Component />
+    <initializeProsComponent />
+    <initializeFamilyHistoryComponent />
+    <initializeServiceStatementComponent />
+    <initializePastPsychHistoryComponent />
+    <initializeMedicalReviewOfSystemsComponent />
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
     <initializeBmComponent />
@@ -23,18 +34,6 @@
     <initializeTemperatureComponent />
     <initializeWaistCircumferenceComponent />
     <initializeWeightComponent />
-
-    <!-- 1time-eachField-1value/others -->
-    <initializeMseComponent />
-    <initializePhq9Component />
-    <initializeProsComponent />
-
-    <!-- 1time-oneField-multiValues/others -->
-    <initializeRemComponent />
-    <initializeRecComponent />
-    <initializeServiceStatementComponent />
-    <initializePastPsychHistoryComponent />
-    <initializeMedicalReviewOfSystemsComponent />
 
     <!-- 1time-Mrow-mField/others -->
     <initializePhoneNumberComponent />
@@ -79,6 +78,7 @@ import initializeProsComponent from '@/components/1time-eachField-1value/psych-r
 // 1time-Mrow-1Field
 import initializeRemComponent from '@/components/1time-oneField-multiValues/1-textarea/cts/reminders/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/initialize-on-first-load.vue'
+import initializeFamilyHistoryComponent from '@/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/initialize-on-first-load.vue'
 
 import initializeServiceStatementComponent from '@/components/1time-eachField-1value/service-statement/db/client-side/initialize-on-first-load.vue'
 
@@ -96,18 +96,13 @@ import clientSideTblOfAppointmentsInsertData from '@/components/1time-Mrow-mFiel
 
 export default {
   components: {
-    // core
-    initializeClearComponent,
-
-    // combined
-    initializeFeedComponent,
-    initializeMapComponent,
-
-    // 1time-eachField-1value/PII
+    // At one time a field has single value
+    initializeServiceStatementComponent,
+    initializePastPsychHistoryComponent,
+    initializeMedicalReviewOfSystemsComponent,
+    initializeDiagnosisComponent,
     initializeDobComponent,
     initializeNameComponent,
-    clientSideTblOfAppointmentsInsertData,
-    // 1time-eachField-1value/body-measurement
     initializeBloodPressureComponent,
     initializeBloodSugarComponent,
     initializeBmComponent,
@@ -117,22 +112,21 @@ export default {
     initializeTemperatureComponent,
     initializeWaistCircumferenceComponent,
     initializeWeightComponent,
-
-    // 1time-eachField-1value/others
     initializeMseComponent,
     initializePhq9Component,
     initializeProsComponent,
 
-    // 1time-Mrow-1Field
+    // At one time a field has multiple values
     initializeRemComponent,
     initializeRecComponent,
-    initializeServiceStatementComponent,
-    initializePastPsychHistoryComponent,
-    initializeMedicalReviewOfSystemsComponent,
-
-    // 1time-Mrow-mField
+    initializeFamilyHistoryComponent,
     initializePhoneNumberComponent,
-    initializeDiagnosisComponent,
+
+    // Non temporal
+    clientSideTblOfAppointmentsInsertData,
+    initializeFeedComponent,
+    initializeMapComponent,
+    initializeClearComponent,
   },
   mounted() {},
   methods: {},

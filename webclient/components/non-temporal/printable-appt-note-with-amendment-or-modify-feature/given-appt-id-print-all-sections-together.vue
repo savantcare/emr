@@ -30,7 +30,7 @@
     <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
     <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
     <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
-
+    <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
 
     <!-- End of template -->
@@ -63,6 +63,7 @@ import miscellaneousNotePrintSection from './section-15-miscellaneous-notes.vue'
 import planCommentsPrintSection from './section-16-plan-comments.vue'
 import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
+import familyHistoryPrintSection from './section-20-family-history.vue'
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 // Library
 import moment from 'moment'
@@ -102,6 +103,7 @@ export default {
     processNotePrintSection,
     miscellaneousNotePrintSection,
     planCommentsPrintSection,
+    familyHistoryPrintSection,
   },
 
   async created() {

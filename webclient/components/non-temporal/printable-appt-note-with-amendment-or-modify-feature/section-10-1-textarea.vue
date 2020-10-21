@@ -77,6 +77,7 @@ import recommendationClientSideTable from '@/components/1time-oneField-multiValu
 import miscNotesClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 import planCommentsClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientSideTable = {
@@ -85,6 +86,7 @@ const clientSideTable = {
   plan_comments: planCommentsClientSideTable,
   misc_notes: miscNotesClientSideTable,
   process_notes: processNotesClientSideTable,
+  family_history: familyHistoryClientSideTable,
 } // 1st row
 
 import moment from 'moment'
