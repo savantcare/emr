@@ -64,7 +64,7 @@ import clInvokeMixin from './cl-invoke-mixin.js'
 import reminderClientSideTable from '@/components/1time-Mrow-1Field/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientSideTable from '@/components/1time-Mrow-1Field/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 // defining all rows in this object
-const clientSideTable = { reminders: reminderClientSideTable, recommendations: reminderClientSideTable } // 1st row
+const clientSideTable = { reminders: reminderClientSideTable, recommendations: recommendationClientSideTable } // 1st row
 
 export default {
   mixins: [clInvokeMixin],
