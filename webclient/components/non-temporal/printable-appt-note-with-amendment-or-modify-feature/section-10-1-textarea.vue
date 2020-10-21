@@ -2,7 +2,7 @@
   <!-- SECTION 9 REMINDERS -->
   <div>
     <el-row type="flex" justify="left" class="remindersh3 sectionHeader" style="padding: 0rem; margin: 0rem">
-      <el-col :span="9" class="sectionHeading">Reminders</el-col>
+      <el-col :span="9" class="sectionHeading">{{ propComponentName }}</el-col>
       <el-col :span="2"
         ><div class="grid-content">
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
