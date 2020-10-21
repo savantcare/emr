@@ -182,8 +182,10 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
+      const term = 'add ' + this.propComponentName
+      console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'add reminder',
+        searchTerm: term,
       })
     },
     mfSaveAddendum(pAddendumData, component) {

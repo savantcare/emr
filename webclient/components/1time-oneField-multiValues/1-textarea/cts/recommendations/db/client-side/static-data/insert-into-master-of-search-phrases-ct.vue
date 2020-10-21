@@ -16,15 +16,15 @@ export default {
       data: {
         value: 'recommendations',
         ctAbbr: 'rem',
-        ctToShow: '1time-oneField-multiValues/recommendations/view-layer/timeline-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/recommendations/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add recommendation',
+        value: 'add recommendations',
         ctAbbr: 'arem',
-        ctToShow: '1time-oneField-multiValues/recommendations/edit-layer/add-ct.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/recommendations/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit recommendation',
         ctAbbr: 'crem',
-        ctToShow: '1time-oneField-multiValues/recommendations/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/recommendations/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit recommendations',
         ctAbbr: 'mcrem',
-        ctToShow: '1time-oneField-multiValues/recommendations/edit-layer/medit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/recommendations/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted recommendations',
         ctAbbr: 'drem',
-        ctToShow: '1time-oneField-multiValues/recommendations/view-layer/deleted.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/recommendations/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

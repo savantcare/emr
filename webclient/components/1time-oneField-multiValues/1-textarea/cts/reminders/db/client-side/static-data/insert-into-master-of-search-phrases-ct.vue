@@ -22,7 +22,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add reminder',
+        value: 'add reminders',
         ctAbbr: 'arem',
         ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
