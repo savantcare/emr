@@ -16,7 +16,7 @@
                   :type="propFieldObj.fieldType"
                   :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
                   :autosize="{ minRows: 2, maxRows: 10 }"
-                  :placeholder="'Please enter the ' + propFieldObj.fieldName"
+                  :placeholder="propFieldObj.fieldName"
                   :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                   @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 ></el-input>

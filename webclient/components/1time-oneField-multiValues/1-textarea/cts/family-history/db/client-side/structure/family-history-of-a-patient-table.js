@@ -38,7 +38,7 @@ export default class family_history extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
-      relationship: this.string(null),
+      relationship: this.string(''),
       priority: this.number(0),
       isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
