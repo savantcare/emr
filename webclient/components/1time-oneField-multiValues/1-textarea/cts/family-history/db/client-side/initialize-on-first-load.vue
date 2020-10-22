@@ -19,9 +19,12 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
       */
-    //    const proFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
-    // if (proFromDB.ok) {
-    // }
+
+    if (process.env.useServerDBForFamilyHistory === true) {
+      const proFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+      if (proFromDB.ok) {
+      }
+    }
   },
 }
 </script>
