@@ -17,6 +17,15 @@
               :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
               @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
             ></el-input>
+            <el-input
+              ref="relationship"
+              type="textarea"
+              :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+              :autosize="{ minRows: 2, maxRows: 10 }"
+              :placeholder="'Please enter the ' + propComponentName"
+              :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
+              @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
+            ></el-input>
             <div v-if="ormRow.isValidationError" class="el-form-item__error">Please enter minimum 3 characters.</div>
           </el-col>
           <!-- Prop explaination
@@ -95,6 +104,10 @@ export default {
       required: true,
       validator: (value) => Object.keys(clientSideTable).includes(value),
     },
+    propFormFields: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
     // clientSideTable[this.propComponentName] functions can not be directly called from template. hence computed functions have been defined.
@@ -116,6 +129,7 @@ export default {
   },
   methods: {
     async mfAddEmptyRowInEditLayerientSideTable() {
+      console.log(this.propFormFields)
       // TODO: this should be part of base class
       const arFromClientSideTable = await clientSideTable[this.propComponentName].insert({
         data: {
