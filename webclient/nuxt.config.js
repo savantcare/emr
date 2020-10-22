@@ -49,7 +49,8 @@ export default {
         : 'http://116.203.134.163:8000',
 
     // Family history
-    UseServerDBForFamilyHistory: 'false',
+    UseServerDBForFamilyHistory: false,
+    makeFetchPostApiCalls: false,
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.

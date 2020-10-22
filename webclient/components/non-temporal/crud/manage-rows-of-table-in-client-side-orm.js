@@ -630,8 +630,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession:
-                  'Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB', // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession: Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
               },
             })
 
@@ -675,25 +674,30 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     pOrmRowArray[
       'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
     ] = socketClientObj.fieldValue
-    try {
-      const response = await fetch(this.apiUrl, {
-        // @raj TODO Why not using User.api().post(url, data, config) from https://vuex-orm.github.io/plugin-axios/guide/usage.html#performing-requests
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: 'Bearer ' + TOKEN,
-        },
-        body: JSON.stringify({
-          data: pOrmRowArray,
-        }),
-      })
-      if (!response.ok) {
-        return 0 // Returns error code when api fails to update record in DB
-      } else {
-        return 1 // Returns success code when api successfully updates record in DB
+
+    if (process.env.makeFetchPostApiCalls === true) {
+      try {
+        const response = await fetch(this.apiUrl, {
+          // @raj TODO Why not using User.api().post(url, data, config) from https://vuex-orm.github.io/plugin-axios/guide/usage.html#performing-requests
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // Authorization: 'Bearer ' + TOKEN,
+          },
+          body: JSON.stringify({
+            data: pOrmRowArray,
+          }),
+        })
+        if (!response.ok) {
+          return 0 // Returns error code when api fails to update record in DB
+        } else {
+          return 1 // Returns success code when api successfully updates record in DB
+        }
+      } catch (ex) {
+        return 0 // Returns error code when try block gets an exception and fails
       }
-    } catch (ex) {
-      return 0 // Returns error code when try block gets an exception and fails
+    } else {
+      return 1
     }
   }
 
