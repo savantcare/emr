@@ -7,27 +7,26 @@
       <div v-if="cfGetClientSideTableNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientSideTableNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
-          <el-col :span="20" :class="ormRow.validationClass">
-            <el-input
-              ref="description"
-              type="textarea"
-              :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-              :autosize="{ minRows: 2, maxRows: 10 }"
-              :placeholder="'Please enter the ' + propComponentName"
-              :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
-              @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
-            ></el-input>
-            <el-input
-              ref="relationship"
-              type="textarea"
-              :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-              :autosize="{ minRows: 2, maxRows: 10 }"
-              :placeholder="'Please enter the ' + propComponentName"
-              :value="mfGetFldValue(ormRow.clientSideUniqRowId, 'description')"
-              @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, 'description')"
-            ></el-input>
-            <div v-if="ormRow.isValidationError" class="el-form-item__error">Please enter minimum 3 characters.</div>
-          </el-col>
+
+          <ul>
+            <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+              <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
+                <el-input
+                  :ref="propFieldObj.fieldName"
+                  :type="propFieldObj.fieldType"
+                  :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                  :autosize="{ minRows: 2, maxRows: 10 }"
+                  :placeholder="'Please enter the ' + propFieldObj.fieldName"
+                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+                ></el-input>
+                <div v-if="ormRow.isValidationError" class="el-form-item__error">
+                  Please enter minimum 3 characters.
+                </div>
+              </el-col>
+            </div>
+          </ul>
+
           <!-- Prop explaination
             Goal: Show remove button on the RHS of input area. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
