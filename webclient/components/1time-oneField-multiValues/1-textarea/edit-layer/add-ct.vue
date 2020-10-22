@@ -56,7 +56,7 @@
       :data="cfGetClientSideTableApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" label="propComponentName +  'sending to server'"></el-table-column>
+      <el-table-column prop="description" :label="propComponentName + ' sending to server'"></el-table-column>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
@@ -65,7 +65,7 @@
       :data="cfGetClientSideTableApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" label="Reminders added this session"></el-table-column>
+      <el-table-column prop="description" :label="propComponentName + ' added this session'"></el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
@@ -73,7 +73,10 @@
       :data="cfGetClientSideTableApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" label="Error: Reminders attempted but failed to save"></el-table-column>
+      <el-table-column
+        prop="description"
+        :label="propComponentName + ' attempted but failed to save'"
+      ></el-table-column>
     </el-table>
   </div>
 </template>
