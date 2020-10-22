@@ -1,16 +1,16 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeFamilyHistoryComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeFamilyHistoryComponent from '@/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientSideTable from '~/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeFamilyHistoryComponent,
   },
   async mounted() {
     /*
@@ -19,9 +19,9 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
       */
-    const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
-    if (proRemsFromDB.ok) {
-    }
+    //    const proFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    // if (proFromDB.ok) {
+    // }
   },
 }
 </script>

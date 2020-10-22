@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class misc_notes extends clientSideTableManage {
-  static entity = 'tblRecommendations'
+export default class family_history extends clientSideTableManage {
+  static entity = 'tblFamilyHistory'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -38,7 +38,7 @@ export default class misc_notes extends clientSideTableManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
-      notes: this.string(null),
+      relationship: this.string(null),
       priority: this.number(0),
       isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),

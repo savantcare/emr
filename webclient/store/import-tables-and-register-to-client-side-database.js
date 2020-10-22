@@ -85,7 +85,10 @@ database.register(tableStructureForPROSOfPatient)
 import tableStructureForRem from '~/components/1time-oneField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
-import tableStructureForRec from '~/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import tableStructureForFH from '~/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+database.register(tableStructureForFH)
+
+import tableStructureForRec from '~/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
 import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
