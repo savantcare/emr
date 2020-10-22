@@ -41,11 +41,14 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+
 import reminderClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import miscNotesClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 import planCommentsClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientSideTable from '@/components/1time-oneField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+
 // defining all rows in this object
 const clientSideTable = {
   reminders: reminderClientSideTable,
@@ -53,6 +56,7 @@ const clientSideTable = {
   plan_comments: planCommentsClientSideTable,
   misc_notes: miscNotesClientSideTable,
   process_notes: processNotesClientSideTable,
+  family_history: familyHistoryClientSideTable,
 } // 1st row
 
 export default {
