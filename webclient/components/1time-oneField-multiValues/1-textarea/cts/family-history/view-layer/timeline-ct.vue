@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <timeLineView propComponentName="family-history"></timeLineView>
+  <timeLineView propComponentName="family_history"></timeLineView>
 </template>
 
 <script>
