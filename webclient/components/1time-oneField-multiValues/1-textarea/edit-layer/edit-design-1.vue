@@ -12,9 +12,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="mini" plain @click="mfSendDataToServer"
-          >Reviewed firstprop is {{ this.firstProp }}</el-button
-        >
+        <el-button type="primary" size="mini" plain @click="mfSendDataToServer">Reviewed</el-button>
       </el-form-item>
     </el-form>
 
@@ -180,14 +178,16 @@ export default {
         if (pNVal === null) {
           /* When called first time this.dnClientSideIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
-          const arOrmRowToChange = clientSideTable.find(this.dnClientSideIdOfRowToChange)
+          const arOrmRowToChange = clientSideTable[this.propComponentName].find(this.dnClientSideIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
-          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(arOrmRowToChange.serverSideRowUuid) // For a given UUID there can be only 1 row in edit state.
+          const vnExistingChangeRowId = clientSideTable[this.propComponentName].fnGetChangeRowIdInEditState(
+            arOrmRowToChange.serverSideRowUuid
+          ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
-              arOrmRowToChange.clientSideUniqRowId
-            )
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable[
+              this.propComponentName
+            ].fnCopyRowAndGetCopiedRowId(arOrmRowToChange.clientSideUniqRowId)
           } else {
             this.dnClientSideIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -198,9 +198,9 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
-        pOrmRowToChange.clientSideUniqRowId
-      )
+      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable[
+        this.propComponentName
+      ].fnCopyRowAndGetCopiedRowId(pOrmRowToChange.clientSideUniqRowId)
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
@@ -226,16 +226,21 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
-      return clientSideTable.fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
+      return clientSideTable[this.propComponentName].fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
-      clientSideTable.fnSetFldValue(pEvent, this.dnClientSideIdOfCopiedRowBeingChanged, pFldName, rowStatus)
+      clientSideTable[this.propComponentName].fnSetFldValue(
+        pEvent,
+        this.dnClientSideIdOfCopiedRowBeingChanged,
+        pFldName,
+        rowStatus
+      )
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     async mfSendDataToServer() {
       try {
-        await clientSideTable.update({
+        await clientSideTable[this.propComponentName].update({
           where: this.dnClientSideIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: '345',
@@ -253,22 +258,25 @@ export default {
           )
           .first()
 
-        const response = await fetch(clientSideTable.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            // "Authorization": "Bearer " + TOKEN
-          },
-          body: JSON.stringify({
-            description: this.mfGetCopiedRowBeingChangedFldVal('description'),
-            client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
-              socketClientObj.fieldValue,
-          }),
-        })
+        const response = await fetch(
+          clientSideTable[this.propComponentName].apiUrl + '/' + this.dnOrmUuidOfRowToChange,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              // "Authorization": "Bearer " + TOKEN
+            },
+            body: JSON.stringify({
+              description: this.mfGetCopiedRowBeingChangedFldVal('description'),
+              client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+                socketClientObj.fieldValue,
+            }),
+          }
+        )
 
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          clientSideTable.update({
+          clientSideTable[this.propComponentName].update({
             where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 3458,
@@ -309,7 +317,7 @@ export default {
                   "exp B3" -> "vnRowStateInSession === 24571",
                       clientSideTable record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
          */
-          await clientSideTable.update({
+          await clientSideTable[this.propComponentName].update({
             where: (record) => {
               return (
                 record.uuid === this.dnOrmUuidOfRowToChange &&
@@ -325,7 +333,7 @@ export default {
             },
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          clientSideTable.update({
+          clientSideTable[this.propComponentName].update({
             where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 34571,

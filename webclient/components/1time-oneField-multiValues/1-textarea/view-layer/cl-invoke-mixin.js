@@ -29,7 +29,7 @@ export default {
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'multi edit reminder',
+        searchTerm: this.propComponentName,
       })
     },
     mxOpenDDialog() {
@@ -95,7 +95,7 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit reminder', pPropsToGiveToCt: pClientSideDataRowId }
+      const payload = { searchTerm: 'edit ' + this.propComponentName, pPropsToGiveToCt: pClientSideDataRowId }
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {

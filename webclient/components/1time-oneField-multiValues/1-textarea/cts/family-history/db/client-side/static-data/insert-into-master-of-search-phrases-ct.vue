@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit family-history',
         ctAbbr: 'crem',
-        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-oneField-multiValues/1-textarea/cts/family-history/edit-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',

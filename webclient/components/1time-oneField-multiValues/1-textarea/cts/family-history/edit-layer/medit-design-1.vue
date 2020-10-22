@@ -69,7 +69,7 @@ How to solve this?
 </template>
 <script>
 import clientSideTable from '../db/client-side/structure/family-history-of-a-patient-table.js'
-import ctChangeRem from './edit-design-1.vue'
+import ctChangeRem from './fh-edit.vue'
 export default {
   components: { ctChangeRem },
   data() {
