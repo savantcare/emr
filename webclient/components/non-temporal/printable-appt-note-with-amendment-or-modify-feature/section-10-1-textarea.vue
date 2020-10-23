@@ -74,12 +74,12 @@ import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/a
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientSideTable = {

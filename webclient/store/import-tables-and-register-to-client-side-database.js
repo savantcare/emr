@@ -82,13 +82,13 @@ database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/1time-eachField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import tableStructureForRem from '~/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
-import tableStructureForFH from '~/components/1time-eachField-multiValues/1-textarea/cts/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 
-import tableStructureForRec from '~/components/1time-eachField-multiValues/1-textarea/cts/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import tableStructureForRec from '~/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
 import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'

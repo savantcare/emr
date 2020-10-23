@@ -97,7 +97,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromClientSideTable.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.phoneNumber = arFromClientSideTable[i].phoneNumber
-          // For date format ref: /cts/1time-eachField-multiValues/1-textarea/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/1time-eachField-multiValues/common/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientSideTable[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
