@@ -107,7 +107,9 @@ export default {
       /* TODO: Why is UUID field needed here but not needed in case of weight */
       dnOrmUuidOfRowToChange: '',
       dnClientSideIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
-      dnClientSideIdOfCopiedRowBeingChanged: -1, // For meaning of -1/null/integer see 1rmf/com-mx/edit-layer.js approx line 15
+      dnClientSideIdOfCopiedRowBeingChanged: -1,
+      /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
+        null implies that system is ready for pClientSideIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }
   },
   computed: {
@@ -121,7 +123,8 @@ export default {
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
-      // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange)
+
+      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientSideTable)
       if (arFromClientSideTable.length) {
         let rowInTimeLine = []
         let date = ''
@@ -177,7 +180,7 @@ export default {
 
       async handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value
-        if (this.dnClientSideIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnClientSideIdOfRowToChange. Look at date section.
+        if (this.dnClientSideIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnClientSideIdOfRowToChange. Look at data section.
 
         if (pNVal === null) {
           /* When called first time this.dnClientSideIdOfRowToChange is assigned in the data section

@@ -45,7 +45,9 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientSideTable.fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
+            const status = await clientSideTable[this.propComponentName].fnSendMultiDeleteDataToServer(
+              this.daSelectedRemForDelete
+            )
             if (status.success > 0) {
               this.$message({
                 type: 'success',
@@ -66,7 +68,7 @@ export default {
         })
     },
     async mxOpenTrashCanCtInEditLayer() {
-      const deletedRows = await clientSideTable.fnGetDeletedRows()
+      const deletedRows = await clientSideTable[this.propComponentName].fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
         const arRow = []
@@ -99,7 +101,7 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {
-      const arResultsFromOrm = clientSideTable.find(pClientSideDataRowId)
+      const arResultsFromOrm = clientSideTable[this.propComponentName].find(pClientSideDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
         confirmButtonText: 'Delete',
@@ -107,7 +109,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientSideTable.fnSendDeleteDataToServer(
+          const status = await clientSideTable[this.propComponentName].fnSendDeleteDataToServer(
             pClientSideDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value
