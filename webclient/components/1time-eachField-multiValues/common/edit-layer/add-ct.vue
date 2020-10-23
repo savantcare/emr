@@ -16,7 +16,7 @@
                   :type="propFieldObj.fieldType"
                   :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
                   :autosize="{ minRows: 2, maxRows: 10 }"
-                  :placeholder="propFieldObj.fieldName"
+                  :placeholder="propFieldObj.fieldName.charAt(0).toUpperCase() + propFieldObj.fieldName.slice(1)"
                   :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                   @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 ></el-input>
@@ -51,38 +51,46 @@
       </el-form-item>
     </el-form>
     <!-- Goal: Show data at the time of sending to server -->
-    <div>Sending to server</div>
+
     <el-table
       v-if="cfGetClientSideTableApiSendingStateRows.length > 0"
       :data="cfGetClientSideTableApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
-        <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
-      </div>
+      <el-table-column label="Sending to server">
+        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
+        </div>
+      </el-table-column>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
-    <div>Added this session</div>
+
     <el-table
       v-if="cfGetClientSideTableApiSuccessStateRows.length > 0"
       :data="cfGetClientSideTableApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
-        <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
-      </div>
+      <el-table-column align="center" label="Addded this session">
+        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          <el-table-column
+            :prop="propFieldObj.fieldName"
+            :label="propFieldObj.fieldName.charAt(0).toUpperCase() + propFieldObj.fieldName.slice(1)"
+          ></el-table-column>
+        </div>
+      </el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
-    <div>Attempted but failed to save</div>
     <el-table
       v-if="cfGetClientSideTableApiErrorStateRows.length > 0"
       :data="cfGetClientSideTableApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
-        <el-table-column prop="propFieldObj.fieldName" label="Attempted but failed to save"></el-table-column>
-      </div>
+      <el-table-column label="Attempted but failed to save">
+        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          <el-table-column prop="propFieldObj.fieldName" label="Attempted but failed to save"></el-table-column>
+        </div>
+      </el-table-column>
     </el-table>
   </div>
 </template>
