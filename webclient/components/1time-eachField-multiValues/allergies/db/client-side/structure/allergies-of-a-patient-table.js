@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class allergies extends clientSideTableManage {
-  static entity = 'tblReminders'
+  static entity = 'tblAllergies'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
