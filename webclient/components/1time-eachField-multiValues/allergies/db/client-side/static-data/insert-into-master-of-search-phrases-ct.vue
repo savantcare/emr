@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add allergies',
         ctAbbr: 'arem',
-        ctToShow: '1time-eachField-multiValues/allergies/edit-layer/add-ct.vue',
+        ctToShow: '1time-eachField-multiValues/allergies/edit-layer/allergy-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },

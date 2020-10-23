@@ -51,32 +51,38 @@
       </el-form-item>
     </el-form>
     <!-- Goal: Show data at the time of sending to server -->
+    <div>Sending to server</div>
     <el-table
       v-if="cfGetClientSideTableApiSendingStateRows.length > 0"
       :data="cfGetClientSideTableApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" :label="propComponentName + ' sending to server'"></el-table-column>
+      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
+      </div>
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
+    <div>Added this session</div>
     <el-table
       v-if="cfGetClientSideTableApiSuccessStateRows.length > 0"
       :data="cfGetClientSideTableApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column prop="description" :label="propComponentName + ' added this session'"></el-table-column>
+      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
+      </div>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
+    <div>Attempted but failed to save</div>
     <el-table
       v-if="cfGetClientSideTableApiErrorStateRows.length > 0"
       :data="cfGetClientSideTableApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
-      <el-table-column
-        prop="description"
-        :label="propComponentName + ' attempted but failed to save'"
-      ></el-table-column>
+      <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <el-table-column prop="propFieldObj.fieldName" label="Attempted but failed to save"></el-table-column>
+      </div>
     </el-table>
   </div>
 </template>
@@ -111,6 +117,9 @@ export default {
     propFormFields: {
       type: Array,
       required: true,
+    },
+    propReferToComponentInUiAtPluralClassification: {
+      type: String,
     },
   },
   computed: {

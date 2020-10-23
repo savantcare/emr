@@ -1,8 +1,8 @@
-use sc_family-history;
+use sc_family_history;
 
-DROP TABLE IF EXISTS `family-history`;
+DROP TABLE IF EXISTS `family_history`;
 
-CREATE TABLE `family-history` (
+CREATE TABLE `family_history` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,

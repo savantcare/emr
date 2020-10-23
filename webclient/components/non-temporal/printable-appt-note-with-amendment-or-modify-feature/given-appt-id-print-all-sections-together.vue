@@ -31,9 +31,10 @@
     <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
     <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
-    <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
     <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
-    <!-- End of template -->
+    <!-- End of Data -->
+
+    <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 

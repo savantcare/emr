@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add family-history',
         ctAbbr: 'arem',
-        ctToShow: '1time-eachField-multiValues/family-history/edit-layer/add-ct.vue',
+        ctToShow: '1time-eachField-multiValues/family-history/edit-layer/family-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
