@@ -4,12 +4,13 @@
     <el-form>
       <el-form-item>
         <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          {{ propFieldObj }}
           <el-input
-            ref="description"
-            type="textarea"
+            :ref="propFieldObj.fieldName"
+            :type="propFieldObj.fieldType"
             :autosize="{ minRows: 2, maxRows: 4 }"
-            :value="mfGetCopiedRowBeingChangedFldVal('description')"
-            @input="mfSetCopiedRowBeingChangedFldVal($event, 'description')"
+            :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldName)"
+            @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldName)"
           ></el-input>
         </div>
       </el-form-item>
