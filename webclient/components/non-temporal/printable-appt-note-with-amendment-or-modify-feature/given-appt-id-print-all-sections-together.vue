@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import clientSideTblOfAddendums from '~/components/1time-oneField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'

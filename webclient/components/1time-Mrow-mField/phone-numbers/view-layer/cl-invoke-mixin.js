@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import clientSideTable from '~/components/1time-oneField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientSideTable from '~/components/1time-eachField-multiValues/1-textarea/cts/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   methods: {

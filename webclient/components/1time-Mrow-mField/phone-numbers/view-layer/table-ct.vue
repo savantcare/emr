@@ -146,7 +146,7 @@ export default {
           obj = {}
           obj.countryCode = arFromClientSideTable[i].countryCode
           obj.phoneNumber = arFromClientSideTable[i].phoneNumber
-          // For date format ref: /cts/1time-oneField-multiValues/phoneNumber/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/1time-eachField-multiValues/phoneNumber/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientSideTable[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
