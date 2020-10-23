@@ -3,13 +3,15 @@
   <div>
     <el-form>
       <el-form-item>
-        <el-input
-          ref="description"
-          type="textarea"
-          :autosize="{ minRows: 2, maxRows: 4 }"
-          :value="mfGetCopiedRowBeingChangedFldVal('description')"
-          @input="mfSetCopiedRowBeingChangedFldVal($event, 'description')"
-        ></el-input>
+        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          <el-input
+            ref="description"
+            type="textarea"
+            :autosize="{ minRows: 2, maxRows: 4 }"
+            :value="mfGetCopiedRowBeingChangedFldVal('description')"
+            @input="mfSetCopiedRowBeingChangedFldVal($event, 'description')"
+          ></el-input>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer">Reviewed</el-button>
@@ -99,6 +101,10 @@ export default {
       type: String,
       required: true,
       validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+    propFormFields: {
+      type: Array,
+      required: true,
     },
   }, // firstProp is the ClientSideIdOfRowToChange
 
