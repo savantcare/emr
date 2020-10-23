@@ -18,7 +18,7 @@ const clientSideTable = {
 export default {
   props: {
     firstProp: {
-      type: String,
+      type: Number,
     },
   },
   methods: {

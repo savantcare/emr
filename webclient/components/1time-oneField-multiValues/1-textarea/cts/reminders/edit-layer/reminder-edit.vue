@@ -1,5 +1,11 @@
 <template>
-  <oneTextAreaAdd propComponentName="reminder" :propFormFields="dataFormFields" :firstProp="firstProp"></oneTextAreaAdd>
+  <oneTextAreaAdd
+    propComponentName="reminders"
+    propReferToComponentInUiAtSingularClassification="reminder"
+    propReferToComponentInUiAtPluralClassification="reminders"
+    :propFormFields="dataFormFields"
+    :firstProp="firstProp"
+  ></oneTextAreaAdd>
 </template>
 
 <script>
@@ -8,15 +14,12 @@ import oneTextAreaAdd from '@/components/1time-oneField-multiValues/1-textarea/e
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-      ],
+      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
     }
   },
   props: {
     firstProp: {
-      type: String,
+      type: Number,
     },
   },
 

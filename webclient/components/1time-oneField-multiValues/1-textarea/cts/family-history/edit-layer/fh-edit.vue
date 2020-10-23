@@ -1,6 +1,8 @@
 <template>
   <oneTextAreaAdd
     propComponentName="family_history"
+    propReferToComponentInUiAtSingularClassification="family history"
+    propReferToComponentInUiAtPluralClassification="family history"
     :propFormFields="dataFormFields"
     :firstProp="firstProp"
   ></oneTextAreaAdd>
@@ -20,7 +22,7 @@ export default {
   },
   props: {
     firstProp: {
-      type: String,
+      type: Number,
     },
   },
   mounted() {

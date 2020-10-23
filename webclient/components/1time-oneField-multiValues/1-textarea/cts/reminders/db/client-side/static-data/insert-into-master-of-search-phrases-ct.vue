@@ -31,7 +31,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit reminder',
+        value: 'edit reminders',
         ctAbbr: 'crem',
         ctToShow: '1time-oneField-multiValues/1-textarea/cts/reminders/edit-layer/reminder-edit.vue',
         displayLocation: 'edit-layer',
