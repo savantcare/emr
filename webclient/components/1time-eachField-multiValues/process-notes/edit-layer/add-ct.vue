@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <fieldMultiValuesAdd propComponentName="process-notes" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd propComponentName="process_notes" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
 </template>
 
 <script>

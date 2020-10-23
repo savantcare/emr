@@ -105,13 +105,13 @@ import reminderClientSideTable from '@/components/1time-eachField-multiValues/re
 
 // defining all rows in this object
 const clientSideTable = {
-  reminders: reminderClientSideTable,
-  recommendations: recommendationClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  process_notes: processNotesClientSideTable,
-  family_history: familyHistoryClientSideTable,
   allergies: allergiesClientSideTable,
+  family_history: familyHistoryClientSideTable,
+  misc_notes: miscNotesClientSideTable,
+  plan_comments: planCommentsClientSideTable,
+  process_notes: processNotesClientSideTable,
+  recommendations: recommendationClientSideTable,
+  reminders: reminderClientSideTable,
 } // 1st row
 
 export default {

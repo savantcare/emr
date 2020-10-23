@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <fieldMultiValuesAdd propComponentName="misc-notes" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd propComponentName="misc_notes" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
 </template>
 
 <script>
