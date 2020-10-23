@@ -10,7 +10,11 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      dataFormFields: [
+        { fieldName: 'Allergen', fieldType: '', span: 8 },
+        { fieldName: 'Reaction', fieldType: 'textarea', span: 8 },
+        { fieldName: 'Onset', fieldType: '', span: 8 },
+      ],
     }
   },
 
