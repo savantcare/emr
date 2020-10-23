@@ -1,15 +1,15 @@
 <template>
-  <oneTextAreaAdd
+  <fieldMultiValuesAdd
     propComponentName="allergies"
     propReferToComponentInUiAtSingularClassification="allergy"
     propReferToComponentInUiAtPluralClassification="allergies"
     :propFormFields="dataFormFields"
     :firstProp="firstProp"
-  ></oneTextAreaAdd>
+  ></fieldMultiValuesAdd>
 </template>
 
 <script>
-import oneTextAreaAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
+import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
@@ -28,7 +28,7 @@ export default {
   },
 
   components: {
-    oneTextAreaAdd,
+    fieldMultiValuesAdd,
   },
 }
 </script>

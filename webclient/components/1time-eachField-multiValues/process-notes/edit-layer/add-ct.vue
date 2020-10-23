@@ -1,15 +1,15 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <oneTextAreaAdd propComponentName="process-notes"></oneTextAreaAdd>
+  <fieldMultiValuesAdd propComponentName="process-notes"></fieldMultiValuesAdd>
 </template>
 
 <script>
-import oneTextAreaAdd from '@/components/1time-eachField-multiValues/common/edit-layer/add-ct.vue'
+import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/add-ct.vue'
 
 export default {
   components: {
-    oneTextAreaAdd,
+    fieldMultiValuesAdd,
   },
 }
 </script>

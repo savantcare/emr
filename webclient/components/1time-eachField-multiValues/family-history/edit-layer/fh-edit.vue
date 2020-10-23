@@ -1,15 +1,15 @@
 <template>
-  <oneTextAreaAdd
+  <fieldMultiValuesAdd
     propComponentName="family_history"
     propReferToComponentInUiAtSingularClassification="family history"
     propReferToComponentInUiAtPluralClassification="family history"
     :propFormFields="dataFormFields"
     :firstProp="firstProp"
-  ></oneTextAreaAdd>
+  ></fieldMultiValuesAdd>
 </template>
 
 <script>
-import oneTextAreaAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
+import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
@@ -30,7 +30,7 @@ export default {
   },
 
   components: {
-    oneTextAreaAdd,
+    fieldMultiValuesAdd,
   },
 }
 </script>
