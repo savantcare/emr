@@ -1,6 +1,11 @@
 <template>
   <div>
-    <printNote propComponentName="plan_comments" :propApptId="propApptId" :propFormFields="dataFormFields"></printNote>
+    <printNote
+      propComponentName="plan_comments"
+      :propApptId="propApptId"
+      :propFormFields="dataFormFields"
+      propReferToComponentInUiAtPluralClassification="plan comments"
+    ></printNote>
   </div>
 </template>
 

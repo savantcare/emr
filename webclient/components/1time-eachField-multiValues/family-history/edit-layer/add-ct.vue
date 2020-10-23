@@ -1,5 +1,10 @@
 <template>
-  <fieldMultiValuesAdd propComponentName="family_history" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd
+    propComponentName="family_history"
+    :propFormFields="dataFormFields"
+    propReferToComponentInUiAtSingularClassification="family history"
+    propReferToComponentInUiAtPluralClassification="family history"
+  ></fieldMultiValuesAdd>
 </template>
 
 <script>

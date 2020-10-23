@@ -3,6 +3,7 @@
     <printNote
       propComponentName="recommendations"
       :propApptId="propApptId"
+      propReferToComponentInUiAtPluralClassification="recommendations"
       :propFormFields="dataFormFields"
     ></printNote>
   </div>

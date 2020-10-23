@@ -1,6 +1,11 @@
 <template>
   <div>
-    <printNote propComponentName="reminders" :propApptId="propApptId" :propFormFields="dataFormFields"></printNote>
+    <printNote
+      propComponentName="reminders"
+      :propApptId="propApptId"
+      :propFormFields="dataFormFields"
+      propReferToComponentInUiAtPluralClassification="reminders"
+    ></printNote>
   </div>
 </template>
 

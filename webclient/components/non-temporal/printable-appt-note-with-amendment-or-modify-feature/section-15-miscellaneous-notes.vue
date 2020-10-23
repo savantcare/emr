@@ -1,6 +1,11 @@
 <template>
   <div>
-    <printNote propComponentName="misc_notes" :propApptId="propApptId" :propFormFields="dataFormFields"></printNote>
+    <printNote
+      propComponentName="misc_notes"
+      :propApptId="propApptId"
+      :propFormFields="dataFormFields"
+      propReferToComponentInUiAtPluralClassification="miscellaneous notes"
+    ></printNote>
   </div>
 </template>
 
