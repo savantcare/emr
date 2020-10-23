@@ -158,6 +158,7 @@ export default {
       immediate: true,
       handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
+        console.log(pNVal, pOVal)
         this.dnClientSideIdOfRowToChange = pNVal
         this.dnClientSideIdOfCopiedRowBeingChanged = null
       },

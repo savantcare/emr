@@ -1,5 +1,5 @@
 <template>
-  <oneTextAreaAdd propComponentName="family_history" :propFormFields="dataFormFields"></oneTextAreaAdd>
+  <oneTextAreaAdd propComponentName="reminder" :propFormFields="dataFormFields" :firstProp="firstProp"></oneTextAreaAdd>
 </template>
 
 <script>
@@ -13,6 +13,11 @@ export default {
         { fieldName: 'relationship', fieldType: '', span: 6 },
       ],
     }
+  },
+  props: {
+    firstProp: {
+      type: String,
+    },
   },
 
   mounted() {

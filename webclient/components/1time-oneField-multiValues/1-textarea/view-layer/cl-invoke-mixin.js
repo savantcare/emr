@@ -98,6 +98,7 @@ export default {
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
       const payload = { searchTerm: 'edit ' + this.propComponentName, pPropsToGiveToCt: pClientSideDataRowId }
+      console.log(payload)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {

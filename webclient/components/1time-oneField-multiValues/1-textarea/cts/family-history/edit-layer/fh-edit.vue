@@ -1,5 +1,9 @@
 <template>
-  <oneTextAreaAdd propComponentName="family_history" :propFormFields="dataFormFields"></oneTextAreaAdd>
+  <oneTextAreaAdd
+    propComponentName="family_history"
+    :propFormFields="dataFormFields"
+    :firstProp="firstProp"
+  ></oneTextAreaAdd>
 </template>
 
 <script>
@@ -14,7 +18,11 @@ export default {
       ],
     }
   },
-
+  props: {
+    firstProp: {
+      type: String,
+    },
+  },
   mounted() {
     //    console.log(this.dataFormFields)
   },
