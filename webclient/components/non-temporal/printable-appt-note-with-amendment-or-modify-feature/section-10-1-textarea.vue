@@ -80,6 +80,7 @@ import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/m
 import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import allergiesClientSideTable from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientSideTable = {
@@ -89,6 +90,7 @@ const clientSideTable = {
   misc_notes: miscNotesClientSideTable,
   process_notes: processNotesClientSideTable,
   family_history: familyHistoryClientSideTable,
+  allergies: allergiesClientSideTable,
 } // 1st row
 
 import moment from 'moment'

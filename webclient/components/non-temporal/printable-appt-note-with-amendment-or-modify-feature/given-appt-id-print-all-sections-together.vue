@@ -32,7 +32,7 @@
     <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
-
+    <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
     <!-- End of template -->
   </div>
 </template>
@@ -64,6 +64,8 @@ import planCommentsPrintSection from './section-16-plan-comments.vue'
 import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
 import familyHistoryPrintSection from './section-20-family-history.vue'
+import allergiesPrintSection from './section-21-allergies.vue'
+
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 // Library
 import moment from 'moment'
@@ -104,6 +106,7 @@ export default {
     miscellaneousNotePrintSection,
     planCommentsPrintSection,
     familyHistoryPrintSection,
+    allergiesPrintSection,
   },
 
   async created() {
