@@ -1,6 +1,10 @@
 <template>
   <div>
-    <printNote propComponentName="recommendations" :propApptId="propApptId"></printNote>
+    <printNote
+      propComponentName="recommendations"
+      :propApptId="propApptId"
+      :propFormFields="dataFormFields"
+    ></printNote>
   </div>
 </template>
 
@@ -16,6 +20,11 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  data: function () {
+    return {
+      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+    }
   },
 }
 </script>

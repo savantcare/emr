@@ -50,7 +50,9 @@
     </el-row>
     <div :style="cfGetReminderStyle">
       <div v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
-        {{ row['description'] }}
+        <span v-for="(propFieldObj, id) in propFormFields" :key="id">
+          {{ row[propFieldObj.fieldName] }}
+        </span>
       </div>
       <br />
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
@@ -113,6 +115,10 @@ export default {
       type: String,
       required: true,
       validator: (value) => Object.keys(clientSideTable).includes(value),
+    },
+    propFormFields: {
+      type: Array,
+      required: true,
     },
   },
   async mounted() {

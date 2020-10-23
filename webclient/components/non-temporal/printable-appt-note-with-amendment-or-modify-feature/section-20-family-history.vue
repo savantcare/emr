@@ -1,6 +1,12 @@
 <template>
   <div>
-    <printNote propComponentName="family_history" :propApptId="propApptId"></printNote>
+    <printNote
+      propComponentName="family_history"
+      :propApptId="propApptId"
+      propReferToComponentInUiAtSingularClassification="family history"
+      propReferToComponentInUiAtPluralClassification="family history"
+      :propFormFields="dataFormFields"
+    ></printNote>
   </div>
 </template>
 
@@ -16,6 +22,14 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  data: function () {
+    return {
+      dataFormFields: [
+        { fieldName: 'description', fieldType: 'textarea', span: 12 },
+        { fieldName: 'relationship', fieldType: '', span: 6 },
+      ],
+    }
   },
 }
 </script>
