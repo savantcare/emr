@@ -22,7 +22,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add recommendation',
+        value: 'add plan-comments',
         ctAbbr: 'arem',
         ctToShow: '1time-eachField-multiValues/plan-comments/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
@@ -31,7 +31,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit recommendation',
+        value: 'edit plan-comments',
         ctAbbr: 'crem',
         ctToShow: '1time-eachField-multiValues/plan-comments/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',

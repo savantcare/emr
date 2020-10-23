@@ -22,7 +22,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add recommendation',
+        value: 'add misc-notes',
         ctAbbr: 'arem',
         ctToShow: '1time-eachField-multiValues/misc-notes/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
@@ -31,7 +31,7 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit recommendation',
+        value: 'edit misc-notes',
         ctAbbr: 'crem',
         ctToShow: '1time-eachField-multiValues/misc-notes/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
