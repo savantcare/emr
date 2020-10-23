@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import printNote from './section-10-1-textarea.vue'
+import printNote from './common-print-note-for-each-field-multi-values.vue'
 
 export default {
   components: {
