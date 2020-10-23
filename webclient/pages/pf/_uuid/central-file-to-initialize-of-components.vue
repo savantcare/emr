@@ -18,6 +18,7 @@
     <initializeFamilyHistoryComponent />
     <initializeRecComponent />
     <initializeRemComponent />
+    <!-- END -->
 
     <!-- At one time a set of fields has 1 value -->
     <initializeMseComponent />
@@ -76,11 +77,12 @@ import initializeMseComponent from '@/components/1time-eachField-1value/mental-s
 import initializePhq9Component from '@/components/1time-eachField-1value/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeProsComponent from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
-// 1time-Mrow-1Field
-import initializeRemComponent from '@/components/1time-eachField-multiValues/reminders/db/client-side/initialize-on-first-load.vue'
-import initializeRecComponent from '@/components/1time-eachField-multiValues/recommendations/db/client-side/initialize-on-first-load.vue'
-import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
+// START: Each field can take multiple values at 1 time in the temporal database
 import initializeAllergiesComponent from '@/components/1time-eachField-multiValues/allergies/db/client-side/initialize-on-first-load.vue'
+import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
+import initializeRecComponent from '@/components/1time-eachField-multiValues/recommendations/db/client-side/initialize-on-first-load.vue'
+import initializeRemComponent from '@/components/1time-eachField-multiValues/reminders/db/client-side/initialize-on-first-load.vue'
+// END
 
 import initializeServiceStatementComponent from '@/components/1time-eachField-1value/service-statement/db/client-side/initialize-on-first-load.vue'
 
