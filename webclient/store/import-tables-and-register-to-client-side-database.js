@@ -85,6 +85,9 @@ database.register(tableStructureForPROSOfPatient)
 import tableStructureForRem from '~/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
+import tableStructureForAllergies from '~/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+database.register(tableStructureForAllergies)
+
 import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 
