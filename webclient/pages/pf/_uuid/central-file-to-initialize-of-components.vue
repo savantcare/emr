@@ -13,16 +13,16 @@
     <initializeDobComponent />
     <initializeNameComponent />
 
-    <!-- At one time a set of fields has multiple values -->
-    <initializeRemComponent />
-    <initializeRecComponent />
+    <!-- START: Each field can take multiple values at 1 time in the temporal database -->
     <initializeAllergiesComponent />
+    <initializeFamilyHistoryComponent />
+    <initializeRecComponent />
+    <initializeRemComponent />
 
     <!-- At one time a set of fields has 1 value -->
     <initializeMseComponent />
     <initializePhq9Component />
     <initializeProsComponent />
-    <initializeFamilyHistoryComponent />
     <initializeServiceStatementComponent />
     <initializePastPsychHistoryComponent />
     <initializeMedicalReviewOfSystemsComponent />

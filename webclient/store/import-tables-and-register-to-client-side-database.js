@@ -82,11 +82,14 @@ database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables
-import tableStructureForRem from '~/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
-database.register(tableStructureForRem)
+
+// START: Each field can take multiple values at 1 time in the temporal database
 
 import tableStructureForAllergies from '~/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 database.register(tableStructureForAllergies)
+
+import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+database.register(tableStructureForFH)
 
 import tableStructureForMiscNotes from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 database.register(tableStructureForMiscNotes)
@@ -97,11 +100,13 @@ database.register(tableStructureForPlanComments)
 import tableStructureForProcessNotes from '~/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 database.register(tableStructureForProcessNotes)
 
-import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-database.register(tableStructureForFH)
-
 import tableStructureForRec from '~/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 database.register(tableStructureForRec)
+
+import tableStructureForRem from '~/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+database.register(tableStructureForRem)
+
+// END
 
 import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
 database.register(tableStructureForName)
