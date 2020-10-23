@@ -16,8 +16,13 @@
     <!-- START: Each field can take multiple values at 1 time in the temporal database -->
     <initializeAllergiesComponent />
     <initializeFamilyHistoryComponent />
+    <initializeMiscNotesComponent />
+    <initializePlanCommentsComponent />
+    <initializeProcessNotesComponent />
     <initializeRecComponent />
     <initializeRemComponent />
+    <initializePhoneNumberComponent />
+
     <!-- END -->
 
     <!-- At one time a set of fields has 1 value -->
@@ -37,8 +42,6 @@
     <initializeWaistCircumferenceComponent />
     <initializeWeightComponent />
 
-    <!-- 1time-Mrow-mField/others -->
-    <initializePhoneNumberComponent />
     <initializeDiagnosisComponent />
 
     <clientSideTblOfAppointmentsInsertData />
@@ -80,6 +83,9 @@ import initializeProsComponent from '@/components/1time-eachField-1value/psych-r
 // START: Each field can take multiple values at 1 time in the temporal database
 import initializeAllergiesComponent from '@/components/1time-eachField-multiValues/allergies/db/client-side/initialize-on-first-load.vue'
 import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
+import initializeMiscNotesComponent from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/initialize-on-first-load.vue'
+import initializePlanCommentsComponent from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/initialize-on-first-load.vue'
+import initializeProcessNotesComponent from '~/components/1time-eachField-multiValues/process-notes/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/1time-eachField-multiValues/recommendations/db/client-side/initialize-on-first-load.vue'
 import initializeRemComponent from '@/components/1time-eachField-multiValues/reminders/db/client-side/initialize-on-first-load.vue'
 // END
@@ -120,18 +126,22 @@ export default {
     initializePhq9Component,
     initializeProsComponent,
 
-    // At one time a field has multiple values
-    initializeRemComponent,
-    initializeRecComponent,
+    // START: Each field can take multiple values at 1 time in the temporal database
+    initializeAllergiesComponent,
     initializeFamilyHistoryComponent,
+    initializeMiscNotesComponent,
+    initializePlanCommentsComponent,
+    initializeProcessNotesComponent,
+    initializeRecComponent,
+    initializeRemComponent,
     initializePhoneNumberComponent,
+    // END
 
     // Non temporal
     clientSideTblOfAppointmentsInsertData,
     initializeFeedComponent,
     initializeMapComponent,
     initializeClearComponent,
-    initializeAllergiesComponent,
   },
   mounted() {},
   methods: {},
