@@ -1,12 +1,16 @@
 <template>
   <div>
+    <!-- This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
     <el-row type="flex" justify="left" class="remindersh3 sectionHeader" style="padding: 0rem; margin: 0rem">
+      <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading">{{
         propReferToComponentInUiAtPluralClassification.charAt(0).toUpperCase() +
         propReferToComponentInUiAtPluralClassification.slice(1)
       }}</el-col>
+      <!-- 2nd col of the header. This has the action buttons -->
       <el-col :span="2"
         ><div class="grid-content">
+          <!-- Case 1/2: When this appt is locked -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
@@ -28,25 +32,28 @@
               ></el-button>
             </el-popover>
           </div>
+          <!-- Case 2/2: When this appt is un-locked -->
           <div v-else>
-            <el-button
-              class="el-icon-money"
-              size="mini"
-              @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 0px; color: #c0c4cc; border: none; display: none"
-            ></el-button>
-            <el-button
-              class="el-icon-circle-plus-outline"
-              size="mini"
-              @click="mfOpenAddInEditLayer"
-              style="padding: 0px; color: #c0c4cc; border: none; display: none"
-            ></el-button>
-            <el-button
-              class="el-icon-remove-outline"
-              size="mini"
-              @click="toggleSwitchShowBodyContent = !toggleSwitchShowBodyContent"
-              style="padding: 0px; color: #c0c4cc; border: none; display: none"
-            ></el-button>
+            <el-button-group style="float: right; display: none">
+              <el-button
+                class="el-icon-money"
+                size="mini"
+                @click="mfOpenMultiEditCtInEditLayer"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+              <el-button
+                class="el-icon-circle-plus-outline"
+                size="mini"
+                @click="mfOpenAddInEditLayer"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+              <el-button
+                class="el-icon-remove-outline"
+                size="mini"
+                @click="toggleSwitchShowBodyContent = !toggleSwitchShowBodyContent"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+            </el-button-group>
           </div>
         </div>
       </el-col>
