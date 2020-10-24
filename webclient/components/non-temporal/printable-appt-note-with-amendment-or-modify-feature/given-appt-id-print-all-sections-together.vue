@@ -32,6 +32,7 @@
     <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
+    <diagnosisPrintSection :propApptId="propShowNoteForApptId"></diagnosisPrintSection>
     <!-- End of Data -->
 
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
@@ -66,6 +67,7 @@ import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
 import familyHistoryPrintSection from './section-20-family-history.vue'
 import allergiesPrintSection from './section-21-allergies.vue'
+import diagnosisPrintSection from './section-22-diagnosis.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 // Library
@@ -108,6 +110,7 @@ export default {
     planCommentsPrintSection,
     familyHistoryPrintSection,
     allergiesPrintSection,
+    diagnosisPrintSection,
   },
 
   async created() {

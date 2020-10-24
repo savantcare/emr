@@ -146,6 +146,7 @@ import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan
 import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import diagnosisClientTbl from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
@@ -156,6 +157,7 @@ const clientTbl = {
   process_notes: processNotesClientTbl,
   family_history: familyHistoryClientTbl,
   allergies: allergiesClientTbl,
+  diagnosis: diagnosisClientTbl,
 } // 1st row
 
 import moment from 'moment'

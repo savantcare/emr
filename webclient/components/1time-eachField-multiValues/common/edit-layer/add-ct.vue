@@ -102,6 +102,7 @@ import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan
 import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import diagnosisClientTbl from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
@@ -112,6 +113,7 @@ const clientTbl = {
   process_notes: processNotesClientTbl,
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,
+  diagnosis: diagnosisClientTbl,
 } // 1st row
 
 export default {
