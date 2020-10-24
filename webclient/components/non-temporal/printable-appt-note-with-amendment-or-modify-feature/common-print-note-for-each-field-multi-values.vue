@@ -10,7 +10,7 @@
       <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
         ><div class="grid-content">
-          <!-- Case 1/2: When this appt is locked. This decides that header action buttons to show when the appt is locked -->
+          <!-- Case 1/2: When this appt is locked. This decides what header action buttons to show when the appt is locked -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
@@ -32,21 +32,24 @@
               ></el-button>
             </el-popover>
           </div>
-          <!-- Case 2/2: When this appt is un-locked. This decides that header action buttons to show when the appt is locked -->
+          <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
           <div v-else>
             <el-button-group style="float: left; display: none">
-              <el-button
-                class="el-icon-money"
-                size="mini"
-                @click="mfOpenMultiEditCtInEditLayer"
-                style="padding: 3px; color: #c0c4cc; border: none"
-              ></el-button>
+              <!-- Add -->
               <el-button
                 class="el-icon-circle-plus-outline"
                 size="mini"
                 @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
+              <!-- Multi edit -->
+              <el-button
+                class="el-icon-money"
+                size="mini"
+                @click="mfOpenMultiEditCtInEditLayer"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+              <!-- Minimize -->
               <el-button
                 class="el-icon-remove-outline"
                 size="mini"
