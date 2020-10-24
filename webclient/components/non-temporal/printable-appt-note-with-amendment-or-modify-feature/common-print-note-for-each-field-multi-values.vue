@@ -7,10 +7,10 @@
         propReferToComponentInUiAtPluralClassification.charAt(0).toUpperCase() +
         propReferToComponentInUiAtPluralClassification.slice(1)
       }}</el-col>
-      <!-- 2nd col of the header. This has the action buttons -->
+      <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
         ><div class="grid-content">
-          <!-- Case 1/2: When this appt is locked -->
+          <!-- Case 1/2: When this appt is locked. This decides that header action buttons to show when the appt is locked -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
@@ -32,7 +32,7 @@
               ></el-button>
             </el-popover>
           </div>
-          <!-- Case 2/2: When this appt is un-locked -->
+          <!-- Case 2/2: When this appt is un-locked. This decides that header action buttons to show when the appt is locked -->
           <div v-else>
             <el-button-group style="float: left; display: none">
               <el-button
@@ -59,12 +59,61 @@
       </el-col>
     </el-row>
     <div :style="cfGetReminderStyle">
+      <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="toggleSwitchShowBodyContent">
-        <div v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
-          <span v-for="(propFieldObj, id) in propFormFields" :key="id">
-            {{ row[propFieldObj.fieldName] }}
-          </span>
-        </div>
+        <!-- This is for each data row -->
+        <table style="padding: 0px; margin: 0px">
+          <tr v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
+            <!-- This is to loop on fields. Since some may have 1 and other may have 4 fields -->
+            <td v-for="(propFieldObj, id) in propFormFields" :key="id">
+              {{ row[propFieldObj.fieldName] }}
+            </td>
+            <!-- This is for action assocaited with each row -->
+            <div v-if="currentApptObj['apptStatus'] === 'locked'"></div>
+            <!-- Case 1/2: When this appt is locked what row actions to show-->
+            <div v-else>
+              <!-- Case 2/2: When this appt is un-locked what row actions to show-->
+              <td>
+                <el-button-group style="float: right">
+                  <el-tooltip
+                    class="item"
+                    effect="light"
+                    content="Click to edit"
+                    placement="top-start"
+                    :open-delay="500"
+                  >
+                    <el-button
+                      style="padding: 3px; color: #c0c4cc; border: none"
+                      plain
+                      @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+                      class="el-icon-edit"
+                    >
+                    </el-button>
+                  </el-tooltip>
+                  <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+                    <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
+                    </el-button>
+                  </el-tooltip>
+                  <el-tooltip
+                    class="item"
+                    effect="light"
+                    content="Click to delete"
+                    placement="top-end"
+                    :open-delay="500"
+                  >
+                    <el-button
+                      style="padding: 3px; color: #c0c4cc; border: none"
+                      plain
+                      @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
+                      class="el-icon-circle-close"
+                    >
+                    </el-button>
+                  </el-tooltip>
+                </el-button-group>
+              </td>
+            </div>
+          </tr>
+        </table>
       </div>
       <br />
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
