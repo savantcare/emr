@@ -26,7 +26,7 @@ export default {
         ctAbbr: 'arem',
         ctToShow: '1time-eachField-multiValues/diagnosis/edit-layer/diagnosis-add.vue',
         displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'small',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
