@@ -7,7 +7,7 @@ import miscNotesClientSideTable from '~/components/1time-eachField-multiValues/m
 import planCommentsClientSideTable from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '~/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -45,7 +45,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientSideTable[this.propComponentName].fnSendMultiDeleteDataToServer(
+            const status = await clientTbl[this.propComponentName].fnSendMultiDeleteDataToServer(
               this.daSelectedRemForDelete
             )
             if (status.success > 0) {
@@ -68,7 +68,7 @@ export default {
         })
     },
     async mxOpenTrashCanCtInEditLayer() {
-      const deletedRows = await clientSideTable[this.propComponentName].fnGetDeletedRows()
+      const deletedRows = await clientTbl[this.propComponentName].fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
         const arRow = []
@@ -102,7 +102,7 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {
-      const arResultsFromOrm = clientSideTable[this.propComponentName].find(pClientSideDataRowId)
+      const arResultsFromOrm = clientTbl[this.propComponentName].find(pClientSideDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
         confirmButtonText: 'Delete',
@@ -110,7 +110,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientSideTable[this.propComponentName].fnSendDeleteDataToServer(
+          const status = await clientTbl[this.propComponentName].fnSendDeleteDataToServer(
             pClientSideDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value

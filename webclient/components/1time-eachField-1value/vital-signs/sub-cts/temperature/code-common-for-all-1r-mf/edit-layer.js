@@ -1,4 +1,4 @@
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {
@@ -29,7 +29,7 @@ export default {
       /* Why do I need to have the flds that are being changed? Why not just use the rowStatus fld to decide if the row has changed? Better Ux
         The c.vue uses event system  to send a list of flds that have changed to vl */
 
-      const objFldsComparisonResults = clientSideTable.fnIsDataFldsOfRowsSame(
+      const objFldsComparisonResults = clientTbl.fnIsDataFldsOfRowsSame(
         // return true if all data flds are same. Otherwise returns the array of flds that are diff
         this.dnClientSideIdOfRowToChange,
         this.dnClientSideIdOfCopiedRowBeingChanged
@@ -37,12 +37,12 @@ export default {
 
       // informing all other Cts
       if (objFldsComparisonResults === true) {
-        //        const eventName = 'event-from-ct-' + clientSideTable.entity '-cl-copied-row-same'
-        const eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-same'].join('-')
+        //        const eventName = 'event-from-ct-' + clientTbl.entity '-cl-copied-row-same'
+        const eventName = ['event-from-ct', clientTbl.entity, 'cl-copied-row-same'].join('-')
         this.$root.$emit(eventName)
       } else {
         objFldsComparisonResults.dnClientSideIdOfCopiedRowBeingChanged = this.dnClientSideIdOfCopiedRowBeingChanged
-        const eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-diff'].join('-')
+        const eventName = ['event-from-ct', clientTbl.entity, 'cl-copied-row-diff'].join('-')
         this.$root.$emit(eventName, objFldsComparisonResults)
       }
 
@@ -55,10 +55,10 @@ export default {
     },
     cfTimeLineDataAr() {
       const timelineDataArray = []
-      const arFromClientSideTableData = clientSideTable.find(this.dnClientSideIdOfRowToChange)
+      const arFromClientSideTableData = clientTbl.find(this.dnClientSideIdOfRowToChange)
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientSideTable = clientSideTable
+      const arFromClientSideTable = clientTbl
         .query()
         .where('serverSideRowUuid', arFromClientSideTableData.serverSideRowUuid)
         .orderBy('ROW_START', 'desc')
@@ -72,11 +72,7 @@ export default {
           rowInTimeLine.temperatureInFarehnite = arFromClientSideTable[i].temperatureInFarehnite
           date = new Date(arFromClientSideTable[i].ROW_START)
           rowInTimeLine.createdAt =
-            date.toLocaleString('default', { month: 'long' }) +
-            '-' +
-            date.getDate() +
-            '-' +
-            date.getFullYear()
+            date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
             arFromClientSideTable[i].vnRowStateInSession === 3 ||
             arFromClientSideTable[i].vnRowStateInSession === 34 ||
@@ -112,23 +108,18 @@ export default {
             pClientSideIdOfCopiedRowBeingChangedNVal = null since any other function that wants a new row being copied sets it to null
             pClientSideIdOfCopiedRowBeingChangedOVal is the old value of pClientSideIdOfCopiedRowBeingChangedNVal. Hence previous row that was being edited  */
 
-      async handler(
-        pClientSideIdOfCopiedRowBeingChangedNVal,
-        pClientSideIdOfCopiedRowBeingChangedOVal
-      ) {
+      async handler(pClientSideIdOfCopiedRowBeingChangedNVal, pClientSideIdOfCopiedRowBeingChangedOVal) {
         // NVal => New value and OVal => Old Value
         if (this.dnClientSideIdOfRowToChange === -1) return // Data has not finished loading in the created()
 
         if (pClientSideIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.dnClientSideIdOfRowToChange is assigned in the created event function
               When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
-          const arFromClientSideTable = clientSideTable.find(this.dnClientSideIdOfRowToChange)
-          const vnExistingChangeRowId = clientSideTable.fnGetChangeRowIdInEditState(
-            arFromClientSideTable.serverSideRowUuid
-          ) // For a given UUID there can be only 1 row in edit state.
+          const arFromClientSideTable = clientTbl.find(this.dnClientSideIdOfRowToChange)
+          const vnExistingChangeRowId = clientTbl.fnGetChangeRowIdInEditState(arFromClientSideTable.serverSideRowUuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/edit-design-1.vue approx line 108
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable.fnCopyRowAndGetCopiedRowId(
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientTbl.fnCopyRowAndGetCopiedRowId(
               arFromClientSideTable.clientSideUniqRowId
             )
           } else {
@@ -141,11 +132,11 @@ export default {
   // Goal: Load the data from DB
   async created() {
     // additional data initializations that don't depend on the DOM. DOM is only available inside mounted()
-    if (clientSideTable.query().count() > 0) {
+    if (clientTbl.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    const arFromClientSideTable = clientTbl.fnGetRowsToChange()
     this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
     this.dnClientSideIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
@@ -154,14 +145,14 @@ export default {
   mounted() {
     // these events are sent from view layer when "S" or "R" buttons are clicked in the VL
 
-    let eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
+    let eventName = ['event-from-ct', clientTbl.entity, 'vl-save-this-row'].join('-')
     // A sample event name is: 'event-from-ct-name-vl-save-this-row'
     this.$root.$on(eventName, (pRowId) => {
       this.dnClientSideIdOfCopiedRowBeingChanged = pRowId
       this.mfOnReviewed()
     })
 
-    eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
+    eventName = ['event-from-ct', clientTbl.entity, 'vl-reset-this-form'].join('-')
     this.$root.$on(eventName, () => {
       this.mfOnResetForm()
     })
@@ -169,8 +160,8 @@ export default {
   methods: {
     async mfOnReviewed() {
       // Since only one valid row is possible there may be other deleted rows
-      const rowToUpsert = clientSideTable.find(this.dnClientSideIdOfCopiedRowBeingChanged)
-      const response = await fetch(clientSideTable.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
+      const rowToUpsert = clientTbl.find(this.dnClientSideIdOfCopiedRowBeingChanged)
+      const response = await fetch(clientTbl.apiUrl + '/' + rowToUpsert.serverSideRowUuid, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -182,7 +173,7 @@ export default {
       })
       if (response.status === 200) {
         // set ROW_END of row being changed
-        await clientSideTable.update({
+        await clientTbl.update({
           where: (record) => {
             return (
               record.serverSideRowUuid === rowToUpsert.serverSideRowUuid &&
@@ -198,7 +189,7 @@ export default {
           },
         })
         /* Goal: Update the value of copied row to success or failure depending on the api response */
-        clientSideTable.update({
+        clientTbl.update({
           where: this.dnClientSideIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: 34571,
@@ -211,13 +202,13 @@ export default {
     },
     mfOnResetForm() {
       // Step 1/3: delete the row that was created as a copy
-      clientSideTable.fnDeleteChangeRowsInEditState()
+      clientTbl.fnDeleteChangeRowsInEditState()
 
       // Step 2/3: Set dnClientSideIdOfCopiedRowBeingChanged as null so that "act on state" code can take effect to create a copied row see watch dnClientSideIdOfCopiedRowBeingChanged
       this.dnClientSideIdOfCopiedRowBeingChanged = null
 
       // Step 3/3: the flds in the form have existing edited values the flds need to have non edited values
-      clientSideTable.arOrmRowsCached = []
+      clientTbl.arOrmRowsCached = []
     },
 
     /* Template cannot directly call a ORM function. So first calling a method function and that calls the ORM function */
@@ -227,20 +218,12 @@ export default {
         console.log('When the Ct is first loaded let us see how many times if getfld called');
       */
       // There will always be an existing row that is already in change state
-      const value = clientSideTable.fnGetFldValue(
-        this.dnClientSideIdOfCopiedRowBeingChanged,
-        pFldName
-      )
+      const value = clientTbl.fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
       return value
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34 // 3 is copy on client and 4 is changed on client
-      clientSideTable.fnSetFldValue(
-        pEvent,
-        this.dnClientSideIdOfCopiedRowBeingChanged,
-        pFldName,
-        rowStatus
-      )
+      clientTbl.fnSetFldValue(pEvent, this.dnClientSideIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },

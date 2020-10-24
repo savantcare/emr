@@ -20,7 +20,7 @@ const mxFullSyncWithDbServer = require('@/components/1time-eachField-1value/' +
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import clientSideTblOfRightSideCards from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
@@ -41,7 +41,7 @@ export default {
     cfLatestDataRowFromClientSideTable() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+      const arFromClientSideTable = clientTbl.fnGetRowsToChange()
       if (arFromClientSideTable.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
         const rowtoReturn = arFromClientSideTable[0]
@@ -74,18 +74,18 @@ export default {
   },
   async mounted() {
     // Goal: Listen to events from change layer. These events will inform which flds should be in organe color
-    let eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-diff'].join('-')
+    let eventName = ['event-from-ct', clientTbl.entity, 'cl-copied-row-diff'].join('-')
 
     this.$root.$on(eventName, (pFldsWithDiff) => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = pFldsWithDiff
     })
 
-    eventName = ['event-from-ct', clientSideTable.entity, 'cl-copied-row-same'].join('-')
+    eventName = ['event-from-ct', clientTbl.entity, 'cl-copied-row-same'].join('-')
     this.$root.$on(eventName, () => {
       this.dataFldsOfToChangeAndCopiedRowsAreSame = true
     })
 
-    if (clientSideTable.query().count() > 0) {
+    if (clientTbl.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
@@ -96,16 +96,14 @@ export default {
         that something has changed.
     
     */
-    const arFromClientSideTable = clientSideTable.fnGetRowsToChange()
+    const arFromClientSideTable = clientTbl.fnGetRowsToChange()
     if (arFromClientSideTable.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromClientSideTable[0]
-      const dnClientSideIdOfCopiedRowBeingChanged = clientSideTable.fnGetChangeRowIdInEditState(
-        rowtoReturn.serverSideRowUuid
-      )
+      const dnClientSideIdOfCopiedRowBeingChanged = clientTbl.fnGetChangeRowIdInEditState(rowtoReturn.serverSideRowUuid)
       if (dnClientSideIdOfCopiedRowBeingChanged === false) {
       } else {
-        this.dataFldsOfToChangeAndCopiedRowsAreSame = clientSideTable.fnIsDataFldsOfRowsSame(
+        this.dataFldsOfToChangeAndCopiedRowsAreSame = clientTbl.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.clientSideUniqRowId,
           dnClientSideIdOfCopiedRowBeingChanged
@@ -130,11 +128,11 @@ export default {
     },
     mfSendReviewedEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
-      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-save-this-row'].join('-')
+      const eventName = ['event-from-ct', clientTbl.entity, 'vl-save-this-row'].join('-')
       this.$root.$emit(eventName, this.dataFldsOfToChangeAndCopiedRowsAreSame.dnClientSideIdOfCopiedRowBeingChanged)
     },
     mfSendResetFormEvent() {
-      const eventName = ['event-from-ct', clientSideTable.entity, 'vl-reset-this-form'].join('-')
+      const eventName = ['event-from-ct', clientTbl.entity, 'vl-reset-this-form'].join('-')
       this.$root.$emit(eventName)
     },
   },

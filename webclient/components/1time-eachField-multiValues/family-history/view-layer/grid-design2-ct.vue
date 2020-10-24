@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import clientSideTable from '../db/client-side/structure/family-history-of-a-patient-table.js'
+import clientTbl from '../db/client-side/structure/family-history-of-a-patient-table.js'
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
@@ -90,13 +90,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidRows()
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidRows()
       return arFromClientSideTable.length
     },
 
     cfArOfRemForDisplayInTable() {
-      // Whenever clientSideTable will change this will get called. Even when there are 100 rows in the table when clientSideTable rem changes this gets called once'
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
+      // Whenever clientTbl will change this will get called. Even when there are 100 rows in the table when clientTbl rem changes this gets called once'
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:

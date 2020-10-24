@@ -30,12 +30,7 @@ How to solve this?
       -- If number of slide in slider is 1 (computed function 'getNumOfCarouselSlides' return 1) then no need to show arrow in slider. In this case 'dsSliderArrowVisiblity' should be 'never'.
       Otherwise if number of slide in slider is greater then 1 then we need to show arrow for next/previous slide. In this case 'dsSliderArrowVisiblity' should be 'always'.
      -->
-    <el-carousel
-      :arrow="dsSliderArrowVisiblity"
-      trigger="click"
-      :autoplay="false"
-      @change="slideChanged"
-    >
+    <el-carousel :arrow="dsSliderArrowVisiblity" trigger="click" :autoplay="false" @change="slideChanged">
       <!-- Reason for v-bind to pass boolean value https://stackoverflow.com/questions/49225002/passing-boolean-vue-prop-value-in-html -->
       <el-carousel-item v-for="slide in getNumOfCarouselSlides" :key="slide">
         <!-- Performance analysis  TODO
@@ -73,7 +68,7 @@ How to solve this?
   <div v-else><el-alert title="No phoneNumber found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import ctChangeRem from './edit-design-1.vue'
 export default {
   components: { ctChangeRem },
@@ -126,7 +121,7 @@ export default {
   },
   mounted() {
     console.log('In mounted function')
-    const resultArFromOrm = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
+    const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
         this.daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)

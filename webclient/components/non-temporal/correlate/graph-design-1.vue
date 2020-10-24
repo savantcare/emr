@@ -78,7 +78,7 @@ export default {
         ],
         title: {
           text: '',
-        }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        }, // Reason: Y axis will have clientTbl.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
 
         series: [
           // { data: this.cfBasicConcept, name: 'Basic concept' },

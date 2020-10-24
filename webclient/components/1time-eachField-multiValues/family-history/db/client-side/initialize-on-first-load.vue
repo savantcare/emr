@@ -6,7 +6,7 @@
 
 <script>
 import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientSideTable from '~/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import clientTbl from '~/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
   components: {
@@ -17,11 +17,11 @@ export default {
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function
         When using json-server backend the code is:
-        const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
+        const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
 
     if (process.env.useServerDBForFamilyHistory === true) {
-      const proFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+      const proFromDB = await clientTbl.api().get(clientTbl.apiUrl)
       if (proFromDB.ok) {
       }
     }

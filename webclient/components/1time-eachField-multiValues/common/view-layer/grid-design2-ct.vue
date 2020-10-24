@@ -83,7 +83,7 @@ import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/m
 import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -104,19 +104,19 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
   }, // firstProp is the ClientSideIdOfRowToChange
 
   computed: {
     cfLengthOfDataArray() {
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidRows()
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidRows()
       return arFromClientSideTable.length
     },
 
     cfArOfRemForDisplayInTable() {
-      // Whenever clientSideTable will change this will get called. Even when there are 100 rows in the table when clientSideTable rem changes this gets called once'
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
+      // Whenever clientTbl will change this will get called. Even when there are 100 rows in the table when clientTbl rem changes this gets called once'
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:

@@ -1,10 +1,10 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
-import clientSideTable from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
+import clientTbl from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await clientSideTable.api().get(clientSideTable.apiUrl + '?ptUuid=abcd')
+      const pro = await clientTbl.api().get(clientTbl.apiUrl + '?ptUuid=abcd')
       if (pro.ok) {
       }
     },

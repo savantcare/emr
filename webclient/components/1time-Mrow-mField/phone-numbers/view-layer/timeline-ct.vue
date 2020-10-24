@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
@@ -95,7 +95,7 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

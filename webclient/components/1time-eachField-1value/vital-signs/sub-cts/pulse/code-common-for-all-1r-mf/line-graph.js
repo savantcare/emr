@@ -1,5 +1,5 @@
 import { Chart } from 'highcharts-vue'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import mxViewLayer from './view-layer.js'
 
 export default {
@@ -25,14 +25,14 @@ export default {
       const chartOptions = {
         series: [
           {
-            name: clientSideTable.entity,
+            name: clientTbl.entity,
             showInLegend: false,
             data: arDataToShowOnGraph,
           },
         ],
         title: {
           text: '',
-        }, // Reason: Y axis will have clientSideTable.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
+        }, // Reason: Y axis will have clientTbl.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
         chart: {
           height: 200,
         },
@@ -51,12 +51,12 @@ export default {
         yAxis: [
           {
             title: {
-              text: clientSideTable.entity,
+              text: clientTbl.entity,
             },
           },
         ],
         tooltip: {
-          headerFormat: '<b>{point.y:.2f} ' + clientSideTable.graphSeries1Unit + '</b><br>',
+          headerFormat: '<b>{point.y:.2f} ' + clientTbl.graphSeries1Unit + '</b><br>',
           pointFormat: '{point.x:%m-%Y}',
         },
         credits: {
@@ -69,12 +69,12 @@ export default {
   methods: {
     mfGetDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTable.all()
+      const data = clientTbl.all()
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = data[i][clientSideTable.graphSeries1FieldName]
+          const graphData = data[i][clientTbl.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         return arDataToShowOnGraph

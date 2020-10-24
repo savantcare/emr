@@ -20,7 +20,7 @@
 
 # Q2) How is the state of data entered in the form managed on client side?
 
-vuex clientSideTable field: vnRowStateInSession of type int
+vuex clientTbl field: vnRowStateInSession of type int
 
 e.g. cts/1time-eachField-multiValues/1-textarea/db/client-side/reminders:71
 

@@ -71,7 +71,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   /*
   constructor() {
     super()
-    this.arOrmRowsCached = []       // If I do this each row of the clientSideTable model will have arOrmRowsCached = []
+    this.arOrmRowsCached = []       // If I do this each row of the clientTbl model will have arOrmRowsCached = []
   }
   */
 
@@ -308,7 +308,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetDeletedRows() {
     /* 
     
-    Method 1: Get deleted rows from clientSideTable using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
+    Method 1: Get deleted rows from clientTbl using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
     Problem:- But I am unable to find vuex-orm groupBy query
  
     Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not deleted.
@@ -606,11 +606,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             1. User adds data, hits save button twice or double click
             2. user adds data, hits save button and again tries to add another data and click save button before previous api call finished. 
           Here is the problem and how we are resolving this:
-            Save process starts with searching from clientSideTable for the records having 'vnRowStateInSession' = 2457.
-            Now, 'vnRowStateInSession' of clientSideTable record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
+            Save process starts with searching from clientTbl for the records having 'vnRowStateInSession' = 2457.
+            Now, 'vnRowStateInSession' of clientTbl record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
             That means the second time searching for 'vnRowStateInSession' = 2457 will point to the same record multiple times which should not be the actual case.
-            To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains clientSideTable row id that are going to be saved.
-            In if statement we are searching if clientSideTable row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientSideTable row id in 'arOrmRowIdSendToServer'.
+            To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains clientTbl row id that are going to be saved.
+            In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendToServer'.
       */
         if (this.arOrmRowIdSendToServer.includes(row.clientSideUniqRowId)) {
           console.log('Already sent to server')
@@ -635,7 +635,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               },
             })
 
-            /* Remove clientSideTable row id from 'arOrmRowIdSendToServer' after this promise finished. */
+            /* Remove clientTbl row id from 'arOrmRowIdSendToServer' after this promise finished. */
             const index = this.arOrmRowIdSendToServer.indexOf(row.clientSideUniqRowId)
             if (index > -1) {
               this.arOrmRowIdSendToServer.splice(index, 1)

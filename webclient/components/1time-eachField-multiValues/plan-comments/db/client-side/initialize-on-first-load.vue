@@ -6,7 +6,7 @@
 
 <script>
 import initializeRecommendationComponent from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientSideTable from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import clientTbl from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {
   components: {
@@ -17,9 +17,9 @@ export default {
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function
         When using json-server backend the code is:
-        const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
+        const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
-    const proRemsFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl)
     if (proRemsFromDB.ok) {
     }
   },

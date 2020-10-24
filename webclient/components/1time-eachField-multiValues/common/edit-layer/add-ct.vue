@@ -104,7 +104,7 @@ import recommendationClientSideTable from '@/components/1time-eachField-multiVal
 import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   allergies: allergiesClientSideTable,
   family_history: familyHistoryClientSideTable,
   misc_notes: miscNotesClientSideTable,
@@ -120,7 +120,7 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
     propFormFields: {
       type: Array,
@@ -131,28 +131,28 @@ export default {
     },
   },
   computed: {
-    // clientSideTable[this.propComponentName] functions can not be directly called from template. hence computed functions have been defined.
+    // clientTbl[this.propComponentName] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientSideTableNewRowsInEditState() {
-      return clientSideTable[this.propComponentName].fnGetNewRowsInEditState()
+      return clientTbl[this.propComponentName].fnGetNewRowsInEditState()
     },
     cfGetClientSideTableReadyToReviewedStateRows() {
-      return clientSideTable[this.propComponentName].fnGetNewRowsInReadyToReviewedState()
+      return clientTbl[this.propComponentName].fnGetNewRowsInReadyToReviewedState()
     },
     cfGetClientSideTableApiSuccessStateRows() {
-      return clientSideTable[this.propComponentName].fnGetNewRowsInApiSuccessState()
+      return clientTbl[this.propComponentName].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientSideTableApiErrorStateRows() {
-      return clientSideTable[this.propComponentName].fnGetNewRowsInApiErrorState()
+      return clientTbl[this.propComponentName].fnGetNewRowsInApiErrorState()
     },
     cfGetClientSideTableApiSendingStateRows() {
-      return clientSideTable[this.propComponentName].fnGetNewRowsInApiSendingState()
+      return clientTbl[this.propComponentName].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     async mfAddEmptyRowInEditLayerientSideTable() {
       console.log(this.propFormFields)
       // TODO: this should be part of base class
-      const arFromClientSideTable = await clientSideTable[this.propComponentName].insert({
+      const arFromClientSideTable = await clientTbl[this.propComponentName].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -172,17 +172,17 @@ export default {
         this.$refs.description[lastElement - 1].focus()
       }
     },
-    // Cannot call clientSideTable[this.propComponentName] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call clientTbl[this.propComponentName] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientSideRowId, pFldName) {
-      return clientSideTable[this.propComponentName].fnGetFldValue(pClientSideRowId, pFldName)
+      return clientTbl[this.propComponentName].fnGetFldValue(pClientSideRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
       const rowStatus = 24
-      clientSideTable[this.propComponentName].fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
+      clientTbl[this.propComponentName].fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientSideRowId) {
-      const arFromClientSideTable = clientSideTable[this.propComponentName].find(pClientSideRowId)
+      const arFromClientSideTable = clientTbl[this.propComponentName].find(pClientSideRowId)
       if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -190,24 +190,24 @@ export default {
       return ''
     },
     async mfDeleteRowInEditLayerientSideTable(pClientSideRowId) {
-      await clientSideTable[this.propComponentName].delete(pClientSideRowId)
+      await clientTbl[this.propComponentName].delete(pClientSideRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      clientSideTable[this.propComponentName].fnDeleteNewRowsInEditState()
+      clientTbl[this.propComponentName].fnDeleteNewRowsInEditState()
     },
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientSideTableReadyToReviewedStateRows' returns all the newly added row which is not empty from clientSideTable[this.propComponentName] ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientSideTableReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propComponentName] ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientSideTable[this.propComponentName] since get benefit of caching.
+      const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientTbl[this.propComponentName] since get benefit of caching.
       if (arFromClientSideTable.length) {
         console.log('unsaved data found', arFromClientSideTable)
         for (let i = 0; i < arFromClientSideTable.length; i++) {
           if (arFromClientSideTable[i].description.length < 3) {
             // Validation check
-            await clientSideTable[this.propComponentName].update({
+            await clientTbl[this.propComponentName].update({
               where: (record) => record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -216,7 +216,7 @@ export default {
               },
             })
           } else {
-            await clientSideTable[this.propComponentName].update({
+            await clientTbl[this.propComponentName].update({
               where: (record) => record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
@@ -228,7 +228,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await clientSideTable[this.propComponentName].fnSendToServer()
+      await clientTbl[this.propComponentName].fnSendToServer()
     },
   },
 }

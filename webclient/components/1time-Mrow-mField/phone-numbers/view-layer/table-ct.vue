@@ -108,7 +108,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 
 <script>
 import mxFullSyncWithDbServer from '../db/full-sync-with-server-db-mixin'
-import clientSideTable from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
 export default {
   mixins: [clInvokeMixin, mxFullSyncWithDbServer],
@@ -121,13 +121,13 @@ export default {
   },
   computed: {
     cfLengthOfDataArray() {
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidRows()
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidRows()
       return arFromClientSideTable.length
     },
 
     cfArOfPhoneNumberForDisplayInTable() {
-      // Whenever clientSideTable will change this will get called. Even when there are 100 rows in the table when clientSideTable phoneNumber changes this gets called once'
-      const arFromClientSideTable = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('countryCode')
+      // Whenever clientTbl will change this will get called. Even when there are 100 rows in the table when clientTbl phoneNumber changes this gets called once'
+      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('countryCode')
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
@@ -163,7 +163,7 @@ export default {
     },
   },
   async mounted() {
-    if (clientSideTable.query().count() > 0) {
+    if (clientTbl.query().count() > 0) {
     } else {
       await this.mxGetDataFromDb()
     }

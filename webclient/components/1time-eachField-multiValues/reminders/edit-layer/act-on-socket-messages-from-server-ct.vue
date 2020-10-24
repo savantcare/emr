@@ -3,7 +3,7 @@
 </template>
 <script>
 import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import clientSideTable from '../db/client-side/structure/reminders-of-a-patient-table.js'
+import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   mounted() {
@@ -35,7 +35,7 @@ export default {
         socketClientObj.fieldValue !==
         pDataArr['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
       ) {
-        const arFromClientSideTable = await clientSideTable.insert({
+        const arFromClientSideTable = await clientTbl.insert({
           data: {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
             ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -65,7 +65,7 @@ export default {
       const pDataArr = JSON.parse(pData)
       console.log('MsgFromSktForRemToDelete received from socket server. The data received is', pDataArr)
 
-      clientSideTable.update({
+      clientTbl.update({
         where: (record) => record.serverSideRowUuid === pDataArr.serverSideRowUuid,
         data: {
           ROW_END: Math.floor(Date.now()),
@@ -94,7 +94,7 @@ export default {
          * 1. Update ROW_END as now() of current active reminder
          * 2. Insert new row in orm with new description
          */
-        await clientSideTable.update({
+        await clientTbl.update({
           where: (record) => {
             return record.serverSideRowUuid === pDataArr.serverSideRowUuid && record.vnRowStateInSession === 1
           },
@@ -103,7 +103,7 @@ export default {
           },
         })
 
-        await clientSideTable.insert({
+        await clientTbl.insert({
           data: {
             ROW_START: Math.floor(Date.now()),
             description: pDataArr.description,
@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     fnSetRowStatus(pClientSidePrimaryKeyValue) {
-      clientSideTable.update({
+      clientTbl.update({
         where: pClientSidePrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md

@@ -89,7 +89,7 @@ import processNotesClientSideTable from '@/components/1time-eachField-multiValue
 import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -109,7 +109,7 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
   }, // firstProp is the ClientSideIdOfRowToChange
   computed: {
@@ -118,9 +118,7 @@ export default {
       return arFromClientSideTable['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientSideTable[this.propComponentName].fnGetPresentUniqueUuidNotEmptyRows(
-        'description'
-      )
+      const arFromClientSideTable = clientTbl[this.propComponentName].fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

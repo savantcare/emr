@@ -147,7 +147,7 @@ import familyHistoryClientSideTable from '@/components/1time-eachField-multiValu
 import allergiesClientSideTable from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -181,7 +181,7 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
     propFormFields: {
       type: Array,
@@ -287,13 +287,13 @@ export default {
       let arOfObjectsFromClientSideDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTable[this.propComponentName]
+        arOfObjectsFromClientSideDB = clientTbl[this.propComponentName]
           .query()
           .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
           .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTable[this.propComponentName]
+        arOfObjectsFromClientSideDB = clientTbl[this.propComponentName]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

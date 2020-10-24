@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import clientSideTable from '@/components/1time-eachField-1value/name/db/client-side/structure/table.js'
+import clientTbl from '@/components/1time-eachField-1value/name/db/client-side/structure/table.js'
 
 export default {
   props: {
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     cfLatestDataRowFromClientSideTable() {
-      let arOfObjectsFromClientSideDB = clientSideTable.query().where('ROW_END', 2147483648000).get()
+      let arOfObjectsFromClientSideDB = clientTbl.query().where('ROW_END', 2147483648000).get()
       return arOfObjectsFromClientSideDB[0]
     },
     initialFirstName() {

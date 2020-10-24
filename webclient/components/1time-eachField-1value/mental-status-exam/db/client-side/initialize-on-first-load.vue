@@ -6,7 +6,7 @@
 
 <script>
 import initializeMentalStatusExamComponent from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientSideTable from '~/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTbl from '~/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   components: {
@@ -17,9 +17,9 @@ export default {
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function
         When using json-server backend the code is:
-        const proMseFromDB = await clientSideTable.api().get(clientSideTable.apiUrl + '/getAll')
+        const proMseFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
-    const proMseFromDB = await clientSideTable.api().get(clientSideTable.apiUrl)
+    const proMseFromDB = await clientTbl.api().get(clientTbl.apiUrl)
     if (proMseFromDB.ok) {
     }
   },

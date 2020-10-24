@@ -74,7 +74,7 @@ import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/m
 import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -96,7 +96,7 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
   }, // firstProp is the ClientSideIdOfRowToChange
 
@@ -142,7 +142,7 @@ export default {
   },
   mounted() {
     console.log('In mounted function')
-    const resultArFromOrm = clientSideTable.fnGetPresentUniqueUuidNotEmptyRows('description')
+    const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
         this.daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)

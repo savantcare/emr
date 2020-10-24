@@ -53,7 +53,7 @@ import processNotesClientSideTable from '@/components/1time-eachField-multiValue
 import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
-const clientSideTable = {
+const clientTbl = {
   reminders: reminderClientSideTable,
   recommendations: recommendationClientSideTable,
   plan_comments: planCommentsClientSideTable,
@@ -101,7 +101,7 @@ export default {
     propComponentName: {
       type: String,
       required: true,
-      validator: (value) => Object.keys(clientSideTable).includes(value),
+      validator: (value) => Object.keys(clientTbl).includes(value),
     },
     propFormFields: {
       type: Array,
@@ -125,7 +125,7 @@ export default {
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientSideTable = clientSideTable[this.propComponentName]
+      const arFromClientSideTable = clientTbl[this.propComponentName]
         .query()
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
@@ -193,14 +193,14 @@ export default {
         if (pNVal === null) {
           /* When called first time this.dnClientSideIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
-          const arOrmRowToChange = clientSideTable[this.propComponentName].find(this.dnClientSideIdOfRowToChange)
+          const arOrmRowToChange = clientTbl[this.propComponentName].find(this.dnClientSideIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
-          const vnExistingChangeRowId = clientSideTable[this.propComponentName].fnGetChangeRowIdInEditState(
+          const vnExistingChangeRowId = clientTbl[this.propComponentName].fnGetChangeRowIdInEditState(
             arOrmRowToChange.serverSideRowUuid
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable[
+            this.dnClientSideIdOfCopiedRowBeingChanged = await clientTbl[
               this.propComponentName
             ].fnCopyRowAndGetCopiedRowId(arOrmRowToChange.clientSideUniqRowId)
           } else {
@@ -213,9 +213,9 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnClientSideIdOfCopiedRowBeingChanged = await clientSideTable[
-        this.propComponentName
-      ].fnCopyRowAndGetCopiedRowId(pOrmRowToChange.clientSideUniqRowId)
+      this.dnClientSideIdOfCopiedRowBeingChanged = await clientTbl[this.propComponentName].fnCopyRowAndGetCopiedRowId(
+        pOrmRowToChange.clientSideUniqRowId
+      )
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
@@ -241,11 +241,11 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
-      return clientSideTable[this.propComponentName].fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
+      return clientTbl[this.propComponentName].fnGetFldValue(this.dnClientSideIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
-      clientSideTable[this.propComponentName].fnSetFldValue(
+      clientTbl[this.propComponentName].fnSetFldValue(
         pEvent,
         this.dnClientSideIdOfCopiedRowBeingChanged,
         pFldName,
@@ -255,7 +255,7 @@ export default {
     },
     async mfSendDataToServer() {
       try {
-        await clientSideTable[this.propComponentName].update({
+        await clientTbl[this.propComponentName].update({
           where: this.dnClientSideIdOfCopiedRowBeingChanged,
           data: {
             vnRowStateInSession: '345',
@@ -273,25 +273,22 @@ export default {
           )
           .first()
 
-        const response = await fetch(
-          clientSideTable[this.propComponentName].apiUrl + '/' + this.dnOrmUuidOfRowToChange,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              // "Authorization": "Bearer " + TOKEN
-            },
-            body: JSON.stringify({
-              description: this.mfGetCopiedRowBeingChangedFldVal('description'),
-              client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
-                socketClientObj.fieldValue,
-            }),
-          }
-        )
+        const response = await fetch(clientTbl[this.propComponentName].apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: JSON.stringify({
+            description: this.mfGetCopiedRowBeingChangedFldVal('description'),
+            client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+              socketClientObj.fieldValue,
+          }),
+        })
 
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          clientSideTable[this.propComponentName].update({
+          clientTbl[this.propComponentName].update({
             where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 3458,
@@ -312,7 +309,7 @@ export default {
 
             Q): Why following where clause needed?
             A):
-                Whenever we change a record and hit save button, we get two records in clientSideTable with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
+                Whenever we change a record and hit save button, we get two records in clientTbl with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
                 In real time 3 cases may happen.
                   1. User changes an existing record. i.e. rowState = 1
                   2. User already changed a record and then again changes that record i.e. rowState = 34571
@@ -322,17 +319,17 @@ export default {
 
             Q) What we have done to deal with the above mentioned problem?
             A)
-                We are following below mentioned logic in where clause of clientSideTable update:
+                We are following below mentioned logic in where clause of clientTbl update:
                 -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
-                  "exp A" -> search record from clientSideTable whose uuid = this.dnOrmUuidOfRowToChange
+                  "exp A" -> search record from clientTbl whose uuid = this.dnOrmUuidOfRowToChange
                   "exp B1" -> "vnRowStateInSession === 1",
-                      clientSideTable record that came from database (Case: User changes an existing record)
+                      clientTbl record that came from database (Case: User changes an existing record)
                   "exp B2" -> "vnRowStateInSession === 34571",
-                      clientSideTable record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
+                      clientTbl record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
                   "exp B3" -> "vnRowStateInSession === 24571",
-                      clientSideTable record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+                      clientTbl record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
          */
-          await clientSideTable[this.propComponentName].update({
+          await clientTbl[this.propComponentName].update({
             where: (record) => {
               return (
                 record.uuid === this.dnOrmUuidOfRowToChange &&
@@ -348,7 +345,7 @@ export default {
             },
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-          clientSideTable[this.propComponentName].update({
+          clientTbl[this.propComponentName].update({
             where: this.dnClientSideIdOfCopiedRowBeingChanged,
             data: {
               vnRowStateInSession: 34571,
@@ -359,8 +356,8 @@ export default {
 
         /*
             Goal:
-            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into clientSideTable and it displayed on the top of timeline.
-            When change api request then we should need to insert a duplicate row (copy of row) again in clientSideTable for further change.
+            According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into clientTbl and it displayed on the top of timeline.
+            When change api request then we should need to insert a duplicate row (copy of row) again in clientTbl for further change.
           */
         this.dnClientSideIdOfRowToChange = this.dnClientSideIdOfCopiedRowBeingChanged
         this.dnClientSideIdOfCopiedRowBeingChanged = null

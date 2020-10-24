@@ -1,7 +1,7 @@
 // Reference implementation
 
 // Ref: https://stackoverflow.com/questions/43841778/vue-js-how-to-use-in-mixins-in-single-file-template
-import clientSideTable from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import clientTbl from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 
 export default {
   methods: {
@@ -28,7 +28,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientSideTable.fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
+            const status = await clientTbl.fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
             if (status.success > 0) {
               this.$message({
                 type: 'success',
@@ -49,7 +49,7 @@ export default {
         })
     },
     async mxOpenTrashCanCtInEditLayer() {
-      const deletedRows = await clientSideTable.fnGetDeletedRows()
+      const deletedRows = await clientTbl.fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
         const arRow = []
@@ -82,7 +82,7 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientSideDataRowId) {
-      const arResultsFromOrm = clientSideTable.find(pClientSideDataRowId)
+      const arResultsFromOrm = clientTbl.find(pClientSideDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete recommendation', {
         confirmButtonText: 'Delete',
@@ -90,7 +90,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientSideTable.fnSendDeleteDataToServer(
+          const status = await clientTbl.fnSendDeleteDataToServer(
             pClientSideDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value
