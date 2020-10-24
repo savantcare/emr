@@ -52,9 +52,9 @@
               ></el-button>
               <!-- Minimize or maximize -->
               <el-button
-                :class="toggleSwitchShowBodyContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
+                :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
                 size="mini"
-                @click="toggleSwitchShowBodyContent = !toggleSwitchShowBodyContent"
+                @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
             </el-button-group>
@@ -64,7 +64,7 @@
     </el-row>
     <div :style="cfGetReminderStyle">
       <!-- Goal: Only do this if this section has not been minimized -->
-      <div v-if="toggleSwitchShowBodyContent">
+      <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
@@ -166,7 +166,7 @@ export default {
       currentApptObj: {},
       amendmentData: '',
       isAddendumPopoverVisible: false,
-      toggleSwitchShowBodyContent: true,
+      OnAndOffSwitchToShowContent: true,
     }
   },
   filters: {

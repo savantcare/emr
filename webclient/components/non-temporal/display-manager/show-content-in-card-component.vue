@@ -48,7 +48,7 @@
 
     <!-- B O D Y -->
 
-    <div :class="mfGetTopMostCardBodyGrid()" v-if="toggleSwitchShowBodyContent === 1">
+    <div :class="mfGetTopMostCardBodyGrid()" v-if="OnAndOffSwitchToShowContent === 1">
       <slot name="bodySlotContentFromParentToShowAboveChildCards" />
       <el-card
         v-for="card in propChildCardsArray"
@@ -103,7 +103,7 @@ export default {
   },
   data: function () {
     return {
-      toggleSwitchShowBodyContent: 1,
+      OnAndOffSwitchToShowContent: 1,
       OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh: 1,
       actionIconBelowMousePointer: null,
       defaultActionDescription: null,
@@ -199,7 +199,7 @@ export default {
       if (pActionDescription === 'Multi edit') this.$parent.mxOpenMultiEditCtInEditLayer()
 
       if (pActionDescription === 'Toggle card display')
-        this.toggleSwitchShowBodyContent = 1 - this.toggleSwitchShowBodyContent
+        this.OnAndOffSwitchToShowContent = 1 - this.OnAndOffSwitchToShowContent
       if (pActionDescription === 'Show deleted') this.$parent.mxOpenTrashCanCtInEditLayer()
       if (pActionDescription === 'Close card')
         this.OneTimeSwitchToHideCardAndMakeItAvailableOnlyOnBrowserRefresh =
