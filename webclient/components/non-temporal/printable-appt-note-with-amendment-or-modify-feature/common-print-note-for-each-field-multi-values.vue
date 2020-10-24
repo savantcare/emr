@@ -22,7 +22,7 @@
                   icon="el-icon-check"
                   style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, 'reminder')"
+                  @click="mfSaveAddendum(amendmentData, propComponentName)"
                   circle
                 ></el-button>
               </div>
@@ -62,12 +62,12 @@
         </div>
       </el-col>
     </el-row>
-    <div :style="cfGetReminderStyle">
+    <div :style="cfGetDataRowStyle">
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
         <table style="padding: 0px; margin: 0px">
-          <tr v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
+          <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some may have 1 and other may have 4 fields -->
             <td v-for="(propFieldObj, id) in propFormFields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
               {{ row[propFieldObj.fieldName] }}
@@ -197,11 +197,12 @@ export default {
       return
     }
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    console.log('In mounted')
   },
   computed: {
-    cfGetReminderStyle() {
+    cfGetDataRowStyle() {
       let secondaryDuringComparisonApptObj = {}
-      let secondaryDuringComparisonReminders = {}
+      let secondaryDuringComparisonDataRows = {}
 
       const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
 
@@ -211,10 +212,10 @@ export default {
         secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
-        secondaryDuringComparisonReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
-        if (secondaryDuringComparisonReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+        secondaryDuringComparisonDataRows = this.mfGetArOfDataRows(secondaryDuringComparisonApptObj)
+        if (secondaryDuringComparisonDataRows.length > this.mfGetArOfDataRows(this.currentApptObj).length) {
           return 'border:1px solid #E6A23C'
-        } else if (secondaryDuringComparisonReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
+        } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
           return 'border:1px solid #67C23A'
         } else {
           return ''
@@ -231,10 +232,10 @@ export default {
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
-          secondaryDuringComparisonReminders = this.mfGetArOfReminders(secondaryDuringComparisonApptObj)
-          if (secondaryDuringComparisonReminders.length > this.mfGetArOfReminders(this.currentApptObj).length) {
+          secondaryDuringComparisonDataRows = this.mfGetArOfDataRows(secondaryDuringComparisonApptObj)
+          if (secondaryDuringComparisonDataRows.length > this.mfGetArOfDataRows(this.currentApptObj).length) {
             return 'border:1px solid #E6A23C'
-          } else if (secondaryDuringComparisonReminders.length < this.mfGetArOfReminders(this.currentApptObj).length) {
+          } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
             return 'border:1px solid #67C23A'
           } else {
             return
@@ -280,10 +281,8 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-    mfGetArOfReminders(pApptObj) {
+    mfGetArOfDataRows(pApptObj) {
       if (!pApptObj) return
-
-      console.log(this.propReferToComponentInUiAtPluralClassification)
 
       let arOfObjectsFromClientDB = []
 
