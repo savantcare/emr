@@ -1,11 +1,11 @@
 // For ref implementation see name/db/structure/table.js
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class tblAddendum extends clientSideTableManage {
+export default class tblAddendum extends clientTblManage {
   static entity = 'tblAddendums'
   static primaryKey = 'clientSideUniqRowId'
 

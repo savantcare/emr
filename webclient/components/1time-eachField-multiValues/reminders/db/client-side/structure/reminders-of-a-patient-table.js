@@ -1,11 +1,11 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class reminders extends clientSideTableManage {
+export default class reminders extends clientTblManage {
   static entity = 'tblReminders'
 
   /* 

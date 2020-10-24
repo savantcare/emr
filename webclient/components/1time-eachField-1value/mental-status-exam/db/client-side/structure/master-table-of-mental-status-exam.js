@@ -1,12 +1,12 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 import mentalStatusExamForPatientClass from './patient-table-of-mental-status-exam.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class mentalStatusExamMasterClass extends clientSideTableManage {
+export default class mentalStatusExamMasterClass extends clientTblManage {
   static entity = 'tblMentalStatusExamMaster'
 
   static apiUrl = 'http://localhost:8000/public/api/mental-status-exams/v20'

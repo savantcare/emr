@@ -1,12 +1,12 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 import psychReviewOfSystemsForPatientClass from './patient-table-of-psych-review-of-systems.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class psychReviewOfSystemsMasterClass extends clientSideTableManage {
+export default class psychReviewOfSystemsMasterClass extends clientTblManage {
   static entity = 'tblPsychReviewOfSystemsMaster'
 
   static apiUrl = 'http://localhost:8000/public/api/psych-review-of-systems/v20'

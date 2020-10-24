@@ -1,11 +1,11 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class ptTemperature extends clientSideTableManage {
+export default class ptTemperature extends clientTblManage {
   static entity = 'tblTemperature'
 
   // By using process.env the code can support different locations for API server. Hence dev prod and test can use different API servers.

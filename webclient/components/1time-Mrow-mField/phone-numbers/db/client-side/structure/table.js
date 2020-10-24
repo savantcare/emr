@@ -1,13 +1,13 @@
 /* For docs read webclient/docs/models.md
 To see response from server: http://127.0.0.1:8000/phone-numbers/getAll
 */
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class phoneNumbers extends clientSideTableManage {
+export default class phoneNumbers extends clientTblManage {
   static entity = 'tblPhoneNumbers'
 
   // To work with nodejs server -> mariaDB server

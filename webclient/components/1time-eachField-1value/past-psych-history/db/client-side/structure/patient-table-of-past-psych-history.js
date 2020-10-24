@@ -1,11 +1,11 @@
 // For docs read webclient/docs/models.md
-import clientSideTableManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
 import pastPsychHistoryMasterClass from './master-table-of-past-psych-history.js'
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class pastPsychHistoryForPatientClass extends clientSideTableManage {
+export default class pastPsychHistoryForPatientClass extends clientTblManage {
   static entity = 'tblPastPsychHistoryOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/past-psych-history/v20'
