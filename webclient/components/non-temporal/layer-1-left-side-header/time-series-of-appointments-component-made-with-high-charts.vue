@@ -29,14 +29,14 @@ export default {
   },
   mounted: function () {
     let eventName = ['incoming-event-with-new-value-of-slider']
-    this.$root.$on(eventName, (pClientSideUniqRowId) => {
-      for (var key of Object.keys(this.dClientSideUniqRowIdAtEachSliderMark)) {
-        if (this.dClientSideUniqRowIdAtEachSliderMark[key] === pClientSideUniqRowId) this.dCurrentValueOnTheSlider = key
+    this.$root.$on(eventName, (pClientUniqRowId) => {
+      for (var key of Object.keys(this.dClientUniqRowIdAtEachSliderMark)) {
+        if (this.dClientUniqRowIdAtEachSliderMark[key] === pClientUniqRowId) this.dCurrentValueOnTheSlider = key
       }
     })
   },
   computed: {
-    cfGetLatestAppointmentsFromInClientSideDB() {
+    cfGetLatestAppointmentsFromInClientDB() {
       // this is an expensive OP so kept this in computed prop so it will return without running if nothing has changed.
       return clientSideTblOfAppointments.query().get()
     },
@@ -96,7 +96,7 @@ export default {
                 } else {
                   // This case is when the button was not active. And clicking it should make it Active
                   this.currentDisplayStateOfComponent = 1
-                  this.dCurrentActiveButtonClientSideRowId = clientSideUniqRowIdAtThisSliderMark
+                  this.dCurrentActiveButtonClientRowId = clientSideUniqRowIdAtThisSliderMark
                 }
 
                 // This update will lead to the note card visibility getting toggled
@@ -104,7 +104,7 @@ export default {
                 const updateState = clientSideTblOfLeftSideViewCards.update({
                   clientSideUniqRowId: 2,
                   currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
-                  firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
+                  firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,
                   secondParameterGivenToComponentBeforeMounting: 0,
                 })
               },
@@ -165,21 +165,21 @@ export default {
 
       // Works: All highcharts cares about are 0 and 1 values it does not care about the field / key names
 
-      this.arOfAppointmentsFromClientSideDB = this.cfGetLatestAppointmentsFromInClientSideDB
+      this.arOfAppointmentsFromClientDB = this.cfGetLatestAppointmentsFromInClientDB
 
-      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
-        const timeOnCalendar = this.arOfAppointmentsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+      for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
+        const timeOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
 
         let markerSymbol = ''
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'locked') {
           markerSymbol = 'url(http://localhost/2x-outline_lock_black_18dp.png)'
-        } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
+        } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'unlocked') {
           markerSymbol = 'url(http://localhost/2x-outline_lock_open_black_18dp.png)'
-        } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+        } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'late-cancellation') {
           markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
-        } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+        } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'no-show') {
           markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
-        } else if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+        } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'cancellation') {
           markerSymbol = 'url(http://localhost/1x-outline_block_black_18dp.png)'
         } else {
           markerSymbol = 'url(http://www.highcharts.com/samples/graphics/snow.png)'
@@ -189,11 +189,11 @@ export default {
           x: i, // this makes it equidistant
           y: 1, // This makes the draggable area to zoom larger.
           tooltip:
-            this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] +
+            this.arOfAppointmentsFromClientDB[i]['apptStatus'] +
             ' on ' +
             moment(timeOnCalendar).format('MMMM Do YYYY, h:mm:ss a'),
-          clientSideUniqRowId: this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId'],
-          apptStatus: this.arOfAppointmentsFromClientSideDB[i]['apptStatus'],
+          clientSideUniqRowId: this.arOfAppointmentsFromClientDB[i]['clientSideUniqRowId'],
+          apptStatus: this.arOfAppointmentsFromClientDB[i]['apptStatus'],
           marker: {
             symbol: markerSymbol,
           },

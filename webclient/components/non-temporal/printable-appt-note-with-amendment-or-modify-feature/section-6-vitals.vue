@@ -44,26 +44,26 @@ export default {
         return
       }
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblHeight.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientSideTblHeight.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblHeight
+        arOfObjectsFromClientDB = clientSideTblHeight
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      if (arOfObjectsFromClientSideDB.length > 0) {
+      if (arOfObjectsFromClientDB.length > 0) {
       } else {
         return
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
-      arr[1] = arOfObjectsFromClientSideDB[0]['heightInInches']
+      arr[0] = moment(arOfObjectsFromClientDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
+      arr[1] = arOfObjectsFromClientDB[0]['heightInInches']
 
       return arr[1] + ' inches on ' + arr[0]
     },
@@ -76,26 +76,26 @@ export default {
         return
       }
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblWeight.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientSideTblWeight.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblWeight
+        arOfObjectsFromClientDB = clientSideTblWeight
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      if (arOfObjectsFromClientSideDB.length > 0) {
+      if (arOfObjectsFromClientDB.length > 0) {
       } else {
         return
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
-      arr[1] = arOfObjectsFromClientSideDB[0]['weightInPounds']
+      arr[0] = moment(arOfObjectsFromClientDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
+      arr[1] = arOfObjectsFromClientDB[0]['weightInPounds']
 
       return arr[1] + ' pounds on ' + arr[0]
     },
@@ -108,26 +108,26 @@ export default {
         return
       }
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientSideTblOxygenSaturation.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOxygenSaturation
+        arOfObjectsFromClientDB = clientSideTblOxygenSaturation
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      if (arOfObjectsFromClientSideDB.length > 0) {
+      if (arOfObjectsFromClientDB.length > 0) {
       } else {
         return
       }
 
       let arr = []
-      arr[0] = moment(arOfObjectsFromClientSideDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
-      arr[1] = arOfObjectsFromClientSideDB[0]['oxygenSaturationInSpo2']
+      arr[0] = moment(arOfObjectsFromClientDB[0]['timeOfMeasurementInMilliseconds']).format('MMM DD YYYY')
+      arr[1] = arOfObjectsFromClientDB[0]['oxygenSaturationInSpo2']
 
       return arr[1] + ' spO2 on ' + arr[0]
     },

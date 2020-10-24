@@ -30,18 +30,16 @@ export default {
   },
   computed: {
     cfGetMasterListOfDiagnosis: function () {
-      let arOfObjectsFromClientSideMasterDB = clientSideTblMasterDiagnosis
+      let arOfObjectsFromClientMasterDB = clientSideTblMasterDiagnosis
         .query()
         .with('linkWithPatient')
         .where('ROW_END', 2147483648000)
         .where((_record, query) => {
-          query.where('diagnosisName', (value) =>
-            value.toLowerCase().includes(this.userTypedKeyword.toLowerCase())
-          )
+          query.where('diagnosisName', (value) => value.toLowerCase().includes(this.userTypedKeyword.toLowerCase()))
         })
         .orderBy('priority', 'desc')
         .get()
-      return arOfObjectsFromClientSideMasterDB
+      return arOfObjectsFromClientMasterDB
     },
   },
   mounted() {

@@ -41,7 +41,7 @@ export default {
       required: true,
       validator: (value) => Object.keys(clientTbl).includes(value),
     },
-  }, // firstProp is the ClientSideIdOfRowToChange
+  }, // firstProp is the ClientIdOfRowToChange
   sockets: {
     async MsgFromSktForRemToAdd(pData) {
       const pDataArr = JSON.parse(pData)
@@ -140,9 +140,9 @@ export default {
     },
   },
   methods: {
-    fnSetRowStatus(pClientSidePrimaryKeyValue) {
+    fnSetRowStatus(pClientPrimaryKeyValue) {
       clientTbl.update({
-        where: pClientSidePrimaryKeyValue,
+        where: pClientPrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
         },

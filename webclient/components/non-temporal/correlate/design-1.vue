@@ -8,7 +8,7 @@
           isDefaultAction: true,
         },
       ]"
-      :propClientSideRowLevelActions="[{}]"
+      :propClientRowLevelActions="[{}]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
       <div slot="bodySlotContentFromParentToShowAboveChildCards"><graph></graph></div>

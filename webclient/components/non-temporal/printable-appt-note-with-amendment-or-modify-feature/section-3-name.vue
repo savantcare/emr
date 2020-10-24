@@ -22,8 +22,8 @@ export default {
   },
   computed: {
     cfLatestDataRowFromClientTbl() {
-      let arOfObjectsFromClientSideDB = clientTbl.query().where('ROW_END', 2147483648000).get()
-      return arOfObjectsFromClientSideDB[0]
+      let arOfObjectsFromClientDB = clientTbl.query().where('ROW_END', 2147483648000).get()
+      return arOfObjectsFromClientDB[0]
     },
     initialFirstName() {
       // console.log(this.cfLatestDataRowFromClientTbl.middleName)

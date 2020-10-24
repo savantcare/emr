@@ -37,7 +37,7 @@ export default {
   computed: {
     cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterServiceStatements
+      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterServiceStatements
         .query()
         .with('tblLinkToServiceStatementForPatientFieldValues')
         .where('ROW_END', 2147483648000)
@@ -55,30 +55,30 @@ export default {
       // Apply rules given by doctors
 
       // Rule1: If one Time in psychotherapy then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementFieldCategory(
-        arOfObjectsFromClientSideMasterDB,
+      arOfObjectsFromClientMasterDB = this.mfApplyOneEntryRuleOnServiceStatementFieldCategory(
+        arOfObjectsFromClientMasterDB,
         'Total minutes in psychotherapy'
       )
 
       // Rule2: If one Time in psychotherapy then do not show others
-      arOfObjectsFromClientSideMasterDB = this.mfApplyOneEntryRuleOnServiceStatementFieldCategory(
-        arOfObjectsFromClientSideMasterDB,
+      arOfObjectsFromClientMasterDB = this.mfApplyOneEntryRuleOnServiceStatementFieldCategory(
+        arOfObjectsFromClientMasterDB,
         'Total minutes with patient'
       )
 
       // Rule 3: If "total time in psychotherapy" has been chosen to be N. Then "from total minutes with patient" remove elements that are less than N
-      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementFieldCategory(
-        arOfObjectsFromClientSideMasterDB
+      arOfObjectsFromClientMasterDB = this.mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementFieldCategory(
+        arOfObjectsFromClientMasterDB
       )
 
       // Rule 4: If "total minutes with patient" has been chosen to be N. Then "from total time in psychotherapy" remove elements that are greater than N
-      arOfObjectsFromClientSideMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnServiceStatementFieldCategory(
-        arOfObjectsFromClientSideMasterDB
+      arOfObjectsFromClientMasterDB = this.mfApplyTotalMinutesWithPatientRuleOnServiceStatementFieldCategory(
+        arOfObjectsFromClientMasterDB
       )
 
       // End: Now group the SS
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'serviceStatementFieldCategory')
+      const ar = this.groupBy(arOfObjectsFromClientMasterDB, 'serviceStatementFieldCategory')
 
       // console.log(ar)
       return ar
@@ -204,7 +204,7 @@ export default {
     },
 
     mfApplyOneEntryRuleOnServiceStatementFieldCategory(
-      pArOfObjectsFromClientSideMasterDB,
+      pArOfObjectsFromClientMasterDB,
       pServiceStatementFieldCategoryToApplyRuleOn
     ) {
       let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
@@ -216,34 +216,34 @@ export default {
         .where('ROW_END', 2147483648000)
         .get()
       if (elementsOfThisSetAlreadyAssignedToPatient.length > 0) {
-        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+        for (let i = 0; i < pArOfObjectsFromClientMasterDB.length; i++) {
           if (
-            pArOfObjectsFromClientSideMasterDB[i].serviceStatementFieldCategory ===
+            pArOfObjectsFromClientMasterDB[i].serviceStatementFieldCategory ===
             pServiceStatementFieldCategoryToApplyRuleOn
           ) {
             // master list has 10 entries. Once the category has matched there are 2 possibilityes. P1: This element is there in SS  of patient P2: This element is not there in SS of patient
             if (
               // Handling Possibility 1:  This element is there in SS of patient
-              pArOfObjectsFromClientSideMasterDB[i].tblLinkToServiceStatementForPatientFieldValues !== null &&
-              pArOfObjectsFromClientSideMasterDB[i].tblLinkToServiceStatementForPatientFieldValues.ROW_END ==
+              pArOfObjectsFromClientMasterDB[i].tblLinkToServiceStatementForPatientFieldValues !== null &&
+              pArOfObjectsFromClientMasterDB[i].tblLinkToServiceStatementForPatientFieldValues.ROW_END ==
                 '2147483648000'
             ) {
             } else {
               // Handling Possibility 2: This element is not there in SS of patient
-              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              pArOfObjectsFromClientMasterDB.splice(i, 1)
               i = i - 1
             }
           }
         }
       }
-      return pArOfObjectsFromClientSideMasterDB
+      return pArOfObjectsFromClientMasterDB
     },
 
     /**
      * Rule: If "Total minutes in psychotherapy" has been chosen to be N.
      * Then from "Total minutes with patient" remove elements that are less than N
      */
-    mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementFieldCategory(pArOfObjectsFromClientSideMasterDB) {
+    mfApplyTotalMinutesInPsychotherapyRuleOnServiceStatementFieldCategory(pArOfObjectsFromClientMasterDB) {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
@@ -267,34 +267,34 @@ export default {
         /**
          * Step 3: Iterate service statement master category object to process
          */
-        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+        for (let i = 0; i < pArOfObjectsFromClientMasterDB.length; i++) {
           /**
            * Step 4: Check if category is 'Total minutes with patient'.
            * Otherwise do not need to do any manipulation
            */
-          if (pArOfObjectsFromClientSideMasterDB[i].serviceStatementFieldCategory === 'Total minutes with patient') {
+          if (pArOfObjectsFromClientMasterDB[i].serviceStatementFieldCategory === 'Total minutes with patient') {
             /**
              * Step 5: If "Total minutes in psychotherapy" has been assigned to the patient to be N.
              * Than remove "Total minutes with patient" elements that are less than N.
              */
             if (
-              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementFieldDescription) <
+              parseInt(pArOfObjectsFromClientMasterDB[i].serviceStatementFieldDescription) <
               parseInt(categoryOfThisSetAssignedToPatient.serviceStatementFieldDescription)
             ) {
-              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              pArOfObjectsFromClientMasterDB.splice(i, 1)
               i = i - 1
             }
           }
         }
       }
-      return pArOfObjectsFromClientSideMasterDB
+      return pArOfObjectsFromClientMasterDB
     },
 
     /**
      * Rule: If "Total minutes with patient" has been chosen to be N.
      * Then from "Total minutes in psychotherapy" remove elements that are greater than N
      */
-    mfApplyTotalMinutesWithPatientRuleOnServiceStatementFieldCategory(pArOfObjectsFromClientSideMasterDB) {
+    mfApplyTotalMinutesWithPatientRuleOnServiceStatementFieldCategory(pArOfObjectsFromClientMasterDB) {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
@@ -318,29 +318,27 @@ export default {
         /**
          * Step 3: Iterate service statement master category object to process
          */
-        for (let i = 0; i < pArOfObjectsFromClientSideMasterDB.length; i++) {
+        for (let i = 0; i < pArOfObjectsFromClientMasterDB.length; i++) {
           /**
            * Step 4: Check if category is 'Total minutes in psychotherapy'.
            * Otherwise do not need to do any manipulation
            */
-          if (
-            pArOfObjectsFromClientSideMasterDB[i].serviceStatementFieldCategory === 'Total minutes in psychotherapy'
-          ) {
+          if (pArOfObjectsFromClientMasterDB[i].serviceStatementFieldCategory === 'Total minutes in psychotherapy') {
             /**
              * Step 5: If "Total minutes with patient" has been assigned to the patient to be N.
              * Than remove "Total minutes in psychotherapy" elements that are greater than N.
              */
             if (
-              parseInt(pArOfObjectsFromClientSideMasterDB[i].serviceStatementFieldDescription) >
+              parseInt(pArOfObjectsFromClientMasterDB[i].serviceStatementFieldDescription) >
               parseInt(categoryOfThisSetAssignedToPatient.serviceStatementFieldDescription)
             ) {
-              pArOfObjectsFromClientSideMasterDB.splice(i, 1)
+              pArOfObjectsFromClientMasterDB.splice(i, 1)
               i = i - 1
             }
           }
         }
       }
-      return pArOfObjectsFromClientSideMasterDB
+      return pArOfObjectsFromClientMasterDB
     },
   },
 }

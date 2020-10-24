@@ -45,7 +45,7 @@ export default {
   computed: {
     cfGetMasterRowsOfMedicalReviewOfSystemsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterMedicalReviewOfSystems
+      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterMedicalReviewOfSystems
         .query()
         .with('tblMedicalReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -60,7 +60,7 @@ export default {
         })
         .get()
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'medicalReviewOfSystemsCategory')
+      const ar = this.groupBy(arOfObjectsFromClientMasterDB, 'medicalReviewOfSystemsCategory')
 
       // console.log(ar)
       return ar

@@ -29,20 +29,17 @@ import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/
 export default {
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
+      const arOfObjectsFromClientDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
 
-      for (a in arOfObjectsFromClientSideDB) {
+      for (a in arOfObjectsFromClientDB) {
         a.mentalStatusExamCategory
       }
 
-      const ar = this.groupBy(
-        arOfObjectsFromClientSideDB,
-        'tblMentalStatusExamMasterLink.mentalStatusExamCategory'
-      )
+      const ar = this.groupBy(arOfObjectsFromClientDB, 'tblMentalStatusExamMasterLink.mentalStatusExamCategory')
 
       return ar
     },
@@ -67,9 +64,9 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfDeleteMentalStatusExam(pClientSideUniqRowId) {
+    mfDeleteMentalStatusExam(pClientUniqRowId) {
       clientSideTblOfPatientMentalStatusExam.update({
-        where: pClientSideUniqRowId,
+        where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },

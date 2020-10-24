@@ -106,7 +106,7 @@ export default {
       required: true,
       validator: (value) => Object.keys(clientTbl).includes(value),
     },
-  }, // firstProp is the ClientSideIdOfRowToChange
+  }, // firstProp is the ClientIdOfRowToChange
 
   computed: {
     cfLengthOfDataArray() {
@@ -159,8 +159,8 @@ export default {
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
     },
-    mfEditIconClicked(pClientSideDataRowId) {
-      this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
+    mfEditIconClicked(pClientDataRowId) {
+      this.mxOpenEditCtInEditLayer(pClientDataRowId)
     },
     mfGetCssClassNameForEachDataRow(pRow) {
       const strOfNumber = pRow.vnRowStateInSession.toString()

@@ -6,27 +6,18 @@
         Ans) The question 10 has differeent radio button label and design pattern
         for this we have separated the design using v-if="index === 9" at line 39
     -->
-    <div
-      v-for="(objQuestion, index) in cfGetMasterListOfPhq9"
-      :key="index"
-      style="margin-top: 20px"
-    >
+    <div v-for="(objQuestion, index) in cfGetMasterListOfPhq9" :key="index" style="margin-top: 20px">
       <div v-if="index !== 9">
         <el-row v-if="index === 0">
-          <strong>
-            Over the last 2 weeks, how often have you been bothered by any of the following
-            problems?
-          </strong>
+          <strong> Over the last 2 weeks, how often have you been bothered by any of the following problems? </strong>
         </el-row>
         <br />
         <el-row>
           <div>{{ index + 1 }}. {{ objQuestion.phq9QuestionFullText }}</div>
           <br />
           <el-radio-group
-            :value="mfGetAnswerValueFromClientSideTblPatient(objQuestion)"
-            @input="
-              mfSetAnswerValueInClientSideTblPatient($event, objQuestion.phq9QuestionMasterId)
-            "
+            :value="mfGetAnswerValueFromClientTblPatient(objQuestion)"
+            @input="mfSetAnswerValueInClientTblPatient($event, objQuestion.phq9QuestionMasterId)"
           >
             <el-radio-button :label="0" border>Not at all</el-radio-button>
             <el-radio-button :label="1" border>Several days</el-radio-button>
@@ -41,10 +32,8 @@
           <strong>{{ objQuestion.phq9QuestionFullText }}</strong>
           <br />
           <el-radio-group
-            :value="mfGetAnswerValueFromClientSideTblPatient(objQuestion)"
-            @input="
-              mfSetAnswerValueInClientSideTblPatient($event, objQuestion.phq9QuestionMasterId)
-            "
+            :value="mfGetAnswerValueFromClientTblPatient(objQuestion)"
+            @input="mfSetAnswerValueInClientTblPatient($event, objQuestion.phq9QuestionMasterId)"
           >
             <el-radio-button :label="0">Not difficult at all</el-radio-button>
             <el-radio-button :label="1">Somewhat difficult</el-radio-button>
@@ -68,7 +57,7 @@ export default {
   },
   computed: {
     cfGetMasterListOfPhq9() {
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPhq9
+      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterPhq9
         .query()
         .with('tblPhq9ForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -78,12 +67,12 @@ export default {
           )
         })
         .get()
-      console.log(arOfObjectsFromClientSideMasterDB)
-      return arOfObjectsFromClientSideMasterDB
+      console.log(arOfObjectsFromClientMasterDB)
+      return arOfObjectsFromClientMasterDB
     },
   },
   methods: {
-    mfGetAnswerValueFromClientSideTblPatient(pObjQuestion) {
+    mfGetAnswerValueFromClientTblPatient(pObjQuestion) {
       // console.log(pObjQuestion)
       if (pObjQuestion.tblPhq9ForPatientLink) {
         if (pObjQuestion.tblPhq9ForPatientLink.ROW_END === 2147483648000) {
@@ -92,7 +81,7 @@ export default {
       }
       return null
     },
-    mfSetAnswerValueInClientSideTblPatient(pEvent, pQuestionMasterId) {
+    mfSetAnswerValueInClientTblPatient(pEvent, pQuestionMasterId) {
       const exists = clientSideTblOfPatientPhq9
         .query()
         .where('phq9QuestionMasterId', pQuestionMasterId)

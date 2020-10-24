@@ -5,14 +5,14 @@ import tableStructureForStoreMessageFromOtherComponent from '~/components/non-te
 // Start from new
 const Const_New = 2
 const Const_New_ChangedOnClient = 24
-const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide = 2456
-const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave = 2457
-const Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB = 24571
+const Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_FormErrorClient = 2456
+const Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave = 2457
+const Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave_SameAsDB = 24571
 
 // Start from copy
 const Const_CreatedAsCopyOnClient = 3
 const Const_CreatedAsCopyOnClient_ChangedOnClient = 34
-const Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide = 3456
+const Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientDataValidation_FormErrorClient = 3456
 
 // Others
 
@@ -90,10 +90,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', Const_New) // New
       .orWhere('vnRowStateInSession', Const_New_ChangedOnClient) // New -> Changed
-      .orWhere(
-        'vnRowStateInSession',
-        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
-      ) // New -> Changed -> Requested save -> form error
+      .orWhere('vnRowStateInSession', Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_FormErrorClient) // New -> Changed -> Requested save -> form error
       .get()
     return arFromClientTbl
   }
@@ -117,7 +114,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
-        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
+        Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave
       )
       .get()
     return arFromClientTbl
@@ -128,7 +125,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
-        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB
+        Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave_SameAsDB
       )
       .get()
     return arFromClientTbl
@@ -140,7 +137,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .orWhere('vnRowStateInSession', Const_CreatedAsCopyOnClient_ChangedOnClient) // Copy(3) -> Changed(4)
       .orWhere(
         'vnRowStateInSession',
-        Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
+        Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientDataValidation_FormErrorClient
       ) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
       .get()
     return arFromClientTbl
@@ -165,7 +162,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           record.vnRowStateInSession === Const_CreatedAsCopyOnClient ||
           record.vnRowStateInSession === Const_CreatedAsCopyOnClient_ChangedOnClient ||
           record.vnRowStateInSession ===
-            Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
+            Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientDataValidation_FormErrorClient
         )
       })
       // .where('vnRowStateInSession', 3) // Copy
@@ -347,25 +344,25 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arDeletedRows
   }
 
-  static fnGetFldValue(pClientSideRowId, pFldName) {
+  static fnGetFldValue(pClientRowId, pFldName) {
     // first time it will have to find in model. This is needed to show the initial content in the fld.
     if (
       typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
-      typeof this.arOrmRowsCached[this.entity][pClientSideRowId] === 'undefined'
+      typeof this.arOrmRowsCached[this.entity][pClientRowId] === 'undefined'
     ) {
       // finding in model
-      const arFromClientTbl = this.find(pClientSideRowId)
+      const arFromClientTbl = this.find(pClientRowId)
       if (arFromClientTbl) {
         if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
           this.arOrmRowsCached[this.entity] = []
         }
-        this.arOrmRowsCached[this.entity][pClientSideRowId] = arFromClientTbl
+        this.arOrmRowsCached[this.entity][pClientRowId] = arFromClientTbl
         return arFromClientTbl[pFldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[this.entity][pClientSideRowId][pFldName]
+      return this.arOrmRowsCached[this.entity][pClientRowId][pFldName]
     }
   }
 
@@ -424,11 +421,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return true // implies that data flds of row are same
   }
 
-  static fnSetFldValue(pEvent, pClientSideRowId, pFldName, pRowStatus) {
+  static fnSetFldValue(pEvent, pClientRowId, pFldName, pRowStatus) {
     // Step 1/2: Putting the value in cache so that getFldValue can get the data from cache and user can get fast feedback to typing
-    this.fnPutFldValueInCache(pEvent, pClientSideRowId, pFldName)
+    this.fnPutFldValueInCache(pEvent, pClientRowId, pFldName)
     // Step 2/2
-    this.fnCreateTimeoutToSaveToState(pEvent, pClientSideRowId, pFldName, pRowStatus)
+    this.fnCreateTimeoutToSaveToState(pEvent, pClientRowId, pFldName, pRowStatus)
   }
 
   /*  
@@ -453,7 +450,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
   */
-  static fnPutFldValueInCache(pEvent, pClientSideRowId, pFldName) {
+  static fnPutFldValueInCache(pEvent, pClientRowId, pFldName) {
     // Method 1: of updating cache array. Checked by VK and RJ in July 2020 the force update is needed inside add.vue:115:setfldInEditLayerientSideTableOnTimeOut
 
     /*
@@ -463,43 +460,43 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
       this.arOrmRowsCached[this.entity] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    if (typeof this.arOrmRowsCached[this.entity][pClientSideRowId] === 'undefined') {
-      this.arOrmRowsCached[this.entity][pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[this.entity][pClientRowId] === 'undefined') {
+      this.arOrmRowsCached[this.entity][pClientRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[this.entity][pClientSideRowId][pFldName] = pEvent
+    this.arOrmRowsCached[this.entity][pClientRowId][pFldName] = pEvent
 
     /*
     // Method 2: https://vuejs.org/2016/02/06/common-gotchas/#Why-isn%E2%80%99t-the-DOM-updating
     // of updating cache array Ref: https://stackoverflow.com/questions/45644781/update-value-in-multidimensional-array-in-vue
     let newRow = []
-    if (typeof this.arOrmRowsCached[pClientSideRowId] === 'undefined') {
-      this.arOrmRowsCached[pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[pClientRowId] === 'undefined') {
+      this.arOrmRowsCached[pClientRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
       console.log('Creating a new blank row')
     } else {
-      newRow = this.arOrmRowsCached.slice(pClientSideRowId, pClientSideRowId + 1) // Existing row may have 5 flds so I need to pull it out before updating 1 fld
+      newRow = this.arOrmRowsCached.slice(pClientRowId, pClientRowId + 1) // Existing row may have 5 flds so I need to pull it out before updating 1 fld
       console.log('Existing row pulled out is', newRow)
     }
     newRow[pFldName] = pEvent // Upadted the fld value in the new row
-    this.arOrmRowsCached.splice(pClientSideRowId, 1, newRow) // Put the single row back inside the array of a lot of rows.
+    this.arOrmRowsCached.splice(pClientRowId, 1, newRow) // Put the single row back inside the array of a lot of rows.
     // Problem: A tree structure of elements is getting made and can be verified by doing console.log
     console.log(this.arOrmRowsCached)
 */
 
     /*
       Method 3 of updating cache:
-      this.arOrmRowsCached[pClientSideRowId] = newRow // vue does not react. Now add.vue:115:setfldInEditLayerientSideTableOnTimeOut needs this.$forceUpdate
+      this.arOrmRowsCached[pClientRowId] = newRow // vue does not react. Now add.vue:115:setfldInEditLayerientSideTableOnTimeOut needs this.$forceUpdate
       */
     /* 
       Method 4 of updating cache:
       This will not work since $set is not available outside vue conetxt this is not vue context
-      this.$set(this.arOrmRowsCached, pClientSideRowId, newRow)
+      this.$set(this.arOrmRowsCached, pClientRowId, newRow)
       */
 
     /* Method 5: Delete old rows and create new row Checked by RJ and VK on 15th July
-    if (typeof this.arOrmRowsCached[pClientSideRowId] === 'undefined') {
-      this.arOrmRowsCached[pClientSideRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
+    if (typeof this.arOrmRowsCached[pClientRowId] === 'undefined') {
+      this.arOrmRowsCached[pClientRowId] = [] // setting this to a blank row since later I do splice. For splice that row needs to exist.
     }
-    this.arOrmRowsCached[pClientSideRowId][pFldName] = pEvent
+    this.arOrmRowsCached[pClientRowId][pFldName] = pEvent
 
     const copyOfOldRow = this.arOrmRowsCached
     // this.arOrmRowsCached = []
@@ -509,7 +506,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
   }
 
-  static fnCreateTimeoutToSaveToState(pEvent, pClientSideRowId, pFldName, pRowStatus) {
+  static fnCreateTimeoutToSaveToState(pEvent, pClientRowId, pFldName, pRowStatus) {
     // Goal: debouncing. If A and B are pressed quickly. Timeout for "A" keypress will get cancelled and timeout for "B" keypress will get scheduled.
     if (this.vOrmSaveScheduled) {
       clearTimeout(this.vOrmSaveScheduled)
@@ -517,14 +514,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     /* Ref: https://stackoverflow.com/questions/38399050/vue-equivalent-of-settimeout */
     this.vOrmSaveScheduled = setTimeout(
       function (scope) {
-        scope.fnSetFldInVuex(pEvent, pClientSideRowId, pFldName, pRowStatus)
+        scope.fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus)
       },
       500, // setting timeout of 500 ms
       this
     )
   }
 
-  static fnSetFldInVuex(pEvent, pClientSideRowId, pFldName, pRowStatus) {
+  static fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus) {
     const row = {
       [pFldName]: pEvent,
       vnRowStateInSession: pRowStatus,
@@ -533,7 +530,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     const arFromClientTbl = this.update({
-      where: pClientSideRowId,
+      where: pClientRowId,
       data: row,
     })
     if (!arFromClientTbl) {
@@ -587,7 +584,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
-        Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
+        Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave
       )
       .get()
 
@@ -630,7 +627,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession: Const_New_ChangedOnClient_RequestedSaveStartClientDataValidation_DataSentToServerToSave_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
                 //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
               },
             })
@@ -702,7 +699,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUuid, deletedNote) {
+  static async fnSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
     try {
       const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
@@ -729,7 +726,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         return 0
       } else {
         this.update({
-          where: pClientSideDataRowId,
+          where: pClientDataRowId,
           data: {
             ROW_END: Math.floor(Date.now()),
           },

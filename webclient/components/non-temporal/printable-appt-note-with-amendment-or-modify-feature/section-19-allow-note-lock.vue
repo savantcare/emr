@@ -40,7 +40,7 @@ export default {
     async lockButtonClicked() {
       console.log('lock button clicked')
       const clientSideUniqRowId = this.currentApptObj['clientSideUniqRowId']
-      let arOfObjectsFromClientSideDB = await clientSideTblOfAppointments.update({
+      let arOfObjectsFromClientDB = await clientSideTblOfAppointments.update({
         where: clientSideUniqRowId,
         data: {
           apptStatus: 'locked',
@@ -49,14 +49,11 @@ export default {
       })
 
       // In case there are no more appt then insert a appt. This is for testing.
-      arOfObjectsFromClientSideDB = await clientSideTblOfAppointments
-        .query()
-        .where('apptStatus', 'unlocked')
-        .get()
+      arOfObjectsFromClientDB = await clientSideTblOfAppointments.query().where('apptStatus', 'unlocked').get()
 
       let newAppt = {}
 
-      if (arOfObjectsFromClientSideDB.length === 0) {
+      if (arOfObjectsFromClientDB.length === 0) {
         newAppt = await clientSideTblOfAppointments.insert({
           data: {
             apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),

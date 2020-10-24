@@ -13,7 +13,7 @@
         actionDescription: 'Close card',
       },
     ]"
-    :propClientSideRowLevelActions="[{}]"
+    :propClientRowLevelActions="[{}]"
   >
     <el-card
       slot="bodySlotContentFromParentToShowAboveChildCards"
@@ -58,27 +58,27 @@ export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+      const arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
         .get()
 
-      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        arOfObjectsFromClientDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldDescription
+          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldDescription
       }
 
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
   methods: {
-    async mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+    async mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
       const exists = clientSideTblOfPatientServiceStatements
         .query()
-        .where('clientSideUniqRowId', pClientSideUniqRowId)
+        .where('clientSideUniqRowId', pClientUniqRowId)
         .where('ROW_END', 2147483648000)
         .get()
       if (exists.length > 0) {
@@ -95,7 +95,7 @@ export default {
         )
         if (response.status === 200) {
           clientSideTblOfPatientServiceStatements.update({
-            where: pClientSideUniqRowId,
+            where: pClientUniqRowId,
             data: {
               ROW_END: Math.floor(Date.now()),
             },

@@ -137,7 +137,7 @@ export default {
       required: true,
       validator: (value) => Object.keys(clientTbl).includes(value),
     },
-  }, // firstProp is the ClientSideIdOfRowToChange
+  }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfLengthOfDataArray() {
       const arFromClientTbl = clientTbl.fnGetPresentUniqueUuidRows()

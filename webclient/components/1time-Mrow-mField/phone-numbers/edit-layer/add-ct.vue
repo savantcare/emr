@@ -122,24 +122,24 @@ export default {
       }
     },
     // Cannot call clientTbl function directly from template so need to have a method function to act as a pipe between template and the ORM function
-    mfGetFldValue(pClientSideRowId, pFldName) {
-      return clientTbl.fnGetFldValue(pClientSideRowId, pFldName)
+    mfGetFldValue(pClientRowId, pFldName) {
+      return clientTbl.fnGetFldValue(pClientRowId, pFldName)
     },
-    mfSetFldValueUsingCache(pEvent, pClientSideRowId, pFldName) {
+    mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       const rowStatus = 24
-      clientTbl.fnSetFldValue(pEvent, pClientSideRowId, pFldName, rowStatus)
+      clientTbl.fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassNameForEachDataRow(pClientSideRowId) {
-      const arFromClientTbl = clientTbl.find(pClientSideRowId)
+    mfGetCssClassNameForEachDataRow(pClientRowId) {
+      const arFromClientTbl = clientTbl.find(pClientRowId)
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
       return ''
     },
-    async mfDeleteRowInEditLayerientSideTable(pClientSideRowId) {
-      await clientTbl.delete(pClientSideRowId)
+    async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
+      await clientTbl.delete(pClientRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {

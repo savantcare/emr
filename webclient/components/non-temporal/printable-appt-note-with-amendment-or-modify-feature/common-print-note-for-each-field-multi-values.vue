@@ -244,14 +244,14 @@ export default {
       // Nothing to compare with
     },
     cfArOfAddendumForDisplay() {
-      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
+      const arFromClientTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
         .where('component', 'reminders')
         .orderBy('ROW_START', 'asc')
         .get()
 
-      return arFromClientSideTblOfAddendums
+      return arFromClientTblOfAddendums
     },
   },
   methods: {
@@ -285,23 +285,23 @@ export default {
 
       console.log(this.propReferToComponentInUiAtPluralClassification)
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientTbl[this.propComponentName]
+        arOfObjectsFromClientDB = clientTbl[this.propComponentName]
           .query()
           .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
           .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientTbl[this.propComponentName]
+        arOfObjectsFromClientDB = clientTbl[this.propComponentName]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
       const strOfNumber = pRow.vnRowStateInSession.toString()

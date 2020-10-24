@@ -111,22 +111,22 @@ export default {
     mfGetArOfMentalStatusExam(pApptObj) {
       if (!pApptObj) return
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+        arOfObjectsFromClientDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+        arOfObjectsFromClientDB = clientSideTblOfMentalStatusExam
           .query()
           .with('tblMentalStatusExamMasterLink')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
   computed: {
@@ -208,14 +208,14 @@ export default {
     },
 
     cfArOfAddendumForDisplay() {
-      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
+      const arFromClientTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
         .orderBy('ROW_START', 'asc')
         .get()
 
       const arAddendums = []
-      arFromClientSideTblOfAddendums.forEach((row) => {
+      arFromClientTblOfAddendums.forEach((row) => {
         if (typeof arAddendums[row.component] === 'undefined') {
           arAddendums[row.component] = []
         }

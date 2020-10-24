@@ -64,25 +64,19 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      dCurrentActiveButtonClientSideRowId: 0,
+      dCurrentActiveButtonClientRowId: 0,
       dCurrentValueOnTheSlider: 0,
       dMaxApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
       dMinApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
       dMarksOnSlider: {},
-      dClientSideUniqRowIdAtEachSliderMark: {},
+      dClientUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
       dApptCalendarTimeAtEachSliderMark: {},
-      arOfAppointmentsFromClientSideDB: [],
+      arOfAppointmentsFromClientDB: [],
 
       // Settings for slider
       dConfigProportionalOrEquiDistant: 'EquiDistant',
-      dConfigChecklistOfApptTypesToShow: [
-        'locked',
-        'unlocked',
-        'no-show',
-        'late-cancellation',
-        'cancellation',
-      ],
+      dConfigChecklistOfApptTypesToShow: ['locked', 'unlocked', 'no-show', 'late-cancellation', 'cancellation'],
       dConfigProviderTypesToShow: [],
       checked: true,
       value: 0,
@@ -90,10 +84,9 @@ export default {
   },
   mounted: function () {
     let eventName = ['incoming-event-with-new-value-of-slider']
-    this.$root.$on(eventName, (pClientSideUniqRowId) => {
-      for (var key of Object.keys(this.dClientSideUniqRowIdAtEachSliderMark)) {
-        if (this.dClientSideUniqRowIdAtEachSliderMark[key] === pClientSideUniqRowId)
-          this.dCurrentValueOnTheSlider = key
+    this.$root.$on(eventName, (pClientUniqRowId) => {
+      for (var key of Object.keys(this.dClientUniqRowIdAtEachSliderMark)) {
+        if (this.dClientUniqRowIdAtEachSliderMark[key] === pClientUniqRowId) this.dCurrentValueOnTheSlider = key
       }
     })
   },
@@ -147,17 +140,17 @@ export default {
       return obj
     },
 
-    cfGetLatestAppointmentsFromInClientSideDB() {
+    cfGetLatestAppointmentsFromInClientDB() {
       // this is an expensive OP so kept this in computed prop so it will return without running if nothing has changed.
       return clientSideTblOfAppointments.query().get()
     },
 
     cfGetAllSliderMarks() {
       // this saved a lot of expensive operations, and hence makes the system more responsive.
-      this.arOfAppointmentsFromClientSideDB = this.cfGetLatestAppointmentsFromInClientSideDB
+      this.arOfAppointmentsFromClientDB = this.cfGetLatestAppointmentsFromInClientDB
 
       this.dMarksOnSlider = {}
-      this.dClientSideUniqRowIdAtEachSliderMark = {}
+      this.dClientUniqRowIdAtEachSliderMark = {}
       this.dApptStatusAtEachSliderMark = {}
       this.dApptCalendarTimeAtEachSliderMark = {}
 
@@ -169,20 +162,18 @@ export default {
       3: "late-cancellation"
       4: "cancellation"
       */
-      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
-        const currentApptStatus = this.arOfAppointmentsFromClientSideDB[i]['apptStatus']
+      for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
+        const currentApptStatus = this.arOfAppointmentsFromClientDB[i]['apptStatus']
         if (this.dConfigChecklistOfApptTypesToShow.indexOf(currentApptStatus) !== -1) {
-          this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = true
+          this.arOfAppointmentsFromClientDB[i]['UserWantsToSeeOnSlider'] = true
         } else {
-          this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] = false
+          this.arOfAppointmentsFromClientDB[i]['UserWantsToSeeOnSlider'] = false
         }
       }
 
       // Goal: Get max and min values. This is needed to calculate the percentages. Probably nor needed for equidistant
-      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
-        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientSideDB[i][
-          'apptStartMilliSecondsOnCalendar'
-        ]
+      for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
+        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
 
         if (this.dMinApptStartMilliseconds === -1) {
           this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
@@ -203,7 +194,7 @@ export default {
       const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
 
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
-      this.arOfAppointmentsFromClientSideDB.sort(function (a, b) {
+      this.arOfAppointmentsFromClientDB.sort(function (a, b) {
         return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
           ? 1
           : b.apptStartMilliSecondsOnCalendar > a.apptStartMilliSecondsOnCalendar
@@ -211,19 +202,16 @@ export default {
           : 0
       })
 
-      for (let i = 0; i < this.arOfAppointmentsFromClientSideDB.length; i++) {
+      for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
         // Update the slider component
-        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientSideDB[i][
-          'apptStartMilliSecondsOnCalendar'
-        ]
+        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
 
         let sliderMarkPoint = null
         let percentage = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
-          sliderMarkPoint = (i / (this.arOfAppointmentsFromClientSideDB.length - 1)) * 100
+          sliderMarkPoint = (i / (this.arOfAppointmentsFromClientDB.length - 1)) * 100
         } else {
-          percentage =
-            ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
+          percentage = ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
 
           sliderMarkPoint = Math.round(percentage)
         }
@@ -232,44 +220,42 @@ export default {
         let labelAtEachMarkUsedToStoreIconClass = ''
         // inside the slot this is available inside the variable label
         // Ref: https://nightcatsama.github.io/vue-slider-component/#/advanced/components-slots?hash=label-slot
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'locked') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'locked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-lock ' + sliderMarkPoint // sending the sliderMarkPoint since need to distinuish between 2 locked appt marks on the slider.
 
           // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
           this.dCurrentValueOnTheSlider = sliderMarkPoint
         }
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'unlocked') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'unlocked') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-unlock ' + sliderMarkPoint
 
           // Goal: the highest lock or unlock should be the current slider value. I do it in each iteration of loop since highest value will overrite the lower value
           this.dCurrentValueOnTheSlider = sliderMarkPoint
         }
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'no-show') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'no-show') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-warning-outline ' + sliderMarkPoint
         }
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'cancellation') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'cancellation') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-remove-outline ' + sliderMarkPoint
         }
-        if (this.arOfAppointmentsFromClientSideDB[i]['apptStatus'] === 'late-cancellation') {
+        if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'late-cancellation') {
           labelAtEachMarkUsedToStoreIconClass = 'el-icon-circle-close ' + sliderMarkPoint
         }
 
         // Goal: For some appts user does not want to see the slider mark. Hence skip those
-        if (this.arOfAppointmentsFromClientSideDB[i]['UserWantsToSeeOnSlider'] === false) {
+        if (this.arOfAppointmentsFromClientDB[i]['UserWantsToSeeOnSlider'] === false) {
         } else {
           this.dMarksOnSlider[sliderMarkPoint] = labelAtEachMarkUsedToStoreIconClass
         }
 
         // Goal: For each sliderMarkPoint store 1. Appt ID 2. Appt status 3. Appt Calendar time
-        this.dClientSideUniqRowIdAtEachSliderMark[
-          sliderMarkPoint
-        ] = this.arOfAppointmentsFromClientSideDB[i]['clientSideUniqRowId']
-        this.dApptStatusAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientSideDB[
-          i
-        ]['apptStatus']
-        this.dApptCalendarTimeAtEachSliderMark[
-          sliderMarkPoint
-        ] = this.arOfAppointmentsFromClientSideDB[i]['apptStartMilliSecondsOnCalendar']
+        this.dClientUniqRowIdAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientDB[i][
+          'clientSideUniqRowId'
+        ]
+        this.dApptStatusAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientDB[i]['apptStatus']
+        this.dApptCalendarTimeAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientDB[i][
+          'apptStartMilliSecondsOnCalendar'
+        ]
       }
       return this.dMarksOnSlider
     },
@@ -304,12 +290,10 @@ export default {
       }
 
       // Goal: If a visible appt icon is clicked again then remove it. Otherwise show the appt note for that icon.
-      this.toggleApptNoteDisplay(
-        this.dClientSideUniqRowIdAtEachSliderMark[this.dCurrentValueOnTheSlider]
-      )
+      this.toggleApptNoteDisplay(this.dClientUniqRowIdAtEachSliderMark[this.dCurrentValueOnTheSlider])
     },
 
-    async toggleApptNoteDisplay(pClientSideUniqRowIdAtThisSliderMark) {
+    async toggleApptNoteDisplay(pClientUniqRowIdAtThisSliderMark) {
       /* There are following possibilities:
       1. This mark is alaready active
       2. This mark is not active and should be made active */
@@ -317,9 +301,8 @@ export default {
       const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
 
       if (
-        cardOfApptNoteComponentVisibilityCurrentValue[
-          'firstParameterGivenToComponentBeforeMounting'
-        ] === pClientSideUniqRowIdAtThisSliderMark &&
+        cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
+          pClientUniqRowIdAtThisSliderMark &&
         cardOfApptNoteComponentVisibilityCurrentValue['currentDisplayStateOfComponent'] == 1
       ) {
         // This case is when the button was already active. And clicking it should make it in-active
@@ -327,7 +310,7 @@ export default {
       } else {
         // This case is when the button was not active. And clicking it should make it Active
         this.currentDisplayStateOfComponent = 1
-        this.dCurrentActiveButtonClientSideRowId = pClientSideUniqRowIdAtThisSliderMark
+        this.dCurrentActiveButtonClientRowId = pClientUniqRowIdAtThisSliderMark
       }
 
       // This update will lead to the note card visibility getting toggled
@@ -335,7 +318,7 @@ export default {
       const updateState = await clientSideTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
-        firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientSideRowId,
+        firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,
         secondParameterGivenToComponentBeforeMounting: 0,
       })
     },

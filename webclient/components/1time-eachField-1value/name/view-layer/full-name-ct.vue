@@ -91,7 +91,7 @@ export default {
   mixins: [mxViewLayer],
   computed: {
     cfArOfNameForDisplay() {
-      let arOfObjectsFromClientSideDB = new Array()
+      let arOfObjectsFromClientDB = new Array()
       let obj = new Object()
       obj['cardContentOfTypeStringToShowInBodyOfCards'] =
         this.cfLatestDataRowFromClientTbl['firstName'] +
@@ -101,8 +101,8 @@ export default {
         this.cfLatestDataRowFromClientTbl['lastName']
 
       obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientTbl['clientSideUniqRowId']
-      arOfObjectsFromClientSideDB.push(obj)
-      return arOfObjectsFromClientSideDB
+      arOfObjectsFromClientDB.push(obj)
+      return arOfObjectsFromClientDB
     },
   },
 }

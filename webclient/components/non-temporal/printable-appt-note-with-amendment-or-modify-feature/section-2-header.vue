@@ -103,8 +103,8 @@ export default {
     },
   },
   methods: {
-    mfGetPrevApptId(pApptClientSideUniqRowId) {
-      let secondNoteForComparisonClientSideUniqRowId = 0
+    mfGetPrevApptId(pApptClientUniqRowId) {
+      let secondNoteForComparisonClientUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -113,14 +113,14 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientSideUniqRowId) {
-          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientUniqRowId) {
+          secondNoteForComparisonClientUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
-      return secondNoteForComparisonClientSideUniqRowId
+      return secondNoteForComparisonClientUniqRowId
     },
-    mfGetNextApptId(pApptClientSideUniqRowId) {
-      let secondNoteForComparisonClientSideUniqRowId = 0
+    mfGetNextApptId(pApptClientUniqRowId) {
+      let secondNoteForComparisonClientUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -129,11 +129,11 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
-          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientUniqRowId) {
+          secondNoteForComparisonClientUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
-      return secondNoteForComparisonClientSideUniqRowId
+      return secondNoteForComparisonClientUniqRowId
     },
     compareIconClickedInHeaderSoSetUpStateToCompare(pCompareWithDirection) {
       let comparisonId = 0

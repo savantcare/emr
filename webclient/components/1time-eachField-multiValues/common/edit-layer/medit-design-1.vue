@@ -98,7 +98,7 @@ export default {
       required: true,
       validator: (value) => Object.keys(clientTbl).includes(value),
     },
-  }, // firstProp is the ClientSideIdOfRowToChange
+  }, // firstProp is the ClientIdOfRowToChange
 
   computed: {
     console: () => console, // Ref: https://stackoverflow.com/questions/51080447/

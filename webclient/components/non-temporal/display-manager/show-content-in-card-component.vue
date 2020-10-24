@@ -28,9 +28,7 @@
           placement="top-end"
           :open-delay="1000"
           ><span
-            @mouseenter="
-              mfHandleNewMouseEnterEventInCardHeader(singleCardHeaderAction.actionDescription)
-            "
+            @mouseenter="mfHandleNewMouseEnterEventInCardHeader(singleCardHeaderAction.actionDescription)"
             @mouseout="mfHandleNewMouseOutEventInCardHeader()"
           >
             <!-- class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)" is made dynamic so I can chose which action will get the 
@@ -39,9 +37,7 @@
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
               tabindex="-1"
-              @click.stop="
-                mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)
-              "
+              @click.stop="mfActOnCardHeaderActionIconClicked(singleCardHeaderAction.actionDescription)"
               :class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)"
             ></el-button>
           </span>
@@ -68,7 +64,7 @@
 
         <el-button-group style="float: right; display: none">
           <el-tooltip
-            v-for="rowLevelAction in propClientSideRowLevelActions"
+            v-for="rowLevelAction in propClientRowLevelActions"
             :key="rowLevelAction.actionDescription"
             class="item"
             effect="light"
@@ -103,7 +99,7 @@ export default {
     propChildCardsArray: Array,
     propGridDesignTopMostParentBody: String,
     propActionsThatCanBeInvokedFromCardHeader: Array,
-    propClientSideRowLevelActions: Array,
+    propClientRowLevelActions: Array,
   },
   data: function () {
     return {
@@ -128,9 +124,7 @@ export default {
       if (!this.defaultActionDescription) {
         for (let i = 0; i < this.propActionsThatCanBeInvokedFromCardHeader.length; i++) {
           if (this.propActionsThatCanBeInvokedFromCardHeader[i].isDefaultAction) {
-            this.defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i][
-              'actionDescription'
-            ]
+            this.defaultActionDescription = this.propActionsThatCanBeInvokedFromCardHeader[i]['actionDescription']
           }
         }
       }
@@ -153,8 +147,9 @@ export default {
        */
       return {
         // This find the color of the default icon
-        '--color-of-icon-that-represents-default-action-of-header': this
-          .iconColorChartWhenOnClickWillExecuteThisAction[this.defaultActionDescription],
+        '--color-of-icon-that-represents-default-action-of-header': this.iconColorChartWhenOnClickWillExecuteThisAction[
+          this.defaultActionDescription
+        ],
         '--size-of-icon-that-represents-default-action-of-header': '1.5rem',
       }
     },

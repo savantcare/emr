@@ -15,7 +15,7 @@
           actionDescription: 'Close card',
         },
       ]"
-      :propClientSideRowLevelActions="[{}]"
+      :propClientRowLevelActions="[{}]"
     />
   </div>
 </template>
@@ -28,25 +28,25 @@ export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfphq9ForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPhq9
+      const arOfObjectsFromClientDB = clientSideTblOfPatientPhq9
         .query()
         .with('tblPhq9MasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      console.log(arOfObjectsFromClientSideDB)
-      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblPhq9MasterLink.phq9QuestionFullText +
+      console.log(arOfObjectsFromClientDB)
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        arOfObjectsFromClientDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+          arOfObjectsFromClientDB[i].tblPhq9MasterLink.phq9QuestionFullText +
           ': ' +
-          arOfObjectsFromClientSideDB[i].optionValueChosenByPatient
+          arOfObjectsFromClientDB[i].optionValueChosenByPatient
       }
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqueRowId) {
+    mfIconDeleteClickedOnChildCard(pClientUniqueRowId) {
       clientSideTblOfPatientPhq9.update({
-        where: pClientSideUniqueRowId,
+        where: pClientUniqueRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },

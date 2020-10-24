@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     cfArCardsInLeftSideOfViewLayer() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
+      const arOfObjectsFromClientDB = clientSideTblOfViewCards
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideLeftScreenExtension')
@@ -62,19 +62,19 @@ export default {
 
       let componentToShowPath = ''
 
-      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        componentToShowPath = arOfObjectsFromClientSideDB[i]['componentToShowPath']
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        componentToShowPath = arOfObjectsFromClientDB[i]['componentToShowPath']
         if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
           console.log('requring the Ct Obj')
 
           this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+            arOfObjectsFromClientDB[i]['componentToShowPath']).default
         }
 
-        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[componentToShowPath]
+        arOfObjectsFromClientDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[componentToShowPath]
       }
 
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
     cfDrawerVisibility() {
       const drawerVisibility = clientTblOfCommonForAllComponents.find('left-screen-extension-drawer-visibility')

@@ -19,7 +19,7 @@
           <div v-else>
             {{ ros.psychReviewOfSystemsDescription }}
             <el-slider
-              v-model="patientClientSideFieldValueModel[ros.psychReviewOfSystemsMasterId]"
+              v-model="patientClientFieldValueModel[ros.psychReviewOfSystemsMasterId]"
               :min="0"
               :max="1"
               :step="0.5"
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       userTypedKeyword: '',
-      patientClientSideFieldValueModel: [],
+      patientClientFieldValueModel: [],
       masterROSArray: [],
       groupTotal: [],
       depressionTotal: 10,
@@ -52,13 +52,13 @@ export default {
   mounted() {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowId) => {
-      this.patientClientSideFieldValueModel[pRowId] = 0
+      this.patientClientFieldValueModel[pRowId] = 0
       this.mfSetValueInClientTbl(-1, pRowId) // -1 indicates not looked at.
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 
     // Goal1: Get the master field names
-    const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+    const arOfObjectsFromClientMasterDB = clientSideTblOfMasterPsychReviewOfSystems
       .query()
       .with('tblPsychReviewOfSystemsForPatientLink')
       .where('ROW_END', 2147483648000)
@@ -73,11 +73,11 @@ export default {
       })
       .get()
 
-    // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterId] = value
+    // Goal2: Initialize field names with the previous field values patientClientFieldValueModel[masterId] = value
     const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems.query().where('ROW_END', 2147483648000).get()
 
     for (let i = 0; i < allPatientValues.length; i++) {
-      this.patientClientSideFieldValueModel[allPatientValues[i]['psychReviewOfSystemsMasterId']] = parseInt(
+      this.patientClientFieldValueModel[allPatientValues[i]['psychReviewOfSystemsMasterId']] = parseInt(
         allPatientValues[i]['psychReviewOfSystemsFieldValue']
       )
     }
@@ -88,7 +88,7 @@ export default {
 
     // Now group the SS
 
-    const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'psychReviewOfSystemsCategory')
+    const ar = this.groupBy(arOfObjectsFromClientMasterDB, 'psychReviewOfSystemsCategory')
 
     this.masterROSArray = ar
   },
@@ -147,23 +147,22 @@ export default {
     },
     mfCalculateGroupTotalValue() {
       console.log('mfCalculateGroupTotalValue called')
-      const arOfObjectsFromClientSidePatientDB = clientSideTblOfPatientPsychReviewOfSystems
+      const arOfObjectsFromClientPatientDB = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
 
-      //  console.log(arOfObjectsFromClientSidePatientDB)
+      //  console.log(arOfObjectsFromClientPatientDB)
 
       let groupTotal = []
       let catName = ''
       let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
-        catName =
-          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
+      for (let i = 0; i < arOfObjectsFromClientPatientDB.length; i++) {
+        catName = arOfObjectsFromClientPatientDB[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
+        if (arOfObjectsFromClientPatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientPatientDB[i]['psychReviewOfSystemsFieldValue']
           groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
         }
       }

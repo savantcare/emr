@@ -128,14 +128,14 @@ export default {
       // Nothing to compare with
     },
     cfArOfAddendumForDisplay() {
-      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
+      const arFromClientTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
         .where('component', 'recommendations')
         .orderBy('ROW_START', 'asc')
         .get()
 
-      return arFromClientSideTblOfAddendums
+      return arFromClientTblOfAddendums
     },
   },
   methods: {
@@ -165,23 +165,20 @@ export default {
     mfGetArOfRecommendations(pApptObj) {
       if (!pApptObj) return
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientRecommendations
-          .query()
-          .where('ROW_END', 2147483648000)
-          .get()
+        arOfObjectsFromClientDB = clientSideTblOfPatientRecommendations.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPatientRecommendations
+        arOfObjectsFromClientDB = clientSideTblOfPatientRecommendations
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
 
-      console.log(arOfObjectsFromClientSideDB)
-      return arOfObjectsFromClientSideDB
+      console.log(arOfObjectsFromClientDB)
+      return arOfObjectsFromClientDB
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer

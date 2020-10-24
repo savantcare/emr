@@ -3,8 +3,7 @@
     <el-input placeholder="Filter text" v-model="userTypedKeyword" />
     <el-card
       shadow="hover"
-      v-for="(allMentalStatusExamInsideAGroup,
-      groupNameGivenAsIndex) in cfGetMasterRowsOfMentalStatusExamGrouped"
+      v-for="(allMentalStatusExamInsideAGroup, groupNameGivenAsIndex) in cfGetMasterRowsOfMentalStatusExamGrouped"
       :key="allMentalStatusExamInsideAGroup.id"
     >
       <div slot="header" class="clearfix">
@@ -15,12 +14,9 @@
         <div v-for="ms in allMentalStatusExamInsideAGroup" :key="ms.mentalStatusExamMasterId">
           <div v-if="mfCheckIfThisExistsInChildTable(ms)">
             <div v-if="ms.mentalStatusExamFieldType === 'bool'">
-              <el-button
-                size="mini"
-                @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)"
-                type="primary"
-                >{{ ms.mentalStatusExamDescription }}</el-button
-              >
+              <el-button size="mini" @click="mfToggleMentalStatusExam(ms.mentalStatusExamMasterId)" type="primary">{{
+                ms.mentalStatusExamDescription
+              }}</el-button>
             </div>
             <div v-else>
               <el-input
@@ -62,7 +58,7 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfMentalStatusExamGrouped() {
-      const arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterMentalStatusExam
+      const arOfObjectsFromClientMasterDB = clientSideTblOfMasterMentalStatusExam
         .query()
         .with('tblMentalStatusExamForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -77,7 +73,7 @@ export default {
         })
         .get()
 
-      const ar = this.groupBy(arOfObjectsFromClientSideMasterDB, 'mentalStatusExamCategory')
+      const ar = this.groupBy(arOfObjectsFromClientMasterDB, 'mentalStatusExamCategory')
 
       return ar
     },

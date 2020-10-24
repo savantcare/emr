@@ -114,9 +114,9 @@ export default {
     },
   },
   methods: {
-    fnSetRowStatus(pClientSidePrimaryKeyValue) {
+    fnSetRowStatus(pClientPrimaryKeyValue) {
       clientTbl.update({
-        where: pClientSidePrimaryKeyValue,
+        where: pClientPrimaryKeyValue,
         data: {
           vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
         },

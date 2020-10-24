@@ -13,7 +13,7 @@
         actionDescription: 'Close card',
       },
     ]"
-    :propClientSideRowLevelActions="[{}]"
+    :propClientRowLevelActions="[{}]"
   >
     <el-card
       slot="bodySlotContentFromParentToShowAboveChildCards"
@@ -63,26 +63,26 @@ export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfMedicalReviewOfSystemsForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMedicalReviewOfSystems
+      const arOfObjectsFromClientDB = clientSideTblOfPatientMedicalReviewOfSystems
         .query()
         .with('tblMedicalReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
 
-      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsCategory +
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        arOfObjectsFromClientDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
+          arOfObjectsFromClientDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsDescription
+          arOfObjectsFromClientDB[i].tblMedicalReviewOfSystemsMasterLink.medicalReviewOfSystemsDescription
       }
 
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
   methods: {
-    mfIconDeleteClickedOnChildCard(pClientSideUniqRowId) {
+    mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
       clientSideTblOfPatientMedicalReviewOfSystems.update({
-        where: pClientSideUniqRowId,
+        where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },

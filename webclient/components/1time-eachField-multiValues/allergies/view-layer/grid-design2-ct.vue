@@ -139,8 +139,8 @@ export default {
     mfIconMultiDeleteClickedOnChildCard(val) {
       this.daSelectedRemForDelete = val
     },
-    mfEditIconClicked(pClientSideDataRowId) {
-      this.mxOpenEditCtInEditLayer(pClientSideDataRowId)
+    mfEditIconClicked(pClientDataRowId) {
+      this.mxOpenEditCtInEditLayer(pClientDataRowId)
     },
     mfGetCssClassNameForEachDataRow(pRow) {
       const strOfNumber = pRow.vnRowStateInSession.toString()

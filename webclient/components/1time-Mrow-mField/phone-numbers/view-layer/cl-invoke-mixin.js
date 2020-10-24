@@ -66,7 +66,7 @@ export default {
         drawerData: arDrawerData,
       })
     },
-    mxOpenEditCtInEditLayer(pClientSideDataRowId) {
+    mxOpenEditCtInEditLayer(pClientDataRowId) {
       /*
        We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
        Option 1: Send the whole data row
@@ -78,11 +78,11 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit phone number', pPropsToGiveToCt: pClientSideDataRowId }
+      const payload = { searchTerm: 'edit phone number', pPropsToGiveToCt: pClientDataRowId }
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
-    mxOpenDPrompt(pClientSideDataRowId) {
-      const arResultsFromOrm = clientTbl.find(pClientSideDataRowId)
+    mxOpenDPrompt(pClientDataRowId) {
+      const arResultsFromOrm = clientTbl.find(pClientDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete phone number', {
         confirmButtonText: 'Delete',
@@ -90,7 +90,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientTbl.fnSendDeleteDataToServer(pClientSideDataRowId, arResultsFromOrm.uuid, value)
+          const status = await clientTbl.fnSendDeleteDataToServer(pClientDataRowId, arResultsFromOrm.uuid, value)
           if (status === 1) {
             this.$message({
               type: 'success',

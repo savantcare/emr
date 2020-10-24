@@ -165,14 +165,14 @@ export default {
     },
 
     cfArOfAddendumForDisplay() {
-      const arFromClientSideTblOfAddendums = clientSideTblOfAddendums
+      const arFromClientTblOfAddendums = clientSideTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
         .where('component', 'psychReviewOfSystems')
         .orderBy('ROW_START', 'asc')
         .get()
 
-      return arFromClientSideTblOfAddendums
+      return arFromClientTblOfAddendums
     },
   },
   methods: {
@@ -197,22 +197,22 @@ export default {
     mfGetArOfPsychReviewOfSystems(pApptObj) {
       if (!pApptObj) return
 
-      let arOfObjectsFromClientSideDB = []
+      let arOfObjectsFromClientDB = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+        arOfObjectsFromClientDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientSideDB = clientSideTblOfPsychReviewOfSystems
+        arOfObjectsFromClientDB = clientSideTblOfPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
 }

@@ -2,11 +2,7 @@
   <div>
     <clientSideTblOfViewCardsInsertData />
     <!-- this 10px is the distance between the card and all other 4 sides. -->
-    <div
-      v-for="card in cfArCardsInLeftSideOfViewLayer"
-      :key="card.clientSideUniqRowId"
-      style="margin: 10px"
-    >
+    <div v-for="card in cfArCardsInLeftSideOfViewLayer" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
       <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -55,7 +51,7 @@ export default {
       2. currentDisplayStateOfComponent is > 0. Since 0 is reserved to mark the component as not to show.
 
       */
-      const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
+      const arOfObjectsFromClientDB = clientSideTblOfViewCards
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('classificationOfComponent', vComponentClassificationToShowUser)
@@ -66,20 +62,18 @@ export default {
 
       let rowId = 0
 
-      for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        rowId = arOfObjectsFromClientSideDB[i]['clientSideUniqRowId']
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        rowId = arOfObjectsFromClientDB[i]['clientSideUniqRowId']
 
         if (!this.dArOfComponentObjectsCached[rowId]) {
           this.dArOfComponentObjectsCached[rowId] = require('@/components/' +
-            arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
+            arOfObjectsFromClientDB[i]['componentToShowPath']).default
         }
 
-        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[
-          rowId
-        ]
+        arOfObjectsFromClientDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[rowId]
       }
 
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
 }

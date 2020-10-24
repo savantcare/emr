@@ -29,18 +29,18 @@ import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/
 export default {
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientMentalStatusExam
+      const arOfObjectsFromClientDB = clientSideTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
-      return arOfObjectsFromClientSideDB
+      return arOfObjectsFromClientDB
     },
   },
   methods: {
-    mfDeleteMentalStatusExam(pClientSideUniqRowId) {
+    mfDeleteMentalStatusExam(pClientUniqRowId) {
       clientSideTblOfPatientMentalStatusExam.update({
-        where: pClientSideUniqRowId,
+        where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },

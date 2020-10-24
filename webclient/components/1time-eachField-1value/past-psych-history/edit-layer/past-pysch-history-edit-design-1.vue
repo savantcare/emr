@@ -50,22 +50,22 @@ export default {
     }
   },
   mounted() {
-    let arOfObjectsFromClientSideDB = []
+    let arOfObjectsFromClientDB = []
 
     // Goal: This Ct can be mounted and then removed and then mounted again. I need to load the latest data from clientSideDB
-    arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
+    arOfObjectsFromClientDB = clientSideTblOfPatientPastPsychHistory
       .query()
       .with('tblPastPsychHistoryMasterLink')
       .where('ROW_END', 2147483648000) // This gives current data
       .get()
 
-    if (arOfObjectsFromClientSideDB.length === 0) return
+    if (arOfObjectsFromClientDB.length === 0) return
 
     // Goal: In the field show user the latest data
-    for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-      const fieldName = arOfObjectsFromClientSideDB[i].clientSideUniqRowId
+    for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+      const fieldName = arOfObjectsFromClientDB[i].clientSideUniqRowId
 
-      const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
+      const fieldValue = arOfObjectsFromClientDB[i]['fieldValue']
 
       this.$set(this.liveTypedValueOfFields, fieldName, fieldValue)
     }
@@ -119,7 +119,7 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistory() {
-      let arOfObjectsFromClientSideMasterDB = clientSideTblOfMasterPastPsychHistory
+      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterPastPsychHistory
         .query()
         .where((_record, query) => {
           query
@@ -132,24 +132,24 @@ export default {
         })
         .get()
 
-      return arOfObjectsFromClientSideMasterDB
+      return arOfObjectsFromClientMasterDB
     },
   },
   methods: {
     mfGetStakeObjectForComparison() {
       // Comparison happens with data that is already in MariaDB
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientPastPsychHistory
+      const arOfObjectsFromClientDB = clientSideTblOfPatientPastPsychHistory
         .query()
         .with('tblPastPsychHistoryMasterLink')
         .where('vnRowStateInSession', 1) // This gives data already saved to DB
         .get()
 
-      if (arOfObjectsFromClientSideDB.length === 0) return
+      if (arOfObjectsFromClientDB.length === 0) return
 
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        const fieldName = arOfObjectsFromClientSideDB[i].clientSideUniqRowId
+      for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        const fieldName = arOfObjectsFromClientDB[i].clientSideUniqRowId
 
-        const fieldValue = arOfObjectsFromClientSideDB[i]['fieldValue']
+        const fieldValue = arOfObjectsFromClientDB[i]['fieldValue']
 
         this.$set(this.stakeObjOfFieldsForComparison, fieldName, fieldValue)
       }

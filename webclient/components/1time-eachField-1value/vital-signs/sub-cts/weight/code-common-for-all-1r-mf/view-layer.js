@@ -100,20 +100,20 @@ export default {
     if (arFromClientTbl.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
       const rowtoReturn = arFromClientTbl[0]
-      const dnClientSideIdOfCopiedRowBeingChanged = clientTbl.fnGetChangeRowIdInEditState(rowtoReturn.serverSideRowUuid)
-      if (dnClientSideIdOfCopiedRowBeingChanged === false) {
+      const dnClientIdOfCopiedRowBeingChanged = clientTbl.fnGetChangeRowIdInEditState(rowtoReturn.serverSideRowUuid)
+      if (dnClientIdOfCopiedRowBeingChanged === false) {
       } else {
         this.dataFldsOfToChangeAndCopiedRowsAreSame = clientTbl.fnIsDataFldsOfRowsSame(
           // this fn returns true if data flds are same. Otherwise it returns the array of fields that are different along with the value of the field
           rowtoReturn.clientSideUniqRowId,
-          dnClientSideIdOfCopiedRowBeingChanged
+          dnClientIdOfCopiedRowBeingChanged
         )
       }
       this.isMounted = true
     }
   },
   methods: {
-    mfOpenEditCtInEditLayer(pClientSideId, pCtToInvoke) {
+    mfOpenEditCtInEditLayer(pClientId, pCtToInvoke) {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: pCtToInvoke,
       })
@@ -130,7 +130,7 @@ export default {
     mfSendReviewedEvent() {
       // TODO: Why do I need to send the row ID since there can only be 1 possibility ?
       const eventName = ['event-from-ct', clientTbl.entity, 'vl-save-this-row'].join('-')
-      this.$root.$emit(eventName, this.dataFldsOfToChangeAndCopiedRowsAreSame.dnClientSideIdOfCopiedRowBeingChanged)
+      this.$root.$emit(eventName, this.dataFldsOfToChangeAndCopiedRowsAreSame.dnClientIdOfCopiedRowBeingChanged)
     },
     mfSendResetFormEvent() {
       const eventName = ['event-from-ct', clientTbl.entity, 'vl-reset-this-form'].join('-')

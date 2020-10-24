@@ -12,13 +12,13 @@
         <el-row>
           <el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="lowerValueForComparisonClientSideUniqRowId"
-              :key="lowerValueForComparisonClientSideUniqRowId"
+              :propShowNoteForApptId="lowerValueForComparisonClientUniqRowId"
+              :key="lowerValueForComparisonClientUniqRowId"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="higherValueForComparisonClientSideUniqRowId"
-              :key="higherValueForComparisonClientSideUniqRowId"
+              :propShowNoteForApptId="higherValueForComparisonClientUniqRowId"
+              :key="higherValueForComparisonClientUniqRowId"
           /></el-col>
         </el-row>
       </el-drawer>
@@ -26,8 +26,8 @@
     <!-- Goal: Print a single note -->
     <div v-else>
       <apptNotePrintableView
-        :propShowNoteForApptId="firstNoteForComparisonClientSideUniqRowId"
-        :key="firstNoteForComparisonClientSideUniqRowId"
+        :propShowNoteForApptId="firstNoteForComparisonClientUniqRowId"
+        :key="firstNoteForComparisonClientUniqRowId"
       />
     </div>
   </div>
@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       dUidrawerToShowComparisonOf2Notes: false,
-      firstNoteForComparisonClientSideUniqRowId: 0,
-      secondNoteForComparisonClientSideUniqRowId: 0,
+      firstNoteForComparisonClientUniqRowId: 0,
+      secondNoteForComparisonClientUniqRowId: 0,
     }
   },
 
@@ -59,8 +59,8 @@ export default {
         secondParameterGivenToComponentBeforeMounting: 0,
       })
     },
-    mfGetPrevAppt(pApptClientSideUniqRowId) {
-      let secondNoteForComparisonClientSideUniqRowId = 0
+    mfGetPrevAppt(pApptClientUniqRowId) {
+      let secondNoteForComparisonClientUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -69,14 +69,14 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientSideUniqRowId) {
-          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientUniqRowId) {
+          secondNoteForComparisonClientUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
-      return secondNoteForComparisonClientSideUniqRowId
+      return secondNoteForComparisonClientUniqRowId
     },
-    mfGetNextAppt(pApptClientSideUniqRowId) {
-      let secondNoteForComparisonClientSideUniqRowId = 0
+    mfGetNextAppt(pApptClientUniqRowId) {
+      let secondNoteForComparisonClientUniqRowId = 0
       const clientSideArray = clientSideTblOfAppointments
         .query()
         .where((record) => {
@@ -85,27 +85,27 @@ export default {
         .get()
 
       for (let i = 0; i < clientSideArray.length; i++) {
-        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientSideUniqRowId) {
-          secondNoteForComparisonClientSideUniqRowId = clientSideArray[i]['clientSideUniqRowId']
+        if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientUniqRowId) {
+          secondNoteForComparisonClientUniqRowId = clientSideArray[i]['clientSideUniqRowId']
         }
       }
-      return secondNoteForComparisonClientSideUniqRowId
+      return secondNoteForComparisonClientUniqRowId
     },
   },
   computed: {
     // Goal: Lower appt ID should come on the left. Since lower ID means happened before.
-    lowerValueForComparisonClientSideUniqRowId() {
-      if (this.firstNoteForComparisonClientSideUniqRowId > this.secondNoteForComparisonClientSideUniqRowId) {
-        return this.secondNoteForComparisonClientSideUniqRowId
+    lowerValueForComparisonClientUniqRowId() {
+      if (this.firstNoteForComparisonClientUniqRowId > this.secondNoteForComparisonClientUniqRowId) {
+        return this.secondNoteForComparisonClientUniqRowId
       } else {
-        return this.firstNoteForComparisonClientSideUniqRowId
+        return this.firstNoteForComparisonClientUniqRowId
       }
     },
-    higherValueForComparisonClientSideUniqRowId() {
-      if (this.firstNoteForComparisonClientSideUniqRowId > this.secondNoteForComparisonClientSideUniqRowId) {
-        return this.firstNoteForComparisonClientSideUniqRowId
+    higherValueForComparisonClientUniqRowId() {
+      if (this.firstNoteForComparisonClientUniqRowId > this.secondNoteForComparisonClientUniqRowId) {
+        return this.firstNoteForComparisonClientUniqRowId
       } else {
-        return this.secondNoteForComparisonClientSideUniqRowId
+        return this.secondNoteForComparisonClientUniqRowId
       }
     },
 
@@ -117,20 +117,20 @@ export default {
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']) {
         numberOfNotesToCompare++
-        this.firstNoteForComparisonClientSideUniqRowId =
+        this.firstNoteForComparisonClientUniqRowId =
           apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']
 
-        noteIDs.push(this.firstNoteForComparisonClientSideUniqRowId)
+        noteIDs.push(this.firstNoteForComparisonClientUniqRowId)
       }
       if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
         numberOfNotesToCompare++
-        this.secondNoteForComparisonClientSideUniqRowId =
+        this.secondNoteForComparisonClientUniqRowId =
           apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']
-        noteIDs.push(this.firstNoteForComparisonClientSideUniqRowId)
+        noteIDs.push(this.firstNoteForComparisonClientUniqRowId)
       }
 
       // If this ct was asked to display itself without the note ID then the high locked or unlockjed note id will be its ID
-      if (this.firstNoteForComparisonClientSideUniqRowId > 0) {
+      if (this.firstNoteForComparisonClientUniqRowId > 0) {
       } else {
         const apptObj = clientSideTblOfAppointments
           .query()
@@ -145,8 +145,8 @@ export default {
           firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],
         })
 
-        this.firstNoteForComparisonClientSideUniqRowId = apptObj[0]['clientSideUniqRowId']
-        noteIDs[0] = this.secondNoteForComparisonClientSideUniqRowId
+        this.firstNoteForComparisonClientUniqRowId = apptObj[0]['clientSideUniqRowId']
+        noteIDs[0] = this.secondNoteForComparisonClientUniqRowId
       }
 
       if (noteIDs.length === 2) this.dUidrawerToShowComparisonOf2Notes = true

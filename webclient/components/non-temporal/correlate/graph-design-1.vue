@@ -31,15 +31,15 @@ export default {
     mfGetProsOnApptLockDate(pApptObj) {
       if (!pApptObj) return
 
-      let arOfObjectsFromClientSideRos = []
+      let arOfObjectsFromClientRos = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+        arOfObjectsFromClientRos = clientSideTblOfPatientPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientSideRos = clientSideTblOfPatientPsychReviewOfSystems
+        arOfObjectsFromClientRos = clientSideTblOfPatientPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
@@ -50,11 +50,11 @@ export default {
       let groupTotal = []
       let catName = ''
       let value = 0
-      for (let i = 0; i < arOfObjectsFromClientSideRos.length; i++) {
-        catName = arOfObjectsFromClientSideRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
+      for (let i = 0; i < arOfObjectsFromClientRos.length; i++) {
+        catName = arOfObjectsFromClientRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientSideRos[i]['psychReviewOfSystemsFieldValue']
+        if (arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue']
           groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
         }
       }
@@ -276,7 +276,7 @@ export default {
     },
 
     cfArOfServiceStatementsForGraph() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientServiceStatements
+      const arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
@@ -284,16 +284,16 @@ export default {
 
       const arDataToShowOnGraph = []
 
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        const timeOfMeasurementInMilliseconds = arOfObjectsFromClientSideDB[i].ROW_START
+      for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        const timeOfMeasurementInMilliseconds = arOfObjectsFromClientDB[i].ROW_START
 
         arDataToShowOnGraph.push({
           x: timeOfMeasurementInMilliseconds,
           y: 50,
           tooltip:
-            arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
+            arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
             ' ' +
-            arOfObjectsFromClientSideDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementDescription,
+            arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementDescription,
         })
       }
       return arDataToShowOnGraph
@@ -327,18 +327,18 @@ export default {
       return data
     },
     cfArOfRemindersForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
+      const arOfObjectsFromClientDB = clientSideTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
 
       var arDataToShowOnGraph = new Array()
 
-      for (let i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
-        arDataToShowOnGraph.push([arOfObjectsFromClientSideDB[i].ROW_START, 0])
+      for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        arDataToShowOnGraph.push([arOfObjectsFromClientDB[i].ROW_START, 0])
       }
 
       return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientSideDB = clientSideTblOfMentalStatusExam
+      const arOfObjectsFromClientDB = clientSideTblOfMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
