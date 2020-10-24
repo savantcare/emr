@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
 
       // if client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change = socketIdInMsgRecdFromServer then return withiout making any changes.
 
-      const socketClientObj = await clientSideTableOfCommonForAllComponents
+      const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
         .where(
           'fieldName',
@@ -77,7 +77,7 @@ export default {
       const pDataArr = JSON.parse(pData)
       console.log('MsgFromSktForRemToChange received from socket server. The data received is', pDataArr)
 
-      const socketClientObj = await clientSideTableOfCommonForAllComponents
+      const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
         .where(
           'fieldName',

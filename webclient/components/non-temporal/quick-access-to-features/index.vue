@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -65,22 +65,22 @@ export default {
       this.toggleBetweenHealthAndOtherComponents()
     },
     goToDashboardMode() {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // set the split dimensions
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
       })
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
       this.$notify.success({
@@ -93,22 +93,22 @@ export default {
     },
 
     goToWorkProductMode() {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: true }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // set the split dimensions
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 60 }],
       })
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 40 }],
       })
       this.$notify.success({
@@ -121,21 +121,21 @@ export default {
     },
 
     goToAnalysisMode() {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
       })
 
       // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: true }],
       })
 
       // set the split dimensions
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 35 }],
       })
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 65 }],
       })
       this.$notify.success({
@@ -148,13 +148,13 @@ export default {
     },
     toggleBetweenHealthAndOtherComponents() {
       // Goal: Decide if I need to do update or insert
-      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents.find(
+      const arOfObjectsFromCommonForAllComponents = clientTblOfCommonForAllComponents.find(
         'classification-of-component-to-show-on-left-hand-side'
       )
 
       if (arOfObjectsFromCommonForAllComponents) {
         if (arOfObjectsFromCommonForAllComponents['fieldValue'] == 'health') {
-          clientSideTableOfCommonForAllComponents.insertOrUpdate({
+          clientTblOfCommonForAllComponents.insertOrUpdate({
             data: [
               {
                 fieldName: 'classification-of-component-to-show-on-left-hand-side',
@@ -163,7 +163,7 @@ export default {
             ],
           })
         } else {
-          clientSideTableOfCommonForAllComponents.insertOrUpdate({
+          clientTblOfCommonForAllComponents.insertOrUpdate({
             data: [
               {
                 fieldName: 'classification-of-component-to-show-on-left-hand-side',
@@ -173,7 +173,7 @@ export default {
           })
         }
       } else {
-        clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        clientTblOfCommonForAllComponents.insertOrUpdate({
           data: [
             {
               fieldName: 'classification-of-component-to-show-on-left-hand-side',

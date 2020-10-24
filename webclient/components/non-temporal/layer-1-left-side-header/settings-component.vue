@@ -7,12 +7,8 @@
       <h3>Slider</h3>
       <br />
       <span
-        ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional"
-          >Proportional</el-radio
-        >
-        <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant"
-          >Equi distant</el-radio
-        ></span
+        ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional">Proportional</el-radio>
+        <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant">Equi distant</el-radio></span
       ><br />
       <br />
 
@@ -33,14 +29,7 @@
       <h3>Font tize</h3>
       (In percentage)
       <div class="block">
-        <el-slider
-          v-model="fontSizeValue"
-          :min="0"
-          :max="200"
-          show-input
-          @change="fontSliderChanged"
-        >
-        </el-slider>
+        <el-slider v-model="fontSizeValue" :min="0" :max="200" show-input @change="fontSliderChanged"> </el-slider>
       </div>
       <br />
       <hr />
@@ -51,31 +40,23 @@
 </template>
 
 <script>
-import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
     return {
       dIsSettingsDialogVisible: false,
       dConfigProportionalOrEquiDistant: 'EquiDistant',
-      dConfigChecklistOfApptTypesToShow: [
-        'locked',
-        'unlocked',
-        'no-show',
-        'late-cancellation',
-        'cancellation',
-      ],
+      dConfigChecklistOfApptTypesToShow: ['locked', 'unlocked', 'no-show', 'late-cancellation', 'cancellation'],
       dConfigProviderTypesToShow: [],
       checked: true,
       fontSizeValue: null,
     }
   },
   async mounted() {
-    await clientSideTableOfCommonForAllComponents.$fetch()
+    await clientTblOfCommonForAllComponents.$fetch()
 
-    const fontObject = clientSideTableOfCommonForAllComponents.find(
-      'font-size-customized-by-user-value-in-percentage'
-    )
+    const fontObject = clientTblOfCommonForAllComponents.find('font-size-customized-by-user-value-in-percentage')
 
     this.fontSizeValue = parseInt(fontObject['fieldValue'])
 
@@ -85,7 +66,7 @@ export default {
   },
   methods: {
     fontSliderChanged() {
-      clientSideTableOfCommonForAllComponents.$update({
+      clientTblOfCommonForAllComponents.$update({
         data: [
           {
             fieldName: 'font-size-customized-by-user-value-in-percentage',

@@ -468,10 +468,10 @@
 </template>
 
 <script>
-import clientSideTableForReminder from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
-import clientSideTableForTemperature from '@/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
-import clientSideTableForBloodPressure from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
-import clientSideTableForBloodSugar from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+import clientTblForReminder from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientTblForTemperature from '@/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import clientTblForBloodPressure from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import clientTblForBloodSugar from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -967,7 +967,7 @@ export default {
   },
   computed: {
     cfArOfRemForDisplayInMapDrawer() {
-      const arFromClientSideTable = clientSideTableForReminder.fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientSideTable = clientTblForReminder.fnGetPresentUniqueUuidNotEmptyRows('description')
       return arFromClientSideTable
     },
     cfArOfVitalSignForDisplayInMapDrawer() {
@@ -977,7 +977,7 @@ export default {
       /**
        * Getting temperature value
        */
-      const arFromClientSideTableForTemperature = clientSideTableForTemperature.fnGetRowsToChange()
+      const arFromClientSideTableForTemperature = clientTblForTemperature.fnGetRowsToChange()
       if (arFromClientSideTableForTemperature.length > 0) {
         const objTemperature = {}
         objTemperature.id = index
@@ -991,7 +991,7 @@ export default {
       /**
        * Getting blood pressure value
        */
-      const arFromClientSideTableForBloodPressure = clientSideTableForBloodPressure.fnGetRowsToChange()
+      const arFromClientSideTableForBloodPressure = clientTblForBloodPressure.fnGetRowsToChange()
       if (arFromClientSideTableForBloodPressure.length > 0) {
         const objBloodPressure = {}
         objBloodPressure.id = index
@@ -1005,7 +1005,7 @@ export default {
       /**
        * Getting blood sugar value
        */
-      const arFromClientSideTableForBloodSugar = clientSideTableForBloodSugar.fnGetRowsToChange()
+      const arFromClientSideTableForBloodSugar = clientTblForBloodSugar.fnGetRowsToChange()
       if (arFromClientSideTableForBloodSugar.length > 0) {
         const objBloodSugar = {}
         objBloodSugar.id = index

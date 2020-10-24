@@ -13,7 +13,7 @@
 
 <script>
 import clientSideTblOfLeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -27,14 +27,14 @@ export default {
       const type = this.componentType === true ? 'health' : 'other'
 
       // Goal: Decide if I need to do update or insert
-      const arOfObjectsFromCommonForAllComponents = clientSideTableOfCommonForAllComponents
+      const arOfObjectsFromCommonForAllComponents = clientTblOfCommonForAllComponents
         .query()
         .where('fieldName', 'classification-of-component-to-show-on-left-hand-side')
         .get()
 
       if (arOfObjectsFromCommonForAllComponents.length > 0) {
         // Goal: The row already exists so I need to update it
-        clientSideTableOfCommonForAllComponents.update({
+        clientTblOfCommonForAllComponents.update({
           data: {
             clientSideUniqRowId: arOfObjectsFromCommonForAllComponents[0]['clientSideUniqRowId'],
             fieldValue: type,
@@ -42,7 +42,7 @@ export default {
         })
       } else {
         // Goal: The row does not exist so I need to insert it
-        clientSideTableOfCommonForAllComponents.insert({
+        clientTblOfCommonForAllComponents.insert({
           data: {
             fieldName: 'classification-of-component-to-show-on-left-hand-side',
             fieldValue: type,

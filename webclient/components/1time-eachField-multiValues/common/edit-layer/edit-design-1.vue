@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
@@ -265,7 +265,7 @@ export default {
         /**
          * Send socket id to the server for update from socket
          */
-        const socketClientObj = await clientSideTableOfCommonForAllComponents
+        const socketClientObj = await clientTblOfCommonForAllComponents
           .query()
           .where(
             'fieldName',

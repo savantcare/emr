@@ -1,5 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
 // Start from new
@@ -661,7 +661,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static async fnMakeApiCAll(pOrmRowArray) {
-    const socketClientObj = await clientSideTableOfCommonForAllComponents
+    const socketClientObj = await clientTblOfCommonForAllComponents
       .query()
       .where(
         'fieldName',
@@ -704,7 +704,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async fnSendDeleteDataToServer(pClientSideDataRowId, rowUuid, deletedNote) {
     try {
-      const socketClientObj = await clientSideTableOfCommonForAllComponents
+      const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
         .where(
           'fieldName',

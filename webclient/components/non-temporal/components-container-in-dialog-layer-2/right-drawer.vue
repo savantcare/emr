@@ -20,11 +20,7 @@
   >
     <div class="block">
       <transition-group name="list" tag="p">
-        <div
-          v-for="card in cfArCardsInLeftSideOfViewLayer"
-          :key="card.clientSideUniqRowId"
-          style="margin: 10px"
-        >
+        <div v-for="card in cfArCardsInLeftSideOfViewLayer" :key="card.clientSideUniqRowId" style="margin: 10px">
           <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
           <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
                 Sorrounding component with keepAlive does not help. Since previous rendering of rex
@@ -45,7 +41,7 @@
 import clientSideTblOfViewCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 import ctSearchBoxInsideRightScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
-import clientSideTableOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -61,10 +57,7 @@ export default {
       const arOfObjectsFromClientSideDB = clientSideTblOfViewCards
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
-        .where(
-          'identifierOfparentComponentThatIncludedThisSearchComponent',
-          'ctSearchBoxInsideRightScreenExtension'
-        )
+        .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideRightScreenExtension')
         .get()
 
       let componentToShowPath = ''
@@ -76,18 +69,14 @@ export default {
             arOfObjectsFromClientSideDB[i]['componentToShowPath']).default
         }
 
-        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[
-          componentToShowPath
-        ]
+        arOfObjectsFromClientSideDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[componentToShowPath]
       }
 
       return arOfObjectsFromClientSideDB
     },
 
     cfDrawerVisibility() {
-      const drawerVisibility = clientSideTableOfCommonForAllComponents.find(
-        'right-screen-extension-drawer-visibility'
-      )
+      const drawerVisibility = clientTblOfCommonForAllComponents.find('right-screen-extension-drawer-visibility')
 
       if (drawerVisibility) {
         if (drawerVisibility['fieldValue'] == 'true') {
@@ -103,14 +92,14 @@ export default {
   },
   methods: {
     handleClose(done) {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
       })
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
       })
 
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
     },

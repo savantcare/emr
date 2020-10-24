@@ -30,7 +30,7 @@
 
 <script>
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
-import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -60,7 +60,7 @@ export default {
       return arFromClientSideTable
     },
     cfDrawerVisibility() {
-      const visible = clientSideTableOfCommonForAllComponents.find('vblIsFeedDrawerVisible')
+      const visible = clientTblOfCommonForAllComponents.find('vblIsFeedDrawerVisible')
       if (visible) {
         if (visible['fieldValue'] == 'true') {
           return true
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     handleClose(done) {
-      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+      clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'vblIsFeedDrawerVisible', fieldValue: false }],
       })
     },
