@@ -16,10 +16,7 @@ Code synced with ref implementation on 4th august 2020
       ]"
       propGridDesignTopMostParentBody="s-css-class-top-most-card-body-grid"
     >
-      <div
-        slot="bodySlotContentFromParentToShowAboveChildCards"
-        class="box-card sc-individual-child-card"
-      >
+      <div slot="bodySlotContentFromParentToShowAboveChildCards" class="box-card sc-individual-child-card">
         <el-button-group style="float: right; display: none">
           <el-button
             type="primary"
@@ -28,10 +25,7 @@ Code synced with ref implementation on 4th august 2020
             plain
             tabindex="-1"
             @click="
-              mfOpenEditCtInEditLayer(
-                cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
-                'date of birth - edit'
-              )
+              mfOpenEditCtInEditLayer(cfLatestDataRowFromClientTbl['clientSideUniqRowId'], 'date of birth - edit')
             "
             class="el-icon-edit"
           ></el-button>
@@ -65,7 +59,7 @@ Code synced with ref implementation on 4th august 2020
           >{{ cfFormatDateOfBirth }}</el-button
         >
         <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
-          cfLatestDataRowFromClientSideTable['notes']
+          cfLatestDataRowFromClientTbl['notes']
         }}</el-button>
       </div>
     </showContentInCardComponent>
@@ -89,9 +83,7 @@ export default {
   },
   computed: {
     cfFormatDateOfBirth() {
-      return moment(this.cfLatestDataRowFromClientSideTable.dateOfBirthInMilliseconds).format(
-        'MMM DD YYYY'
-      ) // parse integer
+      return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
     },
   },
 }

@@ -81,21 +81,21 @@ import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-ser
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
-  reminders: reminderClientSideTable,
-  recommendations: recommendationClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  process_notes: processNotesClientSideTable,
-  family_history: familyHistoryClientSideTable,
+  reminders: reminderClientTbl,
+  recommendations: recommendationClientTbl,
+  plan_comments: planCommentsClientTbl,
+  misc_notes: miscNotesClientTbl,
+  process_notes: processNotesClientTbl,
+  family_history: familyHistoryClientTbl,
 } // 1st row
 
 export default {
@@ -114,11 +114,11 @@ export default {
   }, // firstProp is the ClientSideIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', this.propComponentName).get()
-      return arFromClientSideTable['clientSideUniqRowId']
+      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', this.propComponentName).get()
+      return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientTbl[this.propComponentName].fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl[this.propComponentName].fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -131,17 +131,17 @@ export default {
 
       const arRemsForDisplay = []
       let obj = {}
-      if (arFromClientSideTable.length) {
+      if (arFromClientTbl.length) {
         let date = ''
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           obj = {}
-          obj.description = arFromClientSideTable[i].description
+          obj.description = arFromClientTbl[i].description
           // For date format ref: /cts/1time-eachField-multiValues/common/view-layer/timeline-ct.vue:53
-          date = new Date(arFromClientSideTable[i].ROW_START)
+          date = new Date(arFromClientTbl[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
-          obj.uuid = arFromClientSideTable[i].serverSideRowUuid
-          obj.id = arFromClientSideTable[i].clientSideUniqRowId
+          obj.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
+          obj.uuid = arFromClientTbl[i].serverSideRowUuid
+          obj.id = arFromClientTbl[i].clientSideUniqRowId
           arRemsForDisplay.push(obj)
         }
       }

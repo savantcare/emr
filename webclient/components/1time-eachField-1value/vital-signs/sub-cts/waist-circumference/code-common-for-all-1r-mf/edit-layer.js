@@ -57,35 +57,35 @@ export default {
     cfTimeLineDataAr() {
       const timelineDataArray = []
 
-      const arFromClientSideTableData = clientTbl.find(this.dnClientSideIdOfRowToChange)
+      const arFromClientTblData = clientTbl.find(this.dnClientSideIdOfRowToChange)
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientSideTable = clientTbl
+      const arFromClientTbl = clientTbl
         .query()
-        .where('serverSideRowUuid', arFromClientSideTableData.serverSideRowUuid)
+        .where('serverSideRowUuid', arFromClientTblData.serverSideRowUuid)
         .orderBy('ROW_START', 'desc')
         .get()
-      if (arFromClientSideTable.length) {
+      if (arFromClientTbl.length) {
         let rowInTimeLine = []
         let date = ''
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.waistCircumferenceInInches = arFromClientSideTable[i].waistCircumferenceInInches
-          date = new Date(arFromClientSideTable[i].ROW_START)
+          rowInTimeLine.waistCircumferenceInInches = arFromClientTbl[i].waistCircumferenceInInches
+          date = new Date(arFromClientTbl[i].ROW_START)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
-            arFromClientSideTable[i].vnRowStateInSession === 3 ||
-            arFromClientSideTable[i].vnRowStateInSession === 34 ||
-            arFromClientSideTable[i].vnRowStateInSession === 3456
+            arFromClientTbl[i].vnRowStateInSession === 3 ||
+            arFromClientTbl[i].vnRowStateInSession === 34 ||
+            arFromClientTbl[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
-          rowInTimeLine.ROW_START = arFromClientSideTable[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
+          rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }
@@ -116,12 +116,12 @@ export default {
         if (pClientSideIdOfCopiedRowBeingChangedNVal === null) {
           /* When called first time this.dnClientSideIdOfRowToChange is assigned in the created event function
               When called 2nd time this.dnClientSideIdOfRowToChange is the previous row that just got saved. */
-          const arFromClientSideTable = clientTbl.find(this.dnClientSideIdOfRowToChange)
-          const vnExistingChangeRowId = clientTbl.fnGetChangeRowIdInEditState(arFromClientSideTable.serverSideRowUuid) // For a given UUID there can be only 1 row in edit state.
+          const arFromClientTbl = clientTbl.find(this.dnClientSideIdOfRowToChange)
+          const vnExistingChangeRowId = clientTbl.fnGetChangeRowIdInEditState(arFromClientTbl.serverSideRowUuid) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See remcl/edit-design-1.vue approx line 108
             this.dnClientSideIdOfCopiedRowBeingChanged = await clientTbl.fnCopyRowAndGetCopiedRowId(
-              arFromClientSideTable.clientSideUniqRowId
+              arFromClientTbl.clientSideUniqRowId
             )
           } else {
             this.dnClientSideIdOfCopiedRowBeingChanged = vnExistingChangeRowId
@@ -137,8 +137,8 @@ export default {
     } else {
       await this.mxGetDataFromDb() // mixin fns are copied into the ct where the mixin is used.
     }
-    const arFromClientSideTable = clientTbl.fnGetRowsToChange()
-    this.dnClientSideIdOfRowToChange = arFromClientSideTable[0].clientSideUniqRowId
+    const arFromClientTbl = clientTbl.fnGetRowsToChange()
+    this.dnClientSideIdOfRowToChange = arFromClientTbl[0].clientSideUniqRowId
     this.dnClientSideIdOfCopiedRowBeingChanged = null
     // this fn sometimes ends after the mounted fn.
   },

@@ -45,21 +45,21 @@
 <script>
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
-  reminders: reminderClientSideTable,
-  recommendations: recommendationClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  process_notes: processNotesClientSideTable,
-  family_history: familyHistoryClientSideTable,
+  reminders: reminderClientTbl,
+  recommendations: recommendationClientTbl,
+  plan_comments: planCommentsClientTbl,
+  misc_notes: miscNotesClientTbl,
+  process_notes: processNotesClientTbl,
+  family_history: familyHistoryClientTbl,
 } // 1st row
 
 export default {
@@ -125,33 +125,33 @@ export default {
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientSideTable = clientTbl[this.propComponentName]
+      const arFromClientTbl = clientTbl[this.propComponentName]
         .query()
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
 
-      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientSideTable)
-      if (arFromClientSideTable.length) {
+      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
+      if (arFromClientTbl.length) {
         let rowInTimeLine = []
         let date = ''
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.description = arFromClientSideTable[i].description
-          date = new Date(arFromClientSideTable[i].ROW_START * 1000)
+          rowInTimeLine.description = arFromClientTbl[i].description
+          date = new Date(arFromClientTbl[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
-            arFromClientSideTable[i].vnRowStateInSession === 3 ||
-            arFromClientSideTable[i].vnRowStateInSession === 34 ||
-            arFromClientSideTable[i].vnRowStateInSession === 3456
+            arFromClientTbl[i].vnRowStateInSession === 3 ||
+            arFromClientTbl[i].vnRowStateInSession === 34 ||
+            arFromClientTbl[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
-          rowInTimeLine.ROW_START = arFromClientSideTable[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
+          rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }

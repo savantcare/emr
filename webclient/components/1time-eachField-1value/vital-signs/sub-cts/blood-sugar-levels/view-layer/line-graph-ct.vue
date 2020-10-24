@@ -8,12 +8,7 @@
         style="padding: 3px"
         plain
         tabindex="-1"
-        @click="
-          mfOpenEditCtInEditLayer(
-            cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
-            'blood sugar - edit'
-          )
-        "
+        @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientTbl['clientSideUniqRowId'], 'blood sugar - edit')"
         class="el-icon-edit"
       ></el-button>
       <el-button

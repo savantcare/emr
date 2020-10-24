@@ -91,11 +91,11 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
-      return arFromClientSideTable['clientSideUniqRowId']
+      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
+      return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientSideTable = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
@@ -108,17 +108,17 @@ export default {
 
       const arphoneNumberForDisplay = []
       let obj = {}
-      if (arFromClientSideTable.length) {
+      if (arFromClientTbl.length) {
         let date = ''
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           obj = {}
-          obj.description = arFromClientSideTable[i].description
+          obj.description = arFromClientTbl[i].description
           // For date format ref: /cts/1time-eachField-multiValues/common/view-layer/timeline-ct.vue:53
-          date = new Date(arFromClientSideTable[i].ROW_START)
+          date = new Date(arFromClientTbl[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
-          obj.uuid = arFromClientSideTable[i].serverSideRowUuid
-          obj.id = arFromClientSideTable[i].clientSideUniqRowId
+          obj.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
+          obj.uuid = arFromClientTbl[i].serverSideRowUuid
+          obj.id = arFromClientTbl[i].clientSideUniqRowId
           arphoneNumberForDisplay.push(obj)
         }
       }

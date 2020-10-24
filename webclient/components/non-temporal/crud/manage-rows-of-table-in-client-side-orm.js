@@ -87,7 +87,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetNewRowsInEditState() {
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('vnRowStateInSession', Const_New) // New
       .orWhere('vnRowStateInSession', Const_New_ChangedOnClient) // New -> Changed
       .orWhere(
@@ -95,47 +95,47 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
       ) // New -> Changed -> Requested save -> form error
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetNewRowsInApiErrorState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
-    const arFromClientSideTable = this.query().where('vnRowStateInSession', 24578).get()
-    return arFromClientSideTable
+    const arFromClientTbl = this.query().where('vnRowStateInSession', 24578).get()
+    return arFromClientTbl
   }
 
   static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('vnRowStateInSession', Const_New_ChangedOnClient) // New -> Changed
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSendingState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
         Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
       )
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSuccessState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
         Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB
       )
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetAllChangeRowsInEditState() {
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('vnRowStateInSession', Const_CreatedAsCopyOnClient) // Copy(3)
       .orWhere('vnRowStateInSession', Const_CreatedAsCopyOnClient_ChangedOnClient) // Copy(3) -> Changed(4)
       .orWhere(
@@ -143,7 +143,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         Const_CreatedAsCopyOnClient_ChangedOnClient_RequestedSaveStartClientSideDataValidation_FormErrorClientSide
       ) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetChangeRowIdInEditState(pUuid) {
@@ -158,7 +158,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         where serverSideRowUuid=4545d6 AND 
         (vnRowStateInSession=3 OR vnRowStateInSession=34 OR vnRowStateInSession=3456)
     */
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
@@ -173,9 +173,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       // .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
 
-    if (arFromClientSideTable.length) {
-      const idx = arFromClientSideTable.length - 1
-      return arFromClientSideTable[idx].clientSideUniqRowId
+    if (arFromClientTbl.length) {
+      const idx = arFromClientTbl.length - 1
+      return arFromClientTbl[idx].clientSideUniqRowId
     } else {
       return false
     }
@@ -183,16 +183,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
@@ -200,39 +200,39 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
 
     // Step 2/3: Discard all entries from this dataset where it does not end in 1. Ending in 1 implies that the data has been saved to DB
-    for (let i = 0; i < arFromClientSideTable.length; i++) {
-      if (arFromClientSideTable[i].vnRowStateInSession % 10 === 1) {
+    for (let i = 0; i < arFromClientTbl.length; i++) {
+      if (arFromClientTbl[i].vnRowStateInSession % 10 === 1) {
       } else {
-        arFromClientSideTable.splice(i, 1)
+        arFromClientTbl.splice(i, 1)
       }
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
     Since everytime a row is updated the previous row is marked as deleted 
     So deleted rows will not cross step 1 query */
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   static fnGetRowsToChange() {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
 
     // Step 2/3: Discard all entries from this dataset where it does not end in 1. Ending in 1 implies that the data has been saved to DB
-    for (let i = 0; i < arFromClientSideTable.length; i++) {
-      if (arFromClientSideTable[i].vnRowStateInSession % 10 === 1) {
+    for (let i = 0; i < arFromClientTbl.length; i++) {
+      if (arFromClientTbl[i].vnRowStateInSession % 10 === 1) {
       } else {
-        arFromClientSideTable.splice(i, 1)
+        arFromClientTbl.splice(i, 1)
       }
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
     Since everytime a row is updated the previous row is marked as deleted 
     So deleted rows will not cross step 1 query */
-    return arFromClientSideTable
+    return arFromClientTbl
   }
 
   /*  1. This function finds data in client side vuex-orm. This fn is not making a API query to the server.
@@ -242,7 +242,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   */
   static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
@@ -250,20 +250,20 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
     let foundInArToReturn = false
-    for (let i = 0; i < arFromClientSideTable.length; i++) {
+    for (let i = 0; i < arFromClientTbl.length; i++) {
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromClientSideTable[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+        if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          uniqueUuidRows[j] = arFromClientSideTable[i]
+          uniqueUuidRows[j] = arFromClientTbl[i]
           foundInArToReturn = true
         }
       }
       if (foundInArToReturn) {
       } else {
-        uniqueUuidRows.push(arFromClientSideTable[i])
+        uniqueUuidRows.push(arFromClientTbl[i])
       }
     }
 
@@ -272,22 +272,22 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where('ROW_END', Const_Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
       .get()
     const uniqueUuidRows = []
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
-    for (let i = 0; i < arFromClientSideTable.length; i++) {
+    for (let i = 0; i < arFromClientTbl.length; i++) {
       let foundInArToReturn = false
       for (let j = 0; j < uniqueUuidRows.length; j++) {
-        if (arFromClientSideTable[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+        if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
           In the array that is returned from this Fn I am returning the array with the new data.       
           Hence in the following line I over write the old row
           */
-          if (arFromClientSideTable[i].clientSideUniqRowId > uniqueUuidRows[j].clientSideUniqRowId) {
-            uniqueUuidRows[j] = arFromClientSideTable[i]
+          if (arFromClientTbl[i].clientSideUniqRowId > uniqueUuidRows[j].clientSideUniqRowId) {
+            uniqueUuidRows[j] = arFromClientTbl[i]
           } else {
             // The existing data is newer hence not replacing
           }
@@ -297,7 +297,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       if (foundInArToReturn) {
         // Already found in array to be returned hence no need to add to arary
       } else {
-        uniqueUuidRows.push(arFromClientSideTable[i])
+        uniqueUuidRows.push(arFromClientTbl[i])
       }
     }
 
@@ -354,13 +354,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       typeof this.arOrmRowsCached[this.entity][pClientSideRowId] === 'undefined'
     ) {
       // finding in model
-      const arFromClientSideTable = this.find(pClientSideRowId)
-      if (arFromClientSideTable) {
+      const arFromClientTbl = this.find(pClientSideRowId)
+      if (arFromClientTbl) {
         if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
           this.arOrmRowsCached[this.entity] = []
         }
-        this.arOrmRowsCached[this.entity][pClientSideRowId] = arFromClientSideTable
-        return arFromClientSideTable[pFldName]
+        this.arOrmRowsCached[this.entity][pClientSideRowId] = arFromClientTbl
+        return arFromClientTbl[pFldName]
       }
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
@@ -532,11 +532,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       isValidationError: false,
     }
 
-    const arFromClientSideTable = this.update({
+    const arFromClientTbl = this.update({
       where: pClientSideRowId,
       data: row,
     })
-    if (!arFromClientSideTable) {
+    if (!arFromClientTbl) {
       console.log('FATAL ERROR')
     }
   }
@@ -565,26 +565,26 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnDeleteNewRowsInEditState() {
-    const arFromClientSideTable = this.fnGetNewRowsInEditState()
-    if (arFromClientSideTable.length) {
-      for (let i = 0; i < arFromClientSideTable.length; i++) {
-        this.delete(arFromClientSideTable[i].clientSideUniqRowId)
+    const arFromClientTbl = this.fnGetNewRowsInEditState()
+    if (arFromClientTbl.length) {
+      for (let i = 0; i < arFromClientTbl.length; i++) {
+        this.delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }
 
   static fnDeleteChangeRowsInEditState() {
-    const arFromClientSideTable = this.fnGetAllChangeRowsInEditState()
-    if (arFromClientSideTable.length) {
-      for (let i = 0; i < arFromClientSideTable.length; i++) {
-        this.delete(arFromClientSideTable[i].clientSideUniqRowId)
+    const arFromClientTbl = this.fnGetAllChangeRowsInEditState()
+    if (arFromClientTbl.length) {
+      for (let i = 0; i < arFromClientTbl.length; i++) {
+        this.delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }
 
   // This function will return 1 (Success) or 0 (Failure)
   static async fnSendToServer() {
-    const arFromClientSideTable = this.query()
+    const arFromClientTbl = this.query()
       .where(
         'vnRowStateInSession',
         Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave
@@ -597,7 +597,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         In real time, user may add data and hit save button of add form and again tries to save data before the previous data gets saved in DB. The system got confused in such case.
         We are using asynchronous promises to deal with the case.
     */
-    const promises = arFromClientSideTable.map(async (row) => {
+    const promises = arFromClientTbl.map(async (row) => {
       try {
         /*
         Q) Why we put the api call code in if/else statement?

@@ -3,13 +3,9 @@ Code synced with ref implementation on 4th august 2020
  -->
 <template>
   <div>
-    <el-button
-      type="text"
-      plain
-      :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
-      size="small"
-      >{{ cfAge }}</el-button
-    >
+    <el-button type="text" plain :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" size="small">{{
+      cfAge
+    }}</el-button>
   </div>
 </template>
 
@@ -29,10 +25,10 @@ export default {
     cfAge() {
       const currentDate = new Date()
       const currentMS = currentDate.getTime()
-      const diff = currentMS - this.cfLatestDataRowFromClientSideTable.dateOfBirthInMilliseconds
+      const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds
       const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
       return '(' + age + 'Y)'
-      // return moment(this.cfLatestDataRowFromClientSideTable.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
+      // return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
     },
   },
 }

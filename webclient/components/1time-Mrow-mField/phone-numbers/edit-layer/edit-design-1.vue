@@ -94,33 +94,33 @@ export default {
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientSideTable = clientTbl
+      const arFromClientTbl = clientTbl
         .query()
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
       // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange)
-      if (arFromClientSideTable.length) {
+      if (arFromClientTbl.length) {
         let rowInTimeLine = []
         let date = ''
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
-          rowInTimeLine.phoneNumber = arFromClientSideTable[i].phoneNumber
-          rowInTimeLine.countryCode = arFromClientSideTable[i].countryCode
-          date = new Date(arFromClientSideTable[i].ROW_START * 1000)
+          rowInTimeLine.phoneNumber = arFromClientTbl[i].phoneNumber
+          rowInTimeLine.countryCode = arFromClientTbl[i].countryCode
+          date = new Date(arFromClientTbl[i].ROW_START * 1000)
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
-            arFromClientSideTable[i].vnRowStateInSession === 3 ||
-            arFromClientSideTable[i].vnRowStateInSession === 34 ||
-            arFromClientSideTable[i].vnRowStateInSession === 3456
+            arFromClientTbl[i].vnRowStateInSession === 3 ||
+            arFromClientTbl[i].vnRowStateInSession === 34 ||
+            arFromClientTbl[i].vnRowStateInSession === 3456
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
             rowInTimeLine.type = ''
           }
-          rowInTimeLine.ROW_START = arFromClientSideTable[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromClientSideTable[i].vnRowStateInSession
+          rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
 
           timelineDataArray.push(rowInTimeLine)
         }

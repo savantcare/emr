@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
-    <el-row type="flex" justify="left" class="remindersh3 sectionHeader" style="padding: 0rem; margin: 0rem">
+    <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading">{{
         propReferToComponentInUiAtPluralClassification.charAt(0).toUpperCase() +
@@ -15,6 +15,7 @@
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
               <div style="text-align: right; margin: 0">
                 <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                <!-- Amendment icon -->
                 <el-button
                   v-if="amendmentData.length > 0"
                   type="success"
@@ -138,23 +139,23 @@ import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/a
 import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-import allergiesClientSideTable from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
-  reminders: reminderClientSideTable,
-  recommendations: recommendationClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  process_notes: processNotesClientSideTable,
-  family_history: familyHistoryClientSideTable,
-  allergies: allergiesClientSideTable,
+  reminders: reminderClientTbl,
+  recommendations: recommendationClientTbl,
+  plan_comments: planCommentsClientTbl,
+  misc_notes: miscNotesClientTbl,
+  process_notes: processNotesClientTbl,
+  family_history: familyHistoryClientTbl,
+  allergies: allergiesClientTbl,
 } // 1st row
 
 import moment from 'moment'
@@ -319,7 +320,7 @@ export default {
 </script>
 
 <style scoped>
-.remindersh3 .el-button-group {
+.header3 .el-button-group {
   display: inline-block !important;
 }
 

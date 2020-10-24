@@ -4,8 +4,8 @@
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
     <el-form>
-      <div v-if="cfGetClientSideTableNewRowsInEditState.length">
-        <el-form-item v-for="ormRow in cfGetClientSideTableNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
+      <div v-if="cfGetClientTblNewRowsInEditState.length">
+        <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
 
           <ul>
@@ -53,8 +53,8 @@
     <!-- Goal: Show data at the time of sending to server -->
 
     <el-table
-      v-if="cfGetClientSideTableApiSendingStateRows.length > 0"
-      :data="cfGetClientSideTableApiSendingStateRows"
+      v-if="cfGetClientTblApiSendingStateRows.length > 0"
+      :data="cfGetClientTblApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
@@ -67,8 +67,8 @@
     <!-- Goal: Show data saved successfuly this session -->
 
     <el-table
-      v-if="cfGetClientSideTableApiSuccessStateRows.length > 0"
-      :data="cfGetClientSideTableApiSuccessStateRows"
+      v-if="cfGetClientTblApiSuccessStateRows.length > 0"
+      :data="cfGetClientTblApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
@@ -82,8 +82,8 @@
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
-      v-if="cfGetClientSideTableApiErrorStateRows.length > 0"
-      :data="cfGetClientSideTableApiErrorStateRows"
+      v-if="cfGetClientTblApiErrorStateRows.length > 0"
+      :data="cfGetClientTblApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
@@ -95,23 +95,23 @@
   </div>
 </template>
 <script>
-import allergiesClientSideTable from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
-import familyHistoryClientSideTable from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
-  allergies: allergiesClientSideTable,
-  family_history: familyHistoryClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  process_notes: processNotesClientSideTable,
-  recommendations: recommendationClientSideTable,
-  reminders: reminderClientSideTable,
+  allergies: allergiesClientTbl,
+  family_history: familyHistoryClientTbl,
+  misc_notes: miscNotesClientTbl,
+  plan_comments: planCommentsClientTbl,
+  process_notes: processNotesClientTbl,
+  recommendations: recommendationClientTbl,
+  reminders: reminderClientTbl,
 } // 1st row
 
 export default {
@@ -132,19 +132,19 @@ export default {
   },
   computed: {
     // clientTbl[this.propComponentName] functions can not be directly called from template. hence computed functions have been defined.
-    cfGetClientSideTableNewRowsInEditState() {
+    cfGetClientTblNewRowsInEditState() {
       return clientTbl[this.propComponentName].fnGetNewRowsInEditState()
     },
-    cfGetClientSideTableReadyToReviewedStateRows() {
+    cfGetClientTblReadyToReviewedStateRows() {
       return clientTbl[this.propComponentName].fnGetNewRowsInReadyToReviewedState()
     },
-    cfGetClientSideTableApiSuccessStateRows() {
+    cfGetClientTblApiSuccessStateRows() {
       return clientTbl[this.propComponentName].fnGetNewRowsInApiSuccessState()
     },
-    cfGetClientSideTableApiErrorStateRows() {
+    cfGetClientTblApiErrorStateRows() {
       return clientTbl[this.propComponentName].fnGetNewRowsInApiErrorState()
     },
-    cfGetClientSideTableApiSendingStateRows() {
+    cfGetClientTblApiSendingStateRows() {
       return clientTbl[this.propComponentName].fnGetNewRowsInApiSendingState()
     },
   },
@@ -152,13 +152,13 @@ export default {
     async mfAddEmptyRowInEditLayerientSideTable() {
       console.log(this.propFormFields)
       // TODO: this should be part of base class
-      const arFromClientSideTable = await clientTbl[this.propComponentName].insert({
+      const arFromClientTbl = await clientTbl[this.propComponentName].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
-      if (!arFromClientSideTable) {
+      if (!arFromClientTbl) {
         console.log('FATAL ERROR')
       }
       this.mfManageFocus()
@@ -182,8 +182,8 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientSideRowId) {
-      const arFromClientSideTable = clientTbl[this.propComponentName].find(pClientSideRowId)
-      if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
+      const arFromClientTbl = clientTbl[this.propComponentName].find(pClientSideRowId)
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
@@ -199,16 +199,16 @@ export default {
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientSideTableReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propComponentName] ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propComponentName] ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientTbl[this.propComponentName] since get benefit of caching.
-      if (arFromClientSideTable.length) {
-        console.log('unsaved data found', arFromClientSideTable)
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
-          if (arFromClientSideTable[i].description.length < 3) {
+      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propComponentName] since get benefit of caching.
+      if (arFromClientTbl.length) {
+        console.log('unsaved data found', arFromClientTbl)
+        for (let i = 0; i < arFromClientTbl.length; i++) {
+          if (arFromClientTbl[i].description.length < 3) {
             // Validation check
             await clientTbl[this.propComponentName].update({
-              where: (record) => record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
+              where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -217,7 +217,7 @@ export default {
             })
           } else {
             await clientTbl[this.propComponentName].update({
-              where: (record) => record.clientSideUniqRowId === arFromClientSideTable[i].clientSideUniqRowId,
+              where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

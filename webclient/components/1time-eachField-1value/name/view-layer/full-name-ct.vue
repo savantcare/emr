@@ -21,7 +21,7 @@
             style="padding: 3px; color: #c0c4cc; border: none"
             plain
             tabindex="-1"
-            @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'], 'name - edit')"
+            @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientTbl['clientSideUniqRowId'], 'name - edit')"
             class="el-icon-edit"
           />
           <el-button
@@ -46,14 +46,12 @@
           >
         </el-button-group>
         <el-button :type="mfTypeOfButton('firstName')" plain :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1">{{
-          cfLatestDataRowFromClientSideTable['firstName']
+          cfLatestDataRowFromClientTbl['firstName']
         }}</el-button>
         <el-button :type="mfTypeOfButton('middleName')" plain>{{
-          cfLatestDataRowFromClientSideTable['middleName']
+          cfLatestDataRowFromClientTbl['middleName']
         }}</el-button>
-        <el-button :type="mfTypeOfButton('lastName')" plain>{{
-          cfLatestDataRowFromClientSideTable['lastName']
-        }}</el-button>
+        <el-button :type="mfTypeOfButton('lastName')" plain>{{ cfLatestDataRowFromClientTbl['lastName'] }}</el-button>
       </div>
     </showContentInCardComponent>
   </div>
@@ -96,13 +94,13 @@ export default {
       let arOfObjectsFromClientSideDB = new Array()
       let obj = new Object()
       obj['cardContentOfTypeStringToShowInBodyOfCards'] =
-        this.cfLatestDataRowFromClientSideTable['firstName'] +
+        this.cfLatestDataRowFromClientTbl['firstName'] +
         ' - ' +
-        this.cfLatestDataRowFromClientSideTable['middleName'] +
+        this.cfLatestDataRowFromClientTbl['middleName'] +
         ' - ' +
-        this.cfLatestDataRowFromClientSideTable['lastName']
+        this.cfLatestDataRowFromClientTbl['lastName']
 
-      obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientSideTable['clientSideUniqRowId']
+      obj['clientSideUniqRowId'] = this.cfLatestDataRowFromClientTbl['clientSideUniqRowId']
       arOfObjectsFromClientSideDB.push(obj)
       return arOfObjectsFromClientSideDB
     },

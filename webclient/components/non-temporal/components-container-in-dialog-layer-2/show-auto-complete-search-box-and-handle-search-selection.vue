@@ -27,12 +27,9 @@ export default {
   },
   computed: {
     cfSearchBoxPlaceholder() {
-      let arFromClientSideTable = {}
-      arFromClientSideTable = clientSideTblOfCtSearchPhrases
-        .query()
-        .orderBy('searchPhraseUsageCount', 'desc')
-        .get()
-      const objRowFromOrm = arFromClientSideTable[0]
+      let arFromClientTbl = {}
+      arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
+      const objRowFromOrm = arFromClientTbl[0]
       if (objRowFromOrm) {
         return 'e.g. ' + objRowFromOrm.value
       } else {
@@ -46,15 +43,12 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
-          .query()
-          .orderBy('searchPhraseUsageCount', 'desc')
-          .get()
+        const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
 
-        console.log('sending in pCallBack', arFromClientSideTable)
-        pCallBack(arFromClientSideTable)
+        console.log('sending in pCallBack', arFromClientTbl)
+        pCallBack(arFromClientTbl)
       } else {
-        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
+        const arFromClientTbl = clientSideTblOfCtSearchPhrases
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -64,17 +58,17 @@ export default {
           .orderBy('searchPhraseUsageCount', 'desc')
           .get() // trim is needed for "goal " to match "goal"
 
-        console.log('sending in pCallBack', arFromClientSideTable)
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
+        console.log('sending in pCallBack', arFromClientTbl)
+        for (let i = 0; i < arFromClientTbl.length; i++) {
           length = pQueryString.length
           console.log('Chr entered', length)
           if (length > 100) {
-            this.mfHandleSuggestionSelectedByUser(arFromClientSideTable[i])
+            this.mfHandleSuggestionSelectedByUser(arFromClientTbl[i])
           }
-          console.log('sent to store', arFromClientSideTable[i])
+          console.log('sent to store', arFromClientTbl[i])
         }
 
-        pCallBack(arFromClientSideTable)
+        pCallBack(arFromClientTbl)
       }
     },
 
@@ -89,14 +83,11 @@ export default {
         closable: true,
       }
       // delete if this card is already existing
-      const arFromClientSideTable = clientSideTblOfRightSideCards
-        .query()
-        .where('name', pSelectedSuggestion.value)
-        .get()
+      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', pSelectedSuggestion.value).get()
 
-      if (arFromClientSideTable.length > 0) {
-        if (arFromClientSideTable[0]['clientSideUniqRowId']) {
-          clientSideTblOfRightSideCards.delete(arFromClientSideTable[0]['clientSideUniqRowId'])
+      if (arFromClientTbl.length > 0) {
+        if (arFromClientTbl[0]['clientSideUniqRowId']) {
+          clientSideTblOfRightSideCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
         }
       }
 

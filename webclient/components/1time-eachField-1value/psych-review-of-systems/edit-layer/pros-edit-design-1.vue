@@ -10,10 +10,7 @@
       {{ mfGetGroupToalForAGivenGroup({ groupNameGivenAsIndex }) }}
 
       <div class="sc-psych-review-of-systems-all-content-divs">
-        <div
-          v-for="ros in allPsychReviewOfSystemsInsideAGroup"
-          :key="ros.psychReviewOfSystemsMasterId"
-        >
+        <div v-for="ros in allPsychReviewOfSystemsInsideAGroup" :key="ros.psychReviewOfSystemsMasterId">
           <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
             <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
               ros.psychReviewOfSystemsDescription
@@ -28,7 +25,7 @@
               :step="0.5"
               :width="10"
               show-stops
-              @change="mfSetValueInClientSideTable($event, ros.psychReviewOfSystemsMasterId)"
+              @change="mfSetValueInClientTbl($event, ros.psychReviewOfSystemsMasterId)"
             >
             </el-slider>
           </div>
@@ -56,7 +53,7 @@ export default {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowId) => {
       this.patientClientSideFieldValueModel[pRowId] = 0
-      this.mfSetValueInClientSideTable(-1, pRowId) // -1 indicates not looked at.
+      this.mfSetValueInClientTbl(-1, pRowId) // -1 indicates not looked at.
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 
@@ -77,15 +74,12 @@ export default {
       .get()
 
     // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterId] = value
-    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
-      .query()
-      .where('ROW_END', 2147483648000)
-      .get()
+    const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems.query().where('ROW_END', 2147483648000).get()
 
     for (let i = 0; i < allPatientValues.length; i++) {
-      this.patientClientSideFieldValueModel[
-        allPatientValues[i]['psychReviewOfSystemsMasterId']
-      ] = parseInt(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+      this.patientClientSideFieldValueModel[allPatientValues[i]['psychReviewOfSystemsMasterId']] = parseInt(
+        allPatientValues[i]['psychReviewOfSystemsFieldValue']
+      )
     }
 
     // Apply rules given by doctors
@@ -118,7 +112,7 @@ export default {
         return storage
       }, {}) // {} is the initial value of the storage
     },
-    mfSetValueInClientSideTable(pValue, pPsychReviewOfSystemsMasterId) {
+    mfSetValueInClientTbl(pValue, pPsychReviewOfSystemsMasterId) {
       const exists = clientSideTblOfPatientPsychReviewOfSystems
         .query()
         .where('psychReviewOfSystemsMasterId', pPsychReviewOfSystemsMasterId)
@@ -166,9 +160,7 @@ export default {
       let value = 0
       for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
         catName =
-          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
-            'psychReviewOfSystemsCategory'
-          ]
+          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
         if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
           value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']

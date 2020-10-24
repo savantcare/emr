@@ -56,8 +56,8 @@ export default {
   components: {},
   computed: {
     cfArOfFeedForDisplayInDrawer() {
-      const arFromClientSideTable = tableStructureForStoreMessageFromOtherComponent.query().get()
-      return arFromClientSideTable
+      const arFromClientTbl = tableStructureForStoreMessageFromOtherComponent.query().get()
+      return arFromClientTbl
     },
     cfDrawerVisibility() {
       const visible = clientTblOfCommonForAllComponents.find('vblIsFeedDrawerVisible')

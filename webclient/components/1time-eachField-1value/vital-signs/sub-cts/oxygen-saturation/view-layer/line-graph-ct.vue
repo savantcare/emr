@@ -9,10 +9,7 @@
         plain
         tabindex="-1"
         @click="
-          mfOpenEditCtInEditLayer(
-            cfLatestDataRowFromClientSideTable['clientSideUniqRowId'],
-            'oxygen saturation - edit'
-          )
+          mfOpenEditCtInEditLayer(cfLatestDataRowFromClientTbl['clientSideUniqRowId'], 'oxygen saturation - edit')
         "
         class="el-icon-edit"
       ></el-button>

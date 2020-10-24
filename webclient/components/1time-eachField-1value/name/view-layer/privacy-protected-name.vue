@@ -2,8 +2,7 @@
 <template>
   <div>
     <el-button type="text"
-      >{{ cfLatestDataRowFromClientSideTable['firstName'] }} {{ initialMiddleName }}
-      {{ initialLastName }}</el-button
+      >{{ cfLatestDataRowFromClientTbl['firstName'] }} {{ initialMiddleName }} {{ initialLastName }}</el-button
     >
   </div>
 </template>
@@ -24,17 +23,17 @@ export default {
   },
   computed: {
     initialMiddleName() {
-      // console.log(this.cfLatestDataRowFromClientSideTable.middleName)
-      if (this.cfLatestDataRowFromClientSideTable.middleName) {
-        return this.cfLatestDataRowFromClientSideTable.middleName.charAt(0)
+      // console.log(this.cfLatestDataRowFromClientTbl.middleName)
+      if (this.cfLatestDataRowFromClientTbl.middleName) {
+        return this.cfLatestDataRowFromClientTbl.middleName.charAt(0)
       } else {
         return ''
       }
     },
     initialLastName() {
-      // console.log(this.cfLatestDataRowFromClientSideTable.lastName)
-      if (this.cfLatestDataRowFromClientSideTable.lastName) {
-        return this.cfLatestDataRowFromClientSideTable.lastName.charAt(0)
+      // console.log(this.cfLatestDataRowFromClientTbl.lastName)
+      if (this.cfLatestDataRowFromClientTbl.lastName) {
+        return this.cfLatestDataRowFromClientTbl.lastName.charAt(0)
       } else {
         return ''
       }

@@ -4,8 +4,8 @@
   <div>
     <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
     <el-form>
-      <div v-if="cfGetClientSideTableNewRowsInEditState.length">
-        <el-form-item v-for="ormRow in cfGetClientSideTableNewRowsInEditState" :key="ormRow.id">
+      <div v-if="cfGetClientTblNewRowsInEditState.length">
+        <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.id">
           <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
           <el-col :span="10" :class="ormRow.validationClass">
             <el-input
@@ -51,8 +51,8 @@
     </el-form>
     <!-- Goal: Show data at the time of sending to server -->
     <el-table
-      v-if="cfGetClientSideTableApiSendingStateRows.length > 0"
-      :data="cfGetClientSideTableApiSendingStateRows"
+      v-if="cfGetClientTblApiSendingStateRows.length > 0"
+      :data="cfGetClientTblApiSendingStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="phoneNumber" label="Phone Number sending to server"></el-table-column>
@@ -60,16 +60,16 @@
 
     <!-- Goal: Show data saved successfuly this session -->
     <el-table
-      v-if="cfGetClientSideTableApiSuccessStateRows.length > 0"
-      :data="cfGetClientSideTableApiSuccessStateRows"
+      v-if="cfGetClientTblApiSuccessStateRows.length > 0"
+      :data="cfGetClientTblApiSuccessStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="phoneNumber" label="Phone Number added this session"></el-table-column>
     </el-table>
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
-      v-if="cfGetClientSideTableApiErrorStateRows.length > 0"
-      :data="cfGetClientSideTableApiErrorStateRows"
+      v-if="cfGetClientTblApiErrorStateRows.length > 0"
+      :data="cfGetClientTblApiErrorStateRows"
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column prop="phoneNumber" label="Error: Phone Number attempted but failed to save"></el-table-column>
@@ -82,32 +82,32 @@ import clientTbl from '../db/client-side/structure/table.js' // Path without @ c
 export default {
   computed: {
     // clientTbl functions can not be directly called from template. hence computed functions have been defined.
-    cfGetClientSideTableNewRowsInEditState() {
+    cfGetClientTblNewRowsInEditState() {
       return clientTbl.fnGetNewRowsInEditState()
     },
-    cfGetClientSideTableReadyToReviewedStateRows() {
+    cfGetClientTblReadyToReviewedStateRows() {
       return clientTbl.fnGetNewRowsInReadyToReviewedState()
     },
-    cfGetClientSideTableApiSuccessStateRows() {
+    cfGetClientTblApiSuccessStateRows() {
       return clientTbl.fnGetNewRowsInApiSuccessState()
     },
-    cfGetClientSideTableApiErrorStateRows() {
+    cfGetClientTblApiErrorStateRows() {
       return clientTbl.fnGetNewRowsInApiErrorState()
     },
-    cfGetClientSideTableApiSendingStateRows() {
+    cfGetClientTblApiSendingStateRows() {
       return clientTbl.fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
-      const arFromClientSideTable = await clientTbl.insert({
+      const arFromClientTbl = await clientTbl.insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
-      if (!arFromClientSideTable) {
+      if (!arFromClientTbl) {
         console.log('FATAL ERROR')
       }
       this.mfManageFocus()
@@ -131,8 +131,8 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientSideRowId) {
-      const arFromClientSideTable = clientTbl.find(pClientSideRowId)
-      if (arFromClientSideTable && arFromClientSideTable.vnRowStateInSession === 24) {
+      const arFromClientTbl = clientTbl.find(pClientSideRowId)
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
       }
@@ -148,16 +148,16 @@ export default {
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientSideTableReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientSideTable = this.cfGetClientSideTableReadyToReviewedStateRows // calling cf instead of clientTbl since get benefit of caching.
-      if (arFromClientSideTable.length) {
-        console.log('unsaved data found', arFromClientSideTable)
-        for (let i = 0; i < arFromClientSideTable.length; i++) {
-          if (arFromClientSideTable[i].phoneNumber.length < 3) {
+      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl since get benefit of caching.
+      if (arFromClientTbl.length) {
+        console.log('unsaved data found', arFromClientTbl)
+        for (let i = 0; i < arFromClientTbl.length; i++) {
+          if (arFromClientTbl[i].phoneNumber.length < 3) {
             // Validation check
             await clientTbl.update({
-              where: (record) => record.id === arFromClientSideTable[i].clientSideUniqRowId,
+              where: (record) => record.id === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
                 vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
@@ -166,7 +166,7 @@ export default {
             })
           } else {
             await clientTbl.update({
-              where: (record) => record.id === arFromClientSideTable[i].clientSideUniqRowId,
+              where: (record) => record.id === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
                 vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server

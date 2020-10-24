@@ -1,7 +1,7 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
   <div>
-    <template v-if="cfLatestDataRowFromClientSideTable">
+    <template v-if="cfLatestDataRowFromClientTbl">
       {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }}
     </template>
   </div>
@@ -21,30 +21,30 @@ export default {
     },
   },
   computed: {
-    cfLatestDataRowFromClientSideTable() {
+    cfLatestDataRowFromClientTbl() {
       let arOfObjectsFromClientSideDB = clientTbl.query().where('ROW_END', 2147483648000).get()
       return arOfObjectsFromClientSideDB[0]
     },
     initialFirstName() {
-      // console.log(this.cfLatestDataRowFromClientSideTable.middleName)
-      if (this.cfLatestDataRowFromClientSideTable.firstName) {
-        return this.cfLatestDataRowFromClientSideTable.firstName
+      // console.log(this.cfLatestDataRowFromClientTbl.middleName)
+      if (this.cfLatestDataRowFromClientTbl.firstName) {
+        return this.cfLatestDataRowFromClientTbl.firstName
       } else {
         return ''
       }
     },
     initialMiddleName() {
-      // console.log(this.cfLatestDataRowFromClientSideTable.middleName)
-      if (this.cfLatestDataRowFromClientSideTable.middleName) {
-        return this.cfLatestDataRowFromClientSideTable.middleName.charAt(0)
+      // console.log(this.cfLatestDataRowFromClientTbl.middleName)
+      if (this.cfLatestDataRowFromClientTbl.middleName) {
+        return this.cfLatestDataRowFromClientTbl.middleName.charAt(0)
       } else {
         return ''
       }
     },
     initialLastName() {
-      // console.log(this.cfLatestDataRowFromClientSideTable.lastName)
-      if (this.cfLatestDataRowFromClientSideTable.lastName) {
-        return this.cfLatestDataRowFromClientSideTable.lastName.charAt(0)
+      // console.log(this.cfLatestDataRowFromClientTbl.lastName)
+      if (this.cfLatestDataRowFromClientTbl.lastName) {
+        return this.cfLatestDataRowFromClientTbl.lastName.charAt(0)
       } else {
         return ''
       }

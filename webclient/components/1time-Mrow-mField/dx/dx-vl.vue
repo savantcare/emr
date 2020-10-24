@@ -19,13 +19,7 @@
             tabindex="-1"
             class="el-icon-document-delete"
           ></el-button>
-          <el-button
-            style="padding: 3px"
-            type="info"
-            plain
-            tabindex="-1"
-            class="el-icon-delete"
-          ></el-button>
+          <el-button style="padding: 3px" type="info" plain tabindex="-1" class="el-icon-delete"></el-button>
         </el-button-group>
       </div>
       <el-table :data="daDxTable" :show-header="false" style="width: 100%">
@@ -71,9 +65,7 @@ export default {
           if (countDxCountFromOrm === 0) {
             const dxEvalList = await ormDx
               .api()
-              .get(
-                `http://localhost:8000/diagnosis/?patientId=bfe041fa-073b-4223-8c69-0540ee678ff8`
-              )
+              .get(`http://localhost:8000/diagnosis/?patientId=bfe041fa-073b-4223-8c69-0540ee678ff8`)
 
             if (dxEvalList.ok) {
             }
@@ -98,11 +90,7 @@ export default {
           console.log('Number of assessment before query')
           console.log('Number of assessment before query =>', countDxaCountFromOrm)
           if (countDxaCountFromOrm === 0) {
-            await ormDxa
-              .api()
-              .get(
-                `http://localhost:8000/assessment/?patientId=bfe041fa-073b-4223-8c69-0540ee678ff8`
-              )
+            await ormDxa.api().get(`http://localhost:8000/assessment/?patientId=bfe041fa-073b-4223-8c69-0540ee678ff8`)
             // this.daDxTable = ormDx.query().get()
             // ormDx.query('').get()
             console.log('Number of dx in model =>', ormDx.query().count())
@@ -117,11 +105,8 @@ export default {
     },
     mfOpenACtInEditLayer() {
       console.log('show add dialog')
-      const arFromClientSideTable = clientSideTblOfCtSearchPhrases
-        .query()
-        .search('add diagnosis')
-        .get()
-      const objRowFromOrm = arFromClientSideTable[0]
+      const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().search('add diagnosis').get()
+      const objRowFromOrm = arFromClientTbl[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,
@@ -133,11 +118,8 @@ export default {
     },
     mfOpenMCtInEditLayer() {
       console.log('show multi change dialog')
-      const arFromClientSideTable = clientSideTblOfCtSearchPhrases
-        .query()
-        .search('Multichange dx assessment')
-        .get()
-      const objRowFromOrm = arFromClientSideTable[0]
+      const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().search('Multichange dx assessment').get()
+      const objRowFromOrm = arFromClientTbl[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,

@@ -19,13 +19,7 @@
             tabindex="-1"
             class="el-icon-document-delete"
           ></el-button>
-          <el-button
-            style="padding: 3px"
-            type="info"
-            plain
-            tabindex="-1"
-            class="el-icon-delete"
-          ></el-button>
+          <el-button style="padding: 3px" type="info" plain tabindex="-1" class="el-icon-delete"></el-button>
         </el-button-group>
       </div>
       <el-table :data="daGTable" style="width: 100%" :show-header="false">
@@ -63,9 +57,7 @@ export default {
 
           console.log('Number of goals before query =>', dnCountG)
           if (dnCountG === 0) {
-            await ormGoal
-              .api()
-              .get('http://localhost:8000/goals?patientUuid=bfe041fa-073b-4223-8c69-0540ee678ff8')
+            await ormGoal.api().get('http://localhost:8000/goals?patientUuid=bfe041fa-073b-4223-8c69-0540ee678ff8')
 
             console.log('Number of goal in model =>', ormGoal.query().count())
             const arGoalEvalList = ormGoal.query().get()
@@ -79,8 +71,8 @@ export default {
     },
     mfOpenACtInEditLayer() {
       console.log('show add dialog')
-      const arFromClientSideTable = clientSideTblOfCtSearchPhrases.query().search('add goal').get()
-      const objRowFromOrm = arFromClientSideTable[0]
+      const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().search('add goal').get()
+      const objRowFromOrm = arFromClientTbl[0]
       const tab = {
         label: objRowFromOrm.value,
         ctToShow: require('@/components/' + objRowFromOrm.ctToShow).default,

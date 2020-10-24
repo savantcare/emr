@@ -38,13 +38,13 @@ export default {
     }
   },
   computed: {
-    cfLatestDataRowFromClientSideTable() {
+    cfLatestDataRowFromClientTbl() {
       if (!this.isMounted) return ''
       // fnGetRowsToChange will return valid rows where the rowStatus fld ends in 1
-      const arFromClientSideTable = clientTbl.fnGetRowsToChange()
-      if (arFromClientSideTable.length) {
+      const arFromClientTbl = clientTbl.fnGetRowsToChange()
+      if (arFromClientTbl.length) {
         // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-        const rowtoReturn = arFromClientSideTable[0]
+        const rowtoReturn = arFromClientTbl[0]
         for (const k in this.dataFldsOfToChangeAndCopiedRowsAreSame)
           rowtoReturn[k] = this.dataFldsOfToChangeAndCopiedRowsAreSame[k]
         // return to the template.
@@ -64,11 +64,11 @@ export default {
         2nd the card 2 will focus
       */
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientSideTable = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
-      return arFromClientSideTable['clientSideUniqRowId']
+      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
+      return arFromClientTbl['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfLatestDataRowFromClientSideTable.timeOfMeasurementInMilliseconds).format('MMM YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientTbl.timeOfMeasurementInMilliseconds).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {
@@ -95,10 +95,10 @@ export default {
         that something has changed.
     
     */
-    const arFromClientSideTable = clientTbl.fnGetRowsToChange()
-    if (arFromClientSideTable.length) {
+    const arFromClientTbl = clientTbl.fnGetRowsToChange()
+    if (arFromClientTbl.length) {
       // Goal: Pick up any changed fld value since need to show new value in the view layer with a orange color background.
-      const rowtoReturn = arFromClientSideTable[0]
+      const rowtoReturn = arFromClientTbl[0]
       const dnClientSideIdOfCopiedRowBeingChanged = clientTbl.fnGetChangeRowIdInEditState(rowtoReturn.serverSideRowUuid)
       if (dnClientSideIdOfCopiedRowBeingChanged === false) {
       } else {

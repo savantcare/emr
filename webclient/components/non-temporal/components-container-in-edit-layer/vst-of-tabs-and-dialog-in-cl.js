@@ -63,7 +63,7 @@ export default {
     },
     async mtfShowNewFirstTabInEditLayerFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromClientSideTable = await clientSideTblOfCtSearchPhrases
+      const arFromClientTbl = await clientSideTblOfCtSearchPhrases
         .query()
         .where('displayLocation', 'edit-layer')
         .search(pPayload.searchTerm.trim(), {
@@ -71,7 +71,7 @@ export default {
           keys: ['value'], // If key is not specified it will search all fields https://github.com/client-side/plugin-search#during-query-chain
         })
         .get()
-      const objSearchRowFromOrm = arFromClientSideTable[0]
+      const objSearchRowFromOrm = arFromClientTbl[0]
 
       console.log(objSearchRowFromOrm)
 

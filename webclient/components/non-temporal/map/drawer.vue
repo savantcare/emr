@@ -967,8 +967,8 @@ export default {
   },
   computed: {
     cfArOfRemForDisplayInMapDrawer() {
-      const arFromClientSideTable = clientTblForReminder.fnGetPresentUniqueUuidNotEmptyRows('description')
-      return arFromClientSideTable
+      const arFromClientTbl = clientTblForReminder.fnGetPresentUniqueUuidNotEmptyRows('description')
+      return arFromClientTbl
     },
     cfArOfVitalSignForDisplayInMapDrawer() {
       const arVitalSignsForDisplay = []
@@ -977,12 +977,12 @@ export default {
       /**
        * Getting temperature value
        */
-      const arFromClientSideTableForTemperature = clientTblForTemperature.fnGetRowsToChange()
-      if (arFromClientSideTableForTemperature.length > 0) {
+      const arFromClientTblForTemperature = clientTblForTemperature.fnGetRowsToChange()
+      if (arFromClientTblForTemperature.length > 0) {
         const objTemperature = {}
         objTemperature.id = index
         objTemperature.label = 'Temperature'
-        objTemperature.value = arFromClientSideTableForTemperature[0].temperatureInFarehnite
+        objTemperature.value = arFromClientTblForTemperature[0].temperatureInFarehnite
         arVitalSignsForDisplay.push(objTemperature)
 
         index = index + 1
@@ -991,12 +991,12 @@ export default {
       /**
        * Getting blood pressure value
        */
-      const arFromClientSideTableForBloodPressure = clientTblForBloodPressure.fnGetRowsToChange()
-      if (arFromClientSideTableForBloodPressure.length > 0) {
+      const arFromClientTblForBloodPressure = clientTblForBloodPressure.fnGetRowsToChange()
+      if (arFromClientTblForBloodPressure.length > 0) {
         const objBloodPressure = {}
         objBloodPressure.id = index
         objBloodPressure.label = 'Blood pressure'
-        objBloodPressure.value = arFromClientSideTableForBloodPressure[0].bloodPressureInBpm
+        objBloodPressure.value = arFromClientTblForBloodPressure[0].bloodPressureInBpm
         arVitalSignsForDisplay.push(objBloodPressure)
 
         index = index + 1
@@ -1005,12 +1005,12 @@ export default {
       /**
        * Getting blood sugar value
        */
-      const arFromClientSideTableForBloodSugar = clientTblForBloodSugar.fnGetRowsToChange()
-      if (arFromClientSideTableForBloodSugar.length > 0) {
+      const arFromClientTblForBloodSugar = clientTblForBloodSugar.fnGetRowsToChange()
+      if (arFromClientTblForBloodSugar.length > 0) {
         const objBloodSugar = {}
         objBloodSugar.id = index
         objBloodSugar.label = 'Blood sugar'
-        objBloodSugar.value = arFromClientSideTableForBloodSugar[0].bloodSugarInBpm
+        objBloodSugar.value = arFromClientTblForBloodSugar[0].bloodSugarInBpm
         arVitalSignsForDisplay.push(objBloodSugar)
 
         index = index + 1

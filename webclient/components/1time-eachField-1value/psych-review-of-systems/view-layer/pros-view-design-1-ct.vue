@@ -30,10 +30,7 @@
         {{ mfGetGroupToalForAGivenGroup({ groupNameGivenAsIndex }) }}
 
         <div class="sc-psych-review-of-systems-all-content-divs">
-          <div
-            v-for="ros in allPsychReviewOfSystemsInsideAGroup"
-            :key="ros.psychReviewOfSystemsMasterId"
-          >
+          <div v-for="ros in allPsychReviewOfSystemsInsideAGroup" :key="ros.psychReviewOfSystemsMasterId">
             <div v-if="ros.psychReviewOfSystemsFieldType === 'bool'">
               <el-button @click="mfTogglePsychReviewOfSystems(ros.psychReviewOfSystemsMasterId)">{{
                 ros.psychReviewOfSystemsDescription
@@ -80,11 +77,9 @@ export default {
 
       for (var i = 0; i < arOfObjectsFromClientSideDB.length; i++) {
         arOfObjectsFromClientSideDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink
-            .psychReviewOfSystemsCategory +
+          arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsCategory +
           ': ' +
-          arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink
-            .psychReviewOfSystemsDescription +
+          arOfObjectsFromClientSideDB[i].tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsDescription +
           ' - ' +
           arOfObjectsFromClientSideDB[i].psychReviewOfSystemsFieldValue
       }
@@ -95,15 +90,12 @@ export default {
       console.log('fn called')
       let patientClientSideFieldValueModel = []
       // Goal2: Initialize field names with the previous field values patientClientSideFieldValueModel[masterId] = value
-      const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems
-        .query()
-        .where('ROW_END', 2147483648000)
-        .get()
+      const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems.query().where('ROW_END', 2147483648000).get()
 
       for (let i = 0; i < allPatientValues.length; i++) {
-        patientClientSideFieldValueModel[
-          allPatientValues[i]['psychReviewOfSystemsMasterId']
-        ] = parseFloat(allPatientValues[i]['psychReviewOfSystemsFieldValue'])
+        patientClientSideFieldValueModel[allPatientValues[i]['psychReviewOfSystemsMasterId']] = parseFloat(
+          allPatientValues[i]['psychReviewOfSystemsFieldValue']
+        )
       }
       return patientClientSideFieldValueModel
     },
@@ -119,10 +111,7 @@ export default {
 
       // send event to the client
       const eventName = 'event-from-ct-pros-delete-row'
-      this.$root.$emit(
-        eventName,
-        pros.tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsMasterId
-      )
+      this.$root.$emit(eventName, pros.tblPsychReviewOfSystemsMasterLink.psychReviewOfSystemsMasterId)
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
@@ -173,9 +162,7 @@ export default {
       let value = 0
       for (let i = 0; i < arOfObjectsFromClientSidePatientDB.length; i++) {
         catName =
-          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink'][
-            'psychReviewOfSystemsCategory'
-          ]
+          arOfObjectsFromClientSidePatientDB[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
         if (!groupTotal[catName]) groupTotal[catName] = 0
         if (arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue'] !== null) {
           value = arOfObjectsFromClientSidePatientDB[i]['psychReviewOfSystemsFieldValue']
@@ -198,7 +185,7 @@ export default {
     let eventName = 'event-from-ct-pros-delete-row'
     this.$root.$on(eventName, (pRowId) => {
       this.patientClientSideFieldValueModel[pRowId] = 0
-      this.mfSetValueInClientSideTable(-1, pRowId) // -1 indicates not looked at.
+      this.mfSetValueInClientTbl(-1, pRowId) // -1 indicates not looked at.
       this.$forceUpdate() // without this the view layer only updates when I make some change
     })
 

@@ -41,9 +41,7 @@ export default {
     // How? Ref: https://stackoverflow.com/questions/43270159/vue-js-2-how-to-watch-store-values-from-vuex
     cfFireWhenActiveTabIdChanges(newTabId, oldTabId) {
       // get the edit layer selected tab and update the dialog width accoding to the tab width
-      const clSelectedTab = this.$store.state.vstObjTabsInCL.arTabs.find(
-        (element) => element.id === newTabId
-      )
+      const clSelectedTab = this.$store.state.vstObjTabsInCL.arTabs.find((element) => element.id === newTabId)
       this.$store.commit('mtfSetTabDialogWidth', clSelectedTab.ctWidthInEditLayer)
 
       if (newTabId === '0') {
@@ -68,14 +66,14 @@ export default {
     },
 
     mfQuerySearchTerms(pQueryString, pCallBack) {
-      let arFromClientSideTable = clientSideTblOfCtSearchPhrases
+      let arFromClientTbl = clientSideTblOfCtSearchPhrases
         .query()
         .where('displayLocation', 'edit-layer') // excluding everything where the displayLocation is view layer
         .where('needsRowIdToWork', 'no') // execluding all rows that have scope=row. Since for scope=row i need the row id. Row id is not available in the search box. rowID is only available when clicking on an icon before the row
         .search(pQueryString.trim())
         .get() // trim needs for "goal " to match "goal"
 
-      arFromClientSideTable = arFromClientSideTable.map((result) => {
+      arFromClientTbl = arFromClientTbl.map((result) => {
         let finalStr = ''
         if (pQueryString.length > 0) {
           const strings = pQueryString.split(' ')
@@ -90,7 +88,7 @@ export default {
         result.value = finalStr
         return result
       })
-      pCallBack(arFromClientSideTable)
+      pCallBack(arFromClientTbl)
     },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
       const objAddTab = {

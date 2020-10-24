@@ -27,12 +27,9 @@ export default {
   },
   computed: {
     cfSearchBoxPlaceholder() {
-      let arFromClientSideTable = {}
-      arFromClientSideTable = clientSideTblOfCtSearchPhrases
-        .query()
-        .orderBy('searchPhraseUsageCount', 'desc')
-        .get()
-      const objRowFromOrm = arFromClientSideTable[0]
+      let arFromClientTbl = {}
+      arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
+      const objRowFromOrm = arFromClientTbl[0]
       if (objRowFromOrm) {
         return 'e.g. ' + objRowFromOrm.value
       } else {
@@ -46,13 +43,10 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
-          .query()
-          .orderBy('searchPhraseUsageCount', 'desc')
-          .get()
-        pCallBack(arFromClientSideTable)
+        const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
+        pCallBack(arFromClientTbl)
       } else {
-        const arFromClientSideTable = clientSideTblOfCtSearchPhrases
+        const arFromClientTbl = clientSideTblOfCtSearchPhrases
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -61,7 +55,7 @@ export default {
           })
           .orderBy('searchPhraseUsageCount', 'desc')
           .get() // trim is needed for "goal " to match "goal"
-        pCallBack(arFromClientSideTable)
+        pCallBack(arFromClientTbl)
       }
     },
 
@@ -77,14 +71,11 @@ export default {
       }
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // delete if this card is already existing
-        const arFromClientSideTable = clientSideTblOfRightSideCards
-          .query()
-          .where('name', pSelectedSuggestion.value)
-          .get()
+        const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', pSelectedSuggestion.value).get()
 
-        if (arFromClientSideTable.length > 0) {
-          if (arFromClientSideTable[0]['clientSideUniqRowId']) {
-            clientSideTblOfRightSideCards.delete(arFromClientSideTable[0]['clientSideUniqRowId'])
+        if (arFromClientTbl.length > 0) {
+          if (arFromClientTbl[0]['clientSideUniqRowId']) {
+            clientSideTblOfRightSideCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
           }
         }
 

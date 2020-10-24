@@ -4,18 +4,18 @@
 <script>
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
-import reminderClientSideTable from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientSideTable from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientSideTable from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientSideTable from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientSideTable from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 // defining all rows in this object
 const clientTbl = {
-  reminders: reminderClientSideTable,
-  recommendations: recommendationClientSideTable,
-  plan_comments: planCommentsClientSideTable,
-  misc_notes: miscNotesClientSideTable,
-  process_notes: processNotesClientSideTable,
+  reminders: reminderClientTbl,
+  recommendations: recommendationClientTbl,
+  plan_comments: planCommentsClientTbl,
+  misc_notes: miscNotesClientTbl,
+  process_notes: processNotesClientTbl,
 } // 1st row
 
 export default {
@@ -61,7 +61,7 @@ export default {
         socketClientObj.fieldValue !==
         pDataArr['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
       ) {
-        const arFromClientSideTable = await clientTbl.insert({
+        const arFromClientTbl = await clientTbl.insert({
           data: {
             vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
             ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -69,14 +69,14 @@ export default {
             serverSideRowUuid: pDataArr.serverSideRowUuid,
           },
         })
-        if (!arFromClientSideTable) {
+        if (!arFromClientTbl) {
           console.log('FATAL ERROR')
         }
 
         /* Goal: Update primary key from previous insert. This logic allows to show in UI a box around the data with the
       right top corner of the box saying "New rem from socket". So this way the user knows that is happening.
       */
-        const clientSidePrimaryKeyValue = arFromClientSideTable.tblReminders[0].clientSideUniqRowId
+        const clientSidePrimaryKeyValue = arFromClientTbl.tblReminders[0].clientSideUniqRowId
         setTimeout(
           function (scope) {
             scope.fnSetRowStatus(clientSidePrimaryKeyValue)

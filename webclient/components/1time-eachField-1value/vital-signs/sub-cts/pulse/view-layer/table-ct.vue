@@ -9,20 +9,20 @@ Code synced with ref implementation on 4th august 2020
       plain
       :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
       size="small"
-      >{{ cfLatestDataRowFromClientSideTable['pulseInBpm'] }}</el-button
+      >{{ cfLatestDataRowFromClientTbl['pulseInBpm'] }}</el-button
     >
     <el-button :type="mfTypeOfButton('timeOfMeasurementInMilliseconds')" plain size="small">{{
       cfTimeOfMeasurementInMilliseconds
     }}</el-button>
     <el-button :type="mfTypeOfButton('notes')" plain size="small">{{
-      cfLatestDataRowFromClientSideTable['notes']
+      cfLatestDataRowFromClientTbl['notes']
     }}</el-button>
     <el-button
       size="mini"
       style="padding: 3px"
       plain
       tabindex="-1"
-      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientSideTable['clientSideUniqRowId'])"
+      @click="mfOpenEditCtInEditLayer(cfLatestDataRowFromClientTbl['clientSideUniqRowId'])"
       class="el-icon-edit"
     ></el-button>
     <el-button
