@@ -8,7 +8,7 @@
         propReferToComponentInUiAtPluralClassification.slice(1)
       }}</el-col>
       <!-- 2nd col of the header. This has the action buttons -->
-      <el-col :span="2"
+      <el-col :span="12"
         ><div class="grid-content">
           <!-- Case 1/2: When this appt is locked -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -34,7 +34,7 @@
           </div>
           <!-- Case 2/2: When this appt is un-locked -->
           <div v-else>
-            <el-button-group style="float: right; display: none">
+            <el-button-group style="float: left; display: none">
               <el-button
                 class="el-icon-money"
                 size="mini"
@@ -257,29 +257,32 @@ export default {
 </script>
 
 <style scoped>
-/* For multi edit */
-.remindersh3:hover .el-icon-money {
+.remindersh3 .el-button-group {
   display: inline-block !important;
-  position: absolute;
+}
+
+/* For multi edit */
+.el-icon-money:hover {
+  font-size: 1rem;
 }
 
 /* For add */
-.remindersh3:hover .el-icon-circle-plus-outline {
-  display: inline-block !important;
-  position: absolute;
+.el-icon-circle-plus-outline:hover {
+  font-size: 1rem;
 }
 
 /* For minimize */
-.remindersh3:hover .el-icon-remove-outline {
-  display: inline-block !important;
-  position: absolute;
+.el-icon-remove-outline:hover {
+  font-size: 1rem;
 }
 
-.remindersh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-  position: absolute;
+.el-icon-edit-outline:hover {
+  font-size: 1rem;
 }
 
+.el-icon-remove-outline:hover {
+  font-size: 1rem;
+}
 h3 {
   border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
