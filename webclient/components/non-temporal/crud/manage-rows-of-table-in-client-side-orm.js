@@ -582,8 +582,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  // This function will return 1 (Success) or 0 (Failure)
   static async fnSendToServer() {
-    // API will return 1 (Success) or 0 (Failure)
     const arFromClientSideTable = this.query()
       .where(
         'vnRowStateInSession',
@@ -631,6 +631,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
                 vnRowStateInSession: Const_New_ChangedOnClient_RequestedSaveStartClientSideDataValidation_DataSentToServerToSave_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
+                //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
               },
             })
 

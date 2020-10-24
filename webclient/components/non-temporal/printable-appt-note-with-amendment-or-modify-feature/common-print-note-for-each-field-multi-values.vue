@@ -49,9 +49,9 @@
                 @click="mfOpenMultiEditCtInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
-              <!-- Minimize -->
+              <!-- Minimize or maximize -->
               <el-button
-                class="el-icon-remove-outline"
+                :class="toggleSwitchShowBodyContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
                 size="mini"
                 @click="toggleSwitchShowBodyContent = !toggleSwitchShowBodyContent"
                 style="padding: 3px; color: #c0c4cc; border: none"
