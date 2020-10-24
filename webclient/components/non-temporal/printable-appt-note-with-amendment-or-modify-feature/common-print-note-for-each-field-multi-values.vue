@@ -68,7 +68,7 @@
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some may have 1 and other may have 4 fields -->
-            <td v-for="(propFieldObj, id) in propFormFields" :key="id">
+            <td v-for="(propFieldObj, id) in propFormFields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
               {{ row[propFieldObj.fieldName] }}
             </td>
             <!-- This is for action assocaited with each row -->
@@ -289,7 +289,8 @@ export default {
       if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientSideDB = clientSideTable[this.propComponentName]
           .query()
-          .where('ROW_END', 2147483648000)
+          .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
+          .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
           .get()
       } else {
         arOfObjectsFromClientSideDB = clientSideTable[this.propComponentName]
@@ -300,6 +301,15 @@ export default {
       }
 
       return arOfObjectsFromClientSideDB
+    },
+    mfGetCssClassNameForEachDataRow(pRow) {
+      const strOfNumber = pRow.vnRowStateInSession.toString()
+      const lastCharecter = strOfNumber.slice(-1)
+      if (lastCharecter === '4' || lastCharecter === '6') {
+        return 'color: #E6A23C;'
+      } else {
+        return 'color: #202020;'
+      }
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
