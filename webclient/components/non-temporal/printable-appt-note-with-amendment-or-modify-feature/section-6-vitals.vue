@@ -14,7 +14,7 @@
 import clientSideTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
 import clientSideTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
 import clientSideTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
-import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 import moment from 'moment'
 
 export default {

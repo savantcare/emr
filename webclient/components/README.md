@@ -27,7 +27,7 @@
 | #   | Name                                           | Programmer | Status                             |
 | --- | ---------------------------------------------- | ---------- | ---------------------------------- |
 | 1   | [Recommendations](./rec/)                      | Sanjay     | UI and DB final. Feature Under dev |
-| 2   | [Goals](./goal/)                               | Raj        | UI and DB final. Feature Under dev |
+| 2   | [Goals](./goals/)                              | Raj        | UI and DB final. Feature Under dev |
 | 3   | [Diagnosis](./dx/)                             | Anirban    | UI and DB final. Feature Under dev |
 | 4   | [Screening](./scr/)                            | Jana       | UI and DB final. Feature Under dev |
 | 5   | [Body measurement](./vital-signs/)             | Alexey     | Need to bring to nuxt              |

@@ -97,12 +97,12 @@ import initializePastPsychHistoryComponent from '@/components/1time-eachField-1v
 import initializeMedicalReviewOfSystemsComponent from '@/components/1time-eachField-1value/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
-import initializePhoneNumberComponent from '@/components/1time-Mrow-mField/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeDiagnosisComponent from '@/components/1time-Mrow-mField/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
+import initializePhoneNumberComponent from '@/components/1time-eachField-multiValues/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDiagnosisComponent from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
 import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import clientSideTblOfAppointmentsInsertData from '@/components/1time-Mrow-mField/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientSideTblOfAppointmentsInsertData from '@/components/1time-eachField-multiValues/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 
 export default {
   components: {

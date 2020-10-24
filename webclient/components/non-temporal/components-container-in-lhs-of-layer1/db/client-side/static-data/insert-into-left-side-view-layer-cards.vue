@@ -13,8 +13,7 @@ export default {
     clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
-        componentToShowPath:
-          'non-temporal/layer-1-left-side-header/sub-ct-container-design-using-card.vue',
+        componentToShowPath: 'non-temporal/layer-1-left-side-header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
@@ -31,7 +30,7 @@ export default {
     clientSideTblOfLeftSideCards.insert({
       data: {
         name: 'Contacts',
-        componentToShowPath: '1time-Mrow-mField/contacts/view-layer/all-contacts-ct.vue',
+        componentToShowPath: '1time-eachField-multiValuescontacts/view-layer/all-contacts-ct.vue',
         classificationOfComponent: 'other',
       },
     })

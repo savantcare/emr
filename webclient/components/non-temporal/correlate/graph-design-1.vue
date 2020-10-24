@@ -16,7 +16,7 @@ import clientSideTblOxygenSaturation from '@/components/1time-eachField-1value/v
 import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
 import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
-import clientSideTblOfAppointments from '@/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import { Chart } from 'highcharts-vue'
 

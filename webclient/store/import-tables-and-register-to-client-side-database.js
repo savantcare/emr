@@ -15,7 +15,7 @@ database.register(tableStructureForCommon)
 database.register(tableStructureForStoreMessageFromOtherComponent)
 
 // Appointments
-import clientSideTblOfAppointments from '~/components/1time-Mrow-mField/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientSideTblOfAppointments from '~/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
 database.register(clientSideTblOfAppointments)
 database.register(clientSideTblOfAddendums)
@@ -45,7 +45,7 @@ database.register(tableStructureForTemperature)
 database.register(tableStructureForPulse)
 
 // Screening tables
-import tableStructureForScr from '~/components/1time-Mrow-mField/scr/db/client-side/structure/Screening'
+import tableStructureForScr from '~/components/1time-eachField-multiValues/screens/db/client-side/structure/Screening'
 import tableStructureForPhq9Master from '~/components/1time-eachField-1value/phq9/db/client-side/structure/master-table-of-phq9.js'
 import tableStructureForPhq9OfPatient from '~/components/1time-eachField-1value/phq9/db/client-side/structure/patient-table-of-phq9.js'
 database.register(tableStructureForScr)
@@ -114,22 +114,13 @@ database.register(tableStructureForName)
 import tableStructureForDob from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
 database.register(tableStructureForDob)
 
-import tableStructureForDx from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dx.js'
-database.register(tableStructureForDx)
-
-import tableStructureForDxa from '~/components/1time-Mrow-mField/dx/db/client-side/structure/Dxa.js'
-database.register(tableStructureForDxa)
-
-import tableStructureForGoal from '~/components/1time-Mrow-mField/goal/db/client-side/structure/Goal'
+import tableStructureForGoal from '~/components/1time-eachField-multiValues/goals/db/client-side/structure/Goal'
 database.register(tableStructureForGoal)
 
-import tableStructureForPhoneNumbers from '~/components/1time-Mrow-mField/phone-numbers/db/client-side/structure/table.js'
+import tableStructureForPhoneNumbers from '~/components/1time-eachField-multiValues/phone-numbers/db/client-side/structure/table.js'
 database.register(tableStructureForPhoneNumbers)
 
-import tableStructureForPatientDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/patient-table-of-diagnosis'
+import tableStructureForPatientDiagnosis from '~/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 database.register(tableStructureForPatientDiagnosis)
-
-import tableStructureForMasterDiagnosis from '~/components/1time-Mrow-mField/diagnosis/db/client-side/structure/master-table-of-diagnosis'
-database.register(tableStructureForMasterDiagnosis)
 
 export default database
