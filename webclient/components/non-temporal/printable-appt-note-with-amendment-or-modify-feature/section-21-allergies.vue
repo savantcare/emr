@@ -26,7 +26,7 @@ export default {
   data: function () {
     return {
       dataFormFields: [
-        { fieldName: 'allergen', fieldType: 'textarea', span: 12 },
+        { fieldName: 'allergen', fieldType: '', span: 12 },
         { fieldName: 'relation', fieldType: '', span: 6 },
         { fieldName: 'onset', fieldType: '', span: 6 },
       ],

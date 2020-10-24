@@ -12,7 +12,7 @@ export default {
     return {
       dataFormFields: [
         { fieldName: 'Allergen', fieldType: '', span: 8 },
-        { fieldName: 'Reaction', fieldType: 'textarea', span: 8 },
+        { fieldName: 'Reaction', fieldType: '', span: 8 },
         { fieldName: 'Onset', fieldType: '', span: 8 },
       ],
     }
