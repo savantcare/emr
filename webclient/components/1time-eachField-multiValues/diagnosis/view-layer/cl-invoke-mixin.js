@@ -7,18 +7,18 @@ export default {
   methods: {
     mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'add allergy',
+        searchTerm: 'add diagnosis',
       })
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'multi edit allergy',
+        searchTerm: 'multi edit diagnosis',
       })
     },
     mxOpenDDialog() {
       let confirmMessage = 'Are you sure you want to delete all the selected diagnosis?'
       if (this.daSelectedRemForDelete.length === 0) {
-        confirmMessage = 'No allergy selected. Please select at least one allergy.'
+        confirmMessage = 'No diagnosis selected. Please select at least one diagnosis.'
       }
 
       this.$confirm(confirmMessage, 'Multi delete', {
@@ -32,13 +32,13 @@ export default {
             if (status.success > 0) {
               this.$message({
                 type: 'success',
-                message: status.success + ' allergy deleted.',
+                message: status.success + ' diagnosis deleted.',
               })
             }
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message: status.failed + ' allergy failed to delete. Please try again later.',
+                message: status.failed + ' diagnosis failed to delete. Please try again later.',
               })
             }
           }
@@ -72,19 +72,19 @@ export default {
        Option 1: Send the whole data row
        Option 2: Send just the ID in a prop.
         +ves:
-          1. At some places I may need to call change where I have the allergy ID but
+          1. At some places I may need to call change where I have the diagnosis ID but
           i do not have the remainder of the data row. Hence this makes the Change Ct possible
           to use at other places
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit allergy', pPropsToGiveToCt: pClientDataRowId }
+      const payload = { searchTerm: 'edit diagnosis', pPropsToGiveToCt: pClientDataRowId }
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientDataRowId) {
       const arResultsFromOrm = clientTbl.find(pClientDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Delete allergy', {
+      this.$prompt(arResultsFromOrm.description, 'Delete diagnosis', {
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter delete note',

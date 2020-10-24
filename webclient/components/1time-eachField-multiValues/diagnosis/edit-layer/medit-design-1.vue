@@ -5,7 +5,7 @@ The tree structure is:
 
 Carausel                           |
   -- Carausel item                 |   These are the slides
-    -- Cards                       |   Each card is a allergy
+    -- Cards                       |   Each card is a diagnosis
 
 
 Performance:
@@ -65,11 +65,11 @@ How to solve this?
       </el-carousel-item>
     </el-carousel>
   </div>
-  <div v-else><el-alert title="No allergy found." type="info" show-icon> </el-alert></div>
+  <div v-else><el-alert title="No diagnosis found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
 import clientTbl from '../db/client-side/structure/diagnosis-of-a-patient-table.js'
-import ctChangeRem from './allergy-edit.vue'
+import ctChangeRem from './diagnosis-edit.vue'
 export default {
   components: { ctChangeRem },
   data() {

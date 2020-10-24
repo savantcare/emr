@@ -1,7 +1,7 @@
 <template>
   <fieldMultiValuesAdd
     propComponentName="diagnosis"
-    propReferToComponentInUiAtSingularClassification="allergy"
+    propReferToComponentInUiAtSingularClassification="diagnosis"
     propReferToComponentInUiAtPluralClassification="diagnosis"
     :propFormFields="dataFormFields"
     :firstProp="firstProp"

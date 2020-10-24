@@ -91,7 +91,7 @@ export default {
       ) {
         /**
          * Goal:
-         * 1. Update ROW_END as now() of current active allergy
+         * 1. Update ROW_END as now() of current active diagnosis
          * 2. Insert new row in orm with new description
          */
         await clientTbl.update({

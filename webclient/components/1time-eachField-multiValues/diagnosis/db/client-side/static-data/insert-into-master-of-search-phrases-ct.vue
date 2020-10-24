@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'arem',
-        ctToShow: '1time-eachField-multiValues/diagnosis/edit-layer/allergy-add.vue',
+        ctToShow: '1time-eachField-multiValues/diagnosis/edit-layer/diagnosis-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit diagnosis',
         ctAbbr: 'crem',
-        ctToShow: '1time-eachField-multiValues/diagnosis/edit-layer/allergy-edit.vue',
+        ctToShow: '1time-eachField-multiValues/diagnosis/edit-layer/diagnosis-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',

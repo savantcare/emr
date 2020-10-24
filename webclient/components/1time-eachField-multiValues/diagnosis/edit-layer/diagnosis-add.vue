@@ -11,8 +11,8 @@ export default {
   data: function () {
     return {
       dataFormFields: [
-        { fieldName: 'Allergen', fieldType: '', span: 8 },
-        { fieldName: 'Reaction', fieldType: '', span: 8 },
+        { fieldName: 'Diagnosis', fieldType: '', span: 8 },
+        { fieldName: 'Assessment', fieldType: '', span: 8 },
         { fieldName: 'Onset', fieldType: '', span: 8 },
       ],
     }
