@@ -42,9 +42,9 @@
               style="padding: 0px; color: #c0c4cc; border: none; display: none"
             ></el-button>
             <el-button
-              class="el-icon-minus"
+              class="el-icon-remove-outline"
               size="mini"
-              @click="mfOpenAddInEditLayer"
+              @click="toggleSwitchShowBodyContent = !toggleSwitchShowBodyContent"
               style="padding: 0px; color: #c0c4cc; border: none; display: none"
             ></el-button>
           </div>
@@ -52,10 +52,12 @@
       </el-col>
     </el-row>
     <div :style="cfGetReminderStyle">
-      <div v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
-        <span v-for="(propFieldObj, id) in propFormFields" :key="id">
-          {{ row[propFieldObj.fieldName] }}
-        </span>
+      <div v-if="toggleSwitchShowBodyContent">
+        <div v-for="row in mfGetArOfReminders(this.currentApptObj)" :key="row.clientSideUniqRowId">
+          <span v-for="(propFieldObj, id) in propFormFields" :key="id">
+            {{ row[propFieldObj.fieldName] }}
+          </span>
+        </div>
       </div>
       <br />
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
@@ -104,6 +106,7 @@ export default {
       currentApptObj: {},
       amendmentData: '',
       isAddendumPopoverVisible: false,
+      toggleSwitchShowBodyContent: true,
     }
   },
   filters: {
@@ -247,17 +250,25 @@ export default {
 </script>
 
 <style scoped>
+/* For multi edit */
 .remindersh3:hover .el-icon-money {
   display: inline-block !important;
   position: absolute;
 }
 
-.remindersh3:hover .el-icon-edit-outline {
+/* For add */
+.remindersh3:hover .el-icon-circle-plus-outline {
   display: inline-block !important;
   position: absolute;
 }
 
-.remindersh3:hover .el-icon-circle-plus-outline {
+/* For minimize */
+.remindersh3:hover .el-icon-remove-outline {
+  display: inline-block !important;
+  position: absolute;
+}
+
+.remindersh3:hover .el-icon-edit-outline {
   display: inline-block !important;
   position: absolute;
 }
