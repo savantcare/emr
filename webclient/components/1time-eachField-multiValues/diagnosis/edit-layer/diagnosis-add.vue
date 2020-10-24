@@ -11,8 +11,8 @@ export default {
   data: function () {
     return {
       dataFormFields: [
-        { fieldName: 'Diagnosis', fieldType: '', span: 8 },
-        { fieldName: 'Assessment', fieldType: '', span: 8 },
+        { fieldName: 'Diagnosis', fieldType: 'select', span: 8 },
+        { fieldName: 'Assessment', fieldType: 'textarea', span: 8 },
         { fieldName: 'Onset', fieldType: '', span: 8 },
       ],
     }
