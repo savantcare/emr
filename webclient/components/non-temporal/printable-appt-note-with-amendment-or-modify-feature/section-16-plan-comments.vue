@@ -1,11 +1,6 @@
 <template>
   <div>
-    <printNote
-      propComponentName="plan_comments"
-      :propApptId="propApptId"
-      :propFormFields="dataFormFields"
-      propReferToComponentInUiAtPluralClassification="plan comments"
-    ></printNote>
+    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
   </div>
 </template>
 
@@ -24,7 +19,7 @@ export default {
   },
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      ctDef: process.env.planCommentsCtDef,
     }
   },
 }

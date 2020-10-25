@@ -154,7 +154,7 @@ const clientTbl = {
   chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,
-  misc_notes: miscNotesClientTbl,
+  miscellaneous_notes: miscNotesClientTbl,
   plan_comments: planCommentsClientTbl,
   process_notes: processNotesClientTbl,
   recommendations: recommendationClientTbl,

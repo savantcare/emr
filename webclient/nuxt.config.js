@@ -81,15 +81,33 @@ export default {
         { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
         { fieldName: 'onset', fieldType: '', span: 8 },
       ],
-      familyHistoryCtDef: {
-        id: 'family_history',
-        plural: 'family history',
-        singular: 'family history',
-        fields: [
-          { fieldName: 'relationship', fieldType: '', span: 6 },
-          { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        ],
-      },
+    },
+    familyHistoryCtDef: {
+      id: 'family_history',
+      plural: 'family history',
+      singular: 'family history',
+      fields: [
+        { fieldName: 'relationship', fieldType: '', span: 6 },
+        { fieldName: 'description', fieldType: 'textarea', span: 12 },
+      ],
+    },
+    miscellaneousNotesCtDef: {
+      id: 'miscellaneous_notes',
+      plural: 'miscellaneous notes',
+      singular: 'miscellaneous note',
+      fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+    },
+    planCommentsCtDef: {
+      id: 'plan_comments',
+      plural: 'plan comments',
+      singular: 'plan comment',
+      fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+    },
+    processNotesCtDef: {
+      id: 'process_notes',
+      plural: 'process notes',
+      singular: 'process note',
+      fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
     },
     recommendationsCtDef: {
       id: 'recommendations',
