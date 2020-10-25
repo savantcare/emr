@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class process_notes extends clientTblManage {
-  static entity = 'tblProcessNotes'
+export default class chief_complaint extends clientTblManage {
+  static entity = 'tblChiefComplaint'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -39,8 +39,6 @@ export default class process_notes extends clientTblManage {
       ptUuid: this.string(null),
       description: this.string(''),
       notes: this.string(null),
-      priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

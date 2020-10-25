@@ -139,25 +139,27 @@ import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/a
 import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
-import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
-import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import chiefComplaintClientTbl from '@/components/1time-eachField-multiValues/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import diagnosisClientTbl from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
+import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
-import diagnosisClientTbl from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
+import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 // defining all rows in this object
 const clientTbl = {
-  reminders: reminderClientTbl,
-  recommendations: recommendationClientTbl,
-  plan_comments: planCommentsClientTbl,
-  misc_notes: miscNotesClientTbl,
-  process_notes: processNotesClientTbl,
-  family_history: familyHistoryClientTbl,
   allergies: allergiesClientTbl,
+  chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
+  family_history: familyHistoryClientTbl,
+  misc_notes: miscNotesClientTbl,
+  plan_comments: planCommentsClientTbl,
+  process_notes: processNotesClientTbl,
+  recommendations: recommendationClientTbl,
+  reminders: reminderClientTbl,
 } // 1st row
 
 import moment from 'moment'
