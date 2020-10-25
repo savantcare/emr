@@ -49,7 +49,7 @@
           -->
           <el-col :span="4">
             <el-button
-              v-if="propCtDef.removeRow !== false"
+              v-if="mfGetArOfDataRows() < propCtDef.maxRows || !propCtDef.maxRows"
               plain
               type="warning"
               style="float: right"
@@ -61,12 +61,16 @@
       </div>
       <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
       <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
+
+      <!-- Form action buttons below the form -->
       <el-form-item>
         <el-button v-if="propCtDef.formReviewed !== false" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
+
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propCtDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
-          v-if="mfGetArOfDataRows(this.currentApptObj) < propCtDef.maxRows || !propCtDef.maxRows"
+          v-if="mfGetArOfDataRows() < propCtDef.maxRows || !propCtDef.maxRows"
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
@@ -183,16 +187,12 @@ export default {
     },
   },
   methods: {
-    mfGetArOfDataRows(pApptObj) {
-      if (!pApptObj) return
-      let arOfObjectsFromClientDB = []
-      if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
-          .query()
-          .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
-          .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
-          .get()
-      }
+    mfGetArOfDataRows() {
+      const arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
+        .query()
+        .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
+        .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
+        .get()
       return arOfObjectsFromClientDB
     },
 
