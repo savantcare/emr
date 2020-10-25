@@ -1,25 +1,31 @@
 <!-- Reference implementation -->
-<!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
+<!-- Goal: Show multiple add rows along with remove each row. At end A. Reviewed B. Reset form C. Add more  -->
 <template>
   <div>
     <el-form>
+      <!-- Scenario: There are existiing rows in edit state -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
+          <!-- Start to process each row -->
           <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+            <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
               <!-- Do the following when it is select type field -->
-              <div v-if="propFieldObj.fieldType === 'select'">
-                <el-select v-model="value" filterable placeholder="Name of diagnosis">
-                  <el-option
-                    v-for="item in propFieldObj.selectOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  >
-                  </el-option>
-                </el-select>
-              </div>
+              <el-select
+                v-if="propFieldObj.fieldType === 'select'"
+                v-model="value"
+                filterable
+                placeholder="Name of diagnosis"
+              >
+                <el-option
+                  v-for="item in propFieldObj.selectOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
               <!-- Do the following when it is input type field -->
               <el-input
                 v-else
@@ -33,7 +39,9 @@
               ></el-input>
               <div v-if="ormRow.isValidationError" class="el-form-item__error">Please enter minimum 3 characters.</div>
             </el-col>
+            <!-- Just ended processing all the fields in the row -->
           </div>
+          <!-- Just ended processing each row -->
 
           <!-- Prop explaination
             Goal: Show remove button on the RHS of input area. Since element.io divides it into 24 columns. we are giving
@@ -50,7 +58,7 @@
           </el-col>
         </el-form-item>
       </div>
-      <!-- If there are no edit state rows then create a empty row for faster data input -->
+      <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
       <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
       <el-form-item>
         <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
