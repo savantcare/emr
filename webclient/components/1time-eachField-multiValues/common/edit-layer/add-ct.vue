@@ -46,6 +46,7 @@
           <!-- Prop explaination
             Goal: Show remove button on the RHS of input area. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
+            Remove should not come if there is only one propCtDef.maxRow
           -->
           <el-col :span="4">
             <el-button
@@ -191,7 +192,7 @@ export default {
       const arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
-        .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
+        .where('vnRowStateInSession', (value) => value > 1) // 2 is new on client.
         .get()
       return arOfObjectsFromClientDB
     },
