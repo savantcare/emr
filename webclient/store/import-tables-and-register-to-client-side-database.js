@@ -88,6 +88,9 @@ database.register(tableStructureForPROSOfPatient)
 import tableStructureForAllergies from '~/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 database.register(tableStructureForAllergies)
 
+import tableStructureForChiefComplaint from '~/components/1time-eachField-multiValues/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+database.register(tableStructureForChiefComplaint)
+
 import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 

@@ -15,6 +15,7 @@
 
     <!-- START: Each field can take multiple values at 1 time in the temporal database -->
     <initializeAllergiesComponent />
+    <initializeChiefComplaintComponent />
     <initializeFamilyHistoryComponent />
     <initializeMiscNotesComponent />
     <initializePlanCommentsComponent />
@@ -82,6 +83,7 @@ import initializeProsComponent from '@/components/1time-eachField-1value/psych-r
 
 // START: Each field can take multiple values at 1 time in the temporal database
 import initializeAllergiesComponent from '@/components/1time-eachField-multiValues/allergies/db/client-side/initialize-on-first-load.vue'
+import initializeChiefComplaintComponent from '~/components/1time-eachField-multiValues/chief-complaint/db/client-side/initialize-on-first-load.vue'
 import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
 import initializeMiscNotesComponent from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/initialize-on-first-load.vue'
 import initializePlanCommentsComponent from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/initialize-on-first-load.vue'
@@ -128,6 +130,7 @@ export default {
 
     // START: Each field can take multiple values at 1 time in the temporal database
     initializeAllergiesComponent,
+    initializeChiefComplaintComponent,
     initializeFamilyHistoryComponent,
     initializeMiscNotesComponent,
     initializePlanCommentsComponent,
