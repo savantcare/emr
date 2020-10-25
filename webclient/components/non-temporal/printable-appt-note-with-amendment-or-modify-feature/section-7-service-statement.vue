@@ -43,8 +43,10 @@
     <!-- Goal: Show service statements -->
     <div :style="cfGetServiceStatementStyle">
       <div v-for="row in mfGetArrayOfServiceStatements(this.currentApptObj)" :key="`ss-${row.clientSideUniqRowId}`">
+        <!-- Commenting it as the link is coming to null
         {{ row['tblLinkToServiceStatementFieldMaster']['serviceStatementFieldCategory'] }}
         {{ row['tblLinkToServiceStatementFieldMaster']['serviceStatementDescription'] }}
+        -->
       </div>
     </div>
     <!-- Goal: Show addendum if there is any -->

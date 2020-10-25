@@ -116,6 +116,7 @@ export default {
     },
     async mfToggleServiceStatement(pServiceStatementFieldMasterId) {
       // Goal1: Check if it already exists
+      console.log('Field master ID is', pServiceStatementFieldMasterId)
       const exists = clientSideTblOfPatientServiceStatements
         .query()
         .where('serviceStatementFieldMasterId', pServiceStatementFieldMasterId)

@@ -31,6 +31,7 @@ export default class serviceStatementsMasterClass extends clientTblManage {
       */
       tblLinkToServiceStatementForPatientFieldValues: this.hasOne(
         serviceStatementsForPatientClass,
+        'serviceStatementFieldMasterId',
         'serviceStatementFieldMasterId'
       ),
     }

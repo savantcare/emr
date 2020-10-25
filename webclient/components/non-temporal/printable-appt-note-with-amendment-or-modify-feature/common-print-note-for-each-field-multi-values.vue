@@ -10,56 +10,58 @@
       <el-col :span="12"
         ><div class="grid-content">
           <!-- Case 1/2: When this appt is locked. This decides what header action buttons to show when the appt is locked -->
-          <div v-if="currentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-              <div style="text-align: right; margin: 0">
-                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-                <!-- Amendment icon -->
+          <el-button-group style="float: left; display: none">
+            <span v-if="currentApptObj['apptStatus'] === 'locked'">
+              <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+                <div style="text-align: right; margin: 0">
+                  <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                  <!-- Amendment icon -->
+                  <el-button
+                    v-if="amendmentData.length > 0"
+                    type="success"
+                    icon="el-icon-check"
+                    style="position: absolute; bottom: 15px; right: 15px"
+                    size="mini"
+                    @click="mfSaveAddendum(amendmentData, propCtDef.id)"
+                    circle
+                  ></el-button>
+                </div>
                 <el-button
-                  v-if="amendmentData.length > 0"
-                  type="success"
-                  icon="el-icon-check"
-                  style="position: absolute; bottom: 15px; right: 15px"
+                  slot="reference"
+                  class="el-icon-edit-outline"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, propCtDef.id)"
-                  circle
-                ></el-button>
-              </div>
-              <el-button
-                slot="reference"
-                class="el-icon-edit-outline"
-                style="padding: 3px; color: #c0c4cc; border: none; display: none; float: left"
-              ></el-button>
-            </el-popover>
-          </div>
-          <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
-          <div v-else>
-            <el-button-group style="float: left; display: none">
+                  style="padding: 3px; color: #c0c4cc; border: none"
+                />
+              </el-popover>
+            </span>
+            <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
+            <span v-else>
               <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propCtDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
-                v-if="mfGetArOfDataRows(this.currentApptObj) < propCtDef.maxRows || !propCtDef.maxRows"
+                v-if="mfGetArOfDataRows(this.currentApptObj).length < propCtDef.maxRows || !propCtDef.maxRows"
                 class="el-icon-circle-plus-outline"
                 size="mini"
                 @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
-              <!-- Multi edit. v-if stops giving multiedit when there is only 1 row -->
+              <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
               <el-button
-                v-if="mfGetArOfDataRows(this.currentApptObj) > 1"
+                v-if="mfGetArOfDataRows(this.currentApptObj).length > 1"
                 class="el-icon-money"
                 size="mini"
                 @click="mfOpenMultiEditCtInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
-              <!-- Minimize or maximize -->
-              <el-button
-                :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
-                size="mini"
-                @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
-                style="padding: 3px; color: #c0c4cc; border: none"
-              ></el-button>
-            </el-button-group>
-          </div>
+            </span>
+            <!-- Minimize or maximize. This appears if appt is locked or unlocked -->
+            <el-button
+              v-if="mfGetArOfDataRows(this.currentApptObj).length > 0"
+              :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
+              size="mini"
+              @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+          </el-button-group>
         </div>
       </el-col>
     </el-row>
@@ -199,7 +201,6 @@ export default {
       return
     }
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
-    console.log('In mounted')
   },
   computed: {
     cfGetDataRowStyle() {
@@ -301,7 +302,6 @@ export default {
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
-
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
