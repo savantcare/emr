@@ -1,18 +1,20 @@
 <template>
-  <fieldMultiValuesAdd propComponentName="family_history" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesEdit :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesEdit>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
+import fieldMultiValuesEdit from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-      ],
+      ctDef: process.env.recommendationsCtDef,
     }
+  },
+  props: {
+    firstProp: {
+      type: Number,
+    },
   },
 
   mounted() {
@@ -20,7 +22,7 @@ export default {
   },
 
   components: {
-    fieldMultiValuesAdd,
+    fieldMultiValuesEdit,
   },
 }
 </script>

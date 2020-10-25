@@ -90,7 +90,7 @@
                     <el-button
                       style="padding: 3px; color: #c0c4cc; border: none"
                       plain
-                      @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
+                      @click="mxOpenEditCtInEditLayer(row.clientSideUniqRowId)"
                       class="el-icon-edit"
                     >
                     </el-button>
@@ -109,7 +109,7 @@
                     <el-button
                       style="padding: 3px; color: #c0c4cc; border: none"
                       plain
-                      @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
+                      @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
                       class="el-icon-circle-close"
                     >
                     </el-button>
@@ -150,6 +150,8 @@ import processNotesClientTbl from '@/components/1time-eachField-multiValues/proc
 import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
+import clInvokeMixin from '@/components/1time-eachField-multiValues/common/view-layer/cl-invoke-mixin.js'
+
 // defining all rows in this object
 const clientTbl = {
   allergies: allergiesClientTbl,
@@ -174,6 +176,8 @@ export default {
       OnAndOffSwitchToShowContent: true,
     }
   },
+  mixins: [clInvokeMixin],
+
   filters: {
     moment: function (date) {
       return moment(date).format('MMMM Do YYYY, h:mm a')

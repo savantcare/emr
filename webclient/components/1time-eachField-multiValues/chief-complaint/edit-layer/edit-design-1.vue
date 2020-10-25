@@ -1,9 +1,9 @@
 <template>
-  <fieldMultiValuesAdd propComponentName="family_history" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesEdit :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesEdit>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
+import fieldMultiValuesEdit from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
@@ -11,13 +11,18 @@ export default {
       ctDef: process.env.chiefComplaintCtDef,
     }
   },
+  props: {
+    firstProp: {
+      type: Number,
+    },
+  },
 
   mounted() {
     //    console.log(this.dataFormFields)
   },
 
   components: {
-    fieldMultiValuesAdd,
+    fieldMultiValuesEdit,
   },
 }
 </script>
