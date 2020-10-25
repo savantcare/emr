@@ -113,7 +113,7 @@ export default {
         for (let i = 0; i < arFromClientTbl.length; i++) {
           obj = {}
           obj.description = arFromClientTbl[i].description
-          // For date format ref: /cts/temporal/1-core/view-layer/timeline-ct.vue:53
+          // For date format ref: /cts/temporal/1-framework/view-layer/timeline-ct.vue:53
           date = new Date(arFromClientTbl[i].ROW_START)
           obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
           obj.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession

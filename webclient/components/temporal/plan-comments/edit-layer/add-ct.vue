@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/temporal/1-core/edit-layer/add-ct.vue'
+import fieldMultiValuesAdd from '@/components/temporal/1-framework/edit-layer/add-ct.vue'
 
 export default {
   data: function () {
