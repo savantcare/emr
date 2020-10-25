@@ -2,29 +2,23 @@
 <template>
   <div class="A4">
     <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
-
-    <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
-    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
-
-    <!-- SECTION 3 -->
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <!-- SECTION 4 -->
+    <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
+
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
+    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
     <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
-
     <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
-
     <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
-
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
     <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
     <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
