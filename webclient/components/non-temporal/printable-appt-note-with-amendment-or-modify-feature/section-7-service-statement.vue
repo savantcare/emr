@@ -85,11 +85,12 @@ export default {
       required: true,
     },
   },
-  async mounted() {
+  async created() {
     if (!this.propApptId === 0) {
       return
     }
     this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    console.log(this.currentApptObj)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {
