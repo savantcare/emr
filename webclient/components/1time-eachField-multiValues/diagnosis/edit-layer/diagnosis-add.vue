@@ -15,9 +15,9 @@ export default {
         plural: 'diagnosis',
         singular: 'diagnosis',
         fields: [
-          { fieldName: 'Diagnosis', fieldType: 'select', span: 8, selectOptions: this.optionList() },
-          { fieldName: 'Assessment', fieldType: 'textarea', span: 8 },
-          { fieldName: 'Onset', fieldType: '', span: 8 },
+          { fieldName: 'diagnosis', fieldType: 'select', span: 8, selectOptions: this.optionList() },
+          { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
+          { fieldName: 'onset', fieldType: '', span: 8 },
         ],
       },
     }

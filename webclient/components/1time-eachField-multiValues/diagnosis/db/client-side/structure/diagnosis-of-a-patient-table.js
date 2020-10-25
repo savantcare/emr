@@ -37,10 +37,10 @@ export default class diagnosis extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
-      notes: this.string(null),
+      diagnosis: this.string(''),
+      assessment: this.string(''),
+      onset: this.string(''),
       priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
