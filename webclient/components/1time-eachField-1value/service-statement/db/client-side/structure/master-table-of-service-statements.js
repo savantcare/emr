@@ -24,9 +24,7 @@ export default class serviceStatementsMasterClass extends clientTblManage {
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 
       /* Q) Why is this relationship needed ?
-        Currently this relationship is used at only one place.
-        First Place used
-        ================
+        https://vuex-orm.org/guide/model/relationships.html#one-to-one
         When all SS are displayed I want to show the selected SS in button primary color.
         So I want to create a big row that has data from master and child
         see add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped
