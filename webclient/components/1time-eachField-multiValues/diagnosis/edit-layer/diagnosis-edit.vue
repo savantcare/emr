@@ -1,11 +1,5 @@
 <template>
-  <fieldMultiValuesAdd
-    propComponentName="diagnosis"
-    propReferToComponentInUiAtSingularClassification="diagnosis"
-    propReferToComponentInUiAtPluralClassification="diagnosis"
-    :propFormFields="dataFormFields"
-    :firstProp="firstProp"
-  ></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesAdd>
 </template>
 
 <script>
@@ -14,7 +8,12 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      ctDef: {
+        id: 'diagnosis',
+        plural: 'diagnosis',
+        singular: 'diagnosis',
+        fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      },
     }
   },
   props: {

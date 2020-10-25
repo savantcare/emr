@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <fieldMultiValuesAdd propComponentName="diagnosis" :propFormFields="dataFormFields"> </fieldMultiValuesAdd>
+  <fieldMultiValuesAdd :propCtDef="ctDef"> </fieldMultiValuesAdd>
 </template>
 
 <script>
@@ -10,11 +10,16 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'Diagnosis', fieldType: 'select', span: 8, selectOptions: this.optionList() },
-        { fieldName: 'Assessment', fieldType: 'textarea', span: 8 },
-        { fieldName: 'Onset', fieldType: '', span: 8 },
-      ],
+      ctDef: {
+        id: 'diagnosis',
+        plural: 'diagnosis',
+        singular: 'diagnosis',
+        fields: [
+          { fieldName: 'Diagnosis', fieldType: 'select', span: 8, selectOptions: this.optionList() },
+          { fieldName: 'Assessment', fieldType: 'textarea', span: 8 },
+          { fieldName: 'Onset', fieldType: '', span: 8 },
+        ],
+      },
     }
   },
 
