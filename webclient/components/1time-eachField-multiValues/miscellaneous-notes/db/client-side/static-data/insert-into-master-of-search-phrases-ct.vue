@@ -14,26 +14,26 @@ export default {
   mounted() {
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'misc-notes',
+        value: 'miscellaneous_notes',
         ctAbbr: 'rem',
-        ctToShow: '1time-eachField-multiValues/misc-notes/view-layer/timeline-ct.vue',
+        ctToShow: '1time-eachField-multiValues/miscellaneous-notes/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add misc-notes',
+        value: 'add miscellaneous_notes',
         ctAbbr: 'arem',
-        ctToShow: '1time-eachField-multiValues/misc-notes/edit-layer/add-ct.vue',
+        ctToShow: '1time-eachField-multiValues/miscellaneous-notes/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit misc-notes',
+        value: 'edit miscellaneous_notes',
         ctAbbr: 'crem',
-        ctToShow: '1time-eachField-multiValues/misc-notes/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-eachField-multiValues/miscellaneous-notes/edit-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -41,18 +41,18 @@ export default {
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'multi edit misc-notes',
+        value: 'multi edit miscellaneous_notes',
         ctAbbr: 'mcrem',
-        ctToShow: '1time-eachField-multiValues/misc-notes/edit-layer/medit-design-1.vue',
+        ctToShow: '1time-eachField-multiValues/miscellaneous-notes/edit-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
     })
     clientSideTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted misc-notes',
+        value: 'deleted miscellaneous_notes',
         ctAbbr: 'drem',
-        ctToShow: '1time-eachField-multiValues/misc-notes/view-layer/deleted.vue',
+        ctToShow: '1time-eachField-multiValues/miscellaneous-notes/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

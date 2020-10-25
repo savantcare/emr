@@ -1,5 +1,3 @@
-<!-- Reference implementation -->
-<!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
   <fieldMultiValuesAdd :propCtDef="ctDef"></fieldMultiValuesAdd>
 </template>

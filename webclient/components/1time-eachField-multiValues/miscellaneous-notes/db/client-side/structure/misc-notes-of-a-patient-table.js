@@ -16,17 +16,17 @@ export default class misc_notes extends clientTblManage {
     On 8001 php/lumen/eloquent is running
     
     To check if the api is working you can enter this in the browser:
-    http://127.0.0.1:8000/misc-notes/getAll
+    http://127.0.0.1:8000/miscellaneous-notes/getAll
 
     To make post request:
-    enter http://127.0.0.1:8000/misc-notes/getAll in https://hoppscotch.io/
+    enter http://127.0.0.1:8000/miscellaneous-notes/getAll in https://hoppscotch.io/
 
     Options:
     1. static apiUrl = process.env.baseUrl + '/misc-notes'
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/misc-notes/v20'
+  static apiUrl = 'http://localhost:8000/public/api/miscellaneous-notes/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

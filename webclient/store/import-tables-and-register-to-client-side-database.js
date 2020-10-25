@@ -94,7 +94,7 @@ database.register(tableStructureForChiefComplaint)
 import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 
-import tableStructureForMiscNotes from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import tableStructureForMiscNotes from '~/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 database.register(tableStructureForMiscNotes)
 
 import tableStructureForPlanComments from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'

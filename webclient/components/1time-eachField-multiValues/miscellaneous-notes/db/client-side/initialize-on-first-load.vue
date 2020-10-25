@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientTbl from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import initializeRecommendationComponent from '@/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import clientTbl from '~/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 
 export default {
   components: {

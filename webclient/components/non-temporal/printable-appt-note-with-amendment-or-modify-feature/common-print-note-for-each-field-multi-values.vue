@@ -142,7 +142,7 @@ import allergiesClientTbl from '@/components/1time-eachField-multiValues/allergi
 import chiefComplaintClientTbl from '@/components/1time-eachField-multiValues/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import diagnosisClientTbl from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '@/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-import miscNotesClientTbl from '@/components/1time-eachField-multiValues/misc-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 import planCommentsClientTbl from '@/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientTbl from '@/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'

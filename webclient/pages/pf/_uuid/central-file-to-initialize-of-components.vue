@@ -85,7 +85,7 @@ import initializeProsComponent from '@/components/1time-eachField-1value/psych-r
 import initializeAllergiesComponent from '@/components/1time-eachField-multiValues/allergies/db/client-side/initialize-on-first-load.vue'
 import initializeChiefComplaintComponent from '~/components/1time-eachField-multiValues/chief-complaint/db/client-side/initialize-on-first-load.vue'
 import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
-import initializeMiscNotesComponent from '~/components/1time-eachField-multiValues/misc-notes/db/client-side/initialize-on-first-load.vue'
+import initializeMiscNotesComponent from '~/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
 import initializePlanCommentsComponent from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/initialize-on-first-load.vue'
 import initializeProcessNotesComponent from '~/components/1time-eachField-multiValues/process-notes/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/1time-eachField-multiValues/recommendations/db/client-side/initialize-on-first-load.vue'

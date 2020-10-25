@@ -8,10 +8,9 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      ctDef: process.env.planCommentsCtDef,
+      ctDef: process.env.miscellaneousNotesCtDef,
     }
   },
-
   components: {
     fieldMultiValuesAdd,
   },
