@@ -51,6 +51,17 @@ export default {
     // Family history
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
+    chiefComplaintCtDef: {
+      id: 'chief_complaint',
+      plural: 'chief complaint',
+      singular: 'chief complaint',
+      fields: [{ fieldName: 'description', fieldType: '', span: 12 }],
+      addMoreRow: false,
+      removeRow: false,
+      formReviewed: false,
+      resetForm: false,
+      headerMultiEdit: false,
+    },
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.

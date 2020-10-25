@@ -10,17 +10,7 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      ctDef: {
-        id: 'chief_complaint',
-        plural: 'chief complaint',
-        singular: 'chief complaint',
-        fields: [{ fieldName: 'description', fieldType: '', span: 12 }],
-        addMoreRow: false,
-        removeRow: false,
-        formReviewed: false,
-        resetForm: false,
-        headerMultiEdit: false,
-      },
+      ctDef: process.env.chiefComplaintCtDef,
     }
   },
   components: {
