@@ -12,8 +12,13 @@
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
               <div v-if="propFieldObj.fieldType === 'select'">
-                <el-select v-model="value" placeholder="Name of diagnosis">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                <el-select v-model="value" filterable placeholder="Name of diagnosis">
+                  <el-option
+                    v-for="item in propFieldObj.selectOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
                   </el-option>
                 </el-select>
               </div>
