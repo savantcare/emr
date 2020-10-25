@@ -66,7 +66,7 @@
           >Reviewed</el-button
         >
         <el-button
-          v-if="propCtDef.addMoreRow !== false"
+          v-if="mfGetArOfDataRows(this.currentApptObj) < propCtDef.maxRows || !propCtDef.maxRows"
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
@@ -183,6 +183,19 @@ export default {
     },
   },
   methods: {
+    mfGetArOfDataRows(pApptObj) {
+      if (!pApptObj) return
+      let arOfObjectsFromClientDB = []
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
+          .query()
+          .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
+          .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
+          .get()
+      }
+      return arOfObjectsFromClientDB
+    },
+
     async mfAddEmptyRowInEditLayerientSideTable() {
       console.log(this.propCtDef.fields)
       // TODO: this should be part of base class
