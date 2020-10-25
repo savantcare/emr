@@ -74,6 +74,15 @@ export default {
       singular: 'reminder',
       fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
     },
+    familyHistoryCtDef: {
+      id: 'family_history',
+      plural: 'family history',
+      singular: 'family history',
+      fields: [
+        { fieldName: 'relationship', fieldType: '', span: 6 },
+        { fieldName: 'description', fieldType: 'textarea', span: 12 },
+      ],
+    },
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.

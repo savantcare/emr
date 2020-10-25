@@ -1,12 +1,6 @@
 <template>
   <div>
-    <printNote
-      propComponentName="family_history"
-      :propApptId="propApptId"
-      propReferToComponentInUiAtSingularClassification="family history"
-      propReferToComponentInUiAtPluralClassification="family history"
-      :propFormFields="dataFormFields"
-    ></printNote>
+    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
   </div>
 </template>
 
@@ -25,10 +19,7 @@ export default {
   },
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-      ],
+      ctDef: process.env.familyHistoryCtDef,
     }
   },
 }

@@ -1,10 +1,5 @@
 <template>
-  <fieldMultiValuesAdd
-    propComponentName="family_history"
-    :propFormFields="dataFormFields"
-    propReferToComponentInUiAtSingularClassification="family history"
-    propReferToComponentInUiAtPluralClassification="family history"
-  ></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd :propCtDef="ctDef"></fieldMultiValuesAdd>
 </template>
 
 <script>
@@ -13,10 +8,7 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-      ],
+      ctDef: process.env.familyHistoryCtDef,
     }
   },
 
