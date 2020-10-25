@@ -23,6 +23,7 @@
                 @select="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
               ></el-autocomplete>
               <!-- Do the following when it is select type field -->
+              <!--
               <el-select
                 v-if="propFieldObj.fieldType === 'select'"
                 v-model="value"
@@ -37,7 +38,7 @@
                   @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 >
                 </el-option>
-              </el-select>
+              </el-select> -->
               <!-- Do the following when it is input type field -->
               <el-input
                 v-else

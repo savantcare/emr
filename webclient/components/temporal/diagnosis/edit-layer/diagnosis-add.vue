@@ -18,10 +18,7 @@ export default {
     fieldMultiValuesAdd,
   },
   created() {
-    this.ctDef.fields[0].selectOptions = this.optionList
-  },
-  computed: {
-    optionList() {
+    ;(this.ctDef.fields[0].selectOptions = function () {
       const options = [
         {
           value: 'Option1',
@@ -44,8 +41,11 @@ export default {
           label: 'Option5',
         },
       ]
+      console.log('inside the fn to return select options')
       return options
-    },
+    }),
+      console.log(this.ctDef)
   },
+  computed: {},
 }
 </script>
