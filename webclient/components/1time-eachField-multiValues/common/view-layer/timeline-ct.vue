@@ -8,7 +8,7 @@
   <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
       <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">{{
-        propComponentName
+        propCtDef.id
       }}</span>
       <el-button-group style="float: right">
         <el-button
@@ -106,19 +106,30 @@ export default {
     return {}
   },
   props: {
-    propComponentName: {
-      type: String,
+    propCtDef: {
+      type: Object,
       required: true,
-      validator: (value) => Object.keys(clientTbl).includes(value),
+      validator: function (obj) {
+        // id and fields must be present
+        if (obj.id) {
+          if (obj.fields) {
+            if (Object.keys(clientTbl).includes(obj.id)) {
+              return true
+            }
+          }
+        }
+
+        return false
+      },
     },
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', this.propComponentName).get()
+      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', this.propCtDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = clientTbl[this.propComponentName].fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl[this.propCtDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

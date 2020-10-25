@@ -1,20 +1,14 @@
 <template>
-  <fieldMultiValuesAdd
-    propComponentName="reminders"
-    propReferToComponentInUiAtSingularClassification="reminder"
-    propReferToComponentInUiAtPluralClassification="reminders"
-    :propFormFields="dataFormFields"
-    :firstProp="firstProp"
-  ></fieldMultiValuesAdd>
+  <fieldMultiValuesEdit :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesEdit>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
+import fieldMultiValuesEdit from '@/components/1time-eachField-multiValues/common/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      ctDef: process.env.remindersCtDef,
     }
   },
   props: {
@@ -28,7 +22,7 @@ export default {
   },
 
   components: {
-    fieldMultiValuesAdd,
+    fieldMultiValuesEdit,
   },
 }
 </script>
