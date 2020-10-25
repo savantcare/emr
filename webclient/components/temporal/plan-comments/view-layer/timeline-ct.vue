@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components/temporal/common/view-layer/timeline-ct.vue'
+import timeLineView from '@/components/temporal/1-core/view-layer/timeline-ct.vue'
 
 export default {
   components: { timeLineView },

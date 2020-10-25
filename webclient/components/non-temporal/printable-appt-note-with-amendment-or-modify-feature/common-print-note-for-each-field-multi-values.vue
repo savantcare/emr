@@ -152,7 +152,7 @@ import processNotesClientTbl from '@/components/temporal/process-notes/db/client
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clInvokeMixin from '@/components/temporal/common/view-layer/cl-invoke-mixin.js'
+import clInvokeMixin from '@/components/temporal/1-core/view-layer/cl-invoke-mixin.js'
 
 // defining all rows in this object
 const clientTbl = {
