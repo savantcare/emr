@@ -323,6 +323,7 @@ export default {
 <style scoped>
 .header3:hover .el-button-group {
   display: inline-block !important;
+  position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
 }
 
 /* For multi edit */
