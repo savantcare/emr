@@ -10,8 +10,9 @@
           <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
-              <!-- There are 2 possibilities input type field or select type field -->
-              <!-- Do the following when it is auto-complete type field -->
+              <!-- There are 4 possibilities of field type -->
+
+              <!-- Field type 1: Do the following when it is auto-complete type field -->
               <el-autocomplete
                 v-if="propFieldObj.fieldType === 'autocomplete'"
                 v-model="searchKeyword"
@@ -22,8 +23,10 @@
                 :highlight-first-item="true"
                 @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
               ></el-autocomplete>
-              <!-- Do the following when it is select type field -->
 
+              <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">{{ propFieldObj.fieldName }}</div>
+
+              <!-- Field type 2: Do the following when it is select type field -->
               <el-select
                 v-else-if="propFieldObj.fieldType === 'select'"
                 v-model="value"
@@ -39,7 +42,8 @@
                 >
                 </el-option>
               </el-select>
-              <!-- Do the following when it is input type field -->
+
+              <!-- Field type 3: Do the following when it is input type field -->
               <el-input
                 v-else
                 :ref="propFieldObj.fieldName"
@@ -50,6 +54,9 @@
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
               ></el-input>
+
+              <!-- Do validation -->
+
               <div v-if="ormRow.isValidationError" class="el-form-item__error">Please enter minimum 3 characters.</div>
             </el-col>
             <!-- Just ended processing all the fields in the row -->
