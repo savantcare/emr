@@ -14,13 +14,13 @@
               <!-- Do the following when it is auto-complete type field -->
               <el-autocomplete
                 v-if="propFieldObj.fieldType === 'autocomplete'"
+                v-model="searchKeyword"
                 class="inline-input"
                 :fetch-suggestions="propFieldObj.selectOptions"
                 :placeholder="propFieldObj.fieldName"
                 style="width: 100%"
                 :highlight-first-item="true"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
-                @select="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+                @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
               ></el-autocomplete>
               <!-- Do the following when it is select type field -->
 
@@ -164,6 +164,9 @@ const clientTbl = {
 
 export default {
   created() {},
+  data() {
+    return { searchKeyword: '' }
+  },
   props: {
     propCtDef: {
       type: Object,
@@ -239,6 +242,7 @@ export default {
       return clientTbl[this.propCtDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
+      console.log(pEvent, pClientRowId, pFldName)
       const rowStatus = 24
       clientTbl[this.propCtDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache

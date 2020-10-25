@@ -22,24 +22,24 @@ export default {
     ;(this.ctDef.fields[0].selectOptions = function (pQueryString, pCallBack) {
       const options = [
         {
-          value: 'Option1',
-          label: 'Option1',
+          id: '1',
+          value: 'ADHD',
         },
         {
-          value: 'Option2',
-          label: 'Option2',
+          id: '2',
+          value: 'Depression',
         },
         {
-          value: 'Option3',
-          label: 'Option3',
+          id: '3',
+          value: 'Anxiety',
         },
         {
-          value: 'Option4',
-          label: 'Option4',
+          id: '4',
+          value: 'Flu',
         },
         {
-          value: 'Option5',
-          label: 'Option5',
+          id: '5',
+          value: 'Pain',
         },
       ]
       console.log('inside the fn to return select options')
