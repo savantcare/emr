@@ -126,6 +126,7 @@ export default {
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
           .get()
       }
+      console.log(arOfObjectsFromClientDB)
       return arOfObjectsFromClientDB
     },
   },
