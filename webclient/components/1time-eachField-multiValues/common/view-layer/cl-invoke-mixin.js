@@ -29,7 +29,7 @@ export default {
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: this.propComponentName,
+        searchTerm: this.propCtDef.id,
       })
     },
     mxOpenDDialog() {
@@ -45,9 +45,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientTbl[this.propComponentName].fnSendMultiDeleteDataToServer(
-              this.daSelectedRemForDelete
-            )
+            const status = await clientTbl[this.propCtDef.id].fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
             if (status.success > 0) {
               this.$message({
                 type: 'success',
@@ -68,7 +66,7 @@ export default {
         })
     },
     async mxOpenTrashCanCtInEditLayer() {
-      const deletedRows = await clientTbl[this.propComponentName].fnGetDeletedRows()
+      const deletedRows = await clientTbl[this.propCtDef.id].fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
         const arRow = []
@@ -97,12 +95,12 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit ' + this.propComponentName, pPropsToGiveToCt: pClientDataRowId }
+      const payload = { searchTerm: 'edit ' + this.propCtDef.id, pPropsToGiveToCt: pClientDataRowId }
       console.log(payload)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfIconDeleteClickedOnChildCard(pClientDataRowId) {
-      const arResultsFromOrm = clientTbl[this.propComponentName].find(pClientDataRowId)
+      const arResultsFromOrm = clientTbl[this.propCtDef.id].find(pClientDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
         confirmButtonText: 'Delete',
@@ -110,7 +108,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientTbl[this.propComponentName].fnSendDeleteDataToServer(
+          const status = await clientTbl[this.propCtDef.id].fnSendDeleteDataToServer(
             pClientDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value
