@@ -1,4 +1,68 @@
+<!-- 
+
+Goal: 
+1. When cursor is inside the top most card header then make the default action icon in the card header larger size 
+2. When cursor goes over any other icon then make the default action back to normal size.
+3. Allow the component using this system to specify what the default action is.
+
+Logic sequence is
+Step1: Apply a unique class to the default action.
+        Done by mfGetClassForCardHeaderActionIcon
+Step2: Inside this class make font-size a css/vue variable
+        See line 345
+Step3: Make this vue variable take value of 1 or 1.5 depending on where the mouse pointer is
+       Done by sendCssVariablesToStyleSheet      
+Step4: Inner working of sendCssVariablesToStyleSheet
+      vue sets the font-size based on following logic:
+      1. If the mouse over some other icon then font-size = 1
+      2. If the mouse is over this icon or in the header then font-size = 1.5
+
+5 key concepts 
+1. Rule
+2. Class
+3. id -> one of each on entire page. To target a ID you have to do #id-name
+4. Space meaning look inside (https://www.youtube.com/watch?v=dcCCOiQ1ZuM)
+5. classA, classB means apply rule to classA and to classB
+
+Generation ->
+==============
+                                       .s-css-class-outer-most-card
+ Generation 1                                      |
+==============                     _________________________________
+                                  |                                |
+                    .s-css-class-outer-most-card-header              |
+ Generatiobn 2                                                     |
+                                    _______________________________|
+                                  |
+                  ..s-css-class-outer-most-card-body-grid-min-200px-max-1fr
+==============                    |
+                                  |
+                   .sc-individual-child-card
+Generatiobn 3                     |
+                       ________________________________________________________________________________
+                      |                                 |                                             |
+        .sc-individual-child-card-content    .sc-individual-child-card-info-icon           .sc-individual-child-card-delete-icon
+
+==============
+*/
+
+/* Generation Level 1. 
+s-css-class-outer-most-card  class is applied in Line 4 of this file
+Every card in element.io has the class .el-card__header so .el-card__header is not explicitly applied.
+
+.s-css-class-outer-most-card .el-card__header => This will mean apply to an element that has 
+1. A prent with the class .s-css-class-outer-most-card
+2. This element has .el-card__header
+
+.s-css-class-outer-most-card.el-card__header => This will mean apply to an element that has both
+1. s-css-class-outer-most-card
+2. el-card__header
+
+-->
+
 <template>
+  <!-- v-if gives a cross button to completely hide the card. This is useful for scBrain when doctor might want to 
+  create a preferred view  -->
   <el-card
     shadow="hover"
     class="box-card s-css-class-outer-most-card"
@@ -255,49 +319,6 @@ export default {
 </script>
 
 <style>
-/* 
-
-5 key concepts 
-1. Rule
-2. Class
-3. id -> one of each on entire page. To target a ID you have to do #id-name
-4. Space meaning look inside (https://www.youtube.com/watch?v=dcCCOiQ1ZuM)
-5. classA, classB means apply rule to classA and to classB
-
-Generation ->
-==============
-                                       .s-css-class-outer-most-card
- Generation 1                                      |
-==============                     _________________________________
-                                  |                                |
-                    .s-css-class-outer-most-card-header              |
- Generatiobn 2                                                     |
-                                    _______________________________|
-                                  |
-                  ..s-css-class-outer-most-card-body-grid-min-200px-max-1fr
-==============                    |
-                                  |
-                   .sc-individual-child-card
-Generatiobn 3                     |
-                       ________________________________________________________________________________
-                      |                                 |                                             |
-        .sc-individual-child-card-content    .sc-individual-child-card-info-icon           .sc-individual-child-card-delete-icon
-
-==============
-*/
-
-/* Generation Level 1. 
-s-css-class-outer-most-card  class is applied in Line 4 of this file
-Every card in element.io has the class .el-card__header so .el-card__header is not explicitly applied.
-
-.s-css-class-outer-most-card .el-card__header => This will mean apply to an element that has 
-1. A prent with the class .s-css-class-outer-most-card
-2. This element has .el-card__header
-
-.s-css-class-outer-most-card.el-card__header => This will mean apply to an element that has both
-1. s-css-class-outer-most-card
-2. el-card__header
-*/
 .s-css-class-outer-most-card .el-card__header {
   /* Goal: Manage Distance from border to content in header*/
   padding: 0.1rem !important;
@@ -327,22 +348,6 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
   display: inline-block !important;
 }
 
-/* Goal: 
-1. When cursor is inside the top most card header then make the default action icon in the card header larger size 
-2. When cursor goes over any other icon then make the default action back to normal size.
-
-Logic sequence is
-Step1: Apply a unique class to the default action.
-        Done by mfGetClassForCardHeaderActionIcon
-Step2: Inside this class make font-size a css/vue variable
-        See line 345
-Step3: Make this vue variable take value of 1 or 1.5 depending on where the mouse pointer is
-       Done by sendCssVariablesToStyleSheet      
-Step4: Inner working of sendCssVariablesToStyleSheet
-      vue sets the font-size based on following logic:
-      1. If the mouse over some other icon then font-size = 1
-      2. If the mouse is over this icon or in the header then font-size = 1.5
-*/
 .el-card__header:hover
   .s-css-class-outer-most-card-header
   .s-css-class-this-is-icon-of-default-action-in-this-card-header {

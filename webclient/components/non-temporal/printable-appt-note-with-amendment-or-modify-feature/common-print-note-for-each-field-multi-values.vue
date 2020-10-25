@@ -326,28 +326,6 @@ export default {
   position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
 }
 
-/* For multi edit */
-.el-icon-money:hover {
-  font-size: 1rem;
-}
-
-/* For add */
-.el-icon-circle-plus-outline:hover {
-  font-size: 1rem;
-}
-
-/* For minimize */
-.el-icon-remove-outline:hover {
-  font-size: 1rem;
-}
-
-.el-icon-edit-outline:hover {
-  font-size: 1rem;
-}
-
-.el-icon-remove-outline:hover {
-  font-size: 1rem;
-}
 h3 {
   border-bottom: 1px solid #dcdfe6;
   margin-top: 1rem;
