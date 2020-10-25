@@ -11,7 +11,7 @@
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
-              <!-- Do the following when it is select type field -->
+              <!-- Do the following when it is auto-complete type field -->
               <el-autocomplete
                 v-if="propFieldObj.fieldType === 'autocomplete'"
                 class="inline-input"
@@ -22,6 +22,7 @@
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 @select="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
               ></el-autocomplete>
+              <!-- Do the following when it is select type field -->
               <el-select
                 v-if="propFieldObj.fieldType === 'select'"
                 v-model="value"
