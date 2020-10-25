@@ -82,14 +82,14 @@ import initializePhq9Component from '@/components/1time-eachField-1value/phq9/db
 import initializeProsComponent from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // START: Each field can take multiple values at 1 time in the temporal database
-import initializeAllergiesComponent from '@/components/1time-eachField-multiValues/allergies/db/client-side/initialize-on-first-load.vue'
-import initializeChiefComplaintComponent from '~/components/1time-eachField-multiValues/chief-complaint/db/client-side/initialize-on-first-load.vue'
-import initializeFamilyHistoryComponent from '@/components/1time-eachField-multiValues/family-history/db/client-side/initialize-on-first-load.vue'
-import initializeMiscNotesComponent from '~/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
-import initializePlanCommentsComponent from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/initialize-on-first-load.vue'
-import initializeProcessNotesComponent from '~/components/1time-eachField-multiValues/process-notes/db/client-side/initialize-on-first-load.vue'
-import initializeRecComponent from '@/components/1time-eachField-multiValues/recommendations/db/client-side/initialize-on-first-load.vue'
-import initializeRemComponent from '@/components/1time-eachField-multiValues/reminders/db/client-side/initialize-on-first-load.vue'
+import initializeAllergiesComponent from '@/components/temporal/allergies/db/client-side/initialize-on-first-load.vue'
+import initializeChiefComplaintComponent from '~/components/temporal/chief-complaint/db/client-side/initialize-on-first-load.vue'
+import initializeFamilyHistoryComponent from '@/components/temporal/family-history/db/client-side/initialize-on-first-load.vue'
+import initializeMiscNotesComponent from '~/components/temporal/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
+import initializePlanCommentsComponent from '~/components/temporal/plan-comments/db/client-side/initialize-on-first-load.vue'
+import initializeProcessNotesComponent from '~/components/temporal/process-notes/db/client-side/initialize-on-first-load.vue'
+import initializeRecComponent from '@/components/temporal/recommendations/db/client-side/initialize-on-first-load.vue'
+import initializeRemComponent from '@/components/temporal/reminders/db/client-side/initialize-on-first-load.vue'
 // END
 
 import initializeServiceStatementComponent from '@/components/1time-eachField-1value/service-statement/db/client-side/initialize-on-first-load.vue'
@@ -99,12 +99,12 @@ import initializePastPsychHistoryComponent from '@/components/1time-eachField-1v
 import initializeMedicalReviewOfSystemsComponent from '@/components/1time-eachField-1value/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
-import initializePhoneNumberComponent from '@/components/1time-eachField-multiValues/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeDiagnosisComponent from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
+import initializePhoneNumberComponent from '@/components/temporal/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDiagnosisComponent from '@/components/temporal/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
 import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import clientTblOfAppointmentsInsertData from '@/components/1time-eachField-multiValues/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientTblOfAppointmentsInsertData from '@/components/temporal/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 
 export default {
   components: {

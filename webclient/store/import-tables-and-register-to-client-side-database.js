@@ -15,8 +15,8 @@ database.register(tableStructureForCommon)
 database.register(tableStructureForStoreMessageFromOtherComponent)
 
 // Appointments
-import clientTblOfAppointments from '~/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientTblOfAppointments from '~/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
 database.register(clientTblOfAppointments)
 database.register(clientTblOfAddendums)
 
@@ -45,7 +45,7 @@ database.register(tableStructureForTemperature)
 database.register(tableStructureForPulse)
 
 // Screening tables
-import tableStructureForScr from '~/components/1time-eachField-multiValues/screens/db/client-side/structure/Screening'
+import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/Screening'
 import tableStructureForPhq9Master from '~/components/1time-eachField-1value/phq9/db/client-side/structure/master-table-of-phq9.js'
 import tableStructureForPhq9OfPatient from '~/components/1time-eachField-1value/phq9/db/client-side/structure/patient-table-of-phq9.js'
 database.register(tableStructureForScr)
@@ -85,28 +85,28 @@ database.register(tableStructureForPROSOfPatient)
 
 // START: Each field can take multiple values at 1 time in the temporal database
 
-import tableStructureForAllergies from '~/components/1time-eachField-multiValues/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import tableStructureForAllergies from '~/components/temporal/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 database.register(tableStructureForAllergies)
 
-import tableStructureForChiefComplaint from '~/components/1time-eachField-multiValues/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import tableStructureForChiefComplaint from '~/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 database.register(tableStructureForChiefComplaint)
 
-import tableStructureForFH from '~/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import tableStructureForFH from '~/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 
-import tableStructureForMiscNotes from '~/components/1time-eachField-multiValues/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import tableStructureForMiscNotes from '~/components/temporal/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
 database.register(tableStructureForMiscNotes)
 
-import tableStructureForPlanComments from '~/components/1time-eachField-multiValues/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import tableStructureForPlanComments from '~/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 database.register(tableStructureForPlanComments)
 
-import tableStructureForProcessNotes from '~/components/1time-eachField-multiValues/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import tableStructureForProcessNotes from '~/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 database.register(tableStructureForProcessNotes)
 
-import tableStructureForRec from '~/components/1time-eachField-multiValues/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import tableStructureForRec from '~/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 database.register(tableStructureForRec)
 
-import tableStructureForRem from '~/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import tableStructureForRem from '~/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)
 
 // END
@@ -117,13 +117,13 @@ database.register(tableStructureForName)
 import tableStructureForDob from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
 database.register(tableStructureForDob)
 
-import tableStructureForGoal from '~/components/1time-eachField-multiValues/goals/db/client-side/structure/Goal'
+import tableStructureForGoal from '~/components/temporal/goals/db/client-side/structure/Goal'
 database.register(tableStructureForGoal)
 
-import tableStructureForPhoneNumbers from '~/components/1time-eachField-multiValues/phone-numbers/db/client-side/structure/table.js'
+import tableStructureForPhoneNumbers from '~/components/temporal/phone-numbers/db/client-side/structure/table.js'
 database.register(tableStructureForPhoneNumbers)
 
-import tableStructureForPatientDiagnosis from '~/components/1time-eachField-multiValues/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
+import tableStructureForPatientDiagnosis from '~/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 database.register(tableStructureForPatientDiagnosis)
 
 export default database
