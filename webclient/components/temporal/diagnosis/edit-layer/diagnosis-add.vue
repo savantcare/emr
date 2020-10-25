@@ -17,7 +17,10 @@ export default {
   components: {
     fieldMultiValuesAdd,
   },
-  methods: {
+  created() {
+    this.ctDef.fields[0].selectOptions = this.optionList
+  },
+  computed: {
     optionList() {
       const options = [
         {
