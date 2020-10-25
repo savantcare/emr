@@ -63,6 +63,7 @@
         </div>
       </el-col>
     </el-row>
+    <!-- This starts after the header ends -->
     <div :style="cfGetDataRowStyle">
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
@@ -320,7 +321,7 @@ export default {
 </script>
 
 <style scoped>
-.header3 .el-button-group {
+.header3:hover .el-button-group {
   display: inline-block !important;
 }
 

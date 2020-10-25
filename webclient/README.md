@@ -5,7 +5,7 @@ Which CSS pre processor?
 # CSS in JS
 
 Styled componenent: 31K
-Empotion: 12K
+Emotion: 12K https://github.com/emotion-js/emotion
 
 # CSS pre-processor
 
