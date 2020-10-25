@@ -4,8 +4,7 @@
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading">{{
-        propReferToComponentInUiAtPluralClassification.charAt(0).toUpperCase() +
-        propReferToComponentInUiAtPluralClassification.slice(1)
+        propCtDef.plural.charAt(0).toUpperCase() + propCtDef.plural.slice(1)
       }}</el-col>
       <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
@@ -22,7 +21,7 @@
                   icon="el-icon-check"
                   style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, propComponentName)"
+                  @click="mfSaveAddendum(amendmentData, propCtDef.id)"
                   circle
                 ></el-button>
               </div>
@@ -69,7 +68,7 @@
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some may have 1 and other may have 4 fields -->
-            <td v-for="(propFieldObj, id) in propFormFields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
+            <td v-for="(propFieldObj, id) in propCtDef.fields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
               {{ row[propFieldObj.fieldName] }}
             </td>
             <!-- This is for action assocaited with each row -->
@@ -183,17 +182,9 @@ export default {
       type: Number,
       required: true,
     },
-    propComponentName: {
-      type: String,
+    propCtDef: {
+      type: Object,
       required: true,
-      validator: (value) => Object.keys(clientTbl).includes(value),
-    },
-    propFormFields: {
-      type: Array,
-      required: true,
-    },
-    propReferToComponentInUiAtPluralClassification: {
-      type: String,
     },
   },
   async mounted() {
@@ -266,7 +257,7 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this.propComponentName
+      const term = 'add ' + this.propCtDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
@@ -291,13 +282,13 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propComponentName]
+        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
           .query()
           .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
           .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
           .get()
       } else {
-        arOfObjectsFromClientDB = clientTbl[this.propComponentName]
+        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

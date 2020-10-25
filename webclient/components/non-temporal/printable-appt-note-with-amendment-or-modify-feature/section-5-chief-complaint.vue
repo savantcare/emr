@@ -1,11 +1,6 @@
 <template>
   <div>
-    <printNote
-      propComponentName="chief_complaint"
-      :propApptId="propApptId"
-      :propFormFields="dataFormFields"
-      propReferToComponentInUiAtPluralClassification="chief complaint"
-    ></printNote>
+    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
   </div>
 </template>
 
@@ -24,7 +19,7 @@ export default {
   },
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: '', span: 12 }],
+      ctDef: process.env.chiefComplaintCtDef,
     }
   },
 }
