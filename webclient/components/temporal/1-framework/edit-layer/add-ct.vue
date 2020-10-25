@@ -149,6 +149,7 @@ import planCommentsClientTbl from '@/components/temporal/plan-comments/db/client
 import processNotesClientTbl from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 const clientTbl = {
   allergies: allergiesClientTbl,
@@ -160,6 +161,7 @@ const clientTbl = {
   process_notes: processNotesClientTbl,
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,
+  service_statements: serviceStatementClientTbl,
 }
 
 export default {

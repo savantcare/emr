@@ -8,7 +8,7 @@ import fieldMultiValuesEdit from '@/components/temporal/1-framework/edit-layer/e
 export default {
   data: function () {
     return {
-      ctDef: process.env.serviceStatementCtDef,
+      ctDef: process.env.serviceStatementsCtDef,
     }
   },
   props: {

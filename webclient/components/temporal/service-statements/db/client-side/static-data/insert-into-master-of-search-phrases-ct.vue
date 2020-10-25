@@ -30,9 +30,9 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted service statements',
+        value: 'add service_statements',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/service-statements/view-layer/deleted.vue',
+        ctToShow: 'temporal/service-statements/edit-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
