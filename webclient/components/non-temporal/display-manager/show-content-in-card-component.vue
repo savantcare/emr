@@ -507,6 +507,39 @@ Component           |  Side        | Location     | From front  | From back | No
   font-size: 1.5rem;
 }
 
+/* Used for Toggle card display at: 
+print note -> rec / rem/ fh / plan comment / misc note / process note
+*/
+.el-icon-full-screen:hover {
+  color: #e6a23c !important;
+  font-size: 1.5rem;
+}
+
+/* Used for left in the print note view: 
+print note -> rec / rem/ fh / plan comment / misc note / process note
+*/
+.el-icon-arrow-left:hover {
+  color: #e6a23c !important;
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+/* Used for right in the print note view: 
+print note -> rec / rem/ fh / plan comment / misc note / process note
+*/
+.el-icon-arrow-right:hover {
+  color: #e6a23c !important;
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+/* Used for compare note in the print note view: */
+.el-icon-document-copy:hover {
+  color: #e6a23c !important;
+  font-size: 1.5rem;
+  position: absolute;
+}
+
 /* Used for CLOSE at: 
 Component          |  Side         | Position    | From front  | Front back
 Service statement  |  Flexible     | Header      |   3         |    -1
