@@ -12,6 +12,16 @@
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
               <!-- Do the following when it is select type field -->
+              <el-autocomplete
+                v-if="propFieldObj.fieldType === 'autocomplete'"
+                class="inline-input"
+                :fetch-suggestions="propFieldObj.selectOptions"
+                :placeholder="propFieldObj.fieldName"
+                style="width: 100%"
+                :highlight-first-item="true"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+                @select="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+              ></el-autocomplete>
               <el-select
                 v-if="propFieldObj.fieldType === 'select'"
                 v-model="value"
@@ -22,7 +32,8 @@
                   v-for="item in propFieldObj.selectOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value"
+                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
+                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldName)"
                 >
                 </el-option>
               </el-select>

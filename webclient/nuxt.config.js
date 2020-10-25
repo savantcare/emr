@@ -74,7 +74,7 @@ export default {
       plural: 'diagnosis',
       singular: 'diagnosis',
       fields: [
-        { fieldName: 'diagnosis', fieldType: 'select', span: 8 },
+        { fieldName: 'diagnosis', fieldType: 'autocomplete', span: 8 },
         { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
         { fieldName: 'onset', fieldType: '', span: 8 },
       ],
