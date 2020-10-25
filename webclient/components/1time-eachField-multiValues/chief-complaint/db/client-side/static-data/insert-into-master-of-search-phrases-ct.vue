@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add chief-complaint',
         ctAbbr: 'arem',
-        ctToShow: '1time-eachField-multiValues/chief-complaint/edit-layer/add-ct.vue',
+        ctToShow: '1time-eachField-multiValues/chief-complaint/edit-layer/add-chief-complaint.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
