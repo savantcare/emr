@@ -61,7 +61,7 @@
 
 <script>
 // Data tables
-import clientTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfPatientServiceStatements from '@/components/temporal/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
