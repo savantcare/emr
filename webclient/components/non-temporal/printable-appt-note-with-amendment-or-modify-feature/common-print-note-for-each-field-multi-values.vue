@@ -35,15 +35,17 @@
           <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
           <div v-else>
             <el-button-group style="float: left; display: none">
-              <!-- Add -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propCtDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
+                v-if="mfGetArOfDataRows(this.currentApptObj) < propCtDef.maxRows || !propCtDef.maxRows"
                 class="el-icon-circle-plus-outline"
                 size="mini"
                 @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
-              <!-- Multi edit -->
+              <!-- Multi edit. v-if stops giving multiedit when there is only 1 row -->
               <el-button
+                v-if="mfGetArOfDataRows(this.currentApptObj) > 1"
                 class="el-icon-money"
                 size="mini"
                 @click="mfOpenMultiEditCtInEditLayer"

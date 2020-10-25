@@ -66,11 +66,8 @@ export default {
       plural: 'chief complaint',
       singular: 'chief complaint',
       fields: [{ fieldName: 'description', fieldType: '', span: 12 }],
-      addMoreRow: false,
-      removeRow: false,
       formReviewed: false,
-      resetForm: false,
-      headerMultiEdit: false,
+      maxRows: 1,
     },
     diagnosisCtDef: {
       id: 'diagnosis',
