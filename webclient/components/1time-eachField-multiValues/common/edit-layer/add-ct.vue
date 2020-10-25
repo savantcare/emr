@@ -7,7 +7,7 @@
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Start to process each row -->
-          <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+          <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
@@ -74,7 +74,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
-        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
           <el-table-column :prop="propFieldObj.fieldName" :label="propFieldObj.fieldName"></el-table-column>
         </div>
       </el-table-column>
@@ -87,7 +87,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
-        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
           <el-table-column
             :prop="propFieldObj.fieldName"
             :label="propFieldObj.fieldName.charAt(0).toUpperCase() + propFieldObj.fieldName.slice(1)"
@@ -103,7 +103,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
-        <div v-for="(propFieldObj, id) in propFormFields" :key="id">
+        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
           <el-table-column prop="propFieldObj.fieldName" label="Attempted but failed to save"></el-table-column>
         </div>
       </el-table-column>
@@ -136,42 +136,34 @@ const clientTbl = {
 export default {
   created() {},
   props: {
-    propComponentName: {
-      type: String,
+    propCtDef: {
+      type: Object,
       required: true,
-      validator: (value) => Object.keys(clientTbl).includes(value),
-    },
-    propFormFields: {
-      type: Array,
-      required: true,
-    },
-    propReferToComponentInUiAtPluralClassification: {
-      type: String,
     },
   },
   computed: {
-    // clientTbl[this.propComponentName] functions can not be directly called from template. hence computed functions have been defined.
+    // clientTbl[this.propCtDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      return clientTbl[this.propComponentName].fnGetNewRowsInEditState()
+      return clientTbl[this.propCtDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return clientTbl[this.propComponentName].fnGetNewRowsInReadyToReviewedState()
+      return clientTbl[this.propCtDef.id].fnGetNewRowsInReadyToReviewedState()
     },
     cfGetClientTblApiSuccessStateRows() {
-      return clientTbl[this.propComponentName].fnGetNewRowsInApiSuccessState()
+      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientTblApiErrorStateRows() {
-      return clientTbl[this.propComponentName].fnGetNewRowsInApiErrorState()
+      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiErrorState()
     },
     cfGetClientTblApiSendingStateRows() {
-      return clientTbl[this.propComponentName].fnGetNewRowsInApiSendingState()
+      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     async mfAddEmptyRowInEditLayerientSideTable() {
-      console.log(this.propFormFields)
+      console.log(this.propCtDef.fields)
       // TODO: this should be part of base class
-      const arFromClientTbl = await clientTbl[this.propComponentName].insert({
+      const arFromClientTbl = await clientTbl[this.propCtDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -191,17 +183,17 @@ export default {
         this.$refs.description[lastElement - 1].focus()
       }
     },
-    // Cannot call clientTbl[this.propComponentName] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call clientTbl[this.propCtDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
-      return clientTbl[this.propComponentName].fnGetFldValue(pClientRowId, pFldName)
+      return clientTbl[this.propCtDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       const rowStatus = 24
-      clientTbl[this.propComponentName].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
+      clientTbl[this.propCtDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
-      const arFromClientTbl = clientTbl[this.propComponentName].find(pClientRowId)
+      const arFromClientTbl = clientTbl[this.propCtDef.id].find(pClientRowId)
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -209,24 +201,24 @@ export default {
       return ''
     },
     async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
-      await clientTbl[this.propComponentName].delete(pClientRowId)
+      await clientTbl[this.propCtDef.id].delete(pClientRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      clientTbl[this.propComponentName].fnDeleteNewRowsInEditState()
+      clientTbl[this.propCtDef.id].fnDeleteNewRowsInEditState()
     },
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propComponentName] ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propCtDef.id] ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propComponentName] since get benefit of caching.
+      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propCtDef.id] since get benefit of caching.
       if (arFromClientTbl.length) {
         console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
           if (arFromClientTbl[i].description.length < 3) {
             // Validation check
-            await clientTbl[this.propComponentName].update({
+            await clientTbl[this.propCtDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -235,7 +227,7 @@ export default {
               },
             })
           } else {
-            await clientTbl[this.propComponentName].update({
+            await clientTbl[this.propCtDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
@@ -247,7 +239,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await clientTbl[this.propComponentName].fnSendToServer()
+      await clientTbl[this.propCtDef.id].fnSendToServer()
     },
   },
 }

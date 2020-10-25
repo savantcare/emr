@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <fieldMultiValuesAdd propComponentName="chief_complaint" :propFormFields="dataFormFields"></fieldMultiValuesAdd>
+  <fieldMultiValuesAdd :propCtDef="ctDef"></fieldMultiValuesAdd>
 </template>
 
 <script>
@@ -10,7 +10,12 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: '', span: 12 }],
+      ctDef: {
+        id: 'chief_complaint',
+        plural: 'chief complaint',
+        singular: 'chief complaint',
+        fields: [{ fieldName: 'description', fieldType: '', span: 12 }],
+      },
     }
   },
   components: {
