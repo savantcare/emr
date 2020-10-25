@@ -51,14 +51,14 @@
 </template>
 
 <script>
-import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfServiceStatementForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
+      const arOfObjectsFromClientDB = clientTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
@@ -76,25 +76,22 @@ export default {
   },
   methods: {
     async mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
-      const exists = clientSideTblOfPatientServiceStatements
+      const exists = clientTblOfPatientServiceStatements
         .query()
         .where('clientSideUniqRowId', pClientUniqRowId)
         .where('ROW_END', 2147483648000)
         .get()
       if (exists.length > 0) {
-        const response = await fetch(
-          clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid,
-          {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              // "Authorization": "Bearer " + TOKEN
-            },
-            body: '',
-          }
-        )
+        const response = await fetch(clientTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: '',
+        })
         if (response.status === 200) {
-          clientSideTblOfPatientServiceStatements.update({
+          clientTblOfPatientServiceStatements.update({
             where: pClientUniqRowId,
             data: {
               ROW_END: Math.floor(Date.now()),

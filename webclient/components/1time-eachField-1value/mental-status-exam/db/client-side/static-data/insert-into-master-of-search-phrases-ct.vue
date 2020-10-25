@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfMentalStatusExamDuringInitOfCt from './insert-into-master-of-mental-status-exam-ct'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'mental status exam',
         ctAbbr: 'mse',
@@ -22,7 +22,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'mental status exam v2',
         ctAbbr: 'mse',
@@ -30,7 +30,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit mental status exam',
         ctAbbr: 'cmse',

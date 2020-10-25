@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterMedicalReviewOfSystems from '../db/client-side/structure/master-table-of-medical-review-of-systems.js'
-import clientSideTblOfPatientMedicalReviewOfSystems from '../db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+import clientTblOfMasterMedicalReviewOfSystems from '../db/client-side/structure/master-table-of-medical-review-of-systems.js'
+import clientTblOfPatientMedicalReviewOfSystems from '../db/client-side/structure/patient-table-of-medical-review-of-systems.js'
 
 export default {
   data() {
@@ -45,7 +45,7 @@ export default {
   computed: {
     cfGetMasterRowsOfMedicalReviewOfSystemsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterMedicalReviewOfSystems
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterMedicalReviewOfSystems
         .query()
         .with('tblMedicalReviewOfSystemsForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -97,21 +97,21 @@ export default {
     },
     mfSaveMedicalReviewOfSystemsInDB(pMedicalReviewOfSystemsMasterId) {
       // Goal1: Check if it already exists
-      const exists = clientSideTblOfPatientMedicalReviewOfSystems
+      const exists = clientTblOfPatientMedicalReviewOfSystems
         .query()
         .where('medicalReviewOfSystemsMasterId', pMedicalReviewOfSystemsMasterId)
         .where('ROW_END', 2147483648000)
         .get()
 
       if (exists.length > 0) {
-        clientSideTblOfPatientMedicalReviewOfSystems.update({
+        clientTblOfPatientMedicalReviewOfSystems.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now()),
           },
         })
       } else {
-        clientSideTblOfPatientMedicalReviewOfSystems.insert({
+        clientTblOfPatientMedicalReviewOfSystems.insert({
           data: {
             medicalReviewOfSystemsMasterId: pMedicalReviewOfSystemsMasterId,
             ROW_START: Math.floor(Date.now()),

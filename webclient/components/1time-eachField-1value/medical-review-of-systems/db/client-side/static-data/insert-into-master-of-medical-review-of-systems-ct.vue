@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfMasterMedicalReviewOfSystems from '@/components/1time-eachField-1value/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
+import clientTblOfMasterMedicalReviewOfSystems from '@/components/1time-eachField-1value/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Change in appetite',
@@ -22,7 +22,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Change in weight',
@@ -31,7 +31,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Night sweats',
@@ -40,7 +40,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Fatigue',
@@ -49,7 +49,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'None',
@@ -58,7 +58,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Difficulty sleeping',
@@ -67,7 +67,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Feeling hoter than everyone',
@@ -76,7 +76,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Sores that dont heal',
@@ -85,7 +85,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Seasonal allergier',
@@ -94,7 +94,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Pain in the front of your neck',
@@ -103,7 +103,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterMedicalReviewOfSystems.insert({
+    clientTblOfMasterMedicalReviewOfSystems.insert({
       data: {
         medicalReviewOfSystemsMasterId: i,
         medicalReviewOfSystemsDescription: 'Loss of vision',

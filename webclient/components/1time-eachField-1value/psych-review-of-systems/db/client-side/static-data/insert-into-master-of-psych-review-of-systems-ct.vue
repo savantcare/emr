@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Depressive mood',
@@ -23,7 +23,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Interest',
@@ -33,7 +33,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Sleep',
@@ -43,7 +43,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Gulf / Self esteem',
@@ -53,7 +53,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Energy',
@@ -63,7 +63,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Conc/Dist',
@@ -73,7 +73,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Appetite',
@@ -83,7 +83,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'PMR/PMA',
@@ -93,7 +93,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Obese',
@@ -102,7 +102,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Thin or cachectic',
@@ -111,7 +111,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Disheveled, unkempt',
@@ -120,7 +120,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Malodorous',
@@ -129,7 +129,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Pleasant and cooperative',
@@ -138,7 +138,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Uncooperative',
@@ -147,7 +147,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Hostile or defiant',
@@ -156,7 +156,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Guarded',
@@ -165,7 +165,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Evasive',
@@ -174,7 +174,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Apathetic',
@@ -183,7 +183,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Disorganized behavior',
@@ -192,7 +192,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Agitated',
@@ -201,7 +201,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Retarded',
@@ -210,7 +210,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Appropriate',
@@ -219,7 +219,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Downcast',
@@ -228,7 +228,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Intense',
@@ -237,7 +237,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPsychReviewOfSystems.insert({
+    clientTblOfMasterPsychReviewOfSystems.insert({
       data: {
         psychReviewOfSystemsMasterId: i,
         psychReviewOfSystemsDescription: 'Fleeting',

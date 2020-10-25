@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
@@ -33,14 +33,14 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
   },
 
   methods: {
     async lockButtonClicked() {
       console.log('lock button clicked')
       const clientSideUniqRowId = this.currentApptObj['clientSideUniqRowId']
-      let arOfObjectsFromClientDB = await clientSideTblOfAppointments.update({
+      let arOfObjectsFromClientDB = await clientTblOfAppointments.update({
         where: clientSideUniqRowId,
         data: {
           apptStatus: 'locked',
@@ -49,12 +49,12 @@ export default {
       })
 
       // In case there are no more appt then insert a appt. This is for testing.
-      arOfObjectsFromClientDB = await clientSideTblOfAppointments.query().where('apptStatus', 'unlocked').get()
+      arOfObjectsFromClientDB = await clientTblOfAppointments.query().where('apptStatus', 'unlocked').get()
 
       let newAppt = {}
 
       if (arOfObjectsFromClientDB.length === 0) {
-        newAppt = await clientSideTblOfAppointments.insert({
+        newAppt = await clientTblOfAppointments.insert({
           data: {
             apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
             apptProviderUuid: 1,
@@ -69,7 +69,7 @@ export default {
       const newApptId = newApptObj['clientSideUniqRowId']
 
       // Go to the next appt on the slider
-      const updateState = await clientSideTblOfLeftSideViewCards.update({
+      const updateState = await clientTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         firstParameterGivenToComponentBeforeMounting: newApptId,
       })

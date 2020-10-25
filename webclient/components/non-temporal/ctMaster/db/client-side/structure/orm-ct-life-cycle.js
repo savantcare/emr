@@ -1,6 +1,6 @@
 import { Model } from '@vuex-orm/core'
 
-export default class clientSideTblOfCtSearchPhrases extends Model {
+export default class clientTblOfCtSearchPhrases extends Model {
   static entity = 'tblCtLifeCycle'
 
   static primaryKey = 'clientSideUniqRowId'

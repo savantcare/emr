@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
-import clientSideTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfMasterServiceStatements from '../db/client-side/structure/master-table-of-service-statements.js'
+import clientTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
 
 export default {
   data() {
@@ -37,7 +37,7 @@ export default {
   computed: {
     cfGetMasterRowsOfServiceStatementsGrouped() {
       console.log('cf called')
-      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterServiceStatements
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()
         .with('tblLinkToServiceStatementForPatientFieldValues')
         .where('ROW_END', 2147483648000)
@@ -117,26 +117,23 @@ export default {
     async mfToggleServiceStatement(pServiceStatementFieldMasterId) {
       // Goal1: Check if it already exists
       console.log('Field master ID is', pServiceStatementFieldMasterId)
-      const exists = clientSideTblOfPatientServiceStatements
+      const exists = clientTblOfPatientServiceStatements
         .query()
         .where('serviceStatementFieldMasterId', pServiceStatementFieldMasterId)
         .where('ROW_END', 2147483648000)
         .get()
 
       if (exists.length > 0) {
-        const response = await fetch(
-          clientSideTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid,
-          {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              // "Authorization": "Bearer " + TOKEN
-            },
-            body: '',
-          }
-        )
+        const response = await fetch(clientTblOfPatientServiceStatements.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: '',
+        })
         if (response.status === 200) {
-          clientSideTblOfPatientServiceStatements.update({
+          clientTblOfPatientServiceStatements.update({
             where: exists[0].clientSideUniqRowId,
             data: {
               ROW_END: Math.floor(Date.now()),
@@ -157,14 +154,14 @@ export default {
           })
         }
       } else {
-        const clientSideTblOfPatientServiceStatementsRow = await clientSideTblOfPatientServiceStatements.insert({
+        const clientTblOfPatientServiceStatementsRow = await clientTblOfPatientServiceStatements.insert({
           data: {
             serviceStatementFieldMasterId: pServiceStatementFieldMasterId,
             ROW_START: Math.floor(Date.now()),
           },
         })
 
-        const response = await fetch(clientSideTblOfPatientServiceStatements.apiUrl, {
+        const response = await fetch(clientTblOfPatientServiceStatements.apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -173,7 +170,7 @@ export default {
           body: JSON.stringify({
             data: {
               serverSideRowUuid:
-                clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
+                clientTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].serverSideRowUuid,
               patientUuid: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
               serviceStatementFieldMasterId: pServiceStatementFieldMasterId,
               recordChangedByUuid: 'bua674fa-073b-4223-8c69-0540ee786kj8',
@@ -181,8 +178,8 @@ export default {
           }),
         })
         if (response.status !== 200) {
-          clientSideTblOfPatientServiceStatements.update({
-            where: clientSideTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].clientSideUniqRowId,
+          clientTblOfPatientServiceStatements.update({
+            where: clientTblOfPatientServiceStatementsRow.tblServiceStatementsOfPatient[0].clientSideUniqRowId,
             data: {
               ROW_END: Math.floor(Date.now()),
             },
@@ -208,7 +205,7 @@ export default {
       pArOfObjectsFromClientMasterDB,
       pServiceStatementFieldCategoryToApplyRuleOn
     ) {
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .whereHas('tblLinkToServiceStatementFieldMaster', (query) => {
@@ -248,7 +245,7 @@ export default {
       /**
        * Step 1: Getting 'Total minutes in psychotherapy' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .whereHas('tblLinkToServiceStatementFieldMaster', (query) => {
@@ -299,7 +296,7 @@ export default {
       /**
        * Step 1: Getting 'Total minutes with patient' already assigned to patient
        */
-      let elementsOfThisSetAlreadyAssignedToPatient = clientSideTblOfPatientServiceStatements
+      let elementsOfThisSetAlreadyAssignedToPatient = clientTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .whereHas('tblLinkToServiceStatementFieldMaster', (query) => {

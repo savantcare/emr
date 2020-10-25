@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   data() {
@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfMentalStatusExamGrouped() {
-      const arOfObjectsFromClientMasterDB = clientSideTblOfMasterMentalStatusExam
+      const arOfObjectsFromClientMasterDB = clientTblOfMasterMentalStatusExam
         .query()
         .with('tblMentalStatusExamForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -108,7 +108,7 @@ export default {
       return false
     },
     async mfToggleMentalStatusExam(pMentalStatusExamMasterId) {
-      const exists = clientSideTblOfPatientMentalStatusExam
+      const exists = clientTblOfPatientMentalStatusExam
         .query()
         .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
         .where('ROW_END', 2147483648000)
@@ -119,7 +119,7 @@ export default {
       2. If data not added then insert the data */
 
       if (exists.length > 0) {
-        clientSideTblOfPatientMentalStatusExam.update({
+        clientTblOfPatientMentalStatusExam.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: Math.floor(Date.now()),
@@ -128,20 +128,17 @@ export default {
 
         // execute delete api to remove the data
 
-        const response = await fetch(
-          clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid,
-          {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              // "Authorization": "Bearer " + TOKEN
-            },
-          }
-        )
+        const response = await fetch(clientTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+        })
 
         if (!response.ok) {
           // this block execute when response return fail status
-          clientSideTblOfPatientMentalStatusExam.update({
+          clientTblOfPatientMentalStatusExam.update({
             where: exists[0].clientSideUniqRowId,
             data: {
               ROW_END: 2147483648000,
@@ -163,7 +160,7 @@ export default {
         }
       } else {
         // this block execute when response return success status
-        clientSideTblOfPatientMentalStatusExam.insert({
+        clientTblOfPatientMentalStatusExam.insert({
           data: {
             mentalStatusExamMasterId: pMentalStatusExamMasterId,
             ROW_START: Math.floor(Date.now()),
@@ -178,7 +175,7 @@ export default {
             this.userIp = ip
           })
 
-        const lastInsertedMSEData = clientSideTblOfPatientMentalStatusExam
+        const lastInsertedMSEData = clientTblOfPatientMentalStatusExam
           .query()
           .where('mentalStatusExamMasterId', pMentalStatusExamMasterId)
           .where('ROW_END', 2147483648000)
@@ -187,7 +184,7 @@ export default {
 
         // execute post api to add the data
 
-        const response = await fetch(clientSideTblOfPatientMentalStatusExam.apiUrl, {
+        const response = await fetch(clientTblOfPatientMentalStatusExam.apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -204,7 +201,7 @@ export default {
 
         if (!response.ok) {
           // this block execute when response return fail status
-          clientSideTblOfPatientMentalStatusExam.update({
+          clientTblOfPatientMentalStatusExam.update({
             data: {
               mentalStatusExamMasterId: pMentalStatusExamMasterId,
               ROW_END: Math.floor(Date.now()),

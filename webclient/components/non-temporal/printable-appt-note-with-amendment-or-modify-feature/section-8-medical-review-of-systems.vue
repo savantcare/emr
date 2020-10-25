@@ -61,10 +61,10 @@
 
 <script>
 // Data tables
-import clientSideTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
-import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
@@ -85,7 +85,7 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
   },
   methods: {
     mfOpenMultiEditCtInEditLayer() {
@@ -94,7 +94,7 @@ export default {
       })
     },
     mfSaveAddendum(pAddendumData, component) {
-      clientSideTblOfAddendums.insert({
+      clientTblOfAddendums.insert({
         data: {
           appointmentId: this.currentApptObj.clientSideUniqRowId,
           component: component,
@@ -110,13 +110,13 @@ export default {
       if (!pApptObj) return
       let arOfObjectsFromClientDB = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
+        arOfObjectsFromClientDB = clientTblOfPatientServiceStatements
           .query()
           .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
+        arOfObjectsFromClientDB = clientTblOfPatientServiceStatements
           .query()
           .with('tblLinkToServiceStatementFieldMaster')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
@@ -131,13 +131,13 @@ export default {
       let secondaryDuringComparisonApptObj = {}
       let secondaryDuringComparisonSS = {}
 
-      const printableApptNoteComponentCardObj = clientSideTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
       if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
         // This means that the current note is to the right in the comparison UI
         // Handle the case when the current ID matches with the second param Need to compare with first
-        secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+        secondaryDuringComparisonApptObj = clientTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
         secondaryDuringComparisonSS = this.mfGetArrayOfServiceStatements(secondaryDuringComparisonApptObj)
@@ -165,7 +165,7 @@ export default {
         // there may or may not be a second paramters. If no second parameter then there is no comparison to be made
         if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']) {
           // Need to compare with second
-          secondaryDuringComparisonApptObj = clientSideTblOfAppointments.find(
+          secondaryDuringComparisonApptObj = clientTblOfAppointments.find(
             printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting']
           )
 
@@ -190,7 +190,7 @@ export default {
     },
 
     cfArOfAddendumForDisplay() {
-      const arFromClientTblOfAddendums = clientSideTblOfAddendums
+      const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
         .where('appointmentId', this.propApptId)
         .orderBy('ROW_START', 'asc')

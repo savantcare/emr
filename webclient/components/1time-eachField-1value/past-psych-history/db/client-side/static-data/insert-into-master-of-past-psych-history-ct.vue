@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPastPsychHistory from '@/components/1time-eachField-1value/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
+import clientTblOfMasterPastPsychHistory from '@/components/1time-eachField-1value/past-psych-history/db/client-side/structure/master-table-of-past-psych-history.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past outpatient treatment',
@@ -22,7 +22,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past meds trials',
@@ -31,7 +31,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Hospitalization',
@@ -40,7 +40,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'History of violence',
@@ -49,7 +49,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'History of self harm',
@@ -58,7 +58,7 @@ export default {
     })
 
     i = i + 1
-    clientSideTblOfMasterPastPsychHistory.insert({
+    clientTblOfMasterPastPsychHistory.insert({
       data: {
         fieldIdFromMaster: i,
         pastPsychHistoryDescription: 'Past substance abuse',

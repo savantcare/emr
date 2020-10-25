@@ -15,10 +15,10 @@ database.register(tableStructureForCommon)
 database.register(tableStructureForStoreMessageFromOtherComponent)
 
 // Appointments
-import clientSideTblOfAppointments from '~/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
-database.register(clientSideTblOfAppointments)
-database.register(clientSideTblOfAddendums)
+import clientTblOfAppointments from '~/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
+database.register(clientTblOfAppointments)
+database.register(clientTblOfAddendums)
 
 // table that decides which cards to show
 import tableStructureForLeftSideView from '~/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'

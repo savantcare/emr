@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientSideTblOfPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientTblOfMasterPsychReviewOfSystems from '../db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientTblOfPatientPsychReviewOfSystems from '../db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
@@ -69,7 +69,7 @@ export default {
 
   computed: {
     cfArOfPsychReviewOfSystemsForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientPsychReviewOfSystems
+      const arOfObjectsFromClientDB = clientTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483648000)
@@ -90,7 +90,7 @@ export default {
       console.log('fn called')
       let patientClientFieldValueModel = []
       // Goal2: Initialize field names with the previous field values patientClientFieldValueModel[masterId] = value
-      const allPatientValues = clientSideTblOfPatientPsychReviewOfSystems.query().where('ROW_END', 2147483648000).get()
+      const allPatientValues = clientTblOfPatientPsychReviewOfSystems.query().where('ROW_END', 2147483648000).get()
 
       for (let i = 0; i < allPatientValues.length; i++) {
         patientClientFieldValueModel[allPatientValues[i]['psychReviewOfSystemsMasterId']] = parseFloat(
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pros) {
-      clientSideTblOfPatientPsychReviewOfSystems.update({
+      clientTblOfPatientPsychReviewOfSystems.update({
         where: pros.clientSideUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
@@ -149,7 +149,7 @@ export default {
     },
     mfCalculateGroupTotalValue() {
       console.log('mfCalculateGroupTotalValue called')
-      const arOfObjectsFromClientPatientDB = clientSideTblOfPatientPsychReviewOfSystems
+      const arOfObjectsFromClientPatientDB = clientTblOfPatientPsychReviewOfSystems
         .query()
         .with('tblPsychReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483648000)
@@ -189,7 +189,7 @@ export default {
     })
 
     // Goal1: Get the master field names
-    const arOfObjectsFromClientMasterDB = clientSideTblOfMasterPsychReviewOfSystems
+    const arOfObjectsFromClientMasterDB = clientTblOfMasterPsychReviewOfSystems
       .query()
       .with('tblPsychReviewOfSystemsForPatientLink')
       .where('ROW_END', 2147483648000)

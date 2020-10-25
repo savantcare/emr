@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import VuexclientSideTblOfCtSearchPhrases from '@vuex-orm/plugin-search'
+import VuexclientTblOfCtSearchPhrases from '@vuex-orm/plugin-search'
 import VuexORM from '@vuex-orm/core'
 import VuexORMLocalForage from 'vuex-orm-localforage'
 
@@ -20,7 +20,7 @@ import database from '~/store/import-tables-and-register-to-client-side-database
 // Ref: https://stackoverflow.com/a/62247034
 const { v1: uuidv1 } = require('uuid')
 VuexORM.use(VuexORMAxios, { axios })
-VuexORM.use(VuexclientSideTblOfCtSearchPhrases, {
+VuexORM.use(VuexclientTblOfCtSearchPhrases, {
   tokenize: true, // Ref: https://github.com/client-side/plugin-search#configurations needed so "goal add" works when list has "add goal"
   matchAllTokens: true, // needed so "goal add" shows only opyion 1 when list has "add goal" and "multi rate goal"
   threshold: 0.1, // height and weight are very close and need to be distinguished so set thresold to .1

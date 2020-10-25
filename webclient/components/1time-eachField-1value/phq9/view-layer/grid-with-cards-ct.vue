@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import clientSideTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
+import clientTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfphq9ForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientPhq9
+      const arOfObjectsFromClientDB = clientTblOfPatientPhq9
         .query()
         .with('tblPhq9MasterLink')
         .where('ROW_END', 2147483648000)
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientUniqueRowId) {
-      clientSideTblOfPatientPhq9.update({
+      clientTblOfPatientPhq9.update({
         where: pClientUniqueRowId,
         data: {
           ROW_END: Math.floor(Date.now()),

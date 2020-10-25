@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPastPsychHistory from '../db/client-side/structure/master-table-of-past-psych-history.js'
-import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
+import clientTblOfMasterPastPsychHistory from '../db/client-side/structure/master-table-of-past-psych-history.js'
+import clientTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 
 require('colors')
 const Diff = require('diff')
@@ -53,7 +53,7 @@ export default {
     let arOfObjectsFromClientDB = []
 
     // Goal: This Ct can be mounted and then removed and then mounted again. I need to load the latest data from clientSideDB
-    arOfObjectsFromClientDB = clientSideTblOfPatientPastPsychHistory
+    arOfObjectsFromClientDB = clientTblOfPatientPastPsychHistory
       .query()
       .with('tblPastPsychHistoryMasterLink')
       .where('ROW_END', 2147483648000) // This gives current data
@@ -119,7 +119,7 @@ export default {
   },
   computed: {
     cfGetMasterRowsOfPastPsychHistory() {
-      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterPastPsychHistory
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterPastPsychHistory
         .query()
         .where((_record, query) => {
           query
@@ -138,7 +138,7 @@ export default {
   methods: {
     mfGetStakeObjectForComparison() {
       // Comparison happens with data that is already in MariaDB
-      const arOfObjectsFromClientDB = clientSideTblOfPatientPastPsychHistory
+      const arOfObjectsFromClientDB = clientTblOfPatientPastPsychHistory
         .query()
         .with('tblPastPsychHistoryMasterLink')
         .where('vnRowStateInSession', 1) // This gives data already saved to DB
@@ -156,7 +156,7 @@ export default {
     },
 
     mfHasDataChanged(fieldIdFromMaster) {
-      const currentDataAr = clientSideTblOfPatientPastPsychHistory
+      const currentDataAr = clientTblOfPatientPastPsychHistory
         .query()
         .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
         .where('vnRowStateInSession', (value) => /^34.*$/.test(value)) // I only write to copied row and not to original data
@@ -166,14 +166,14 @@ export default {
       if (currentDataAr.length > 0) return true
     },
     mfSave(fieldIdFromMaster, pCurrentValue) {
-      const currentDataAr = clientSideTblOfPatientPastPsychHistory
+      const currentDataAr = clientTblOfPatientPastPsychHistory
         .query()
         .where('fieldIdFromMaster', fieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
         .where('vnRowStateInSession', (value) => /^3.*$/.test(value)) // I only write to copied row and not to original data
         // This will match all numbers that start with 3. The number 3 means it is copied row.
         .get()
 
-      status = clientSideTblOfPatientPastPsychHistory.update({
+      status = clientTblOfPatientPastPsychHistory.update({
         data: [
           {
             clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
@@ -186,7 +186,7 @@ export default {
       // Send the query to lumen
 
       // when update query is run on mariaDB, the temporal system of MariDB also creates a new row
-      status = clientSideTblOfPatientPastPsychHistory.insert({
+      status = clientTblOfPatientPastPsychHistory.insert({
         data: [{ fieldIdFromMaster: fieldIdFromMaster, fieldValue: pCurrentValue, vnRowStateInSession: 3 }], // Setting this as 3 means there will be no submit button. A state of copy and copy+change are different.
       })
 
@@ -209,7 +209,7 @@ export default {
           /*
             Task 2: Save to ORM
           */
-          const currentDataAr = clientSideTblOfPatientPastPsychHistory
+          const currentDataAr = clientTblOfPatientPastPsychHistory
             .query()
             .where('fieldIdFromMaster', pFieldIdFromMaster) // fieldIdFromMaster cannot be primary key since there may be multiple due to historical data
             .where('vnRowStateInSession', (value) => /^3.*$/.test(value)) // I only write to copied row and not to original data
@@ -219,7 +219,7 @@ export default {
           let status = null
           // clientSideRowUniqId will not have a value if this is being inserted first time
           if (currentDataAr.length > 0) {
-            status = clientSideTblOfPatientPastPsychHistory.update({
+            status = clientTblOfPatientPastPsychHistory.update({
               data: [
                 {
                   clientSideUniqRowId: currentDataAr[0]['clientSideUniqRowId'],
@@ -231,7 +231,7 @@ export default {
             })
           } else {
             // first time this data has been entered by the user. I set this as 34 to distinguish this from the case where the data has just been copied after a new row was inserted.
-            status = clientSideTblOfPatientPastPsychHistory.insert({
+            status = clientTblOfPatientPastPsychHistory.insert({
               data: [{ fieldIdFromMaster: pFieldIdFromMaster, fieldValue: newValue, vnRowStateInSession: 34 }],
             })
           }

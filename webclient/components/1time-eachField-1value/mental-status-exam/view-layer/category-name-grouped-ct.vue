@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 
 export default {
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientMentalStatusExam
+      const arOfObjectsFromClientDB = clientTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
@@ -65,7 +65,7 @@ export default {
       }, {}) // {} is the initial value of the storage
     },
     mfDeleteMentalStatusExam(pClientUniqRowId) {
-      clientSideTblOfPatientMentalStatusExam.update({
+      clientTblOfPatientMentalStatusExam.update({
         where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),

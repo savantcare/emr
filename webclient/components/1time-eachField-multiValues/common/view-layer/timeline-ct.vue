@@ -79,7 +79,7 @@
 <script>
 import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
@@ -125,7 +125,7 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', this.propCtDef.id).get()
+      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', this.propCtDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {

@@ -13,8 +13,8 @@ https://stackoverflow.com/questions/31980710/unable-to-set-the-selected-state-in
 </template>
 
 <script>
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
 import { Chart } from 'highcharts-vue'
@@ -38,7 +38,7 @@ export default {
   computed: {
     cfGetLatestAppointmentsFromInClientDB() {
       // this is an expensive OP so kept this in computed prop so it will return without running if nothing has changed.
-      return clientSideTblOfAppointments.query().get()
+      return clientTblOfAppointments.query().get()
     },
 
     chartOptions() {
@@ -85,7 +85,7 @@ export default {
 
                 // Goal: if it is a locked or unlocked note then show the note
                 var clientSideUniqRowIdAtThisSliderMark = event.point.clientSideUniqRowId
-                const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
+                const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewCards.find(2)
                 if (
                   cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
                     clientSideUniqRowIdAtThisSliderMark &&
@@ -101,7 +101,7 @@ export default {
 
                 // This update will lead to the note card visibility getting toggled
                 // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
-                const updateState = clientSideTblOfLeftSideViewCards.update({
+                const updateState = clientTblOfLeftSideViewCards.update({
                   clientSideUniqRowId: 2,
                   currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
                   firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,

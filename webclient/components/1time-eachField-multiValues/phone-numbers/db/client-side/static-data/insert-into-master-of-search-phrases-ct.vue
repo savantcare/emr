@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
@@ -20,7 +20,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
@@ -29,7 +29,7 @@ export default {
         ctWidthInEditLayer: 'small',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit phone number',
         ctAbbr: 'cpn',
@@ -39,7 +39,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit phone numbers',
         ctAbbr: 'mcpn',
@@ -48,7 +48,7 @@ export default {
         ctWidthInEditLayer: 'large',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted phone numbers',
         ctAbbr: 'dpn',

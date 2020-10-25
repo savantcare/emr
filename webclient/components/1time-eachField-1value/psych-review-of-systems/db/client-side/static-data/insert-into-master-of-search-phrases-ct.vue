@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfPsychReviewOfSystemsDuringInitOfCt from './insert-into-master-of-psych-review-of-systems-ct'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'psych review of systems',
         ctAbbr: 'ss',
@@ -22,7 +22,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit psych review of systems',
         ctAbbr: 'css',

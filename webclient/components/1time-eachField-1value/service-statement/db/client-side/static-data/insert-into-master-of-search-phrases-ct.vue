@@ -3,14 +3,14 @@
 <template></template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
@@ -18,7 +18,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit service statement',
         ctAbbr: 'sse',
@@ -28,7 +28,7 @@ export default {
         needsRowIdToWork: 'yes',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted service statements',
         ctAbbr: 'dss',

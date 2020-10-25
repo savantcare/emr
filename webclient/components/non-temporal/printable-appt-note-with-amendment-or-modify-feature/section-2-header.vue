@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import namePrintSection from './section-3-name.vue'
 
 export default {
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     isThisNoteBeingCompared() {
-      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
       if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
         return true
       } else {
@@ -72,7 +72,7 @@ export default {
       }
     },
     isThisLastAppointmentInLockedOrUnlockedState() {
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -87,7 +87,7 @@ export default {
       return 'yes'
     },
     isThisFirstAppointmentInLockedOrUnlockedState() {
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -105,7 +105,7 @@ export default {
   methods: {
     mfGetPrevApptId(pApptClientUniqRowId) {
       let secondNoteForComparisonClientUniqRowId = 0
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -121,7 +121,7 @@ export default {
     },
     mfGetNextApptId(pApptClientUniqRowId) {
       let secondNoteForComparisonClientUniqRowId = 0
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -145,7 +145,7 @@ export default {
       }
 
       // This state is picked up by decide-notes-to-print-and-their-appt-id in the same folder. That is the parent of this Ct.
-      const updateState = clientSideTblOfLeftSideViewCards.update({
+      const updateState = clientTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,
         firstParameterGivenToComponentBeforeMounting: this.propApptId,
@@ -157,18 +157,18 @@ export default {
       // So goal is to replace my value in the state with the new value.
       // Once I do that it will take care of both the above cases.
 
-      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
 
       let prevId = 0
       prevId = this.mfGetPrevApptId(this.propApptId)
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId) {
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: prevId,
         })
       } else {
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           secondParameterGivenToComponentBeforeMounting: prevId,
         })
@@ -179,17 +179,17 @@ export default {
     },
 
     mfRightArrowClickedLetUsGoToNextAppt() {
-      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
       let nextId = 0
       nextId = this.mfGetNextApptId(this.propApptId)
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this.propApptId) {
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: nextId,
         })
       } else {
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           secondParameterGivenToComponentBeforeMounting: nextId,
         })

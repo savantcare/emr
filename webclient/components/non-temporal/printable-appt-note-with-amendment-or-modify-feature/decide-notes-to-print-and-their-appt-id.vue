@@ -36,8 +36,8 @@
 <script>
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
   data() {
@@ -54,14 +54,14 @@ export default {
   methods: {
     handleDrawerClosed() {
       // Once drawer is closed I need to empty the 2nd param so the prev and next button work properly and do not open the drawer
-      const updateState = clientSideTblOfLeftSideViewCards.update({
+      const updateState = clientTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         secondParameterGivenToComponentBeforeMounting: 0,
       })
     },
     mfGetPrevAppt(pApptClientUniqRowId) {
       let secondNoteForComparisonClientUniqRowId = 0
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -77,7 +77,7 @@ export default {
     },
     mfGetNextAppt(pApptClientUniqRowId) {
       let secondNoteForComparisonClientUniqRowId = 0
-      const clientSideArray = clientSideTblOfAppointments
+      const clientSideArray = clientTblOfAppointments
         .query()
         .where((record) => {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
@@ -111,7 +111,7 @@ export default {
 
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
-      const apptNoteComponentObj = clientSideTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
 
       let noteIDs = new Array()
 
@@ -132,14 +132,14 @@ export default {
       // If this ct was asked to display itself without the note ID then the high locked or unlockjed note id will be its ID
       if (this.firstNoteForComparisonClientUniqRowId > 0) {
       } else {
-        const apptObj = clientSideTblOfAppointments
+        const apptObj = clientTblOfAppointments
           .query()
           .where('apptStatus', 'locked')
           .orWhere('apptStatus', 'unlocked')
           .orderBy('clientSideUniqRowId', 'desc')
           .get()
 
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           currentDisplayStateOfComponent: 1,
           firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],

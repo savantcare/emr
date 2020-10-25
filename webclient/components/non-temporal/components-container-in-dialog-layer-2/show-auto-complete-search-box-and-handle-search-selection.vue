@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
-import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   components: {
@@ -28,7 +28,7 @@ export default {
   computed: {
     cfSearchBoxPlaceholder() {
       let arFromClientTbl = {}
-      arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
+      arFromClientTbl = clientTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
       const objRowFromOrm = arFromClientTbl[0]
       if (objRowFromOrm) {
         return 'e.g. ' + objRowFromOrm.value
@@ -43,12 +43,12 @@ export default {
       // pQueryString empty means user did not enter anything
       // to show values in dropdown returning all results
       if (!pQueryString) {
-        const arFromClientTbl = clientSideTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
+        const arFromClientTbl = clientTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
 
         console.log('sending in pCallBack', arFromClientTbl)
         pCallBack(arFromClientTbl)
       } else {
-        const arFromClientTbl = clientSideTblOfCtSearchPhrases
+        const arFromClientTbl = clientTblOfCtSearchPhrases
           .query()
           .where('needsRowIdToWork', 'no') // For reasons read: search-inside-add-tab-in-cl-ct approx line 78
           .search(pQueryString.trim(), {
@@ -83,15 +83,15 @@ export default {
         closable: true,
       }
       // delete if this card is already existing
-      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', pSelectedSuggestion.value).get()
+      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', pSelectedSuggestion.value).get()
 
       if (arFromClientTbl.length > 0) {
         if (arFromClientTbl[0]['clientSideUniqRowId']) {
-          clientSideTblOfRightSideCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
+          clientTblOfRightSideCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
         }
       }
 
-      clientSideTblOfRightSideCards.insert({
+      clientTblOfRightSideCards.insert({
         data: {
           name: pSelectedSuggestion.value,
           componentToShowPath: pSelectedSuggestion.ctToShow,
@@ -102,7 +102,7 @@ export default {
 
       /* Goal: Increase the usageCount of the search term so I can order them better
         Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
-      clientSideTblOfCtSearchPhrases.update({
+      clientTblOfCtSearchPhrases.update({
         where: pSelectedSuggestion.id,
         data: {
           searchPhraseUsageCount: pSelectedSuggestion.searchPhraseUsageCount + 1,

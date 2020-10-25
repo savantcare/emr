@@ -56,8 +56,8 @@ __proto__: Object
 </template>
 
 <script>
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
 
@@ -142,7 +142,7 @@ export default {
 
     cfGetLatestAppointmentsFromInClientDB() {
       // this is an expensive OP so kept this in computed prop so it will return without running if nothing has changed.
-      return clientSideTblOfAppointments.query().get()
+      return clientTblOfAppointments.query().get()
     },
 
     cfGetAllSliderMarks() {
@@ -281,7 +281,7 @@ export default {
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
       ) {
         // Remove the previous note window if there is any
-        const updateState = clientSideTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewCards.update({
           clientSideUniqRowId: 2,
           currentDisplayStateOfComponent: 0,
         })
@@ -298,7 +298,7 @@ export default {
       1. This mark is alaready active
       2. This mark is not active and should be made active */
 
-      const cardOfApptNoteComponentVisibilityCurrentValue = clientSideTblOfLeftSideViewCards.find(2)
+      const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewCards.find(2)
 
       if (
         cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
@@ -315,7 +315,7 @@ export default {
 
       // This update will lead to the note card visibility getting toggled
       // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
-      const updateState = await clientSideTblOfLeftSideViewCards.update({
+      const updateState = await clientTblOfLeftSideViewCards.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
         firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,

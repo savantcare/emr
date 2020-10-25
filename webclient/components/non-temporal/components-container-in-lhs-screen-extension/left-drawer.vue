@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import clientSideTblOfViewCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfViewCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 import ctSearchBoxInsideLeftScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     cfArCardsInLeftSideOfViewLayer() {
-      const arOfObjectsFromClientDB = clientSideTblOfViewCards
+      const arOfObjectsFromClientDB = clientTblOfViewCards
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideLeftScreenExtension')

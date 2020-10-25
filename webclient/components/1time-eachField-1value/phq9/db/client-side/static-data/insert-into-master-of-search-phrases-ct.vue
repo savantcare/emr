@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import insertIntoMasterTblOfPhq9DuringInitOfCt from './insert-into-master-of-phq9-ct'
 export default {
   components: { insertIntoMasterTblOfPhq9DuringInitOfCt },
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'phq9',
         ctAbbr: 'h',
@@ -22,7 +22,7 @@ export default {
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'phq9 edit',
         ctAbbr: 'hc',

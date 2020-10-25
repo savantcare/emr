@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import clientSideTblOfMasterPhq9 from '../db/client-side/structure/master-table-of-phq9.js'
-import clientSideTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
+import clientTblOfMasterPhq9 from '../db/client-side/structure/master-table-of-phq9.js'
+import clientTblOfPatientPhq9 from '../db/client-side/structure/patient-table-of-phq9.js'
 export default {
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     cfGetMasterListOfPhq9() {
-      let arOfObjectsFromClientMasterDB = clientSideTblOfMasterPhq9
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterPhq9
         .query()
         .with('tblPhq9ForPatientLink')
         .where('ROW_END', 2147483648000)
@@ -82,21 +82,21 @@ export default {
       return null
     },
     mfSetAnswerValueInClientTblPatient(pEvent, pQuestionMasterId) {
-      const exists = clientSideTblOfPatientPhq9
+      const exists = clientTblOfPatientPhq9
         .query()
         .where('phq9QuestionMasterId', pQuestionMasterId)
         .where('ROW_END', 2147483648000)
         .get()
       console.log(exists)
       if (exists.length > 0) {
-        clientSideTblOfPatientPhq9.update({
+        clientTblOfPatientPhq9.update({
           where: exists[0].clientSideUniqueRowId,
           data: {
             optionValueChosenByPatient: pEvent,
           },
         })
       } else {
-        clientSideTblOfPatientPhq9.insert({
+        clientTblOfPatientPhq9.insert({
           data: {
             optionValueChosenByPatient: pEvent,
             phq9QuestionMasterId: pQuestionMasterId,

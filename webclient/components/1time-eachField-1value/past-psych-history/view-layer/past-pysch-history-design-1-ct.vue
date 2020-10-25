@@ -54,14 +54,14 @@
 </template>
 
 <script>
-import clientSideTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
+import clientTblOfPatientPastPsychHistory from '../db/client-side/structure/patient-table-of-past-psych-history.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfPastPsychHistoryForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientPastPsychHistory
+      const arOfObjectsFromClientDB = clientTblOfPatientPastPsychHistory
         .query()
         .with('tblPastPsychHistoryMasterLink')
         .where('ROW_END', 2147483648000)
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
-      clientSideTblOfPatientPastPsychHistory.update({
+      clientTblOfPatientPastPsychHistory.update({
         where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),

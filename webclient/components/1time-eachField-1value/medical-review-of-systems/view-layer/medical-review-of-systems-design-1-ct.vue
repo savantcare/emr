@@ -56,14 +56,14 @@
 </template>
 
 <script>
-import clientSideTblOfPatientMedicalReviewOfSystems from '../db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+import clientTblOfPatientMedicalReviewOfSystems from '../db/client-side/structure/patient-table-of-medical-review-of-systems.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfMedicalReviewOfSystemsForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientMedicalReviewOfSystems
+      const arOfObjectsFromClientDB = clientTblOfPatientMedicalReviewOfSystems
         .query()
         .with('tblMedicalReviewOfSystemsMasterLink')
         .where('ROW_END', 2147483648000)
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
-      clientSideTblOfPatientMedicalReviewOfSystems.update({
+      clientTblOfPatientMedicalReviewOfSystems.update({
         where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),

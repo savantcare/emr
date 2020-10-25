@@ -82,7 +82,7 @@
 <script>
 import clientTbl from '../db/client-side/structure/table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
 export default {
   mixins: [clInvokeMixin],
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientSideTblOfRightSideCards.query().where('name', 'reminders').get()
+      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', 'reminders').get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {

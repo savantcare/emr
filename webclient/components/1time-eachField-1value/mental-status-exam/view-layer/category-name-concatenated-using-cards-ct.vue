@@ -54,15 +54,15 @@
 </template>
 
 <script>
-import clientSideTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
-import clientSideTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblOfMasterMentalStatusExam from '../db/client-side/structure/master-table-of-mental-status-exam.js'
+import clientTblOfPatientMentalStatusExam from '../db/client-side/structure/patient-table-of-mental-status-exam.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
   components: { showContentInCardComponent },
   computed: {
     cfArOfMentalStatusExamForDisplay() {
-      let arOfObjectsFromClientDB = clientSideTblOfPatientMentalStatusExam
+      let arOfObjectsFromClientDB = clientTblOfPatientMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)
@@ -80,16 +80,16 @@ export default {
   },
   methods: {
     async mfIconDeleteClickedOnChildCard(pClientUniqRowId) {
-      clientSideTblOfPatientMentalStatusExam.update({
+      clientTblOfPatientMentalStatusExam.update({
         where: pClientUniqRowId,
         data: {
           ROW_END: Math.floor(Date.now()),
         },
       })
 
-      const exists = clientSideTblOfPatientMentalStatusExam.query().where('clientSideUniqRowId', pClientUniqRowId).get()
+      const exists = clientTblOfPatientMentalStatusExam.query().where('clientSideUniqRowId', pClientUniqRowId).get()
 
-      const response = await fetch(clientSideTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid, {
+      const response = await fetch(clientTblOfPatientMentalStatusExam.apiUrl + '/' + exists[0].serverSideRowUuid, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -99,7 +99,7 @@ export default {
 
       if (!response.ok) {
         // this block execute when response return fail status
-        clientSideTblOfPatientMentalStatusExam.update({
+        clientTblOfPatientMentalStatusExam.update({
           where: exists[0].clientSideUniqRowId,
           data: {
             ROW_END: 2147483648000,

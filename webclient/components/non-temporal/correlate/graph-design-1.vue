@@ -3,20 +3,20 @@
 </template>
 
 <script>
-import clientSideTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfPatientServiceStatements from '@/components/1time-eachField-1value/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
 
-import clientSideTblOfPatientReminders from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientTblOfPatientReminders from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clientSideTblOfMentalStatusExam from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
-import clientSideTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
-import clientSideTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
-import clientSideTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import clientTblOfMentalStatusExam from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import clientTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import clientTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
 // For pros
-import clientSideTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientSideTblOfPatientPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientTblOfPatientPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import { Chart } from 'highcharts-vue'
 
@@ -33,13 +33,13 @@ export default {
 
       let arOfObjectsFromClientRos = []
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientRos = clientSideTblOfPatientPsychReviewOfSystems
+        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', 2147483648000)
           .get()
       } else {
-        arOfObjectsFromClientRos = clientSideTblOfPatientPsychReviewOfSystems
+        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
           .query()
           .with('tblPsychReviewOfSystemsMasterLink')
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
@@ -177,7 +177,7 @@ export default {
 
       // Goal: Find all times in the appt table when the appt was locked.
 
-      const arOfApts = clientSideTblOfAppointments
+      const arOfApts = clientTblOfAppointments
         .query()
         .where('apptStatus', 'locked')
         .orWhere('apptStatus', 'unlocked')
@@ -208,12 +208,12 @@ export default {
 
     cfGetHeightDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTblHeight.all()
+      const data = clientTblHeight.all()
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = data[i][clientSideTblHeight.graphSeries1FieldName]
+          const graphData = data[i][clientTblHeight.graphSeries1FieldName]
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
         return arDataToShowOnGraph
@@ -224,13 +224,13 @@ export default {
 
     cfGetWeightDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTblWeight.all() // .all is built into vuex-orm and will return all records
+      const data = clientTblWeight.all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const graphData = data[i][clientSideTblWeight.graphSeries1FieldName]
+          const graphData = data[i][clientTblWeight.graphSeries1FieldName]
           if (graphData > maxGraphData) {
             maxGraphData = graphData
           }
@@ -238,7 +238,7 @@ export default {
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = (data[i][clientSideTblWeight.graphSeries1FieldName] / maxGraphData) * 100
+          const graphData = (data[i][clientTblWeight.graphSeries1FieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
@@ -250,14 +250,14 @@ export default {
 
     cfGetOxygenSaturationDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientSideTblOxygenSaturation.all()
+      const data = clientTblOxygenSaturation.all()
       const numberOfPointsOnGraph = data.length
 
       if (numberOfPointsOnGraph > 0) {
         // find the max value
         let maxGraphData = 0
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const graphData = data[i][clientSideTblOxygenSaturation.graphSeries1FieldName]
+          const graphData = data[i][clientTblOxygenSaturation.graphSeries1FieldName]
           if (graphData > maxGraphData) {
             maxGraphData = graphData
           }
@@ -265,7 +265,7 @@ export default {
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = (data[i][clientSideTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
+          const graphData = (data[i][clientTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
@@ -276,7 +276,7 @@ export default {
     },
 
     cfArOfServiceStatementsForGraph() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientServiceStatements
+      const arOfObjectsFromClientDB = clientTblOfPatientServiceStatements
         .query()
         .with('tblLinkToServiceStatementFieldMaster')
         .where('ROW_END', 2147483648000)
@@ -327,7 +327,7 @@ export default {
       return data
     },
     cfArOfRemindersForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
+      const arOfObjectsFromClientDB = clientTblOfPatientReminders.query().where('ROW_END', 2147483648000).get()
 
       var arDataToShowOnGraph = new Array()
 
@@ -338,7 +338,7 @@ export default {
       return arDataToShowOnGraph
     },
     cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientDB = clientSideTblOfMentalStatusExam
+      const arOfObjectsFromClientDB = clientTblOfMentalStatusExam
         .query()
         .with('tblMentalStatusExamMasterLink')
         .where('ROW_END', 2147483648000)

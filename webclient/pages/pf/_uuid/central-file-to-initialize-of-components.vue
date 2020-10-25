@@ -45,12 +45,12 @@
 
     <initializeDiagnosisComponent />
 
-    <clientSideTblOfAppointmentsInsertData />
+    <clientTblOfAppointmentsInsertData />
   </div>
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 // Goal: Get the search terms from each component
 
@@ -102,9 +102,9 @@ import initializeMedicalReviewOfSystemsComponent from '@/components/1time-eachFi
 import initializePhoneNumberComponent from '@/components/1time-eachField-multiValues/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/1time-eachField-multiValues/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
-import clientSideTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import clientSideTblOfAppointmentsInsertData from '@/components/1time-eachField-multiValues/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientTblOfAppointmentsInsertData from '@/components/1time-eachField-multiValues/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 
 export default {
   components: {
@@ -141,7 +141,7 @@ export default {
     // END
 
     // Non temporal
-    clientSideTblOfAppointmentsInsertData,
+    clientTblOfAppointmentsInsertData,
     initializeFeedComponent,
     initializeMapComponent,
     initializeClearComponent,

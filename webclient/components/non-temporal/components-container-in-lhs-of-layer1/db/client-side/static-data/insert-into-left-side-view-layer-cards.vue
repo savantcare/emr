@@ -3,21 +3,21 @@
 <template></template>
 
 <script>
-import clientSideTblOfLeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientSideTblOfLeftSideCards.insert({
+    clientTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
         componentToShowPath: 'non-temporal/layer-1-left-side-header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientTblOfLeftSideCards.insert({
       data: {
         name: 'Appt note',
         componentToShowPath:
@@ -27,7 +27,7 @@ export default {
         secondParameterGivenToComponentBeforeMounting: 0,
       },
     })
-    clientSideTblOfLeftSideCards.insert({
+    clientTblOfLeftSideCards.insert({
       data: {
         name: 'Contacts',
         componentToShowPath: '1time-eachField-multiValuescontacts/view-layer/all-contacts-ct.vue',

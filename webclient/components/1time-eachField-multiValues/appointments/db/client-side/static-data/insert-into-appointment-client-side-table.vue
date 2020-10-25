@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 // This will become dynamic
 
 export default {
@@ -11,7 +11,7 @@ export default {
     return {}
   },
   mounted() {
-    clientSideTblOfAppointments.insert({
+    clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601725467558,
         ROW_END: 1601726467558, // This is the time when the appt has been locked. This happens when the row is deleted.
@@ -19,7 +19,7 @@ export default {
         apptStatus: 'locked',
       },
     })
-    clientSideTblOfAppointments.insert({
+    clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601726577658,
         ROW_END: 1601726667558,
@@ -27,7 +27,7 @@ export default {
         apptStatus: 'no-show',
       },
     })
-    clientSideTblOfAppointments.insert({
+    clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601727477758,
         ROW_END: 1601726767558,
@@ -35,7 +35,7 @@ export default {
         apptStatus: 'late-cancellation',
       },
     })
-    clientSideTblOfAppointments.insert({
+    clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601728477858,
         ROW_END: 1601726867558, // This is the time when the record was deleted.
@@ -43,7 +43,7 @@ export default {
         apptStatus: 'cancellation',
       },
     })
-    clientSideTblOfAppointments.insert({
+    clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecondsOnCalendar: 1601729677958,
         ROW_END: 2147483648000, // unlocked means the record has not been deleted

@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import clientSideTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientTblOfAddendums from '~/components/1time-eachField-multiValues/amendment/db/client-side/structure/amendment-client-side-table.js'
 
 // init tables
-import clientSideTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
@@ -121,7 +121,7 @@ export default {
     if (!this.propShowNoteForApptId) return
 
     // Get appt details from appt table
-    this.patientCurrentApptObj = await clientSideTblOfAppointments.find(this.propShowNoteForApptId)
+    this.patientCurrentApptObj = await clientTblOfAppointments.find(this.propShowNoteForApptId)
 
     console.log('Created again')
   },

@@ -1,4 +1,4 @@
-import clientSideTblOfCtSearchPhrases from '~/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '~/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   state: {
@@ -63,7 +63,7 @@ export default {
     },
     async mtfShowNewFirstTabInEditLayerFromSearchPhrase(state, pPayload) {
       // Goal 1: Find out which CT will handle this search term
-      const arFromClientTbl = await clientSideTblOfCtSearchPhrases
+      const arFromClientTbl = await clientTblOfCtSearchPhrases
         .query()
         .where('displayLocation', 'edit-layer')
         .search(pPayload.searchTerm.trim(), {

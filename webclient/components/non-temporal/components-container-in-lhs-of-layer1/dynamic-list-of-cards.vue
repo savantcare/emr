@@ -1,6 +1,6 @@
 <template>
   <div>
-    <clientSideTblOfViewCardsInsertData />
+    <clientTblOfViewCardsInsertData />
     <!-- this 10px is the distance between the card and all other 4 sides. -->
     <div v-for="card in cfArCardsInLeftSideOfViewLayer" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
@@ -15,12 +15,12 @@
   </div>
 </template>
 <script>
-import clientSideTblOfViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientSideTblOfViewCardsInsertData from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
-import clientSideTblCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import clientTblOfViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfViewCardsInsertData from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
+import clientTblCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
-  components: { clientSideTblOfViewCardsInsertData },
+  components: { clientTblOfViewCardsInsertData },
   data() {
     return {
       dArOfComponentObjectsCached: [], // first dimension is the clientSideUniqRowId and second is the cache of the object
@@ -36,7 +36,7 @@ export default {
       // Goal 1: Find out what classification of Components does the user want to see
       //      debugger
       let vComponentClassificationToShowUser = null
-      const arOfObjectsFromCommonForAllComponents = clientSideTblCommonForAllComponents
+      const arOfObjectsFromCommonForAllComponents = clientTblCommonForAllComponents
         .query()
         .where('fieldName', 'classification-of-component-to-show-on-left-hand-side')
         .get()
@@ -51,7 +51,7 @@ export default {
       2. currentDisplayStateOfComponent is > 0. Since 0 is reserved to mark the component as not to show.
 
       */
-      const arOfObjectsFromClientDB = clientSideTblOfViewCards
+      const arOfObjectsFromClientDB = clientTblOfViewCards
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('classificationOfComponent', vComponentClassificationToShowUser)

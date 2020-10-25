@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import clientSideTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
-import clientSideTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
-import clientSideTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
-import clientSideTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import clientTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import clientTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import clientTblOfAppointments from '@/components/1time-eachField-multiValues/appointments/db/client-side/structure/appointment-client-side-table.js'
 import moment from 'moment'
 
 export default {
@@ -33,7 +33,7 @@ export default {
     if (!this.propApptId === 0) {
       return
     }
-    this.currentApptObj = await clientSideTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
   },
   methods: {
     mfGetHeightData(pApptObj) {
@@ -47,9 +47,9 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientSideTblHeight.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientTblHeight.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientDB = clientSideTblHeight
+        arOfObjectsFromClientDB = clientTblHeight
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
@@ -79,9 +79,9 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientSideTblWeight.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientTblWeight.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientDB = clientSideTblWeight
+        arOfObjectsFromClientDB = clientTblWeight
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])
@@ -111,9 +111,9 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientSideTblOxygenSaturation.query().where('ROW_END', 2147483648000).get()
+        arOfObjectsFromClientDB = clientTblOxygenSaturation.query().where('ROW_END', 2147483648000).get()
       } else {
-        arOfObjectsFromClientDB = clientSideTblOxygenSaturation
+        arOfObjectsFromClientDB = clientTblOxygenSaturation
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

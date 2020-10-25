@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import clientSideTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     // Search interfaces to this component
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add goal',
         ctAbbr: 'addg',
@@ -22,7 +22,7 @@ export default {
       },
     })
 
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi rate goal',
         ctAbbr: 'mcg',
@@ -31,7 +31,7 @@ export default {
       },
     })
 
-    clientSideTblOfCtSearchPhrases.insert({
+    clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'goal',
         ctAbbr: 'g',
