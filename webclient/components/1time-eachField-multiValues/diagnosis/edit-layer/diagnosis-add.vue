@@ -10,16 +10,7 @@ import fieldMultiValuesAdd from '@/components/1time-eachField-multiValues/common
 export default {
   data: function () {
     return {
-      ctDef: {
-        id: 'diagnosis',
-        plural: 'diagnosis',
-        singular: 'diagnosis',
-        fields: [
-          { fieldName: 'diagnosis', fieldType: 'select', span: 8, selectOptions: this.optionList() },
-          { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
-          { fieldName: 'onset', fieldType: '', span: 8 },
-        ],
-      },
+      ctDef: process.env.diagnosisCtDef,
     }
   },
 

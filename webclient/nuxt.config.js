@@ -83,6 +83,16 @@ export default {
         { fieldName: 'description', fieldType: 'textarea', span: 12 },
       ],
     },
+    diagnosisCtDef: {
+      id: 'diagnosis',
+      plural: 'diagnosis',
+      singular: 'diagnosis',
+      fields: [
+        { fieldName: 'diagnosis', fieldType: 'select', span: 8 },
+        { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
+        { fieldName: 'onset', fieldType: '', span: 8 },
+      ],
+    },
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.
