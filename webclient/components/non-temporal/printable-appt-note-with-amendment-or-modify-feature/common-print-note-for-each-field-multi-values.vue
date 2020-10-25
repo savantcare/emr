@@ -123,7 +123,6 @@
           </tr>
         </table>
       </div>
-      <br />
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
         <div v-for="row in cfArOfAddendumForDisplay" :key="row.clientSideUniqRowId">
