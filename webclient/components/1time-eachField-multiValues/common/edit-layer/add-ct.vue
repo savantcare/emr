@@ -1,16 +1,14 @@
 <!-- Reference implementation -->
-<!-- For design see webclient/cts/non-temporal/crud/forms.md -->
+<!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
 <template>
   <div>
-    <!-- Goal: Show multiple add rows along with remove each row. At end A. Reset B. Add more C. Reviewed -->
     <el-form>
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
-          <!-- Prop explaination  Read prop explanation for span=4 on line 19 -->
-
           <div v-for="(propFieldObj, id) in propFormFields" :key="id">
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 2 possibilities input type field or select type field -->
+              <!-- Do the following when it is select type field -->
               <div v-if="propFieldObj.fieldType === 'select'">
                 <el-select v-model="value" filterable placeholder="Name of diagnosis">
                   <el-option
@@ -22,6 +20,7 @@
                   </el-option>
                 </el-select>
               </div>
+              <!-- Do the following when it is input type field -->
               <el-input
                 v-else
                 :ref="propFieldObj.fieldName"
@@ -59,8 +58,8 @@
         <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
       </el-form-item>
     </el-form>
-    <!-- Goal: Show data at the time of sending to server -->
 
+    <!-- Goal: Show data at the time of sending to server -->
     <el-table
       v-if="cfGetClientTblApiSendingStateRows.length > 0"
       :data="cfGetClientTblApiSendingStateRows"
@@ -74,7 +73,6 @@
     </el-table>
 
     <!-- Goal: Show data saved successfuly this session -->
-
     <el-table
       v-if="cfGetClientTblApiSuccessStateRows.length > 0"
       :data="cfGetClientTblApiSuccessStateRows"
@@ -89,6 +87,7 @@
         </div>
       </el-table-column>
     </el-table>
+
     <!-- Goal: Show data of API that failed in this session -->
     <el-table
       v-if="cfGetClientTblApiErrorStateRows.length > 0"
@@ -114,7 +113,6 @@ import processNotesClientTbl from '@/components/1time-eachField-multiValues/proc
 import recommendationClientTbl from '@/components/1time-eachField-multiValues/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/1time-eachField-multiValues/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-// defining all rows in this object
 const clientTbl = {
   allergies: allergiesClientTbl,
   chief_complaint: chiefComplaintClientTbl,
@@ -125,7 +123,7 @@ const clientTbl = {
   process_notes: processNotesClientTbl,
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,
-} // 1st row
+}
 
 export default {
   created() {},
