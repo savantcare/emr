@@ -93,7 +93,7 @@ const clientTbl = {
   reminders: reminderClientTbl,
   recommendations: recommendationClientTbl,
   plan_comments: planCommentsClientTbl,
-  misc_notes: miscNotesClientTbl,
+  miscellaneous_notes: miscNotesClientTbl,
   process_notes: processNotesClientTbl,
   family_history: familyHistoryClientTbl,
 } // 1st row
