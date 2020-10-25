@@ -16,7 +16,7 @@
                 v-if="propFieldObj.fieldType === 'select'"
                 v-model="value"
                 filterable
-                placeholder="Name of diagnosis"
+                :placeholder="propFieldObj.fieldName"
               >
                 <el-option
                   v-for="item in propFieldObj.selectOptions"
@@ -49,6 +49,7 @@
           -->
           <el-col :span="4">
             <el-button
+              v-if="propCtDef.removeRow !== false"
               plain
               type="warning"
               style="float: right"
@@ -61,9 +62,19 @@
       <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
       <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
       <el-form-item>
-        <el-button type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
-        <el-button type="primary" plain @click="mfAddEmptyRowInEditLayerientSideTable">Add more</el-button>
-        <el-button type="warning" plain @click="mfOnResetForm">Reset form</el-button>
+        <el-button v-if="propCtDef.formReviewed !== false" type="primary" plain @click="mfOnReviewed"
+          >Reviewed</el-button
+        >
+        <el-button
+          v-if="propCtDef.addMoreRow !== false"
+          type="primary"
+          plain
+          @click="mfAddEmptyRowInEditLayerientSideTable"
+          >Add more</el-button
+        >
+        <el-button v-if="propCtDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
+          >Reset form</el-button
+        >
       </el-form-item>
     </el-form>
 
@@ -143,7 +154,9 @@ export default {
         // id and fields must be present
         if (obj.id) {
           if (obj.fields) {
-            return true
+            if (Object.keys(clientTbl).includes(obj.id)) {
+              return true
+            }
           }
         }
 
