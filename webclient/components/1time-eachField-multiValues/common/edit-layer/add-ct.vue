@@ -139,6 +139,16 @@ export default {
     propCtDef: {
       type: Object,
       required: true,
+      validator: function (obj) {
+        // id and fields must be present
+        if (obj.id) {
+          if (obj.fields) {
+            return true
+          }
+        }
+
+        return false
+      },
     },
   },
   computed: {
