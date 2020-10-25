@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import step1_init_search_phrases from '@/components/temporal/service-statement/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import step2_init_ss_field_names from '@/components/temporal/service-statement/db/client-side/static-data/insert-into-master-of-service-statement-ct.vue'
-import clientTbl from '~/components/temporal/service-statement/db/client-side/structure/patient-table-of-service-statements.js'
-// import step2_init_ss_field_names from '@/components/temporal/service-statement/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
+import step1_init_search_phrases from '@/components/temporal/service-statements/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import step2_init_ss_field_names from '@/components/temporal/service-statements/db/client-side/static-data/insert-into-master-of-service-statement-ct.vue'
+import clientTbl from '~/components/temporal/service-statements/db/client-side/structure/patient-table-of-service-statements.js'
+// import step2_init_ss_field_names from '@/components/temporal/service-statements/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
 
 export default {
   components: {

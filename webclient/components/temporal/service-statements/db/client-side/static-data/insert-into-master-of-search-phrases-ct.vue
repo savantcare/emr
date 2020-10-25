@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
-        ctToShow: '1time-eachField-1value/service-statement/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'temporal/service-statements/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit service statement',
         ctAbbr: 'sse',
-        ctToShow: '1time-eachField-1value/service-statement/edit-layer/ss-edit-design-1.vue',
+        ctToShow: 'temporal/service-statements/edit-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'deleted service statements',
         ctAbbr: 'dss',
-        ctToShow: '1time-eachField-1value/service-statement/view-layer/deleted.vue',
+        ctToShow: 'temporal/service-statements/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

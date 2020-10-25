@@ -92,7 +92,7 @@ import initializeRecComponent from '@/components/temporal/recommendations/db/cli
 import initializeRemComponent from '@/components/temporal/reminders/db/client-side/initialize-on-first-load.vue'
 // END
 
-import initializeServiceStatementComponent from '@/components/temporal/service-statement/db/client-side/initialize-on-first-load.vue'
+import initializeServiceStatementComponent from '@/components/temporal/service-statements/db/client-side/initialize-on-first-load.vue'
 
 import initializePastPsychHistoryComponent from '@/components/1time-eachField-1value/past-psych-history/db/client-side/initialize-on-first-load.vue'
 
