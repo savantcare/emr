@@ -51,6 +51,16 @@ export default {
     // Family history
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
+    allergiesCtDef: {
+      id: 'allergies',
+      plural: 'allergies',
+      singular: 'allergy',
+      fields: [
+        { fieldName: 'allergen', fieldType: '', span: 12 },
+        { fieldName: 'relation', fieldType: '', span: 6 },
+        { fieldName: 'onset', fieldType: '', span: 6 },
+      ],
+    },
     chiefComplaintCtDef: {
       id: 'chief_complaint',
       plural: 'chief complaint',
@@ -61,6 +71,25 @@ export default {
       formReviewed: false,
       resetForm: false,
       headerMultiEdit: false,
+    },
+    diagnosisCtDef: {
+      id: 'diagnosis',
+      plural: 'diagnosis',
+      singular: 'diagnosis',
+      fields: [
+        { fieldName: 'diagnosis', fieldType: 'select', span: 8 },
+        { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
+        { fieldName: 'onset', fieldType: '', span: 8 },
+      ],
+      familyHistoryCtDef: {
+        id: 'family_history',
+        plural: 'family history',
+        singular: 'family history',
+        fields: [
+          { fieldName: 'relationship', fieldType: '', span: 6 },
+          { fieldName: 'description', fieldType: 'textarea', span: 12 },
+        ],
+      },
     },
     recommendationsCtDef: {
       id: 'recommendations',
@@ -73,25 +102,6 @@ export default {
       plural: 'reminders',
       singular: 'reminder',
       fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
-    },
-    familyHistoryCtDef: {
-      id: 'family_history',
-      plural: 'family history',
-      singular: 'family history',
-      fields: [
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-      ],
-    },
-    diagnosisCtDef: {
-      id: 'diagnosis',
-      plural: 'diagnosis',
-      singular: 'diagnosis',
-      fields: [
-        { fieldName: 'diagnosis', fieldType: 'select', span: 8 },
-        { fieldName: 'assessment', fieldType: 'textarea', span: 8 },
-        { fieldName: 'onset', fieldType: '', span: 8 },
-      ],
     },
   },
 

@@ -37,10 +37,10 @@ export default class allergies extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
+      allergen: this.string(''),
+      reaction: this.string(''),
+      onset: this.string(''),
       notes: this.string(null),
-      priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

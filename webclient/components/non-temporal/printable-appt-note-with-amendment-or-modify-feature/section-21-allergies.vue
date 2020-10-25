@@ -1,12 +1,6 @@
 <template>
   <div>
-    <printNote
-      propComponentName="allergies"
-      :propApptId="propApptId"
-      propReferToComponentInUiAtSingularClassification="allergy"
-      propReferToComponentInUiAtPluralClassification="allergies"
-      :propFormFields="dataFormFields"
-    ></printNote>
+    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
   </div>
 </template>
 
@@ -25,11 +19,7 @@ export default {
   },
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'allergen', fieldType: '', span: 12 },
-        { fieldName: 'relation', fieldType: '', span: 6 },
-        { fieldName: 'onset', fieldType: '', span: 6 },
-      ],
+      ctDef: process.env.allergiesCtDef,
     }
   },
 }
