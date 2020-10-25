@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import clientTblOfPatientServiceStatements from '../db/client-side/structure/patient-table-of-service-statements.js'
+import clientTblOfPatientServiceStatements from '../db/client-side/structure/service-statements-of-a-patient-table.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 export default {
