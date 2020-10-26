@@ -522,13 +522,30 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus) {
-    const row = {
-      [pFldName]: pEvent,
-      vnRowStateInSession: pRowStatus,
-      validationClass: '',
-      isValidationError: false,
-    }
+    /* check if fldName has the word "select" or "multiselect" since in those cases:
+        1. Take current pFldName value out of the row
+        2. If the incoming value:
+            Exists inside pFldName then remove it and update the value of pFldName
+            Does not exist inside pFldName then add it to the previous value of pFldName and then update the value of pFldName
+    */
 
+    let row = {}
+
+    if (pFldName.includes('select')) {
+      row = {
+        [pFldName]: pEvent + '#',
+        vnRowStateInSession: pRowStatus,
+        validationClass: '',
+        isValidationError: false,
+      }
+    } else {
+      row = {
+        [pFldName]: pEvent,
+        vnRowStateInSession: pRowStatus,
+        validationClass: '',
+        isValidationError: false,
+      }
+    }
     const arFromClientTbl = this.update({
       where: pClientRowId,
       data: row,
