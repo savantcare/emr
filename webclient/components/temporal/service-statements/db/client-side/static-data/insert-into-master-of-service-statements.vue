@@ -62,7 +62,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Client Centered',
-        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
 
@@ -71,7 +71,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Dialectical Behavior therapy',
-        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
 
@@ -80,7 +80,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Holistic Therapy',
-        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
 
@@ -89,7 +89,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Existential humanistic',
-        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
 
@@ -98,7 +98,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Bibilotherapy',
-        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
 

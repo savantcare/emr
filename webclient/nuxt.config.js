@@ -154,13 +154,13 @@ export default {
         {
           fieldNameInDb: 'Modality_of_psychotherapy',
           fieldNameInUi: 'Modality of psychotherapy',
-          fieldType: 'heading',
+          fieldType: 'multi-select-with-buttons',
           span: 12,
         },
         {
-          fieldNameInDb: 'Total_time_spent_with_patient',
-          fieldNameInUi: 'Total time spent with patient',
-          fieldType: 'heading',
+          fieldNameInDb: 'Total_minutes_with_patient',
+          fieldNameInUi: 'Total minutes with patient',
+          fieldType: 'multi-select-with-buttons',
           span: 12,
         },
       ],

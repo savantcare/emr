@@ -27,7 +27,7 @@
               <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
               <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
                 {{ propFieldObj.fieldNameInUi }}
-                <div v-for="item in propFieldObj.selectOptions(propFieldObj)" :key="item.id">
+                <div v-for="item in propCtDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
                   <el-button
                     @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                     >{{ item.value }}</el-button

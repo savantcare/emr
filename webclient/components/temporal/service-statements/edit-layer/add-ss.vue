@@ -16,12 +16,13 @@ export default {
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
 
-    this.ctDef.fields[0].selectOptions = function (fieldObj) {
+    this.ctDef.fnGetSelectOptions = function (fieldNameInDb) {
       console.log('===== inside fn')
       let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()
         .with('tblLinkToServiceStatementForPatientFieldValues')
         .where('ROW_END', 2147483648000)
+        .where('serviceStatementFieldNameInDb', fieldNameInDb)
         .get()
 
       arOfObjectsFromClientMasterDB.forEach(function (data) {
