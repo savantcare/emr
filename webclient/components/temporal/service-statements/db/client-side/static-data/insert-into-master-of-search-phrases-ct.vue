@@ -20,7 +20,7 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit service statement',
+        value: 'edit service_statements',
         ctAbbr: 'sse',
         ctToShow: 'temporal/service-statements/edit-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
