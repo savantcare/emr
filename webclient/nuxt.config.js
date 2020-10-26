@@ -124,7 +124,7 @@ export default {
       singular: 'service statement',
       fields: [
         {
-          fieldNameInDb: 'total_minutes_in_psychotherapy',
+          fieldNameInDb: 'total_minutes_in_psychotherapy_select',
           fieldNameInUi: 'Total minutes in psychotherapy',
           fieldType: 'multi-select-with-buttons',
           span: 12,
@@ -152,13 +152,13 @@ export default {
           ],
         },
         {
-          fieldNameInDb: 'modality_of_psychotherapy',
+          fieldNameInDb: 'modality_of_psychotherapy_multi_select',
           fieldNameInUi: 'Modality of psychotherapy',
           fieldType: 'multi-select-with-buttons',
           span: 12,
         },
         {
-          fieldNameInDb: 'total_minutes_with_patient',
+          fieldNameInDb: 'total_minutes_with_patient_select',
           fieldNameInUi: 'Total minutes with patient',
           fieldType: 'multi-select-with-buttons',
           span: 12,

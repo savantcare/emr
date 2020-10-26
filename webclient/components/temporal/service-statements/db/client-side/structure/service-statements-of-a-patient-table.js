@@ -25,9 +25,9 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table serviceStatementFieldOptionId = 2 */
-      total_minutes_in_psychotherapy: this.string(null),
-      total_minutes_with_patient: this.string(null),
-      modality_of_psychotherapy: this.string(null),
+      total_minutes_in_psychotherapy_select: this.string(null),
+      total_minutes_with_patient_select: this.string(null),
+      modality_of_psychotherapy_multi_select: this.string(null),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
