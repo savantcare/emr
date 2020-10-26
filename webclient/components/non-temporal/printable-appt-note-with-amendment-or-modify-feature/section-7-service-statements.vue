@@ -22,5 +22,12 @@ export default {
       ctDef: process.env.serviceStatementsCtDef,
     }
   },
+  created() {
+    // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
+
+    this.ctDef.fnGetSelectOptionLabel = function (fieldNameInDb) {
+      return 'jaikalima'
+    }
+  },
 }
 </script>

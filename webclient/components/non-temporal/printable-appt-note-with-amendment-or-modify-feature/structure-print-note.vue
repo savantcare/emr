@@ -74,7 +74,7 @@
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td v-for="(propFieldObj, id) in propCtDef.fields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
-              <div v-if="propFieldObj.fieldNameInDb.includes('select')">Select type field</div>
+              <div v-if="propFieldObj.fieldNameInDb.includes('select')">{{ propCtDef.fnGetSelectOptionLabel() }}</div>
               <div v-else>
                 {{ row[propFieldObj.fieldNameInDb] }}
               </div>
