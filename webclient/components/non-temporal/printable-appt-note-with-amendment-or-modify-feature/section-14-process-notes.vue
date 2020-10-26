@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from './common-print-note-for-each-field-multi-values.vue'
+import printNote from './structure-print-note.vue'
 
 export default {
   components: {
