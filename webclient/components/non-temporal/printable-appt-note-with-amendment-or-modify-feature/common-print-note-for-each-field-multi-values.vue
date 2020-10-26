@@ -72,9 +72,12 @@
         <!-- This is for each data row -->
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
-            <!-- This is to loop on fields. Since some may have 1 and other may have 4 fields -->
+            <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td v-for="(propFieldObj, id) in propCtDef.fields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
-              {{ row[propFieldObj.fieldNameInDb] }}
+              <div v-if="propFieldObj.fieldNameInDb.includes('select')">Select type field</div>
+              <div v-else>
+                {{ row[propFieldObj.fieldNameInDb] }}
+              </div>
             </td>
             <!-- This is for action assocaited with each row -->
             <div v-if="currentApptObj['apptStatus'] === 'locked'"></div>
