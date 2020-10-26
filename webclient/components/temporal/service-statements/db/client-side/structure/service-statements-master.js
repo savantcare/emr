@@ -10,14 +10,14 @@ export default class serviceStatementsMasterClass extends clientTblManage {
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 
-  static primaryKey = 'serviceStatementFieldMasterId'
+  static primaryKey = 'serviceStatementFieldOptionId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      serviceStatementFieldMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
-      serviceStatementFieldDescription: this.string(null),
+      serviceStatementFieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      serviceStatementFieldOptionLabel: this.string(null),
       serviceStatementFieldNameInDb: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
@@ -30,8 +30,8 @@ export default class serviceStatementsMasterClass extends clientTblManage {
       */
       tblLinkToServiceStatementForPatientFieldValues: this.hasOne(
         serviceStatementsForPatientClass,
-        'serviceStatementFieldMasterId',
-        'serviceStatementFieldMasterId'
+        'serviceStatementFieldOptionId',
+        'serviceStatementFieldOptionId'
       ),
     }
   }

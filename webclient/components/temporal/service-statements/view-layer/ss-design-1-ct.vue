@@ -68,7 +68,7 @@ export default {
         arOfObjectsFromClientDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
           arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldNameInDb +
           ': ' +
-          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldDescription
+          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldOptionLabel
       }
 
       return arOfObjectsFromClientDB

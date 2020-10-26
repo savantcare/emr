@@ -18,14 +18,14 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
 
-      /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementFieldMasterId
+      /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementFieldOptionId
          E.g: The  tblServiceStatementsMaster has:
-         serviceStatementFieldMasterId  |         serviceStatementFieldDescription    
+         serviceStatementFieldOptionId  |         serviceStatementFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table serviceStatementFieldMasterId = 2 */
-      serviceStatementFieldMasterId: this.uid(() => uuidv1()), // This is service statement ID coming from master table ./master-table-of-service-statements.js
+          When doctor assigns 2 to this patient then in this table serviceStatementFieldOptionId = 2 */
+      serviceStatementFieldOptionId: this.uid(() => uuidv1()), // This is service statement ID coming from master table ./master-table-of-service-statements.js
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -52,8 +52,8 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       // https://vuex-orm.org/guide/model/relationships.html#one-to-one-inverse
       tblLinkToServiceStatementFieldMaster: this.belongsTo(
         serviceStatementsMasterClass,
-        'serviceStatementFieldMasterId',
-        'serviceStatementFieldMasterId'
+        'serviceStatementFieldOptionId',
+        'serviceStatementFieldOptionId'
       ),
     }
   }

@@ -8,7 +8,7 @@ CREATE TABLE `service_statements`
 (36) COLLATE utf8_unicode_ci NOT NULL,
   `patientUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,
-  `serviceStatementFieldMasterId` int
+  `serviceStatementFieldOptionId` int
 (11) NOT NULL,
   `recordChangedByUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,

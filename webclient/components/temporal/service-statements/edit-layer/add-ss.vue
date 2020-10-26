@@ -26,8 +26,8 @@ export default {
         .get()
 
       arOfObjectsFromClientMasterDB.forEach(function (data) {
-        data['id'] = data['serviceStatementFieldMasterId']
-        data['value'] = data['serviceStatementFieldDescription']
+        data['id'] = data['serviceStatementFieldOptionId']
+        data['value'] = data['serviceStatementFieldOptionLabel']
       })
       console.log(arOfObjectsFromClientMasterDB)
 

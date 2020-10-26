@@ -15,8 +15,8 @@ export default {
     let i = 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '60',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '60',
         serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
@@ -24,8 +24,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '55',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '55',
         serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
@@ -33,8 +33,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '50',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '50',
         serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
@@ -42,8 +42,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '45',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '45',
         serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
@@ -51,8 +51,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '40',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '40',
         serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
@@ -60,8 +60,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: 'Client Centered',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: 'Client Centered',
         serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
@@ -69,8 +69,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: 'Dialectical Behavior therapy',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: 'Dialectical Behavior therapy',
         serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
@@ -78,8 +78,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: 'Holistic Therapy',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: 'Holistic Therapy',
         serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
@@ -87,8 +87,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: 'Existential humanistic',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: 'Existential humanistic',
         serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
@@ -96,8 +96,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: 'Bibilotherapy',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: 'Bibilotherapy',
         serviceStatementFieldNameInDb: 'Modality_of_psychotherapy',
       },
     })
@@ -105,8 +105,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '60',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '60',
         serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
@@ -114,8 +114,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '55',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '55',
         serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
@@ -123,8 +123,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '50',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '50',
         serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
@@ -132,8 +132,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '45',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '45',
         serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
@@ -141,8 +141,8 @@ export default {
     i = i + 1
     clientTblOfMasterServiceStatement.insert({
       data: {
-        serviceStatementFieldMasterId: i,
-        serviceStatementFieldDescription: '40',
+        serviceStatementFieldOptionId: i,
+        serviceStatementFieldOptionLabel: '40',
         serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
