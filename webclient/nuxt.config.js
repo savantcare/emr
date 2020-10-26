@@ -57,7 +57,7 @@ export default {
       singular: 'allergy',
       fields: [
         { fieldNameInDb: 'allergen', fieldNameInUi: 'Allergen', fieldType: '', span: 12 },
-        { fieldNameInDb: 'relation', fieldNameInUi: 'Relation', fieldType: '', span: 6 },
+        { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 6 },
         { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
       ],
     },
