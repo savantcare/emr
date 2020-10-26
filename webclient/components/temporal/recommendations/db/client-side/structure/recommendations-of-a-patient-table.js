@@ -50,3 +50,10 @@ export default class recommendations extends clientTblManage {
     }
   }
 }
+
+export const recommendationsCtDef = {
+  id: 'recommendations',
+  plural: 'recommendations',
+  singular: 'recommendation',
+  fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+}
