@@ -37,7 +37,7 @@ export default {
         },
       ]
       console.log('inside the fn to return select options')
-      pCallBack(options)
+      return options
     }),
       console.log(this.ctDef)
   },
