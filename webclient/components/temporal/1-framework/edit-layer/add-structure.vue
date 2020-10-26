@@ -29,11 +29,14 @@
                 {{ propFieldObj.fieldNameInUi }}
 
                 <div v-for="item in propFieldObj.selectOptions(propFieldObj)" :key="item.id">
-                  <el-button>{{ item.value }}</el-button>
+                  <el-button
+                    @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                    >{{ item.value }}</el-button
+                  >
                 </div>
               </div>
 
-              <!-- Field type 3: Do the following when it is auto-complete type field -->
+              <!-- Field type 3: Do the following when it is heading type field -->
               <div v-else-if="propFieldObj.fieldType === 'heading'">
                 <h3>{{ propFieldObj.fieldNameInUi }}</h3>
               </div>
@@ -55,7 +58,7 @@
                 </el-option>
               </el-select>
 
-              <!-- Field type 3: Do the following when it is input type field -->
+              <!-- Field type 5: Do the following when it is input type field -->
               <el-input
                 v-else
                 :ref="propFieldObj.fieldNameInDb"
