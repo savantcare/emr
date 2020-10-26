@@ -10,7 +10,7 @@
           <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
-              <!-- There are 4 possibilities of field type -->
+              <!-- There are 5 possibilities of field type -->
 
               <!-- Field type 1: Do the following when it is auto-complete type field -->
               <el-autocomplete
