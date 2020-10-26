@@ -1,9 +1,9 @@
 <template>
-  <fieldMultiValuesAdd :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesAdd>
+  <ctAddStructure :propCtDef="ctDef" :firstProp="firstProp"></ctAddStructure>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
+import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
 
 export default {
   data: function () {
@@ -22,7 +22,7 @@ export default {
   },
 
   components: {
-    fieldMultiValuesAdd,
+    ctAddStructure,
   },
 }
 </script>

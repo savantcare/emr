@@ -1,15 +1,15 @@
 <template>
-  <fieldMultiValuesAdd
+  <ctAddStructure
     propComponentName="family_history"
     propReferToComponentInUiAtSingularClassification="family history"
     propReferToComponentInUiAtPluralClassification="family history"
     :propFormFields="dataFormFields"
     :firstProp="firstProp"
-  ></fieldMultiValuesAdd>
+  ></ctAddStructure>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
+import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
 
 export default {
   data: function () {
@@ -30,7 +30,7 @@ export default {
   },
 
   components: {
-    fieldMultiValuesAdd,
+    ctAddStructure,
   },
 }
 </script>
