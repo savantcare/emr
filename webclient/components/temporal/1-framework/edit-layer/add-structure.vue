@@ -2,6 +2,7 @@
 <!-- Goal: Show multiple add rows along with remove each row. At end A. Reviewed B. Reset form C. Add more  -->
 <template>
   <div>
+    <!-- Start rending the add form -->
     <el-form>
       <!-- Scenario: There are existiing rows in edit state -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
