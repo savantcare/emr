@@ -6,6 +6,7 @@
 
 <script>
 import printNote from './structure-print-note.vue'
+import clientTblOfMasterServiceStatements from '~/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
 
 export default {
   components: {
@@ -27,7 +28,21 @@ export default {
 
     this.ctDef.fnGetSelectOptionLabel = function (pFieldNameInDb, pfieldValue) {
       if (pfieldValue === '') return
-      return pFieldNameInDb + pfieldValue
+
+      // from numbers get the labels
+
+      this.ctDef.fnGetSelectOptions = function (fieldNameInDb) {
+        console.log('===== inside fn')
+        let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+          .query()
+          .where('serviceStatementFieldNameInDb', pFieldNameInDb)
+          .where('serviceStatementFieldOptionId', pfieldValue)
+          .get()
+
+        console.log(arOfObjectsFromClientMasterDB)
+
+        return arOfObjectsFromClientMasterDB['serviceStatementFieldOptionLabel']
+      }
     }
   },
 }

@@ -537,15 +537,15 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
       let valueForThisField = null
 
-      if (currentValue[pFldName].includes(pEvent + '#')) {
+      if (currentValue[pFldName].includes(pEvent)) {
         valueForThisField = currentValue[pFldName]
-        valueForThisField = valueForThisField.replace(pEvent + '#', '') // Scenario 1/3: Removed
+        valueForThisField = valueForThisField.replace(pEvent, '') // Scenario 1/3: Removed
       } else {
-        valueForThisField = currentValue[pFldName] + pEvent + '#' // Scenario 2/3: Added
+        valueForThisField = currentValue[pFldName] + pEvent // Scenario 2/3: Added
       }
 
       if (valueForThisField === null) {
-        valueForThisField = pEvent + '#' // Scenario 3/3: Set first time
+        valueForThisField = pEvent // Scenario 3/3: Set first time
       }
 
       row = {
