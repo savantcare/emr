@@ -4,7 +4,6 @@
 
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-structure.vue'
-import clientTblOfPatientServiceStatements from '../db/client-side/structure/service-statements-of-a-patient-table.js'
 import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
 
 export default {

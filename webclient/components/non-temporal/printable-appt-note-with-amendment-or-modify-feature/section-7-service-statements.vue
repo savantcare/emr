@@ -31,18 +31,15 @@ export default {
 
       // from numbers get the labels
 
-      this.ctDef.fnGetSelectOptions = function (fieldNameInDb) {
-        console.log('===== inside fn')
-        let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
-          .query()
-          .where('serviceStatementFieldNameInDb', pFieldNameInDb)
-          .where('serviceStatementFieldOptionId', pfieldValue)
-          .get()
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+        .query()
+        .where('serviceStatementFieldNameInDb', pFieldNameInDb)
+        .where('serviceStatementFieldOptionId', pfieldValue)
+        .get()
 
-        console.log(arOfObjectsFromClientMasterDB)
+      const optionIdToLabel = arOfObjectsFromClientMasterDB[0]['serviceStatementFieldOptionLabel']
 
-        return arOfObjectsFromClientMasterDB['serviceStatementFieldOptionLabel']
-      }
+      return optionIdToLabel
     }
   },
 }

@@ -75,7 +75,10 @@
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td v-for="(propFieldObj, id) in propCtDef.fields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
               <div v-if="propFieldObj.fieldNameInDb.includes('select')">
-                {{ propCtDef.fnGetSelectOptionLabel(propFieldObj.fieldNameInDb, row[propFieldObj.fieldNameInDb]) }}
+                <div v-if="row[propFieldObj.fieldNameInDb].length > 0">
+                  {{ propFieldObj.fieldNameInUi }}
+                  {{ propCtDef.fnGetSelectOptionLabel(propFieldObj.fieldNameInDb, row[propFieldObj.fieldNameInDb]) }}
+                </div>
               </div>
               <div v-else>
                 {{ row[propFieldObj.fieldNameInDb] }}
