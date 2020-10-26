@@ -16,15 +16,8 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
-
-      /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementFieldMasterId
-         E.g: The  tblServiceStatementsMaster has:
-         serviceStatementFieldMasterId  |         serviceStatementFieldDescription    
-              1                    |  Spent 10 min with patient
-              2                    |  Spent 20 min with patient
-
-          When doctor assigns 2 to this patient then in this table serviceStatementFieldMasterId = 2 */
       patientUuid: this.string(null),
+      Total_minutes_in_psychotherapy: this.string(''),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
