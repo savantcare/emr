@@ -6,11 +6,11 @@
         <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
           {{ propFieldObj }}
           <el-input
-            :ref="propFieldObj.fieldName"
+            :ref="propFieldObj.fieldNameInDb"
             :type="propFieldObj.fieldType"
             :autosize="{ minRows: 2, maxRows: 4 }"
-            :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldName)"
-            @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldName)"
+            :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldNameInDb)"
+            @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
           ></el-input>
         </div>
       </el-form-item>
@@ -275,7 +275,7 @@ export default {
         const socketClientObj = await clientTblOfCommonForAllComponents
           .query()
           .where(
-            'fieldName',
+            'fieldNameInDb',
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
           )
           .first()
