@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add service_statements',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/service-statements/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/service-statements/edit-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

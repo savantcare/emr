@@ -24,7 +24,7 @@
                 @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
               ></el-autocomplete>
 
-              <!-- Field type 2: Do the following when it is auto-complete type field -->
+              <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
               <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
                 {{ propFieldObj.fieldNameInUi }}
 
