@@ -1,20 +1,14 @@
 <template>
-  <fieldMultiValuesAdd
-    propComponentName="allergies"
-    propReferToComponentInUiAtSingularClassification="allergy"
-    propReferToComponentInUiAtPluralClassification="allergies"
-    :propFormFields="dataFormFields"
-    :firstProp="firstProp"
-  ></fieldMultiValuesAdd>
+  <fieldMultiValuesEdit :propCtDef="ctDef" :firstProp="firstProp"></fieldMultiValuesEdit>
 </template>
 
 <script>
-import fieldMultiValuesAdd from '@/components/temporal/1-framework/edit-layer/edit-design-1.vue'
+import fieldMultiValuesEdit from '@/components/temporal/1-framework/edit-layer/edit-design-1.vue'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
+      ctDef: process.env.allergiesCtDef,
     }
   },
   props: {
@@ -28,7 +22,7 @@ export default {
   },
 
   components: {
-    fieldMultiValuesAdd,
+    fieldMultiValuesEdit,
   },
 }
 </script>

@@ -4,14 +4,15 @@
     <el-form>
       <el-form-item>
         <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
-          {{ propFieldObj }}
-          <el-input
-            :ref="propFieldObj.fieldNameInDb"
-            :type="propFieldObj.fieldType"
-            :autosize="{ minRows: 2, maxRows: 4 }"
-            :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldNameInDb)"
-            @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
-          ></el-input>
+          <el-col :span="propFieldObj.span">
+            <el-input
+              :ref="propFieldObj.fieldNameInDb"
+              :type="propFieldObj.fieldType"
+              :autosize="{ minRows: 2, maxRows: 4 }"
+              :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldNameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
+            ></el-input>
+          </el-col>
         </div>
       </el-form-item>
       <el-form-item>

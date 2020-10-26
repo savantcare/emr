@@ -8,12 +8,7 @@ import fieldMultiValuesAdd from '@/components/temporal/1-framework/edit-layer/ed
 export default {
   data: function () {
     return {
-      ctDef: {
-        id: 'diagnosis',
-        plural: 'diagnosis',
-        singular: 'diagnosis',
-        fields: [{ fieldName: 'description', fieldType: 'textarea', span: 12 }],
-      },
+      ctDef: process.env.diagnosisCtDef,
     }
   },
   props: {
