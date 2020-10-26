@@ -532,8 +532,24 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     let row = {}
 
     if (pFldName.includes('select')) {
+      // get the current valie
+      const currentValue = this.find(pClientRowId)
+
+      let valueForThisField = null
+
+      if (currentValue[pFldName].includes(pEvent + '#')) {
+        valueForThisField = currentValue[pFldName]
+        valueForThisField = valueForThisField.replace(pEvent + '#', '') // Scenario 1/3: Removed
+      } else {
+        valueForThisField = currentValue[pFldName] + pEvent + '#' // Scenario 2/3: Added
+      }
+
+      if (valueForThisField === null) {
+        valueForThisField = pEvent + '#' // Scenario 3/3: Set first time
+      }
+
       row = {
-        [pFldName]: pEvent + '#',
+        [pFldName]: valueForThisField,
         vnRowStateInSession: pRowStatus,
         validationClass: '',
         isValidationError: false,
