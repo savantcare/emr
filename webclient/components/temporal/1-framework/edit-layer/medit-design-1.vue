@@ -82,7 +82,7 @@ const clientTbl = {
   process_notes: processNotesClientTbl,
 } // 1st row
 
-import ctChangeRem from './edit-design-1.vue'
+import ctChangeRem from './edit-structure.vue'
 export default {
   components: { ctChangeRem },
   data() {
