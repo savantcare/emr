@@ -4,7 +4,8 @@
 
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-structure.vue'
-import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import clientTblOfPatientServiceStatements from '../db/client-side/structure/service-statements-of-a-patient-table.js'
+import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
 
 export default {
   data: function () {
@@ -17,20 +18,20 @@ export default {
 
     this.ctDef.fields[0].selectOptions = function (fieldObj) {
       console.log('===== inside fn')
-      const arOfObjectsFromClientDB = serviceStatementClientTbl
+      let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()
-        .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
+        .with('tblLinkToServiceStatementForPatientFieldValues')
+        .where('ROW_END', 2147483648000)
         .get()
-      if (arOfObjectsFromClientDB.length === 0) {
-        console.log('Length 0')
-        const options = fieldObj.options
-        console.log('inside the fn to return select options')
-        return options
-      } else {
-        console.log('Length > 0')
-      }
+
+      arOfObjectsFromClientMasterDB.forEach(function (data) {
+        data['id'] = data['serviceStatementFieldMasterId']
+        data['value'] = data['serviceStatementFieldDescription']
+      })
+      console.log(arOfObjectsFromClientMasterDB)
+
+      return arOfObjectsFromClientMasterDB
     }
-    console.log(this.ctDef)
   },
 
   components: {
