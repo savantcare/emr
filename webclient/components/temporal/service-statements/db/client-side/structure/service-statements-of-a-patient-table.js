@@ -43,7 +43,7 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       =================
 
      When displaying the add ct.  if 1 SS of category is already added the other SS of category should not come.
-     So after I get the list of all master SS. I find all the SS that have been added in the client and there serviceStatementFieldCategory has a max 1 limit
+     So after I get the list of all master SS. I find all the SS that have been added in the client and there serviceStatementFieldNameInDb has a max 1 limit
      If found then I remove those extra rows from master.
 
       add-ct.vue/cfGetMasterRowsOfServiceStatementsGrouped

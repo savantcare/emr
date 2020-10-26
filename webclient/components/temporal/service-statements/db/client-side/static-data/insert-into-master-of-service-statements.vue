@@ -17,7 +17,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '60',
-        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
 
@@ -26,7 +26,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '55',
-        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
 
@@ -35,7 +35,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '50',
-        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
 
@@ -44,7 +44,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '45',
-        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
 
@@ -53,7 +53,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '40',
-        serviceStatementFieldCategory: 'Total minutes in psychotherapy',
+        serviceStatementFieldNameInDb: 'Total_minutes_in_psychotherapy',
       },
     })
 
@@ -62,7 +62,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Client Centered',
-        serviceStatementFieldCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
       },
     })
 
@@ -71,7 +71,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Dialectical Behavior therapy',
-        serviceStatementFieldCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
       },
     })
 
@@ -80,7 +80,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Holistic Therapy',
-        serviceStatementFieldCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
       },
     })
 
@@ -89,7 +89,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Existential humanistic',
-        serviceStatementFieldCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
       },
     })
 
@@ -98,7 +98,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: 'Bibilotherapy',
-        serviceStatementFieldCategory: 'Modality of Psychotherapy',
+        serviceStatementFieldNameInDb: 'Modality_of_Psychotherapy',
       },
     })
 
@@ -107,7 +107,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '60',
-        serviceStatementFieldCategory: 'Total minutes with patient',
+        serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
 
@@ -116,7 +116,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '55',
-        serviceStatementFieldCategory: 'Total minutes with patient',
+        serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
 
@@ -125,7 +125,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '50',
-        serviceStatementFieldCategory: 'Total minutes with patient',
+        serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
 
@@ -134,7 +134,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '45',
-        serviceStatementFieldCategory: 'Total minutes with patient',
+        serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
 
@@ -143,7 +143,7 @@ export default {
       data: {
         serviceStatementFieldMasterId: i,
         serviceStatementFieldDescription: '40',
-        serviceStatementFieldCategory: 'Total minutes with patient',
+        serviceStatementFieldNameInDb: 'Total_minutes_with_patient',
       },
     })
   },

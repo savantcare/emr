@@ -294,7 +294,7 @@ export default {
           x: timeOfMeasurementInMilliseconds,
           y: 50,
           tooltip:
-            arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
+            arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldNameInDb +
             ' ' +
             arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementDescription,
         })

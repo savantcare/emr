@@ -18,7 +18,7 @@ export default class serviceStatementsMasterClass extends clientTblManage {
 
       serviceStatementFieldMasterId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementFieldDescription: this.string(null),
-      serviceStatementFieldCategory: this.string(null),
+      serviceStatementFieldNameInDb: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
 

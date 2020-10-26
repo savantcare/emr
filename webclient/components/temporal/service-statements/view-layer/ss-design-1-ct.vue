@@ -66,7 +66,7 @@ export default {
 
       for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
         arOfObjectsFromClientDB[i]['cardContentOfTypeStringToShowInBodyOfCards'] =
-          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldCategory +
+          arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldNameInDb +
           ': ' +
           arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldDescription
       }
