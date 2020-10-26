@@ -123,7 +123,33 @@ export default {
       plural: 'service statements',
       singular: 'service statement',
       fields: [
-        { fieldName: 'Total minutes in psychotherapy', fieldType: 'multi-select-with-buttons', span: 12 },
+        {
+          fieldName: 'Total minutes in psychotherapy',
+          fieldType: 'multi-select-with-buttons',
+          span: 12,
+          options: [
+            {
+              id: '1',
+              value: '30',
+            },
+            {
+              id: '2',
+              value: '40',
+            },
+            {
+              id: '3',
+              value: '45',
+            },
+            {
+              id: '4',
+              value: '60',
+            },
+            {
+              id: '5',
+              value: '70',
+            },
+          ],
+        },
         { fieldName: 'Modality of psychotherapy', fieldType: 'heading', span: 12 },
         { fieldName: 'Total time spent with patient', fieldType: 'heading', span: 12 },
       ],

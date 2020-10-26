@@ -13,33 +13,13 @@ export default {
   },
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
-    ;(this.ctDef.fields[0].selectOptions = function (pQueryString, pCallBack) {
-      const options = [
-        {
-          id: '1',
-          value: '30',
-        },
-        {
-          id: '2',
-          value: '40',
-        },
-        {
-          id: '3',
-          value: '45',
-        },
-        {
-          id: '4',
-          value: '60',
-        },
-        {
-          id: '5',
-          value: '70',
-        },
-      ]
+    this.ctDef.fields[0].selectOptions = function (fieldObj) {
+      console.log(fieldObj)
+      const options = fieldObj.options
       console.log('inside the fn to return select options')
       return options
-    }),
-      console.log(this.ctDef)
+    }
+    console.log(this.ctDef)
   },
 
   components: {

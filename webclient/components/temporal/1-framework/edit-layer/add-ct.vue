@@ -28,7 +28,7 @@
               <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
                 {{ propFieldObj.fieldName }}
 
-                <div v-for="item in propFieldObj.selectOptions()" :key="item.id">
+                <div v-for="item in propFieldObj.selectOptions(propFieldObj)" :key="item.id">
                   <el-button>{{ item.value }}</el-button>
                 </div>
               </div>
