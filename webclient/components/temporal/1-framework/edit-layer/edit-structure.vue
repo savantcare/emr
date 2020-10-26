@@ -5,7 +5,53 @@
       <el-form-item>
         <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
           <el-col :span="propFieldObj.span">
+            <!-- Field type 1: Do the following when it is auto-complete type field -->
+            <el-autocomplete
+              v-if="propFieldObj.fieldType === 'autocomplete'"
+              v-model="searchKeyword"
+              class="inline-input"
+              :fetch-suggestions="propFieldObj.selectOptions"
+              :placeholder="propFieldObj.fieldNameInUi"
+              style="width: 100%"
+              :highlight-first-item="true"
+              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+            ></el-autocomplete>
+
+            <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
+            <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
+              {{ propFieldObj.fieldNameInUi }}
+              <div v-for="item in propCtDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
+                <el-button
+                  @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                  >{{ item.value }}</el-button
+                >
+              </div>
+            </div>
+
+            <!-- Field type 3: Do the following when it is heading type field -->
+            <div v-else-if="propFieldObj.fieldType === 'heading'">
+              <h3>{{ propFieldObj.fieldNameInUi }}</h3>
+            </div>
+
+            <!-- Field type 4: Do the following when it is select type field -->
+            <el-select
+              v-else-if="propFieldObj.fieldType === 'select'"
+              v-model="value"
+              filterable
+              :placeholder="propFieldObj.fieldNameInUi"
+            >
+              <el-option
+                v-for="item in propFieldObj.selectOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+              >
+              </el-option>
+            </el-select>
+
             <el-input
+              v-else
               :ref="propFieldObj.fieldNameInDb"
               :type="propFieldObj.fieldType"
               :autosize="{ minRows: 2, maxRows: 4 }"
