@@ -81,22 +81,7 @@ import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-ser
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientTbl from '@/components/temporal/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
-import planCommentsClientTbl from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientTbl from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import familyHistoryClientTbl from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-
-// defining all rows in this object
-const clientTbl = {
-  reminders: reminderClientTbl,
-  recommendations: recommendationClientTbl,
-  plan_comments: planCommentsClientTbl,
-  miscellaneous_notes: miscNotesClientTbl,
-  process_notes: processNotesClientTbl,
-  family_history: familyHistoryClientTbl,
-} // 1st row
+import clientTbl from '../tables.js'
 
 export default {
   components: { ctActOnSocketMessages },

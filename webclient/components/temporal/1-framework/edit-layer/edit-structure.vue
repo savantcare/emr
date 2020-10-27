@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-import clientTbl from './tables.js'
+import clientTbl from '../tables.js'
 
 export default {
   /*
