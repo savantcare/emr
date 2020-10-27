@@ -4,11 +4,12 @@
 
 <script>
 import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import { recommendationsCtDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      ctDef: process.env.recommendationsCtDef,
+      ctDef: recommendationsCtDef,
     }
   },
   props: {

@@ -106,12 +106,6 @@ export default {
       singular: 'process note',
       fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
     },
-    recommendationsCtDef: {
-      id: 'recommendations',
-      plural: 'recommendations',
-      singular: 'recommendation',
-      fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
-    },
     remindersCtDef: {
       id: 'reminders',
       plural: 'reminders',
