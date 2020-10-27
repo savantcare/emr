@@ -13,3 +13,6 @@ Postcss : 23.4K
 Less: 17K
 Sass: 13K
 Stylus
+
+1. functional component
+2. making code easier to read. For e.g. see add-ct.vue

@@ -79,7 +79,7 @@
           <!-- Just ended processing each row -->
 
           <!-- Prop explaination
-            Goal: Show remove button on the RHS of input area. Since element.io divides it into 24 columns. we are giving
+            Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
             Remove should not come if there is only one propCtDef.maxRow
           -->
