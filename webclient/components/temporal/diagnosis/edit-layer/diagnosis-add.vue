@@ -6,11 +6,12 @@
 
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-form.vue'
+import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      formDef: process.env.diagnosisFormDef,
+      formDef: diagnosisFormDef,
     }
   },
 
@@ -19,7 +20,7 @@ export default {
   },
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
-    ;(this.ctDef.fields[0].selectOptions = function (pQueryString, pCallBack) {
+    ;(this.formDef.fields[0].selectOptions = function (pQueryString, pCallBack) {
       const options = [
         {
           id: '1',
@@ -45,7 +46,7 @@ export default {
       console.log('inside the fn to return select options')
       pCallBack(options)
     }),
-      console.log(this.ctDef)
+      console.log(this.formDef)
   },
   computed: {},
 }

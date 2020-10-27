@@ -4,11 +4,12 @@
 
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      formDef: process.env.diagnosisFormDef,
+      formDef: diagnosisFormDef,
     }
   },
   props: {

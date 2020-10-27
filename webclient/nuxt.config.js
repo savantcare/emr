@@ -50,16 +50,6 @@ export default {
 
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    diagnosisFormDef: {
-      id: 'diagnosis',
-      plural: 'diagnosis',
-      singular: 'diagnosis',
-      fields: [
-        { fieldNameInDb: 'diagnosis', fieldNameInUi: 'Diagnosis', fieldType: 'autocomplete', span: 8 },
-        { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 8 },
-        { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 8 },
-      ],
-    },
     familyHistoryFormDef: {
       id: 'family_history',
       plural: 'family history',
