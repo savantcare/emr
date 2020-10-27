@@ -280,11 +280,7 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
-          .query()
-          .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
-          .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
-          .get()
+        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
       } else {
         arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
           .query()

@@ -225,6 +225,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       2. If there are 10 rows with same UUID then it will return the latest row
       3. The term "valid" is same as used in mariadb https://mariadb.com/kb/en/temporal-data-tables/
           this means that the row has not been deleted.
+
+      This Fn is important when:
+      1. A row is created
+      2. The same row is changed
+      Now in the view layer only 2 should appear. And there is an option to undo the changes in 2 to get back to 1
   */
   static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
