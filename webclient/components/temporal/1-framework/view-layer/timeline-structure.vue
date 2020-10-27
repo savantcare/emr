@@ -114,7 +114,9 @@ export default {
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+        this.propFormDef.fieldForCheckingIfRowIsEmpty
+      )
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

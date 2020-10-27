@@ -146,7 +146,9 @@ export default {
 
     cfArOfRemForDisplayInTable() {
       // Whenever clientTbl will change this will get called. Even when there are 100 rows in the table when clientTbl rem changes this gets called once'
-      const arFromClientTbl = clientTbl.fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(
+        this.propFormDef.fieldForCheckingIfRowIsEmpty
+      )
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array
                   -ves:
