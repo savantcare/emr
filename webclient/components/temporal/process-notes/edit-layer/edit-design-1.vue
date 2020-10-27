@@ -1,18 +1,21 @@
 <template>
-  <ctAddStructure propComponentName="family_history" :propFormFields="dataFormFields"></ctAddStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
-import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import { processNotesFormDef } from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-      ],
+      formDef: processNotesFormDef,
     }
+  },
+  props: {
+    firstProp: {
+      type: Number,
+    },
   },
 
   mounted() {
@@ -20,7 +23,7 @@ export default {
   },
 
   components: {
-    ctAddStructure,
+    ctEditStructure,
   },
 }
 </script>
