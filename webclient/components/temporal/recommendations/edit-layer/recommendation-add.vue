@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ctAddForm from '@/components/temporal/1-framework/edit-layer/add-structure.vue'
+import ctAddForm from '@/components/temporal/1-framework/edit-layer/add-form.vue'
 import { recommendationsCtDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {

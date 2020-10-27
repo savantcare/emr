@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
+import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
 
 export default {
   data: function () {

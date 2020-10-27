@@ -567,7 +567,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
-    arToCopy.vnRowStateInSession = Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.vnRowStateInSession = rowState.Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
     })

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-structure.vue'
+import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
 import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
 import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
