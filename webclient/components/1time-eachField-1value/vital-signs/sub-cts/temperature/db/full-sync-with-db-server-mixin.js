@@ -5,8 +5,10 @@ import clientTbl from '~/components/1time-eachField-1value/vital-signs/sub-cts/t
 export default {
   methods: {
     async mxGetDataFromDb() {
-      const pro = await clientTbl.api().get(clientTbl.apiUrl)
-      if (pro.ok) {
+      if (process.env.loadInitialDataFromServer === true) {
+        const pro = await clientTbl.api().get(clientTbl.apiUrl)
+        if (pro.ok) {
+        }
       }
     },
   },

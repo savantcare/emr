@@ -19,8 +19,10 @@ export default {
         When using json-server backend the code is:
         const proMseFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
-    const proMseFromDB = await clientTbl.api().get(clientTbl.apiUrl)
-    if (proMseFromDB.ok) {
+    if (process.env.loadInitialDataFromServer === true) {
+      const proMseFromDB = await clientTbl.api().get(clientTbl.apiUrl)
+      if (proMseFromDB.ok) {
+      }
     }
   },
 }
