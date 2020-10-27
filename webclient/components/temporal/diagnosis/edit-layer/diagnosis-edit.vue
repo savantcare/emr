@@ -1,5 +1,5 @@
 <template>
-  <ctAddStructure :propCtDef="ctDef" :firstProp="firstProp"></ctAddStructure>
+  <ctAddStructure :propFormDef="ctDef" :firstProp="firstProp"></ctAddStructure>
 </template>
 
 <script>

@@ -51,7 +51,7 @@ export default class recommendations extends clientTblManage {
   }
 }
 
-export const recommendationsCtDef = {
+export const recommendationsFormDef = {
   id: 'recommendations',
   plural: 'recommendations',
   singular: 'recommendation',

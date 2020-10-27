@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <timeLineView :propCtDef="ctDef"></timeLineView>
+  <timeLineView :propFormDef="ctDef"></timeLineView>
 </template>
 
 <script>

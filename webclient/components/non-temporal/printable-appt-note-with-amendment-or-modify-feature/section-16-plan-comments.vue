@@ -1,6 +1,6 @@
 <template>
   <div>
-    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
+    <printNote :propApptId="propApptId" :propFormDef="ctDef"></printNote>
   </div>
 </template>
 

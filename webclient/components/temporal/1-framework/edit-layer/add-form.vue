@@ -8,7 +8,7 @@
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Start to process each row -->
-          <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
+          <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 5 possibilities of field type -->
@@ -28,7 +28,7 @@
               <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
               <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
                 {{ propFieldObj.fieldNameInUi }}
-                <div v-for="item in propCtDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
+                <div v-for="item in propFormDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
                   <el-button
                     @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                     >{{ item.value }}</el-button
@@ -81,11 +81,11 @@
           <!-- Prop explaination
             Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
-            Remove should not come if there is only one propCtDef.maxRow
+            Remove should not come if there is only one propFormDef.maxRow
           -->
           <el-col :span="4">
             <el-button
-              v-if="mfGetArOfDataRows() < propCtDef.maxRows || !propCtDef.maxRows"
+              v-if="mfGetArOfDataRows() < propFormDef.maxRows || !propFormDef.maxRows"
               plain
               type="warning"
               style="float: right"
@@ -100,19 +100,19 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propCtDef.formReviewed !== false" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="propFormDef.formReviewed !== false" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propCtDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
-          v-if="mfGetArOfDataRows() < propCtDef.maxRows || !propCtDef.maxRows"
+          v-if="mfGetArOfDataRows() < propFormDef.maxRows || !propFormDef.maxRows"
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
           >Add more</el-button
         >
-        <el-button v-if="propCtDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
+        <el-button v-if="propFormDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -125,7 +125,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
-        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
           <el-table-column :prop="propFieldObj.fieldNameInDb" :label="propFieldObj.fieldNameInDb"></el-table-column>
         </div>
       </el-table-column>
@@ -138,7 +138,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
-        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
           <el-table-column :prop="propFieldObj.fieldNameInDb" :label="propFieldObj.fieldNameInUi"></el-table-column>
         </div>
       </el-table-column>
@@ -151,7 +151,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
-        <div v-for="(propFieldObj, id) in propCtDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
           <el-table-column prop="propFieldObj.fieldNameUi" label="Attempted but failed to save"></el-table-column>
         </div>
       </el-table-column>
@@ -163,13 +163,13 @@ import clientTbl from '../tables.js'
 
 export default {
   created() {
-    console.log(this.propCtDef)
+    console.log(this.propFormDef)
   },
   data() {
     return { searchKeyword: '' }
   },
   props: {
-    propCtDef: {
+    propFormDef: {
       type: Object,
       required: true,
       validator: function (obj) {
@@ -188,26 +188,26 @@ export default {
   },
   created() {},
   computed: {
-    // clientTbl[this.propCtDef.id] functions can not be directly called from template. hence computed functions have been defined.
+    // clientTbl[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      return clientTbl[this.propCtDef.id].fnGetNewRowsInEditState()
+      return clientTbl[this.propFormDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return clientTbl[this.propCtDef.id].fnGetNewRowsInReadyToReviewedState()
+      return clientTbl[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
     },
     cfGetClientTblApiSuccessStateRows() {
-      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiSuccessState()
+      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientTblApiErrorStateRows() {
-      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiErrorState()
+      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiErrorState()
     },
     cfGetClientTblApiSendingStateRows() {
-      return clientTbl[this.propCtDef.id].fnGetNewRowsInApiSendingState()
+      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     mfGetArOfDataRows() {
-      const arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
+      const arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
         .where('vnRowStateInSession', (value) => value > 1) // 2 is new on client.
@@ -216,9 +216,9 @@ export default {
     },
 
     async mfAddEmptyRowInEditLayerientSideTable() {
-      console.log(this.propCtDef.fields)
+      console.log(this.propFormDef.fields)
       // TODO: this should be part of base class
-      const arFromClientTbl = await clientTbl[this.propCtDef.id].insert({
+      const arFromClientTbl = await clientTbl[this.propFormDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -237,18 +237,18 @@ export default {
         this.$refs.description[lastElement - 1].focus()
       }
     },
-    // Cannot call clientTbl[this.propCtDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call clientTbl[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
-      return clientTbl[this.propCtDef.id].fnGetFldValue(pClientRowId, pFldName)
+      return clientTbl[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       console.log(pEvent, pClientRowId, pFldName)
       const rowStatus = 24
-      clientTbl[this.propCtDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
+      clientTbl[this.propFormDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
-      const arFromClientTbl = clientTbl[this.propCtDef.id].find(pClientRowId)
+      const arFromClientTbl = clientTbl[this.propFormDef.id].find(pClientRowId)
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -256,24 +256,24 @@ export default {
       return ''
     },
     async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
-      await clientTbl[this.propCtDef.id].delete(pClientRowId)
+      await clientTbl[this.propFormDef.id].delete(pClientRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      clientTbl[this.propCtDef.id].fnDeleteNewRowsInEditState()
+      clientTbl[this.propFormDef.id].fnDeleteNewRowsInEditState()
     },
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propCtDef.id] ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propCtDef.id] since get benefit of caching.
+      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propFormDef.id] since get benefit of caching.
       if (arFromClientTbl.length) {
         console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
           if (arFromClientTbl[i].description.length < 3) {
             // Validation check
-            await clientTbl[this.propCtDef.id].update({
+            await clientTbl[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -282,7 +282,7 @@ export default {
               },
             })
           } else {
-            await clientTbl[this.propCtDef.id].update({
+            await clientTbl[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
@@ -294,7 +294,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await clientTbl[this.propCtDef.id].fnSendToServer()
+      await clientTbl[this.propFormDef.id].fnSendToServer()
     },
   },
 }

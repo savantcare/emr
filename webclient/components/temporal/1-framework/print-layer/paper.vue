@@ -4,7 +4,7 @@
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading">{{
-        propCtDef.plural.charAt(0).toUpperCase() + propCtDef.plural.slice(1)
+        propFormDef.plural.charAt(0).toUpperCase() + propFormDef.plural.slice(1)
       }}</el-col>
       <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
@@ -22,7 +22,7 @@
                     icon="el-icon-check"
                     style="position: absolute; bottom: 15px; right: 15px"
                     size="mini"
-                    @click="mfSaveAddendum(amendmentData, propCtDef.id)"
+                    @click="mfSaveAddendum(amendmentData, propFormDef.id)"
                     circle
                   ></el-button>
                 </div>
@@ -36,9 +36,9 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propCtDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
-                v-if="mfGetArOfDataRows(this.currentApptObj).length < propCtDef.maxRows || !propCtDef.maxRows"
+                v-if="mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxRows || !propFormDef.maxRows"
                 class="el-icon-circle-plus-outline"
                 size="mini"
                 @click="mfOpenAddInEditLayer"
@@ -73,11 +73,15 @@
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
-            <td v-for="(propFieldObj, id) in propCtDef.fields" :key="id" :style="mfGetCssClassNameForEachDataRow(row)">
+            <td
+              v-for="(propFieldObj, id) in propFormDef.fields"
+              :key="id"
+              :style="mfGetCssClassNameForEachDataRow(row)"
+            >
               <div v-if="propFieldObj.fieldNameInDb.includes('select')">
                 <div v-if="row[propFieldObj.fieldNameInDb].length > 0">
                   {{ propFieldObj.fieldNameInUi }}
-                  {{ propCtDef.fnGetSelectOptionLabel(propFieldObj.fieldNameInDb, row[propFieldObj.fieldNameInDb]) }}
+                  {{ propFormDef.fnGetSelectOptionLabel(propFieldObj.fieldNameInDb, row[propFieldObj.fieldNameInDb]) }}
                 </div>
               </div>
               <div v-else>
@@ -177,7 +181,7 @@ export default {
       type: Number,
       required: true,
     },
-    propCtDef: {
+    propFormDef: {
       type: Object,
       required: true,
     },
@@ -251,7 +255,7 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this.propCtDef.id
+      const term = 'add ' + this.propFormDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
@@ -276,13 +280,13 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
+        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
           .query()
           .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
           .where('vnRowStateInSession', (value) => value > 2) // 2 is new on client. Dont want 2 since it is still empty. When greater then 2 that means it is on client and changed.
           .get()
       } else {
-        arOfObjectsFromClientDB = clientTbl[this.propCtDef.id]
+        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

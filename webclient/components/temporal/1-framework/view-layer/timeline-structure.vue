@@ -8,7 +8,7 @@
   <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
       <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">{{
-        propCtDef.id
+        propFormDef.id
       }}</span>
       <el-button-group style="float: right">
         <el-button
@@ -91,7 +91,7 @@ export default {
     return {}
   },
   props: {
-    propCtDef: {
+    propFormDef: {
       type: Object,
       required: true,
       validator: function (obj) {
@@ -110,11 +110,11 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', this.propCtDef.id).get()
+      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', this.propFormDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = clientTbl[this.propCtDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
+      const arFromClientTbl = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

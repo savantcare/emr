@@ -1,12 +1,12 @@
 <template>
   <div>
-    <printNote :propApptId="propApptId" :propCtDef="ctDef"></printNote>
+    <printNote :propApptId="propApptId" :propFormDef="ctDef"></printNote>
   </div>
 </template>
 
 <script>
 import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
-import { recommendationsCtDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import { recommendationsFormDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {
   components: {
@@ -20,7 +20,7 @@ export default {
   },
   data: function () {
     return {
-      ctDef: recommendationsCtDef,
+      ctDef: recommendationsFormDef,
     }
   },
 }
