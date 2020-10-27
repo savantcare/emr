@@ -6,7 +6,7 @@
 
 <script>
 import initializeRecommendationComponent from '@/components/temporal/miscellaneous-notes/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientTbl from '~/components/temporal/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import clientTbl from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 
 export default {
   components: {

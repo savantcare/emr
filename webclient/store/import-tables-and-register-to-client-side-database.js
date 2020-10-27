@@ -94,7 +94,7 @@ database.register(tableStructureForChiefComplaint)
 import tableStructureForFH from '~/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 database.register(tableStructureForFH)
 
-import tableStructureForMiscNotes from '~/components/temporal/miscellaneous-notes/db/client-side/structure/misc-notes-of-a-patient-table.js'
+import tableStructureForMiscNotes from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 database.register(tableStructureForMiscNotes)
 
 import tableStructureForPlanComments from '~/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'

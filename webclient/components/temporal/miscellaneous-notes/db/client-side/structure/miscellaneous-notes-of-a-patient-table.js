@@ -50,3 +50,10 @@ export default class misc_notes extends clientTblManage {
     }
   }
 }
+
+export const miscellaneousNotesFormDef = {
+  id: 'miscellaneous_notes',
+  plural: 'miscellaneous notes',
+  singular: 'miscellaneous note',
+  fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+}
