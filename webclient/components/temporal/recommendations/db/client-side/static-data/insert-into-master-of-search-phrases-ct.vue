@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/recommendations/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/recommendations/edit-layer/recommendation-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
