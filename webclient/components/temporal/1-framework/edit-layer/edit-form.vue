@@ -23,7 +23,7 @@
               <div v-for="item in propFormDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
                 <el-button
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, propFieldObj.fieldNameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>

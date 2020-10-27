@@ -36,9 +36,8 @@ export default {
         .get()
 
       // get the value for this field in patient table
-      const row = serviceStatementClientTbl.find(1)
-      const selectedIDs = row[fieldNameInDb]
-
+      let row = serviceStatementClientTbl.find(1)
+      let selectedIDs = row[fieldNameInDb]
       arOfObjectsFromClientMasterDB.forEach(function (data) {
         data['id'] = data['serviceStatementFieldOptionId']
         data['value'] = data['serviceStatementFieldOptionLabel']
