@@ -6,6 +6,7 @@
 import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
 import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
 import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {
   data: function () {
@@ -26,7 +27,7 @@ export default {
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
 
-    this.ctDef.fnGetSelectOptions = function (fieldNameInDb) {
+    this.formDef.fnGetSelectOptions = function (fieldNameInDb) {
       console.log('===== fn', fieldNameInDb)
       let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()
