@@ -50,12 +50,6 @@ export default {
 
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    planCommentsFormDef: {
-      id: 'plan_comments',
-      plural: 'plan comments',
-      singular: 'plan comment',
-      fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
-    },
     processNotesFormDef: {
       id: 'process_notes',
       plural: 'process notes',

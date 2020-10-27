@@ -50,3 +50,10 @@ export default class plan_comments extends clientTblManage {
     }
   }
 }
+
+export const planCommentsFormDef = {
+  id: 'plan_comments',
+  plural: 'plan comments',
+  singular: 'plan comment',
+  fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+}

@@ -6,6 +6,7 @@
 
 <script>
 import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
+import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {
   components: {
@@ -19,7 +20,7 @@ export default {
   },
   data: function () {
     return {
-      formDef: process.env.planCommentsFormDef,
+      formDef: planCommentsFormDef,
     }
   },
 }

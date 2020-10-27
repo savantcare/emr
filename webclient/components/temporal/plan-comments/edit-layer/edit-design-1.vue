@@ -1,18 +1,21 @@
 <template>
-  <ctAddStructure propComponentName="family_history" :propFormFields="dataFormFields"></ctAddStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-      ],
+      formDef: planCommentsFormDef,
     }
+  },
+  props: {
+    firstProp: {
+      type: Number,
+    },
   },
 
   mounted() {
@@ -20,7 +23,7 @@ export default {
   },
 
   components: {
-    ctAddStructure,
+    ctEditStructure,
   },
 }
 </script>
