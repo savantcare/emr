@@ -50,15 +50,6 @@ export default {
 
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    familyHistoryFormDef: {
-      id: 'family_history',
-      plural: 'family history',
-      singular: 'family history',
-      fields: [
-        { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: '', span: 6 },
-        { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
-      ],
-    },
     miscellaneousNotesFormDef: {
       id: 'miscellaneous_notes',
       plural: 'miscellaneous notes',

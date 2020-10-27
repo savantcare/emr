@@ -1,23 +1,15 @@
 <template>
-  <ctAddStructure
-    propComponentName="family_history"
-    propReferToComponentInUiAtSingularClassification="family history"
-    propReferToComponentInUiAtPluralClassification="family history"
-    :propFormFields="dataFormFields"
-    :firstProp="firstProp"
-  ></ctAddStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
-import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      dataFormFields: [
-        { fieldName: 'description', fieldType: 'textarea', span: 12 },
-        { fieldName: 'relationship', fieldType: '', span: 6 },
-      ],
+      formDef: familyHistoryFormDef,
     }
   },
   props: {
@@ -30,7 +22,7 @@ export default {
   },
 
   components: {
-    ctAddStructure,
+    ctEditStructure,
   },
 }
 </script>
