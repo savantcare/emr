@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from './structure-print-note.vue'
+import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
 
 export default {
   components: {

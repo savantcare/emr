@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from './structure-print-note.vue'
+import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
 import clientTblOfMasterServiceStatements from '~/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
 
 export default {
