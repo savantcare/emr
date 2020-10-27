@@ -88,4 +88,5 @@ export const serviceStatementsFormDef = {
   ],
   formReviewed: false,
   maxRows: 1,
+  fieldForCheckingIfRowIsEmpty: 'total_minutes_with_patient_select',
 }

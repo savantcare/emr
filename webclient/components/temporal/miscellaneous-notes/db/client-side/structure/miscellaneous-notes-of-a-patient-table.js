@@ -56,4 +56,5 @@ export const miscellaneousNotesFormDef = {
   plural: 'miscellaneous notes',
   singular: 'miscellaneous note',
   fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+  fieldForCheckingIfRowIsEmpty: 'description',
 }

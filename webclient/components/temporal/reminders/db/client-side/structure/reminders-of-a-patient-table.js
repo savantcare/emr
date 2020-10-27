@@ -56,4 +56,5 @@ export const remindersFormDef = {
   plural: 'reminders',
   singular: 'reminder',
   fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+  fieldForCheckingIfRowIsEmpty: 'description',
 }

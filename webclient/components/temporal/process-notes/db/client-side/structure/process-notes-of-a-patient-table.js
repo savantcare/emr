@@ -56,4 +56,5 @@ export const processNotesFormDef = {
   plural: 'process notes',
   singular: 'process note',
   fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+  fieldForCheckingIfRowIsEmpty: 'description',
 }

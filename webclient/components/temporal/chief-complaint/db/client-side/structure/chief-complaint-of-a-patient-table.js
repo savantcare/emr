@@ -56,4 +56,5 @@ export const chiefComplaintFormDef = {
   fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: '', span: 12 }],
   formReviewed: false,
   maxRows: 1,
+  fieldForCheckingIfRowIsEmpty: 'description',
 }

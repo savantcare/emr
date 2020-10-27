@@ -280,7 +280,9 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows('description')
+        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this.propFormDef.fieldForCheckingIfRowIsEmpty
+        )
       } else {
         arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
           .query()
