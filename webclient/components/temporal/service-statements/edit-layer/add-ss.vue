@@ -5,17 +5,18 @@
 <script>
 import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-form.vue'
 import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
+import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      formDef: process.env.serviceStatementsFormDef,
+      formDef: serviceStatementsFormDef,
     }
   },
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
 
-    this.ctDef.fnGetSelectOptions = function (fieldNameInDb) {
+    this.formDef.fnGetSelectOptions = function (fieldNameInDb) {
       console.log('===== inside fn')
       let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()

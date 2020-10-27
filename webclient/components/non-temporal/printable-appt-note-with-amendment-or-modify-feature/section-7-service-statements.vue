@@ -7,6 +7,7 @@
 <script>
 import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
 import clientTblOfMasterServiceStatements from '~/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
+import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {
   components: {
@@ -20,7 +21,7 @@ export default {
   },
   data: function () {
     return {
-      formDef: process.env.serviceStatementsFormDef,
+      formDef: serviceStatementsFormDef,
     }
   },
   created() {

@@ -50,33 +50,6 @@ export default {
 
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    serviceStatementsFormDef: {
-      id: 'service_statements',
-      plural: 'service statements',
-      singular: 'service statement',
-      fields: [
-        {
-          fieldNameInDb: 'total_minutes_in_psychotherapy_select',
-          fieldNameInUi: 'Total minutes in psychotherapy',
-          fieldType: 'multi-select-with-buttons',
-          span: 12,
-        },
-        {
-          fieldNameInDb: 'modality_of_psychotherapy_multi_select',
-          fieldNameInUi: 'Modality of psychotherapy',
-          fieldType: 'multi-select-with-buttons',
-          span: 12,
-        },
-        {
-          fieldNameInDb: 'total_minutes_with_patient_select',
-          fieldNameInUi: 'Total minutes with patient',
-          fieldType: 'multi-select-with-buttons',
-          span: 12,
-        },
-      ],
-      formReviewed: false,
-      maxRows: 1,
-    },
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.

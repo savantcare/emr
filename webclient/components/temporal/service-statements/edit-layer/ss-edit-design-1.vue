@@ -10,7 +10,7 @@ import serviceStatementClientTbl from '@/components/temporal/service-statements/
 export default {
   data: function () {
     return {
-      formDef: process.env.serviceStatementsFormDef,
+      formDef: serviceStatementsFormDef,
     }
   },
   props: {

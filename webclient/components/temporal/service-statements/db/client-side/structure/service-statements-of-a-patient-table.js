@@ -61,3 +61,31 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
     }
   }
 }
+
+export const serviceStatementsFormDef = {
+  id: 'service_statements',
+  plural: 'service statements',
+  singular: 'service statement',
+  fields: [
+    {
+      fieldNameInDb: 'total_minutes_in_psychotherapy_select',
+      fieldNameInUi: 'Total minutes in psychotherapy',
+      fieldType: 'multi-select-with-buttons',
+      span: 12,
+    },
+    {
+      fieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      fieldNameInUi: 'Modality of psychotherapy',
+      fieldType: 'multi-select-with-buttons',
+      span: 12,
+    },
+    {
+      fieldNameInDb: 'total_minutes_with_patient_select',
+      fieldNameInUi: 'Total minutes with patient',
+      fieldType: 'multi-select-with-buttons',
+      span: 12,
+    },
+  ],
+  formReviewed: false,
+  maxRows: 1,
+}
