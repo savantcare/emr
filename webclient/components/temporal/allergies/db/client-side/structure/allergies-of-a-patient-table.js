@@ -50,3 +50,14 @@ export default class allergies extends clientTblManage {
     }
   }
 }
+
+export const allergiesFormDef = {
+  id: 'allergies',
+  plural: 'allergies',
+  singular: 'allergy',
+  fields: [
+    { fieldNameInDb: 'allergen', fieldNameInUi: 'Allergen', fieldType: '', span: 12 },
+    { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 6 },
+    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
+  ],
+}

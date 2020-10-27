@@ -48,19 +48,8 @@ export default {
         ? 'http://ptserver:8000'
         : 'http://116.203.134.163:8000',
 
-    // Family history
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    allergiesFormDef: {
-      id: 'allergies',
-      plural: 'allergies',
-      singular: 'allergy',
-      fields: [
-        { fieldNameInDb: 'allergen', fieldNameInUi: 'Allergen', fieldType: '', span: 12 },
-        { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 6 },
-        { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
-      ],
-    },
     diagnosisFormDef: {
       id: 'diagnosis',
       plural: 'diagnosis',

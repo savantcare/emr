@@ -1,5 +1,3 @@
-<!-- Reference implementation -->
-<!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
   <ctAddStructure :propFormDef="formDef"></ctAddStructure>
 </template>

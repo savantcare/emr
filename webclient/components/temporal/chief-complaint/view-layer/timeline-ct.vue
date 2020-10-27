@@ -1,4 +1,3 @@
-<!-- Reference implementation -->
 <template>
   <timeLineView :propFormDef="formDef"></timeLineView>
 </template>
