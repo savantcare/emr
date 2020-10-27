@@ -149,7 +149,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
-          record.vnRowStateInSession === Copy ||
+          record.vnRowStateInSession === rowState.Copy ||
           record.vnRowStateInSession === rowState.Copy_Changed ||
           record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_Error
         )
