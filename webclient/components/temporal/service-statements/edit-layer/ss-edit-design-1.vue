@@ -37,14 +37,13 @@ export default {
 
       // get the value for this field in patient table
       const row = serviceStatementClientTbl.find(1)
-      console.log(row[fieldNameInDb])
+      const selectedIDs = row[fieldNameInDb]
 
       arOfObjectsFromClientMasterDB.forEach(function (data) {
         data['id'] = data['serviceStatementFieldOptionId']
         data['value'] = data['serviceStatementFieldOptionLabel']
-        data['selected'] = true
+        data['selected'] = selectedIDs.includes(data['id']) ? true : false
       })
-      console.log(arOfObjectsFromClientMasterDB)
 
       return arOfObjectsFromClientMasterDB
     }
