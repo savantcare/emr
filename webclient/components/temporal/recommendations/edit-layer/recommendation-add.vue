@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <ctAddForm :propFormDef="ctDef"></ctAddForm>
+  <ctAddForm :propFormDef="formDef"></ctAddForm>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ import { recommendationsFormDef } from '@/components/temporal/recommendations/db
 export default {
   data: function () {
     return {
-      ctDef: recommendationsFormDef,
+      formDef: recommendationsFormDef,
     }
   },
 

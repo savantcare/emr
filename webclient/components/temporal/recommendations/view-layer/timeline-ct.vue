@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <timeLineView :propFormDef="ctDef"></timeLineView>
+  <timeLineView :propFormDef="formDef"></timeLineView>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   components: { timeLineView },
   data: function () {
     return {
-      ctDef: recommendationsFormDef,
+      formDef: recommendationsFormDef,
     }
   },
 }

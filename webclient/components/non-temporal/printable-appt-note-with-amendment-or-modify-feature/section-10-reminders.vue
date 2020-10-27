@@ -1,6 +1,6 @@
 <template>
   <div>
-    <printNote :propApptId="propApptId" :propFormDef="ctDef"></printNote>
+    <printNote :propApptId="propApptId" :propFormDef="formDef"></printNote>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   },
   data: function () {
     return {
-      ctDef: remindersFormDef,
+      formDef: remindersFormDef,
     }
   },
 }

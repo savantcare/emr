@@ -51,7 +51,7 @@ export default {
     // Family history
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
-    allergiesCtDef: {
+    allergiesFormDef: {
       id: 'allergies',
       plural: 'allergies',
       singular: 'allergy',
@@ -61,7 +61,7 @@ export default {
         { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
       ],
     },
-    chiefComplaintCtDef: {
+    chiefComplaintFormDef: {
       id: 'chief_complaint',
       plural: 'chief complaint',
       singular: 'chief complaint',
@@ -69,7 +69,7 @@ export default {
       formReviewed: false,
       maxRows: 1,
     },
-    diagnosisCtDef: {
+    diagnosisFormDef: {
       id: 'diagnosis',
       plural: 'diagnosis',
       singular: 'diagnosis',
@@ -79,7 +79,7 @@ export default {
         { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 8 },
       ],
     },
-    familyHistoryCtDef: {
+    familyHistoryFormDef: {
       id: 'family_history',
       plural: 'family history',
       singular: 'family history',
@@ -88,25 +88,25 @@ export default {
         { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
       ],
     },
-    miscellaneousNotesCtDef: {
+    miscellaneousNotesFormDef: {
       id: 'miscellaneous_notes',
       plural: 'miscellaneous notes',
       singular: 'miscellaneous note',
       fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
     },
-    planCommentsCtDef: {
+    planCommentsFormDef: {
       id: 'plan_comments',
       plural: 'plan comments',
       singular: 'plan comment',
       fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
     },
-    processNotesCtDef: {
+    processNotesFormDef: {
       id: 'process_notes',
       plural: 'process notes',
       singular: 'process note',
       fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
     },
-    serviceStatementsCtDef: {
+    serviceStatementsFormDef: {
       id: 'service_statements',
       plural: 'service statements',
       singular: 'service statement',

@@ -1,5 +1,5 @@
 <template>
-  <ctEditStructure :propFormDef="ctDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import { remindersFormDef } from '@/components/temporal/reminders/db/client-side
 export default {
   data: function () {
     return {
-      ctDef: remindersFormDef,
+      formDef: remindersFormDef,
     }
   },
   props: {

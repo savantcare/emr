@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/non-temporal/crud/forms.md -->
 <template>
-  <ctAddStructure :propFormDef="ctDef"></ctAddStructure>
+  <ctAddStructure :propFormDef="formDef"></ctAddStructure>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ import { remindersFormDef } from '@/components/temporal/reminders/db/client-side
 export default {
   data: function () {
     return {
-      ctDef: remindersFormDef,
+      formDef: remindersFormDef,
     }
   },
   components: {

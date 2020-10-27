@@ -1,5 +1,5 @@
 <template>
-  <ctEditStructure :propFormDef="ctDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import { recommendationsFormDef } from '@/components/temporal/recommendations/db
 export default {
   data: function () {
     return {
-      ctDef: recommendationsFormDef,
+      formDef: recommendationsFormDef,
     }
   },
   props: {

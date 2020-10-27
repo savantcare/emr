@@ -1,5 +1,5 @@
 <template>
-  <ctAddStructure :propFormDef="ctDef"></ctAddStructure>
+  <ctAddStructure :propFormDef="formDef"></ctAddStructure>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-for
 export default {
   data: function () {
     return {
-      ctDef: process.env.familyHistoryCtDef,
+      formDef: process.env.familyHistoryFormDef,
     }
   },
 

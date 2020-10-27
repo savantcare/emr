@@ -1,5 +1,5 @@
 <template>
-  <ctEditStructure :propFormDef="ctDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-f
 export default {
   data: function () {
     return {
-      ctDef: process.env.allergiesCtDef,
+      formDef: process.env.allergiesFormDef,
     }
   },
   props: {

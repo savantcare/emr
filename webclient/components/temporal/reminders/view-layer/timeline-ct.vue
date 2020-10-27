@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <timeLineView :propFormDef="ctDef"></timeLineView>
+  <timeLineView :propFormDef="formDef"></timeLineView>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ import { remindersFormDef } from '@/components/temporal/reminders/db/client-side
 export default {
   data: function () {
     return {
-      ctDef: remindersFormDef,
+      formDef: remindersFormDef,
     }
   },
   components: { timeLineView },

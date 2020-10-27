@@ -1,5 +1,5 @@
 <template>
-  <ctAddStructure :propFormDef="ctDef" :firstProp="firstProp"></ctAddStructure>
+  <ctAddStructure :propFormDef="formDef" :firstProp="firstProp"></ctAddStructure>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import ctAddStructure from '@/components/temporal/1-framework/edit-layer/edit-fo
 export default {
   data: function () {
     return {
-      ctDef: process.env.diagnosisCtDef,
+      formDef: process.env.diagnosisFormDef,
     }
   },
   props: {

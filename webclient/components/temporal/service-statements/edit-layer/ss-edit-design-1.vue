@@ -1,5 +1,5 @@
 <template>
-  <ctEditStructure :propFormDef="ctDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ import serviceStatementClientTbl from '@/components/temporal/service-statements/
 export default {
   data: function () {
     return {
-      ctDef: process.env.serviceStatementsCtDef,
+      formDef: process.env.serviceStatementsFormDef,
     }
   },
   props: {

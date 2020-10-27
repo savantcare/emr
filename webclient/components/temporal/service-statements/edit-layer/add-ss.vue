@@ -1,5 +1,5 @@
 <template>
-  <ctAddStructure :propFormDef="ctDef"></ctAddStructure>
+  <ctAddStructure :propFormDef="formDef"></ctAddStructure>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import clientTblOfMasterServiceStatements from '../db/client-side/structure/serv
 export default {
   data: function () {
     return {
-      ctDef: process.env.serviceStatementsCtDef,
+      formDef: process.env.serviceStatementsFormDef,
     }
   },
   created() {
