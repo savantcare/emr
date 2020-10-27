@@ -50,3 +50,10 @@ export default class reminders extends clientTblManage {
     }
   }
 }
+
+export const remindersFormDef = {
+  id: 'reminders',
+  plural: 'reminders',
+  singular: 'reminder',
+  fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+}
