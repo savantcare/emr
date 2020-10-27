@@ -61,14 +61,6 @@ export default {
         { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
       ],
     },
-    chiefComplaintFormDef: {
-      id: 'chief_complaint',
-      plural: 'chief complaint',
-      singular: 'chief complaint',
-      fields: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: '', span: 12 }],
-      formReviewed: false,
-      maxRows: 1,
-    },
     diagnosisFormDef: {
       id: 'diagnosis',
       plural: 'diagnosis',
