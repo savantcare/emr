@@ -42,6 +42,7 @@ export default {
       arOfObjectsFromClientMasterDB.forEach(function (data) {
         data['id'] = data['serviceStatementFieldOptionId']
         data['value'] = data['serviceStatementFieldOptionLabel']
+        data['selected'] = true
       })
       console.log(arOfObjectsFromClientMasterDB)
 
