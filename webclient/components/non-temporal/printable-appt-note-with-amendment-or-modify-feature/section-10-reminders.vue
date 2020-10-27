@@ -6,6 +6,7 @@
 
 <script>
 import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
+import { remindersFormDef } from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {
   components: {
@@ -19,7 +20,7 @@ export default {
   },
   data: function () {
     return {
-      ctDef: process.env.remindersCtDef,
+      ctDef: remindersFormDef,
     }
   },
 }
