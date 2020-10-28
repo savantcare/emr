@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
+import printNote from '@/components/framework/print-layer/paper.vue'
 import { recommendationsFormDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {

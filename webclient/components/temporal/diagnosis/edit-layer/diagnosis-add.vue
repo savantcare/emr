@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-form.vue'
+import ctAddStructure from '@/components/framework/edit-layer/add-form.vue'
 import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {

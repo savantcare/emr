@@ -1,81 +1,65 @@
 <!-- Reference implementation -->
 <template>
   <div>
-    <showContentInCardComponent
-      propMainCardName="Reminders"
-      :propActionsThatCanBeInvokedFromCardHeader="[
-        {
-          actionDescription: 'Add',
-          isDefaultAction: true,
-        },
-        {
-          actionDescription: 'Multi edit',
-        },
-        {
-          actionDescription: 'Multi delete',
-        },
-        {
-          actionDescription: 'Toggle card display',
-        },
-        {
-          actionDescription: 'Show deleted',
-        },
-      ]"
-    >
-      <el-card
-        slot="bodySlotContentFromParentToShowAboveChildCards"
-        v-for="rem in cfArOfRemForDisplayInTable"
-        :key="rem.id"
-        class="box-card sc-individual-child-card"
-        shadow="hover"
-        :style="mfGetCssClassNameForEachDataRow(rem)"
-      >
-        <el-button-group style="float: right; display: none">
-          <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-            <el-button
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
-              class="el-icon-edit"
-            >
-            </el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-            <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover"> </el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
-            <el-button
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
-              class="el-icon-circle-close"
-            >
-            </el-button>
-          </el-tooltip>
+    <el-card class="box-card" shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>Reminders</span>
+        <el-button-group style="float: right">
+          <el-button
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mxOpenAddCtInEditLayer"
+            class="el-icon-circle-plus-outline"
+          ></el-button>
+          <el-button style="padding: 3px" plain tabindex="-1" @click="mxOpenMultiEditCtInEditLayer">M</el-button>
+          <el-button
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mxOpenDDialog"
+            class="el-icon-document-delete"
+          ></el-button>
+          <el-button
+            style="padding: 3px"
+            plain
+            tabindex="-1"
+            @click="mxOpenTrashCanCtInEditLayer"
+            class="el-icon-delete"
+          ></el-button>
         </el-button-group>
-
-        <!-- <el-button type="text">{{ rem.description }}</el-button> 
-          if I use the button then a long text is not getting divided into multiple lines
-          if rowStateInThisSession == 9 then the div should have a orange border
-          Why we are doing this?
-            Doctor is sitting infront of computer suddenly a new Rem appears. That is a confusing event.
-            Instead if the new Rem that came on screen gets a orange border with top right corner saying "New rem added from socket" that is much better UX.
-          -->
-        <div v-if="rem.vnRowStateInSession === 9">Added from socket {{ rem.description }}</div>
-        <div v-else>
-          {{ rem.description }}
+      </div>
+      <div class="grid-container">
+        <div v-for="rem in cfArOfRemForDisplayInTable" :key="rem.id">
+          <div>{{ rem.description }}</div>
+          <el-button-group>
+            <el-button
+              type="primary"
+              size="mini"
+              style="padding: 3px"
+              plain
+              tabindex="-1"
+              @click="mxOpenEditCtInEditLayer()"
+              class="el-icon-edit"
+            ></el-button>
+            <el-button
+              type="warning"
+              size="mini"
+              style="padding: 3px"
+              plain
+              tabindex="-1"
+              @click="mxOpenDPrompt()"
+              class="el-icon-document-delete"
+            ></el-button>
+          </el-button-group>
         </div>
-      </el-card>
-    </showContentInCardComponent>
-
-    <ctActOnSocketMessages></ctActOnSocketMessages>
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script>
-import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
@@ -92,7 +76,6 @@ const clientTbl = {
 } // 1st row
 
 export default {
-  components: { ctActOnSocketMessages, showContentInCardComponent },
   mixins: [clInvokeMixin],
   data() {
     return {
@@ -136,7 +119,7 @@ export default {
         for (let i = startDataRowInidex; i < arFromClientTbl.length && i < endDataRowIndex; i++) {
           obj = {}
           obj.description = arFromClientTbl[i].description
-          // For date format ref: /cts/temporal/1-framework/view-layer/timeline-structure.vue:53
+          // For date format ref: /cts/framework/view-layer/timeline-structure.vue:53
           date = new Date(arFromClientTbl[i].ROW_START * 1000)
           obj.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
@@ -145,8 +128,7 @@ export default {
           obj.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
           obj.uuid = arFromClientTbl[i].serverSideRowUuid
           obj.$id = arFromClientTbl[i].$id
-          obj.clientSideUniqRowId = arFromClientTbl[i].clientSideUniqRowId
-          obj.cardContentOfTypeStringToShowInBodyOfCards = obj.description
+          obj.id = arFromClientTbl[i].clientSideUniqRowId
           arRemsForDisplay.push(obj)
         }
       }
@@ -158,21 +140,27 @@ export default {
     mfTablePageChanged(pNewPageNumber) {
       this.tablePageNumber = pNewPageNumber
     },
-    mfIconMultiDeleteClickedOnChildCard(val) {
+    mfHandleSelectionForDelete(val) {
       this.daSelectedRemForDelete = val
     },
-    mfEditIconClicked(pClientDataRowId) {
-      this.mxOpenEditCtInEditLayer(pClientDataRowId)
-    },
-    mfGetCssClassNameForEachDataRow(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
+    // This is used to make the rows that are in change state a orange background.
+    mfGetCssClassNameForEachDataRow(pRow, pIndex) {
+      const strOfNumber = pRow.row.vnRowStateInSession.toString()
       const lastCharecter = strOfNumber.slice(-1)
       if (lastCharecter === '4' || lastCharecter === '6') {
-        return 'color: #E6A23C;'
+        return 'unsaved-data'
       } else {
-        return 'color: #202020;'
+        return ''
       }
     },
   },
 }
 </script>
+
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-gap: 1rem;
+}
+</style>

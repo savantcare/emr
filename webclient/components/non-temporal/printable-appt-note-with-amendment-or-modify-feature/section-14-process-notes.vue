@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/temporal/1-framework/print-layer/paper.vue'
+import printNote from '@/components/framework/print-layer/paper.vue'
 import { processNotesFormDef } from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 export default {

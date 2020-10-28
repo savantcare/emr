@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components/temporal/1-framework/edit-layer/edit-form.vue'
+import ctEditStructure from '@/components/framework/edit-layer/edit-form.vue'
 import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components/temporal/1-framework/view-layer/timeline-structure.vue'
+import timeLineView from '@/components/framework/view-layer/timeline-structure.vue'
 import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {

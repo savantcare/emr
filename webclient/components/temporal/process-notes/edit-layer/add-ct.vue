@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components/temporal/1-framework/edit-layer/add-form.vue'
+import ctAddStructure from '@/components/framework/edit-layer/add-form.vue'
 import { processNotesFormDef } from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 export default {
