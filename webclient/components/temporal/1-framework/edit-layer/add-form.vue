@@ -13,7 +13,9 @@
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 5 possibilities of field type -->
 
-              <!-- Field type 1: Do the following when it is auto-complete type field -->
+              <!-- Field type 1: Do the following when it is auto-complete type field 
+              fetch-suggestions="propFieldObj.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
+
               <el-autocomplete
                 v-if="propFieldObj.fieldType === 'autocomplete'"
                 v-model="searchKeyword"
@@ -58,7 +60,7 @@
                 </el-option>
               </el-select>
 
-              <!-- Field type 5: Do the following when it is input type field -->
+              <!-- Field type 5: Do the following when it is input/textarea type field -->
               <el-input
                 v-else
                 :ref="propFieldObj.fieldNameInDb"
