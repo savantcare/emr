@@ -30,7 +30,7 @@ I have:
 
 class clientTblManage extends Model {
   static arOrmRowsCached = []
-(https://github.com/savantcare/emr/blob/master/webclient/cts/non-temporal/crud/row-manage.js#L5)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/framework/crud/row-manage.js#L5)
 
 export default class ptHeight extends clientTblManage {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/temporal/vital-signs/sub-cts/height/db/table.js#L9)

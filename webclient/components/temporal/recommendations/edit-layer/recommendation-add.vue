@@ -1,5 +1,5 @@
 <!-- Reference implementation -->
-<!-- For design see webclient/cts/non-temporal/crud/forms.md -->
+<!-- For design see webclient/cts/framework/crud/forms.md -->
 <template>
   <ctAddForm :propFormDef="formDef"></ctAddForm>
 </template>

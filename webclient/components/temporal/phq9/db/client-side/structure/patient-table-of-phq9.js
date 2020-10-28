@@ -1,4 +1,4 @@
-import clientTblManage from '~/components/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
 import phq9MasterClass from './master-table-of-phq9.js'
 
 const { v1: uuidv1 } = require('uuid')

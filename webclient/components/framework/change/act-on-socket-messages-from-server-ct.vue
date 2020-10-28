@@ -63,7 +63,7 @@ export default {
       ) {
         const arFromClientTbl = await clientTbl.insert({
           data: {
-            vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
+            vnRowStateInSession: 9, // For meaning of diff values read webclient/cts/framework/crud/forms.md
             ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
             description: pDataArr.description,
             serverSideRowUuid: pDataArr.serverSideRowUuid,
@@ -144,7 +144,7 @@ export default {
       clientTbl.update({
         where: pClientPrimaryKeyValue,
         data: {
-          vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
+          vnRowStateInSession: 1, // For meaning of diff values read webclient/cts/framework/crud/forms.md
         },
       })
     },

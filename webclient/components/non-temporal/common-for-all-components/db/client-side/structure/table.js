@@ -1,4 +1,4 @@
-// import clientTblManage from '~/cts/non-temporal/crud/row-manage.js'
+// import clientTblManage from '~/cts/framework/crud/row-manage.js'
 import { Model } from '@vuex-orm/core'
 
 let count = 0
