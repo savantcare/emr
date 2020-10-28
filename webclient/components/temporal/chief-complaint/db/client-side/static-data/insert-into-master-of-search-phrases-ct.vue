@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'chief-complaint',
-        ctAbbr: 'rem',
+        ctAbbr: 'cc',
         ctToShow: 'temporal/chief-complaint/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add chief-complaint',
-        ctAbbr: 'arem',
+        ctAbbr: 'acc',
         ctToShow: 'temporal/chief-complaint/change-layer/add-chief-complaint.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit chief-complaint',
-        ctAbbr: 'crem',
+        ctAbbr: 'ccc',
         ctToShow: 'temporal/chief-complaint/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit chief-complaint',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mccc',
         ctToShow: 'temporal/chief-complaint/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted chief-complaint',
-        ctAbbr: 'drem',
+        ctAbbr: 'dcc',
         ctToShow: 'temporal/chief-complaint/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
