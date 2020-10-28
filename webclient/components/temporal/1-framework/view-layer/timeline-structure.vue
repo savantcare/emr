@@ -51,7 +51,9 @@
         :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 2"
         @keyup.native="mfKeyPress($event, row.id, row.description)"
       >
-        {{ row.description }}
+        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+          {{ row[propFieldObj.fieldNameInDb] }}
+        </div>
         <el-button-group style="float: right">
           <el-button
             size="mini"
@@ -127,23 +129,7 @@ export default {
                     No need to run the for loop
       */
 
-      const arRemsForDisplay = []
-      let obj = {}
-      if (arFromClientTbl.length) {
-        let date = ''
-        for (let i = 0; i < arFromClientTbl.length; i++) {
-          obj = {}
-          obj.description = arFromClientTbl[i].description
-          // For date format ref: /cts/temporal/1-framework/view-layer/timeline-structure.vue:53
-          date = new Date(arFromClientTbl[i].ROW_START)
-          obj.createdAt = date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate()
-          obj.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
-          obj.uuid = arFromClientTbl[i].serverSideRowUuid
-          obj.id = arFromClientTbl[i].clientSideUniqRowId
-          arRemsForDisplay.push(obj)
-        }
-      }
-      return arRemsForDisplay
+      return arFromClientTbl
     },
   },
   mounted() {},
