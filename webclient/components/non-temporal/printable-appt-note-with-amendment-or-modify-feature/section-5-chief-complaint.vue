@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/print-layer/paper.vue'
+import printNote from '@/components/framework/view/paper.vue'
 import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 
 export default {

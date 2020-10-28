@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/print-layer/paper.vue'
+import printNote from '@/components/framework/view/paper.vue'
 import { miscellaneousNotesFormDef } from '@/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 
 export default {

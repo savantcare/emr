@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/print-layer/paper.vue'
+import printNote from '@/components/framework/view/paper.vue'
 import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/print-layer/paper.vue'
+import printNote from '@/components/framework/view/paper.vue'
 import clientTblOfMasterServiceStatements from '~/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
 import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
