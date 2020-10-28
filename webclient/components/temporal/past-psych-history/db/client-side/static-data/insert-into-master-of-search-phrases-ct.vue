@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit past psych history',
         ctAbbr: 'epsh',
-        ctToShow: 'temporal/past-psych-history/edit-layer/past-pysch-history-edit-design-1.vue',
+        ctToShow: 'temporal/past-psych-history/change-layer/past-pysch-history-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

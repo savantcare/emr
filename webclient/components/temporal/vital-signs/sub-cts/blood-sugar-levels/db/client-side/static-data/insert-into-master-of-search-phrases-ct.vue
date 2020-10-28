@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'blood Sugar - edit',
         ctAbbr: 'bsc',
-        ctToShow: 'temporal/vital-signs/sub-cts/blood-sugar-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/blood-sugar-levels/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

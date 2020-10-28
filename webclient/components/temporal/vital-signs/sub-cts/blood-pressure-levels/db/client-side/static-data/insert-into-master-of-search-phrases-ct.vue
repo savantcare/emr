@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'blood pressure - edit',
         ctAbbr: 'bpc',
-        ctToShow: 'temporal/vital-signs/sub-cts/blood-pressure-levels/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/blood-pressure-levels/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

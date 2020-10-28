@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add miscellaneous_notes',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/miscellaneous-notes/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/miscellaneous-notes/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit miscellaneous_notes',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/miscellaneous-notes/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/miscellaneous-notes/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit miscellaneous_notes',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/miscellaneous-notes/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/miscellaneous-notes/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

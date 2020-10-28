@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'oxygen Saturation - edit',
         ctAbbr: 'wc',
-        ctToShow: 'temporal/vital-signs/sub-cts/oxygen-saturation/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/oxygen-saturation/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

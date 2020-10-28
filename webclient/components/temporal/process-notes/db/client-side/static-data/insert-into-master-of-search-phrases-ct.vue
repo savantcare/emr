@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add process-notes',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/process-notes/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/process-notes/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit process-notes',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/process-notes/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/process-notes/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit process-notes',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/process-notes/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/process-notes/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

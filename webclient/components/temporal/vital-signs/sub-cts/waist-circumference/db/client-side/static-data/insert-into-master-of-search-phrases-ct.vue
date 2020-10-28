@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'waist circumference - edit',
         ctAbbr: 'wcc',
-        ctToShow: 'temporal/vital-signs/sub-cts/waist-circumference/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/waist-circumference/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

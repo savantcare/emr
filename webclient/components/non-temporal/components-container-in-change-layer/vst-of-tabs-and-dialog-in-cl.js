@@ -76,7 +76,7 @@ export default {
       console.log(objSearchRowFromOrm)
 
       // Goal 2: Create the obj Tab that will be worked upon by for loop in
-      // /cts/non-temporal/components-container-in-edit-layer/ctShowAddAndRemoveTabsInDialog.vue: 76
+      // /cts/non-temporal/components-container-in-change-layer/ctShowAddAndRemoveTabsInDialog.vue: 76
       const tab = {
         label: objSearchRowFromOrm.value, // TODO: Should be called vsLabel
 

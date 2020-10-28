@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'height - edit',
         ctAbbr: 'hc',
-        ctToShow: 'temporal/vital-signs/sub-cts/height/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/height/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

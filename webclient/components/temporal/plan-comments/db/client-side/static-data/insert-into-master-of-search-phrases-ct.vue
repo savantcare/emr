@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add plan-comments',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/plan-comments/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/plan-comments/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit plan-comments',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/plan-comments/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/plan-comments/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit plan-comments',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/plan-comments/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/plan-comments/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

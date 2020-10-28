@@ -26,7 +26,7 @@ export default {
       data: {
         value: 'phq9 edit',
         ctAbbr: 'hc',
-        ctToShow: 'temporal/phq9/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/phq9/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
         ctWidthInEditLayer: 'small',

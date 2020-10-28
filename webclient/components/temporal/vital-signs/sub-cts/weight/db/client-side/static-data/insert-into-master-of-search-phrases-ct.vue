@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'weight - edit',
         ctAbbr: 'wc',
-        ctToShow: 'temporal/vital-signs/sub-cts/weight/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/weight/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

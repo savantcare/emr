@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'date of birth - edit',
         ctAbbr: 'wc',
-        ctToShow: 'temporal/date-of-birth/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/date-of-birth/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

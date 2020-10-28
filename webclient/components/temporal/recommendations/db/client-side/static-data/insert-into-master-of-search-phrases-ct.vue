@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/recommendations/edit-layer/recommendation-add.vue',
+        ctToShow: 'temporal/recommendations/change-layer/recommendation-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit recommendation',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/recommendations/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/recommendations/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit recommendations',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/recommendations/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/recommendations/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

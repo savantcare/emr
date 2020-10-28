@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'pulse - edit',
         ctAbbr: 'wc',
-        ctToShow: 'temporal/vital-signs/sub-cts/pulse/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/vital-signs/sub-cts/pulse/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

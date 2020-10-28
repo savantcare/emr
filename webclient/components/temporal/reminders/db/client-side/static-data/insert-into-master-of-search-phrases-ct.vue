@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminders',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/reminders/edit-layer/add-ct.vue',
+        ctToShow: 'temporal/reminders/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit reminders',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/reminders/edit-layer/reminder-edit.vue',
+        ctToShow: 'temporal/reminders/change-layer/reminder-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/reminders/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/reminders/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

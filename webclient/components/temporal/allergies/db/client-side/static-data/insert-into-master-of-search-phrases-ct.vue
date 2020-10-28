@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add allergies',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/allergies/edit-layer/allergy-add.vue',
+        ctToShow: 'temporal/allergies/change-layer/allergy-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit allergies',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/allergies/edit-layer/allergy-edit.vue',
+        ctToShow: 'temporal/allergies/change-layer/allergy-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit allergies',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/allergies/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/allergies/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

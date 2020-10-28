@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/diagnosis/edit-layer/diagnosis-add.vue',
+        ctToShow: 'temporal/diagnosis/change-layer/diagnosis-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit diagnosis',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/diagnosis/edit-layer/diagnosis-edit.vue',
+        ctToShow: 'temporal/diagnosis/change-layer/diagnosis-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit diagnosis',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/diagnosis/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/diagnosis/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

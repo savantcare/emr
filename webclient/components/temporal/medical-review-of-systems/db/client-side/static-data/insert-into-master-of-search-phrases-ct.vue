@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit medical review of systems',
         ctAbbr: 'epsh',
-        ctToShow: 'temporal/medical-review-of-systems/edit-layer/medical-review-of-systems-edit-design-1.vue',
+        ctToShow: 'temporal/medical-review-of-systems/change-layer/medical-review-of-systems-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

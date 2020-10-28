@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add family-history',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/family-history/edit-layer/family-history-add.vue',
+        ctToShow: 'temporal/family-history/change-layer/family-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit family-history',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/family-history/edit-layer/fh-edit.vue',
+        ctToShow: 'temporal/family-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit family-history',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/family-history/edit-layer/medit-design-1.vue',
+        ctToShow: 'temporal/family-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

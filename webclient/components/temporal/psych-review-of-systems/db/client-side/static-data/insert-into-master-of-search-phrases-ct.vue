@@ -26,7 +26,7 @@ export default {
       data: {
         value: 'edit psych review of systems',
         ctAbbr: 'css',
-        ctToShow: 'temporal/psych-review-of-systems/edit-layer/pros-edit-design-1.vue',
+        ctToShow: 'temporal/psych-review-of-systems/change-layer/pros-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',

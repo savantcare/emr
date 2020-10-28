@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add phone number',
         ctAbbr: 'apn',
-        ctToShow: '1time-eachField-multiValuesphone-numbers/edit-layer/add-ct.vue',
+        ctToShow: '1time-eachField-multiValuesphone-numbers/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit phone number',
         ctAbbr: 'cpn',
-        ctToShow: '1time-eachField-multiValuesphone-numbers/edit-layer/edit-design-1.vue',
+        ctToShow: '1time-eachField-multiValuesphone-numbers/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit phone numbers',
         ctAbbr: 'mcpn',
-        ctToShow: '1time-eachField-multiValuesphone-numbers/edit-layer/mc-ct.vue',
+        ctToShow: '1time-eachField-multiValuesphone-numbers/change-layer/mc-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

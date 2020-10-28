@@ -34,7 +34,7 @@ export default {
       data: {
         value: 'edit mental status exam',
         ctAbbr: 'cmse',
-        ctToShow: 'temporal/mental-status-exam/edit-layer/edit-design-1.vue',
+        ctToShow: 'temporal/mental-status-exam/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',

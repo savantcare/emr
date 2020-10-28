@@ -18,9 +18,9 @@
 
 ### Core components
 
-| #   | Name                                                                           | Programmer | Status       |
-| --- | ------------------------------------------------------------------------------ | ---------- | ------------ |
-| 1   | [Change layer tab manager](./non-temporal/components-container-in-edit-layer/) | Vikas      | Ready to use |
+| #   | Name                                                                             | Programmer | Status       |
+| --- | -------------------------------------------------------------------------------- | ---------- | ------------ |
+| 1   | [Change layer tab manager](./non-temporal/components-container-in-change-layer/) | Vikas      | Ready to use |
 
 ### Health components
 

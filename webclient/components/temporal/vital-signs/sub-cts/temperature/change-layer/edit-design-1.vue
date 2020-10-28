@@ -1,17 +1,5 @@
-<!-- Master doc is at reference implementation name/edit-layer/edit-design-1.vue. This file has doc unique to this ct 
-This acts as reference implementation for other Cts that use a graph.
-So the heierarchy is:
-
-Name
- 1. No graph needed
- 2. Graph needed
-      A. Weight            (Doc of name is not repeated but has doc related to graph)
-          1. Height        (Doc of name and weight is not repeated)
-          2. BMI
-
-
-Code synced with ref implementation on 4th august 2020
-
+<!-- Master doc is at reference implementation name/change-layer/edit-design-1.vue. This file has doc unique to this ct 
+For graph related work the reference implementation is weight.
 -->
 <template>
   <div>
@@ -20,14 +8,10 @@ Code synced with ref implementation on 4th august 2020
         <el-form>
           <el-form-item>
             <el-input
-              placeholder="Blood pressure in bpm"
-              :value="mfGetCopiedRowBeingChangedFldVal('bloodPressureInBpm')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'bloodPressureInBpm')"
+              placeholder="Temperature in farehnite"
+              :value="mfGetCopiedRowBeingChangedFldVal('temperatureInFarehnite')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'temperatureInFarehnite')"
             ></el-input>
-            <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
-             Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
-             value-format="timestamp"
-            -->
             <el-date-picker
               :value="mfGetCopiedRowBeingChangedFldVal('timeOfMeasurementInMilliseconds')"
               type="date"
@@ -60,10 +44,10 @@ Code synced with ref implementation on 4th august 2020
             :timestamp="row.createdAt"
             :type="row.type"
           >
-            {{ row.bloodPressureInBpm }}
+            {{ row.temperatureInFarehnite }}
             <!-- The following come on right of the description that comes in the timeline. 
-            Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
-            and it is not "Sending to server"
+        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
+        and it is not "Sending to server"
             -->
             <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
               >sending to server</span
@@ -75,18 +59,18 @@ Code synced with ref implementation on 4th august 2020
         </el-timeline>
       </el-col>
       <el-col :span="12">
-        <ctBloodPressureGraph form-type="sub-part-of-another-form"></ctBloodPressureGraph>
+        <ctTemperatureGraph form-type="sub-part-of-another-form"></ctTemperatureGraph>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import ctBloodPressureGraph from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/view-layer/line-graph-ct.vue'
+import ctTemperatureGraph from '@/components/temporal/vital-signs/sub-cts/temperature/view-layer/line-graph-ct.vue'
 import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
 
 export default {
-  components: { ctBloodPressureGraph },
+  components: { ctTemperatureGraph },
   mixins: [editMixin],
   data() {
     return {

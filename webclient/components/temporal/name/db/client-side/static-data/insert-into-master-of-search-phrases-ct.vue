@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'name - edit',
         ctAbbr: 'nc',
-        ctToShow: 'temporal/name/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/name/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },
