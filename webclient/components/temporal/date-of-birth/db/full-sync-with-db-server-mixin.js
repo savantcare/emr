@@ -1,6 +1,6 @@
 /* Master doc is at reference implementation name/db/full-sync-with-db-server-mixin.js
 This file has doc unique to this ct */
-import clientTbl from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'
+import clientTbl from '~/components/temporal/date-of-birth/db/client-side/structure/table.js'
 export default {
   methods: {
     async mxGetDataFromDb() {

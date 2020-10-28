@@ -62,7 +62,7 @@ import initializeFeedComponent from '@/components/non-temporal/feed/db/client-si
 import initializeMapComponent from '@/components/non-temporal/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // 1time-eachField-1value/PII
-import initializeDobComponent from '@/components/1time-eachField-1value/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDobComponent from '@/components/temporal/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
 // 1time-eachField-1value/body-measurement

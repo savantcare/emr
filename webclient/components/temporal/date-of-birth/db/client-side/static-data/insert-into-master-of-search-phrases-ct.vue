@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'date of birth',
         ctAbbr: 'w',
-        ctToShow: '1time-eachField-1value/date-of-birth/view-layer/dob-table-ct.vue',
+        ctToShow: 'temporal/date-of-birth/view-layer/dob-table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'date of birth - edit',
         ctAbbr: 'wc',
-        ctToShow: '1time-eachField-1value/date-of-birth/edit-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'temporal/date-of-birth/edit-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

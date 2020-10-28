@@ -1,43 +1,18 @@
-<!-- Reference implementation for non numeric hence no graph-->
+<!-- Reference implementation -->
 <template>
-  <div>
-    <el-button type="text"
-      >{{ cfLatestDataRowFromClientTbl['firstName'] }} {{ initialMiddleName }} {{ initialLastName }}</el-button
-    >
-  </div>
+  <timeLineView :propFormDef="formDef"></timeLineView>
 </template>
 
 <script>
-import mxViewLayer from '../code-common-for-all-1r-mf/view-layer.js'
+import timeLineView from '@/components/temporal/1-framework/view-layer/timeline-structure.vue'
+import { nameFormDef } from '@/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 
 export default {
-  mixins: [mxViewLayer],
-  props: {
-    formType: {
-      default: 'stand-alone',
-      type: String,
-    },
-    date: {
-      ctName: 'name',
-    },
+  data: function () {
+    return {
+      formDef: nameFormDef,
+    }
   },
-  computed: {
-    initialMiddleName() {
-      // console.log(this.cfLatestDataRowFromClientTbl.middleName)
-      if (this.cfLatestDataRowFromClientTbl.middleName) {
-        return this.cfLatestDataRowFromClientTbl.middleName.charAt(0)
-      } else {
-        return ''
-      }
-    },
-    initialLastName() {
-      // console.log(this.cfLatestDataRowFromClientTbl.lastName)
-      if (this.cfLatestDataRowFromClientTbl.lastName) {
-        return this.cfLatestDataRowFromClientTbl.lastName.charAt(0)
-      } else {
-        return ''
-      }
-    },
-  },
+  components: { timeLineView },
 }
 </script>
