@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components/framework/edit-layer/edit-form.vue'
+import ctEditStructure from '@/components//framework/change/edit-form.vue'
 import { recommendationsFormDef } from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
 export default {

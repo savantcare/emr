@@ -20,13 +20,13 @@ import serviceStatementClientTbl from '@/components/temporal/service-statements/
 
  Step 2:
  -------
- In temporal/1-framework/edit-layer/add-form.vue
+ In temporal/1-/framework/change/add-form.vue
 On line 164 there us: 
 > import clientTbl from '../tables.js'
 
  Step 3:
  -------
- In temporal/1-framework/edit-layer/add-form.vue
+ In temporal/1-/framework/change/add-form.vue
 On line 195 there us: 
       return clientTbl[this.propFormDef.id].fnGetNewRowsInEditState()
 

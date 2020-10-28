@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components/framework/view-layer/timeline-structure.vue'
+import timeLineView from '@/components//framework/view/timeline-structure.vue'
 import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {
