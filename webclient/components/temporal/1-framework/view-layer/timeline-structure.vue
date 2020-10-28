@@ -60,7 +60,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenEditCtInEditLayer(row.id)"
+            @click="mxOpenEditCtInEditLayer(row.clientSideUniqRowId)"
             class="el-icon-edit"
           ></el-button>
           <el-button
@@ -68,7 +68,7 @@
             style="padding: 3px"
             plain
             tabindex="-1"
-            @click="mxOpenDPrompt(row.id)"
+            @click="mxOpenDPrompt(row.clientSideUniqRowId)"
             class="el-icon-document-delete"
           ></el-button>
         </el-button-group>
