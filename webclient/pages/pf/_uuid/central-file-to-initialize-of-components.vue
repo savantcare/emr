@@ -63,7 +63,7 @@ import initializeMapComponent from '@/components/non-temporal/map/db/client-side
 
 // 1time-eachField-1value/PII
 import initializeDobComponent from '@/components/1time-eachField-1value/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeNameComponent from '@/components/1time-eachField-1value/name/db/client-side/initialize-on-first-load.vue'
+import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
 // 1time-eachField-1value/body-measurement
 import initializeBloodPressureComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'

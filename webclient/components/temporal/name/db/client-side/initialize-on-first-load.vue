@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import step1_init_search_phrases from '@/components/1time-eachField-1value/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import step1_init_search_phrases from '@/components/temporal/name/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 // Step 2 of field names needs to be added.
-import clientTbl from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
+import clientTbl from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 
 export default {
   components: {

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import clientTbl from '@/components/1time-eachField-1value/name/db/client-side/structure/table.js'
+import clientTbl from '@/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 
 export default {
   props: {

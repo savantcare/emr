@@ -1,4 +1,4 @@
-import clientTbl from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/name-of-a-patient-table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 
 export default {

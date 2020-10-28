@@ -111,7 +111,7 @@ database.register(tableStructureForRem)
 
 // END
 
-import tableStructureForName from '~/components/1time-eachField-1value/name/db/client-side/structure/table.js'
+import tableStructureForName from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 database.register(tableStructureForName)
 
 import tableStructureForDob from '~/components/1time-eachField-1value/date-of-birth/db/client-side/structure/table.js'

@@ -41,3 +41,15 @@ export default class ptName extends clientTblManage {
     }
   }
 }
+
+export const nameFormDef = {
+  id: 'name',
+  plural: 'names',
+  singular: 'name',
+  fields: [
+    { fieldNameInDb: 'firstName', fieldNameInUi: 'First name', fieldType: '', span: 8 },
+    { fieldNameInDb: 'middleName', fieldNameInUi: 'Middle name', fieldType: '', span: 8 },
+    { fieldNameInDb: 'lastName', fieldNameInUi: 'Last name', fieldType: '', span: 8 },
+  ],
+  fieldForCheckingIfRowIsEmpty: 'firstName',
+}
