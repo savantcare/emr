@@ -158,7 +158,7 @@ import clInvokeMixin from '@/components/temporal/1-framework/view-layer/cl-invok
 
 import moment from 'moment'
 
-import clientTbl from '@/components/temporal/1-framework/tables.js'
+import allClientTbls from '@/components/temporal/1-framework/all-client-tables.js'
 
 export default {
   data() {
@@ -280,11 +280,11 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
           this.propFormDef.fieldForCheckingIfRowIsEmpty
         )
       } else {
-        arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

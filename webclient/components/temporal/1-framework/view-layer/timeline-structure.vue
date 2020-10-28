@@ -83,7 +83,7 @@ import ctActOnSocketMessages from '../edit-layer/act-on-socket-messages-from-ser
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
 
-import clientTbl from '../tables.js'
+import allClientTbls from '../all-client-tables.js'
 
 export default {
   components: { ctActOnSocketMessages },
@@ -100,7 +100,7 @@ export default {
         // id and fields must be present
         if (obj.id) {
           if (obj.fields) {
-            if (Object.keys(clientTbl).includes(obj.id)) {
+            if (Object.keys(allClientTbls).includes(obj.id)) {
               return true
             }
           }
@@ -116,7 +116,7 @@ export default {
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = clientTbl[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+      const arFromClientTbl = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
         this.propFormDef.fieldForCheckingIfRowIsEmpty
       )
 

@@ -161,7 +161,7 @@
   </div>
 </template>
 <script>
-import clientTbl from '../tables.js'
+import allClientTbls from '../all-client-tables.js'
 
 export default {
   created() {
@@ -178,7 +178,7 @@ export default {
         // id and fields must be present
         if (obj.id) {
           if (obj.fields) {
-            if (Object.keys(clientTbl).includes(obj.id)) {
+            if (Object.keys(allClientTbls).includes(obj.id)) {
               return true
             }
           }
@@ -190,26 +190,26 @@ export default {
   },
   created() {},
   computed: {
-    // clientTbl[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
+    // allClientTbls[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      return clientTbl[this.propFormDef.id].fnGetNewRowsInEditState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return clientTbl[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
     },
     cfGetClientTblApiSuccessStateRows() {
-      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientTblApiErrorStateRows() {
-      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiErrorState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiErrorState()
     },
     cfGetClientTblApiSendingStateRows() {
-      return clientTbl[this.propFormDef.id].fnGetNewRowsInApiSendingState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
     mfGetArOfDataRows() {
-      const arOfObjectsFromClientDB = clientTbl[this.propFormDef.id]
+      const arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
         .where('vnRowStateInSession', (value) => value > 1) // 2 is new on client.
@@ -220,7 +220,7 @@ export default {
     async mfAddEmptyRowInEditLayerientSideTable() {
       console.log(this.propFormDef.fields)
       // TODO: this should be part of base class
-      const arFromClientTbl = await clientTbl[this.propFormDef.id].insert({
+      const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/non-temporal/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -239,18 +239,18 @@ export default {
         this.$refs.description[lastElement - 1].focus()
       }
     },
-    // Cannot call clientTbl[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call allClientTbls[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
-      return clientTbl[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
+      return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       console.log(pEvent, pClientRowId, pFldName)
       const rowStatus = 24
-      clientTbl[this.propFormDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
+      allClientTbls[this.propFormDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/non-temporal/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
-      const arFromClientTbl = clientTbl[this.propFormDef.id].find(pClientRowId)
+      const arFromClientTbl = allClientTbls[this.propFormDef.id].find(pClientRowId)
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
@@ -258,24 +258,24 @@ export default {
       return ''
     },
     async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
-      await clientTbl[this.propFormDef.id].delete(pClientRowId)
+      await allClientTbls[this.propFormDef.id].delete(pClientRowId)
       this.mfManageFocus()
     },
     mfOnResetForm(formName) {
-      clientTbl[this.propFormDef.id].fnDeleteNewRowsInEditState()
+      allClientTbls[this.propFormDef.id].fnDeleteNewRowsInEditState()
     },
     async mfOnReviewed() {
       /*
         Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from clientTbl[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
+        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
       */
-      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of clientTbl[this.propFormDef.id] since get benefit of caching.
+      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
       if (arFromClientTbl.length) {
         console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
           if (arFromClientTbl[i].description.length < 3) {
             // Validation check
-            await clientTbl[this.propFormDef.id].update({
+            await allClientTbls[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: 'validaionErrorExist',
@@ -284,7 +284,7 @@ export default {
               },
             })
           } else {
-            await clientTbl[this.propFormDef.id].update({
+            await allClientTbls[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
               data: {
                 validationClass: '',
@@ -296,7 +296,7 @@ export default {
         }
       }
       // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
-      await clientTbl[this.propFormDef.id].fnSendToServer()
+      await allClientTbls[this.propFormDef.id].fnSendToServer()
     },
   },
 }
