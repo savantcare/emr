@@ -7,14 +7,14 @@ import clientTblOfPatientServiceStatements from '@/components/temporal/service-s
 
 import clientTblOfPatientReminders from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clientTblOfMentalStatusExam from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
-import clientTblWeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
-import clientTblHeight from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/structure/table.js'
-import clientTblOxygenSaturation from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblWeight from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
+import clientTblHeight from '@/components/temporal/vital-signs/sub-cts/height/db/client-side/structure/table.js'
+import clientTblOxygenSaturation from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
 // For pros
-import clientTblOfMasterPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientTblOfPatientPsychReviewOfSystems from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
+import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
 
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 

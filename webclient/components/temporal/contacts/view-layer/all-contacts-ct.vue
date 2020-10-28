@@ -25,7 +25,7 @@
 <script>
 /* Option1:
 
-import mxTable from '@/components/1time-eachField-1value/com-mx/mixins/view-layer.js'
+import mxTable from '@/components/temporal/com-mx/mixins/view-layer.js'
 
 Desired. Once this works then name, height, weight can share the same mixin-view-layer.js
 But inside /com-mx/mixins/view-layer.js I am not able to import the correct

@@ -8,7 +8,7 @@
 </template>
 <script>
 import ctCorrelate from '@/components/non-temporal/correlate/design-1.vue'
-import vitals from '@/components/1time-eachField-1value/vital-signs/view-layer/grid-ct.vue'
+import vitals from '@/components/temporal/vital-signs/view-layer/grid-ct.vue'
 
 export default {
   components: { ctCorrelate, vitals },

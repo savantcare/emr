@@ -9,7 +9,7 @@
     <initializeFeedComponent />
     <initializeMapComponent />
 
-    <!-- 1time-eachField-1value/PII -->
+    <!-- temporal/PII -->
     <initializeDobComponent />
     <initializeNameComponent />
 
@@ -61,25 +61,25 @@ import initializeClearComponent from '@/components/non-temporal/clear/db/client-
 import initializeFeedComponent from '@/components/non-temporal/feed/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeMapComponent from '@/components/non-temporal/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
-// 1time-eachField-1value/PII
+// temporal/PII
 import initializeDobComponent from '@/components/temporal/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
-// 1time-eachField-1value/body-measurement
-import initializeBloodPressureComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeBloodSugarComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/blood-sugar-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeBmComponent from '@/components/1time-eachField-1value/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeHeightComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeOxygenSaturationComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializePulseComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeTemperatureComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWaistCircumferenceComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWeightComponent from '@/components/1time-eachField-1value/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+// temporal/body-measurement
+import initializeBloodPressureComponent from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBloodSugarComponent from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeHeightComponent from '@/components/temporal/vital-signs/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePulseComponent from '@/components/temporal/vital-signs/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeTemperatureComponent from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWaistCircumferenceComponent from '@/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWeightComponent from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
-// 1time-eachField-1value/others
-import initializeMseComponent from '@/components/1time-eachField-1value/mental-status-exam/db/client-side/initialize-on-first-load.vue'
-import initializePhq9Component from '@/components/1time-eachField-1value/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeProsComponent from '@/components/1time-eachField-1value/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+// temporal/others
+import initializeMseComponent from '@/components/temporal/mental-status-exam/db/client-side/initialize-on-first-load.vue'
+import initializePhq9Component from '@/components/temporal/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeProsComponent from '@/components/temporal/psych-review-of-systems/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // START: Each field can take multiple values at 1 time in the temporal database
 import initializeAllergiesComponent from '@/components/temporal/allergies/db/client-side/initialize-on-first-load.vue'
@@ -94,9 +94,9 @@ import initializeRemComponent from '@/components/temporal/reminders/db/client-si
 
 import initializeServiceStatementComponent from '@/components/temporal/service-statements/db/client-side/initialize-on-first-load.vue'
 
-import initializePastPsychHistoryComponent from '@/components/1time-eachField-1value/past-psych-history/db/client-side/initialize-on-first-load.vue'
+import initializePastPsychHistoryComponent from '@/components/temporal/past-psych-history/db/client-side/initialize-on-first-load.vue'
 
-import initializeMedicalReviewOfSystemsComponent from '@/components/1time-eachField-1value/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
+import initializeMedicalReviewOfSystemsComponent from '@/components/temporal/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/temporal/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'

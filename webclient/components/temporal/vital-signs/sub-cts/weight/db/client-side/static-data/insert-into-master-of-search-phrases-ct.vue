@@ -1,0 +1,32 @@
+<template>
+  <div></div>
+</template>
+
+<script>
+import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
+
+export default {
+  data() {
+    return {}
+  },
+  mounted() {
+    clientTblOfCtSearchPhrases.insert({
+      data: {
+        value: 'weight',
+        ctAbbr: 'w',
+        ctToShow: 'temporal/vital-signs/sub-cts/weight/view-layer/line-graph-ct.vue',
+        displayLocation: 'PresentTimeStateViewLayer',
+      },
+    })
+    clientTblOfCtSearchPhrases.insert({
+      data: {
+        value: 'weight - edit',
+        ctAbbr: 'wc',
+        ctToShow: 'temporal/vital-signs/sub-cts/weight/edit-layer/edit-design-1.vue', // El -> Edit layer
+        displayLocation: 'edit-layer',
+        needsRowIdToWork: 'no',
+      },
+    })
+  },
+}
+</script>

@@ -33,10 +33,10 @@ class clientTblManage extends Model {
 (https://github.com/savantcare/emr/blob/master/webclient/cts/non-temporal/crud/row-manage.js#L5)
 
 export default class ptHeight extends clientTblManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-eachField-1value/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/temporal/vital-signs/sub-cts/height/db/table.js#L9)
 
 export default class ptWeight extends clientTblManage {
-(https://github.com/savantcare/emr/blob/master/webclient/cts/1time-eachField-1value/vital-signs/sub-cts/height/db/table.js#L9)
+(https://github.com/savantcare/emr/blob/master/webclient/cts/temporal/vital-signs/sub-cts/height/db/table.js#L9)
 
 I expected ptHeight and ptWeight to have their own copies of arOrmRowsCached
 but ptHeight and ptWeight are sharing arOrmRowsCached
