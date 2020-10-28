@@ -32,6 +32,7 @@
                 {{ propFieldObj.fieldNameInUi }}
                 <div v-for="item in propFormDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
                   <el-button
+                    :type="item.selected ? 'primary' : 'plain'"
                     @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                     >{{ item.value }}</el-button
                   >

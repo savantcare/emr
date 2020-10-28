@@ -5,6 +5,8 @@
 <script>
 import ctAddStructure from '@/components//framework/change/add-form.vue'
 import clientTblOfMasterServiceStatements from '../db/client-side/structure/service-statements-master.js'
+import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+
 import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {
@@ -14,7 +16,7 @@ export default {
     }
   },
   created() {
-    // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
+    // Inside this fn 'this' will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
 
     this.formDef.fnGetSelectOptions = function (fieldNameInDb) {
       console.log('===== inside fn')
@@ -25,9 +27,14 @@ export default {
         .where('serviceStatementFieldNameInDb', fieldNameInDb)
         .get()
 
+      // get the value for this field in patient table
+      let row = serviceStatementClientTbl.find(1)
+      let selectedIDs = row[fieldNameInDb]
+
       arOfObjectsFromClientMasterDB.forEach(function (data) {
         data['id'] = data['serviceStatementFieldOptionId']
         data['value'] = data['serviceStatementFieldOptionLabel']
+        data['selected'] = selectedIDs.includes(data['id']) ? true : false
       })
       console.log(arOfObjectsFromClientMasterDB)
 
