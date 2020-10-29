@@ -17,29 +17,6 @@ export default {
   },
   created() {
     // Inside this fn 'this' will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
-
-    this.formDef.fnGetSelectOptions = function (fieldNameInDb) {
-      console.log('===== inside fn')
-      let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
-        .query()
-        .with('tblLinkToServiceStatementForPatientFieldValues')
-        .where('ROW_END', 2147483648000)
-        .where('serviceStatementFieldNameInDb', fieldNameInDb)
-        .get()
-
-      // get the value for this field in patient table
-      let row = serviceStatementClientTbl.find(1)
-      let selectedIDs = row[fieldNameInDb]
-
-      arOfObjectsFromClientMasterDB.forEach(function (data) {
-        data['id'] = data['serviceStatementFieldOptionId']
-        data['value'] = data['serviceStatementFieldOptionLabel']
-        data['selected'] = selectedIDs.includes(data['id']) ? true : false
-      })
-      console.log(arOfObjectsFromClientMasterDB)
-
-      return arOfObjectsFromClientMasterDB
-    }
   },
 
   components: {

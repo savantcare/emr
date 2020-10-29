@@ -1,6 +1,9 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
 import serviceStatementsMasterClass from './service-statements-master.js'
+import clientTblOfMasterServiceStatements from './service-statements-master.js'
+import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
@@ -89,4 +92,26 @@ export const serviceStatementsFormDef = {
   formReviewed: false,
   maxRows: 1,
   fieldForCheckingIfRowIsEmpty: 'clientSideUniqRowId',
+  fnGetSelectOptions: function (fieldNameInDb) {
+    console.log('===== inside fn')
+    let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+      .query()
+      .with('tblLinkToServiceStatementForPatientFieldValues')
+      .where('ROW_END', 2147483648000)
+      .where('serviceStatementFieldNameInDb', fieldNameInDb)
+      .get()
+
+    // get the value for this field in patient table
+    let row = serviceStatementClientTbl.find(1)
+    let selectedIDs = row[fieldNameInDb]
+
+    arOfObjectsFromClientMasterDB.forEach(function (data) {
+      data['id'] = data['serviceStatementFieldOptionId']
+      data['value'] = data['serviceStatementFieldOptionLabel']
+      data['selected'] = selectedIDs.includes(data['id']) ? true : false
+    })
+    console.log(arOfObjectsFromClientMasterDB)
+
+    return arOfObjectsFromClientMasterDB
+  },
 }
