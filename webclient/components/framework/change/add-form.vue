@@ -88,7 +88,7 @@
 
               <!-- Do validation -->
 
-              <div v-if="ormRow.isValidationError" class="el-form-item__error">Please enter minimum 3 characters.</div>
+              <div v-if="ormRow.isValidationError" class="el-form-item__error">Required {{propFormDef.fieldForCheckingIfRowIsEmpty}} field</div>
             </el-col>
             <!-- Just ended processing all the fields in the row -->
           </div>
@@ -287,7 +287,7 @@ export default {
       if (arFromClientTbl.length) {
         console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
-          if (arFromClientTbl[i].description.length < 3) {
+          if (!arFromClientTbl[i][this.propFormDef.fieldForCheckingIfRowIsEmpty].length) {
             // Validation check
             await allClientTbls[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
