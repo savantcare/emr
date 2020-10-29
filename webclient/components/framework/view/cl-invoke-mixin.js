@@ -24,7 +24,7 @@ export default {
   methods: {
     mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: 'add reminder',
+        searchTerm: this.propFormDef.id,
       })
     },
     mxOpenMultiEditCtInEditLayer() {
