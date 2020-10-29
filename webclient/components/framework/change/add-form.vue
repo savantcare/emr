@@ -61,7 +61,20 @@
                 </el-option>
               </el-select>
 
-              <!-- Field type 5: Do the following when it is input/textarea type field -->
+              <!-- Field type 5: Do the following when it is date type field -->
+              <el-date-picker
+                v-else-if="propFieldObj.fieldType === 'date'"
+                :ref="propFieldObj.fieldNameInDb"
+                format="MMM dd yyyy"
+                value-format="timestamp"
+                type="date"
+                style="width: 100%"
+                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                :placeholder="propFieldObj.fieldNameInUi">
+              </el-date-picker>
+              <!-- Field type 6: Do the following when it is input/textarea type field -->
               <el-input
                 v-else
                 :ref="propFieldObj.fieldNameInDb"
