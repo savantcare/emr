@@ -8,7 +8,7 @@
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <el-form-item v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Start to process each row -->
-          <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+          <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
             <!-- Start to process each field -->
             <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
               <!-- There are 5 possibilities of field type -->
@@ -128,7 +128,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
-        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
           <el-table-column :prop="propFieldObj.fieldNameInDb" :label="propFieldObj.fieldNameInDb"></el-table-column>
         </div>
       </el-table-column>
@@ -141,7 +141,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
-        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
           <el-table-column :prop="propFieldObj.fieldNameInDb" :label="propFieldObj.fieldNameInUi"></el-table-column>
         </div>
       </el-table-column>
@@ -154,7 +154,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
-        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
           <el-table-column prop="propFieldObj.fieldNameUi" label="Attempted but failed to save"></el-table-column>
         </div>
       </el-table-column>
@@ -178,7 +178,7 @@ export default {
       validator: function (obj) {
         // id and fields must be present
         if (obj.id) {
-          if (obj.fields) {
+          if (obj.fieldsDef) {
             if (Object.keys(allClientTbls).includes(obj.id)) {
               return true
             }
@@ -219,7 +219,7 @@ export default {
     },
 
     async mfAddEmptyRowInEditLayerientSideTable() {
-      console.log(this.propFormDef.fields)
+      console.log(this.propFormDef.fieldsDef)
       // TODO: this should be part of base class
       const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
         data: {

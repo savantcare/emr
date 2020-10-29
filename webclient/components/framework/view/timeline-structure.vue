@@ -51,7 +51,7 @@
         :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 2"
         @keyup.native="mfKeyPress($event, row.id, row.description)"
       >
-        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
           {{ row[propFieldObj.fieldNameInDb] }}
         </div>
         <el-button-group style="float: right">
@@ -99,7 +99,7 @@ export default {
       validator: function (obj) {
         // id and fields must be present
         if (obj.id) {
-          if (obj.fields) {
+          if (obj.fieldsDef) {
             if (Object.keys(allClientTbls).includes(obj.id)) {
               return true
             }

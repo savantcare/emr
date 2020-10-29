@@ -135,7 +135,7 @@ Layer 1 card
 └────────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│Info about following fields:                                                                          │
+│Info about following fieldsDef:                                                                          │
 │----------------------------                                                                          │
 │1. Drug name:  name of medicine. Respective field will be typeahead drop-down and data will come from:│
 │Table: masterMedicineByDIT field 'drugName'.                                                          │

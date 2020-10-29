@@ -66,7 +66,7 @@ export const serviceStatementsFormDef = {
   id: 'service_statements',
   plural: 'service statements',
   singular: 'service statement',
-  fields: [
+  fieldsDef: [
     {
       fieldNameInDb: 'total_minutes_in_psychotherapy_select',
       fieldNameInUi: 'Total minutes in psychotherapy',

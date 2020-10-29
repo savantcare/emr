@@ -3,7 +3,7 @@
   <div>
     <el-form>
       <el-form-item>
-        <div v-for="(propFieldObj, id) in propFormDef.fields" :key="id">
+        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
           <el-col :span="propFieldObj.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
@@ -135,7 +135,7 @@ export default {
       validator: function (obj) {
         // id and fields must be present
         if (obj.id) {
-          if (obj.fields) {
+          if (obj.fieldsDef) {
             if (Object.keys(allClientTbls).includes(obj.id)) {
               return true
             }

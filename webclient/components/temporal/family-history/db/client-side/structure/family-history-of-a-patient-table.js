@@ -55,7 +55,7 @@ export const familyHistoryFormDef = {
   id: 'family_history',
   plural: 'family history',
   singular: 'family history',
-  fields: [
+  fieldsDef: [
     { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: '', span: 6 },
     { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
   ],

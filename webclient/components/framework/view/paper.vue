@@ -74,7 +74,7 @@
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td
-              v-for="(propFieldObj, id) in propFormDef.fields"
+              v-for="(propFieldObj, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
             >

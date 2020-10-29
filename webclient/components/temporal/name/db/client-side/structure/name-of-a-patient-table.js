@@ -46,7 +46,7 @@ export const nameFormDef = {
   id: 'name',
   plural: 'names',
   singular: 'name',
-  fields: [
+  fieldsDef: [
     { fieldNameInDb: 'firstName', fieldNameInUi: 'First name', fieldType: '', span: 8 },
     { fieldNameInDb: 'middleName', fieldNameInUi: 'Middle name', fieldType: '', span: 8 },
     { fieldNameInDb: 'lastName', fieldNameInUi: 'Last name', fieldType: '', span: 8 },
