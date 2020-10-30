@@ -21,7 +21,10 @@
             <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
               {{ propFieldObj.fieldNameInUi }}
               <div
-                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldObj.fieldNameInDb)"
+                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                  propFieldObj.fieldNameInDb,
+                  dnClientIdOfCopiedRowBeingChanged
+                )"
                 :key="item.id"
               >
                 <el-button

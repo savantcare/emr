@@ -75,9 +75,6 @@
         <!-- This is for each data row -->
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
-            {{
-              row
-            }}
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
@@ -92,7 +89,10 @@
                   <!-- Since it is select there will be many options hence need to do a for loop on options -->
                   <!-- Since it is View layer I should only show the selected options and not all the options -->
                   <div
-                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldDef.fieldNameInDb)"
+                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                      propFieldDef.fieldNameInDb,
+                      row.clientSideUniqRowId
+                    )"
                     :key="item.id"
                   >
                     <div v-if="item.selected">

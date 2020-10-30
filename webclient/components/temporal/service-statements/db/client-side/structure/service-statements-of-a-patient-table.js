@@ -77,7 +77,7 @@ export const serviceStatementsFormDef = {
     'total_minutes_with_patient_select',
   ],
 
-  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb) {
+  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     console.log('===== inside fn')
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
@@ -86,7 +86,7 @@ export const serviceStatementsFormDef = {
       .get()
 
     // get the value for this field in patient table
-    let row = serviceStatementsOfAPatientTbl.find(1)
+    let row = serviceStatementsOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
