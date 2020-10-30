@@ -84,7 +84,7 @@
               <!-- There may be many different types of fields. Here dealing with select type field -->
               <div v-if="propFieldDef.fieldNameInDb.includes('select')">
                 <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
-                  {{ propFieldDef.fieldNameInUi }}
+                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
 
                   <!-- Since it is select there will be many options hence need to do a for loop on options -->
                   <!-- Since it is View layer I should only show the selected options and not all the options -->
@@ -96,13 +96,7 @@
                     :key="item.id"
                   >
                     <div v-if="item.selected">
-                      <el-button
-                        :type="item.selected ? 'primary' : 'plain'"
-                        @click="
-                          mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)
-                        "
-                        >{{ item.value }}</el-button
-                      >
+                      <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
                     </div>
                   </div>
                 </div>
