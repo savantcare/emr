@@ -19,7 +19,7 @@
 
                 <el-autocomplete
                   v-if="propFieldObj.fieldType === 'autocomplete'"
-                  v-model="searchKeyword"
+                  v-model="value"
                   class="inline-input"
                   :fetch-suggestions="propFieldObj.selectOptions"
                   :placeholder="propFieldObj.fieldNameInUi"
@@ -50,7 +50,14 @@
                 <div v-else-if="propFieldObj.fieldType === 'slider'">
                   {{ propFieldObj.fieldNameInUi }}
                   <div class="block">
-                    <el-slider v-model="value2" :step="10" show-stops> </el-slider>
+                    <el-slider
+                      v-model="value"
+                      :step="propFieldObj.fieldOptions.step"
+                      show-stops
+                      :min="propFieldObj.fieldOptions.min"
+                      :max="propFieldObj.fieldOptions.max"
+                    >
+                    </el-slider>
                   </div>
                 </div>
 
@@ -200,7 +207,7 @@ export default {
     console.log(this.propFormDef)
   },
   data() {
-    return { searchKeyword: '' }
+    return { value: '' }
   },
   props: {
     propFormDef: {
