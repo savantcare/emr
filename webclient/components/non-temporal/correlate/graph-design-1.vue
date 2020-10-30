@@ -13,8 +13,8 @@ import clientTblHeight from '@/components/temporal/vital-signs/sub-cts/height/db
 import clientTblOxygenSaturation from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 
 // For pros
-import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
+import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 

@@ -74,8 +74,8 @@ database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables
-import tableStructureForPROSMaster from '~/components/temporal/psych-review-of-systems/db/client-side/structure/master-table-of-psych-review-of-systems.js'
-import tableStructureForPROSOfPatient from '~/components/temporal/psych-review-of-systems/db/client-side/structure/patient-table-of-psych-review-of-systems.js'
+import tableStructureForPROSMaster from '~/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
+import tableStructureForPROSOfPatient from '~/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
