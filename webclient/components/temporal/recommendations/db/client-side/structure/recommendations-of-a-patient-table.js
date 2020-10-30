@@ -56,5 +56,5 @@ export const recommendationsFormDef = {
   plural: 'recommendations',
   singular: 'recommendation',
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
-  fieldForCheckingIfRowIsEmpty: 'description',
+  fieldForCheckingIfRowIsEmpty: ['description'],
 }

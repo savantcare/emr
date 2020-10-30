@@ -318,7 +318,7 @@ export default {
             // "Authorization": "Bearer " + TOKEN
           },
           body: JSON.stringify({
-            description: this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.fieldForCheckingIfRowIsEmpty),
+            description: this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.fieldForCheckingIfRowIsEmpty[0]),
             client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
               socketClientObj.fieldValue,
           }),
@@ -406,7 +406,7 @@ export default {
       console.log(
         'mfSendDataToServer-> ',
         this.dnOrmUuidOfRowToChange,
-        this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.fieldForCheckingIfRowIsEmpty)
+        this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.fieldForCheckingIfRowIsEmpty[0])
       )
     },
   },

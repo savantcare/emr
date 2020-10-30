@@ -142,7 +142,9 @@ export default {
   },
   mounted() {
     console.log('In mounted function')
-    const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(this.propFormDef.fieldForCheckingIfRowIsEmpty)
+    const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(
+      this.propFormDef.fieldForCheckingIfRowIsEmpty[0]
+    )
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {
         this.daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)
