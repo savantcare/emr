@@ -120,4 +120,19 @@ export const serviceStatementsFormDef = {
 
     return arOfObjectsFromClientMasterDB
   },
+  fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
+    if (pfieldValue === '') return
+
+    // from numbers get the labels
+
+    let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+      .query()
+      .where('serviceStatementFieldNameInDb', pFieldNameInDb)
+      .where('serviceStatementFieldOptionId', pfieldValue)
+      .get()
+
+    const optionIdToLabel = arOfObjectsFromClientMasterDB[0]['serviceStatementFieldOptionLabel']
+
+    return optionIdToLabel
+  },
 }
