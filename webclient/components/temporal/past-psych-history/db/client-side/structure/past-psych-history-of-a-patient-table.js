@@ -60,7 +60,7 @@ export const pastPsychHistoryFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'past_outpatient_treatment',
-      fieldNameInUi: 'past_outpatient_treatment',
+      fieldNameInUi: 'Past outpatient treatment',
       fieldType: 'textarea',
       span: 12,
     },
