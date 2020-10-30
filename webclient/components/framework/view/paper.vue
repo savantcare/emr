@@ -295,7 +295,15 @@ export default {
       this.amendmentData = ''
     },
     mfGetArOfDataRows(pApptObj) {
-      if (!pApptObj) return
+      const emptyArray = []
+
+      if (!pApptObj) {
+        // returning empty array and not null. Since others deprend on the length of the array. If I return null there will be errors when length of that is calculated.
+        return emptyArray
+      }
+      if (!pApptObj['apptStatus']) {
+        return emptyArray
+      }
 
       let arOfObjectsFromClientDB = []
 
