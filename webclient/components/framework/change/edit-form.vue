@@ -20,7 +20,10 @@
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
             <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
               {{ propFieldObj.fieldNameInUi }}
-              <div v-for="item in propFormDef.fnGetSelectOptions(propFieldObj.fieldNameInDb)" :key="item.id">
+              <div
+                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldObj.fieldNameInDb)"
+                :key="item.id"
+              >
                 <el-button
                   :type="item.selected ? 'primary' : 'plain'"
                   @click="mfSetCopiedRowBeingChangedFldVal(item.id, propFieldObj.fieldNameInDb)"

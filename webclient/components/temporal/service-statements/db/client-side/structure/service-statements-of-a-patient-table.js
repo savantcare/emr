@@ -98,7 +98,7 @@ export const serviceStatementsFormDef = {
     'total_minutes_with_patient_select',
   ],
 
-  fnGetSelectOptions: function (fieldNameInDb) {
+  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb) {
     console.log('===== inside fn')
     let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
       .query()

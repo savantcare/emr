@@ -27,7 +27,7 @@ export default {
   created() {
     // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
 
-    this.formDef.fnGetSelectOptions = function (fieldNameInDb) {
+    this.formDef.fnGetAllSelectOptionsAndSelectedForAField = function (fieldNameInDb) {
       console.log('===== fn', fieldNameInDb)
       let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
         .query()
