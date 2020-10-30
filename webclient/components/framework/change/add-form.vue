@@ -99,28 +99,26 @@
                 <div v-if="ormRow.isValidationError" class="el-form-item__error">
                   Required {{ propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty }} field
                 </div>
+                <!-- Prop explaination
+            Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
+            20 columns to input and 4 columns to remove button
+            Remove should not come if there is only one propFormDef.maxRow
+          -->
+
+                <el-button
+                  v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+                  plain
+                  type="warning"
+                  style="float: right"
+                  @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
+                  >Remove</el-button
+                >
               </el-col>
             </el-form-item>
 
             <!-- Just ended processing all the fields in the row -->
           </div>
           <!-- Just ended processing each row -->
-
-          <!-- Prop explaination
-            Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
-            20 columns to input and 4 columns to remove button
-            Remove should not come if there is only one propFormDef.maxRow
-          -->
-          <el-col :span="4">
-            <el-button
-              v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
-              plain
-              type="warning"
-              style="float: right"
-              @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
-              >Remove</el-button
-            >
-          </el-col>
         </el-form>
       </div>
       <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
