@@ -54,72 +54,84 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Depressive mood',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'interest',
       fieldNameInUi: 'Interest',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'sleep',
       fieldNameInUi: 'Sleep',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'self-esteem',
       fieldNameInUi: 'Gulf / Self esteem',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'energy',
       fieldNameInUi: 'Energy',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'conc-dist',
       fieldNameInUi: 'Conc/Dist',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'appetite',
       fieldNameInUi: 'Apptetite',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'pmr-pma',
       fieldNameInUi: 'PMR/PMA',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'obese',
       fieldNameInUi: 'Obese',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'thin-cachectic',
       fieldNameInUi: 'Thin or cachectic',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'disheveled-unkempt',
       fieldNameInUi: 'Disheveled/unkempt',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'malodorous',
       fieldNameInUi: 'Malodorous',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      fieldOptions: [0, 1, 2],
     },
   ],
   showFormReviewedButton: false,
@@ -132,25 +144,8 @@ export const psychReviewOfSystemFormDef = {
   ],
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    console.log('===== inside fn')
-    let arOfAllSelectOptions = psychReviewOfSystemsAllSelectOptionsTbl
-      .query()
-      .where('ROW_END', 2147483648000)
-      .where('psychReviewOfSystemFieldNameInDb', fieldNameInDb)
-      .get()
-
-    // get the value for this field in patient table
-    let row = psychReviewOfSystemsOfAPatientTbl.find(pclientSideUniqRowId)
-    let selectedIDs = row[fieldNameInDb]
-
-    arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['psychReviewOfSystemFieldOptionId']
-      data['value'] = data['psychReviewOfSystemFieldOptionLabel']
-      data['selected'] = selectedIDs.includes(data['id']) ? true : false
-    })
-    console.log(arOfAllSelectOptions)
-
-    return arOfAllSelectOptions
+    const a = [0, 1, 2]
+    return a
   },
   fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
     if (pfieldValue === '') return
