@@ -2,8 +2,8 @@
 <template>
   <div>
     <el-form>
-      <el-form-item>
-        <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
+      <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
+        <el-form-item :label="propFieldObj.showFieldLabel ? propFieldObj.fieldNameInUi : ''">
           <el-col :span="propFieldObj.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
@@ -66,8 +66,8 @@
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
             ></el-input>
           </el-col>
-        </div>
-      </el-form-item>
+        </el-form-item>
+      </div>
       <el-form-item>
         <el-button type="primary" size="mini" plain @click="mfSendDataToServer">Reviewed</el-button>
       </el-form-item>
