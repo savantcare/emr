@@ -14,26 +14,26 @@ export default {
   mounted() {
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'family-history',
+        value: 'past-psych-history',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/family-history/view-layer/timeline-ct.vue',
+        ctToShow: 'temporal/past-psych-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add family-history',
+        value: 'add past-psych-history',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/family-history/change-layer/family-history-add.vue',
+        ctToShow: 'temporal/past-psych-history/change-layer/past-psych-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit family-history',
+        value: 'edit past-psych-history',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/family-history/change-layer/fh-edit.vue',
+        ctToShow: 'temporal/past-psych-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -41,18 +41,18 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'multi edit family-history',
+        value: 'multi edit past-psych-history',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/family-history/change-layer/medit-design-1.vue',
+        ctToShow: 'temporal/past-psych-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted family-history',
+        value: 'deleted past-psych-history',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/family-history/view-layer/deleted.vue',
+        ctToShow: 'temporal/past-psych-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
