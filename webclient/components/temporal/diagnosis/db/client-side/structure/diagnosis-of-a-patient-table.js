@@ -51,12 +51,39 @@ export default class diagnosis extends clientTblManage {
   }
 }
 
+const fnSelectOptionCallBack = (pQueryString, pCallBack) => {
+  const options = [
+    {
+      id: '1',
+      value: 'ADHD',
+    },
+    {
+      id: '2',
+      value: 'Depression',
+    },
+    {
+      id: '3',
+      value: 'Anxiety',
+    },
+    {
+      id: '4',
+      value: 'Flu',
+    },
+    {
+      id: '5',
+      value: 'Pain',
+    },
+  ]
+  console.log('inside the fn to return select options')
+  pCallBack(options)
+}
 export const diagnosisFormDef = {
   id: 'diagnosis',
   plural: 'diagnosis',
   singular: 'diagnosis',
+  
   fieldsDef: [
-    { fieldNameInDb: 'diagnosis', fieldNameInUi: 'Diagnosis', fieldType: 'autocomplete', span: 8 },
+    { fieldNameInDb: 'diagnosis', fieldNameInUi: 'Diagnosis', fieldType: 'autocomplete', selectOptions:fnSelectOptionCallBack, span: 8 },
     { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 8 },
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 8 },
   ],

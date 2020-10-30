@@ -18,36 +18,7 @@ export default {
   components: {
     ctAddStructure,
   },
-  created() {
-    // Inside this fn this will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
-    ;(this.formDef.fields[0].selectOptions = function (pQueryString, pCallBack) {
-      const options = [
-        {
-          id: '1',
-          value: 'ADHD',
-        },
-        {
-          id: '2',
-          value: 'Depression',
-        },
-        {
-          id: '3',
-          value: 'Anxiety',
-        },
-        {
-          id: '4',
-          value: 'Flu',
-        },
-        {
-          id: '5',
-          value: 'Pain',
-        },
-      ]
-      console.log('inside the fn to return select options')
-      pCallBack(options)
-    }),
-      console.log(this.formDef)
-  },
+  created() {},
   computed: {},
 }
 </script>
