@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import clientTblOfMasterServiceStatement from '@/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
+import serviceStatementsAllSelectOptionsTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-all-select-options.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     let i = 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '60',
@@ -22,7 +22,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '55',
@@ -31,7 +31,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '50',
@@ -40,7 +40,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '45',
@@ -49,7 +49,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '40',
@@ -58,7 +58,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Client Centered',
@@ -67,7 +67,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Dialectical Behavior therapy',
@@ -76,7 +76,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Holistic Therapy',
@@ -85,7 +85,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Existential humanistic',
@@ -94,7 +94,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Bibilotherapy',
@@ -103,7 +103,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '60',
@@ -112,7 +112,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '55',
@@ -121,7 +121,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '50',
@@ -130,7 +130,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '45',
@@ -139,7 +139,7 @@ export default {
     })
 
     i = i + 1
-    clientTblOfMasterServiceStatement.insert({
+    serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: '40',

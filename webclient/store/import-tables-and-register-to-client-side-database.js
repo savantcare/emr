@@ -53,7 +53,7 @@ database.register(tableStructureForPhq9Master)
 database.register(tableStructureForPhq9OfPatient)
 
 // Service statement tables
-import tableStructureForSSMaster from '~/components/temporal/service-statements/db/client-side/structure/service-statements-master.js'
+import tableStructureForSSMaster from '~/components/temporal/service-statements/db/client-side/structure/service-statements-all-select-options.js'
 database.register(tableStructureForSSMaster)
 import tableStructureForSSOfPatient from '~/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 database.register(tableStructureForSSOfPatient)

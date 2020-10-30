@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class serviceStatementsMasterClass extends clientTblManage {
-  static entity = 'tblServiceStatementsMaster'
+export default class serviceStatementsAllSelectOptions extends clientTblManage {
+  static entity = 'tblServiceStatementsAllSelectOptions'
 
   static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
 

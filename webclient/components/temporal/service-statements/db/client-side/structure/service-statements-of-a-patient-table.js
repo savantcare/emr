@@ -1,8 +1,8 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsMasterClass from './service-statements-master.js'
-import clientTblOfMasterServiceStatements from './service-statements-master.js'
-import serviceStatementClientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import serviceStatementsMasterClass from './service-statements-all-select-options.js'
+import serviceStatementsAllSelectOptionsTbl from './service-statements-all-select-options.js'
+import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -22,8 +22,8 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementFieldOptionId
-         E.g: The  tblServiceStatementsMaster has:
+      /* This field is used to store the value of tblServiceStatementsAllSelectOptions/serviceStatementFieldOptionId
+         E.g: The  tblServiceStatementsAllSelectOptions has:
          serviceStatementFieldOptionId  |         serviceStatementFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
@@ -101,7 +101,7 @@ export const serviceStatementsFormDef = {
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb) {
     console.log('===== inside fn')
-    let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+    let arOfObjectsFromClientMasterDB = serviceStatementsAllSelectOptionsTbl
       .query()
       .with('tblLinkToServiceStatementForPatientFieldValues')
       .where('ROW_END', 2147483648000)
@@ -109,7 +109,7 @@ export const serviceStatementsFormDef = {
       .get()
 
     // get the value for this field in patient table
-    let row = serviceStatementClientTbl.find(1)
+    let row = serviceStatementsOfAPatientTbl.find(1)
     let selectedIDs = row[fieldNameInDb]
 
     arOfObjectsFromClientMasterDB.forEach(function (data) {
@@ -126,7 +126,7 @@ export const serviceStatementsFormDef = {
 
     // from numbers get the labels
 
-    let arOfObjectsFromClientMasterDB = clientTblOfMasterServiceStatements
+    let arOfObjectsFromClientMasterDB = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('serviceStatementFieldNameInDb', pFieldNameInDb)
       .where('serviceStatementFieldOptionId', pfieldValue)
