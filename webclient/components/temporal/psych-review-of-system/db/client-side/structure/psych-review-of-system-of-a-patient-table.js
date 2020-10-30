@@ -59,24 +59,30 @@ export const psychReviewOfSystemFormDef = {
   singular: 'pysch review of system',
   fieldsDef: [
     {
+      fieldNameInDb: '',
+      fieldNameInUi: 'Depression',
+      fieldType: 'heading',
+      span: 12,
+    },
+    {
       fieldNameInDb: 'depressive_mood',
       fieldNameInUi: 'Depressive mood',
       fieldType: 'slider',
-      span: 12,
+      span: 8,
       fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'interest',
       fieldNameInUi: 'Interest',
       fieldType: 'slider',
-      span: 12,
+      span: 8,
       fieldOptions: [0, 1, 2],
     },
     {
       fieldNameInDb: 'sleep',
       fieldNameInUi: 'Sleep',
       fieldType: 'slider',
-      span: 12,
+      span: 8,
       fieldOptions: [0, 1, 2],
     },
     {
@@ -113,6 +119,12 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 12,
       fieldOptions: [0, 1, 2],
+    },
+    {
+      fieldNameInDb: '',
+      fieldNameInUi: 'Gateway mood symptoms',
+      fieldType: 'heading',
+      span: 12,
     },
     {
       fieldNameInDb: 'obese',

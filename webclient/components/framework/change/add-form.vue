@@ -54,12 +54,12 @@
                   </div>
                 </div>
 
-                <!-- Field type 3: Do the following when it is heading type field -->
+                <!-- Field type 4: Do the following when it is heading type field -->
                 <div v-else-if="propFieldObj.fieldType === 'heading'">
                   <h3>{{ propFieldObj.fieldNameInUi }}</h3>
                 </div>
 
-                <!-- Field type 4: Do the following when it is select type field -->
+                <!-- Field type 5: Do the following when it is select type field -->
                 <el-select
                   v-else-if="propFieldObj.fieldType === 'select'"
                   v-model="value"
@@ -76,7 +76,7 @@
                   </el-option>
                 </el-select>
 
-                <!-- Field type 5: Do the following when it is date type field -->
+                <!-- Field type 6: Do the following when it is date type field -->
                 <el-date-picker
                   v-else-if="propFieldObj.fieldType === 'date'"
                   :ref="propFieldObj.fieldNameInDb"
@@ -90,7 +90,7 @@
                   :placeholder="propFieldObj.fieldNameInUi"
                 >
                 </el-date-picker>
-                <!-- Field type 6: Do the following when it is input/textarea type field -->
+                <!-- Field type 7: Do the following when it is input/textarea type field -->
                 <el-input
                   v-else
                   :ref="propFieldObj.fieldNameInDb"
