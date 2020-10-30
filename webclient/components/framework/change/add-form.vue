@@ -51,7 +51,7 @@
                   {{ propFieldObj.fieldNameInUi }}
                   <div class="block">
                     <el-slider
-                      v-model="value"
+                      v-model="value[propFieldObj.fieldNameInDb]"
                       :step="propFieldObj.fieldOptions.step"
                       show-stops
                       :min="propFieldObj.fieldOptions.min"
