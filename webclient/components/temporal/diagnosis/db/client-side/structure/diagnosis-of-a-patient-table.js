@@ -85,7 +85,7 @@ export const diagnosisFormDef = {
   fieldsDef: [
     { fieldNameInDb: 'diagnosis', fieldNameInUi: 'Diagnosis', fieldType: 'autocomplete', selectOptions:fnSelectOptionCallBack, span: 8 },
     { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 8 },
-    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 8 },
+    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 8 },
   ],
   fieldForCheckingIfRowIsEmpty: 'diagnosis',
 }
