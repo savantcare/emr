@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     mfGetProsOnApptLockDate(pApptObj) {
+      /*
       if (!pApptObj) return
 
       let arOfObjectsFromClientRos = []
@@ -59,6 +60,7 @@ export default {
         }
       }
       return groupTotal['Depression']
+      */
     },
   },
   computed: {
