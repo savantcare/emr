@@ -1,13 +1,15 @@
 use sc_past_psych_history;
 
-DROP TABLE IF EXISTS `patient_data`;
+DROP TABLE IF EXISTS `past_psych_history`;
 
-CREATE TABLE `patient_data` (
+CREATE TABLE `past_psych_history` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `pastPsychHistoryFieldIdFromPastPsychHistoryMaster` int(11) NOT NULL,
-  `fieldValue` text COLLATE utf8_unicode_ci NOT NULL,
-  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `notes` text DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  `isAutoRem` int(11) DEFAULT NULL,
+  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
   PRIMARY KEY (`serverSideRowUuid`)
