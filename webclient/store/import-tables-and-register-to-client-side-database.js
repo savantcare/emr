@@ -59,7 +59,7 @@ import tableStructureForSSOfPatient from '~/components/temporal/service-statemen
 database.register(tableStructureForSSOfPatient)
 
 // Past psych history tables
-import tableStructureForPsychHistoryOfPatient from '~/components/temporal/past-psych-history/db/client-side/structure/patient-table-of-past-psych-history.js'
+import tableStructureForPsychHistoryOfPatient from '~/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 database.register(tableStructureForPsychHistoryOfPatient)
 
 import tableStructureForMedicalReviewOfSystemsMaster from '~/components/temporal/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'

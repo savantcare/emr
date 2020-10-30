@@ -53,8 +53,8 @@ export default class past_psych_history extends clientTblManage {
 
 export const familyHistoryFormDef = {
   id: 'past_psych_history',
-  plural: 'family history',
-  singular: 'family history',
+  plural: 'past psych history',
+  singular: 'past psych history',
   fieldsDef: [
     { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: '', span: 6 },
     { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
