@@ -44,7 +44,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
   }
 }
 
-export const psychReviewOfSystemsFormDef = {
+export const psychReviewOfSystemFormDef = {
   id: 'psych_review_of_system',
   plural: 'pysch review of system',
   singular: 'pysch review of system',
