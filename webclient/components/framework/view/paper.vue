@@ -76,18 +76,20 @@
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
+
             <td
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
             >
-              <div v-if="propFieldDef.showFieldLabel">
-                <h4>{{ propFieldDef.fieldNameInUi }}</h4>
-              </div>
+              <!-- Goal: Skip any empty fields in the row -->
+              <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
+                <div v-if="propFieldDef.showFieldLabel">
+                  <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                </div>
 
-              <!-- There may be many different types of fields. Here dealing with select type field -->
-              <div v-if="propFieldDef.fieldNameInDb.includes('select')">
-                <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
+                <!-- There may be many different types of fields. Here dealing with select type field -->
+                <div v-if="propFieldDef.fieldNameInDb.includes('select')">
                   <h3>{{ propFieldDef.fieldNameInUi }}</h3>
 
                   <!-- Since it is select there will be many options hence need to do a for loop on options -->
@@ -104,9 +106,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div v-else>
-                {{ row[propFieldDef.fieldNameInDb] }}
+                <div v-else>
+                  {{ row[propFieldDef.fieldNameInDb] }}
+                </div>
               </div>
             </td>
             <!-- This is for action assocaited with each row -->
