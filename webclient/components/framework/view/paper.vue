@@ -81,6 +81,10 @@
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
             >
+              <div v-if="propFieldDef.showFieldLabel">
+                <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+              </div>
+
               <!-- There may be many different types of fields. Here dealing with select type field -->
               <div v-if="propFieldDef.fieldNameInDb.includes('select')">
                 <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
