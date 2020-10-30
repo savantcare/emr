@@ -93,7 +93,7 @@
               <!-- Do validation -->
 
               <div v-if="ormRow.isValidationError" class="el-form-item__error">
-                Required {{ propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty[0] }} field
+                Required {{ propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty }} field
               </div>
             </el-col>
             <!-- Just ended processing all the fields in the row -->
@@ -293,7 +293,7 @@ export default {
       if (arFromClientTbl.length) {
         console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
-          if (!arFromClientTbl[i][this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty[0]].length) {
+          if (!arFromClientTbl[i][this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty].length) {
             // Validation check
             await allClientTbls[this.propFormDef.id].update({
               where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,

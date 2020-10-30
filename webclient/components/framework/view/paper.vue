@@ -75,6 +75,9 @@
         <!-- This is for each data row -->
         <table style="padding: 0px; margin: 0px">
           <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
+            {{
+              row
+            }}
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td
               v-for="(propFieldObj, id) in propFormDef.fieldsDef"
@@ -309,8 +312,9 @@ export default {
 
       if (pApptObj['apptStatus'] === 'unlocked') {
         arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty[0]
+          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
+        console.log(arOfObjectsFromClientDB)
       } else {
         arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
           .query()

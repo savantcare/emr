@@ -231,15 +231,42 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       2. The same row is changed
       Now in the view layer only 2 should appear. And there is an option to undo the changes in 2 to get back to 1
   */
-  static fnGetPresentUniqueUuidNotEmptyRows(pFldForNonEmptyCheck) {
+  static fnGetPresentUniqueUuidNotEmptyRows(pFldsForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
+
+    if (!pFldsForNonEmptyCheck) return
+
     const arFromClientTbl = this.query()
       .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
-      .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
+
+    if (arFromClientTbl.length < 1) {
+      // no records came back. Returning empty array instead of null since others may do a length check
+      return arFromClientTbl
+    }
+
+    // for all the rows in the array delete the rows which do not pass the empty check
+    for (let i = 0; i < arFromClientTbl.length; i++) {
+      const row = arFromClientTbl[i]
+      let atLeastOneFieldIsNotEmpty = false
+      // looping through the array of fields. Out of this atleast one field needs to be non empty
+      for (let j = 0; j < pFldsForNonEmptyCheck.length; j++) {
+        let fieldName = pFldsForNonEmptyCheck[j]
+        let fieldValue = row[fieldName]
+        if (fieldValue && fieldValue.length > 0) {
+          atLeastOneFieldIsNotEmpty = true
+        }
+      }
+      if (atLeastOneFieldIsNotEmpty === false) {
+        arFromClientTbl.splice(i, 1)
+      }
+    }
+
     const uniqueUuidRows = []
 
-    // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
+    //debugger
+
+    // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and in that scenario there are 2 records with same UUID
     let foundInArToReturn = false
     for (let i = 0; i < arFromClientTbl.length; i++) {
       for (let j = 0; j < uniqueUuidRows.length; j++) {
