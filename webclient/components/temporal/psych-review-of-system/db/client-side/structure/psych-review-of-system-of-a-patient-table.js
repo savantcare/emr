@@ -29,9 +29,18 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
-      total_minutes_in_psychotherapy_select: this.string(''),
-      total_minutes_with_patient_select: this.string(''),
-      modality_of_psychotherapy_multi_select: this.string(''),
+      depressive_mood: this.string(''),
+      interest: this.string(''),
+      sleep: this.string(''),
+      selfEsteem: this.string(''),
+      energy: this.string(''),
+      concDist: this.string(''),
+      appetite: this.string(''),
+      pmrPma: this.string(''),
+      obese: this.string(''),
+      thinCachectic: this.string(''),
+      disheveledUnkempt: this.string(''),
+      malodorous: this.string(''),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -71,7 +80,7 @@ export const psychReviewOfSystemFormDef = {
       fieldOptions: [0, 1, 2],
     },
     {
-      fieldNameInDb: 'self-esteem',
+      fieldNameInDb: 'selfEsteem',
       fieldNameInUi: 'Gulf / Self esteem',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -85,7 +94,7 @@ export const psychReviewOfSystemFormDef = {
       fieldOptions: [0, 1, 2],
     },
     {
-      fieldNameInDb: 'conc-dist',
+      fieldNameInDb: 'concDist',
       fieldNameInUi: 'Conc/Dist',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -99,7 +108,7 @@ export const psychReviewOfSystemFormDef = {
       fieldOptions: [0, 1, 2],
     },
     {
-      fieldNameInDb: 'pmr-pma',
+      fieldNameInDb: 'pmrPma',
       fieldNameInUi: 'PMR/PMA',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -113,14 +122,14 @@ export const psychReviewOfSystemFormDef = {
       fieldOptions: [0, 1, 2],
     },
     {
-      fieldNameInDb: 'thin-cachectic',
+      fieldNameInDb: 'thinCachectic',
       fieldNameInUi: 'Thin or cachectic',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       fieldOptions: [0, 1, 2],
     },
     {
-      fieldNameInDb: 'disheveled-unkempt',
+      fieldNameInDb: 'disheveledUnkempt',
       fieldNameInUi: 'Disheveled/unkempt',
       fieldType: 'multi-select-with-buttons',
       span: 12,
