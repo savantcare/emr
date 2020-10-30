@@ -139,8 +139,9 @@ export default {
       type: Object,
       required: true,
       validator: function (obj) {
-        // id and fields must be present
+        // id is used to get the correct table from allClientTables
         if (obj.id) {
+          // fieldsdef defines the fields that are shown in the form to edit
           if (obj.fieldsDef) {
             if (Object.keys(allClientTbls).includes(obj.id)) {
               return true

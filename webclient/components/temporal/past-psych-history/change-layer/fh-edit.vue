@@ -4,12 +4,12 @@
 
 <script>
 import ctEditStructure from '@/components//framework/change/edit-form.vue'
-import { pastPsychistoryFormDef } from '@/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
+import { pastPsychHistoryFormDef } from '@/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      formDef: pastPsychistoryFormDef,
+      formDef: pastPsychHistoryFormDef,
     }
   },
   props: {
@@ -17,9 +17,7 @@ export default {
       type: Number,
     },
   },
-  mounted() {
-    //    console.log(this.dataFormFields)
-  },
+  mounted() {},
 
   components: {
     ctEditStructure,
