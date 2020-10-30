@@ -56,6 +56,7 @@
                       show-stops
                       :min="propFieldObj.fieldOptions.min"
                       :max="propFieldObj.fieldOptions.max"
+                      @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                     >
                     </el-slider>
                   </div>
