@@ -6,6 +6,8 @@ import recommendationClientTbl from '~/components/temporal/recommendations/db/cl
 import miscNotesClientTbl from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import planCommentsClientTbl from '~/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientTbl from '~/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import chiefComplaintClientTbl from '~/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+
 // defining all rows in this object
 const clientTbl = {
   reminders: reminderClientTbl,
@@ -13,6 +15,7 @@ const clientTbl = {
   plan_comments: planCommentsClientTbl,
   miscellaneous_notes: miscNotesClientTbl,
   process_notes: processNotesClientTbl,
+  chief_complaint: chiefComplaintClientTbl,
 } // 1st row
 
 export default {
@@ -33,9 +36,9 @@ export default {
       })
     },
     mxOpenDDialog() {
-      let confirmMessage = 'Are you sure you want to delete all the selected reminders?'
+      let confirmMessage = 'Are you sure you want to delete all the selected ' + this.propFormDef.plural + '?'
       if (this.daSelectedRemForDelete.length === 0) {
-        confirmMessage = 'No reminder selected. Please select at least one reminder.'
+        confirmMessage = 'No  ' + this.propFormDef.singular + ' selected. Please select at least one  ' + this.propFormDef.singular + '.'
       }
 
       this.$confirm(confirmMessage, 'Multi delete', {
@@ -51,13 +54,13 @@ export default {
             if (status.success > 0) {
               this.$message({
                 type: 'success',
-                message: status.success + ' reminder deleted.',
+                message: status.success + this.propFormDef.singular + ' deleted.',
               })
             }
             if (status.failed > 0) {
               this.$message({
                 type: 'error',
-                message: status.failed + ' reminder failed to delete. Please try again later.',
+                message: status.failed + this.propFormDef.singular + ' failed to delete. Please try again later.',
               })
             }
           }
@@ -81,7 +84,7 @@ export default {
       console.log('deletedRows====>', deletedRows)
       this.$store.commit('mtfSetDeletedDrawerValue', {
         visibility: true,
-        drawerTitle: 'Deleted reminders',
+        drawerTitle: 'Deleted ' + this.propFormDef.plural,
         drawerData: arDrawerData,
       })
     },
@@ -91,7 +94,7 @@ export default {
        Option 1: Send the whole data row
        Option 2: Send just the ID in a prop.
         +ves:
-          1. At some places I may need to call change where I have the reminder ID but
+          1. At some places I may need to call change where I have the component ID but
           i do not have the remainder of the data row. Hence this makes the Change Ct possible
           to use at other places
           2. When I send a paramter it is like calling a function. Sending the whole data row
@@ -101,10 +104,29 @@ export default {
       console.log(payload)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
-    mfIconDeleteClickedOnChildCard(pClientDataRowId) {
+    async mfIconDeleteClickedOnChildCard(pClientDataRowId) {
       const arResultsFromOrm = clientTbl[this.propFormDef.id].find(pClientDataRowId)
 
-      this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
+      // if data is on not-reviewed state data remove from orm 
+      if (arResultsFromOrm.vnRowStateInSession === 24) {
+        const deleteStatus = await clientTbl[this.propFormDef.id].delete(pClientDataRowId)
+        if (deleteStatus != null) {
+          this.$message({
+            type: 'success',
+            message: this.propFormDef.singular + ' deleted.',
+          })
+        }
+        else {
+          this.$message({
+            type: 'error',
+            message: 'Something went wrong. Please try again later.',
+          })
+        }
+        return
+      }
+
+
+      this.$prompt(arResultsFromOrm.description, 'Delete ' + this.propFormDef.singular, {
         confirmButtonText: 'Delete',
         cancelButtonText: 'Cancel',
         inputPlaceholder: 'Enter delete note',
@@ -118,7 +140,7 @@ export default {
           if (status === 1) {
             this.$message({
               type: 'success',
-              message: 'Reminder deleted.',
+              message: this.propFormDef.plural + ' deleted.',
             })
           } else {
             this.$message({
