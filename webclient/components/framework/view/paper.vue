@@ -125,10 +125,22 @@
                     placement="top-start"
                     :open-delay="500"
                   >
+                    <!-- Goal: If this row is not coming from DB but it was added on the client then:
+                  1. For edit I do not want to create a copy. I want to edit the row that has been added.
+                  Why?
+                  A copied row when undone expect to be left with orginal
+                  But a new row when undone does not expect to be left with original.
+
+                  In case of new row created on client during edit do not create a copy.
+                  -->
                     <el-button
                       style="padding: 3px; color: #c0c4cc; border: none"
                       plain
-                      @click="mxOpenEditCtInEditLayer(row.clientSideUniqRowId)"
+                      @click="
+                        String(row.vnRowStateInSession).startsWith(2)
+                          ? mfOpenAddInEditLayer()
+                          : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                      "
                       class="el-icon-edit"
                     >
                     </el-button>
