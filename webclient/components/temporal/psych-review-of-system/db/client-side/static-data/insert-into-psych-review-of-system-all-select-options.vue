@@ -15,135 +15,135 @@ export default {
     let i = 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '60',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '60',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_in_psychotherapy_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '55',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '55',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_in_psychotherapy_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '50',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '50',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_in_psychotherapy_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '45',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '45',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_in_psychotherapy_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '40',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '40',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_in_psychotherapy_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Client Centered',
-        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: 'Client Centered',
+        psychReviewOfSystemFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Dialectical Behavior therapy',
-        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: 'Dialectical Behavior therapy',
+        psychReviewOfSystemFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Holistic Therapy',
-        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: 'Holistic Therapy',
+        psychReviewOfSystemFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Existential humanistic',
-        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: 'Existential humanistic',
+        psychReviewOfSystemFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Bibilotherapy',
-        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: 'Bibilotherapy',
+        psychReviewOfSystemFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '60',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '60',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '55',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '55',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '50',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '50',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '45',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '45',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
 
     i = i + 1
     psychReviewOfSystemsAllSelectOptionsTbl.insert({
       data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '40',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
+        psychReviewOfSystemFieldOptionId: i + '#',
+        psychReviewOfSystemFieldOptionLabel: '40',
+        psychReviewOfSystemFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
   },

@@ -8,7 +8,7 @@ CREATE TABLE `psych_review_of_system`
 (36) COLLATE utf8_unicode_ci NOT NULL,
   `patientUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,
-  `serviceStatementFieldOptionId` int
+  `psychReviewOfSystemFieldOptionId` int
 (11) NOT NULL,
   `recordChangedByUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,

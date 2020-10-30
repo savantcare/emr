@@ -10,15 +10,15 @@ export default class psychReviewOfSystemsAllSelectOptions extends clientTblManag
 
   static apiUrl = 'http://localhost:8000/public/api/psych-review-of-system/v20'
 
-  static primaryKey = 'serviceStatementFieldOptionId'
+  static primaryKey = 'psychReviewOfSystemFieldOptionId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      serviceStatementFieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
-      serviceStatementFieldOptionLabel: this.string(null),
-      serviceStatementFieldNameInDb: this.string(null),
+      psychReviewOfSystemFieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      psychReviewOfSystemFieldOptionLabel: this.string(null),
+      psychReviewOfSystemFieldNameInDb: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
     }

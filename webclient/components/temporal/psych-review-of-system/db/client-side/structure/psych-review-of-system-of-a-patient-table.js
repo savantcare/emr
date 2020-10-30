@@ -22,13 +22,13 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblPsychReviewOfSystemsAllSelectOptions/serviceStatementFieldOptionId
+      /* This field is used to store the value of tblPsychReviewOfSystemsAllSelectOptions/psychReviewOfSystemFieldOptionId
          E.g: The  tblPsychReviewOfSystemsAllSelectOptions has:
-         serviceStatementFieldOptionId  |         serviceStatementFieldOptionLabel    
+         psychReviewOfSystemFieldOptionId  |         psychReviewOfSystemFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table serviceStatementFieldOptionId = 2 */
+          When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
       total_minutes_in_psychotherapy_select: this.string(''),
       total_minutes_with_patient_select: this.string(''),
       modality_of_psychotherapy_multi_select: this.string(''),
@@ -82,7 +82,7 @@ export const psychReviewOfSystemFormDef = {
     let arOfAllSelectOptions = psychReviewOfSystemsAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
-      .where('serviceStatementFieldNameInDb', fieldNameInDb)
+      .where('psychReviewOfSystemFieldNameInDb', fieldNameInDb)
       .get()
 
     // get the value for this field in patient table
@@ -90,8 +90,8 @@ export const psychReviewOfSystemFormDef = {
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['serviceStatementFieldOptionId']
-      data['value'] = data['serviceStatementFieldOptionLabel']
+      data['id'] = data['psychReviewOfSystemFieldOptionId']
+      data['value'] = data['psychReviewOfSystemFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
     console.log(arOfAllSelectOptions)
@@ -105,11 +105,11 @@ export const psychReviewOfSystemFormDef = {
 
     let arOfAllSelectOptions = psychReviewOfSystemsAllSelectOptionsTbl
       .query()
-      .where('serviceStatementFieldNameInDb', pFieldNameInDb)
-      .where('serviceStatementFieldOptionId', pfieldValue)
+      .where('psychReviewOfSystemFieldNameInDb', pFieldNameInDb)
+      .where('psychReviewOfSystemFieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['serviceStatementFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['psychReviewOfSystemFieldOptionLabel']
 
     return optionIdToLabel
   },
