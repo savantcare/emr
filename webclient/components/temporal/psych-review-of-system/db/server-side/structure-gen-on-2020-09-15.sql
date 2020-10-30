@@ -1,8 +1,8 @@
-use sc_psych_review_of_systemss;
+use sc_psych_review_of_system;
 
-DROP TABLE IF EXISTS `psych_review_of_systemss`;
+DROP TABLE IF EXISTS `psych_review_of_system`;
 
-CREATE TABLE `psych_review_of_systemss`
+CREATE TABLE `psych_review_of_system`
 (
   `serverSideRowUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,

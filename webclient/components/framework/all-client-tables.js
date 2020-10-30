@@ -10,6 +10,7 @@ import processNotesClientTbl from '@/components/temporal/process-notes/db/client
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
  For e.g. 
@@ -50,6 +51,7 @@ const allClientTbls = {
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,
   service_statements: serviceStatementsOfAPatientTbl,
+  psych_review_of_system: psychReviewOfSystemOfAPatientTbl,
 }
 
 export default allClientTbls

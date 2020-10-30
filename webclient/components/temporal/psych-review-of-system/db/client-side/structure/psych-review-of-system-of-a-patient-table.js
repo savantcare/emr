@@ -45,9 +45,9 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
 }
 
 export const psychReviewOfSystemsFormDef = {
-  id: 'psych_review_of_systemss',
-  plural: 'service statements',
-  singular: 'service statement',
+  id: 'psych_review_of_system',
+  plural: 'pysch review of system',
+  singular: 'pysch review of system',
   fieldsDef: [
     {
       fieldNameInDb: 'total_minutes_in_psychotherapy_select',

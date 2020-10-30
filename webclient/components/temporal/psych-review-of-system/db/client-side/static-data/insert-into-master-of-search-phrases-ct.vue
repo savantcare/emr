@@ -12,7 +12,7 @@ export default {
   mounted() {
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'service statements',
+        value: 'pysch review of system',
         ctAbbr: 'ss',
         ctToShow: 'temporal/psych-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
@@ -20,7 +20,7 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit psych_review_of_systemss',
+        value: 'edit psych_review_of_system',
         ctAbbr: 'sse',
         ctToShow: 'temporal/psych-review-of-system/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
@@ -30,7 +30,7 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add psych_review_of_systemss',
+        value: 'add psych_review_of_system',
         ctAbbr: 'dss',
         ctToShow: 'temporal/psych-review-of-system/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
