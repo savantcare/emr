@@ -26,7 +26,7 @@ export default {
         ctAbbr: 'arem',
         ctToShow: 'temporal/past-psych-history/change-layer/past-psych-history-add.vue',
         displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'small',
+        ctWidthInEditLayer: 'large',
       },
     })
     clientTblOfCtSearchPhrases.insert({
