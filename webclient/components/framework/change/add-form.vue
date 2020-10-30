@@ -46,6 +46,14 @@
                   </div>
                 </div>
 
+                <!-- Field type 3: Do the following when it is slider type field -->
+                <div v-else-if="propFieldObj.fieldType === 'slider'">
+                  {{ propFieldObj.fieldNameInUi }}
+                  <div class="block">
+                    <el-slider v-model="value2" :step="10" show-stops> </el-slider>
+                  </div>
+                </div>
+
                 <!-- Field type 3: Do the following when it is heading type field -->
                 <div v-else-if="propFieldObj.fieldType === 'heading'">
                   <h3>{{ propFieldObj.fieldNameInUi }}</h3>
