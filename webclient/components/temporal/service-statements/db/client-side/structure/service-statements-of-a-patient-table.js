@@ -79,7 +79,7 @@ export const serviceStatementsFormDef = {
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb) {
     console.log('===== inside fn')
-    let arOfObjectsFromClientMasterDB = serviceStatementsAllSelectOptionsTbl
+    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
       .where('serviceStatementFieldNameInDb', fieldNameInDb)
@@ -89,27 +89,27 @@ export const serviceStatementsFormDef = {
     let row = serviceStatementsOfAPatientTbl.find(1)
     let selectedIDs = row[fieldNameInDb]
 
-    arOfObjectsFromClientMasterDB.forEach(function (data) {
+    arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['serviceStatementFieldOptionId']
       data['value'] = data['serviceStatementFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
-    console.log(arOfObjectsFromClientMasterDB)
+    console.log(arOfAllSelectOptions)
 
-    return arOfObjectsFromClientMasterDB
+    return arOfAllSelectOptions
   },
   fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
     if (pfieldValue === '') return
 
     // from numbers get the labels
 
-    let arOfObjectsFromClientMasterDB = serviceStatementsAllSelectOptionsTbl
+    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('serviceStatementFieldNameInDb', pFieldNameInDb)
       .where('serviceStatementFieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfObjectsFromClientMasterDB[0]['serviceStatementFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['serviceStatementFieldOptionLabel']
 
     return optionIdToLabel
   },
