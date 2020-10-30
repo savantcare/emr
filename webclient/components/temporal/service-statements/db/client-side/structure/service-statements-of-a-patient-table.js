@@ -20,6 +20,7 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
+      serverSideRowUuid: this.uid(() => uuidv1()),
 
       /* This field is used to store the value of tblServiceStatementsMaster/serviceStatementFieldOptionId
          E.g: The  tblServiceStatementsMaster has:
