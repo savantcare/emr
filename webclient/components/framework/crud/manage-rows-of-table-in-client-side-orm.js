@@ -415,7 +415,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return true // implies that data flds of row are same
   }
 
-  static fnSetFldValue(pEvent, pClientRowId, pFldName, pRowStatus) {
+  static fnSetValueOfFld(pEvent, pClientRowId, pFldName, pRowStatus) {
     // Step 1/2: Putting the value in cache so that getFldValue can get the data from cache and user can get fast feedback to typing
     this.fnPutFldValueInCache(pEvent, pClientRowId, pFldName)
     // Step 2/2

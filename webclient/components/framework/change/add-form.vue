@@ -266,7 +266,7 @@ export default {
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       console.log(pEvent, pClientRowId, pFldName)
       const rowStatus = 24
-      allClientTbls[this.propFormDef.id].fnSetFldValue(pEvent, pClientRowId, pFldName, rowStatus)
+      allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/framework/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {

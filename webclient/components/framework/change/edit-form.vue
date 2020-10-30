@@ -286,7 +286,7 @@ export default {
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = 34
-      allClientTbls[this.propFormDef.id].fnSetFldValue(
+      allClientTbls[this.propFormDef.id].fnSetValueOfFld(
         pEvent,
         this.dnClientIdOfCopiedRowBeingChanged,
         pFldName,
