@@ -81,10 +81,27 @@
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
             >
+              <!-- There may be many different types of fields. Here dealing with select type field -->
               <div v-if="propFieldObj.fieldNameInDb.includes('select')">
                 <div v-if="row[propFieldObj.fieldNameInDb].length > 0">
                   {{ propFieldObj.fieldNameInUi }}
-                  {{ propFormDef.fnGetSelectOptionLabel(propFieldObj.fieldNameInDb, row[propFieldObj.fieldNameInDb]) }}
+
+                  <!-- Since it is select there will be many options hence need to do a for loop on options -->
+                  <!-- Since it is View layer I should only show the selected options and not all the options -->
+                  <div
+                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldObj.fieldNameInDb)"
+                    :key="item.id"
+                  >
+                    <div v-if="item.selected">
+                      <el-button
+                        :type="item.selected ? 'primary' : 'plain'"
+                        @click="
+                          mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)
+                        "
+                        >{{ item.value }}</el-button
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
               <div v-else>
