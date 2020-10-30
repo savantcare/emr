@@ -51,7 +51,7 @@ export default class past_psych_history extends clientTblManage {
   }
 }
 
-export const familyHistoryFormDef = {
+export const pastPsychHistoryFormDef = {
   id: 'past_psych_history',
   plural: 'past psych history',
   singular: 'past psych history',
