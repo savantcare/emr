@@ -80,26 +80,26 @@
             }}
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
             <td
-              v-for="(propFieldObj, id) in propFormDef.fieldsDef"
+              v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
             >
               <!-- There may be many different types of fields. Here dealing with select type field -->
-              <div v-if="propFieldObj.fieldNameInDb.includes('select')">
-                <div v-if="row[propFieldObj.fieldNameInDb].length > 0">
-                  {{ propFieldObj.fieldNameInUi }}
+              <div v-if="propFieldDef.fieldNameInDb.includes('select')">
+                <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
+                  {{ propFieldDef.fieldNameInUi }}
 
                   <!-- Since it is select there will be many options hence need to do a for loop on options -->
                   <!-- Since it is View layer I should only show the selected options and not all the options -->
                   <div
-                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldObj.fieldNameInDb)"
+                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(propFieldDef.fieldNameInDb)"
                     :key="item.id"
                   >
                     <div v-if="item.selected">
                       <el-button
                         :type="item.selected ? 'primary' : 'plain'"
                         @click="
-                          mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)
+                          mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)
                         "
                         >{{ item.value }}</el-button
                       >
@@ -108,7 +108,7 @@
                 </div>
               </div>
               <div v-else>
-                {{ row[propFieldObj.fieldNameInDb] }}
+                {{ row[propFieldDef.fieldNameInDb] }}
               </div>
             </td>
             <!-- This is for action assocaited with each row -->
