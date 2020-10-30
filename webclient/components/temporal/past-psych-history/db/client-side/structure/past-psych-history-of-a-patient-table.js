@@ -70,6 +70,13 @@ export const pastPsychHistoryFormDef = {
     { fieldNameInDb: 'history_of_self_harm', fieldNameInUi: 'History of self harm', fieldType: 'textarea', span: 12 },
     { fieldNameInDb: 'past_substance_abuse', fieldNameInUi: 'Past substance abuse', fieldType: 'textarea', span: 12 },
   ],
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['relationship'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
+    'past_outpatient_treatment',
+    'past_meds_trials',
+    'hospitalization',
+    'history_of_violence',
+    'history_of_self_harm',
+    'past_substance_abuse',
+  ],
   maxNumberOfRows: 1,
 }
