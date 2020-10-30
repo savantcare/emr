@@ -84,7 +84,7 @@
                 :ref="propFieldObj.fieldNameInDb"
                 :type="propFieldObj.fieldType"
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                :autosize="{ minRows: 2, maxRows: 10 }"
+                :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                 :placeholder="propFieldObj.fieldNameInUi"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
@@ -107,7 +107,7 @@
           -->
           <el-col :span="4">
             <el-button
-              v-if="mfGetArOfDataRows() < propFormDef.maxRows || !propFormDef.maxRows"
+              v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
               plain
               type="warning"
               style="float: right"
@@ -122,13 +122,13 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propFormDef.formReviewed !== false" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="propFormDef.showFormReviewedButton !== false" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
-          v-if="mfGetArOfDataRows() < propFormDef.maxRows || !propFormDef.maxRows"
+          v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"

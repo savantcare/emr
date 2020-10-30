@@ -58,7 +58,7 @@
               v-else
               :ref="propFieldObj.fieldNameInDb"
               :type="propFieldObj.fieldType"
-              :autosize="{ minRows: 2, maxRows: 4 }"
+              :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
               :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldNameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
             ></el-input>

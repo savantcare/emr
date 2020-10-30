@@ -9,7 +9,7 @@
           </div>
           <el-input
             type="textarea"
-            :autosize="{ minRows: 4, maxRows: 14 }"
+            :autosize="{ minRows: 4, maxNumberOfRows: 14 }"
             v-model="liveTypedValueOfFields[ss.fieldIdFromMaster]"
             :placeholder="ss.pastPsychHistoryDescription"
             style="width: 400px"
