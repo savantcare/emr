@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class psychReviewOfSystemsAllSelectOptions extends clientTblManage {
-  static entity = 'tblpsychReviewOfSystemsAllSelectOptions'
+  static entity = 'tblPsychReviewOfSystemsAllSelectOptions'
 
   static apiUrl = 'http://localhost:8000/public/api/psych-review-of-system/v20'
 
