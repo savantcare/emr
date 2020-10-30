@@ -93,5 +93,5 @@ export const diagnosisFormDef = {
     { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 8 },
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 8 },
   ],
-  fieldForCheckingIfRowIsEmpty: ['diagnosis'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
 }

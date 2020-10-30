@@ -60,5 +60,5 @@ export const allergiesFormDef = {
     { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 6 },
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
   ],
-  fieldForCheckingIfRowIsEmpty: ['allergen'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
 }

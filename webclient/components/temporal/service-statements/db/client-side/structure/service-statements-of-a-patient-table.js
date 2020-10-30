@@ -91,9 +91,9 @@ export const serviceStatementsFormDef = {
   ],
   formReviewed: false,
   maxRows: 1,
-  fieldForCheckingIfRowIsEmpty: ['clientSideUniqRowId'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['clientSideUniqRowId'],
   /*
-  fieldForCheckingIfRowIsEmpty: [
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'total_minutes_in_psychotherapy_select',
     'modality_of_psychotherapy_multi_select',
     'total_minutes_with_patient_select',

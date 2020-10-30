@@ -51,5 +51,5 @@ export const nameFormDef = {
     { fieldNameInDb: 'middleName', fieldNameInUi: 'Middle name', fieldType: '', span: 8 },
     { fieldNameInDb: 'lastName', fieldNameInUi: 'Last name', fieldType: '', span: 8 },
   ],
-  fieldForCheckingIfRowIsEmpty: ['firstName'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['firstName'],
 }
