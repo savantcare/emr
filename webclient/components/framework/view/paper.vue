@@ -83,7 +83,8 @@
               :style="mfGetCssClassNameForEachDataRow(row)"
             >
               <!-- Goal: Skip any empty fields in the row -->
-              <div v-if="row[propFieldDef.fieldNameInDb].length > 0">
+              <!-- The heading fieldType is only used for UI and simulate categories and they are not present in the data row coming from vuex-orm -->
+              <div v-if="propFieldDef.fieldType !== 'heading' && row[propFieldDef.fieldNameInDb].length > 0">
                 <div v-if="propFieldDef.showFieldLabel">
                   <h4>{{ propFieldDef.fieldNameInUi }}</h4>
                 </div>
