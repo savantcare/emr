@@ -27,7 +27,7 @@
 
                 <el-autocomplete
                   v-else-if="propFieldDef.fieldType === 'autocomplete'"
-                  v-model="value[ormRow.clientSideUniqRowId]"
+                  v-model="value"
                   class="inline-input"
                   :fetch-suggestions="propFieldDef.selectOptions"
                   :placeholder="propFieldDef.fieldNameInUi"
