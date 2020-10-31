@@ -6,7 +6,12 @@
     <el-form>
       <!-- Scenario: There are existiing rows in edit state -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
-        <el-form v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
+        <el-form
+          v-for="ormRow in cfGetClientTblNewRowsInEditState"
+          :key="ormRow.clientSideUniqRowId"
+          id="each-data-row"
+          style="padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem"
+        >
           <!-- Start to process each row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
