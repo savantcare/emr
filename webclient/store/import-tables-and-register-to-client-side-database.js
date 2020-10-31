@@ -115,7 +115,7 @@ database.register(tableStructureForName)
 import tableStructureForDob from '~/components/temporal/date-of-birth/db/client-side/structure/table.js'
 database.register(tableStructureForDob)
 
-import tableStructureForGoal from '~/components/temporal/goals/db/client-side/structure/Goal'
+import tableStructureForGoal from '~/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 database.register(tableStructureForGoal)
 
 import tableStructureForPhoneNumbers from '~/components/temporal/phone-numbers/db/client-side/structure/table.js'

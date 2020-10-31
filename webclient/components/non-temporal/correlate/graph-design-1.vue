@@ -7,7 +7,7 @@ import clientTblOfPatientServiceStatements from '@/components/temporal/service-s
 
 import clientTblOfPatientReminders from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
 import clientTblWeight from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
 import clientTblHeight from '@/components/temporal/vital-signs/sub-cts/height/db/client-side/structure/table.js'
 import clientTblOxygenSaturation from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'

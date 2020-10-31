@@ -90,6 +90,8 @@ import initializePlanCommentsComponent from '~/components/temporal/plan-comments
 import initializeProcessNotesComponent from '~/components/temporal/process-notes/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/temporal/recommendations/db/client-side/initialize-on-first-load.vue'
 import initializeRemComponent from '@/components/temporal/reminders/db/client-side/initialize-on-first-load.vue'
+import initializeGoalComponent from '@/components/temporal/goals/db/client-side/initialize-on-first-load.vue'
+
 // END
 
 import initializeServiceStatementComponent from '@/components/temporal/service-statements/db/client-side/initialize-on-first-load.vue'
