@@ -16,7 +16,7 @@
 
 <script>
 import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
-import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 export default {
   components: {
@@ -71,15 +71,15 @@ export default {
       }
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // delete if this card is already existing
-        const arFromClientTbl = clientTblOfRightSideCards.query().where('name', pSelectedSuggestion.value).get()
+        const arFromClientTbl = clientTblOfDynamicCards.query().where('name', pSelectedSuggestion.value).get()
 
         if (arFromClientTbl.length > 0) {
           if (arFromClientTbl[0]['clientSideUniqRowId']) {
-            clientTblOfRightSideCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
+            clientTblOfDynamicCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
           }
         }
 
-        clientTblOfRightSideCards.insert({
+        clientTblOfDynamicCards.insert({
           data: {
             name: pSelectedSuggestion.value,
             componentToShowPath: pSelectedSuggestion.ctToShow,

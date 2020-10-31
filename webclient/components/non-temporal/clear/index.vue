@@ -1,14 +1,14 @@
 <template><div></div></template>
 
 <script>
-import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 export default {
   data() {
     return {}
   },
   mounted() {
-    clientTblOfRightSideCards.deleteAll()
+    clientTblOfDynamicCards.deleteAll()
   },
 }
 </script>

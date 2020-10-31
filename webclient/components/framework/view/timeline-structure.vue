@@ -81,7 +81,7 @@
 <script>
 import ctActOnSocketMessages from '../change/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 import allClientTbls from '../all-client-tables.js'
 
@@ -112,7 +112,7 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', this.propFormDef.id).get()
+      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this.propFormDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {

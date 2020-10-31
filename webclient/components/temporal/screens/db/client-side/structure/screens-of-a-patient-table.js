@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblOfDynamicCards from '~/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -62,11 +63,13 @@ export const screensFormDef = {
     {
       textInUi: 'Start',
       executeThisFn: function (pScreenRow) {
-        console.log(pScreenRow)
-        const term = 'add reminders'
-        console.log(this)
-        this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-          searchTerm: term,
+        clientTblOfDynamicCards.insert({
+          data: {
+            name: 'a',
+            componentToShowPath: 'b',
+            currentDisplayStateOfComponent: 1,
+            identifierOfparentComponentThatIncludedThisSearchComponent: 'c',
+          },
         })
       },
     },

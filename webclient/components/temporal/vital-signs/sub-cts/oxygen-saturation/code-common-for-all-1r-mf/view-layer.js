@@ -21,7 +21,7 @@ import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import clientTbl from '../db/client-side/structure/table.js'
-import clientTblOfRightSideCards from '~/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfDynamicCards from '~/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],
@@ -64,7 +64,7 @@ export default {
         2nd the card 2 will focus
       */
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfRightSideCards.query().where('name', 'reminders').get()
+      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', 'reminders').get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {

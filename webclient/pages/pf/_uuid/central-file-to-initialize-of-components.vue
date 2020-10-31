@@ -108,7 +108,7 @@ import initializeMedicalReviewOfSystemsComponent from '@/components/temporal/med
 import initializePhoneNumberComponent from '@/components/temporal/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/temporal/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
-import clientTblOfRightSideCards from '@/components/non-temporal/search-phrases/db/client-side/structure/table-of-cards-chosen-by-user-to-display.js'
+import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 import clientTblOfAppointmentsInsertData from '@/components/temporal/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 

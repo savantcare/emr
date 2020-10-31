@@ -5,8 +5,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class cardsFromSearch extends clientTblManage {
-  static entity = 'tblCardsFromSearch'
+export default class dynamicCards extends clientTblManage {
+  static entity = 'tblDynamicCards'
   static apiUrl = 'http://localhost:3000/'
 
   static primaryKey = 'clientSideUniqRowId'
