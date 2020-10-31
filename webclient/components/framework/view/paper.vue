@@ -92,102 +92,111 @@
           v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
 
 
-        Goal 4: Each time a heading type field comes go to the next row   
+        Goal 4: Each time a heading type field comes go to the next row   (Not working)
           Ref: https://stackoverflow.com/a/47077596
+
+        Goal 5: Each row should have a gap of 1 rem
+          How? grid-row-gap: 1rem;              //not working
         -->
 
-        <div style="padding: 0px; margin: 0px">
-          <div
-            id="each-data-row"
-            v-for="row in mfGetArOfDataRows(this.currentApptObj)"
-            :key="row.clientSideUniqRowId"
-            style="padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem"
-          >
-            <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
+        <div
+          id="each-data-row"
+          v-for="row in mfGetArOfDataRows(this.currentApptObj)"
+          :key="row.clientSideUniqRowId"
+          style="
+            padding: 0px;
+            margin: 0px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+          "
+        >
+          <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-            <div
-              id="each-field-of-data-row"
-              :class="'field-type-' + propFieldDef.fieldType"
-              v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-              :key="id"
-              :style="mfGetCssClassNameForEachDataRow(row)"
-              v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
-            >
-              <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-                <!-- the field printing is not common for all field types so that heading can be applied -->
-                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-              </div>
-              <!-- Goal: Skip any empty fields in the row 
+          <div
+            id="each-field-of-data-row"
+            :class="'field-type-' + propFieldDef.fieldType"
+            v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+            :key="id"
+            :style="mfGetCssClassNameForEachDataRow(row)"
+            v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
+          >
+            <!-- Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
               For e.g. for recs it is string and for psych review of systems it is number
               -->
 
-              <!-- There may be many different types of fields. Here dealing with select type field -->
-              <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-                <!-- Each fieldtype gets to control its own way of showing the field label -->
-                <div v-if="propFieldDef.showFieldLabel">
-                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                </div>
-                <!-- Since it is select there will be many options hence need to do a for loop on options -->
-                <!-- Since it is View layer I should only show the selected options and not all the options -->
-                <div
-                  v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                    propFieldDef.fieldNameInDb,
-                    row.clientSideUniqRowId
-                  )"
-                  :key="item.id"
-                  v-if="item.selected"
-                >
-                  <!-- this v-if is part of this div and not <div id="selected-option"> 
+            <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+              <!-- the field printing is not common for all field types so that heading can be applied -->
+              <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+            </div>
+
+            <div :id="id" v-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+              <!-- the field printing is not common for all field types so that heading can be applied -->
+              <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+            </div>
+
+            <!-- There may be many different types of fields. Here dealing with select type field -->
+            <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+              <!-- Each fieldtype gets to control its own way of showing the field label -->
+              <div v-if="propFieldDef.showFieldLabel">
+                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+              </div>
+              <!-- Since it is select there will be many options hence need to do a for loop on options -->
+              <!-- Since it is View layer I should only show the selected options and not all the options -->
+              <div
+                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                  propFieldDef.fieldNameInDb,
+                  row.clientSideUniqRowId
+                )"
+                :key="item.id"
+                v-if="item.selected"
+              >
+                <!-- this v-if is part of this div and not <div id="selected-option"> 
                   reason: So that empty divs are not generated.
                   If <div id="selected-option" v-if="item.selected">
                     then a empty divs for each of the select options will get generated.
                   -->
 
-                  <!-- Goal: Only show the selected option -->
-                  <div id="selected-option">
-                    {{ item.value }}
-                  </div>
+                <!-- Goal: Only show the selected option -->
+                <div id="selected-option">
+                  {{ item.value }}
                 </div>
-              </div>
-              <!-- Slider field type -->
-              <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-                <div v-if="row[propFieldDef.fieldNameInDb] > 0">
-                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                    <h4>{{ propFieldDef.fieldNameInUi }}</h4>
-                  </div>
-                  <div id="field-value-in-db">
-                    <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
-                    <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-                    <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
-                    <div v-else>
-                      {{ row[propFieldDef.fieldNameInDb] }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Next field type -->
-              <div v-else id="not-matched-field-type">
-                <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-
-                <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
               </div>
             </div>
-            <!-- This is for action associated with each row -->
-            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-            <!-- Case 1/2: When this appt is locked what row actions to show-->
-            <div v-else id="row-actions-when-app-is-unlocked">
-              <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-              <div>
-                <el-button-group style="float: right">
-                  <el-tooltip
-                    class="item"
-                    effect="light"
-                    content="Click to edit"
-                    placement="top-start"
-                    :open-delay="500"
-                  >
-                    <!-- Goal: If this row is not coming from DB but it was added on the client then:
+            <!-- Slider field type -->
+            <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+              <div v-if="row[propFieldDef.fieldNameInDb] > 0">
+                <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                  <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                </div>
+                <div id="field-value-in-db">
+                  <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
+                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+                  <div v-else>
+                    {{ row[propFieldDef.fieldNameInDb] }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Next field type -->
+            <div v-else id="not-matched-field-type">
+              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+
+              <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
+            </div>
+          </div>
+          <!-- This is for action associated with each row -->
+          <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+          <!-- Case 1/2: When this appt is locked what row actions to show-->
+          <div v-else id="row-actions-when-app-is-unlocked">
+            <!-- Case 2/2: When this appt is un-locked what row actions to show-->
+            <div>
+              <el-button-group style="float: right">
+                <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
+                  <!-- Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
                   Why?
                   A copied row when undone expect to be left with orginal
@@ -195,39 +204,32 @@
 
                   In case of new row created on client during edit do not create a copy.
                   -->
-                    <el-button
-                      style="padding: 3px; color: #c0c4cc; border: none"
-                      plain
-                      @click="
-                        String(row.vnRowStateInSession).startsWith(2)
-                          ? mfOpenAddInEditLayer()
-                          : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
-                      "
-                      class="el-icon-edit"
-                    >
-                    </el-button>
-                  </el-tooltip>
-                  <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-                    <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
-                    </el-button>
-                  </el-tooltip>
-                  <el-tooltip
-                    class="item"
-                    effect="light"
-                    content="Click to delete"
-                    placement="top-end"
-                    :open-delay="500"
+                  <el-button
+                    style="padding: 3px; color: #c0c4cc; border: none"
+                    plain
+                    @click="
+                      String(row.vnRowStateInSession).startsWith(2)
+                        ? mfOpenAddInEditLayer()
+                        : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                    "
+                    class="el-icon-edit"
                   >
-                    <el-button
-                      style="padding: 3px; color: #c0c4cc; border: none"
-                      plain
-                      @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
-                      class="el-icon-circle-close"
-                    >
-                    </el-button>
-                  </el-tooltip>
-                </el-button-group>
-              </div>
+                  </el-button>
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+                  <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
+                  </el-button>
+                </el-tooltip>
+                <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
+                  <el-button
+                    style="padding: 3px; color: #c0c4cc; border: none"
+                    plain
+                    @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
+                    class="el-icon-circle-close"
+                  >
+                  </el-button>
+                </el-tooltip>
+              </el-button-group>
             </div>
           </div>
         </div>

@@ -40,7 +40,7 @@ export default class screens extends clientTblManage {
       description: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
-      rating: this.number(0),
+      start: this.string('start'),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -56,23 +56,10 @@ export const screensFormDef = {
   plural: 'screens',
   singular: 'screen',
   fieldsDef: [
+    // Giving span 24 since it is inside div grid and I want to take all available width
     { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
-    {
-      fieldNameInDb: 'rating',
-      fieldNameInUi: 'Rating',
-      fieldType: 'slider',
-      span: 24,
-      fieldOptions: { min: 0, max: 10, step: 1 },
-    },
+    { fieldNameInDb: 'start', fieldNameInUi: 'Start', fieldType: 'button', span: 24, showFieldLabel: true },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  fnCreated: function (pRow) {
-    // Screen: When it starts i need to initialize value with the initial slider value
-    // At start this gets called with empty pRow so I return an empty array
-    if (pRow.length < 1) {
-      return []
-    } else {
-      return pRow[0]
-    }
-  },
+  fnCreated: function (pRow) {},
 }
