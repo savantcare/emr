@@ -81,12 +81,15 @@
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
+              :span="propFieldDef.span"
             >
               <div v-if="propFieldDef.fieldType === 'heading'">
-                <div v-if="propFieldDef.showFieldLabel">
-                  <!-- the field printing happens lower so heading can be applied -->
-                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                </div>
+                <el-row>
+                  <div v-if="propFieldDef.showFieldLabel">
+                    <!-- the field printing is not common for all field types so that heading can be applied -->
+                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                  </div>
+                </el-row>
               </div>
               <!-- Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
@@ -94,7 +97,7 @@
               -->
               <div v-else-if="row[propFieldDef.fieldNameInDb].toString().length > 0">
                 <div v-if="propFieldDef.showFieldLabel">
-                  <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                  <b>{{ propFieldDef.fieldNameInUi }}</b>
                 </div>
 
                 <!-- There may be many different types of fields. Here dealing with select type field -->
