@@ -29,9 +29,9 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table medicalReviewOfSystemFieldOptionId = 2 */
-      appearance_select: this.string(''),
-      psychomotor_select: this.string(''),
-      attitude_multi_select: this.string(''),
+      recently_noticed_select: this.string(''),
+      constitutional_systems_select: this.string(''),
+      skin_conditions_select: this.string(''),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -50,21 +50,21 @@ export const medicalReviewOfSystemFormDef = {
   singular: 'medical review of system',
   fieldsDef: [
     {
-      fieldNameInDb: 'appearance_select',
+      fieldNameInDb: 'recently_noticed_select',
       fieldNameInUi: 'Have you recently noticed any of the following?',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'attitude_multi_select',
+      fieldNameInDb: 'constitutional_systems_select',
       fieldNameInUi: 'Constitutional systems',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'psychomotor_select',
+      fieldNameInDb: 'skin_conditions_select',
       fieldNameInUi: 'Skin conditions',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -74,7 +74,11 @@ export const medicalReviewOfSystemFormDef = {
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
 
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
+    'recently_noticed_select',
+    'constitutional_systems_select',
+    'skin_conditions_select',
+  ],
   fnCreated: function () {},
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {

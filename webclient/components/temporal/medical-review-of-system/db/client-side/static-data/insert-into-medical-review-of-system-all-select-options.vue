@@ -17,7 +17,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
         medicalReviewOfSystemFieldOptionLabel: 'Change in appetite',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
+        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
       },
     })
 
@@ -26,7 +26,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Fatigue',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
+        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
       },
     })
 
@@ -35,7 +35,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Change in weight',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
+        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
       },
     })
 
@@ -44,7 +44,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'None',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
+        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
       },
     })
 
@@ -53,7 +53,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Night sweats',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
+        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
       },
     })
 
@@ -62,7 +62,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Difficulty sleeping',
-        medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
+        medicalReviewOfSystemFieldNameInDb: 'constitutional_systems_select',
       },
     })
 
@@ -71,7 +71,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Feeling hotter than everyone',
-        medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
+        medicalReviewOfSystemFieldNameInDb: 'constitutional_systems_select',
       },
     })
 
@@ -80,7 +80,7 @@ export default {
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
         medicalReviewOfSystemFieldOptionLabel: 'Sores that dont heal',
-        medicalReviewOfSystemFieldNameInDb: 'psychomotor_select',
+        medicalReviewOfSystemFieldNameInDb: 'skin_conditions_select',
       },
     })
   },
