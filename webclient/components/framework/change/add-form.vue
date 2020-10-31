@@ -19,7 +19,7 @@
 
                 <el-autocomplete
                   v-if="propFieldObj.fieldType === 'autocomplete'"
-                  v-model="value"
+                  v-model="value[ormRow.clientSideUniqRowId]"
                   class="inline-input"
                   :fetch-suggestions="propFieldObj.selectOptions"
                   :placeholder="propFieldObj.fieldNameInUi"
@@ -208,7 +208,7 @@ export default {
     console.log(this.propFormDef)
   },
   data() {
-    return { value: '' }
+    return { value: [] }
   },
   props: {
     propFormDef: {
