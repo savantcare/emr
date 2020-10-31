@@ -1,6 +1,5 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsMasterClass from './service-statements-all-select-options.js'
 import serviceStatementsAllSelectOptionsTbl from './service-statements-all-select-options.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
