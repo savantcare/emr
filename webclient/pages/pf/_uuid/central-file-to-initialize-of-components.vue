@@ -23,6 +23,7 @@
     <initializeRecComponent />
     <initializeRemComponent />
     <initializeGoalComponent />
+    <initializeScreenComponent />
     <initializePhoneNumberComponent />
 
     <!-- END -->
@@ -93,6 +94,8 @@ import initializeRecComponent from '@/components/temporal/recommendations/db/cli
 import initializeRemComponent from '@/components/temporal/reminders/db/client-side/initialize-on-first-load.vue'
 import initializeGoalComponent from '@/components/temporal/goals/db/client-side/initialize-on-first-load.vue'
 
+import initializeScreenComponent from '@/components/temporal/screens/db/client-side/initialize-on-first-load.vue'
+
 // END
 
 import initializeServiceStatementComponent from '@/components/temporal/service-statements/db/client-side/initialize-on-first-load.vue'
@@ -141,6 +144,7 @@ export default {
     initializeRecComponent,
     initializeRemComponent,
     initializeGoalComponent,
+    initializeScreenComponent,
     initializePhoneNumberComponent,
     // END
 

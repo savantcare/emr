@@ -45,7 +45,7 @@ database.register(tableStructureForTemperature)
 database.register(tableStructureForPulse)
 
 // Screening tables
-import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/Screening'
+import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
 import tableStructureForPhq9Master from '~/components/temporal/phq9/db/client-side/structure/master-table-of-phq9.js'
 import tableStructureForPhq9OfPatient from '~/components/temporal/phq9/db/client-side/structure/patient-table-of-phq9.js'
 database.register(tableStructureForScr)
