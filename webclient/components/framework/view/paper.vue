@@ -74,13 +74,18 @@
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
         <!-- Design: 
-        Goal: Each data row is made into a grid with 3 columns
-        How? style="display: grid; grid-template-columns: 1fr 1fr 1fr"
+
+        Goal 1: Each data row is made into a grid with 3 columns
+        How? display: grid; grid-template-columns: 1fr 1fr 1fr
         
-        Goal: Between columns there is some space
-        How? style="grid-column-gap: 1rem"
+        Goal 2: Between columns there is some space
+        How? style="grid-column-gap: 1rem
         
-        Goal: If 1st and 2nd field is missing the 3rd field should be in 1st col and not in 3rd col
+        Goal 3: If 1st and 2nd field has no value then 3rd field should be in 1st col and not in 3rd col
+        How? grid-template-columns: min-content 1fr;
+        With 1fr you're telling the second col to consume any and all free space available in the row. Hence, when there is no content in the .first element, the .second element takes the space.
+        Ref: https://stackoverflow.com/a/50709699
+
         -->
         <div style="padding: 0px; margin: 0px">
           <div
