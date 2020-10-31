@@ -12,26 +12,27 @@ export default {
   mounted() {
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'medical review of systems',
-        ctAbbr: 'psh',
-        ctToShow: 'temporal/medical-review-of-systems/view-layer/medical-review-of-systems-design-1-ct.vue',
+        value: 'mental status exam',
+        ctAbbr: 'ss',
+        ctToShow: 'temporal/mental-status-exam/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit medical review of systems',
-        ctAbbr: 'epsh',
-        ctToShow: 'temporal/medical-review-of-systems/change-layer/medical-review-of-systems-edit-design-1.vue',
+        value: 'edit mental_status_exam',
+        ctAbbr: 'sse',
+        ctToShow: 'temporal/mental-status-exam/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
-        ctWidthInEditLayer: 'large',
+        ctWidthInEditLayer: 'small',
+        needsRowIdToWork: 'yes',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'deleted medical review of systems',
-        ctAbbr: 'dpsh',
-        ctToShow: 'temporal/medical-review-of-systems/view-layer/deleted.vue',
+        value: 'add mental_status_exam',
+        ctAbbr: 'dss',
+        ctToShow: 'temporal/mental-status-exam/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
