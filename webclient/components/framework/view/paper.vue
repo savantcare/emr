@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
+    <!-- Section 1/2: This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading">{{
@@ -68,16 +68,16 @@
         </div>
       </el-col>
     </el-row>
-    <!-- This starts after the header ends -->
+    <!-- Section 2/2: This starts after the header ends -->
     <div :style="cfGetDataRowStyle">
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
-        <table style="padding: 0px; margin: 0px">
-          <tr v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
+        <div style="padding: 0px; margin: 0px">
+          <el-row v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-            <td
+            <el-col
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
@@ -119,13 +119,13 @@
                   {{ row[propFieldDef.fieldNameInDb] }}
                 </div>
               </div>
-            </td>
+            </el-col>
             <!-- This is for action assocaited with each row -->
             <div v-if="currentApptObj['apptStatus'] === 'locked'"></div>
             <!-- Case 1/2: When this appt is locked what row actions to show-->
             <div v-else>
               <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-              <td>
+              <el-col>
                 <el-button-group style="float: right">
                   <el-tooltip
                     class="item"
@@ -174,10 +174,10 @@
                     </el-button>
                   </el-tooltip>
                 </el-button-group>
-              </td>
+              </el-col>
             </div>
-          </tr>
-        </table>
+          </el-row>
+        </div>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
