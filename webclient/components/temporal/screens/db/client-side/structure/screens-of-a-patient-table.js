@@ -40,7 +40,6 @@ export default class screens extends clientTblManage {
       name: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
-      start: this.string('start'),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -58,8 +57,8 @@ export const screensFormDef = {
   fieldsDef: [
     // Giving span 24 since it is inside div grid and I want to take all available width
     { fieldNameInDb: 'name', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
-    { fieldNameInDb: 'start', fieldNameInUi: 'Start', fieldType: 'button', span: 24, showFieldLabel: true },
   ],
+  additionalRowActions: [{ textInUi: 'Start', uiContainerType: 'button' }],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['name'],
   fnCreated: function (pRow) {},
 }

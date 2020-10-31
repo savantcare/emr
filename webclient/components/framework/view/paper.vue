@@ -195,10 +195,17 @@
             <!-- Case 2/2: When this appt is un-locked what row actions to show-->
             <div>
               <el-button-group style="float: right">
+                <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
+                  {{ additionalRowAction.textInUi }}
+                </div>
+
                 <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-                  <!-- Goal: If this row is not coming from DB but it was added on the client then:
+                  <!-- 
+                    Why @click has a condition
+                    Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
                   Why?
+                  +-
                   A copied row when undone expect to be left with orginal
                   But a new row when undone does not expect to be left with original.
 
