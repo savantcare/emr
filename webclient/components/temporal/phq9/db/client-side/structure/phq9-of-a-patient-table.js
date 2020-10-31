@@ -64,16 +64,8 @@ export const phq9FormDef = {
   singular: 'phq9',
   fieldsDef: [
     {
-      fieldNameInDb: 'heading_depression',
-      fieldNameInUi: 'Depression',
-      fieldType: 'heading',
-      showFieldLabel: true,
-      // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
-      span: 24,
-    },
-    {
       fieldNameInDb: 'depressive_mood',
-      fieldNameInUi: 'Depressive mood',
+      fieldNameInUi: 'Little interest or pleasure in doing things?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -81,7 +73,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'interest',
-      fieldNameInUi: 'Interest',
+      fieldNameInUi: 'Feeling down depressed or hopeless?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -89,7 +81,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'sleep',
-      fieldNameInUi: 'Sleep',
+      fieldNameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -97,7 +89,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'selfEsteem',
-      fieldNameInUi: 'Gulf / Self esteem',
+      fieldNameInUi: 'Feeling tired or having little energy?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -105,7 +97,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'energy',
-      fieldNameInUi: 'Energy',
+      fieldNameInUi: 'Poor appetite or overeating?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -113,7 +105,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'concDist',
-      fieldNameInUi: 'Conc/Dist',
+      fieldNameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -121,7 +113,7 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'appetite',
-      fieldNameInUi: 'Apptetite',
+      fieldNameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -129,7 +121,8 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'pmrPma',
-      fieldNameInUi: 'PMR/PMA',
+      fieldNameInUi:
+        'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -137,42 +130,11 @@ export const phq9FormDef = {
     },
     {
       fieldNameInDb: 'heading_gateway',
-      fieldNameInUi: 'Gateway mood symptoms',
-      fieldType: 'heading',
-      showFieldLabel: true,
-      span: 12,
-    },
-    {
-      fieldNameInDb: 'obese',
-      fieldNameInUi: 'Obese',
+      fieldNameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
-    },
-    {
-      fieldNameInDb: 'thinCachectic',
-      fieldNameInUi: 'Thin or cachectic',
-      fieldType: 'slider',
-      span: 24,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-    },
-    {
-      fieldNameInDb: 'disheveledUnkempt',
-      fieldNameInUi: 'Disheveled/unkempt',
-      fieldType: 'slider',
-      span: 24,
-      showFieldLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-    },
-    {
-      fieldNameInDb: 'malodorous',
-      fieldNameInUi: 'Malodorous',
-      fieldType: 'slider',
-      span: 24,
-      showFieldLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
     },
   ],
   showFormReviewedButton: false,
