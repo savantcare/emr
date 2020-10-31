@@ -40,7 +40,7 @@ export default class goals extends clientTblManage {
       description: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
-      isAutoRem: this.number(0),
+      rating: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -55,7 +55,10 @@ export const goalsFormDef = {
   id: 'goals',
   plural: 'goals',
   singular: 'goal',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
+  fieldsDef: [
+    { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
+    { fieldNameInDb: 'rating', fieldNameInUi: 'Rating', fieldType: 'textarea', span: 24 },
+  ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function () {},
 }
