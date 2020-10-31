@@ -10,13 +10,29 @@
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-    <screensPrintSection :propApptId="propShowNoteForApptId"></screensPrintSection>
-    <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
 
+    <!-- End of Data -->
+
+    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+    <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
+    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
+    <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+    <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
     <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
     <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
-    <!-- End of Data -->
+    <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
+    <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
+    <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
+    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
+    <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
+    <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
+    <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
+    <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
+    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
+    <screensPrintSection :propApptId="propShowNoteForApptId"></screensPrintSection>
+    <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
+    <diagnosisPrintSection :propApptId="propShowNoteForApptId"></diagnosisPrintSection>
 
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>

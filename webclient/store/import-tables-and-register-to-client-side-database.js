@@ -46,8 +46,8 @@ database.register(tableStructureForPulse)
 
 // Screening tables
 import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
-import tableStructureForPhq9Master from '~/components/temporal/phq9/db/client-side/structure/master-table-of-phq9.js'
-import tableStructureForPhq9OfPatient from '~/components/temporal/phq9/db/client-side/structure/patient-table-of-phq9.js'
+import tableStructureForPhq9Master from '~/components/temporal/phq9/db/client-side/structure/phq9-all-select-options.js'
+import tableStructureForPhq9OfPatient from '~/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 database.register(tableStructureForScr)
 database.register(tableStructureForPhq9Master)
 database.register(tableStructureForPhq9OfPatient)
