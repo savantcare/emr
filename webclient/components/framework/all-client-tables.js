@@ -2,6 +2,8 @@ import allergiesClientTbl from '@/components/temporal/allergies/db/client-side/s
 import chiefComplaintClientTbl from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import diagnosisClientTbl from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import miscNotesClientTbl from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import nameClientTbl from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 import pastPsychHistoryClientTbl from '~/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
@@ -10,7 +12,6 @@ import processNotesClientTbl from '@/components/temporal/process-notes/db/client
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
-import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
 import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
@@ -44,6 +45,8 @@ const allClientTbls = {
   chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,
+  medical_review_of_system: medicalReviewOfSystemOfAPatientTbl,
+  mental_status_exam: mentalStatusExamOfAPatientTbl,
   miscellaneous_notes: miscNotesClientTbl,
   name: nameClientTbl,
   past_psych_history: pastPsychHistoryClientTbl,
@@ -52,7 +55,6 @@ const allClientTbls = {
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,
   service_statements: serviceStatementsOfAPatientTbl,
-  mental_status_exam: mentalStatusExamOfAPatientTbl,
   psych_review_of_system: psychReviewOfSystemOfAPatientTbl,
 }
 
