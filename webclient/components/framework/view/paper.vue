@@ -141,7 +141,8 @@
                   )"
                   :key="item.id"
                 >
-                  <div v-if="item.selected">
+                  <!-- Goal: Only show the selected option -->
+                  <div v-if="item.selected" id="selected-option">
                     <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
                   </div>
                 </div>
