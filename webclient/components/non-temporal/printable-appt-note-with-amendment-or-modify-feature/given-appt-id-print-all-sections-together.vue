@@ -11,6 +11,8 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
 
+    <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
+
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
     <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
     <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
@@ -46,6 +48,7 @@ import miscellaneousNotePrintSection from './section-15-miscellaneous-notes.vue'
 import planCommentsPrintSection from './section-16-plan-comments.vue'
 import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
+import goalsPrintSection from './section-23-goals.vue'
 import familyHistoryPrintSection from './section-20-family-history.vue'
 import allergiesPrintSection from './section-21-allergies.vue'
 import diagnosisPrintSection from './section-22-diagnosis.vue'
@@ -92,6 +95,7 @@ export default {
     familyHistoryPrintSection,
     allergiesPrintSection,
     diagnosisPrintSection,
+    goalsPrintSection,
   },
 
   async created() {
