@@ -76,20 +76,24 @@
         <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
-        How? display: grid; grid-template-columns: 1fr 1fr 1fr
+          How? display: grid; grid-template-columns: 1fr 1fr 1fr
         
         Goal 2: Between columns there is some space
-        How? style="grid-column-gap: 1rem
+          How? style="grid-column-gap: 1rem
         
         Goal 3: If 1st and 2nd field has no value then 3rd field should be in 1st col and not in 3rd col
-        Solution 1:
-        How? grid-template-columns: min-content 1fr;
-        With 1fr you're telling the second col to consume any and all free space available in the row. Hence, when there is no content in the .first element, the .second element takes the space.
-        Ref: https://stackoverflow.com/a/50709699
+          Solution 1:
+          How? grid-template-columns: min-content 1fr;
+          With 1fr you're telling the second col to consume any and all free space available in the row. Hence, when there is no content in the .first element, the .second element takes the space.
+          Ref: https://stackoverflow.com/a/50709699
 
-        Solution 2:
-        div for id="each-field-of-data-row" has a if statement. So this div does not get generated if this field does not have content.
-        v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
+          Solution 2:
+          div for id="each-field-of-data-row" has a if statement. So this div does not get generated if this field does not have content.
+          v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
+
+
+        Goal 4: Each time a heading type field comes go to the next row   
+          Ref: https://stackoverflow.com/a/47077596
         -->
 
         <div style="padding: 0px; margin: 0px">
@@ -108,40 +112,42 @@
               :style="mfGetCssClassNameForEachDataRow(row)"
               v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
             >
-              <div v-if="propFieldDef.fieldType === 'heading'">
-                <div v-if="propFieldDef.showFieldLabel">
-                  <!-- the field printing is not common for all field types so that heading can be applied -->
-                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                </div>
+              <div
+                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
+                id="field-type-heading"
+                class="field-type-heading"
+                style="grid-column-start: 1"
+              >
+                <!-- the field printing is not common for all field types so that heading can be applied -->
+                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
               </div>
               <!-- Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
               For e.g. for recs it is string and for psych review of systems it is number
               -->
-              <div v-else-if="row[propFieldDef.fieldNameInDb].toString().length > 0">
-                <!-- There may be many different types of fields. Here dealing with select type field -->
-                <div v-if="propFieldDef.fieldNameInDb.includes('select')">
-                  <!-- Each fieldtype gets to control its own way of showing the field label -->
-                  <div v-if="propFieldDef.showFieldLabel">
-                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                  </div>
-                  <!-- Since it is select there will be many options hence need to do a for loop on options -->
-                  <!-- Since it is View layer I should only show the selected options and not all the options -->
-                  <div
-                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                      propFieldDef.fieldNameInDb,
-                      row.clientSideUniqRowId
-                    )"
-                    :key="item.id"
-                  >
-                    <div v-if="item.selected">
-                      <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
-                    </div>
+
+              <!-- There may be many different types of fields. Here dealing with select type field -->
+              <div v-if="propFieldDef.fieldNameInDb.includes('select')">
+                <!-- Each fieldtype gets to control its own way of showing the field label -->
+                <div v-if="propFieldDef.showFieldLabel">
+                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                </div>
+                <!-- Since it is select there will be many options hence need to do a for loop on options -->
+                <!-- Since it is View layer I should only show the selected options and not all the options -->
+                <div
+                  v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                    propFieldDef.fieldNameInDb,
+                    row.clientSideUniqRowId
+                  )"
+                  :key="item.id"
+                >
+                  <div v-if="item.selected">
+                    <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
                   </div>
                 </div>
-                <div v-else>
-                  {{ row[propFieldDef.fieldNameInDb] }}
-                </div>
+              </div>
+              <div v-else>
+                {{ row[propFieldDef.fieldNameInDb] }}
               </div>
             </div>
             <!-- This is for action assocaited with each row -->
