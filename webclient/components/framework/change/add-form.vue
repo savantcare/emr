@@ -9,7 +9,7 @@
         <el-form v-for="ormRow in cfGetClientTblNewRowsInEditState" :key="ormRow.clientSideUniqRowId">
           <!-- Start to process each row -->
           <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
-            <el-form-item :label="propFieldObj.showFieldLabel ? propFieldObj.fieldNameInUi : ''">
+            <el-form-item>
               <!-- Start to process each field -->
               <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
                 <!-- There are 5 possibilities of field type -->
@@ -30,7 +30,9 @@
 
                 <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
                 <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
-                  {{ propFieldObj.fieldNameInUi }}
+                  <div v-if="propFieldObj.showFieldLabel">
+                    {{ propFieldObj.fieldNameInUi }}
+                  </div>
                   <div
                     v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
                       propFieldObj.fieldNameInDb,
@@ -48,6 +50,9 @@
 
                 <!-- Field type 3: Do the following when it is slider type field -->
                 <div v-else-if="propFieldObj.fieldType === 'slider'">
+                  <div v-if="propFieldObj.showFieldLabel">
+                    {{ propFieldObj.fieldNameInUi }}
+                  </div>
                   <div class="block">
                     <el-slider
                       v-model="value[propFieldObj.fieldNameInDb]"
@@ -63,7 +68,9 @@
 
                 <!-- Field type 4: Do the following when it is heading type field -->
                 <div v-else-if="propFieldObj.fieldType === 'heading'">
-                  <!-- If showFieldLabel: true then the heading is printed at the top inside the el-form-item -->
+                  <div v-if="propFieldObj.showFieldLabel">
+                    <h3>{{ propFieldObj.fieldNameInUi }}</h3>
+                  </div>
                 </div>
 
                 <!-- Field type 5: Do the following when it is select type field -->
