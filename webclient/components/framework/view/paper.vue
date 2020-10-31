@@ -113,8 +113,8 @@
               v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
             >
               <div
-                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
                 id="field-type-heading"
+                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
                 class="field-type-heading"
                 style="grid-column-start: 1"
               >

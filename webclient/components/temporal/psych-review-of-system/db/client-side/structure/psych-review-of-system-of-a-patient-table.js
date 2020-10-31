@@ -44,8 +44,8 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       /* Heading fields need default values since there is a empty check on these in paper.vue. 
           The empty check is there to decide if a div should be included in DOM or not. Since Div is used by css:grid.
           If a grid withput content is included then there will be a empty box in the paper note */
-      heading_gateway: this.string('gateway'),
-      heading_depression: this.string('depression'),
+      heading_gateway: this.string('heading_gateway'),
+      heading_depression: this.string('heading_depression'),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
