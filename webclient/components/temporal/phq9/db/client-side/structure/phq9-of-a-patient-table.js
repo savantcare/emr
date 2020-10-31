@@ -29,23 +29,16 @@ export default class phq9ForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table phq9FieldOptionId = 2 */
-      depressive_mood: this.number(0),
+
       interest: this.number(0),
+      depressed: this.number(0),
       sleep: this.number(0),
-      selfEsteem: this.number(0),
       energy: this.number(0),
-      concDist: this.number(0),
       appetite: this.number(0),
-      pmrPma: this.number(0),
-      obese: this.number(0),
-      thinCachectic: this.number(0),
-      disheveledUnkempt: this.number(0),
-      malodorous: this.number(0),
-      /* Heading fields need default values since there is a empty check on these in paper.vue. 
-          The empty check is there to decide if a div should be included in DOM or not. Since Div is used by css:grid.
-          If a grid withput content is included then there will be a empty box in the paper note */
-      heading_gateway: this.string('heading_gateway'),
-      heading_depression: this.string('heading_depression'),
+      down: this.number(0),
+      concentrating: this.number(0),
+      slowly: this.number(0),
+      hurting: this.number(0),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -64,7 +57,7 @@ export const phq9FormDef = {
   singular: 'phq9',
   fieldsDef: [
     {
-      fieldNameInDb: 'depressive_mood',
+      fieldNameInDb: 'interest',
       fieldNameInUi: 'Little interest or pleasure in doing things?',
       fieldType: 'slider',
       span: 24,
@@ -72,7 +65,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'interest',
+      fieldNameInDb: 'depressed',
       fieldNameInUi: 'Feeling down depressed or hopeless?',
       fieldType: 'slider',
       span: 24,
@@ -88,7 +81,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'selfEsteem',
+      fieldNameInDb: 'energy',
       fieldNameInUi: 'Feeling tired or having little energy?',
       fieldType: 'slider',
       span: 24,
@@ -96,7 +89,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'energy',
+      fieldNameInDb: 'appetite',
       fieldNameInUi: 'Poor appetite or overeating?',
       fieldType: 'slider',
       span: 24,
@@ -104,7 +97,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'concDist',
+      fieldNameInDb: 'down',
       fieldNameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       fieldType: 'slider',
       span: 24,
@@ -112,7 +105,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'appetite',
+      fieldNameInDb: 'concentrating',
       fieldNameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       fieldType: 'slider',
       span: 24,
@@ -120,7 +113,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'pmrPma',
+      fieldNameInDb: 'slowly',
       fieldNameInUi:
         'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?',
       fieldType: 'slider',
@@ -129,7 +122,7 @@ export const phq9FormDef = {
       fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
-      fieldNameInDb: 'heading_gateway',
+      fieldNameInDb: 'hurting',
       fieldNameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
       fieldType: 'slider',
       span: 24,
@@ -141,18 +134,15 @@ export const phq9FormDef = {
   maxNumberOfRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
-    'depressive_mood',
     'interest',
+    'depressed',
     'sleep',
-    'selfEsteem',
     'energy',
-    'concDist',
     'appetite',
-    'pmrPma',
-    'obese',
-    'thinCachectic',
-    'disheveledUnkempt',
-    'malodorous',
+    'down',
+    'concentrating',
+    'slowly',
+    'hurting',
   ],
 
   fnCreated: function (pRow) {
