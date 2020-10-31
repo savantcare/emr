@@ -57,7 +57,13 @@ export const goalsFormDef = {
   singular: 'goal',
   fieldsDef: [
     { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
-    { fieldNameInDb: 'rating', fieldNameInUi: 'Rating', fieldType: 'textarea', span: 24 },
+    {
+      fieldNameInDb: 'rating',
+      fieldNameInUi: 'Rating',
+      fieldType: 'textarea',
+      span: 24,
+      fieldOptions: { min: 0, max: 10, step: 1 },
+    },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function () {},

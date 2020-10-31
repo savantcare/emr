@@ -132,20 +132,20 @@
             20 columns to input and 4 columns to remove button
             Remove should not come if there is only one propFormDef.maxRow
           -->
-
-                <el-button
-                  v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
-                  plain
-                  type="warning"
-                  style="float: right"
-                  @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
-                  >Remove</el-button
-                >
               </el-col>
             </el-form-item>
 
             <!-- Just ended processing all the fields in the row -->
           </div>
+          <el-button
+            v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+            plain
+            type="warning"
+            style="float: right"
+            @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
+            >Remove</el-button
+          >
+
           <!-- Just ended processing each row -->
         </el-form>
       </div>
