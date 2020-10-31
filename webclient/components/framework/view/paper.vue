@@ -82,11 +82,16 @@
         How? style="grid-column-gap: 1rem
         
         Goal 3: If 1st and 2nd field has no value then 3rd field should be in 1st col and not in 3rd col
+        Solution 1:
         How? grid-template-columns: min-content 1fr;
         With 1fr you're telling the second col to consume any and all free space available in the row. Hence, when there is no content in the .first element, the .second element takes the space.
         Ref: https://stackoverflow.com/a/50709699
 
+        Solution 2:
+        div for id="each-field-of-data-row" has a if statement. So this div does not get generated if this field does not have content.
+        v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
         -->
+
         <div style="padding: 0px; margin: 0px">
           <div
             id="each-data-row"
@@ -101,6 +106,7 @@
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
+              v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
             >
               <div v-if="propFieldDef.fieldType === 'heading'">
                 <div v-if="propFieldDef.showFieldLabel">
