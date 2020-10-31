@@ -168,7 +168,7 @@
               </div>
               <!-- Next field type -->
               <div v-else id="not-matched-field-type">
-                <div id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
 
                 <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
               </div>
