@@ -29,18 +29,18 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
-      depressive_mood: this.string(''),
-      interest: this.string(''),
-      sleep: this.string(''),
-      selfEsteem: this.string(''),
-      energy: this.string(''),
-      concDist: this.string(''),
-      appetite: this.string(''),
-      pmrPma: this.string(''),
-      obese: this.string(''),
-      thinCachectic: this.string(''),
-      disheveledUnkempt: this.string(''),
-      malodorous: this.string(''),
+      depressive_mood: this.number(0),
+      interest: this.number(0),
+      sleep: this.number(0),
+      selfEsteem: this.number(0),
+      energy: this.number(0),
+      concDist: this.number(0),
+      appetite: this.number(0),
+      pmrPma: this.number(0),
+      obese: this.number(0),
+      thinCachectic: this.number(0),
+      disheveledUnkempt: this.number(0),
+      malodorous: this.number(0),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -187,9 +187,14 @@ export const psychReviewOfSystemFormDef = {
     'malodorous',
   ],
 
-  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    const a = [0, 1, 2]
-    return a
+  fnCreated: function (pRow) {
+    // Goal: When it starts i need to initialize value with the initial slider value
+    // At start this gets called with empty pRow so I return an empty array
+    if (pRow.length < 1) {
+      return []
+    } else {
+      return pRow[0]
+    }
   },
   fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
     if (pfieldValue === '') return

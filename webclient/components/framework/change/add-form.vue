@@ -56,7 +56,7 @@
                   </div>
                 </div>
 
-                <!-- Field type 4: Do the following when it is slider type field -->
+                <!-- Field type 4: Do the following when it is slider type field value[propFieldDef.fieldNameInDb] -->
                 <div v-else-if="propFieldDef.fieldType === 'slider'">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -212,7 +212,7 @@ import allClientTbls from '../all-client-tables.js'
 
 export default {
   created() {
-    console.log(this.propFormDef)
+    this.value = this.propFormDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
     return { value: [] }
@@ -235,7 +235,6 @@ export default {
       },
     },
   },
-  created() {},
   computed: {
     // allClientTbls[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
@@ -255,6 +254,10 @@ export default {
     },
   },
   methods: {
+    log(item) {
+      console.log(item)
+    },
+
     mfGetArOfDataRows() {
       const arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
         .query()

@@ -88,8 +88,11 @@
                   <h3>{{ propFieldDef.fieldNameInUi }}</h3>
                 </div>
               </div>
-              <!-- Goal: Skip any empty fields in the row -->
-              <div v-else-if="row[propFieldDef.fieldNameInDb].length > 0">
+              <!-- Goal: Skip any empty fields in the row 
+              row[propFieldDef.fieldNameInDb] can either be integer or string
+              For e.g. for recs it is string and for psych review of systems it is number
+              -->
+              <div v-else-if="row[propFieldDef.fieldNameInDb].toString().length > 0">
                 <div v-if="propFieldDef.showFieldLabel">
                   <h4>{{ propFieldDef.fieldNameInUi }}</h4>
                 </div>

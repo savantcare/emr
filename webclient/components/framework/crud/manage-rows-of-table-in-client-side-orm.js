@@ -253,7 +253,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       for (let j = 0; j < pFldsForNonEmptyCheck.length; j++) {
         let fieldName = pFldsForNonEmptyCheck[j]
         let fieldValue = row[fieldName]
-        if (fieldValue && fieldValue.length > 0) {
+        // fieldValue can be string (in case of recs) or integer (in case of psych review of systems)
+        if (fieldValue && fieldValue.toString().length > 0) {
           atLeastOneFieldIsNotEmpty = true
         }
       }
