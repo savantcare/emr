@@ -61,4 +61,5 @@ export const allergiesFormDef = {
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
+  fnCreated: function () {},
 }

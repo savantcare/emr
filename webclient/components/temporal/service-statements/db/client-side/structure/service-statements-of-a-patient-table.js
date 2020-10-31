@@ -54,18 +54,21 @@ export const serviceStatementsFormDef = {
       fieldNameInUi: 'Total minutes in psychotherapy',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      showFieldLabel: true,
     },
     {
       fieldNameInDb: 'modality_of_psychotherapy_multi_select',
       fieldNameInUi: 'Modality of psychotherapy',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      showFieldLabel: true,
     },
     {
       fieldNameInDb: 'total_minutes_with_patient_select',
       fieldNameInUi: 'Total minutes with patient',
       fieldType: 'multi-select-with-buttons',
       span: 12,
+      showFieldLabel: true,
     },
   ],
   showFormReviewedButton: false,
@@ -76,6 +79,7 @@ export const serviceStatementsFormDef = {
     'modality_of_psychotherapy_multi_select',
     'total_minutes_with_patient_select',
   ],
+  fnCreated: function () {},
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     console.log('===== inside fn')

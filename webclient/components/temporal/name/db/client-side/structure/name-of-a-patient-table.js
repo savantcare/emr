@@ -52,4 +52,5 @@ export const nameFormDef = {
     { fieldNameInDb: 'lastName', fieldNameInUi: 'Last name', fieldType: '', span: 8 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['firstName'],
+  fnCreated: function () {},
 }

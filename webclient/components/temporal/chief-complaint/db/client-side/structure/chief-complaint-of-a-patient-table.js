@@ -57,4 +57,5 @@ export const chiefComplaintFormDef = {
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  fnCreated: function () {},
 }

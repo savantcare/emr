@@ -57,4 +57,5 @@ export const planCommentsFormDef = {
   singular: 'plan comment',
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  fnCreated: function () {},
 }

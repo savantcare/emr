@@ -60,4 +60,5 @@ export const familyHistoryFormDef = {
     { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['relationship'],
+  fnCreated: function () {},
 }

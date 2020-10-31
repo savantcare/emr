@@ -11,7 +11,22 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
 
+    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+    <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
+    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
+    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
+    <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
+    <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
+    <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
+    <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
+    <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
+    <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
+    <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
+    <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
+    <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
+    <diagnosisPrintSection :propApptId="propShowNoteForApptId"></diagnosisPrintSection>
     <!-- End of Data -->
 
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
