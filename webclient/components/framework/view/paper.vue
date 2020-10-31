@@ -140,9 +140,16 @@
                     row.clientSideUniqRowId
                   )"
                   :key="item.id"
+                  v-if="item.selected"
                 >
+                  <!-- this v-if is part of this div and not <div id="selected-option"> 
+                  reason: So that empty divs are not generated.
+                  If <div id="selected-option" v-if="item.selected">
+                    then a empty divs for each of the select options will get generated.
+                  -->
+
                   <!-- Goal: Only show the selected option -->
-                  <div v-if="item.selected" id="selected-option">
+                  <div id="selected-option">
                     <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
                   </div>
                 </div>
