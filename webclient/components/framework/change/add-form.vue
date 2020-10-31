@@ -12,13 +12,21 @@
             <el-form-item>
               <!-- Start to process each field -->
               <el-col :span="propFieldObj.span" :class="ormRow.validationClass">
-                <!-- There are 5 possibilities of field type -->
+                <!-- The following are the possible field types -->
 
-                <!-- Field type 1: Do the following when it is auto-complete type field 
+                <!-- Field type 1: Do the following when it is heading type field -->
+                <div v-if="propFieldObj.fieldType === 'heading'">
+                  <div v-if="propFieldObj.showFieldLabel">
+                    <!-- the field printing happens lower so heading can be applied -->
+                    <h3>{{ propFieldObj.fieldNameInUi }}</h3>
+                  </div>
+                </div>
+
+                <!-- Field type 2: Do the following when it is auto-complete type field 
               fetch-suggestions="propFieldObj.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
 
                 <el-autocomplete
-                  v-if="propFieldObj.fieldType === 'autocomplete'"
+                  v-else-if="propFieldObj.fieldType === 'autocomplete'"
                   v-model="value[ormRow.clientSideUniqRowId]"
                   class="inline-input"
                   :fetch-suggestions="propFieldObj.selectOptions"
@@ -28,7 +36,7 @@
                   @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                 ></el-autocomplete>
 
-                <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
+                <!-- Field type 3: Do the following when it is multi-select-with-buttons type field -->
                 <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
                   <div v-if="propFieldObj.showFieldLabel">
                     {{ propFieldObj.fieldNameInUi }}
@@ -48,7 +56,7 @@
                   </div>
                 </div>
 
-                <!-- Field type 3: Do the following when it is slider type field -->
+                <!-- Field type 4: Do the following when it is slider type field -->
                 <div v-else-if="propFieldObj.fieldType === 'slider'">
                   <div v-if="propFieldObj.showFieldLabel">
                     {{ propFieldObj.fieldNameInUi }}
@@ -63,13 +71,6 @@
                       @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
                     >
                     </el-slider>
-                  </div>
-                </div>
-
-                <!-- Field type 4: Do the following when it is heading type field -->
-                <div v-else-if="propFieldObj.fieldType === 'heading'">
-                  <div v-if="propFieldObj.showFieldLabel">
-                    <h3>{{ propFieldObj.fieldNameInUi }}</h3>
                   </div>
                 </div>
 
