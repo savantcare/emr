@@ -63,6 +63,11 @@ export const screensFormDef = {
       textInUi: 'Start',
       executeThisFn: function (pScreenRow) {
         console.log(pScreenRow)
+        const term = 'add reminders'
+        console.log(this)
+        this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+          searchTerm: term,
+        })
       },
     },
   ],
