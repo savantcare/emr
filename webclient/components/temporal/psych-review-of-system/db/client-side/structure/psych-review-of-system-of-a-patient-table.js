@@ -76,7 +76,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'interest',
@@ -84,7 +84,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'sleep',
@@ -92,7 +92,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'selfEsteem',
@@ -100,7 +100,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'energy',
@@ -108,7 +108,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'concDist',
@@ -116,7 +116,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'appetite',
@@ -124,7 +124,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'pmrPma',
@@ -132,7 +132,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'heading_gateway',
@@ -147,7 +147,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'thinCachectic',
@@ -155,7 +155,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'disheveledUnkempt',
@@ -163,7 +163,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
     {
       fieldNameInDb: 'malodorous',
@@ -171,7 +171,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 6,
       showFieldLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 0.5 },
+      fieldOptions: { min: 0, max: 3, step: 1 },
     },
   ],
   showFormReviewedButton: false,
