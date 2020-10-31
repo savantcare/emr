@@ -107,6 +107,7 @@
 
             <div
               id="each-field-of-data-row"
+              :class="'field-type-' + propFieldDef.fieldType"
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
@@ -114,8 +115,8 @@
             >
               <div
                 id="field-type-heading"
-                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
                 class="field-type-heading"
+                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
                 style="grid-column-start: 1"
               >
                 <!-- the field printing is not common for all field types so that heading can be applied -->
@@ -160,7 +161,7 @@
                 {{ row[propFieldDef.fieldNameInDb] }}
               </div>
             </div>
-            <!-- This is for action assocaited with each row -->
+            <!-- This is for action associated with each row -->
             <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
             <!-- Case 1/2: When this appt is locked what row actions to show-->
             <div v-else id="row-actions-when-app-is-unlocked">
@@ -430,5 +431,9 @@ h3 {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
   border-bottom: 1px solid #dcdfe6;
+}
+
+.field-type-slider + .field-type-heading {
+  grid-column-start: 1;
 }
 </style>
