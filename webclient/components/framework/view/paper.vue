@@ -151,7 +151,7 @@
 
                   <!-- Goal: Only show the selected option -->
                   <div id="selected-option">
-                    <h4 :type="item.selected ? 'primary' : 'plain'">{{ item.value }}</h4>
+                    {{ item.value }}
                   </div>
                 </div>
               </div>
