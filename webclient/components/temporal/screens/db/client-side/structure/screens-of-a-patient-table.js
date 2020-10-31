@@ -37,7 +37,7 @@ export default class screens extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
+      name: this.string(''),
       notes: this.string(null),
       priority: this.number(0),
       start: this.string('start'),
@@ -57,9 +57,9 @@ export const screensFormDef = {
   singular: 'screen',
   fieldsDef: [
     // Giving span 24 since it is inside div grid and I want to take all available width
-    { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
+    { fieldNameInDb: 'name', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
     { fieldNameInDb: 'start', fieldNameInUi: 'Start', fieldType: 'button', span: 24, showFieldLabel: true },
   ],
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['name'],
   fnCreated: function (pRow) {},
 }
