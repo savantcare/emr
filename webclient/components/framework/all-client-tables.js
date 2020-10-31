@@ -15,7 +15,7 @@ import goalsClientTbl from '@/components/temporal/goals/db/client-side/structure
 import screensClientTbl from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
-
+import phq9ClientTbl from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
  For e.g. 
  Step 1:
@@ -60,6 +60,7 @@ const allClientTbls = {
   psych_review_of_system: psychReviewOfSystemOfAPatientTbl,
   goals: goalsClientTbl,
   screens: screensClientTbl,
+  phq9: phq9ClientTbl,
 }
 
 export default allClientTbls

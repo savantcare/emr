@@ -65,7 +65,7 @@ export const screensFormDef = {
       textInUi: 'Start',
       executeThisFn: function (pScreenRow) {
         $nuxt.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-          searchTerm: 'add reminder',
+          searchTerm: 'add phq9',
         })
       },
     },
