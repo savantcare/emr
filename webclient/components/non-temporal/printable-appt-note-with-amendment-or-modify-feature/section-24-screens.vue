@@ -1,0 +1,27 @@
+<template>
+  <div>
+    <printNote :propApptId="propApptId" :propFormDef="formDef"></printNote>
+  </div>
+</template>
+
+<script>
+import printNote from '@/components/framework/view/paper.vue'
+import { screensFormDef } from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
+
+export default {
+  components: {
+    printNote,
+  },
+  props: {
+    propApptId: {
+      type: Number,
+      required: true,
+    },
+  },
+  data: function () {
+    return {
+      formDef: screensFormDef,
+    }
+  },
+}
+</script>

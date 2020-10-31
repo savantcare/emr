@@ -10,7 +10,7 @@
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-
+    <screensPrintSection :propApptId="propShowNoteForApptId"></screensPrintSection>
     <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
 
     <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
@@ -49,6 +49,7 @@ import planCommentsPrintSection from './section-16-plan-comments.vue'
 import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
 import goalsPrintSection from './section-23-goals.vue'
+import screensPrintSection from './section-24-screens.vue'
 import familyHistoryPrintSection from './section-20-family-history.vue'
 import allergiesPrintSection from './section-21-allergies.vue'
 import diagnosisPrintSection from './section-22-diagnosis.vue'
@@ -96,6 +97,7 @@ export default {
     allergiesPrintSection,
     diagnosisPrintSection,
     goalsPrintSection,
+    screensPrintSection,
   },
 
   async created() {
