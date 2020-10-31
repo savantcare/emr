@@ -2,68 +2,68 @@
 <template>
   <div>
     <el-form>
-      <div v-for="(propFieldObj, id) in propFormDef.fieldsDef" :key="id">
-        <el-form-item :label="propFieldObj.showFieldLabel ? propFieldObj.fieldNameInUi : ''">
-          <el-col :span="propFieldObj.span">
+      <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <el-form-item :label="propFieldDef.showFieldLabel ? propFieldDef.fieldNameInUi : ''">
+          <el-col :span="propFieldDef.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
-              v-if="propFieldObj.fieldType === 'autocomplete'"
+              v-if="propFieldDef.fieldType === 'autocomplete'"
               v-model="searchKeyword"
               class="inline-input"
-              :fetch-suggestions="propFieldObj.selectOptions"
-              :placeholder="propFieldObj.fieldNameInUi"
+              :fetch-suggestions="propFieldDef.selectOptions"
+              :placeholder="propFieldDef.fieldNameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
             ></el-autocomplete>
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
-            <div v-else-if="propFieldObj.fieldType === 'multi-select-with-buttons'">
-              {{ propFieldObj.fieldNameInUi }}
+            <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
+              {{ propFieldDef.fieldNameInUi }}
               <div
                 v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  propFieldObj.fieldNameInDb,
+                  propFieldDef.fieldNameInDb,
                   dnClientIdOfCopiedRowBeingChanged
                 )"
                 :key="item.id"
               >
                 <el-button
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, propFieldObj.fieldNameInDb)"
+                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, propFieldDef.fieldNameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>
             </div>
 
             <!-- Field type 3: Do the following when it is heading type field -->
-            <div v-else-if="propFieldObj.fieldType === 'heading'">
-              <h3>{{ propFieldObj.fieldNameInUi }}</h3>
+            <div v-else-if="propFieldDef.fieldType === 'heading'">
+              <h3>{{ propFieldDef.fieldNameInUi }}</h3>
             </div>
 
             <!-- Field type 4: Do the following when it is select type field -->
             <el-select
-              v-else-if="propFieldObj.fieldType === 'select'"
+              v-else-if="propFieldDef.fieldType === 'select'"
               v-model="value"
               filterable
-              :placeholder="propFieldObj.fieldNameInUi"
+              :placeholder="propFieldDef.fieldNameInUi"
             >
               <el-option
-                v-for="item in propFieldObj.selectOptions"
+                v-for="item in propFieldDef.selectOptions"
                 :key="item.value"
                 :label="item.label"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldObj.fieldNameInDb)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
               >
               </el-option>
             </el-select>
 
             <el-input
               v-else
-              :ref="propFieldObj.fieldNameInDb"
-              :type="propFieldObj.fieldType"
+              :ref="propFieldDef.fieldNameInDb"
+              :type="propFieldDef.fieldType"
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
-              :value="mfGetCopiedRowBeingChangedFldVal(propFieldObj.fieldNameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldObj.fieldNameInDb)"
+              :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
             ></el-input>
           </el-col>
         </el-form-item>
