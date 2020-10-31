@@ -73,23 +73,20 @@
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
-        <div style="padding: 0px; margin: 0px">
-          <el-row v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
+        <div style="padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr">
+          <div v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-            <el-col
+            <div
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
-              :span="propFieldDef.span"
             >
               <div v-if="propFieldDef.fieldType === 'heading'">
-                <el-row>
-                  <div v-if="propFieldDef.showFieldLabel">
-                    <!-- the field printing is not common for all field types so that heading can be applied -->
-                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                  </div>
-                </el-row>
+                <div v-if="propFieldDef.showFieldLabel">
+                  <!-- the field printing is not common for all field types so that heading can be applied -->
+                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                </div>
               </div>
               <!-- Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
@@ -122,13 +119,13 @@
                   {{ row[propFieldDef.fieldNameInDb] }}
                 </div>
               </div>
-            </el-col>
+            </div>
             <!-- This is for action assocaited with each row -->
             <div v-if="currentApptObj['apptStatus'] === 'locked'"></div>
             <!-- Case 1/2: When this appt is locked what row actions to show-->
             <div v-else>
               <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-              <el-col>
+              <div>
                 <el-button-group style="float: right">
                   <el-tooltip
                     class="item"
@@ -177,9 +174,9 @@
                     </el-button>
                   </el-tooltip>
                 </el-button-group>
-              </el-col>
+              </div>
             </div>
-          </el-row>
+          </div>
         </div>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
