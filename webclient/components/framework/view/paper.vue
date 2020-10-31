@@ -93,14 +93,12 @@
               For e.g. for recs it is string and for psych review of systems it is number
               -->
               <div v-else-if="row[propFieldDef.fieldNameInDb].toString().length > 0">
-                <div v-if="propFieldDef.showFieldLabel">
-                  <b>{{ propFieldDef.fieldNameInUi }}</b>
-                </div>
-
                 <!-- There may be many different types of fields. Here dealing with select type field -->
                 <div v-if="propFieldDef.fieldNameInDb.includes('select')">
-                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-
+                  <!-- Each fieldtype gets to control its own way of showing the field label -->
+                  <div v-if="propFieldDef.showFieldLabel">
+                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                  </div>
                   <!-- Since it is select there will be many options hence need to do a for loop on options -->
                   <!-- Since it is View layer I should only show the selected options and not all the options -->
                   <div
