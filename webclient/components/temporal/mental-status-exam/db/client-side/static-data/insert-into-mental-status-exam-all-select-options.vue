@@ -17,7 +17,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '60',
-        mentalStatusExamFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
 
@@ -26,7 +26,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '55',
-        mentalStatusExamFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
 
@@ -35,7 +35,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '50',
-        mentalStatusExamFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
 
@@ -44,7 +44,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '45',
-        mentalStatusExamFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
 
@@ -53,7 +53,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '40',
-        mentalStatusExamFieldNameInDb: 'total_minutes_in_psychotherapy_select',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
 
@@ -62,7 +62,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: 'Client Centered',
-        mentalStatusExamFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
 
@@ -71,7 +71,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: 'Dialectical Behavior therapy',
-        mentalStatusExamFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
 
@@ -80,7 +80,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: 'Holistic Therapy',
-        mentalStatusExamFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
 
@@ -89,7 +89,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: 'Existential humanistic',
-        mentalStatusExamFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
 
@@ -98,7 +98,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: 'Bibilotherapy',
-        mentalStatusExamFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+        mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
 
@@ -107,7 +107,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '60',
-        mentalStatusExamFieldNameInDb: 'total_minutes_with_patient_select',
+        mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
 
@@ -116,7 +116,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '55',
-        mentalStatusExamFieldNameInDb: 'total_minutes_with_patient_select',
+        mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
 
@@ -125,7 +125,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '50',
-        mentalStatusExamFieldNameInDb: 'total_minutes_with_patient_select',
+        mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
 
@@ -134,7 +134,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '45',
-        mentalStatusExamFieldNameInDb: 'total_minutes_with_patient_select',
+        mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
 
@@ -143,7 +143,7 @@ export default {
       data: {
         mentalStatusExamFieldOptionId: i + '#',
         mentalStatusExamFieldOptionLabel: '40',
-        mentalStatusExamFieldNameInDb: 'total_minutes_with_patient_select',
+        mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
   },

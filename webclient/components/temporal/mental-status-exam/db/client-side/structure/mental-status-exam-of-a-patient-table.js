@@ -47,25 +47,25 @@ export default class mentalStatusExamForPatientClass extends clientTblManage {
 export const mentalStatusExamFormDef = {
   id: 'mental_status_exam',
   plural: 'mental status exam',
-  singular: 'service statement',
+  singular: 'mental status exam',
   fieldsDef: [
     {
-      fieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      fieldNameInUi: 'Total minutes in psychotherapy',
+      fieldNameInDb: 'appearance_select',
+      fieldNameInUi: 'Appearance',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'modality_of_psychotherapy_multi_select',
-      fieldNameInUi: 'Modality of psychotherapy',
+      fieldNameInDb: 'attitude_multi_select',
+      fieldNameInUi: 'Attitude',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'total_minutes_with_patient_select',
-      fieldNameInUi: 'Total minutes with patient',
+      fieldNameInDb: 'psychomotor_select',
+      fieldNameInUi: 'psychomotor',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
@@ -96,6 +96,7 @@ export const mentalStatusExamFormDef = {
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['mentalStatusExamFieldOptionId']
       data['value'] = data['mentalStatusExamFieldOptionLabel']
+
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
     console.log(arOfAllSelectOptions)
