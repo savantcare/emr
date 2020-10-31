@@ -60,8 +60,8 @@ export default class phq9ForPatientClass extends clientTblManage {
 
 export const phq9FormDef = {
   id: 'phq9',
-  plural: 'pysch review of system',
-  singular: 'pysch review of system',
+  plural: 'phq9',
+  singular: 'phq9',
   fieldsDef: [
     {
       fieldNameInDb: 'heading_depression',

@@ -80,7 +80,7 @@ import initializeWeightComponent from '@/components/temporal/vital-signs/sub-cts
 
 // temporal/others
 import initializeMseComponent from '@/components/temporal/mental-status-exam/db/client-side/initialize-on-first-load.vue'
-import initializePhq9Component from '@/components/temporal/phq9/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePhq9Component from '@/components/temporal/phq9/db/client-side/initialize-on-first-load.vue'
 import initializeProsComponent from '@/components/temporal/psych-review-of-system/db/client-side/initialize-on-first-load.vue'
 
 // START: Each field can take multiple values at 1 time in the temporal database

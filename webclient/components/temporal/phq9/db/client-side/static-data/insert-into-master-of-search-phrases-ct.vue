@@ -12,7 +12,7 @@ export default {
   mounted() {
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'pysch review of system',
+        value: 'phq9',
         ctAbbr: 'ss',
         ctToShow: 'temporal/phq9/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
