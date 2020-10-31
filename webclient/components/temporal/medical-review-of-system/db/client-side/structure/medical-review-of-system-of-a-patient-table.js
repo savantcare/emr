@@ -51,21 +51,21 @@ export const medicalReviewOfSystemFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'appearance_select',
-      fieldNameInUi: 'Appearance',
+      fieldNameInUi: 'Have you recently noticed any of the following?',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
       fieldNameInDb: 'attitude_multi_select',
-      fieldNameInUi: 'Attitude',
+      fieldNameInUi: 'Constitutional systems',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
     },
     {
       fieldNameInDb: 'psychomotor_select',
-      fieldNameInUi: 'Psychomotor',
+      fieldNameInUi: 'Skin conditions',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,

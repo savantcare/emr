@@ -11,7 +11,7 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
 
-    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
+    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
     <!-- End of Data -->
 

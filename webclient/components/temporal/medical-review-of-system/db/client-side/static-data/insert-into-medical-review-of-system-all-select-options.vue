@@ -16,7 +16,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
-        medicalReviewOfSystemFieldOptionLabel: 'Good grooming and hygiene',
+        medicalReviewOfSystemFieldOptionLabel: 'Change in appetite',
         medicalReviewOfSystemFieldNameInDb: 'appearance_select',
       },
     })
@@ -25,7 +25,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'No apparent distress',
+        medicalReviewOfSystemFieldOptionLabel: 'Fatigue',
         medicalReviewOfSystemFieldNameInDb: 'appearance_select',
       },
     })
@@ -34,7 +34,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Well developed, well nourished',
+        medicalReviewOfSystemFieldOptionLabel: 'Change in weight',
         medicalReviewOfSystemFieldNameInDb: 'appearance_select',
       },
     })
@@ -43,7 +43,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Appears stated age',
+        medicalReviewOfSystemFieldOptionLabel: 'None',
         medicalReviewOfSystemFieldNameInDb: 'appearance_select',
       },
     })
@@ -52,7 +52,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Appears younger than stated age',
+        medicalReviewOfSystemFieldOptionLabel: 'Night sweats',
         medicalReviewOfSystemFieldNameInDb: 'appearance_select',
       },
     })
@@ -61,52 +61,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Appears older than stated age',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Obese',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Thin or cachectic',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Disheveled, unkempt',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Malodorous',
-        medicalReviewOfSystemFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Pleasent and cooperative',
+        medicalReviewOfSystemFieldOptionLabel: 'Difficulty sleeping',
         medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -115,7 +70,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Uncooperative',
+        medicalReviewOfSystemFieldOptionLabel: 'Feeling hotter than everyone',
         medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -124,43 +79,7 @@ export default {
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
         medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Hostile or defiant',
-        medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Guarded',
-        medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Evasive',
-        medicalReviewOfSystemFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Agitated',
-        medicalReviewOfSystemFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    medicalReviewOfSystemAllSelectOptionsTbl.insert({
-      data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Retarded',
+        medicalReviewOfSystemFieldOptionLabel: 'Sores that dont heal',
         medicalReviewOfSystemFieldNameInDb: 'psychomotor_select',
       },
     })
