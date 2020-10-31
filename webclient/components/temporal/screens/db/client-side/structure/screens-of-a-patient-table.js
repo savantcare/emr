@@ -1,6 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
 import clientTblOfDynamicCards from '~/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
+import Vue from 'vue'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -63,13 +64,8 @@ export const screensFormDef = {
     {
       textInUi: 'Start',
       executeThisFn: function (pScreenRow) {
-        clientTblOfDynamicCards.insert({
-          data: {
-            name: 'a',
-            componentToShowPath: 'b',
-            currentDisplayStateOfComponent: 1,
-            identifierOfparentComponentThatIncludedThisSearchComponent: 'c',
-          },
+        $nuxt.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+          searchTerm: 'add reminder',
         })
       },
     },
