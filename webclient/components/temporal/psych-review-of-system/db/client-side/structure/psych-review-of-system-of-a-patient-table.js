@@ -159,9 +159,18 @@ export const psychReviewOfSystemFormDef = {
   maxNumberOfRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
-    'total_minutes_in_psychotherapy_select',
-    'modality_of_psychotherapy_multi_select',
-    'total_minutes_with_patient_select',
+    'depressive_mood',
+    'interest',
+    'sleep',
+    'selfEsteem',
+    'energy',
+    'concDist',
+    'appetite',
+    'pmrPma',
+    'obese',
+    'thinCachectic',
+    'disheveledUnkempt',
+    'malodorous',
   ],
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
