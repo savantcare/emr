@@ -60,11 +60,19 @@ export const goalsFormDef = {
     {
       fieldNameInDb: 'rating',
       fieldNameInUi: 'Rating',
-      fieldType: 'textarea',
+      fieldType: 'slider',
       span: 24,
       fieldOptions: { min: 0, max: 10, step: 1 },
     },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  fnCreated: function () {},
+  fnCreated: function (pRow) {
+    // Goal: When it starts i need to initialize value with the initial slider value
+    // At start this gets called with empty pRow so I return an empty array
+    if (pRow.length < 1) {
+      return []
+    } else {
+      return pRow[0]
+    }
+  },
 }
