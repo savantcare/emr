@@ -132,7 +132,7 @@
               <h3>{{ propFieldDef.fieldNameInUi }}</h3>
             </div>
 
-            <div :id="id" v-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+            <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
             </div>
