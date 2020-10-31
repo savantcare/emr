@@ -150,10 +150,27 @@
                   </div>
                 </div>
               </div>
+              <!-- Slider field type -->
+              <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+                <div v-if="row[propFieldDef.fieldNameInDb] > 0">
+                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                    <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                  </div>
+                  <div id="field-value-in-db">
+                    <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
+                    <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+                    <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+                    <div v-else>
+                      {{ row[propFieldDef.fieldNameInDb] }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Next field type -->
               <div v-else id="not-matched-field-type">
-                {{ propFieldDef.fieldNameInUi }}
+                <div id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
 
-                {{ row[propFieldDef.fieldNameInDb] }}
+                <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
               </div>
             </div>
             <!-- This is for action associated with each row -->
