@@ -29,9 +29,9 @@ export default class mentalStatusExamForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table mentalStatusExamFieldOptionId = 2 */
-      total_minutes_in_psychotherapy_select: this.string(''),
-      total_minutes_with_patient_select: this.string(''),
-      modality_of_psychotherapy_multi_select: this.string(''),
+      appearance_select: this.string(''),
+      psychomotor_select: this.string(''),
+      attitude_multi_select: this.string(''),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -74,11 +74,7 @@ export const mentalStatusExamFormDef = {
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
 
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
-    'total_minutes_in_psychotherapy_select',
-    'modality_of_psychotherapy_multi_select',
-    'total_minutes_with_patient_select',
-  ],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],
   fnCreated: function () {},
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
@@ -96,7 +92,6 @@ export const mentalStatusExamFormDef = {
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['mentalStatusExamFieldOptionId']
       data['value'] = data['mentalStatusExamFieldOptionLabel']
-
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
     console.log(arOfAllSelectOptions)
