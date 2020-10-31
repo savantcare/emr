@@ -284,6 +284,9 @@ export default {
     },
   },
   methods: {
+    log(item) {
+      console.log(item)
+    },
     mfOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'multi edit reminders',
