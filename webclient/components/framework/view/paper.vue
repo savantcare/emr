@@ -127,7 +127,7 @@
               -->
 
               <!-- There may be many different types of fields. Here dealing with select type field -->
-              <div v-if="propFieldDef.fieldNameInDb.includes('select')">
+              <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
                 <!-- Each fieldtype gets to control its own way of showing the field label -->
                 <div v-if="propFieldDef.showFieldLabel">
                   <h3>{{ propFieldDef.fieldNameInUi }}</h3>
@@ -154,7 +154,9 @@
                   </div>
                 </div>
               </div>
-              <div v-else>
+              <div v-else id="not-matched-field-type">
+                {{ propFieldDef.fieldNameInUi }}
+
                 {{ row[propFieldDef.fieldNameInDb] }}
               </div>
             </div>
