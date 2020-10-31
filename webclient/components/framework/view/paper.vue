@@ -134,9 +134,9 @@
               </div>
             </div>
             <!-- This is for action assocaited with each row -->
-            <div v-if="currentApptObj['apptStatus'] === 'locked'"></div>
+            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
             <!-- Case 1/2: When this appt is locked what row actions to show-->
-            <div v-else>
+            <div v-else id="row-actions-when-app-is-unlocked">
               <!-- Case 2/2: When this appt is un-locked what row actions to show-->
               <div>
                 <el-button-group style="float: right">
