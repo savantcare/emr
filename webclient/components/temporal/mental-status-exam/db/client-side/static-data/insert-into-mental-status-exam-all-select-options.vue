@@ -15,8 +15,8 @@ export default {
     let i = 1
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
-        mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '60',
+        mentalStatusExamFieldOptionId: i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+        mentalStatusExamFieldOptionLabel: 'Good grooming and hygiene',
         mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
@@ -25,7 +25,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '55',
+        mentalStatusExamFieldOptionLabel: 'No apparent distress',
         mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
@@ -34,7 +34,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '50',
+        mentalStatusExamFieldOptionLabel: 'Well developed, well nourished',
         mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
@@ -43,7 +43,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '45',
+        mentalStatusExamFieldOptionLabel: 'Appears stated age',
         mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
@@ -52,7 +52,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '40',
+        mentalStatusExamFieldOptionLabel: 'Appears younger than stated age',
         mentalStatusExamFieldNameInDb: 'appearance_select',
       },
     })
@@ -61,7 +61,52 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: 'Client Centered',
+        mentalStatusExamFieldOptionLabel: 'Appears older than stated age',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
+      },
+    })
+
+    i = i + 1
+    mentalStatusExamAllSelectOptionsTbl.insert({
+      data: {
+        mentalStatusExamFieldOptionId: i + '#',
+        mentalStatusExamFieldOptionLabel: 'Obese',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
+      },
+    })
+
+    i = i + 1
+    mentalStatusExamAllSelectOptionsTbl.insert({
+      data: {
+        mentalStatusExamFieldOptionId: i + '#',
+        mentalStatusExamFieldOptionLabel: 'Thin or cachectic',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
+      },
+    })
+
+    i = i + 1
+    mentalStatusExamAllSelectOptionsTbl.insert({
+      data: {
+        mentalStatusExamFieldOptionId: i + '#',
+        mentalStatusExamFieldOptionLabel: 'Disheveled, unkempt',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
+      },
+    })
+
+    i = i + 1
+    mentalStatusExamAllSelectOptionsTbl.insert({
+      data: {
+        mentalStatusExamFieldOptionId: i + '#',
+        mentalStatusExamFieldOptionLabel: 'Malodorous',
+        mentalStatusExamFieldNameInDb: 'appearance_select',
+      },
+    })
+
+    i = i + 1
+    mentalStatusExamAllSelectOptionsTbl.insert({
+      data: {
+        mentalStatusExamFieldOptionId: i + '#',
+        mentalStatusExamFieldOptionLabel: 'Pleasent and cooperative',
         mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -70,7 +115,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: 'Dialectical Behavior therapy',
+        mentalStatusExamFieldOptionLabel: 'Uncooperative',
         mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -79,7 +124,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: 'Holistic Therapy',
+        mentalStatusExamFieldOptionLabel: 'Hostile or defiant',
         mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -88,7 +133,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: 'Existential humanistic',
+        mentalStatusExamFieldOptionLabel: 'Guarded',
         mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -97,7 +142,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: 'Bibilotherapy',
+        mentalStatusExamFieldOptionLabel: 'Evasive',
         mentalStatusExamFieldNameInDb: 'attitude_multi_select',
       },
     })
@@ -106,7 +151,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '60',
+        mentalStatusExamFieldOptionLabel: 'Agitated',
         mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })
@@ -115,34 +160,7 @@ export default {
     mentalStatusExamAllSelectOptionsTbl.insert({
       data: {
         mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '55',
-        mentalStatusExamFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    mentalStatusExamAllSelectOptionsTbl.insert({
-      data: {
-        mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '50',
-        mentalStatusExamFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    mentalStatusExamAllSelectOptionsTbl.insert({
-      data: {
-        mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '45',
-        mentalStatusExamFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    mentalStatusExamAllSelectOptionsTbl.insert({
-      data: {
-        mentalStatusExamFieldOptionId: i + '#',
-        mentalStatusExamFieldOptionLabel: '40',
+        mentalStatusExamFieldOptionLabel: 'Retarded',
         mentalStatusExamFieldNameInDb: 'psychomotor_select',
       },
     })

@@ -65,7 +65,7 @@ export const mentalStatusExamFormDef = {
     },
     {
       fieldNameInDb: 'psychomotor_select',
-      fieldNameInUi: 'psychomotor',
+      fieldNameInUi: 'Psychomotor',
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
