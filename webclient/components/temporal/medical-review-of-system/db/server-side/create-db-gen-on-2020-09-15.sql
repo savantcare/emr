@@ -1,1 +1,1 @@
-create database sc_mental_status_exam
+create database sc_medical_review_of_system

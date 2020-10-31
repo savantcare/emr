@@ -62,8 +62,8 @@ database.register(tableStructureForSSOfPatient)
 import tableStructureForPsychHistoryOfPatient from '~/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 database.register(tableStructureForPsychHistoryOfPatient)
 
-import tableStructureForMedicalReviewOfSystemsMaster from '~/components/temporal/medical-review-of-systems/db/client-side/structure/master-table-of-medical-review-of-systems.js'
-import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/temporal/medical-review-of-systems/db/client-side/structure/patient-table-of-medical-review-of-systems.js'
+import tableStructureForMedicalReviewOfSystemsMaster from '~/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-all-select-options.js'
+import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 database.register(tableStructureForMedicalReviewOfSystemsMaster)
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 

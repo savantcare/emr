@@ -12,17 +12,17 @@ export default {
   mounted() {
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'mental status exam',
+        value: 'medical review of system',
         ctAbbr: 'ss',
-        ctToShow: 'temporal/mental-status-exam/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'temporal/medical-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'edit mental_status_exam',
+        value: 'edit medical_review_of_system',
         ctAbbr: 'sse',
-        ctToShow: 'temporal/mental-status-exam/change-layer/ss-edit-design-1.vue',
+        ctToShow: 'temporal/medical-review-of-system/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -30,9 +30,9 @@ export default {
     })
     clientTblOfCtSearchPhrases.insert({
       data: {
-        value: 'add mental_status_exam',
+        value: 'add medical_review_of_system',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/mental-status-exam/change-layer/add-ss.vue',
+        ctToShow: 'temporal/medical-review-of-system/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

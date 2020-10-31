@@ -4,15 +4,15 @@
 
 <script>
 import ctAddStructure from '@/components//framework/change/add-form.vue'
-import mentalStatusExamAllSelectOptionsTbl from '../db/client-side/structure/mental-status-exam-all-select-options.js'
-import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import medicalReviewOfSystemAllSelectOptionsTbl from '../db/client-side/structure/medical-review-of-system-all-select-options.js'
+import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 
-import { mentalStatusExamFormDef } from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import { medicalReviewOfSystemFormDef } from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
-      formDef: mentalStatusExamFormDef,
+      formDef: medicalReviewOfSystemFormDef,
     }
   },
   created() {

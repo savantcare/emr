@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import step1_init_search_phrases from '@/components/temporal/mental-status-exam/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import step2_init_ss_field_names from '@/components/temporal/mental-status-exam/db/client-side/static-data/insert-into-mental-status-exam-all-select-options.vue'
+import step1_init_search_phrases from '@/components/temporal/medical-review-of-system/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import step2_init_ss_field_names from '@/components/temporal/medical-review-of-system/db/client-side/static-data/insert-into-medical-review-of-system-all-select-options.vue'
 
-import clientTbl from '~/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
-// import step2_init_ss_field_names from '@/components/temporal/mental-status-exam/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
+import clientTbl from '~/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
+// import step2_init_ss_field_names from '@/components/temporal/medical-review-of-system/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
 
 export default {
   components: {

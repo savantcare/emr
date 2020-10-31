@@ -96,7 +96,7 @@ import initializeServiceStatementComponent from '@/components/temporal/service-s
 
 import initializePastPsychHistoryComponent from '@/components/temporal/past-psych-history/db/client-side/initialize-on-first-load.vue'
 
-import initializeMedicalReviewOfSystemsComponent from '@/components/temporal/medical-review-of-systems/db/client-side/initialize-on-first-load.vue'
+import initializeMedicalReviewOfSystemsComponent from '@/components/temporal/medical-review-of-system/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/temporal/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'

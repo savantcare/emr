@@ -1,14 +1,14 @@
-use sc_mental_status_exam;
+use sc_medical_review_of_system;
 
-DROP TABLE IF EXISTS `mental_status_exam`;
+DROP TABLE IF EXISTS `medical_review_of_system`;
 
-CREATE TABLE `mental_status_exam`
+CREATE TABLE `medical_review_of_system`
 (
   `serverSideRowUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,
   `patientUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,
-  `mentalStatusExamFieldOptionId` int
+  `medicalReviewOfSystemFieldOptionId` int
 (11) NOT NULL,
   `recordChangedByUuid` char
 (36) COLLATE utf8_unicode_ci NOT NULL,
