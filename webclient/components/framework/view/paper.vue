@@ -73,11 +73,21 @@
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
-        <div style="padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr">
-          <div v-for="row in mfGetArOfDataRows(this.currentApptObj)" :key="row.clientSideUniqRowId">
+        <!-- Design: Goal: Each data row is made into a grid with 3 columns
+        How? style="display: grid; grid-template-columns: 1fr 1fr 1fr"
+        Goal: If 1st and 2nd field is missing the 3rd field should be in 1st col and not in 3rd col
+        -->
+        <div style="padding: 0px; margin: 0px">
+          <div
+            id="each-data-row"
+            v-for="row in mfGetArOfDataRows(this.currentApptObj)"
+            :key="row.clientSideUniqRowId"
+            style="padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr"
+          >
             <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
             <div
+              id="each-field-of-data-row"
               v-for="(propFieldDef, id) in propFormDef.fieldsDef"
               :key="id"
               :style="mfGetCssClassNameForEachDataRow(row)"
