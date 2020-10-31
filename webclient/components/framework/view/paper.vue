@@ -188,6 +188,7 @@
               <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
             </div>
           </div>
+          <!-- Finished processing all the fields -->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
           <!-- Case 1/2: When this appt is locked what row actions to show-->
@@ -196,7 +197,9 @@
             <div>
               <el-button-group style="float: right">
                 <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
-                  {{ additionalRowAction.textInUi }}
+                  <el-button @click="additionalRowAction.executeThisFn(row)">{{
+                    additionalRowAction.textInUi
+                  }}</el-button>
                 </div>
 
                 <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
