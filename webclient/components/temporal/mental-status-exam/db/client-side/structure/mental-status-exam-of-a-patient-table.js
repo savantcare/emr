@@ -9,7 +9,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class mentalStatusExamForPatientClass extends clientTblManage {
-  static entity = 'tblmentalStatusExamOfPatient'
+  static entity = 'tblMentalStatusExamOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
 
@@ -22,8 +22,8 @@ export default class mentalStatusExamForPatientClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblmentalStatusExamAllSelectOptions/mentalStatusExamFieldOptionId
-         E.g: The  tblmentalStatusExamAllSelectOptions has:
+      /* This field is used to store the value of tblMentalStatusExamAllSelectOptions/mentalStatusExamFieldOptionId
+         E.g: The  tblMentalStatusExamAllSelectOptions has:
          mentalStatusExamFieldOptionId  |         mentalStatusExamFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient

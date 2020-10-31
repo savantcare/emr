@@ -68,8 +68,8 @@ database.register(tableStructureForMedicalReviewOfSystemsMaster)
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
 // Mental status exam tables
-import tableStructureForMSEMaster from '~/components/temporal/mental-status-exam/db/client-side/structure/master-table-of-mental-status-exam.js'
-import tableStructureForMSEOfPatient from '~/components/temporal/mental-status-exam/db/client-side/structure/patient-table-of-mental-status-exam.js'
+import tableStructureForMSEMaster from '~/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-all-select-options.js'
+import tableStructureForMSEOfPatient from '~/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 

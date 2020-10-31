@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class mentalStatusExamAllSelectOptions extends clientTblManage {
-  static entity = 'tblmentalStatusExamAllSelectOptions'
+  static entity = 'tblMentalStatusExamAllSelectOptions'
 
   static apiUrl = 'http://localhost:8000/public/api/mental-status-exam/v20'
 
