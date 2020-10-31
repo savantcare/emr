@@ -113,12 +113,7 @@
               :style="mfGetCssClassNameForEachDataRow(row)"
               v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
             >
-              <div
-                id="field-type-heading"
-                class="field-type-heading"
-                v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel"
-                style="grid-column-start: 1"
-              >
+              <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
                 <!-- the field printing is not common for all field types so that heading can be applied -->
                 <h3>{{ propFieldDef.fieldNameInUi }}</h3>
               </div>
@@ -433,7 +428,7 @@ h3 {
   border-bottom: 1px solid #dcdfe6;
 }
 
-.field-type-slider + .field-type-heading {
+.field-type-heading {
   grid-column-start: 1;
 }
 </style>
