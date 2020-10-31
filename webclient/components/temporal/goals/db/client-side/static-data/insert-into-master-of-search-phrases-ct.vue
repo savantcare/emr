@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'goals',
-        ctAbbr: 'rem',
+        ctAbbr: 'g',
         ctToShow: 'temporal/goals/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add goals',
-        ctAbbr: 'arem',
+        ctAbbr: 'ag',
         ctToShow: 'temporal/goals/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit goals',
-        ctAbbr: 'crem',
+        ctAbbr: 'cg',
         ctToShow: 'temporal/goals/change-layer/goal-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit goals',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcg',
         ctToShow: 'temporal/goals/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted goals',
-        ctAbbr: 'drem',
+        ctAbbr: 'dg',
         ctToShow: 'temporal/goals/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

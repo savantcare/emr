@@ -55,7 +55,7 @@ export const goalsFormDef = {
   id: 'goals',
   plural: 'goals',
   singular: 'goal',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 }],
+  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function () {},
 }

@@ -22,6 +22,7 @@
     <initializeProcessNotesComponent />
     <initializeRecComponent />
     <initializeRemComponent />
+    <initializeGoalComponent />
     <initializePhoneNumberComponent />
 
     <!-- END -->
@@ -139,6 +140,7 @@ export default {
     initializeProcessNotesComponent,
     initializeRecComponent,
     initializeRemComponent,
+    initializeGoalComponent,
     initializePhoneNumberComponent,
     // END
 

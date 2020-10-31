@@ -11,6 +11,7 @@ import planCommentsClientTbl from '@/components/temporal/plan-comments/db/client
 import processNotesClientTbl from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import goalsClientTbl from '@/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
@@ -56,6 +57,7 @@ const allClientTbls = {
   reminders: reminderClientTbl,
   service_statements: serviceStatementsOfAPatientTbl,
   psych_review_of_system: psychReviewOfSystemOfAPatientTbl,
+  goals: goalsClientTbl,
 }
 
 export default allClientTbls
