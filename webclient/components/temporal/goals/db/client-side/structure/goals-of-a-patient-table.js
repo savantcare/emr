@@ -65,6 +65,19 @@ export const goalsFormDef = {
       fieldOptions: { min: 0, max: 10, step: 1 },
     },
   ],
+  additionalRowActions: [
+    {
+      textInUi: 'Rate',
+      executeThisFn: function (pScreenRow) {
+        console.log(pScreenRow)
+        const term = 'add reminders'
+        console.log(this)
+        this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
+          searchTerm: term,
+        })
+      },
+    },
+  ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function (pRow) {
     // Goal: When it starts i need to initialize value with the initial slider value
