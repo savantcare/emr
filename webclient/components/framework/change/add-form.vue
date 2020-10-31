@@ -48,7 +48,6 @@
 
                 <!-- Field type 3: Do the following when it is slider type field -->
                 <div v-else-if="propFieldObj.fieldType === 'slider'">
-                  {{ propFieldObj.fieldNameInUi }}
                   <div class="block">
                     <el-slider
                       v-model="value[propFieldObj.fieldNameInDb]"
@@ -64,7 +63,7 @@
 
                 <!-- Field type 4: Do the following when it is heading type field -->
                 <div v-else-if="propFieldObj.fieldType === 'heading'">
-                  <h3>{{ propFieldObj.fieldNameInUi }}</h3>
+                  <!-- If showFieldLabel: true then the heading is printed at the top inside the el-form-item -->
                 </div>
 
                 <!-- Field type 5: Do the following when it is select type field -->

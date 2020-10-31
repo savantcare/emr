@@ -62,6 +62,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInDb: '',
       fieldNameInUi: 'Depression',
       fieldType: 'heading',
+      showFieldLabel: true,
       span: 12,
     },
     {
@@ -69,6 +70,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Depressive mood',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -76,6 +78,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Interest',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -83,6 +86,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Sleep',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -90,6 +94,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Gulf / Self esteem',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -97,6 +102,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Energy',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -104,6 +110,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Conc/Dist',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -111,6 +118,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Apptetite',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -118,12 +126,14 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'PMR/PMA',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
       fieldNameInDb: '',
       fieldNameInUi: 'Gateway mood symptoms',
       fieldType: 'heading',
+      showFieldLabel: true,
       span: 12,
     },
     {
@@ -131,6 +141,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Obese',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -138,6 +149,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Thin or cachectic',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -145,6 +157,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Disheveled/unkempt',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
     {
@@ -152,6 +165,7 @@ export const psychReviewOfSystemFormDef = {
       fieldNameInUi: 'Malodorous',
       fieldType: 'slider',
       span: 6,
+      showFieldLabel: true,
       fieldOptions: { min: 0, max: 1, step: 0.5 },
     },
   ],
