@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr">
     <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
     <printNote :propApptId="propApptId" :propFormDef="heightFormDef"></printNote>
     <printNote :propApptId="propApptId" :propFormDef="pulseFormDef"></printNote>
