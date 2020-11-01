@@ -38,7 +38,7 @@ export default class weight extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
+      weightInPounds: this.string(''),
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -54,10 +54,10 @@ export const weightFormDef = {
   id: 'weight',
   plural: 'weight',
   singular: 'weight',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'text', span: 24 }],
+  fieldsDef: [{ fieldNameInDb: 'weightInPounds', fieldNameInUi: 'Weight in pounds', fieldType: 'text', span: 24 }],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['weightInPounds'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -67,8 +67,8 @@ export const weightFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      description: {
-        minLength: minLength(8),
+      weightInPounds: {
+        minLength: minLength(2),
       },
     },
   },
