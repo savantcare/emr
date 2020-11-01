@@ -806,29 +806,21 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.fnGetNewRowsInReadyToReviewedState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        if (!arFromClientTbl[i][this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty].length) {
-          // Validation check
-          await allClientTbls[this.propFormDef.id].update({
-            where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
-            data: {
-              validationClass: 'validaionErrorExist',
-              vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
-              isValidationError: true,
-            },
-          })
-        } else {
-          await allClientTbls[this.propFormDef.id].update({
-            where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
-            data: {
-              validationClass: '',
-              vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server
-              isValidationError: false,
-            },
-          })
-        }
+        /* I cannot do validation here. Since this is getting invoked when button has already been pressed  
+          I need to tell the user a row is valid or not when he is editing that row / field.
+        */
+
+        await this.update({
+          where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
+          data: {
+            validationClass: '',
+            vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
+            isValidationError: false,
+          },
+        })
       }
     }
-    await allClientTbls[this.propFormDef.id].fnSendNewRowsToServer()
+    await this.fnSendNewRowsToServer()
   }
 
   static async fnSendMultiDeleteDataToServer(dataRow) {

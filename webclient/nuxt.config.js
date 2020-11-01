@@ -49,7 +49,7 @@ export default {
         : 'http://116.203.134.163:8000',
 
     UseServerDBForFamilyHistory: false,
-    makeFetchPostApiCalls: false,
+    makeFetchPostApiCalls: true,
     loadInitialDataFromServer: false,
   },
 
