@@ -69,6 +69,9 @@ export const phq9FormDef = {
         2: 'More then half the days',
         3: 'Nearly every day',
       },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'depressed',
@@ -77,6 +80,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'sleep',
@@ -85,6 +97,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'energy',
@@ -93,6 +114,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'appetite',
@@ -101,6 +131,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'down',
@@ -109,6 +148,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'concentrating',
@@ -117,6 +165,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'slowly',
@@ -126,6 +183,15 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'hurting',
@@ -134,6 +200,15 @@ export const phq9FormDef = {
       span: 24,
       fieldOptions: { min: 0, max: 3, step: 1 },
       showFieldLabel: true,
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
   ],
   showFormReviewedButton: false,
