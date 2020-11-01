@@ -57,7 +57,10 @@ export const chiefComplaintFormDef = {
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  fnCreated: function () {},
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
 
   styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 }
