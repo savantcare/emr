@@ -340,38 +340,6 @@ export default {
     mfOnResetForm(formName) {
       allClientTbls[this.propFormDef.id].fnDeleteNewRowsInEditState()
     },
-    async mfOnReviewed() {
-      /*
-        Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-        The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
-      */
-      const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
-      if (arFromClientTbl.length) {
-        for (let i = 0; i < arFromClientTbl.length; i++) {
-          if (!arFromClientTbl[i][this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty].length) {
-            // Validation check
-            await allClientTbls[this.propFormDef.id].update({
-              where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
-              data: {
-                validationClass: 'validaionErrorExist',
-                vnRowStateInSession: '2456', // New -> Changed -> Requested save -> form error
-                isValidationError: true,
-              },
-            })
-          } else {
-            await allClientTbls[this.propFormDef.id].update({
-              where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
-              data: {
-                validationClass: '',
-                vnRowStateInSession: '2457', // New -> Changed -> Requested save -> Send to server
-                isValidationError: false,
-              },
-            })
-          }
-        }
-      }
-      await allClientTbls[this.propFormDef.id].fnSendToServer()
-    },
   },
 }
 </script>

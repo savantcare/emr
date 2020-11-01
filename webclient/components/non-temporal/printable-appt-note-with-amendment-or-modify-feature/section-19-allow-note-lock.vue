@@ -50,11 +50,9 @@ export default {
       */
       for (const property in allClientTbls) {
         // console.log(`${property}: ${allClientTbls[property]}`)
-        const newRowsToSave = allClientTbls[property].fnGetNewRowsInEditState()
-        for (let i = 0; i < newRowsToSave.length; i++) {
-          console.log('Make post request to', allClientTbls[property].apiUrl)
-          console.log(newRowsToSave[i])
-        }
+        console.log('Make post request to', allClientTbls[property].apiUrl)
+        const state = allClientTbls[property].mfSendNewRowsToServer()
+        console.log(state)
       }
       // console.log(allClientTbls)
 
