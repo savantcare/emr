@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {

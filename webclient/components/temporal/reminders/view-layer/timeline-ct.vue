@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//framework/view/timeline-structure.vue'
+import timeLineView from '@/components//def-processors/view/timeline-structure.vue'
 import { remindersFormDef } from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {

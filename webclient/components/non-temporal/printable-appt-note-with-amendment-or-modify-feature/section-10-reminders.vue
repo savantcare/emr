@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/view/paper.vue'
+import printNote from '@/components/def-processors/view/paper.vue'
 import { remindersFormDef } from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {

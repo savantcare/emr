@@ -305,7 +305,7 @@ export default {
       // TODO: this should be part of base class
       const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
         data: {
-          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/framework/crud/forms.md
+          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
       })
@@ -333,7 +333,7 @@ export default {
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/framework/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
       const arFromClientTbl = allClientTbls[this.propFormDef.id].find(pClientRowId)

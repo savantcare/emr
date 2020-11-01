@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { pastPsychHistoryFormDef } from '@/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 
 export default {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { planCommentsFormDef } from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 
 export default {

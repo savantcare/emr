@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import mentalStatusExamAllSelectOptionsTbl from './mental-status-exam-all-select-options.js'
 import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'

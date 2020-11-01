@@ -1,11 +1,11 @@
 <!-- Reference implementation -->
-<!-- For design see webclient/cts/framework/crud/forms.md -->
+<!-- For design see webclient/cts/def-processors/crud/forms.md -->
 <template>
   <ctAddStructure :propFormDef="formDef"></ctAddStructure>
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { screensFormDef } from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
 
 export default {

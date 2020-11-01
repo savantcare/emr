@@ -1,11 +1,11 @@
 <!-- Reference implementation -->
-<!-- For design see webclient/cts/framework/crud/forms.md -->
+<!-- For design see webclient/cts/def-processors/crud/forms.md -->
 <template>
   <ctAddStructure :propFormDef="formDef"> </ctAddStructure>
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {

@@ -74,7 +74,7 @@
 
 <script>
 import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
-import ctActOnSocketMessages from '@/components/framework/change/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '@/components/def-processors/change/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
 

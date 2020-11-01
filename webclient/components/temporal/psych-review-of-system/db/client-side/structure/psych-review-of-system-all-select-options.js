@@ -1,4 +1,4 @@
-import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import psychReviewOfSystemsForPatientClass from './psych-review-of-system-of-a-patient-table.js'
 
 const { v1: uuidv1 } = require('uuid')

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/view/paper.vue'
+import printNote from '@/components/def-processors/view/paper.vue'
 import { pastPsychHistoryFormDef } from '@/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 
 export default {

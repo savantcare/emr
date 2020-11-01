@@ -11,7 +11,7 @@
 <script>
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
-import allClientTbls from '@/components/framework/all-client-tables.js'
+import allClientTbls from '@/components/def-processors/all-client-tables.js'
 
 export default {
   data() {

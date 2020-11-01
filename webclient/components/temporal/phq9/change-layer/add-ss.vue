@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//framework/change/add-form.vue'
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import phq9AllSelectOptionsTbl from '../db/client-side/structure/phq9-all-select-options.js'
 import phq9OfAPatientTbl from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 

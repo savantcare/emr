@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components//framework/change/edit-form.vue'
+import ctEditStructure from '@/components//def-processors/change/edit-form.vue'
 import serviceStatementsAllSelectOptionsTbl from '../db/client-side/structure/service-statements-all-select-options.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { serviceStatementsFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'

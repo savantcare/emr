@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import printNote from '@/components/framework/view/paper.vue'
+import printNote from '@/components/def-processors/view/paper.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {

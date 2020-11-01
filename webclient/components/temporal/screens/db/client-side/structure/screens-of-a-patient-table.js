@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
