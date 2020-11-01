@@ -38,7 +38,7 @@ export default class pulse extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      pulseInPounds: this.string(''),
+      pulseInBpm: this.string(''),
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -56,16 +56,17 @@ export const pulseFormDef = {
   singular: 'pulse',
   fieldsDef: [
     {
-      fieldNameInDb: 'pulseInPounds',
-      fieldNameInUi: 'Pulse in bpm',
+      fieldNameInDb: 'pulseInBpm',
+      fieldNameInUi: 'Pulse',
       fieldType: 'number',
       span: 24,
-      showFieldLabel: true,
+      showFieldLabel: false,
+      unitOfMeasurement: 'bpm',
     },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['pulseInPounds'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['pulseInBpm'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -75,7 +76,7 @@ export const pulseFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      pulseInPounds: {
+      pulseInBpm: {
         minLength: minLength(2),
       },
     },
