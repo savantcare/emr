@@ -37,12 +37,12 @@
     <initializeMedicalReviewOfSystemsComponent />
 
     <initializeWeightComponent />
+    <initializeHeightComponent />
 
     <!--
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
     <initializeBmComponent />
-    <initializeHeightComponent />
     <initializeOxygenSaturationComponent />
     <initializePulseComponent />
     <initializeTemperatureComponent />
@@ -71,13 +71,13 @@ import initializeDobComponent from '@/components/temporal/date-of-birth/db/clien
 import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
 import initializeWeightComponent from '@/components/temporal/weight/db/client-side/initialize-on-first-load.vue'
+import initializeHeightComponent from '@/components/temporal/height/db/client-side/initialize-on-first-load.vue'
 
 // temporal/body-measurement
 /*
 import initializeBloodPressureComponent from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeBloodSugarComponent from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeHeightComponent from '@/components/temporal/vital-signs/sub-cts/height/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializePulseComponent from '@/components/temporal/vital-signs/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeTemperatureComponent from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -128,6 +128,7 @@ export default {
     initializeDobComponent,
     initializeNameComponent,
     initializeWeightComponent,
+    initializeHeightComponent,
 
     /*   initializeBloodPressureComponent,
     initializeBloodSugarComponent,
@@ -136,7 +137,6 @@ export default {
     initializePulseComponent,
     initializeTemperatureComponent,
     initializeWaistCircumferenceComponent,
-    initializeHeightComponent,
     */
     initializeMseComponent,
     initializePhq9Component,
