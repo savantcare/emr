@@ -88,11 +88,14 @@ export const diagnosisFormDef = {
       fieldNameInUi: 'Diagnosis',
       fieldType: 'autocomplete',
       selectOptions: fnSelectOptionCallBack,
-      span: 8,
+      span: 24,
     },
-    { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 8 },
-    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 8 },
+    { fieldNameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 24 },
+    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
   fnCreated: function () {},
+
+  styleForEachRow:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 2fr 2fr 1fr; grid-column-gap: 1rem',
 }

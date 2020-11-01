@@ -56,10 +56,13 @@ export const allergiesFormDef = {
   plural: 'allergies',
   singular: 'allergy',
   fieldsDef: [
-    { fieldNameInDb: 'allergen', fieldNameInUi: 'Allergen', fieldType: '', span: 12 },
-    { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 6 },
-    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 6 },
+    { fieldNameInDb: 'allergen', fieldNameInUi: 'Allergen', fieldType: '', span: 24 },
+    { fieldNameInDb: 'reaction', fieldNameInUi: 'Reaction', fieldType: '', span: 24 },
+    { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: '', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
   fnCreated: function () {},
+
+  styleForEachRow:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
 }

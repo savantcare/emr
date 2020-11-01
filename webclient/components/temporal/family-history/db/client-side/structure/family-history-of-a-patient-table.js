@@ -56,9 +56,12 @@ export const familyHistoryFormDef = {
   plural: 'family history',
   singular: 'family history',
   fieldsDef: [
-    { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: '', span: 6 },
-    { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 12 },
+    { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: '', span: 24 },
+    { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['relationship'],
   fnCreated: function () {},
+
+  styleForEachRow:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 1fr; grid-column-gap: 1rem',
 }
