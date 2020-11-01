@@ -8,9 +8,12 @@ import clientTblOfPatientServiceStatements from '@/components/temporal/service-s
 import clientTblOfPatientReminders from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+
+/*
 import clientTblWeight from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
 import clientTblHeight from '@/components/temporal/vital-signs/sub-cts/height/db/client-side/structure/table.js'
 import clientTblOxygenSaturation from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
+*/
 
 // For pros
 import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
@@ -212,6 +215,7 @@ export default {
     },
 
     cfGetHeightDataForGraph() {
+      /*
       const arDataToShowOnGraph = []
       const data = clientTblHeight.all()
       const numberOfPointsOnGraph = data.length
@@ -225,9 +229,11 @@ export default {
       } else {
         return null
       }
+      */
     },
 
     cfGetWeightDataForGraph() {
+      /*
       const arDataToShowOnGraph = []
       const data = clientTblWeight.all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
@@ -251,9 +257,11 @@ export default {
       } else {
         return null
       }
+      */
     },
 
     cfGetOxygenSaturationDataForGraph() {
+      /*
       const arDataToShowOnGraph = []
       const data = clientTblOxygenSaturation.all()
       const numberOfPointsOnGraph = data.length
@@ -278,6 +286,7 @@ export default {
       } else {
         return null
       }
+      */
     },
 
     cfArOfServiceStatementsForGraph() {

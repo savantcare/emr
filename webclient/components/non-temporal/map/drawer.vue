@@ -469,9 +469,12 @@
 
 <script>
 import clientTblForReminder from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+
+/*
 import clientTblForTemperature from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
 import clientTblForBloodPressure from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
 import clientTblForBloodSugar from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+*/
 
 export default {
   data() {
@@ -971,12 +974,9 @@ export default {
       return arFromClientTbl
     },
     cfArOfVitalSignForDisplayInMapDrawer() {
-      const arVitalSignsForDisplay = []
+      /*      const arVitalSignsForDisplay = []
       let index = 1
 
-      /**
-       * Getting temperature value
-       */
       const arFromClientTblForTemperature = clientTblForTemperature.fnGetRowsToChange()
       if (arFromClientTblForTemperature.length > 0) {
         const objTemperature = {}
@@ -988,9 +988,6 @@ export default {
         index = index + 1
       }
 
-      /**
-       * Getting blood pressure value
-       */
       const arFromClientTblForBloodPressure = clientTblForBloodPressure.fnGetRowsToChange()
       if (arFromClientTblForBloodPressure.length > 0) {
         const objBloodPressure = {}
@@ -1002,9 +999,6 @@ export default {
         index = index + 1
       }
 
-      /**
-       * Getting blood sugar value
-       */
       const arFromClientTblForBloodSugar = clientTblForBloodSugar.fnGetRowsToChange()
       if (arFromClientTblForBloodSugar.length > 0) {
         const objBloodSugar = {}
@@ -1015,7 +1009,7 @@ export default {
 
         index = index + 1
       }
-
+*/
       return arVitalSignsForDisplay
     },
     cfMapDrawerVisibility: {

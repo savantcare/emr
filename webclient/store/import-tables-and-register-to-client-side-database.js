@@ -27,6 +27,7 @@ database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)
 
 // body measurement tables
+/*
 import tableStructureForWeight from '~/components/temporal/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
 import tableStructureForWaistCircumference from '~/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
 import tableStructureForBloodPressure from '~/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
@@ -43,6 +44,7 @@ database.register(tableStructureForBloodSugar)
 database.register(tableStructureForWaistCircumference)
 database.register(tableStructureForTemperature)
 database.register(tableStructureForPulse)
+*/
 
 // Screening tables
 import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
