@@ -83,7 +83,6 @@ export const mentalStatusExamFormDef = {
   fnCreated: function () {},
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    console.log('===== inside fn')
     let arOfAllSelectOptions = mentalStatusExamAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
@@ -99,8 +98,6 @@ export const mentalStatusExamFormDef = {
       data['value'] = data['mentalStatusExamFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
-    console.log(arOfAllSelectOptions)
-
     return arOfAllSelectOptions
   },
   fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {

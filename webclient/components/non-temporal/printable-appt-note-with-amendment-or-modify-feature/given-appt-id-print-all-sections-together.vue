@@ -125,8 +125,6 @@ export default {
 
     // Get appt details from appt table
     this.patientCurrentApptObj = await clientTblOfAppointments.find(this.propShowNoteForApptId)
-
-    console.log('Created again')
   },
   computed: {
     cfApptLockDateInHumanReadableFormat() {
