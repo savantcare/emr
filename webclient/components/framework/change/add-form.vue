@@ -316,12 +316,18 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
+      // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
       const rowStatus = 24
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/framework/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
       const arFromClientTbl = allClientTbls[this.propFormDef.id].find(pClientRowId)
+      /* TODO: this needs to check for 2456 or 2457 instead of 24
+          invalid: organge
+          valid: green
+          in db: regular
+      */
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
         // New -> Changed
         return 'unsaved-data'
