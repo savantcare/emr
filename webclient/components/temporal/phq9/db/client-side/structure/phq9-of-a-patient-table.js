@@ -72,6 +72,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'depressed',
@@ -89,6 +90,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'sleep',
@@ -106,6 +108,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'energy',
@@ -123,6 +126,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'appetite',
@@ -140,6 +144,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'down',
@@ -157,6 +162,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'concentrating',
@@ -174,6 +180,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'slowly',
@@ -192,6 +199,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'hurting',
@@ -209,6 +217,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
+      fieldStyle: 'padding: 20px',
     },
   ],
   showFormReviewedButton: false,

@@ -55,6 +55,7 @@ export const mentalStatusExamFormDef = {
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'attitude_multi_select',
@@ -62,6 +63,7 @@ export const mentalStatusExamFormDef = {
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'psychomotor_select',
@@ -69,6 +71,7 @@ export const mentalStatusExamFormDef = {
       fieldType: 'multi-select-with-buttons',
       span: 12,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
   ],
   showFormReviewedButton: false,

@@ -80,6 +80,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'interest',
@@ -89,6 +98,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'sleep',
@@ -98,6 +116,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'selfEsteem',
@@ -107,6 +134,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'energy',
@@ -116,6 +152,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'concDist',
@@ -125,6 +170,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'appetite',
@@ -134,6 +188,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'pmrPma',
@@ -143,6 +206,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'heading_gateway',
@@ -159,6 +231,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'thinCachectic',
@@ -168,6 +249,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'disheveledUnkempt',
@@ -177,6 +267,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
     {
       fieldNameInDb: 'malodorous',
@@ -186,6 +285,15 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
   ],
   showFormReviewedButton: false,

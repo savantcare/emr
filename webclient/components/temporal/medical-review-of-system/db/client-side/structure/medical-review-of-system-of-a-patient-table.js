@@ -56,6 +56,7 @@ export const medicalReviewOfSystemFormDef = {
       // This is 24 since everywhere the content is displayed in Grid. I want to take 100% of the space inside the grid. There are 24 columns available inside the grid
       span: 24,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'constitutional_systems_select',
@@ -63,6 +64,7 @@ export const medicalReviewOfSystemFormDef = {
       fieldType: 'multi-select-with-buttons',
       span: 24,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
     {
       fieldNameInDb: 'skin_conditions_select',
@@ -70,6 +72,7 @@ export const medicalReviewOfSystemFormDef = {
       fieldType: 'multi-select-with-buttons',
       span: 24,
       showFieldLabel: true,
+      fieldStyle: 'padding: 20px',
     },
   ],
   showFormReviewedButton: false,
