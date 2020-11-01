@@ -1,10 +1,12 @@
 <template>
-  <div style="display: grid; grid-template-columns: 1fr 1fr">
-    <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="heightFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="pulseFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="temperatureFormDef"></printNote>
-  </div>
+  <el-card shadow="hover">
+    <div style="display: grid; grid-template-columns: 1fr 1fr">
+      <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="heightFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="pulseFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="temperatureFormDef"></printNote>
+    </div>
+  </el-card>
 </template>
 
 <script>
