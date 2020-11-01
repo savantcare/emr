@@ -55,7 +55,16 @@ export const recommendationsFormDef = {
   id: 'recommendations',
   plural: 'recommendations',
   singular: 'recommendation',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
+  fieldsDef: [
+    {
+      fieldNameInDb: 'description',
+      fieldNameInUi: 'Description',
+      fieldType: 'textarea',
+      span: 24,
+      required: true,
+      minLength: 5,
+    },
+  ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showFormReviewedButton: false,
   fnCreated: function () {},
