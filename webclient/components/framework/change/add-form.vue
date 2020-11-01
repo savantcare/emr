@@ -19,7 +19,7 @@
         >
           <!-- Start to process each row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
-            <el-form-item :label="propFieldDef.showFieldLabel ? propFieldDef.fieldNameInUi : ''">
+            <el-form-item>
               <!-- Start to process each field -->
               <el-col :span="propFieldDef.span" :class="ormRow.validationClass">
                 <!-- The following are the possible field types -->
@@ -27,24 +27,28 @@
                 <!-- Field type 1: Do the following when it is heading type field -->
                 <div v-if="propFieldDef.fieldType === 'heading'">
                   <div v-if="propFieldDef.showFieldLabel">
-                    <!-- the field printing happens lower so heading can be applied -->
+                    <!-- the field printing happens lower so each field type can decide what format to apply -->
                     <h3>{{ propFieldDef.fieldNameInUi }}</h3>
                   </div>
                 </div>
 
                 <!-- Field type 2: Do the following when it is auto-complete type field 
               fetch-suggestions="propFieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
+                <div v-else-if="propFieldDef.fieldType === 'autocomplete'">
+                  <div v-if="propFieldDef.showFieldLabel">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
 
-                <el-autocomplete
-                  v-else-if="propFieldDef.fieldType === 'autocomplete'"
-                  v-model="value"
-                  class="inline-input"
-                  :fetch-suggestions="propFieldDef.selectOptions"
-                  :placeholder="propFieldDef.fieldNameInUi"
-                  style="width: 100%"
-                  :highlight-first-item="true"
-                  @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                ></el-autocomplete>
+                  <el-autocomplete
+                    v-model="value"
+                    class="inline-input"
+                    :fetch-suggestions="propFieldDef.selectOptions"
+                    :placeholder="propFieldDef.fieldNameInUi"
+                    style="width: 100%"
+                    :highlight-first-item="true"
+                    @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  ></el-autocomplete>
+                </div>
 
                 <!-- Field type 3: Do the following when it is multi-select-with-buttons type field -->
                 <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
@@ -87,48 +91,55 @@
                 </div>
 
                 <!-- Field type 5: Do the following when it is select type field -->
-                <el-select
-                  v-else-if="propFieldDef.fieldType === 'select'"
-                  v-model="value"
-                  filterable
-                  :placeholder="propFieldDef.fieldNameInUi"
-                >
-                  <el-option
-                    v-for="item in propFieldDef.selectOptions"
-                    :key="item.value"
-                    :label="item.label"
+                <div v-else-if="propFieldDef.fieldType === 'select'">
+                  <div v-if="propFieldDef.showFieldLabel">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
+                  <el-select v-model="value" filterable :placeholder="propFieldDef.fieldNameInUi">
+                    <el-option
+                      v-for="item in propFieldDef.selectOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                      @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <!-- Field type 6: Do the following when it is date type field -->
+                <div v-if="propFieldDef.fieldType === 'date'">
+                  <div v-if="propFieldDef.showFieldLabel">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
+
+                  <el-date-picker
+                    :ref="propFieldDef.fieldNameInDb"
+                    format="MMM dd yyyy"
+                    value-format="timestamp"
+                    type="date"
+                    style="width: 100%"
+                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
                     :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                     @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                    :placeholder="propFieldDef.fieldNameInUi"
                   >
-                  </el-option>
-                </el-select>
-
-                <!-- Field type 6: Do the following when it is date type field -->
-                <el-date-picker
-                  v-else-if="propFieldDef.fieldType === 'date'"
-                  :ref="propFieldDef.fieldNameInDb"
-                  format="MMM dd yyyy"
-                  value-format="timestamp"
-                  type="date"
-                  style="width: 100%"
-                  :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  :placeholder="propFieldDef.fieldNameInUi"
-                >
-                </el-date-picker>
+                  </el-date-picker>
+                </div>
                 <!-- Field type 7: Do the following when it is input/textarea type field -->
-                <el-input
-                  v-else
-                  :ref="propFieldDef.fieldNameInDb"
-                  :type="propFieldDef.fieldType"
-                  :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                  :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
-                  :placeholder="propFieldDef.fieldNameInUi"
-                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                ></el-input>
-
+                <div v-if="propFieldDef.fieldType.includes('text')">
+                  <div v-if="propFieldDef.showFieldLabel">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
+                  <el-input
+                    :ref="propFieldDef.fieldNameInDb"
+                    :type="propFieldDef.fieldType"
+                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                    :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
+                    :placeholder="propFieldDef.fieldNameInUi"
+                    :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                    @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  ></el-input>
+                </div>
                 <!-- Do validation -->
 
                 <div v-if="ormRow.isValidationError" class="el-form-item__error">

@@ -73,4 +73,5 @@ export const screensFormDef = {
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['name'],
   fnCreated: function (pRow) {},
+  styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 1fr; grid-column-gap: 1rem',
 }
