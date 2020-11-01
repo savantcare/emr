@@ -247,12 +247,8 @@ export default {
   data() {
     return { value: [] }
   },
-  validations: {
-    value: {
-      description: {
-        minLength: minLength(4),
-      },
-    },
+  validations() {
+    return this.propFormDef.validationsObj
   },
   props: {
     propFormDef: {
