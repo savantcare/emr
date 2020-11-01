@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -92,5 +93,15 @@ export const goalsFormDef = {
     } else {
       return pRow[0]
     }
+  },
+  validationsObj: {
+    value: {
+      description: {
+        minLength: minLength(8),
+      },
+      rating: {
+        minLength: minLength(8),
+      },
+    },
   },
 }
