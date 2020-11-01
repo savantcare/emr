@@ -7,9 +7,9 @@ import tableStructureForStoreMessageFromOtherComponent from '~/components/non-te
 export const rowState = {
   New: 2,
   New_Changed: 24,
-  New_Changed_RequestedSave_Error: 2456,
-  New_Changed_RequestedSave_Sent: 2457,
-  New_Changed_RequestedSave_Sent_SameAsDB: 24571,
+  New_Changed_RequestedSave_FormValidationFail: 2456,
+  New_Changed_RequestedSave_FormValidationOk: 2457,
+  New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
   Copy: 3,
   Copy_Changed: 34,
   Copy_Changed_RequestedSave_Error: 3456,
@@ -91,7 +91,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.New) // New
       .orWhere('vnRowStateInSession', rowState.New_Changed) // New -> Changed
-      .orWhere('vnRowStateInSession', rowState.New_Changed_RequestedSave_Error) // New -> Changed -> Requested save -> form error
+      .orWhere('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationFail) // New -> Changed -> Requested save -> form error
       .get()
     return arFromClientTbl
   }
@@ -112,14 +112,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInApiSendingState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
-    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_RequestedSave_Sent).get()
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
+      .get()
     return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSuccessState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_Sent_SameAsDB)
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
       .get()
     return arFromClientTbl
   }
@@ -643,7 +645,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   // This function will return 1 (Success) or 0 (Failure)
   static async fnSendToServer() {
-    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_RequestedSave_Sent).get()
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
+      .get()
 
     /*
       Q) Why we use promise in following code?
@@ -684,7 +688,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_RequestedSave_Sent_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
                 //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
               },
             })
