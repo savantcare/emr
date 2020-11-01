@@ -329,9 +329,9 @@ export default {
       this.$v.value[pFldName].$touch()
       let rowStatus = 0
       if (this.$v.$invalid === false) {
-        rowStatus = 2457
+        rowStatus = 247
       } else {
-        rowStatus = 2456
+        rowStatus = 246
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 

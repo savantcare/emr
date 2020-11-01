@@ -5,14 +5,26 @@ import tableStructureForStoreMessageFromOtherComponent from '~/components/non-te
 // Start from new
 
 export const rowState = {
+  /*  New = 2
+      Changed = 4
+      FormValidationFail = 6
+      FormValidationOk = 7
+      Copy = 3
+      RequestedSave = 5
+      SameAsDB = 1
+      ApiError = 8  */
+
   New: 2,
   New_Changed: 24,
+  New_Changed_FormValidationFail: 246,
+  New_Changed_FormValidationOk: 247,
+  New_Changed_FormValidationOk_RequestedSave: 2475,
   New_Changed_RequestedSave_FormValidationFail: 2456,
   New_Changed_RequestedSave_FormValidationOk: 2457,
   New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
   Copy: 3,
   Copy_Changed: 34,
-  Copy_Changed_RequestedSave_Error: 3456,
+  Copy_Changed_RequestedSave_ApiError: 3458,
 }
 
 // Others
@@ -91,7 +103,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.New) // New
       .orWhere('vnRowStateInSession', rowState.New_Changed) // New -> Changed
-      .orWhere('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationFail) // New -> Changed -> Requested save -> form error
+      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationFail) // New -> Changed -> Requested save -> form error
+      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationOk) // New -> Changed -> Requested save -> form error
       .get()
     return arFromClientTbl
   }
@@ -105,7 +118,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk) // New -> Changed
+      .where('vnRowStateInSession', rowState.New_Changed_FormValidationOk) // New -> Changed
       .get()
     return arFromClientTbl
   }
@@ -818,7 +831,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
             validationClass: '',
-            vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
+            vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave,
             isValidationError: false,
           },
         })
