@@ -403,7 +403,6 @@ export default {
         arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
           this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
-        console.log(arOfObjectsFromClientDB)
       } else {
         arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
           .query()
