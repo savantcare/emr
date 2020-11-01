@@ -73,6 +73,7 @@
                       show-stops
                       :min="propFieldDef.fieldOptions.min"
                       :max="propFieldDef.fieldOptions.max"
+                      :marks="propFieldDef.marks"
                       @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                     >
                     </el-slider>

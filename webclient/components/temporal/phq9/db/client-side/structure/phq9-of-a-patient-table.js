@@ -63,6 +63,12 @@ export const phq9FormDef = {
       span: 24,
       showFieldLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not at all',
+        1: 'Several days',
+        2: 'More then half the days',
+        3: 'Nearly every day',
+      },
     },
     {
       fieldNameInDb: 'depressed',
