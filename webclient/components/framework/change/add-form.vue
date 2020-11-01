@@ -131,6 +131,7 @@
                     {{ propFieldDef.fieldNameInUi }}
                   </div>
                   <el-input
+                    v-model="value[propFieldDef.fieldNameInDb]"
                     :ref="propFieldDef.fieldNameInDb"
                     :type="propFieldDef.fieldType"
                     :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
@@ -232,13 +233,26 @@
 </template>
 <script>
 import allClientTbls from '../all-client-tables.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 export default {
   created() {
+    /* Goal: init the values when the form is mounted. For e.g. when a form is mounted I want all slider values to be init so slider can show the current state.
+      When add form is mounted 1st time this will return a empty array
+      2nd time onwards it will return an array of data that came from vuex-orm
+      This was first used for slider form control.
+  */
     this.value = this.propFormDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
     return { value: [] }
+  },
+  validations: {
+    value: {
+      description: {
+        minLength: minLength(4),
+      },
+    },
   },
   props: {
     propFormDef: {
@@ -305,19 +319,22 @@ export default {
     },
     mfManageFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      if (this.$refs.description) {
-        const lastElement = this.$refs.description.length
-        console.log('setting focus of', lastElement - 1, 'length is', lastElement)
-        this.$refs.description[lastElement - 1].focus()
-      }
     },
     // Cannot call allClientTbls[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
+      // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-mnodel"
+      this.$v.value[pFldName].$touch()
+      let rowStatus = 0
+      if (this.$v.$invalid === false) {
+        rowStatus = 2457
+      } else {
+        rowStatus = 2456
+      }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
-      const rowStatus = 24
+
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/framework/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
@@ -328,9 +345,12 @@ export default {
           valid: green
           in db: regular
       */
-      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 24) {
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 2456) {
         // New -> Changed
+        console.log('validation fail')
         return 'unsaved-data'
+      } else {
+        console.log('validation pass')
       }
       return ''
     },

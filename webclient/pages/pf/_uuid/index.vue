@@ -125,6 +125,10 @@ Vue.use(
   })
 )
 
+// Ref: https://vuelidate.js.org/#sub-installation
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 Vue.component('VueSlider', VueSlider)
 
 Vue.use(VueSplit)

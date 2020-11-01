@@ -67,6 +67,8 @@ export const recommendationsFormDef = {
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showFormReviewedButton: false,
-  fnCreated: function () {},
+  fnCreated: function () {
+    return []
+  },
   styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
 }

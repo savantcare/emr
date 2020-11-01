@@ -105,7 +105,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed) // New -> Changed
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk) // New -> Changed
       .get()
     return arFromClientTbl
   }
