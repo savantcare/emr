@@ -345,12 +345,13 @@ export default {
           valid: green
           in db: regular
       */
-      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 2456) {
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 246) {
         // New -> Changed
-        console.log('validation fail')
-        return 'unsaved-data'
-      } else {
-        console.log('validation pass')
+        console.log('invalid-dirty-data')
+        return 'invalid-dirty-data'
+      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 247) {
+        console.log('valid-dirty-data')
+        return 'valid-dirty-data'
       }
       return ''
     },
@@ -366,9 +367,14 @@ export default {
 </script>
 
 <style>
-.unsaved-data textarea {
+.invalid-dirty-data textarea {
   border-color: #e6a23c;
 }
+
+.valid-dirty-data textarea {
+  border-color: #67c23a;
+}
+
 .validaionErrorExist .el-textarea__inner {
   border-color: #ff4949;
 }

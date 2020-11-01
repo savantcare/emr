@@ -413,12 +413,12 @@ export default {
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
-      const strOfNumber = pRow.vnRowStateInSession.toString()
-      const lastCharecter = strOfNumber.slice(-1)
-      if (lastCharecter === '4' || lastCharecter === '6') {
+      if (pRow.vnRowStateInSession === 246) {
+        // form validation has failed
         return 'color: #E6A23C;'
-      } else {
-        return 'color: #202020;'
+      } else if (pRow.vnRowStateInSession === 247) {
+        // form validation is ok
+        return 'color: #67c23a;'
       }
     },
     cfApptLockDateInHumanReadableFormat() {
