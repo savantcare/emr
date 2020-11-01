@@ -57,7 +57,7 @@ export const pulseFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'pulseInPounds',
-      fieldNameInUi: 'Pulse in pounds',
+      fieldNameInUi: 'Pulse in bpm',
       fieldType: 'number',
       span: 24,
       showFieldLabel: true,

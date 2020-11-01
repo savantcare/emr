@@ -57,7 +57,7 @@ export const temperatureFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'temperatureInPounds',
-      fieldNameInUi: 'Temperature in pounds',
+      fieldNameInUi: 'Temperature in farehnite',
       fieldType: 'number',
       span: 24,
       showFieldLabel: true,

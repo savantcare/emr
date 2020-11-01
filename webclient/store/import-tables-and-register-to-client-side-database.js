@@ -48,8 +48,6 @@ database.register(tableStructureForBloodPressure)
 database.register(tableStructureForOxygenSaturation)
 database.register(tableStructureForBloodSugar)
 database.register(tableStructureForWaistCircumference)
-database.register(tableStructureForTemperature)
-database.register(tableStructureForPulse)
 */
 
 // Screening tables
