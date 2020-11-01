@@ -329,12 +329,12 @@ export default {
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-mnodel"
-      this.$v.value[pFldName].$touch()
+      this.$v.value[pFldName].$touch() // $v is the validation object created by vuelidate library
       let rowStatus = 0
       if (this.$v.$invalid === false) {
-        rowStatus = 247
+        rowStatus = 247 // This implies valid is true
       } else {
-        rowStatus = 246
+        rowStatus = 246 // This implies invalid is true
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
