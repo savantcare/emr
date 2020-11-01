@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -70,5 +71,13 @@ export const remindersFormDef = {
   fnCreated: function () {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
     return []
+  },
+  // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
+  validationsObj: {
+    value: {
+      description: {
+        minLength: minLength(8),
+      },
+    },
   },
 }

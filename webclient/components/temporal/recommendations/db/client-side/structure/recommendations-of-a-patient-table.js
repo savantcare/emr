@@ -72,6 +72,7 @@ export const recommendationsFormDef = {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
+  // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
       description: {

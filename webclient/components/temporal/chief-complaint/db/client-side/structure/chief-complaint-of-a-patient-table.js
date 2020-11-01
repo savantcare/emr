@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -63,4 +64,12 @@ export const chiefComplaintFormDef = {
   },
 
   styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+  // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
+  validationsObj: {
+    value: {
+      description: {
+        minLength: minLength(8),
+      },
+    },
+  },
 }

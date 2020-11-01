@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -58,6 +59,17 @@ export const planCommentsFormDef = {
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
   styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  fnCreated: function () {},
+  fnCreated: function () {
+    // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
   showFormReviewedButton: false,
+  // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
+  validationsObj: {
+    value: {
+      description: {
+        minLength: minLength(8),
+      },
+    },
+  },
 }
