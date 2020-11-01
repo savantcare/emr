@@ -126,7 +126,21 @@
                   >
                   </el-date-picker>
                 </div>
-                <!-- Field type 7: Do the following when it is input/textarea type field -->
+                <!-- Field type 7: Do the following when it is num type field -->
+                <div v-if="propFieldDef.fieldType.includes('number')">
+                  <div v-if="propFieldDef.showFieldLabel">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
+                  <el-input-number
+                    v-model="value[propFieldDef.fieldNameInDb]"
+                    :ref="propFieldDef.fieldNameInDb"
+                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                    :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                    @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  ></el-input-number>
+                </div>
+
+                <!-- Field type 8: Do the following when it is input/textarea type field -->
                 <div v-if="propFieldDef.fieldType.includes('text')">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}

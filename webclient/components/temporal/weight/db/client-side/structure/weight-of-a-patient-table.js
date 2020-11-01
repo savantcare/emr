@@ -54,7 +54,15 @@ export const weightFormDef = {
   id: 'weight',
   plural: 'weight',
   singular: 'weight',
-  fieldsDef: [{ fieldNameInDb: 'weightInPounds', fieldNameInUi: 'Weight in pounds', fieldType: 'text', span: 24 }],
+  fieldsDef: [
+    {
+      fieldNameInDb: 'weightInPounds',
+      fieldNameInUi: 'Weight in pounds',
+      fieldType: 'number',
+      span: 24,
+      showFieldLabel: true,
+    },
+  ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['weightInPounds'],

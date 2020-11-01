@@ -54,7 +54,15 @@ export const heightFormDef = {
   id: 'height',
   plural: 'height',
   singular: 'height',
-  fieldsDef: [{ fieldNameInDb: 'heightInInches', fieldNameInUi: 'Height in inches', fieldType: 'text', span: 24 }],
+  fieldsDef: [
+    {
+      fieldNameInDb: 'heightInInches',
+      fieldNameInUi: 'Height in inches',
+      fieldType: 'number',
+      span: 24,
+      showFieldLabel: true,
+    },
+  ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['heightInInches'],
