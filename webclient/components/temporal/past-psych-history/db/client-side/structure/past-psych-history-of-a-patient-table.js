@@ -110,6 +110,7 @@ export const pastPsychHistoryFormDef = {
     'past_substance_abuse',
   ],
   maxNumberOfRows: 1,
+  showFormReviewedButton: false,
   fnCreated: function () {},
 
   styleForEachRow:
