@@ -19,7 +19,7 @@
         >
           <!-- Start to process each row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
-            <el-form-item>
+            <el-form-item :label="propFieldDef.showFieldLabel ? propFieldDef.fieldNameInUi : ''">
               <!-- Start to process each field -->
               <el-col :span="propFieldDef.span" :class="ormRow.validationClass">
                 <!-- The following are the possible field types -->
