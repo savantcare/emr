@@ -57,10 +57,11 @@ export const weightFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'weightInPounds',
-      fieldNameInUi: 'Weight in pounds',
+      fieldNameInUi: 'Weight',
       fieldType: 'number',
       span: 24,
-      showFieldLabel: true,
+      showFieldLabel: false,
+      unitOfMeasurement: 'pounds',
     },
   ],
   showFormReviewedButton: false,

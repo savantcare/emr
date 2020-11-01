@@ -57,10 +57,11 @@ export const heightFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'heightInInches',
-      fieldNameInUi: 'Height in inches',
+      fieldNameInUi: 'Height',
       fieldType: 'number',
       span: 24,
-      showFieldLabel: true,
+      showFieldLabel: false,
+      unitOfMeasurement: 'inches',
     },
   ],
   showFormReviewedButton: false,

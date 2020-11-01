@@ -181,6 +181,13 @@
                 </div>
               </div>
             </div>
+            <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
+              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+              <div id="field-value-in-db">
+                {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+              </div>
+            </div>
+
             <!-- Next field type -->
             <div v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>

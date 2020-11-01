@@ -138,6 +138,7 @@
                     :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                     @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                   ></el-input-number>
+                  {{ propFieldDef.unitOfMeasurement }}
                 </div>
 
                 <!-- Field type 8: Do the following when it is input/textarea type field -->
