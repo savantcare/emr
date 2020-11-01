@@ -100,7 +100,7 @@ export const goalsFormDef = {
         minLength: minLength(8),
       },
       rating: {
-        minLength: minLength(8),
+        minLength: minLength(0),
       },
     },
   },

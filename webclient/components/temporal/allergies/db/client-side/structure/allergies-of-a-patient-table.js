@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -61,8 +62,24 @@ export const allergiesFormDef = {
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'text', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
-  fnCreated: function () {},
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
   showFormReviewedButton: false,
   styleForEachRow:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
+  validationsObj: {
+    value: {
+      allergen: {
+        minLength: minLength(8),
+      },
+      reaction: {
+        minLength: minLength(8),
+      },
+      onset: {
+        minLength: minLength(8),
+      },
+    },
+  },
 }
