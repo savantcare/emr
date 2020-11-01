@@ -1,5 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -111,8 +112,32 @@ export const pastPsychHistoryFormDef = {
   ],
   maxNumberOfRows: 1,
   showFormReviewedButton: false,
-  fnCreated: function () {},
-
+  validationsObj: {
+    value: {
+      past_outpatient_treatment: {
+        minLength: minLength(8),
+      },
+      past_meds_trials: {
+        minLength: minLength(8),
+      },
+      hospitalization: {
+        minLength: minLength(8),
+      },
+      history_of_violence: {
+        minLength: minLength(8),
+      },
+      history_of_self_harm: {
+        minLength: minLength(8),
+      },
+      past_substance_abuse: {
+        minLength: minLength(8),
+      },
+    },
+  },
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
   styleForEachRow:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 }

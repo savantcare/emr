@@ -1,8 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
-import psychReviewOfSystemsMasterClass from './psych-review-of-system-all-select-options.js'
 import psychReviewOfSystemsAllSelectOptionsTbl from './psych-review-of-system-all-select-options.js'
-import psychReviewOfSystemsOfAPatientTbl from '~/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -315,6 +314,46 @@ export const psychReviewOfSystemFormDef = {
     'disheveledUnkempt',
     'malodorous',
   ],
+  validationsObj: {
+    value: {
+      depressive_mood: {
+        minLength: minLength(0),
+      },
+      interest: {
+        minLength: minLength(0),
+      },
+      sleep: {
+        minLength: minLength(0),
+      },
+      selfEsteem: {
+        minLength: minLength(0),
+      },
+      energy: {
+        minLength: minLength(0),
+      },
+      concDist: {
+        minLength: minLength(0),
+      },
+      appetite: {
+        minLength: minLength(0),
+      },
+      pmrPma: {
+        minLength: minLength(0),
+      },
+      obese: {
+        minLength: minLength(0),
+      },
+      thinCachectic: {
+        minLength: minLength(0),
+      },
+      disheveledUnkempt: {
+        minLength: minLength(0),
+      },
+      malodorous: {
+        minLength: minLength(0),
+      },
+    },
+  },
 
   fnCreated: function (pRow) {
     // Goal: When it starts i need to initialize value with the initial slider value
