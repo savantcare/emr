@@ -62,7 +62,7 @@ export const allergiesFormDef = {
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
   fnCreated: function () {},
-
+  showFormReviewedButton: false,
   styleForEachRow:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
 }

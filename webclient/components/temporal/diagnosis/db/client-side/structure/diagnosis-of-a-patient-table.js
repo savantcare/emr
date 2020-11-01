@@ -94,6 +94,7 @@ export const diagnosisFormDef = {
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
+  showFormReviewedButton: false,
   fnCreated: function () {},
 
   styleForEachRow:
