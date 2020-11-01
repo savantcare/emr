@@ -27,8 +27,10 @@ database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)
 
 // body measurement tables
+import tableStructureForWeight from '~/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
+database.register(tableStructureForWeight)
+
 /*
-import tableStructureForWeight from '~/components/temporal/vital-signs/sub-cts/weight/db/client-side/structure/table.js'
 import tableStructureForWaistCircumference from '~/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
 import tableStructureForBloodPressure from '~/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
 import tableStructureForBloodSugar from '~/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
@@ -36,7 +38,6 @@ import tableStructureForOxygenSaturation from '~/components/temporal/vital-signs
 import tableStructureForHeight from '~/components/temporal/vital-signs/sub-cts/height/db/client-side/structure/table.js'
 import tableStructureForTemperature from '~/components/temporal/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
 import tableStructureForPulse from '~/components/temporal/vital-signs/sub-cts/pulse/db/client-side/structure/table.js'
-database.register(tableStructureForWeight)
 database.register(tableStructureForHeight)
 database.register(tableStructureForBloodPressure)
 database.register(tableStructureForOxygenSaturation)

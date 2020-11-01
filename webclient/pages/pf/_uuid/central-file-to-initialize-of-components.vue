@@ -36,6 +36,8 @@
     <initializePastPsychHistoryComponent />
     <initializeMedicalReviewOfSystemsComponent />
 
+    <initializeWeightComponent />
+
     <!--
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
@@ -45,7 +47,6 @@
     <initializePulseComponent />
     <initializeTemperatureComponent />
     <initializeWaistCircumferenceComponent />
-    <initializeWeightComponent />
 -->
     <initializeDiagnosisComponent />
 
@@ -69,6 +70,8 @@ import initializeMapComponent from '@/components/non-temporal/map/db/client-side
 import initializeDobComponent from '@/components/temporal/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
+import initializeWeightComponent from '@/components/temporal/weight/db/client-side/initialize-on-first-load.vue'
+
 // temporal/body-measurement
 /*
 import initializeBloodPressureComponent from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -79,7 +82,6 @@ import initializeOxygenSaturationComponent from '@/components/temporal/vital-sig
 import initializePulseComponent from '@/components/temporal/vital-signs/sub-cts/pulse/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeTemperatureComponent from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeWaistCircumferenceComponent from '@/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWeightComponent from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 */
 
 // temporal/others
@@ -125,15 +127,16 @@ export default {
     initializeDiagnosisComponent,
     initializeDobComponent,
     initializeNameComponent,
+    initializeWeightComponent,
+
     /*   initializeBloodPressureComponent,
     initializeBloodSugarComponent,
     initializeBmComponent,
-    initializeHeightComponent,
     initializeOxygenSaturationComponent,
     initializePulseComponent,
     initializeTemperatureComponent,
     initializeWaistCircumferenceComponent,
-    initializeWeightComponent,
+    initializeHeightComponent,
     */
     initializeMseComponent,
     initializePhq9Component,

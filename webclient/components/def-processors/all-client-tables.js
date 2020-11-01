@@ -16,6 +16,7 @@ import screensClientTbl from '@/components/temporal/screens/db/client-side/struc
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import phq9ClientTbl from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
+import weightClientTbl from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
  For e.g. 
  Step 1:
@@ -61,6 +62,7 @@ const allClientTbls = {
   goals: goalsClientTbl,
   screens: screensClientTbl,
   phq9: phq9ClientTbl,
+  weight: weightClientTbl,
 }
 
 export default allClientTbls
