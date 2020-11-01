@@ -296,7 +296,6 @@ export default {
     },
 
     async mfAddEmptyRowInEditLayerientSideTable() {
-      console.log(this.propFormDef.fieldsDef)
       // TODO: this should be part of base class
       const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
         data: {
@@ -322,7 +321,6 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
-      console.log(pEvent, pClientRowId, pFldName)
       const rowStatus = 24
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/framework/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
@@ -349,7 +347,6 @@ export default {
       */
       const arFromClientTbl = this.cfGetClientTblReadyToReviewedStateRows // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
       if (arFromClientTbl.length) {
-        console.log('unsaved data found', arFromClientTbl)
         for (let i = 0; i < arFromClientTbl.length; i++) {
           if (!arFromClientTbl[i][this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty].length) {
             // Validation check

@@ -86,7 +86,6 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    console.log('===== inside fn')
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
@@ -102,7 +101,6 @@ export const serviceStatementsFormDef = {
       data['value'] = data['serviceStatementFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
-    console.log(arOfAllSelectOptions)
 
     return arOfAllSelectOptions
   },
