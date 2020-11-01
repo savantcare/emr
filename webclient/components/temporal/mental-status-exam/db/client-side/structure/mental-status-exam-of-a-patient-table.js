@@ -1,8 +1,8 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
-import mentalStatusExamMasterClass from './mental-status-exam-all-select-options.js'
 import mentalStatusExamAllSelectOptionsTbl from './mental-status-exam-all-select-options.js'
 import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -80,7 +80,24 @@ export const mentalStatusExamFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],
-  fnCreated: function () {},
+  validationsObj: {
+    value: {
+      appearance_select: {
+        minLength: minLength(1),
+      },
+      attitude_multi_select: {
+        minLength: minLength(8),
+      },
+      psychomotor_select: {
+        minLength: minLength(8),
+      },
+    },
+  },
+
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     let arOfAllSelectOptions = mentalStatusExamAllSelectOptionsTbl

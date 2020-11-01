@@ -2,6 +2,7 @@
 import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in-client-side-orm.js'
 import serviceStatementsAllSelectOptionsTbl from './service-statements-all-select-options.js'
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -81,7 +82,23 @@ export const serviceStatementsFormDef = {
     'modality_of_psychotherapy_multi_select',
     'total_minutes_with_patient_select',
   ],
-  fnCreated: function () {},
+  validationsObj: {
+    value: {
+      total_minutes_in_psychotherapy_select: {
+        minLength: minLength(1),
+      },
+      modality_of_psychotherapy_multi_select: {
+        minLength: minLength(8),
+      },
+      total_minutes_with_patient_select: {
+        minLength: minLength(8),
+      },
+    },
+  },
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
   styleForEachRow:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 

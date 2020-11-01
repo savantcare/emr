@@ -24,7 +24,6 @@
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
-    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
     <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
     <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
     <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>

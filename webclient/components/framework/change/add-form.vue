@@ -40,7 +40,7 @@
                   </div>
 
                   <el-autocomplete
-                    v-model="value"
+                    v-model="value[propFieldDef.fieldNameInDb]"
                     class="inline-input"
                     :fetch-suggestions="propFieldDef.selectOptions"
                     :placeholder="propFieldDef.fieldNameInUi"
@@ -63,6 +63,7 @@
                     :key="item.id"
                   >
                     <el-button
+                      v-model="value[propFieldDef.fieldNameInDb]"
                       :type="item.selected ? 'primary' : 'plain'"
                       @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                       >{{ item.value }}</el-button

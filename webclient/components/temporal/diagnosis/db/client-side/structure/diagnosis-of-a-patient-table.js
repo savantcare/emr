@@ -106,7 +106,7 @@ export const diagnosisFormDef = {
   validationsObj: {
     value: {
       diagnosis: {
-        minLength: minLength(8),
+        minLength: minLength(1),
       },
       assessment: {
         minLength: minLength(8),

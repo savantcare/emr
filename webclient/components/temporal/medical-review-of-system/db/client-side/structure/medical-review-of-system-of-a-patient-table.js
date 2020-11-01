@@ -3,6 +3,7 @@ import clientTblManage from '~/components/framework/crud/manage-rows-of-table-in
 import medicalReviewOfSystemMasterClass from './medical-review-of-system-all-select-options.js'
 import medicalReviewOfSystemAllSelectOptionsTbl from './medical-review-of-system-all-select-options.js'
 import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -83,7 +84,24 @@ export const medicalReviewOfSystemFormDef = {
     'constitutional_systems_select',
     'skin_conditions_select',
   ],
-  fnCreated: function () {},
+  validationsObj: {
+    value: {
+      recently_noticed_select: {
+        minLength: minLength(1),
+      },
+      constitutional_systems_select: {
+        minLength: minLength(8),
+      },
+      skin_conditions_select: {
+        minLength: minLength(8),
+      },
+    },
+  },
+
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
   styleForEachRow:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
