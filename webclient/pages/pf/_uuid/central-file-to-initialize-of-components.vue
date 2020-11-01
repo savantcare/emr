@@ -35,6 +35,8 @@
     <initializeServiceStatementComponent />
     <initializePastPsychHistoryComponent />
     <initializeMedicalReviewOfSystemsComponent />
+
+    <!--
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
     <initializeBmComponent />
@@ -44,7 +46,7 @@
     <initializeTemperatureComponent />
     <initializeWaistCircumferenceComponent />
     <initializeWeightComponent />
-
+-->
     <initializeDiagnosisComponent />
 
     <clientTblOfAppointmentsInsertData />
@@ -68,6 +70,7 @@ import initializeDobComponent from '@/components/temporal/date-of-birth/db/clien
 import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
 
 // temporal/body-measurement
+/*
 import initializeBloodPressureComponent from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeBloodSugarComponent from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -77,6 +80,7 @@ import initializePulseComponent from '@/components/temporal/vital-signs/sub-cts/
 import initializeTemperatureComponent from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeWaistCircumferenceComponent from '@/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeWeightComponent from '@/components/temporal/vital-signs/sub-cts/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+*/
 
 // temporal/others
 import initializeMseComponent from '@/components/temporal/mental-status-exam/db/client-side/initialize-on-first-load.vue'
@@ -121,7 +125,7 @@ export default {
     initializeDiagnosisComponent,
     initializeDobComponent,
     initializeNameComponent,
-    initializeBloodPressureComponent,
+    /*   initializeBloodPressureComponent,
     initializeBloodSugarComponent,
     initializeBmComponent,
     initializeHeightComponent,
@@ -130,6 +134,7 @@ export default {
     initializeTemperatureComponent,
     initializeWaistCircumferenceComponent,
     initializeWeightComponent,
+    */
     initializeMseComponent,
     initializePhq9Component,
     initializeProsComponent,
