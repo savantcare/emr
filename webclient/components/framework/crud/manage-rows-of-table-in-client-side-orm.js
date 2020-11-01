@@ -808,6 +808,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       for (let i = 0; i < arFromClientTbl.length; i++) {
         /* I cannot do validation here. Since this is getting invoked when button has already been pressed  
           I need to tell the user a row is valid or not when he is editing that row / field.
+          The theme colors are at: https://element.eleme.io/#/en-US/component/color
+          data same as DB: Regular text
+          Valid data in edit state: success color
+          data in error state: warning color
         */
 
         await this.update({
