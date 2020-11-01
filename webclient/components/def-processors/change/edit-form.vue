@@ -116,10 +116,10 @@ export default {
         action button in the view layer. Since when action button in VL is clicked i get the ormID of that row
 
     Q) Why we are using 'formType' props?
-        This change component has a method named 'mfManageFocus' and it is focusing a form field.
+        This change component has a method named 'mfSetFormFieldFocus' and it is focusing a form field.
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider.
-        The problem is 'mfManageFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work.
-        To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfManageFocus' method we are bypassing the entire
+        The problem is 'mfSetFormFieldFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work.
+        To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfSetFormFieldFocus' method we are bypassing the entire
         logic if formType value is set to 'embedded'.
 
     Q) What are the diff possible values for formtype?
@@ -262,7 +262,7 @@ export default {
         pOrmRowToChange.clientSideUniqRowId
       )
     },
-    mfManageFocus() {
+    mfSetFormFieldFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
       if (this.$refs.description && this.formType !== 'embedded') {
         const lastElement = this.$refs.description.length
@@ -408,7 +408,7 @@ export default {
           */
         this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
         this.dnClientIdOfCopiedRowBeingChanged = null
-        this.mfManageFocus()
+        this.mfSetFormFieldFocus()
       } catch (ex) {
         console.log('update error', ex)
       }

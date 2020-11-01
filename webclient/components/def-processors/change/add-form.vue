@@ -312,10 +312,16 @@ export default {
       if (!arFromClientTbl) {
         console.log('FATAL ERROR')
       }
-      this.mfManageFocus()
+      this.mfSetFormFieldFocus()
     },
-    mfManageFocus() {
+    mfSetFormFieldFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
+      const firstField = this.propFormDef.fieldsDef[0].fieldNameInDb
+      if (this.$refs[firstField]) {
+        const lastElement = this.$refs[firstField].length
+        // console.log('setting focus of', lastElement - 1, 'length is', lastElement)
+        this.$refs[firstField][lastElement - 1].focus()
+      }
     },
     // Cannot call allClientTbls[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
@@ -354,7 +360,7 @@ export default {
     },
     async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
       await allClientTbls[this.propFormDef.id].delete(pClientRowId)
-      this.mfManageFocus()
+      this.mfSetFormFieldFocus()
     },
     mfOnResetForm(formName) {
       allClientTbls[this.propFormDef.id].fnDeleteNewRowsInEditState()
