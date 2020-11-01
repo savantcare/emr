@@ -370,7 +370,6 @@ export default {
           }
         }
       }
-      // if there are no records left then I need to add a empty. For goal read docs/forms.md/1.3
       await allClientTbls[this.propFormDef.id].fnSendToServer()
     },
   },
