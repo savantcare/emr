@@ -55,7 +55,15 @@ export const remindersFormDef = {
   id: 'reminders',
   plural: 'reminders',
   singular: 'reminder',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
+  fieldsDef: [
+    {
+      fieldNameInDb: 'description',
+      fieldNameInUi: 'Description',
+      fieldType: 'textarea',
+      span: 24,
+      fieldStyle: 'padding: 0px',
+    },
+  ],
   styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showFormReviewedButton: false,

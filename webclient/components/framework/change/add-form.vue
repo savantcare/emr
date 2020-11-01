@@ -21,7 +21,12 @@
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
-              <el-col :span="propFieldDef.span" :class="ormRow.validationClass">
+              <el-card
+                :span="propFieldDef.span"
+                :class="ormRow.validationClass"
+                shadow="hover"
+                :style="propFieldDef.fieldStyle"
+              >
                 <!-- The following are the possible field types -->
 
                 <!-- Field type 1: Do the following when it is heading type field -->
@@ -150,7 +155,7 @@
             20 columns to input and 4 columns to remove button
             Remove should not come if there is only one propFormDef.maxRow
           -->
-              </el-col>
+              </el-card>
             </el-form-item>
 
             <!-- Just ended processing all the fields in the row -->
