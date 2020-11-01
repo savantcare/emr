@@ -6,6 +6,11 @@
     <el-form>
       <!-- Scenario: There are existiing rows in edit state -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
+        <!-- In case of SS we need it to be a 3 column design, In case of phq9 it should be a 1 column design 
+        Option 1:  grid-template-columns: 1fr 1fr 1fr send this from defination file
+        Option 2: Use https://github.com/e-oj/vue-magic-grid since given a set of cards with same width. It will decide how many cards can be put into a row.
+        Option 3: In vitals this was working. Where the number of items in the row were decided by the browser.
+        -->
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
