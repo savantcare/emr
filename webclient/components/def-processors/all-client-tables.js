@@ -20,6 +20,8 @@ import phq9ClientTbl from '@/components/temporal/phq9/db/client-side/structure/p
 import weightClientTbl from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 import pulseClientTbl from '@/components/temporal/pulse/db/client-side/structure/pulse-of-a-patient-table.js'
 import temperatureClientTbl from '@/components/temporal/temperature/db/client-side/structure/temperature-of-a-patient-table.js'
+import bloodPressureClientTbl from '@/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
+
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
  For e.g. 
  Step 1:
@@ -69,6 +71,7 @@ const allClientTbls = {
   weight: weightClientTbl,
   pulse: pulseClientTbl,
   temperature: temperatureClientTbl,
+  blood_pressure: bloodPressureClientTbl,
 }
 
 export default allClientTbls

@@ -40,10 +40,11 @@
     <initializeHeightComponent />
     <initializePulseComponent />
     <initializeTemperatureComponent />
+    <initializeBloodPressureComponent />
 
     <!--
-    <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
+
     <initializeBmComponent />
     <initializeOxygenSaturationComponent />
     <initializeWaistCircumferenceComponent />
@@ -74,11 +75,12 @@ import initializeWeightComponent from '@/components/temporal/weight/db/client-si
 import initializeHeightComponent from '@/components/temporal/height/db/client-side/initialize-on-first-load.vue'
 import initializePulseComponent from '@/components/temporal/pulse/db/client-side/initialize-on-first-load.vue'
 import initializeTemperatureComponent from '@/components/temporal/temperature/db/client-side/initialize-on-first-load.vue'
+import initializeBloodPressureComponent from '@/components/temporal/blood-pressure/db/client-side/initialize-on-first-load.vue'
 
 // temporal/body-measurement
 /*
-import initializeBloodPressureComponent from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeBloodSugarComponent from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
+
 import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeWaistCircumferenceComponent from '@/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -131,8 +133,8 @@ export default {
     initializeHeightComponent,
     initializePulseComponent,
     initializeTemperatureComponent,
-
-    /*   initializeBloodPressureComponent,
+    initializeBloodPressureComponent,
+    /*   
     initializeBloodSugarComponent,
     initializeBmComponent,
     initializeOxygenSaturationComponent,

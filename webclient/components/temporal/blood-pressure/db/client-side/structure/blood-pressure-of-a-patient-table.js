@@ -6,7 +6,7 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class blood-pressure extends clientTblManage {
+export default class blood_pressure extends clientTblManage {
   static entity = 'tblbloodPressure'
 
   /* 
@@ -38,7 +38,7 @@ export default class blood-pressure extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      blood-pressureInPounds: this.string(''),
+      bloodPressureInPounds: this.string(''),
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -51,12 +51,12 @@ export default class blood-pressure extends clientTblManage {
 }
 
 export const bloodPressureFormDef = {
-  id: 'blood-pressure',
-  plural: 'blood-pressure',
-  singular: 'blood-pressure',
+  id: 'blood_pressure',
+  plural: 'blood pressure',
+  singular: 'blood pressure',
   fieldsDef: [
     {
-      fieldNameInDb: 'blood-pressureInPounds',
+      fieldNameInDb: 'bloodPressureInPounds',
       fieldNameInUi: 'bloodPressure',
       fieldType: 'number',
       span: 24,
@@ -76,7 +76,7 @@ export const bloodPressureFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      blood-pressureInPounds: {
+      bloodPressureInPounds: {
         minLength: minLength(2),
       },
     },
