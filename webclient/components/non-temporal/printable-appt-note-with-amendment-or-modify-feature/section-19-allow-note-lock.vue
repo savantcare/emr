@@ -46,11 +46,14 @@ export default {
 
       /* Loop through all the tables */
       for (const property in allClientTbls) {
-        console.log('Make post request to', allClientTbls[property].apiUrl)
+        console.log(
+          'Delegating responsibility to',
+          allClientTbls[property].entity,
+          'Letting it decide if there is some data to be saved and if so then save the data.'
+        )
         const state = allClientTbls[property].mfSendNewRowsToServer()
         console.log(state)
       }
-      // console.log(allClientTbls)
 
       const clientSideUniqRowId = this.currentApptObj['clientSideUniqRowId']
       let arOfObjectsFromClientDB = await clientTblOfAppointments.update({
