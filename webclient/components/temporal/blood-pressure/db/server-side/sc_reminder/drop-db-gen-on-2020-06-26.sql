@@ -1,0 +1,1 @@
+drop database sc_blood-pressure
