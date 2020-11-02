@@ -6,6 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
+const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now())
+
 export default class temperature extends clientTblManage {
   static entity = 'tblTemperature'
 
@@ -40,14 +42,14 @@ export default class temperature extends clientTblManage {
       ptUuid: this.string(null),
       temperatureInFarehnite: this.string(''),
       notes: this.string(null),
-      dateOfMeasurement: this.number(0),
+      dateOfMeasurement: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
-      ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliseconds is used.
     }
   }
 }

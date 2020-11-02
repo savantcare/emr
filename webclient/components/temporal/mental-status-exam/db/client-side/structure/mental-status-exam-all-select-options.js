@@ -20,7 +20,7 @@ export default class mentalStatusExamAllSelectOptions extends clientTblManage {
       mentalStatusExamFieldOptionLabel: this.string(null),
       mentalStatusExamFieldNameInDb: this.string(null),
 
-      ROW_END: this.number(2147483648000), // this is unix_timestamp value from mariaDB for ROW_END when a record is created new in MariaDB system versioned table.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliseconds is used.
     }
   }
 }
