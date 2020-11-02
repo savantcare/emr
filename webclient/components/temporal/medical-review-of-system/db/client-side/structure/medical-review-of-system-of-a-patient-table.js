@@ -10,7 +10,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class medicalReviewOfSystemForPatientClass extends clientTblManage {
-  static entity = 'tblmedicalReviewOfSystemOfPatient'
+  static entity = 'tblMedicalReviewOfSystemOfPatient'
 
   static apiUrl = 'http://localhost:8000/public/api/medical-review-of-system/v20'
 
@@ -23,8 +23,8 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblmedicalReviewOfSystemAllSelectOptions/medicalReviewOfSystemFieldOptionId
-         E.g: The  tblmedicalReviewOfSystemAllSelectOptions has:
+      /* This field is used to store the value of tblMedicalReviewOfSystemAllSelectOptions/medicalReviewOfSystemFieldOptionId
+         E.g: The  tblMedicalReviewOfSystemAllSelectOptions has:
          medicalReviewOfSystemFieldOptionId  |         medicalReviewOfSystemFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient

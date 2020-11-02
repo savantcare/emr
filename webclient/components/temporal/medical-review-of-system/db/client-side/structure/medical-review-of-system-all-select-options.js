@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class medicalReviewOfSystemAllSelectOptions extends clientTblManage {
-  static entity = 'tblmedicalReviewOfSystemAllSelectOptions'
+  static entity = 'tblMedicalReviewOfSystemAllSelectOptions'
 
   static apiUrl = 'http://localhost:8000/public/api/medical-review-of-system/v20'
 
