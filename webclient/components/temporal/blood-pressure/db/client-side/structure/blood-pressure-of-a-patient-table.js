@@ -6,8 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class blood_pressure extends clientTblManage {
-  static entity = 'tblbloodPressure'
+export default class bloodPressureClass extends clientTblManage {
+  static entity = 'tblBloodPressure'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -57,7 +57,7 @@ export const bloodPressureFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'bloodPressureInPounds',
-      fieldNameInUi: 'bloodPressure',
+      fieldNameInUi: 'Blood pressure',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
