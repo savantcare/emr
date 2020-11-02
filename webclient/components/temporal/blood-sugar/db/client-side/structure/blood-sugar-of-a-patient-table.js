@@ -38,7 +38,7 @@ export default class bloodSugarClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      bloodSugarSystolic: this.string(''),
+      bloodSugarMgDL: this.string(''),
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -56,17 +56,17 @@ export const bloodSugarFormDef = {
   singular: 'blood sugar',
   fieldsDef: [
     {
-      fieldNameInDb: 'bloodSugarSystolic',
+      fieldNameInDb: 'bloodSugarMgDL',
       fieldNameInUi: 'Blood sugar',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
-      unitOfMeasurement: 'systolic',
+      unitOfMeasurement: ' mg/dL',
     },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bloodSugarSystolic'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bloodSugarMgDL'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -76,7 +76,7 @@ export const bloodSugarFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      bloodSugarSystolic: {
+      bloodSugarMgDL: {
         minLength: minLength(2),
       },
     },
