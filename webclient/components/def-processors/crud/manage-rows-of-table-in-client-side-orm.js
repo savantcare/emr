@@ -676,10 +676,14 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains clientTbl row id that are going to be saved.
             In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendToServer'.
       */
-        if (this.arOrmRowIdSendToServer.includes(row.clientSideUniqRowId)) {
+
+        if (typeof this.arOrmRowIdSendToServer[this.entity] === 'undefined') {
+          this.arOrmRowIdSendToServer[this.entity] = []
+        }
+        if (this.arOrmRowIdSendToServer[this.entity].includes(row.clientSideUniqRowId)) {
           console.log('Already sent to server')
         } else {
-          this.arOrmRowIdSendToServer.push(row.clientSideUniqRowId)
+          this.arOrmRowIdSendToServer[this.entity].push(row.clientSideUniqRowId)
           const status = await this.fnMakeApiCAll(row)
           if (status === 0) {
             // Handle api returned failure
@@ -700,9 +704,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             })
 
             /* Remove clientTbl row id from 'arOrmRowIdSendToServer' after this promise finished. */
-            const index = this.arOrmRowIdSendToServer.indexOf(row.clientSideUniqRowId)
+            const index = this.arOrmRowIdSendToServer[this.entity].indexOf(row.clientSideUniqRowId)
             if (index > -1) {
-              this.arOrmRowIdSendToServer.splice(index, 1)
+              this.arOrmRowIdSendToServer[this.entity].splice(index, 1)
             }
 
             /**
@@ -824,7 +828,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
             validationClass: '',
-            vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave,
+            vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
             isValidationError: false,
           },
         })
