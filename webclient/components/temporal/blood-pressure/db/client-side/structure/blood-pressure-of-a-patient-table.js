@@ -39,6 +39,7 @@ export default class bloodPressureClass extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       bloodPressureSystolic: this.string(''),
+      bloodPressureDiastolic: this.string(''),
       notes: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -57,11 +58,19 @@ export const bloodPressureFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'bloodPressureSystolic',
-      fieldNameInUi: 'Blood pressure',
+      fieldNameInUi: 'Blood pressure systolic',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
       unitOfMeasurement: 'systolic',
+    },
+    {
+      fieldNameInDb: 'bloodPressureDiastolic',
+      fieldNameInUi: 'Blood pressure diastolic',
+      fieldType: 'number',
+      span: 24,
+      showFieldLabel: false,
+      unitOfMeasurement: 'diastolic',
     },
   ],
   showFormReviewedButton: false,
@@ -77,6 +86,9 @@ export const bloodPressureFormDef = {
   validationsObj: {
     value: {
       bloodPressureSystolic: {
+        minLength: minLength(2),
+      },
+      bloodPressureDiastolic: {
         minLength: minLength(2),
       },
     },
