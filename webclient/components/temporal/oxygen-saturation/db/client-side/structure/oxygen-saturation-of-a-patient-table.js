@@ -61,7 +61,7 @@ export const oxygenSaturationFormDef = {
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
-      unitOfMeasurement: ' mg/dL',
+      unitOfMeasurement: ' SaO2',
     },
   ],
   showFormReviewedButton: false,

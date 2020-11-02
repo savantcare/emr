@@ -61,7 +61,7 @@ export const bmiFormDef = {
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
-      unitOfMeasurement: 'pounds',
+      unitOfMeasurement: ' kg/m2',
     },
   ],
   showFormReviewedButton: false,
