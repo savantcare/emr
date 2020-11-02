@@ -40,6 +40,8 @@ export default class waistCircumferenceClass extends clientTblManage {
       ptUuid: this.string(null),
       waistCircumferenceInches: this.string(''),
       notes: this.string(null),
+      dateOfMeasurement: this.number(0),
+
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -63,6 +65,20 @@ export const waistCircumferenceFormDef = {
       showFieldLabel: false,
       unitOfMeasurement: ' inches',
     },
+    {
+      fieldNameInDb: 'notes',
+      fieldNameInUi: 'Notes',
+      fieldType: 'textarea',
+      span: 24,
+      showFieldLabel: true,
+    },
+    {
+      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInUi: 'Date of measurement',
+      fieldType: 'date',
+      span: 24,
+      showFieldLabel: true,
+    },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
@@ -78,6 +94,12 @@ export const waistCircumferenceFormDef = {
     value: {
       waistCircumferenceInches: {
         minLength: minLength(2),
+      },
+      notes: {
+        minLength: minLength(0),
+      },
+      dateOfMeasurement: {
+        minLength: minLength(0),
       },
     },
   },

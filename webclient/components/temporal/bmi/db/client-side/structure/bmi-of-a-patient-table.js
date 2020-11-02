@@ -38,8 +38,10 @@ export default class bmi extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      bmiInPounds: this.string(''),
+      bmiInKgM2: this.string(''),
       notes: this.string(null),
+      dateOfMeasurement: this.number(0),
+
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -56,17 +58,31 @@ export const bmiFormDef = {
   singular: 'bmi',
   fieldsDef: [
     {
-      fieldNameInDb: 'bmiInPounds',
+      fieldNameInDb: 'bmiInKgM2',
       fieldNameInUi: 'Bmi',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
       unitOfMeasurement: ' kg/m2',
     },
+    {
+      fieldNameInDb: 'notes',
+      fieldNameInUi: 'Notes',
+      fieldType: 'textarea',
+      span: 24,
+      showFieldLabel: true,
+    },
+    {
+      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInUi: 'Date of measurement',
+      fieldType: 'date',
+      span: 24,
+      showFieldLabel: true,
+    },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bmiInPounds'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bmiInKgM2'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -76,8 +92,14 @@ export const bmiFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      bmiInPounds: {
+      bmiInKgM2: {
         minLength: minLength(2),
+      },
+      notes: {
+        minLength: minLength(0),
+      },
+      dateOfMeasurement: {
+        minLength: minLength(0),
       },
     },
   },

@@ -38,8 +38,9 @@ export default class oxygenSaturationClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      oxygenSaturationMgDL: this.string(''),
+      oxygenSaturationSaO2: this.string(''),
       notes: this.string(null),
+      dateOfMeasurement: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -56,17 +57,31 @@ export const oxygenSaturationFormDef = {
   singular: 'oxygen saturation',
   fieldsDef: [
     {
-      fieldNameInDb: 'oxygenSaturationMgDL',
+      fieldNameInDb: 'oxygenSaturationSaO2',
       fieldNameInUi: 'Oxygen saturation',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
       unitOfMeasurement: ' SaO2',
     },
+    {
+      fieldNameInDb: 'notes',
+      fieldNameInUi: 'Notes',
+      fieldType: 'textarea',
+      span: 24,
+      showFieldLabel: true,
+    },
+    {
+      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInUi: 'Date of measurement',
+      fieldType: 'date',
+      span: 24,
+      showFieldLabel: true,
+    },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['oxygenSaturationMgDL'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['oxygenSaturationSaO2'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -76,8 +91,14 @@ export const oxygenSaturationFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      oxygenSaturationMgDL: {
+      oxygenSaturationSaO2: {
         minLength: minLength(2),
+      },
+      notes: {
+        minLength: minLength(0),
+      },
+      dateOfMeasurement: {
+        minLength: minLength(0),
       },
     },
   },
