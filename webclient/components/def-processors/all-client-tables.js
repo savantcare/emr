@@ -23,6 +23,8 @@ import temperatureClientTbl from '@/components/temporal/temperature/db/client-si
 import bloodPressureClientTbl from '@/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
 import bloodSugarClientTbl from '@/components/temporal/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
 import waistCircumferenceClientTbl from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
+import bmiClientTbl from '@/components/temporal/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
+import oxygenSaturationClientTbl from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
 
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
  For e.g. 
@@ -76,6 +78,8 @@ const allClientTbls = {
   blood_pressure: bloodPressureClientTbl,
   blood_sugar: bloodSugarClientTbl,
   waist_circumference: waistCircumferenceClientTbl,
+  bmi: bmiClientTbl,
+  oxygen_saturation: oxygenSaturationClientTbl,
 }
 
 export default allClientTbls

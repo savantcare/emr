@@ -48,12 +48,11 @@ database.register(tableStructureForBloodSugar)
 import waistCircumferenceClientTbl from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
 database.register(waistCircumferenceClientTbl)
 
-/*
-import tableStructureForWaistCircumference from '~/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
-import tableStructureForOxygenSaturation from '~/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
-database.register(tableStructureForOxygenSaturation)
-database.register(tableStructureForWaistCircumference)
-*/
+import bmiClientTbl from '@/components/temporal/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
+database.register(bmiClientTbl)
+
+import oxygenSaturationClientTbl from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
+database.register(oxygenSaturationClientTbl)
 
 // Screening tables
 import tableStructureForScr from '~/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'

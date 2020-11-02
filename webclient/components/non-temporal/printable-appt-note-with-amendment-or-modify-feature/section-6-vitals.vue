@@ -8,6 +8,8 @@
     <printNote :propApptId="propApptId" :propFormDef="bloodPressureFormDef"></printNote>
     <printNote :propApptId="propApptId" :propFormDef="bloodSugarFormDef"></printNote>
     <printNote :propApptId="propApptId" :propFormDef="waistCircumferenceFormDef"></printNote>
+    <printNote :propApptId="propApptId" :propFormDef="bmiFormDef"></printNote>
+    <printNote :propApptId="propApptId" :propFormDef="oxygenSaturationFormDef"></printNote>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import { temperatureFormDef } from '@/components/temporal/temperature/db/client-
 import { bloodPressureFormDef } from '@/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
 import { bloodSugarFormDef } from '@/components/temporal/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
 import { waistCircumferenceFormDef } from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
+import { bmiFormDef } from '@/components/temporal/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
+import { oxygenSaturationFormDef } from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
 
 export default {
   components: {
@@ -40,6 +44,8 @@ export default {
       bloodPressureFormDef: bloodPressureFormDef,
       bloodSugarFormDef: bloodSugarFormDef,
       waistCircumferenceFormDef: waistCircumferenceFormDef,
+      bmiFormDef: bmiFormDef,
+      oxygenSaturationFormDef: oxygenSaturationFormDef,
     }
   },
 }

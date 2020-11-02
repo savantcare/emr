@@ -1,0 +1,19 @@
+<template>
+  <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+</template>
+
+<script>
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import { bmiFormDef } from '@/components/temporal/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
+
+export default {
+  data: function () {
+    return {
+      formDef: bmiFormDef,
+    }
+  },
+  components: {
+    ctAddStructure,
+  },
+}
+</script>

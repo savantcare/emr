@@ -43,10 +43,8 @@
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
     <initializeWaistCircumferenceComponent />
-    <!--
-    <initializeBmComponent />
+    <initializeBmiComponent />
     <initializeOxygenSaturationComponent />
--->
     <initializeDiagnosisComponent />
 
     <clientTblOfAppointmentsInsertData />
@@ -76,12 +74,8 @@ import initializeTemperatureComponent from '@/components/temporal/temperature/db
 import initializeBloodPressureComponent from '@/components/temporal/blood-pressure/db/client-side/initialize-on-first-load.vue'
 import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
 import initializeWaistCircumferenceComponent from '@/components/temporal/waist-circumference/db/client-side/initialize-on-first-load.vue'
-// temporal/body-measurement
-/*
-
-import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-*/
+import initializeBmiComponent from '@/components/temporal/bmi/db/client-side/initialize-on-first-load.vue'
+import initializeOxygenSaturationComponent from '@/components/temporal/oxygen-saturation/db/client-side/initialize-on-first-load.vue'
 
 // temporal/others
 import initializeMseComponent from '@/components/temporal/mental-status-exam/db/client-side/initialize-on-first-load.vue'
@@ -133,10 +127,9 @@ export default {
     initializeBloodPressureComponent,
     initializeBloodSugarComponent,
     initializeWaistCircumferenceComponent,
-    /*   
-    initializeBmComponent,
+    initializeBmiComponent,
     initializeOxygenSaturationComponent,
-    */
+
     initializeMseComponent,
     initializePhq9Component,
     initializeProsComponent,
