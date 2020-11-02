@@ -188,6 +188,11 @@
               </div>
             </div>
 
+            <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
+              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+              <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
+            </div>
+
             <!-- Next field type -->
             <div v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
