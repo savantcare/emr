@@ -1,16 +1,16 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeWeightComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/temporal/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeWeightComponent from '@/components/temporal/weight/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeWeightComponent,
   },
   async mounted() {
     /*

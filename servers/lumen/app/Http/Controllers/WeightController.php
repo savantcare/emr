@@ -29,14 +29,14 @@ class WeightController extends Controller
         $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
-        $ptUUID = $requestData['data']['ptUUID'];
+        $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $weightInPounds = $requestData['data']['weightInPounds'];
         $notes = $requestData['data']['notes'];
-        $recordChangedByUUID = $requestData['data']['recordChangedByUUID'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertWeight = DB::statement("INSERT INTO `sc_vital_signs`.`weight` (`serverSideRowUuid`, `ptUUID`, `weightInPounds`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUUID`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUUID}', {$weightInPounds}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUUID}', '{$recordChangedFromIPAddress}')");
+        $insertWeight = DB::statement("INSERT INTO `sc_vital_signs`.`weight` (`serverSideRowUuid`, `ptUuid`, `weightInPounds`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$weightInPounds}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertWeight, 201);
     }
