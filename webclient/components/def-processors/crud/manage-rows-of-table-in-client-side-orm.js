@@ -101,10 +101,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInEditState() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New) // New
-      .orWhere('vnRowStateInSession', rowState.New_Changed) // New -> Changed
-      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationFail) // New -> Changed -> Requested save -> form error
-      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationOk) // New -> Changed -> Requested save -> form error
+      .where('vnRowStateInSession', rowState.New)
+      .orWhere('vnRowStateInSession', rowState.New_Changed)
+      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationFail)
+      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationOk)
       .get()
     return arFromClientTbl
   }
@@ -117,14 +117,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInReadyToReviewedState() {
     // Following query makes sure I get all the newly added row having fld value
-    const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_FormValidationOk) // New -> Changed
-      .get()
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
     return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSendingState() {
-    // New(2) -> Changed(4) -> Requested save(5) -> Sending to server(7)
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
       .get()
@@ -132,7 +129,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetNewRowsInApiSuccessState() {
-    // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Success(1)
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
       .get()
@@ -169,9 +165,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_Error
         )
       })
-      // .where('vnRowStateInSession', 3) // Copy
-      // .orWhere('vnRowStateInSession', rowState.Copy_Changed) // Copy -> Changed
-      // .orWhere('vnRowStateInSession', 3456) // Copy -> Changed -> Requested save -> form error
       .get()
 
     if (arFromClientTbl.length) {
@@ -701,7 +694,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB, // New -> Changed -> Requested save -> Send to server -> API Success
+                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB,
                 //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
               },
             })

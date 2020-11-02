@@ -44,12 +44,8 @@ export default {
     async lockButtonClicked() {
       console.log('lock button clicked')
 
-      /* Find rows in chief complaints and then make API calls. All rowStatus begining with 2 will be post and 
-                                                                All rowStatus begining with 3 will be patch
-      Loop through all the tables 
-      */
+      /* Loop through all the tables */
       for (const property in allClientTbls) {
-        // console.log(`${property}: ${allClientTbls[property]}`)
         console.log('Make post request to', allClientTbls[property].apiUrl)
         const state = allClientTbls[property].mfSendNewRowsToServer()
         console.log(state)
