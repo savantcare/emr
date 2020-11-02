@@ -40,6 +40,7 @@ export default class weight extends clientTblManage {
       ptUuid: this.string(null),
       weightInPounds: this.string(''),
       notes: this.string(null),
+      dateOfMeasurement: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -63,6 +64,20 @@ export const weightFormDef = {
       showFieldLabel: false,
       unitOfMeasurement: 'pounds',
     },
+    {
+      fieldNameInDb: 'notes',
+      fieldNameInUi: 'Notes',
+      fieldType: 'textarea',
+      span: 24,
+      showFieldLabel: true,
+    },
+    {
+      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInUi: 'Date of measurement',
+      fieldType: 'date',
+      span: 24,
+      showFieldLabel: true,
+    },
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
@@ -78,6 +93,12 @@ export const weightFormDef = {
     value: {
       weightInPounds: {
         minLength: minLength(2),
+      },
+      notes: {
+        minLength: minLength(0),
+      },
+      dateOfMeasurement: {
+        minLength: minLength(0),
       },
     },
   },
