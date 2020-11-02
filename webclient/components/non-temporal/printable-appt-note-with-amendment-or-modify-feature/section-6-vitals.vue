@@ -1,16 +1,21 @@
 <template>
   <!-- Goal: Show 2 vitals in each row hence said 1fr 1fr -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr">
-    <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="heightFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="pulseFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="temperatureFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="bloodPressureFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="bloodSugarFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="waistCircumferenceFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="bmiFormDef"></printNote>
-    <printNote :propApptId="propApptId" :propFormDef="oxygenSaturationFormDef"></printNote>
-  </div>
+  <el-card style="padding: 5px" shadow="never">
+    <div slot="header" style="padding: 1px; margin: 1px">
+      <span style="font-size: 1.2rem; padding: 5px; margin: 5px">Vitals</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr">
+      <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="heightFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="pulseFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="temperatureFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="bloodPressureFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="bloodSugarFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="waistCircumferenceFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="bmiFormDef"></printNote>
+      <printNote :propApptId="propApptId" :propFormDef="oxygenSaturationFormDef"></printNote>
+    </div>
+  </el-card>
 </template>
 
 <script>
@@ -50,3 +55,5 @@ export default {
   },
 }
 </script>
+
+<style scoped></style>
