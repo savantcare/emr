@@ -306,7 +306,7 @@ export default {
 
   filters: {
     moment: function (date) {
-      return moment(date).format('MMMM Do YYYY, h:mm a')
+      return moment(date).format("MMM Do 'YY, h:mm a")
     },
   },
   props: {
