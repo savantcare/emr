@@ -42,7 +42,7 @@
     <initializeTemperatureComponent />
     <initializeBloodPressureComponent />
     <initializeBloodSugarComponent />
-
+    <initializeWaistCircumferenceComponent />
     <!--
     <initializeBmComponent />
     <initializeOxygenSaturationComponent />
@@ -76,7 +76,7 @@ import initializePulseComponent from '@/components/temporal/pulse/db/client-side
 import initializeTemperatureComponent from '@/components/temporal/temperature/db/client-side/initialize-on-first-load.vue'
 import initializeBloodPressureComponent from '@/components/temporal/blood-pressure/db/client-side/initialize-on-first-load.vue'
 import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
-
+import initializeWaistCircumferenceComponent from '@/components/temporal/waist-circumference/db/client-side/initialize-on-first-load.vue'
 // temporal/body-measurement
 /*
 
@@ -134,6 +134,7 @@ export default {
     initializeTemperatureComponent,
     initializeBloodPressureComponent,
     initializeBloodSugarComponent,
+    initializeWaistCircumferenceComponent,
     /*   
     initializeBmComponent,
     initializeOxygenSaturationComponent,

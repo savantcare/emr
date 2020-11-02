@@ -45,6 +45,9 @@ database.register(tableStructureForBloodPressure)
 import tableStructureForBloodSugar from '~/components/temporal/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
 database.register(tableStructureForBloodSugar)
 
+import waistCircumferenceClientTbl from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
+database.register(waistCircumferenceClientTbl)
+
 /*
 import tableStructureForWaistCircumference from '~/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
 import tableStructureForOxygenSaturation from '~/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'

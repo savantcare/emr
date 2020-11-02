@@ -1,0 +1,18 @@
+<template>
+  <timeLineView :propFormDef="formDef"></timeLineView>
+</template>
+
+<script>
+import timeLineView from '@/components//def-processors/view/timeline-structure.vue'
+import { waistCircumferenceFormDef } from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
+
+export default {
+  components: { timeLineView },
+
+  data: function () {
+    return {
+      formDef: waistCircumferenceFormDef,
+    }
+  },
+}
+</script>
