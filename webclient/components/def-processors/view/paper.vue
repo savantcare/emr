@@ -120,11 +120,20 @@
             v-for="(propFieldDef, id) in propFormDef.fieldsDef"
             :key="id"
             :style="mfGetCssClassNameForEachDataRow(row)"
-            v-if="row[propFieldDef.fieldNameInDb].toString().length > 0"
+            v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
           >
-            <!-- Goal: Skip any empty fields in the row 
+            <!-- 
+              Explanation of v-if statement
+              Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
               For e.g. for recs it is string and for psych review of systems it is number
+
+              Goal: Skip fields that are null
+              For e.g. notes in weight will be null if never set.
+              The first condition in && is evaluated first.
+              So first I evaluate row[propFieldDef.fieldNameInDb] to make sure it is not null
+              Then i evaluate row[propFieldDef.fieldNameInDb].toString().length
+              If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
 
             <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
@@ -181,6 +190,7 @@
                 </div>
               </div>
             </div>
+
             <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <div id="field-value-in-db">
@@ -193,11 +203,13 @@
               <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
             </div>
 
-            <!-- Next field type -->
+            <!-- Not specified field type -->
             <div v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-
-              <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
+              <!-- Goal: skip fields that are null or empty -->
+              <div v-if="row[propFieldDef.fieldNameInDb]">
+                <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
+              </div>
             </div>
           </div>
           <!-- Finished processing all the fields -->
