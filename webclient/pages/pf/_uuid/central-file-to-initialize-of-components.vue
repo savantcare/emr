@@ -41,10 +41,9 @@
     <initializePulseComponent />
     <initializeTemperatureComponent />
     <initializeBloodPressureComponent />
-
-    <!--
     <initializeBloodSugarComponent />
 
+    <!--
     <initializeBmComponent />
     <initializeOxygenSaturationComponent />
     <initializeWaistCircumferenceComponent />
@@ -76,10 +75,10 @@ import initializeHeightComponent from '@/components/temporal/height/db/client-si
 import initializePulseComponent from '@/components/temporal/pulse/db/client-side/initialize-on-first-load.vue'
 import initializeTemperatureComponent from '@/components/temporal/temperature/db/client-side/initialize-on-first-load.vue'
 import initializeBloodPressureComponent from '@/components/temporal/blood-pressure/db/client-side/initialize-on-first-load.vue'
+import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
 
 // temporal/body-measurement
 /*
-import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
 
 import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
@@ -134,8 +133,8 @@ export default {
     initializePulseComponent,
     initializeTemperatureComponent,
     initializeBloodPressureComponent,
-    /*   
     initializeBloodSugarComponent,
+    /*   
     initializeBmComponent,
     initializeOxygenSaturationComponent,
     initializeWaistCircumferenceComponent,

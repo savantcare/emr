@@ -42,12 +42,13 @@ database.register(tableStructureForPulse)
 import tableStructureForBloodPressure from '~/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
 database.register(tableStructureForBloodPressure)
 
+import tableStructureForBloodSugar from '~/components/temporal/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
+database.register(tableStructureForBloodSugar)
+
 /*
 import tableStructureForWaistCircumference from '~/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/structure/table.js'
-import tableStructureForBloodSugar from '~/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
 import tableStructureForOxygenSaturation from '~/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/structure/table.js'
 database.register(tableStructureForOxygenSaturation)
-database.register(tableStructureForBloodSugar)
 database.register(tableStructureForWaistCircumference)
 */
 
