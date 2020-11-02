@@ -42,7 +42,7 @@ export default class temperature extends clientTblManage {
       ptUuid: this.string(null),
       temperatureInFarehnite: this.string(''),
       notes: this.string(null),
-      dateOfMeasurement: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
+      timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -75,7 +75,7 @@ export const temperatureFormDef = {
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInDb: 'timeOfMeasurementInMilliseconds',
       fieldNameInUi: 'Date of measurement',
       fieldType: 'date',
       span: 24,
@@ -100,7 +100,7 @@ export const temperatureFormDef = {
       notes: {
         minLength: minLength(0),
       },
-      dateOfMeasurement: {
+      timeOfMeasurementInMilliseconds: {
         minLength: minLength(0),
       },
     },

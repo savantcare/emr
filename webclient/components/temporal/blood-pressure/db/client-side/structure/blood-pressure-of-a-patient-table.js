@@ -41,7 +41,7 @@ export default class bloodPressureClass extends clientTblManage {
       bloodPressureSystolic: this.string(''),
       bloodPressureDiastolic: this.string(''),
       notes: this.string(null),
-      dateOfMeasurement: this.number(0),
+      timeOfMeasurementInMilliseconds: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -81,7 +81,7 @@ export const bloodPressureFormDef = {
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInDb: 'timeOfMeasurementInMilliseconds',
       fieldNameInUi: 'Date of measurement',
       fieldType: 'date',
       span: 24,
@@ -109,7 +109,7 @@ export const bloodPressureFormDef = {
       notes: {
         minLength: minLength(0),
       },
-      dateOfMeasurement: {
+      timeOfMeasurementInMilliseconds: {
         minLength: minLength(0),
       },
     },

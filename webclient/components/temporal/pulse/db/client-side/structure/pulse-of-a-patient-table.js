@@ -40,7 +40,7 @@ export default class pulse extends clientTblManage {
       ptUuid: this.string(null),
       pulseInBpm: this.string(''),
       notes: this.string(null),
-      dateOfMeasurement: this.number(0),
+      timeOfMeasurementInMilliseconds: this.number(0),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -73,7 +73,7 @@ export const pulseFormDef = {
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInDb: 'timeOfMeasurementInMilliseconds',
       fieldNameInUi: 'Date of measurement',
       fieldType: 'date',
       span: 24,
@@ -98,7 +98,7 @@ export const pulseFormDef = {
       notes: {
         minLength: minLength(0),
       },
-      dateOfMeasurement: {
+      timeOfMeasurementInMilliseconds: {
         minLength: minLength(0),
       },
     },

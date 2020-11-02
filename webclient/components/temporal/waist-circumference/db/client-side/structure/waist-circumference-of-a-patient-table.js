@@ -40,7 +40,7 @@ export default class waistCircumferenceClass extends clientTblManage {
       ptUuid: this.string(null),
       waistCircumferenceInches: this.string(''),
       notes: this.string(null),
-      dateOfMeasurement: this.number(0),
+      timeOfMeasurementInMilliseconds: this.number(0),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -73,7 +73,7 @@ export const waistCircumferenceFormDef = {
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'dateOfMeasurement',
+      fieldNameInDb: 'timeOfMeasurementInMilliseconds',
       fieldNameInUi: 'Date of measurement',
       fieldType: 'date',
       span: 24,
@@ -98,7 +98,7 @@ export const waistCircumferenceFormDef = {
       notes: {
         minLength: minLength(0),
       },
-      dateOfMeasurement: {
+      timeOfMeasurementInMilliseconds: {
         minLength: minLength(0),
       },
     },
