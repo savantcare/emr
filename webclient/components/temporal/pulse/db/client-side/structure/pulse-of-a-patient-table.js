@@ -76,7 +76,7 @@ export const pulseFormDef = {
     },
     {
       fieldNameInDb: 'timeOfMeasurementInMilliseconds',
-      fieldNameInUi: 'Date of measurement',
+      fieldNameInUi: 'Measurement date',
       fieldType: 'date',
       span: 24,
       showFieldLabel: true,
