@@ -42,7 +42,7 @@ export default class bloodPressureClass extends clientTblManage {
       ptUuid: this.string(null),
       bloodPressureSystolic: this.string(''),
       bloodPressureDiastolic: this.string(''),
-      notes: this.string(null),
+      notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -84,7 +84,7 @@ export const bloodPressureFormDef = {
     },
     {
       fieldNameInDb: 'timeOfMeasurementInMilliseconds',
-      fieldNameInUi: 'Measurement date',
+      fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,
       showFieldLabel: true,

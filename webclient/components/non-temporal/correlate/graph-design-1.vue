@@ -70,7 +70,7 @@ export default {
         xAxis: [
           {
             title: {
-              text: 'Measurement date',
+              text: 'Measured on',
             },
             type: 'datetime',
             labels: {

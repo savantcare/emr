@@ -39,7 +39,7 @@ export default class goals extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
-      notes: this.string(null),
+      notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       priority: this.number(0),
       rating: this.number(0),
       recordChangedByUuid: this.string(null),

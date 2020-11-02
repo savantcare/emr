@@ -41,7 +41,7 @@ export default class allergies extends clientTblManage {
       allergen: this.string(''),
       reaction: this.string(''),
       onset: this.string(''),
-      notes: this.string(null),
+      notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

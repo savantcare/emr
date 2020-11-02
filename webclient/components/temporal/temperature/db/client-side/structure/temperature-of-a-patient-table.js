@@ -41,7 +41,7 @@ export default class temperature extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       temperatureInFarehnite: this.string(''),
-      notes: this.string(null),
+      notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
 
       recordChangedByUuid: this.string(null),
@@ -76,7 +76,7 @@ export const temperatureFormDef = {
     },
     {
       fieldNameInDb: 'timeOfMeasurementInMilliseconds',
-      fieldNameInUi: 'Measurement date',
+      fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,
       showFieldLabel: true,
