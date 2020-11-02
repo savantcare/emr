@@ -6,6 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
+const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now())
+
 export default class weight extends clientTblManage {
   static entity = 'tblWeight'
 
@@ -40,7 +42,7 @@ export default class weight extends clientTblManage {
       ptUuid: this.string(null),
       weightInPounds: this.string(''),
       notes: this.string(null),
-      timeOfMeasurementInMilliseconds: this.number(0),
+      timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

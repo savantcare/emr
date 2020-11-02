@@ -6,6 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
+const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now())
+
 export default class pulse extends clientTblManage {
   static entity = 'tblPulse'
 
@@ -40,7 +42,7 @@ export default class pulse extends clientTblManage {
       ptUuid: this.string(null),
       pulseInBpm: this.string(''),
       notes: this.string(null),
-      timeOfMeasurementInMilliseconds: this.number(0),
+      timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
