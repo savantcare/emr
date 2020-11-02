@@ -46,7 +46,6 @@
     <!--
     <initializeBmComponent />
     <initializeOxygenSaturationComponent />
-    <initializeWaistCircumferenceComponent />
 -->
     <initializeDiagnosisComponent />
 
@@ -82,7 +81,6 @@ import initializeWaistCircumferenceComponent from '@/components/temporal/waist-c
 
 import initializeBmComponent from '@/components/temporal/vital-signs/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeOxygenSaturationComponent from '@/components/temporal/vital-signs/sub-cts/oxygen-saturation/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeWaistCircumferenceComponent from '@/components/temporal/vital-signs/sub-cts/waist-circumference/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 */
 
 // temporal/others
@@ -138,7 +136,6 @@ export default {
     /*   
     initializeBmComponent,
     initializeOxygenSaturationComponent,
-    initializeWaistCircumferenceComponent,
     */
     initializeMseComponent,
     initializePhq9Component,
