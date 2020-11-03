@@ -9,6 +9,7 @@
       :typeahead-hide-discard="true"
       :only-existing-tags="true"
       @tag-added="mfTagAdded"
+      :placeholder="cfGetPlaceholder"
     ></tags-input>
     <highcharts :options="cfChartOptions"></highcharts>
   </div>
@@ -48,6 +49,10 @@ export default {
     }
   },
   computed: {
+    cfGetPlaceholder() {
+      const numberOfSeriesAvailable = this.tags.length - this.selectedTags.length
+      return numberOfSeriesAvailable + ' more' //
+    },
     cfChartOptions() {
       var chart = {
         xAxis: [
