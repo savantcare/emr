@@ -206,19 +206,29 @@ export default {
         // Goal : Insert object into the series array. Series array is used by highcharts
 
         let firstTag = null
-        if (this.selectedTags && this.selectedTags[0] && this.selectedTags[0].key === 'weightInPounds') {
-          firstTag = 'weight'
-        }
 
-        //debugger
+        // There can be multiple series inside a table.
         for (let i = 0; i < allFormDefinations[pTableName]['graphObj'].series.length; i++) {
           const fieldName = allFormDefinations[pTableName]['graphObj'].series[i].fieldName
+
+          // There are 2 possibilities this fieldname has been selected in the tag or not.
+          // Goal: Only show those series that have been selected in the tag system
+
+          let tagAndFieldNameAreSame = false
+          if (this.selectedTags) {
+            for (let i = 0; i < this.selectedTags.length; i++) {
+              if (fieldName === this.selectedTags[i].key) {
+                tagAndFieldNameAreSame = true
+              }
+            }
+          }
+
           const seriesData = this.mfGetDataForGraph(pTableName, fieldName)
           if (seriesData && seriesData.length > 0) {
             let seriesObj = {
               name: fieldName,
               data: seriesData,
-              visible: firstTag ? true : false,
+              visible: tagAndFieldNameAreSame,
               showInLegend: false,
               events: {
                 // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
