@@ -116,4 +116,7 @@ export const bloodPressureFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'bloodPressureSystolic',
+  },
 }
