@@ -16,12 +16,7 @@
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
-              <el-card
-                :span="propFieldDef.span"
-                :class="ormRow.validationClass"
-                shadow="hover"
-                :style="propFieldDef.fieldStyle"
-              >
+              <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
                 <!-- The following are the possible field types -->
 
                 <!-- Field type 1: Do the following when it is heading type field -->

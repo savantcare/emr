@@ -104,7 +104,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return {
       // the following flds only exist on client
       vnRowStateInSession: this.number(1), // For different values of vnRowStateInSession and what they mean see: ./forms.md
-      validationClass: this.string(''),
       isValidationError: this.boolean(false),
     }
   }
@@ -600,14 +599,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       row = {
         [pFldName]: valueForThisField,
         vnRowStateInSession: pRowStatus,
-        validationClass: '',
         isValidationError: false,
       }
     } else {
       row = {
         [pFldName]: pEvent,
         vnRowStateInSession: pRowStatus,
-        validationClass: '',
         isValidationError: false,
       }
     }
@@ -837,7 +834,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         await this.update({
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
-            validationClass: '',
             vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
             isValidationError: false,
           },
