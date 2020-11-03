@@ -281,26 +281,27 @@ export default {
       if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
         // Step 1/2 : Insert object into the series array. Series array is used by highcharts
         const seriesData = this.mfGetDataForGraph(pTableName)
-
-        let seriesObj = {
-          name: pTableName,
-          data: seriesData,
-          events: {
-            // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-            click: function (event) {
-              var pointId = event.point.x
-              event.point.remove()
+        if (seriesData && seriesData.length > 0) {
+          let seriesObj = {
+            name: pTableName,
+            data: seriesData,
+            events: {
+              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+              click: function (event) {
+                var pointId = event.point.x
+                event.point.remove()
+              },
             },
-          },
-          dashStyle: 'longdash',
-          tooltip: {
-            headerFormat: '<small>Weight: {point.key}</small><br>',
-            pointFormatter: function () {
-              return this.y + '% of max</b>'
+            dashStyle: 'longdash',
+            tooltip: {
+              headerFormat: '<small>' + pTableName + ': {point.key}</small><br>',
+              pointFormatter: function () {
+                return this.y + '% of max</b>'
+              },
             },
-          },
+          }
+          this.dynamicallyAddedSeries[pTableName] = seriesObj
         }
-        this.dynamicallyAddedSeries[pTableName] = seriesObj
       }
     },
 
