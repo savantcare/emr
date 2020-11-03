@@ -1,5 +1,20 @@
 <template>
-  <highcharts :options="chartOptions"></highcharts>
+  <div>
+    <tags-input
+      element-id="tags"
+      v-model="selectedTags"
+      :existing-tags="[
+        { key: 'web-development', value: 'Web Development' },
+        { key: 'php', value: 'PHP' },
+        { key: 'javascript', value: 'JavaScript' },
+      ]"
+      :typeahead="true"
+      :typeahead-activation-threshold="0"
+      :typeahead-hide-discard="true"
+      :only-existing-tags="true"
+    ></tags-input>
+    <highcharts :options="chartOptions"></highcharts>
+  </div>
 </template>
 
 <script>
