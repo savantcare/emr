@@ -20,6 +20,8 @@ import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import allFormDefinations from '@/components/def-processors/all-form-definations.js'
+
 import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 
 import { Chart } from 'highcharts-vue'
