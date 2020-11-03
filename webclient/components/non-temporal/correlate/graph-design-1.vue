@@ -29,7 +29,9 @@ export default {
     highcharts: Chart,
   },
   data() {
-    return {}
+    return {
+      dynamicallyAddedSeries: {},
+    }
   },
   methods: {
     mfGetProsOnApptLockDate(pApptObj) {
@@ -66,9 +68,37 @@ export default {
       return groupTotal['Depression']
       */
     },
-    mfGetDataForGraph(pTableName) {
-      //debugger
+
+    mfCreateSeries(pTableName) {
       if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
+        // Step 1/2 : Insert object into the series array. Series array is used by highcharts
+        const seriesData = this.mfGetDataForGraph('weight')
+
+        let seriesObj = {
+          name: 'Weight',
+          data: seriesData,
+          events: {
+            // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+            click: function (event) {
+              var pointId = event.point.x
+              event.point.remove()
+            },
+          },
+          dashStyle: 'longdash',
+          tooltip: {
+            headerFormat: '<small>Weight: {point.key}</small><br>',
+            pointFormatter: function () {
+              return this.y + '% of max</b>'
+            },
+          },
+        }
+        this.dynamicallyAddedSeries['weight'] = seriesObj
+      }
+    },
+
+    mfGetDataForGraph(pTableName) {
+      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
+        // Step 2/2 : Get the data for the graph
         const arDataToShowOnGraph = []
         const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
         const numberOfPointsOnGraph = data.length
@@ -100,6 +130,7 @@ export default {
   },
   computed: {
     chartOptions() {
+      this.cfGetWeightDataForGraph
       const chart = {
         xAxis: [
           {
@@ -122,24 +153,6 @@ export default {
           // { data: [0, 0, 0], name: 'Appointments' },
           // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          {
-            name: 'Weight',
-            data: this.cfGetWeightDataForGraph,
-            events: {
-              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-              click: function (event) {
-                var pointId = event.point.x
-                event.point.remove()
-              },
-            },
-            dashStyle: 'longdash',
-            tooltip: {
-              headerFormat: '<small>Weight: {point.key}</small><br>',
-              pointFormatter: function () {
-                return this.y + '% of max</b>'
-              },
-            },
-          },
           {
             name: 'Spo2',
             data: this.cfGetOxygenSaturationDataForGraph,
@@ -263,7 +276,7 @@ export default {
     },
 
     cfGetWeightDataForGraph() {
-      return this.mfGetDataForGraph('weight')
+      const data = this.mfCreateSeries('weight')
     },
 
     /*
