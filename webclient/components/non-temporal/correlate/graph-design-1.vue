@@ -8,8 +8,9 @@
       :typeahead-activation-threshold="0"
       :typeahead-hide-discard="true"
       :only-existing-tags="true"
+      @tag-added="mfTagAdded"
     ></tags-input>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="cfChartOptions"></highcharts>
   </div>
 </template>
 
@@ -47,7 +48,7 @@ export default {
     }
   },
   computed: {
-    chartOptions() {
+    cfChartOptions() {
       var chart = {
         xAxis: [
           {
@@ -65,52 +66,7 @@ export default {
           text: '',
         }, // Reason: Y axis will have clientTbl.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
 
-        series: [
-          // { data: this.cfBasicConcept, name: 'Basic concept' },
-          // { data: [0, 0, 0], name: 'Appointments' },
-          // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
-          // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          {
-            name: 'pros: depression',
-            data: this.cfGetProsDepressionDataForGraph,
-            events: {
-              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-              click: function (event) {
-                var pointId = event.point.x
-                event.point.remove()
-              },
-            },
-            dashStyle: 'shortdot',
-            tooltip: {
-              headerFormat: '<small>PROS Depression: {point.key}</small><br>',
-              pointFormatter: function () {
-                return this.y + '% of max</b>'
-              },
-            },
-          },
-          /*
-          {
-            name: 'service statements',
-            data: this.cfArOfServiceStatementsForGraph,
-            events: {
-              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-              click: function (event) {
-                var pointId = event.point.x
-                event.point.remove()
-              },
-            },
-            dashStyle: 'shortdot',
-            tooltip: {
-              headerFormat: '<small>Service statement: {point.key}</small><br>',
-              pointFormatter: function () {
-                // console.log(this) // To see , what data you can access
-                return this.tooltip
-              },
-            },
-          },
-
-*/
-        ],
+        series: [],
         chart: {
           width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
           zoomType: 'x',
@@ -240,41 +196,6 @@ export default {
     },
   },
   methods: {
-    mfGetProsOnApptLockDate(pApptObj) {
-      /*
-      if (!pApptObj) return
-
-      let arOfObjectsFromClientRos = []
-      if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
-          .get()
-      }
-
-      let groupTotal = []
-      let catName = ''
-      let value = 0
-      for (let i = 0; i < arOfObjectsFromClientRos.length; i++) {
-        catName = arOfObjectsFromClientRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
-        if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue']
-          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
-        }
-      }
-      return groupTotal['Depression']
-      */
-    },
-
     mfCreateSeries(pTableName) {
       // All the 3 conditions are applied sequentially
       if (
@@ -284,6 +205,11 @@ export default {
       ) {
         // Goal : Insert object into the series array. Series array is used by highcharts
 
+        let firstTag = null
+        if (this.selectedTags && this.selectedTags[0] && this.selectedTags[0].key === 'weightInPounds') {
+          firstTag = 'weight'
+        }
+
         //debugger
         for (let i = 0; i < allFormDefinations[pTableName]['graphObj'].series.length; i++) {
           const fieldName = allFormDefinations[pTableName]['graphObj'].series[i].fieldName
@@ -292,6 +218,8 @@ export default {
             let seriesObj = {
               name: fieldName,
               data: seriesData,
+              visible: firstTag ? true : false,
+              showInLegend: false,
               events: {
                 // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
                 click: function (event) {
@@ -319,6 +247,13 @@ export default {
         this.tags.push({ key: property, value: property })
       }
       console.log(this.tags)
+      console.log(this.selectedTags)
+    },
+
+    mfTagAdded(pTagSlug) {
+      // debugger
+      this.dynamicallyAddedSeries[pTagSlug.key].visible = true
+      this.dynamicallyAddedSeries[pTagSlug.key].showInLegend = true
     },
 
     mfGetDataForGraph(pTableName, pFieldName) {
