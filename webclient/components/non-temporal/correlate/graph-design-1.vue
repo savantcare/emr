@@ -3,7 +3,7 @@
     <tags-input
       element-id="tags"
       v-model="selectedTags"
-      :existing-tags="tags"
+      :existing-tags="availableSeriesTags"
       :typeahead="true"
       :typeahead-activation-threshold="0"
       :typeahead-hide-discard="true"
@@ -45,12 +45,20 @@ export default {
     return {
       dynamicallyAddedSeries: {},
       selectedTags: [],
-      tags: [],
+      availableSeriesTags: [],
     }
   },
   computed: {
     cfGetPlaceholder() {
-      const numberOfSeriesAvailable = this.tags.length - this.selectedTags.length
+      const numberOfSeriesAvailable = this.availableSeriesTags.length - this.selectedTags.length
+
+      if (this.availableSeriesTags.length === 0) {
+        return 'No time series available'
+      } else if (this.selectedTags.length === 0) {
+        return numberOfSeriesAvailable + ' time series available'
+      } else if (numberOfSeriesAvailable === 0) {
+        return 'No more time series available'
+      }
       return numberOfSeriesAvailable + ' more' //
     },
     cfChartOptions() {
@@ -257,11 +265,11 @@ export default {
       }
     },
     mfSetTags() {
-      this.tags = []
+      this.availableSeriesTags = []
       for (const property in this.dynamicallyAddedSeries) {
-        this.tags.push({ key: property, value: property })
+        this.availableSeriesTags.push({ key: property, value: property })
       }
-      console.log(this.tags)
+      console.log(this.availableSeriesTags)
       console.log(this.selectedTags)
     },
 
