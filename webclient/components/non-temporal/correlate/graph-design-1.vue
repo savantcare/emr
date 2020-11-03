@@ -2,7 +2,7 @@
   <div>
     <tags-input
       element-id="tags"
-      v-model="selectedTags"
+      v-model="selectedSeriesTags"
       :existing-tags="availableSeriesTags"
       :typeahead="true"
       :typeahead-activation-threshold="0"
@@ -44,17 +44,17 @@ export default {
   data() {
     return {
       dynamicallyAddedSeries: {},
-      selectedTags: [],
+      selectedSeriesTags: [],
       availableSeriesTags: [],
     }
   },
   computed: {
     cfGetPlaceholder() {
-      const numberOfSeriesAvailable = this.availableSeriesTags.length - this.selectedTags.length
+      const numberOfSeriesAvailable = this.availableSeriesTags.length - this.selectedSeriesTags.length
 
       if (this.availableSeriesTags.length === 0) {
         return 'No time series available'
-      } else if (this.selectedTags.length === 0) {
+      } else if (this.selectedSeriesTags.length === 0) {
         return numberOfSeriesAvailable + ' time series available'
       } else if (numberOfSeriesAvailable === 0) {
         return 'No more time series available'
@@ -228,9 +228,9 @@ export default {
           // Goal: Only show those series that have been selected in the tag system
 
           let tagAndFieldNameAreSame = false
-          if (this.selectedTags) {
-            for (let i = 0; i < this.selectedTags.length; i++) {
-              if (fieldName === this.selectedTags[i].key) {
+          if (this.selectedSeriesTags) {
+            for (let i = 0; i < this.selectedSeriesTags.length; i++) {
+              if (fieldName === this.selectedSeriesTags[i].key) {
                 tagAndFieldNameAreSame = true
               }
             }
@@ -270,7 +270,7 @@ export default {
         this.availableSeriesTags.push({ key: property, value: property })
       }
       console.log(this.availableSeriesTags)
-      console.log(this.selectedTags)
+      console.log(this.selectedSeriesTags)
     },
 
     mfTagAdded(pTagSlug) {
