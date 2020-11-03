@@ -24,11 +24,13 @@ class MentalStatusExamController extends Controller
         $requestData = $pRequest->all();
         
         $arMentalStatusExamData = array(
-            'serverSideRowUuid' => $requestData['serverSideRowUuid'],
-            'patientUuid' => $requestData['patientUuid'],
-            'mentalStatusExamMasterId' => $requestData['mentalStatusExamFieldIdFromMentalStatusExamMaster'],
-            'recordChangedByUuid' => $requestData['recordChangedByUuid'],
-            'recordChangedFromIPAddress' => $requestData['recordChangedFromIPAddress'],
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
+            'patientUuid' => $requestData['data']['ptUuid'],
+            'appearance_select' => $requestData['data']['appearance_select'],
+            'psychomotor_select' => $requestData['data']['psychomotor_select'],
+            'attitude_multi_select' => $requestData['data']['attitude_multi_select'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $requestData['data']['recordChangedFromIPAddress'],
         );
        
         $mentalStatusExam = MentalStatusExam::insertGetId($arMentalStatusExamData);
