@@ -291,7 +291,7 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationOkState()
     },
     cfGetClientTblApiSuccessStateRows() {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()

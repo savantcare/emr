@@ -122,7 +122,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromClientTbl
   }
 
-  static fnGetNewRowsInReadyToReviewedState() {
+  static fnGetNewRowsInFormValidationOkState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
     return arFromClientTbl
@@ -820,7 +820,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
       The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
     */
-    const arFromClientTbl = this.fnGetNewRowsInReadyToReviewedState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
+    const arFromClientTbl = this.fnGetNewRowsInFormValidationOkState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
         /* I cannot do validation here. Since this is getting invoked when button has already been pressed  
