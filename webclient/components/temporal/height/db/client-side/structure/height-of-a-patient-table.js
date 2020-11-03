@@ -104,4 +104,7 @@ export const heightFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'heightInInches',
+  },
 }

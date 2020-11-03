@@ -130,6 +130,7 @@ export default {
   },
   computed: {
     chartOptions() {
+      this.cfGetHeightDataForGraph
       this.cfGetWeightDataForGraph
       this.cfGetOxygenSaturationDataForGraph
       var chart = {
@@ -252,19 +253,7 @@ export default {
     },
 
     cfGetHeightDataForGraph() {
-      const arDataToShowOnGraph = []
-      const data = clientTblHeight.all()
-      const numberOfPointsOnGraph = data.length
-      if (numberOfPointsOnGraph > 0) {
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = data[i][clientTblHeight.graphSeries1FieldName]
-          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-        }
-        return arDataToShowOnGraph
-      } else {
-        return null
-      }
+      const data = this.mfCreateSeries('height')
     },
 
     cfGetWeightDataForGraph() {
