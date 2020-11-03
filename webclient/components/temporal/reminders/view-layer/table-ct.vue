@@ -108,12 +108,20 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 <script>
 import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+
 export default {
   mixins: [clInvokeMixin],
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daRowStatesNotHavingCD: [
+        rowState.New,
+        rowState.New_Changed,
+        rowState.New_Changed_RequestedSave_FormValidationFail,
+        rowState.New_Changed_RequestedSave_FormValidationOk,
+        rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
+      ], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
     }
   },

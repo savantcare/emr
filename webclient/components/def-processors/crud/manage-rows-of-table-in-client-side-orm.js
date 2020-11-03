@@ -14,6 +14,7 @@ export const rowState = {
       SameAsDB = 1
       ApiError = 8  */
 
+  SameAsDB: 1,
   New: 2,
   New_Changed: 24,
   New_Changed_FormValidationFail: 246,
@@ -22,8 +23,12 @@ export const rowState = {
   New_Changed_RequestedSave_FormValidationFail: 2456,
   New_Changed_RequestedSave_FormValidationOk: 2457,
   New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
+  New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
   Copy: 3,
   Copy_Changed: 34,
+  Copy_Changed_RequestedSave: 345,
+  Copy_Changed_RequestedSave_FormValidationFail: 3456,
+  Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 34571,
   Copy_Changed_RequestedSave_ApiError: 3458,
 }
 
@@ -111,7 +116,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInApiErrorState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
-    const arFromClientTbl = this.query().where('vnRowStateInSession', 24578).get()
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_ApiError)
+      .get()
     return arFromClientTbl
   }
 
@@ -690,7 +697,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
+                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
               },
             })
           } else {
