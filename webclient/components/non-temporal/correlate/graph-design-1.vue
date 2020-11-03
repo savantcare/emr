@@ -131,7 +131,7 @@ export default {
   computed: {
     chartOptions() {
       this.cfGetWeightDataForGraph
-      const chart = {
+      var chart = {
         xAxis: [
           {
             title: {
@@ -216,10 +216,18 @@ export default {
           width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
           zoomType: 'x',
         },
-        credits: {
-          enabled: false,
-        },
       }
+
+      chart.credits = {
+        enabled: false,
+      }
+
+      console.log(chart)
+
+      for (var property in this.dynamicallyAddedSeries) {
+        chart.series.push(this.dynamicallyAddedSeries[property])
+      }
+      console.log(chart)
 
       return chart
     },
