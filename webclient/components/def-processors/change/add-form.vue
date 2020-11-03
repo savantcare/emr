@@ -250,6 +250,7 @@
 <script>
 import allClientTbls from '../all-client-tables.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   created() {
@@ -347,9 +348,9 @@ export default {
       this.$v.value[pFldName].$touch() // $v is the validation object created by vuelidate library
       let rowStatus = 0
       if (this.$v.$invalid === false) {
-        rowStatus = 247 // This implies valid is true
+        rowStatus = rowState.New_Changed_FormValidationOk // This implies valid is true
       } else {
-        rowStatus = 246 // This implies invalid is true
+        rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
@@ -363,11 +364,11 @@ export default {
           valid: green
           in db: regular
       */
-      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 246) {
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
         console.log('invalid-dirty-data')
         return 'invalid-dirty-data'
-      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 247) {
+      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
         console.log('valid-dirty-data')
         return 'valid-dirty-data'
       }

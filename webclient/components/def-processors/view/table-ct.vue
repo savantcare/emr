@@ -113,6 +113,7 @@ import recommendationClientTbl from '@/components/temporal/recommendations/db/cl
 import miscNotesClientTbl from '@/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import planCommentsClientTbl from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientTbl from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 // defining all rows in this object
 const clientTbl = {
   reminders: reminderClientTbl,
@@ -127,7 +128,13 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daRowStatesNotHavingCD: [
+        rowState.New,
+        rowState.New_Changed,
+        rowState.New_Changed_RequestedSave_FormValidationFail,
+        rowState.New_Changed_RequestedSave_FormValidationOk,
+        rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
+      ], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
     }
   },

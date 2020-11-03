@@ -292,6 +292,7 @@ import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   data() {
@@ -437,10 +438,10 @@ export default {
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
-      if (pRow.vnRowStateInSession === 246) {
+      if (pRow.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // form validation has failed
         return 'color: #E6A23C;'
-      } else if (pRow.vnRowStateInSession === 247) {
+      } else if (pRow.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
         // form validation is ok
         return 'color: #67c23a;'
       }

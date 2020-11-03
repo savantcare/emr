@@ -66,7 +66,13 @@ export default {
   data() {
     return {
       tablePageNumber: 1,
-      daRowStatesNotHavingCD: [2, 24, 2456, 2457, 24578], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
+      daRowStatesNotHavingCD: [
+        rowState.New,
+        rowState.New_Changed,
+        rowState.New_Changed_RequestedSave_FormValidationFail,
+        rowState.New_Changed_RequestedSave_FormValidationOk,
+        rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
+      ], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
     }
   },
