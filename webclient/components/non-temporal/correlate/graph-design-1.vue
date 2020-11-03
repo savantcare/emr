@@ -35,9 +35,6 @@ export default {
   },
   computed: {
     chartOptions() {
-      for (const table in allClientTbls) {
-        this.mfCreateSeries(table)
-      }
       var chart = {
         xAxis: [
           {
@@ -111,13 +108,13 @@ export default {
         enabled: false,
       }
 
-      console.log(chart)
+      for (const table in allClientTbls) {
+        this.mfCreateSeries(table)
+      }
 
       for (var property in this.dynamicallyAddedSeries) {
         chart.series.push(this.dynamicallyAddedSeries[property])
       }
-      //debugger
-      console.log(chart)
 
       return chart
     },

@@ -104,4 +104,7 @@ export const bloodSugarFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'bloodSugarMgDL',
+  },
 }
