@@ -263,62 +263,69 @@ export default {
     },
 
     mfCreateSeries(pTableName) {
-      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
-        // Step 1/2 : Insert object into the series array. Series array is used by highcharts
-        const seriesData = this.mfGetDataForGraph(pTableName)
-        if (seriesData && seriesData.length > 0) {
-          let seriesObj = {
-            name: pTableName,
-            data: seriesData,
-            events: {
-              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-              click: function (event) {
-                var pointId = event.point.x
-                event.point.remove()
+      // All the 3 conditions are applied sequentially
+      if (
+        allFormDefinations[pTableName] &&
+        allFormDefinations[pTableName]['graphObj'] &&
+        allFormDefinations[pTableName]['graphObj'].series
+      ) {
+        // Goal : Insert object into the series array. Series array is used by highcharts
+
+        //debugger
+        for (let i = 0; i < allFormDefinations[pTableName]['graphObj'].series.length; i++) {
+          const fieldName = allFormDefinations[pTableName]['graphObj'].series[i].fieldName
+          const seriesData = this.mfGetDataForGraph(pTableName, fieldName)
+          if (seriesData && seriesData.length > 0) {
+            let seriesObj = {
+              name: fieldName,
+              data: seriesData,
+              events: {
+                // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+                click: function (event) {
+                  var pointId = event.point.x
+                  event.point.remove()
+                },
               },
-            },
-            dashStyle: 'longdash',
-            tooltip: {
-              headerFormat: '<small>' + pTableName + ': {point.key}</small><br>',
-              pointFormatter: function () {
-                return this.y + '% of max</b>'
+              dashStyle: 'longdash',
+              tooltip: {
+                headerFormat: '<small>' + fieldName + ': {point.key}</small><br>',
+                pointFormatter: function () {
+                  return this.y + '% of max</b>'
+                },
               },
-            },
+            }
+            this.dynamicallyAddedSeries[fieldName] = seriesObj
           }
-          this.dynamicallyAddedSeries[pTableName] = seriesObj
         }
       }
     },
 
-    mfGetDataForGraph(pTableName) {
-      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
-        // Step 2/2 : Get the data for the graph
-        const arDataToShowOnGraph = []
-        const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
-        const numberOfPointsOnGraph = data.length
-        const graphSeries1FieldName = allFormDefinations[pTableName]['graphObj']['graphSeries1FieldName']
+    mfGetDataForGraph(pTableName, pFieldName) {
+      // Step 2/2 : Get the data for the graph
+      const arDataToShowOnGraph = []
+      const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
+      const numberOfPointsOnGraph = data.length
 
-        if (numberOfPointsOnGraph > 0) {
-          // Goal: Find the max value. So percentage can be made.
-          let maxGraphData = 0
-          for (let i = 0; i < numberOfPointsOnGraph; i++) {
-            const graphData = data[i][graphSeries1FieldName]
-            if (graphData > maxGraphData) {
-              maxGraphData = graphData
-            }
+      if (numberOfPointsOnGraph > 0) {
+        // Goal: Find the max value. So percentage can be made.
+        let maxGraphData = 0
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const graphData = data[i][pFieldName]
+          if (graphData > maxGraphData) {
+            maxGraphData = graphData
           }
-
-          for (let i = 0; i < numberOfPointsOnGraph; i++) {
-            const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-            const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
-            graphData = Math.round(graphData)
-            arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-          }
-
-          return arDataToShowOnGraph
-        } else {
-          return null
         }
+
+        for (let i = 0; i < numberOfPointsOnGraph; i++) {
+          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+          const graphData = (data[i][pFieldName] / maxGraphData) * 100
+          graphData = Math.round(graphData)
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+        }
+
+        return arDataToShowOnGraph
+      } else {
+        return null
       }
     },
   },
