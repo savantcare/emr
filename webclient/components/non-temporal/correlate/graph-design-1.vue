@@ -66,6 +66,37 @@ export default {
       return groupTotal['Depression']
       */
     },
+    mfGetDataForGraph(pTableName) {
+      //debugger
+      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
+        const arDataToShowOnGraph = []
+        const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
+        const numberOfPointsOnGraph = data.length
+        const graphSeries1FieldName = allFormDefinations[pTableName]['graphObj']['graphSeries1FieldName']
+
+        if (numberOfPointsOnGraph > 0) {
+          // Goal: Find the max value. So percentage can be made.
+          let maxGraphData = 0
+          for (let i = 0; i < numberOfPointsOnGraph; i++) {
+            const graphData = data[i][graphSeries1FieldName]
+            if (graphData > maxGraphData) {
+              maxGraphData = graphData
+            }
+          }
+
+          for (let i = 0; i < numberOfPointsOnGraph; i++) {
+            const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+            const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
+            graphData = Math.round(graphData)
+            arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+          }
+
+          return arDataToShowOnGraph
+        } else {
+          return null
+        }
+      }
+    },
   },
   computed: {
     chartOptions() {
@@ -232,62 +263,16 @@ export default {
     },
 
     cfGetWeightDataForGraph() {
-      for (const tableName in allClientTbls) {
-        console.log(tableName)
-        if (allFormDefinations[tableName] && allFormDefinations[tableName]['graphObj']) {
-          const arDataToShowOnGraph = []
-          const data = allClientTbls[tableName].all() // .all is built into vuex-orm and will return all records
-          const numberOfPointsOnGraph = data.length
-          const graphSeries1FieldName = allFormDefinations[tableName]['graphObj']['graphSeries1FieldName']
-          if (numberOfPointsOnGraph > 0) {
-            // Goal: Find the max value. So percentage can be made.
-            let maxGraphData = 0
-            for (let i = 0; i < numberOfPointsOnGraph; i++) {
-              const graphData = data[i][graphSeries1FieldName]
-              if (graphData > maxGraphData) {
-                maxGraphData = graphData
-              }
-            }
-
-            for (let i = 0; i < numberOfPointsOnGraph; i++) {
-              const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-              const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
-              graphData = Math.round(graphData)
-              arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-            }
-            return arDataToShowOnGraph
-          } else {
-            return null
-          }
-        }
-      }
+      return this.mfGetDataForGraph('weight')
     },
 
+    /*
+      for (const tableName in allClientTbls) {
+        console.log(tableName)
+*/
+
     cfGetOxygenSaturationDataForGraph() {
-      const arDataToShowOnGraph = []
-      const data = clientTblOxygenSaturation.all()
-      const numberOfPointsOnGraph = data.length
-
-      if (numberOfPointsOnGraph > 0) {
-        // find the max value
-        let maxGraphData = 0
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const graphData = data[i][clientTblOxygenSaturation.graphSeries1FieldName]
-          if (graphData > maxGraphData) {
-            maxGraphData = graphData
-          }
-        }
-
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = (data[i][clientTblOxygenSaturation.graphSeries1FieldName] / maxGraphData) * 100
-          graphData = Math.round(graphData)
-          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-        }
-        return arDataToShowOnGraph
-      } else {
-        return null
-      }
+      return this.mfGetDataForGraph('oxygen_saturation')
     },
 
     cfArOfServiceStatementsForGraph() {
