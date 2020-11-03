@@ -18,12 +18,17 @@ export const rowState = {
   New: 2,
   New_Changed: 24,
   New_Changed_FormValidationFail: 246,
+
   New_Changed_FormValidationOk: 247,
   New_Changed_FormValidationOk_RequestedSave: 2475,
+  New_Changed_FormValidationOk_RequestedSave_ApiError: 24758,
+  New_Changed_FormValidationOk_RequestedSave_SameAsDB: 24751,
+
   New_Changed_RequestedSave_FormValidationFail: 2456,
   New_Changed_RequestedSave_FormValidationOk: 2457,
   New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
   New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
+
   Copy: 3,
   Copy_Changed: 34,
   Copy_Changed_RequestedSave: 345,
@@ -84,7 +89,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static arOrmRowsCached = []
   static vOrmSaveScheduled = ''
-  static arOrmRowIdSendToServer = []
+  static arOrmRowIdSendingToServerQueue = []
 
   /*
   constructor() {
@@ -658,9 +663,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   // This function will return 1 (Success) or 0 (Failure)
   static async fnSendNewRowsToServer() {
-    const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
-      .get()
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
 
     /*
       Q) Why we use promise in following code?
@@ -680,24 +683,24 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             Save process starts with searching from clientTbl for the records having 'vnRowStateInSession' = 2457.
             Now, 'vnRowStateInSession' of clientTbl record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
             That means the second time searching for 'vnRowStateInSession' = 2457 will point to the same record multiple times which should not be the actual case.
-            To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains clientTbl row id that are going to be saved.
-            In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendToServer'.
+            To solve this, we are maintaining an array 'arOrmRowIdSendingToServerQueue' during the process, which contains clientTbl row id that are going to be saved.
+            In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendingToServerQueue'.
       */
 
-        if (typeof this.arOrmRowIdSendToServer[this.entity] === 'undefined') {
-          this.arOrmRowIdSendToServer[this.entity] = []
+        if (typeof this.arOrmRowIdSendingToServerQueue[this.entity] === 'undefined') {
+          this.arOrmRowIdSendingToServerQueue[this.entity] = []
         }
-        if (this.arOrmRowIdSendToServer[this.entity].includes(row.clientSideUniqRowId)) {
+        if (this.arOrmRowIdSendingToServerQueue[this.entity].includes(row.clientSideUniqRowId)) {
           console.log('Already sent to server')
         } else {
-          this.arOrmRowIdSendToServer[this.entity].push(row.clientSideUniqRowId)
+          this.arOrmRowIdSendingToServerQueue[this.entity].push(row.clientSideUniqRowId)
           const status = await this.fnMakeApiCAll(row)
           if (status === 0) {
             // Handle api returned failure
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
+                vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave_ApiError,
               },
             })
           } else {
@@ -705,15 +708,15 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB,
+                vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave_SameAsDB,
                 //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
               },
             })
 
-            /* Remove clientTbl row id from 'arOrmRowIdSendToServer' after this promise finished. */
-            const index = this.arOrmRowIdSendToServer[this.entity].indexOf(row.clientSideUniqRowId)
+            /* Remove clientTbl row id from 'arOrmRowIdSendingToServerQueue' after this promise finished. */
+            const index = this.arOrmRowIdSendingToServerQueue[this.entity].indexOf(row.clientSideUniqRowId)
             if (index > -1) {
-              this.arOrmRowIdSendToServer[this.entity].splice(index, 1)
+              this.arOrmRowIdSendingToServerQueue[this.entity].splice(index, 1)
             }
 
             /**
@@ -815,22 +818,22 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       return 0
     }
   }
+  /*
   static async mfSendNewRowsToServer() {
-    /*
+  
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
       The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
-    */
+  
     const arFromClientTbl = this.fnGetNewRowsInFormValidationOkState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        /* I cannot do validation here. Since this is getting invoked when button has already been pressed  
+         I cannot do validation here. Since this is getting invoked when button has already been pressed  
           I need to tell the user a row is valid or not when he is editing that row / field.
           The theme colors are at: https://element.eleme.io/#/en-US/component/color
           data same as DB: Regular text
           Valid data in edit state: success color
           data in error state: warning color
-        */
-
+  
         await this.update({
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
@@ -843,7 +846,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
     await this.fnSendNewRowsToServer()
   }
-
+*/
   static async fnSendMultiDeleteDataToServer(dataRow) {
     let success = 0
     let failed = 0
