@@ -35,9 +35,9 @@ export default {
   },
   computed: {
     chartOptions() {
-      this.cfGetHeightDataForGraph
-      this.cfGetWeightDataForGraph
-      this.cfGetOxygenSaturationDataForGraph
+      for (const table in allClientTbls) {
+        this.mfCreateSeries(table)
+      }
       var chart = {
         xAxis: [
           {
@@ -155,18 +155,6 @@ export default {
       }
 
       return arDataToShowOnGraph
-    },
-
-    cfGetHeightDataForGraph() {
-      const data = this.mfCreateSeries('height')
-    },
-
-    cfGetWeightDataForGraph() {
-      const data = this.mfCreateSeries('weight')
-    },
-
-    cfGetOxygenSaturationDataForGraph() {
-      const data = this.mfCreateSeries('oxygen_saturation')
     },
 
     cfArOfServiceStatementsForGraph() {
