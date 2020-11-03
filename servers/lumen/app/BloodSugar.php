@@ -20,7 +20,7 @@ class BloodSugar extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bloodSugarInBpm', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bloodSugarMgDL', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
