@@ -19,7 +19,7 @@ class BloodPressure extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bloodPressureInBpm', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bloodPressureDiastolic','bloodPressureSystolic', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
