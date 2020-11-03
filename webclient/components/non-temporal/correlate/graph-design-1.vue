@@ -3,11 +3,7 @@
     <tags-input
       element-id="tags"
       v-model="selectedTags"
-      :existing-tags="[
-        { key: 'web-development', value: 'Web Development' },
-        { key: 'php', value: 'PHP' },
-        { key: 'javascript', value: 'JavaScript' },
-      ]"
+      :existing-tags="tags"
       :typeahead="true"
       :typeahead-activation-threshold="0"
       :typeahead-hide-discard="true"
@@ -46,6 +42,10 @@ export default {
   data() {
     return {
       dynamicallyAddedSeries: {},
+      tags: [
+        { key: 'web-development', value: 'Web Development' },
+        { key: 'javascript', value: 'JavaScript' },
+      ],
     }
   },
   computed: {
