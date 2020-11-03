@@ -72,10 +72,10 @@ export default {
     mfCreateSeries(pTableName) {
       if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
         // Step 1/2 : Insert object into the series array. Series array is used by highcharts
-        const seriesData = this.mfGetDataForGraph('weight')
+        const seriesData = this.mfGetDataForGraph(pTableName)
 
         let seriesObj = {
-          name: 'Weight',
+          name: pTableName,
           data: seriesData,
           events: {
             // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
@@ -92,7 +92,7 @@ export default {
             },
           },
         }
-        this.dynamicallyAddedSeries['weight'] = seriesObj
+        this.dynamicallyAddedSeries[pTableName] = seriesObj
       }
     },
 
@@ -131,6 +131,7 @@ export default {
   computed: {
     chartOptions() {
       this.cfGetWeightDataForGraph
+      this.cfGetOxygenSaturationDataForGraph
       var chart = {
         xAxis: [
           {
@@ -153,24 +154,6 @@ export default {
           // { data: [0, 0, 0], name: 'Appointments' },
           // { data: this.cfArOfRemindersForDisplay, name: 'Reminders' },
           // { data: this.cfGetHeightDataForGraph, name: 'Height' },
-          {
-            name: 'Spo2',
-            data: this.cfGetOxygenSaturationDataForGraph,
-            events: {
-              // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-              click: function (event) {
-                var pointId = event.point.x
-                event.point.remove()
-              },
-            },
-            dashStyle: 'shortdot',
-            tooltip: {
-              headerFormat: '<small>SPo2: {point.key}</small><br>',
-              pointFormatter: function () {
-                return this.y + '% of max</b>'
-              },
-            },
-          },
           {
             name: 'pros: depression',
             data: this.cfGetProsDepressionDataForGraph,
@@ -227,6 +210,7 @@ export default {
       for (var property in this.dynamicallyAddedSeries) {
         chart.series.push(this.dynamicallyAddedSeries[property])
       }
+      //debugger
       console.log(chart)
 
       return chart
@@ -287,13 +271,8 @@ export default {
       const data = this.mfCreateSeries('weight')
     },
 
-    /*
-      for (const tableName in allClientTbls) {
-        console.log(tableName)
-*/
-
     cfGetOxygenSaturationDataForGraph() {
-      return this.mfGetDataForGraph('oxygen_saturation')
+      const data = this.mfCreateSeries('oxygen_saturation')
     },
 
     cfArOfServiceStatementsForGraph() {
