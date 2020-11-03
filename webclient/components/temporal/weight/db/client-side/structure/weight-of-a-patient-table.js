@@ -104,4 +104,7 @@ export const weightFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'weightInPounds',
+  },
 }

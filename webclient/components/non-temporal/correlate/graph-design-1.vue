@@ -19,6 +19,9 @@ import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-
 
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
+import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
+
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -230,13 +233,14 @@ export default {
 
     cfGetWeightDataForGraph() {
       const arDataToShowOnGraph = []
-      const data = clientTblWeight.all() // .all is built into vuex-orm and will return all records
+      const data = allClientTbls['weight'].all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
+      const graphSeries1FieldName = weightFormDef['graphObj']['graphSeries1FieldName']
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const graphData = data[i][clientTblWeight.graphSeries1FieldName]
+          const graphData = data[i][graphSeries1FieldName]
           if (graphData > maxGraphData) {
             maxGraphData = graphData
           }
@@ -244,7 +248,7 @@ export default {
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
           const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = (data[i][clientTblWeight.graphSeries1FieldName] / maxGraphData) * 100
+          const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
           arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
         }
