@@ -42,10 +42,8 @@ export default {
   data() {
     return {
       dynamicallyAddedSeries: {},
-      tags: [
-        { key: 'web-development', value: 'Web Development' },
-        { key: 'javascript', value: 'JavaScript' },
-      ],
+      selectedTags: [],
+      tags: [],
     }
   },
   computed: {
@@ -310,9 +308,17 @@ export default {
               },
             }
             this.dynamicallyAddedSeries[fieldName] = seriesObj
+            this.mfSetTags()
           }
         }
       }
+    },
+    mfSetTags() {
+      this.tags = []
+      for (const property in this.dynamicallyAddedSeries) {
+        this.tags.push({ key: property, value: property })
+      }
+      console.log(this.tags)
     },
 
     mfGetDataForGraph(pTableName, pFieldName) {
@@ -320,7 +326,6 @@ export default {
       const arDataToShowOnGraph = []
       const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
-
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
