@@ -17,7 +17,7 @@ import screensFormDef from '@/components/temporal/screens/db/client-side/structu
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import psychReviewOfSystemOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import phq9FormDef from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
-import weightFormDef from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
+import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 import pulseFormDef from '@/components/temporal/pulse/db/client-side/structure/pulse-of-a-patient-table.js'
 import temperatureFormDef from '@/components/temporal/temperature/db/client-side/structure/temperature-of-a-patient-table.js'
 import bloodPressureFormDef from '@/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'

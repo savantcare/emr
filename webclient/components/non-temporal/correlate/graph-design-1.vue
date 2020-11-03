@@ -22,8 +22,6 @@ import clientTblOfAppointments from '@/components/temporal/appointments/db/clien
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import allFormDefinations from '@/components/def-processors/all-form-definations.js'
 
-import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
-
 import { Chart } from 'highcharts-vue'
 
 export default {
@@ -237,7 +235,7 @@ export default {
       const arDataToShowOnGraph = []
       const data = allClientTbls['weight'].all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
-      const graphSeries1FieldName = weightFormDef['graphObj']['graphSeries1FieldName']
+      const graphSeries1FieldName = allFormDefinations['weight']['graphObj']['graphSeries1FieldName']
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
         let maxGraphData = 0
