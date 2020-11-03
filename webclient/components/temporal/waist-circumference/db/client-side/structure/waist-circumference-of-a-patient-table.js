@@ -61,7 +61,7 @@ export const waistCircumferenceFormDef = {
   fieldsDef: [
     {
       fieldNameInDb: 'waistCircumferenceInches',
-      fieldNameInUi: 'Blood sugar',
+      fieldNameInUi: 'Waist circumference inches',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
@@ -104,5 +104,8 @@ export const waistCircumferenceFormDef = {
         minLength: minLength(0),
       },
     },
+  },
+  graphObj: {
+    graphSeries1FieldName: 'waistCircumferenceInches',
   },
 }

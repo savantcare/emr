@@ -104,4 +104,7 @@ export const bmiFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'bmiInKgM2',
+  },
 }
