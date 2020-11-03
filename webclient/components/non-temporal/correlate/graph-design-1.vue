@@ -22,10 +22,6 @@ import clientTblOfPatientReminders from '@/components/temporal/reminders/db/clie
 
 import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
 
-import clientTblWeight from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
-import clientTblHeight from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
-import clientTblOxygenSaturation from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
-
 // For pros
 import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
 import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
