@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="hover" class="box-card s-css-class-outer-most-card">
     <div slot="header" class="s-css-class-outer-most-card-header clearfix">
-      <div style="display: grid; grid-template-columns: 1fr 4fr; padding: 0.1rem !important">
+      <div style="display: grid; grid-template-columns: 1fr 5fr">
         <div>Correlate</div>
         <div>
           <tags-input
