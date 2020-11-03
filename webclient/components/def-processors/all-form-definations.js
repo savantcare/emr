@@ -3,8 +3,8 @@ import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/
 import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import { heightFormDef } from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
-import { mentalStatusExamOfAPatientTbl } from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
-import { medicalReviewOfSystemOfAPatientTbl } from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
+import { mentalStatusExamOfAFormDef } from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import { medicalReviewOfSystemOfAFormDef } from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import { miscNotesFormDef } from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import { nameFormDef } from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
 import { pastPsychHistoryFormDef } from '~/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
@@ -14,8 +14,8 @@ import { recommendationFormDef } from '@/components/temporal/recommendations/db/
 import { reminderFormDef } from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 import { goalsFormDef } from '@/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 import { screensFormDef } from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
-import { serviceStatementsOfAPatientTbl } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
-import { psychReviewOfSystemOfAPatientTbl } from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
+import { serviceStatementsOfAFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
+import { psychReviewOfSystemOfAFormDef } from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import { phq9FormDef } from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 import { pulseFormDef } from '@/components/temporal/pulse/db/client-side/structure/pulse-of-a-patient-table.js'
@@ -32,8 +32,8 @@ const allFormDefinations = {
   diagnosis: diagnosisFormDef,
   family_history: familyHistoryFormDef,
   height: heightFormDef,
-  medical_review_of_system: medicalReviewOfSystemOfAPatientTbl,
-  mental_status_exam: mentalStatusExamOfAPatientTbl,
+  medical_review_of_system: medicalReviewOfSystemOfAFormDef,
+  mental_status_exam: mentalStatusExamOfAFormDef,
   miscellaneous_notes: miscNotesFormDef,
   name: nameFormDef,
   past_psych_history: pastPsychHistoryFormDef,
@@ -41,8 +41,8 @@ const allFormDefinations = {
   process_notes: processNotesFormDef,
   recommendations: recommendationFormDef,
   reminders: reminderFormDef,
-  service_statements: serviceStatementsOfAPatientTbl,
-  psych_review_of_system: psychReviewOfSystemOfAPatientTbl,
+  service_statements: serviceStatementsOfAFormDef,
+  psych_review_of_system: psychReviewOfSystemOfAFormDef,
   goals: goalsFormDef,
   screens: screensFormDef,
   phq9: phq9FormDef,

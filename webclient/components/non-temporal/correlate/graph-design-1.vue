@@ -232,29 +232,34 @@ export default {
     },
 
     cfGetWeightDataForGraph() {
-      const arDataToShowOnGraph = []
-      const data = allClientTbls['weight'].all() // .all is built into vuex-orm and will return all records
-      const numberOfPointsOnGraph = data.length
-      const graphSeries1FieldName = allFormDefinations['weight']['graphObj']['graphSeries1FieldName']
-      if (numberOfPointsOnGraph > 0) {
-        // Goal: Find the max value. So percentage can be made.
-        let maxGraphData = 0
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const graphData = data[i][graphSeries1FieldName]
-          if (graphData > maxGraphData) {
-            maxGraphData = graphData
+      for (const tableName in allClientTbls) {
+        console.log(tableName)
+        if (allFormDefinations[tableName] && allFormDefinations[tableName]['graphObj']) {
+          const arDataToShowOnGraph = []
+          const data = allClientTbls[tableName].all() // .all is built into vuex-orm and will return all records
+          const numberOfPointsOnGraph = data.length
+          const graphSeries1FieldName = allFormDefinations[tableName]['graphObj']['graphSeries1FieldName']
+          if (numberOfPointsOnGraph > 0) {
+            // Goal: Find the max value. So percentage can be made.
+            let maxGraphData = 0
+            for (let i = 0; i < numberOfPointsOnGraph; i++) {
+              const graphData = data[i][graphSeries1FieldName]
+              if (graphData > maxGraphData) {
+                maxGraphData = graphData
+              }
+            }
+
+            for (let i = 0; i < numberOfPointsOnGraph; i++) {
+              const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+              const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
+              graphData = Math.round(graphData)
+              arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+            }
+            return arDataToShowOnGraph
+          } else {
+            return null
           }
         }
-
-        for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-          const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
-          graphData = Math.round(graphData)
-          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-        }
-        return arDataToShowOnGraph
-      } else {
-        return null
       }
     },
 

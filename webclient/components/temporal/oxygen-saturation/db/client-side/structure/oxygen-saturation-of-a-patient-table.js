@@ -104,4 +104,7 @@ export const oxygenSaturationFormDef = {
       },
     },
   },
+  graphObj: {
+    graphSeries1FieldName: 'oxygenSaturationSaO2',
+  },
 }
