@@ -33,101 +33,6 @@ export default {
       dynamicallyAddedSeries: {},
     }
   },
-  methods: {
-    mfGetProsOnApptLockDate(pApptObj) {
-      /*
-      if (!pApptObj) return
-
-      let arOfObjectsFromClientRos = []
-      if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', 2147483648000)
-          .get()
-      } else {
-        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
-          .query()
-          .with('tblPsychReviewOfSystemsMasterLink')
-          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
-          .get()
-      }
-
-      let groupTotal = []
-      let catName = ''
-      let value = 0
-      for (let i = 0; i < arOfObjectsFromClientRos.length; i++) {
-        catName = arOfObjectsFromClientRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
-        if (!groupTotal[catName]) groupTotal[catName] = 0
-        if (arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
-          value = arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue']
-          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
-        }
-      }
-      return groupTotal['Depression']
-      */
-    },
-
-    mfCreateSeries(pTableName) {
-      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
-        // Step 1/2 : Insert object into the series array. Series array is used by highcharts
-        const seriesData = this.mfGetDataForGraph(pTableName)
-
-        let seriesObj = {
-          name: pTableName,
-          data: seriesData,
-          events: {
-            // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
-            click: function (event) {
-              var pointId = event.point.x
-              event.point.remove()
-            },
-          },
-          dashStyle: 'longdash',
-          tooltip: {
-            headerFormat: '<small>Weight: {point.key}</small><br>',
-            pointFormatter: function () {
-              return this.y + '% of max</b>'
-            },
-          },
-        }
-        this.dynamicallyAddedSeries[pTableName] = seriesObj
-      }
-    },
-
-    mfGetDataForGraph(pTableName) {
-      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
-        // Step 2/2 : Get the data for the graph
-        const arDataToShowOnGraph = []
-        const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
-        const numberOfPointsOnGraph = data.length
-        const graphSeries1FieldName = allFormDefinations[pTableName]['graphObj']['graphSeries1FieldName']
-
-        if (numberOfPointsOnGraph > 0) {
-          // Goal: Find the max value. So percentage can be made.
-          let maxGraphData = 0
-          for (let i = 0; i < numberOfPointsOnGraph; i++) {
-            const graphData = data[i][graphSeries1FieldName]
-            if (graphData > maxGraphData) {
-              maxGraphData = graphData
-            }
-          }
-
-          for (let i = 0; i < numberOfPointsOnGraph; i++) {
-            const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
-            const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
-            graphData = Math.round(graphData)
-            arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
-          }
-
-          return arDataToShowOnGraph
-        } else {
-          return null
-        }
-      }
-    },
-  },
   computed: {
     chartOptions() {
       this.cfGetHeightDataForGraph
@@ -334,6 +239,101 @@ export default {
         .get()
       const data = [10, 10, 10]
       return data
+    },
+  },
+  methods: {
+    mfGetProsOnApptLockDate(pApptObj) {
+      /*
+      if (!pApptObj) return
+
+      let arOfObjectsFromClientRos = []
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', 2147483648000)
+          .get()
+      } else {
+        arOfObjectsFromClientRos = clientTblOfPatientPsychReviewOfSystems
+          .query()
+          .with('tblPsychReviewOfSystemsMasterLink')
+          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
+          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .get()
+      }
+
+      let groupTotal = []
+      let catName = ''
+      let value = 0
+      for (let i = 0; i < arOfObjectsFromClientRos.length; i++) {
+        catName = arOfObjectsFromClientRos[i]['tblPsychReviewOfSystemsMasterLink']['psychReviewOfSystemsCategory']
+        if (!groupTotal[catName]) groupTotal[catName] = 0
+        if (arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue'] !== null) {
+          value = arOfObjectsFromClientRos[i]['psychReviewOfSystemsFieldValue']
+          groupTotal[catName] = parseFloat(groupTotal[catName]) + parseFloat(value)
+        }
+      }
+      return groupTotal['Depression']
+      */
+    },
+
+    mfCreateSeries(pTableName) {
+      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
+        // Step 1/2 : Insert object into the series array. Series array is used by highcharts
+        const seriesData = this.mfGetDataForGraph(pTableName)
+
+        let seriesObj = {
+          name: pTableName,
+          data: seriesData,
+          events: {
+            // if point gets clicked, it'll be deleted Ref: https://stackoverflow.com/questions/27189644/hiding-points-in-highcharts-on-click
+            click: function (event) {
+              var pointId = event.point.x
+              event.point.remove()
+            },
+          },
+          dashStyle: 'longdash',
+          tooltip: {
+            headerFormat: '<small>Weight: {point.key}</small><br>',
+            pointFormatter: function () {
+              return this.y + '% of max</b>'
+            },
+          },
+        }
+        this.dynamicallyAddedSeries[pTableName] = seriesObj
+      }
+    },
+
+    mfGetDataForGraph(pTableName) {
+      if (allFormDefinations[pTableName] && allFormDefinations[pTableName]['graphObj']) {
+        // Step 2/2 : Get the data for the graph
+        const arDataToShowOnGraph = []
+        const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
+        const numberOfPointsOnGraph = data.length
+        const graphSeries1FieldName = allFormDefinations[pTableName]['graphObj']['graphSeries1FieldName']
+
+        if (numberOfPointsOnGraph > 0) {
+          // Goal: Find the max value. So percentage can be made.
+          let maxGraphData = 0
+          for (let i = 0; i < numberOfPointsOnGraph; i++) {
+            const graphData = data[i][graphSeries1FieldName]
+            if (graphData > maxGraphData) {
+              maxGraphData = graphData
+            }
+          }
+
+          for (let i = 0; i < numberOfPointsOnGraph; i++) {
+            const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+            const graphData = (data[i][graphSeries1FieldName] / maxGraphData) * 100
+            graphData = Math.round(graphData)
+            arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+          }
+
+          return arDataToShowOnGraph
+        } else {
+          return null
+        }
+      }
     },
   },
 }
