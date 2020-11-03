@@ -29,7 +29,7 @@ export default class bloodPressureClass extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/blood-pressure/v20'
+  static apiUrl = 'http://localhost:8000/public/api/blood-pressure-levels/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
