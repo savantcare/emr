@@ -105,6 +105,6 @@ export const oxygenSaturationFormDef = {
     },
   },
   graphObj: {
-    graphSeries1FieldName: 'oxygenSaturationSaO2',
+    series: [{ fieldName: 'oxygenSaturationSaO2' }],
   },
 }

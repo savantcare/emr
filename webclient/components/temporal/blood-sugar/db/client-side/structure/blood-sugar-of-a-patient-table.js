@@ -105,6 +105,6 @@ export const bloodSugarFormDef = {
     },
   },
   graphObj: {
-    graphSeries1FieldName: 'bloodSugarMgDL',
+    series: [{ fieldName: 'bloodSugarMgDL' }],
   },
 }

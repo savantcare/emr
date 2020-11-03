@@ -106,6 +106,6 @@ export const waistCircumferenceFormDef = {
     },
   },
   graphObj: {
-    graphSeries1FieldName: 'waistCircumferenceInches',
+    series: [{ fieldName: 'waistCircumferenceInches' }],
   },
 }

@@ -106,6 +106,6 @@ export const temperatureFormDef = {
     },
   },
   graphObj: {
-    graphSeries1FieldName: 'temperatureInFarehnite',
+    series: [{ fieldName: 'temperatureInFarehnite' }],
   },
 }
