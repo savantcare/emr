@@ -219,6 +219,7 @@
           <div v-else id="row-actions-when-app-is-unlocked">
             <!-- Case 2/2: When this appt is un-locked what row actions to show-->
             <div>
+              <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
               <el-button-group style="float: right">
                 <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
                   <el-button @click="additionalRowAction.executeThisFn(row)">{{
@@ -232,7 +233,6 @@
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
                   Why?
-                  +-
                   A copied row when undone expect to be left with orginal
                   But a new row when undone does not expect to be left with original.
 
@@ -242,7 +242,7 @@
                     style="padding: 3px; color: #c0c4cc; border: none"
                     plain
                     @click="
-                      String(row.vnRowStateInSession).startsWith(2)
+                      String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
                         ? mfOpenAddInEditLayer()
                         : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
                     "
