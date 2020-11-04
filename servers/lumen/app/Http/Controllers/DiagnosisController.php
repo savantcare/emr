@@ -18,10 +18,10 @@ class DiagnosisController extends Controller
         return response()->json($dignosisQuery);
     }
 
-    public function getOneDiagnosis($pServerSideRowUuid)
-    {
-        return response()->json(Diagnosis::find($pServerSideRowUuid));
-    }
+    // public function getOneDiagnosis($pServerSideRowUuid)
+    // {
+    //     return response()->json(Diagnosis::find($pServerSideRowUuid));
+    // }
 
     public function create(Request $request)
     {
