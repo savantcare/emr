@@ -20,7 +20,7 @@ class OxygenSaturation extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'oxygenSaturationInSpo2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'oxygenSaturationInSpo2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class OxygenSaturation extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}    
+}

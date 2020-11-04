@@ -20,7 +20,7 @@ class Bmi extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'bmiInKgM2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bmiInKgM2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class Bmi extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}   
+}
