@@ -1,1 +1,1 @@
-create database sc_plan-comments
+create database sc_plan_comments
