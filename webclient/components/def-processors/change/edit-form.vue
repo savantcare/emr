@@ -188,9 +188,9 @@ export default {
           rowInTimeLine.createdAt =
             date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
-            arFromClientTbl[i].vnRowStateInSession === rowState.Copy ||
-            arFromClientTbl[i].vnRowStateInSession === rowState.Copy_Changed ||
-            arFromClientTbl[i].vnRowStateInSession === rowState.Copy_Changed_RequestedSave_FormValidationFail
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail
           ) {
             rowInTimeLine.type = 'warning' // row is being edited and is not on server
           } else {
@@ -290,7 +290,7 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
-      const rowStatus = rowState.Copy_Changed
+      const rowStatus = rowState.SameAsDB_Copy_Changed
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(
         pEvent,
         this.dnClientIdOfCopiedRowBeingChanged,
@@ -304,7 +304,7 @@ export default {
         await allClientTbls[this.propFormDef.id].update({
           where: this.dnClientIdOfCopiedRowBeingChanged,
           data: {
-            vnRowStateInSession: rowState.Copy_Changed_RequestedSave,
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave,
           },
         })
 
@@ -339,7 +339,7 @@ export default {
           allClientTbls[this.propFormDef.id].update({
             where: this.dnClientIdOfCopiedRowBeingChanged,
             data: {
-              vnRowStateInSession: rowState.Copy_Changed_RequestedSave_ApiError,
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError,
             },
           })
           console.log('Failed to update')
@@ -382,7 +382,8 @@ export default {
               return (
                 record.uuid === this.dnOrmUuidOfRowToChange &&
                 (record.vnRowStateInSession === rowState.SameAsDB ||
-                  record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
+                  record.vnRowStateInSession ===
+                    rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
                   record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
               )
             },
@@ -394,7 +395,7 @@ export default {
           allClientTbls[this.propFormDef.id].update({
             where: this.dnClientIdOfCopiedRowBeingChanged,
             data: {
-              vnRowStateInSession: rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
             },
           })
           console.log('update success')

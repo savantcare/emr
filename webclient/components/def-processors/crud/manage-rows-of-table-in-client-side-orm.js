@@ -30,12 +30,12 @@ export const rowState = {
   New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
 
   // Add SameAsDB in the front
-  Copy: 3,
-  Copy_Changed: 34,
-  Copy_Changed_RequestedSave: 345,
-  Copy_Changed_RequestedSave_FormValidationFail: 3456,
-  Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 34571,
-  Copy_Changed_RequestedSave_ApiError: 3458,
+  SameAsDB_Copy: 3,
+  SameAsDB_Copy_Changed: 34,
+  SameAsDB_Copy_Changed_RequestedSave: 345,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 3456,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 34571,
+  SameAsDB_Copy_Changed_RequestedSave_ApiError: 3458,
 }
 
 // Others
@@ -149,9 +149,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetAllChangeRowsInEditState() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.Copy) // Copy(3)
-      .orWhere('vnRowStateInSession', rowState.Copy_Changed) // Copy(3) -> Changed(4)
-      .orWhere('vnRowStateInSession', rowState.Copy_Changed_RequestedSave_Error) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
+      .where('vnRowStateInSession', rowState.SameAsDB_Copy)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError)
       .get()
     return arFromClientTbl
   }
@@ -172,9 +173,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
-          record.vnRowStateInSession === rowState.Copy ||
-          record.vnRowStateInSession === rowState.Copy_Changed ||
-          record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_Error
+          record.vnRowStateInSession === rowState.SameAsDB_Copy ||
+          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
+          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError
         )
       })
       .get()
@@ -625,7 +626,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
-    arToCopy.vnRowStateInSession = rowState.Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.vnRowStateInSession = rowState.SameAsDB_Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
     })
