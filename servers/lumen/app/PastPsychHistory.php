@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class PastPsychHistory extends Model
 {
     protected $connection = 'pastPsychHistoryDB';
-    protected $table = 'patient_data';
+    protected $table = 'past_psych_history';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class PastPsychHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'patientUuid', 'recordChangedByUuid',
+        'ptUuid', 'recordChangedByUuid',
     ];
 
     /**
