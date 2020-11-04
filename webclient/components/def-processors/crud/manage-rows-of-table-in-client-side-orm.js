@@ -5,17 +5,17 @@ import tableStructureForStoreMessageFromOtherComponent from '~/components/non-te
 // Start from new
 
 export const rowState = {
-  /*  New = 2
-      Changed = 4
-      FormValidationFail = 6
-      FormValidationOk = 7
-      Copy = 3
-      RequestedSave = 5
-      SameAsDB = 1
-      ApiError = 8  */
-
+  // Primary
   SameAsDB: 1,
   New: 2,
+  Copy: 3,
+  Changed: 4,
+  RequestedSave: 5,
+  FormValidationFail: 6,
+  FormValidationOk: 7,
+  ApiError: 8,
+
+  // Combined
   New_Changed: 24,
   New_Changed_FormValidationFail: 246,
 
