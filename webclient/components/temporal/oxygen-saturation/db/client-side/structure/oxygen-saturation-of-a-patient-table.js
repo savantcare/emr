@@ -11,13 +11,13 @@ const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now(
 export default class oxygenSaturationClass extends clientTblManage {
   static entity = 'tblOxygenSaturation'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/oxygen-saturation/getAll
 
@@ -40,7 +40,7 @@ export default class oxygenSaturationClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      oxygenSaturationSaO2: this.string(''),
+      oxygenSaturationInSpo2: this.string(''),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
       recordChangedByUuid: this.string(null),
@@ -59,7 +59,7 @@ export const oxygenSaturationFormDef = {
   singular: 'oxygen saturation',
   fieldsDef: [
     {
-      fieldNameInDb: 'oxygenSaturationSaO2',
+      fieldNameInDb: 'oxygenSaturationInSpo2',
       fieldNameInUi: 'Oxygen saturation',
       fieldType: 'number',
       span: 24,
@@ -83,7 +83,7 @@ export const oxygenSaturationFormDef = {
   ],
   showFormReviewedButton: false,
   maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['oxygenSaturationSaO2'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['oxygenSaturationInSpo2'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -93,7 +93,7 @@ export const oxygenSaturationFormDef = {
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      oxygenSaturationSaO2: {
+      oxygenSaturationInSpo2: {
         minLength: minLength(2),
       },
       notes: {
@@ -105,6 +105,6 @@ export const oxygenSaturationFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'oxygenSaturationSaO2' }],
+    series: [{ fieldName: 'oxygenSaturationInSpo2' }],
   },
 }
