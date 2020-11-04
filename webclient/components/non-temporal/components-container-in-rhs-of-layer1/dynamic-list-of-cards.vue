@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import ctCorrelate from '@/components/non-temporal/correlate/design-1.vue'
+import ctCorrelate from '@/components/non-temporal/correlate/design-2.vue'
 //import vitals from '@/components/temporal/vital-signs/view-layer/grid-ct.vue'
 
 export default {

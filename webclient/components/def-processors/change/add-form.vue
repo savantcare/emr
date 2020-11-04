@@ -16,12 +16,7 @@
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
-              <el-card
-                :span="propFieldDef.span"
-                :class="ormRow.validationClass"
-                shadow="hover"
-                :style="propFieldDef.fieldStyle"
-              >
+              <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
                 <!-- The following are the possible field types -->
 
                 <!-- Field type 1: Do the following when it is heading type field -->
@@ -250,6 +245,7 @@
 <script>
 import allClientTbls from '../all-client-tables.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   created() {
@@ -290,7 +286,7 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationOkState()
     },
     cfGetClientTblApiSuccessStateRows() {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
@@ -347,9 +343,9 @@ export default {
       this.$v.value[pFldName].$touch() // $v is the validation object created by vuelidate library
       let rowStatus = 0
       if (this.$v.$invalid === false) {
-        rowStatus = 247 // This implies valid is true
+        rowStatus = rowState.New_Changed_FormValidationOk // This implies valid is true
       } else {
-        rowStatus = 246 // This implies invalid is true
+        rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
@@ -363,11 +359,11 @@ export default {
           valid: green
           in db: regular
       */
-      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 246) {
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
         console.log('invalid-dirty-data')
         return 'invalid-dirty-data'
-      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 247) {
+      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
         console.log('valid-dirty-data')
         return 'valid-dirty-data'
       }

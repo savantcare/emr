@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class BloodSugar extends Model
+class Bmi extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'bloodSugarLevels';
+    protected $table = 'bmi';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class BloodSugar extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bloodSugarMgDL', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUUID', 'bmiInKgM2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class BloodSugar extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}  
+}   

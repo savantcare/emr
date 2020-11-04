@@ -1,5 +1,6 @@
 import clientTbl from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],
@@ -142,11 +143,9 @@ export default {
           where: (record) => {
             return (
               record.uuid === rowToUpsert.uuid &&
-              (record.vnRowStateInSession === 1 /* Came from DB */ ||
-                record.vnRowStateInSession ===
-                  34571 /* Created as copy on client -> Changed -> Requested save -> Send to server -> API Success */ ||
-                record.vnRowStateInSession ===
-                  24571) /* New -> Changed -> Requested save -> Send to server -> API Success */
+              (record.vnRowStateInSession === rowState.SameAsDB ||
+                record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
+                record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
             )
           },
           data: {
@@ -157,7 +156,7 @@ export default {
         clientTbl.update({
           where: this.dnClientIdOfCopiedRowBeingChanged,
           data: {
-            vnRowStateInSession: 34571,
+            vnRowStateInSession: rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
@@ -187,7 +186,7 @@ export default {
       return value
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
-      const rowStatus = 34 // 3 is copy on client and 4 is changed on client
+      const rowStatus = rowState.Copy_Changed // 3 is copy on client and 4 is changed on client
       clientTbl.fnSetValueOfFld(pEvent, this.dnClientIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },

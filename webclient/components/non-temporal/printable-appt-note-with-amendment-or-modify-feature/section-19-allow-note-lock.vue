@@ -45,13 +45,13 @@ export default {
       console.log('lock button clicked')
 
       /* Loop through all the tables */
-      for (const property in allClientTbls) {
+      for (const entity in allClientTbls) {
         console.log(
           'Delegating responsibility to',
-          allClientTbls[property].entity,
+          allClientTbls[entity].entity,
           'Letting it decide if there is some data to be saved and if so then save the data.'
         )
-        const state = allClientTbls[property].mfSendNewRowsToServer()
+        const state = allClientTbls[entity].fnSendNewRowsToServer()
         console.log(state)
       }
 

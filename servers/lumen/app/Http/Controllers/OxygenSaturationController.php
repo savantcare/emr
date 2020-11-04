@@ -29,14 +29,14 @@ class OxygenSaturationController extends Controller
         $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
-        $ptUUID = $requestData['data']['ptUUID'];
+        $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
         $oxygenSaturationInSpo2 = $requestData['data']['oxygenSaturationInSpo2'];
         $notes = $requestData['data']['notes'];
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertOxygenSaturation = DB::statement("INSERT INTO `sc_vital_signs`.`oxygenSaturation` (`serverSideRowUuid`, `ptUUID`, `oxygenSaturationInSpo2`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUUID}', {$oxygenSaturationInSpo2}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertOxygenSaturation = DB::statement("INSERT INTO `sc_vital_signs`.`oxygenSaturation` (`serverSideRowUuid`, `ptUuid`, `oxygenSaturationInSpo2`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$oxygenSaturationInSpo2}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertOxygenSaturation, 201);
     }
@@ -74,4 +74,4 @@ class OxygenSaturationController extends Controller
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
-}   
+}

@@ -29,7 +29,7 @@ export default class bloodSugarClass extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/blood-sugar/v20'
+  static apiUrl = 'http://localhost:8000/public/api/blood-sugar-levels/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

@@ -243,23 +243,19 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-
-     // DIAGNOSIS
-     $router->get('diagnosis/v20/', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
-     $router->get('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@getOneDiagnosis']);
-     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
-     $router->delete('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
-     $router->patch('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
- 
-     $router->options('diagnosis/v20', function () {
-         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
-             ->header('Access-Control-Allow-Credentials', 'true')
-             ->header('Connection', 'keep-alive');
-     });
-     $router->options('diagnosis/v20/{serverSideRowUuid}', function () {
-         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
-             ->header('Access-Control-Allow-Credentials', 'true')
-             ->header('Connection', 'keep-alive');
-     });
-
+    // BMI
+    $router->get('bmi/v20/', ['uses' => 'BmiController@getAllTemporalBmis']);
+    $router->get('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@getOneBmi']);
+    $router->post('bmi/v20/', ['uses' => 'BmiController@create']);
+    $router->put('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@update']);
+    $router->options('bmi/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('bmi/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
 });

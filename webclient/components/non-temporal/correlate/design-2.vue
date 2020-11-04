@@ -1,18 +1,25 @@
 <template>
-  <div>
-    <tags-input
-      element-id="tags"
-      v-model="selectedSeriesTags"
-      :existing-tags="availableSeriesTags"
-      :typeahead="true"
-      :typeahead-activation-threshold="0"
-      :typeahead-hide-discard="true"
-      :only-existing-tags="true"
-      @tag-added="mfTagAdded"
-      :placeholder="cfGetPlaceholder"
-    ></tags-input>
+  <el-card shadow="hover" class="box-card s-css-class-outer-most-card">
+    <div slot="header" class="s-css-class-outer-most-card-header clearfix">
+      <div style="display: grid; grid-template-columns: 1fr 5fr">
+        <div>Correlate</div>
+        <div>
+          <tags-input
+            element-id="tags"
+            v-model="selectedSeriesTags"
+            :existing-tags="availableSeriesTags"
+            :typeahead="true"
+            :typeahead-activation-threshold="0"
+            :typeahead-hide-discard="true"
+            :only-existing-tags="true"
+            @tag-added="mfTagAdded"
+            :placeholder="cfGetPlaceholder"
+          ></tags-input>
+        </div>
+      </div>
+    </div>
     <highcharts :options="cfChartOptions"></highcharts>
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -318,5 +325,22 @@ div.highcharts-container {
 svg.highcharts-root {
   width: 100%;
   height: 100%;
+}
+
+.s-css-class-outer-most-card .el-card__header {
+  /* Goal: Manage Distance from border to content in header*/
+  padding: 0.1rem !important;
+}
+
+/* Every card in element.io has the class .el-card__body so .el-card__body is not explicitly applied. */
+.s-css-class-outer-most-card .el-card__body {
+  /* Goal: Manage  Distance from border to content in body*/
+  padding: 0.5rem !important;
+}
+
+/* Generation Level 2. This is Gen Level 2 since card has a header. Card is Gen 1 and Header is Gen 2. */
+
+/* Goal: The font of the header of the outer most card should be 1.2 of the font size of the browser */
+.s-css-class-outer-most-card-header {
 }
 </style>
