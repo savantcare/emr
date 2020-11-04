@@ -32,7 +32,9 @@ class ServiceStatementController extends Controller
         $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'patientUuid' => $requestData['data']['patientUuid'],
-            'serviceStatementMasterId' => $requestData['data']['serviceStatementMasterId'],
+            'total_minutes_in_psychotherapy_select' => $requestData['data']['total_minutes_in_psychotherapy_select'],
+            'total_minutes_with_patient_select' => $requestData['data']['total_minutes_with_patient_select'],
+            'modality_of_psychotherapy_multi_select' => $requestData['data']['modality_of_psychotherapy_multi_select'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
@@ -42,7 +44,9 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'serviceStatementMasterId' => $requestData['data']['serviceStatementMasterId'],
+            'total_minutes_in_psychotherapy_select' => $requestData['data']['total_minutes_in_psychotherapy_select'],
+            'total_minutes_with_patient_select' => $requestData['data']['total_minutes_with_patient_select'],
+            'modality_of_psychotherapy_multi_select' => $requestData['data']['modality_of_psychotherapy_multi_select'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
@@ -65,7 +69,9 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToChange';
         $message = array(
             'serverSideRowUuid' => $serverSideRowUuid,
-            'serviceStatementMasterId' => $requestData['serviceStatementMasterId'],
+            'total_minutes_in_psychotherapy_select' => $requestData['total_minutes_in_psychotherapy_select'],
+            'total_minutes_with_patient_select' => $requestData['total_minutes_with_patient_select'],
+            'modality_of_psychotherapy_multi_select' => $requestData['modality_of_psychotherapy_multi_select'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 

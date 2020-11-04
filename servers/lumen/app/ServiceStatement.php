@@ -20,7 +20,7 @@ class ServiceStatement extends Model
      * @var array
      */
     protected $fillable = [
-        'patientUuid', 'serviceStatementMasterId', 'recordChangedByUuid',
+        'patientUuid', 'total_minutes_in_psychotherapy_select','total_minutes_with_patient_select','modality_of_psychotherapy_multi_select', 'recordChangedByUuid',
     ];
 
     /**
