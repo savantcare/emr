@@ -106,6 +106,6 @@ export const pulseFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'pulseInBpm' }],
+    series: [{ fieldName: 'pulseInBpm', fieldLabel: 'Pulse' }],
   },
 }

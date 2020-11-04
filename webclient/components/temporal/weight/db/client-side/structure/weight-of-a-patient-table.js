@@ -105,6 +105,6 @@ export const weightFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'weightInPounds' }],
+    series: [{ fieldName: 'weightInPounds', fieldLabel: 'Weight' }],
   },
 }

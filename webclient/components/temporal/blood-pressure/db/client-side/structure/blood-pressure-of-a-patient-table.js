@@ -117,6 +117,9 @@ export const bloodPressureFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'bloodPressureSystolic' }, { fieldName: 'bloodPressureDiastolic' }],
+    series: [
+      { fieldName: 'bloodPressureSystolic', fieldLabel: 'Blood pressure systolic' },
+      { fieldName: 'bloodPressureDiastolic', fieldLabel: 'Blood pressure diastolic' },
+    ],
   },
 }

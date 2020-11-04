@@ -105,6 +105,6 @@ export const heightFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'heightInInches' }],
+    series: [{ fieldName: 'heightInInches', fieldLabel: 'Height' }],
   },
 }

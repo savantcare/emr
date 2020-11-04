@@ -105,6 +105,6 @@ export const oxygenSaturationFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'oxygenSaturationInSpo2' }],
+    series: [{ fieldName: 'oxygenSaturationInSpo2', fieldLabel: 'Oxygen saturation' }],
   },
 }

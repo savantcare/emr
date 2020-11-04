@@ -226,6 +226,7 @@ export default {
         // There can be multiple series inside a table.
         for (let i = 0; i < allFormDefinations[pTableName]['graphObj'].series.length; i++) {
           const fieldName = allFormDefinations[pTableName]['graphObj'].series[i].fieldName
+          const fieldLabel = allFormDefinations[pTableName]['graphObj'].series[i].fieldLabel
 
           // There are 2 possibilities this fieldname has been selected in the tag or not.
           // Goal: Only show those series that have been selected in the tag system
@@ -243,6 +244,7 @@ export default {
           if (seriesData && seriesData.length > 0) {
             let seriesObj = {
               name: fieldName,
+              label: fieldLabel,
               data: seriesData,
               visible: tagAndFieldNameAreSame,
               showInLegend: false,
@@ -255,7 +257,7 @@ export default {
               },
               dashStyle: 'longdash',
               tooltip: {
-                headerFormat: '<small>' + fieldName + ': {point.key}</small><br>',
+                headerFormat: '<small>' + fieldLabel + ': {point.key}</small><br>',
                 pointFormatter: function () {
                   return this.y + '% of max</b>'
                 },
@@ -270,7 +272,8 @@ export default {
     mfSetTags() {
       this.availableSeriesTags = []
       for (const property in this.dynamicallyAddedSeries) {
-        this.availableSeriesTags.push({ key: property, value: property })
+        const value = this.dynamicallyAddedSeries[property].label
+        this.availableSeriesTags.push({ key: property, value: value })
       }
       console.log(this.availableSeriesTags)
       console.log(this.selectedSeriesTags)

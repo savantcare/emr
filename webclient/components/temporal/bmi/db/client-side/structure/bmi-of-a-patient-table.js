@@ -105,6 +105,6 @@ export const bmiFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'bmiInKgM2' }],
+    series: [{ fieldName: 'bmiInKgM2', fieldLabel: 'BMI' }],
   },
 }
