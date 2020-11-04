@@ -164,16 +164,16 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Past psych history
-    $router->get('past-pysch-history/v20/', ['uses' => 'PastPyschHistoryController@getAllTemporalPastPyschHistory']);
-    $router->get('past-pysch-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPyschHistoryController@getOnePastPyschHistory']);
-    $router->post('past-pysch-history/v20/', ['uses' => 'PastPyschHistoryController@create']);
-    $router->delete('past-pysch-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPyschHistoryController@delete']);
-    $router->options('past-pysch-history/v20', function () {
+    $router->get('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@getAllTemporalPastPsychHistory']);
+    $router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@getOnePastPsychHistory']);
+    $router->post('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@create']);
+    $router->delete('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@delete']);
+    $router->options('past-psych-history/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-    $router->options('past-pysch-history/v20/{pServerSideRowUuid}', function () {
+    $router->options('past-psych-history/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
