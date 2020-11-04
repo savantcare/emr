@@ -26,20 +26,17 @@ class DiagnosisController extends Controller
     public function create(Request $request)
     {
         $requestData = $request->all();
-        $getRequestIp = $request->ip();
-        
-        $insertData = [
-            'serverSideRowUuid'=>$requestData['data']['serverSideRowUuid'],
-            'ptUuid'=>$requestData['data']['ptUuid'],
-            'masterDiagnosisId'=>$requestData['data']['diagnosis'],
-            'assessment'=>$requestData['data']['assessment'],
-            'startDate'=>date("Y-m-d H:i:s", ((Int)$requestData['data']['onset'] / 1000)),
-            'recordChangedByUuid'=>$requestData['data']['recordChangedByUuid'],
-            'recordChangedFromIPAddress'=>$getRequestIp
-        ];
+        $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
+        $ptUuid = $requestData['data']['ptUuid'];
+        $startDate = (int)($requestData['data']['onset']);
+        $masterDiagnosisId = $requestData['data']['diagnosis'];
+        $assessment = $requestData['data']['assessment'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $diagnosis = Diagnosis::insert($insertData);
-        return response()->json($diagnosis, 201);
+        $insertDiagnosis = DB::statement("INSERT INTO `sc_dx`.`assignedDiagnosis` (`serverSideRowUuid`, `ptUuid`, `masterDiagnosisId`,`assessment`,`startDate`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$masterDiagnosisId}, '{$assessment}', FROM_UNIXTIME({$startDate}/1000), '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+
+        return response()->json($insertDiagnosis, 201);
     }
     
     public function delete($serverSideRowUuid, Request $request)
@@ -57,5 +54,25 @@ class DiagnosisController extends Controller
         $diagnosis->delete();
         
         return response('Deleted successfully', 200);
+    }
+    public function get_client_ip()
+    {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipaddress = 'UNKNOWN';
+        }
+        return $ipaddress;
     }
 }
