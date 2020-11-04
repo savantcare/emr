@@ -91,7 +91,7 @@ export const bloodPressureFormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bloodPressureSystolic'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model

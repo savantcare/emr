@@ -36,11 +36,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfRows ||
-                  !propFormDef.maxNumberOfRows
+                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfTemporallyValidRows ||
+                  !propFormDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"

@@ -75,7 +75,7 @@ export const serviceStatementsFormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'total_minutes_in_psychotherapy_select',

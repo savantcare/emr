@@ -168,7 +168,10 @@
             <!-- Just ended processing all the fields in the row -->
           </div>
           <el-button
-            v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+            v-if="
+              mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
+              !propFormDef.maxNumberOfTemporallyValidRows
+            "
             plain
             type="warning"
             style="float: right"
@@ -188,9 +191,12 @@
           >Reviewed</el-button
         >
 
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
-          v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+          v-if="
+            mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
+            !propFormDef.maxNumberOfTemporallyValidRows
+          "
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
@@ -244,6 +250,7 @@
 </template>
 <script>
 import allClientTbls from '../all-client-tables.js'
+import allFormDefinations from '../all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
@@ -314,14 +321,19 @@ export default {
 
     async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
-      const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
-        data: {
-          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
-          ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-        },
-      })
-      if (!arFromClientTbl) {
-        console.log('FATAL ERROR')
+
+      // get the number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+      const currentRowCount = allClientTbls[this.propFormDef.id].query().count()
+      if (currentRowCount < allFormDefinations[this.propFormDef.id].maxNumberOfTemporallyValidRows) {
+        const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
+          data: {
+            vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
+            ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+          },
+        })
+        if (!arFromClientTbl) {
+          console.log('FATAL ERROR')
+        }
       }
       this.mfSetFormFieldFocus()
     },

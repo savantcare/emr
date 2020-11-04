@@ -56,7 +56,7 @@ export const chiefComplaintFormDef = {
   singular: 'chief complaint',
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'text', span: 24 }],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showFormReviewedButton: false,
   fnCreated: function () {

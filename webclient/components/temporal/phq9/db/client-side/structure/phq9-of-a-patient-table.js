@@ -221,7 +221,7 @@ export const phq9FormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'interest',

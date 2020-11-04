@@ -77,7 +77,7 @@ export const medicalReviewOfSystemFormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'recently_noticed_select',
