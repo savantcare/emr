@@ -707,8 +707,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave_SameAsDB,
-                //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
+                vnRowStateInSession: rowState.SameAsDB,
+                /* The sequence at this point is ->  New_Changed_FormValidationOk_RequestedSave_SameAsDB.  
+                   SameAsDB is always considered a marker. So whenever SameAsDB is reached we forget the old state. If we keep remembering the old state then the whole state can be 100 steps long.
+                   No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted or updated. (For temporal update is like delete and insert)
+                */
               },
             })
 
