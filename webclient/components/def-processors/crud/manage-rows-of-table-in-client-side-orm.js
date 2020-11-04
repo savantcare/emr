@@ -29,7 +29,6 @@ export const rowState = {
   New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
   New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
 
-  // Add SameAsDB in the front
   SameAsDB_Copy: 13,
   SameAsDB_Copy_Changed: 134,
   SameAsDB_Copy_Changed_RequestedSave: 1345,
