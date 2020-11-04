@@ -187,7 +187,7 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propFormDef.showFormReviewedButton !== false" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="propFormDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 

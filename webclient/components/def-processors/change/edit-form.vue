@@ -69,7 +69,14 @@
         </el-form-item>
       </div>
       <el-form-item>
-        <el-button type="primary" size="mini" plain @click="mfSendDataToServer">Reviewed</el-button>
+        <el-button
+          v-if="propFormDef.showFormReviewedButton === true"
+          type="primary"
+          size="mini"
+          plain
+          @click="mfSendDataToServer"
+          >Reviewed</el-button
+        >
       </el-form-item>
     </el-form>
 
