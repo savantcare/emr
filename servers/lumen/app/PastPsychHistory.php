@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class PastPyschHistory extends Model
+class PastPsychHistory extends Model
 {
-    protected $connection = 'pastPyschHistoryDB';
-    protected $table = 'patient_data';
+    protected $connection = 'pastPsychHistoryDB';
+    protected $table = 'past_psych_history';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class PastPyschHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'patientUuid', 'pastPyschHistoryMasterId', 'recordChangedByUuid',
+        'ptUuid', 'recordChangedByUuid',
     ];
 
     /**
