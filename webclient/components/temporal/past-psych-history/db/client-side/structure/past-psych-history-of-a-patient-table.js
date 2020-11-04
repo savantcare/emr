@@ -110,7 +110,7 @@ export const pastPsychHistoryFormDef = {
     'history_of_self_harm',
     'past_substance_abuse',
   ],
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
   showFormReviewedButton: false,
   validationsObj: {
     value: {

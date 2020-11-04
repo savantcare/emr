@@ -36,11 +36,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfRows ||
-                  !propFormDef.maxNumberOfRows
+                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfTemporallyValidRows ||
+                  !propFormDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"
@@ -328,6 +328,13 @@ export default {
   },
   computed: {
     cfGetDataRowStyle() {
+      /* When I come to this fn the following scenarios are possible
+        clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
+        Possibilities are 1. Both have values 2. Only 1 has value.
+        First goal: Find if propApptId is same as F1 or F2. If propApptId == F2 then it is comparison mode. If propApptId != F2 then for certain I can say propApptId == F1. propApptId may or many not be comparison mode.
+        if there is value in F2 then propApptId is in comparison mode. If F2 is empty then this is single note render mode.
+      */
+
       let secondaryDuringComparisonApptObj = {}
       let secondaryDuringComparisonDataRows = {}
 
@@ -345,6 +352,7 @@ export default {
         } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
           return 'border:1px solid #67C23A'
         } else {
+          // I come here when the length of both rows is same, Now there are 2 possibilities 1. Content is same 2. Content is different.
           return ''
         }
       } else {

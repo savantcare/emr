@@ -144,7 +144,7 @@ export default {
             return (
               record.uuid === rowToUpsert.uuid &&
               (record.vnRowStateInSession === rowState.SameAsDB ||
-                record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
+                record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
                 record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
             )
           },
@@ -156,7 +156,7 @@ export default {
         clientTbl.update({
           where: this.dnClientIdOfCopiedRowBeingChanged,
           data: {
-            vnRowStateInSession: rowState.Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
@@ -186,7 +186,7 @@ export default {
       return value
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
-      const rowStatus = rowState.Copy_Changed // 3 is copy on client and 4 is changed on client
+      const rowStatus = rowState.SameAsDB_Copy_Changed // 3 is copy on client and 4 is changed on client
       clientTbl.fnSetValueOfFld(pEvent, this.dnClientIdOfCopiedRowBeingChanged, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
