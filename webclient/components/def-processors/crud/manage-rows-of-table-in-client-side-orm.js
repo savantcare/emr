@@ -30,12 +30,12 @@ export const rowState = {
   New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
 
   // Add SameAsDB in the front
-  SameAsDB_Copy: 3,
-  SameAsDB_Copy_Changed: 34,
-  SameAsDB_Copy_Changed_RequestedSave: 345,
-  SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 3456,
-  SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 34571,
-  SameAsDB_Copy_Changed_RequestedSave_ApiError: 3458,
+  SameAsDB_Copy: 13,
+  SameAsDB_Copy_Changed: 134,
+  SameAsDB_Copy_Changed_RequestedSave: 1345,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 13456,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 134571,
+  SameAsDB_Copy_Changed_RequestedSave_ApiError: 13458,
 }
 
 // Others
@@ -778,6 +778,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         return 0 // Returns error code when try block gets an exception and fails
       }
     } else {
+      // This is the scenario when in the nuxt.config.js make apoi calls has been set to false. This is done when I want to run the s/w on client side without depending on the server.
       return 1
     }
   }
