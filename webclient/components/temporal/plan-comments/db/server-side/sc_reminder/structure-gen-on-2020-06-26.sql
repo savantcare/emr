@@ -1,16 +1,20 @@
-use sc_plan-comments;
+use sc_plan
+-comments;
 
-DROP TABLE IF EXISTS `plan-comments`;
+DROP TABLE IF EXISTS `sc_plan_comments`;
 
-CREATE TABLE `plan-comments` (
-  `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `notes` text DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
-  `isAutoRem` int(11) DEFAULT NULL,
-  `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
-  PRIMARY KEY (`serverSideRowUuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
+CREATE TABLE `plan_comments`
+(
+  `serverSideRowUuid` char
+(36) NOT NULL,
+  `ptUuid` char
+(36) NOT NULL,
+  `description` text NOT NULL,
+  `recordChangedByUuid` char
+(36) NOT NULL,
+  `recordChangedFromIPAddress` varchar
+(20) NOT NULL,
+  `recordChangedFromSection` varchar
+(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+WITH SYSTEM VERSIONING;
