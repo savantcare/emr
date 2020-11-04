@@ -1,7 +1,7 @@
 use sc_plan
 -comments;
 
-DROP TABLE IF EXISTS `sc_plan_comments`;
+DROP TABLE IF EXISTS `plan_comments`;
 
 CREATE TABLE `plan_comments`
 (
