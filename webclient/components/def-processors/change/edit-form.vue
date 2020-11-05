@@ -296,7 +296,8 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
-      const rowStatus = rowState.SameAsDB_Copy_Changed
+      // TODO: need to do form validation here just like in add form
+      const rowStatus = rowState.SameAsDB_Copy_Changed_FormValidationOk
       allClientTbls[this.propFormDef.id].fnSetValueOfFld(
         pEvent,
         this.dnClientIdOfCopiedRowBeingChanged,

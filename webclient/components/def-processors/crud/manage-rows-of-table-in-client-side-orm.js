@@ -30,7 +30,12 @@ export const rowState = {
   New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
 
   SameAsDB_Copy: 13,
+
   SameAsDB_Copy_Changed: 134,
+
+  SameAsDB_Copy_Changed_FormValidationOk: 1347,
+  SameAsDB_Copy_Changed_FormValidationOk_RequestedSave: 13475,
+
   SameAsDB_Copy_Changed_RequestedSave: 1345,
   SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 13456,
   SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 134571,
@@ -879,51 +884,59 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   // send edited data to server
   static async sfSendCopyChangedRowsToServer() {
-    try {
-      await this.update({
-        where: this.dnClientIdOfCopiedRowBeingChanged,
-        data: {
-          vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave,
-        },
-      })
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationOk)
+      .get()
 
-      /**
-       * Send socket id to the server for update from socket
-       */
-      const socketClientObj = await clientTblOfCommonForAllComponents
-        .query()
-        .where(
-          'fieldNameInDb',
-          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
-        )
-        .first()
-
-      const response = await fetch(this.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
-        },
-        body: JSON.stringify({
-          description: this.mfGetCopiedRowBeingChangedFldVal(
-            this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
-          ),
-          client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
-            socketClientObj.fieldValue,
-        }),
-      })
-
-      if (!response.ok) {
-        /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-        this.update({
-          where: this.dnClientIdOfCopiedRowBeingChanged,
+    const promises = arFromClientTbl.map(async (row) => {
+      try {
+        await this.update({
+          where: row.clientSideUniqRowId,
           data: {
-            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError,
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_FormValidationOk_RequestedSave,
           },
         })
-        console.log('Failed to update')
-      } else {
-        /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
+
+        /**
+         * Send socket id to the server for update from socket
+         */
+        const socketClientObj = await clientTblOfCommonForAllComponents
+          .query()
+          .where(
+            'fieldNameInDb',
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
+          )
+          .first()
+
+        let response = {}
+        if (process.env.makeFetchPostApiCalls === true) {
+          const response = await fetch(this.apiUrl + '/' + row.serverSideRowUuid, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              // "Authorization": "Bearer " + TOKEN
+            },
+            // this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty),
+            body: JSON.stringify({
+              description: 'jaikalima',
+              client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+                socketClientObj.fieldValue,
+            }),
+          })
+        } else {
+          response.ok = true
+        }
+        if (!response.ok) {
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+          this.update({
+            where: this.dnClientIdOfCopiedRowBeingChanged,
+            data: {
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed__FormValidationOk_RequestedSave_ApiError,
+            },
+          })
+          console.log('Failed to update')
+        } else {
+          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
           Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
           dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
           How to update the ROW_END for id = 2?
@@ -956,40 +969,42 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
                 "exp B3" -> "vnRowStateInSession === 24571",
                     allClientTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
        */
-        debugger
-        await this.update({
-          where: (record) => {
-            return (
-              record.uuid === this.dnOrmUuidOfRowToChange &&
-              (record.vnRowStateInSession === rowState.SameAsDB ||
-                record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
-                record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
-            )
-          },
-          data: {
-            ROW_END: Math.floor(Date.now()),
-          },
-        })
-        /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
-        this.update({
-          where: this.dnClientIdOfCopiedRowBeingChanged,
-          data: {
-            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
-          },
-        })
-        console.log('update success')
-      }
+          debugger
+          await this.update({
+            where: (record) => {
+              return (
+                record.uuid === row.serverSideRowUuid &&
+                (record.vnRowStateInSession === rowState.SameAsDB ||
+                  record.vnRowStateInSession ===
+                    rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
+                  record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
+              )
+            },
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+          this.update({
+            where: this.dnClientIdOfCopiedRowBeingChanged,
+            data: {
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+            },
+          })
+          console.log('update success')
+        }
 
-      /*
+        /*
           Goal:
           According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into allClientTbls and it displayed on the top of timeline.
           When change api request then we should need to insert a duplicate row (copy of row) again in allClientTbls for further change.
         */
-      this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
-      this.dnClientIdOfCopiedRowBeingChanged = null
-    } catch (ex) {
-      console.log('update error', ex)
-    }
+        this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
+        this.dnClientIdOfCopiedRowBeingChanged = null
+      } catch (ex) {
+        console.log('update error', ex)
+      }
+    })
     console.log(
       'sfSendCopyChangedRowsToServer-> ',
       this.dnOrmUuidOfRowToChange,
