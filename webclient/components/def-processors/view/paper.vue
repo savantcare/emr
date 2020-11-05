@@ -134,6 +134,9 @@
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
 
+            <!-- Allowing user to quickly see the prev value for this row -->
+            <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
+
             <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <h3>{{ propFieldDef.fieldNameInUi }}</h3>
@@ -202,16 +205,18 @@
             </div>
 
             <!-- Not specified field type -->
-            <div v-else id="not-matched-field-type">
+            <span v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
+              <span v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
                 {{ row[propFieldDef.fieldNameInDb] }}
-                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
-              </div>
-            </div>
+              </span>
+            </span>
           </div>
+
+          <!-- Allowing user to quickly see the next value for this row -->
+          <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
+
           <!-- Finished processing all the fields -->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
