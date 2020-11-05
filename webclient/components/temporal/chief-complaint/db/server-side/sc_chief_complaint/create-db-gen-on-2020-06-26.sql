@@ -1,1 +1,1 @@
-create database sc_chief-complaint
+create database sc_chief_complaint

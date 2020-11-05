@@ -1,1 +1,1 @@
-drop database sc_chief-complaint
+drop database sc_chief_complaint
