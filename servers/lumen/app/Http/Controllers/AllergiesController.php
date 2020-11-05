@@ -18,7 +18,6 @@ class AllergiesController extends Controller
         $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies
         order by ROW_START desc'));
         return response()->json($allergiesQueryResultObj);
-        // return response()->json(Allergies::all());
     }
 
     public function create(Request $pRequest)
@@ -35,9 +34,9 @@ class AllergiesController extends Controller
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
 
-        $Allergies = Allergies::insertGetId($allergiesData);
+        $allergies = Allergies::insertGetId($allergiesData);
 
-        return response()->json($Allergies, 201);
+        return response()->json($allergies, 201);
     }
 
     public function get_client_ip()
