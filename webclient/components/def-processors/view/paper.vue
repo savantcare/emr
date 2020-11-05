@@ -73,6 +73,17 @@
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
+        <!-- All the data rows together will get a prev and next. This will be like a slider effect of going left or going right -->
+
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide>Slide 1</swiper-slide>
+          <swiper-slide>Slide 2</swiper-slide>
+          <swiper-slide>Slide 3</swiper-slide>
+          <swiper-slide>Slide 4</swiper-slide>
+          <swiper-slide>Slide 5</swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+
         <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
@@ -287,13 +298,18 @@
 </template>
 
 <script>
+// https://github.com/surmon-china/vue-awesome-swiper
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
+
+import moment from 'moment'
+
+// Internal cts
 import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
-
-import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
@@ -305,6 +321,12 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       OnAndOffSwitchToShowContent: true,
+      swiperOptions: {
+        pagination: {
+          el: '.swiper-pagination',
+          mousewheel: true,
+        },
+      },
     }
   },
   mixins: [clInvokeMixin],
@@ -313,6 +335,11 @@ export default {
     moment: function (date) {
       return moment(date).format("MMM Do 'YY, h:mm a")
     },
+  },
+
+  components: {
+    Swiper,
+    SwiperSlide,
   },
   props: {
     propApptId: {
@@ -329,8 +356,12 @@ export default {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
+    this.swiper.slideTo(3, 1000, false)
   },
   computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
