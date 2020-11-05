@@ -39,6 +39,32 @@ class AllergiesController extends Controller
         return response()->json($allergies, 201);
     }
 
+    public function update($serverSideRowUuid, Request $request)
+    {
+        $allergies = Allergies::findOrFail($serverSideRowUuid);
+        $allergies->update($request->all());
+
+        return response()->json($allergies, 200);
+    }
+
+
+    public function delete($pServerSideRowUuid, Request $pRequest)
+    {
+        $allergies = Allergies::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
+
+        if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
+            $updateData = array(
+                'notes' => $requestData['dNotes']
+            );
+            $allergies->update($updateData);
+        }
+
+        $allergies->delete();
+
+        return response('Deleted successfully', 200);
+    }
+
     public function get_client_ip()
     {
         $ipaddress = '';
