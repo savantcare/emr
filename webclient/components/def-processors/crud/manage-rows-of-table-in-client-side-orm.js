@@ -969,15 +969,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
                 "exp B3" -> "vnRowStateInSession === 24571",
                     allClientTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
        */
-          debugger
           await this.update({
             where: (record) => {
               return (
-                record.uuid === row.serverSideRowUuid &&
-                (record.vnRowStateInSession === rowState.SameAsDB ||
-                  record.vnRowStateInSession ===
-                    rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
-                  record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
+                record.serverSideRowUuid === row.serverSideRowUuid &&
+                record.ROW_END === Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted &&
+                record.clientSideUniqRowId !== row.clientSideUniqRowId
               )
             },
             data: {
@@ -986,9 +983,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           this.update({
-            where: this.dnClientIdOfCopiedRowBeingChanged,
+            where: row.clientSideUniqRowId,
             data: {
-              vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+              vnRowStateInSession: rowState.SameAsDB,
             },
           })
           console.log('update success')
