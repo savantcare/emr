@@ -57,7 +57,8 @@ export const miscellaneousNotesFormDef = {
   plural: 'miscellaneous notes',
   singular: 'miscellaneous note',
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
-  styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
+  styleForEachRowInAddForm:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function () {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model

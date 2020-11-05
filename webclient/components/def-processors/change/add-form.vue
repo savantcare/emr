@@ -5,12 +5,12 @@
     <el-form>
       <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
-        <!-- propFormDef.styleForEachRow has the grid design like grid-template-columns: 1fr 1fr 1fr -->
+        <!-- propFormDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
           id="each-data-row"
-          :style="propFormDef.styleForEachRow"
+          :style="propFormDef.styleForEachRowInAddForm"
         >
           <!-- Start to process each row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">

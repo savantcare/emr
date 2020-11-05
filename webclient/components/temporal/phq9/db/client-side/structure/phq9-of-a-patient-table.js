@@ -259,5 +259,6 @@ export const phq9FormDef = {
 
     return optionIdToLabel
   },
-  styleForEachRow: 'padding: 20px; margin: 20px; display: grid; grid-template-columns: 1fr ; grid-column-gap: 1rem',
+  styleForEachRowInAddForm:
+    'padding: 20px; margin: 20px; display: grid; grid-template-columns: 1fr ; grid-column-gap: 1rem',
 }
