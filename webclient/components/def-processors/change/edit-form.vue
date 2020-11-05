@@ -74,7 +74,7 @@
           type="primary"
           size="mini"
           plain
-          @click="mfSendCopyChangedRowsToServer"
+          @click="sfSendCopyChangedRowsToServer"
           >Reviewed</el-button
         >
       </el-form-item>

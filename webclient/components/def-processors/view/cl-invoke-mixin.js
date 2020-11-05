@@ -110,7 +110,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientTbl[this.propFormDef.id].fnSendDeleteDataToServer(
+          const status = await clientTbl[this.propFormDef.id].sfSendDeleteDataToServer(
             pClientDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value

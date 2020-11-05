@@ -660,7 +660,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   // This function will return 1 (Success) or 0 (Failure)
-  static async fnSendNewRowsToServer() {
+  static async sfSendNewChangedRowsToServer() {
     const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
 
     /*
@@ -692,7 +692,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           console.log('Already sent to server')
         } else {
           this.arOrmRowIdSendingToServerQueue[this.entity].push(row.clientSideUniqRowId)
-          const status = await this.fnMakeApiCAll(row)
+          const status = await this.sfMakeApiCAll(row)
           if (status === 0) {
             // Handle api returned failure
             this.update({
@@ -739,7 +739,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     await Promise.all(promises)
   }
 
-  static async fnMakeApiCAll(pOrmRowArray) {
+  static async sfMakeApiCAll(pOrmRowArray) {
     const socketClientObj = await clientTblOfCommonForAllComponents
       .query()
       .where(
@@ -782,7 +782,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
-  static async fnSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
+  static async sfSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
     try {
       const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
@@ -845,7 +845,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         })
       }
     }
-    await this.fnSendNewRowsToServer()
+    await this.sfSendNewChangedRowsToServer()
   }
 */
   static async fnSendMultiDeleteDataToServer(dataRow) {
@@ -859,7 +859,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDeleteDataToServer(row.clientSideUniqRowId, row.serverSideRowUuid, null)
+        const status = await this.sfSendDeleteDataToServer(row.clientSideUniqRowId, row.serverSideRowUuid, null)
         if (status === 1) {
           success++
         } else {
@@ -878,7 +878,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   // send edited data to server
-  static async mfSendCopyChangedRowsToServer() {
+  static async sfSendCopyChangedRowsToServer() {
     try {
       await this.update({
         where: this.dnClientIdOfCopiedRowBeingChanged,
@@ -898,7 +898,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         )
         .first()
 
-      const response = await fetch(allClientTbls[this.propFormDef.id].apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
+      const response = await fetch(this.apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -991,7 +991,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       console.log('update error', ex)
     }
     console.log(
-      'mfSendCopyChangedRowsToServer-> ',
+      'sfSendCopyChangedRowsToServer-> ',
       this.dnOrmUuidOfRowToChange,
       this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty)
     )

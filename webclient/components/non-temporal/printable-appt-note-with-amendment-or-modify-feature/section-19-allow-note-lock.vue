@@ -51,9 +51,9 @@ export default {
           allClientTbls[entity].entity,
           'Letting it decide if there is some data to be saved and if so then save the data.'
         )
-        const statusOfNewRowsSent = allClientTbls[entity].fnSendNewRowsToServer()
+        const statusOfNewRowsSent = allClientTbls[entity].sfSendNewChangedRowsToServer()
         console.log(statusOfNewRowsSent)
-        const statusOfChangedRowsSent = allClientTbls[entity].mfSendCopyChangedRowsToServer()
+        const statusOfChangedRowsSent = allClientTbls[entity].sfSendCopyChangedRowsToServer()
         console.log(statusOfChangedRowsSent)
       }
 
