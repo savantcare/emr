@@ -187,7 +187,7 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propFormDef.showFormReviewedButton !== false" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="propFormDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 
@@ -322,19 +322,25 @@ export default {
     async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
 
-      // get the number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
-      const currentRowCount = allClientTbls[this.propFormDef.id].query().count()
-      if (currentRowCount < allFormDefinations[this.propFormDef.id].maxNumberOfTemporallyValidRows) {
-        const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
-          data: {
-            vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
-            ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
-          },
-        })
-        if (!arFromClientTbl) {
-          console.log('FATAL ERROR')
+      if (!this.propFormDef || !this.propFormDef.maxNumberOfTemporallyValidRows) {
+        // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
+      } else {
+        const currentRowCount = allClientTbls[this.propFormDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        if (currentRowCount >= this.propFormDef.maxNumberOfTemporallyValidRows) {
+          return
         }
       }
+
+      const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
+        data: {
+          vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
+          ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
+        },
+      })
+      if (!arFromClientTbl) {
+        console.log('FATAL ERROR')
+      }
+
       this.mfSetFormFieldFocus()
     },
     mfSetFormFieldFocus() {

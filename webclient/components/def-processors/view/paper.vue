@@ -207,8 +207,10 @@
             <div v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[propFieldDef.fieldNameInDb]">
-                <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
+              <div v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
+                {{ row[propFieldDef.fieldNameInDb] }}
+                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
               </div>
             </div>
           </div>
@@ -446,13 +448,24 @@ export default {
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
-      if (pRow.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
-        // form validation has failed
-        return 'color: #E6A23C;'
-      } else if (pRow.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
-        // form validation is ok
-        return 'color: #67c23a;'
+      /* The color conventions are:
+      Case 1: black: same as DB or it is a copy but no change has been done
+      Case 2: orange: form validatoion has failed
+      Case 3: green: some edits have been made and it pases form validation */
+
+      if (
+        pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
+        pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
+      ) {
+        // Case 1
+        return
+      } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
+        // case 2
+        return 'color: #E6A23C;' // this is hex code for orange
       }
+
+      // Case 3
+      return 'color: #67c23a;' // this is hex code for green
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer

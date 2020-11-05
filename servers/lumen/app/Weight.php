@@ -20,7 +20,7 @@ class Weight extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUUID', 'weightInPounds', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'weightInPounds', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class Weight extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}   
+}
