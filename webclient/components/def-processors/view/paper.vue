@@ -112,7 +112,7 @@
         >
           <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-          <div
+          <span
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
             v-for="(propFieldDef, id) in propFormDef.fieldsDef"
@@ -212,10 +212,7 @@
                 {{ row[propFieldDef.fieldNameInDb] }}
               </span>
             </span>
-          </div>
-
-          <!-- Allowing user to quickly see the next value for this row -->
-          <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
+          </span>
 
           <!-- Finished processing all the fields -->
           <!-- This is for action associated with each row -->
@@ -231,6 +228,8 @@
                     additionalRowAction.textInUi
                   }}</el-button>
                 </div>
+                <!-- Allowing user to quickly see the next value for this row -->
+                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
 
                 <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
                   <!-- 
