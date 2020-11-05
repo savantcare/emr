@@ -41,10 +41,10 @@ class MentalStatusExamController extends Controller
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
-        $MentalStatusExam = ServiceStatement::findOrFail($pServerSideRowUuid);
-        $MentalStatusExam->update($requestData['data']);
+        $mentalStatusExam = ServiceStatement::findOrFail($pServerSideRowUuid);
+        $mentalStatusExam->update($requestData['data']);
 
-        return response()->json($MentalStatusExam, 200);
+        return response()->json($mentalStatusExam, 200);
     }
  
     public function delete($pServerSideRowUuid)
