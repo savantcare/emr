@@ -1,22 +1,15 @@
-use sc_mental_status_exam;
+use sc_mse;
 
-DROP TABLE IF EXISTS `mental_status_exam`;
+DROP TABLE IF EXISTS `pt_mental_status_exam`;
 
-CREATE TABLE `mental_status_exam`
-(
-  `serverSideRowUuid` char
-(36) COLLATE utf8_unicode_ci NOT NULL,
-  `patientUuid` char
-(36) COLLATE utf8_unicode_ci NOT NULL,
-  `mentalStatusExamFieldOptionId` int
-(11) NOT NULL,
-  `recordChangedByUuid` char
-(36) COLLATE utf8_unicode_ci NOT NULL,
-  `recordChangedFromIPAddress` varchar
-(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromSection` varchar
-(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',
-  PRIMARY KEY
-(`serverSideRowUuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-WITH SYSTEM VERSIONING;
+CREATE TABLE `pt_mental_status_exam` (
+  `serverSideRowUuid` char(36) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `patientUuid` char(36) NOT NULL,
+  `recordChangedByUuid` char(36) DEFAULT NULL,
+  `recordChangedFromIPAddress` varchar(20) DEFAULT NULL,
+  `recordChangedFromSection` varchar(255) DEFAULT NULL,
+  `appearance_select` varchar(255) DEFAULT NULL,
+  `psychomotor_select` varchar(255) DEFAULT NULL,
+  `attitude_multi_select` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 WITH SYSTEM VERSIONING;
