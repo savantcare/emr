@@ -179,18 +179,33 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Connection', 'keep-alive');
     });
 
-
-
     // Mental status exam
-    $router->get('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
-    $router->post('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@create']);
-    $router->delete('mental-status-exams/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
-    $router->options('mental-status-exams/v20', function () {
+    $router->get('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
+    $router->post('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@create']);
+    $router->put('mental-status-exam/v20/{serverSideRowUuid}', ['uses' => 'MentalStatusExamController@update']);
+    $router->delete('mental-status-exam/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
+    $router->options('mental-status-exam/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-    $router->options('mental-status-exams/v20/{pServerSideRowUuid}', function () {
+    $router->options('mental-status-exam/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+
+    // Goal
+    $router->get('goals/v20/', ['uses' => 'GoalController@getAllTemporalGoals']);
+    $router->post('goals/v20/', ['uses' => 'GoalController@create']);
+    $router->put('goals/v20/{serverSideRowUuid}', ['uses' => 'GoalController@update']);
+    $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
+    $router->options('goals/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('goals/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
@@ -273,6 +288,54 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
     $router->options('plan-comments/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // Allergies
+    $router->get('allergies/v20/', ['uses' => 'AllergiesController@getAllTemporalAllergies']);
+    $router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@getOneAllergies']);
+    $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
+    $router->delete('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->options('allergies/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('allergies/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // Process Notes
+    $router->get('process-notes/v20/', ['uses' => 'ProcessNotesController@getAllTemporalProcessNotes']);
+    $router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@getOneProcessNotes']);
+    $router->post('process-notes/v20/', ['uses' => 'ProcessNotesController@create']);
+    $router->delete('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
+    $router->options('process-notes/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('process-notes/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // Chief Complant
+    $router->get('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@getAllTemporalChiefComplaint']);
+    $router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@getOneChiefComplaint']);
+    $router->post('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@create']);
+    $router->delete('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
+     $router->options('chief-complaint/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('chief-complaint/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
