@@ -12,7 +12,7 @@ use Predis\Autoloader;
 
 class PlanCommentsController extends Controller
 {
-    public function getAllTemporalPlanCommentss()
+    public function getAllTemporalPlanComments()
     {
         $planCommentsQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_plan_comments.plan_comments FOR SYSTEM_TIME ALL order by ROW_START desc'));
 

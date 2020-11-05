@@ -261,12 +261,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Plan Comments
-    $router->get('plan-comments/v20/', ['uses' => 'PlanCommentsController@getAllTemporalRecommendations']);
-    $router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@getOneRecommendation']);
+    $router->get('plan-comments/v20/', ['uses' => 'PlanCommentsController@getAllTemporalPlanComments']);
+    $router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@getOnePlanComments']);
     $router->post('plan-comments/v20/', ['uses' => 'PlanCommentsController@create']);
     $router->delete('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
     $router->put('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@update']);
-    $router->patch('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
     $router->options('plan-comments/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
