@@ -76,7 +76,7 @@ export const mentalStatusExamFormDef = {
   ],
   showFormReviewedButton: false,
   maxNumberOfTemporallyValidRows: 1,
-  styleForEachRow:
+  styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],

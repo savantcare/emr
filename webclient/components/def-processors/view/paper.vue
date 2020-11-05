@@ -99,22 +99,20 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
+        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
-          style="
-            padding: 0px;
-            margin: 0px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: 1rem;
-            grid-row-gap: 1rem;
+          :style="
+            propFormDef.styleForEachRowInPaperView
+              ? propFormDef.styleForEachRowInPaperView
+              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
           <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-          <div
+          <span
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
             v-for="(propFieldDef, id) in propFormDef.fieldsDef"
@@ -135,6 +133,9 @@
               Then i evaluate row[propFieldDef.fieldNameInDb].toString().length
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
+
+            <!-- Allowing user to quickly see the prev value for this row -->
+            <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
 
             <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
@@ -204,16 +205,15 @@
             </div>
 
             <!-- Not specified field type -->
-            <div v-else id="not-matched-field-type">
+            <span v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
+              <span v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
                 {{ row[propFieldDef.fieldNameInDb] }}
-                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
-              </div>
-            </div>
-          </div>
+              </span>
+            </span>
+          </span>
+
           <!-- Finished processing all the fields -->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -228,6 +228,8 @@
                     additionalRowAction.textInUi
                   }}</el-button>
                 </div>
+                <!-- Allowing user to quickly see the next value for this row -->
+                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
 
                 <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
                   <!-- 

@@ -57,7 +57,8 @@ export const processNotesFormDef = {
   plural: 'process notes',
   singular: 'process note',
   fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
-  styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
+  styleForEachRowInAddForm:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showFormReviewedButton: false,
   fnCreated: function () {

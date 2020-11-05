@@ -101,7 +101,7 @@ export const diagnosisFormDef = {
     return []
   },
 
-  styleForEachRow:
+  styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 2fr 2fr 1fr; grid-column-gap: 1rem',
   validationsObj: {
     value: {
