@@ -36,11 +36,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfRows ||
-                  !propFormDef.maxNumberOfRows
+                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfTemporallyValidRows ||
+                  !propFormDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"
@@ -99,22 +99,20 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
+        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
-          style="
-            padding: 0px;
-            margin: 0px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: 1rem;
-            grid-row-gap: 1rem;
+          :style="
+            propFormDef.styleForEachRowInPaperView
+              ? propFormDef.styleForEachRowInPaperView
+              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
           <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-          <div
+          <span
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
             v-for="(propFieldDef, id) in propFormDef.fieldsDef"
@@ -135,6 +133,9 @@
               Then i evaluate row[propFieldDef.fieldNameInDb].toString().length
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
+
+            <!-- Allowing user to quickly see the prev value for this row -->
+            <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
 
             <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
@@ -204,14 +205,15 @@
             </div>
 
             <!-- Not specified field type -->
-            <div v-else id="not-matched-field-type">
+            <span v-else id="not-matched-field-type">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[propFieldDef.fieldNameInDb]">
-                <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] }}</div>
-              </div>
-            </div>
-          </div>
+              <span v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                {{ row[propFieldDef.fieldNameInDb] }}
+              </span>
+            </span>
+          </span>
+
           <!-- Finished processing all the fields -->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -219,12 +221,15 @@
           <div v-else id="row-actions-when-app-is-unlocked">
             <!-- Case 2/2: When this appt is un-locked what row actions to show-->
             <div>
+              <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
               <el-button-group style="float: right">
                 <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
                   <el-button @click="additionalRowAction.executeThisFn(row)">{{
                     additionalRowAction.textInUi
                   }}</el-button>
                 </div>
+                <!-- Allowing user to quickly see the next value for this row -->
+                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
 
                 <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
                   <!-- 
@@ -232,7 +237,6 @@
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
                   Why?
-                  +-
                   A copied row when undone expect to be left with orginal
                   But a new row when undone does not expect to be left with original.
 
@@ -242,7 +246,7 @@
                     style="padding: 3px; color: #c0c4cc; border: none"
                     plain
                     @click="
-                      String(row.vnRowStateInSession).startsWith(2)
+                      String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
                         ? mfOpenAddInEditLayer()
                         : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
                     "
@@ -292,6 +296,7 @@ import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   data() {
@@ -327,6 +332,13 @@ export default {
   },
   computed: {
     cfGetDataRowStyle() {
+      /* When I come to this fn the following scenarios are possible
+        clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
+        Possibilities are 1. Both have values 2. Only 1 has value.
+        First goal: Find if propApptId is same as F1 or F2. If propApptId == F2 then it is comparison mode. If propApptId != F2 then for certain I can say propApptId == F1. propApptId may or many not be comparison mode.
+        if there is value in F2 then propApptId is in comparison mode. If F2 is empty then this is single note render mode.
+      */
+
       let secondaryDuringComparisonApptObj = {}
       let secondaryDuringComparisonDataRows = {}
 
@@ -344,6 +356,7 @@ export default {
         } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
           return 'border:1px solid #67C23A'
         } else {
+          // I come here when the length of both rows is same, Now there are 2 possibilities 1. Content is same 2. Content is different.
           return ''
         }
       } else {
@@ -437,13 +450,24 @@ export default {
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
-      if (pRow.vnRowStateInSession === 246) {
-        // form validation has failed
-        return 'color: #E6A23C;'
-      } else if (pRow.vnRowStateInSession === 247) {
-        // form validation is ok
-        return 'color: #67c23a;'
+      /* The color conventions are:
+      Case 1: black: same as DB or it is a copy but no change has been done
+      Case 2: orange: form validatoion has failed
+      Case 3: green: some edits have been made and it pases form validation */
+
+      if (
+        pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
+        pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
+      ) {
+        // Case 1
+        return
+      } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
+        // case 2
+        return 'color: #E6A23C;' // this is hex code for orange
       }
+
+      // Case 3
+      return 'color: #67c23a;' // this is hex code for green
     },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer

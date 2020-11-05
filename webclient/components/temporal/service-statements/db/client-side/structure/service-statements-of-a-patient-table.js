@@ -75,7 +75,7 @@ export const serviceStatementsFormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
+  maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'total_minutes_in_psychotherapy_select',
@@ -99,7 +99,7 @@ export const serviceStatementsFormDef = {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
-  styleForEachRow:
+  styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {

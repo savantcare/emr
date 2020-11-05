@@ -5,23 +5,18 @@
     <el-form>
       <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
-        <!-- propFormDef.styleForEachRow has the grid design like grid-template-columns: 1fr 1fr 1fr -->
+        <!-- propFormDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
           id="each-data-row"
-          :style="propFormDef.styleForEachRow"
+          :style="propFormDef.styleForEachRowInAddForm"
         >
           <!-- Start to process each row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
-              <el-card
-                :span="propFieldDef.span"
-                :class="ormRow.validationClass"
-                shadow="hover"
-                :style="propFieldDef.fieldStyle"
-              >
+              <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
                 <!-- The following are the possible field types -->
 
                 <!-- Field type 1: Do the following when it is heading type field -->
@@ -173,7 +168,10 @@
             <!-- Just ended processing all the fields in the row -->
           </div>
           <el-button
-            v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+            v-if="
+              mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
+              !propFormDef.maxNumberOfTemporallyValidRows
+            "
             plain
             type="warning"
             style="float: right"
@@ -189,13 +187,16 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propFormDef.showFormReviewedButton !== false" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="propFormDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
-          v-if="mfGetArOfDataRows() < propFormDef.maxNumberOfRows || !propFormDef.maxNumberOfRows"
+          v-if="
+            mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
+            !propFormDef.maxNumberOfTemporallyValidRows
+          "
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
@@ -249,7 +250,9 @@
 </template>
 <script>
 import allClientTbls from '../all-client-tables.js'
+import allFormDefinations from '../all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   created() {
@@ -290,7 +293,7 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInReadyToReviewedState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationOkState()
     },
     cfGetClientTblApiSuccessStateRows() {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
@@ -318,6 +321,16 @@ export default {
 
     async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
+
+      if (!this.propFormDef || !this.propFormDef.maxNumberOfTemporallyValidRows) {
+        // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
+      } else {
+        const currentRowCount = allClientTbls[this.propFormDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        if (currentRowCount >= this.propFormDef.maxNumberOfTemporallyValidRows) {
+          return
+        }
+      }
+
       const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
@@ -327,6 +340,7 @@ export default {
       if (!arFromClientTbl) {
         console.log('FATAL ERROR')
       }
+
       this.mfSetFormFieldFocus()
     },
     mfSetFormFieldFocus() {
@@ -347,9 +361,9 @@ export default {
       this.$v.value[pFldName].$touch() // $v is the validation object created by vuelidate library
       let rowStatus = 0
       if (this.$v.$invalid === false) {
-        rowStatus = 247 // This implies valid is true
+        rowStatus = rowState.New_Changed_FormValidationOk // This implies valid is true
       } else {
-        rowStatus = 246 // This implies invalid is true
+        rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
@@ -363,11 +377,11 @@ export default {
           valid: green
           in db: regular
       */
-      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 246) {
+      if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
         console.log('invalid-dirty-data')
         return 'invalid-dirty-data'
-      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === 247) {
+      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
         console.log('valid-dirty-data')
         return 'valid-dirty-data'
       }

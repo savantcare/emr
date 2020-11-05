@@ -1,1 +1,1 @@
-drop database sc_plan-comments
+drop database sc_plan_comments

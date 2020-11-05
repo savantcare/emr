@@ -5,26 +5,41 @@ import tableStructureForStoreMessageFromOtherComponent from '~/components/non-te
 // Start from new
 
 export const rowState = {
-  /*  New = 2
-      Changed = 4
-      FormValidationFail = 6
-      FormValidationOk = 7
-      Copy = 3
-      RequestedSave = 5
-      SameAsDB = 1
-      ApiError = 8  */
-
+  // Primary
+  SameAsDB: 1,
   New: 2,
+  Copy: 3,
+  Changed: 4,
+  RequestedSave: 5,
+  FormValidationFail: 6,
+  FormValidationOk: 7,
+  ApiError: 8,
+
+  // Combined
   New_Changed: 24,
   New_Changed_FormValidationFail: 246,
+
   New_Changed_FormValidationOk: 247,
   New_Changed_FormValidationOk_RequestedSave: 2475,
+  New_Changed_FormValidationOk_RequestedSave_ApiError: 24758,
+  New_Changed_FormValidationOk_RequestedSave_SameAsDB: 24751,
+
   New_Changed_RequestedSave_FormValidationFail: 2456,
   New_Changed_RequestedSave_FormValidationOk: 2457,
   New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
-  Copy: 3,
-  Copy_Changed: 34,
-  Copy_Changed_RequestedSave_ApiError: 3458,
+  New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
+
+  SameAsDB_Copy: 13,
+
+  SameAsDB_Copy_Changed: 134,
+
+  SameAsDB_Copy_Changed_FormValidationOk: 1347,
+  SameAsDB_Copy_Changed_FormValidationOk_RequestedSave: 13475,
+
+  SameAsDB_Copy_Changed_RequestedSave: 1345,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 13456,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 134571,
+  SameAsDB_Copy_Changed_RequestedSave_ApiError: 13458,
 }
 
 // Others
@@ -79,7 +94,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static arOrmRowsCached = []
   static vOrmSaveScheduled = ''
-  static arOrmRowIdSendToServer = []
+  static arOrmRowIdSendingToServerQueue = []
 
   /*
   constructor() {
@@ -94,7 +109,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return {
       // the following flds only exist on client
       vnRowStateInSession: this.number(1), // For different values of vnRowStateInSession and what they mean see: ./forms.md
-      validationClass: this.string(''),
       isValidationError: this.boolean(false),
     }
   }
@@ -111,11 +125,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetNewRowsInApiErrorState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
-    const arFromClientTbl = this.query().where('vnRowStateInSession', 24578).get()
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_ApiError)
+      .get()
     return arFromClientTbl
   }
 
-  static fnGetNewRowsInReadyToReviewedState() {
+  static fnGetNewRowsInFormValidationOkState() {
     // Following query makes sure I get all the newly added row having fld value
     const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
     return arFromClientTbl
@@ -137,9 +153,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetAllChangeRowsInEditState() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.Copy) // Copy(3)
-      .orWhere('vnRowStateInSession', rowState.Copy_Changed) // Copy(3) -> Changed(4)
-      .orWhere('vnRowStateInSession', rowState.Copy_Changed_RequestedSave_Error) // Copy(3) -> Changed(4) -> Requested save(5) -> form error(6)
+      .where('vnRowStateInSession', rowState.SameAsDB_Copy)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError)
       .get()
     return arFromClientTbl
   }
@@ -160,9 +177,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('serverSideRowUuid', pUuid)
       .where((record) => {
         return (
-          record.vnRowStateInSession === rowState.Copy ||
-          record.vnRowStateInSession === rowState.Copy_Changed ||
-          record.vnRowStateInSession === rowState.Copy_Changed_RequestedSave_Error
+          record.vnRowStateInSession === rowState.SameAsDB_Copy ||
+          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
+          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError
         )
       })
       .get()
@@ -588,14 +605,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       row = {
         [pFldName]: valueForThisField,
         vnRowStateInSession: pRowStatus,
-        validationClass: '',
         isValidationError: false,
       }
     } else {
       row = {
         [pFldName]: pEvent,
         vnRowStateInSession: pRowStatus,
-        validationClass: '',
         isValidationError: false,
       }
     }
@@ -615,7 +630,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
-    arToCopy.vnRowStateInSession = rowState.Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.vnRowStateInSession = rowState.SameAsDB_Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
     const newRow = await this.insert({
       data: arToCopy,
     })
@@ -650,10 +665,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   // This function will return 1 (Success) or 0 (Failure)
-  static async fnSendNewRowsToServer() {
-    const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
-      .get()
+  static async sfSendNewChangedRowsToServer() {
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
 
     /*
       Q) Why we use promise in following code?
@@ -673,24 +686,24 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             Save process starts with searching from clientTbl for the records having 'vnRowStateInSession' = 2457.
             Now, 'vnRowStateInSession' of clientTbl record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
             That means the second time searching for 'vnRowStateInSession' = 2457 will point to the same record multiple times which should not be the actual case.
-            To solve this, we are maintaining an array 'arOrmRowIdSendToServer' during the process, which contains clientTbl row id that are going to be saved.
-            In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendToServer'.
+            To solve this, we are maintaining an array 'arOrmRowIdSendingToServerQueue' during the process, which contains clientTbl row id that are going to be saved.
+            In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendingToServerQueue'.
       */
 
-        if (typeof this.arOrmRowIdSendToServer[this.entity] === 'undefined') {
-          this.arOrmRowIdSendToServer[this.entity] = []
+        if (typeof this.arOrmRowIdSendingToServerQueue[this.entity] === 'undefined') {
+          this.arOrmRowIdSendingToServerQueue[this.entity] = []
         }
-        if (this.arOrmRowIdSendToServer[this.entity].includes(row.clientSideUniqRowId)) {
+        if (this.arOrmRowIdSendingToServerQueue[this.entity].includes(row.clientSideUniqRowId)) {
           console.log('Already sent to server')
         } else {
-          this.arOrmRowIdSendToServer[this.entity].push(row.clientSideUniqRowId)
-          const status = await this.fnMakeApiCAll(row)
+          this.arOrmRowIdSendingToServerQueue[this.entity].push(row.clientSideUniqRowId)
+          const status = await this.sfMakeApiCAll(row)
           if (status === 0) {
             // Handle api returned failure
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: '24578', // New -> Changed -> Requested save -> Send to server -> API fail
+                vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave_ApiError,
               },
             })
           } else {
@@ -698,15 +711,18 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB,
-                //  No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted
+                vnRowStateInSession: rowState.SameAsDB,
+                /* The sequence at this point is ->  New_Changed_FormValidationOk_RequestedSave_SameAsDB.  
+                   SameAsDB is always considered a marker. So whenever SameAsDB is reached we forget the old state. If we keep remembering the old state then the whole state can be 100 steps long.
+                   No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted or updated. (For temporal update is like delete and insert)
+                */
               },
             })
 
-            /* Remove clientTbl row id from 'arOrmRowIdSendToServer' after this promise finished. */
-            const index = this.arOrmRowIdSendToServer[this.entity].indexOf(row.clientSideUniqRowId)
+            /* Remove clientTbl row id from 'arOrmRowIdSendingToServerQueue' after this promise finished. */
+            const index = this.arOrmRowIdSendingToServerQueue[this.entity].indexOf(row.clientSideUniqRowId)
             if (index > -1) {
-              this.arOrmRowIdSendToServer[this.entity].splice(index, 1)
+              this.arOrmRowIdSendingToServerQueue[this.entity].splice(index, 1)
             }
 
             /**
@@ -728,7 +744,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     await Promise.all(promises)
   }
 
-  static async fnMakeApiCAll(pOrmRowArray) {
+  static async sfMakeApiCAll(pOrmRowArray) {
     const socketClientObj = await clientTblOfCommonForAllComponents
       .query()
       .where(
@@ -766,11 +782,12 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         return 0 // Returns error code when try block gets an exception and fails
       }
     } else {
+      // This is the scenario when in the nuxt.config.js make apoi calls has been set to false. This is done when I want to run the s/w on client side without depending on the server.
       return 1
     }
   }
 
-  static async fnSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
+  static async sfSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
     try {
       const socketClientObj = await clientTblOfCommonForAllComponents
         .query()
@@ -808,35 +825,34 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       return 0
     }
   }
+  /*
   static async mfSendNewRowsToServer() {
-    /*
+  
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
       The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
-    */
-    const arFromClientTbl = this.fnGetNewRowsInReadyToReviewedState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
+  
+    const arFromClientTbl = this.fnGetNewRowsInFormValidationOkState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        /* I cannot do validation here. Since this is getting invoked when button has already been pressed  
+         I cannot do validation here. Since this is getting invoked when button has already been pressed  
           I need to tell the user a row is valid or not when he is editing that row / field.
           The theme colors are at: https://element.eleme.io/#/en-US/component/color
           data same as DB: Regular text
           Valid data in edit state: success color
           data in error state: warning color
-        */
-
+  
         await this.update({
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
-            validationClass: '',
             vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
             isValidationError: false,
           },
         })
       }
     }
-    await this.fnSendNewRowsToServer()
+    await this.sfSendNewChangedRowsToServer()
   }
-
+*/
   static async fnSendMultiDeleteDataToServer(dataRow) {
     let success = 0
     let failed = 0
@@ -848,7 +864,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     */
     const promises = dataRow.map(async (row) => {
       try {
-        const status = await this.fnSendDeleteDataToServer(row.clientSideUniqRowId, row.serverSideRowUuid, null)
+        const status = await this.sfSendDeleteDataToServer(row.clientSideUniqRowId, row.serverSideRowUuid, null)
         if (status === 1) {
           success++
         } else {
@@ -864,6 +880,133 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     response.success = success
     response.failed = failed
     return response
+  }
+
+  // send edited data to server
+  static async sfSendCopyChangedRowsToServer() {
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationOk)
+      .get()
+
+    const promises = arFromClientTbl.map(async (row) => {
+      try {
+        await this.update({
+          where: row.clientSideUniqRowId,
+          data: {
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_FormValidationOk_RequestedSave,
+          },
+        })
+
+        /**
+         * Send socket id to the server for update from socket
+         */
+        const socketClientObj = await clientTblOfCommonForAllComponents
+          .query()
+          .where(
+            'fieldNameInDb',
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
+          )
+          .first()
+
+        let response = {}
+        if (process.env.makeFetchPostApiCalls === true) {
+          const response = await fetch(this.apiUrl + '/' + row.serverSideRowUuid, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              // "Authorization": "Bearer " + TOKEN
+            },
+            // this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty),
+            body: JSON.stringify({
+              description: 'jaikalima',
+              client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+                socketClientObj.fieldValue,
+            }),
+          })
+        } else {
+          response.ok = true
+        }
+        if (!response.ok) {
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+          this.update({
+            where: this.dnClientIdOfCopiedRowBeingChanged,
+            data: {
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed__FormValidationOk_RequestedSave_ApiError,
+            },
+          })
+          console.log('Failed to update')
+        } else {
+          /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
+          Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
+          dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+          How to update the ROW_END for id = 2?
+            option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
+            option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
+                      Option 2 is rejected. Since ID2 will now require update in following 3 cases:
+                        1. When ID 3 is created it will require changing state of id 2.
+                        2. Also when id3 is deleted without saving to DB.
+                        3. Or ID 3 is saved to DB.
+
+          Q): Why following where clause needed?
+          A):
+              Whenever we change a record and hit save button, we get two records in allClientTbls with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
+              In real time 3 cases may happen.
+                1. User changes an existing record. i.e. rowState = 1
+                2. User already changed a record and then again changes that record i.e. rowState = 34571
+                3. User adds a record and then changes that newly added record again i.e. rowState = 24571
+
+          Following logic of where clause deals with these 3 types of cases.
+
+          Q) What we have done to deal with the above mentioned problem?
+          A)
+              We are following below mentioned logic in where clause of allClientTbls update:
+              -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
+                "exp A" -> search record from allClientTbls whose uuid = this.dnOrmUuidOfRowToChange
+                "exp B1" -> "vnRowStateInSession === 1",
+                    allClientTbls record that came from database (Case: User changes an existing record)
+                "exp B2" -> "vnRowStateInSession === 34571",
+                    allClientTbls record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
+                "exp B3" -> "vnRowStateInSession === 24571",
+                    allClientTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+       */
+          await this.update({
+            where: (record) => {
+              return (
+                record.serverSideRowUuid === row.serverSideRowUuid &&
+                record.ROW_END === Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted &&
+                record.clientSideUniqRowId !== row.clientSideUniqRowId
+              )
+            },
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+          this.update({
+            where: row.clientSideUniqRowId,
+            data: {
+              vnRowStateInSession: rowState.SameAsDB,
+            },
+          })
+          console.log('update success')
+        }
+
+        /*
+          Goal:
+          According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into allClientTbls and it displayed on the top of timeline.
+          When change api request then we should need to insert a duplicate row (copy of row) again in allClientTbls for further change.
+        */
+        this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
+        this.dnClientIdOfCopiedRowBeingChanged = null
+      } catch (ex) {
+        console.log('update error', ex)
+      }
+    })
+    console.log(
+      'sfSendCopyChangedRowsToServer-> ',
+      this.dnOrmUuidOfRowToChange,
+      this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty)
+    )
   }
 }
 

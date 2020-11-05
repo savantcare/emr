@@ -31,12 +31,12 @@ class BloodSugarController extends Controller
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
         $timeOfMeasurementInMilliseconds = (int)($requestData['data']['timeOfMeasurementInMilliseconds']);
-        $bloodSugarInBpm = $requestData['data']['bloodSugarInBpm'];
+        $bloodSugarMgDL = $requestData['data']['bloodSugarMgDL'];
         $notes = $requestData['data']['notes'];
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertBloodSugar = DB::statement("INSERT INTO `sc_vital_signs`.`bloodSugarLevels` (`serverSideRowUuid`, `ptUuid`, `bloodSugarInBpm`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$bloodSugarInBpm}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertBloodSugar = DB::statement("INSERT INTO `sc_vital_signs`.`bloodSugarLevels` (`serverSideRowUuid`, `ptUuid`, `bloodSugarMgDL`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$bloodSugarMgDL}, FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertBloodSugar, 201);
     }
@@ -46,12 +46,12 @@ class BloodSugarController extends Controller
         $requestData = $request->all();
 
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
-        $bloodSugarInBpm = $requestData['rowToUpsert']['bloodSugarInBpm'];
+        $bloodSugarMgDL = $requestData['rowToUpsert']['bloodSugarMgDL'];
         $notes = $requestData['rowToUpsert']['notes'];
         $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateBloodSugar = DB::statement("UPDATE `sc_vital_signs`.`bloodSugarLevels` SET `bloodSugarInBpm` = {$bloodSugarInBpm}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodSugarLevels`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
+        $updateBloodSugar = DB::statement("UPDATE `sc_vital_signs`.`bloodSugarLevels` SET `bloodSugarMgDL` = {$bloodSugarMgDL}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodSugarLevels`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
 
         return response()->json($updateBloodSugar, 200);
     }

@@ -20,7 +20,7 @@ export default {
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
 
-    if (process.env.useServerDBForPastPsychHistory === true) {
+    if (process.env.loadInitialDataFromServer === true) {
       const proFromDB = await clientTbl.api().get(clientTbl.apiUrl)
       if (proFromDB.ok) {
       }

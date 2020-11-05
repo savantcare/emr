@@ -11,13 +11,13 @@ const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now(
 export default class waistCircumferenceClass extends clientTblManage {
   static entity = 'tblWaistCircumference'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/waist-circumference/getAll
 
@@ -40,7 +40,7 @@ export default class waistCircumferenceClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      waistCircumferenceInches: this.string(''),
+      waistCircumferenceInInches: this.string(''),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
 
@@ -60,7 +60,7 @@ export const waistCircumferenceFormDef = {
   singular: 'waist circumference',
   fieldsDef: [
     {
-      fieldNameInDb: 'waistCircumferenceInches',
+      fieldNameInDb: 'waistCircumferenceInInches',
       fieldNameInUi: 'Waist circumference inches',
       fieldType: 'number',
       span: 24,
@@ -83,18 +83,19 @@ export const waistCircumferenceFormDef = {
     },
   ],
   showFormReviewedButton: false,
-  maxNumberOfRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['waistCircumferenceInches'],
+  maxNumberOfTemporallyValidRows: 1,
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['waistCircumferenceInInches'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
 
-  styleForEachRow: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+  styleForEachRowInAddForm:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
-      waistCircumferenceInches: {
+      waistCircumferenceInInches: {
         minLength: minLength(2),
       },
       notes: {
@@ -106,6 +107,6 @@ export const waistCircumferenceFormDef = {
     },
   },
   graphObj: {
-    series: [{ fieldName: 'waistCircumferenceInches' }],
+    series: [{ fieldName: 'waistCircumferenceInInches' }],
   },
 }

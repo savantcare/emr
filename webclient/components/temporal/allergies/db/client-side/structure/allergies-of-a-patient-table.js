@@ -67,7 +67,7 @@ export const allergiesFormDef = {
     return []
   },
   showFormReviewedButton: false,
-  styleForEachRow:
+  styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
   validationsObj: {
     value: {

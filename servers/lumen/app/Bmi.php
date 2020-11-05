@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class PastPsychHistory extends Model
+class Bmi extends Model
 {
-    protected $connection = 'pastPsychHistoryDB';
-    protected $table = 'past_psych_history';
+    protected $connection = 'bodyMeasurementDB';
+    protected $table = 'bmi';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class PastPsychHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'recordChangedByUuid',
+        'ptUuid', 'bmiInKgM2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

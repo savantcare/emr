@@ -1,8 +1,8 @@
 <template>
   <!-- Goal: Show 2 vitals in each row hence said 1fr 1fr -->
   <el-card style="padding: 5px" shadow="never">
-    <div slot="header" style="padding: 1px; margin: 1px">
-      <span style="font-size: 1.2rem; padding: 5px; margin: 5px">Vitals</span>
+    <div class="sectionHeader">
+      <div class="sectionHeading">Vitals</div>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
       <printNote :propApptId="propApptId" :propFormDef="weightFormDef"></printNote>
@@ -56,4 +56,14 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.sectionHeader {
+  margin-top: 0.5rem !important;
+  padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
+}
+.sectionHeading {
+  font-size: 1rem;
+  color: #606266;
+}
+</style>
