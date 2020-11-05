@@ -99,17 +99,15 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
+        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
-          style="
-            padding: 0px;
-            margin: 0px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: 1rem;
-            grid-row-gap: 1rem;
+          :style="
+            propFormDef.styleForEachRowInPaperView
+              ? propFormDef.styleForEachRowInPaperView
+              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
           <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
