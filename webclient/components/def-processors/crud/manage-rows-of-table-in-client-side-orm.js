@@ -876,6 +876,126 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     response.failed = failed
     return response
   }
+
+  // send edited data to server
+  static async mfSendCopyChangedRowsToServer() {
+    try {
+      await this.update({
+        where: this.dnClientIdOfCopiedRowBeingChanged,
+        data: {
+          vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave,
+        },
+      })
+
+      /**
+       * Send socket id to the server for update from socket
+       */
+      const socketClientObj = await clientTblOfCommonForAllComponents
+        .query()
+        .where(
+          'fieldNameInDb',
+          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
+        )
+        .first()
+
+      const response = await fetch(allClientTbls[this.propFormDef.id].apiUrl + '/' + this.dnOrmUuidOfRowToChange, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          // "Authorization": "Bearer " + TOKEN
+        },
+        body: JSON.stringify({
+          description: this.mfGetCopiedRowBeingChangedFldVal(
+            this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+          ),
+          client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+            socketClientObj.fieldValue,
+        }),
+      })
+
+      if (!response.ok) {
+        /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+        this.update({
+          where: this.dnClientIdOfCopiedRowBeingChanged,
+          data: {
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError,
+          },
+        })
+        console.log('Failed to update')
+      } else {
+        /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
+          Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
+          dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+          How to update the ROW_END for id = 2?
+            option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
+            option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
+                      Option 2 is rejected. Since ID2 will now require update in following 3 cases:
+                        1. When ID 3 is created it will require changing state of id 2.
+                        2. Also when id3 is deleted without saving to DB.
+                        3. Or ID 3 is saved to DB.
+
+          Q): Why following where clause needed?
+          A):
+              Whenever we change a record and hit save button, we get two records in allClientTbls with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
+              In real time 3 cases may happen.
+                1. User changes an existing record. i.e. rowState = 1
+                2. User already changed a record and then again changes that record i.e. rowState = 34571
+                3. User adds a record and then changes that newly added record again i.e. rowState = 24571
+
+          Following logic of where clause deals with these 3 types of cases.
+
+          Q) What we have done to deal with the above mentioned problem?
+          A)
+              We are following below mentioned logic in where clause of allClientTbls update:
+              -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
+                "exp A" -> search record from allClientTbls whose uuid = this.dnOrmUuidOfRowToChange
+                "exp B1" -> "vnRowStateInSession === 1",
+                    allClientTbls record that came from database (Case: User changes an existing record)
+                "exp B2" -> "vnRowStateInSession === 34571",
+                    allClientTbls record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
+                "exp B3" -> "vnRowStateInSession === 24571",
+                    allClientTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+       */
+        debugger
+        await this.update({
+          where: (record) => {
+            return (
+              record.uuid === this.dnOrmUuidOfRowToChange &&
+              (record.vnRowStateInSession === rowState.SameAsDB ||
+                record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
+                record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
+            )
+          },
+          data: {
+            ROW_END: Math.floor(Date.now()),
+          },
+        })
+        /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
+        this.update({
+          where: this.dnClientIdOfCopiedRowBeingChanged,
+          data: {
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+          },
+        })
+        console.log('update success')
+      }
+
+      /*
+          Goal:
+          According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into allClientTbls and it displayed on the top of timeline.
+          When change api request then we should need to insert a duplicate row (copy of row) again in allClientTbls for further change.
+        */
+      this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
+      this.dnClientIdOfCopiedRowBeingChanged = null
+    } catch (ex) {
+      console.log('update error', ex)
+    }
+    console.log(
+      'mfSendCopyChangedRowsToServer-> ',
+      this.dnOrmUuidOfRowToChange,
+      this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty)
+    )
+  }
 }
 
 export default clientTblManage
