@@ -14,8 +14,8 @@ class GoalController extends Controller
 {
     public function getAllTemporalGoals()
     {
-        $goalQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_goals.goals FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($goalQuery);
+        $goalQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_goals.goals FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        return response()->json($goalQueryResultObj);
         // return response()->json(Goal::all());
     }
 
