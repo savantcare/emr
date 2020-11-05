@@ -1,1 +1,1 @@
-create database sc_process-notes
+create database sc_process_notes
