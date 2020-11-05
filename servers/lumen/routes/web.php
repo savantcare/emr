@@ -184,6 +184,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Mental status exam
     $router->get('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
     $router->post('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@create']);
+    $router->put('mental-status-exam/v20/{serverSideRowUuid}', ['uses' => 'MentalStatusExamController@update']);
     $router->delete('mental-status-exam/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
     $router->options('mental-status-exam/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
