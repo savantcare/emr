@@ -43,18 +43,18 @@ class ChiefComplaintController extends Controller
         return response()->json($chiefComplaint, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $chiefComplaint = ChiefComplaint::findOrFail($serverSideRowUuid);
-        $chiefComplaint->update($request->all());
+        $chiefComplaint = ChiefComplaint::findOrFail($pServerSideRowUuid);
+        $chiefComplaint->update($pRequest->all());
 
         /**
          * Send data to socket
          */
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
         $channel = 'MsgFromSktForChiefComplaintToChange';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'ChiefComplaintMasterId' => $requestData['ChiefComplaintMasterId'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
@@ -65,9 +65,9 @@ class ChiefComplaintController extends Controller
         return response()->json($chiefComplaint, 200);
     }
 
-    public function delete($serverSideRowUuid, Request $pRequest)
+    public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $chiefComplaint = ChiefComplaint::findOrFail($serverSideRowUuid);
+        $chiefComplaint = ChiefComplaint::findOrFail($pServerSideRowUuid);
         $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
@@ -84,7 +84,7 @@ class ChiefComplaintController extends Controller
          */
         $channel = 'MsgFromSktForChiefComplaintToDelete';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
