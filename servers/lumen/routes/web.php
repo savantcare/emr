@@ -280,13 +280,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Diagnosis  
     $router->get('diagnosis/v20/', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
-    $router->delete('diagnosis/v20/{serverSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
+    $router->delete('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
     $router->options('diagnosis/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('diagnosis/v20/{serverSideRowUuid}', function () {
+    $router->options('diagnosis/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
