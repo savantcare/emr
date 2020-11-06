@@ -39,10 +39,10 @@ class AllergiesController extends Controller
         return response()->json($allergies, 201);
     }
 
-    public function update($pServerSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
         $allergies = Allergies::findOrFail($pServerSideRowUuid);
-        $allergies->update($request->all());
+        $allergies->update($pRequest->all());
 
         return response()->json($allergies, 200);
     }
