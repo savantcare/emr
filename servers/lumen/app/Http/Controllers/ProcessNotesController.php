@@ -42,9 +42,9 @@ class ProcessNotesController extends Controller
         return response()->json($processNotes, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $request)
     {
-        $processNotes = ProcessNotes::findOrFail($serverSideRowUuid);
+        $processNotes = ProcessNotes::findOrFail($pServerSideRowUuid);
         $processNotes->update($request->all());
 
         return response()->json($processNotes, 200);
