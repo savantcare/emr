@@ -73,7 +73,14 @@
       <!-- Goal: Only do this if this section has not been minimized -->
       <div v-if="OnAndOffSwitchToShowContent">
         <!-- This is for each data row -->
-        <!-- Design: 
+        <!-- All the data rows together will get a prev and next. This will be like a slider effect of going left or going right -->
+        <!-- Allowing user to quickly see the prev value for this row -->
+        <el-card>
+          <swiper ref="mySwiper" :options="swiperOptions">
+            <swiper-slide>Previous chief complaint</swiper-slide>
+
+            <swiper-slide>
+              <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
@@ -99,28 +106,28 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
-        <div
-          id="each-data-row"
-          v-for="row in mfGetArOfDataRows(this.currentApptObj)"
-          :key="row.clientSideUniqRowId"
-          :style="
-            propFormDef.styleForEachRowInPaperView
-              ? propFormDef.styleForEachRowInPaperView
-              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-          "
-        >
-          <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
+              <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
+              <div
+                :id="row.clientSideUniqRowId + 'each-data-row'"
+                v-for="row in mfGetArOfDataRows(this.currentApptObj)"
+                :key="row.clientSideUniqRowId"
+                :style="
+                  propFormDef.styleForEachRowInPaperView
+                    ? propFormDef.styleForEachRowInPaperView
+                    : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
+                "
+              >
+                <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
-          <span
-            id="each-field-of-data-row"
-            :class="'field-type-' + propFieldDef.fieldType"
-            v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-            :key="id"
-            :style="mfGetCssClassNameForEachDataRow(row)"
-            v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
-          >
-            <!-- 
+                <span
+                  id="each-field-of-data-row"
+                  :class="'field-type-' + propFieldDef.fieldType"
+                  v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+                  :key="id"
+                  :style="mfGetCssClassNameForEachDataRow(row)"
+                  v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
+                >
+                  <!-- 
               Explanation of v-if statement
               Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
@@ -134,105 +141,105 @@
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
 
-            <!-- Allowing user to quickly see the prev value for this row -->
-            <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
+                  <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+                    <!-- the field printing is not common for all field types so that heading can be applied -->
+                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                  </div>
 
-            <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-              <!-- the field printing is not common for all field types so that heading can be applied -->
-              <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-            </div>
+                  <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+                    <!-- the field printing is not common for all field types so that heading can be applied -->
+                    <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+                  </div>
 
-            <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
-              <!-- the field printing is not common for all field types so that heading can be applied -->
-              <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
-            </div>
-
-            <!-- There may be many different types of fields. Here dealing with select type field -->
-            <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-              <!-- Each fieldtype gets to control its own way of showing the field label -->
-              <div v-if="propFieldDef.showFieldLabel">
-                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-              </div>
-              <!-- Since it is select there will be many options hence need to do a for loop on options -->
-              <!-- Since it is View layer I should only show the selected options and not all the options -->
-              <div
-                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  propFieldDef.fieldNameInDb,
-                  row.clientSideUniqRowId
-                )"
-                :key="item.id"
-                v-if="item.selected"
-              >
-                <!-- this v-if is part of this div and not <div id="selected-option"> 
+                  <!-- There may be many different types of fields. Here dealing with select type field -->
+                  <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+                    <!-- Each fieldtype gets to control its own way of showing the field label -->
+                    <div v-if="propFieldDef.showFieldLabel">
+                      <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                    </div>
+                    <!-- Since it is select there will be many options hence need to do a for loop on options -->
+                    <!-- Since it is View layer I should only show the selected options and not all the options -->
+                    <div
+                      v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                        propFieldDef.fieldNameInDb,
+                        row.clientSideUniqRowId
+                      )"
+                      :key="item.id"
+                      v-if="item.selected"
+                    >
+                      <!-- this v-if is part of this div and not <div id="selected-option"> 
                   reason: So that empty divs are not generated.
                   If <div id="selected-option" v-if="item.selected">
                     then a empty divs for each of the select options will get generated.
                   -->
 
-                <!-- Goal: Only show the selected option -->
-                <div id="selected-option">
-                  {{ item.value }}
-                </div>
-              </div>
-            </div>
-            <!-- Slider field type -->
-            <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-              <div v-if="row[propFieldDef.fieldNameInDb] > 0">
-                <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                  <h4>{{ propFieldDef.fieldNameInUi }}</h4>
-                </div>
-                <div id="field-value-in-db">
-                  <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
-                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
-                  <div v-else>
-                    {{ row[propFieldDef.fieldNameInDb] }}
+                      <!-- Goal: Only show the selected option -->
+                      <div id="selected-option">
+                        {{ item.value }}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                  <!-- Slider field type -->
+                  <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+                    <div v-if="row[propFieldDef.fieldNameInDb] > 0">
+                      <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                        <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                      </div>
+                      <div id="field-value-in-db">
+                        <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
+                        <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+                        <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+                        <div v-else>
+                          {{ row[propFieldDef.fieldNameInDb] }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-            <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">
-                {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
-              </div>
-            </div>
+                  <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
+                    <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                    <div id="field-value-in-db">
+                      {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+                    </div>
+                  </div>
 
-            <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
-            </div>
+                  <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
+                    <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                    <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
+                  </div>
 
-            <!-- Not specified field type -->
-            <span v-else id="not-matched-field-type">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <!-- Goal: skip fields that are null or empty -->
-              <span v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                {{ row[propFieldDef.fieldNameInDb] }}
-              </span>
-            </span>
-          </span>
+                  <!-- Not specified field type -->
+                  <span v-else id="not-matched-field-type">
+                    <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                    <!-- Goal: skip fields that are null or empty -->
+                    <span v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                      {{ row[propFieldDef.fieldNameInDb] }}
+                    </span>
+                  </span>
+                </span>
 
-          <!-- Finished processing all the fields -->
-          <!-- This is for action associated with each row -->
-          <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-          <!-- Case 1/2: When this appt is locked what row actions to show-->
-          <div v-else id="row-actions-when-app-is-unlocked">
-            <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-            <div>
-              <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-              <el-button-group style="float: right">
-                <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
-                  <el-button @click="additionalRowAction.executeThisFn(row)">{{
-                    additionalRowAction.textInUi
-                  }}</el-button>
-                </div>
-                <!-- Allowing user to quickly see the next value for this row -->
-                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
-
-                <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-                  <!-- 
+                <!-- Finished processing all the fields -->
+                <!-- This is for action associated with each row -->
+                <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+                <!-- Case 1/2: When this appt is locked what row actions to show-->
+                <div v-else id="row-actions-when-app-is-unlocked">
+                  <!-- Case 2/2: When this appt is un-locked what row actions to show-->
+                  <div>
+                    <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
+                    <el-button-group style="float: right">
+                      <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
+                        <el-button @click="additionalRowAction.executeThisFn(row)">{{
+                          additionalRowAction.textInUi
+                        }}</el-button>
+                      </div>
+                      <el-tooltip
+                        class="item"
+                        effect="light"
+                        content="Click to edit"
+                        placement="top-start"
+                        :open-delay="500"
+                      >
+                        <!-- 
                     Why @click has a condition
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
@@ -242,35 +249,45 @@
 
                   In case of new row created on client during edit do not create a copy.
                   -->
-                  <el-button
-                    style="padding: 3px; color: #c0c4cc; border: none"
-                    plain
-                    @click="
-                      String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
-                        ? mfOpenAddInEditLayer()
-                        : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
-                    "
-                    class="el-icon-edit"
-                  >
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-                  <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
-                  <el-button
-                    style="padding: 3px; color: #c0c4cc; border: none"
-                    plain
-                    @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
-                    class="el-icon-circle-close"
-                  >
-                  </el-button>
-                </el-tooltip>
-              </el-button-group>
-            </div>
-          </div>
-        </div>
+                        <el-button
+                          style="padding: 3px; color: #c0c4cc; border: none"
+                          plain
+                          @click="
+                            String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
+                              ? mfOpenAddInEditLayer()
+                              : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                          "
+                          class="el-icon-edit"
+                        >
+                        </el-button>
+                      </el-tooltip>
+                      <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+                        <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
+                        </el-button>
+                      </el-tooltip>
+                      <el-tooltip
+                        class="item"
+                        effect="light"
+                        content="Click to delete"
+                        placement="top-end"
+                        :open-delay="500"
+                      >
+                        <el-button
+                          style="padding: 3px; color: #c0c4cc; border: none"
+                          plain
+                          @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
+                          class="el-icon-circle-close"
+                        >
+                        </el-button>
+                      </el-tooltip>
+                    </el-button-group>
+                  </div>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide> <ctAddStructure :propFormDef="formDef"></ctAddStructure> </swiper-slide>
+          </swiper>
+        </el-card>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
@@ -287,16 +304,26 @@
 </template>
 
 <script>
+// https://github.com/surmon-china/vue-awesome-swiper
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
+import moment from 'moment'
+
+// Internal cts
 import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 
-import moment from 'moment'
-
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import { goalsFormDef } from '@/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 
 export default {
   data() {
@@ -305,6 +332,14 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       OnAndOffSwitchToShowContent: true,
+      swiperOptions: {
+        autoHeight: true,
+        mousewheel: true,
+        direction: 'horizontal',
+        releaseOnEdges: true,
+        forceToAxis: true,
+      },
+      formDef: {},
     }
   },
   mixins: [clInvokeMixin],
@@ -313,6 +348,12 @@ export default {
     moment: function (date) {
       return moment(date).format("MMM Do 'YY, h:mm a")
     },
+  },
+
+  components: {
+    Swiper,
+    SwiperSlide,
+    ctAddStructure,
   },
   props: {
     propApptId: {
@@ -324,13 +365,31 @@ export default {
       required: true,
     },
   },
+  created() {
+    if (this.propFormDef.id === 'chief_complaint') {
+      this.formDef = chiefComplaintFormDef
+    } else if (this.propFormDef.id === 'goals') {
+      this.formDef = goalsFormDef
+    } else if (this.propFormDef.id === 'family_history') {
+      this.formDef = familyHistoryFormDef
+    } else {
+      // this is the catch all. It is needed till all the sections get added
+      this.formDef = familyHistoryFormDef
+    }
+  },
   async mounted() {
     if (!this.propApptId === 0) {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
+    //this.swiper.slideTo(1, 1000, false)
+
+    //  debugger
   },
   computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting

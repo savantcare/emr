@@ -1,1 +1,1 @@
-create database sc_psych_review_of_system
+create database sc_psych_review_of_systems

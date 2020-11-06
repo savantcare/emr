@@ -9,7 +9,7 @@
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
-          id="each-data-row"
+          :id="`each-data-row` + propFormDef.id"
           :style="propFormDef.styleForEachRowInAddForm"
         >
           <!-- Start to process each row -->

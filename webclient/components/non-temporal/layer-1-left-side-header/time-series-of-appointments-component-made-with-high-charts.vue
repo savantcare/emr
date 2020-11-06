@@ -117,7 +117,7 @@ export default {
             },
             allowPointSelect: true, // Goal: Give visual indication of what has been selected https://stackoverflow.com/questions/11193658/how-to-change-style-of-selected-point-in-highcharts
             marker: {
-              enabled: true,
+              enabled: false,
               symbol: 'circle',
               radius: 7,
               states: {
@@ -172,17 +172,23 @@ export default {
 
         let markerSymbol = ''
         if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'locked') {
-          markerSymbol = 'url(http://localhost/2x-outline_lock_black_18dp.png)'
+          // markerSymbol = 'url(http://localhost/2x-outline_lock_black_18dp.png)'
+          markerSymbol = '<i class="el-icon-lock"></i>'
         } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'unlocked') {
-          markerSymbol = 'url(http://localhost/2x-outline_lock_open_black_18dp.png)'
+          // markerSymbol = 'url(http://localhost/2x-outline_lock_open_black_18dp.png)'
+          markerSymbol = '<i class="el-icon-unlock"></i>'
         } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'late-cancellation') {
-          markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
+          // markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
+          markerSymbol = '<i class="el-icon-circle-close"></i>'
         } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'no-show') {
-          markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
+          // markerSymbol = 'url(http://localhost/1x-outline_clear_black_18dp.png)'
+          markerSymbol = '<i class="el-icon-warning-outline"></i>'
         } else if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'cancellation') {
-          markerSymbol = 'url(http://localhost/1x-outline_block_black_18dp.png)'
+          // markerSymbol = 'url(http://localhost/1x-outline_block_black_18dp.png)'
+          markerSymbol = '<i class="el-icon-remove-outline"></i>'
         } else {
-          markerSymbol = 'url(http://www.highcharts.com/samples/graphics/snow.png)'
+          // markerSymbol = 'url(http://www.highcharts.com/samples/graphics/snow.png)'
+          markerSymbol = '<i class="el-icon-lock"></i>'
         }
         data.push({
           //          x: timeOnCalendar, // this makes it proportional
@@ -195,7 +201,22 @@ export default {
           clientSideUniqRowId: this.arOfAppointmentsFromClientDB[i]['clientSideUniqRowId'],
           apptStatus: this.arOfAppointmentsFromClientDB[i]['apptStatus'],
           marker: {
-            symbol: markerSymbol,
+            symbol: false,
+            enabled: false,
+          },
+          /**
+           * Goal: Use element io icons for ploting appointment marker instead of png
+           * Ref: https://www.highcharts.com/forum/viewtopic.php?t=35271
+           */
+          dataLabels: {
+            enabled: true,
+            useHTML: true,
+            format: markerSymbol,
+            style: {
+              fontSize: '25px',
+            },
+            y: 15,
+            x: -65,
           },
         })
       }
