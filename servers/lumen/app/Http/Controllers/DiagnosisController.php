@@ -28,13 +28,13 @@ class DiagnosisController extends Controller
         $requestData = $pRequest->all();
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
-        $startDate = (int)($requestData['data']['onset']);
+        $onset = (int)($requestData['data']['onset']);
         $diagnosis = $requestData['data']['diagnosis'];
         $assessment = $requestData['data']['assessment'];
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertDiagnosis = DB::statement("INSERT INTO `sc_dx`.`assignedDiagnosis` (`serverSideRowUuid`, `ptUuid`, `diagnosis`,`assessment`,`startDate`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$diagnosis}, '{$assessment}', FROM_UNIXTIME({$startDate}/1000), '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertDiagnosis = DB::statement("INSERT INTO `sc_dx`.`assignedDiagnosis` (`serverSideRowUuid`, `ptUuid`, `diagnosis`,`assessment`,`onset`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$diagnosis}, '{$assessment}', FROM_UNIXTIME({$onset}/1000), '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertDiagnosis, 201);
     }
