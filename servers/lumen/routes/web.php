@@ -182,7 +182,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Mental status exam
     $router->get('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
     $router->post('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@create']);
-    $router->put('mental-status-exam/v20/{serverSideRowUuid}', ['uses' => 'MentalStatusExamController@update']);
+    $router->put('mental-status-exam/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@update']);
     $router->delete('mental-status-exam/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
     $router->options('mental-status-exam/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
@@ -198,7 +198,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Goal
     $router->get('goals/v20/', ['uses' => 'GoalController@getAllTemporalGoals']);
     $router->post('goals/v20/', ['uses' => 'GoalController@create']);
-    $router->put('goals/v20/{serverSideRowUuid}', ['uses' => 'GoalController@update']);
+    $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
     $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
     $router->options('goals/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
