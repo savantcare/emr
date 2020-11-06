@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'diagnosis',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/diagnosis/view-layer/timeline-ct.vue',
+        ctToShow: 'temporal/diagnosis/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })

@@ -57,6 +57,19 @@
               </el-option>
             </el-select>
 
+            <el-date-picker
+              v-else-if="propFieldDef.fieldType === 'date'"
+              :ref="propFieldDef.fieldNameInDb"
+              format="MMM dd yyyy"
+              value-format="timestamp"
+              type="date"
+              style="width: 100%"
+              :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              :placeholder="propFieldDef.fieldNameInUi"
+            >
+            </el-date-picker>
+
             <el-input
               v-else
               :ref="propFieldDef.fieldNameInDb"
