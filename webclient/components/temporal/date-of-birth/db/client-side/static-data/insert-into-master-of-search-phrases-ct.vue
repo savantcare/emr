@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'date of birth',
         ctAbbr: 'w',
-        ctToShow: 'temporal/date-of-birth/view-layer/dob-table-ct.vue',
+        ctToShow: 'temporal/date-of-birth/view-layer/dob-table.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
