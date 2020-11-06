@@ -108,7 +108,7 @@
 
             <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
             <div
-              id="each-data-row"
+              :id="row.clientSideUniqRowId + 'each-data-row'"
               v-for="row in mfGetArOfDataRows(this.currentApptObj)"
               :key="row.clientSideUniqRowId"
               :style="
@@ -321,6 +321,8 @@ import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import { goalsFormDef } from '@/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 
 export default {
   data() {
@@ -330,9 +332,11 @@ export default {
       isAddendumPopoverVisible: false,
       OnAndOffSwitchToShowContent: true,
       swiperOptions: {
+        autoHeight: true,
         mousewheel: true,
+        direction: 'horizontal',
       },
-      formDef: chiefComplaintFormDef,
+      formDef: {},
     }
   },
   mixins: [clInvokeMixin],
@@ -358,12 +362,26 @@ export default {
       required: true,
     },
   },
+  created() {
+    if (this.propFormDef.id === 'chief_complaint') {
+      this.formDef = chiefComplaintFormDef
+    } else if (this.propFormDef.id === 'goals') {
+      this.formDef = goalsFormDef
+    } else if (this.propFormDef.id === 'family_history') {
+      this.formDef = familyHistoryFormDef
+    } else {
+      // this is the catch all. It is needed till all the sections get added
+      this.formDef = familyHistoryFormDef
+    }
+  },
   async mounted() {
     if (!this.propApptId === 0) {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
     this.swiper.slideTo(1, 1000, false)
+
+    //  debugger
   },
   computed: {
     swiper() {
