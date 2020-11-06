@@ -45,7 +45,7 @@ import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-c
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/non-temporal/printable-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
+import apptNotePrintableView from '@/components/non-temporal/paper-appt-note-with-amendment-or-modify-feature/given-appt-id-print-all-sections-together.vue'
 
 // smaller sections
 import headerPrintSection from './section-2-header.vue'
