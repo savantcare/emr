@@ -232,9 +232,6 @@
                         additionalRowAction.textInUi
                       }}</el-button>
                     </div>
-                    <!-- Allowing user to quickly see the next value for this row -->
-                    <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
-
                     <el-tooltip
                       class="item"
                       effect="light"
@@ -288,7 +285,7 @@
               </div>
             </div>
           </swiper-slide>
-          <swiper-slide><el-input /></swiper-slide>
+          <swiper-slide> <ctAddStructure :propFormDef="formDef"></ctAddStructure> </swiper-slide>
         </swiper>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
@@ -322,6 +319,9 @@ import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+
 export default {
   data() {
     return {
@@ -332,6 +332,7 @@ export default {
       swiperOptions: {
         mousewheel: true,
       },
+      formDef: chiefComplaintFormDef,
     }
   },
   mixins: [clInvokeMixin],
@@ -345,6 +346,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    ctAddStructure,
   },
   props: {
     propApptId: {
