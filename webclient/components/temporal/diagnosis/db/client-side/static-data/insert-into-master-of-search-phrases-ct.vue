@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'diagnosis',
-        ctAbbr: 'rem',
+        ctAbbr: 'dx',
         ctToShow: 'temporal/diagnosis/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add diagnosis',
-        ctAbbr: 'arem',
+        ctAbbr: 'adx',
         ctToShow: 'temporal/diagnosis/change-layer/diagnosis-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit diagnosis',
-        ctAbbr: 'crem',
+        ctAbbr: 'cdx',
         ctToShow: 'temporal/diagnosis/change-layer/diagnosis-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit diagnosis',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcdx',
         ctToShow: 'temporal/diagnosis/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted diagnosis',
-        ctAbbr: 'drem',
+        ctAbbr: 'ddx',
         ctToShow: 'temporal/diagnosis/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
