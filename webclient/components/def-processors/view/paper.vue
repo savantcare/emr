@@ -361,7 +361,7 @@ export default {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
-    this.swiper.slideTo(0, 1000, false)
+    this.swiper.slideTo(1, 1000, false)
   },
   computed: {
     swiper() {
