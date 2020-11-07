@@ -44,7 +44,7 @@
 
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
-    <el-card @wheel.native="swipe($event, 'psych_review_of_system')" shadow="hover">
+    <el-card @wheel.native="swipe($event, 'goals')" shadow="hover">
       <div v-if="timeSeriesMarker['goals'] === 0">
         <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
       </div>
@@ -340,6 +340,12 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
 }
 
 .el-card:hover {
-  border-color: rgba(103, 194, 58, 0.25);
+  border-color: rgba(144, 147, 153, 0.5);
+  /*
+  Green when field data is valid. Organge when field data is invalid
+  Blue when field is highlighted
+  For green: border-color: rgba(103, 194, 58, 0.25);
+  For blue: border-color: rgba(64, 158, 255, 0.5);
+  */
 }
 </style>
