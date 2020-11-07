@@ -12,9 +12,26 @@
     </div>
 
     <!-- End of Data -->
-
-    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId" @wheel.native="swipe($event)">
-    </chiefComplaintPrintSection>
+    <el-card>
+      <template v-if="chiefComplaintTimeSeriesMarker === 0">
+        <chiefComplaintPrintSection
+          :propApptId="propShowNoteForApptId"
+          @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')"
+        >
+        </chiefComplaintPrintSection>
+      </template>
+      <template v-if="chiefComplaintTimeSeriesMarker > 0" @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+        <div @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+          Add chief complaint{{ this.chiefComplaintTimeSeriesMarker }}
+          <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+        </div>
+      </template>
+      <template v-if="chiefComplaintTimeSeriesMarker < 0" @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+        <div @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+          Old chief component {{ this.chiefComplaintTimeSeriesMarker }}
+        </div>
+      </template>
+    </el-card>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
     <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
@@ -71,6 +88,11 @@ import allergiesPrintSection from './section-21-allergies.vue'
 import diagnosisPrintSection from './section-22-diagnosis.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
+
+import allFormDefinations from '@/components//def-processors/all-form-definations.js'
+
+import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+
 // Library
 import moment from 'moment'
 
@@ -78,6 +100,8 @@ export default {
   data() {
     return {
       patientCurrentApptObj: {},
+      chiefComplaintTimeSeriesMarker: 0,
+      formDef: {},
     }
   },
   props: {
@@ -114,6 +138,7 @@ export default {
     diagnosisPrintSection,
     goalsPrintSection,
     screensPrintSection,
+    ctAddStructure,
   },
 
   async created() {
@@ -136,12 +161,18 @@ export default {
       /* Goal: Anything that makes vertical wheelscroll keeps normal
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
+      console.log('Inside swipe')
       if (event.deltaY === 0) {
         event.preventDefault()
       } else if (event.deltaX > 0) {
         console.log('left swipe', event)
+        this.chiefComplaintTimeSeriesMarker++
+        if (this.chiefComplaintTimeSeriesMarker > 1) this.chiefComplaintTimeSeriesMarker = 1
+        this.formDef = allFormDefinations['chief_complaint']
       } else if (event.deltaX < 0) {
         console.log('right swipe', event)
+        this.chiefComplaintTimeSeriesMarker--
+        if (this.chiefComplaintTimeSeriesMarker < -1) this.chiefComplaintTimeSeriesMarker = -1
       }
     },
   },
