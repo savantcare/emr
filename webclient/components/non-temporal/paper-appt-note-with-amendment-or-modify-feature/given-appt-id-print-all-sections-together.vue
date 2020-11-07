@@ -15,7 +15,7 @@
       {{ timeSeriesMarker }}
     </div>
 
-    <el-card @wheel.native="swipe($event, 'chief_complaint')" shadow="hover">
+    <div class="sc-card" @wheel="swipe($event, 'chief_complaint')">
       <i id="arrowLeft" class="el-icon-arrow-left" style="visibility: hidden; color: blue"></i>
       <i id="arrowRight" class="el-icon-arrow-right" style="visibility: hidden; color: blue"></i>
 
@@ -28,9 +28,9 @@
       <div v-if="timeSeriesMarker['chief_complaint'] < 0">
         <div>Old chief component</div>
       </div>
-    </el-card>
+    </div>
 
-    <el-card @wheel.native="swipe($event, 'family_history')" shadow="hover">
+    <div class="sc-card" @wheel="swipe($event, 'family_history')">
       <div v-if="timeSeriesMarker['family_history'] === 0">
         <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
       </div>
@@ -40,11 +40,11 @@
       <div v-if="timeSeriesMarker['family_history'] < 0">
         <div>Old family history</div>
       </div>
-    </el-card>
+    </div>
 
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
 
-    <el-card @wheel.native="swipe($event, 'goals')" shadow="hover">
+    <div class="sc-card" @wheel="swipe($event, 'goals')">
       <div v-if="timeSeriesMarker['goals'] === 0">
         <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
       </div>
@@ -54,9 +54,9 @@
       <div v-if="timeSeriesMarker['goals'] < 0">
         <div>Old Goals</div>
       </div>
-    </el-card>
+    </div>
 
-    <el-card @wheel.native="swipe($event, 'psych_review_of_system')" shadow="hover">
+    <div class="sc-card" @wheel="swipe($event, 'psych_review_of_system')">
       <div v-if="timeSeriesMarker['psych_review_of_system'] === 0">
         <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
       </div>
@@ -66,7 +66,7 @@
       <div v-if="timeSeriesMarker['psych_review_of_system'] < 0">
         <div>Old psych_review_of_system</div>
       </div>
-    </el-card>
+    </div>
 
     <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
     <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
@@ -339,11 +339,17 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
   }
 }
 
-.el-card:hover {
-  border-color: rgba(144, 147, 153, 0.5);
+.sc-card {
+  border: 1px solid transparent;
+}
+
+.sc-card:hover {
+  border: 1px solid rgba(144, 147, 153, 0.3);
+
   /*
   Green when field data is valid. Organge when field data is invalid
   Blue when field is highlighted
+  For grey: border: 1px solid rgba(144, 147, 153, 0.3);
   For green: border-color: rgba(103, 194, 58, 0.25);
   For blue: border-color: rgba(64, 158, 255, 0.5);
   */
