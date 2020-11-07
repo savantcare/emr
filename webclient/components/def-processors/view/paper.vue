@@ -206,9 +206,7 @@
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
               <div v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                <el-button class="el-icon-arrow-left" style="padding: 3px; color: #c0c4cc; border: none" plain />
                 {{ row[propFieldDef.fieldNameInDb] }}
-                <el-button class="el-icon-arrow-right" style="padding: 3px; color: #c0c4cc; border: none" plain />
               </div>
             </div>
           </div>

@@ -11,8 +11,8 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
 
-    <!-- End of Data -->
-    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+    <!--
+    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')" shadow="hover">
       <transition name="fade" v-if="chiefComplaintTimeSeriesMarker === 0">
         <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
       </transition>
@@ -23,7 +23,21 @@
       <transition name="fade" v-if="chiefComplaintTimeSeriesMarker < 0">
         <div>Old chief component {{ this.chiefComplaintTimeSeriesMarker }}</div>
       </transition>
+    </el-card>-->
+
+    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')" shadow="hover">
+      <div v-if="chiefComplaintTimeSeriesMarker === 0">
+        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+      </div>
+      <div v-if="chiefComplaintTimeSeriesMarker > 0">
+        {{ this.chiefComplaintTimeSeriesMarker }}
+        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+      </div>
+      <div v-if="chiefComplaintTimeSeriesMarker < 0">
+        <div>Old chief component {{ this.chiefComplaintTimeSeriesMarker }}</div>
+      </div>
     </el-card>
+
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
     <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
@@ -154,8 +168,6 @@ export default {
       /* Goal: Anything that makes vertical wheelscroll keeps normal
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
-      console.log('Inside swipe')
-
       if (this.dDebounceCounter) {
         clearTimeout(this.dDebounceCounter)
       }
@@ -170,17 +182,13 @@ export default {
       )
     },
     fnChangeTimeSeries(pEvent) {
-      console.log('inside change time series marker', pEvent)
-      if (pEvent.deltaY > -1 && pEvent.deltaY < -1) {
-        console.log('Vertical')
+      if (pEvent.deltaX === 0) {
         pEvent.preventDefault()
       } else if (pEvent.deltaX > 0) {
-        console.log('left swipe', pEvent)
         this.chiefComplaintTimeSeriesMarker++
         if (this.chiefComplaintTimeSeriesMarker > 1) this.chiefComplaintTimeSeriesMarker = 1
         this.formDef = allFormDefinations['chief_complaint']
       } else if (pEvent.deltaX < 0) {
-        console.log('right swipe', pEvent)
         this.chiefComplaintTimeSeriesMarker--
         if (this.chiefComplaintTimeSeriesMarker < -1) this.chiefComplaintTimeSeriesMarker = -1
       }
@@ -289,11 +297,13 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
   }
 }
 
+/*
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to  {
   opacity: 0;
 }
+*/
 </style>
