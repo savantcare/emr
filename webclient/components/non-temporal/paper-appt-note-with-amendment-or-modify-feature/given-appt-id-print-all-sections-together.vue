@@ -16,14 +16,12 @@
     </div>
 
     <div class="sc-card" @wheel="swipe($event, 'chief_complaint')">
-      <i id="arrowLeft" class="el-icon-arrow-left" style="visibility: hidden; color: blue"></i>
-      <i id="arrowRight" class="el-icon-arrow-right" style="visibility: hidden; color: blue"></i>
-
       <div v-if="timeSeriesMarker['chief_complaint'] === 0">
-        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId" :arrowDirection="arrowDirection">
+        </chiefComplaintPrintSection>
       </div>
       <div v-if="timeSeriesMarker['chief_complaint'] > 0">
-        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+        <ctAddStructure :propFormDef="formDef['chief_complaint']"></ctAddStructure>
       </div>
       <div v-if="timeSeriesMarker['chief_complaint'] < 0">
         <div>Old chief component</div>
@@ -32,10 +30,13 @@
 
     <div class="sc-card" @wheel="swipe($event, 'family_history')">
       <div v-if="timeSeriesMarker['family_history'] === 0">
-        <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
+        <familyHistoryPrintSection
+          :propApptId="propShowNoteForApptId"
+          :arrowDirection="arrowDirection"
+        ></familyHistoryPrintSection>
       </div>
       <div v-if="timeSeriesMarker['family_history'] > 0">
-        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+        <ctAddStructure :propFormDef="formDef['family_history']"></ctAddStructure>
       </div>
       <div v-if="timeSeriesMarker['family_history'] < 0">
         <div>Old family history</div>
@@ -141,6 +142,7 @@ export default {
         goals: 0,
         psych_review_of_system: 0,
       },
+      arrowDirection: 0,
     }
   },
   props: {
@@ -201,9 +203,9 @@ export default {
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
       if (pEvent.deltaX > 0) {
-        document.getElementById('arrowRight').style.visibility = 'visible'
+        this.arrowDirection = pEvent.deltaX
       } else if (pEvent.deltaX < 0) {
-        document.getElementById('arrowLeft').style.visibility = 'visible'
+        this.arrowDirection = pEvent.deltaX
       }
 
       if (this.dDebounceCounter) {
@@ -222,18 +224,17 @@ export default {
     fnChangeTimeSeries(pEvent, pEntity) {
       console.log(pEntity)
       if (pEvent.deltaX === 0) {
+        // Goal: Allow scrolling up and down
         pEvent.preventDefault()
       } else if (pEvent.deltaX > 0) {
         this.timeSeriesMarker[pEntity]++
         if (this.timeSeriesMarker[pEntity] > 1) this.timeSeriesMarker[pEntity] = 1
         //debugger
-        this.formDef = allFormDefinations[pEntity]
+        this.formDef[pEntity] = allFormDefinations[pEntity]
       } else if (pEvent.deltaX < 0) {
         this.timeSeriesMarker[pEntity]--
         if (this.timeSeriesMarker[pEntity] < -1) this.timeSeriesMarker[pEntity] = -1
       }
-      document.getElementById('arrowLeft').style.visibility = 'hidden'
-      document.getElementById('arrowRight').style.visibility = 'hidden'
     },
   },
 }

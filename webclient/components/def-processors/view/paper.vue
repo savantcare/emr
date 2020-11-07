@@ -3,9 +3,11 @@
     <!-- Section 1/2: This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
-      <el-col :span="9" class="sectionHeading">{{
-        propFormDef.plural.charAt(0).toUpperCase() + propFormDef.plural.slice(1)
-      }}</el-col>
+      <el-col :span="9" class="sectionHeading"
+        >{{ propFormDef.plural.charAt(0).toUpperCase() + propFormDef.plural.slice(1) }}
+        <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
+        <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
+      </el-col>
       <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
         ><div class="grid-content">
@@ -316,6 +318,9 @@ export default {
     propFormDef: {
       type: Object,
       required: true,
+    },
+    arrowDirection: {
+      type: Number,
     },
   },
   async mounted() {

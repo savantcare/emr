@@ -1,6 +1,6 @@
 <template>
   <div>
-    <paperNote :propApptId="propApptId" :propFormDef="formDef"></paperNote>
+    <paperNote :propApptId="propApptId" :propFormDef="formDef" :arrowDirection="arrowDirection"></paperNote>
   </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
     propApptId: {
       type: Number,
       required: true,
+    },
+    arrowDirection: {
+      type: Number,
     },
   },
   data: function () {
