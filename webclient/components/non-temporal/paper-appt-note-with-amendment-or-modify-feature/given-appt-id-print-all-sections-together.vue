@@ -30,6 +30,9 @@
     </div>
 
     <el-card @wheel.native="swipe($event, 'chief_complaint')" shadow="hover">
+      <i id="arrowLeft" class="el-icon-arrow-left" style="visibility: hidden"></i>
+      <i id="arrowRight" class="el-icon-arrow-right" style="visibility: hidden"></i>
+
       <div v-if="timeSeriesMarker['chief_complaint'] === 0">
         <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
       </div>
@@ -211,6 +214,12 @@ export default {
       /* Goal: Anything that makes vertical wheelscroll keeps normal
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
+      if (pEvent.deltaX > 0) {
+        document.getElementById('arrowRight').style.visibility = 'visible'
+      } else if (pEvent.deltaX < 0) {
+        document.getElementById('arrowLeft').style.visibility = 'visible'
+      }
+
       if (this.dDebounceCounter) {
         clearTimeout(this.dDebounceCounter)
       }
@@ -220,7 +229,7 @@ export default {
         function (scope) {
           scope.fnChangeTimeSeries(pEvent, entity)
         },
-        timeToWait, // setting timeout of 500 ms
+        timeToWait,
         this
       )
     },
@@ -237,8 +246,8 @@ export default {
         this.timeSeriesMarker[pEntity]--
         if (this.timeSeriesMarker[pEntity] < -1) this.timeSeriesMarker[pEntity] = -1
       }
-
-      console.log(this.timeSeriesMarker)
+      document.getElementById('arrowLeft').style.visibility = 'hidden'
+      document.getElementById('arrowRight').style.visibility = 'hidden'
     },
   },
 }
