@@ -10,23 +10,26 @@
       </ctPaperNoteStructure>
     </div>
     <div v-if="timeSeriesMarker > 0">
-      <el-card>
-        <div slot="header" class="clearfix">
+      <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
+        <!-- First col of the header. This has the Section name -->
+        <el-col :span="9" class="sectionHeading">
+          New {{ propEntity }}
           <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
           <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
-        </div>
-        <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
-      </el-card>
+        </el-col>
+      </el-row>
+      <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
     </div>
     <div v-if="timeSeriesMarker < 0">
       <div>
-        <el-card>
-          <div slot="header" class="clearfix">
+        <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
+          <!-- First col of the header. This has the Section name -->
+          <el-col :span="9" class="sectionHeading">
             Old {{ propEntity }}
             <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
             <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
-          </div>
-        </el-card>
+          </el-col>
+        </el-row>
       </div>
     </div>
   </div>
@@ -101,4 +104,28 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped>
+.sectionHeader {
+  margin-top: 1rem !important;
+  padding-bottom: 0.1rem !important;
+}
+.sectionHeading {
+  font-size: 1rem;
+  color: #606266;
+}
+.sc-card {
+  border: 1px solid transparent;
+}
+
+.sc-card:hover {
+  border: 1px solid rgba(144, 147, 153, 0.3);
+
+  /*
+  Green when field data is valid. Organge when field data is invalid
+  Blue when field is highlighted
+  For grey: border: 1px solid rgba(144, 147, 153, 0.3);
+  For green: border-color: rgba(103, 194, 58, 0.25);
+  For blue: border-color: rgba(64, 158, 255, 0.5);
+  */
+}
+</style>

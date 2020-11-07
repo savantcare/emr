@@ -215,20 +215,4 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
     display: block;
   }
 }
-
-.sc-card {
-  border: 1px solid transparent;
-}
-
-.sc-card:hover {
-  border: 1px solid rgba(144, 147, 153, 0.3);
-
-  /*
-  Green when field data is valid. Organge when field data is invalid
-  Blue when field is highlighted
-  For grey: border: 1px solid rgba(144, 147, 153, 0.3);
-  For green: border-color: rgba(103, 194, 58, 0.25);
-  For blue: border-color: rgba(64, 158, 255, 0.5);
-  */
-}
 </style>
