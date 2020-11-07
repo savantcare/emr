@@ -13,7 +13,8 @@
 
     <!-- End of Data -->
 
-    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+    <chiefComplaintPrintSection :propApptId="propShowNoteForApptId" @wheel.native="swipe($event)">
+    </chiefComplaintPrintSection>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
     <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
@@ -130,7 +131,20 @@ export default {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
-  methods: {},
+  methods: {
+    swipe(event) {
+      /* Goal: Anything that makes vertical wheelscroll keeps normal
+        The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
+      */
+      if (event.deltaY === 0) {
+        event.preventDefault()
+      } else if (event.deltaX > 0) {
+        console.log('left swipe', event)
+      } else if (event.deltaX < 0) {
+        console.log('right swipe', event)
+      }
+    },
+  },
 }
 </script>
 

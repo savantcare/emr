@@ -102,7 +102,6 @@
         <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
-          @wheel="swipe($event)"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
           :style="
@@ -392,18 +391,6 @@ export default {
     },
   },
   methods: {
-    swipe(event) {
-      /* Goal: Anything that makes vertical wheelscroll keeps normal
-        The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
-      */
-      if (event.deltaY === 0) {
-        event.preventDefault()
-      } else if (event.deltaX > 0) {
-        console.log('left swipe', event)
-      } else if (event.deltaX < 0) {
-        console.log('right swipe', event)
-      }
-    },
     log(item) {
       console.log(item)
     },
