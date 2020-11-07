@@ -338,4 +338,8 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
     display: block;
   }
 }
+
+.el-card:hover {
+  border-color: rgba(103, 194, 58, 0.25);
+}
 </style>
