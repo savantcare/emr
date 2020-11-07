@@ -16,8 +16,8 @@
     </div>
 
     <el-card @wheel.native="swipe($event, 'chief_complaint')" shadow="hover">
-      <i id="arrowLeft" class="el-icon-arrow-left" style="visibility: hidden"></i>
-      <i id="arrowRight" class="el-icon-arrow-right" style="visibility: hidden"></i>
+      <i id="arrowLeft" class="el-icon-arrow-left" style="visibility: hidden; color: blue"></i>
+      <i id="arrowRight" class="el-icon-arrow-right" style="visibility: hidden; color: blue"></i>
 
       <div v-if="timeSeriesMarker['chief_complaint'] === 0">
         <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
