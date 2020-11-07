@@ -25,7 +25,17 @@
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="process_notes" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="reminders" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="recommendations" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="plan_comments" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="miscellaneous_notes" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="service_statements" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="psych_review_of_system" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="past_psych_history" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="medical_review_of_system" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="goals" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="allergies" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="diagnosis" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="screens" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="mental_status_exam" />
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
@@ -44,21 +54,7 @@ import apptNotePrintableView from '@/components/non-temporal/paper-appt-note-wit
 import headerPrintSection from './section-2-header.vue'
 import agePrintSection from './section-4-age.vue'
 import vitalsPrintSection from './section-6-vitals.vue'
-import serviceStatementPrintSection from './section-7-service-statements.vue'
-import medicalReviewOfSystemsPrintSection from './section-8-medical-review-of-systems.vue'
-import psychReviewOfSystemsPrintSection from './section-9-psych-review-of-system.vue'
-import remindersPrintSection from './section-10-reminders.vue'
 import medicationsPrintSection from './section-12-medications.vue'
-import mentalStatusExamPrintSection from './section-13-mental-status-exam.vue'
-import processNotePrintSection from './section-14-process-notes.vue'
-import miscellaneousNotePrintSection from './section-15-miscellaneous-notes.vue'
-import planCommentsPrintSection from './section-16-plan-comments.vue'
-import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
-import recommendationsPrintSection from './section-18-recommendations.vue'
-import goalsPrintSection from './section-23-goals.vue'
-import screensPrintSection from './section-24-screens.vue'
-import allergiesPrintSection from './section-21-allergies.vue'
-import diagnosisPrintSection from './section-22-diagnosis.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 
@@ -75,16 +71,8 @@ export default {
   data() {
     return {
       patientCurrentApptObj: {},
-      chiefComplaintTimeSeriesMarker: 0,
-      familyHistoryTimeSeriesMarker: 0,
       formDef: {},
       dDebounceCounter: '',
-      timeSeriesMarker: {
-        chief_complaint: 0,
-        family_history: 0,
-        goals: 0,
-        psych_review_of_system: 0,
-      },
       arrowDirection: 0,
     }
   },
@@ -101,25 +89,11 @@ export default {
   },
   components: {
     apptNotePrintableView,
-    serviceStatementPrintSection,
     agePrintSection,
     headerPrintSection,
-    psychReviewOfSystemsPrintSection,
-    pastPsychHistoryPrintSection,
-    mentalStatusExamPrintSection,
     vitalsPrintSection,
     lockButtonPrintSection,
-    remindersPrintSection,
-    recommendationsPrintSection,
     medicationsPrintSection,
-    medicalReviewOfSystemsPrintSection,
-    processNotePrintSection,
-    miscellaneousNotePrintSection,
-    planCommentsPrintSection,
-    allergiesPrintSection,
-    diagnosisPrintSection,
-    goalsPrintSection,
-    screensPrintSection,
     ctAddStructure,
     ctTimeSeries,
   },

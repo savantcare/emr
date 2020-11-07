@@ -13,7 +13,9 @@
       <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
     </div>
     <div v-if="timeSeriesMarker < 0">
-      <div>Old {{ propEntity }}</div>
+      <div>
+        <el-card>Old {{ propEntity }}</el-card>
+      </div>
     </div>
   </div>
 </template>
@@ -87,3 +89,4 @@ export default {
   },
 }
 </script>
+<style scoped></style>
