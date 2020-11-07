@@ -21,16 +21,12 @@
       <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
     </div>
     <div v-if="timeSeriesMarker < 0">
-      <div>
-        <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
-          <!-- First col of the header. This has the Section name -->
-          <el-col :span="9" class="sectionHeading">
-            Old {{ propEntity }}
-            <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
-            <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
-          </el-col>
-        </el-row>
-      </div>
+      <ctOldValueStructure
+        :propApptId="propShowNoteForApptId"
+        :arrowDirection="arrowDirection"
+        :propEntity="propEntity"
+      >
+      </ctOldValueStructure>
     </div>
   </div>
 </template>
@@ -39,6 +35,7 @@
 import allFormDefinations from '@/components//def-processors/all-form-definations.js'
 import ctAddStructure from '@/components/def-processors/change/add-form.vue'
 import ctPaperNoteStructure from '@/components/def-processors/view/ctPaperNoteStructure.vue'
+import ctOldValueStructure from '@/components/def-processors/view/router-for-single-ct-time-series.vue'
 
 export default {
   data() {
@@ -59,6 +56,7 @@ export default {
     },
   },
   components: {
+    ctOldValueStructure,
     ctPaperNoteStructure,
     ctAddStructure,
   },
