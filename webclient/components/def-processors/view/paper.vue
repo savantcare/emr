@@ -491,7 +491,7 @@ h3 {
 .sectionHeader {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
-  border-bottom: 1px solid #dcdfe6;
+  border-bottom: 1px solid rgba(144, 147, 153, 0.1);
 }
 .sectionHeading {
   font-size: 1rem;

@@ -108,17 +108,18 @@ export default {
 .sectionHeader {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
+  border-bottom: 1px solid #dcdfe6;
 }
 .sectionHeading {
   font-size: 1rem;
   color: #606266;
 }
 .sc-card {
-  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(144, 147, 153, 0.1);
 }
 
 .sc-card:hover {
-  border: 1px solid rgba(144, 147, 153, 0.3);
+  border: 1px solid rgba(144, 147, 153, 0.5);
 
   /*
   Green when field data is valid. Organge when field data is invalid
