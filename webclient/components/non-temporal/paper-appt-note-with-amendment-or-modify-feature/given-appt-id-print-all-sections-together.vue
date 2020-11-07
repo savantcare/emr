@@ -12,25 +12,17 @@
     </div>
 
     <!-- End of Data -->
-    <el-card>
-      <template v-if="chiefComplaintTimeSeriesMarker === 0">
-        <chiefComplaintPrintSection
-          :propApptId="propShowNoteForApptId"
-          @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')"
-        >
-        </chiefComplaintPrintSection>
-      </template>
-      <template v-if="chiefComplaintTimeSeriesMarker > 0" @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
-        <div @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
-          Add chief complaint{{ this.chiefComplaintTimeSeriesMarker }}
-          <ctAddStructure :propFormDef="formDef"></ctAddStructure>
-        </div>
-      </template>
-      <template v-if="chiefComplaintTimeSeriesMarker < 0" @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
-        <div @wheel="swipe($event, 'chiefComplaintTimeSeriesMarker')">
-          Old chief component {{ this.chiefComplaintTimeSeriesMarker }}
-        </div>
-      </template>
+    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')">
+      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker === 0">
+        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
+      </transition>
+      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker > 0">
+        {{ this.chiefComplaintTimeSeriesMarker }}
+        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+      </transition>
+      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker < 0">
+        <div>Old chief component {{ this.chiefComplaintTimeSeriesMarker }}</div>
+      </transition>
     </el-card>
     <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
@@ -102,6 +94,7 @@ export default {
       patientCurrentApptObj: {},
       chiefComplaintTimeSeriesMarker: 0,
       formDef: {},
+      dDebounceCounter: '',
     }
   },
   props: {
@@ -157,20 +150,37 @@ export default {
     },
   },
   methods: {
-    swipe(event) {
+    swipe(pEvent) {
       /* Goal: Anything that makes vertical wheelscroll keeps normal
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
       console.log('Inside swipe')
-      if (event.deltaY === 0) {
-        event.preventDefault()
-      } else if (event.deltaX > 0) {
-        console.log('left swipe', event)
+
+      if (this.dDebounceCounter) {
+        clearTimeout(this.dDebounceCounter)
+      }
+      var timeToWait = 50
+
+      this.dDebounceCounter = setTimeout(
+        function (scope) {
+          scope.fnChangeTimeSeries(pEvent)
+        },
+        timeToWait, // setting timeout of 500 ms
+        this
+      )
+    },
+    fnChangeTimeSeries(pEvent) {
+      console.log('inside change time series marker', pEvent)
+      if (pEvent.deltaY > -1 && pEvent.deltaY < -1) {
+        console.log('Vertical')
+        pEvent.preventDefault()
+      } else if (pEvent.deltaX > 0) {
+        console.log('left swipe', pEvent)
         this.chiefComplaintTimeSeriesMarker++
         if (this.chiefComplaintTimeSeriesMarker > 1) this.chiefComplaintTimeSeriesMarker = 1
         this.formDef = allFormDefinations['chief_complaint']
-      } else if (event.deltaX < 0) {
-        console.log('right swipe', event)
+      } else if (pEvent.deltaX < 0) {
+        console.log('right swipe', pEvent)
         this.chiefComplaintTimeSeriesMarker--
         if (this.chiefComplaintTimeSeriesMarker < -1) this.chiefComplaintTimeSeriesMarker = -1
       }
@@ -277,5 +287,13 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
   .enable-print {
     display: block;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
