@@ -1,4 +1,14 @@
-<!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
+<!-- Each ct to be seperate and get included here. This file is too big TODO +read 
+
+
+
+
+
+
+
+    
+
+-->
 <template>
   <div class="A4">
     <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
@@ -10,79 +20,12 @@
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-
-    <div>
-      {{ timeSeriesMarker }}
-    </div>
-
-    <div class="sc-card" @wheel="swipe($event, 'chief_complaint')">
-      <div v-if="timeSeriesMarker['chief_complaint'] === 0">
-        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId" :arrowDirection="arrowDirection">
-        </chiefComplaintPrintSection>
-      </div>
-      <div v-if="timeSeriesMarker['chief_complaint'] > 0">
-        <ctAddStructure :propFormDef="formDef['chief_complaint']"></ctAddStructure>
-      </div>
-      <div v-if="timeSeriesMarker['chief_complaint'] < 0">
-        <div>Old chief component</div>
-      </div>
-    </div>
-
-    <div class="sc-card" @wheel="swipe($event, 'family_history')">
-      <div v-if="timeSeriesMarker['family_history'] === 0">
-        <familyHistoryPrintSection
-          :propApptId="propShowNoteForApptId"
-          :arrowDirection="arrowDirection"
-        ></familyHistoryPrintSection>
-      </div>
-      <div v-if="timeSeriesMarker['family_history'] > 0">
-        <ctAddStructure :propFormDef="formDef['family_history']"></ctAddStructure>
-      </div>
-      <div v-if="timeSeriesMarker['family_history'] < 0">
-        <div>Old family history</div>
-      </div>
-    </div>
-
-    <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
-
-    <div class="sc-card" @wheel="swipe($event, 'goals')">
-      <div v-if="timeSeriesMarker['goals'] === 0">
-        <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
-      </div>
-      <div v-if="timeSeriesMarker['goals'] > 0">
-        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
-      </div>
-      <div v-if="timeSeriesMarker['goals'] < 0">
-        <div>Old Goals</div>
-      </div>
-    </div>
-
-    <div class="sc-card" @wheel="swipe($event, 'psych_review_of_system')">
-      <div v-if="timeSeriesMarker['psych_review_of_system'] === 0">
-        <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
-      </div>
-      <div v-if="timeSeriesMarker['psych_review_of_system'] > 0">
-        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
-      </div>
-      <div v-if="timeSeriesMarker['psych_review_of_system'] < 0">
-        <div>Old psych_review_of_system</div>
-      </div>
-    </div>
-
-    <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
-    <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
-    <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
-    <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
-    <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
-    <medicationsPrintSection :propApptId="propShowNoteForApptId"> </medicationsPrintSection>
-    <processNotePrintSection :propApptId="propShowNoteForApptId"></processNotePrintSection>
-    <miscellaneousNotePrintSection :propApptId="propShowNoteForApptId"></miscellaneousNotePrintSection>
-    <planCommentsPrintSection :propApptId="propShowNoteForApptId"></planCommentsPrintSection>
-    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
-    <screensPrintSection :propApptId="propShowNoteForApptId"></screensPrintSection>
-    <allergiesPrintSection :propApptId="propShowNoteForApptId"></allergiesPrintSection>
-    <diagnosisPrintSection :propApptId="propShowNoteForApptId"></diagnosisPrintSection>
-
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="chief_complaint" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="family_history" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="process_notes" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="reminders" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="recommendations" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="miscellaneous_notes" />
     <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
@@ -99,7 +42,6 @@ import apptNotePrintableView from '@/components/non-temporal/paper-appt-note-wit
 
 // smaller sections
 import headerPrintSection from './section-2-header.vue'
-import chiefComplaintPrintSection from './section-5-chief-complaint.vue'
 import agePrintSection from './section-4-age.vue'
 import vitalsPrintSection from './section-6-vitals.vue'
 import serviceStatementPrintSection from './section-7-service-statements.vue'
@@ -115,7 +57,6 @@ import pastPsychHistoryPrintSection from './section-17-past-psych-history.vue'
 import recommendationsPrintSection from './section-18-recommendations.vue'
 import goalsPrintSection from './section-23-goals.vue'
 import screensPrintSection from './section-24-screens.vue'
-import familyHistoryPrintSection from './section-20-family-history.vue'
 import allergiesPrintSection from './section-21-allergies.vue'
 import diagnosisPrintSection from './section-22-diagnosis.vue'
 
@@ -124,6 +65,8 @@ import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 import allFormDefinations from '@/components//def-processors/all-form-definations.js'
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+
+import ctTimeSeries from './ct-time-series.vue'
 
 // Library
 import moment from 'moment'
@@ -164,7 +107,6 @@ export default {
     psychReviewOfSystemsPrintSection,
     pastPsychHistoryPrintSection,
     mentalStatusExamPrintSection,
-    chiefComplaintPrintSection,
     vitalsPrintSection,
     lockButtonPrintSection,
     remindersPrintSection,
@@ -174,12 +116,12 @@ export default {
     processNotePrintSection,
     miscellaneousNotePrintSection,
     planCommentsPrintSection,
-    familyHistoryPrintSection,
     allergiesPrintSection,
     diagnosisPrintSection,
     goalsPrintSection,
     screensPrintSection,
     ctAddStructure,
+    ctTimeSeries,
   },
 
   async created() {
@@ -195,46 +137,6 @@ export default {
   computed: {
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
-    },
-  },
-  methods: {
-    swipe(pEvent, entity) {
-      /* Goal: Anything that makes vertical wheelscroll keeps normal
-        The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
-      */
-      if (pEvent.deltaX > 0) {
-        this.arrowDirection = pEvent.deltaX
-      } else if (pEvent.deltaX < 0) {
-        this.arrowDirection = pEvent.deltaX
-      }
-
-      if (this.dDebounceCounter) {
-        clearTimeout(this.dDebounceCounter)
-      }
-      var timeToWait = 50
-
-      this.dDebounceCounter = setTimeout(
-        function (scope) {
-          scope.fnChangeTimeSeries(pEvent, entity)
-        },
-        timeToWait,
-        this
-      )
-    },
-    fnChangeTimeSeries(pEvent, pEntity) {
-      console.log(pEntity)
-      if (pEvent.deltaX === 0) {
-        // Goal: Allow scrolling up and down
-        pEvent.preventDefault()
-      } else if (pEvent.deltaX > 0) {
-        this.timeSeriesMarker[pEntity]++
-        if (this.timeSeriesMarker[pEntity] > 1) this.timeSeriesMarker[pEntity] = 1
-        //debugger
-        this.formDef[pEntity] = allFormDefinations[pEntity]
-      } else if (pEvent.deltaX < 0) {
-        this.timeSeriesMarker[pEntity]--
-        if (this.timeSeriesMarker[pEntity] < -1) this.timeSeriesMarker[pEntity] = -1
-      }
     },
   },
 }
