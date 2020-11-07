@@ -15,7 +15,7 @@ import { reminderFormDef } from '@/components/temporal/reminders/db/client-side/
 import { goalsFormDef } from '@/components/temporal/goals/db/client-side/structure/goals-of-a-patient-table.js'
 import { screensFormDef } from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
 import { serviceStatementsOfAFormDef } from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
-import { psychReviewOfSystemOfAFormDef } from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
+import { psychReviewOfSystemFormDef } from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import { phq9FormDef } from '@/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 import { pulseFormDef } from '@/components/temporal/pulse/db/client-side/structure/pulse-of-a-patient-table.js'
@@ -42,7 +42,7 @@ const allFormDefinations = {
   recommendations: recommendationFormDef,
   reminders: reminderFormDef,
   service_statements: serviceStatementsOfAFormDef,
-  psych_review_of_system: psychReviewOfSystemOfAFormDef,
+  psych_review_of_system: psychReviewOfSystemFormDef,
   goals: goalsFormDef,
   screens: screensFormDef,
   phq9: phq9FormDef,

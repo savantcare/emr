@@ -25,26 +25,62 @@
       </transition>
     </el-card>-->
 
-    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')" shadow="hover">
-      <div v-if="chiefComplaintTimeSeriesMarker === 0">
+    <div>
+      {{ timeSeriesMarker }}
+    </div>
+
+    <el-card @wheel.native="swipe($event, 'chief_complaint')" shadow="hover">
+      <div v-if="timeSeriesMarker['chief_complaint'] === 0">
         <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
       </div>
-      <div v-if="chiefComplaintTimeSeriesMarker > 0">
-        {{ this.chiefComplaintTimeSeriesMarker }}
+      <div v-if="timeSeriesMarker['chief_complaint'] > 0">
         <ctAddStructure :propFormDef="formDef"></ctAddStructure>
       </div>
-      <div v-if="chiefComplaintTimeSeriesMarker < 0">
-        <div>Old chief component {{ this.chiefComplaintTimeSeriesMarker }}</div>
+      <div v-if="timeSeriesMarker['chief_complaint'] < 0">
+        <div>Old chief component</div>
       </div>
     </el-card>
 
-    <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
+    <el-card @wheel.native="swipe($event, 'family_history')" shadow="hover">
+      <div v-if="timeSeriesMarker['family_history'] === 0">
+        <familyHistoryPrintSection :propApptId="propShowNoteForApptId"></familyHistoryPrintSection>
+      </div>
+      <div v-if="timeSeriesMarker['family_history'] > 0">
+        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+      </div>
+      <div v-if="timeSeriesMarker['family_history'] < 0">
+        <div>Old family history</div>
+      </div>
+    </el-card>
+
     <vitalsPrintSection :propApptId="propShowNoteForApptId"> </vitalsPrintSection>
-    <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
-    <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+
+    <el-card @wheel.native="swipe($event, 'psych_review_of_system')" shadow="hover">
+      <div v-if="timeSeriesMarker['goals'] === 0">
+        <goalsPrintSection :propApptId="propShowNoteForApptId"></goalsPrintSection>
+      </div>
+      <div v-if="timeSeriesMarker['goals'] > 0">
+        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+      </div>
+      <div v-if="timeSeriesMarker['goals'] < 0">
+        <div>Old Goals</div>
+      </div>
+    </el-card>
+
+    <el-card @wheel.native="swipe($event, 'psych_review_of_system')" shadow="hover">
+      <div v-if="timeSeriesMarker['psych_review_of_system'] === 0">
+        <psychReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"></psychReviewOfSystemsPrintSection>
+      </div>
+      <div v-if="timeSeriesMarker['psych_review_of_system'] > 0">
+        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
+      </div>
+      <div v-if="timeSeriesMarker['psych_review_of_system'] < 0">
+        <div>Old psych_review_of_system</div>
+      </div>
+    </el-card>
+
     <pastPsychHistoryPrintSection :propApptId="propShowNoteForApptId"></pastPsychHistoryPrintSection>
     <medicalReviewOfSystemsPrintSection :propApptId="propShowNoteForApptId"> </medicalReviewOfSystemsPrintSection>
-    <serviceStatementPrintSection :propApptId="propShowNoteForApptId"></serviceStatementPrintSection>
     <mentalStatusExamPrintSection :propApptId="propShowNoteForApptId"></mentalStatusExamPrintSection>
     <remindersPrintSection :propApptId="propShowNoteForApptId"></remindersPrintSection>
     <recommendationsPrintSection :propApptId="propShowNoteForApptId"></recommendationsPrintSection>
@@ -107,8 +143,15 @@ export default {
     return {
       patientCurrentApptObj: {},
       chiefComplaintTimeSeriesMarker: 0,
+      familyHistoryTimeSeriesMarker: 0,
       formDef: {},
       dDebounceCounter: '',
+      timeSeriesMarker: {
+        chief_complaint: 0,
+        family_history: 0,
+        goals: 0,
+        psych_review_of_system: 0,
+      },
     }
   },
   props: {
@@ -164,7 +207,7 @@ export default {
     },
   },
   methods: {
-    swipe(pEvent) {
+    swipe(pEvent, entity) {
       /* Goal: Anything that makes vertical wheelscroll keeps normal
         The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
       */
@@ -175,23 +218,27 @@ export default {
 
       this.dDebounceCounter = setTimeout(
         function (scope) {
-          scope.fnChangeTimeSeries(pEvent)
+          scope.fnChangeTimeSeries(pEvent, entity)
         },
         timeToWait, // setting timeout of 500 ms
         this
       )
     },
-    fnChangeTimeSeries(pEvent) {
+    fnChangeTimeSeries(pEvent, pEntity) {
+      console.log(pEntity)
       if (pEvent.deltaX === 0) {
         pEvent.preventDefault()
       } else if (pEvent.deltaX > 0) {
-        this.chiefComplaintTimeSeriesMarker++
-        if (this.chiefComplaintTimeSeriesMarker > 1) this.chiefComplaintTimeSeriesMarker = 1
-        this.formDef = allFormDefinations['chief_complaint']
+        this.timeSeriesMarker[pEntity]++
+        if (this.timeSeriesMarker[pEntity] > 1) this.timeSeriesMarker[pEntity] = 1
+        //debugger
+        this.formDef = allFormDefinations[pEntity]
       } else if (pEvent.deltaX < 0) {
-        this.chiefComplaintTimeSeriesMarker--
-        if (this.chiefComplaintTimeSeriesMarker < -1) this.chiefComplaintTimeSeriesMarker = -1
+        this.timeSeriesMarker[pEntity]--
+        if (this.timeSeriesMarker[pEntity] < -1) this.timeSeriesMarker[pEntity] = -1
       }
+
+      console.log(this.timeSeriesMarker)
     },
   },
 }
