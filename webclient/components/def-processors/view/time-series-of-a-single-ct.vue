@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: rgba(103, 194, 58, 0.1)">
     <!-- Section 1/2: This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
