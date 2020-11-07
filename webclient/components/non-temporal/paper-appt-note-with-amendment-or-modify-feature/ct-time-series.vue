@@ -10,11 +10,23 @@
       </ctPaperNoteStructure>
     </div>
     <div v-if="timeSeriesMarker > 0">
-      <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
+      <el-card>
+        <div slot="header" class="clearfix">
+          <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
+          <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
+        </div>
+        <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
+      </el-card>
     </div>
     <div v-if="timeSeriesMarker < 0">
       <div>
-        <el-card>Old {{ propEntity }}</el-card>
+        <el-card>
+          <div slot="header" class="clearfix">
+            Old {{ propEntity }}
+            <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
+            <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
+          </div>
+        </el-card>
       </div>
     </div>
   </div>
