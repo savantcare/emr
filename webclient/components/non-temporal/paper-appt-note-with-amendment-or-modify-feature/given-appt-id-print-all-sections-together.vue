@@ -11,20 +11,6 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
 
-    <!--
-    <el-card @wheel.native="swipe($event, 'chiefComplaintTimeSeriesMarker')" shadow="hover">
-      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker === 0">
-        <chiefComplaintPrintSection :propApptId="propShowNoteForApptId"> </chiefComplaintPrintSection>
-      </transition>
-      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker > 0">
-        {{ this.chiefComplaintTimeSeriesMarker }}
-        <ctAddStructure :propFormDef="formDef"></ctAddStructure>
-      </transition>
-      <transition name="fade" v-if="chiefComplaintTimeSeriesMarker < 0">
-        <div>Old chief component {{ this.chiefComplaintTimeSeriesMarker }}</div>
-      </transition>
-    </el-card>-->
-
     <div>
       {{ timeSeriesMarker }}
     </div>
@@ -352,14 +338,4 @@ Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html *
     display: block;
   }
 }
-
-/*
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to  {
-  opacity: 0;
-}
-*/
 </style>
