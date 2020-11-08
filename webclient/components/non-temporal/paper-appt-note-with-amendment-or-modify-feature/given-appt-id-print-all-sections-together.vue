@@ -62,7 +62,7 @@ import allFormDefinations from '@/components//def-processors/all-form-defination
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 
-import ctTimeSeries from './ct-time-series.vue'
+import ctTimeSeries from './swipe-time-series-of-a-ct.vue'
 
 // Library
 import moment from 'moment'

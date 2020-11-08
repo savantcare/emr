@@ -1,7 +1,15 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <div class="sc-card" @wheel="swipe($event, propEntity)">
-    <div v-if="timeSeriesMarker === 0">
+    <div v-if="timeSeriesMarker < 0">
+      <ctOldValueStructure
+        :propApptId="propShowNoteForApptId"
+        :arrowDirection="arrowDirection"
+        :propEntity="propEntity"
+      >
+      </ctOldValueStructure>
+    </div>
+    <div v-else-if="timeSeriesMarker === 0">
       <ctPaperNoteStructure
         :propApptId="propShowNoteForApptId"
         :arrowDirection="arrowDirection"
@@ -9,7 +17,7 @@
       >
       </ctPaperNoteStructure>
     </div>
-    <div v-if="timeSeriesMarker > 0">
+    <div v-else-if="timeSeriesMarker > 0">
       <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
         <!-- First col of the header. This has the Section name -->
         <el-col :span="9" class="sectionHeading">
@@ -19,14 +27,6 @@
         </el-col>
       </el-row>
       <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
-    </div>
-    <div v-if="timeSeriesMarker < 0">
-      <ctOldValueStructure
-        :propApptId="propShowNoteForApptId"
-        :arrowDirection="arrowDirection"
-        :propEntity="propEntity"
-      >
-      </ctOldValueStructure>
     </div>
   </div>
 </template>
