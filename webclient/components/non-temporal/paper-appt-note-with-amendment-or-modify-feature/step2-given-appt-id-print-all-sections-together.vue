@@ -51,7 +51,7 @@ import allFormDefinations from '@/components//def-processors/all-form-defination
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 
-import ctTimeSeries from './swipe-time-series-of-a-ct.vue'
+import ctTimeSeries from './step3-swipe-time-series-of-one-ct.vue'
 
 // Library
 import moment from 'moment'
