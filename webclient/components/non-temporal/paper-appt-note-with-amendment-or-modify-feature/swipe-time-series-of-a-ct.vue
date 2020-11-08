@@ -104,14 +104,17 @@ export default {
 .sectionHeader {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
-  border-bottom: 1px solid #dcdfe6;
+  /* Goal: Have a border only at the bottom of the section header. Do not have  a border at the bottom of each data rows. Or a border at the bottom of the box containing all the data rows */
+  border-bottom: 1px solid rgba(144, 147, 153, 0.1);
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 .sectionHeading {
   font-size: 1rem;
   color: #606266;
 }
 .sc-card {
-  border-bottom: 1px solid rgba(144, 147, 153, 0.1);
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;

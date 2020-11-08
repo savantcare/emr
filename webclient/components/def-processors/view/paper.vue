@@ -492,6 +492,9 @@ h3 {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
   border-bottom: 1px solid rgba(144, 147, 153, 0.1);
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 .sectionHeading {
   font-size: 1rem;
@@ -500,7 +503,6 @@ h3 {
 .subSectionHeader {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
-  border-bottom: 1px solid #dcdfe6;
 }
 
 .field-type-heading {
