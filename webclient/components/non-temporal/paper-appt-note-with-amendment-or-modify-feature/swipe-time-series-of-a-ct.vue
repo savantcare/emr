@@ -33,9 +33,9 @@
 
 <script>
 import allFormDefinations from '@/components//def-processors/all-form-definations.js'
-import ctAddStructure from '@/components/def-processors/change/add-form.vue'
-import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 import ctOldValueStructure from '@/components/def-processors/view/router-for-single-ct-time-series.vue'
+import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
+import ctAddStructure from '@/components/def-processors/change/add-form.vue'
 
 export default {
   data() {
