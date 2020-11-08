@@ -21,7 +21,7 @@ export default {
       data: {
         name: 'Appt note',
         componentToShowPath:
-          'non-temporal/paper-appt-note-with-amendment-or-modify-feature/decide-notes-to-print-and-their-appt-id.vue',
+          'non-temporal/paper-appt-note-with-amendment-or-modify-feature/step1-decide-notes-to-print-and-their-appt-id.vue',
         currentDisplayStateOfComponent: 1,
         firstParameterGivenToComponentBeforeMounting: 0,
         secondParameterGivenToComponentBeforeMounting: 0,
