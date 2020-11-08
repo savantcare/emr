@@ -43,6 +43,7 @@ export default {
       timeSeriesMarker: 0,
       arrowDirection: 0,
       formDef: allFormDefinations,
+      lastInvocationOfChangeTimeSeries: 0,
     }
   },
   props: {
@@ -71,32 +72,27 @@ export default {
         this.arrowDirection = pEvent.deltaX
       }
 
-      if (this.dDebounceCounter) {
-        clearTimeout(this.dDebounceCounter)
-      }
-      var timeToWait = 50
-
-      this.dDebounceCounter = setTimeout(
-        function (scope) {
-          scope.fnChangeTimeSeries(pEvent, entity)
-        },
-        timeToWait,
-        this
-      )
+      this.fnChangeTimeSeries(pEvent, entity)
     },
     fnChangeTimeSeries(pEvent, pEntity) {
-      console.log(pEntity)
-      if (pEvent.deltaX === 0) {
-        // Goal: Allow scrolling up and down
-        pEvent.preventDefault()
-      } else if (pEvent.deltaX > 0) {
-        this.timeSeriesMarker++
-        if (this.timeSeriesMarker > 1) this.timeSeriesMarker = 1
-        //debugger
-        this.formDef[pEntity] = allFormDefinations[pEntity]
-      } else if (pEvent.deltaX < 0) {
-        this.timeSeriesMarker--
-        if (this.timeSeriesMarker < -1) this.timeSeriesMarker = -1
+      const now = +new Date()
+      if (now - this.lastInvocationOfChangeTimeSeries > 1500) {
+        this.lastInvocationOfChangeTimeSeries = now
+        console.log(pEntity)
+        if (pEvent.deltaX === 0) {
+          // Goal: Allow scrolling up and down
+          pEvent.preventDefault()
+        } else if (pEvent.deltaX > 0) {
+          this.timeSeriesMarker++
+          if (this.timeSeriesMarker > 1) this.timeSeriesMarker = 1
+          //debugger
+          this.formDef[pEntity] = allFormDefinations[pEntity]
+        } else if (pEvent.deltaX < 0) {
+          this.timeSeriesMarker--
+          if (this.timeSeriesMarker < -1) this.timeSeriesMarker = -1
+        }
+      } else {
+        console.log('rate limited')
       }
     },
   },
