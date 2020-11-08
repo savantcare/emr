@@ -87,9 +87,11 @@ export default {
           if (this.timeSeriesMarker > 1) this.timeSeriesMarker = 1
           //debugger
           this.formDef[pEntity] = allFormDefinations[pEntity]
+          pEvent.stopPropagation() // without this when there is a back swipe on a larger div, the smaller div below moves up and gets the event and now the smaller div moves forward in time series
         } else if (pEvent.deltaX < 0) {
           this.timeSeriesMarker--
           if (this.timeSeriesMarker < -1) this.timeSeriesMarker = -1
+          pEvent.stopPropagation() // without this when there is a back swipe on a larger div, the smaller div below moves up and gets the event and now the smaller div moves back in time series
         }
       } else {
         console.log('rate limited')
@@ -110,6 +112,9 @@ export default {
 }
 .sc-card {
   border-bottom: 1px solid rgba(144, 147, 153, 0.1);
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 
 .sc-card:hover {
