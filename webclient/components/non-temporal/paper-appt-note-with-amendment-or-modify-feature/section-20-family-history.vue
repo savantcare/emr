@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import contentDuringApptOfASingleCt from '@/components/def-processors/view/time-series-of-appt-notes.vue'
+import contentDuringApptOfASingleCt from '@/components/def-processors/view/content-during-appt-of-a-single-ct.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
