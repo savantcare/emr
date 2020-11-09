@@ -71,11 +71,11 @@ export default {
 
       // During the time this fn is being called 100 times I want to keep the arrow visible. Since that is a indicator that the user should not make another swipe action again
       // I am ignoring change in X from 2,1,0,-1,2 since even during veritical scroll movements there is some value in X
-      if (pEvent.deltaX > 2) {
+      if (pEvent.deltaX > 3) {
         // moving forward
         this.arrowDirection = pEvent.deltaX
         this.fnChangeTimeSeries(pEvent, entity)
-      } else if (pEvent.deltaX < 2) {
+      } else if (pEvent.deltaX < -3) {
         // moving back
         this.arrowDirection = pEvent.deltaX
         this.fnChangeTimeSeries(pEvent, entity)
