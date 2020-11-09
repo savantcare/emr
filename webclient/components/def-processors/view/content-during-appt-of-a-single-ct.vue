@@ -119,8 +119,24 @@
             <vue-horizontal-list :items="items" :options="options">
               <template v-slot:default="{ item }">
                 <div class="item">
-                  <h5>{{ item.title }}</h5>
-                  <p>{{ item.content }}</p>
+                  <div
+                    id="each-field-of-data-row"
+                    :class="'field-type-' + propFieldDef.fieldType"
+                    v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+                    :key="id"
+                    :style="mfGetCssClassNameForEachDataRow(item)"
+                    v-if="item[propFieldDef.fieldNameInDb] && item[propFieldDef.fieldNameInDb].toString().length > 0"
+                  >
+                    <div id="not-matched-field-type">
+                      <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                        {{ propFieldDef.fieldNameInUi }}
+                      </div>
+                      <!-- Goal: skip fields that are null or empty -->
+                      <div v-if="item[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                        {{ item[propFieldDef.fieldNameInDb] }}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </template>
             </vue-horizontal-list>
@@ -367,22 +383,13 @@ export default {
           .get()
 
         for (let i = 0; i < arCameBeforeThis.length; i++) {
-          this.items.push({
-            title: arCameBeforeThis[0]['description'],
-            content: arCameBeforeThis[0]['clientSideUniqRowId'],
-          })
+          this.items.push(arCameBeforeThis[i])
         }
 
-        this.items.push({
-          title: arOfObjectsFromClientDB[0]['description'],
-          content: arOfObjectsFromClientDB[0]['clientSideUniqRowId'],
-        })
+        this.items.push(arOfObjectsFromClientDB[0])
 
         for (let i = 0; i < arCameAfterThis.length; i++) {
-          this.items.push({
-            title: arCameAfterThis[0]['description'],
-            content: arCameAfterThis[0]['clientSideUniqRowId'],
-          })
+          this.items.push(arCameAfterThis[i])
         }
       }
 
@@ -434,22 +441,13 @@ export default {
           .get()
 
         for (let i = 0; i < arCameBeforeThis.length; i++) {
-          this.items.push({
-            title: arCameBeforeThis[0]['description'],
-            content: arCameBeforeThis[0]['clientSideUniqRowId'],
-          })
+          this.items.push(arCameBeforeThis[i])
         }
 
-        this.items.push({
-          title: arOfObjectsFromClientDB[0]['description'],
-          content: arOfObjectsFromClientDB[0]['clientSideUniqRowId'],
-        })
+        this.items.push(arOfObjectsFromClientDB[0])
 
         for (let i = 0; i < arCameAfterThis.length; i++) {
-          this.items.push({
-            title: arCameAfterThis[0]['description'],
-            content: arCameAfterThis[0]['clientSideUniqRowId'],
-          })
+          this.items.push(arCameAfterThis[i])
         }
       }
 
