@@ -1,1 +1,1 @@
-drop database sc_process-notes
+drop database sc_process_notes
