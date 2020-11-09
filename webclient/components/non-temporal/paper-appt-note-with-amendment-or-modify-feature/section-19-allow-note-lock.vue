@@ -51,12 +51,16 @@ export default {
           allClientTbls[entity].entity,
           'Letting it decide if there is some data to be saved and if so then save the data.'
         )
-        const statusOfNewRowsSent = allClientTbls[entity].sfSendNewChangedRowsToServer()
+
+        // Step1: Save all new rows
+        const statusOfNewRowsSent = await allClientTbls[entity].sfSendNewChangedRowsToServer()
         console.log(statusOfNewRowsSent)
-        const statusOfChangedRowsSent = allClientTbls[entity].sfSendCopyChangedRowsToServer()
+        // Step2: Save all changed rows
+        const statusOfChangedRowsSent = await allClientTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some milliseconds of this rows lock time
         console.log(statusOfChangedRowsSent)
       }
 
+      // Step3: Make this row as ended on client side and delete it from the server
       const clientSideUniqRowId = this.currentApptObj['clientSideUniqRowId']
       let arOfObjectsFromClientDB = await clientTblOfAppointments.update({
         where: clientSideUniqRowId,
@@ -66,7 +70,7 @@ export default {
         },
       })
 
-      // In case there are no more appt then insert a appt. This is for testing.
+      // Step 4: In case there are no more appt then insert a appt. This is for testing.
       arOfObjectsFromClientDB = await clientTblOfAppointments.query().where('apptStatus', 'unlocked').get()
 
       let newAppt = {}

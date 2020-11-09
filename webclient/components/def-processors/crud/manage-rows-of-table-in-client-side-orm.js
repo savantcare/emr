@@ -1003,11 +1003,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         console.log('update error', ex)
       }
     })
-    console.log(
-      'sfSendCopyChangedRowsToServer-> ',
-      this.dnOrmUuidOfRowToChange,
-      this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty)
-    )
+    console.log('sfSendCopyChangedRowsToServer-> ', this.dnOrmUuidOfRowToChange)
   }
 }
 
