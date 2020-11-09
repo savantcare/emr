@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/paper.vue'
+import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { pastPsychHistoryFormDef } from '@/components/temporal/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 
 export default {

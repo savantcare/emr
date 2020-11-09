@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/paper.vue'
+import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { remindersFormDef } from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {

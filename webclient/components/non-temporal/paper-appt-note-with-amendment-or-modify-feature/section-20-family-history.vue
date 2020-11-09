@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/paper.vue'
+import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
