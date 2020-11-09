@@ -114,6 +114,18 @@
         >
           <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
 
+          <!-- create the timeline and then loop on timeline 
+<div
+          id="each-timeline-row"
+          v-for="timeRow in row['timeLine']"
+          :key="timeRow.clientSideUniqRowId"
+          :style="
+            propFormDef.styleForEachRowInPaperView
+              ? propFormDef.styleForEachRowInPaperView
+              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
+          "
+        >
+        -->
           <div
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
@@ -216,7 +228,7 @@
               </div>
             </div>
           </div>
-          <!-- Finished processing all the fields -->
+          <!-- FINISHED fields processing-->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
           <!-- Case 1/2: When this appt is locked what row actions to show-->
@@ -453,21 +465,36 @@ export default {
       }
 
       if (arOfObjectsFromClientDB.length > 0) {
+        const origAr = arOfObjectsFromClientDB
+        arOfObjectsFromClientDB[0]['timeLine'] = new Array()
         // find all rows that came before then this row
         //debugger
         const arCameBeforeThis = allClientTbls[this.propFormDef.id]
           .query()
           .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .get()
-        arOfObjectsFromClientDB[0]['arCameBeforeThis'] = arCameBeforeThis
+
+        if (arCameBeforeThis.length > 0) {
+          // arOfObjectsFromClientDB[0]['timeLine'].push(arCameBeforeThis)
+          arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], arCameBeforeThis)
+        }
+
+        // inserting myself in-between Before and After
+        arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], origAr)
+
+        //  arOfObjectsFromClientDB[0]['timeLine'].push(arOfObjectsFromClientDB)
 
         const arCameAfterThis = allClientTbls[this.propFormDef.id]
           .query()
           .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .get()
-        arOfObjectsFromClientDB[0]['arCameAfterThis'] = arCameAfterThis
+        if (arCameAfterThis.length > 0) {
+          //  arOfObjectsFromClientDB[0]['timeLine'].push(arCameAfterThis)
+          arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], arCameAfterThis)
+        }
       }
 
+      console.log(arOfObjectsFromClientDB)
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
