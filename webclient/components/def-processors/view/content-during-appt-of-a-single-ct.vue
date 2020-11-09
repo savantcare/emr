@@ -136,17 +136,19 @@
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
 
+            <!-- HEADING -->
             <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <h3>{{ propFieldDef.fieldNameInUi }}</h3>
             </div>
 
+            <!-- BUTTON -->
             <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
             </div>
 
-            <!-- There may be many different types of fields. Here dealing with select type field -->
+            <!-- SELECT -->
             <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
               <!-- Each fieldtype gets to control its own way of showing the field label -->
               <div v-if="propFieldDef.showFieldLabel">
@@ -174,7 +176,8 @@
                 </div>
               </div>
             </div>
-            <!-- Slider field type -->
+
+            <!-- SLIDER -->
             <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
               <div v-if="row[propFieldDef.fieldNameInDb] > 0">
                 <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
@@ -191,6 +194,7 @@
               </div>
             </div>
 
+            <!-- NUMBER -->
             <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
               <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
               <div id="field-value-in-db">
