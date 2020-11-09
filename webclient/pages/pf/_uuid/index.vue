@@ -83,7 +83,7 @@ import VueScrollTo from 'vue-scrollto' // Ref: https://github.com/rigor789/vue-s
 
 /* 3/4 Why needed?
    Used to toggle between Health and Other components.
-   Why not use element.io inbuilt switch?
+   Why not use element.io inbuilt switch? In elementio inbuilt switch I can not put H and O insid e the swutch itself.
    Read: src/components/non-temporal/display-manager/TheLeftSideDisplayAreaHeader.vue:48
 */
 import ToggleButton from 'vue-js-toggle-button' // Ref: http://vue-js-toggle-button.yev.io/
@@ -97,9 +97,8 @@ import 'vue-slider-component/theme/default.css'
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 import VueSocketIO from 'vue-socket.io'
 
-// Ref: https://github.com/voerro/vue-tagsinput
+// Ref: https://github.com/voerro/vue-tagsinput. This is used on top of the correlate graph inside the header
 import VoerroTagsInput from '@voerro/vue-tagsinput'
-
 Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts

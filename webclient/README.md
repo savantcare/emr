@@ -16,3 +16,10 @@ Stylus
 
 1. functional component
 2. making code easier to read. For e.g. see add-ct.vue
+
+Timeline of what has been happening with the patient:
+https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/timeline
+http://jsfiddle.net/XdQ5Y/348/
+
+SCollabar div:
+Use: https://www.npmjs.com/package/vue-scrollto

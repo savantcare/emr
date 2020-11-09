@@ -17,7 +17,9 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 </template>
 
 <script>
-import ctSlider from './time-series-of-appointments-component-made-with-high-charts.vue'
+// import ctSlider from './time-series-of-appointments-component-made-with-high-charts.vue'
+import ctSlider from './time-series-of-appointments-component-made-with-vue-slider.vue'
+
 import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 

@@ -1,0 +1,1 @@
+drop database sc_past_psych_history

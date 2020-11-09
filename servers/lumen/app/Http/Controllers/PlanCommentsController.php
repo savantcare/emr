@@ -12,7 +12,7 @@ use Predis\Autoloader;
 
 class PlanCommentsController extends Controller
 {
-    public function getAllTemporalPlanCommentss()
+    public function getAllTemporalPlanComments()
     {
         $planCommentsQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_plan_comments.plan_comments FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
@@ -26,9 +26,9 @@ class PlanCommentsController extends Controller
         return response()->json($planCommentsQuery);
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
@@ -41,9 +41,9 @@ class PlanCommentsController extends Controller
         return response()->json($insertPlanComments, 201);
     }
 
-    public function update($pServerSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $description = $requestData['rowToUpsert']['description'];
         $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];

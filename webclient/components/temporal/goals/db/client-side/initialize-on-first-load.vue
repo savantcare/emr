@@ -20,8 +20,8 @@ export default {
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
     if (process.env.loadInitialDataFromServer === true) {
-      const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl)
-      if (proRemsFromDB.ok) {
+      const proGoalsFromDB = await clientTbl.api().get(clientTbl.apiUrl)
+      if (proGoalsFromDB.ok) {
       }
     }
   },

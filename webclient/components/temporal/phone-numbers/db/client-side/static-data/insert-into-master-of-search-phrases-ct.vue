@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'phone numbers',
         ctAbbr: 'pn',
-        ctToShow: '1time-eachField-multiValuesphone-numbers/view-layer/table-ct.vue',
+        ctToShow: '1time-eachField-multiValuesphone-numbers/view-layer/table.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
