@@ -44,7 +44,7 @@ export default {
       arrowDirection: 0,
       formDef: allFormDefinations,
       lastInvocationOfChangeTimeSeries: 0,
-      lastKnonDirectionOfMovementOnXAxis: 0,
+      directionDuringTimeThresold: 0,
     }
   },
   props: {
@@ -70,13 +70,16 @@ export default {
     */
 
       // During the time this fn is being called 100 times I want to keep the arrow visible. Since that is a indicator that the user should not make another swipe action again
+      // Reason there are 2 if and elseif with the same code is because deltaX can be -0
       if (pEvent.deltaX > 0) {
+        // moving forward
         this.arrowDirection = pEvent.deltaX
+        this.fnChangeTimeSeries(pEvent, entity)
       } else if (pEvent.deltaX < 0) {
+        // moving back
         this.arrowDirection = pEvent.deltaX
+        this.fnChangeTimeSeries(pEvent, entity)
       }
-
-      this.fnChangeTimeSeries(pEvent, entity)
     },
     fnChangeTimeSeries(pEvent, pEntity) {
       let differentSwipeDetected = false
@@ -89,23 +92,26 @@ export default {
         differentSwipeDetected = true
       } else {
         // Child of strategy1: The thresold time of 1.5 econds have not passed. But direction changed during 1.5 seconds hence it is differentSwipeDetected
-        if (pEvent.deltaX > 0 && this.directionDuringThresold === 0) {
-          this.directionDuringThresold = 1
-        } else if (pEvent.deltaX < 0 && this.directionDuringThresold === 0) {
-          this.directionDuringThresold = -1
-        } else if (this.directionDuringThresold !== 0) {
-          if (pEvent.deltaX > 0 && this.directionDuringThresold !== 1) {
+        if (pEvent.deltaX > 0 && this.directionDuringTimeThresold === 0) {
+          this.directionDuringTimeThresold = 1 // this is initialization
+        } else if (pEvent.deltaX < 0 && this.directionDuringTimeThresold === 0) {
+          this.directionDuringTimeThresold = -1 // this is initialization
+        } else if (this.directionDuringTimeThresold !== 0) {
+          // !== 0 means it has already been initialized
+          if (pEvent.deltaX > 0 && this.directionDuringTimeThresold !== 1) {
             differentSwipeDetected = true
-            // console.log('direction change forward')
-          } else if (pEvent.deltaX < 0 && this.directionDuringThresold !== -1) {
+            console.log('direction change forward')
+          } else if (pEvent.deltaX < 0 && this.directionDuringTimeThresold !== -1) {
             differentSwipeDetected = true
-            // console.log('direction change back')
+            console.log('direction change back')
           }
         }
       }
 
       if (differentSwipeDetected) {
-        this.directionDuringThresold = 0
+        // get variables ready for detecting next swipe
+        this.directionDuringTimeThresold = 0
+        this.arrowDirection = 0
         if (pEvent.deltaX === 0) {
           // Goal: Allow scrolling up and down
           pEvent.preventDefault()
