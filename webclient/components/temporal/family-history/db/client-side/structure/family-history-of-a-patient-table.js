@@ -71,10 +71,10 @@ export const familyHistoryFormDef = {
   validationsObj: {
     value: {
       description: {
-        minLength: minLength(8),
+        minLength: minLength(3),
       },
       relationship: {
-        minLength: minLength(8),
+        minLength: minLength(3),
       },
     },
   },
