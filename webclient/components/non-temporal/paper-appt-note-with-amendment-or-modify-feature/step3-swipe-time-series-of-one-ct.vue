@@ -1,6 +1,7 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
-  <div class="sc-card" @wheel="swipe($event, propEntity)">
+  <!-- @wheel="swipe($event, propEntity)"-->
+  <div class="sc-card">
     <div v-if="timeSeriesMarker < 0">
       <ctOldValueStructure
         :propApptId="propShowNoteForApptId"

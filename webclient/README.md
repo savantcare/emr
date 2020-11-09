@@ -21,5 +21,5 @@ Timeline of what has been happening with the patient:
 https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/timeline
 http://jsfiddle.net/XdQ5Y/348/
 
-SCollabar div:
+Scollabar div:
 Use: https://www.npmjs.com/package/vue-scrollto

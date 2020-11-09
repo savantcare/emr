@@ -101,9 +101,10 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
+        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
         <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
-          id="each-data-row"
+          id="g1-each-data-and-action-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
           :style="
@@ -112,29 +113,19 @@
               : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
-          <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
-
-          <!-- create the timeline and then loop on timeline 
-<div
-          id="each-timeline-row"
-          v-for="timeRow in row['timeLine']"
-          :key="timeRow.clientSideUniqRowId"
-          :style="
-            propFormDef.styleForEachRowInPaperView
-              ? propFormDef.styleForEachRowInPaperView
-              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-          "
-        >
-        -->
-          <div
-            id="each-field-of-data-row"
-            :class="'field-type-' + propFieldDef.fieldType"
-            v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-            :key="id"
-            :style="mfGetCssClassNameForEachDataRow(row)"
-            v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
-          >
-            <!-- 
+          <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
+          <div class="g2-time-line-container">
+            <!-- Loop on timeline -->
+            <div class="g3-each-row-on-timeline" v-for="timeRow in row['timeLine']" :key="timeRow.clientSideUniqRowId">
+              <div
+                id="g4-each-field-of-data-row"
+                :class="'field-type-' + propFieldDef.fieldType"
+                v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+                :key="id"
+                :style="mfGetCssClassNameForEachDataRow(row)"
+                v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
+              >
+                <!-- 
               Explanation of v-if statement
               Goal: Skip any empty fields in the row 
               row[propFieldDef.fieldNameInDb] can either be integer or string
@@ -148,87 +139,91 @@
               If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
               -->
 
-            <!-- HEADING -->
-            <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-              <!-- the field printing is not common for all field types so that heading can be applied -->
-              <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-            </div>
+                <!-- HEADING -->
+                <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+                  <!-- the field printing is not common for all field types so that heading can be applied -->
+                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                </div>
 
-            <!-- BUTTON -->
-            <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
-              <!-- the field printing is not common for all field types so that heading can be applied -->
-              <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
-            </div>
+                <!-- BUTTON -->
+                <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+                  <!-- the field printing is not common for all field types so that heading can be applied -->
+                  <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+                </div>
 
-            <!-- SELECT -->
-            <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-              <!-- Each fieldtype gets to control its own way of showing the field label -->
-              <div v-if="propFieldDef.showFieldLabel">
-                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-              </div>
-              <!-- Since it is select there will be many options hence need to do a for loop on options -->
-              <!-- Since it is View layer I should only show the selected options and not all the options -->
-              <div
-                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  propFieldDef.fieldNameInDb,
-                  row.clientSideUniqRowId
-                )"
-                :key="item.id"
-                v-if="item.selected"
-              >
-                <!-- this v-if is part of this div and not <div id="selected-option"> 
+                <!-- SELECT -->
+                <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+                  <!-- Each fieldtype gets to control its own way of showing the field label -->
+                  <div v-if="propFieldDef.showFieldLabel">
+                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                  </div>
+                  <!-- Since it is select there will be many options hence need to do a for loop on options -->
+                  <!-- Since it is View layer I should only show the selected options and not all the options -->
+                  <div
+                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                      propFieldDef.fieldNameInDb,
+                      row.clientSideUniqRowId
+                    )"
+                    :key="item.id"
+                    v-if="item.selected"
+                  >
+                    <!-- this v-if is part of this div and not <div id="selected-option"> 
                   reason: So that empty divs are not generated.
                   If <div id="selected-option" v-if="item.selected">
                     then a empty divs for each of the select options will get generated.
                   -->
 
-                <!-- Goal: Only show the selected option -->
-                <div id="selected-option">
-                  {{ item.value }}
+                    <!-- Goal: Only show the selected option -->
+                    <div id="selected-option">
+                      {{ item.value }}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- SLIDER -->
-            <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-              <div v-if="row[propFieldDef.fieldNameInDb] > 0">
-                <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                  <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                <!-- SLIDER -->
+                <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+                  <div v-if="row[propFieldDef.fieldNameInDb] > 0">
+                    <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                      <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+                    </div>
+                    <div id="field-value-in-db">
+                      <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
+                      <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+                      <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+                      <div v-else>
+                        {{ row[propFieldDef.fieldNameInDb] }}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div id="field-value-in-db">
-                  <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
-                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-                  <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
-                  <div v-else>
-                    {{ row[propFieldDef.fieldNameInDb] }}
+
+                <!-- NUMBER -->
+                <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
+                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                  <div id="field-value-in-db">
+                    {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+                  </div>
+                </div>
+
+                <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
+                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                  <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
+                </div>
+
+                <!-- Not specified field type -->
+                <div v-else id="not-matched-field-type">
+                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+                  <!-- Goal: skip fields that are null or empty -->
+                  <div v-if="timeRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                    {{ timeRow[propFieldDef.fieldNameInDb] }}
                   </div>
                 </div>
               </div>
+              <!-- FINISHED fields processing-->
             </div>
-
-            <!-- NUMBER -->
-            <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">
-                {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
-              </div>
-            </div>
-
-            <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
-            </div>
-
-            <!-- Not specified field type -->
-            <div v-else id="not-matched-field-type">
-              <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-              <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                {{ row[propFieldDef.fieldNameInDb] }}
-              </div>
-            </div>
+            <!-- End of one timeline row -->
           </div>
-          <!-- FINISHED fields processing-->
+          <!-- End of container that contains each timeline row -->
           <!-- This is for action associated with each row -->
           <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
           <!-- Case 1/2: When this appt is locked what row actions to show-->
@@ -556,5 +551,25 @@ h3 {
 
 .field-type-heading {
   grid-column-start: 1;
+}
+
+/* ref: 
+http://jsfiddle.net/rnwa4fv5/
+https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow 
+http://jsfiddle.net/kf1y2npw/30/
+*/
+
+.g2-time-line-container {
+  overflow-x: scroll; /* allow scroll on x axis */
+  position: absolute; /* The element is positioned relative to its first positioned (not static) ancestor element	*/
+  width: 80%;
+}
+
+.g3-each-row-on-timeline {
+  display: inline-block; /* Does not add a line break */
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
 }
 </style>
