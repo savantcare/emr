@@ -114,7 +114,7 @@
           "
         >
           <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
-          <div class="g2-time-line-container">
+          <div class="g2-data-time-line-container">
             <!-- Loop on timeline -->
             <vue-horizontal-list :items="items" :options="options">
               <template v-slot:default="{ item }">
@@ -220,16 +220,16 @@ export default {
       options: {
         responsive: [
           { end: 576, size: 1 },
-          { start: 576, end: 768, size: 2 },
-          { start: 768, end: 992, size: 3 },
-          { size: 4 },
+          { start: 576, end: 768, size: 1 },
+          { start: 768, end: 992, size: 1 },
+          { size: 1 },
         ],
         list: {
           // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 1200,
+          windowed: 900,
 
           // Because: #app {padding: 80px 24px;}
-          padding: 24,
+          padding: 4,
         },
       },
       items: [],
@@ -547,18 +547,24 @@ h3 {
 }
 
 /* ref: 
+Design being used
+https://github.com/fuxingloh/vue-horizontal-list
+
+Designs not being used:
 http://jsfiddle.net/rnwa4fv5/
 https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow 
 http://jsfiddle.net/kf1y2npw/30/
 */
 
-.g2-time-line-container {
-  overflow-x: scroll; /* allow scroll on x axis */
-  position: absolute; /* The element is positioned relative to its first positioned (not static) ancestor element	*/
-  width: 80%;
+.g2-data-time-line-container {
+  /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4px 4px;
 }
 
-.g3-each-row-on-timeline {
+.g3-each-box-in-timeline {
   display: inline-block; /* Does not add a line break */
   padding: 10px;
   border-style: solid;
