@@ -10,16 +10,16 @@ use Predis\Autoloader;
 
 class OxygenSaturationController extends Controller
 {
-    public function getAllTemporalOxygenSaturations()
+    public function get_all_temporal_oxygen_saturations()
     {
         $oxygenSaturationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.oxygenSaturation FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($oxygenSaturationQueryResultObj);
     }
 
-    public function getOneOxygenSaturation($pServerSideRowUuid)
+    public function get_one_oxygen_saturation($pServerSideRowUuid)
     {
-        $oxygenSaturationQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.oxygenSaturation FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
+        $oxygenSaturationQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.oxygenSaturation FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
         return response()->json($oxygenSaturationQueryResultObj);
     }

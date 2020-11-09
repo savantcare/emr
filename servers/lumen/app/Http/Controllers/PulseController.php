@@ -9,26 +9,25 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class PulseController extends Controller
 {
-    public function getAllTemporalPulses()
+    public function get_all_temporal_pulses()
     {
-        $pulseQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.pulse FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $pulseQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.pulse FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
-        return response()->json($pulseQuery);
+        return response()->json($pulseQueryResultObj);
     }
 
-    public function getOnePulse($pServerSideRowUuid)
+    public function get_one_pulse($pServerSideRowUuid)
     {
-        $pulseQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.pulse FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
+        $pulseQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.pulse FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
-        return response()->json($pulseQuery);
+        return response()->json($pulseQueryResultObj);
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
@@ -43,9 +42,9 @@ class PulseController extends Controller
         return response()->json($insertPulse, 201);
     }
 
-    public function update($pServerSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
         $pulseInBpm = $requestData['rowToUpsert']['pulseInBpm'];

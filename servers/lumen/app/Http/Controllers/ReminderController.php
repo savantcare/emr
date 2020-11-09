@@ -10,17 +10,16 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class ReminderController extends Controller
 {
-    public function getAllTemporalReminders()
+    public function get_all_temporal_reminders()
     {
-        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($remQuery);
+        $remQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM reminders FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        return response()->json($remQueryResultObj);
         // return response()->json(Reminder::all());
     }
 
-    public function getOneReminder($pServerSideRowUuid)
+    public function get_one_reminder($pServerSideRowUuid)
     {
         return response()->json(Reminder::find($pServerSideRowUuid));
     }
@@ -32,17 +31,17 @@ class ReminderController extends Controller
     {"data":{"$serverSideRowUuid":"3","vnRowStateInSession":34,"validationClass":"","isValidationError":false,"clientSideUniqRowId":3,"serverSideRowUuid":"01014fb0-c1ef-11ea-a3a5-f36fe4d74da4","description":200,"notes":"test","recordChangedByUuid":"bfe041fa-073b-4223-8c69-0540ee678ff8","recordChangedFromIPAddress":"::1","recordChangedFromSection":"null","ptUuid":"1", "client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change":"1"}}
     Wiki has a video on youtube
     */
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
-        
+        $requestData = $pRequest->all();
+
         $remData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'description' => $requestData['data']['description'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
-       
+
         $Reminder = Reminder::insertGetId($remData);
 
         $channel = 'MsgFromSktForRemToAdd';
@@ -59,18 +58,18 @@ class ReminderController extends Controller
         return response()->json($Reminder, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $Reminder = Reminder::findOrFail($serverSideRowUuid);
-        $Reminder->update($request->all());
+        $Reminder = Reminder::findOrFail($pServerSideRowUuid);
+        $Reminder->update($pRequest->all());
 
         /**
          * Send data to socket
          */
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'description' => $requestData['description'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
@@ -81,11 +80,10 @@ class ReminderController extends Controller
         return response()->json($Reminder, 200);
     }
 
- 
-    public function delete($serverSideRowUuid, Request $request)
+    public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $Reminder = Reminder::findOrFail($serverSideRowUuid);
-        $requestData = $request->all();
+        $Reminder = Reminder::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
@@ -101,7 +99,7 @@ class ReminderController extends Controller
          */
         $channel = 'MsgFromSktForRemToDelete';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 

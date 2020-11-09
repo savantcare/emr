@@ -10,23 +10,23 @@ use Predis\Autoloader;
 
 class BloodSugarController extends Controller
 {
-    public function getAllTemporalBloodSugars()
+    public function get_all_temporal_blood_sugars()
     {
-        $bloodSugarQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodSugarLevels FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $bloodSugarQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodSugarLevels FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
-        return response()->json($bloodSugarQuery);
+        return response()->json($bloodSugarQueryResultObj);
     }
 
-    public function getOneBloodSugar($pServerSideRowUuid)
+    public function get_one_blood_sugar($pServerSideRowUuid)
     {
-        $bloodSugarQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodSugarLevels FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
+        $bloodSugarQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodSugarLevels FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
-        return response()->json($bloodSugarQuery);
+        return response()->json($bloodSugarQueryResultObj);
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
@@ -41,9 +41,9 @@ class BloodSugarController extends Controller
         return response()->json($insertBloodSugar, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
         $bloodSugarMgDL = $requestData['rowToUpsert']['bloodSugarMgDL'];
@@ -51,7 +51,7 @@ class BloodSugarController extends Controller
         $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateBloodSugar = DB::statement("UPDATE `sc_vital_signs`.`bloodSugarLevels` SET `bloodSugarMgDL` = {$bloodSugarMgDL}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodSugarLevels`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
+        $updateBloodSugar = DB::statement("UPDATE `sc_vital_signs`.`bloodSugarLevels` SET `bloodSugarMgDL` = {$bloodSugarMgDL}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodSugarLevels`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($updateBloodSugar, 200);
     }
@@ -74,4 +74,4 @@ class BloodSugarController extends Controller
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
-}  
+}

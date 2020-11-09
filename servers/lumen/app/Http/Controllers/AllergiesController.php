@@ -10,13 +10,11 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class AllergiesController extends Controller
 {
-    public function getAllTemporalAllergies()
+    public function get_all_temporal_allergies()
     {
-        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies
-        order by ROW_START desc'));
+        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies order by ROW_START desc'));
         return response()->json($allergiesQueryResultObj);
     }
 

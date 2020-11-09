@@ -10,16 +10,16 @@ use Predis\Autoloader;
 
 class BmiController extends Controller
 {
-    public function getAllTemporalBmis()
+    public function get_all_temporal_bmis()
     {
         $bmiQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bmi FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($bmiQueryResultObj);
     }
 
-    public function getOneBmi($pServerSideRowUuid)
+    public function get_one_bmi($pServerSideRowUuid)
     {
-        $bmiQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bmi FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
+        $bmiQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bmi FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
         return response()->json($bmiQueryResultObj);
     }
@@ -74,4 +74,4 @@ class BmiController extends Controller
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
-}   
+}

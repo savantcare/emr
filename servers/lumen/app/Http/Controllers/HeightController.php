@@ -9,27 +9,25 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class HeightController extends Controller
 {
-    public function getAllTemporalHeights()
+    public function get_all_temporal_heights()
     {
-        $heightQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $heightQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
-        return response()->json($heightQuery);
+        return response()->json($heightQueryResultObj);
     }
 
-    public function getOneHeight($pServerSideRowUuid)
+    public function get_one_height($pServerSideRowUuid)
     {
+        $heightQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
-        $heightQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.height FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
-
-        return response()->json($heightQuery);
+        return response()->json($heightQueryResultObj);
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
@@ -44,9 +42,9 @@ class HeightController extends Controller
         return response()->json($insertHeight, 201);
     }
 
-    public function update($pServerSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
         $heightInInches = $requestData['rowToUpsert']['heightInInches'];
