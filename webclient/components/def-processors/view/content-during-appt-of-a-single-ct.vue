@@ -440,12 +440,14 @@ export default {
           this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
+        /* for locked appts*/
         arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
           .query()
-          .where('ROW_END', (value) => value > pApptObj['ROW_END'])
-          .where('ROW_START', (value) => value < pApptObj['ROW_END'])
+          .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
           .get()
       }
+      console.log(pApptObj)
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
