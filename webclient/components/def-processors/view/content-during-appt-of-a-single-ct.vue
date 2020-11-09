@@ -116,111 +116,15 @@
           <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
           <div class="g2-time-line-container">
             <!-- Loop on timeline -->
-            <div class="g3-each-row-on-timeline" v-for="timeRow in row['timeLine']" :key="timeRow.clientSideUniqRowId">
-              <div
-                id="g4-each-field-of-data-row"
-                :class="'field-type-' + propFieldDef.fieldType"
-                v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-                :key="id"
-                :style="mfGetCssClassNameForEachDataRow(row)"
-                v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
-              >
-                <!-- 
-              Explanation of v-if statement
-              Goal: Skip any empty fields in the row 
-              row[propFieldDef.fieldNameInDb] can either be integer or string
-              For e.g. for recs it is string and for psych review of systems it is number
-
-              Goal: Skip fields that are null
-              For e.g. notes in weight will be null if never set.
-              The first condition in && is evaluated first.
-              So first I evaluate row[propFieldDef.fieldNameInDb] to make sure it is not null
-              Then i evaluate row[propFieldDef.fieldNameInDb].toString().length
-              If I evaluate the 2nd param first it will give error in console when row[propFieldDef.fieldNameInDb] is null
-              -->
-
-                <!-- HEADING -->
-                <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-                  <!-- the field printing is not common for all field types so that heading can be applied -->
-                  <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+            <vue-horizontal-list :items="items" :options="options">
+              <template v-slot:default="{ item }">
+                <div class="item">
+                  <h5>{{ item.title }}</h5>
+                  <p>{{ item.content }}</p>
                 </div>
+              </template>
+            </vue-horizontal-list>
 
-                <!-- BUTTON -->
-                <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
-                  <!-- the field printing is not common for all field types so that heading can be applied -->
-                  <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
-                </div>
-
-                <!-- SELECT -->
-                <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-                  <!-- Each fieldtype gets to control its own way of showing the field label -->
-                  <div v-if="propFieldDef.showFieldLabel">
-                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                  </div>
-                  <!-- Since it is select there will be many options hence need to do a for loop on options -->
-                  <!-- Since it is View layer I should only show the selected options and not all the options -->
-                  <div
-                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
-                      propFieldDef.fieldNameInDb,
-                      row.clientSideUniqRowId
-                    )"
-                    :key="item.id"
-                    v-if="item.selected"
-                  >
-                    <!-- this v-if is part of this div and not <div id="selected-option"> 
-                  reason: So that empty divs are not generated.
-                  If <div id="selected-option" v-if="item.selected">
-                    then a empty divs for each of the select options will get generated.
-                  -->
-
-                    <!-- Goal: Only show the selected option -->
-                    <div id="selected-option">
-                      {{ item.value }}
-                    </div>
-                  </div>
-                </div>
-
-                <!-- SLIDER -->
-                <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-                  <div v-if="row[propFieldDef.fieldNameInDb] > 0">
-                    <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                      <h4>{{ propFieldDef.fieldNameInUi }}</h4>
-                    </div>
-                    <div id="field-value-in-db">
-                      <div v-if="row[propFieldDef.fieldNameInDb] == 1">Not present</div>
-                      <div v-else-if="row[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-                      <div v-else-if="row[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
-                      <div v-else>
-                        {{ row[propFieldDef.fieldNameInDb] }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- NUMBER -->
-                <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-                  <div id="field-value-in-db">
-                    {{ row[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
-                  </div>
-                </div>
-
-                <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
-                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-                  <div id="field-value-in-db">{{ row[propFieldDef.fieldNameInDb] | moment }}</div>
-                </div>
-
-                <!-- Not specified field type -->
-                <div v-else id="not-matched-field-type">
-                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-                  <!-- Goal: skip fields that are null or empty -->
-                  <div v-if="timeRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                    {{ timeRow[propFieldDef.fieldNameInDb] }}
-                  </div>
-                </div>
-              </div>
-              <!-- FINISHED fields processing-->
-            </div>
             <!-- End of one timeline row -->
           </div>
           <!-- End of container that contains each timeline row -->
@@ -290,14 +194,6 @@
         </div>
       </div>
     </div>
-    <vue-horizontal-list :items="items" :options="options">
-      <template v-slot:default="{ item }">
-        <div class="item">
-          <h5>{{ item.title }}</h5>
-          <p>{{ item.content }}</p>
-        </div>
-      </template>
-    </vue-horizontal-list>
   </div>
 </template>
 
