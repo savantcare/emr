@@ -44,6 +44,7 @@ export default {
       arrowDirection: 0,
       formDef: allFormDefinations,
       lastInvocationOfChangeTimeSeries: 0,
+      lastKnonDirectionOfMovementOnXAxis: 0,
     }
   },
   props: {
@@ -63,9 +64,12 @@ export default {
   },
   methods: {
     swipe(pEvent, entity) {
+      // If the user moves his finder on the trackpad with a lot of force this function will get called approx 100 times
       /* Goal: Anything that makes vertical wheelscroll keeps normal
       The deltaY property returns a positive value when scrolling down, and a negative value when scrolling up, otherwise 0.
     */
+
+      // During the time this fn is being called 100 times I want to keep the arrow visible. Since that is a indicator that the user should not make another swipe action again
       if (pEvent.deltaX > 0) {
         this.arrowDirection = pEvent.deltaX
       } else if (pEvent.deltaX < 0) {
@@ -75,10 +79,33 @@ export default {
       this.fnChangeTimeSeries(pEvent, entity)
     },
     fnChangeTimeSeries(pEvent, pEntity) {
+      let differentSwipeDetected = false
+
+      // Goal: Identify if it is the same swipe or different swipe Ref: http://promo.github.io/wheel-indicator/  https://github.com/pmndrs/react-use-gesture/issues/85 https://github.com/andyinabox/wheel-swipe
+      // Strategy 1: if 1.5 seconds have passed then it is differentSwipeDetected
       const now = +new Date()
       if (now - this.lastInvocationOfChangeTimeSeries > 1500) {
         this.lastInvocationOfChangeTimeSeries = now
-        console.log(pEntity)
+        differentSwipeDetected = true
+      } else {
+        // Child of strategy1: The thresold time of 1.5 econds have not passed. But direction changed during 1.5 seconds hence it is differentSwipeDetected
+        if (pEvent.deltaX > 0 && this.directionDuringThresold === 0) {
+          this.directionDuringThresold = 1
+        } else if (pEvent.deltaX < 0 && this.directionDuringThresold === 0) {
+          this.directionDuringThresold = -1
+        } else if (this.directionDuringThresold !== 0) {
+          if (pEvent.deltaX > 0 && this.directionDuringThresold !== 1) {
+            differentSwipeDetected = true
+            // console.log('direction change forward')
+          } else if (pEvent.deltaX < 0 && this.directionDuringThresold !== -1) {
+            differentSwipeDetected = true
+            // console.log('direction change back')
+          }
+        }
+      }
+
+      if (differentSwipeDetected) {
+        this.directionDuringThresold = 0
         if (pEvent.deltaX === 0) {
           // Goal: Allow scrolling up and down
           pEvent.preventDefault()
@@ -94,7 +121,7 @@ export default {
           pEvent.stopPropagation() // without this when there is a back swipe on a larger div, the smaller div below moves up and gets the event and now the smaller div moves back in time series
         }
       } else {
-        console.log('rate limited')
+        // console.log('rate limited')
       }
     },
   },
