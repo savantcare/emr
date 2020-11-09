@@ -247,6 +247,9 @@ export default {
           // Because: #app {padding: 80px 24px;}
           padding: 4,
         },
+        item: {
+          padding: 4,
+        },
       },
       items: [],
     }
@@ -556,7 +559,7 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .g2-container-for-all-timeline-boxes {
   /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
-  max-width: 960px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   padding: 4px 4px;
