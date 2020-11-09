@@ -84,8 +84,14 @@ export default {
     fnChangeTimeSeries(pEvent, pEntity) {
       let differentSwipeDetected = false
 
-      // Goal: Identify if it is the same swipe or different swipe Ref: http://promo.github.io/wheel-indicator/  https://github.com/pmndrs/react-use-gesture/issues/85 https://github.com/andyinabox/wheel-swipe
-      // Strategy 1: if 1.5 seconds have passed then it is differentSwipeDetected
+      /* Goal: Identify if it is the same swipe or different swipe 
+      Ref: 
+      http://promo.github.io/wheel-indicator/  
+      https://github.com/pmndrs/react-use-gesture/issues/85 
+      https://github.com/andyinabox/wheel-swipe
+      http://jsfiddle.net/kf1y2npw/30/
+      Strategy 1: if 1.5 seconds have passed then it is differentSwipeDetected
+      */
       const now = +new Date()
       if (now - this.lastInvocationOfChangeTimeSeries > 1500) {
         this.lastInvocationOfChangeTimeSeries = now
