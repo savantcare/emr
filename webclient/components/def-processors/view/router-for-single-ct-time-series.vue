@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import contentDuringApptOfASingleCt from '@/components/def-processors/view/time-series-of-a-single-ct.vue'
+import contentDuringApptOfASingleCt from '@/components/def-processors/view/content-of-a-ct-relative-to-a-appt.vue'
 import allFormDefinations from '@/components//def-processors/all-form-definations.js'
 
 export default {
