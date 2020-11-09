@@ -888,10 +888,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationOk)
       .get()
 
-    const promises = arFromClientTbl.map(async (row) => {
+    const promises = arFromClientTbl.map(async (changedRowBeingSaved) => {
       try {
         await this.update({
-          where: row.clientSideUniqRowId,
+          where: changedRowBeingSaved.clientSideUniqRowId,
           data: {
             vnRowStateInSession: rowState.SameAsDB_Copy_Changed_FormValidationOk_RequestedSave,
           },
@@ -910,7 +910,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
         let response = {}
         if (process.env.makeFetchPostApiCalls === true) {
-          const response = await fetch(this.apiUrl + '/' + row.serverSideRowUuid, {
+          const response = await fetch(this.apiUrl + '/' + changedRowBeingSaved.serverSideRowUuid, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
@@ -938,10 +938,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         } else {
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
           Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
-          dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed row. And we want to set ROW_END for id 2 and not id 3
+          dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed changedRowBeingSaved. And we want to set ROW_END for id 2 and not id 3
           How to update the ROW_END for id = 2?
-            option 1: update that row that has state = "I am from DB" and UUID = UUID of current row
-            option 2: This requires adding another state ->  "I am being changed" -> and then -> update that row that has state = "I am being changed" and UUID = UUID of current row
+            option 1: update that changedRowBeingSaved that has state = "I am from DB" and UUID = UUID of current changedRowBeingSaved
+            option 2: This requires adding another state ->  "I am being changed" -> and then -> update that changedRowBeingSaved that has state = "I am being changed" and UUID = UUID of current changedRowBeingSaved
                       Option 2 is rejected. Since ID2 will now require update in following 3 cases:
                         1. When ID 3 is created it will require changing state of id 2.
                         2. Also when id3 is deleted without saving to DB.
@@ -972,9 +972,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           await this.update({
             where: (record) => {
               return (
-                record.serverSideRowUuid === row.serverSideRowUuid &&
+                record.serverSideRowUuid === changedRowBeingSaved.serverSideRowUuid &&
                 record.ROW_END === Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted &&
-                record.clientSideUniqRowId !== row.clientSideUniqRowId
+                record.clientSideUniqRowId !== changedRowBeingSaved.clientSideUniqRowId
               )
             },
             data: {
@@ -983,9 +983,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           })
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           this.update({
-            where: row.clientSideUniqRowId,
+            where: changedRowBeingSaved.clientSideUniqRowId,
             data: {
               vnRowStateInSession: rowState.SameAsDB,
+              ROW_START: Math.floor(Date.now()), // This overwites prev ROW_START. This is done so new rows ROW_START does not overlap the ROW that was just endeed in prev line of code.
             },
           })
           console.log('update success')
@@ -993,8 +994,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
         /*
           Goal:
-          According to our change layer architecture, when i click to open change layer, a duplicate row (copy of row) inserted into allClientTbls and it displayed on the top of timeline.
-          When change api request then we should need to insert a duplicate row (copy of row) again in allClientTbls for further change.
+          According to our change layer architecture, when i click to open change layer, a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) inserted into allClientTbls and it displayed on the top of timeline.
+          When change api request then we should need to insert a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) again in allClientTbls for further change.
         */
         this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
         this.dnClientIdOfCopiedRowBeingChanged = null
