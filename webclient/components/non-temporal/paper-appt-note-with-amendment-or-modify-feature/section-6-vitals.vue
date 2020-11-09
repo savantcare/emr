@@ -5,21 +5,42 @@
       <div class="sectionHeading">Vitals</div>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-      <paperNote :propApptId="propApptId" :propFormDef="weightFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="heightFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="pulseFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="temperatureFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="bloodPressureFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="bloodSugarFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="waistCircumferenceFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="bmiFormDef"></paperNote>
-      <paperNote :propApptId="propApptId" :propFormDef="oxygenSaturationFormDef"></paperNote>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="weightFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="heightFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="pulseFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="temperatureFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="bloodPressureFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="bloodSugarFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="waistCircumferenceFormDef"
+      ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="bmiFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt
+        :propApptId="propApptId"
+        :propFormDef="oxygenSaturationFormDef"
+      ></contentDuringApptOfASingleCt>
     </div>
   </el-card>
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
+import contentDuringApptOfASingleCt from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 import { heightFormDef } from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
 import { pulseFormDef } from '@/components/temporal/pulse/db/client-side/structure/pulse-of-a-patient-table.js'
@@ -32,7 +53,7 @@ import { oxygenSaturationFormDef } from '@/components/temporal/oxygen-saturation
 
 export default {
   components: {
-    paperNote,
+    contentDuringApptOfASingleCt,
   },
   props: {
     propApptId: {

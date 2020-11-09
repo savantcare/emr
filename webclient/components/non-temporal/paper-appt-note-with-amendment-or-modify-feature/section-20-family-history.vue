@@ -1,16 +1,20 @@
 <template>
   <div>
-    <paperNote :propApptId="propApptId" :propFormDef="formDef" :arrowDirection="arrowDirection"></paperNote>
+    <contentDuringApptOfASingleCt
+      :propApptId="propApptId"
+      :propFormDef="formDef"
+      :arrowDirection="arrowDirection"
+    ></contentDuringApptOfASingleCt>
   </div>
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
+import contentDuringApptOfASingleCt from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
   components: {
-    paperNote,
+    contentDuringApptOfASingleCt,
   },
   props: {
     propApptId: {

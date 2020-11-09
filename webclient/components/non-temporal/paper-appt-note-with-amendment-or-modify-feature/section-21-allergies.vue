@@ -1,16 +1,16 @@
 <template>
   <div>
-    <paperNote :propApptId="propApptId" :propFormDef="formDef"></paperNote>
+    <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="formDef"></contentDuringApptOfASingleCt>
   </div>
 </template>
 
 <script>
-import paperNote from '@/components/def-processors/view/time-series-of-appt-notes.vue'
+import contentDuringApptOfASingleCt from '@/components/def-processors/view/time-series-of-appt-notes.vue'
 import { allergiesFormDef } from '@/components/temporal/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 
 export default {
   components: {
-    paperNote,
+    contentDuringApptOfASingleCt,
   },
   props: {
     propApptId: {
