@@ -104,7 +104,7 @@
         <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
         <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
-          id="g1-each-data-and-action-row"
+          id="g1-timeline-plus-action-on-that-timeline"
           v-for="row in cfGetArOfDataRows"
           :key="row.clientSideUniqRowId"
           :style="
@@ -114,7 +114,7 @@
           "
         >
           <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
-          <div class="g2-data-time-line-container">
+          <div class="g2-container-for-all-timeline-boxes">
             <!-- Loop on timeline -->
             <vue-horizontal-list :items="items" :options="options">
               <template v-slot:default="{ item }">
@@ -556,7 +556,7 @@ https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-o
 http://jsfiddle.net/kf1y2npw/30/
 */
 
-.g2-data-time-line-container {
+.g2-container-for-all-timeline-boxes {
   /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
   max-width: 960px;
   margin-left: auto;
