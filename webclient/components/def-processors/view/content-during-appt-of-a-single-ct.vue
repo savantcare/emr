@@ -41,7 +41,7 @@
               <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfTemporallyValidRows ||
+                  cfGetArOfDataRows.length < propFormDef.maxNumberOfTemporallyValidRows ||
                   !propFormDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
@@ -51,7 +51,7 @@
               ></el-button>
               <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
               <el-button
-                v-if="mfGetArOfDataRows(this.currentApptObj).length > 1"
+                v-if="cfGetArOfDataRows.length > 1"
                 class="el-icon-money"
                 size="mini"
                 @click="mfOpenMultiEditCtInEditLayer"
@@ -60,7 +60,7 @@
             </span>
             <!-- Minimize or maximize. This appears if appt is locked or unlocked -->
             <el-button
-              v-if="mfGetArOfDataRows(this.currentApptObj).length > 0"
+              v-if="cfGetArOfDataRows.length > 0"
               :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
               size="mini"
               @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
@@ -105,7 +105,7 @@
         <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="g1-each-data-and-action-row"
-          v-for="row in mfGetArOfDataRows(this.currentApptObj)"
+          v-for="row in cfGetArOfDataRows"
           :key="row.clientSideUniqRowId"
           :style="
             propFormDef.styleForEachRowInPaperView
@@ -290,6 +290,14 @@
         </div>
       </div>
     </div>
+    <vue-horizontal-list :items="items" :options="options">
+      <template v-slot:default="{ item }">
+        <div class="item">
+          <h5>{{ item.title }}</h5>
+          <p>{{ item.content }}</p>
+        </div>
+      </template>
+    </vue-horizontal-list>
   </div>
 </template>
 
@@ -304,6 +312,7 @@ import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import VueHorizontalList from '@/vue-horizontal-list.vue'
 
 export default {
   data() {
@@ -312,8 +321,25 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       OnAndOffSwitchToShowContent: true,
+      options: {
+        responsive: [
+          { end: 576, size: 1 },
+          { start: 576, end: 768, size: 2 },
+          { start: 768, end: 992, size: 3 },
+          { size: 4 },
+        ],
+        list: {
+          // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+          windowed: 1200,
+
+          // Because: #app {padding: 80px 24px;}
+          padding: 24,
+        },
+      },
+      items: [],
     }
   },
+  components: { VueHorizontalList },
   mixins: [clInvokeMixin],
 
   filters: {
@@ -361,9 +387,9 @@ export default {
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
         )
         secondaryDuringComparisonDataRows = this.mfGetArOfDataRows(secondaryDuringComparisonApptObj)
-        if (secondaryDuringComparisonDataRows.length > this.mfGetArOfDataRows(this.currentApptObj).length) {
+        if (secondaryDuringComparisonDataRows.length > this.cfGetArOfDataRows.length) {
           return 'border:1px solid #E6A23C'
-        } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
+        } else if (secondaryDuringComparisonDataRows.length < this.cfGetArOfDataRows.length) {
           return 'border:1px solid #67C23A'
         } else {
           // I come here when the length of both rows is same, Now there are 2 possibilities 1. Content is same 2. Content is different.
@@ -382,9 +408,9 @@ export default {
           )
 
           secondaryDuringComparisonDataRows = this.mfGetArOfDataRows(secondaryDuringComparisonApptObj)
-          if (secondaryDuringComparisonDataRows.length > this.mfGetArOfDataRows(this.currentApptObj).length) {
+          if (secondaryDuringComparisonDataRows.length > this.cfGetArOfDataRows.length) {
             return 'border:1px solid #E6A23C'
-          } else if (secondaryDuringComparisonDataRows.length < this.mfGetArOfDataRows(this.currentApptObj).length) {
+          } else if (secondaryDuringComparisonDataRows.length < this.cfGetArOfDataRows.length) {
             return 'border:1px solid #67C23A'
           } else {
             return
@@ -403,8 +429,138 @@ export default {
 
       return arFromClientTblOfAddendums
     },
+    cfGetArOfDataRows() {
+      const pApptObj = this.currentApptObj
+      const emptyArray = []
+
+      if (!pApptObj) {
+        // returning empty array and not null. Since others deprend on the length of the array. If I return null there will be errors when length of that is calculated.
+        return emptyArray
+      }
+      if (!pApptObj['apptStatus']) {
+        return emptyArray
+      }
+
+      let arOfObjectsFromClientDB = []
+
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        )
+      } else {
+        /* for locked appts*/
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
+          .get()
+      }
+
+      if (arOfObjectsFromClientDB.length > 0) {
+        this.items = []
+
+        const origAr = arOfObjectsFromClientDB
+        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+
+        const arCameAfterThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+
+        for (let i = 0; i < arCameBeforeThis.length; i++) {
+          this.items.push({
+            title: arCameBeforeThis[0]['description'],
+            content: arCameBeforeThis[0]['clientSideUniqRowId'],
+          })
+        }
+
+        this.items.push({
+          title: arOfObjectsFromClientDB[0]['description'],
+          content: arOfObjectsFromClientDB[0]['clientSideUniqRowId'],
+        })
+
+        for (let i = 0; i < arCameAfterThis.length; i++) {
+          this.items.push({
+            title: arCameAfterThis[0]['description'],
+            content: arCameAfterThis[0]['clientSideUniqRowId'],
+          })
+        }
+      }
+
+      console.log(this.items)
+      console.log(arOfObjectsFromClientDB)
+      return arOfObjectsFromClientDB
+    },
   },
   methods: {
+    mfGetArOfDataRows() {
+      const pApptObj = this.currentApptObj
+      const emptyArray = []
+
+      if (!pApptObj) {
+        // returning empty array and not null. Since others deprend on the length of the array. If I return null there will be errors when length of that is calculated.
+        return emptyArray
+      }
+      if (!pApptObj['apptStatus']) {
+        return emptyArray
+      }
+
+      let arOfObjectsFromClientDB = []
+
+      if (pApptObj['apptStatus'] === 'unlocked') {
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        )
+      } else {
+        /* for locked appts*/
+        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
+          .get()
+      }
+
+      if (arOfObjectsFromClientDB.length > 0) {
+        this.items = []
+
+        const origAr = arOfObjectsFromClientDB
+        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+
+        const arCameAfterThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+
+        for (let i = 0; i < arCameBeforeThis.length; i++) {
+          this.items.push({
+            title: arCameBeforeThis[0]['description'],
+            content: arCameBeforeThis[0]['clientSideUniqRowId'],
+          })
+        }
+
+        this.items.push({
+          title: arOfObjectsFromClientDB[0]['description'],
+          content: arOfObjectsFromClientDB[0]['clientSideUniqRowId'],
+        })
+
+        for (let i = 0; i < arCameAfterThis.length; i++) {
+          this.items.push({
+            title: arCameAfterThis[0]['description'],
+            content: arCameAfterThis[0]['clientSideUniqRowId'],
+          })
+        }
+      }
+
+      console.log(this.items)
+      console.log(arOfObjectsFromClientDB)
+      return arOfObjectsFromClientDB
+    },
     log(item) {
       console.log(item)
     },
@@ -432,65 +588,6 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
-    },
-    mfGetArOfDataRows(pApptObj) {
-      const emptyArray = []
-
-      if (!pApptObj) {
-        // returning empty array and not null. Since others deprend on the length of the array. If I return null there will be errors when length of that is calculated.
-        return emptyArray
-      }
-      if (!pApptObj['apptStatus']) {
-        return emptyArray
-      }
-
-      let arOfObjectsFromClientDB = []
-
-      if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
-        )
-      } else {
-        /* for locked appts*/
-        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
-          .get()
-      }
-
-      if (arOfObjectsFromClientDB.length > 0) {
-        const origAr = arOfObjectsFromClientDB
-        arOfObjectsFromClientDB[0]['timeLine'] = new Array()
-        // find all rows that came before then this row
-        //debugger
-        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-
-        if (arCameBeforeThis.length > 0) {
-          // arOfObjectsFromClientDB[0]['timeLine'].push(arCameBeforeThis)
-          arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], arCameBeforeThis)
-        }
-
-        // inserting myself in-between Before and After
-        arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], origAr)
-
-        //  arOfObjectsFromClientDB[0]['timeLine'].push(arOfObjectsFromClientDB)
-
-        const arCameAfterThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-        if (arCameAfterThis.length > 0) {
-          //  arOfObjectsFromClientDB[0]['timeLine'].push(arCameAfterThis)
-          arOfObjectsFromClientDB[0]['timeLine'].push.apply(arOfObjectsFromClientDB[0]['timeLine'], arCameAfterThis)
-        }
-      }
-
-      console.log(arOfObjectsFromClientDB)
-      return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
       /* The color conventions are:
