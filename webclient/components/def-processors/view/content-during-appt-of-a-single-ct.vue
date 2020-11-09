@@ -447,7 +447,23 @@ export default {
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
           .get()
       }
-      console.log(pApptObj)
+
+      if (arOfObjectsFromClientDB.length > 0) {
+        // find all rows that came before then this row
+        //debugger
+        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+        arOfObjectsFromClientDB[0]['arCameBeforeThis'] = arCameBeforeThis
+
+        const arCameAfterThis = allClientTbls[this.propFormDef.id]
+          .query()
+          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
+          .get()
+        arOfObjectsFromClientDB[0]['arCameAfterThis'] = arCameAfterThis
+      }
+
       return arOfObjectsFromClientDB
     },
     mfGetCssClassNameForEachDataRow(pRow) {
