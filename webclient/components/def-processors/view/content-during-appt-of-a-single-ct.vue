@@ -109,50 +109,37 @@
           class="g2-container-for-all-timeline-boxes"
         >
           <template v-slot:default="{ item }">
-            <div class="item">
-              {{ item }}
+            <div class="item each-appt">
               <div
-                id="each-field-of-data-row"
-                :class="'field-type-' + propFieldDef.fieldType"
-                v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-                :key="id"
-                :style="mfGetCssClassNameForEachDataRow(item)"
-                v-if="item[propFieldDef.fieldNameInDb] && item[propFieldDef.fieldNameInDb].toString().length > 0"
+                id="each-row-of-entity-inside-appt"
+                v-for="entityRow in item[propFormDef.id]"
+                :key="entityRow.clientSideUniqRowId"
               >
-                <div id="not-matched-field-type">
-                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <!-- Goal: skip fields that are null or empty -->
-                  <div v-if="item[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                    {{ item[propFieldDef.fieldNameInDb] }}
-                  </div>
-                </div>
+                {{ entityRow.description }}
               </div>
-            </div>
+              <!-- end of each-row-of-entity -->
+              <!-- This is for action associated with each row -->
+              <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+              <!-- Case 1/2: When this appt is locked what row actions to show-->
+              <div v-else id="row-actions-when-app-is-unlocked">
+                <!-- Case 2/2: When this appt is un-locked what row actions to show-->
+                <div>
+                  <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
+                  <el-button-group style="float: right">
+                    <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
+                      <el-button @click="additionalRowAction.executeThisFn(entityRow)">{{
+                        additionalRowAction.textInUi
+                      }}</el-button>
+                    </div>
 
-            <!-- This is for action associated with each row -->
-            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-            <!-- Case 1/2: When this appt is locked what row actions to show-->
-            <div v-else id="row-actions-when-app-is-unlocked">
-              <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-              <div>
-                <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-                <el-button-group style="float: right">
-                  <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
-                    <el-button @click="additionalRowAction.executeThisFn(row)">{{
-                      additionalRowAction.textInUi
-                    }}</el-button>
-                  </div>
-
-                  <el-tooltip
-                    class="item"
-                    effect="light"
-                    content="Click to edit"
-                    placement="top-start"
-                    :open-delay="500"
-                  >
-                    <!-- 
+                    <el-tooltip
+                      class="item"
+                      effect="light"
+                      content="Click to edit"
+                      placement="top-start"
+                      :open-delay="500"
+                    >
+                      <!-- 
                     Why @click has a condition
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
@@ -162,39 +149,41 @@
 
                   In case of new row created on client during edit do not create a copy.
                   -->
-                    <el-button
-                      style="padding: 3px; color: #c0c4cc; border: none"
-                      plain
-                      @click="
-                        String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
-                          ? mfOpenAddInEditLayer()
-                          : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
-                      "
-                      class="el-icon-edit"
+                      <el-button
+                        style="padding: 3px; color: #c0c4cc; border: none"
+                        plain
+                        @click="
+                          String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
+                            ? mfOpenAddInEditLayer()
+                            : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                        "
+                        class="el-icon-edit"
+                      >
+                      </el-button>
+                    </el-tooltip>
+                    <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+                      <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
+                      </el-button>
+                    </el-tooltip>
+                    <el-tooltip
+                      class="item"
+                      effect="light"
+                      content="Click to delete"
+                      placement="top-end"
+                      :open-delay="500"
                     >
-                    </el-button>
-                  </el-tooltip>
-                  <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-                    <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
-                    </el-button>
-                  </el-tooltip>
-                  <el-tooltip
-                    class="item"
-                    effect="light"
-                    content="Click to delete"
-                    placement="top-end"
-                    :open-delay="500"
-                  >
-                    <el-button
-                      style="padding: 3px; color: #c0c4cc; border: none"
-                      plain
-                      @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
-                      class="el-icon-circle-close"
-                    >
-                    </el-button>
-                  </el-tooltip>
-                </el-button-group>
+                      <el-button
+                        style="padding: 3px; color: #c0c4cc; border: none"
+                        plain
+                        @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
+                        class="el-icon-circle-close"
+                      >
+                      </el-button>
+                    </el-tooltip>
+                  </el-button-group>
+                </div>
               </div>
+              <!-- end of actions of each row -->
             </div>
           </template>
         </vue-horizontal-list>
