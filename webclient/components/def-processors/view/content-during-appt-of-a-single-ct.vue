@@ -335,8 +335,16 @@ export default {
     },
     cfGetEntityValueDuringEachAppt() {
       const arOfAppts = clientTblOfAppointments.query().get()
-      for (let i = 0; i < arOfAppts.length; i++) {
-        arOfAppts[i][this.propFormDef.id] = this.mfGetArOfDataRows(arOfAppts[i])
+      let i = arOfAppts.length
+      while (i--) {
+        // remove those entries where its empty
+        const rows = this.mfGetArOfDataRows(arOfAppts[i])
+        //debugger
+        if (rows.length > 0) {
+          arOfAppts[i][this.propFormDef.id] = rows
+        } else {
+          arOfAppts.splice(i, 1)
+        }
       }
       console.log(arOfAppts)
       return arOfAppts
