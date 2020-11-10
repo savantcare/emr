@@ -1,7 +1,7 @@
 <template>
   <div id="container-for-all-data-rows" style="display: grid; grid-template-columns: 2fr 1fr">
     <div>
-      <span v-for="field in propFormDef.fieldsDef">
+      <span v-for="field in propFormDef.fieldsDef" style="margin-left: 5%">
         {{ propEntityRow[field['fieldNameInDb']] }}
       </span>
     </div>
@@ -16,7 +16,7 @@
       </span>
 
       <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-        <!-- 
+        <!--
                     Why @click has a condition
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
