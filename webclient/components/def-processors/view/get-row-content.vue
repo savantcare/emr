@@ -180,6 +180,6 @@ export default {
 }
 
 #field-value-in-db{
-  margin-left: 5%;
+  margin-left: 5%; /*UI allignment of data view for all component*/
 }
 </style>
