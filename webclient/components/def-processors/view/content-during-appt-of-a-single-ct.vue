@@ -116,7 +116,7 @@
           <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
           <div class="g2-container-for-all-timeline-boxes">
             <!-- Loop on timeline -->
-            <vue-horizontal-list :items="items" :options="options">
+            <vue-horizontal-list :items="cfGetEntityValueDuringEachAppt" :options="options">
               <template v-slot:default="{ item }">
                 <div class="item">
                   <div
@@ -349,6 +349,7 @@ export default {
       for (let i = 0; i < arOfAppts.length; i++) {
         arOfAppts[i][this.propFormDef.id] = this.mfGetArOfDataRows(arOfAppts[i])
       }
+      return arOfAppts
     },
 
     cfGetArOfDataRows() {
@@ -376,35 +377,6 @@ export default {
           .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
           .get()
-      }
-
-      if (arOfObjectsFromClientDB.length > 0) {
-        this.items = []
-
-        const origAr = arOfObjectsFromClientDB
-        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-
-        const arCameAfterThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-
-        for (let i = 0; i < arCameBeforeThis.length; i++) {
-          this.items.push(arCameBeforeThis[i])
-        }
-
-        for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
-          this.items.push(arOfObjectsFromClientDB[i])
-        }
-
-        for (let i = 0; i < arCameAfterThis.length; i++) {
-          this.items.push(arCameAfterThis[i])
-        }
-
-        console.log(this.items)
       }
       return arOfObjectsFromClientDB
     },
@@ -435,34 +407,6 @@ export default {
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
           .get()
       }
-
-      if (arOfObjectsFromClientDB.length > 0) {
-        this.items = []
-
-        const origAr = arOfObjectsFromClientDB
-        const arCameBeforeThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value < arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-
-        const arCameAfterThis = allClientTbls[this.propFormDef.id]
-          .query()
-          .where('ROW_END', (value) => value > arOfObjectsFromClientDB[0]['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
-          .get()
-
-        for (let i = 0; i < arCameBeforeThis.length; i++) {
-          this.items.push(arCameBeforeThis[i])
-        }
-
-        this.items.push(arOfObjectsFromClientDB[0])
-
-        for (let i = 0; i < arCameAfterThis.length; i++) {
-          this.items.push(arCameAfterThis[i])
-        }
-      }
-
-      console.log(this.items)
-      console.log(arOfObjectsFromClientDB)
       return arOfObjectsFromClientDB
     },
     log(item) {
