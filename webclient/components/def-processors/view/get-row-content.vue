@@ -1,8 +1,82 @@
 <template>
   <div id="container-for-all-data-rows" style="display: grid; grid-template-columns: 2fr 1fr">
     <div>
-      <span v-for="field in propFormDef.fieldsDef">
-        {{ propEntityRow[field['fieldNameInDb']] }}
+      <span v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+          <!-- the field printing is not common for all field types so that heading can be applied -->
+          <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+        </div>
+
+        <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+          <!-- the field printing is not common for all field types so that heading can be applied -->
+          <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+        </div>
+
+        <!-- There may be many different types of fields. Here dealing with select type field -->
+        <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+          <!-- Each fieldtype gets to control its own way of showing the field label -->
+          <div v-if="propFieldDef.showFieldLabel">
+            <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+          </div>
+          <!-- Since it is select there will be many options hence need to do a for loop on options -->
+          <!-- Since it is View layer I should only show the selected options and not all the options -->
+          <div
+            v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+              propFieldDef.fieldNameInDb,
+              propEntityRow.clientSideUniqRowId
+            )"
+            :key="item.id"
+            v-if="item.selected"
+          >
+            <!-- this v-if is part of this div and not <div id="selected-option"> 
+                  reason: So that empty divs are not generated.
+                  If <div id="selected-option" v-if="item.selected">
+                    then a empty divs for each of the select options will get generated.
+                  -->
+
+            <!-- Goal: Only show the selected option -->
+            <div id="selected-option">
+              {{ item.value }}
+            </div>
+          </div>
+        </div>
+        <!-- Slider field type -->
+        <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+          <div v-if="propEntityRow[propFieldDef.fieldNameInDb] > 0">
+            <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+              <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+            </div>
+            <div id="field-value-in-db">
+              <div v-if="propEntityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
+              <div v-else-if="propEntityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+              <div v-else-if="propEntityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+              <div v-else>
+                {{ propEntityRow[propFieldDef.fieldNameInDb] }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
+          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+          <div id="field-value-in-db">
+            {{ propEntityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+          </div>
+        </div>
+
+        <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
+          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+          <div id="field-value-in-db">{{ propEntityRow[propFieldDef.fieldNameInDb] | moment }}</div>
+        </div>
+
+        <!-- Not specified field type -->
+        <div v-else id="not-matched-field-type">
+          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+          <!-- Goal: skip fields that are null or empty -->
+          <div v-if="propEntityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+            {{ propEntityRow[propFieldDef.fieldNameInDb] }}
+          </div>
+        </div>
       </span>
     </div>
     <div id="row-actions-when-app-is-unlocked" style="display: block" class="row-actions-when-app-is-unlocked">
