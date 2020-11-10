@@ -1,20 +1,25 @@
 <template>
-  <div id="container-for-all-data-rows" style="display: grid; grid-template-columns: 2fr 1fr">
+  <div
+    id="container-for-1-data-row"
+    style="display: grid; grid-template-columns: 2fr 1fr"
+    @mouseover="mOver()"
+    @mouseleave="mLeave()"
+  >
     <div :style="mfGetCssClassNameForEachDataRow(propEntityRow)">
       <span v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
         <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-          <!-- the field printing is not common for all field types so that heading can be applied -->
+          <!-- Each field type gets to control how it prints the field name -->
           <h3>{{ propFieldDef.fieldNameInUi }}</h3>
         </div>
 
         <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
-          <!-- the field printing is not common for all field types so that heading can be applied -->
+          <!-- Each field type gets to control how it prints the field name -->
           <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
         </div>
 
         <!-- There may be many different types of fields. Here dealing with select type field -->
         <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-          <!-- Each fieldtype gets to control its own way of showing the field label -->
+          <!-- Each field type gets to control how it prints the field name -->
           <div v-if="propFieldDef.showFieldLabel">
             <h3>{{ propFieldDef.fieldNameInUi }}</h3>
           </div>
@@ -79,7 +84,7 @@
         </span>
       </span>
     </div>
-    <div id="row-actions-when-app-is-unlocked" style="display: block" class="row-actions-when-app-is-unlocked">
+    <div v-if="showActions" id="row-actions-when-app-is-unlocked" class="row-actions-when-app-is-unlocked">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
@@ -132,6 +137,11 @@
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
+  data() {
+    return {
+      showActions: false,
+    }
+  },
   props: {
     propFormDef: {
       type: Object,
@@ -143,6 +153,16 @@ export default {
     },
   },
   methods: {
+    mOver(pRowId) {
+      setTimeout(() => {
+        this.showActions = true
+      }, 200)
+    },
+    mLeave(pRowId) {
+      setTimeout(() => {
+        this.showActions = false
+      }, 200)
+    },
     mfOpenAddInEditLayer() {
       const term = 'add ' + this.propFormDef.id
       console.log(term)
@@ -190,10 +210,6 @@ export default {
 }
 </script>
 <style scoped>
-.container-for-all-data-rows:hover .row-actions-when-app-is-unlocked {
-  display: inline-block !important;
-  position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
-}
 #field-value-in-db {
   margin-left: 3%; /* Without this the begining of the text was getting cut off inside the Horizontal slides scroll */
 }
