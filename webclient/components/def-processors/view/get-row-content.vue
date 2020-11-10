@@ -28,7 +28,7 @@
             :key="item.id"
             v-if="item.selected"
           >
-            <!-- this v-if is part of this div and not <div id="selected-option"> 
+            <!-- this v-if is part of this div and not <div id="selected-option">
                   reason: So that empty divs are not generated.
                   If <div id="selected-option" v-if="item.selected">
                     then a empty divs for each of the select options will get generated.
@@ -90,7 +90,7 @@
       </span>
 
       <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-        <!-- 
+        <!--
                     Why @click has a condition
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
@@ -177,5 +177,8 @@ export default {
 .container-for-all-data-rows:hover .row-actions-when-app-is-unlocked {
   display: inline-block !important;
   position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
+}
+#field-value-in-db{
+  margin-left: 5%; /*UI allignment of data view for all components*/
 }
 </style>
