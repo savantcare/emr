@@ -194,7 +194,7 @@ export default {
   display: inline-block !important;
   position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
 }
-#field-value-in-db{
-  margin-left: 5%; /*UI allignment of data view for all components*/
+#field-value-in-db {
+  margin-left: 3%; /* Without this the begining of the text was getting cut off inside the Horizontal slides scroll */
 }
 </style>

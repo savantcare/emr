@@ -109,6 +109,7 @@
           class="g2-container-for-all-timeline-boxes"
         >
           <template v-slot:default="{ item }">
+            Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
             <div
               class="item"
               id="each-row-of-entity-inside-appt"
