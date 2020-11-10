@@ -103,63 +103,56 @@
 
         <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
         <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
-        <div
-          id="g1-timeline-plus-action-on-that-timeline"
-          v-for="row in cfGetArOfDataRows"
-          :key="row.clientSideUniqRowId"
-          :style="
-            propFormDef.styleForEachRowInPaperView
-              ? propFormDef.styleForEachRowInPaperView
-              : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-          "
+        <vue-horizontal-list
+          :items="cfGetEntityValueDuringEachAppt"
+          :options="options"
+          class="g2-container-for-all-timeline-boxes"
         >
-          <!-- This contains all rows with the same UUID shown as a scrollable timeline -->
-          <div class="g2-container-for-all-timeline-boxes">
-            <!-- Loop on timeline -->
-            <vue-horizontal-list :items="cfGetEntityValueDuringEachAppt" :options="options">
-              <template v-slot:default="{ item }">
-                <div class="item">
-                  <div
-                    id="each-field-of-data-row"
-                    :class="'field-type-' + propFieldDef.fieldType"
-                    v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-                    :key="id"
-                    :style="mfGetCssClassNameForEachDataRow(item)"
-                    v-if="item[propFieldDef.fieldNameInDb] && item[propFieldDef.fieldNameInDb].toString().length > 0"
-                  >
-                    <div id="not-matched-field-type">
-                      <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-                        {{ propFieldDef.fieldNameInUi }}
-                      </div>
-                      <!-- Goal: skip fields that are null or empty -->
-                      <div v-if="item[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-                        {{ item[propFieldDef.fieldNameInDb] }}
-                      </div>
-                    </div>
+          <template v-slot:default="{ item }">
+            <div class="item">
+              {{ item }}
+              <div
+                id="each-field-of-data-row"
+                :class="'field-type-' + propFieldDef.fieldType"
+                v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+                :key="id"
+                :style="mfGetCssClassNameForEachDataRow(item)"
+                v-if="item[propFieldDef.fieldNameInDb] && item[propFieldDef.fieldNameInDb].toString().length > 0"
+              >
+                <div id="not-matched-field-type">
+                  <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+                    {{ propFieldDef.fieldNameInUi }}
+                  </div>
+                  <!-- Goal: skip fields that are null or empty -->
+                  <div v-if="item[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+                    {{ item[propFieldDef.fieldNameInDb] }}
                   </div>
                 </div>
-              </template>
-            </vue-horizontal-list>
+              </div>
+            </div>
 
-            <!-- End of one timeline row -->
-          </div>
-          <!-- End of container that contains each timeline row -->
-          <!-- This is for action associated with each row -->
-          <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-          <!-- Case 1/2: When this appt is locked what row actions to show-->
-          <div v-else id="row-actions-when-app-is-unlocked">
-            <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-            <div>
-              <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-              <el-button-group style="float: right">
-                <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
-                  <el-button @click="additionalRowAction.executeThisFn(row)">{{
-                    additionalRowAction.textInUi
-                  }}</el-button>
-                </div>
+            <!-- This is for action associated with each row -->
+            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+            <!-- Case 1/2: When this appt is locked what row actions to show-->
+            <div v-else id="row-actions-when-app-is-unlocked">
+              <!-- Case 2/2: When this appt is un-locked what row actions to show-->
+              <div>
+                <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
+                <el-button-group style="float: right">
+                  <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
+                    <el-button @click="additionalRowAction.executeThisFn(row)">{{
+                      additionalRowAction.textInUi
+                    }}</el-button>
+                  </div>
 
-                <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-                  <!-- 
+                  <el-tooltip
+                    class="item"
+                    effect="light"
+                    content="Click to edit"
+                    placement="top-start"
+                    :open-delay="500"
+                  >
+                    <!-- 
                     Why @click has a condition
                     Goal: If this row is not coming from DB but it was added on the client then:
                   1. For edit I do not want to create a copy. I want to edit the row that has been added.
@@ -169,35 +162,42 @@
 
                   In case of new row created on client during edit do not create a copy.
                   -->
-                  <el-button
-                    style="padding: 3px; color: #c0c4cc; border: none"
-                    plain
-                    @click="
-                      String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
-                        ? mfOpenAddInEditLayer()
-                        : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
-                    "
-                    class="el-icon-edit"
+                    <el-button
+                      style="padding: 3px; color: #c0c4cc; border: none"
+                      plain
+                      @click="
+                        String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
+                          ? mfOpenAddInEditLayer()
+                          : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                      "
+                      class="el-icon-edit"
+                    >
+                    </el-button>
+                  </el-tooltip>
+                  <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
+                    <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
+                    </el-button>
+                  </el-tooltip>
+                  <el-tooltip
+                    class="item"
+                    effect="light"
+                    content="Click to delete"
+                    placement="top-end"
+                    :open-delay="500"
                   >
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-                  <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
-                  </el-button>
-                </el-tooltip>
-                <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
-                  <el-button
-                    style="padding: 3px; color: #c0c4cc; border: none"
-                    plain
-                    @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
-                    class="el-icon-circle-close"
-                  >
-                  </el-button>
-                </el-tooltip>
-              </el-button-group>
+                    <el-button
+                      style="padding: 3px; color: #c0c4cc; border: none"
+                      plain
+                      @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
+                      class="el-icon-circle-close"
+                    >
+                    </el-button>
+                  </el-tooltip>
+                </el-button-group>
+              </div>
             </div>
-          </div>
-        </div>
+          </template>
+        </vue-horizontal-list>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
@@ -349,6 +349,7 @@ export default {
       for (let i = 0; i < arOfAppts.length; i++) {
         arOfAppts[i][this.propFormDef.id] = this.mfGetArOfDataRows(arOfAppts[i])
       }
+      console.log(arOfAppts)
       return arOfAppts
     },
 
