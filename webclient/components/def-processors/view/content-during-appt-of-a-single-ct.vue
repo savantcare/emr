@@ -115,73 +115,11 @@
               v-for="entityRow in item[propFormDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              <getRowContent :propRow="entityRow" :propFormDef="propFormDef" />
+              <getRowContent :propEntityRow="entityRow" :propFormDef="propFormDef" />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
               <!-- Case 1/2: When this appt is locked what row actions to show-->
-              <span v-else id="row-actions-when-app-is-unlocked">
-                <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-                <span>
-                  <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-                  <el-button-group style="float: right">
-                    <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
-                      <el-button @click="additionalRowAction.executeThisFn(entityRow)">{{
-                        additionalRowAction.textInUi
-                      }}</el-button>
-                    </div>
-
-                    <el-tooltip
-                      class="item"
-                      effect="light"
-                      content="Click to edit"
-                      placement="top-start"
-                      :open-delay="500"
-                    >
-                      <!-- 
-                    Why @click has a condition
-                    Goal: If this row is not coming from DB but it was added on the client then:
-                  1. For edit I do not want to create a copy. I want to edit the row that has been added.
-                  Why?
-                  A copied row when undone expect to be left with orginal
-                  But a new row when undone does not expect to be left with original.
-
-                  In case of new row created on client during edit do not create a copy.
-                  -->
-                      <el-button
-                        style="padding: 3px; color: #c0c4cc; border: none"
-                        plain
-                        @click="
-                          String(entityRow.vnRowStateInSession).startsWith(2) && entityRow.vnRowStateInSession !== 24751
-                            ? mfOpenAddInEditLayer()
-                            : mxOpenEditCtInEditLayer(entityRow.clientSideUniqRowId)
-                        "
-                        class="el-icon-edit"
-                      >
-                      </el-button>
-                    </el-tooltip>
-                    <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-                      <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover">
-                      </el-button>
-                    </el-tooltip>
-                    <el-tooltip
-                      class="item"
-                      effect="light"
-                      content="Click to delete"
-                      placement="top-end"
-                      :open-delay="500"
-                    >
-                      <el-button
-                        style="padding: 3px; color: #c0c4cc; border: none"
-                        plain
-                        @click="mfIconDeleteClickedOnChildCard(row.clientSideUniqRowId)"
-                        class="el-icon-circle-close"
-                      >
-                      </el-button>
-                    </el-tooltip>
-                  </el-button-group>
-                </span>
-              </span>
             </div>
             <!-- end of actions of each row -->
           </template>
