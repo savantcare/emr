@@ -161,7 +161,7 @@ export default {
 }
 
 .sc-card:hover {
-  border: 1px solid rgba(144, 147, 153, 0.5);
+  /* border: 1px solid rgba(144, 147, 153, 0.5); */
 
   /*
   Green when field data is valid. Organge when field data is invalid
