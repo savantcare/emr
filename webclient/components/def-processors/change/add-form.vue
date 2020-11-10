@@ -289,7 +289,6 @@ export default {
     // allClientTbls[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
       const r = allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
-      console.log(r)
       return r
     },
     cfGetClientTblReadyToReviewedStateRows() {

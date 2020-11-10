@@ -389,13 +389,16 @@ export default {
           this.items.push(arCameBeforeThis[i])
         }
 
-        this.items.push(arOfObjectsFromClientDB[0])
+        for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+          this.items.push(arOfObjectsFromClientDB[i])
+        }
 
         for (let i = 0; i < arCameAfterThis.length; i++) {
           this.items.push(arCameAfterThis[i])
         }
-      }
 
+        console.log(this.items)
+      }
       return arOfObjectsFromClientDB
     },
   },
