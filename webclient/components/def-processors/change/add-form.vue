@@ -19,7 +19,7 @@
               <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
                 <!-- The following are the possible field types -->
 
-                <!-- Field type 1: Do the following when it is heading type field -->
+                <!-- HEADING -->
                 <div v-if="propFieldDef.fieldType === 'heading'">
                   <div v-if="propFieldDef.showFieldLabel">
                     <!-- the field printing happens lower so each field type can decide what format to apply -->
@@ -27,7 +27,7 @@
                   </div>
                 </div>
 
-                <!-- Field type 2: Do the following when it is auto-complete type field 
+                <!-- AUTO COMPLETE  
               fetch-suggestions="propFieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
                 <div v-else-if="propFieldDef.fieldType === 'autocomplete'">
                   <div v-if="propFieldDef.showFieldLabel">
@@ -45,7 +45,7 @@
                   ></el-autocomplete>
                 </div>
 
-                <!-- Field type 3: Do the following when it is multi-select-with-buttons type field -->
+                <!-- multi-select-with-buttons -->
                 <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -66,7 +66,7 @@
                   </div>
                 </div>
 
-                <!-- Field type 4: Do the following when it is slider type field value[propFieldDef.fieldNameInDb] -->
+                <!-- SLIDER type field value[propFieldDef.fieldNameInDb] -->
                 <div v-else-if="propFieldDef.fieldType === 'slider'">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -86,7 +86,7 @@
                   </div>
                 </div>
 
-                <!-- Field type 5: Do the following when it is select type field -->
+                <!-- SELECT -->
                 <div v-else-if="propFieldDef.fieldType === 'select'">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -102,7 +102,8 @@
                     </el-option>
                   </el-select>
                 </div>
-                <!-- Field type 6: Do the following when it is date type field -->
+
+                <!-- DATE -->
                 <div v-if="propFieldDef.fieldType === 'date'">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -121,7 +122,8 @@
                   >
                   </el-date-picker>
                 </div>
-                <!-- Field type 7: Do the following when it is num type field -->
+
+                <!-- NUMBER -->
                 <div v-if="propFieldDef.fieldType.includes('number')">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -136,7 +138,7 @@
                   {{ propFieldDef.unitOfMeasurement }}
                 </div>
 
-                <!-- Field type 8: Do the following when it is input/textarea type field -->
+                <!-- input/textarea -->
                 <div v-if="propFieldDef.fieldType.includes('text')">
                   <div v-if="propFieldDef.showFieldLabel">
                     {{ propFieldDef.fieldNameInUi }}
@@ -152,11 +154,7 @@
                     @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                   ></el-input>
                 </div>
-                <!-- Do validation -->
 
-                <div v-if="ormRow.isValidationError" class="el-form-item__error">
-                  Required {{ propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty }} field
-                </div>
                 <!-- Prop explaination
             Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
@@ -290,7 +288,9 @@ export default {
   computed: {
     // allClientTbls[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
+      const r = allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
+      console.log(r)
+      return r
     },
     cfGetClientTblReadyToReviewedStateRows() {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationOkState()
@@ -379,10 +379,8 @@ export default {
       */
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
-        console.log('invalid-dirty-data')
         return 'invalid-dirty-data'
       } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
-        console.log('valid-dirty-data')
         return 'valid-dirty-data'
       }
       return ''

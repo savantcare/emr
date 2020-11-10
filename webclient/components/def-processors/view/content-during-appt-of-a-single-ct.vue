@@ -396,8 +396,6 @@ export default {
         }
       }
 
-      console.log(this.items)
-      console.log(arOfObjectsFromClientDB)
       return arOfObjectsFromClientDB
     },
   },
