@@ -1,6 +1,6 @@
 <template>
   <div id="container-for-all-data-rows" style="display: grid; grid-template-columns: 2fr 1fr">
-    <div>
+    <div :style="mfGetCssClassNameForEachDataRow(propEntityRow)">
       <span v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
         <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
           <!-- the field printing is not common for all field types so that heading can be applied -->
@@ -129,6 +129,8 @@
 </template>
 
 <script>
+import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+
 export default {
   props: {
     propFormDef: {
@@ -147,6 +149,26 @@ export default {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
       })
+    },
+    mfGetCssClassNameForEachDataRow(pRow) {
+      /* The color conventions are:
+      Case 1: black: same as DB or it is a copy but no change has been done
+      Case 2: orange: form validatoion has failed
+      Case 3: green: some edits have been made and it pases form validation */
+
+      if (
+        pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
+        pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
+      ) {
+        // Case 1
+        return
+      } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
+        // case 2
+        return 'color: #E6A23C;' // this is hex code for orange
+      }
+
+      // Case 3
+      return 'color: #67c23a;' // this is hex code for green
     },
   },
 }
