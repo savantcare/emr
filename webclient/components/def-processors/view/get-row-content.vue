@@ -150,6 +150,22 @@ export default {
         searchTerm: term,
       })
     },
+    mxOpenEditCtInEditLayer(pClientDataRowId) {
+      /*
+       We need rowID of vuexORM inside the change ct. Since change ct needs the exiting Desc of the reminber to change
+       Option 1: Send the whole data row
+       Option 2: Send just the ID in a prop.
+        +ves:
+          1. At some places I may need to call change where I have the reminder ID but
+          i do not have the remainder of the data row. Hence this makes the Change Ct possible
+          to use at other places
+          2. When I send a paramter it is like calling a function. Sending the whole data row
+          is like working on a gloal variable. So other Cts can also modify this global variable.
+      */
+      const payload = { searchTerm: 'edit ' + this.propFormDef.id, pPropsToGiveToCt: pClientDataRowId }
+      console.log(payload)
+      this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
+    },
     mfGetCssClassNameForEachDataRow(pRow) {
       /* The color conventions are:
       Case 1: black: same as DB or it is a copy but no change has been done
