@@ -1,5 +1,5 @@
 <template>
-  <div id="container-for-all-data-rows">
+  <div id="container-for-all-data-rows" style="display: grid; grid-template-columns: 2fr 1fr">
     <div>
       <span v-for="field in propFormDef.fieldsDef">
         {{ propEntityRow[field['fieldNameInDb']] }}
