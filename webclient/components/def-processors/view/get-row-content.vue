@@ -70,13 +70,13 @@
         </div>
 
         <!-- Not specified field type -->
-        <div v-else id="not-matched-field-type">
-          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+        <span v-else id="not-matched-field-type">
+          <span v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</span>
           <!-- Goal: skip fields that are null or empty -->
-          <div v-if="propEntityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+          <span v-if="propEntityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
             {{ propEntityRow[propFieldDef.fieldNameInDb] }}
-          </div>
-        </div>
+          </span>
+        </span>
       </span>
     </div>
     <div id="row-actions-when-app-is-unlocked" style="display: block" class="row-actions-when-app-is-unlocked">
