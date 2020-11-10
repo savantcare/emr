@@ -292,7 +292,7 @@ export default {
       return r
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationOkState()
+      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationPassState()
     },
     cfGetClientTblApiSuccessStateRows() {
       return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
@@ -361,7 +361,7 @@ export default {
       let rowStatus = 0
 
       if (pEvent.length > 2) {
-        rowStatus = rowState.New_Changed_FormValidationOk // This implies valid is true
+        rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
       } else {
         rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
       }
@@ -380,7 +380,7 @@ export default {
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
         return 'invalid-dirty-data'
-      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationOk) {
+      } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationPass) {
         return 'valid-dirty-data'
       }
       return ''

@@ -89,8 +89,8 @@ export default {
         rowState.New,
         rowState.New_Changed,
         rowState.New_Changed_RequestedSave_FormValidationFail,
-        rowState.New_Changed_RequestedSave_FormValidationOk,
-        rowState.New_Changed_RequestedSave_FormValidationOk_ApiError,
+        rowState.New_Changed_RequestedSave_FormValidationPass,
+        rowState.New_Changed_RequestedSave_FormValidationPass_ApiError,
       ], // Set of array of 'vnRowStateInSession' should not have change and delete button. As per GLOSSARY.md C stands for 'change' and D stands for 'delete'.
       daSelectedRemForDelete: [],
     }

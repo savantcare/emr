@@ -1,10 +1,5 @@
 <template>
-  <div
-    id="container-for-1-data-row"
-    style="display: grid; grid-template-columns: 2fr 1fr"
-    @mouseover="mOver()"
-    @mouseleave="mLeave()"
-  >
+  <div id="container-for-1-data-row" :style="mfGetBorder()" @mouseover="mOver()" @mouseleave="mLeave()">
     <div :style="mfGetCssClassNameForEachDataRow(propEntityRow)">
       <span v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
         <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
@@ -84,7 +79,7 @@
         </span>
       </span>
     </div>
-    <div v-if="showActions" id="row-actions-when-app-is-unlocked" class="row-actions-when-app-is-unlocked">
+    <div v-show="mouseOnThisRow" id="row-actions-when-app-is-unlocked" class="row-actions-when-app-is-unlocked">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
@@ -139,7 +134,7 @@ import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-
 export default {
   data() {
     return {
-      showActions: false,
+      mouseOnThisRow: false,
     }
   },
   props: {
@@ -155,12 +150,12 @@ export default {
   methods: {
     mOver(pRowId) {
       setTimeout(() => {
-        this.showActions = true
+        this.mouseOnThisRow = true
       }, 200)
     },
     mLeave(pRowId) {
       setTimeout(() => {
-        this.showActions = false
+        this.mouseOnThisRow = false
       }, 200)
     },
     mfOpenAddInEditLayer() {
@@ -192,19 +187,26 @@ export default {
       Case 2: orange: form validatoion has failed
       Case 3: green: some edits have been made and it pases form validation */
 
+      let string = ''
+
       if (
         pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
         pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
       ) {
-        // Case 1
-        return
+        string = '' // this will take default color of parent element
       } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
-        // case 2
-        return 'color: #E6A23C;' // this is hex code for orange
+        string = 'color: #E6A23C;' // this is hex code for orange
+      } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationPass)) {
+        string = 'color: #67c23a;' // this is hex code for green
       }
-
-      // Case 3
-      return 'color: #67c23a;' // this is hex code for green
+      return string
+    },
+    mfGetBorder() {
+      let string = 'display: grid; grid-template-columns: 2fr 1fr;'
+      if (this.mouseOnThisRow === true) {
+        string = string + 'border: 1px solid #ccc; border-radius: 16px'
+      }
+      return string
     },
   },
 }

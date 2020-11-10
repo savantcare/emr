@@ -12,33 +12,33 @@ export const rowState = {
   Changed: 4,
   RequestedSave: 5,
   FormValidationFail: 6,
-  FormValidationOk: 7,
+  FormValidationPass: 7,
   ApiError: 8,
 
   // Combined
   New_Changed: 24,
   New_Changed_FormValidationFail: 246,
 
-  New_Changed_FormValidationOk: 247,
-  New_Changed_FormValidationOk_RequestedSave: 2475,
-  New_Changed_FormValidationOk_RequestedSave_ApiError: 24758,
-  New_Changed_FormValidationOk_RequestedSave_SameAsDB: 24751,
+  New_Changed_FormValidationPass: 247,
+  New_Changed_FormValidationPass_RequestedSave: 2475,
+  New_Changed_FormValidationPass_RequestedSave_ApiError: 24758,
+  New_Changed_FormValidationPass_RequestedSave_SameAsDB: 24751,
 
   New_Changed_RequestedSave_FormValidationFail: 2456,
-  New_Changed_RequestedSave_FormValidationOk: 2457,
-  New_Changed_RequestedSave_FormValidationOk_SameAsDB: 24571,
-  New_Changed_RequestedSave_FormValidationOk_ApiError: 24578,
+  New_Changed_RequestedSave_FormValidationPass: 2457,
+  New_Changed_RequestedSave_FormValidationPass_SameAsDB: 24571,
+  New_Changed_RequestedSave_FormValidationPass_ApiError: 24578,
 
   SameAsDB_Copy: 13,
 
   SameAsDB_Copy_Changed: 134,
 
-  SameAsDB_Copy_Changed_FormValidationOk: 1347,
-  SameAsDB_Copy_Changed_FormValidationOk_RequestedSave: 13475,
+  SameAsDB_Copy_Changed_FormValidationPass: 1347,
+  SameAsDB_Copy_Changed_FormValidationPass_RequestedSave: 13475,
 
   SameAsDB_Copy_Changed_RequestedSave: 1345,
   SameAsDB_Copy_Changed_RequestedSave_FormValidationFail: 13456,
-  SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB: 134571,
+  SameAsDB_Copy_Changed_RequestedSave_FormValidationPass_SameAsDB: 134571,
   SameAsDB_Copy_Changed_RequestedSave_ApiError: 13458,
 }
 
@@ -118,7 +118,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .where('vnRowStateInSession', rowState.New)
       .orWhere('vnRowStateInSession', rowState.New_Changed)
       .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationFail)
-      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationOk)
+      .orWhere('vnRowStateInSession', rowState.New_Changed_FormValidationPass)
       .get()
     return arFromClientTbl
   }
@@ -126,27 +126,27 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNewRowsInApiErrorState() {
     // New(2) -> Changed(4) -> Requested save(5) -> Sent to server(7) -> Failure(8)
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_ApiError)
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationPass_ApiError)
       .get()
     return arFromClientTbl
   }
 
-  static fnGetNewRowsInFormValidationOkState() {
+  static fnGetNewRowsInFormValidationPassState() {
     // Following query makes sure I get all the newly added row having fld value
-    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationPass).get()
     return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSendingState() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk)
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationPass)
       .get()
     return arFromClientTbl
   }
 
   static fnGetNewRowsInApiSuccessState() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
+      .where('vnRowStateInSession', rowState.New_Changed_RequestedSave_FormValidationPass_SameAsDB)
       .get()
     return arFromClientTbl
   }
@@ -666,7 +666,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   // This function will return 1 (Success) or 0 (Failure)
   static async sfSendNewChangedRowsToServer() {
-    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationOk).get()
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationPass).get()
 
     /*
       Q) Why we use promise in following code?
@@ -703,7 +703,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
-                vnRowStateInSession: rowState.New_Changed_FormValidationOk_RequestedSave_ApiError,
+                vnRowStateInSession: rowState.New_Changed_FormValidationPass_RequestedSave_ApiError,
               },
             })
           } else {
@@ -712,7 +712,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
                 vnRowStateInSession: rowState.SameAsDB,
-                /* The sequence at this point is ->  New_Changed_FormValidationOk_RequestedSave_SameAsDB.  
+                /* The sequence at this point is ->  New_Changed_FormValidationPass_RequestedSave_SameAsDB.  
                    SameAsDB is always considered a marker. So whenever SameAsDB is reached we forget the old state. If we keep remembering the old state then the whole state can be 100 steps long.
                    No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted or updated. (For temporal update is like delete and insert)
                 */
@@ -831,7 +831,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
       The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
   
-    const arFromClientTbl = this.fnGetNewRowsInFormValidationOkState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
+    const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
          I cannot do validation here. Since this is getting invoked when button has already been pressed  
@@ -844,7 +844,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         await this.update({
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
-            vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationOk,
+            vnRowStateInSession: rowState.New_Changed_RequestedSave_FormValidationPass,
             isValidationError: false,
           },
         })
@@ -885,7 +885,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   // send edited data to server
   static async sfSendCopyChangedRowsToServer() {
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationOk)
+      .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationPass)
       .get()
 
     const promises = arFromClientTbl.map(async (changedRowBeingSaved) => {
@@ -893,7 +893,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         await this.update({
           where: changedRowBeingSaved.clientSideUniqRowId,
           data: {
-            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_FormValidationOk_RequestedSave,
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_FormValidationPass_RequestedSave,
           },
         })
 
@@ -931,7 +931,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           this.update({
             where: this.dnClientIdOfCopiedRowBeingChanged,
             data: {
-              vnRowStateInSession: rowState.SameAsDB_Copy_Changed__FormValidationOk_RequestedSave_ApiError,
+              vnRowStateInSession: rowState.SameAsDB_Copy_Changed__FormValidationPass_RequestedSave_ApiError,
             },
           })
           console.log('Failed to update')

@@ -144,8 +144,9 @@ export default {
             return (
               record.uuid === rowToUpsert.uuid &&
               (record.vnRowStateInSession === rowState.SameAsDB ||
-                record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB ||
-                record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationOk_SameAsDB)
+                record.vnRowStateInSession ===
+                  rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationPass_SameAsDB ||
+                record.vnRowStateInSession === rowState.New_Changed_RequestedSave_FormValidationPass_SameAsDB)
             )
           },
           data: {
@@ -156,7 +157,7 @@ export default {
         clientTbl.update({
           where: this.dnClientIdOfCopiedRowBeingChanged,
           data: {
-            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationOk_SameAsDB,
+            vnRowStateInSession: rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationPass_SameAsDB,
           },
         })
         // After submitting the form since the form to edit is still there I need to create a copied row
