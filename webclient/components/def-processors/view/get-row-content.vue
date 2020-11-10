@@ -5,7 +5,7 @@
         {{ propEntityRow[field['fieldNameInDb']] }}
       </span>
     </div>
-    <div id="row-actions-when-app-is-unlocked">
+    <div id="row-actions-when-app-is-unlocked" style="display: block" class="row-actions-when-app-is-unlocked">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
@@ -77,4 +77,9 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped>
+.container-for-all-data-rows:hover .row-actions-when-app-is-unlocked {
+  display: inline-block !important;
+  position: absolute; /* This makes sure there is no jumping when mouse is taken over the icon */
+}
+</style>
