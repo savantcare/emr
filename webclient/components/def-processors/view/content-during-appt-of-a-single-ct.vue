@@ -109,21 +109,20 @@
           class="g2-container-for-all-timeline-boxes"
         >
           <template v-slot:default="{ item }">
-            <div class="item each-appt">
-              <div
-                id="each-row-of-entity-inside-appt"
-                v-for="entityRow in item[propFormDef.id]"
-                :key="entityRow.clientSideUniqRowId"
-              >
-                {{ entityRow.description }}
-              </div>
+            <div
+              class="item"
+              id="each-row-of-entity-inside-appt"
+              v-for="entityRow in item[propFormDef.id]"
+              :key="entityRow.clientSideUniqRowId"
+            >
+              {{ entityRow.description }}
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
               <!-- Case 1/2: When this appt is locked what row actions to show-->
-              <div v-else id="row-actions-when-app-is-unlocked">
+              <span v-else id="row-actions-when-app-is-unlocked">
                 <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-                <div>
+                <span>
                   <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
                   <el-button-group style="float: right">
                     <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
@@ -153,9 +152,9 @@
                         style="padding: 3px; color: #c0c4cc; border: none"
                         plain
                         @click="
-                          String(row.vnRowStateInSession).startsWith(2) && row.vnRowStateInSession !== 24751
+                          String(entityRow.vnRowStateInSession).startsWith(2) && entityRow.vnRowStateInSession !== 24751
                             ? mfOpenAddInEditLayer()
-                            : mxOpenEditCtInEditLayer(row.clientSideUniqRowId)
+                            : mxOpenEditCtInEditLayer(entityRow.clientSideUniqRowId)
                         "
                         class="el-icon-edit"
                       >
@@ -181,20 +180,20 @@
                       </el-button>
                     </el-tooltip>
                   </el-button-group>
-                </div>
-              </div>
-              <!-- end of actions of each row -->
+                </span>
+              </span>
             </div>
+            <!-- end of actions of each row -->
           </template>
         </vue-horizontal-list>
       </div>
       <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
         <h4>Addendum:</h4>
-        <div v-for="row in cfArOfAddendumForDisplay" :key="row.clientSideUniqRowId">
+        <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
           <div style="margin: 5px 0">
-            {{ row.description }}
+            {{ entityRow.description }}
             <br />
-            <span style="font-size: 10px">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
+            <span style="font-size: 10px">Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span>
           </div>
         </div>
       </div>
