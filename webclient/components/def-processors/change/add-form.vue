@@ -6,13 +6,14 @@
       <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
         <!-- propFormDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
+        <!-- Start to process each row -->
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
           :id="`each-data-row` + propFormDef.id"
           :style="propFormDef.styleForEachRowInAddForm"
         >
-          <!-- Start to process each row -->
+          <!-- Start to process fields in the row -->
           <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
@@ -144,7 +145,6 @@
                     {{ propFieldDef.fieldNameInUi }}
                   </div>
                   <el-input
-                    v-model="value[propFieldDef.fieldNameInDb]"
                     :ref="propFieldDef.fieldNameInDb"
                     :type="propFieldDef.fieldType"
                     :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
@@ -357,10 +357,11 @@ export default {
       return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
-      // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-mnodel"
-      this.$v.value[pFldName].$touch() // $v is the validation object created by vuelidate library
+      // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
+      //console.log()
       let rowStatus = 0
-      if (this.$v.$invalid === false) {
+
+      if (pEvent.length > 2) {
         rowStatus = rowState.New_Changed_FormValidationOk // This implies valid is true
       } else {
         rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
