@@ -115,7 +115,7 @@
               v-for="entityRow in item[propFormDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              {{ entityRow.description }}
+              <getRowContent :propRow="entityRow" :propFormDef="propFormDef" />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -213,6 +213,7 @@ import moment from 'moment'
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/vue-horizontal-list.vue'
+import getRowContent from './get-row-content.vue'
 
 export default {
   data() {
@@ -242,7 +243,7 @@ export default {
       items: [],
     }
   },
-  components: { VueHorizontalList },
+  components: { VueHorizontalList, getRowContent },
   mixins: [clInvokeMixin],
 
   filters: {
