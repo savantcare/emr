@@ -8,7 +8,7 @@ const intUniqueId = () => ++count
 export default class serviceStatementsAllSelectOptions extends clientTblManage {
   static entity = 'tblServiceStatementsAllSelectOptions'
 
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/service-statements/v20'
 
   static primaryKey = 'serviceStatementFieldOptionId'
 

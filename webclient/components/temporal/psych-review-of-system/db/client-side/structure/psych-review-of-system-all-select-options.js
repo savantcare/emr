@@ -8,7 +8,7 @@ const intUniqueId = () => ++count
 export default class psychReviewOfSystemsAllSelectOptions extends clientTblManage {
   static entity = 'tblPsychReviewOfSystemsAllSelectOptions'
 
-  static apiUrl = 'http://localhost:8000/public/api/psych-review-of-system/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/psych-review-of-system/v20'
 
   static primaryKey = 'psychReviewOfSystemFieldOptionId'
 

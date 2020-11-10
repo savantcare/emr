@@ -27,7 +27,7 @@ export default class misc_notes extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/miscellaneous-notes/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/miscellaneous-notes/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

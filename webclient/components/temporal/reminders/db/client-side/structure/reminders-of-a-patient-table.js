@@ -27,7 +27,7 @@ export default class reminders extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/reminders/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/reminders/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

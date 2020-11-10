@@ -27,7 +27,7 @@ export default class chief_complaint extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/chief-complaint/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/chief-complaint/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

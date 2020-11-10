@@ -27,7 +27,7 @@ export default class feed extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/feed/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/feed/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

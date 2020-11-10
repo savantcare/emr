@@ -29,7 +29,7 @@ export default class height extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/height/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/height/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

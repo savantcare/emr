@@ -29,7 +29,7 @@ export default class pulse extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/pulse/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/pulse/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

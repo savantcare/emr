@@ -27,7 +27,7 @@ export default class plan_comments extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/plan-comments/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/plan-comments/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

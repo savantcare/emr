@@ -27,7 +27,7 @@ export default class allergies extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/allergies/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/allergies/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

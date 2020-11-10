@@ -27,7 +27,7 @@ export default class screens extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/screens/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/screens/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

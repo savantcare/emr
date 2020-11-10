@@ -11,7 +11,7 @@ const intUniqueId = () => ++count
 export default class serviceStatementsForPatientClass extends clientTblManage {
   static entity = 'tblServiceStatementsOfPatient'
 
-  static apiUrl = 'http://localhost:8000/public/api/service-statements/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/service-statements/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

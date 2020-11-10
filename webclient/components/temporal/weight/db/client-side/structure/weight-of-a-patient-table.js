@@ -29,7 +29,7 @@ export default class weight extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/weight/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/weight/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

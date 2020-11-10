@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class dynamicCards extends clientTblManage {
   static entity = 'tblDynamicCards'
-  static apiUrl = 'http://localhost:3000/'
+  static apiUrl = process.env.baseUrlForLumen
 
   static primaryKey = 'clientSideUniqRowId'
 

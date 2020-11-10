@@ -27,7 +27,7 @@ export default class past_psych_history extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/past-psych-history/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/past-psych-history/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

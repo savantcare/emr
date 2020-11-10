@@ -14,7 +14,7 @@ export default class ptName extends clientTblManage {
    static apiUrl = process.env.baseUrl + '/name'
    */
 
-  static apiUrl = 'http://localhost:3000/name'
+  static apiUrl = process.env.baseUrlForLumen + '/name'
 
   static primaryKey = 'clientSideUniqRowId'
 

@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class leftHandISideViewLayer extends clientTblManage {
   static entity = 'tblLeftSideViewLayerCards'
-  static apiUrl = 'http://localhost:3000/'
+  static apiUrl = process.env.baseUrlForLumen
 
   static primaryKey = 'clientSideUniqRowId'
 

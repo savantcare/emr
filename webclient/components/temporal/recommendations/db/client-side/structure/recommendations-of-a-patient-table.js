@@ -27,7 +27,7 @@ export default class recommendations extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/recommendations/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/recommendations/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

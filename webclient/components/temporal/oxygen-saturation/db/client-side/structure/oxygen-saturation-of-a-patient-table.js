@@ -29,7 +29,7 @@ export default class oxygenSaturationClass extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/oxygen-saturation/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/oxygen-saturation/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class ptDateOfBirth extends clientTblManage {
   static entity = 'tblDateOfBirth'
-  static apiUrl = 'http://localhost:3000/date-of-birth'
+  static apiUrl = process.env.baseUrlForLumen + '/date-of-birth'
 
   static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
   static graphSeries1Unit = 'Lbs'

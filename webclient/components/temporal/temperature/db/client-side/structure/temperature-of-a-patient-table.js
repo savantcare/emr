@@ -29,7 +29,7 @@ export default class temperature extends clientTblManage {
 
   */
 
-  static apiUrl = 'http://localhost:8000/public/api/temperature/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/temperature/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

@@ -10,7 +10,7 @@ const intUniqueId = () => ++count
 export default class psychReviewOfSystemsForPatientClass extends clientTblManage {
   static entity = 'tblPsychReviewOfSystemsOfPatient'
 
-  static apiUrl = 'http://localhost:8000/public/api/psych-review-of-system/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/psych-review-of-system/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

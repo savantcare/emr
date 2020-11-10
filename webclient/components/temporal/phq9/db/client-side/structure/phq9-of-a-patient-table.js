@@ -11,7 +11,7 @@ const intUniqueId = () => ++count
 export default class phq9ForPatientClass extends clientTblManage {
   static entity = 'tblPhq9'
 
-  static apiUrl = 'http://localhost:8000/public/api/phq9/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/phq9/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
