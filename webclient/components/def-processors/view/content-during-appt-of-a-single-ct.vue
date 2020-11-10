@@ -344,6 +344,13 @@ export default {
 
       return arFromClientTblOfAddendums
     },
+    cfGetEntityValueDuringEachAppt() {
+      const arOfAppts = clientTblOfAppointments.query().get()
+      for (let i = 0; i < arOfAppts.length; i++) {
+        arOfAppts[i][this.propFormDef.id] = this.mfGetArOfDataRows(arOfAppts[i])
+      }
+    },
+
     cfGetArOfDataRows() {
       const pApptObj = this.currentApptObj
       const emptyArray = []
@@ -403,8 +410,7 @@ export default {
     },
   },
   methods: {
-    mfGetArOfDataRows() {
-      const pApptObj = this.currentApptObj
+    mfGetArOfDataRows(pApptObj) {
       const emptyArray = []
 
       if (!pApptObj) {
