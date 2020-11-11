@@ -1,1 +1,1 @@
-drop database sc_misc_notes
+drop database sc_miscellaneous_notes

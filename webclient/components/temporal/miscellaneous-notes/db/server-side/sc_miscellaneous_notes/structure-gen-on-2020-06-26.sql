@@ -1,8 +1,8 @@
-use sc_misc_notes;
+use sc_miscellaneous_notes;
 
-DROP TABLE IF EXISTS `misc_notes`;
+DROP TABLE IF EXISTS `miscellaneous_notes`;
 
-CREATE TABLE `misc_notes` (
+CREATE TABLE `miscellaneous_notes` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
