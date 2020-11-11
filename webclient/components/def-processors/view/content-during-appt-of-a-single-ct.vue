@@ -120,7 +120,12 @@
               v-for="entityRow in item[_formDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              <getRowContent :_entityRow="entityRow" :_formDef="_formDef" :_ApptStatus="item['apptStatus']" />
+              <getRowContent
+                :_entityRow="entityRow"
+                :_formDef="_formDef"
+                :_ApptStatus="item['apptStatus']"
+                :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
+              />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -383,29 +388,6 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
-    },
-    mfGetCssClassNameForEachDataRow(pRow) {
-      /* The color conventions are:
-      Case 1: black: same as DB or it is a copy but no change has been done
-      Case 2: orange: form validatoion has failed
-      Case 3: green: some edits have been made and it pases form validation */
-
-      if (
-        pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
-        pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
-      ) {
-        // Case 1
-        return
-      } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
-        // case 2
-        return 'color: #E6A23C;' // this is hex code for orange
-      }
-
-      // Case 3
-      return 'color: #67c23a;' // this is hex code for green
-    },
-    cfApptLockDateInHumanReadableFormat() {
-      return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
   },
 }

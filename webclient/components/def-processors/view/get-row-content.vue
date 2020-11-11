@@ -169,6 +169,9 @@ export default {
     _ApptStatus: {
       required: true,
     },
+    _apptStartMilliSecondsOnCalendar: {
+      required: true,
+    },
   },
   methods: {
     mOver(pRowId) {
@@ -207,17 +210,24 @@ export default {
     },
     mfGetCssClassNameForEachDataRow(pRow) {
       /* The color conventions are:
-      Case 1: black: same as DB or it is a copy but no change has been done
+      Case 1: black: Data created during that appt.
       Case 2: orange: form validatoion has failed
-      Case 3: green: some edits have been made and it pases form validation */
+      Case 3: green: some edits have been made and it pases form validation 
+      Case 4: blue: This is carry forward
+      */
 
       let string = ''
 
       if (
+        pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) &&
+        pRow.ROW_START < this._apptStartMilliSecondsOnCalendar
+      ) {
+        return 'color: #409EFF' // Blue as per https://element.eleme.io/#/en-US/component/color
+      } else if (
         pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) ||
         pRow.vnRowStateInSession.toString().endsWith(rowState.Copy)
       ) {
-        string = '' // this will take default color of parent element
+        return '' // Blue as per https://element.eleme.io/#/en-US/component/color
       } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationFail)) {
         string = 'color: #E6A23C;' // this is hex code for orange
       } else if (pRow.vnRowStateInSession.toString().endsWith(rowState.FormValidationPass)) {
