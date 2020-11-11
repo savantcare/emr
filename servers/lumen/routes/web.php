@@ -179,15 +179,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Mental status exam
-    $router->get('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
-    $router->post('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@create']);
-    $router->delete('mental-status-exams/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
-    $router->options('mental-status-exams/v20', function () {
+    $router->get('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@get_all_temporal_mental_status_exams']);
+    $router->post('mental-status-exam/v20/', ['uses' => 'MentalStatusExamController@create']);
+    $router->delete('mental-status-exam/v20/{pServerSideRowUuid}', ['uses' => 'MentalStatusExamController@delete']);
+    $router->options('mental-status-exam/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-    $router->options('mental-status-exams/v20/{pServerSideRowUuid}', function () {
+    $router->options('mental-status-exam/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
@@ -337,4 +337,38 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
+
+    // Goal
+    $router->get('goals/v20/', ['uses' => 'GoalController@get_all_temporal_goals']);
+    $router->post('goals/v20/', ['uses' => 'GoalController@create']);
+    $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
+    $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
+    $router->options('goals/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('goals/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+
+    // Miscellaneous Notes
+    $router->get('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@get_all_temporal_miscellaneous_notes']);
+    $router->get('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@get_one_miscellaneous_note']);
+    $router->post('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@create']);
+    $router->delete('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
+    $router->put('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@update']);
+    $router->options('miscellaneous-notes/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('miscellaneous-notes/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+
 });
