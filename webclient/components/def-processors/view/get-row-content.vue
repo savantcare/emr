@@ -79,7 +79,7 @@
         </span>
       </span>
     </div>
-    <div v-show="mouseOnThisRow" id="row-actions-when-app-is-unlocked">
+    <div v-show="mouseOnThisRow" id="row-actions-when-appt-is-unlocked" v-if="_ApptStatus === 'unlocked'">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
@@ -151,9 +151,13 @@ export default {
       type: Object,
       required: true,
     },
+    _ApptStatus: {
+      required: true,
+    },
   },
   methods: {
     mOver(pRowId) {
+      console.log(this._ApptStatus)
       setTimeout(() => {
         this.mouseOnThisRow = true
       }, 200)

@@ -101,8 +101,11 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields -->
-        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
+        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
+         Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value 
+         Each appt gets a slide of its own
+         -->
+
         <vue-horizontal-list
           :items="cfGetEntityValueDuringEachAppt"
           :options="options"
@@ -117,7 +120,7 @@
               v-for="entityRow in item[propFormDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              <getRowContent :propEntityRow="entityRow" :propFormDef="propFormDef" />
+              <getRowContent :propEntityRow="entityRow" :propFormDef="propFormDef" :_ApptStatus="item['apptStatus']" />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
