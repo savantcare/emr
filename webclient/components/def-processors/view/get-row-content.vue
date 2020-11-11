@@ -99,7 +99,7 @@
                   In case of new row created on client during edit do not create a copy.
                   -->
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px;"
           plain
           @click="
             String(_entityRow.vnRowStateInSession).startsWith(2) && _entityRow.vnRowStateInSession !== 24751
@@ -112,7 +112,7 @@
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 40px;"
           plain
           class="el-icon-discover"
         >
@@ -120,7 +120,7 @@
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute;  right: 20px;"
           plain
           @click="mfIconDeleteClickedOnChildCard(_entityRow.clientSideUniqRowId)"
           class="el-icon-circle-close"
