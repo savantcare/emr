@@ -98,6 +98,23 @@
 
                   In case of new row created on client during edit do not create a copy.
                   -->
+
+          <!-- 
+            why we have added right 60px?
+            -- We have three icons there. If we add 'position - absolute' for all the three icons than icons coming on top of each other.
+            In this case, we need to add icon position from right. I have maintain 20px space between each icons.
+
+            See following diagram:
+
+            edit  info  delete       |
+              |     |      |__20px___|
+              |     |                |
+              |     |______40px______|
+              |                      |
+              |_________60px_________|
+
+
+            -->
         <el-button
           style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px;"
           plain
