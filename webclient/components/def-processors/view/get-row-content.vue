@@ -178,12 +178,12 @@ export default {
       console.log(this._ApptStatus)
       setTimeout(() => {
         this.mouseOnThisRow = true
-      }, 200)
+      }, 500)
     },
     mLeave(pRowId) {
       setTimeout(() => {
         this.mouseOnThisRow = false
-      }, 200)
+      }, 500)
     },
     mfOpenAddInEditLayer() {
       const term = 'add ' + this._formDef.id
