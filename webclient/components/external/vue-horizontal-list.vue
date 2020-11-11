@@ -108,8 +108,8 @@ export default {
       this.runAutoPlay()
     }
 
-    if (this._options.setCurrentSlide) {
-      this.go(setCurrentSlide)
+    if (this.options.setCurrentSlide) {
+      this.go(this.options.setCurrentSlide)
     }
   },
   beforeDestroy() {
