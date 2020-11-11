@@ -62,16 +62,16 @@ export default {
     },
   },
   props: {
-    propApptId: {
+    _ApptId: {
       type: Number,
       required: true,
     },
   },
   async mounted() {
-    if (!this.propApptId === 0) {
+    if (!this._ApptId === 0) {
       return
     }
-    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this._ApptId)
   },
   computed: {
     cfGetReminderStyle() {
@@ -81,7 +81,7 @@ export default {
       const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this._ApptId) {
         // Handle the case when the current ID matches with the second param Need to compare with first
         secondaryDuringComparisonApptObj = clientTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
@@ -129,7 +129,7 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
-        .where('appointmentId', this.propApptId)
+        .where('appointmentId', this._ApptId)
         .where('component', 'recommendations')
         .orderBy('ROW_START', 'asc')
         .get()

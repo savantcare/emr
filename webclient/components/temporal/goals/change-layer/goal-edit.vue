@@ -1,5 +1,5 @@
 <template>
-  <ctEditStructure :propFormDef="formDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditStructure :_FormDef="formDef" :firstProp="firstProp"></ctEditStructure>
 </template>
 
 <script>

@@ -4,7 +4,7 @@
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading"
-        >History of {{ propFormDef.plural.charAt(0).toUpperCase() + propFormDef.plural.slice(1) }}
+        >History of {{ _FormDef.plural.charAt(0).toUpperCase() + _FormDef.plural.slice(1) }}
         <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
         <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
       </el-col>
@@ -24,7 +24,7 @@
                     icon="el-icon-check"
                     style="position: absolute; bottom: 15px; right: 15px"
                     size="mini"
-                    @click="mfSaveAddendum(amendmentData, propFormDef.id)"
+                    @click="mfSaveAddendum(amendmentData, _FormDef.id)"
                     circle
                   ></el-button>
                 </div>
@@ -38,11 +38,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_FormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < propFormDef.maxNumberOfTemporallyValidRows ||
-                  !propFormDef.maxNumberOfTemporallyValidRows
+                  mfGetArOfDataRows(this.currentApptObj).length < _FormDef.maxNumberOfTemporallyValidRows ||
+                  !_FormDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"
@@ -101,14 +101,14 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- Using ternary operator for style since some components may not define propFormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
+        <!-- Using ternary operator for style since some components may not define _FormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
           :style="
-            propFormDef.styleForEachRowInPaperView
-              ? propFormDef.styleForEachRowInPaperView
+            _FormDef.styleForEachRowInPaperView
+              ? _FormDef.styleForEachRowInPaperView
               : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
@@ -117,7 +117,7 @@
           <div
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
-            v-for="(propFieldDef, id) in propFormDef.fieldsDef"
+            v-for="(propFieldDef, id) in _FormDef.fieldsDef"
             :key="id"
             :style="mfGetCssClassNameForEachDataRow(row)"
             v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
@@ -155,7 +155,7 @@
               <!-- Since it is select there will be many options hence need to do a for loop on options -->
               <!-- Since it is View layer I should only show the selected options and not all the options -->
               <div
-                v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                v-for="item in _FormDef.fnGetAllSelectOptionsAndSelectedForAField(
                   propFieldDef.fieldNameInDb,
                   row.clientSideUniqRowId
                 )"
@@ -221,7 +221,7 @@
             <div>
               <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
               <el-button-group style="float: right">
-                <div v-for="(additionalRowAction, id) in propFormDef.additionalRowActions" :key="id">
+                <div v-for="(additionalRowAction, id) in _FormDef.additionalRowActions" :key="id">
                   <el-button @click="additionalRowAction.executeThisFn(row)">{{
                     additionalRowAction.textInUi
                   }}</el-button>
@@ -311,11 +311,11 @@ export default {
     },
   },
   props: {
-    propApptId: {
+    _ApptId: {
       type: Number,
       required: true,
     },
-    propFormDef: {
+    _FormDef: {
       type: Object,
       required: true,
     },
@@ -324,18 +324,18 @@ export default {
     },
   },
   async mounted() {
-    if (!this.propApptId === 0) {
+    if (!this._ApptId === 0) {
       return
     }
-    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this._ApptId)
   },
   computed: {
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
         Possibilities are 1. Both have values 2. Only 1 has value.
-        First goal: Find if propApptId is same as F1 or F2. If propApptId == F2 then it is comparison mode. If propApptId != F2 then for certain I can say propApptId == F1. propApptId may or many not be comparison mode.
-        if there is value in F2 then propApptId is in comparison mode. If F2 is empty then this is single note render mode.
+        First goal: Find if _ApptId is same as F1 or F2. If _ApptId == F2 then it is comparison mode. If _ApptId != F2 then for certain I can say _ApptId == F1. _ApptId may or many not be comparison mode.
+        if there is value in F2 then _ApptId is in comparison mode. If F2 is empty then this is single note render mode.
       */
 
       let secondaryDuringComparisonApptObj = {}
@@ -344,7 +344,7 @@ export default {
       const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this.propApptId) {
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this._ApptId) {
         // Handle the case when the current ID matches with the second param Need to compare with first
         secondaryDuringComparisonApptObj = clientTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
@@ -385,7 +385,7 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
-        .where('appointmentId', this.propApptId)
+        .where('appointmentId', this._ApptId)
         .where('component', 'reminders')
         .orderBy('ROW_START', 'asc')
         .get()
@@ -403,7 +403,7 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this.propFormDef.id
+      const term = 'add ' + this._FormDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
@@ -436,11 +436,11 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
-        arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
+        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

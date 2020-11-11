@@ -8,7 +8,7 @@
   <el-card class="box-card sc-service-statement-all-content" :body-style="{ paddingLeft: '3px' }" shadow="hover">
     <div slot="header" class="clearfix">
       <span :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1" @keyup="mfKeyPress($event, 'header')">{{
-        propFormDef.id
+        _FormDef.id
       }}</span>
       <el-button-group style="float: right">
         <el-button
@@ -51,7 +51,7 @@
         :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 2"
         @keyup.native="mfKeyPress($event, row.id, row.description)"
       >
-        <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <div v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
           {{ row[propFieldDef.fieldNameInDb] }}
         </div>
         <el-button-group style="float: right">
@@ -93,7 +93,7 @@ export default {
     return {}
   },
   props: {
-    propFormDef: {
+    _FormDef: {
       type: Object,
       required: true,
       validator: function (obj) {
@@ -112,12 +112,12 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this.propFormDef.id).get()
+      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this._FormDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = allClientTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-        this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+      const arFromClientTbl = allClientTbls[this._FormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+        this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
       )
 
       /*  Q) Should this function return the array it gets from ORM or modify the array?

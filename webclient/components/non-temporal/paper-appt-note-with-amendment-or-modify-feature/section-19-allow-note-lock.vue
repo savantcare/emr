@@ -28,16 +28,16 @@ export default {
     },
   },
   props: {
-    propApptId: {
+    _ApptId: {
       type: Number,
       required: true,
     },
   },
   async mounted() {
-    if (!this.propApptId === 0) {
+    if (!this._ApptId === 0) {
       return
     }
-    this.currentApptObj = await clientTblOfAppointments.find(this.propApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this._ApptId)
   },
 
   methods: {

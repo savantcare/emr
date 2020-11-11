@@ -1,6 +1,6 @@
 <template>
   <div>
-    <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="formDef"></contentDuringApptOfASingleCt>
+    <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="formDef"></contentDuringApptOfASingleCt>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     contentDuringApptOfASingleCt,
   },
   props: {
-    propApptId: {
+    _ApptId: {
       type: Number,
       required: true,
     },

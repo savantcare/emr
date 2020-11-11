@@ -1,5 +1,5 @@
 <template>
-  <timeLineView :propFormDef="formDef"></timeLineView>
+  <timeLineView :_FormDef="formDef"></timeLineView>
 </template>
 
 <script>

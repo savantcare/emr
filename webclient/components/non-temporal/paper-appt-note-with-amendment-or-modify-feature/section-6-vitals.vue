@@ -5,35 +5,20 @@
       <div class="sectionHeading">Vitals</div>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="weightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="heightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="pulseFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="temperatureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bloodPressureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bloodSugarFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="weightFormDef"
+        :_ApptId="_ApptId"
+        :_FormDef="waistCircumferenceFormDef"
       ></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bmiFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="heightFormDef"
-      ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="pulseFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="temperatureFormDef"
-      ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="bloodPressureFormDef"
-      ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="bloodSugarFormDef"
-      ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="waistCircumferenceFormDef"
-      ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :propApptId="propApptId" :propFormDef="bmiFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt
-        :propApptId="propApptId"
-        :propFormDef="oxygenSaturationFormDef"
+        :_ApptId="_ApptId"
+        :_FormDef="oxygenSaturationFormDef"
       ></contentDuringApptOfASingleCt>
     </div>
   </el-card>
@@ -56,7 +41,7 @@ export default {
     contentDuringApptOfASingleCt,
   },
   props: {
-    propApptId: {
+    _ApptId: {
       type: Number,
       required: true,
     },

@@ -1,7 +1,7 @@
 <!-- Reference implementation -->
 <!-- For design see webclient/cts/def-processors/crud/forms.md -->
 <template>
-  <ctAddStructure :propFormDef="formDef"> </ctAddStructure>
+  <ctAddStructure :_FormDef="formDef"> </ctAddStructure>
 </template>
 
 <script>

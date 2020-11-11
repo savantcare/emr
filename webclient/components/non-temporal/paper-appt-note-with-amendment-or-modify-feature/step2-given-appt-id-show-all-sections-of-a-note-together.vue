@@ -1,9 +1,9 @@
 <template>
   <div class="A4">
-    <headerPrintSection :propApptId="propShowNoteForApptId"></headerPrintSection>
+    <headerPrintSection :_ApptId="propShowNoteForApptId"></headerPrintSection>
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <agePrintSection :propApptId="propShowNoteForApptId"> </agePrintSection>
+    <agePrintSection :_ApptId="propShowNoteForApptId"> </agePrintSection>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
@@ -25,7 +25,7 @@
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="diagnosis" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="screens" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="mental_status_exam" />
-    <lockButtonPrintSection :propApptId="propShowNoteForApptId"></lockButtonPrintSection>
+    <lockButtonPrintSection :_ApptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 

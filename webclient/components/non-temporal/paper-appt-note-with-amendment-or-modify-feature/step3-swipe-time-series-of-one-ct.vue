@@ -3,19 +3,11 @@
   <!-- @wheel="swipe($event, propEntity)"-->
   <div class="sc-card">
     <div v-if="timeSeriesMarker < 0">
-      <ctOldValueStructure
-        :propApptId="propShowNoteForApptId"
-        :arrowDirection="arrowDirection"
-        :propEntity="propEntity"
-      >
+      <ctOldValueStructure :_ApptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :propEntity="propEntity">
       </ctOldValueStructure>
     </div>
     <div v-else-if="timeSeriesMarker === 0">
-      <ctPaperNoteStructure
-        :propApptId="propShowNoteForApptId"
-        :arrowDirection="arrowDirection"
-        :propEntity="propEntity"
-      >
+      <ctPaperNoteStructure :_ApptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :propEntity="propEntity">
       </ctPaperNoteStructure>
     </div>
     <div v-else-if="timeSeriesMarker > 0">
@@ -27,7 +19,7 @@
           <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
         </el-col>
       </el-row>
-      <ctAddStructure :propFormDef="formDef[propEntity]"></ctAddStructure>
+      <ctAddStructure :_FormDef="formDef[propEntity]"></ctAddStructure>
     </div>
   </div>
 </template>

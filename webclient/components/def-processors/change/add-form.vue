@@ -5,16 +5,16 @@
     <el-form>
       <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
       <div v-if="cfGetClientTblNewRowsInEditState.length">
-        <!-- propFormDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
+        <!-- _FormDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
         <!-- Start to process each row -->
         <el-form
           v-for="ormRow in cfGetClientTblNewRowsInEditState"
           :key="ormRow.clientSideUniqRowId"
-          :id="`each-data-row` + propFormDef.id"
-          :style="propFormDef.styleForEachRowInAddForm"
+          :id="`each-data-row` + _FormDef.id"
+          :style="_FormDef.styleForEachRowInAddForm"
         >
           <!-- Start to process fields in the row -->
-          <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+          <div v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
             <el-form-item>
               <!-- Start to process each field -->
               <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
@@ -52,7 +52,7 @@
                     {{ propFieldDef.fieldNameInUi }}
                   </div>
                   <div
-                    v-for="item in propFormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                    v-for="item in _FormDef.fnGetAllSelectOptionsAndSelectedForAField(
                       propFieldDef.fieldNameInDb,
                       ormRow.clientSideUniqRowId
                     )"
@@ -158,7 +158,7 @@
                 <!-- Prop explaination
             Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
-            Remove should not come if there is only one propFormDef.maxRow
+            Remove should not come if there is only one _FormDef.maxRow
           -->
               </el-card>
             </el-form-item>
@@ -167,8 +167,7 @@
           </div>
           <el-button
             v-if="
-              mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
-              !propFormDef.maxNumberOfTemporallyValidRows
+              mfGetArOfDataRows() < _FormDef.maxNumberOfTemporallyValidRows || !_FormDef.maxNumberOfTemporallyValidRows
             "
             plain
             type="warning"
@@ -185,22 +184,21 @@
 
       <!-- Form action buttons below the form -->
       <el-form-item>
-        <el-button v-if="propFormDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
+        <el-button v-if="_FormDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
           >Reviewed</el-button
         >
 
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !propFormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_FormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
         <el-button
           v-if="
-            mfGetArOfDataRows() < propFormDef.maxNumberOfTemporallyValidRows ||
-            !propFormDef.maxNumberOfTemporallyValidRows
+            mfGetArOfDataRows() < _FormDef.maxNumberOfTemporallyValidRows || !_FormDef.maxNumberOfTemporallyValidRows
           "
           type="primary"
           plain
           @click="mfAddEmptyRowInEditLayerientSideTable"
           >Add more</el-button
         >
-        <el-button v-if="propFormDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
+        <el-button v-if="_FormDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
           >Reset form</el-button
         >
       </el-form-item>
@@ -213,7 +211,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
-        <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <div v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
           <el-table-column :prop="propFieldDef.fieldNameInDb" :label="propFieldDef.fieldNameInDb"></el-table-column>
         </div>
       </el-table-column>
@@ -226,7 +224,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
-        <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <div v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
           <el-table-column :prop="propFieldDef.fieldNameInDb" :label="propFieldDef.fieldNameInUi"></el-table-column>
         </div>
       </el-table-column>
@@ -239,7 +237,7 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
-        <div v-for="(propFieldDef, id) in propFormDef.fieldsDef" :key="id">
+        <div v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
           <el-table-column prop="propFieldDef.fieldNameUi" label="Attempted but failed to save"></el-table-column>
         </div>
       </el-table-column>
@@ -259,16 +257,16 @@ export default {
       2nd time onwards it will return an array of data that came from vuex-orm
       This was first used for slider form control.
   */
-    this.value = this.propFormDef.fnCreated(this.mfGetArOfDataRows())
+    this.value = this._FormDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
     return { value: [] }
   },
   validations() {
-    return this.propFormDef.validationsObj
+    return this._FormDef.validationsObj
   },
   props: {
-    propFormDef: {
+    _FormDef: {
       type: Object,
       required: true,
       validator: function (obj) {
@@ -286,22 +284,22 @@ export default {
     },
   },
   computed: {
-    // allClientTbls[this.propFormDef.id] functions can not be directly called from template. hence computed functions have been defined.
+    // allClientTbls[this._FormDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      const r = allClientTbls[this.propFormDef.id].fnGetNewRowsInEditState()
+      const r = allClientTbls[this._FormDef.id].fnGetNewRowsInEditState()
       return r
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInFormValidationPassState()
+      return allClientTbls[this._FormDef.id].fnGetNewRowsInFormValidationPassState()
     },
     cfGetClientTblApiSuccessStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSuccessState()
+      return allClientTbls[this._FormDef.id].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientTblApiErrorStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiErrorState()
+      return allClientTbls[this._FormDef.id].fnGetNewRowsInApiErrorState()
     },
     cfGetClientTblApiSendingStateRows() {
-      return allClientTbls[this.propFormDef.id].fnGetNewRowsInApiSendingState()
+      return allClientTbls[this._FormDef.id].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
@@ -310,7 +308,7 @@ export default {
     },
 
     mfGetArOfDataRows() {
-      const arOfObjectsFromClientDB = allClientTbls[this.propFormDef.id]
+      const arOfObjectsFromClientDB = allClientTbls[this._FormDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
         .where('vnRowStateInSession', (value) => value > 1) // 2 is new on client.
@@ -321,16 +319,16 @@ export default {
     async mfAddEmptyRowInEditLayerientSideTable() {
       // TODO: this should be part of base class
 
-      if (!this.propFormDef || !this.propFormDef.maxNumberOfTemporallyValidRows) {
+      if (!this._FormDef || !this._FormDef.maxNumberOfTemporallyValidRows) {
         // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
       } else {
-        const currentRowCount = allClientTbls[this.propFormDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
-        if (currentRowCount >= this.propFormDef.maxNumberOfTemporallyValidRows) {
+        const currentRowCount = allClientTbls[this._FormDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        if (currentRowCount >= this._FormDef.maxNumberOfTemporallyValidRows) {
           return
         }
       }
 
-      const arFromClientTbl = await allClientTbls[this.propFormDef.id].insert({
+      const arFromClientTbl = await allClientTbls[this._FormDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -344,16 +342,16 @@ export default {
     },
     mfSetFormFieldFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      const firstField = this.propFormDef.fieldsDef[0].fieldNameInDb
+      const firstField = this._FormDef.fieldsDef[0].fieldNameInDb
       if (this.$refs[firstField]) {
         const lastElement = this.$refs[firstField].length
         // console.log('setting focus of', lastElement - 1, 'length is', lastElement)
         this.$refs[firstField][lastElement - 1].focus()
       }
     },
-    // Cannot call allClientTbls[this.propFormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call allClientTbls[this._FormDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
-      return allClientTbls[this.propFormDef.id].fnGetFldValue(pClientRowId, pFldName)
+      return allClientTbls[this._FormDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
@@ -367,11 +365,11 @@ export default {
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
-      allClientTbls[this.propFormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
+      allClientTbls[this._FormDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
-      const arFromClientTbl = allClientTbls[this.propFormDef.id].find(pClientRowId)
+      const arFromClientTbl = allClientTbls[this._FormDef.id].find(pClientRowId)
       /* TODO: this needs to check for 2456 or 2457 instead of 24
           invalid: organge
           valid: green
@@ -386,11 +384,11 @@ export default {
       return ''
     },
     async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
-      await allClientTbls[this.propFormDef.id].delete(pClientRowId)
+      await allClientTbls[this._FormDef.id].delete(pClientRowId)
       this.mfSetFormFieldFocus()
     },
     mfOnResetForm(formName) {
-      allClientTbls[this.propFormDef.id].fnDeleteNewRowsInEditState()
+      allClientTbls[this._FormDef.id].fnDeleteNewRowsInEditState()
     },
   },
 }

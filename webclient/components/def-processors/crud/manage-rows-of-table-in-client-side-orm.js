@@ -829,9 +829,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static async mfSendNewRowsToServer() {
   
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-      The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this.propFormDef.id] ie; 'vnRowStateInSession' = 24
+      The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this._FormDef.id] ie; 'vnRowStateInSession' = 24
   
-    const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allClientTbls[this.propFormDef.id] since get benefit of caching.
+    const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allClientTbls[this._FormDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
          I cannot do validation here. Since this is getting invoked when button has already been pressed  
@@ -916,7 +916,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               'Content-Type': 'application/json;charset=utf-8',
               // "Authorization": "Bearer " + TOKEN
             },
-            // this.mfGetCopiedRowBeingChangedFldVal(this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty),
+            // this.mfGetCopiedRowBeingChangedFldVal(this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty),
             body: JSON.stringify({
               description: 'jaikalima',
               client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
