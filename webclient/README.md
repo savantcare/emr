@@ -3,6 +3,7 @@ Pirority:
 1. Icons coming on top of each other when i take my mouse over a row
 2. the appt date is visible for that i need to slide a little
 3. Icons not coming inside chief complaint on the unlocked appt slide.
+4. In add form the first form button will be "Close" when enter pressed then invoke this action
 
 npm run start-dev
 
