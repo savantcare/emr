@@ -1,14 +1,12 @@
-use sc_misc-notes;
+use sc_miscellaneous_notes;
 
-DROP TABLE IF EXISTS `misc-notes`;
+DROP TABLE IF EXISTS `miscellaneous_notes`;
 
-CREATE TABLE `misc-notes` (
+CREATE TABLE `miscellaneous_notes` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `notes` text DEFAULT NULL,
-  `priority` int(11) DEFAULT NULL,
-  `isAutoRem` int(11) DEFAULT NULL,
   `recordChangedByUuid` char(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromSection` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'patientFile',

@@ -9,13 +9,13 @@ const intUniqueId = () => ++count
 export default class misc_notes extends clientTblManage {
   static entity = 'tblMiscNotes'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/miscellaneous-notes/getAll
 
@@ -40,8 +40,6 @@ export default class misc_notes extends clientTblManage {
       ptUuid: this.string(null),
       description: this.string(''),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
-      priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

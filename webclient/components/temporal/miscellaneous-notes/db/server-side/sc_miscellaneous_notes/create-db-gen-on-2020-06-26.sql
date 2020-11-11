@@ -1,1 +1,1 @@
-create database sc_misc-notes
+create database sc_miscellaneous_notes
