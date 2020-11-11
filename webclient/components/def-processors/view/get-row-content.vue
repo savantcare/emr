@@ -99,7 +99,7 @@
                   In case of new row created on client during edit do not create a copy.
                   -->
 
-          <!-- 
+        <!-- 
             why we have added right 60px?
             -- We have three icons there. If we add 'position - absolute' for all the three icons than icons coming on top of each other.
             In this case, we need to add icon position from right. I have maintain 20px space between each icons.
@@ -116,7 +116,7 @@
 
             -->
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px;"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px"
           plain
           @click="
             String(_entityRow.vnRowStateInSession).startsWith(2) && _entityRow.vnRowStateInSession !== 24751
@@ -129,7 +129,7 @@
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 40px;"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 40px"
           plain
           class="el-icon-discover"
         >
@@ -137,7 +137,7 @@
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute;  right: 20px;"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 20px"
           plain
           @click="mfIconDeleteClickedOnChildCard(_entityRow.clientSideUniqRowId)"
           class="el-icon-circle-close"
@@ -228,7 +228,7 @@ export default {
     mfGetBorder() {
       let string = 'display: grid; grid-template-columns: 2fr 1fr;'
       if (this.mouseOnThisRow === true) {
-        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, 0.1);' /* It is inset to prevent jumping */
+        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, 1);' /* It is inset to prevent jumping */
       }
       return string
     },
