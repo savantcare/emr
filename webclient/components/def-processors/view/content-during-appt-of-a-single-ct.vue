@@ -151,7 +151,7 @@ import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import VueHorizontalList from '@/vue-horizontal-list.vue'
+import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
 
 export default {

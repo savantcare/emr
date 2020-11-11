@@ -1,3 +1,9 @@
+Pirority:
+
+1. Icons coming on top of each other when i take my mouse over a row
+2. the appt date is visible for that i need to slide a little
+3. Based on the appt selected in the header choose the item as per https://github.com/fuxingloh/vue-horizontal-list/blob/master/src/vue-horizontal-list.vue
+
 npm run start-dev
 
 Which CSS pre processor?

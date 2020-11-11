@@ -107,6 +107,10 @@ export default {
     if (this._options.autoplay.play) {
       this.runAutoPlay()
     }
+
+    if (this._options.setCurrentSlide) {
+      this.go(setCurrentSlide)
+    }
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.$resize)
