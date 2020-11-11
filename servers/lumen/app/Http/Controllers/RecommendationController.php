@@ -10,33 +10,31 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class RecommendationController extends Controller
 {
-    public function getAllTemporalRecommendations()
+    public function get_all_temporal_recommendations()
     {
-        $remQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL order by ROW_START desc'));
-        return response()->json($remQuery);
+        $remQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        return response()->json($remQueryResultObj);
         // return response()->json(Recommendation::all());
     }
 
-    public function getOneRecommendation($pServerSideRowUuid)
+    public function get_one_recommendation($pServerSideRowUuid)
     {
         return response()->json(Recommendation::find($pServerSideRowUuid));
     }
 
-    
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
-        
+        $requestData = $pRequest->all();
+
         $remData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'description' => $requestData['data']['description'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
         );
-       
+
         $Recommendation = Recommendation::insertGetId($remData);
 
         $channel = 'MsgFromSktForRemToAdd';
@@ -53,18 +51,18 @@ class RecommendationController extends Controller
         return response()->json($Recommendation, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $Recommendation = Recommendation::findOrFail($serverSideRowUuid);
-        $Recommendation->update($request->all());
+        $Recommendation = Recommendation::findOrFail($pServerSideRowUuid);
+        $Recommendation->update($pRequest->all());
 
         /**
          * Send data to socket
          */
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'description' => $requestData['description'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
@@ -75,11 +73,10 @@ class RecommendationController extends Controller
         return response()->json($Recommendation, 200);
     }
 
- 
-    public function delete($serverSideRowUuid, Request $request)
+    public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $Recommendation = Recommendation::findOrFail($serverSideRowUuid);
-        $requestData = $request->all();
+        $Recommendation = Recommendation::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
@@ -95,7 +92,7 @@ class RecommendationController extends Controller
          */
         $channel = 'MsgFromSktForRemToDelete';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 

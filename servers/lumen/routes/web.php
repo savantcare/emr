@@ -31,8 +31,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 
     // Blood Pressure
-    $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@getAllTemporalBloodPressures']);
-    $router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@getOneBloodPressure']);
+    $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
+    $router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@get_one_blood_pressure']);
     $router->post('blood-pressure/v20/', ['uses' => 'BloodPressureController@create']);
     $router->put('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@update']);
     $router->options('blood-pressure/v20', function () {
@@ -47,8 +47,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Blood Sugar
-    $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@getAllTemporalBloodSugars']);
-    $router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@getOneBloodSugar']);
+    $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@get_all_temporal_blood_sugars']);
+    $router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@get_one_blood_sugar']);
     $router->post('blood-sugar/v20/', ['uses' => 'BloodSugarController@create']);
     $router->put('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@update']);
     $router->options('blood-sugar/v20', function () {
@@ -63,8 +63,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // HEIGHT
-    $router->get('height/v20/', ['uses' => 'HeightController@getAllTemporalHeights']);
-    $router->get('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@getOneHeight']);
+    $router->get('height/v20/', ['uses' => 'HeightController@get_all_temporal_heights']);
+    $router->get('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@get_one_height']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
     $router->put('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@update']);
     $router->options('height/v20', function () {
@@ -79,8 +79,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Pulse
-    $router->get('pulse/v20/', ['uses' => 'PulseController@getAllTemporalPulses']);
-    $router->get('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@getOnePulse']);
+    $router->get('pulse/v20/', ['uses' => 'PulseController@get_all_temporal_pulses']);
+    $router->get('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@get_one_pulse']);
     $router->post('pulse/v20/', ['uses' => 'PulseController@create']);
     $router->put('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@update']);
     $router->options('pulse/v20', function () {
@@ -95,8 +95,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // REMINDERS
-    $router->get('reminders/v20/', ['uses' => 'ReminderController@getAllTemporalReminders']);
-    $router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@getOneReminder']);
+    $router->get('reminders/v20/', ['uses' => 'ReminderController@get_all_temporal_reminders']);
+    $router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@get_one_reminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
     $router->delete('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
     $router->put('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@update']);
@@ -112,9 +112,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
-    // recommendations
-    $router->get('recommendations/v20/', ['uses' => 'RecommendationController@getAllTemporalRecommendations']);
-    $router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@getOneRecommendation']);
+    // Recommendations
+    $router->get('recommendations/v20/', ['uses' => 'RecommendationController@get_all_temporal_recommendations']);
+    $router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@get_one_recommendation']);
     $router->post('recommendations/v20/', ['uses' => 'RecommendationController@create']);
     $router->delete('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
     $router->put('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@update']);
@@ -131,8 +131,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Oxygen Saturation
-    $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@getAllTemporalOxygenSaturations']);
-    $router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@getOneOxygenSaturation']);
+    $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@get_all_temporal_oxygen_saturations']);
+    $router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@get_one_oxygen_saturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
     $router->put('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@update']);
     $router->options('oxygen-saturation/v20', function () {
@@ -146,10 +146,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
-
     // Service statement
-    $router->get('service-statements/v20/', ['uses' => 'ServiceStatementController@getAllTemporalServiceStatements']);
-    $router->get('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@getOneServiceStatement']);
+    $router->get('service-statements/v20/', ['uses' => 'ServiceStatementController@get_all_temporal_service_statements']);
+    $router->get('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@get_one_service_statement']);
     $router->post('service-statements/v20/', ['uses' => 'ServiceStatementController@create']);
     $router->delete('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@delete']);
     $router->options('service-statements/v20', function () {
@@ -164,8 +163,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Past psych history
-    $router->get('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@getAllTemporalPastPsychHistory']);
-    $router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@getOnePastPsychHistory']);
+    $router->get('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@get_all_temporal_past_psych_history']);
+    $router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@get_one_past_psych_history']);
     $router->post('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@create']);
     $router->delete('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@delete']);
     $router->options('past-psych-history/v20', function () {
@@ -178,8 +177,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-
-
 
     // Mental status exam
     $router->get('mental-status-exams/v20/', ['uses' => 'MentalStatusExamController@getAllTemporalMentalStatusExams']);
@@ -197,8 +194,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Temperature
-    $router->get('temperature/v20/', ['uses' => 'TemperatureController@getAllTemporalTemperatures']);
-    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@getOneTemperature']);
+    $router->get('temperature/v20/', ['uses' => 'TemperatureController@get_all_temporal_temperatures']);
+    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@get_one_temperature']);
     $router->post('temperature/v20/', ['uses' => 'TemperatureController@create']);
     $router->put('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@update']);
     $router->options('temperature/v20', function () {
@@ -213,8 +210,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Waist Circumference
-    $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@getAllTemporalWaistCircumferences']);
-    $router->get('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@getOneWaistCircumference']);
+    $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@get_all_temporal_waist_circumferences']);
+    $router->get('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@get_one_waist_circumference']);
     $router->post('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@create']);
     $router->put('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@update']);
     $router->options('waist-circumference/v20', function () {
@@ -229,8 +226,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // WEIGHT
-    $router->get('weight/v20/', ['uses' => 'WeightController@getAllTemporalWeights']);
-    $router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@getOneWeight']);
+    $router->get('weight/v20/', ['uses' => 'WeightController@get_all_temporal_weights']);
+    $router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@get_one_weight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
     $router->put('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {
@@ -243,9 +240,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
+
     // BMI
-    $router->get('bmi/v20/', ['uses' => 'BmiController@getAllTemporalBmis']);
-    $router->get('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@getOneBmi']);
+    $router->get('bmi/v20/', ['uses' => 'BmiController@get_all_temporal_bmis']);
+    $router->get('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@get_one_bmi']);
     $router->post('bmi/v20/', ['uses' => 'BmiController@create']);
     $router->put('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@update']);
     $router->options('bmi/v20', function () {
@@ -260,8 +258,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Plan Comments
-    $router->get('plan-comments/v20/', ['uses' => 'PlanCommentsController@getAllTemporalPlanComments']);
-    $router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@getOnePlanComments']);
+    $router->get('plan-comments/v20/', ['uses' => 'PlanCommentsController@get_all_temporal_plan_comments']);
+    $router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@get_one_plan_comments']);
     $router->post('plan-comments/v20/', ['uses' => 'PlanCommentsController@create']);
     $router->delete('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
     $router->put('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@update']);
@@ -275,8 +273,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    
-    // Diagnosis  
+
+    // Diagnosis
     $router->get('diagnosis/v20/', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
     $router->delete('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
@@ -289,5 +287,54 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
+    });
+
+    // Allergies
+    $router->get('allergies/v20/', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
+    //$router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@get_one_allergies']);
+    $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
+    $router->delete('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->options('allergies/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('allergies/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // Chief Complant
+    $router->get('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@get_all_temporal_chief_complaint']);
+    $router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@get_one_chief_complaint']);
+    $router->post('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@create']);
+    $router->put('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@update']);
+    $router->delete('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
+     $router->options('chief-complaint/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('chief-complaint/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
+    // Process Notes
+    $router->get('process-notes/v20/', ['uses' => 'ProcessNotesController@get_all_temporal_process_notes']);
+    $router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@get_one_process_notes']);
+    $router->post('process-notes/v20/', ['uses' => 'ProcessNotesController@create']);
+    $router->delete('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
+    $router->options('process-notes/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('process-notes/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
     });
 });

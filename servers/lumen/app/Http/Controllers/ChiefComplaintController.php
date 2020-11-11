@@ -10,17 +10,16 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class ChiefComplaintController extends Controller
 {
-    public function getAllTemporalChiefComplaint()
+    public function get_all_temporal_chief_complaint()
     {
         $chiefComplaintQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_chief_complaint.chief_complaint order by ROW_START desc'));
         return response()->json($chiefComplaintQueryResultObj);
         // return response()->json(ChiefComplaint::all());
     }
 
-    public function getOneChiefComplaint($pServerSideRowUuid)
+    public function get_one_chief_complaint($pServerSideRowUuid)
     {
         return response()->json(ChiefComplaint::find($pServerSideRowUuid));
     }

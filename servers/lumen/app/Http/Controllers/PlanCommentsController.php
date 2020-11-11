@@ -9,17 +9,16 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class PlanCommentsController extends Controller
 {
-    public function getAllTemporalPlanComments()
+    public function get_all_temporal_plan_comments()
     {
         $planCommentsQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_plan_comments.plan_comments FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
         return response()->json($planCommentsQuery);
     }
 
-    public function getOnePlanComments($pServerSideRowUuid)
+    public function get_one_plan_comments($pServerSideRowUuid)
     {
         $planCommentsQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_plan_comments.plan_comments FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 

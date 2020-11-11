@@ -10,18 +10,16 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class PastPsychHistoryController extends Controller
 {
-    public function getAllTemporalPastPsychHistory()
+    public function get_all_temporal_past_psych_history()
     {
-        $pastPsychHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_past_psych_history.past_psych_history
-        order by ROW_START desc'));
+        $pastPsychHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_past_psych_history.past_psych_history order by ROW_START desc'));
         return response()->json($pastPsychHistoryQueryResultObj);
         // return response()->json(PastPsychHistory::all());
     }
 
-    public function getOnePastPsychHistory($pServerSideRowUuid)
+    public function get_one_past_psych_history($pServerSideRowUuid)
     {
         return response()->json(PastPsychHistory::find($pServerSideRowUuid));
     }
@@ -48,18 +46,18 @@ class PastPsychHistoryController extends Controller
         return response()->json($PastPsychHistory, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $PastPsychHistory = PastPsychHistory::findOrFail($serverSideRowUuid);
-        $PastPsychHistory->update($request->all());
+        $PastPsychHistory = PastPsychHistory::findOrFail($pServerSideRowUuid);
+        $PastPsychHistory->update($pRequest->all());
 
         /**
          * Send data to socket
          */
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
         $channel = 'MsgFromSktForPastPsychHistoryToChange';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'pastPsychHistoryMasterId' => $requestData['pastPsychHistoryMasterId'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
@@ -69,7 +67,6 @@ class PastPsychHistoryController extends Controller
 
         return response()->json($PastPsychHistory, 200);
     }
-
 
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
@@ -83,14 +80,14 @@ class PastPsychHistoryController extends Controller
             $pastPsychHistory->update($updateData);
         }
 
-        $PastPsychHistory->delete();
+        $pastPsychHistory->delete();
 
         /**
          * Send data to socket
          */
         $channel = 'MsgFromSktForPastPsychHistoryToDelete';
         $message = array(
-            'serverSideRowUuid' => $serverSideRowUuid,
+            'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 

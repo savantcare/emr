@@ -9,23 +9,23 @@ use Predis\Autoloader;
 
 class BloodPressureController extends Controller
 {
-    public function getAllTemporalBloodPressures()
+    public function get_all_temporal_blood_pressures()
     {
-        $bloodPressureQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodPressureLevels FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $bloodPressureQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodPressureLevels FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
-        return response()->json($bloodPressureQuery);
+        return response()->json($bloodPressureQueryResultObj);
     }
 
-    public function getOneBloodPressure($pServerSideRowUuid)
+    public function get_one_blood_pressure($pServerSideRowUuid)
     {
-        $bloodPressureQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodPressureLevels FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$serverSideRowUuid}' order by ROW_START desc"));
+        $bloodPressureQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.bloodPressureLevels FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
-        return response()->json($bloodPressureQuery);
+        return response()->json($bloodPressureQueryResultObj);
     }
 
-    public function create(Request $request)
+    public function create(Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
         $ptUuid = $requestData['data']['ptUuid'];
@@ -41,9 +41,9 @@ class BloodPressureController extends Controller
         return response()->json($insertBloodPressure, 201);
     }
 
-    public function update($serverSideRowUuid, Request $request)
+    public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $requestData = $request->all();
+        $requestData = $pRequest->all();
 
         $timeOfMeasurementInMilliseconds = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliseconds']);
         $bloodPressureDiastolic = $requestData['rowToUpsert']['bloodPressureDiastolic'];
@@ -52,7 +52,7 @@ class BloodPressureController extends Controller
         $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateBloodPressure = DB::statement("UPDATE `sc_vital_signs`.`bloodPressureLevels` SET `bloodPressureDiastolic` = {$bloodPressureDiastolic}, `bloodPressureSystolic` = {$bloodPressureSystolic}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodPressureLevels`.`serverSideRowUuid` = '{$serverSideRowUuid}'");
+        $updateBloodPressure = DB::statement("UPDATE `sc_vital_signs`.`bloodPressureLevels` SET `bloodPressureDiastolic` = {$bloodPressureDiastolic}, `bloodPressureSystolic` = {$bloodPressureSystolic}, `timeOfMeasurementInMilliseconds` = FROM_UNIXTIME({$timeOfMeasurementInMilliseconds}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodPressureLevels`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($updateBloodPressure, 200);
     }
@@ -75,4 +75,4 @@ class BloodPressureController extends Controller
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
     }
-}  
+}

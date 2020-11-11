@@ -9,10 +9,9 @@ use Predis\Autoloader;
 
 \Predis\Autoloader::register();
 
-
 class WaistCircumferenceController extends Controller
 {
-    public function getAllTemporalWaistCircumferences()
+    public function get_all_temporal_waist_circumferences()
     {
         $waistCircumferenceQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, round(UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000) as timeOfMeasurementInMilliseconds FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL order by ROW_START desc'));
 
@@ -21,7 +20,7 @@ class WaistCircumferenceController extends Controller
         return response()->json($waistCircumferenceQueryResultObj);
     }
 
-    public function getOneWaistCircumference($pServerSideRowUuid)
+    public function get_one_waist_circumference($pServerSideRowUuid)
     {
         $waistCircumferenceQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, round(UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000) as timeOfMeasurementInMilliseconds FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
