@@ -29,7 +29,7 @@ import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
-import allFormDefinations from '@/components/def-processors/all-form-definations.js'
+import allFormDefs from '@/components/def-processors/all-form-definations.js'
 
 import { Chart } from 'highcharts-vue'
 
@@ -208,17 +208,17 @@ export default {
     mfCreateSeries(pTableName) {
       // All the 3 conditions are applied sequentially
       if (
-        allFormDefinations[pTableName] &&
-        allFormDefinations[pTableName]['graphObj'] &&
-        allFormDefinations[pTableName]['graphObj'].series
+        allFormDefs[pTableName] &&
+        allFormDefs[pTableName]['graphObj'] &&
+        allFormDefs[pTableName]['graphObj'].series
       ) {
         // Goal : Insert object into the series array. Series array is used by highcharts
 
         let firstTag = null
 
         // There can be multiple series inside a table.
-        for (let i = 0; i < allFormDefinations[pTableName]['graphObj'].series.length; i++) {
-          const fieldName = allFormDefinations[pTableName]['graphObj'].series[i].fieldName
+        for (let i = 0; i < allFormDefs[pTableName]['graphObj'].series.length; i++) {
+          const fieldName = allFormDefs[pTableName]['graphObj'].series[i].fieldName
 
           // There are 2 possibilities this fieldname has been selected in the tag or not.
           // Goal: Only show those series that have been selected in the tag system

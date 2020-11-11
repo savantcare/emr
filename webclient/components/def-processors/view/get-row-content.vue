@@ -1,6 +1,6 @@
 <template>
   <div id="container-for-1-data-row" :style="mfGetBorder()" @mouseover="mOver()" @mouseleave="mLeave()">
-    <div :style="mfGetCssClassNameForEachDataRow(propEntityRow)">
+    <div :style="mfGetCssClassNameForEachDataRow(_entityRow)">
       <span v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
         <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
           <!-- Each field type gets to control how it prints the field name -->
@@ -23,7 +23,7 @@
           <div
             v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
               propFieldDef.fieldNameInDb,
-              propEntityRow.clientSideUniqRowId
+              _entityRow.clientSideUniqRowId
             )"
             :key="item.id"
             v-if="item.selected"
@@ -42,16 +42,16 @@
         </div>
         <!-- Slider field type -->
         <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-          <div v-if="propEntityRow[propFieldDef.fieldNameInDb] > 0">
+          <div v-if="_entityRow[propFieldDef.fieldNameInDb] > 0">
             <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
               <h4>{{ propFieldDef.fieldNameInUi }}</h4>
             </div>
             <div id="field-value-in-db">
-              <div v-if="propEntityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
-              <div v-else-if="propEntityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-              <div v-else-if="propEntityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+              <div v-if="_entityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
+              <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+              <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
               <div v-else>
-                {{ propEntityRow[propFieldDef.fieldNameInDb] }}
+                {{ _entityRow[propFieldDef.fieldNameInDb] }}
               </div>
             </div>
           </div>
@@ -60,21 +60,21 @@
         <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
           <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
           <div id="field-value-in-db">
-            {{ propEntityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+            {{ _entityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
           </div>
         </div>
 
         <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
           <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-          <div id="field-value-in-db">{{ propEntityRow[propFieldDef.fieldNameInDb] | moment }}</div>
+          <div id="field-value-in-db">{{ _entityRow[propFieldDef.fieldNameInDb] | moment }}</div>
         </div>
 
         <!-- Not specified field type -->
         <span v-else id="not-matched-field-type">
           <span v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</span>
           <!-- Goal: skip fields that are null or empty -->
-          <span v-if="propEntityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-            {{ propEntityRow[propFieldDef.fieldNameInDb] }}
+          <span v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+            {{ _entityRow[propFieldDef.fieldNameInDb] }}
           </span>
         </span>
       </span>
@@ -84,9 +84,7 @@
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
       <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
-        <el-button @click="additionalRowAction.executeThisFn(propEntityRow)">{{
-          additionalRowAction.textInUi
-        }}</el-button>
+        <el-button @click="additionalRowAction.executeThisFn(_entityRow)">{{ additionalRowAction.textInUi }}</el-button>
       </span>
 
       <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
@@ -104,9 +102,9 @@
           style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
           plain
           @click="
-            String(propEntityRow.vnRowStateInSession).startsWith(2) && propEntityRow.vnRowStateInSession !== 24751
+            String(_entityRow.vnRowStateInSession).startsWith(2) && _entityRow.vnRowStateInSession !== 24751
               ? mfOpenAddInEditLayer()
-              : mxOpenEditCtInEditLayer(propEntityRow.clientSideUniqRowId)
+              : mxOpenEditCtInEditLayer(_entityRow.clientSideUniqRowId)
           "
           class="el-icon-edit"
         >
@@ -124,7 +122,7 @@
         <el-button
           style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
           plain
-          @click="mfIconDeleteClickedOnChildCard(propEntityRow.clientSideUniqRowId)"
+          @click="mfIconDeleteClickedOnChildCard(_entityRow.clientSideUniqRowId)"
           class="el-icon-circle-close"
         >
         </el-button>
@@ -147,7 +145,7 @@ export default {
       type: Object,
       required: true,
     },
-    propEntityRow: {
+    _entityRow: {
       type: Object,
       required: true,
     },

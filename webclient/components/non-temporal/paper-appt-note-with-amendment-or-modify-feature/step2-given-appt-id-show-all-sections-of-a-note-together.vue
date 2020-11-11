@@ -1,31 +1,31 @@
 <template>
   <div class="A4">
-    <headerPrintSection :_ApptId="propShowNoteForApptId"></headerPrintSection>
+    <headerPrintSection :_apptId="propShowNoteForApptId"></headerPrintSection>
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <agePrintSection :_ApptId="propShowNoteForApptId"> </agePrintSection>
+    <agePrintSection :_apptId="propShowNoteForApptId"> </agePrintSection>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="chief_complaint" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="family_history" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="process_notes" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="reminders" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="recommendations" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="plan_comments" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="miscellaneous_notes" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="service_statements" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="psych_review_of_system" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="past_psych_history" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="medical_review_of_system" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="goals" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="allergies" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="diagnosis" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="screens" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" propEntity="mental_status_exam" />
-    <lockButtonPrintSection :_ApptId="propShowNoteForApptId"></lockButtonPrintSection>
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="chief_complaint" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="family_history" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="process_notes" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="reminders" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="recommendations" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="plan_comments" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="miscellaneous_notes" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="service_statements" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="psych_review_of_system" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="past_psych_history" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="medical_review_of_system" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="goals" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="allergies" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="diagnosis" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="screens" />
+    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="mental_status_exam" />
+    <lockButtonPrintSection :_apptId="propShowNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 
@@ -47,7 +47,7 @@ import medicationsPrintSection from './section-12-medications.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 
-import allFormDefinations from '@/components//def-processors/all-form-definations.js'
+import allFormDefs from '@/components//def-processors/all-form-definations.js'
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 

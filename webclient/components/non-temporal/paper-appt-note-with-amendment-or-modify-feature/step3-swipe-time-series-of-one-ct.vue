@@ -1,31 +1,31 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
-  <!-- @wheel="swipe($event, propEntity)"-->
+  <!-- @wheel="swipe($event, _entity)"-->
   <div class="sc-card">
     <div v-if="timeSeriesMarker < 0">
-      <ctOldValueStructure :_ApptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :propEntity="propEntity">
+      <ctOldValueStructure :_apptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
       </ctOldValueStructure>
     </div>
     <div v-else-if="timeSeriesMarker === 0">
-      <ctPaperNoteStructure :_ApptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :propEntity="propEntity">
+      <ctPaperNoteStructure :_apptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
       </ctPaperNoteStructure>
     </div>
     <div v-else-if="timeSeriesMarker > 0">
       <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
         <!-- First col of the header. This has the Section name -->
         <el-col :span="9" class="sectionHeading">
-          New {{ propEntity }}
+          New {{ _entity }}
           <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
           <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
         </el-col>
       </el-row>
-      <ctAddStructure :_formDef="formDef[propEntity]"></ctAddStructure>
+      <ctAddStructure :_formDef="formDef[_entity]"></ctAddStructure>
     </div>
   </div>
 </template>
 
 <script>
-import allFormDefinations from '@/components//def-processors/all-form-definations.js'
+import allFormDefs from '@/components//def-processors/all-form-definations.js'
 import ctOldValueStructure from '@/components/def-processors/view/router-for-single-ct-time-series.vue'
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 import ctAddStructure from '@/components/def-processors/change/add-form.vue'
@@ -35,7 +35,7 @@ export default {
     return {
       timeSeriesMarker: 0,
       arrowDirection: 0,
-      formDef: allFormDefinations,
+      formDef: allFormDefs,
       lastInvocationOfChangeTimeSeries: 0,
       directionDuringTimeThresold: 0,
     }
@@ -45,7 +45,7 @@ export default {
       type: Number,
       required: true,
     },
-    propEntity: {
+    _entity: {
       type: String,
       required: true,
     },
@@ -118,7 +118,7 @@ export default {
           this.timeSeriesMarker++
           if (this.timeSeriesMarker > 1) this.timeSeriesMarker = 1
           //debugger
-          this.formDef[pEntity] = allFormDefinations[pEntity]
+          this.formDef[pEntity] = allFormDefs[pEntity]
           pEvent.stopPropagation() // without this when there is a back swipe on a larger div, the smaller div below moves up and gets the event and now the smaller div moves forward in time series
         } else if (pEvent.deltaX < 0) {
           this.timeSeriesMarker--

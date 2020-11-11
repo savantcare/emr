@@ -120,7 +120,7 @@
               v-for="entityRow in item[_formDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              <getRowContent :propEntityRow="entityRow" :_formDef="_formDef" :_ApptStatus="item['apptStatus']" />
+              <getRowContent :_entityRow="entityRow" :_formDef="_formDef" :_ApptStatus="item['apptStatus']" />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -196,7 +196,7 @@ export default {
     },
   },
   props: {
-    _ApptId: {
+    _apptId: {
       type: Number,
       required: true,
     },
@@ -209,18 +209,18 @@ export default {
     },
   },
   async mounted() {
-    if (!this._ApptId === 0) {
+    if (!this._apptId === 0) {
       return
     }
-    this.currentApptObj = await clientTblOfAppointments.find(this._ApptId)
+    this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
   },
   computed: {
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
         Possibilities are 1. Both have values 2. Only 1 has value.
-        First goal: Find if _ApptId is same as F1 or F2. If _ApptId == F2 then it is comparison mode. If _ApptId != F2 then for certain I can say _ApptId == F1. _ApptId may or many not be comparison mode.
-        if there is value in F2 then _ApptId is in comparison mode. If F2 is empty then this is single note render mode.
+        First goal: Find if _apptId is same as F1 or F2. If _apptId == F2 then it is comparison mode. If _apptId != F2 then for certain I can say _apptId == F1. _apptId may or many not be comparison mode.
+        if there is value in F2 then _apptId is in comparison mode. If F2 is empty then this is single note render mode.
       */
 
       let secondaryDuringComparisonApptObj = {}
@@ -229,7 +229,7 @@ export default {
       const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
 
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
-      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this._ApptId) {
+      if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this._apptId) {
         // Handle the case when the current ID matches with the second param Need to compare with first
         secondaryDuringComparisonApptObj = clientTblOfAppointments.find(
           printableApptNoteComponentCardObj['firstParameterGivenToComponentBeforeMounting']
@@ -270,7 +270,7 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
-        .where('appointmentId', this._ApptId)
+        .where('appointmentId', this._apptId)
         .where('component', 'reminders')
         .orderBy('ROW_START', 'asc')
         .get()
@@ -291,7 +291,7 @@ export default {
         }
       }
       for (let j = 0; j < arOfAppts.length; j++) {
-        if (arOfAppts[j].clientSideUniqRowId === this._ApptId) {
+        if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
         }
       }

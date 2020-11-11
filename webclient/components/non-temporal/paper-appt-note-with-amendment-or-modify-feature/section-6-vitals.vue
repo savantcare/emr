@@ -5,19 +5,19 @@
       <div class="sectionHeading">Vitals</div>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="weightFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="heightFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="pulseFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="temperatureFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bloodPressureFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bloodSugarFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="weightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="heightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="pulseFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="temperatureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="bloodPressureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="bloodSugarFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
-        :_ApptId="_ApptId"
+        :_apptId="_apptId"
         :_formDef="waistCircumferenceFormDef"
       ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bmiFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="bmiFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
-        :_ApptId="_ApptId"
+        :_apptId="_apptId"
         :_formDef="oxygenSaturationFormDef"
       ></contentDuringApptOfASingleCt>
     </div>
@@ -41,7 +41,7 @@ export default {
     contentDuringApptOfASingleCt,
   },
   props: {
-    _ApptId: {
+    _apptId: {
       type: Number,
       required: true,
     },

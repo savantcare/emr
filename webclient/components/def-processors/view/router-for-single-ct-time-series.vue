@@ -1,7 +1,7 @@
 <template>
   <div>
     <contentDuringApptOfASingleCt
-      :_ApptId="_ApptId"
+      :_apptId="_apptId"
       :_formDef="formDef"
       :arrowDirection="arrowDirection"
     ></contentDuringApptOfASingleCt>
@@ -10,21 +10,21 @@
 
 <script>
 import contentDuringApptOfASingleCt from '@/components/def-processors/view/content-of-a-ct-relative-to-a-appt.vue'
-import allFormDefinations from '@/components//def-processors/all-form-definations.js'
+import allFormDefs from '@/components//def-processors/all-form-definations.js'
 
 export default {
   components: {
     contentDuringApptOfASingleCt,
   },
   props: {
-    _ApptId: {
+    _apptId: {
       type: Number,
       required: true,
     },
     arrowDirection: {
       type: Number,
     },
-    propEntity: {
+    _entity: {
       type: String,
     },
   },
@@ -34,7 +34,7 @@ export default {
     }
   },
   created() {
-    this.formDef = allFormDefinations[this.propEntity]
+    this.formDef = allFormDefs[this._entity]
   },
 }
 </script>

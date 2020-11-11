@@ -26,7 +26,7 @@ import { waistCircumferenceFormDef } from '@/components/temporal/waist-circumfer
 import { bmiFormDef } from '@/components/temporal/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
 import { oxygenSaturationFormDef } from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
 
-const allFormDefinations = {
+const allFormDefs = {
   allergies: allergiesFormDef,
   chief_complaint: chiefComplaintFormDef,
   diagnosis: diagnosisFormDef,
@@ -56,4 +56,4 @@ const allFormDefinations = {
   oxygen_saturation: oxygenSaturationFormDef,
 }
 
-export default allFormDefinations
+export default allFormDefs
