@@ -67,6 +67,10 @@ export default {
       type: Object,
       required: false,
     },
+    currentSlideNumber: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -108,8 +112,8 @@ export default {
       this.runAutoPlay()
     }
 
-    if (this.options.setCurrentSlide) {
-      this.go(this.options.setCurrentSlide)
+    if (this.currentSlideNumber) {
+      this.go(this.currentSlideNumber)
     }
   },
   beforeDestroy() {

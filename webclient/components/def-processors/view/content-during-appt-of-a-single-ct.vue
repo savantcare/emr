@@ -106,6 +106,7 @@
         <vue-horizontal-list
           :items="cfGetEntityValueDuringEachAppt"
           :options="options"
+          :currentSlideNumber="currentSlideNumber"
           class="g2-container-for-all-timeline-boxes"
         >
           <template v-slot:default="{ item }">
@@ -161,6 +162,7 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       OnAndOffSwitchToShowContent: true,
+      currentSlideNumber: 0,
       options: {
         responsive: [
           { end: 576, size: 1 },
@@ -285,7 +287,12 @@ export default {
           arOfAppts.splice(i, 1)
         }
       }
-      console.log(arOfAppts)
+      for (let j = 0; j < arOfAppts.length; j++) {
+        if (arOfAppts[j].clientSideUniqRowId === this.propApptId) {
+          this.currentSlideNumber = j
+        }
+      }
+
       return arOfAppts
     },
 
