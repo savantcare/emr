@@ -139,7 +139,7 @@ export default {
     }
   },
   props: {
-    propComponentName: {
+    _componentName: {
       type: String,
       required: true,
       validator: (value) => Object.keys(clientTbl).includes(value),
