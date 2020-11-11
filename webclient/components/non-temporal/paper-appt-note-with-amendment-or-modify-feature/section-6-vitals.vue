@@ -5,20 +5,20 @@
       <div class="sectionHeading">Vitals</div>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="weightFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="heightFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="pulseFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="temperatureFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bloodPressureFormDef"></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bloodSugarFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="weightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="heightFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="pulseFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="temperatureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bloodPressureFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bloodSugarFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
         :_ApptId="_ApptId"
-        :_FormDef="waistCircumferenceFormDef"
+        :_formDef="waistCircumferenceFormDef"
       ></contentDuringApptOfASingleCt>
-      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_FormDef="bmiFormDef"></contentDuringApptOfASingleCt>
+      <contentDuringApptOfASingleCt :_ApptId="_ApptId" :_formDef="bmiFormDef"></contentDuringApptOfASingleCt>
       <contentDuringApptOfASingleCt
         :_ApptId="_ApptId"
-        :_FormDef="oxygenSaturationFormDef"
+        :_formDef="oxygenSaturationFormDef"
       ></contentDuringApptOfASingleCt>
     </div>
   </el-card>

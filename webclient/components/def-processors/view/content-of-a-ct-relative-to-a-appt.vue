@@ -4,7 +4,7 @@
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading"
-        >History of {{ _FormDef.plural.charAt(0).toUpperCase() + _FormDef.plural.slice(1) }}
+        >History of {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
         <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
         <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
       </el-col>
@@ -24,7 +24,7 @@
                     icon="el-icon-check"
                     style="position: absolute; bottom: 15px; right: 15px"
                     size="mini"
-                    @click="mfSaveAddendum(amendmentData, _FormDef.id)"
+                    @click="mfSaveAddendum(amendmentData, _formDef.id)"
                     circle
                   ></el-button>
                 </div>
@@ -38,11 +38,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_FormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  mfGetArOfDataRows(this.currentApptObj).length < _FormDef.maxNumberOfTemporallyValidRows ||
-                  !_FormDef.maxNumberOfTemporallyValidRows
+                  mfGetArOfDataRows(this.currentApptObj).length < _formDef.maxNumberOfTemporallyValidRows ||
+                  !_formDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"
@@ -101,14 +101,14 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- Using ternary operator for style since some components may not define _FormDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
+        <!-- Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
           :style="
-            _FormDef.styleForEachRowInPaperView
-              ? _FormDef.styleForEachRowInPaperView
+            _formDef.styleForEachRowInPaperView
+              ? _formDef.styleForEachRowInPaperView
               : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
@@ -117,7 +117,7 @@
           <div
             id="each-field-of-data-row"
             :class="'field-type-' + propFieldDef.fieldType"
-            v-for="(propFieldDef, id) in _FormDef.fieldsDef"
+            v-for="(propFieldDef, id) in _formDef.fieldsDef"
             :key="id"
             :style="mfGetCssClassNameForEachDataRow(row)"
             v-if="row[propFieldDef.fieldNameInDb] && row[propFieldDef.fieldNameInDb].toString().length > 0"
@@ -155,7 +155,7 @@
               <!-- Since it is select there will be many options hence need to do a for loop on options -->
               <!-- Since it is View layer I should only show the selected options and not all the options -->
               <div
-                v-for="item in _FormDef.fnGetAllSelectOptionsAndSelectedForAField(
+                v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
                   propFieldDef.fieldNameInDb,
                   row.clientSideUniqRowId
                 )"
@@ -221,7 +221,7 @@
             <div>
               <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
               <el-button-group style="float: right">
-                <div v-for="(additionalRowAction, id) in _FormDef.additionalRowActions" :key="id">
+                <div v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
                   <el-button @click="additionalRowAction.executeThisFn(row)">{{
                     additionalRowAction.textInUi
                   }}</el-button>
@@ -315,7 +315,7 @@ export default {
       type: Number,
       required: true,
     },
-    _FormDef: {
+    _formDef: {
       type: Object,
       required: true,
     },
@@ -403,7 +403,7 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this._FormDef.id
+      const term = 'add ' + this._formDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
@@ -436,11 +436,11 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id]
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

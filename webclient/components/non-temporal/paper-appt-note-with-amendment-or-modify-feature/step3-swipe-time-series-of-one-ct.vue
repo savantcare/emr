@@ -19,7 +19,7 @@
           <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
         </el-col>
       </el-row>
-      <ctAddStructure :_FormDef="formDef[propEntity]"></ctAddStructure>
+      <ctAddStructure :_formDef="formDef[propEntity]"></ctAddStructure>
     </div>
   </div>
 </template>

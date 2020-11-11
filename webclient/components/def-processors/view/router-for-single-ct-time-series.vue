@@ -2,7 +2,7 @@
   <div>
     <contentDuringApptOfASingleCt
       :_ApptId="_ApptId"
-      :_FormDef="formDef"
+      :_formDef="formDef"
       :arrowDirection="arrowDirection"
     ></contentDuringApptOfASingleCt>
   </div>

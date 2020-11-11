@@ -24,12 +24,12 @@ export default {
   methods: {
     mxOpenAddCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: this._FormDef.id,
+        searchTerm: this._formDef.id,
       })
     },
     mxOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
-        searchTerm: this._FormDef.id,
+        searchTerm: this._formDef.id,
       })
     },
     mxOpenDDialog() {
@@ -45,7 +45,7 @@ export default {
       })
         .then(async () => {
           if (this.daSelectedRemForDelete.length > 0) {
-            const status = await clientTbl[this._FormDef.id].fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
+            const status = await clientTbl[this._formDef.id].fnSendMultiDeleteDataToServer(this.daSelectedRemForDelete)
             if (status.success > 0) {
               this.$message({
                 type: 'success',
@@ -66,7 +66,7 @@ export default {
         })
     },
     async mxOpenTrashCanCtInEditLayer() {
-      const deletedRows = await clientTbl[this._FormDef.id].fnGetDeletedRows()
+      const deletedRows = await clientTbl[this._formDef.id].fnGetDeletedRows()
       const arDrawerData = []
       deletedRows.forEach((item) => {
         const arRow = []
@@ -84,7 +84,7 @@ export default {
       })
     },
     mfIconDeleteClickedOnChildCard(pClientDataRowId) {
-      const arResultsFromOrm = clientTbl[this._FormDef.id].find(pClientDataRowId)
+      const arResultsFromOrm = clientTbl[this._formDef.id].find(pClientDataRowId)
 
       this.$prompt(arResultsFromOrm.description, 'Delete reminder', {
         confirmButtonText: 'Delete',
@@ -92,7 +92,7 @@ export default {
         inputPlaceholder: 'Enter delete note',
       })
         .then(async ({ value }) => {
-          const status = await clientTbl[this._FormDef.id].sfSendDeleteDataToServer(
+          const status = await clientTbl[this._formDef.id].sfSendDeleteDataToServer(
             pClientDataRowId,
             arResultsFromOrm.serverSideRowUuid,
             value

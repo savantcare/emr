@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <timeLineView :_FormDef="formDef"></timeLineView>
+  <timeLineView :_formDef="formDef"></timeLineView>
 </template>
 
 <script>

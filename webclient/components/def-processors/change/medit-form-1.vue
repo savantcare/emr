@@ -143,7 +143,7 @@ export default {
   mounted() {
     console.log('In mounted function')
     const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(
-      this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+      this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
     )
     if (resultArFromOrm.length) {
       for (let i = 0; i < resultArFromOrm.length; i++) {

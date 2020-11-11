@@ -44,7 +44,7 @@ On line 164 there us:
  -------
  In temporal/1-/def-processors/change/add-form.vue
 On line 195 there us: 
-      return clientTbl[this._FormDef.id].fnGetNewRowsInEditState()
+      return clientTbl[this._formDef.id].fnGetNewRowsInEditState()
 
     Hence 
     import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'

@@ -1,7 +1,7 @@
 <template>
   <div id="container-for-1-data-row" :style="mfGetBorder()" @mouseover="mOver()" @mouseleave="mLeave()">
     <div :style="mfGetCssClassNameForEachDataRow(propEntityRow)">
-      <span v-for="(propFieldDef, id) in _FormDef.fieldsDef" :key="id">
+      <span v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
         <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
           <!-- Each field type gets to control how it prints the field name -->
           <h3>{{ propFieldDef.fieldNameInUi }}</h3>
@@ -21,7 +21,7 @@
           <!-- Since it is select there will be many options hence need to do a for loop on options -->
           <!-- Since it is View layer I should only show the selected options and not all the options -->
           <div
-            v-for="item in _FormDef.fnGetAllSelectOptionsAndSelectedForAField(
+            v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
               propFieldDef.fieldNameInDb,
               propEntityRow.clientSideUniqRowId
             )"
@@ -83,7 +83,7 @@
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-      <span v-for="(additionalRowAction, id) in _FormDef.additionalRowActions" :key="id">
+      <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
         <el-button @click="additionalRowAction.executeThisFn(propEntityRow)">{{
           additionalRowAction.textInUi
         }}</el-button>
@@ -143,7 +143,7 @@ export default {
     }
   },
   props: {
-    _FormDef: {
+    _formDef: {
       type: Object,
       required: true,
     },
@@ -168,7 +168,7 @@ export default {
       }, 200)
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this._FormDef.id
+      const term = 'add ' + this._formDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
@@ -186,7 +186,7 @@ export default {
           2. When I send a paramter it is like calling a function. Sending the whole data row
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
-      const payload = { searchTerm: 'edit ' + this._FormDef.id, pPropsToGiveToCt: pClientDataRowId }
+      const payload = { searchTerm: 'edit ' + this._formDef.id, pPropsToGiveToCt: pClientDataRowId }
       console.log(payload)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },

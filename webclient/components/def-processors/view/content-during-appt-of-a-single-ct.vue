@@ -4,7 +4,7 @@
     <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading"
-        >{{ _FormDef.plural.charAt(0).toUpperCase() + _FormDef.plural.slice(1) }}
+        >{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
         <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
         <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
       </el-col>
@@ -24,7 +24,7 @@
                     icon="el-icon-check"
                     style="position: absolute; bottom: 15px; right: 15px"
                     size="mini"
-                    @click="mfSaveAddendum(amendmentData, _FormDef.id)"
+                    @click="mfSaveAddendum(amendmentData, _formDef.id)"
                     circle
                   ></el-button>
                 </div>
@@ -38,11 +38,11 @@
             </span>
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_FormDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
                 v-if="
-                  cfGetArOfDataRows.length < _FormDef.maxNumberOfTemporallyValidRows ||
-                  !_FormDef.maxNumberOfTemporallyValidRows
+                  cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
+                  !_formDef.maxNumberOfTemporallyValidRows
                 "
                 class="el-icon-circle-plus-outline"
                 size="mini"
@@ -102,7 +102,7 @@
         -->
 
         <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _FormDef.styleForEachRowInPaperView and for those Ct I want to use default value 
+         Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
          Each appt gets a slide of its own
          -->
 
@@ -117,10 +117,10 @@
             <div
               class="item"
               id="each-row-of-entity-inside-appt"
-              v-for="entityRow in item[_FormDef.id]"
+              v-for="entityRow in item[_formDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
-              <getRowContent :propEntityRow="entityRow" :_FormDef="_FormDef" :_ApptStatus="item['apptStatus']" />
+              <getRowContent :propEntityRow="entityRow" :_formDef="_formDef" :_ApptStatus="item['apptStatus']" />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->
               <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
@@ -200,7 +200,7 @@ export default {
       type: Number,
       required: true,
     },
-    _FormDef: {
+    _formDef: {
       type: Object,
       required: true,
     },
@@ -285,7 +285,7 @@ export default {
         const rows = this.mfGetArOfDataRows(arOfAppts[i])
         //debugger
         if (rows.length > 0) {
-          arOfAppts[i][this._FormDef.id] = rows
+          arOfAppts[i][this._formDef.id] = rows
         } else {
           arOfAppts.splice(i, 1)
         }
@@ -314,12 +314,12 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
         /* for locked appts*/
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id]
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
@@ -343,12 +343,12 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-          this._FormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+          this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
         /* for locked appts*/
-        arOfObjectsFromClientDB = allClientTbls[this._FormDef.id]
+        arOfObjectsFromClientDB = allClientTbls[this._formDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
@@ -365,7 +365,7 @@ export default {
       })
     },
     mfOpenAddInEditLayer() {
-      const term = 'add ' + this._FormDef.id
+      const term = 'add ' + this._formDef.id
       console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
