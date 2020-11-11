@@ -79,7 +79,7 @@
         </span>
       </span>
     </div>
-    <div v-show="mouseOnThisRow" id="row-actions-when-app-is-unlocked" class="row-actions-when-app-is-unlocked">
+    <div v-show="mouseOnThisRow" id="row-actions-when-app-is-unlocked">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
@@ -101,7 +101,7 @@
                   In case of new row created on client during edit do not create a copy.
                   -->
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
           plain
           @click="
             String(propEntityRow.vnRowStateInSession).startsWith(2) && propEntityRow.vnRowStateInSession !== 24751
@@ -113,11 +113,16 @@
         </el-button>
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-        <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover"> </el-button>
+        <el-button
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
+          plain
+          class="el-icon-discover"
+        >
+        </el-button>
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
         <el-button
-          style="padding: 3px; color: #c0c4cc; border: none"
+          style="padding: 3px; color: #c0c4cc; border: none; position: absolute"
           plain
           @click="mfIconDeleteClickedOnChildCard(propEntityRow.clientSideUniqRowId)"
           class="el-icon-circle-close"
@@ -204,7 +209,7 @@ export default {
     mfGetBorder() {
       let string = 'display: grid; grid-template-columns: 2fr 1fr;'
       if (this.mouseOnThisRow === true) {
-        string = string + 'border: 1px solid #ccc; border-radius: 16px'
+        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, 0.1);' /* It is inset to prevent jumping */
       }
       return string
     },

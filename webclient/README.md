@@ -23,3 +23,6 @@ http://jsfiddle.net/XdQ5Y/348/
 
 Scollabar div:
 Use: https://www.npmjs.com/package/vue-scrollto
+
+1. clinical docs vs admin docs
+2. Search anywhere like in epic
