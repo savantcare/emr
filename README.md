@@ -11,6 +11,14 @@
 
 [Demo](http://116.203.134.163/pf/abcd)
 
+Key things to see:
+
+1. Back and forth on a entity
+2. Back and forth on the note
+3. SS and ROS
+4. SC Brain
+5. Add task.
+
 [Documentation](https://savantcare.github.io)
 
 Todo:

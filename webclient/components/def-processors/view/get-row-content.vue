@@ -238,7 +238,7 @@ export default {
     mfGetBorder() {
       let string = 'display: grid; grid-template-columns: 2fr 1fr;'
       if (this.mouseOnThisRow === true) {
-        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, 1);' /* It is inset to prevent jumping */
+        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, .6);' /* It is inset to prevent jumping */
       }
       return string
     },
