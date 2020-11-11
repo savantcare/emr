@@ -1,40 +1,53 @@
 <template>
   <div>
     <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
-    <el-dialog title="Settings" :visible.sync="dIsSettingsDialogVisible" width="30%">
-      <hr />
-      <br />
-      <h3>Slider</h3>
-      <br />
-      <span
-        ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional">Proportional</el-radio>
-        <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant">Equi distant</el-radio></span
-      ><br />
-      <br />
+    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
+      <h3>5 minute tutorial</h3>
+      <el-collapse v-model="activeNames" @change="handleChange">
+        <el-collapse-item title="3 core principles: FET" name="1">
+          1. See the final note. <br />
+          2. Make quick edits to the note. <br />
+          3. See change over time.
+        </el-collapse-item>
+        <el-collapse-item title="Colors:" name="2">
+          Blue: Same as previous note <br />
+          Black: Data changed during that appt <br />
+          Green: Valid data <br />
+          Orange: Data not valid. <br />
+        </el-collapse-item>
+        <br />
+        <h3>Configure</h3>
 
-      <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
-        <el-checkbox label="locked">Locked</el-checkbox>
-        <el-checkbox label="unlocked">Unlocked</el-checkbox>
-        <el-checkbox label="late-cancellation">Late cancellation</el-checkbox>
-        <el-checkbox label="no-show">No show</el-checkbox>
-        <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
-      ><br />
+        <el-collapse-item title="Slider" name="3">
+          <span
+            ><el-radio v-model="dConfigProportionalOrEquiDistant" label="Proportional">Proportional</el-radio>
+            <el-radio v-model="dConfigProportionalOrEquiDistant" label="EquiDistant">Equi distant</el-radio></span
+          ><br />
+          <br />
 
-      <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
-        <el-checkbox label="All providers"></el-checkbox>
-        <el-checkbox label="Only me"></el-checkbox> </el-checkbox-group
-      ><br />
-      <hr />
-      <br />
-      <h3>Font tize</h3>
-      (In percentage)
-      <div class="block">
-        <el-slider v-model="fontSizeValue" :min="0" :max="200" show-input @change="fontSliderChanged"> </el-slider>
-      </div>
-      <br />
-      <hr />
-      <br />
-      <el-checkbox v-model="checked">Invoke tutorial at start</el-checkbox>
+          <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
+            <el-checkbox label="locked">Locked</el-checkbox>
+            <el-checkbox label="unlocked">Unlocked</el-checkbox>
+            <el-checkbox label="late-cancellation">Late cancellation</el-checkbox>
+            <el-checkbox label="no-show">No show</el-checkbox>
+            <el-checkbox label="cancellation">Cancellation</el-checkbox> </el-checkbox-group
+          ><br />
+          <el-checkbox-group v-model="dConfigChecklistOfApptTypesToShow">
+            <el-checkbox label="All providers"></el-checkbox>
+            <el-checkbox label="Only me"></el-checkbox> </el-checkbox-group
+          ><br />
+        </el-collapse-item>
+
+        <el-collapse-item title="Font size" name="4">
+          (In percentage)
+          <div class="block">
+            <el-slider v-model="fontSizeValue" :min="0" :max="200" show-input @change="fontSliderChanged"> </el-slider>
+          </div>
+        </el-collapse-item>
+        <el-collapse-item title="Walkthrough" name="5">
+          <el-checkbox v-model="checked">Invoke walkthrough at start</el-checkbox>
+        </el-collapse-item>
+      </el-collapse>
     </el-dialog>
   </div>
 </template>
@@ -51,6 +64,7 @@ export default {
       dConfigProviderTypesToShow: [],
       checked: true,
       fontSizeValue: null,
+      activeNames: [],
     }
   },
   async mounted() {
@@ -78,6 +92,9 @@ export default {
     handleClickOnSettingsIcon() {
       console.log('setting to true')
       this.dIsSettingsDialogVisible = true
+    },
+    handleChange(val) {
+      console.log(val)
     },
   },
 }
