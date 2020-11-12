@@ -193,7 +193,7 @@ export default {
       obj['--font-size-of-root'] = '20px'
       console.log(obj)
       return obj*/
-      return { '--font-size-of-root': '40px' }
+      return { '--font-size-of-root': '2.5rem' }
     },
   },
   methods: {
