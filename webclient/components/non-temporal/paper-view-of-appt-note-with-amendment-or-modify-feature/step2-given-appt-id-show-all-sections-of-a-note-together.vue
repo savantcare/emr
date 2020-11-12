@@ -14,6 +14,10 @@
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="process_notes" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="reminders" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="recommendations" />
+    <div style="display: grid; grid-template-columns: 1fr 1fr">
+      <div><ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="weight" /></div>
+      <div><ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="height" /></div>
+    </div>
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="plan_comments" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="miscellaneous_notes" />
     <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="service_statements" />
