@@ -1,35 +1,35 @@
 <template>
   <div class="A4">
-    <headerPrintSection :_apptId="propShowNoteForApptId"></headerPrintSection>
+    <headerPrintSection :_apptId="_showNoteForApptId"></headerPrintSection>
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <agePrintSection :_apptId="propShowNoteForApptId"> </agePrintSection>
+    <agePrintSection :_apptId="_showNoteForApptId"> </agePrintSection>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="chief_complaint" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="family_history" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="process_notes" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="reminders" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="recommendations" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="chief_complaint" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="family_history" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="process_notes" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="reminders" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="recommendations" />
     <div style="display: grid; grid-template-columns: 1fr 1fr">
-      <div><ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="weight" /></div>
-      <div><ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="height" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="weight" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="height" /></div>
     </div>
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="plan_comments" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="miscellaneous_notes" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="service_statements" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="psych_review_of_system" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="past_psych_history" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="medical_review_of_system" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="goals" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="allergies" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="diagnosis" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="screens" />
-    <ctTimeSeries :propShowNoteForApptId="propShowNoteForApptId" _entity="mental_status_exam" />
-    <lockButtonPrintSection :_apptId="propShowNoteForApptId"></lockButtonPrintSection>
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="plan_comments" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="miscellaneous_notes" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="service_statements" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="psych_review_of_system" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="past_psych_history" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="medical_review_of_system" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="goals" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="allergies" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="diagnosis" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="screens" />
+    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="mental_status_exam" />
+    <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
     }
   },
   props: {
-    propShowNoteForApptId: {
+    _showNoteForApptId: {
       type: Number,
       required: true,
     },
@@ -96,10 +96,10 @@ export default {
     The parent compone is decide-notes-to-print-and-thier-appt-id*/
 
     // Goal1 -> If no ID has been sent then return
-    if (!this.propShowNoteForApptId) return
+    if (!this._showNoteForApptId) return
 
     // Get appt details from appt table
-    this.patientCurrentApptObj = await clientTblOfAppointments.find(this.propShowNoteForApptId)
+    this.patientCurrentApptObj = await clientTblOfAppointments.find(this._showNoteForApptId)
   },
   computed: {
     cfApptLockDateInHumanReadableFormat() {

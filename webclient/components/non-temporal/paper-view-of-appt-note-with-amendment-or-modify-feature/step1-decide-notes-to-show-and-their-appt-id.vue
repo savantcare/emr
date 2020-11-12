@@ -12,12 +12,12 @@
         <el-row>
           <el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="lowerValueForComparisonClientUniqRowId"
+              :_showNoteForApptId="lowerValueForComparisonClientUniqRowId"
               :key="lowerValueForComparisonClientUniqRowId"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
-              :propShowNoteForApptId="higherValueForComparisonClientUniqRowId"
+              :_showNoteForApptId="higherValueForComparisonClientUniqRowId"
               :key="higherValueForComparisonClientUniqRowId"
           /></el-col>
         </el-row>
@@ -26,7 +26,7 @@
     <!-- Goal: Print a single note -->
     <div v-else>
       <apptNotePrintableView
-        :propShowNoteForApptId="firstNoteForComparisonClientUniqRowId"
+        :_showNoteForApptId="firstNoteForComparisonClientUniqRowId"
         :key="firstNoteForComparisonClientUniqRowId"
       />
     </div>

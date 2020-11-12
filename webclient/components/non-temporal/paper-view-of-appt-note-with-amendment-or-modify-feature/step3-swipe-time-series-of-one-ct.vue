@@ -3,11 +3,11 @@
   <!-- @wheel="swipe($event, _entity)"-->
   <div class="sc-card">
     <div v-if="timeSeriesMarker < 0">
-      <ctOldValueStructure :_apptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
+      <ctOldValueStructure :_apptId="_showNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
       </ctOldValueStructure>
     </div>
     <div v-else-if="timeSeriesMarker === 0">
-      <ctPaperNoteStructure :_apptId="propShowNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
       </ctPaperNoteStructure>
     </div>
     <div v-else-if="timeSeriesMarker > 0">
@@ -41,7 +41,7 @@ export default {
     }
   },
   props: {
-    propShowNoteForApptId: {
+    _showNoteForApptId: {
       type: Number,
       required: true,
     },
