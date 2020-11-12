@@ -40,7 +40,7 @@ import clientTblOfAppointments from '@/components/temporal/appointments/db/clien
 import apptNotePrintableView from '@/components/non-temporal/paper-appt-note-with-amendment-or-modify-feature/step2-given-appt-id-show-all-sections-of-a-note-together.vue'
 
 // smaller sections
-import headerPrintSection from './section-2-header.vue'
+import headerPrintSection from './section-2-header-arrows-name-comparison.vue'
 import agePrintSection from './section-4-age.vue'
 import vitalsPrintSection from './section-6-vitals.vue'
 import medicationsPrintSection from './section-12-medications.vue'
