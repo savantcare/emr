@@ -17,6 +17,10 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr">
       <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="weight" /></div>
       <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="height" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="pulse" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="temperature" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_pressure" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_sugar" /></div>
     </div>
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="plan_comments" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="miscellaneous_notes" />
