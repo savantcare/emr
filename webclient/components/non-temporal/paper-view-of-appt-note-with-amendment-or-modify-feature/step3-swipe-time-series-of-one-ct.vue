@@ -1,25 +1,10 @@
 <!-- Each ct to be seperate and get included here. This file is too big TODO +read -->
 <template>
   <!-- @wheel="swipe($event, _entity)"-->
-  <div class="sc-card">
-    <div v-if="timeSeriesMarker < 0">
-      <ctOldValueStructure :_apptId="_showNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
-      </ctOldValueStructure>
-    </div>
-    <div v-else-if="timeSeriesMarker === 0">
+  <div>
+    <div>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" :arrowDirection="arrowDirection" :_entity="_entity">
       </ctPaperNoteStructure>
-    </div>
-    <div v-else-if="timeSeriesMarker > 0">
-      <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
-        <!-- First col of the header. This has the Section name -->
-        <el-col :span="9" class="sectionHeading">
-          New {{ _entity }}
-          <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
-          <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
-        </el-col>
-      </el-row>
-      <ctAddStructure :_formDef="formDef[_entity]"></ctAddStructure>
     </div>
   </div>
 </template>
@@ -137,7 +122,6 @@ export default {
   margin-top: 1rem !important;
   padding-bottom: 0.1rem !important;
   /* Goal: Have a border only at the bottom of the section header. Do not have  a border at the bottom of each data rows. Or a border at the bottom of the box containing all the data rows */
-  border-bottom: 1px solid rgba(144, 147, 153, 0.1);
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
