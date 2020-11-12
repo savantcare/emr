@@ -1,10 +1,3 @@
-Pirority:
-
-1. the appt date is visible for that i need to slide a little
-2. Icons not coming inside chief complaint on the unlocked appt slide.
-3. In add form the first form button will be "Close" when enter pressed then invoke this action
-4. Increase the font size dynamically.
-
 npm run start-dev
 
 Which CSS pre processor?
