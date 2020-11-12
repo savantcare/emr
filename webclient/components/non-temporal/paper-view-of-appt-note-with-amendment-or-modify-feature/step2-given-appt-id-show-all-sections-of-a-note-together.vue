@@ -58,11 +58,8 @@ import apptNotePrintableView from '@/components/non-temporal/paper-view-of-appt-
 // smaller sections
 import headerPrintSection from './section-2-header-arrows-name-comparison.vue'
 import agePrintSection from './section-4-age.vue'
-import medicationsPrintSection from './section-12-medications.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
-
-import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 
 // Library
 import moment from 'moment'
@@ -92,8 +89,6 @@ export default {
     agePrintSection,
     headerPrintSection,
     lockButtonPrintSection,
-    medicationsPrintSection,
-    ctAddStructure,
     ctPaperNoteStructure,
     ctPaperNoteStructure,
   },
@@ -171,16 +166,6 @@ h3 {
   width: 100%;
   float: none;
   display: flex;
-}
-
-.sectionHeader {
-  margin-top: 1rem !important;
-  padding-bottom: 0.1rem !important;
-  border-bottom: 1px solid #dcdfe6;
-}
-.sectionHeading {
-  font-size: 1rem;
-  color: #606266;
 }
 
 .recommendationsh3:hover .el-icon-edit-outline {
