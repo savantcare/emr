@@ -47,11 +47,9 @@
 </template>
 
 <script>
-import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 
 // init tables
-import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
@@ -60,12 +58,9 @@ import apptNotePrintableView from '@/components/non-temporal/paper-view-of-appt-
 // smaller sections
 import headerPrintSection from './section-2-header-arrows-name-comparison.vue'
 import agePrintSection from './section-4-age.vue'
-import vitalsPrintSection from './section-6-vitals.vue'
 import medicationsPrintSection from './section-12-medications.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
-
-import allFormDefs from '@/components//def-processors/all-form-definations.js'
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
 
@@ -96,7 +91,6 @@ export default {
     apptNotePrintableView,
     agePrintSection,
     headerPrintSection,
-    vitalsPrintSection,
     lockButtonPrintSection,
     medicationsPrintSection,
     ctAddStructure,
