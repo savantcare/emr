@@ -112,15 +112,6 @@ export default {
 </script>
 
 <style scoped>
-/*
-Style architecture:
-
-A4
-H1
-H3
-
-*/
-
 /* Ref:
 https://stackoverflow.com/a/30345808
 https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
@@ -151,53 +142,5 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal5: Give a line break before and after the element */
   display: block;
-}
-
-h1 {
-  margin-top: 1rem;
-  width: 100%;
-  float: none;
-  display: flex;
-}
-
-h3 {
-  border-bottom: 1px solid #dcdfe6;
-  margin-top: 1rem;
-  width: 100%;
-  float: none;
-  display: flex;
-}
-
-.recommendationsh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-  position: absolute;
-}
-
-.medicationsh3:hover .el-icon-edit-outline {
-  display: inline-block !important;
-  position: absolute;
-}
-
-.vitalsh3:hover .el-icon-edit-outline {
-  position: absolute;
-  display: inline-block !important;
-}
-/* Goal: Content that does not fit on A4 one page should go to 2nd page
-Ref:  https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html */
-@media print {
-  .page-break {
-    display: block;
-    page-break-before: always;
-  }
-  size: A4 portrait;
-}
-
-@media print {
-  .noprint {
-    display: none;
-  }
-  .enable-print {
-    display: block;
-  }
 }
 </style>
