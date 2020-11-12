@@ -5,8 +5,8 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 <template>
   <el-row id="TheLeftSideDisplayAreaHeader" type="grid" align="middle">
     <el-col :span="6" class="ml-2" style="display: flex; align-items: center">
-      <span style="font-size: 20px"><ctName form-type="embedded"></ctName></span>
-      <span style="font-size: 14px; margin-left: 6px"><ctAge></ctAge></span>
+      <span style="font-size: 1.25rem"><ctName form-type="embedded"></ctName></span>
+      <span style="font-size: 0.875rem; margin-left: 6px"><ctAge></ctAge></span>
     </el-col>
     <el-col :span="16">
       <ctSlider></ctSlider>

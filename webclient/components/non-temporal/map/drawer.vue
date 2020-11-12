@@ -105,7 +105,7 @@
                     <span>Medication</span>
                   </div>
                   <div style="padding-top: 2px">
-                    <el-tabs :tab-position="'top'" style="font-size: 12px">
+                    <el-tabs :tab-position="'top'" style="font-size: 0.75rem">
                       <el-tab-pane v-for="eachMed in arMedData" :key="eachMed.name" :label="eachMed.label">
                         <!-- <el-row>
                           <el-col :span="7"><div class="med-table-header">Name</div></el-col>
@@ -218,7 +218,7 @@
                     <span>Mental status exam</span>
                   </div>
                   <div style="padding-top: 2px">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
                       <el-tab-pane v-for="eachMse in arMseData" :key="eachMse.name" :label="eachMse.label">
                         <div v-if="eachMse.selectedValues.length > 0">
                           <div v-for="(value, index) in eachMse.selectedValues" :key="index">
@@ -241,7 +241,7 @@
                     <span>Psych Review of Systems</span>
                   </div>
                   <div style="padding-top: 2px">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
                       <el-tab-pane v-for="eachPros in arProsData" :key="eachPros.name" :label="eachPros.label">
                         <div v-if="eachPros.questionAnswers.length > 0">
                           <div
@@ -298,7 +298,7 @@
                     <span>Contacts</span>
                   </div>
                   <div style="padding-top: 2px">
-                    <el-tabs :tab-position="'top'" style="font-size: 12px">
+                    <el-tabs :tab-position="'top'" style="font-size: 0.75rem">
                       <el-tab-pane
                         v-for="eachContactChannel in arContactsData"
                         :key="eachContactChannel.name"
@@ -340,7 +340,7 @@
                     <span>Screening</span>
                   </div>
                   <div style="padding-top: 2px">
-                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 12px">
+                    <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
                       <el-tab-pane v-for="eachScr in arScrData" :key="eachScr.name" :label="eachScr.label">
                         <div v-if="eachScr.questionAnswers.length > 0">
                           <div
@@ -1049,7 +1049,7 @@ export default {
   padding: 10px;
 }
 .map-drawer .el-tabs__item {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .even-row {
   background-color: #ffffff;
@@ -1058,12 +1058,12 @@ export default {
   background-color: #ebeef5;
 }
 .map-grid-content .header {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   border-bottom: 1px solid #aaa;
 }
 .map-drawer .truncate-field {
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 1px;
   cursor: default;
   white-space: nowrap;
@@ -1071,7 +1071,7 @@ export default {
   text-overflow: ellipsis;
 }
 .map-grid-content .map-item-row {
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 3px;
   cursor: default;
   white-space: nowrap;
@@ -1088,7 +1088,7 @@ export default {
   background-color: #e3e3f8;
 }
 .map-grid-content .map-tree-item .el-tree-node__label {
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 2px;
 }
 .map-drawer .ans-elm {

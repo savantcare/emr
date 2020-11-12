@@ -33,7 +33,7 @@
         <div style="margin: 5px 0">
           {{ row.description }}
           <br />
-          <span style="font-size: 10px">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
+          <span style="font-size: 0.625rem">Added by {{ row.addedBy }} at {{ row.ROW_START | moment }}</span>
         </div>
       </div>
     </div>

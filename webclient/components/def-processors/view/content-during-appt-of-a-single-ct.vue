@@ -143,7 +143,7 @@
           <div style="margin: 5px 0">
             {{ entityRow.description }}
             <br />
-            <span style="font-size: 10px">Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span>
+            <span style="font-size: 0.625rem">Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span>
           </div>
         </div>
       </div>

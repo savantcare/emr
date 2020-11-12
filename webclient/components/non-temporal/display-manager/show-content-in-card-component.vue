@@ -79,7 +79,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
-      <span class="helpMessageCardInHeader" style="font-size: 10px; display: none"
+      <span class="helpMessageCardInHeader" style="font-size: 0.625rem; display: none"
         >Click to {{ this.defaultActionDescription }}</span
       >
       <el-button-group style="float: right; display: none">
@@ -394,7 +394,7 @@ When you look in chrome developer tools you will see that "s-css-class-outer-mos
 
 /* Goal: Design for socket messege container */
 .sc-individual-socket-messege-container {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #67c23a;
   position: absolute;
   font-weight: bolder;
