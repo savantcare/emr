@@ -150,6 +150,8 @@
 
 <script>
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+// Library
+import moment from 'moment'
 
 export default {
   data() {
@@ -171,6 +173,11 @@ export default {
     },
     _apptStartMilliSecondsOnCalendar: {
       required: true,
+    },
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
   },
   methods: {
