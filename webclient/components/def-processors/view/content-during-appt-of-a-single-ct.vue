@@ -5,8 +5,6 @@
       <!-- First col of the header. This has the Section name -->
       <el-col :span="9" class="sectionHeading"
         >{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
-        <i v-show="arrowDirection < -1" class="el-icon-arrow-left" style="color: blue"></i>
-        <i v-show="arrowDirection > 1" class="el-icon-arrow-right" style="color: blue"></i>
       </el-col>
       <!-- 2nd col of the header. This has the header action buttons -->
       <el-col :span="12"
@@ -143,7 +141,9 @@
           <div style="margin: 5px 0">
             {{ entityRow.description }}
             <br />
-            <span style="font-size: 0.625rem">Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span>
+            <span style="font-size: 0.625rem"
+              >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
+            >
           </div>
         </div>
       </div>
@@ -210,9 +210,6 @@ export default {
     _formDef: {
       type: Object,
       required: true,
-    },
-    arrowDirection: {
-      type: Number,
     },
   },
   async mounted() {
