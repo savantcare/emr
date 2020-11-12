@@ -8,7 +8,7 @@
             when go from Layer1LeftSide to layer1RightSide the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
-  <div :style="sendCssVariablesForRootFontSizeToStyleSheet">
+  <div :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
     <!-- GOAL1: Initialize the keyboard and mouse controls -->
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
@@ -186,14 +186,19 @@ export default {
       return false
     },
 
-    sendCssVariablesForRootFontSizeToStyleSheet() {
-      // Is this needed since the user can change font size using the browser?
-      /*let obj = {}
+    cfSendFontSizeCustomizedByUserInPercentageToHtml(){
+      var font_size_of_root = '100%'
+      const font_size_customized_by_user_in_percentage = clientSideTableOfCommonForAllComponents.find('font-size-customized-by-user-value-in-percentage')
 
-      obj['--font-size-of-root'] = '20px'
-      console.log(obj)
-      return obj*/
-      return { '--font-size-of-root': '2.5rem' }
+      if (font_size_customized_by_user_in_percentage) {
+        font_size_of_root = font_size_customized_by_user_in_percentage['fieldValue'] + '%'
+      }
+      
+      /**
+       * Ref: https://stackoverflow.com/questions/48172814/how-to-compute-styles-on-body-or-html-using-vue-js
+       */
+      
+      document.querySelector('html').style.fontSize = font_size_of_root;
     },
   },
   methods: {
@@ -214,18 +219,35 @@ export default {
 </script>
 
 <style>
-:root {
+/**
+  :root font-size css was conflicting with html font-size percentage css.
+
+  I have removed the following css
+*/
+/* :root {
   font-size: var(--font-size-of-root) !important;
-  /*font-size: 30px !important; */
-}
+} */
 
 /*
 Some font-size css was coming from element-io library file 
 - /gt/emr/webclient/node_modules/element-ui/lib/theme-chalk/index.css
 
 I have write the below css to overright the default font-size given in library file 
+
+convert pixel to rem:
+Ref: https://www.ninjaunits.com/converters/pixels/pixels-rem/
 */
-.el-tabs__item, .el-input, input {
+.el-tabs__item, .el-input, input, button {
   font-size: 0.875rem;
+}
+.el-collapse-item__header, .el-collapse-item__content {
+  font-size: 0.8125rem;
+}
+
+/**
+I have added the following css because if we set font-size=200% then v-tour popup width becomes bigger than page width
+*/
+.v-tour .el-card__body {
+    max-width: 600px;
 }
 </style>
