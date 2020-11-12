@@ -21,6 +21,9 @@
       <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="temperature" /></div>
       <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_pressure" /></div>
       <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_sugar" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="bmi" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
+      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="waist_circumference" /></div>
     </div>
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="plan_comments" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="miscellaneous_notes" />
