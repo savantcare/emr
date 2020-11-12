@@ -44,14 +44,14 @@ export default {}
     'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 0.875rem;
   color: #35495e;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 0.75rem;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;

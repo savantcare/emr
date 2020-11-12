@@ -314,6 +314,6 @@ export default {
 span.api-response-message {
   padding: 0px 8px 3px 8px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 </style>

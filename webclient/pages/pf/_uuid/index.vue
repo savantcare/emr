@@ -193,7 +193,7 @@ export default {
       obj['--font-size-of-root'] = '20px'
       console.log(obj)
       return obj*/
-      return { '--font-size-of-root': '40px' }
+      return { '--font-size-of-root': '2.5rem' }
     },
   },
   methods: {
@@ -217,5 +217,15 @@ export default {
 :root {
   font-size: var(--font-size-of-root) !important;
   /*font-size: 30px !important; */
+}
+
+/*
+Some font-size css was coming from element-io library file 
+- /gt/emr/webclient/node_modules/element-ui/lib/theme-chalk/index.css
+
+I have write the below css to overright the default font-size given in library file 
+*/
+.el-tabs__item, .el-input, input {
+  font-size: 0.875rem;
 }
 </style>
