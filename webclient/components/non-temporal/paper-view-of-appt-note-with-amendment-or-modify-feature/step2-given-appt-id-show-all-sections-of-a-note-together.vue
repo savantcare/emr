@@ -9,45 +9,46 @@
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="chief_complaint" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="family_history" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="process_notes" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="reminders" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="recommendations" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
 
     <el-collapse>
       <el-collapse-item title="Vitals" name="1">
         <div style="display: grid; grid-template-columns: 1fr 1fr">
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="weight" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="height" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="pulse" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="temperature" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_pressure" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_sugar" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="bmi" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
-          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="waist_circumference" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
+          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" /></div>
         </div>
       </el-collapse-item>
     </el-collapse>
 
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="plan_comments" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="miscellaneous_notes" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="service_statements" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="psych_review_of_system" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="past_psych_history" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="medical_review_of_system" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="goals" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="allergies" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="diagnosis" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="screens" />
-    <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="mental_status_exam" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
     <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 
 <script>
 import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
+import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 
 // init tables
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
@@ -67,8 +68,6 @@ import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 import allFormDefs from '@/components//def-processors/all-form-definations.js'
 
 import ctAddStructure from '@/components//def-processors/change/add-form.vue'
-
-import ctTimeSeries from './step3-swipe-time-series-of-one-ct.vue'
 
 // Library
 import moment from 'moment'
@@ -101,7 +100,8 @@ export default {
     lockButtonPrintSection,
     medicationsPrintSection,
     ctAddStructure,
-    ctTimeSeries,
+    ctPaperNoteStructure,
+    ctPaperNoteStructure,
   },
 
   async created() {
