@@ -1,79 +1,70 @@
 <template>
-  <div>
-    <!-- Section 1/2: This is a single row with 2 columns. The 1st col is the Heading and 2nd col are the buttons -->
-    <el-row type="flex" justify="left" class="header3 sectionHeader" style="padding: 0rem; margin: 0rem">
-      <!-- First col of the header. This has the Section name -->
-      <el-col :span="9" class="sectionHeading"
-        >{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
-      </el-col>
-      <!-- 2nd col of the header. This has the header action buttons -->
-      <el-col :span="12"
-        ><div class="grid-content">
-          <!-- Case 1/2: When this appt is locked. This decides what header action buttons to show when the appt is locked -->
-          <el-button-group style="float: left; display: none">
-            <span v-if="currentApptObj['apptStatus'] === 'locked'">
-              <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-                <div style="text-align: right; margin: 0">
-                  <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-                  <!-- Amendment icon -->
-                  <el-button
-                    v-if="amendmentData.length > 0"
-                    type="success"
-                    icon="el-icon-check"
-                    style="position: absolute; bottom: 15px; right: 15px"
-                    size="mini"
-                    @click="mfSaveAddendum(amendmentData, _formDef.id)"
-                    circle
-                  ></el-button>
-                </div>
+  <el-collapse>
+    <el-collapse-item name="1">
+      <template slot="title">
+        {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
+        <el-button-group>
+          <span v-if="currentApptObj['apptStatus'] === 'locked'">
+            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+              <div style="text-align: right; margin: 0">
+                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                <!-- Amendment icon -->
                 <el-button
-                  slot="reference"
-                  class="el-icon-edit-outline"
+                  v-if="amendmentData.length > 0"
+                  type="success"
+                  icon="el-icon-check"
+                  style="position: absolute; bottom: 15px; right: 15px"
                   size="mini"
-                  style="padding: 3px; color: #c0c4cc; border: none"
-                />
-              </el-popover>
-            </span>
-            <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
-            <span v-else>
-              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+                  @click="mfSaveAddendum(amendmentData, _formDef.id)"
+                  circle
+                ></el-button>
+              </div>
               <el-button
-                v-if="
-                  cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
-                  !_formDef.maxNumberOfTemporallyValidRows
-                "
-                class="el-icon-circle-plus-outline"
+                slot="reference"
+                class="el-icon-edit-outline"
                 size="mini"
-                @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
-              ></el-button>
-              <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
-              <el-button
-                v-if="cfGetArOfDataRows.length > 1"
-                class="el-icon-money"
-                size="mini"
-                @click="mfOpenMultiEditCtInEditLayer"
-                style="padding: 3px; color: #c0c4cc; border: none"
-              ></el-button>
-            </span>
-            <!-- Minimize or maximize. This appears if appt is locked or unlocked -->
+              />
+            </el-popover>
+          </span>
+          <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
+          <span v-else>
+            <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
             <el-button
-              v-if="cfGetArOfDataRows.length > 0"
-              :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
+              v-if="
+                cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
+                !_formDef.maxNumberOfTemporallyValidRows
+              "
+              class="el-icon-circle-plus-outline"
               size="mini"
-              @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
+              @click="mfOpenAddInEditLayer"
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
-          </el-button-group>
-        </div>
-      </el-col>
-    </el-row>
-    <!-- Section 2/2: This starts after the header ends -->
-    <div :style="cfGetDataRowStyle">
-      <!-- Goal: Only do this if this section has not been minimized -->
-      <div v-if="OnAndOffSwitchToShowContent">
-        <!-- This is for each data row -->
-        <!-- Design: 
+            <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
+            <el-button
+              v-if="cfGetArOfDataRows.length > 1"
+              class="el-icon-money"
+              size="mini"
+              @click="mfOpenMultiEditCtInEditLayer"
+              style="padding: 3px; color: #c0c4cc; border: none"
+            ></el-button>
+          </span>
+          <!-- Minimize or maximize. This appears if appt is locked or unlocked -->
+          <el-button
+            v-if="cfGetArOfDataRows.length > 0"
+            :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
+            size="mini"
+            @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
+            style="padding: 3px; color: #c0c4cc; border: none"
+          ></el-button>
+        </el-button-group>
+      </template>
+      <!-- Section 2/2: This starts after the header ends -->
+      <div :style="cfGetDataRowStyle">
+        <!-- Goal: Only do this if this section has not been minimized -->
+        <div v-if="OnAndOffSwitchToShowContent">
+          <!-- This is for each data row -->
+          <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
@@ -99,56 +90,57 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
+          <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
          Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
          Each appt gets a slide of its own
          -->
 
-        <vue-horizontal-list
-          :items="cfGetEntityValueDuringEachAppt"
-          :options="options"
-          :currentSlideNumber="currentSlideNumber"
-          class="g2-container-for-all-timeline-boxes"
-        >
-          <template v-slot:default="{ item }">
-            <div v-if="currentApptObj.apptStartMilliSecondsOnCalendar !== item.apptStartMilliSecondsOnCalendar">
-              Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
+          <vue-horizontal-list
+            :items="cfGetEntityValueDuringEachAppt"
+            :options="options"
+            :currentSlideNumber="currentSlideNumber"
+            class="g2-container-for-all-timeline-boxes"
+          >
+            <template v-slot:default="{ item }">
+              <div v-if="currentApptObj.apptStartMilliSecondsOnCalendar !== item.apptStartMilliSecondsOnCalendar">
+                Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
+              </div>
+              <div
+                class="item"
+                id="each-row-of-entity-inside-appt"
+                v-for="entityRow in item[_formDef.id]"
+                :key="entityRow.clientSideUniqRowId"
+              >
+                <getRowContent
+                  :_entityRow="entityRow"
+                  :_formDef="_formDef"
+                  :_ApptStatus="item['apptStatus']"
+                  :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
+                />
+                <!-- end of each-row-of-entity -->
+                <!-- This is for action associated with each row -->
+                <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+                <!-- Case 1/2: When this appt is locked what row actions to show-->
+              </div>
+              <!-- end of actions of each row -->
+            </template>
+          </vue-horizontal-list>
+        </div>
+        <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
+          <h4>Addendum:</h4>
+          <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
+            <div style="margin: 5px 0">
+              {{ entityRow.description }}
+              <br />
+              <span style="font-size: 0.625rem"
+                >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
+              >
             </div>
-            <div
-              class="item"
-              id="each-row-of-entity-inside-appt"
-              v-for="entityRow in item[_formDef.id]"
-              :key="entityRow.clientSideUniqRowId"
-            >
-              <getRowContent
-                :_entityRow="entityRow"
-                :_formDef="_formDef"
-                :_ApptStatus="item['apptStatus']"
-                :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
-              />
-              <!-- end of each-row-of-entity -->
-              <!-- This is for action associated with each row -->
-              <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-              <!-- Case 1/2: When this appt is locked what row actions to show-->
-            </div>
-            <!-- end of actions of each row -->
-          </template>
-        </vue-horizontal-list>
-      </div>
-      <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
-        <h4>Addendum:</h4>
-        <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
-          <div style="margin: 5px 0">
-            {{ entityRow.description }}
-            <br />
-            <span style="font-size: 0.625rem"
-              >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
-            >
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </el-collapse-item>
+  </el-collapse>
 </template>
 
 <script>
