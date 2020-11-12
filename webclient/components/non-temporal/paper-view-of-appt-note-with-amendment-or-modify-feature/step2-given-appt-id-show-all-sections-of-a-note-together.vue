@@ -14,17 +14,23 @@
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="process_notes" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="reminders" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="recommendations" />
-    <div style="display: grid; grid-template-columns: 1fr 1fr">
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="weight" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="height" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="pulse" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="temperature" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_pressure" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_sugar" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="bmi" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
-      <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="waist_circumference" /></div>
-    </div>
+
+    <el-collapse>
+      <el-collapse-item title="Vitals" name="1">
+        <div style="display: grid; grid-template-columns: 1fr 1fr">
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="weight" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="height" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="pulse" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="temperature" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_pressure" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="blood_sugar" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="bmi" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
+          <div><ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="waist_circumference" /></div>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="plan_comments" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="miscellaneous_notes" />
     <ctTimeSeries :_showNoteForApptId="_showNoteForApptId" _entity="service_statements" />
