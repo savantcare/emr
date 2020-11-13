@@ -48,6 +48,11 @@ Pirority:
 
 1. the appt date is visible for that i need to slide a little
 2. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
-3. Increase the font size dynamically.
-4. Internally change px to rem everywhere.
-5. Father added on Oct3rd. Mother added on Nov 11th. Mother also shown on Oct3rd slide.
+3. Internally change px to rem everywhere.
+4. Father added on Oct3rd. Mother added on Nov 11th. Mother also shown on Oct3rd slide.
+5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
+6. Protect against tab closed before "Reviewed lock the note" is clicked https://github.com/championswimmer/vuex-persist
+7. Patient timeline: https://jinfang134.github.io/vue-pipeline/
+8. Top header appt slider / search / code / timeline -> expandable https://stackoverflow.com/questions/58100158/how-to-use-vue-transition-to-expand-and-shrink-a-div
+9. Search in top header using https://theoxiong.github.io/vue-search-panel/
+10. Put page in full screen using https://mirari.cc/vue-fullscreen/
