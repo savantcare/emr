@@ -1,9 +1,9 @@
 <template>
   <div class="A4">
-    <headerPrintSection :_apptId="_showNoteForApptId"></headerPrintSection>
+    <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <agePrintSection :_apptId="_showNoteForApptId"> </agePrintSection>
+    <agePaperNote :_apptId="_showNoteForApptId"> </agePaperNote>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
@@ -56,8 +56,8 @@ import clientTblOfAppointments from '@/components/temporal/appointments/db/clien
 import apptNotePrintableView from '@/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/step2-a4-note-for-appt-id.vue'
 
 // smaller sections
-import headerPrintSection from './section-2-header-arrows-name-comparison.vue'
-import agePrintSection from './section-4-age.vue'
+import headerPaperNote from './section-2-header-arrows-name-comparison.vue'
+import agePaperNote from './section-4-age.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 
@@ -86,8 +86,8 @@ export default {
   },
   components: {
     apptNotePrintableView,
-    agePrintSection,
-    headerPrintSection,
+    agePaperNote,
+    headerPaperNote,
     lockButtonPrintSection,
     ctPaperNoteStructure,
     ctPaperNoteStructure,
