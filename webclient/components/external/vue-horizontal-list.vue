@@ -103,7 +103,7 @@ export default {
     }
 
     // Added a simple SSR fix, need to look into it for optimization in the future
-    require('smoothscroll-polyfill').polyfill()
+    //require('smoothscroll-polyfill').polyfill()
 
     this.$resize()
     window.addEventListener('resize', this.$resize)

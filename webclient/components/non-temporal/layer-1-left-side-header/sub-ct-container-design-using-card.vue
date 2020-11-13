@@ -13,6 +13,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <ctSettings></ctSettings>
       </el-col>
     </el-card>
+    <ctAccord></ctAccord>
   </div>
 </template>
 
@@ -23,8 +24,11 @@ import ctSlider from './time-series-of-appointments-component-made-with-vue-slid
 import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 
+import ctAccord from '@/components/external/vue-horizontal-collapse/HorizontalCollapse.vue'
+//
+
 export default {
-  components: { ctSlider, ctSettings },
+  components: { ctSlider, ctSettings, ctAccord },
 }
 </script>
 
