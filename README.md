@@ -52,6 +52,8 @@ Pirority:
 4. Internally change px to rem everywhere.
 5. Father added on Oct3rd. Mother added on Nov 11th. Mother also shown on Oct3rd slide.
 6. Coding
+   https://codepen.io/chillco/pen/BaaXYBO
+   https://codepen.io/sustained/pen/Rwbdgob
 7. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
 8. Protect against tab closed before "Reviewed lock the note" is clicked https://github.com/championswimmer/vuex-persist
 9. Patient timeline: https://jinfang134.github.io/vue-pipeline/
