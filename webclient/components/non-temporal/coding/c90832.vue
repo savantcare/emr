@@ -1,9 +1,11 @@
 <template>
   <div>
-    <el-card :style="{ 'background-color': bgColor }"
+    <el-card :style="status ? '' : 'background-color:#C0C4CC'"
       ><div :style="{ 'text-decoration': textDecorationMain }">90832</div>
 
-      <div :style="{ 'text-decoration': textDecorationC1 }">1. Billing duration > 15 and less then 37</div>
+      <div :style="{ 'text-decoration': textDecorationC1 }">
+        1. Billing duration > 15 and less then 37 <span v-if="statusC2">&check;</span>
+      </div>
       <div :style="{ 'text-decoration': textDecorationC2 }">
         2. Therapy only appt <span v-if="statusC2">&check;</span>
       </div>
