@@ -11,7 +11,7 @@
           </span>
         </div>
 
-        <div style="border-style: dashed; border-width: 1px">
+        <div style="border-style: dashed; border-width: 1px; text-align: center">
           <span :class="statusC3 ? '' : 'strike'">
             3. Billing duration: Greater then 9 min
             <transition name="fade">
@@ -20,7 +20,7 @@
           </span>
         </div>
 
-        <div style="border-style: dashed; border-width: 1px">
+        <div style="border-style: dashed; border-width: 1px; text-align: center">
           <span :class="statusC2 ? '' : 'strike'">
             2. This is followup appt
             <transition name="fade">
@@ -28,7 +28,7 @@
             >
           </span>
         </div>
-        <div style="border-style: dashed; border-width: 1px">
+        <div style="border-style: dashed; border-width: 1px; text-align: center">
           <span :class="statusC1 ? '' : 'strike'">
             1. Medical appt
             <transition name="fade">
