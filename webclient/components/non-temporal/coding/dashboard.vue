@@ -47,6 +47,14 @@
               <span class="demonstration">Elements of psych review of systems</span>
               <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
             </div>
+            <div class="block">
+              <span class="demonstration">Vitals?</span>
+              <el-checkbox v-model="features.vitals"></el-checkbox>
+            </div>
+            <div class="block">
+              <span class="demonstration">Mental status exam</span>
+              <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
+            </div>
           </el-card>
           <el-card> Automated </el-card>
         </div>

@@ -14,6 +14,9 @@
       <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
         3. Psych ROS: Complete <span v-if="statusC3">&check;</span>
       </div>
+      <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
+        4. Vitals: Complete <span v-if="statusC3">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -35,8 +38,11 @@ export default {
     statusC3() {
       return this.features.elementsOfPsychReviewOfSystems > 14
     },
+    statusC4() {
+      return this.features.vitals === true
+    },
     status() {
-      return this.statusC1 && this.statusC2 && this.statusC3
+      return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4
     },
   },
 }
