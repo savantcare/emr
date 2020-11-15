@@ -12,7 +12,7 @@
         2. Medical appt <span v-if="statusC2">&check;</span>
       </div>
       <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
-        2. Psych ROS: 2 to 9 <span v-if="statusC3">&check;</span>
+        3. Psych ROS: 2 to 9 <span v-if="statusC3">&check;</span>
       </div>
     </el-card>
   </div>
