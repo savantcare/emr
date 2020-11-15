@@ -32,9 +32,7 @@
           </el-card>
         </div>
         <div>
-          <el-card> Human </el-card>
           <el-card>
-            Transition
             <div class="block">
               <span class="demonstration">Billing Duration</span>
               <el-slider v-model="features.billingDuration"></el-slider>
@@ -85,7 +83,6 @@
               <el-checkbox v-model="features.showDetails"></el-checkbox>
             </div>
           </el-card>
-          <el-card> Automated </el-card>
         </div>
       </div>
     </el-dialog>

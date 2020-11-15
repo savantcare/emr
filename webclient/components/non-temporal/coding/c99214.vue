@@ -48,7 +48,7 @@ export default {
       return this.features.mentalStatusExam > 8
     },
     statusC5() {
-      return this.features.itIsIntakeAppt === false
+      return !this.features.itIsIntakeAppt
     },
     statusC6() {
       return this.features.pphx || this.features.shx || this.features.fhx
