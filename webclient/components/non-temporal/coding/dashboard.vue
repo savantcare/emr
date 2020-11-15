@@ -39,21 +39,45 @@
               <span class="demonstration">Billing Duration</span>
               <el-slider v-model="features.billingDuration"></el-slider>
             </div>
+            <el-divider></el-divider>
             <div class="block">
               <span class="demonstration">Was is it a therapy only appointment</span>
               <el-checkbox v-model="features.isItTherapyOnlyAppt"></el-checkbox>
             </div>
+            <el-divider></el-divider>
             <div class="block">
               <span class="demonstration">Elements of psych review of systems</span>
               <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
             </div>
+            <el-divider></el-divider>
             <div class="block">
               <span class="demonstration">Vitals?</span>
               <el-checkbox v-model="features.vitals"></el-checkbox>
             </div>
+            <el-divider></el-divider>
             <div class="block">
               <span class="demonstration">Mental status exam</span>
               <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Intake?</span>
+              <el-checkbox v-model="features.ItIsIntakeAppt"></el-checkbox>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Past psych history?</span>
+              <el-checkbox v-model="features.pphx"></el-checkbox>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Social history?</span>
+              <el-checkbox v-model="features.shx"></el-checkbox>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Family history?</span>
+              <el-checkbox v-model="features.fhx"></el-checkbox>
             </div>
           </el-card>
           <el-card> Automated </el-card>
