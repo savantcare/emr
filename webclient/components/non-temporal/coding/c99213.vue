@@ -11,6 +11,9 @@
       <div :style="statusC2 ? '' : 'text-decoration: line-through dotted red'">
         2. Medical appt <span v-if="statusC2">&check;</span>
       </div>
+      <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
+        3. Mental status exam: 6 elements <span v-if="statusC3">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -29,8 +32,12 @@ export default {
     statusC2() {
       return this.features.isItTherapyOnlyAppt !== true
     },
+    statusC3() {
+      return this.features.mentalStatusExam === 6
+    },
+
     status() {
-      return this.statusC1 && this.statusC2
+      return this.statusC1 && this.statusC2 && this.statusC3
     },
   },
 }

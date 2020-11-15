@@ -15,7 +15,10 @@
         3. Psych ROS: Complete <span v-if="statusC3">&check;</span>
       </div>
       <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
-        4. Vitals: Complete <span v-if="statusC3">&check;</span>
+        4. Vitals: Complete <span v-if="statusC4">&check;</span>
+      </div>
+      <div :style="statusC5 ? '' : 'text-decoration: line-through dotted red'">
+        5. Mental status exam: Complete <span v-if="statusC5">&check;</span>
       </div>
     </el-card>
   </div>
@@ -40,6 +43,9 @@ export default {
     },
     statusC4() {
       return this.features.vitals === true
+    },
+    statusC5() {
+      return this.features.mentalStatusExam === 15
     },
     status() {
       return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4
