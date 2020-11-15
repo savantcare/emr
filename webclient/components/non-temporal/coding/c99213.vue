@@ -1,18 +1,18 @@
 <template>
   <div>
-    <el-card
+    <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
       ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
         99213<span v-if="status">&check;</span>
       </div>
 
       <div :style="statusC1 ? '' : 'text-decoration: line-through dotted red'">
-        1. Billing duration = 15 <span v-if="statusC1">&check;</span>
+        1. Billing duration greater then 14 mins <span v-if="statusC1">&check;</span>
       </div>
       <div :style="statusC2 ? '' : 'text-decoration: line-through dotted red'">
         2. Medical appt <span v-if="statusC2">&check;</span>
       </div>
       <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
-        3. Mental status exam: 6 elements <span v-if="statusC3">&check;</span>
+        3. Mental status exam: > 5 elements <span v-if="statusC3">&check;</span>
       </div>
       <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
         4. This is followup appt <span v-if="statusC4">&check;</span>
@@ -30,13 +30,13 @@ export default {
   },
   computed: {
     statusC1() {
-      return this.features.billingDuration === 15
+      return this.features.billingDuration > 14
     },
     statusC2() {
       return this.features.isItTherapyOnlyAppt !== true
     },
     statusC3() {
-      return this.features.mentalStatusExam === 6
+      return this.features.mentalStatusExam > 5
     },
     statusC4() {
       return this.features.itIsIntakeAppt !== true

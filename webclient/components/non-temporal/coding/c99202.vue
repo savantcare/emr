@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card
+    <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
       ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
         99202<span v-if="status">&check;</span>
       </div>

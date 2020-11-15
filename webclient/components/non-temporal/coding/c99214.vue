@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card
+    <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
       ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
         99214<span v-if="status">&check;</span>
       </div>
@@ -15,7 +15,7 @@
         3. Psych ROS: 2 to 9 <span v-if="statusC3">&check;</span>
       </div>
       <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
-        4. Mental status exam: 9 elements <span v-if="statusC4">&check;</span>
+        4. Mental status exam: > 8 elements <span v-if="statusC4">&check;</span>
       </div>
       <div :style="statusC5 ? '' : 'text-decoration: line-through dotted red'">
         5. This is followup appt <span v-if="statusC5">&check;</span>
@@ -45,7 +45,7 @@ export default {
       return this.features.elementsOfPsychReviewOfSystems > 1 && this.features.elementsOfPsychReviewOfSystems < 10
     },
     statusC4() {
-      return this.features.mentalStatusExam === 9
+      return this.features.mentalStatusExam > 8
     },
     statusC5() {
       return this.features.itIsIntakeAppt === false
