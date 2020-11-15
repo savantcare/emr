@@ -4,7 +4,8 @@
       ><div :style="status ? '' : 'text-decoration: line-through red'">
         99211<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
-      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">1. Never used</div>
+      <span :class="statusC1 ? '' : 'strike'"> 1. Never used </span>
+      <br />
     </el-card>
   </div>
 </template>
