@@ -163,13 +163,14 @@ export default {
 @keyframes strike {
   0% {
     width: 0;
-    background: #f56c6c;
+    background: red;
     height: 2px;
   }
   100% {
     width: 100%;
     background: #e6a23c;
     height: 2px;
+    opacity: 75%;
   }
 }
 .strike {
@@ -198,7 +199,7 @@ export default {
   left: -3%;
   width: 0;
   height: 10px;
-  opacity: 50%;
+  opacity: 25%;
   transform: translateY(-50%);
   background: repeat-x
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAKAQMAAAByjsdvAAAABlBMVEUAAADdMzNrjRuKAAAAAXRSTlMAQObYZgAAADdJREFUCNdj+MMABP8ZGCQY/h9g+MHw/AHzDwbGD+w/GBhq6h8wMNj/b2BgkP8HVMMPUsn+gQEAsTkQNRVnI4cAAAAASUVORK5CYII=);
