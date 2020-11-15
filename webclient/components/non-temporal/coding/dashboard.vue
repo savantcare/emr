@@ -43,6 +43,10 @@
               <span class="demonstration">Was is it a therapy only appointment</span>
               <el-checkbox v-model="features.isItTherapyOnlyAppt"></el-checkbox>
             </div>
+            <div class="block">
+              <span class="demonstration">Elements of psych review of systems</span>
+              <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
+            </div>
           </el-card>
           <el-card> Automated </el-card>
         </div>
