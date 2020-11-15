@@ -4,30 +4,35 @@
     <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
       <el-card>
         Medical Intake
-        <c99201 />
-        <c99202 />
-        <c99203 />
-        <c99204 />
-        <c99205 />
+        <c99201 :features="features" />
+        <c99202 :features="features" />
+        <c99203 :features="features" />
+        <c99204 :features="features" />
+        <c99205 :features="features" />
       </el-card>
       <el-card>
         Medical Followup
-        <c99211 />
-        <c99212 />
-        <c99213 />
-        <c99214 />
-        <c99215 />
+        <c99211 :features="features" />
+        <c99212 :features="features" />
+        <c99213 :features="features" />
+        <c99214 :features="features" />
+        <c99215 :features="features" />
       </el-card>
       <el-card>
         Therapy singular codes
         <c90832 :features="features" />
         <c90834 :features="features" />
-        <c90837 />
+        <c90837 :features="features" />
       </el-card>
-      <div class="block">
-        <span class="demonstration">Billing Duration</span>
-        <el-slider v-model="features.billingDuration"></el-slider>
-      </div>
+      <el-card> Human </el-card>
+      <el-card>
+        Transition
+        <div class="block">
+          <span class="demonstration">Billing Duration</span>
+          <el-slider v-model="features.billingDuration"></el-slider>
+        </div>
+      </el-card>
+      <el-card> Automated </el-card>
     </el-dialog>
   </div>
 </template>

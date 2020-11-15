@@ -3,7 +3,7 @@
     <el-card :style="{ 'background-color': bgColor }"
       >90834
 
-      <div :style="{ 'text-decoration': textDecoration }">Billing duration > 36</div>
+      <div :style="{ 'text-decoration': textDecoration }">Billing duration > 37 and less then 53</div>
     </el-card>
   </div>
 </template>
@@ -23,19 +23,18 @@ export default {
       if (this.status) {
         return ''
       } else {
-        return 'grey'
+        return '#C0C4CC'
       }
     },
     textDecoration() {
       if (this.status) {
         return ''
       } else {
-        console.log('returbubg line-thriugh')
         return 'line-through'
       }
     },
     status() {
-      if (this.features.billingDuration > 38) {
+      if (this.features.billingDuration > 37 && this.features.billingDuration < 53) {
         return true
       } else {
         return false

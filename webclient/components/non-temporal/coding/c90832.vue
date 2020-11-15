@@ -1,11 +1,45 @@
 <template>
-  <div><el-card>90832</el-card></div>
+  <div>
+    <el-card :style="{ 'background-color': bgColor }"
+      >90832
+
+      <div :style="{ 'text-decoration': textDecoration }">Billing duration > 15 and less then 37</div>
+    </el-card>
+  </div>
 </template>
 <script>
 export default {
-  prop: {
-    billingDuration: 0,
+  props: {
+    features: {
+      type: Object,
+      required: true,
+    },
   },
-  date: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    bgColor() {
+      if (this.status) {
+        return ''
+      } else {
+        return '#C0C4CC'
+      }
+    },
+    textDecoration() {
+      if (this.status) {
+        return ''
+      } else {
+        return 'line-through'
+      }
+    },
+    status() {
+      if (this.features.billingDuration > 15 && this.features.billingDuration < 38) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
 }
 </script>
