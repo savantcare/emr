@@ -11,8 +11,8 @@
           </span>
         </div>
 
-        <div style="border-style: dashed; border-width: 1px; text-align: center">
-          <span :class="statusC3 ? '' : 'strike'">
+        <div style="text-align: center">
+          <span :class="statusC3 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
             3. Billing duration: Greater then 9 min
             <transition name="fade">
               <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
@@ -20,16 +20,16 @@
           </span>
         </div>
 
-        <div style="border-style: dashed; border-width: 1px; text-align: center">
-          <span :class="statusC2 ? '' : 'strike'">
+        <div style="text-align: center">
+          <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
             2. This is followup appt
             <transition name="fade">
               <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
             >
           </span>
         </div>
-        <div style="border-style: dashed; border-width: 1px; text-align: center">
-          <span :class="statusC1 ? '' : 'strike'">
+        <div style="text-align: center">
+          <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
             1. Medical appt
             <transition name="fade">
               <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
