@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-card :style="status ? '' : 'background-color:#C0C4CC'"
-      ><div :style="{ 'text-decoration': textDecorationMain }">90832</div>
+      ><div :style="{ 'text-decoration': textDecorationMain }">90832<span v-if="status">&check;</span></div>
 
       <div :style="{ 'text-decoration': textDecorationC1 }">
-        1. Billing duration > 15 and less then 37 <span v-if="statusC2">&check;</span>
+        1. Billing duration > 15 and less then 37 <span v-if="statusC1">&check;</span>
       </div>
       <div :style="{ 'text-decoration': textDecorationC2 }">
         2. Therapy only appt <span v-if="statusC2">&check;</span>
@@ -72,15 +72,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.checkmark {
-  display: inline-block;
-  transform: rotate(45deg);
-  height: 25px;
-  width: 12px;
-  margin-left: 60%;
-  border-bottom: 7px solid #78b13f;
-  border-right: 7px solid #78b13f;
-}
-</style>
