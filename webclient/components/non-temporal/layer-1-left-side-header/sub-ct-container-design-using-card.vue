@@ -25,7 +25,7 @@ import ctSlider from './time-series-of-appointments-component-made-with-vue-slid
 import ctTogleHealthOther from './toggle-health-other-component.vue'
 import ctAccord from '@/components/external/vue-horizontal-collapse/HorizontalCollapse.vue'
 
-import ctCoding from '../coding/dashboard.vue'
+import ctCoding from '../appt-coding/dashboard.vue'
 import ctSettings from './settings-component.vue'
 //
 
