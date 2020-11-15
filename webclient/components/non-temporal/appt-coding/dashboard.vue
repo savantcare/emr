@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
-    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="70%">
+    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
+    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="70%" top="5vh">
       <div style="display: grid; grid-template-columns: 1fr 1fr">
         <div>
           <el-card>
@@ -141,3 +141,5 @@ export default {
   },
 }
 </script>
+
+<style scoped></style>
