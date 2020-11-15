@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-card :style="{ 'background-color': bgColor }"
-      >90832
+      ><div :style="{ 'text-decoration': textDecorationMain }">90832</div>
 
-      <div :style="{ 'text-decoration': textDecorationC1 }">Billing duration > 15 and less then 37</div>
-      <div :style="{ 'text-decoration': textDecorationC2 }">Therapy only appt</div>
+      <div :style="{ 'text-decoration': textDecorationC1 }">1. Billing duration > 15 and less then 37</div>
+      <div :style="{ 'text-decoration': textDecorationC2 }">2. Therapy only appt</div>
     </el-card>
   </div>
 </template>
@@ -25,6 +25,13 @@ export default {
         return ''
       } else {
         return '#C0C4CC'
+      }
+    },
+    textDecorationMain() {
+      if (this.status) {
+        return ''
+      } else {
+        return 'line-through'
       }
     },
     textDecorationC1() {
