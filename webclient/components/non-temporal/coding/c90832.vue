@@ -3,7 +3,8 @@
     <el-card :style="{ 'background-color': bgColor }"
       >90832
 
-      <div :style="{ 'text-decoration': textDecoration }">Billing duration > 15 and less then 37</div>
+      <div :style="{ 'text-decoration': textDecorationC1 }">Billing duration > 15 and less then 37</div>
+      <div :style="{ 'text-decoration': textDecorationC2 }">Therapy only appt</div>
     </el-card>
   </div>
 </template>
@@ -26,24 +27,36 @@ export default {
         return '#C0C4CC'
       }
     },
-    textDecoration() {
-      if (this.status) {
+    textDecorationC1() {
+      if (this.statusC1) {
         return ''
       } else {
         return 'line-through'
       }
     },
-    status() {
+    textDecorationC2() {
+      if (this.statusC2) {
+        return ''
+      } else {
+        return 'line-through'
+      }
+    },
+    statusC1() {
       if (this.features.billingDuration > 15 && this.features.billingDuration < 38) {
+        return true
       } else {
         return false
       }
-
-      if (this.features.isItTherapyOnlyAppt !== true) {
+    },
+    statusC2() {
+      if (this.features.isItTherapyOnlyAppt === true) {
+        return true
+      } else {
         return false
       }
-
-      return true
+    },
+    status() {
+      return this.statusC1 && this.statusC2
     },
   },
 }
