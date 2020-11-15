@@ -25,10 +25,12 @@
         6. This is intake appt
         <span v-if="statusC6" style="color: green; font-weight: bold">&check;</span>
       </div>
-      <div :style="statusC7 ? '' : 'text-decoration: line-through red'">
-        7. At least 2 out of 3 history (psych, social, family)
-        <span style="color: green; font-weight: bold" v-if="statusC7">&check;</span>
-      </div>
+      <transition name="fade">
+        <div :style="statusC7 ? '' : 'text-decoration: line-through red'">
+          7. At least 2 out of 3 history (psych, social, family)
+          <span style="color: green; font-weight: bold" v-if="statusC7">&check;</span>
+        </div>
+      </transition>
     </el-card>
   </div>
 </template>
@@ -60,7 +62,8 @@ export default {
       return this.features.itIsIntakeAppt === true
     },
     statusC7() {
-      return this.features.pphx + this.features.shx + this.features.fhx > 1
+      const count = this.features.pphx + this.features.shx + this.features.fhx
+      return count > 1
     },
     status() {
       return (
@@ -76,3 +79,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

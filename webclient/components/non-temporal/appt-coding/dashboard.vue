@@ -114,6 +114,9 @@ export default {
       dIsSettingsDialogVisible: false,
       features: {
         billingDuration: 36,
+        pphx: false,
+        shx: false,
+        fhx: false,
       },
     }
   },
