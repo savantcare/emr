@@ -24,7 +24,9 @@
 
       <span :class="statusC6 ? '' : 'strike'">
         6. This is intake appt
-        <span v-if="statusC6" style="color: green; font-weight: bold">&check;</span>
+        <transition name="fade">
+          <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
+        >
       </span>
       <br />
       <span :class="statusC7 ? '' : 'strike'"
