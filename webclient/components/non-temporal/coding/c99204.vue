@@ -1,9 +1,16 @@
 <template>
   <div>
-    <el-card :style="{ 'background-color': bgColor }"
-      >99204
+    <el-card
+      ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
+        99204<span v-if="status">&check;</span>
+      </div>
 
-      <div :style="{ 'text-decoration': textDecoration }">Billing duration = 45</div>
+      <div :style="statusC1 ? '' : 'text-decoration: line-through dotted red'">
+        1. Billing duration = 45 <span v-if="statusC1">&check;</span>
+      </div>
+      <div :style="statusC2 ? '' : 'text-decoration: line-through dotted red'">
+        2. Medical appt <span v-if="statusC2">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -15,30 +22,15 @@ export default {
       required: true,
     },
   },
-  data: function () {
-    return {}
-  },
   computed: {
-    bgColor() {
-      if (this.status) {
-        return ''
-      } else {
-        return '#C0C4CC'
-      }
+    statusC1() {
+      return this.features.billingDuration === 45
     },
-    textDecoration() {
-      if (this.status) {
-        return ''
-      } else {
-        return 'line-through'
-      }
+    statusC2() {
+      return this.features.isItTherapyOnlyAppt !== true
     },
     status() {
-      if (this.features.billingDuration === 45) {
-        return true
-      } else {
-        return false
-      }
+      return this.statusC1 && this.statusC2
     },
   },
 }
