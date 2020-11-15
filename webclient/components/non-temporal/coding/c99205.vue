@@ -1,5 +1,5 @@
 <template>
-  <div>99205 card</div>
+  <div><el-card>99205</el-card></div>
 </template>
 <script>
 export default {
