@@ -1,9 +1,13 @@
 <template>
   <div>
     <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'">
-      <div :style="status ? '' : 'text-decoration: line-through red'">
-        90837<span style="color: green; font-weight: bold" v-if="status">&check;</span>
-      </div>
+      <span :class="status ? '' : 'cross'">
+        90837
+        <transition name="fade">
+          <span style="color: green; font-weight: bold" v-if="status">&check; </span>
+        </transition>
+      </span>
+      <br />
       <span :class="statusC1 ? '' : 'strike'">
         1. Billing duration > 52
         <transition name="fade">

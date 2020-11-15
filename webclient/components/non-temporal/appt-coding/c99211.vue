@@ -1,9 +1,13 @@
 <template>
   <div>
     <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
-      ><div :style="status ? '' : 'text-decoration: line-through red'">
-        99211<span style="color: green; font-weight: bold" v-if="status">&check;</span>
-      </div>
+      ><span :class="status ? '' : 'cross'">
+        99211
+        <transition name="fade">
+          <span style="color: green; font-weight: bold" v-if="status">&check; </span>
+        </transition>
+      </span>
+      <br />
       <span :class="statusC1 ? '' : 'strike'"> 1. Never used </span>
       <br />
     </el-card>
