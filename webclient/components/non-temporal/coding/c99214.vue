@@ -33,10 +33,10 @@ export default {
       return this.features.isItTherapyOnlyAppt !== true
     },
     statusC3() {
-      return this.features.elementsOfPsychReviewOfSystems > 2 && this.features.elementsOfPsychReviewOfSystems < 10
+      return this.features.elementsOfPsychReviewOfSystems > 1 && this.features.elementsOfPsychReviewOfSystems < 10
     },
     status() {
-      return this.statusC1 && this.statusC2
+      return this.statusC1 && this.statusC2 && this.statusC3
     },
   },
 }
