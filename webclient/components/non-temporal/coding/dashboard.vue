@@ -62,7 +62,7 @@
             <el-divider></el-divider>
             <div class="block">
               <span class="demonstration">Intake?</span>
-              <el-checkbox v-model="features.ItIsIntakeAppt"></el-checkbox>
+              <el-checkbox v-model="features.itIsIntakeAppt"></el-checkbox>
             </div>
             <el-divider></el-divider>
             <div class="block">
