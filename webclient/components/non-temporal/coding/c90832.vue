@@ -35,7 +35,6 @@ export default {
     },
     status() {
       if (this.features.billingDuration > 15 && this.features.billingDuration < 38) {
-        return true
       } else {
         return false
       }
@@ -43,6 +42,8 @@ export default {
       if (this.features.isItTherapyOnlyAppt !== true) {
         return false
       }
+
+      return true
     },
   },
 }
