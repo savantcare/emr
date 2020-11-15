@@ -8,21 +8,46 @@
         1. Billing duration > 24 and less then 41
         <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
       </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
-        2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
-      </div>
-      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
-        3. Medical review of systems: 10+ <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
-      </div>
-      <div :style="statusC4 ? '' : 'text-decoration: line-through red'">
-        4. Vitals: Complete <span style="color: green; font-weight: bold" v-if="statusC4">&check;</span>
-      </div>
-      <div :style="statusC5 ? '' : 'text-decoration: line-through red'">
-        5. Mental status exam: Complete <span style="color: green; font-weight: bold" v-if="statusC5">&check;</span>
-      </div>
-      <div :style="statusC6 ? '' : 'text-decoration: line-through red'">
-        6. This is followup appt <span style="color: green; font-weight: bold" v-if="statusC6">&check;</span>
-      </div>
+      <span :class="statusC2 ? '' : 'strike'">
+        2. Medical appt
+        <transition name="fade">
+          <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC3 ? '' : 'strike'">
+        3. Medical review of systems: 10+
+        <transition name="fade">
+          <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC4 ? '' : 'strike'">
+        4. Vitals: Complete
+        <transition name="fade">
+          <span v-if="statusC4" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC5 ? '' : 'strike'">
+        5. Mental status exam: Complete
+        <transition name="fade">
+          <span v-if="statusC5" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC6 ? '' : 'strike'">
+        6. This is followup appt
+        <transition name="fade">
+          <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <div :style="statusC7 ? '' : 'text-decoration: line-through red'">
         7. At least 2 out of 3 history (psych, social, family)
         <span style="color: green; font-weight: bold" v-if="statusC7">&check;</span>

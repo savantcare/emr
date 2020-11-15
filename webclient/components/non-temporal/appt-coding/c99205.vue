@@ -5,22 +5,41 @@
         99205<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
 
-      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">
-        1. Billing duration >= 60 <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
-      </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
-        2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
-      </div>
+      <span :class="statusC1 ? '' : 'strike'">
+        1. Billing duration >= 60
+        <transition name="fade">
+          <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC2 ? '' : 'strike'">
+        2. Medical appt
+        <transition name="fade">
+          <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
         3. Medical review of systems: Complete
         <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
       </div>
-      <div :style="statusC4 ? '' : 'text-decoration: line-through red'">
-        4. Vitals: Complete <span style="color: green; font-weight: bold" v-if="statusC4">&check;</span>
-      </div>
-      <div :style="statusC5 ? '' : 'text-decoration: line-through red'">
-        5. Mental status exam: Complete <span style="color: green; font-weight: bold" v-if="statusC5">&check;</span>
-      </div>
+      <span :class="statusC4 ? '' : 'strike'">
+        4. Vitals: Complete
+        <transition name="fade">
+          <span v-if="statusC4" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC5 ? '' : 'strike'">
+        5. Mental status exam: Complete
+        <transition name="fade">
+          <span v-if="statusC5" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
 
       <span :class="statusC6 ? '' : 'strike'">
         6. This is intake appt

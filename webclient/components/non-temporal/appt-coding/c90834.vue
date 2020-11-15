@@ -9,9 +9,13 @@
         1. Billing duration > 37 and less then 53
         <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
       </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
-        2. Therapy only appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
-      </div>
+      <span :class="statusC2 ? '' : 'strike'">
+        2. Therapy only appt
+        <transition name="fade">
+          <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>

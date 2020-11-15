@@ -9,15 +9,29 @@
         1. Billing duration greater then 14 mins
         <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
       </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
-        2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
-      </div>
-      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
-        3. Mental status exam: > 5 elements <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
-      </div>
-      <div :style="statusC4 ? '' : 'text-decoration: line-through red'">
-        4. This is followup appt <span style="color: green; font-weight: bold" v-if="statusC4">&check;</span>
-      </div>
+      <span :class="statusC2 ? '' : 'strike'">
+        2. Medical appt
+        <transition name="fade">
+          <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC3 ? '' : 'strike'">
+        3. Mental status exam: > 5 elements
+        <transition name="fade">
+          <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC4 ? '' : 'strike'">
+        4. This is followup appt
+        <transition name="fade">
+          <span v-if="statusC4" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>

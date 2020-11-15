@@ -9,12 +9,21 @@
         1. Billing duration: Greater then 9 min
         <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
       </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
-        2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
-      </div>
-      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
-        3. This is followup appt <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
-      </div>
+      <span :class="statusC2 ? '' : 'strike'">
+        2. Medical appt
+        <transition name="fade">
+          <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
+      <span :class="statusC3 ? '' : 'strike'">
+        3. This is followup appt
+        <transition name="fade">
+          <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>
