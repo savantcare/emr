@@ -2,8 +2,8 @@
   <div>
     <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
     <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
-      <c90832 />
-      <c90834 />
+      <c90832 :features="features" />
+      <c90834 :features="features" />
       <c90837 />
       <c99201 />
       <c99202 />
@@ -39,6 +39,9 @@ export default {
   data() {
     return {
       dIsSettingsDialogVisible: false,
+      features: {
+        billingDuration: 36,
+      },
     }
   },
   components: {

@@ -3,6 +3,9 @@
 </template>
 <script>
 export default {
+  prop: {
+    billingDuration: 0,
+  },
   date: {},
 }
 </script>
