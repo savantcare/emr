@@ -5,10 +5,14 @@
         99214<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
 
-      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC1 ? '' : 'strike'">
         1. Billing duration > 15 and less then 26
-        <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <span :class="statusC2 ? '' : 'strike'">
         2. Medical appt
         <transition name="fade">
@@ -17,10 +21,14 @@
       </span>
       <br />
 
-      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC3 ? '' : 'strike'">
         3. Medical review of systems: 2 to 9
-        <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <span :class="statusC4 ? '' : 'strike'">
         4. Mental status exam: > 8 elements
         <transition name="fade">
@@ -37,10 +45,13 @@
       </span>
       <br />
 
-      <div :style="statusC6 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC6 ? '' : 'strike'">
         6. At least one of past psych, social or family history
-        <span style="color: green; font-weight: bold" v-if="statusC6">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>

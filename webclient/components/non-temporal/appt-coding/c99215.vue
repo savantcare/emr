@@ -4,10 +4,14 @@
       <div :style="status ? '' : 'text-decoration: line-through red'">
         99215<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
-      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC1 ? '' : 'strike'">
         1. Billing duration > 24 and less then 41
-        <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <span :class="statusC2 ? '' : 'strike'">
         2. Medical appt
         <transition name="fade">
@@ -48,10 +52,13 @@
       </span>
       <br />
 
-      <div :style="statusC7 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC7 ? '' : 'strike'">
         7. At least 2 out of 3 history (psych, social, family)
-        <span style="color: green; font-weight: bold" v-if="statusC7">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC7" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>

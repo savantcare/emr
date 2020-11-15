@@ -21,10 +21,14 @@
       </span>
       <br />
 
-      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC3 ? '' : 'strike'">
         3. Medical review of systems: Complete
-        <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <span :class="statusC4 ? '' : 'strike'">
         4. Mental status exam: Complete
         <transition name="fade">
@@ -41,10 +45,13 @@
       </span>
       <br />
 
-      <div :style="statusC6 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC6 ? '' : 'strike'">
         6. At least 2 out of 3 history (psych, social, family)
-        <span style="color: green; font-weight: bold" v-if="statusC6">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
     </el-card>
   </div>
 </template>

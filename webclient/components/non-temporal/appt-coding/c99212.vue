@@ -5,10 +5,14 @@
         99212<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
 
-      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">
+      <span :class="statusC1 ? '' : 'strike'">
         1. Billing duration: Greater then 9 min
-        <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
-      </div>
+        <transition name="fade">
+          <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+        >
+      </span>
+      <br />
+
       <span :class="statusC2 ? '' : 'strike'">
         2. Medical appt
         <transition name="fade">
