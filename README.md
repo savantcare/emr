@@ -63,3 +63,30 @@ Pirority:
     https://codepen.io/sustained/pen/Rwbdgob
 11. Search in top header using https://theoxiong.github.io/vue-search-panel/
 12. Put page in full screen using https://mirari.cc/vue-fullscreen/
+
+Coding component:
+
+1. Each possible code is a card.
+2. Each card has a A. set of rules associated. B. Weight
+3. Each card has a state: Not Possible, Possible,
+4. When filtering is done cards change their state between possible and possible.
+5. Cards are ordered based on Weight
+6. There are 3 levels of filters: Human , In process, Computer
+
+The data structure is:
+
+```
+date: {
+  featuresOfThisAppt{
+    totalTimeOfAppt: 60
+  }
+  codingCards: {
+    94022: {
+      state: not-possible, possible   -> These should be computed properties that change when the data changes.
+      possibleFunction: {
+        totalTimeOfAppt > 50
+      }
+    }
+  }
+}
+```

@@ -10,6 +10,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <ctSlider></ctSlider>
       </el-col>
       <el-col :span="1" style="display: flex; align-items: right; padding-left: 8px">
+        <ctCoding></ctCoding>
         <ctSettings></ctSettings>
       </el-col>
     </el-card>
@@ -21,14 +22,15 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 // import ctSlider from './time-series-of-appointments-component-made-with-high-charts.vue'
 import ctSlider from './time-series-of-appointments-component-made-with-vue-slider.vue'
 
-import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
-
 import ctAccord from '@/components/external/vue-horizontal-collapse/HorizontalCollapse.vue'
+
+import ctCoding from '../coding/dashboard.vue'
+import ctSettings from './settings-component.vue'
 //
 
 export default {
-  components: { ctSlider, ctSettings, ctAccord },
+  components: { ctSlider, ctAccord, ctCoding, ctSettings },
 }
 </script>
 
