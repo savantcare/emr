@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-card :style="myStyle"
-      >90834 {{ status }}
+    <el-card :style="{ 'background-color': bgColor }"
+      >90834
 
-      <div style="text-decoration: line-through">Billing duration > 36</div>
+      <div :style="{ 'text-decoration': textDecoration }">Billing duration > 36</div>
     </el-card>
   </div>
 </template>
@@ -16,16 +16,29 @@ export default {
     },
   },
   data: function () {
-    return {
-      myStyle: 'background-color: grey; text-decoration: line-through',
-    }
+    return {}
   },
   computed: {
+    bgColor() {
+      if (this.status) {
+        return ''
+      } else {
+        return 'grey'
+      }
+    },
+    textDecoration() {
+      if (this.status) {
+        return ''
+      } else {
+        console.log('returbubg line-thriugh')
+        return 'line-through'
+      }
+    },
     status() {
       if (this.features.billingDuration > 38) {
-        return 'possible'
+        return true
       } else {
-        return 'not possible'
+        return false
       }
     },
   },
