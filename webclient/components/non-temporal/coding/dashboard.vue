@@ -2,19 +2,32 @@
   <div>
     <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
     <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
-      <c90832 :features="features" />
-      <c90834 :features="features" />
-      <c90837 />
-      <c99201 />
-      <c99202 />
-      <c99203 />
-      <c99204 />
-      <c99205 />
-      <c99211 />
-      <c99212 />
-      <c99213 />
-      <c99214 />
-      <c99215 />
+      <el-card>
+        Medical Intake
+        <c99201 />
+        <c99202 />
+        <c99203 />
+        <c99204 />
+        <c99205 />
+      </el-card>
+      <el-card>
+        Medical Followup
+        <c99211 />
+        <c99212 />
+        <c99213 />
+        <c99214 />
+        <c99215 />
+      </el-card>
+      <el-card>
+        Therapy singular codes
+        <c90832 :features="features" />
+        <c90834 :features="features" />
+        <c90837 />
+      </el-card>
+      <div class="block">
+        <span class="demonstration">Billing Duration</span>
+        <el-slider v-model="features.billingDuration"></el-slider>
+      </div>
     </el-dialog>
   </div>
 </template>

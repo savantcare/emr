@@ -1,6 +1,10 @@
 <template>
   <div>
-    <el-card>90834 {{ status }}</el-card>
+    <el-card :style="myStyle"
+      >90834 {{ status }}
+
+      <div style="text-decoration: line-through">Billing duration > 36</div>
+    </el-card>
   </div>
 </template>
 <script>
@@ -13,15 +17,17 @@ export default {
   },
   data: function () {
     return {
-      status: '',
+      myStyle: 'background-color: grey; text-decoration: line-through',
     }
   },
-  mounted() {
-    if (this.features.billingDuration > 38) {
-      this.status = 'possible'
-    } else {
-      this.status = 'not possible'
-    }
+  computed: {
+    status() {
+      if (this.features.billingDuration > 38) {
+        return 'possible'
+      } else {
+        return 'not possible'
+      }
+    },
   },
 }
 </script>
