@@ -200,7 +200,7 @@ export default {
   transform: translateY(-50%);
   background: repeat-x
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAKAQMAAAByjsdvAAAABlBMVEUAAADdMzNrjRuKAAAAAXRSTlMAQObYZgAAADdJREFUCNdj+MMABP8ZGCQY/h9g+MHw/AHzDwbGD+w/GBhq6h8wMNj/b2BgkP8HVMMPUsn+gQEAsTkQNRVnI4cAAAAASUVORK5CYII=);
-  animation: cross 2s linear 0.3s 1 forwards;
+  animation: cross 1s linear 0.3s 1 forwards;
 }
 @keyframes cross {
   to {
