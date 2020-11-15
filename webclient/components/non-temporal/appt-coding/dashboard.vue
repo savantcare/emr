@@ -163,9 +163,13 @@ export default {
 @keyframes strike {
   0% {
     width: 0;
+    background: #f56c6c;
+    height: 2px;
   }
   100% {
     width: 100%;
+    background: #e6a23c;
+    height: 2px;
   }
 }
 .strike {
@@ -177,8 +181,6 @@ export default {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: #e6a23c;
   animation-name: strike;
   animation-duration: 1s;
   animation-timing-function: linear;
