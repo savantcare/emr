@@ -21,7 +21,10 @@
         5. Mental status exam: Complete <span v-if="statusC5">&check;</span>
       </div>
       <div :style="statusC6 ? '' : 'text-decoration: line-through dotted red'">
-        5. This is intake appt <span v-if="statusC6">&check;</span>
+        6. This is intake appt <span v-if="statusC6">&check;</span>
+      </div>
+      <div :style="statusC7 ? '' : 'text-decoration: line-through dotted red'">
+        7. At least 2 out of 3 history (psych, social, family) <span v-if="statusC7">&check;</span>
       </div>
     </el-card>
   </div>
@@ -53,8 +56,19 @@ export default {
     statusC6() {
       return this.features.itIsIntakeAppt === true
     },
+    statusC7() {
+      return this.features.pphx + this.features.shx + this.features.fhx > 1
+    },
     status() {
-      return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4 && this.statusC5 && this.statusC6
+      return (
+        this.statusC1 &&
+        this.statusC2 &&
+        this.statusC3 &&
+        this.statusC4 &&
+        this.statusC5 &&
+        this.statusC6 &&
+        this.statusC7
+      )
     },
   },
 }

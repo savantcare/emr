@@ -20,6 +20,9 @@
       <div :style="statusC5 ? '' : 'text-decoration: line-through dotted red'">
         5. This is intake appt <span v-if="statusC5">&check;</span>
       </div>
+      <div :style="statusC6 ? '' : 'text-decoration: line-through dotted red'">
+        6. At least 2 out of 3 history (psych, social, family) <span v-if="statusC6">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -47,8 +50,11 @@ export default {
     statusC5() {
       return this.features.itIsIntakeAppt === true
     },
+    statusC6() {
+      return this.features.pphx + this.features.shx + this.features.fhx > 1
+    },
     status() {
-      return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4 && this.statusC5
+      return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4 && this.statusC5 && this.statusC6
     },
   },
 }
