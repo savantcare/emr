@@ -16,7 +16,6 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
         <ctSettings></ctSettings>
       </el-col>
     </el-card>
-    <ctAccord></ctAccord>
   </div>
 </template>
 

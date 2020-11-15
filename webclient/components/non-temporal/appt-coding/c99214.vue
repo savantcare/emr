@@ -1,27 +1,29 @@
 <template>
   <div>
     <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
-      ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
-        99214<span v-if="status">&check;</span>
+      ><div :style="status ? '' : 'text-decoration: line-through red'">
+        99214<span style="color: green; font-weight: bold" v-if="status">&check;</span>
       </div>
 
-      <div :style="statusC1 ? '' : 'text-decoration: line-through dotted red'">
-        1. Billing duration > 15 and less then 26 <span v-if="statusC1">&check;</span>
+      <div :style="statusC1 ? '' : 'text-decoration: line-through red'">
+        1. Billing duration > 15 and less then 26
+        <span style="color: green; font-weight: bold" v-if="statusC1">&check;</span>
       </div>
-      <div :style="statusC2 ? '' : 'text-decoration: line-through dotted red'">
-        2. Medical appt <span v-if="statusC2">&check;</span>
+      <div :style="statusC2 ? '' : 'text-decoration: line-through red'">
+        2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
       </div>
-      <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
-        3. Psych ROS: 2 to 9 <span v-if="statusC3">&check;</span>
+      <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
+        3. Psych ROS: 2 to 9 <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
       </div>
-      <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
-        4. Mental status exam: > 8 elements <span v-if="statusC4">&check;</span>
+      <div :style="statusC4 ? '' : 'text-decoration: line-through red'">
+        4. Mental status exam: > 8 elements <span style="color: green; font-weight: bold" v-if="statusC4">&check;</span>
       </div>
-      <div :style="statusC5 ? '' : 'text-decoration: line-through dotted red'">
-        5. This is followup appt <span v-if="statusC5">&check;</span>
+      <div :style="statusC5 ? '' : 'text-decoration: line-through red'">
+        5. This is followup appt <span style="color: green; font-weight: bold" v-if="statusC5">&check;</span>
       </div>
-      <div :style="statusC6 ? '' : 'text-decoration: line-through dotted red'">
-        6. At least one of past psych, social or family history <span v-if="statusC6">&check;</span>
+      <div :style="statusC6 ? '' : 'text-decoration: line-through red'">
+        6. At least one of past psych, social or family history
+        <span style="color: green; font-weight: bold" v-if="statusC6">&check;</span>
       </div>
     </el-card>
   </div>

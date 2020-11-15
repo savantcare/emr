@@ -33,6 +33,10 @@
         </div>
         <div>
           <el-card>
+            <div slot="header" hover>
+              <b>Best estimate - manual update. </b><span class="demonstration">Show details?</span>
+              <el-checkbox v-model="features.showDetails"></el-checkbox>
+            </div>
             <div class="block">
               <span class="demonstration">Billing Duration</span>
               <el-slider v-model="features.billingDuration"></el-slider>
@@ -42,7 +46,11 @@
               <span class="demonstration">Was is it a therapy only appointment</span>
               <el-checkbox v-model="features.isItTherapyOnlyAppt"></el-checkbox>
             </div>
-            <el-divider></el-divider>
+          </el-card>
+          <el-card v-if="features.showDetails">
+            <div slot="header" hover>
+              <b>System determined</b>
+            </div>
             <div class="block">
               <span class="demonstration">Elements of psych review of systems</span>
               <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
@@ -76,11 +84,6 @@
             <div class="block">
               <span class="demonstration">Family history?</span>
               <el-checkbox v-model="features.fhx"></el-checkbox>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Show details?</span>
-              <el-checkbox v-model="features.showDetails"></el-checkbox>
             </div>
           </el-card>
         </div>
