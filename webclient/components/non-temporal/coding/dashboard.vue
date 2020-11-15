@@ -1,38 +1,48 @@
 <template>
   <div>
     <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
-    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
-      <el-card>
-        Medical Intake
-        <c99201 :features="features" />
-        <c99202 :features="features" />
-        <c99203 :features="features" />
-        <c99204 :features="features" />
-        <c99205 :features="features" />
-      </el-card>
-      <el-card>
-        Medical Followup
-        <c99211 :features="features" />
-        <c99212 :features="features" />
-        <c99213 :features="features" />
-        <c99214 :features="features" />
-        <c99215 :features="features" />
-      </el-card>
-      <el-card>
-        Therapy singular codes
-        <c90832 :features="features" />
-        <c90834 :features="features" />
-        <c90837 :features="features" />
-      </el-card>
-      <el-card> Human </el-card>
-      <el-card>
-        Transition
-        <div class="block">
-          <span class="demonstration">Billing Duration</span>
-          <el-slider v-model="features.billingDuration"></el-slider>
+    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="70%">
+      <div style="display: grid; grid-template-columns: 1fr 1fr">
+        <div>
+          <el-card>
+            Medical Intake
+            <c99201 :features="features" />
+            <c99202 :features="features" />
+            <c99203 :features="features" />
+            <c99204 :features="features" />
+            <c99205 :features="features" />
+          </el-card>
         </div>
-      </el-card>
-      <el-card> Automated </el-card>
+        <div>
+          <el-card>
+            Medical Followup
+            <c99211 :features="features" />
+            <c99212 :features="features" />
+            <c99213 :features="features" />
+            <c99214 :features="features" />
+            <c99215 :features="features" />
+          </el-card>
+        </div>
+        <div>
+          <el-card>
+            Therapy singular codes
+            <c90832 :features="features" />
+            <c90834 :features="features" />
+            <c90837 :features="features" />
+          </el-card>
+        </div>
+        <div>
+          <el-card> Human </el-card>
+          <el-card>
+            Transition
+            <div class="block">
+              <span class="demonstration">Billing Duration</span>
+              <el-slider v-model="features.billingDuration"></el-slider>
+            </div>
+          </el-card>
+          <el-card> Automated </el-card>
+        </div>
+      </div>
     </el-dialog>
   </div>
 </template>
