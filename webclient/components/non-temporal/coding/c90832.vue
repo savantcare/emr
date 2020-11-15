@@ -4,7 +4,9 @@
       ><div :style="{ 'text-decoration': textDecorationMain }">90832</div>
 
       <div :style="{ 'text-decoration': textDecorationC1 }">1. Billing duration > 15 and less then 37</div>
-      <div :style="{ 'text-decoration': textDecorationC2 }">2. Therapy only appt</div>
+      <div :style="{ 'text-decoration': textDecorationC2 }">
+        2. Therapy only appt <span v-if="statusC2">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -31,21 +33,21 @@ export default {
       if (this.status) {
         return ''
       } else {
-        return 'line-through'
+        return 'line-through dotted red'
       }
     },
     textDecorationC1() {
       if (this.statusC1) {
         return ''
       } else {
-        return 'line-through'
+        return 'line-through dotted red'
       }
     },
     textDecorationC2() {
       if (this.statusC2) {
         return ''
       } else {
-        return 'line-through'
+        return 'line-through dotted red'
       }
     },
     statusC1() {
@@ -68,3 +70,15 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.checkmark {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 25px;
+  width: 12px;
+  margin-left: 60%;
+  border-bottom: 7px solid #78b13f;
+  border-right: 7px solid #78b13f;
+}
+</style>
