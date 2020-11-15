@@ -12,7 +12,8 @@
         2. Medical appt <span style="color: green; font-weight: bold" v-if="statusC2">&check;</span>
       </div>
       <div :style="statusC3 ? '' : 'text-decoration: line-through red'">
-        3. Psych ROS: 2 to 9 <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
+        3. Medical review of systems: 2 to 9
+        <span style="color: green; font-weight: bold" v-if="statusC3">&check;</span>
       </div>
       <div :style="statusC4 ? '' : 'text-decoration: line-through red'">
         4. This is intake appt <span style="color: green; font-weight: bold" v-if="statusC4">&check;</span>

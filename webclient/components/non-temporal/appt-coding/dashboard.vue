@@ -52,7 +52,7 @@
               <b>System determined</b>
             </div>
             <div class="block">
-              <span class="demonstration">Elements of psych review of systems</span>
+              <span class="demonstration">Elements of medical review of systems</span>
               <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
             </div>
             <el-divider></el-divider>
