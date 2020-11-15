@@ -1,9 +1,10 @@
 <template>
   <div>
     <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'"
-      ><div :style="status ? '' : 'text-decoration: line-through red'">
+      ><span :class="statusC1 ? '' : 'cross'">
         99205<span style="color: green; font-weight: bold" v-if="status">&check;</span>
-      </div>
+      </span>
+      <br />
 
       <span :class="statusC1 ? '' : 'strike'">
         1. Billing duration >= 60

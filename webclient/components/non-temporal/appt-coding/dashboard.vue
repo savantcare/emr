@@ -178,11 +178,33 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  background: red;
+  background: #e6a23c;
   animation-name: strike;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+
+.cross {
+  position: relative;
+}
+.cross::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: -3%;
+  width: 0;
+  height: 10px;
+  opacity: 50%;
+  transform: translateY(-50%);
+  background: repeat-x
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAKAQMAAAByjsdvAAAABlBMVEUAAADdMzNrjRuKAAAAAXRSTlMAQObYZgAAADdJREFUCNdj+MMABP8ZGCQY/h9g+MHw/AHzDwbGD+w/GBhq6h8wMNj/b2BgkP8HVMMPUsn+gQEAsTkQNRVnI4cAAAAASUVORK5CYII=);
+  animation: cross 2s linear 0.3s 1 forwards;
+}
+@keyframes cross {
+  to {
+    width: 106%;
+  }
 }
 </style>
