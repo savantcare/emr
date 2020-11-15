@@ -1,10 +1,9 @@
 <template>
   <div>
-    <el-card
-      ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
+    <el-card id="thresolds" :style="status || this.features.showDetails ? '' : 'display:none'">
+      <div :style="status ? '' : 'text-decoration: line-through dotted red'">
         90837<span v-if="status">&check;</span>
       </div>
-
       <div :style="statusC1 ? '' : 'text-decoration: line-through dotted red'">
         1. Billing duration > 52 <span v-if="statusC1">&check;</span>
       </div>

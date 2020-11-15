@@ -79,6 +79,11 @@
               <span class="demonstration">Family history?</span>
               <el-checkbox v-model="features.fhx"></el-checkbox>
             </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Show details?</span>
+              <el-checkbox v-model="features.showDetails"></el-checkbox>
+            </div>
           </el-card>
           <el-card> Automated </el-card>
         </div>
