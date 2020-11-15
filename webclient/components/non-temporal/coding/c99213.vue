@@ -14,6 +14,9 @@
       <div :style="statusC3 ? '' : 'text-decoration: line-through dotted red'">
         3. Mental status exam: 6 elements <span v-if="statusC3">&check;</span>
       </div>
+      <div :style="statusC4 ? '' : 'text-decoration: line-through dotted red'">
+        4. This is followup appt <span v-if="statusC4">&check;</span>
+      </div>
     </el-card>
   </div>
 </template>
@@ -35,9 +38,11 @@ export default {
     statusC3() {
       return this.features.mentalStatusExam === 6
     },
-
+    statusC4() {
+      return this.features.itIsIntakeAppt !== true
+    },
     status() {
-      return this.statusC1 && this.statusC2 && this.statusC3
+      return this.statusC1 && this.statusC2 && this.statusC3 && this.statusC4
     },
   },
 }
