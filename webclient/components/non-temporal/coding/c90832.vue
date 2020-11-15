@@ -39,6 +39,10 @@ export default {
       } else {
         return false
       }
+
+      if (this.features.isItTherapyOnlyAppt !== true) {
+        return false
+      }
     },
   },
 }

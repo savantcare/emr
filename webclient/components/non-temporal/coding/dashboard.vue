@@ -39,6 +39,10 @@
               <span class="demonstration">Billing Duration</span>
               <el-slider v-model="features.billingDuration"></el-slider>
             </div>
+            <div class="block">
+              <span class="demonstration">Was is it a therapy only appointment</span>
+              <el-checkbox v-model="features.isItTherapyOnlyAppt"></el-checkbox>
+            </div>
           </el-card>
           <el-card> Automated </el-card>
         </div>
