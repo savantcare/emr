@@ -10,7 +10,7 @@
       <br />
 
       <span :class="statusC1 ? '' : 'strike'">
-        1. Billing duration: Greater then 9 min
+        1. Medical appt
         <transition name="fade">
           <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
         >
@@ -18,7 +18,7 @@
       <br />
 
       <span :class="statusC2 ? '' : 'strike'">
-        2. Medical appt
+        2. This is followup appt
         <transition name="fade">
           <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
         >
@@ -26,7 +26,7 @@
       <br />
 
       <span :class="statusC3 ? '' : 'strike'">
-        3. This is followup appt
+        3. Billing duration: Greater then 9 min
         <transition name="fade">
           <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
         >
@@ -44,13 +44,13 @@ export default {
     },
   },
   computed: {
-    statusC1() {
+    statusC3() {
       return this.features.billingDuration > 9
     },
-    statusC2() {
+    statusC1() {
       return this.features.isItTherapyOnlyAppt !== true
     },
-    statusC3() {
+    statusC2() {
       return this.features.itIsIntakeAppt !== true
     },
     status() {
