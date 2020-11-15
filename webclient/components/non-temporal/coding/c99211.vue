@@ -1,8 +1,10 @@
 <template>
   <div>
-    <el-card :style="{ 'background-color': bgColor }"
-      >99211
-      <div :style="{ 'text-decoration': textDecoration }">Never used</div>
+    <el-card
+      ><div :style="status ? '' : 'text-decoration: line-through dotted red'">
+        99211<span v-if="status">&check;</span>
+      </div>
+      <div :style="statusC1 ? '' : 'text-decoration: line-through dotted red'">1. Never used</div>
     </el-card>
   </div>
 </template>
@@ -14,23 +16,9 @@ export default {
       required: true,
     },
   },
-  data: function () {
-    return {}
-  },
   computed: {
-    bgColor() {
-      if (this.status) {
-        return ''
-      } else {
-        return '#C0C4CC'
-      }
-    },
-    textDecoration() {
-      if (this.status) {
-        return ''
-      } else {
-        return 'line-through'
-      }
+    statusC1() {
+      return false
     },
     status() {
       return false
