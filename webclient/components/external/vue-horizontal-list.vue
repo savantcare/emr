@@ -142,7 +142,7 @@ export default {
         list: {
           class: options?.list?.class ?? '',
           windowed: options?.list?.windowed ?? 1200,
-          container: options?.list?.container ?? 900,
+          container: options?.list?.container ?? 556,
           padding: options?.list?.padding ?? 24,
         },
         responsive: [
