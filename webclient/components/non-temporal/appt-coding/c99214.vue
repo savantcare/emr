@@ -20,7 +20,7 @@
 
       <div style="text-align: center">
         <span :class="statusC6 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          5. At least one of past psych, social or family history
+          5. One or more of past psych, social or family hx
           <transition name="fade">
             <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
           >
