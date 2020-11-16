@@ -164,6 +164,22 @@ export default {
           // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
           windowed: 900,
 
+          /**
+           * Q: Why I am assigning container width to be 556px?
+           * -- Here is my calculation:
+           *  A4 page width = 17cm
+              A4 page left+right padding 0.5cm+0.5cm = 1cm
+              Remaining space for page content = 17cm - 1cm = 16cm
+   
+              Convert 16cm to pixel:
+              Ref: https://www.convert-measurement-units.com/conversion-calculator.php?type=font-size
+              16cm = 604px
+
+              Slider previous and next icons width = 24px+24px = 48px
+              Remaining width for slider content = 
+              604px (Remaining space for page content in px) - 48px (Slider previous and next icons width) = 556px
+           */
+          container: 556,
           // Because: #app {padding: 80px 24px;}
           padding: 4,
         },
@@ -418,7 +434,7 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .g2-container-for-all-timeline-boxes {
   /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
-  max-width: 600px;
+  max-width: 556px; /* Ref: line no-168 */
   margin-left: auto;
   margin-right: auto;
   padding: 4px 4px;
