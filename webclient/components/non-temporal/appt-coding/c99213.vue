@@ -20,7 +20,7 @@
 
       <div style="text-align: center">
         <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          3. Billing duration greater then 14 mins
+          3. Billing duration greater than 14 mins
           <transition name="fade">
             <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
           >

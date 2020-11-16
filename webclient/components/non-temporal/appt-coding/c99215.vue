@@ -47,7 +47,7 @@
 
       <div style="text-align: center">
         <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          3. Billing duration > 24 and less then 41
+          3. Billing duration > 24 and less than 41
           <transition name="fade">
             <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
           >

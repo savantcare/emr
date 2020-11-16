@@ -10,7 +10,7 @@
 
       <div style="text-align: center">
         <span :class="statusC3 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          3. Billing duration: Greater then 9 min
+          3. Billing duration: Greater than 9 min
           <transition name="fade">
             <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
           >
