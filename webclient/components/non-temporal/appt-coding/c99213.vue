@@ -10,26 +10,8 @@
       <br />
 
       <div style="text-align: center">
-        <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          1. Billing duration greater then 14 mins
-          <transition name="fade">
-            <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
-          >
-        </span>
-      </div>
-
-      <div style="text-align: center">
-        <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          2. Medical appt
-          <transition name="fade">
-            <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
-          >
-        </span>
-      </div>
-
-      <div style="text-align: center">
         <span :class="statusC3 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          3. Mental status exam: > 5 elements
+          4. Mental status exam: > 5 elements
           <transition name="fade">
             <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
           >
@@ -37,10 +19,28 @@
       </div>
 
       <div style="text-align: center">
+        <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
+          3. Billing duration greater then 14 mins
+          <transition name="fade">
+            <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+          >
+        </span>
+      </div>
+
+      <div style="text-align: center">
         <span :class="statusC4 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          4. This is followup appt
+          2. This is followup appt
           <transition name="fade">
             <span v-if="statusC4" style="color: green; font-weight: bold"> &check;</span></transition
+          >
+        </span>
+      </div>
+
+      <div style="text-align: center">
+        <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
+          1. Medical appt
+          <transition name="fade">
+            <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
           >
         </span>
       </div>
