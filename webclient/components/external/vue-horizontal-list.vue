@@ -99,7 +99,14 @@ export default {
   mounted() {
     this.$resize = () => {
       this.width.window = window.innerWidth
-      this.width.container = this.$refs.container.clientWidth
+      /**
+       * Slider width supposed to be the width of container.
+       * We are using element io collepse plugin.
+       * At the time page initialization all the rows are in collepse mode and it is causing the container width as 0.
+       * So, at the time of page initialization slider width is becomming 0.
+       * Hence, I am assigning initial container width using options
+       */
+      this.width.container = this._options.list.container
     }
 
     // Added a simple SSR fix, need to look into it for optimization in the future
@@ -135,6 +142,7 @@ export default {
         list: {
           class: options?.list?.class ?? '',
           windowed: options?.list?.windowed ?? 1200,
+          container: options?.list?.container ?? 556,
           padding: options?.list?.padding ?? 24,
         },
         responsive: [
