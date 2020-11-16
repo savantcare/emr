@@ -10,28 +10,19 @@
       <br />
 
       <div style="text-align: center">
-        <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          1. Billing duration >= 45
-          <transition name="fade">
-            <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
-          >
-        </span>
-      </div>
-
-      <div style="text-align: center">
-        <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          2. Medical appt
-          <transition name="fade">
-            <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
-          >
-        </span>
-      </div>
-
-      <div style="text-align: center">
         <span :class="statusC3 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          3. Medical review of systems: Complete
+          6. Medical review of systems: Complete
           <transition name="fade">
             <span v-if="statusC3" style="color: green; font-weight: bold"> &check;</span></transition
+          >
+        </span>
+      </div>
+
+      <div style="text-align: center">
+        <span :class="statusC6 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
+          5. At least 2 out of 3 history (psych, social, family)
+          <transition name="fade">
+            <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
           >
         </span>
       </div>
@@ -46,8 +37,17 @@
       </div>
 
       <div style="text-align: center">
+        <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
+          3. Billing duration >= 45
+          <transition name="fade">
+            <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
+          >
+        </span>
+      </div>
+
+      <div style="text-align: center">
         <span :class="statusC5 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          5. This is intake appt
+          2. This is intake appt
           <transition name="fade">
             <span v-if="statusC5" style="color: green; font-weight: bold"> &check;</span></transition
           >
@@ -55,10 +55,10 @@
       </div>
 
       <div style="text-align: center">
-        <span :class="statusC6 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          6. At least 2 out of 3 history (psych, social, family)
+        <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
+          1. Medical appt
           <transition name="fade">
-            <span v-if="statusC6" style="color: green; font-weight: bold"> &check;</span></transition
+            <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
           >
         </span>
       </div>

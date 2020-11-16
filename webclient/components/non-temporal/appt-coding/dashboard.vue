@@ -52,23 +52,13 @@
               <b>System determined</b>
             </div>
             <div class="block">
-              <span class="demonstration">Elements of medical review of systems</span>
-              <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
               <span class="demonstration">Vitals?</span>
               <el-checkbox v-model="features.vitals"></el-checkbox>
             </div>
             <el-divider></el-divider>
             <div class="block">
-              <span class="demonstration">Mental status exam</span>
-              <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Intake?</span>
-              <el-checkbox v-model="features.itIsIntakeAppt"></el-checkbox>
+              <span class="demonstration">Elements of medical review of systems</span>
+              <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
             </div>
             <el-divider></el-divider>
             <div class="block">
@@ -84,6 +74,16 @@
             <div class="block">
               <span class="demonstration">Family history?</span>
               <el-checkbox v-model="features.fhx"></el-checkbox>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Mental status exam</span>
+              <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
+            </div>
+            <el-divider></el-divider>
+            <div class="block">
+              <span class="demonstration">Intake?</span>
+              <el-checkbox v-model="features.itIsIntakeAppt"></el-checkbox>
             </div>
           </el-card>
         </div>
