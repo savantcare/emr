@@ -11,7 +11,7 @@
 
       <div style="text-align: center">
         <span :class="statusC1 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          1. Billing duration > 37 and less then 53
+          2. Billing duration > 37 and less then 53
           <transition name="fade">
             <span v-if="statusC1" style="color: green; font-weight: bold"> &check;</span></transition
           >
@@ -20,7 +20,7 @@
 
       <div style="text-align: center">
         <span :class="statusC2 ? '' : 'strike'" style="border-style: dashed; border-width: 1px">
-          2. Therapy only appt
+          1. Therapy only appt
           <transition name="fade">
             <span v-if="statusC2" style="color: green; font-weight: bold"> &check;</span></transition
           >
