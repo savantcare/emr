@@ -20,7 +20,7 @@ class MentalStatusExam extends Model
      * @var array
      */
     protected $fillable = [
-        'patientUuid', 'recordChangedByUuid',
+        'ptUuid', 'recordChangedByUuid',
     ];
 
     /**
