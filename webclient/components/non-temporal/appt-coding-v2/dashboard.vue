@@ -90,7 +90,7 @@
 <script>
 import history from './history.vue'
 import examination from './examination.vue'
-import medDecisonMagking from './med-decision-making.vue'
+import medDecisionMaking from './med-decision-making.vue'
 
 export default {
   data() {
