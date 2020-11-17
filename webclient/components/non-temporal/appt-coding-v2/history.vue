@@ -1,7 +1,7 @@
 <template>
   <el-card hover>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; border: solid">
-      <div slot="header" style="transform: rotate(-90deg)" class="clearfix">History</div>
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-row: repeat(7, 1fr); border: solid">
+      <div class="verticalHeader" style="transform: rotate(-90deg)">History</div>
 
       <div class="gridItem">Chief complaint</div>
 
@@ -23,6 +23,26 @@
         Musculoskeletal; Gastrointestinal; Skin/Breast; Neurological; Psychiatric; Endocrine; Hematologic/Lymphatic;
         Allergic/Immunologic
       </div>
+      <div class="gridItem">CC</div>
+      <div class="gridItem">HPI</div>
+      <div class="gridItem">PFSH</div>
+      <div class="gridItem">ROS</div>
+      <div class="gridItem">History type</div>
+      <div class="gridItem">CC</div>
+      <div class="gridItem">HPI</div>
+      <div class="gridItem">PFSH</div>
+      <div class="gridItem">ROS</div>
+      <div class="gridItem">History type</div>
+      <div class="gridItem">CC</div>
+      <div class="gridItem">HPI</div>
+      <div class="gridItem">PFSH</div>
+      <div class="gridItem">ROS</div>
+      <div class="gridItem">History type</div>
+      <div class="gridItem">CC</div>
+      <div class="gridItem">HPI</div>
+      <div class="gridItem">PFSH</div>
+      <div class="gridItem">ROS</div>
+      <div class="gridItem">History type</div>
       <div class="gridItem">CC</div>
       <div class="gridItem">HPI</div>
       <div class="gridItem">PFSH</div>
@@ -50,5 +70,12 @@ export default {
   padding: 2px;
   font-size: 1rem;
   text-align: center;
+}
+.verticalHeader {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 8;
+  font-size: 2rem;
 }
 </style>

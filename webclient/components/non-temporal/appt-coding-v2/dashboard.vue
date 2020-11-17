@@ -1,84 +1,10 @@
 <template>
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
-    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="70%" top="5vh">
-      <div style="display: grid; grid-template-columns: 1fr">
-        <div>
-          <el-card>
-            <history> </history>
-          </el-card>
-        </div>
-        <div>
-          <el-card> <examination /></el-card>
-        </div>
-        <div>
-          <el-card> <medDecisionMaking /></el-card>
-        </div>
-        <div>
-          <el-card>
-            Therapy singular codes
-            <c90832 :features="features" />
-            <c90834 :features="features" />
-            <c90837 :features="features" />
-          </el-card>
-        </div>
-        <div>
-          <el-card>
-            <div slot="header" hover>
-              <b>Best estimate - manual update. </b><span class="demonstration">Show details?</span>
-              <el-checkbox v-model="features.showDetails"></el-checkbox>
-            </div>
-            <div class="block">
-              <span class="demonstration">Billing Duration</span>
-              <el-slider v-model="features.billingDuration"></el-slider>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Was is it a therapy only appointment</span>
-              <el-checkbox v-model="features.isItTherapyOnlyAppt"></el-checkbox>
-            </div>
-          </el-card>
-          <el-card v-if="features.showDetails">
-            <div slot="header" hover>
-              <b>System determined</b>
-            </div>
-            <div class="block">
-              <span class="demonstration">Vitals?</span>
-              <el-checkbox v-model="features.vitals"></el-checkbox>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Elements of medical review of systems</span>
-              <el-slider :max="15" v-model="features.elementsOfPsychReviewOfSystems"></el-slider>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Past psych history?</span>
-              <el-checkbox v-model="features.pphx"></el-checkbox>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Social history?</span>
-              <el-checkbox v-model="features.shx"></el-checkbox>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Family history?</span>
-              <el-checkbox v-model="features.fhx"></el-checkbox>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Mental status exam</span>
-              <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
-            </div>
-            <el-divider></el-divider>
-            <div class="block">
-              <span class="demonstration">Intake?</span>
-              <el-checkbox v-model="features.itIsIntakeAppt"></el-checkbox>
-            </div>
-          </el-card>
-        </div>
-      </div>
+    <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
+      <history> </history>
+      <examination />
+      <medDecisionMaking />
     </el-dialog>
   </div>
 </template>
