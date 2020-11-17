@@ -5,14 +5,13 @@
       <history> </history>
       <examination />
       <medDecisionMaking />
-
       <div style="display: grid; grid-template-columns: 9; border: solid">
         <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
-          New Patient Office (requires 3 of 3)
+          <el-button round size="mini">New Patient Office (requires 3 of 3)</el-button>
         </div>
 
         <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
-          Established Patient Office (requires 2 of 3)
+          <el-button round size="mini">Established Patient Office (requires 2 of 3)</el-button>
         </div>
 
         <div
@@ -28,14 +27,14 @@
           CPT Codes
         </div>
 
-        <div class="gridItem">CPT code</div>
-        <div class="gridItem">History</div>
-        <div class="gridItem">Exam</div>
-        <div class="gridItem">MDM</div>
-        <div class="gridItem">CPT code</div>
-        <div class="gridItem">History</div>
-        <div class="gridItem">Exam</div>
-        <div class="gridItem">MDM</div>
+        <div class="gridItem" style="font-weight: bold">CPT code</div>
+        <div class="gridItem" style="font-weight: bold">History</div>
+        <div class="gridItem" style="font-weight: bold">Exam</div>
+        <div class="gridItem" style="font-weight: bold">MDM</div>
+        <div class="gridItem" style="font-weight: bold">CPT code</div>
+        <div class="gridItem" style="font-weight: bold">History</div>
+        <div class="gridItem" style="font-weight: bold">Exam</div>
+        <div class="gridItem" style="font-weight: bold">MDM</div>
 
         <div class="gridItem">
           <el-button round size="mini">99201</el-button>
