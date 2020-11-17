@@ -1,15 +1,17 @@
 <template>
   <el-card hover>
-    <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-row: repeat(7, 1fr); border: solid">
-      <div class="verticalHeader" style="transform: rotate(-90deg)">History</div>
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-row: repeat(8, 1fr); border: solid">
+      <div class="verticalHeader" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
+        History
+      </div>
 
-      <div class="gridItem">Chief complaint</div>
+      <div class="gridItem" style="font-weight: bold">Chief complaint (CC)</div>
 
-      <div class="gridItem">History of present illness</div>
+      <div class="gridItem" style="font-weight: bold">History of present illness</div>
 
-      <div class="gridItem">Past, family, social history (PFSH)</div>
+      <div class="gridItem" style="font-weight: bold">Past, family, social history (PFSH)</div>
 
-      <div class="gridItem">Review of systems</div>
+      <div class="gridItem" style="grid-column-start: 5; grid-column-end: 7; font-weight: bold">Review of systems</div>
       <div class="gridItem">Reason for the visit</div>
 
       <div class="gridItem">
@@ -18,36 +20,35 @@
 
       <div class="gridItem">Past medical, family medical, social</div>
 
-      <div class="gridItem">
+      <div class="gridItem" style="grid-column-start: 5; grid-column-end: 7">
         Constitutional; Eyes; Ears, Nose, Mouth, and Throat; Cardiovascular; Respiratory; Genitourinary;
         Musculoskeletal; Gastrointestinal; Skin/Breast; Neurological; Psychiatric; Endocrine; Hematologic/Lymphatic;
         Allergic/Immunologic
       </div>
-      <div class="gridItem">CC</div>
-      <div class="gridItem">HPI</div>
-      <div class="gridItem">PFSH</div>
-      <div class="gridItem">ROS</div>
-      <div class="gridItem">History type</div>
-      <div class="gridItem">CC</div>
-      <div class="gridItem">HPI</div>
-      <div class="gridItem">PFSH</div>
-      <div class="gridItem">ROS</div>
-      <div class="gridItem">History type</div>
-      <div class="gridItem">CC</div>
-      <div class="gridItem">HPI</div>
-      <div class="gridItem">PFSH</div>
-      <div class="gridItem">ROS</div>
-      <div class="gridItem">History type</div>
-      <div class="gridItem">CC</div>
-      <div class="gridItem">HPI</div>
-      <div class="gridItem">PFSH</div>
-      <div class="gridItem">ROS</div>
-      <div class="gridItem">History type</div>
-      <div class="gridItem">CC</div>
-      <div class="gridItem">HPI</div>
-      <div class="gridItem">PFSH</div>
-      <div class="gridItem">ROS</div>
-      <div class="gridItem">History type</div>
+      <div class="gridItem" style="font-weight: bold">CC</div>
+      <div class="gridItem" style="font-weight: bold">HPI</div>
+      <div class="gridItem" style="font-weight: bold">PFSH</div>
+      <div class="gridItem" style="font-weight: bold">ROS</div>
+      <div class="gridItem" style="font-weight: bold">History type</div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">Yes</div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
+        Brief (1-3 elements or 1-2 chronic conditions)
+      </div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">N/A</div>
+      <div class="gridItem">N/A</div>
+      <div class="gridItem">Problem focussed (PF)</div>
+      <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
+        Extended (4 elements or 3 chronic conditions)
+      </div>
+      <div class="gridItem">Problem pertinent (1 system)</div>
+      <div class="gridItem">Expanded problem focussed (EPF)</div>
+
+      <div class="gridItem">Pertinent (1 element)</div>
+      <div class="gridItem">Extended 2-9 systems</div>
+      <div class="gridItem">Detailed (DET)</div>
+      <div class="gridItem">Complete (2 elements (est) or 3 elements (new/initial))</div>
+      <div class="gridItem">Complete (10-14 systems)</div>
+      <div class="gridItem">Comprehensive (COMP)</div>
     </div>
   </el-card>
 </template>
@@ -76,6 +77,6 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 8;
-  font-size: 2rem;
+  font-size: 5rem;
 }
 </style>
