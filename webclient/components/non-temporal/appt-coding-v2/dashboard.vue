@@ -7,11 +7,23 @@
       <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
         <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
-          <el-button round size="mini">New Patient Office (requires 3 of 3)</el-button>
+          <el-button
+            round
+            size="mini"
+            :type="features.isThisIntake ? 'primary' : 'info'"
+            @click="features.isThisIntake = true"
+            >New Patient Office (requires 3 of 3)</el-button
+          >
         </div>
 
         <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
-          <el-button round size="mini">Established Patient Office (requires 2 of 3)</el-button>
+          <el-button
+            round
+            size="mini"
+            :type="features.isThisIntake ? 'info' : 'primary'"
+            @click="features.isThisIntake = false"
+            >Established Patient Office (requires 2 of 3)</el-button
+          >
         </div>
 
         <div
@@ -98,6 +110,7 @@ export default {
       dIsSettingsDialogVisible: false,
       features: {
         billingDuration: 36,
+        isThisIntake: true,
       },
     }
   },
