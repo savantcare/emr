@@ -2,9 +2,9 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <history> </history>
-      <examination />
-      <medDecisionMaking />
+      <history :features="features"> </history>
+      <examination :features="features" />
+      <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
         <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
           <el-button round size="mini">New Patient Office (requires 3 of 3)</el-button>
