@@ -37,47 +37,49 @@
         <div class="gridItem">Exam</div>
         <div class="gridItem">MDM</div>
 
-        <div class="gridItem">99201</div>
+        <div class="gridItem">
+          <el-button round size="mini">99201</el-button>
+        </div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">Straigh forward</div>
-        <div class="gridItem">99211</div>
+        <div class="gridItem"><el-button round size="mini">99211</el-button></div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
 
-        <div class="gridItem">99202</div>
+        <div class="gridItem"><el-button round size="mini">99202</el-button></div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Straigh forward</div>
-        <div class="gridItem">99212</div>
+        <div class="gridItem"><el-button round size="mini">99212</el-button></div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">Straigh forward</div>
 
-        <div class="gridItem">99203</div>
+        <div class="gridItem"><el-button round size="mini">99203</el-button></div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Low</div>
-        <div class="gridItem">99213</div>
+        <div class="gridItem"><el-button round size="mini">99213</el-button></div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Low</div>
 
-        <div class="gridItem">99204</div>
+        <div class="gridItem"><el-button round size="mini">99204</el-button></div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">Moderate</div>
-        <div class="gridItem">99214</div>
+        <div class="gridItem"><el-button round size="mini">99214</el-button></div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Moderate</div>
 
-        <div class="gridItem">99205</div>
+        <div class="gridItem"><el-button round size="mini">99205</el-button></div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
-        <div class="gridItem">99215</div>
+        <div class="gridItem"><el-button round size="mini">99215</el-button></div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
@@ -154,7 +156,7 @@ export default {
 .gridItem {
   background-color: #fff;
   border: 1px solid #000;
-  padding: 2px;
+  padding: 0px;
   font-size: 1rem;
   text-align: center;
 }
