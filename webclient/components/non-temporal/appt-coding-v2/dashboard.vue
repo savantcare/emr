@@ -6,14 +6,28 @@
       <examination />
       <medDecisionMaking />
 
-      <div style="display: grid; grid-template-columns: 7">
-        <div class="gridItem" style="grid-column-start: 1; grid-column-end: 5">
+      <div style="display: grid; grid-template-columns: 9; border: solid">
+        <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
           New Patient Office (requires 3 of 3)
         </div>
 
-        <div class="gridItem" style="grid-column-start: 5; grid-column-end: 9">
+        <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
           Established Patient Office (requires 2 of 3)
         </div>
+
+        <div
+          style="
+            grid-row-start: 2;
+            grid-row-end: 8;
+            font-size: 3rem;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+          "
+        >
+          CPT Codes
+        </div>
+
         <div class="gridItem">CPT code</div>
         <div class="gridItem">History</div>
         <div class="gridItem">Exam</div>
@@ -23,47 +37,47 @@
         <div class="gridItem">Exam</div>
         <div class="gridItem">MDM</div>
 
-        <div class="gridItem" style="background-color: #33b5ff">99201</div>
+        <div class="gridItem">99201</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">Straigh forward</div>
-        <div class="gridItem" style="background-color: #33b5ff">99211</div>
+        <div class="gridItem">99211</div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
 
-        <div class="gridItem" style="background-color: #33b5ff">99202</div>
+        <div class="gridItem">99202</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Straigh forward</div>
-        <div class="gridItem" style="background-color: #33b5ff">99212</div>
+        <div class="gridItem">99212</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
         <div class="gridItem">Straigh forward</div>
 
-        <div class="gridItem" style="background-color: #33b5ff">99203</div>
+        <div class="gridItem">99203</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Low</div>
-        <div class="gridItem" style="background-color: #33b5ff">99213</div>
+        <div class="gridItem">99213</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Low</div>
 
-        <div class="gridItem" style="background-color: #33b5ff">99204</div>
+        <div class="gridItem">99204</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">Moderate</div>
-        <div class="gridItem" style="background-color: #33b5ff">99214</div>
+        <div class="gridItem">99214</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Moderate</div>
 
-        <div class="gridItem" style="background-color: #33b5ff">99205</div>
+        <div class="gridItem">99205</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
-        <div class="gridItem" style="background-color: #33b5ff">99215</div>
+        <div class="gridItem">99215</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
