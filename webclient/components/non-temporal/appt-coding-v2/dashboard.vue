@@ -65,7 +65,12 @@
         >
           PF
         </div>
-        <div class="gridItem">PF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          PF
+        </div>
         <div class="gridItem">Straight forward</div>
         <div
           class="gridItem"
@@ -91,7 +96,12 @@
         >
           EPF
         </div>
-        <div class="gridItem">EPF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          EPF
+        </div>
         <div class="gridItem">Straight forward</div>
         <div
           class="gridItem"
@@ -106,7 +116,12 @@
         >
           PF
         </div>
-        <div class="gridItem">PF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          PF
+        </div>
         <div class="gridItem">Straight forward</div>
 
         <div
@@ -122,7 +137,12 @@
         >
           DET
         </div>
-        <div class="gridItem">DET</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          DET
+        </div>
         <div class="gridItem">Low</div>
         <div
           class="gridItem"
@@ -137,7 +157,12 @@
         >
           EPF
         </div>
-        <div class="gridItem">EPF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          EPF
+        </div>
         <div class="gridItem">Low</div>
 
         <div
@@ -153,7 +178,12 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">Moderate</div>
         <div
           class="gridItem"
@@ -168,7 +198,12 @@
         >
           DET
         </div>
-        <div class="gridItem">DET</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          DET
+        </div>
         <div class="gridItem">Moderate</div>
 
         <div
@@ -184,7 +219,12 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">High</div>
         <div
           class="gridItem"
@@ -199,7 +239,12 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">High</div>
         {{ features }}
       </div>
