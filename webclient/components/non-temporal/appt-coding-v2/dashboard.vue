@@ -11,8 +11,8 @@
       <span v-if="features.medDecisonMaking.summaryDisplay"> <medDecisionMakingFull :features="features" /></span>
       <span v-else><medDecisionMakingSummary :features="features" /></span>
 
-      <div style="display: grid; grid-template-columns: 9; border: solid">
-        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
+      <div style="display: grid; grid-template-columns: 11; border: solid">
+        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 7">
           <el-button
             round
             size="mini"
@@ -23,7 +23,7 @@
           >
         </div>
 
-        <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
+        <div class="gridItem" style="grid-column-start: 7; grid-column-end: 12">
           <el-button
             round
             size="mini"
@@ -47,16 +47,18 @@
         >
           CPT Codes
         </div>
-
+        <div>Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
+        <div>Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
 
+        <div>Time</div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -78,6 +80,7 @@
           PF
         </div>
         <div class="gridItem">Straight forward</div>
+        <div>Time</div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -89,6 +92,7 @@
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
 
+        <div>Time</div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -109,6 +113,7 @@
           EPF
         </div>
         <div class="gridItem">Straight forward</div>
+        <div>Time</div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -129,7 +134,7 @@
           PF
         </div>
         <div class="gridItem">Straight forward</div>
-
+        <div>Time</div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -150,6 +155,7 @@
           DET
         </div>
         <div class="gridItem">Low</div>
+        <div>Time</div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -170,7 +176,7 @@
           EPF
         </div>
         <div class="gridItem">Low</div>
-
+        <div>Time</div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -191,6 +197,7 @@
           COMP
         </div>
         <div class="gridItem">Moderate</div>
+        <div>Time</div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -211,6 +218,7 @@
           DET
         </div>
         <div class="gridItem">Moderate</div>
+        <div>Time</div>
 
         <div
           class="gridItem"
@@ -232,6 +240,8 @@
           COMP
         </div>
         <div class="gridItem">High</div>
+        <div>Time</div>
+
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
