@@ -98,7 +98,7 @@
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '1'
-              ? ''
+              ? (features.history.type.pf = true)
               : 'strike'
           "
         >
@@ -147,7 +147,7 @@
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '2'
-              ? ''
+              ? (features.history.type.epf = true)
               : 'strike'
           "
         >
@@ -195,7 +195,7 @@
             features.history.hpi >= 2 &&
             features.history.pfsh >= '2' &&
             features.history.ros >= 3
-              ? ''
+              ? (features.history.type.det = true)
               : 'strike'
           "
         >
@@ -243,7 +243,7 @@
             features.history.hpi >= 2 &&
             features.history.pfsh >= 3 &&
             features.history.ros >= 4
-              ? ''
+              ? (features.history.type.comp = true)
               : 'strike'
           "
         >
