@@ -11,6 +11,7 @@
             round
             size="mini"
             :type="features.isThisIntake ? 'primary' : 'info'"
+            :class="features.isThisIntake ? '' : 'strike'"
             @click="features.isThisIntake = true"
             >New Patient Office (requires 3 of 3)</el-button
           >
@@ -21,6 +22,7 @@
             round
             size="mini"
             :type="features.isThisIntake ? 'info' : 'primary'"
+            :class="features.isThisIntake ? 'strike' : ''"
             @click="features.isThisIntake = false"
             >Established Patient Office (requires 2 of 3)</el-button
           >
@@ -130,7 +132,9 @@ export default {
       features: {
         billingDuration: 36,
         isThisIntake: true,
+
         history: {
+          chiefComplaint: true,
           hpi: 'brief', // 1. brief or 2. extended
           pfsh: 'not-applicable', // 1. not-applicable 2. pertinent or 3. complete
           ros: 'not-applicable', // 1. not-applicable 2. pertinent or 3. extended or 4. complete

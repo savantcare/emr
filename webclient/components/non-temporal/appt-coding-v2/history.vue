@@ -53,7 +53,17 @@
           N/A
         </el-button>
       </div>
-      <div class="gridItem">N/A</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.ros === 'not-applicable' ? '' : 'strike'"
+          :type="features.history.ros === 'not-applicable' ? 'primary' : 'info'"
+          @click="features.history.ros = 'not-applicable'"
+        >
+          N/A
+        </el-button>
+      </div>
       <div class="gridItem">Problem focussed (PF)</div>
       <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
         <el-button
@@ -66,7 +76,17 @@
           Extended (4 elements or 3 chronic conditions)
         </el-button>
       </div>
-      <div class="gridItem">Problem pertinent (1 system)</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.ros === 'pertinent' ? '' : 'strike'"
+          :type="features.history.ros === 'pertinent' ? 'primary' : 'info'"
+          @click="features.history.ros = 'pertinent'"
+        >
+          Problem pertinent (1 system)
+        </el-button>
+      </div>
       <div class="gridItem">Expanded problem focussed (EPF)</div>
 
       <div class="gridItem">
@@ -80,7 +100,17 @@
           Pertinent (1 element)
         </el-button>
       </div>
-      <div class="gridItem">Extended 2-9 systems</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.ros === 'extended' ? '' : 'strike'"
+          :type="features.history.ros === 'extended' ? 'primary' : 'info'"
+          @click="features.history.ros = 'extended'"
+        >
+          Extended 2-9 systems
+        </el-button>
+      </div>
       <div class="gridItem">Detailed (DET)</div>
       <div class="gridItem">
         <el-button
@@ -93,7 +123,17 @@
           Complete (2 elements (est) or 3 elements (new/initial)
         </el-button>
       </div>
-      <div class="gridItem">Complete (10-14 systems)</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.ros === 'complete' ? '' : 'strike'"
+          :type="features.history.ros === 'complete' ? 'primary' : 'info'"
+          @click="features.history.ros = 'complete'"
+        >
+          Complete (10-14 systems)
+        </el-button>
+      </div>
       <div class="gridItem">Comprehensive (COMP)</div>
     </div>
   </el-card>
