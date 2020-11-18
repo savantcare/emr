@@ -45,9 +45,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.hpi === 'brief' ? '' : 'strike'"
-          :type="features.history.hpi === 'brief' ? 'primary' : 'info'"
-          @click="features.history.hpi = 'brief'"
+          :class="features.history.hpi === '1' ? '' : 'strike'"
+          :type="features.history.hpi === '1' ? 'primary' : 'info'"
+          @click="features.history.hpi = '1'"
         >
           Brief </el-button
         ><br />
@@ -57,9 +57,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'not-applicable' ? '' : 'strike'"
-          :type="features.history.pfsh === 'not-applicable' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'not-applicable'"
+          :class="features.history.pfsh === '1' ? '' : 'strike'"
+          :type="features.history.pfsh === '1' ? 'primary' : 'info'"
+          @click="features.history.pfsh = '1'"
         >
           N/A
         </el-button>
@@ -68,17 +68,17 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'not-applicable' ? '' : 'strike'"
-          :type="features.history.ros === 'not-applicable' ? 'primary' : 'info'"
-          @click="features.history.ros = 'not-applicable'"
+          :class="features.history.ros === '1' ? '' : 'strike'"
+          :type="features.history.ros === '1' ? 'primary' : 'info'"
+          @click="features.history.ros = '1'"
         >
           N/A
         </el-button>
       </div>
       <!--           :type="features.history.chiefComplaint === true &&            
-            features.history.hpi === "brief" &&
-            features.history.pfsh === "not-applicable" &&
-            features.history.ros === 'not-applicable'
+            features.history.hpi === "1" &&
+            features.history.pfsh === "1" &&
+            features.history.ros === '1'
           "
  -->
       <div class="gridItem">
@@ -87,17 +87,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'not-applicable'
+            features.history.hpi === '1' &&
+            features.history.pfsh === '1' &&
+            features.history.ros === '1'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'not-applicable'
+            features.history.hpi === '1' &&
+            features.history.pfsh === '1' &&
+            features.history.ros === '1'
               ? ''
               : 'strike'
           "
@@ -136,16 +136,16 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
+            features.history.hpi === '1' &&
+            features.history.pfsh === '1' &&
             features.history.ros === 'pertinent'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
+            features.history.hpi === '1' &&
+            features.history.pfsh === '1' &&
             features.history.ros === 'pertinent'
               ? ''
               : 'strike'
