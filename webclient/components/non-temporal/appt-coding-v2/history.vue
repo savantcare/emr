@@ -75,22 +75,15 @@
           N/A
         </el-button>
       </div>
-      <!--           :type="features.history.chiefComplaint === true &&            
-            features.history.hpi === "1" &&
-            features.history.pfsh === "1" &&
-            features.history.ros === '1'
-          "
- -->
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '1'
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -99,7 +92,7 @@
             features.history.pfsh >= '1' &&
             features.history.ros >= '1'
               ? (features.history.type.pf = true)
-              : 'strike'
+              : (features.history.type.pf = false) && 'strike'
           "
         >
           Problem focussed (PF)
@@ -132,14 +125,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '2'
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -148,7 +140,7 @@
             features.history.pfsh >= '1' &&
             features.history.ros >= '2'
               ? (features.history.type.epf = true)
-              : 'strike'
+              : (features.history.type.epf = false) && 'strike'
           "
         >
           Expanded problem focussed (EPF)
@@ -180,14 +172,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= 2 &&
             features.history.pfsh >= '2' &&
             features.history.ros >= 3
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -196,7 +187,7 @@
             features.history.pfsh >= '2' &&
             features.history.ros >= 3
               ? (features.history.type.det = true)
-              : 'strike'
+              : (features.history.type.det = false) && 'strike'
           "
         >
           Detailed (DET)
@@ -228,14 +219,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= 2 &&
             features.history.pfsh >= 3 &&
             features.history.ros >= 4
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -244,7 +234,7 @@
             features.history.pfsh >= 3 &&
             features.history.ros >= 4
               ? (features.history.type.comp = true)
-              : 'strike'
+              : (features.history.type.comp = false) && 'strike'
           "
         >
           Comprehensive (COMP)
