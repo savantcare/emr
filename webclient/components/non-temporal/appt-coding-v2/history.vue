@@ -122,9 +122,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'pertinent' ? '' : 'strike'"
-          :type="features.history.ros === 'pertinent' ? 'primary' : 'info'"
-          @click="features.history.ros = 'pertinent'"
+          :class="features.history.ros === '2' ? '' : 'strike'"
+          :type="features.history.ros === '2' ? 'primary' : 'info'"
+          @click="features.history.ros = '2'"
         >
           Problem pertinent </el-button
         ><br />
@@ -138,7 +138,7 @@
             features.history.chiefComplaint &&
             features.history.hpi === '1' &&
             features.history.pfsh === '1' &&
-            features.history.ros === 'pertinent'
+            features.history.ros === '2'
               ? 'primary'
               : 'info'
           "
@@ -146,7 +146,7 @@
             features.history.chiefComplaint &&
             features.history.hpi === '1' &&
             features.history.pfsh === '1' &&
-            features.history.ros === 'pertinent'
+            features.history.ros === '2'
               ? ''
               : 'strike'
           "
@@ -158,9 +158,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'pertinent' ? '' : 'strike'"
-          :type="features.history.pfsh === 'pertinent' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'pertinent'"
+          :class="features.history.pfsh === '2' ? '' : 'strike'"
+          :type="features.history.pfsh === '2' ? 'primary' : 'info'"
+          @click="features.history.pfsh = '2'"
         >
           Pertinent </el-button
         ><br />
@@ -185,7 +185,7 @@
           :type="
             features.history.chiefComplaint &&
             features.history.hpi === 'extended' &&
-            features.history.pfsh === 'pertinent' &&
+            features.history.pfsh === '2' &&
             features.history.ros === 'extended'
               ? 'primary'
               : 'info'
@@ -193,7 +193,7 @@
           :class="
             features.history.chiefComplaint &&
             features.history.hpi === 'extended' &&
-            features.history.pfsh === 'pertinent' &&
+            features.history.pfsh === '2' &&
             features.history.ros === 'extended'
               ? ''
               : 'strike'
