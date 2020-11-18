@@ -56,7 +56,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.pf ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           PF
         </div>
@@ -74,7 +74,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.epf ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           EPF
         </div>
@@ -85,7 +85,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.pf ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           PF
         </div>
@@ -97,7 +97,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.det ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           DET
         </div>
@@ -108,7 +108,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.epf ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           EPF
         </div>
@@ -120,7 +120,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           COMP
         </div>
@@ -131,7 +131,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.det ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           DET
         </div>
@@ -143,7 +143,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           COMP
         </div>
@@ -154,7 +154,7 @@
         </div>
         <div
           class="gridItem"
-          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+          :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           COMP
         </div>

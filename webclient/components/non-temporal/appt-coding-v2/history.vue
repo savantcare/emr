@@ -77,14 +77,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '1'
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -126,14 +125,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '2'
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -174,14 +172,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= 2 &&
             features.history.pfsh >= '2' &&
             features.history.ros >= 3
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
@@ -222,14 +219,13 @@
       </div>
       <div class="gridItem">
         <el-button
-          round
           size="mini"
           :type="
             features.history.chiefComplaint &&
             features.history.hpi >= 2 &&
             features.history.pfsh >= 3 &&
             features.history.ros >= 4
-              ? 'primary'
+              ? 'success'
               : 'info'
           "
           :class="
