@@ -93,8 +93,8 @@
         <div class="gridItem">PF</div>
         <div class="gridItem">Straight forward</div>
 
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99203</el-button>
+        <div class="gridItem" style="background-color: #92a8d1" :class="features.isThisIntake ? '' : 'strike'">
+          99203
         </div>
         <div
           class="gridItem"
@@ -116,8 +116,8 @@
         <div class="gridItem">EPF</div>
         <div class="gridItem">Low</div>
 
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99204</el-button>
+        <div class="gridItem" style="background-color: #92a8d1" :class="features.isThisIntake ? '' : 'strike'">
+          99204
         </div>
         <div
           class="gridItem"
@@ -139,8 +139,8 @@
         <div class="gridItem">DET</div>
         <div class="gridItem">Moderate</div>
 
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99205</el-button>
+        <div class="gridItem" style="background-color: #92a8d1" :class="features.isThisIntake ? '' : 'strike'">
+          99205
         </div>
         <div
           class="gridItem"
