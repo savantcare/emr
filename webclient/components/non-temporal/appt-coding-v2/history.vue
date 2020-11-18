@@ -152,28 +152,19 @@
                   ><br />
                   <sub>2-9 systems</sub>
                 </div>
-                <div class="gridItem">
-                  <el-button
-                    size="mini"
-                    :type="
-                      features.history.chiefComplaint &&
-                      features.history.hpi >= 2 &&
-                      features.history.pfsh >= '2' &&
-                      features.history.ros >= 3
-                        ? 'success'
-                        : 'info'
-                    "
+                <div class="gridItem"
                     :class="
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
                       features.history.pfsh >= '2' &&
                       features.history.ros >= 3
                         ? (features.history.type.det = true)
-                        : (features.history.type.det = false) && 'strike'
+                        : (features.history.type.det = false) 
                     "
+                    :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+
                   >
                     Detailed (DET)
-                  </el-button>
                 </div>
                 <div class="gridItem">
                   <el-button
@@ -199,17 +190,7 @@
                   ><br />
                   <sub>(10-14 systems)</sub>
                 </div>
-                <div class="gridItem">
-                  <el-button
-                    size="mini"
-                    :type="
-                      features.history.chiefComplaint &&
-                      features.history.hpi >= 2 &&
-                      features.history.pfsh >= 3 &&
-                      features.history.ros >= 4
-                        ? 'success'
-                        : 'info'
-                    "
+                <div class="gridItem"
                     :class="
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
@@ -218,9 +199,10 @@
                         ? (features.history.type.comp = true)
                         : (features.history.type.comp = false) && 'strike'
                     "
+                    :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+
                   >
                     Comprehensive (COMP)
-                  </el-button>
                 </div>
               </div>
             </el-card>
