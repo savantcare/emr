@@ -75,190 +75,185 @@
           N/A
         </el-button>
       </div>
-      <div class="gridItem">
-        <el-button
-          size="mini"
-          :type="
-            features.history.chiefComplaint &&
-            features.history.hpi >= '1' &&
-            features.history.pfsh >= '1' &&
-            features.history.ros >= '1'
-              ? 'success'
-              : 'info'
-          "
+      <div class="gridItem"
+        
+          :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="
             features.history.chiefComplaint &&
             features.history.hpi >= '1' &&
             features.history.pfsh >= '1' &&
             features.history.ros >= '1'
               ? (features.history.type.pf = true)
-              : (features.history.type.pf = false) && 'strike'
+              : (features.history.type.pf = false)
           "
         >
-          Problem focussed (PF)
-        </el-button>
-      </div>
+                    Problem focussed (PF)
+                </div>
 
-      <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.hpi === 2 ? '' : 'strike'"
-          :type="features.history.hpi === 2 ? 'primary' : 'info'"
-          @click="features.history.hpi = 2"
-        >
-          Extended </el-button
-        ><br />
-        <sub>(4 elements or 3 chronic conditions)</sub>
+                <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.hpi === 2 ? '' : 'strike'"
+                    :type="features.history.hpi === 2 ? 'primary' : 'info'"
+                    @click="features.history.hpi = 2"
+                  >
+                    Extended </el-button
+                  ><br />
+                  <sub>(4 elements or 3 chronic conditions)</sub>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.ros === '2' ? '' : 'strike'"
+                    :type="features.history.ros === '2' ? 'primary' : 'info'"
+                    @click="features.history.ros = '2'"
+                  >
+                    Problem pertinent </el-button
+                  ><br />
+                  <sub>(1 system)</sub>
+                </div>
+                <div
+                  class="gridItem"
+                  :class="
+                    features.history.chiefComplaint &&
+                    features.history.hpi >= '1' &&
+                    features.history.pfsh >= '1' &&
+                    features.history.ros >= '2'
+                      ? (features.history.type.epf = true)
+                      : (features.history.type.epf = false)
+                  "
+                  :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+                >
+                  Expanded problem focussed (EPF)
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.pfsh === '2' ? '' : 'strike'"
+                    :type="features.history.pfsh === '2' ? 'primary' : 'info'"
+                    @click="features.history.pfsh = '2'"
+                  >
+                    Pertinent </el-button
+                  ><br />
+                  <sub>(1 element) </sub>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.ros === 3 ? '' : 'strike'"
+                    :type="features.history.ros === 3 ? 'primary' : 'info'"
+                    @click="features.history.ros = 3"
+                  >
+                    Extended </el-button
+                  ><br />
+                  <sub>2-9 systems</sub>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    size="mini"
+                    :type="
+                      features.history.chiefComplaint &&
+                      features.history.hpi >= 2 &&
+                      features.history.pfsh >= '2' &&
+                      features.history.ros >= 3
+                        ? 'success'
+                        : 'info'
+                    "
+                    :class="
+                      features.history.chiefComplaint &&
+                      features.history.hpi >= 2 &&
+                      features.history.pfsh >= '2' &&
+                      features.history.ros >= 3
+                        ? (features.history.type.det = true)
+                        : (features.history.type.det = false) && 'strike'
+                    "
+                  >
+                    Detailed (DET)
+                  </el-button>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.pfsh === 3 ? '' : 'strike'"
+                    :type="features.history.pfsh === 3 ? 'primary' : 'info'"
+                    @click="features.history.pfsh = 3"
+                  >
+                    Complete </el-button
+                  ><br />
+                  <sub> (2 elements (est) or 3 elements (new/initial) </sub>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    round
+                    size="mini"
+                    :class="features.history.ros === 4 ? '' : 'strike'"
+                    :type="features.history.ros === 4 ? 'primary' : 'info'"
+                    @click="features.history.ros = 4"
+                  >
+                    Complete </el-button
+                  ><br />
+                  <sub>(10-14 systems)</sub>
+                </div>
+                <div class="gridItem">
+                  <el-button
+                    size="mini"
+                    :type="
+                      features.history.chiefComplaint &&
+                      features.history.hpi >= 2 &&
+                      features.history.pfsh >= 3 &&
+                      features.history.ros >= 4
+                        ? 'success'
+                        : 'info'
+                    "
+                    :class="
+                      features.history.chiefComplaint &&
+                      features.history.hpi >= 2 &&
+                      features.history.pfsh >= 3 &&
+                      features.history.ros >= 4
+                        ? (features.history.type.comp = true)
+                        : (features.history.type.comp = false) && 'strike'
+                    "
+                  >
+                    Comprehensive (COMP)
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </template>
+          <script>
+          export default {
+            props: {
+              features: {
+                type: Object,
+                required: true,
+              },
+            },
+            computed: {},
+          }
+          </script>
+
+          <style scoped>
+          .gridItem {
+            background-color: #fff;
+            border: 1px solid #000;
+            padding: 2px;
+            font-size: 1rem;
+            text-align: center;
+          }
+          .verticalHeader {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 8;
+            font-size: 5rem;
+          }
+        </style>
       </div>
-      <div class="gridItem">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.ros === '2' ? '' : 'strike'"
-          :type="features.history.ros === '2' ? 'primary' : 'info'"
-          @click="features.history.ros = '2'"
-        >
-          Problem pertinent </el-button
-        ><br />
-        <sub>(1 system)</sub>
-      </div>
-      <div
-        class="gridItem"
-        :class="
-          features.history.chiefComplaint &&
-          features.history.hpi >= '1' &&
-          features.history.pfsh >= '1' &&
-          features.history.ros >= '2'
-            ? (features.history.type.epf = true)
-            : (features.history.type.epf = false)
-        "
-        :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        Expanded problem focussed (EPF)
-      </div>
-      <div class="gridItem">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.pfsh === '2' ? '' : 'strike'"
-          :type="features.history.pfsh === '2' ? 'primary' : 'info'"
-          @click="features.history.pfsh = '2'"
-        >
-          Pertinent </el-button
-        ><br />
-        <sub>(1 element) </sub>
-      </div>
-      <div class="gridItem">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.ros === 3 ? '' : 'strike'"
-          :type="features.history.ros === 3 ? 'primary' : 'info'"
-          @click="features.history.ros = 3"
-        >
-          Extended </el-button
-        ><br />
-        <sub>2-9 systems</sub>
-      </div>
-      <div class="gridItem">
-        <el-button
-          size="mini"
-          :type="
-            features.history.chiefComplaint &&
-            features.history.hpi >= 2 &&
-            features.history.pfsh >= '2' &&
-            features.history.ros >= 3
-              ? 'success'
-              : 'info'
-          "
-          :class="
-            features.history.chiefComplaint &&
-            features.history.hpi >= 2 &&
-            features.history.pfsh >= '2' &&
-            features.history.ros >= 3
-              ? (features.history.type.det = true)
-              : (features.history.type.det = false) && 'strike'
-          "
-        >
-          Detailed (DET)
-        </el-button>
-      </div>
-      <div class="gridItem">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.pfsh === 3 ? '' : 'strike'"
-          :type="features.history.pfsh === 3 ? 'primary' : 'info'"
-          @click="features.history.pfsh = 3"
-        >
-          Complete </el-button
-        ><br />
-        <sub> (2 elements (est) or 3 elements (new/initial) </sub>
-      </div>
-      <div class="gridItem">
-        <el-button
-          round
-          size="mini"
-          :class="features.history.ros === 4 ? '' : 'strike'"
-          :type="features.history.ros === 4 ? 'primary' : 'info'"
-          @click="features.history.ros = 4"
-        >
-          Complete </el-button
-        ><br />
-        <sub>(10-14 systems)</sub>
-      </div>
-      <div class="gridItem">
-        <el-button
-          size="mini"
-          :type="
-            features.history.chiefComplaint &&
-            features.history.hpi >= 2 &&
-            features.history.pfsh >= 3 &&
-            features.history.ros >= 4
-              ? 'success'
-              : 'info'
-          "
-          :class="
-            features.history.chiefComplaint &&
-            features.history.hpi >= 2 &&
-            features.history.pfsh >= 3 &&
-            features.history.ros >= 4
-              ? (features.history.type.comp = true)
-              : (features.history.type.comp = false) && 'strike'
-          "
-        >
-          Comprehensive (COMP)
-        </el-button>
-      </div>
-    </div>
-  </el-card>
+    </div></el-card
+  >
 </template>
-<script>
-export default {
-  props: {
-    features: {
-      type: Object,
-      required: true,
-    },
-  },
-  computed: {},
-}
-</script>
-
-<style scoped>
-.gridItem {
-  background-color: #fff;
-  border: 1px solid #000;
-  padding: 2px;
-  font-size: 1rem;
-  text-align: center;
-}
-.verticalHeader {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 8;
-  font-size: 5rem;
-}
-</style>
