@@ -5,21 +5,6 @@
         style="display: grid; grid-template-columns: repeat(5, 1fr); grid-template-row: repeat(9, 1fr); border: solid"
       >
         <div
-          style="
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-align: center;
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: 1;
-            grid-row-end: 32;
-            font-size: 5rem;
-            border: 1px solid #000;
-          "
-        >
-          Medical decision making
-        </div>
-        <div
           style="grid-column-start: 2; grid-column-end: 4; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
           Medical Decision Making Element
@@ -358,6 +343,7 @@
             border: 1px solid;
             font-weight: bold;
           "
+          @click="features.medDecisonMaking.summaryDisplay = !features.medDecisonMaking.summaryDisplay"
         >
           Complexity of decison making
         </div>

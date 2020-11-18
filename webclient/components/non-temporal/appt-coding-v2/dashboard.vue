@@ -8,7 +8,7 @@
       <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
       <span v-else> <examinationFull :features="features"> </examinationFull></span>
 
-      <span v-if="features.examination.summaryDisplay"> <medDecisionMakingFull :features="features" /></span>
+      <span v-if="features.medDecisonMaking.summaryDisplay"> <medDecisionMakingFull :features="features" /></span>
       <span v-else><medDecisionMakingSummary :features="features" /></span>
 
       <div style="display: grid; grid-template-columns: 9; border: solid">
