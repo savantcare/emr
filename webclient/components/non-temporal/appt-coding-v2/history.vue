@@ -110,9 +110,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.hpi === 'extended' ? '' : 'strike'"
-          :type="features.history.hpi === 'extended' ? 'primary' : 'info'"
-          @click="features.history.hpi = 'extended'"
+          :class="features.history.hpi === 2 ? '' : 'strike'"
+          :type="features.history.hpi === 2 ? 'primary' : 'info'"
+          @click="features.history.hpi = 2"
         >
           Extended </el-button
         ><br />
@@ -170,9 +170,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'extended' ? '' : 'strike'"
-          :type="features.history.ros === 'extended' ? 'primary' : 'info'"
-          @click="features.history.ros = 'extended'"
+          :class="features.history.ros === 3 ? '' : 'strike'"
+          :type="features.history.ros === 3 ? 'primary' : 'info'"
+          @click="features.history.ros = 3"
         >
           Extended </el-button
         ><br />
@@ -184,17 +184,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
+            features.history.hpi === 2 &&
             features.history.pfsh === '2' &&
-            features.history.ros === 'extended'
+            features.history.ros === 3
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
+            features.history.hpi === 2 &&
             features.history.pfsh === '2' &&
-            features.history.ros === 'extended'
+            features.history.ros === 3
               ? ''
               : 'strike'
           "
@@ -206,9 +206,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'complete' ? '' : 'strike'"
-          :type="features.history.pfsh === 'complete' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'complete'"
+          :class="features.history.pfsh === 3 ? '' : 'strike'"
+          :type="features.history.pfsh === 3 ? 'primary' : 'info'"
+          @click="features.history.pfsh = 3"
         >
           Complete </el-button
         ><br />
@@ -218,9 +218,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'complete' ? '' : 'strike'"
-          :type="features.history.ros === 'complete' ? 'primary' : 'info'"
-          @click="features.history.ros = 'complete'"
+          :class="features.history.ros === 4 ? '' : 'strike'"
+          :type="features.history.ros === 4 ? 'primary' : 'info'"
+          @click="features.history.ros = 4"
         >
           Complete </el-button
         ><br />
@@ -232,17 +232,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'complete' &&
-            features.history.ros === 'complete'
+            features.history.hpi === 2 &&
+            features.history.pfsh === 3 &&
+            features.history.ros === 4
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'complete' &&
-            features.history.ros === 'complete'
+            features.history.hpi === 2 &&
+            features.history.pfsh === 3 &&
+            features.history.ros === 4
               ? ''
               : 'strike'
           "
