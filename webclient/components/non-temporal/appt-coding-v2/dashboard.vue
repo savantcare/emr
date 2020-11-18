@@ -53,7 +53,7 @@
 
         <div
           class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
           99201
@@ -80,7 +80,7 @@
 
         <div
           class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
           99202
@@ -111,7 +111,7 @@
 
         <div
           class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
           99203
@@ -142,7 +142,7 @@
 
         <div
           class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
           99204
@@ -173,7 +173,7 @@
 
         <div
           class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
           99205
