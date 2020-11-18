@@ -30,7 +30,17 @@
       <div class="gridItem" style="font-weight: bold">PFSH</div>
       <div class="gridItem" style="font-weight: bold">ROS</div>
       <div class="gridItem" style="font-weight: bold">History type</div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">Yes</div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">
+        <el-button
+          round
+          size="mini"
+          :type="features.history.chiefComplaint ? 'info' : 'primary'"
+          :class="features.history.chiefComplaint ? 'strike' : ''"
+          @click="features.history.chiefComplaint = !features.history.chiefComplaint"
+        >
+          Yes
+        </el-button>
+      </div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
         <el-button
           round
