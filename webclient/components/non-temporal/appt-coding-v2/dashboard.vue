@@ -2,7 +2,7 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <history :features="features"> </history>
+      <historyFull :features="features"> </historyFull>
       <examination :features="features" />
       <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
@@ -253,7 +253,8 @@
 </template>
 
 <script>
-import history from './history.vue'
+import historyFull from './history-full.vue'
+import historySummary from './history-summary.vue'
 import examination from './examination.vue'
 import medDecisionMaking from './med-decision-making.vue'
 
@@ -291,7 +292,8 @@ export default {
     }
   },
   components: {
-    history,
+    historyFull,
+    historySummary,
     medDecisionMaking,
     examination,
   },
