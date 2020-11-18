@@ -134,10 +134,16 @@ export default {
         isThisIntake: true,
 
         history: {
-          chiefComplaint: true,
-          hpi: 'brief', // 1. brief or 2. extended
-          pfsh: 'not-applicable', // 1. not-applicable 2. pertinent or 3. complete
-          ros: 'not-applicable', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          chiefComplaint: true, // 0 -> false 1-> true
+          hpi: '1', // 1. 1 or 2. extended
+          pfsh: '1', // 1. not-applicable 2. pertinent or 3. complete
+          ros: '1', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
         },
       },
     }

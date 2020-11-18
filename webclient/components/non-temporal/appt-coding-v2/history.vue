@@ -45,20 +45,21 @@
         <el-button
           round
           size="mini"
-          :class="features.history.hpi === 'brief' ? '' : 'strike'"
-          :type="features.history.hpi === 'brief' ? 'primary' : 'info'"
-          @click="features.history.hpi = 'brief'"
+          :class="features.history.hpi === '1' ? '' : 'strike'"
+          :type="features.history.hpi === '1' ? 'primary' : 'info'"
+          @click="features.history.hpi = '1'"
         >
-          Brief (1-3 elements or 1-2 chronic conditions)
-        </el-button>
+          Brief </el-button
+        ><br />
+        <sub>(1-3 elements or 1-2 chronic conditions)</sub>
       </div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'not-applicable' ? '' : 'strike'"
-          :type="features.history.pfsh === 'not-applicable' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'not-applicable'"
+          :class="features.history.pfsh === '1' ? '' : 'strike'"
+          :type="features.history.pfsh === '1' ? 'primary' : 'info'"
+          @click="features.history.pfsh = '1'"
         >
           N/A
         </el-button>
@@ -67,17 +68,17 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'not-applicable' ? '' : 'strike'"
-          :type="features.history.ros === 'not-applicable' ? 'primary' : 'info'"
-          @click="features.history.ros = 'not-applicable'"
+          :class="features.history.ros === '1' ? '' : 'strike'"
+          :type="features.history.ros === '1' ? 'primary' : 'info'"
+          @click="features.history.ros = '1'"
         >
           N/A
         </el-button>
       </div>
       <!--           :type="features.history.chiefComplaint === true &&            
-            features.history.hpi === "brief" &&
-            features.history.pfsh === "not-applicable" &&
-            features.history.ros === 'not-applicable'
+            features.history.hpi === "1" &&
+            features.history.pfsh === "1" &&
+            features.history.ros === '1'
           "
  -->
       <div class="gridItem">
@@ -86,18 +87,18 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'not-applicable'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '1'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'not-applicable'
-              ? ''
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '1'
+              ? (features.history.type.pf = true)
               : 'strike'
           "
         >
@@ -109,23 +110,25 @@
         <el-button
           round
           size="mini"
-          :class="features.history.hpi === 'extended' ? '' : 'strike'"
-          :type="features.history.hpi === 'extended' ? 'primary' : 'info'"
-          @click="features.history.hpi = 'extended'"
+          :class="features.history.hpi === 2 ? '' : 'strike'"
+          :type="features.history.hpi === 2 ? 'primary' : 'info'"
+          @click="features.history.hpi = 2"
         >
-          Extended (4 elements or 3 chronic conditions)
-        </el-button>
+          Extended </el-button
+        ><br />
+        <sub>(4 elements or 3 chronic conditions)</sub>
       </div>
       <div class="gridItem">
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'pertinent' ? '' : 'strike'"
-          :type="features.history.ros === 'pertinent' ? 'primary' : 'info'"
-          @click="features.history.ros = 'pertinent'"
+          :class="features.history.ros === '2' ? '' : 'strike'"
+          :type="features.history.ros === '2' ? 'primary' : 'info'"
+          @click="features.history.ros = '2'"
         >
-          Problem pertinent (1 system)
-        </el-button>
+          Problem pertinent </el-button
+        ><br />
+        <sub>(1 system)</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -133,18 +136,18 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'pertinent'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '2'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'brief' &&
-            features.history.pfsh === 'not-applicable' &&
-            features.history.ros === 'pertinent'
-              ? ''
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '2'
+              ? (features.history.type.epf = true)
               : 'strike'
           "
         >
@@ -155,23 +158,25 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'pertinent' ? '' : 'strike'"
-          :type="features.history.pfsh === 'pertinent' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'pertinent'"
+          :class="features.history.pfsh === '2' ? '' : 'strike'"
+          :type="features.history.pfsh === '2' ? 'primary' : 'info'"
+          @click="features.history.pfsh = '2'"
         >
-          Pertinent (1 element)
-        </el-button>
+          Pertinent </el-button
+        ><br />
+        <sub>(1 element) </sub>
       </div>
       <div class="gridItem">
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'extended' ? '' : 'strike'"
-          :type="features.history.ros === 'extended' ? 'primary' : 'info'"
-          @click="features.history.ros = 'extended'"
+          :class="features.history.ros === 3 ? '' : 'strike'"
+          :type="features.history.ros === 3 ? 'primary' : 'info'"
+          @click="features.history.ros = 3"
         >
-          Extended 2-9 systems
-        </el-button>
+          Extended </el-button
+        ><br />
+        <sub>2-9 systems</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -179,18 +184,18 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'pertinent' &&
-            features.history.ros === 'extended'
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= '2' &&
+            features.history.ros >= 3
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'pertinent' &&
-            features.history.ros === 'extended'
-              ? ''
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= '2' &&
+            features.history.ros >= 3
+              ? (features.history.type.det = true)
               : 'strike'
           "
         >
@@ -201,23 +206,25 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === 'complete' ? '' : 'strike'"
-          :type="features.history.pfsh === 'complete' ? 'primary' : 'info'"
-          @click="features.history.pfsh = 'complete'"
+          :class="features.history.pfsh === 3 ? '' : 'strike'"
+          :type="features.history.pfsh === 3 ? 'primary' : 'info'"
+          @click="features.history.pfsh = 3"
         >
-          Complete (2 elements (est) or 3 elements (new/initial)
-        </el-button>
+          Complete </el-button
+        ><br />
+        <sub> (2 elements (est) or 3 elements (new/initial) </sub>
       </div>
       <div class="gridItem">
         <el-button
           round
           size="mini"
-          :class="features.history.ros === 'complete' ? '' : 'strike'"
-          :type="features.history.ros === 'complete' ? 'primary' : 'info'"
-          @click="features.history.ros = 'complete'"
+          :class="features.history.ros === 4 ? '' : 'strike'"
+          :type="features.history.ros === 4 ? 'primary' : 'info'"
+          @click="features.history.ros = 4"
         >
-          Complete (10-14 systems)
-        </el-button>
+          Complete </el-button
+        ><br />
+        <sub>(10-14 systems)</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -225,18 +232,18 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'complete' &&
-            features.history.ros === 'complete'
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= 3 &&
+            features.history.ros >= 4
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 'extended' &&
-            features.history.pfsh === 'complete' &&
-            features.history.ros === 'complete'
-              ? ''
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= 3 &&
+            features.history.ros >= 4
+              ? (features.history.type.comp = true)
               : 'strike'
           "
         >
