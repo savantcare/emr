@@ -12,7 +12,7 @@
             grid-column-start: 1;
             grid-column-end: 2;
             grid-row-start: 1;
-            grid-row-end: 20;
+            grid-row-end: 22;
             font-size: 5rem;
             border: 1px solid #000;
           "
@@ -182,6 +182,23 @@
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           2
+        </div>
+        <div
+          style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
+        >
+          Table of risk
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; text-align: center; border: 1px solid">
+          Level of risk
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          Presenting problems
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Diagnostic procedure ordered
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Management options selected
         </div>
       </div>
     </el-card>
