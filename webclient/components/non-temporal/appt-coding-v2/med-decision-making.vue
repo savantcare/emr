@@ -12,7 +12,7 @@
             grid-column-start: 1;
             grid-column-end: 2;
             grid-row-start: 1;
-            grid-row-end: 10;
+            grid-row-end: 20;
             font-size: 5rem;
             border: 1px solid #000;
           "
@@ -111,6 +111,77 @@
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           5
+        </div>
+        <div
+          style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
+        >
+          Data points
+        </div>
+
+        <div
+          style="
+            grid-column-start: 2;
+            grid-column-end: 5;
+            font-size: 1.5rem;
+            border: 1px solid #000;
+            text-align: center;
+          "
+        >
+          Categories of Data to be Reviewed (max=1 for each)
+        </div>
+        <div
+          style="
+            grid-column-start: 5;
+            grid-column-end: 6;
+            font-size: 1.5rem;
+            border: 1px solid #000;
+            text-align: center;
+          "
+        >
+          Points
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Review and/or order of clinical lab tests
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Review and/or order of tests in the radiology section of CPT
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Review and/or order of tests in the medicine section of CPT
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Discussion of test results with performing physician
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Decision to obtain old records and/or obtain history from someone other than patient
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Review and summarization of old records and/or obtaining history from someone other than patient and/or
+          discussion of case with another health care provider
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          2
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Independent visualization of image, tracing, or specimen itself (not simply review report)
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          2
         </div>
       </div>
     </el-card>
