@@ -86,10 +86,19 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
+            features.history.hpi === 'brief' &&
             features.history.pfsh === 'not-applicable' &&
             features.history.ros === 'not-applicable'
               ? 'primary'
               : 'info'
+          "
+          :class="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'brief' &&
+            features.history.pfsh === 'not-applicable' &&
+            features.history.ros === 'not-applicable'
+              ? ''
+              : 'strike'
           "
         >
           Problem focussed (PF)
@@ -118,8 +127,30 @@
           Problem pertinent (1 system)
         </el-button>
       </div>
-      <div class="gridItem">Expanded problem focussed (EPF)</div>
-
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :type="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'brief' &&
+            features.history.pfsh === 'not-applicable' &&
+            features.history.ros === 'pertinent'
+              ? 'primary'
+              : 'info'
+          "
+          :class="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'brief' &&
+            features.history.pfsh === 'not-applicable' &&
+            features.history.ros === 'pertinent'
+              ? ''
+              : 'strike'
+          "
+        >
+          Expanded problem focussed (EPF)
+        </el-button>
+      </div>
       <div class="gridItem">
         <el-button
           round
