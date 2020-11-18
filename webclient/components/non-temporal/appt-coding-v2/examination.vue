@@ -130,13 +130,23 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === '10' ? '' : 'strike'"
-            :type="features.examination.bullets === '10' ? 'primary' : 'info'"
-            @click="features.examination.bullets = '10'"
+            :class="features.examination.bullets === 10 ? '' : 'strike'"
+            :type="features.examination.bullets === 10 ? 'primary' : 'info'"
+            @click="features.examination.bullets = 10"
             >All bullets in Const/ Psych boxes and 1 bullet in Musculoskeletal box</el-button
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Comprehensive (COMP)</div>
+        <div
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="[
+            features.examination.bullets === 10
+              ? (features.examination.type.comp = true)
+              : (features.examination.type.comp = false),
+            features.examination.type.comp ? '' : 'strike',
+          ]"
+        >
+          Comprehensive (COMP)
+        </div>
       </div>
     </el-card>
   </div>
