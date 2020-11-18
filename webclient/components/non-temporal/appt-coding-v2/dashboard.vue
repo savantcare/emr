@@ -266,6 +266,7 @@ export default {
         isThisIntake: true,
 
         history: {
+          summaryDisplay: false,
           chiefComplaint: true, // 0 -> false 1-> true
           hpi: 1, // 1. 1 or 2. extended
           pfsh: 1, // 1. not-applicable 2. pertinent or 3. complete
