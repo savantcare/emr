@@ -12,7 +12,7 @@
             grid-column-start: 1;
             grid-column-end: 2;
             grid-row-start: 1;
-            grid-row-end: 26;
+            grid-row-end: 32;
             font-size: 5rem;
             border: 1px solid #000;
           "
@@ -62,10 +62,22 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 5;
+            grid-column-end: 6;
             font-size: 1.5rem;
             border: 1px solid #000;
             text-align: center;
+          "
+        >
+          Problem Points
+        </div>
+        <div
+          style="
+            grid-column-start: 2;
+            grid-column-end: 5;
+            font-size: 1.2rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
           "
         >
           Category or Problems/Major New Symptoms
@@ -74,9 +86,10 @@
           style="
             grid-column-start: 5;
             grid-column-end: 6;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
+            font-weight: bold;
           "
         >
           Points per problem
