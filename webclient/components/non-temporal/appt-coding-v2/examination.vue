@@ -71,13 +71,16 @@
             >1-5 bullets</el-button
           >
         </div>
+        <!--          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000" -->
+
         <div
-          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000"
-          :class="
+          :class="[
             features.examination.bullets === 1
               ? (features.examination.type.pf = true)
-              : (features.examination.type.pf = false)
-          "
+              : (features.examination.type.pf = false),
+            features.examination.type.pf ? '' : 'strike',
+          ]"
+          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           Problem focused (PF)
         </div>
@@ -91,7 +94,15 @@
             >At least 6 bullets</el-button
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">
+        <div
+          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="[
+            features.examination.bullets === 6
+              ? (features.examination.type.epf = true)
+              : (features.examination.type.epf = false),
+            features.examination.type.epf ? '' : 'strike',
+          ]"
+        >
           Expanded problem focused (EPF)
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
@@ -104,7 +115,17 @@
             >At least 9 bullets</el-button
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Detailed (DET)</div>
+        <div
+          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="[
+            features.examination.bullets === 9
+              ? (features.examination.type.det = true)
+              : (features.examination.type.det = false),
+            features.examination.type.det ? '' : 'strike',
+          ]"
+        >
+          Detailed (DET)
+        </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
           <el-button
             round
