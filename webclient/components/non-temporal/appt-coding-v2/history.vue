@@ -34,8 +34,8 @@
         <el-button
           round
           size="mini"
-          :type="features.history.chiefComplaint ? 'info' : 'primary'"
-          :class="features.history.chiefComplaint ? 'strike' : ''"
+          :type="features.history.chiefComplaint ? 'primary' : 'info'"
+          :class="features.history.chiefComplaint ? '' : 'strike'"
           @click="features.history.chiefComplaint = !features.history.chiefComplaint"
         >
           Yes
@@ -81,7 +81,9 @@
           "
  -->
       <div class="gridItem">
-        <el-button round size="mini"> Problem focussed (PF) </el-button>
+        <el-button round size="mini" :type="features.history.chiefComplaint ? 'primary' : 'info'">
+          Problem focussed (PF)
+        </el-button>
       </div>
 
       <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
