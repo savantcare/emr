@@ -189,16 +189,52 @@
           Table of risk
         </div>
 
-        <div style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          style="
+            grid-column-start: 2;
+            grid-column-end: 3;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
           Level of risk
         </div>
-        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          style="
+            grid-column-start: 3;
+            grid-column-end: 4;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
           Presenting problems
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          style="
+            grid-column-start: 4;
+            grid-column-end: 5;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
           Diagnostic procedure ordered
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          style="
+            grid-column-start: 5;
+            grid-column-end: 6;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
           Management options selected
         </div>
 
@@ -262,6 +298,115 @@
         ></div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Drug therapy requiring intensive monitoring for toxicity
+        </div>
+
+        <div
+          style="
+            grid-column-start: 2;
+            grid-column-end: 3;
+            font-size: 1rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+          "
+        >
+          Problem points
+        </div>
+        <div
+          style="
+            grid-column-start: 3;
+            grid-column-end: 4;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
+          Data points
+        </div>
+        <div
+          style="
+            grid-column-start: 4;
+            grid-column-end: 5;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
+          Risk
+        </div>
+        <div
+          style="
+            grid-column-start: 5;
+            grid-column-end: 6;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
+          Complexity of decison making
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          0-1
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          0-1
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Minimal
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Straight forward
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          2
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          2
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Low
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Low
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          3
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          3
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Moderate
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Moderate
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          4
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          4
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          High
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          High
         </div>
       </div>
     </el-card>
