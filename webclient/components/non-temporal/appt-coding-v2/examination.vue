@@ -62,21 +62,49 @@
           Examination type
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
-          <el-button>1-5 bullets</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.examination.bullets === '1' ? '' : 'strike'"
+            :type="features.examination.bullets === '1' ? 'primary' : 'info'"
+            @click="features.examination.bullets = '1'"
+            >1-5 bullets</el-button
+          >
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Problem focused (PF)</div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
-          <el-button>At least 6 bullets</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.examination.bullets === '6' ? '' : 'strike'"
+            :type="features.examination.bullets === '6' ? 'primary' : 'info'"
+            @click="features.examination.bullets = '6'"
+            >At least 6 bullets</el-button
+          >
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">
           Expanded problem focused (EPF)
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
-          <el-button>At least 9 bullets</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.examination.bullets === '9' ? '' : 'strike'"
+            :type="features.examination.bullets === '9' ? 'primary' : 'info'"
+            @click="features.examination.bullets = '9'"
+            >At least 9 bullets</el-button
+          >
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Detailed (DET)</div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
-          <el-button>All bullets in Const/ Psych boxes and 1 bullet in Musculoskeletal box</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.examination.bullets === '10' ? '' : 'strike'"
+            :type="features.examination.bullets === '10' ? 'primary' : 'info'"
+            @click="features.examination.bullets = '10'"
+            >All bullets in Const/ Psych boxes and 1 bullet in Musculoskeletal box</el-button
+          >
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Comprehensive (COMP)</div>
       </div>
