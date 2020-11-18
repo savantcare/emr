@@ -6,8 +6,11 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
   <div>
     <!-- Following el-card style is set to overflow visible and height 65px. This is because tooltip on appointment slider wasn't fully visible as el-card overflow property by default set to hidden. Also since slider is generating on the fly, it was causing malformation on mouse overing/tooltip. Hence overflow is visible and height set to 65px. -->
     <el-card style="overflow: visible; height: 65px">
-      <el-col :span="23">
+      <el-col :span="20">
         <ctSlider></ctSlider>
+      </el-col>
+      <el-col :span="3" style="display: flex; align-items: right; padding-left: 8px">
+        <ctCoding></ctCoding>
       </el-col>
       <el-col :span="1" style="display: flex; align-items: right; padding-left: 8px">
         <ctSettings></ctSettings>
@@ -20,11 +23,15 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 // import ctSlider from './time-series-of-appointments-component-made-with-high-charts.vue'
 import ctSlider from './time-series-of-appointments-component-made-with-vue-slider.vue'
 
-import ctSettings from './settings-component.vue'
 import ctTogleHealthOther from './toggle-health-other-component.vue'
+import ctAccord from '@/components/external/vue-horizontal-collapse/HorizontalCollapse.vue'
+
+import ctCoding from '../appt-coding-v2/dashboard.vue'
+import ctSettings from './settings-component.vue'
+//
 
 export default {
-  components: { ctSlider, ctSettings },
+  components: { ctSlider, ctAccord, ctCoding, ctSettings },
 }
 </script>
 

@@ -52,7 +52,7 @@ export default class diagnosis extends clientTblManage {
   }
 }
 
-const fnSelectOptionCallBack = (pQueryString, pCallBack) => {
+const fnSelectOptionCallBack = (pId, pCallBack) => {
   const options = [
     {
       id: '1',
@@ -75,8 +75,12 @@ const fnSelectOptionCallBack = (pQueryString, pCallBack) => {
       value: 'Pain',
     },
   ]
-  console.log('inside the fn to return select options')
   pCallBack(options)
+  const getData = options.filter(item => item.id === pId);
+  if(getData.length) {
+    return getData[0].value
+  }
+  return ''
 }
 export const diagnosisFormDef = {
   id: 'diagnosis',

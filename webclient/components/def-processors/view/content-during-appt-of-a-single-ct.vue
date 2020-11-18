@@ -49,22 +49,12 @@
               style="padding: 3px; color: #c0c4cc; border: none"
             ></el-button>
           </span>
-          <!-- Minimize or maximize. This appears if appt is locked or unlocked -->
-          <el-button
-            v-if="cfGetArOfDataRows.length > 0"
-            :class="OnAndOffSwitchToShowContent ? 'el-icon-remove-outline' : 'el-icon-full-screen'"
-            size="mini"
-            @click="OnAndOffSwitchToShowContent = !OnAndOffSwitchToShowContent"
-            style="padding: 3px; color: #c0c4cc; border: none"
-          ></el-button>
         </el-button-group>
       </template>
       <!-- Section 2/2: This starts after the header ends -->
       <div :style="cfGetDataRowStyle">
-        <!-- Goal: Only do this if this section has not been minimized -->
-        <div v-if="OnAndOffSwitchToShowContent">
-          <!-- This is for each data row -->
-          <!-- Design: 
+        <!-- This is for each data row -->
+        <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
@@ -90,52 +80,51 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-          <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
+        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
          Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
          Each appt gets a slide of its own
          -->
 
-          <vue-horizontal-list
-            :items="cfGetEntityValueDuringEachAppt"
-            :options="options"
-            :currentSlideNumber="currentSlideNumber"
-            class="g2-container-for-all-timeline-boxes"
-          >
-            <template v-slot:default="{ item }">
-              <div v-if="currentApptObj.apptStartMilliSecondsOnCalendar !== item.apptStartMilliSecondsOnCalendar">
-                Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
-              </div>
-              <div
-                class="item"
-                id="each-row-of-entity-inside-appt"
-                v-for="entityRow in item[_formDef.id]"
-                :key="entityRow.clientSideUniqRowId"
-              >
-                <getRowContent
-                  :_entityRow="entityRow"
-                  :_formDef="_formDef"
-                  :_ApptStatus="item['apptStatus']"
-                  :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
-                />
-                <!-- end of each-row-of-entity -->
-                <!-- This is for action associated with each row -->
-                <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-                <!-- Case 1/2: When this appt is locked what row actions to show-->
-              </div>
-              <!-- end of actions of each row -->
-            </template>
-          </vue-horizontal-list>
-        </div>
-        <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
-          <h4>Addendum:</h4>
-          <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
-            <div style="margin: 5px 0">
-              {{ entityRow.description }}
-              <br />
-              <span style="font-size: 0.625rem"
-                >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
-              >
+        <vue-horizontal-list
+          :items="cfGetEntityValueDuringEachAppt"
+          :options="options"
+          :currentSlideNumber="currentSlideNumber"
+          class="g2-container-for-all-timeline-boxes"
+        >
+          <template v-slot:default="{ item }">
+            <div v-if="currentApptObj.apptStartMilliSecondsOnCalendar !== item.apptStartMilliSecondsOnCalendar">
+              Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
             </div>
+            <div
+              class="item"
+              id="each-row-of-entity-inside-appt"
+              v-for="entityRow in item[_formDef.id]"
+              :key="entityRow.clientSideUniqRowId"
+            >
+              <getRowContent
+                :_entityRow="entityRow"
+                :_formDef="_formDef"
+                :_ApptStatus="item['apptStatus']"
+                :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
+              />
+              <!-- end of each-row-of-entity -->
+              <!-- This is for action associated with each row -->
+              <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+              <!-- Case 1/2: When this appt is locked what row actions to show-->
+            </div>
+            <!-- end of actions of each row -->
+          </template>
+        </vue-horizontal-list>
+      </div>
+      <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
+        <h4>Addendum:</h4>
+        <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
+          <div style="margin: 5px 0">
+            {{ entityRow.description }}
+            <br />
+            <span style="font-size: 0.625rem"
+              >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
+            >
           </div>
         </div>
       </div>
@@ -163,7 +152,6 @@ export default {
       currentApptObj: {},
       amendmentData: '',
       isAddendumPopoverVisible: false,
-      OnAndOffSwitchToShowContent: true,
       currentSlideNumber: 0,
       options: {
         responsive: [
@@ -176,6 +164,22 @@ export default {
           // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
           windowed: 900,
 
+          /**
+           * Q: Why I am assigning container width to be 556px?
+           * -- Here is my calculation:
+           *  A4 page width = 17cm
+              A4 page left+right padding 0.5cm+0.5cm = 1cm
+              Remaining space for page content = 17cm - 1cm = 16cm
+   
+              Convert 16cm to pixel:
+              Ref: https://www.convert-measurement-units.com/conversion-calculator.php?type=font-size
+              16cm = 604px
+
+              Slider previous and next icons width = 24px+24px = 48px
+              Remaining width for slider content = 
+              604px (Remaining space for page content in px) - 48px (Slider previous and next icons width) = 556px
+           */
+          container: 556,
           // Because: #app {padding: 80px 24px;}
           padding: 4,
         },
@@ -430,7 +434,7 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .g2-container-for-all-timeline-boxes {
   /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
-  max-width: 600px;
+  max-width: 556px; /* Ref: line no-168 */
   margin-left: auto;
   margin-right: auto;
   padding: 4px 4px;
