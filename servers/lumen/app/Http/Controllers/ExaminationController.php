@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MentalStatusExam;
+use App\Examination;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
@@ -11,19 +11,19 @@ use Predis\Autoloader;
 \Predis\Autoloader::register();
 
 
-class MentalStatusExamController extends Controller
+class ExaminationController extends Controller
 {
-    public function getAllTemporalMentalStatusExams()
+    public function get_all_temporal_examinations()
     {
-        $mentalStatusExamQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_mse.pt_mental_status_exam order by ROW_END desc,ROW_START desc'));
-        return response()->json($mentalStatusExamQueryResultObj);
+        $examinationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_examination.pt_examination order by ROW_END desc,ROW_START desc'));
+        return response()->json($examinationQueryResultObj);
     }
 
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();
         $recordChangedFromIPAddress = $this->get_client_ip();
-        $arMentalStatusExamData = array(
+        $arExaminationData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'appearance_select' => $requestData['data']['appearance_select'],
@@ -33,24 +33,24 @@ class MentalStatusExamController extends Controller
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
        
-        $mentalStatusExam = MentalStatusExam::insertGetId($arMentalStatusExamData);
+        $examination = Examination::insertGetId($arExaminationData);
 
-        return response()->json($mentalStatusExam, 201);
+        return response()->json($examination, 201);
     }
 
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
-        $mentalStatusExam = ServiceStatement::findOrFail($pServerSideRowUuid);
-        $mentalStatusExam->update($requestData['data']);
+        $examination = Examination::findOrFail($pServerSideRowUuid);
+        $examination->update($requestData['data']);
 
-        return response()->json($mentalStatusExam, 200);
+        return response()->json($examination, 200);
     }
  
     public function delete($pServerSideRowUuid)
     {
-        $mentalStatusExam = MentalStatusExam::findOrFail($pServerSideRowUuid);
-        $mentalStatusExam->delete();
+        $examination = Examination::findOrFail($pServerSideRowUuid);
+        $examination->delete();
         return response('Deleted successfully', 200);
     }
 

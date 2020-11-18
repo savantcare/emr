@@ -11,7 +11,7 @@ const intUniqueId = () => ++count
 export default class mentalStatusExamForPatientClass extends clientTblManage {
   static entity = 'tblMentalStatusExamOfPatient'
 
-  static apiUrl = process.env.baseUrlForLumen + '/public/api/mental-status-exam/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/examination/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
