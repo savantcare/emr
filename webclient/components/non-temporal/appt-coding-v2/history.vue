@@ -32,13 +32,29 @@
       <div class="gridItem" style="font-weight: bold">History type</div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">Yes</div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
-        Brief (1-3 elements or 1-2 chronic conditions)
+        <el-button
+          round
+          size="mini"
+          :class="features.history.hpi === 'brief' ? '' : 'strike'"
+          :type="features.history.hpi === 'brief' ? 'primary' : 'info'"
+          @click="features.history.hpi = 'brief'"
+        >
+          Brief (1-3 elements or 1-2 chronic conditions)
+        </el-button>
       </div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">N/A</div>
       <div class="gridItem">N/A</div>
       <div class="gridItem">Problem focussed (PF)</div>
       <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
-        Extended (4 elements or 3 chronic conditions)
+        <el-button
+          round
+          size="mini"
+          :class="features.history.hpi === 'extended' ? '' : 'strike'"
+          :type="features.history.hpi === 'extended' ? 'primary' : 'info'"
+          @click="features.history.hpi = 'extended'"
+        >
+          Extended (4 elements or 3 chronic conditions)
+        </el-button>
       </div>
       <div class="gridItem">Problem pertinent (1 system)</div>
       <div class="gridItem">Expanded problem focussed (EPF)</div>

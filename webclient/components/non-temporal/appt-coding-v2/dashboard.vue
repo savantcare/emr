@@ -6,7 +6,7 @@
       <examination :features="features" />
       <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
-        <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
+        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
           <el-button
             round
             size="mini"
@@ -28,12 +28,13 @@
 
         <div
           style="
-            grid-row-start: 2;
+            grid-row-start: 1;
             grid-row-end: 8;
             font-size: 3rem;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             text-align: center;
+            background-color: #92a8d1;
           "
         >
           CPT Codes
@@ -48,65 +49,65 @@
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
 
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99201</el-button>
         </div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
-        <div class="gridItem">Straigh forward</div>
-        <div class="gridItem">
+        <div class="gridItem">Straight forward</div>
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99211</el-button>
         </div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
 
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99202</el-button>
         </div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
-        <div class="gridItem">Straigh forward</div>
-        <div class="gridItem">
+        <div class="gridItem">Straight forward</div>
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99212</el-button>
         </div>
         <div class="gridItem">PF</div>
         <div class="gridItem">PF</div>
-        <div class="gridItem">Straigh forward</div>
+        <div class="gridItem">Straight forward</div>
 
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99203</el-button>
         </div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Low</div>
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99213</el-button>
         </div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Low</div>
 
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99204</el-button>
         </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">Moderate</div>
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99214</el-button>
         </div>
         <div class="gridItem">DET</div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Moderate</div>
 
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99205</el-button>
         </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
-        <div class="gridItem">
+        <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99215</el-button>
         </div>
         <div class="gridItem">COMP</div>
@@ -129,6 +130,9 @@ export default {
       features: {
         billingDuration: 36,
         isThisIntake: true,
+        history: {
+          hpi: 'brief',
+        },
       },
     }
   },
