@@ -47,18 +47,24 @@
         >
           CPT Codes
         </div>
-        <div>Time</div>
+        <div class="gridItem" style="font-weight: bold">Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
-        <div>Time</div>
+        <div class="gridItem" style="font-weight: bold">Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
 
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -80,7 +86,13 @@
           PF
         </div>
         <div class="gridItem">Straight forward</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -92,7 +104,13 @@
         <div class="gridItem">N/A</div>
         <div class="gridItem">N/A</div>
 
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -113,7 +131,13 @@
           EPF
         </div>
         <div class="gridItem">Straight forward</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -134,7 +158,13 @@
           PF
         </div>
         <div class="gridItem">Straight forward</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -155,7 +185,13 @@
           DET
         </div>
         <div class="gridItem">Low</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -176,7 +212,13 @@
           EPF
         </div>
         <div class="gridItem">Low</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -197,7 +239,13 @@
           COMP
         </div>
         <div class="gridItem">Moderate</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -218,7 +266,13 @@
           DET
         </div>
         <div class="gridItem">Moderate</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
 
         <div
           class="gridItem"
@@ -240,7 +294,13 @@
           COMP
         </div>
         <div class="gridItem">High</div>
-        <div>Time</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
 
         <div
           class="gridItem"
