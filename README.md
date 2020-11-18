@@ -49,6 +49,9 @@ Pirority:
 1. Once vue collabpsible installed the vue-horizontal-list does not work
 2. Father added on Oct3rd. Mother added on Nov 11th. Mother also shown on Oct3rd slide.
 3. Should rem be only on font?
+   -- It seems that the font-size in REM is important but not relevant for other elements. So its not necessary to use REM throughout your whole project.
+   Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-font-size
+
 4. The appt date is visible for that i need to slide a little
 5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
 6. Protect against tab closed before "Reviewed lock the note" is clicked https://github.com/championswimmer/vuex-persist => A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
