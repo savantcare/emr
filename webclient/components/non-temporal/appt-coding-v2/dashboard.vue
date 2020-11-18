@@ -222,9 +222,9 @@ export default {
 
         history: {
           chiefComplaint: true, // 0 -> false 1-> true
-          hpi: '1', // 1. 1 or 2. extended
-          pfsh: '1', // 1. not-applicable 2. pertinent or 3. complete
-          ros: '1', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          hpi: 1, // 1. 1 or 2. extended
+          pfsh: 1, // 1. not-applicable 2. pertinent or 3. complete
+          ros: 1, // 1. not-applicable 2. pertinent or 3. extended or 4. complete
           type: {
             pf: false,
             epf: false,
@@ -234,6 +234,12 @@ export default {
         },
         examination: {
           bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
         },
       },
     }

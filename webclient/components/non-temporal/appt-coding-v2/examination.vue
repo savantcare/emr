@@ -65,20 +65,29 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === '1' ? '' : 'strike'"
-            :type="features.examination.bullets === '1' ? 'primary' : 'info'"
-            @click="features.examination.bullets = '1'"
+            :class="features.examination.bullets === 1 ? '' : 'strike'"
+            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
+            @click="features.examination.bullets = 1"
             >1-5 bullets</el-button
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Problem focused (PF)</div>
+        <div
+          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000"
+          :class="
+            features.examination.bullets === 1
+              ? (features.examination.type.pf = true)
+              : (features.examination.type.pf = false)
+          "
+        >
+          Problem focused (PF)
+        </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === '6' ? '' : 'strike'"
-            :type="features.examination.bullets === '6' ? 'primary' : 'info'"
-            @click="features.examination.bullets = '6'"
+            :class="features.examination.bullets === 6 ? '' : 'strike'"
+            :type="features.examination.bullets === 6 ? 'primary' : 'info'"
+            @click="features.examination.bullets = 6"
             >At least 6 bullets</el-button
           >
         </div>
@@ -89,9 +98,9 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === '9' ? '' : 'strike'"
-            :type="features.examination.bullets === '9' ? 'primary' : 'info'"
-            @click="features.examination.bullets = '9'"
+            :class="features.examination.bullets === 9 ? '' : 'strike'"
+            :type="features.examination.bullets === 9 ? 'primary' : 'info'"
+            @click="features.examination.bullets = 9"
             >At least 9 bullets</el-button
           >
         </div>

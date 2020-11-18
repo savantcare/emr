@@ -45,9 +45,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.hpi === '1' ? '' : 'strike'"
-          :type="features.history.hpi === '1' ? 'primary' : 'info'"
-          @click="features.history.hpi = '1'"
+          :class="features.history.hpi === 1 ? '' : 'strike'"
+          :type="features.history.hpi === 1 ? 'primary' : 'info'"
+          @click="features.history.hpi = 1"
         >
           Brief </el-button
         ><br />
@@ -57,9 +57,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.pfsh === '1' ? '' : 'strike'"
-          :type="features.history.pfsh === '1' ? 'primary' : 'info'"
-          @click="features.history.pfsh = '1'"
+          :class="features.history.pfsh === 1 ? '' : 'strike'"
+          :type="features.history.pfsh === 1 ? 'primary' : 'info'"
+          @click="features.history.pfsh = 1"
         >
           N/A
         </el-button>
@@ -68,9 +68,9 @@
         <el-button
           round
           size="mini"
-          :class="features.history.ros === '1' ? '' : 'strike'"
-          :type="features.history.ros === '1' ? 'primary' : 'info'"
-          @click="features.history.ros = '1'"
+          :class="features.history.ros === 1 ? '' : 'strike'"
+          :type="features.history.ros === 1 ? 'primary' : 'info'"
+          @click="features.history.ros = 1"
         >
           N/A
         </el-button>
@@ -80,9 +80,9 @@
           :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi >= '1' &&
-            features.history.pfsh >= '1' &&
-            features.history.ros >= '1'
+            features.history.hpi >= 1 &&
+            features.history.pfsh >= 1 &&
+            features.history.ros >= 1
               ? (features.history.type.pf = true)
               : (features.history.type.pf = false)
           "
@@ -106,9 +106,9 @@
                   <el-button
                     round
                     size="mini"
-                    :class="features.history.ros === '2' ? '' : 'strike'"
-                    :type="features.history.ros === '2' ? 'primary' : 'info'"
-                    @click="features.history.ros = '2'"
+                    :class="features.history.ros === 2 ? '' : 'strike'"
+                    :type="features.history.ros === 2 ? 'primary' : 'info'"
+                    @click="features.history.ros = 2"
                   >
                     Problem pertinent </el-button
                   ><br />
@@ -118,9 +118,9 @@
                   class="gridItem"
                   :class="[
                     features.history.chiefComplaint &&
-                    features.history.hpi >= '1' &&
-                    features.history.pfsh >= '1' &&
-                    features.history.ros >= '2'
+                    features.history.hpi >= 1 &&
+                    features.history.pfsh >= 1 &&
+                    features.history.ros >= 2
                       ? (features.history.type.epf = true)
                       : (features.history.type.epf = false),
                       
@@ -136,9 +136,9 @@
                   <el-button
                     round
                     size="mini"
-                    :class="features.history.pfsh === '2' ? '' : 'strike'"
-                    :type="features.history.pfsh === '2' ? 'primary' : 'info'"
-                    @click="features.history.pfsh = '2'"
+                    :class="features.history.pfsh === 2 ? '' : 'strike'"
+                    :type="features.history.pfsh === 2 ? 'primary' : 'info'"
+                    @click="features.history.pfsh = 2"
                   >
                     Pertinent </el-button
                   ><br />
@@ -160,7 +160,7 @@
                     :class="[
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
-                      features.history.pfsh >= '2' &&
+                      features.history.pfsh >= 2 &&
                       features.history.ros >= 3
                         ? (features.history.type.det = true)
                         : (features.history.type.det = false),
