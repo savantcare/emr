@@ -61,16 +61,22 @@
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold">
           Examination type
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">1-5 bullets</div>
+        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+          <el-button>1-5 bullets</el-button>
+        </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Problem focused (PF)</div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">At least 6 bullets</div>
+        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+          <el-button>At least 6 bullets</el-button>
+        </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">
           Expanded problem focused (EPF)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">At least 9 bullets</div>
+        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+          <el-button>At least 9 bullets</el-button>
+        </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Detailed (DET)</div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
-          All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          <el-button>All bullets in Const/ Psych boxes and 1 bullet in Musculoskeletal box</el-button>
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000">Comprehensive (COMP)</div>
       </div>

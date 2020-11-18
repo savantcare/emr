@@ -232,6 +232,9 @@ export default {
             comp: false,
           },
         },
+        examination: {
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+        },
       },
     }
   },
