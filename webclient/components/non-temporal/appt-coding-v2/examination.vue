@@ -75,7 +75,7 @@
 
         <div
           :class="[
-            features.examination.bullets === 1
+            features.examination.bullets >= 1
               ? (features.examination.type.pf = true)
               : (features.examination.type.pf = false),
             features.examination.type.pf ? '' : 'strike',
@@ -97,7 +97,7 @@
         <div
           :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
-            features.examination.bullets === 6
+            features.examination.bullets >= 6
               ? (features.examination.type.epf = true)
               : (features.examination.type.epf = false),
             features.examination.type.epf ? '' : 'strike',
@@ -118,7 +118,7 @@
         <div
           :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
-            features.examination.bullets === 9
+            features.examination.bullets >= 9
               ? (features.examination.type.det = true)
               : (features.examination.type.det = false),
             features.examination.type.det ? '' : 'strike',
@@ -139,7 +139,7 @@
         <div
           :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
-            features.examination.bullets === 10
+            features.examination.bullets >= 10
               ? (features.examination.type.comp = true)
               : (features.examination.type.comp = false),
             features.examination.type.comp ? '' : 'strike',
