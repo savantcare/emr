@@ -87,17 +87,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === '1' &&
-            features.history.pfsh === '1' &&
-            features.history.ros === '1'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '1'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === '1' &&
-            features.history.pfsh === '1' &&
-            features.history.ros === '1'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '1'
               ? ''
               : 'strike'
           "
@@ -136,17 +136,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === '1' &&
-            features.history.pfsh === '1' &&
-            features.history.ros === '2'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '2'
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === '1' &&
-            features.history.pfsh === '1' &&
-            features.history.ros === '2'
+            features.history.hpi >= '1' &&
+            features.history.pfsh >= '1' &&
+            features.history.ros >= '2'
               ? ''
               : 'strike'
           "
@@ -184,17 +184,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 2 &&
-            features.history.pfsh === '2' &&
-            features.history.ros === 3
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= '2' &&
+            features.history.ros >= 3
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 2 &&
-            features.history.pfsh === '2' &&
-            features.history.ros === 3
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= '2' &&
+            features.history.ros >= 3
               ? ''
               : 'strike'
           "
@@ -232,17 +232,17 @@
           size="mini"
           :type="
             features.history.chiefComplaint &&
-            features.history.hpi === 2 &&
-            features.history.pfsh === 3 &&
-            features.history.ros === 4
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= 3 &&
+            features.history.ros >= 4
               ? 'primary'
               : 'info'
           "
           :class="
             features.history.chiefComplaint &&
-            features.history.hpi === 2 &&
-            features.history.pfsh === 3 &&
-            features.history.ros === 4
+            features.history.hpi >= 2 &&
+            features.history.pfsh >= 3 &&
+            features.history.ros >= 4
               ? ''
               : 'strike'
           "
