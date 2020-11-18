@@ -160,6 +160,7 @@
         </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
+        {{ features }}
       </div>
     </el-dialog>
   </div>

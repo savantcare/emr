@@ -123,28 +123,19 @@
         ><br />
         <sub>(1 system)</sub>
       </div>
-      <div class="gridItem">
-        <el-button
-          size="mini"
-          :type="
-            features.history.chiefComplaint &&
-            features.history.hpi >= '1' &&
-            features.history.pfsh >= '1' &&
-            features.history.ros >= '2'
-              ? 'success'
-              : 'info'
-          "
-          :class="
-            features.history.chiefComplaint &&
-            features.history.hpi >= '1' &&
-            features.history.pfsh >= '1' &&
-            features.history.ros >= '2'
-              ? (features.history.type.epf = true)
-              : (features.history.type.epf = false) && 'strike'
-          "
-        >
-          Expanded problem focussed (EPF)
-        </el-button>
+      <div
+        class="gridItem"
+        :class="
+          features.history.chiefComplaint &&
+          features.history.hpi >= '1' &&
+          features.history.pfsh >= '1' &&
+          features.history.ros >= '2'
+            ? (features.history.type.epf = true)
+            : (features.history.type.epf = false)
+        "
+        :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+      >
+        Expanded problem focussed (EPF)
       </div>
       <div class="gridItem">
         <el-button
