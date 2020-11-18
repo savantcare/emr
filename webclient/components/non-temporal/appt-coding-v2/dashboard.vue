@@ -8,7 +8,9 @@
       <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
       <span v-else> <examinationFull :features="features"> </examinationFull></span>
 
-      <medDecisionMaking :features="features" />
+      <span v-if="features.examination.summaryDisplay"> <medDecisionMakingFull :features="features" /></span>
+      <span v-else><medDecisionMakingSummary :features="features" /></span>
+
       <div style="display: grid; grid-template-columns: 9; border: solid">
         <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
           <el-button
@@ -261,7 +263,8 @@ import historyFull from './history-full.vue'
 import historySummary from './history-summary.vue'
 import examinationFull from './examination-full.vue'
 import examinationSummary from './examination-summary.vue'
-import medDecisionMaking from './med-decision-making.vue'
+import medDecisionMakingFull from './med-decision-making-full.vue'
+import medDecisionMakingSummary from './med-decision-making-summary.vue'
 
 export default {
   data() {
@@ -294,6 +297,16 @@ export default {
             comp: false,
           },
         },
+        medDecisonMaking: {
+          summaryDisplay: false,
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
+        },
       },
     }
   },
@@ -302,7 +315,8 @@ export default {
     historySummary,
     examinationFull,
     examinationSummary,
-    medDecisionMaking,
+    medDecisionMakingFull,
+    medDecisionMakingSummary,
   },
   async mounted() {},
   methods: {
