@@ -58,7 +58,10 @@
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000; font-weight: bold">
           Examination elements
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold">
+        <div
+          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold"
+          @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
+        >
           Examination type
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">

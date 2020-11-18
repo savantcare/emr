@@ -5,21 +5,6 @@
         style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-row: repeat(9, 1fr); border: solid"
       >
         <div
-          style="
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-align: center;
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: 1;
-            grid-row-end: 10;
-            font-size: 5rem;
-            border: 1px solid #000;
-          "
-        >
-          Examination
-        </div>
-        <div
           style="grid-column-start: 2; grid-column-end: 3; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
           System/Body area
@@ -58,7 +43,10 @@
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000; font-weight: bold">
           Examination elements
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold">
+        <div
+          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold"
+          @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
+        >
           Examination type
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
