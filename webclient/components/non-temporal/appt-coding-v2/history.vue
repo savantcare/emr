@@ -75,12 +75,6 @@
           N/A
         </el-button>
       </div>
-      <!--           :type="features.history.chiefComplaint === true &&            
-            features.history.hpi === "1" &&
-            features.history.pfsh === "1" &&
-            features.history.ros === '1'
-          "
- -->
       <div class="gridItem">
         <el-button
           round
