@@ -42,7 +42,17 @@
           Brief (1-3 elements or 1-2 chronic conditions)
         </el-button>
       </div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">N/A</div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.pfsh === 'not-applicable' ? '' : 'strike'"
+          :type="features.history.pfsh === 'not-applicable' ? 'primary' : 'info'"
+          @click="features.history.pfsh = 'not-applicable'"
+        >
+          N/A
+        </el-button>
+      </div>
       <div class="gridItem">N/A</div>
       <div class="gridItem">Problem focussed (PF)</div>
       <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
@@ -59,10 +69,30 @@
       <div class="gridItem">Problem pertinent (1 system)</div>
       <div class="gridItem">Expanded problem focussed (EPF)</div>
 
-      <div class="gridItem">Pertinent (1 element)</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.pfsh === 'pertinent' ? '' : 'strike'"
+          :type="features.history.pfsh === 'pertinent' ? 'primary' : 'info'"
+          @click="features.history.pfsh = 'pertinent'"
+        >
+          Pertinent (1 element)
+        </el-button>
+      </div>
       <div class="gridItem">Extended 2-9 systems</div>
       <div class="gridItem">Detailed (DET)</div>
-      <div class="gridItem">Complete (2 elements (est) or 3 elements (new/initial))</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :class="features.history.pfsh === 'complete' ? '' : 'strike'"
+          :type="features.history.pfsh === 'complete' ? 'primary' : 'info'"
+          @click="features.history.pfsh = 'complete'"
+        >
+          Complete (2 elements (est) or 3 elements (new/initial)
+        </el-button>
+      </div>
       <div class="gridItem">Complete (10-14 systems)</div>
       <div class="gridItem">Comprehensive (COMP)</div>
     </div>
