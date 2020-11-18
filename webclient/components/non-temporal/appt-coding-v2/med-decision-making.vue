@@ -12,7 +12,7 @@
             grid-column-start: 1;
             grid-column-end: 2;
             grid-row-start: 1;
-            grid-row-end: 22;
+            grid-row-end: 26;
             font-size: 5rem;
             border: 1px solid #000;
           "
@@ -188,6 +188,7 @@
         >
           Table of risk
         </div>
+
         <div style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; text-align: center; border: 1px solid">
           Level of risk
         </div>
@@ -199,6 +200,68 @@
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Management options selected
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          Minimal
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          One self-limited or minor problem
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Venipuncture; EKG; urinalysis
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Rest
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          Low
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          Two or more self-limited or minor problems; One stable chronic illness; Acute uncomplicated illness
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Arterial puncture
+        </div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          OTC drugs
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          Moderate
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          One or more chronic illnesses with mild exacerbation, progression, or side effects; Two or more stable chronic
+          illnesses; Undiagnosed new problem with uncertain prognosis; Acute illness with systemic symptoms
+        </div>
+        <div
+          style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
+        ></div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Prescription drug management
+        </div>
+
+        <div
+          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+        >
+          High
+        </div>
+        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+          One or more chronic illnesses with severe exacerbation, progression, or side effects; Acute or chronic
+          illnesses that pose a threat to life or bodily function
+        </div>
+        <div
+          style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
+        ></div>
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+          Drug therapy requiring intensive monitoring for toxicity
         </div>
       </div>
     </el-card>
