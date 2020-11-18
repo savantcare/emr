@@ -49,8 +49,9 @@
           :type="features.history.hpi === 'brief' ? 'primary' : 'info'"
           @click="features.history.hpi = 'brief'"
         >
-          Brief (1-3 elements or 1-2 chronic conditions)
-        </el-button>
+          Brief </el-button
+        ><br />
+        <sub>(1-3 elements or 1-2 chronic conditions)</sub>
       </div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
         <el-button
@@ -113,8 +114,9 @@
           :type="features.history.hpi === 'extended' ? 'primary' : 'info'"
           @click="features.history.hpi = 'extended'"
         >
-          Extended (4 elements or 3 chronic conditions)
-        </el-button>
+          Extended </el-button
+        ><br />
+        <sub>(4 elements or 3 chronic conditions)</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -124,8 +126,9 @@
           :type="features.history.ros === 'pertinent' ? 'primary' : 'info'"
           @click="features.history.ros = 'pertinent'"
         >
-          Problem pertinent (1 system)
-        </el-button>
+          Problem pertinent </el-button
+        ><br />
+        <sub>(1 system)</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -159,8 +162,9 @@
           :type="features.history.pfsh === 'pertinent' ? 'primary' : 'info'"
           @click="features.history.pfsh = 'pertinent'"
         >
-          Pertinent (1 element)
-        </el-button>
+          Pertinent </el-button
+        ><br />
+        <sub>(1 element) </sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -170,8 +174,9 @@
           :type="features.history.ros === 'extended' ? 'primary' : 'info'"
           @click="features.history.ros = 'extended'"
         >
-          Extended 2-9 systems
-        </el-button>
+          Extended </el-button
+        ><br />
+        <sub>2-9 systems</sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -205,8 +210,9 @@
           :type="features.history.pfsh === 'complete' ? 'primary' : 'info'"
           @click="features.history.pfsh = 'complete'"
         >
-          Complete (2 elements (est) or 3 elements (new/initial)
-        </el-button>
+          Complete </el-button
+        ><br />
+        <sub> (2 elements (est) or 3 elements (new/initial) </sub>
       </div>
       <div class="gridItem">
         <el-button
@@ -216,8 +222,9 @@
           :type="features.history.ros === 'complete' ? 'primary' : 'info'"
           @click="features.history.ros = 'complete'"
         >
-          Complete (10-14 systems)
-        </el-button>
+          Complete </el-button
+        ><br />
+        <sub>(10-14 systems)</sub>
       </div>
       <div class="gridItem">
         <el-button
