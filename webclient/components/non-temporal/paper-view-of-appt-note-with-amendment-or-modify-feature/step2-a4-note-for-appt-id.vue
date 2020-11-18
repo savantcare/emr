@@ -1,20 +1,21 @@
 <template>
   <div class="A4">
-    <headerPrintSection :_apptId="_showNoteForApptId"></headerPrintSection>
+    <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
     <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
 
-    <agePrintSection :_apptId="_showNoteForApptId"> </agePrintSection>
+    <agePaperNote :_apptId="_showNoteForApptId"> </agePaperNote>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
-
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
     <el-collapse>
       <el-collapse-item title="Vitals" name="1">
         <div style="display: grid; grid-template-columns: 1fr 1fr">
@@ -30,18 +31,15 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
     <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
@@ -56,8 +54,8 @@ import clientTblOfAppointments from '@/components/temporal/appointments/db/clien
 import apptNotePrintableView from '@/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/step2-a4-note-for-appt-id.vue'
 
 // smaller sections
-import headerPrintSection from './section-2-header-arrows-name-comparison.vue'
-import agePrintSection from './section-4-age.vue'
+import headerPaperNote from './section-2-header-arrows-name-comparison.vue'
+import agePaperNote from './section-4-age.vue'
 
 import lockButtonPrintSection from './section-19-allow-note-lock.vue'
 
@@ -86,8 +84,8 @@ export default {
   },
   components: {
     apptNotePrintableView,
-    agePrintSection,
-    headerPrintSection,
+    agePaperNote,
+    headerPaperNote,
     lockButtonPrintSection,
     ctPaperNoteStructure,
     ctPaperNoteStructure,
