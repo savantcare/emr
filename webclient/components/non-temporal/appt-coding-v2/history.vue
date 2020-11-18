@@ -173,7 +173,30 @@
           Extended 2-9 systems
         </el-button>
       </div>
-      <div class="gridItem">Detailed (DET)</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :type="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'extended' &&
+            features.history.pfsh === 'pertinent' &&
+            features.history.ros === 'extended'
+              ? 'primary'
+              : 'info'
+          "
+          :class="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'extended' &&
+            features.history.pfsh === 'pertinent' &&
+            features.history.ros === 'extended'
+              ? ''
+              : 'strike'
+          "
+        >
+          Detailed (DET)
+        </el-button>
+      </div>
       <div class="gridItem">
         <el-button
           round
@@ -196,7 +219,30 @@
           Complete (10-14 systems)
         </el-button>
       </div>
-      <div class="gridItem">Comprehensive (COMP)</div>
+      <div class="gridItem">
+        <el-button
+          round
+          size="mini"
+          :type="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'extended' &&
+            features.history.pfsh === 'complete' &&
+            features.history.ros === 'complete'
+              ? 'primary'
+              : 'info'
+          "
+          :class="
+            features.history.chiefComplaint &&
+            features.history.hpi === 'extended' &&
+            features.history.pfsh === 'complete' &&
+            features.history.ros === 'complete'
+              ? ''
+              : 'strike'
+          "
+        >
+          Comprehensive (COMP)
+        </el-button>
+      </div>
     </div>
   </el-card>
 </template>
