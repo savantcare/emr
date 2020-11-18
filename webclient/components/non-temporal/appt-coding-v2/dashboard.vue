@@ -4,7 +4,10 @@
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
       <span v-else> <historyFull :features="features"> </historyFull></span>
-      <examination :features="features" />
+
+      <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+      <span v-else> <examinationFull :features="features"> </examinationFull></span>
+
       <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
         <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
@@ -256,7 +259,8 @@
 <script>
 import historyFull from './history-full.vue'
 import historySummary from './history-summary.vue'
-import examination from './examination.vue'
+import examinationFull from './examination-full.vue'
+import examinationSummary from './examination-summary.vue'
 import medDecisionMaking from './med-decision-making.vue'
 
 export default {
@@ -281,6 +285,7 @@ export default {
           },
         },
         examination: {
+          summaryDisplay: false,
           bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
           type: {
             pf: false,
@@ -295,8 +300,9 @@ export default {
   components: {
     historyFull,
     historySummary,
+    examinationFull,
+    examinationSummary,
     medDecisionMaking,
-    examination,
   },
   async mounted() {},
   methods: {
