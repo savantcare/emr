@@ -74,7 +74,16 @@
           N/A
         </el-button>
       </div>
-      <div class="gridItem">Problem focussed (PF)</div>
+      <!--           :type="features.history.chiefComplaint === true &&            
+            features.history.hpi === "brief" &&
+            features.history.pfsh === "not-applicable" &&
+            features.history.ros === 'not-applicable'
+          "
+ -->
+      <div class="gridItem">
+        <el-button round size="mini"> Problem focussed (PF) </el-button>
+      </div>
+
       <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
         <el-button
           round

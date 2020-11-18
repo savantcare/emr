@@ -10,11 +10,12 @@
       <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
     </div>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
-
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
     <el-collapse>
       <el-collapse-item title="Vitals" name="1">
         <div style="display: grid; grid-template-columns: 1fr 1fr">
@@ -30,18 +31,15 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
     <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
