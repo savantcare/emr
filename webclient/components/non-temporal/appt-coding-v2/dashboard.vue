@@ -131,9 +131,9 @@ export default {
         billingDuration: 36,
         isThisIntake: true,
         history: {
-          hpi: 'brief', // brief or extended
-          pfsh: 'not-applicable', // not-applicable pertinent or complete
-          ros: 'not-applicable', // not-applicable pertinent or extended or complete
+          hpi: 'brief', // 1. brief or 2. extended
+          pfsh: 'not-applicable', // 1. not-applicable 2. pertinent or 3. complete
+          ros: 'not-applicable', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
         },
       },
     }
