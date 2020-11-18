@@ -116,13 +116,17 @@
                 </div>
                 <div
                   class="gridItem"
-                  :class="
+                  :class="[
                     features.history.chiefComplaint &&
                     features.history.hpi >= '1' &&
                     features.history.pfsh >= '1' &&
                     features.history.ros >= '2'
                       ? (features.history.type.epf = true)
-                      : (features.history.type.epf = false)
+                      : (features.history.type.epf = false),
+                      
+                     features.history.type.epf ? '' : 'strike'
+ 
+                      ]
                   "
                   :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
                 >
@@ -153,14 +157,16 @@
                   <sub>2-9 systems</sub>
                 </div>
                 <div class="gridItem"
-                    :class="
+                    :class="[
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
                       features.history.pfsh >= '2' &&
                       features.history.ros >= 3
                         ? (features.history.type.det = true)
-                        : (features.history.type.det = false) 
-                    "
+                        : (features.history.type.det = false),
+
+                      features.history.type.det ? '' : 'strike'
+                    ]"
                     :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
 
                   >
@@ -191,14 +197,17 @@
                   <sub>(10-14 systems)</sub>
                 </div>
                 <div class="gridItem"
-                    :class="
+                    :class="[
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
                       features.history.pfsh >= 3 &&
                       features.history.ros >= 4
                         ? (features.history.type.comp = true)
-                        : (features.history.type.comp = false) && 'strike'
-                    "
+                        : (features.history.type.comp = false),
+                    
+                      features.history.type.comp ? '' : 'strike'
+                    ]"
+
                     :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
 
                   >
