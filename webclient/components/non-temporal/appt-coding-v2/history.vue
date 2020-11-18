@@ -81,7 +81,17 @@
           "
  -->
       <div class="gridItem">
-        <el-button round size="mini" :type="features.history.chiefComplaint ? 'primary' : 'info'">
+        <el-button
+          round
+          size="mini"
+          :type="
+            features.history.chiefComplaint &&
+            features.history.pfsh === 'not-applicable' &&
+            features.history.ros === 'not-applicable'
+              ? 'primary'
+              : 'info'
+          "
+        >
           Problem focussed (PF)
         </el-button>
       </div>
