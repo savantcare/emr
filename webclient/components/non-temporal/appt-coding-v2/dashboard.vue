@@ -2,7 +2,8 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <historyFull :features="features"> </historyFull>
+      <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+      <span v-else> <historyFull :features="features"> </historyFull></span>
       <examination :features="features" />
       <medDecisionMaking :features="features" />
       <div style="display: grid; grid-template-columns: 9; border: solid">
