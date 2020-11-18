@@ -181,7 +181,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Examination
     $router->get('examination/v20/', ['uses' => 'ExaminationController@get_all_temporal_examinations']);
     $router->post('examination/v20/', ['uses' => 'ExaminationController@create']);
-    $router->put('examination/v20/{serverSideRowUuid}', ['uses' => 'ExaminationController@update']);
+    $router->put('examination/v20/{pServerSideRowUuid}', ['uses' => 'ExaminationController@update']);
     $router->delete('examination/v20/{pServerSideRowUuid}', ['uses' => 'ExaminationController@delete']);
     $router->options('examination/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
