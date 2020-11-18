@@ -54,7 +54,12 @@
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99201</el-button>
         </div>
-        <div class="gridItem">PF</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.pf ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          PF
+        </div>
         <div class="gridItem">PF</div>
         <div class="gridItem">Straight forward</div>
         <div class="gridItem" style="background-color: #92a8d1">
@@ -67,7 +72,12 @@
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99202</el-button>
         </div>
-        <div class="gridItem">EPF</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.epf ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          EPF
+        </div>
         <div class="gridItem">EPF</div>
         <div class="gridItem">Straight forward</div>
         <div class="gridItem" style="background-color: #92a8d1">
@@ -80,7 +90,12 @@
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99203</el-button>
         </div>
-        <div class="gridItem">DET</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.det ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          DET
+        </div>
         <div class="gridItem">DET</div>
         <div class="gridItem">Low</div>
         <div class="gridItem" style="background-color: #92a8d1">
@@ -93,7 +108,12 @@
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99204</el-button>
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">Moderate</div>
         <div class="gridItem" style="background-color: #92a8d1">
@@ -106,13 +126,23 @@
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99205</el-button>
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
         <div class="gridItem" style="background-color: #92a8d1">
           <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99215</el-button>
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.history.type.comp ? 'background-color: #409EFF' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">COMP</div>
         <div class="gridItem">High</div>
       </div>
