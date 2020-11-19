@@ -167,7 +167,14 @@
             Review and/or order of clinical lab tests</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          :class="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? '' : 'strike'"
+          :style="
+            features.medDecisonMaking.dataPoints.reviewOrderClinical === true
+              ? 'background-color: #67C23A'
+              : 'background-color: #909399'
+          "
+        >
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
