@@ -95,32 +95,62 @@
           Points per problem
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          Self-limiting or minor (stable, improved, or worsening (max=2)
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              Self-limiting or minor (stable, improved, or worsening (max=2)
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu></el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          Established problem (to examining physician); stable or improved
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              Established problem (to examining physician); stable or improved
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu></el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           2
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          Established problem (to examining physician); worsening
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              Established problem (to examining physician); worsening
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu></el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           3
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          New problem (to examining physician); no additional workup or diagnostic procedures ordered (max=1)
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              New problem (to examining physician); no additional workup or diagnostic procedures ordered (max=1)
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu></el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           4
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          New problem (to examining physician); additional workup planned (Additional workup does not include referring
-          patient to another physician for future care)
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              New problem (to examining physician); additional workup planned (Additional workup does not include
+              referring patient to another physician for future care)
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu></el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           5
