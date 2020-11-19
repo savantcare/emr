@@ -547,7 +547,7 @@
           "
           @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
-          Complexity of decison making
+          Complexity of decison making {{ complexity }}
         </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 0 ? 'notStrike' : 'strike'">0-1</div>
@@ -626,6 +626,32 @@ export default {
         this.features.medDecisionMaking.problemPoints.newAdditionalWorkup * 5
 
       return this.features.medDecisionMaking.problemPoints.total
+    },
+    complexity: function () {
+      let pLevel = 0
+      if (this.features.medDecisionMaking.problemPoints.total >= 0) {
+        pLevel = 1
+      } else if (this.features.medDecisionMaking.problemPoints.total >= 2) {
+        pLevel = 2
+      } else if (this.features.medDecisionMaking.problemPoints.total >= 3) {
+        pLevel = 3
+      } else if (this.features.medDecisionMaking.problemPoints.total >= 4) {
+        pLevel = 4
+      }
+
+      const dLevel = this.features.medDecisionMaking.dataPoints.points
+      const rLevel = this.features.medDecisionMaking.risk.type
+
+      // get two highest values
+      let scores = new Array()
+      scores[0] = pLevel
+      scores[1] = dLevel
+      scores[2] = rLevel
+      console.log(pLevel, dLevel, rLevel)
+
+      scores.sort((a, b) => b - a)
+
+      console.log(scores)
     },
   },
 }
