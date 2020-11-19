@@ -386,6 +386,12 @@ export default {
             independentTracing: false,
             points: 0,
           },
+          risk: {
+            type: 0, // 0-> unknown 1->Minimal 2->Low 3->Moderate 4->High
+            problem: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+            diagnostic: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+            management: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+          },
         },
       },
     }
