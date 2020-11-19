@@ -47,13 +47,7 @@
       <div class="gridItem" style="font-weight: bold">Exam</div>
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
-      <div
-        class="gridItem"
-        :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'notStrike' : 'strike'"
-      >
-        Time
-      </div>
+      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
       <div
         class="gridItem"
         :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -77,13 +71,7 @@
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
-      <div
-        class="gridItem"
-        :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'strike' : 'notStrike'"
-      >
-        Time
-      </div>
+      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
       <div
         class="gridItem"
         :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
