@@ -548,66 +548,30 @@
           Complexity of decison making
         </div>
 
-        <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
-        >
-          0-1
-        </div>
+        <div :class="features.medDecisionMaking.problemPoints.total >= 0 ? 'notStrike' : 'strike'">0-1</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 0 ? 'notStrike' : 'strike'">0-1</div>
-        <div
-          :style="features.medDecisionMaking.risk.type >= 1 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'"
-        >
-          Minimal
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Straight forward
         </div>
 
-        <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
-        >
-          2
-        </div>
+        <div :class="features.medDecisionMaking.problemPoints.total >= 2 ? 'notStrike' : 'strike'">2</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 2 ? 'notStrike' : 'strike'">2</div>
-        <div
-          :style="features.medDecisionMaking.risk.type >= 2 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'"
-        >
-          Low
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Low
         </div>
 
-        <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
-        >
-          3
-        </div>
+        <div :class="features.medDecisionMaking.problemPoints.total >= 3 ? 'notStrike' : 'strike'">3</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 3 ? 'notStrike' : 'strike'">3</div>
-        <div
-          :style="features.medDecisionMaking.risk.type >= 3 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'"
-        >
-          Moderate
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Moderate
         </div>
 
-        <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
-        >
-          4
-        </div>
+        <div :class="features.medDecisionMaking.problemPoints.total >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 4 ? 'notStrike' : 'strike'">4</div>
-        <div
-          :style="features.medDecisionMaking.risk.type >= 4 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'"
-        >
-          High
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           High
         </div>
