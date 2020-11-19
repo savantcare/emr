@@ -68,7 +68,7 @@
             text-align: center;
           "
         >
-          Problem Points
+          Problem Points {{ problemPointsTotal }}
         </div>
         <div
           style="
@@ -650,6 +650,16 @@ export default {
         this.features.medDecisionMaking.risk.diagnostic,
         this.features.medDecisionMaking.risk.management
       )
+    },
+    problemPointsTotal: function () {
+      this.features.medDecisionMaking.problemPoints.total =
+        this.features.medDecisionMaking.problemPoints.selfLimiting +
+        this.features.medDecisionMaking.problemPoints.establishedStable * 2 +
+        this.features.medDecisionMaking.problemPoints.establishedWorsening * 3 +
+        this.features.medDecisionMaking.problemPoints.newToExamining * 4 +
+        this.features.medDecisionMaking.problemPoints.newAdditionalWorkup * 5
+
+      return this.features.medDecisionMaking.problemPoints.total
     },
   },
 }

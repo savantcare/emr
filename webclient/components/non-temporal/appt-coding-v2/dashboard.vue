@@ -376,6 +376,7 @@ export default {
             establishedWorsening: 0,
             newToExamining: 0,
             newAdditionalWorkup: 0,
+            total: 0,
           },
           dataPoints: {
             reviewOrderClinical: false,
