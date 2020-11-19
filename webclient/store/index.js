@@ -17,6 +17,7 @@ import vstOfTabsAndDialogInEditLayerModule from '~/components/non-temporal/compo
 
 import VueStateOfMapDrawerModule from '~/components/non-temporal/map/vue-state-of-map-drawer'
 import VueStateOfDeletedDrawerModule from '~/components/non-temporal/ct-deleted-rows/vue-state-of-deleted-drawer'
+import VueStateOfCollepseModule from '~/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/set-item-in-expend-state'
 
 import database from '~/store/import-tables-and-register-to-client-side-database'
 
@@ -37,7 +38,7 @@ VuexORM.use(VuexORMLocalForage, { database })
 //Initialize VuexPersist: https://flaviocopes.com/vuex-persist-localstorage/
 const vuexPersist = new VuexPersist({
   key: 'sc-pf',
-  storage: window.localStorage
+  storage: window.localStorage,
 })
 
 const createStore = () => {
@@ -49,6 +50,7 @@ const createStore = () => {
       // Full form: view state object feed drawer
       vstObjMapDrawer: VueStateOfMapDrawerModule,
       vstObjDeletedDrawer: VueStateOfDeletedDrawerModule,
+      vstObjExpendState: VueStateOfCollepseModule,
     },
     plugins: [VuexORM.install(database), vuexPersist.plugin],
   })

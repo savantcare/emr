@@ -1,6 +1,6 @@
 <template>
-  <el-collapse>
-    <el-collapse-item name="1">
+  <el-collapse :value="cfArOfItemNameToExpend" @change="mfVueHorizontalListSetCurrentSlide">
+    <el-collapse-item :name="cfGetNameOfCollapseItem">
       <template slot="title">
         {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
         <el-button-group>
@@ -170,13 +170,13 @@ export default {
            *  A4 page width = 17cm
               A4 page left+right padding 0.5cm+0.5cm = 1cm
               Remaining space for page content = 17cm - 1cm = 16cm
-   
+
               Convert 16cm to pixel:
               Ref: https://www.convert-measurement-units.com/conversion-calculator.php?type=font-size
               16cm = 604px
 
               Slider previous and next icons width = 24px+24px = 48px
-              Remaining width for slider content = 
+              Remaining width for slider content =
               604px (Remaining space for page content in px) - 48px (Slider previous and next icons width) = 556px
            */
           container: 556,
@@ -215,6 +215,19 @@ export default {
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
   },
   computed: {
+    cfGetNameOfCollapseItem() {
+      /**
+       * Ref: https://element.eleme.io/#/en-US/component/collapse#collapse-item-attributes
+       * According to Collapse Item Attributes documentation name should me unique identification of the panel.
+       * It may string or number.
+       * Hence, I am creating name from panel title using toLowerCase and replace space to underscore
+       */
+      const nameOfCollapseItem = this._formDef.plural.toLowerCase().trim().replace(/ /g, '_')
+      return nameOfCollapseItem
+    },
+    cfArOfItemNameToExpend() {
+      return this.$store.state.vstObjExpendState.arItemNameToExpend
+    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
@@ -383,6 +396,17 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
+    },
+    mfVueHorizontalListSetCurrentSlide(val) {
+      if (val) {
+        const eventName = 'event-for-set-horizontal-list-current-slide'
+        this.$root.$emit(eventName)
+      }
+
+      this.$store.commit('mtfSetItemInExpendState', {
+        collepseState: val,
+        nameOfCollapseItem: this.cfGetNameOfCollapseItem,
+      })
     },
   },
 }
