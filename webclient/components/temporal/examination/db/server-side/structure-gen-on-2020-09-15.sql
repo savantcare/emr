@@ -1,8 +1,8 @@
-use sc_mse;
+use sc_examination;
 
-DROP TABLE IF EXISTS `pt_mental_status_exam`;
+DROP TABLE IF EXISTS `pt_examination`;
 
-CREATE TABLE `pt_mental_status_exam` (
+CREATE TABLE `pt_examination` (
   `serverSideRowUuid` char(36) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `patientUuid` char(36) NOT NULL,

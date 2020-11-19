@@ -78,7 +78,7 @@ import initializeBmiComponent from '@/components/temporal/bmi/db/client-side/ini
 import initializeOxygenSaturationComponent from '@/components/temporal/oxygen-saturation/db/client-side/initialize-on-first-load.vue'
 
 // temporal/others
-import initializeMseComponent from '@/components/temporal/mental-status-exam/db/client-side/initialize-on-first-load.vue'
+import initializeMseComponent from '@/components/temporal/examination/db/client-side/initialize-on-first-load.vue'
 import initializePhq9Component from '@/components/temporal/phq9/db/client-side/initialize-on-first-load.vue'
 import initializeProsComponent from '@/components/temporal/psych-review-of-system/db/client-side/initialize-on-first-load.vue'
 

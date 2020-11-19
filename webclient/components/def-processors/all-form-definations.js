@@ -3,7 +3,7 @@ import { chiefComplaintFormDef } from '@/components/temporal/chief-complaint/db/
 import { diagnosisFormDef } from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import { heightFormDef } from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
-import { mentalStatusExamFormDef } from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import { examinationFormDef } from '@/components/temporal/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { medicalReviewOfSystemFormDef } from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import { miscellaneousNotesFormDef } from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import { nameFormDef } from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
@@ -33,7 +33,7 @@ const allFormDefs = {
   family_history: familyHistoryFormDef,
   height: heightFormDef,
   medical_review_of_system: medicalReviewOfSystemFormDef,
-  mental_status_exam: mentalStatusExamFormDef,
+  examination: examinationFormDef,
   miscellaneous_notes: miscellaneousNotesFormDef,
   name: nameFormDef,
   past_psych_history: pastPsychHistoryFormDef,

@@ -1,13 +1,15 @@
 <template>
   <div class="A4">
     <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
-    <b>Appt Date:</b> {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
+    <b>Appt Date:</b>
 
-    <agePaperNote :_apptId="_showNoteForApptId"> </agePaperNote>
+    {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
+    <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
     <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-      <b>Appt locked:</b> {{ cfApptLockDateInHumanReadableFormat }}
+      <b>Appt locked:</b>
+      {{ cfApptLockDateInHumanReadableFormat }}
     </div>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
@@ -15,19 +17,37 @@
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="mental_status_exam" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
     <el-collapse>
       <el-collapse-item title="Vitals" name="1">
         <div style="display: grid; grid-template-columns: 1fr 1fr">
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" /></div>
-          <div><ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" /></div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
+          </div>
         </div>
       </el-collapse-item>
     </el-collapse>
