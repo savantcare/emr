@@ -528,7 +528,10 @@
           0-1
         </div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 0 ? 'notStrike' : 'strike'">0-1</div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          :style="features.medDecisionMaking.risk.type >= 1 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'"
+        >
           Minimal
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
@@ -541,7 +544,10 @@
           2
         </div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 2 ? 'notStrike' : 'strike'">2</div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          :style="features.medDecisionMaking.risk.type >= 2 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'"
+        >
           Low
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
@@ -554,7 +560,10 @@
           3
         </div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 3 ? 'notStrike' : 'strike'">3</div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          :style="features.medDecisionMaking.risk.type >= 3 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'"
+        >
           Moderate
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
@@ -567,7 +576,10 @@
           4
         </div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 4 ? 'notStrike' : 'strike'">4</div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div
+          :style="features.medDecisionMaking.risk.type >= 4 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'"
+        >
           High
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
