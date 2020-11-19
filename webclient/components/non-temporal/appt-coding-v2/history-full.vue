@@ -29,7 +29,7 @@
       <div class="gridItem" style="font-weight: bold">HPI</div>
       <div class="gridItem" style="font-weight: bold">PFSH</div>
       <div class="gridItem" style="font-weight: bold">ROS</div>
-      <div class="gridItem" style="font-weight: bold" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type</div>
+      <div class="gridItem" style="font-weight: bold" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type (min)</div>
       <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">
         <el-button
           round

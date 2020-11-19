@@ -8,7 +8,7 @@
           style="text-align: center; border: 1px solid #000; font-weight: bold"
           @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
         >
-          Examination type
+          Examination type (max)
         </div>
 
         <div

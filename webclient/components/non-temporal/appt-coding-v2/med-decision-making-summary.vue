@@ -8,7 +8,7 @@
           style="font-size: 1rem; text-align: center; border: 1px solid; font-weight: bold"
           @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
-          Complexity of decison making
+          Complexity of decison making (max)
         </div>
 
         <div style="font-size: 1rem; text-align: center; border: 1px solid">Straight forward</div>

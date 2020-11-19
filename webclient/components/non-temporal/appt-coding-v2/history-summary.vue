@@ -1,7 +1,7 @@
 <template>
   <el-card hover>
     <div style="display: grid; grid-template-columns: repeat(5, 1fr); grid-template-row: repeat(1, 1fr); border: solid">
-      <div class="gridItem" style="font-weight: bold" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type</div>
+      <div class="gridItem" style="font-weight: bold" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type (max)</div>
       <div class="gridItem"
         
           :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"

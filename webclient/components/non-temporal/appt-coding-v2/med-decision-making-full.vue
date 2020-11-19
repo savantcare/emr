@@ -527,7 +527,7 @@
           "
           @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
-          Complexity of decison making ({{ complexity }})
+          Complexity of decison making ({{ complexity }}) (min)
         </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 0 ? 'notStrike' : 'strike'">0-1</div>

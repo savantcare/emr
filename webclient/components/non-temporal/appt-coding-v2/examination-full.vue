@@ -76,7 +76,7 @@
           "
           @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
         >
-          Examination type
+          Examination type (min)
         </div>
         <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
           <el-button
