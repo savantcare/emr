@@ -88,8 +88,6 @@
             >1-5 bullets</el-button
           >
         </div>
-        <!--          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000" -->
-
         <div
           :class="[
             features.examination.bullets >= 1

@@ -445,6 +445,12 @@ export default {
 }
 .strike {
   position: relative;
+  text-align: center;
+  background-color: #909399;
+}
+.notStrike {
+  text-align: center;
+  background-color: #67c23a;
 }
 .strike::after {
   content: ' ';
