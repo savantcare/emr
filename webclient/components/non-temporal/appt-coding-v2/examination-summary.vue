@@ -5,7 +5,7 @@
         style="display: grid; grid-template-columns: repeat(5, 1fr); grid-template-row: repeat(1, 1fr); border: solid"
       >
         <div
-          style="border: 1px solid #000; font-weight: bold"
+          style="text-align: center; border: 1px solid #000; font-weight: bold"
           @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
         >
           Examination type

@@ -55,11 +55,25 @@
           * Fund of knowledge<br />
           * Mood and affect
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000; font-weight: bold">
+        <div
+          style="
+            grid-column-start: 2;
+            grid-column-end: 4;
+            border: 1px solid #000;
+            font-weight: bold;
+            text-align: center;
+          "
+        >
           Examination elements
         </div>
         <div
-          style="grid-column-start: 4; grid-column-end: 5; border: 1px solid #000; font-weight: bold"
+          style="
+            grid-column-start: 4;
+            grid-column-end: 5;
+            border: 1px solid #000;
+            font-weight: bold;
+            text-align: center;
+          "
           @click="features.examination.summaryDisplay = !features.examination.summaryDisplay"
         >
           Examination type
