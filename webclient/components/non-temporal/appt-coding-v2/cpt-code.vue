@@ -103,77 +103,32 @@
       >
         EPF
       </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        EPF
-      </div>
+      <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
 
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
-      <div
-        class="gridItem"
-        :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        PF
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        PF
-      </div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
+      <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
+      <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
-      <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99203</div>
-      <div
-        class="gridItem"
-        :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        DET
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        DET
-      </div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">99203</div>
+      <div :class="features.history.type.det ? 'notStrike' : 'strike'">DET</div>
+      <div :class="features.examination.type.det ? 'notStrike' : 'strike'">DET</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
-      <div
-        class="gridItem"
-        :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        EPF
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        EPF
-      </div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
+      <div :class="features.history.type.epf ? 'strike' : 'notStrike'">EPF</div>
+      <div :class="features.examination.type.epf ? 'strike' : 'notStrike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99204</div>
-      <div
-        class="gridItem"
-        :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        COMP
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        COMP
-      </div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">99204</div>
+      <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
+      <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
         Moderate
       </div>
