@@ -451,6 +451,7 @@ export default {
 .notStrike {
   text-align: center;
   background-color: #67c23a;
+  border: solid 1px;
 }
 .strike::after {
   content: ' ';

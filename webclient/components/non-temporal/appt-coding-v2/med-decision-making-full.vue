@@ -182,7 +182,7 @@
             Review and/or order of tests in the radiology section of CPT</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div :class="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? 'notStrike' : 'strike'">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
@@ -199,9 +199,7 @@
             Review and/or order of tests in the medicine section of CPT</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          1
-        </div>
+        <div :class="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? 'notStrike' : 'strike'">1</div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -216,7 +214,7 @@
             Discussion of test results with performing physician</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div :class="features.medDecisonMaking.dataPoints.discussionTestResults === true ? 'notStrike' : 'strike'">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
@@ -233,9 +231,7 @@
             Decision to obtain old records</el-button
           ><sub><br />And/or obtain history from someone other than patient</sub>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          1
-        </div>
+        <div :class="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? 'notStrike' : 'strike'">1</div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -253,9 +249,7 @@
             provider</sub
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          2
-        </div>
+        <div :class="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? 'notStrike' : 'strike'">2</div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -271,9 +265,7 @@
           >
           <sub><br />(not simply review report)</sub>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          2
-        </div>
+        <div :class="features.medDecisonMaking.dataPoints.independentTracing === true ? 'notStrike' : 'strike'">2</div>
         <div
           style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
