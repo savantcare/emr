@@ -630,11 +630,7 @@ export default {
       }
 
       let riskLevel = 0
-      if (this.features.medDecisionMaking.risk.type == 0) {
-        riskLevel = 1
-      } else {
-        riskLevel = this.features.medDecisionMaking.risk.type
-      }
+      riskLevel = this.features.medDecisionMaking.risk.type
 
       // get two highest values
       let levels = new Array()
