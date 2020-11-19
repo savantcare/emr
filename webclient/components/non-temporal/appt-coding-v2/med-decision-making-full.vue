@@ -612,13 +612,13 @@ export default {
     },
     complexity: function () {
       let problemPointLevel = 0
-      if (this.features.medDecisionMaking.problemPoints.total >= 0) {
+      if (this.features.medDecisionMaking.problemPoints.total === 0) {
         problemPointLevel = 1
-      } else if (this.features.medDecisionMaking.problemPoints.total >= 2) {
+      } else if (this.features.medDecisionMaking.problemPoints.total === 2) {
         problemPointLevel = 2
-      } else if (this.features.medDecisionMaking.problemPoints.total >= 3) {
+      } else if (this.features.medDecisionMaking.problemPoints.total === 3) {
         problemPointLevel = 3
-      } else if (this.features.medDecisionMaking.problemPoints.total >= 4) {
+      } else if (this.features.medDecisionMaking.problemPoints.total > 4) {
         problemPointLevel = 4
       }
 
