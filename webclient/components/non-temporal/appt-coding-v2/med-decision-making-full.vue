@@ -331,7 +331,14 @@
           Minimal
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini" @click="features.medDecisionMaking.risk.problem = 1">One self-limited</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.problem >= 1 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.problem >= 1 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.problem = 1"
+            >One self-limited</el-button
+          >
           <br />
           <sub>or minor problem</sub>
         </div>
