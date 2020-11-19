@@ -343,10 +343,24 @@
           <sub>or minor problem</sub>
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Venipuncture; EKG; urinalysis</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.diagnostic >= 1 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.diagnostic >= 1 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.diagnostic = 1"
+            >Venipuncture; EKG; urinalysis</el-button
+          >
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Rest</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.management >= 1 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.management >= 1 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.management = 1"
+            >Rest</el-button
+          >
         </div>
 
         <div
@@ -355,14 +369,35 @@
           Low
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Stable</el-button><br />
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.problem >= 2 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.problem >= 2 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.problem = 2"
+            >Stable</el-button
+          ><br />
           <sub>Two or more self-limited or minor problems; One stable chronic illness; Acute uncomplicated illness</sub>
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Arterial puncture</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.diagnostic >= 2 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.diagnostic >= 2 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.diagnostic = 2"
+            >Arterial puncture</el-button
+          >
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">OTC drugs</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.management >= 2 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.management >= 2 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.management = 2"
+            >OTC drugs</el-button
+          >
         </div>
 
         <div
@@ -371,7 +406,14 @@
           Moderate
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Systemic symptoms</el-button><br />
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.problem >= 3 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.problem >= 3 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.problem = 3"
+            >Systemic symptoms</el-button
+          ><br />
           <sub
             >One or more chronic illnesses with mild exacerbation, progression, or side effects; Two or more stable
             chronic illnesses; Undiagnosed new problem with uncertain prognosis; Acute illness with systemic
@@ -382,7 +424,14 @@
           style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
         ></div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Prescription drug management</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.management >= 3 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.management >= 3 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.management = 3"
+            >Prescription drug management</el-button
+          >
         </div>
 
         <div
@@ -391,7 +440,15 @@
           High
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Threat to bodily function</el-button> <br /><sub>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.problem >= 4 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.problem >= 4 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.problem = 4"
+            >Threat to bodily function</el-button
+          >
+          <br /><sub>
             One or more chronic illnesses with severe exacerbation, progression, or side effects; Acute or chronic
             illnesses that pose a threat to life or bodily function</sub
           >
@@ -400,7 +457,14 @@
           style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
         ></div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button round size="mini">Drug therapy</el-button>
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.risk.management >= 4 ? '' : 'strike'"
+            :type="features.medDecisionMaking.risk.management >= 4 ? 'primary' : 'info'"
+            @click="features.medDecisionMaking.risk.management = 4"
+            >Drug therapy</el-button
+          >
           <br /><sub>Requiring intensive monitoring for toxicity</sub>
         </div>
 
