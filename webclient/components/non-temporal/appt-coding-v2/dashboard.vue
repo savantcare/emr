@@ -2,11 +2,17 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <history :features="features"> </history>
-      <examination :features="features" />
-      <medDecisionMaking :features="features" />
-      <div style="display: grid; grid-template-columns: 9; border: solid">
-        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
+      <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+      <span v-else> <historyFull :features="features"> </historyFull></span>
+
+      <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+      <span v-else> <examinationFull :features="features"> </examinationFull></span>
+
+      <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
+      <span v-else><medDecisionMakingFull :features="features" /></span>
+
+      <div style="display: grid; grid-template-columns: 11; border: solid">
+        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 7">
           <el-button
             round
             size="mini"
@@ -17,7 +23,7 @@
           >
         </div>
 
-        <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
+        <div class="gridItem" style="grid-column-start: 7; grid-column-end: 12">
           <el-button
             round
             size="mini"
@@ -41,16 +47,24 @@
         >
           CPT Codes
         </div>
-
+        <div class="gridItem" style="font-weight: bold">Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
+        <div class="gridItem" style="font-weight: bold">Time</div>
         <div class="gridItem" style="font-weight: bold">CPT code</div>
         <div class="gridItem" style="font-weight: bold">History</div>
         <div class="gridItem" style="font-weight: bold">Exam</div>
         <div class="gridItem" style="font-weight: bold">MDM</div>
 
+        <div
+          class="gridItem"
+          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -65,8 +79,20 @@
         >
           PF
         </div>
-        <div class="gridItem">PF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          PF
+        </div>
         <div class="gridItem">Straight forward</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -80,6 +106,13 @@
 
         <div
           class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
+        <div
+          class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
           :class="features.isThisIntake ? '' : 'strike'"
         >
@@ -91,8 +124,20 @@
         >
           EPF
         </div>
-        <div class="gridItem">EPF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          EPF
+        </div>
         <div class="gridItem">Straight forward</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -106,9 +151,20 @@
         >
           PF
         </div>
-        <div class="gridItem">PF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          PF
+        </div>
         <div class="gridItem">Straight forward</div>
-
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -122,8 +178,20 @@
         >
           DET
         </div>
-        <div class="gridItem">DET</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          DET
+        </div>
         <div class="gridItem">Low</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -137,9 +205,20 @@
         >
           EPF
         </div>
-        <div class="gridItem">EPF</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          EPF
+        </div>
         <div class="gridItem">Low</div>
-
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -153,8 +232,20 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">Moderate</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -168,8 +259,20 @@
         >
           DET
         </div>
-        <div class="gridItem">DET</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          DET
+        </div>
         <div class="gridItem">Moderate</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? '' : 'strike'"
+        >
+          Time
+        </div>
 
         <div
           class="gridItem"
@@ -184,8 +287,21 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">High</div>
+        <div
+          class="gridItem"
+          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
+          :class="features.isThisIntake ? 'strike' : ''"
+        >
+          Time
+        </div>
+
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -199,7 +315,12 @@
         >
           COMP
         </div>
-        <div class="gridItem">COMP</div>
+        <div
+          class="gridItem"
+          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+        >
+          COMP
+        </div>
         <div class="gridItem">High</div>
         {{ features }}
       </div>
@@ -208,9 +329,12 @@
 </template>
 
 <script>
-import history from './history.vue'
-import examination from './examination.vue'
-import medDecisionMaking from './med-decision-making.vue'
+import historyFull from './history-full.vue'
+import historySummary from './history-summary.vue'
+import examinationFull from './examination-full.vue'
+import examinationSummary from './examination-summary.vue'
+import medDecisionMakingFull from './med-decision-making-full.vue'
+import medDecisionMakingSummary from './med-decision-making-summary.vue'
 
 export default {
   data() {
@@ -221,10 +345,11 @@ export default {
         isThisIntake: true,
 
         history: {
+          summaryDisplay: false,
           chiefComplaint: true, // 0 -> false 1-> true
-          hpi: '1', // 1. 1 or 2. extended
-          pfsh: '1', // 1. not-applicable 2. pertinent or 3. complete
-          ros: '1', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          hpi: 1, // 1. 1 or 2. extended
+          pfsh: 1, // 1. not-applicable 2. pertinent or 3. complete
+          ros: 1, // 1. not-applicable 2. pertinent or 3. extended or 4. complete
           type: {
             pf: false,
             epf: false,
@@ -232,13 +357,46 @@ export default {
             comp: false,
           },
         },
+        examination: {
+          summaryDisplay: false,
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
+        },
+        medDecisionMaking: {
+          summaryDisplay: false,
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          type: {
+            straightForward: false,
+            low: false,
+            moderate: false,
+            high: false,
+          },
+          dataPoints: {
+            reviewOrderClinical: false,
+            reviewOrderRadiology: false,
+            reviewOrderMedicine: false,
+            discussionTestResults: false,
+            decisionOldRecords: false,
+            reviewOldRecords: false,
+            independentTracing: false,
+            points: 0,
+          },
+        },
       },
     }
   },
   components: {
-    history,
-    medDecisionMaking,
-    examination,
+    historyFull,
+    historySummary,
+    examinationFull,
+    examinationSummary,
+    medDecisionMakingFull,
+    medDecisionMakingSummary,
   },
   async mounted() {},
   methods: {
@@ -288,6 +446,13 @@ export default {
 }
 .strike {
   position: relative;
+  text-align: center;
+  background-color: #909399;
+}
+.notStrike {
+  text-align: center;
+  background-color: #67c23a;
+  border: solid 1px;
 }
 .strike::after {
   content: ' ';
