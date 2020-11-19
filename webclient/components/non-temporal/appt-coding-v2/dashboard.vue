@@ -85,7 +85,9 @@
         >
           PF
         </div>
-        <div class="gridItem">Straight forward</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+          Straight forward
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -148,7 +150,9 @@
         >
           PF
         </div>
-        <div class="gridItem">Straight forward</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+          Straight forward
+        </div>
         <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
         <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99203</div>
         <div
@@ -163,7 +167,9 @@
         >
           DET
         </div>
-        <div class="gridItem">Low</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
+          Low
+        </div>
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
         <div
@@ -178,7 +184,9 @@
         >
           EPF
         </div>
-        <div class="gridItem">Low</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
+          Low
+        </div>
         <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
         <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99204</div>
         <div
@@ -193,7 +201,9 @@
         >
           COMP
         </div>
-        <div class="gridItem">Moderate</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
+          Moderate
+        </div>
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99214</div>
         <div
@@ -208,7 +218,9 @@
         >
           DET
         </div>
-        <div class="gridItem">Moderate</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
+          Moderate
+        </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
@@ -236,7 +248,9 @@
         >
           COMP
         </div>
-        <div class="gridItem">High</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">
+          High
+        </div>
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
 
         <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99215</div>
@@ -252,7 +266,9 @@
         >
           COMP
         </div>
-        <div class="gridItem">High</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">
+          High
+        </div>
         {{ features }}
       </div>
     </el-dialog>
