@@ -331,13 +331,14 @@
           Minimal
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          One self-limited or minor problem
+          <el-button>One self-limited</el-button> <br />
+          <sub>or minor problem</sub>
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          Venipuncture; EKG; urinalysis
+          <el-button>Venipuncture; EKG; urinalysis</el-button>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          Rest
+          <el-button>Rest</el-button>
         </div>
 
         <div
@@ -346,13 +347,14 @@
           Low
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          Two or more self-limited or minor problems; One stable chronic illness; Acute uncomplicated illness
+          <el-button>Stable</el-button><br />
+          <sub>Two or more self-limited or minor problems; One stable chronic illness; Acute uncomplicated illness</sub>
         </div>
         <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          Arterial puncture
+          <el-button>Arterial puncture</el-button>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          OTC drugs
+          <el-button>OTC drugs</el-button>
         </div>
 
         <div
@@ -361,14 +363,18 @@
           Moderate
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          One or more chronic illnesses with mild exacerbation, progression, or side effects; Two or more stable chronic
-          illnesses; Undiagnosed new problem with uncertain prognosis; Acute illness with systemic symptoms
+          <el-button>Systemic symptoms</el-button><br />
+          <sub
+            >One or more chronic illnesses with mild exacerbation, progression, or side effects; Two or more stable
+            chronic illnesses; Undiagnosed new problem with uncertain prognosis; Acute illness with systemic
+            symptoms</sub
+          >
         </div>
         <div
           style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
         ></div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          Prescription drug management
+          <el-button>Prescription drug management</el-button>
         </div>
 
         <div
@@ -377,14 +383,17 @@
           High
         </div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
-          One or more chronic illnesses with severe exacerbation, progression, or side effects; Acute or chronic
-          illnesses that pose a threat to life or bodily function
+          <el-button>Threat to bodily function</el-button> <br /><sub>
+            One or more chronic illnesses with severe exacerbation, progression, or side effects; Acute or chronic
+            illnesses that pose a threat to life or bodily function</sub
+          >
         </div>
         <div
           style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
         ></div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
-          Drug therapy requiring intensive monitoring for toxicity
+          <el-button>Drug therapy</el-button>
+          <br /><sub>Requiring intensive monitoring for toxicity</sub>
         </div>
 
         <div
