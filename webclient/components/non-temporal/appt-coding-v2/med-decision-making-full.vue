@@ -286,7 +286,7 @@
             font-weight: bold;
           "
         >
-          Level of risk
+          Level of risk {{ riskLevel }}
         </div>
         <div
           style="
@@ -326,7 +326,8 @@
         </div>
 
         <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+          :style="features.medDecisionMaking.risk.type >= 1 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'"
         >
           Minimal
         </div>
@@ -364,7 +365,8 @@
         </div>
 
         <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+          :style="features.medDecisionMaking.risk.type >= 2 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'"
         >
           Low
         </div>
@@ -401,7 +403,8 @@
         </div>
 
         <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+          :style="features.medDecisionMaking.risk.type >= 3 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'"
         >
           Moderate
         </div>
@@ -435,7 +438,8 @@
         </div>
 
         <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 1rem; border: 1px solid #000; text-align: center"
+          :style="features.medDecisionMaking.risk.type >= 4 ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'"
         >
           High
         </div>
@@ -596,6 +600,13 @@ export default {
 
       this.features.medDecisionMaking.dataPoints.points = points
       return points
+    },
+    riskLevel: function () {
+      this.features.medDecisionMaking.risk.type = Math.max(
+        this.features.medDecisionMaking.risk.problem,
+        this.features.medDecisionMaking.risk.diagnostic,
+        this.features.medDecisionMaking.risk.management
+      )
     },
   },
 }
