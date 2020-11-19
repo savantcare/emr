@@ -510,8 +510,8 @@ export default {
   },
   computed: {
     dataPoints: function () {
-      console.log(this.features.medDecisionMaking)
-      const points = points + this.features.medDecisionMaking.dataPoints.reviewOrderClinical ? 1 : 0
+      let points = 0
+      points = points + this.features.medDecisionMaking.dataPoints.reviewOrderClinical ? 1 : 0
       this.features.medDecisionMaking.dataPoints.points = points
       return points
     },
