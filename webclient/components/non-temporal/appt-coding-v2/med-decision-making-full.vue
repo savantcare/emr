@@ -12,7 +12,7 @@
             grid-column-start: 1;
             grid-column-end: 2;
             grid-row-start: 1;
-            grid-row-end: 32;
+            grid-row-end: 33;
             font-size: 5rem;
             border: 1px solid #000;
           "
@@ -497,7 +497,9 @@
           >
           <br /><sub>Requiring intensive monitoring for toxicity</sub>
         </div>
-
+        <div style="grid-column-start: 2; grid-column-end: 6; text-align: center">
+          2/3 elements must be met or exceeded
+        </div>
         <div
           style="
             grid-column-start: 2;
