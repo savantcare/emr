@@ -17,7 +17,7 @@
             round
             size="mini"
             :type="features.isThisIntake ? 'primary' : 'info'"
-            :class="features.isThisIntake ? '' : 'strike'"
+            :class="features.isThisIntake ? 'notStrike' : 'strike'"
             @click="features.isThisIntake = true"
             >New Patient Office (requires 3 of 3)</el-button
           >
@@ -28,7 +28,7 @@
             round
             size="mini"
             :type="features.isThisIntake ? 'info' : 'primary'"
-            :class="features.isThisIntake ? 'strike' : ''"
+            :class="features.isThisIntake ? 'strike' : 'notStrike'"
             @click="features.isThisIntake = false"
             >Established Patient Office (requires 2 of 3)</el-button
           >
@@ -61,14 +61,14 @@
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           Time
         </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           99201
         </div>
@@ -89,14 +89,14 @@
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
+          :class="features.isThisIntake ? 'strike' : 'notStrike'"
         >
           Time
         </div>
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
+          :class="features.isThisIntake ? 'strike' : 'notStrike'"
         >
           99211
         </div>
@@ -107,14 +107,14 @@
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           Time
         </div>
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           99202
         </div>
@@ -130,21 +130,12 @@
         >
           EPF
         </div>
-        <div class="gridItem">Straight forward</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          Time
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+          Straight forward
         </div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          99212
-        </div>
+
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
         <div
           class="gridItem"
           :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
@@ -158,20 +149,8 @@
           PF
         </div>
         <div class="gridItem">Straight forward</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
-        >
-          Time
-        </div>
-        <div
-          class="gridItem"
-          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
-        >
-          99203
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
+        <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99203</div>
         <div
           class="gridItem"
           :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
@@ -185,20 +164,8 @@
           DET
         </div>
         <div class="gridItem">Low</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          Time
-        </div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          99213
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
         <div
           class="gridItem"
           :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
@@ -212,20 +179,8 @@
           EPF
         </div>
         <div class="gridItem">Low</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
-        >
-          Time
-        </div>
-        <div
-          class="gridItem"
-          :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
-        >
-          99204
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">Time</div>
+        <div class="gridItem" :class="features.isThisIntake ? 'notStrike' : 'strike'">99204</div>
         <div
           class="gridItem"
           :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
@@ -239,20 +194,8 @@
           COMP
         </div>
         <div class="gridItem">Moderate</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          Time
-        </div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          99214
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99214</div>
         <div
           class="gridItem"
           :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
@@ -269,7 +212,7 @@
         <div
           class="gridItem"
           :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           Time
         </div>
@@ -277,7 +220,7 @@
         <div
           class="gridItem"
           :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? '' : 'strike'"
+          :class="features.isThisIntake ? 'notStrike' : 'strike'"
         >
           99205
         </div>
@@ -294,21 +237,9 @@
           COMP
         </div>
         <div class="gridItem">High</div>
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          Time
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
 
-        <div
-          class="gridItem"
-          :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-          :class="features.isThisIntake ? 'strike' : ''"
-        >
-          99215
-        </div>
+        <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99215</div>
         <div
           class="gridItem"
           :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
