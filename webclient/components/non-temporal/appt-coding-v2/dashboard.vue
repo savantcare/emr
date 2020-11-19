@@ -395,10 +395,7 @@ export default {
             management: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
           },
           complexity: {
-            straightForward: false,
-            low: false,
-            moderate: false,
-            high: false,
+            level: 0, // 1 straightForward , 2 low, 3  moderate, 4 high
           },
         },
       },
@@ -462,6 +459,7 @@ export default {
   position: relative;
   text-align: center;
   background-color: #909399;
+  border: solid 1px;
 }
 .notStrike {
   text-align: center;

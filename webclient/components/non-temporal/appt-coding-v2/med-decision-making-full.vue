@@ -428,12 +428,7 @@
           >
         </div>
 
-        <div
-          :style="features.medDecisionMaking.risk.type >= 3 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'"
-        >
-          Moderate
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -463,12 +458,7 @@
           >
         </div>
 
-        <div
-          :style="features.medDecisionMaking.risk.type >= 4 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'"
-        >
-          High
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -547,7 +537,7 @@
           "
           @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
-          Complexity of decison making {{ complexity }}
+          Complexity of decison making ({{ complexity }})
         </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 0 ? 'notStrike' : 'strike'">0-1</div>
@@ -643,15 +633,17 @@ export default {
       const rLevel = this.features.medDecisionMaking.risk.type
 
       // get two highest values
-      let scores = new Array()
-      scores[0] = pLevel
-      scores[1] = dLevel
-      scores[2] = rLevel
+      let levels = new Array()
+      levels[0] = pLevel
+      levels[1] = dLevel
+      levels[2] = rLevel
       console.log(pLevel, dLevel, rLevel)
 
-      scores.sort((a, b) => b - a)
+      levels.sort((a, b) => b - a) // now 0 is highest and 1 is 2nd highest
 
-      console.log(scores)
+      this.features.medDecisionMaking.complexity.level = levels[1]
+
+      return levels[1]
     },
   },
 }
