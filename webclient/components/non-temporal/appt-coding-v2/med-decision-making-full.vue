@@ -534,24 +534,32 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 0 ? 'notStrike' : 'strike'">0-1</div>
         <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
 
-        <div :class="features.medDecisionMaking.complexity.level >= 0 ? 'notStrike' : 'strike'">Straight forward</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 0 ? 'notStrike' : 'strike'">
+          Straight forward
+        </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 2 ? 'notStrike' : 'strike'">2</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 2 ? 'notStrike' : 'strike'">2</div>
         <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
 
-        <div :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">Low</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+          Low
+        </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 3 ? 'notStrike' : 'strike'">3</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 3 ? 'notStrike' : 'strike'">3</div>
         <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
 
-        <div :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Moderate</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
+          Moderate
+        </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
-        <div :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">High</div>
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
+          High
+        </div>
       </div>
     </el-card>
   </div>
