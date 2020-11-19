@@ -394,7 +394,7 @@ export default {
             diagnostic: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
             management: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
           },
-          type: {
+          complexity: {
             straightForward: false,
             low: false,
             moderate: false,
