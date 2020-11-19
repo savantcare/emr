@@ -232,8 +232,8 @@
                 .decisionOldRecords
             "
           >
-            Decision to obtain old records and/or obtain history from someone other than patient</el-button
-          >
+            Decision to obtain old records</el-button
+          ><sub><br />And/or obtain history from someone other than patient</sub>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           1
@@ -249,8 +249,10 @@
                 .reviewOldRecords
             "
           >
-            Review and summarization of old records and/or obtaining history from someone other than patient and/or
-            discussion of case with another health care provider</el-button
+            Review and summarization of old records </el-button
+          ><sub
+            ><br />Obtaining history from someone other than patient and/or discussion of case with another health care
+            provider</sub
           >
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
@@ -267,8 +269,9 @@
                 .independentTracing
             "
           >
-            Independent visualization of image, tracing, or specimen itself (not simply review report)</el-button
+            Independent visualization of image, tracing, or specimen itself</el-button
           >
+          <sub><br />(not simply review report)</sub>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           2
