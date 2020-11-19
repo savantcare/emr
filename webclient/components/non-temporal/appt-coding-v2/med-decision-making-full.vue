@@ -96,28 +96,45 @@
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           Self-limiting or minor (stable, improved, or worsening (max=2)
-          <el-input-number size="small" v-model="num" :min="0" :max="2"></el-input-number>
+          <el-input-number
+            size="small"
+            v-model="features.medDecisionMaking.problemPoints.selfLimiting"
+            :min="0"
+            :max="2"
+          ></el-input-number>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           Established problem (to examining physician); stable or improved
-          <el-input-number v-model="num" :min="0" :max="12"></el-input-number>
+          <el-input-number
+            v-model="features.medDecisionMaking.problemPoints.establishedStable"
+            :min="0"
+            :max="12"
+          ></el-input-number>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           2
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           Established problem (to examining physician); worsening
-          <el-input-number v-model="num" :min="0" :max="12"></el-input-number>
+          <el-input-number
+            v-model="features.medDecisionMaking.problemPoints.establishedWorsening"
+            :min="0"
+            :max="12"
+          ></el-input-number>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           3
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           New problem (to examining physician); no additional workup or diagnostic procedures ordered (max=1)
-          <el-input-number v-model="num" :min="0" :max="12"></el-input-number>
+          <el-input-number
+            v-model="features.medDecisionMaking.problemPoints.newToExamining"
+            :min="0"
+            :max="12"
+          ></el-input-number>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           4
@@ -125,7 +142,11 @@
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           New problem (to examining physician); additional workup planned (Additional workup does not include referring
           patient to another physician for future care)
-          <el-input-number v-model="num" :min="0" :max="12"></el-input-number>
+          <el-input-number
+            v-model="features.medDecisionMaking.problemPoints.newAdditionalWorkup"
+            :min="0"
+            :max="12"
+          ></el-input-number>
         </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           5

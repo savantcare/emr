@@ -370,11 +370,12 @@ export default {
         medDecisionMaking: {
           summaryDisplay: false,
           bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
-          type: {
-            straightForward: false,
-            low: false,
-            moderate: false,
-            high: false,
+          problemPoints: {
+            selfLimiting: 0,
+            establishedStable: 0,
+            establishedWorsening: 0,
+            newToExamining: 0,
+            newAdditionalWorkup: 0,
           },
           dataPoints: {
             reviewOrderClinical: false,
@@ -391,6 +392,12 @@ export default {
             problem: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
             diagnostic: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
             management: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+          },
+          type: {
+            straightForward: false,
+            low: false,
+            moderate: false,
+            high: false,
           },
         },
       },
