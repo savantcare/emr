@@ -351,12 +351,7 @@
           Management options selected
         </div>
 
-        <div
-          :style="features.medDecisionMaking.risk.type >= 1 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'"
-        >
-          Minimal
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -390,12 +385,7 @@
           >
         </div>
 
-        <div
-          :style="features.medDecisionMaking.risk.type >= 2 ? 'background-color: #67C23A' : 'background-color: #909399'"
-          :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'"
-        >
-          Low
-        </div>
+        <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
         <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
