@@ -122,6 +122,11 @@ export default {
     if (this.currentSlideNumber) {
       this.go(this.currentSlideNumber)
     }
+
+    let eventName = 'rowSlideToCurrent'
+    this.$root.$on(eventName, () => {
+      setTimeout(() => this.go(this.currentSlideNumber), 10);
+    })
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.$resize)

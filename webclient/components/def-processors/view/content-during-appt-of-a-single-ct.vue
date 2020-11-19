@@ -1,5 +1,5 @@
 <template>
-  <el-collapse>
+  <el-collapse @change="mfRowSlideToCurrent">
     <el-collapse-item name="1">
       <template slot="title">
         {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
@@ -54,14 +54,14 @@
       <!-- Section 2/2: This starts after the header ends -->
       <div :style="cfGetDataRowStyle">
         <!-- This is for each data row -->
-        <!-- Design: 
+        <!-- Design:
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
-        
+
         Goal 2: Between columns there is some space
           How? style="grid-column-gap: 1rem
-        
+
         Goal 3: If 1st and 2nd field has no value then 3rd field should be in 1st col and not in 3rd col
           Solution 1:
           How? grid-template-columns: min-content 1fr;
@@ -80,8 +80,8 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
+        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields
+         Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value
          Each appt gets a slide of its own
          -->
 
@@ -170,13 +170,13 @@ export default {
            *  A4 page width = 17cm
               A4 page left+right padding 0.5cm+0.5cm = 1cm
               Remaining space for page content = 17cm - 1cm = 16cm
-   
+
               Convert 16cm to pixel:
               Ref: https://www.convert-measurement-units.com/conversion-calculator.php?type=font-size
               16cm = 604px
 
               Slider previous and next icons width = 24px+24px = 48px
-              Remaining width for slider content = 
+              Remaining width for slider content =
               604px (Remaining space for page content in px) - 48px (Slider previous and next icons width) = 556px
            */
           container: 556,
@@ -359,6 +359,12 @@ export default {
     log(item) {
       console.log(item)
     },
+
+    mfRowSlideToCurrent(currentSlideNumber){
+      const eventName = 'rowSlideToCurrent'
+      this.$root.$emit(eventName)
+    },
+
     mfOpenMultiEditCtInEditLayer() {
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: 'multi edit reminders',
@@ -422,13 +428,13 @@ h3 {
   grid-column-start: 1;
 }
 
-/* ref: 
+/* ref:
 Design being used
 https://github.com/fuxingloh/vue-horizontal-list
 
 Designs not being used:
 http://jsfiddle.net/rnwa4fv5/
-https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow 
+https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow
 http://jsfiddle.net/kf1y2npw/30/
 */
 
