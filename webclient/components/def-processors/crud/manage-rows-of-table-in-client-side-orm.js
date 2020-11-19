@@ -716,6 +716,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
                    SameAsDB is always considered a marker. So whenever SameAsDB is reached we forget the old state. If we keep remembering the old state then the whole state can be 100 steps long.
                    No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted or updated. (For temporal update is like delete and insert)
                 */
+                ROW_START: Math.floor(Date.now()), // This overwites prev ROW_START. This is done so new rows ROW_START does not overlap the ROW that was just endeed in prev line of code.
               },
             })
 
