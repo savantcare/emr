@@ -6,7 +6,7 @@
       >
         <div
           style="font-size: 1rem; text-align: center; border: 1px solid; font-weight: bold"
-          @click="features.medDecisonMaking.summaryDisplay = !features.medDecisonMaking.summaryDisplay"
+          @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
           Complexity of decison making
         </div>

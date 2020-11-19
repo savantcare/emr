@@ -151,95 +151,99 @@
             text-align: center;
           "
         >
-          Points
+          Points ({{ dataPoints }})
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.reviewOrderClinical = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.reviewOrderClinical = !features.medDecisionMaking.dataPoints
                 .reviewOrderClinical
             "
           >
             Review and/or order of clinical lab tests</el-button
           >
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? 'notStrike' : 'strike'">1</div>
+        <div :class="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? 'notStrike' : 'strike'">
+          1
+        </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.reviewOrderRadiology = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.reviewOrderRadiology = !features.medDecisionMaking.dataPoints
                 .reviewOrderRadiology
             "
           >
             Review and/or order of tests in the radiology section of CPT</el-button
           >
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? 'notStrike' : 'strike'">
+        <div :class="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? 'notStrike' : 'strike'">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.reviewOrderMedicine = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.reviewOrderMedicine = !features.medDecisionMaking.dataPoints
                 .reviewOrderMedicine
             "
           >
             Review and/or order of tests in the medicine section of CPT</el-button
           >
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? 'notStrike' : 'strike'">1</div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
-          <el-button
-            round
-            size="mini"
-            :class="features.medDecisonMaking.dataPoints.discussionTestResults === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.discussionTestResults === true ? 'primary' : 'info'"
-            @click="
-              features.medDecisonMaking.dataPoints.discussionTestResults = !features.medDecisonMaking.dataPoints
-                .discussionTestResults
-            "
-          >
-            Discussion of test results with performing physician</el-button
-          >
-        </div>
-        <div :class="features.medDecisonMaking.dataPoints.discussionTestResults === true ? 'notStrike' : 'strike'">
+        <div :class="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? 'notStrike' : 'strike'">
           1
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.discussionTestResults === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.discussionTestResults === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.decisionOldRecords = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.discussionTestResults = !features.medDecisionMaking.dataPoints
+                .discussionTestResults
+            "
+          >
+            Discussion of test results with performing physician</el-button
+          >
+        </div>
+        <div :class="features.medDecisionMaking.dataPoints.discussionTestResults === true ? 'notStrike' : 'strike'">
+          1
+        </div>
+        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          <el-button
+            round
+            size="mini"
+            :class="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisionMaking.dataPoints.decisionOldRecords = !features.medDecisionMaking.dataPoints
                 .decisionOldRecords
             "
           >
             Decision to obtain old records</el-button
           ><sub><br />And/or obtain history from someone other than patient</sub>
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? 'notStrike' : 'strike'">1</div>
+        <div :class="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? 'notStrike' : 'strike'">1</div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.reviewOldRecords = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.reviewOldRecords = !features.medDecisionMaking.dataPoints
                 .reviewOldRecords
             "
           >
@@ -249,15 +253,15 @@
             provider</sub
           >
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? 'notStrike' : 'strike'">2</div>
+        <div :class="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? 'notStrike' : 'strike'">2</div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
-            :class="features.medDecisonMaking.dataPoints.independentTracing === true ? '' : 'strike'"
-            :type="features.medDecisonMaking.dataPoints.independentTracing === true ? 'primary' : 'info'"
+            :class="features.medDecisionMaking.dataPoints.independentTracing === true ? '' : 'strike'"
+            :type="features.medDecisionMaking.dataPoints.independentTracing === true ? 'primary' : 'info'"
             @click="
-              features.medDecisonMaking.dataPoints.independentTracing = !features.medDecisonMaking.dataPoints
+              features.medDecisionMaking.dataPoints.independentTracing = !features.medDecisionMaking.dataPoints
                 .independentTracing
             "
           >
@@ -265,7 +269,7 @@
           >
           <sub><br />(not simply review report)</sub>
         </div>
-        <div :class="features.medDecisonMaking.dataPoints.independentTracing === true ? 'notStrike' : 'strike'">2</div>
+        <div :class="features.medDecisionMaking.dataPoints.independentTracing === true ? 'notStrike' : 'strike'">2</div>
         <div
           style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
@@ -428,7 +432,7 @@
             border: 1px solid;
             font-weight: bold;
           "
-          @click="features.medDecisonMaking.summaryDisplay = !features.medDecisonMaking.summaryDisplay"
+          @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
           Complexity of decison making
         </div>
@@ -504,6 +508,13 @@ export default {
       required: true,
     },
   },
-  computed: {},
+  computed: {
+    dataPoints: function () {
+      console.log(this.features.medDecisionMaking)
+      const points = points + this.features.medDecisionMaking.dataPoints.reviewOrderClinical ? 1 : 0
+      this.features.medDecisionMaking.dataPoints.points = points
+      return points
+    },
+  },
 }
 </script>
