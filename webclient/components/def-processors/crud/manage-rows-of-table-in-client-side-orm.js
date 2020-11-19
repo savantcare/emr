@@ -2,6 +2,7 @@ import { Model } from '@vuex-orm/core'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import tableStructureForStoreMessageFromOtherComponent from '~/components/non-temporal/feed/db/client-side/structure/store-messages-from-other-components.js'
 
+import AutoSaveDataToServer from './auto-save-data-to-server'
 // Start from new
 
 export const rowState = {
@@ -473,6 +474,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     this.fnPutFldValueInCache(pEvent, pClientRowId, pFldName)
     // Step 2/2
     this.fnCreateTimeoutToSaveToState(pEvent, pClientRowId, pFldName, pRowStatus)
+    AutoSaveDataToServer.init();
   }
 
   /*  
