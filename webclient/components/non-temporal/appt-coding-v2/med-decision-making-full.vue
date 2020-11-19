@@ -511,7 +511,16 @@ export default {
   computed: {
     dataPoints: function () {
       let points = 0
-      points = points + this.features.medDecisionMaking.dataPoints.reviewOrderClinical ? 1 : 0
+      points = points + (this.features.medDecisionMaking.dataPoints.reviewOrderClinical ? 1 : 0)
+
+      points = points + (this.features.medDecisionMaking.dataPoints.reviewOrderRadiology ? 1 : 0)
+
+      points = points + (this.features.medDecisionMaking.dataPoints.reviewOrderMedicine ? 1 : 0)
+      points = points + (this.features.medDecisionMaking.dataPoints.discussionTestResults ? 1 : 0)
+      points = points + (this.features.medDecisionMaking.dataPoints.decisionOldRecords ? 1 : 0)
+      points = points + (this.features.medDecisionMaking.dataPoints.reviewOldRecords ? 2 : 0)
+      points = points + (this.features.medDecisionMaking.dataPoints.independentTracing ? 2 : 0)
+
       this.features.medDecisionMaking.dataPoints.points = points
       return points
     },
