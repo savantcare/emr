@@ -8,8 +8,8 @@
       <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
       <span v-else> <examinationFull :features="features"> </examinationFull></span>
 
-      <span v-if="features.medDecisonMaking.summaryDisplay"> <medDecisionMakingFull :features="features" /></span>
-      <span v-else><medDecisionMakingSummary :features="features" /></span>
+      <span v-if="features.medDecisonMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
+      <span v-else><medDecisionMakingFull :features="features" /></span>
 
       <div style="display: grid; grid-template-columns: 11; border: solid">
         <div class="gridItem" style="grid-column-start: 2; grid-column-end: 7">
@@ -371,10 +371,10 @@ export default {
           summaryDisplay: false,
           bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
           type: {
-            pf: false,
-            epf: false,
-            det: false,
-            comp: false,
+            straightForward: false,
+            low: false,
+            moderate: false,
+            high: false,
           },
         },
       },
