@@ -611,39 +611,41 @@ export default {
       return this.features.medDecisionMaking.problemPoints.total
     },
     complexity: function () {
-      let pLevel = 0
+      let problemPointLevel = 0
       if (this.features.medDecisionMaking.problemPoints.total >= 0) {
-        pLevel = 1
+        problemPointLevel = 1
       } else if (this.features.medDecisionMaking.problemPoints.total >= 2) {
-        pLevel = 2
+        problemPointLevel = 2
       } else if (this.features.medDecisionMaking.problemPoints.total >= 3) {
-        pLevel = 3
+        problemPointLevel = 3
       } else if (this.features.medDecisionMaking.problemPoints.total >= 4) {
-        pLevel = 4
+        problemPointLevel = 4
       }
 
-      let dLevel = 0
+      let dataPointsLevel = 0
       if (this.features.medDecisionMaking.dataPoints.points == 0) {
-        dLevel = 1
+        dataPointsLevel = 1
       } else {
-        dLevel = this.features.medDecisionMaking.dataPoints.points
+        dataPointsLevel = this.features.medDecisionMaking.dataPoints.points
       }
 
-      let rLevel = 0
+      let riskLevel = 0
       if (this.features.medDecisionMaking.risk.type == 0) {
-        rLevel = 1
+        riskLevel = 1
       } else {
-        rLevel = this.features.medDecisionMaking.risk.type
+        riskLevel = this.features.medDecisionMaking.risk.type
       }
 
       // get two highest values
       let levels = new Array()
-      levels[0] = pLevel
-      levels[1] = dLevel
-      levels[2] = rLevel
-      console.log(pLevel, dLevel, rLevel)
+      levels[0] = problemPointLevel
+      levels[1] = dataPointsLevel
+      levels[2] = riskLevel
+      console.log(problemPointLevel, dataPointsLevel, riskLevel)
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
+
+      console.log(levels)
 
       this.features.medDecisionMaking.complexity.level = levels[1]
 
