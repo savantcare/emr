@@ -376,6 +376,15 @@ export default {
             moderate: false,
             high: false,
           },
+          datePoints: {
+            reviewOrderClinical: false,
+            reviewOrderRadiology: false,
+            reviewOrderMedicine: false,
+            discussionTestResults: false,
+            decisionOldRecords: false,
+            reviewOldRecords: false,
+            independentTracing: false,
+          },
         },
       },
     }
