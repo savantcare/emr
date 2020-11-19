@@ -157,9 +157,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.reviewOrderClinical === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.reviewOrderClinical = !features.medDecisonMaking.dataPoints
+                .reviewOrderClinical
+            "
           >
             Review and/or order of clinical lab tests</el-button
           >
@@ -171,9 +174,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.reviewOrderRadiology === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.reviewOrderRadiology = !features.medDecisonMaking.dataPoints
+                .reviewOrderRadiology
+            "
           >
             Review and/or order of tests in the radiology section of CPT</el-button
           >
@@ -185,9 +191,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.reviewOrderMedicine === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.reviewOrderMedicine = !features.medDecisonMaking.dataPoints
+                .reviewOrderMedicine
+            "
           >
             Review and/or order of tests in the medicine section of CPT</el-button
           >
@@ -199,9 +208,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.discussionTestResults === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.discussionTestResults === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.discussionTestResults = !features.medDecisonMaking.dataPoints
+                .discussionTestResults
+            "
           >
             Discussion of test results with performing physician</el-button
           >
@@ -213,9 +225,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.decisionOldRecords === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.decisionOldRecords = !features.medDecisonMaking.dataPoints
+                .decisionOldRecords
+            "
           >
             Decision to obtain old records and/or obtain history from someone other than patient</el-button
           >
@@ -227,9 +242,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.reviewOldRecords === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.reviewOldRecords = !features.medDecisonMaking.dataPoints
+                .reviewOldRecords
+            "
           >
             Review and summarization of old records and/or obtaining history from someone other than patient and/or
             discussion of case with another health care provider</el-button
@@ -242,9 +260,12 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
-            @click="features.examination.bullets = 1"
+            :class="features.medDecisonMaking.dataPoints.independentTracing === true ? '' : 'strike'"
+            :type="features.medDecisonMaking.dataPoints.independentTracing === true ? 'primary' : 'info'"
+            @click="
+              features.medDecisonMaking.dataPoints.independentTracing = !features.medDecisonMaking.dataPoints
+                .independentTracing
+            "
           >
             Independent visualization of image, tracing, or specimen itself (not simply review report)</el-button
           >

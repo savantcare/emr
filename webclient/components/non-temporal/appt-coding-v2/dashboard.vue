@@ -376,7 +376,7 @@ export default {
             moderate: false,
             high: false,
           },
-          datePoints: {
+          dataPoints: {
             reviewOrderClinical: false,
             reviewOrderRadiology: false,
             reviewOrderMedicine: false,
