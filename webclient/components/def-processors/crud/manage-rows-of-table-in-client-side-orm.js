@@ -613,6 +613,32 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         vnRowStateInSession: pRowStatus,
         isValidationError: false,
       }
+
+      /**
+       * Q: Why I am updating ROW_START?
+       * -- Problem statement:
+       * After adding something in paper view and then locking note does following in ORM in the respective manner:
+       * 1. Saves the respective row
+       * 2. Inserts a blank row
+       * 3. And then locks the note
+       *
+       * ROW_START value of this blank row is older than the note lock time.
+       * Hence, after note lock if someone tries to add another value (in unlocked note) then ORM updates that blank row (stated in above pt-2)
+       * This is causing unexpected behaviour since ROW_START value of that blank row is older than the note lock time stated in above pt-3
+       * In other words ROW_START value of that blank row supposed to be a time after the note lock time.
+       *
+       * -- Solution:
+       * I am updating ROW_START value of row whenever user starts typing on it.
+       *
+       * Q: If model has 5 fields this will set ROW_START 5 times?
+       * — It will not make any issue. We are setting ROW_START value to resolve the issues in client side that will occur due to discrepancy with note-lock time.
+       * But soon after the data gets saved in DB, we update ORM with the returned value of api and at that time we update this ROW_START value with the returned value of api.
+       */
+
+      const currentValue = this.find(pClientRowId)
+      if (currentValue[pFldName] === '') {
+        row.ROW_START = Math.floor(Date.now())
+      }
     }
     const arFromClientTbl = this.update({
       where: pClientRowId,
