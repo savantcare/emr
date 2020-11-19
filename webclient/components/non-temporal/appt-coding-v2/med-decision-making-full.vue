@@ -154,7 +154,7 @@
         <div
           style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
-          Data points
+          Data points ({{ dataPoints }})
         </div>
 
         <div
@@ -177,7 +177,7 @@
             text-align: center;
           "
         >
-          Points ({{ dataPoints }})
+          Points
         </div>
         <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
@@ -534,7 +534,7 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 0 ? 'notStrike' : 'strike'">0-1</div>
         <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 0 ? 'notStrike' : 'strike'">
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
           Straight forward
         </div>
 
@@ -542,7 +542,7 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 2 ? 'notStrike' : 'strike'">2</div>
         <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
           Low
         </div>
 
@@ -550,14 +550,14 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 3 ? 'notStrike' : 'strike'">3</div>
         <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
           Moderate
         </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
+        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">
           High
         </div>
       </div>
@@ -622,8 +622,19 @@ export default {
         pLevel = 4
       }
 
-      const dLevel = this.features.medDecisionMaking.dataPoints.points
-      const rLevel = this.features.medDecisionMaking.risk.type
+      let dLevel = 0
+      if (this.features.medDecisionMaking.dataPoints.points == 0) {
+        dLevel = 1
+      } else {
+        dLevel = this.features.medDecisionMaking.dataPoints.points
+      }
+
+      let rLevel = 0
+      if (this.features.medDecisionMaking.risk.type == 0) {
+        rLevel = 1
+      } else {
+        rLevel = this.features.medDecisionMaking.risk.type
+      }
 
       // get two highest values
       let levels = new Array()
@@ -632,7 +643,7 @@ export default {
       levels[2] = rLevel
       console.log(pLevel, dLevel, rLevel)
 
-      levels.sort((a, b) => b - a) // now 0 is highest and 1 is 2nd highest
+      levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
 
       this.features.medDecisionMaking.complexity.level = levels[1]
 
