@@ -82,7 +82,7 @@
           <el-button
             round
             size="mini"
-            :class="features.examination.bullets === 1 ? '' : 'strike'"
+            :class="features.examination.bullets === 1 ? 'notStrike' : 'strike'"
             :type="features.examination.bullets === 1 ? 'primary' : 'info'"
             @click="features.examination.bullets = 1"
             >1-5 bullets</el-button
@@ -93,9 +93,8 @@
             features.examination.bullets >= 1
               ? (features.examination.type.pf = true)
               : (features.examination.type.pf = false),
-            features.examination.type.pf ? '' : 'strike',
+            features.examination.type.pf ? 'notStrike' : 'strike',
           ]"
-          :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
         >
           Problem focused (PF)
         </div>
@@ -110,12 +109,11 @@
           >
         </div>
         <div
-          :style="features.examination.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
             features.examination.bullets >= 6
               ? (features.examination.type.epf = true)
               : (features.examination.type.epf = false),
-            features.examination.type.epf ? '' : 'strike',
+            features.examination.type.epf ? 'notStrike' : 'strike',
           ]"
         >
           Expanded problem focused (EPF)
@@ -131,12 +129,11 @@
           >
         </div>
         <div
-          :style="features.examination.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
             features.examination.bullets >= 9
               ? (features.examination.type.det = true)
               : (features.examination.type.det = false),
-            features.examination.type.det ? '' : 'strike',
+            features.examination.type.det ? 'notStrike' : 'strike',
           ]"
         >
           Detailed (DET)
@@ -152,12 +149,11 @@
           >
         </div>
         <div
-          :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
           :class="[
             features.examination.bullets >= 10
               ? (features.examination.type.comp = true)
               : (features.examination.type.comp = false),
-            features.examination.type.comp ? '' : 'strike',
+            features.examination.type.comp ? 'notStrike' : 'strike',
           ]"
         >
           Comprehensive (COMP)
