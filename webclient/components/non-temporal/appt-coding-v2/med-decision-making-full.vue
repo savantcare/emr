@@ -68,7 +68,7 @@
             text-align: center;
           "
         >
-          Problem Points {{ problemPointsTotal }}
+          Problem Points ({{ problemPointsTotal }})
         </div>
         <div
           style="
