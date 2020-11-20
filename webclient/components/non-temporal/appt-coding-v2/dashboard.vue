@@ -11,10 +11,10 @@
       <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
       <span v-else><medDecisionMakingFull :features="features" /></span>
 
-      <div>
-        CPT Codes
-        <cptCodeIntake :features="features" />
-        <cptCodeFollowUp :features="features" />
+      <div id="cptCodeContainer" style="display: grid; grid-template-columns: 3; border: solid">
+        <div>CPT Codes</div>
+        <div><cptCodeIntake :features="features" /></div>
+        <div><cptCodeFollowUp :features="features" /></div>
       </div>
     </el-dialog>
   </div>
