@@ -1,6 +1,6 @@
 <template>
   <el-card hover>
-    <div id="cptCodeContainer" style="display: grid; grid-template-columns: 3; border: solid">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); border: solid">
       <div>CPT Codes</div>
       <div><cptCodeIntake :features="features" /></div>
       <div><cptCodeFollowUp :features="features" /></div>
