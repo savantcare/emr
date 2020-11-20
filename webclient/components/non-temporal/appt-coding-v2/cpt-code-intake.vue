@@ -1,16 +1,15 @@
 <template>
   <el-card hover>
-    <div style="display: grid; grid-template-columns: 5; border: solid">
-      <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6">
-        <el-button
-          round
-          size="mini"
-          :type="features.isThisIntake ? 'primary' : 'info'"
-          :class="features.isThisIntake ? 'notStrike' : 'strike'"
-          @click="features.isThisIntake = true"
-          >New Patient Office (requires 3 of 3)</el-button
-        >
-      </div>
+    <el-button
+      round
+      size="mini"
+      :type="features.isThisIntake ? 'primary' : 'info'"
+      :class="features.isThisIntake ? 'notStrike' : 'strike'"
+      @click="features.isThisIntake = true"
+      >New Patient Office (requires 3 of 3)</el-button
+    >
+    <div v-if="features.isThisIntake === true" style="display: grid; grid-template-columns: 5; border: solid">
+      <div class="gridItem" style="grid-column-start: 1; grid-column-end: 6"></div>
 
       <div class="gridItem" style="font-weight: bold">Time</div>
       <div class="gridItem" style="font-weight: bold">CPT code</div>
