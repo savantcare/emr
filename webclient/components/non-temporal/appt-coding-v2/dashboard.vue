@@ -64,6 +64,12 @@ export default {
           c99213: false,
           c99214: false,
           c99215: false,
+          levels: {
+            history: 0, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            exam: 0, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            mdm: 0, // 0->unknown 1->n/a 2->straight-forward 3->low 4->moderate 5->high
+            secondHighest: 0, // Out of 3, the 2nd highest is the code.
+          },
         },
         history: {
           summaryDisplay: false,
