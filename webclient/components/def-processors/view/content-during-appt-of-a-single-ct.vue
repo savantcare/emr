@@ -1,6 +1,6 @@
 <template>
-  <el-collapse @change="mfVueHorizontalListSetCurrentSlide">
-    <el-collapse-item name="1">
+  <el-collapse :value="cfArOfItemNameToExpend" @change="mfVueHorizontalListSetCurrentSlideAndRememberCollapsibleState">
+    <el-collapse-item :name="cfGetNameOfCollapseItem">
       <template slot="title">
         {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
         <el-button-group>
@@ -142,6 +142,7 @@ import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 import moment from 'moment'
 
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
@@ -215,6 +216,27 @@ export default {
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
   },
   computed: {
+    cfGetNameOfCollapseItem() {
+      /**
+       * Ref: https://element.eleme.io/#/en-US/component/collapse#collapse-item-attributes
+       * According to Collapse Item Attributes documentation name should me unique identification of the panel.
+       * It may string or number.
+       * Hence, I am creating name from panel title using toLowerCase and replace space to underscore
+       */
+      const nameOfCollapseItem = this._formDef.plural.toLowerCase().trim().replace(/ /g, '_')
+      return nameOfCollapseItem
+    },
+    cfArOfItemNameToExpend() {
+      const listOfItemsInPaperViewToExpend = clientTblOfCommonForAllComponents.find(
+        'list-of-items-in-paper-view-to-expend'
+      )
+
+      if (listOfItemsInPaperViewToExpend) {
+        return JSON.parse(listOfItemsInPaperViewToExpend['fieldValue'])
+      } else {
+        return ''
+      }
+    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
@@ -384,11 +406,37 @@ export default {
       // remove modal value after save
       this.amendmentData = ''
     },
-    mfVueHorizontalListSetCurrentSlide(val) {
+    mfVueHorizontalListSetCurrentSlideAndRememberCollapsibleState(val) {
       if (val) {
         const eventName = 'event-for-set-horizontal-list-current-slide'
         this.$root.$emit(eventName)
       }
+
+      // Collapsible state to be remembered
+      const listOfItemsInPaperViewToExpend = clientTblOfCommonForAllComponents.find(
+        'list-of-items-in-paper-view-to-expend'
+      )
+
+      let arItemsInPaperViewToExpend = []
+      if (listOfItemsInPaperViewToExpend) {
+        arItemsInPaperViewToExpend = JSON.parse(listOfItemsInPaperViewToExpend['fieldValue'])
+      }
+
+      const index = arItemsInPaperViewToExpend.indexOf(this.cfGetNameOfCollapseItem)
+      if (index > -1) {
+        arItemsInPaperViewToExpend.splice(index, 1)
+      } else {
+        arItemsInPaperViewToExpend.push(this.cfGetNameOfCollapseItem)
+      }
+
+      clientTblOfCommonForAllComponents.$update({
+        data: [
+          {
+            fieldName: 'list-of-items-in-paper-view-to-expend',
+            fieldValue: JSON.stringify(arItemsInPaperViewToExpend),
+          },
+        ],
+      })
     },
   },
 }
