@@ -29,7 +29,7 @@
     <!-- END -->
 
     <!-- At one time a set of fields has 1 value -->
-    <initializeMseComponent />
+    <initializeExaminationComponent />
     <initializePhq9Component />
     <initializeProsComponent />
     <initializeServiceStatementComponent />
@@ -78,7 +78,7 @@ import initializeBmiComponent from '@/components/temporal/bmi/db/client-side/ini
 import initializeOxygenSaturationComponent from '@/components/temporal/oxygen-saturation/db/client-side/initialize-on-first-load.vue'
 
 // temporal/others
-import initializeMseComponent from '@/components/temporal/examination/db/client-side/initialize-on-first-load.vue'
+import initializeExaminationComponent from '@/components/temporal/examination/db/client-side/initialize-on-first-load.vue'
 import initializePhq9Component from '@/components/temporal/phq9/db/client-side/initialize-on-first-load.vue'
 import initializeProsComponent from '@/components/temporal/psych-review-of-system/db/client-side/initialize-on-first-load.vue'
 
@@ -130,7 +130,7 @@ export default {
     initializeBmiComponent,
     initializeOxygenSaturationComponent,
 
-    initializeMseComponent,
+    initializeExaminationComponent,
     initializePhq9Component,
     initializeProsComponent,
 
