@@ -11,11 +11,7 @@
       <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
       <span v-else><medDecisionMakingFull :features="features" /></span>
 
-      <div id="cptCodeContainer" style="display: grid; grid-template-columns: 3; border: solid">
-        <div>CPT Codes</div>
-        <div><cptCodeIntake :features="features" /></div>
-        <div><cptCodeFollowUp :features="features" /></div>
-      </div>
+      <cptCode :features="features/>
     </el-dialog>
   </div>
 </template>
@@ -27,8 +23,7 @@ import examinationFull from './examination-full.vue'
 import examinationSummary from './examination-summary.vue'
 import medDecisionMakingFull from './med-decision-making-full.vue'
 import medDecisionMakingSummary from './med-decision-making-summary.vue'
-import cptCodeIntake from './cpt-code-intake.vue'
-import cptCodeFollowUp from './cpt-code-followup.vue'
+import cptCode from './cpt-code.vue'
 
 export default {
   data() {
@@ -102,8 +97,7 @@ export default {
     examinationSummary,
     medDecisionMakingFull,
     medDecisionMakingSummary,
-    cptCodeIntake,
-    cptCodeFollowUp,
+    cptCode,
   },
   async mounted() {},
   methods: {

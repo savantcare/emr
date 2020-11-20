@@ -216,35 +216,36 @@
               </div>
             </el-card>
           </template>
-          <script>
-          export default {
-            props: {
-              features: {
-                type: Object,
-                required: true,
-              },
-            },
-            computed: {},
-          }
-          </script>
 
-          <style scoped>
-          .gridItem {
-            background-color: #fff;
-            border: 1px solid #000;
-            padding: 2px;
-            font-size: 1rem;
-            text-align: center;
-          }
-          .verticalHeader {
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: 1;
-            grid-row-end: 8;
-            font-size: 5rem;
-          }
-        </style>
       </div>
     </div></el-card
   >
 </template>
+<script>
+export default {
+  props: {
+    features: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {},
+}
+</script>
+
+<style scoped>
+.gridItem {
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 2px;
+  font-size: 1rem;
+  text-align: center;
+}
+.verticalHeader {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 8;
+  font-size: 5rem;
+}
+</style>
