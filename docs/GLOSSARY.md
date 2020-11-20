@@ -59,7 +59,7 @@ In the following examples age is a function inside a component
 - [rem](https://github.com/savantcare/emr/tree/master/webclient/cts/ptinfo-single/rem): Reminder
 - rems: Reminders
 - sh: Social history. This is both plural and singular.
-- mse: Mental status exam
+- examination: Examination
 - dob: Date of birth
 - pros: Psych review of systems
 - hx: History

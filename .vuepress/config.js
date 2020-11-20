@@ -212,12 +212,12 @@ module.exports = {
                 ],
               },
               {
-                path: "/webclient/cts/ptinfo-single/mse/",
-                title: "Mental status exam",
+                path: "/webclient/cts/ptinfo-single/examination/",
+                title: "Examination",
                 sidebarDepth: 0,
                 children: [
                   {
-                    path: "/webclient/cts/ptinfo-single/mse/design/design",
+                    path: "/webclient/cts/ptinfo-single/examination/design/design",
                     title: "Design",
                     sidebarDepth: 0,
                   },

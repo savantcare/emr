@@ -217,13 +217,13 @@
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
                       <el-tab-pane
-                        v-for="eachMse in arMseData"
-                        :key="eachMse.name"
-                        :label="eachMse.label"
+                        v-for="eachExamination in arExaminationData"
+                        :key="eachExamination.name"
+                        :label="eachExamination.label"
                       >
-                        <div v-if="eachMse.selectedValues.length > 0">
+                        <div v-if="eachExamination.selectedValues.length > 0">
                           <div
-                            v-for="(value, index) in eachMse.selectedValues"
+                            v-for="(value, index) in eachExamination.selectedValues"
                             :key="index"
                           >{{ value }}</div>
                         </div>
@@ -553,7 +553,7 @@ export default {
         { id: 8, label: 'Pulse', value: '75 /min' },
         { id: 9, label: 'Temperature', value: '97.7 °F' },
       ],
-      arMseData: [
+      arExaminationData: [
         {
           label: 'Appearance',
           name: 'appearance',
