@@ -1,5 +1,5 @@
 <template>
-  <el-collapse>
+  <el-collapse @change="mfVueHorizontalListSetCurrentSlide">
     <el-collapse-item name="1">
       <template slot="title">
         {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
@@ -383,6 +383,12 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
+    },
+    mfVueHorizontalListSetCurrentSlide(val) {
+      if (val) {
+        const eventName = 'event-for-set-horizontal-list-current-slide'
+        this.$root.$emit(eventName)
+      }
     },
   },
 }

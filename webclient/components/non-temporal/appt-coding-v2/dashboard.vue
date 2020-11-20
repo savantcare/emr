@@ -2,128 +2,53 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <history :features="features"> </history>
-      <examination :features="features" />
-      <medDecisionMaking :features="features" />
-      <div style="display: grid; grid-template-columns: 9; border: solid">
-        <div class="gridItem" style="grid-column-start: 2; grid-column-end: 6">
-          <el-button
-            round
-            size="mini"
-            :type="features.isThisIntake ? 'primary' : 'info'"
-            :class="features.isThisIntake ? '' : 'strike'"
-            @click="features.isThisIntake = true"
-            >New Patient Office (requires 3 of 3)</el-button
-          >
-        </div>
+      <el-tabs tab-position="left">
+        <el-tab-pane label="Billing duration">
+          <el-slider v-model="features.billingDuration" show-input></el-slider>
+        </el-tab-pane>
+        <el-tab-pane label="History">
+          <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+          <span v-else> <historyFull :features="features"> </historyFull></span>
+        </el-tab-pane>
+        <el-tab-pane label="Examination">
+          <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+          <span v-else> <examinationFull :features="features"> </examinationFull></span>
+        </el-tab-pane>
+        <el-tab-pane label="MDM">
+          <span v-if="features.medDecisionMaking.summaryDisplay">
+            <medDecisionMakingSummary :features="features"
+          /></span>
+          <span v-else><medDecisionMakingFull :features="features" /></span>
+        </el-tab-pane>
+        <el-tab-pane label="Full">
+          <el-slider v-model="features.billingDuration" show-input></el-slider>
 
-        <div class="gridItem" style="grid-column-start: 6; grid-column-end: 10">
-          <el-button
-            round
-            size="mini"
-            :type="features.isThisIntake ? 'info' : 'primary'"
-            :class="features.isThisIntake ? 'strike' : ''"
-            @click="features.isThisIntake = false"
-            >Established Patient Office (requires 2 of 3)</el-button
-          >
-        </div>
+          <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+          <span v-else> <historyFull :features="features"> </historyFull></span>
 
-        <div
-          style="
-            grid-row-start: 1;
-            grid-row-end: 8;
-            font-size: 3rem;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-align: center;
-            background-color: #92a8d1;
-          "
-        >
-          CPT Codes
-        </div>
+          <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+          <span v-else> <examinationFull :features="features"> </examinationFull></span>
 
-        <div class="gridItem" style="font-weight: bold">CPT code</div>
-        <div class="gridItem" style="font-weight: bold">History</div>
-        <div class="gridItem" style="font-weight: bold">Exam</div>
-        <div class="gridItem" style="font-weight: bold">MDM</div>
-        <div class="gridItem" style="font-weight: bold">CPT code</div>
-        <div class="gridItem" style="font-weight: bold">History</div>
-        <div class="gridItem" style="font-weight: bold">Exam</div>
-        <div class="gridItem" style="font-weight: bold">MDM</div>
+          <span v-if="features.medDecisionMaking.summaryDisplay">
+            <medDecisionMakingSummary :features="features"
+          /></span>
+          <span v-else><medDecisionMakingFull :features="features" /></span>
+        </el-tab-pane>
+      </el-tabs>
 
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99201</el-button>
-        </div>
-        <div class="gridItem">PF</div>
-        <div class="gridItem">PF</div>
-        <div class="gridItem">Straight forward</div>
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99211</el-button>
-        </div>
-        <div class="gridItem">N/A</div>
-        <div class="gridItem">N/A</div>
-        <div class="gridItem">N/A</div>
-
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99202</el-button>
-        </div>
-        <div class="gridItem">EPF</div>
-        <div class="gridItem">EPF</div>
-        <div class="gridItem">Straight forward</div>
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99212</el-button>
-        </div>
-        <div class="gridItem">PF</div>
-        <div class="gridItem">PF</div>
-        <div class="gridItem">Straight forward</div>
-
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99203</el-button>
-        </div>
-        <div class="gridItem">DET</div>
-        <div class="gridItem">DET</div>
-        <div class="gridItem">Low</div>
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99213</el-button>
-        </div>
-        <div class="gridItem">EPF</div>
-        <div class="gridItem">EPF</div>
-        <div class="gridItem">Low</div>
-
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99204</el-button>
-        </div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">Moderate</div>
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99214</el-button>
-        </div>
-        <div class="gridItem">DET</div>
-        <div class="gridItem">DET</div>
-        <div class="gridItem">Moderate</div>
-
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? '' : 'strike'">99205</el-button>
-        </div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">High</div>
-        <div class="gridItem" style="background-color: #92a8d1">
-          <el-button round size="mini" :class="features.isThisIntake ? 'strike' : ''">99215</el-button>
-        </div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">COMP</div>
-        <div class="gridItem">High</div>
-      </div>
+      <cptCode :features="features" />
     </el-dialog>
   </div>
 </template>
 
 <script>
-import history from './history.vue'
-import examination from './examination.vue'
-import medDecisionMaking from './med-decision-making.vue'
+import historyFull from './history-full.vue'
+import historySummary from './history-summary.vue'
+import examinationFull from './examination-full.vue'
+import examinationSummary from './examination-summary.vue'
+import medDecisionMakingFull from './med-decision-making-full.vue'
+import medDecisionMakingSummary from './med-decision-making-summary.vue'
+import cptCode from './cpt-code.vue'
 
 export default {
   data() {
@@ -132,20 +57,90 @@ export default {
       features: {
         billingDuration: 36,
         isThisIntake: true,
+        cptCode: {
+          c99201: false,
+          c99202: false,
+          c99203: false,
+          c99204: false,
+          c99205: false,
 
+          c99211: false,
+          c99212: false,
+          c99213: false,
+          c99214: false,
+          c99215: false,
+          levels: {
+            history: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            exam: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            mdm: 1, // 0->unknown 1->n/a 2->straight-forward 3->low 4->moderate 5->high
+            secondHighest: 0, // Out of 3, the 2nd highest is the code.
+          },
+        },
         history: {
-          chiefComplaint: true,
-          hpi: 'brief', // 1. brief or 2. extended
-          pfsh: 'not-applicable', // 1. not-applicable 2. pertinent or 3. complete
-          ros: 'not-applicable', // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          summaryDisplay: false,
+          chiefComplaint: true, // 0 -> false 1-> true
+          hpi: 1, // 1. 1 or 2. extended
+          pfsh: 1, // 1. not-applicable 2. pertinent or 3. complete
+          ros: 1, // 1. not-applicable 2. pertinent or 3. extended or 4. complete
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
+        },
+        examination: {
+          summaryDisplay: false,
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          type: {
+            pf: false,
+            epf: false,
+            det: false,
+            comp: false,
+          },
+        },
+        medDecisionMaking: {
+          summaryDisplay: false,
+          bullets: 0, // value can be 1 to 9 and then 10 repsenting All bullets in Constitutional and Psychiatric (shaded) boxes and 1 bullet in Musculoskeletal (unshaded) box
+          problemPoints: {
+            selfLimiting: 0,
+            establishedStable: 0,
+            establishedWorsening: 0,
+            newToExamining: 0,
+            newAdditionalWorkup: 0,
+            total: 0,
+          },
+          dataPoints: {
+            reviewOrderClinical: false,
+            reviewOrderRadiology: false,
+            reviewOrderMedicine: false,
+            discussionTestResults: false,
+            decisionOldRecords: false,
+            reviewOldRecords: false,
+            independentTracing: false,
+            points: 0,
+          },
+          risk: {
+            type: 0, // 0-> unknown 1->Minimal 2->Low 3->Moderate 4->High
+            problem: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+            diagnostic: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+            management: 0, // 0-> unknown 1-> min 2-> low 3-> Moderate 4->High
+          },
+          complexity: {
+            level: 0, // 1 straightForward , 2 low, 3  moderate, 4 high
+          },
         },
       },
     }
   },
   components: {
-    history,
-    medDecisionMaking,
-    examination,
+    historyFull,
+    historySummary,
+    examinationFull,
+    examinationSummary,
+    medDecisionMakingFull,
+    medDecisionMakingSummary,
+    cptCode,
   },
   async mounted() {},
   methods: {
@@ -195,6 +190,14 @@ export default {
 }
 .strike {
   position: relative;
+  text-align: center;
+  background-color: #909399;
+  border: solid 1px;
+}
+.notStrike {
+  text-align: center;
+  background-color: #67c23a;
+  border: solid 1px;
 }
 .strike::after {
   content: ' ';

@@ -40,9 +40,7 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="rec.label"
-                  >
-                    {{ rec.label }}
-                  </div>
+                  >{{ rec.label }}</div>
                 </el-card>
               </div>
             </el-col>
@@ -60,9 +58,7 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="g.label + ' [Rating: ' + g.rating + ']'"
-                  >
-                    {{ g.label }}
-                  </div>
+                  >{{ g.label }}</div>
                 </el-card>
               </div>
             </el-col>
@@ -82,10 +78,10 @@
                   >
                     <el-row>
                       <el-col :span="18">
-                        <div class="">{{ bm.label }}</div>
+                        <div class>{{ bm.label }}</div>
                       </el-col>
                       <el-col :span="6">
-                        <div class="">{{ bm.value }}</div>
+                        <div class>{{ bm.value }}</div>
                       </el-col>
                     </el-row>
                   </div>
@@ -106,7 +102,11 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'top'" style="font-size: 0.75rem">
-                      <el-tab-pane v-for="eachMed in arMedData" :key="eachMed.name" :label="eachMed.label">
+                      <el-tab-pane
+                        v-for="eachMed in arMedData"
+                        :key="eachMed.name"
+                        :label="eachMed.label"
+                      >
                         <!-- <el-row>
                           <el-col :span="7"><div class="med-table-header">Name</div></el-col>
                           <el-col :span="3"><div class="med-table-header">Quantity</div></el-col>
@@ -115,7 +115,7 @@
                             <div class="med-table-header">Direction to patient</div>
                           </el-col>
                           <el-col :span="4"><div class="med-table-header">Status</div></el-col>
-                        </el-row> -->
+                        </el-row>-->
                         <el-row
                           v-for="(med, index) in eachMed.medsInfo"
                           :key="med.medId"
@@ -123,9 +123,10 @@
                           :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                         >
                           <el-col :span="24">
-                            <div class="med-name" :title="med.medName + ' [ Quantity : ' + med.quantity + ']'">
-                              {{ med.medName }}
-                            </div>
+                            <div
+                              class="med-name"
+                              :title="med.medName + ' [ Quantity : ' + med.quantity + ']'"
+                            >{{ med.medName }}</div>
                           </el-col>
                           <!-- <el-col :span="3">
                             <div class="med-quant">{{ med.quantity }}</div>
@@ -140,7 +141,7 @@
                           </el-col>
                           <el-col :span="4">
                             <div class="med-status" :title="med.status">{{ med.status }}</div>
-                          </el-col> -->
+                          </el-col>-->
                         </el-row>
                       </el-tab-pane>
                     </el-tabs>
@@ -162,9 +163,7 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="rem.description"
-                  >
-                    {{ rem.description }}
-                  </div>
+                  >{{ rem.description }}</div>
                 </el-card>
               </div>
             </el-col>
@@ -199,9 +198,7 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="allergy.allergen + ' [Reaction: ' + allergy.reactions + ']'"
-                  >
-                    {{ allergy.allergen }}
-                  </div>
+                  >{{ allergy.allergen }}</div>
                 </el-card>
               </div>
             </el-col>
@@ -212,18 +209,23 @@
         <div class="large-grid-content">
           <el-row>
             <el-col>
-              <div class="map-grid-content mental-status-exam">
+              <div class="map-grid-content examination">
                 <el-card class="box-card" shadow="hover">
                   <div class="clearfix header">
-                    <span>Mental status exam</span>
+                    <span>Examination</span>
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
-                      <el-tab-pane v-for="eachMse in arMseData" :key="eachMse.name" :label="eachMse.label">
+                      <el-tab-pane
+                        v-for="eachMse in arMseData"
+                        :key="eachMse.name"
+                        :label="eachMse.label"
+                      >
                         <div v-if="eachMse.selectedValues.length > 0">
-                          <div v-for="(value, index) in eachMse.selectedValues" :key="index">
-                            {{ value }}
-                          </div>
+                          <div
+                            v-for="(value, index) in eachMse.selectedValues"
+                            :key="index"
+                          >{{ value }}</div>
                         </div>
                         <div v-else>No data found</div>
                       </el-tab-pane>
@@ -242,7 +244,11 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
-                      <el-tab-pane v-for="eachPros in arProsData" :key="eachPros.name" :label="eachPros.label">
+                      <el-tab-pane
+                        v-for="eachPros in arProsData"
+                        :key="eachPros.name"
+                        :label="eachPros.label"
+                      >
                         <div v-if="eachPros.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachPros.questionAnswers"
@@ -253,7 +259,7 @@
                             Q: {{ qnaItem.question }}
                             <span class="ans-elm">
                               A:
-                              <span class="ans"> {{ qnaItem.answer }} </span>
+                              <span class="ans">{{ qnaItem.answer }}</span>
                             </span>
                           </div>
                         </div>
@@ -312,13 +318,11 @@
                         >
                           <el-col :span="24">
                             <div
-                              class=""
+                              class
                               :title="
                                 '[' + contact.contactType + '] ' + contact.belongingType + ' of ' + contact.contactName
                               "
-                            >
-                              {{ contact.value }}
-                            </div>
+                            >{{ contact.value }}</div>
                           </el-col>
                         </el-row>
                       </el-tab-pane>
@@ -341,7 +345,11 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
-                      <el-tab-pane v-for="eachScr in arScrData" :key="eachScr.name" :label="eachScr.label">
+                      <el-tab-pane
+                        v-for="eachScr in arScrData"
+                        :key="eachScr.name"
+                        :label="eachScr.label"
+                      >
                         <div v-if="eachScr.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachScr.questionAnswers"
@@ -349,10 +357,11 @@
                             class="scr-row"
                             :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                           >
-                            Q: {{ qnaItem.question }} <br />
+                            Q: {{ qnaItem.question }}
+                            <br />
                             <span class="ans-elm">
                               A:
-                              <span class="ans"> {{ qnaItem.answer }} </span>
+                              <span class="ans">{{ qnaItem.answer }}</span>
                             </span>
                           </div>
                         </div>
