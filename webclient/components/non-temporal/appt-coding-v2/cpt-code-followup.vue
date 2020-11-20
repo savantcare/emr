@@ -17,13 +17,13 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div :class="features.cptCode.c99201 ? 'notStrike' : 'strike'">99211</div>
+      <div :class="highestCode >= 99211 ? 'notStrike' : 'strike'">99211</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
+      <div :class="highestCode >= 99212 ? 'notStrike' : 'strike'">99212</div>
       <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
@@ -31,21 +31,21 @@
       </div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
+      <div :class="highestCode >= 99213 ? 'notStrike' : 'strike'">99213</div>
       <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99214</div>
+      <div :class="highestCode >= 99214 ? 'notStrike' : 'strike'">99214</div>
       <div :class="features.history.type.det ? 'notStrike' : 'strike'">DET</div>
       <div :class="features.examination.type.det ? 'notStrike' : 'strike'">DET</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
         Moderate
       </div>
 
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99215</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+      <div :class="highestCode >= 99215 ? 'notStrike' : 'strike'">99215</div>
       <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">High</div>
@@ -70,6 +70,11 @@ export default {
     },
     handleChange(val) {
       console.log(val)
+    },
+  },
+  computed: {
+    highestCode() {
+      return 99215
     },
   },
 }
