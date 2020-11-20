@@ -6,8 +6,6 @@ import VuexclientTblOfCtSearchPhrases from '@vuex-orm/plugin-search'
 import VuexORM from '@vuex-orm/core'
 import VuexORMLocalForage from 'vuex-orm-localforage'
 
-// Use for local storage
-import VuexPersist from 'vuex-persist'
 
 import axios from 'axios'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
@@ -34,11 +32,6 @@ Vue.use(uuidv1)
 Vue.use(Vuex)
 VuexORM.use(VuexORMLocalForage, { database })
 
-//Initialize VuexPersist: https://flaviocopes.com/vuex-persist-localstorage/
-const vuexPersist = new VuexPersist({
-  key: 'sc-pf',
-  storage: window.localStorage
-})
 
 const createStore = () => {
   return new Vuex.Store({
@@ -50,7 +43,7 @@ const createStore = () => {
       vstObjMapDrawer: VueStateOfMapDrawerModule,
       vstObjDeletedDrawer: VueStateOfDeletedDrawerModule,
     },
-    plugins: [VuexORM.install(database), vuexPersist.plugin],
+    plugins: [VuexORM.install(database)],
   })
 }
 
