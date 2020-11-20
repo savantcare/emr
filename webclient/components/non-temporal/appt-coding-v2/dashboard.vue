@@ -3,6 +3,9 @@
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <el-tabs tab-position="left">
+        <el-tab-pane label="Billing duration">
+          <el-slider v-model="features.billingDuration" show-input></el-slider>
+        </el-tab-pane>
         <el-tab-pane label="History">
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
           <span v-else> <historyFull :features="features"> </historyFull></span>
