@@ -48,61 +48,22 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div
-        class="gridItem"
-        :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'notStrike' : 'strike'"
-      >
-        99201
-      </div>
+      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99201</div>
 
-      <div
-        class="gridItem"
-        :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        PF
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        PF
-      </div>
+      <div :class="features.history.type.pf ? 'strike' : 'notStrike'">PF</div>
+      <div :class="features.examination.type.pf ? 'strike' : 'notStrike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div
-        class="gridItem"
-        :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'strike' : 'notStrike'"
-      >
-        99211
-      </div>
-      <div class="gridItem">N/A</div>
-      <div class="gridItem">N/A</div>
-      <div class="gridItem">N/A</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99211</div>
+      <div>N/A</div>
+      <div>N/A</div>
+      <div>N/A</div>
 
-      <div
-        class="gridItem"
-        :style="features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'notStrike' : 'strike'"
-      >
-        Time
-      </div>
-      <div
-        class="gridItem"
-        :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'notStrike' : 'strike'"
-      >
-        99202
-      </div>
-      <div
-        class="gridItem"
-        :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        EPF
-      </div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99202</div>
+      <div :class="features.history.type.epf ? 'strike' : 'notStrike'">EPF</div>
       <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
