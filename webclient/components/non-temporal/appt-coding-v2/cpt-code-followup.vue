@@ -74,7 +74,22 @@ export default {
   },
   computed: {
     highestCode() {
-      return 99215
+      let levels = new Array()
+      levels[0] = this.features.cptCode.levels.history
+      levels[1] = this.features.cptCode.levels.exam
+      levels[2] = this.features.cptCode.levels.mdm
+
+      levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
+
+      console.log(levels)
+
+      this.features.cptCode.levels.secondHighest = levels[1]
+
+      if (levels[1] === 1) return 99211
+      if (levels[1] === 2) return 99212
+      if (levels[1] === 3) return 99213
+      if (levels[1] === 4) return 99214
+      if (levels[1] === 5) return 99215
     },
   },
 }
