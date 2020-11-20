@@ -3,21 +3,21 @@
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <el-tabs tab-position="left">
-        <el-tab-pane label="history">
+        <el-tab-pane label="History">
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
           <span v-else> <historyFull :features="features"> </historyFull></span>
         </el-tab-pane>
-        <el-tab-pane label="examination">
+        <el-tab-pane label="Examination">
           <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
           <span v-else> <examinationFull :features="features"> </examinationFull></span>
         </el-tab-pane>
-        <el-tab-pane label="mdm">
+        <el-tab-pane label="MDM">
           <span v-if="features.medDecisionMaking.summaryDisplay">
             <medDecisionMakingSummary :features="features"
           /></span>
           <span v-else><medDecisionMakingFull :features="features" /></span>
         </el-tab-pane>
-        <el-tab-pane label="full">
+        <el-tab-pane label="Full">
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
           <span v-else> <historyFull :features="features"> </historyFull></span>
 
@@ -53,17 +53,17 @@ export default {
         billingDuration: 36,
         isThisIntake: true,
         cptCode: {
-          99201: false,
-          99202: false,
-          99203: false,
-          99204: false,
-          99205: false,
+          c99201: false,
+          c99202: false,
+          c99203: false,
+          c99204: false,
+          c99205: false,
 
-          99211: false,
-          99212: false,
-          99213: false,
-          99214: false,
-          99215: false,
+          c99211: false,
+          c99212: false,
+          c99213: false,
+          c99214: false,
+          c99215: false,
         },
         history: {
           summaryDisplay: false,

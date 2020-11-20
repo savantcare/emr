@@ -18,23 +18,23 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99211</div>
+      <div :class="features.cptCode.c99201 ? 'notStrike' : 'strike'">99211</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
-      <div :class="features.history.type.pf ? 'strike' : 'notStrike'">PF</div>
-      <div :class="features.examination.type.pf ? 'strike' : 'notStrike'">PF</div>
+      <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
+      <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99213</div>
-      <div :class="features.history.type.epf ? 'strike' : 'notStrike'">EPF</div>
-      <div :class="features.examination.type.epf ? 'strike' : 'notStrike'">EPF</div>
+      <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
+      <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
