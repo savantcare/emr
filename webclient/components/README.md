@@ -31,7 +31,7 @@
 | 3   | [Diagnosis](./dx/)                 | Anirban    | UI and DB final. Feature Under dev |
 | 4   | [Screening](./scr/)                | Jana       | UI and DB final. Feature Under dev |
 | 5   | [Body measurement](./vital-signs/) | Alexey     | Need to bring to nuxt              |
-| 6   | [Mental status exam](./mse/)       | Alexey     | Need to bring to nuxt              |
+| 6   | [Examination](./examination/)       | Alexey     | Need to bring to nuxt              |
 | 7   | [Reminders](./temporal/rem)        |            |                                    |
 | 8   | [Medication](./medications/)       |            |                                    |
 

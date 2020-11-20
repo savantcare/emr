@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class MentalStatusExam extends Model
+class Examination extends Model
 {
-    protected $connection = 'mentalStatusExamDB';
-    protected $table = 'pt_mental_status_exam';
+    protected $connection = 'examinationDB';
+    protected $table = 'pt_examination';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class MentalStatusExam extends Model
      * @var array
      */
     protected $fillable = [
-        'patientUuid', 'recordChangedByUuid',
+        'ptUuid', 'recordChangedByUuid',
     ];
 
     /**

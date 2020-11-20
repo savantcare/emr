@@ -62,7 +62,7 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
 
 <template>
   <!-- v-if gives a cross button to completely hide the card. This is useful for scBrain when doctor might want to 
-  create a preferred view  -->
+  create a preferred view-->
   <el-card
     shadow="hover"
     class="box-card s-css-class-outer-most-card"
@@ -79,9 +79,10 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
     >
       <!-- If i remove slot="header" then no line below header. But body content starts to shift, when mouse is over icon in header -->
       <span>{{ propMainCardName }}</span>
-      <span class="helpMessageCardInHeader" style="font-size: 0.625rem; display: none"
-        >Click to {{ this.defaultActionDescription }}</span
-      >
+      <span
+        class="helpMessageCardInHeader"
+        style="font-size: 0.625rem; display: none"
+      >Click to {{ this.defaultActionDescription }}</span>
       <el-button-group style="float: right; display: none">
         <el-tooltip
           v-for="singleCardHeaderAction in propActionsThatCanBeInvokedFromCardHeader"
@@ -91,12 +92,13 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
           :content="singleCardHeaderAction.actionDescription"
           placement="top-end"
           :open-delay="1000"
-          ><span
+        >
+          <span
             @mouseenter="mfHandleNewMouseEnterEventInCardHeader(singleCardHeaderAction.actionDescription)"
             @mouseout="mfHandleNewMouseOutEventInCardHeader()"
           >
             <!-- class="mfGetClassForCardHeaderActionIcon(singleCardHeaderAction)" is made dynamic so I can chose which action will get the 
-            class of s-css-class-this-is-icon-of-default-action-in-this-card-header -->
+            class of s-css-class-this-is-icon-of-default-action-in-this-card-header-->
             <el-button
               style="padding: 3px; color: #c0c4cc; border: none"
               plain
@@ -108,7 +110,9 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
         </el-tooltip>
       </el-button-group>
     </div>
-    <div v-else><slot name="headerSlotContentFromParent" /></div>
+    <div v-else>
+      <slot name="headerSlotContentFromParent" />
+    </div>
 
     <!-- B O D Y -->
 
@@ -145,9 +149,9 @@ Every card in element.io has the class .el-card__header so .el-card__header is n
             ></el-button>
           </el-tooltip>
         </el-button-group>
-        <div v-if="card.cardContentOfTypeStringToShowInBodyOfCards">
-          {{ card.cardContentOfTypeStringToShowInBodyOfCards }}
-        </div>
+        <div
+          v-if="card.cardContentOfTypeStringToShowInBodyOfCards"
+        >{{ card.cardContentOfTypeStringToShowInBodyOfCards }}</div>
         <div v-else>
           <component :is="card.cardContentOfTypeComponentObjectToShowInBodyOfCards"></component>
         </div>
@@ -543,7 +547,7 @@ print note -> rec / rem/ fh / plan comment / misc note / process note
 /* Used for CLOSE at: 
 Component          |  Side         | Position    | From front  | Front back
 Service statement  |  Flexible     | Header      |   3         |    -1
-Mental status exam |  Flexible     | Header      |   3         |    -1
+Examination |  Flexible     | Header      |   3         |    -1
 */
 .el-icon-close:hover {
   font-size: 1.5rem;

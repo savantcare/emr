@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
-    <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="70%" top="5vh">
+    <el-dialog title :visible.sync="dIsSettingsDialogVisible" width="70%" top="5vh">
       <div style="display: grid; grid-template-columns: 1fr 1fr">
         <div>
           <el-card>
@@ -34,7 +34,8 @@
         <div>
           <el-card>
             <div slot="header" hover>
-              <b>Best estimate - manual update. </b><span class="demonstration">Show details?</span>
+              <b>Best estimate - manual update.</b>
+              <span class="demonstration">Show details?</span>
               <el-checkbox v-model="features.showDetails"></el-checkbox>
             </div>
             <div class="block">
@@ -77,8 +78,8 @@
             </div>
             <el-divider></el-divider>
             <div class="block">
-              <span class="demonstration">Mental status exam</span>
-              <el-slider :max="15" v-model="features.mentalStatusExam"></el-slider>
+              <span class="demonstration">Examination</span>
+              <el-slider :max="15" v-model="features.examination"></el-slider>
             </div>
             <el-divider></el-divider>
             <div class="block">

@@ -3,7 +3,7 @@ import chiefComplaintClientTbl from '@/components/temporal/chief-complaint/db/cl
 import diagnosisClientTbl from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import heightClientTbl from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
-import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import examinationOfAPatientTbl from '@/components/temporal/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import miscNotesClientTbl from '~/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import nameClientTbl from '~/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
@@ -59,7 +59,7 @@ const allClientTbls = {
   family_history: familyHistoryClientTbl,
   height: heightClientTbl,
   medical_review_of_system: medicalReviewOfSystemOfAPatientTbl,
-  mental_status_exam: mentalStatusExamOfAPatientTbl,
+  examination: examinationOfAPatientTbl,
   miscellaneous_notes: miscNotesClientTbl,
   name: nameClientTbl,
   past_psych_history: pastPsychHistoryClientTbl,

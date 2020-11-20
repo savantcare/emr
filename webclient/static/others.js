@@ -15,7 +15,7 @@ module.exports = {
   APPOINTMENT_API_URL: 'http://localhost:8000/appointments',
   SCREENING_API_URL: 'http://localhost:8000/screening',
   BODY_MEASUREMENT_API_URL: 'http://localhost:8000/body-measurements',
-  MENTAL_STATUS_EXAM_API_URL: 'http://localhost:8000/mental-status-exam',
+  EXAMINATION_API_URL: 'http://localhost:8000/examination',
 
   STATE_AT_SELECTED_TIME_COMPONENTS: [],
 

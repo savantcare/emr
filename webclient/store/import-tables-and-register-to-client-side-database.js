@@ -77,9 +77,9 @@ import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/tempo
 database.register(tableStructureForMedicalReviewOfSystemsMaster)
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
-// Mental status exam tables
-import tableStructureForMSEMaster from '~/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-all-select-options.js'
-import tableStructureForMSEOfPatient from '~/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+// Examination tables
+import tableStructureForMSEMaster from '~/components/temporal/examination/db/client-side/structure/examination-all-select-options.js'
+import tableStructureForMSEOfPatient from '~/components/temporal/examination/db/client-side/structure/examination-of-a-patient-table.js'
 database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 

@@ -1,17 +1,17 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import mentalStatusExamAllSelectOptionsTbl from './mental-status-exam-all-select-options.js'
-import mentalStatusExamOfAPatientTbl from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import examinationAllSelectOptionsTbl from './examination-all-select-options.js'
+import examinationOfAPatientTbl from '@/components/temporal/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class mentalStatusExamForPatientClass extends clientTblManage {
-  static entity = 'tblMentalStatusExamOfPatient'
+export default class examinationForPatientClass extends clientTblManage {
+  static entity = 'tblExaminationOfPatient'
 
-  static apiUrl = process.env.baseUrlForLumen + '/public/api/mental-status-exam/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/examination/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -22,13 +22,13 @@ export default class mentalStatusExamForPatientClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblMentalStatusExamAllSelectOptions/mentalStatusExamFieldOptionId
-         E.g: The  tblMentalStatusExamAllSelectOptions has:
-         mentalStatusExamFieldOptionId  |         mentalStatusExamFieldOptionLabel    
+      /* This field is used to store the value of tblExaminationAllSelectOptions/examinationFieldOptionId
+         E.g: The  tblExaminationAllSelectOptions has:
+         examinationFieldOptionId  |         examinationFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table mentalStatusExamFieldOptionId = 2 */
+          When doctor assigns 2 to this patient then in this table examinationFieldOptionId = 2 */
       appearance_select: this.string(''),
       psychomotor_select: this.string(''),
       attitude_multi_select: this.string(''),
@@ -44,10 +44,10 @@ export default class mentalStatusExamForPatientClass extends clientTblManage {
   }
 }
 
-export const mentalStatusExamFormDef = {
-  id: 'mental_status_exam',
-  plural: 'mental status exam',
-  singular: 'mental status exam',
+export const examinationFormDef = {
+  id: 'examination',
+  plural: 'examination',
+  singular: 'examination',
   fieldsDef: [
     {
       fieldNameInDb: 'appearance_select',
@@ -100,19 +100,19 @@ export const mentalStatusExamFormDef = {
   },
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let arOfAllSelectOptions = mentalStatusExamAllSelectOptionsTbl
+    let arOfAllSelectOptions = examinationAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
-      .where('mentalStatusExamFieldNameInDb', fieldNameInDb)
+      .where('examinationFieldNameInDb', fieldNameInDb)
       .get()
 
     // get the value for this field in patient table
-    let row = mentalStatusExamOfAPatientTbl.find(pclientSideUniqRowId)
+    let row = examinationOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['mentalStatusExamFieldOptionId']
-      data['value'] = data['mentalStatusExamFieldOptionLabel']
+      data['id'] = data['examinationFieldOptionId']
+      data['value'] = data['examinationFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
     return arOfAllSelectOptions
@@ -122,13 +122,13 @@ export const mentalStatusExamFormDef = {
 
     // from numbers get the labels
 
-    let arOfAllSelectOptions = mentalStatusExamAllSelectOptionsTbl
+    let arOfAllSelectOptions = examinationAllSelectOptionsTbl
       .query()
-      .where('mentalStatusExamFieldNameInDb', pFieldNameInDb)
-      .where('mentalStatusExamFieldOptionId', pfieldValue)
+      .where('examinationFieldNameInDb', pFieldNameInDb)
+      .where('examinationFieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['mentalStatusExamFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['examinationFieldOptionLabel']
 
     return optionIdToLabel
   },

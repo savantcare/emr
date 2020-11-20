@@ -27,7 +27,7 @@ import clientTblOfPatientServiceStatements from '@/components/temporal/service-s
 
 import clientTblOfPatientReminders from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
-import clientTblOfMentalStatusExam from '@/components/temporal/mental-status-exam/db/client-side/structure/mental-status-exam-of-a-patient-table.js'
+import clientTblOfExamination from '@/components/temporal/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 // For pros
 import clientTblOfMasterPsychReviewOfSystems from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
@@ -201,10 +201,10 @@ export default {
 
       return arDataToShowOnGraph
     },
-    cfArOfMentalStatusExamForDisplay() {
-      const arOfObjectsFromClientDB = clientTblOfMentalStatusExam
+    cfArOfExaminationForDisplay() {
+      const arOfObjectsFromClientDB = clientTblOfExamination
         .query()
-        .with('tblMentalStatusExamMasterLink')
+        .with('tblExaminationMasterLink')
         .where('ROW_END', 2147483648000)
         .get()
       const data = [10, 10, 10]
