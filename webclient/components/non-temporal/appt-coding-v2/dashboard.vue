@@ -11,7 +11,8 @@
       <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
       <span v-else><medDecisionMakingFull :features="features" /></span>
 
-      <cptCode :features="features" />
+      <cptCodeIntake :features="features" />
+      <cptCodeFollowUp :features="features" />
     </el-dialog>
   </div>
 </template>
@@ -23,7 +24,8 @@ import examinationFull from './examination-full.vue'
 import examinationSummary from './examination-summary.vue'
 import medDecisionMakingFull from './med-decision-making-full.vue'
 import medDecisionMakingSummary from './med-decision-making-summary.vue'
-import cptCode from './cpt-code.vue'
+import cptCodeIntake from './cpt-code-intake.vue'
+import cptCodeFollowUp from './cpt-code-followup.vue'
 
 export default {
   data() {
@@ -97,7 +99,8 @@ export default {
     examinationSummary,
     medDecisionMakingFull,
     medDecisionMakingSummary,
-    cptCode,
+    cptCodeIntake,
+    cptCodeFollowUp,
   },
   async mounted() {},
   methods: {

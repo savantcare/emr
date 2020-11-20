@@ -71,8 +71,8 @@
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Time</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99212</div>
-      <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
-      <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
+      <div :class="features.history.type.pf ? 'strike' : 'notStrike'">PF</div>
+      <div :class="features.examination.type.pf ? 'strike' : 'notStrike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
