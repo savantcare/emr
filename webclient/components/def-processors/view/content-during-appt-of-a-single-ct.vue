@@ -352,6 +352,7 @@ export default {
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
+          .where('vnRowStateInSession', rowState.SameAsDB)
           .get()
       }
       return arOfObjectsFromClientDB
