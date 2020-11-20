@@ -122,6 +122,24 @@ export default {
     if (this.currentSlideNumber) {
       this.go(this.currentSlideNumber)
     }
+
+    /**
+     * We are using element io collepse plugin.
+     * At the time of page initialization all the rows are in collepse mode and 
+     it is causing the horizontal list slider not initialize at the time of page load.
+     * Hence, I am initializing the slider after row expend.
+
+     * The reason behind using setTimeout function in time of slider initialization is as follows: 
+     * Slider initialises itself after row expension.
+     * If we try to set currentSlideNumber at the time of click event that initialtes row expension, what happens is that at that time 
+     * slider is in the process of initialising itself and not completed yet. So, setting slider's currentSlideNumber has no effect at all.
+     * Hence, I am using setTimeout with some delay (as low as 10 ms) so that slider gets time to initilise completely 
+     * and setting currentSlideNumber happens successfully.
+     */
+    const eventName = 'event-for-set-horizontal-list-current-slide'
+    this.$root.$on(eventName, () => {
+      setTimeout(() => this.go(this.currentSlideNumber), 10)
+    })
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.$resize)
