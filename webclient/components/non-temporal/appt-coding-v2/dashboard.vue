@@ -2,14 +2,34 @@
   <div>
     <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
-      <span v-else> <historyFull :features="features"> </historyFull></span>
+      <el-tabs tab-position="left">
+        <el-tab-pane label="history">
+          <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+          <span v-else> <historyFull :features="features"> </historyFull></span>
+        </el-tab-pane>
+        <el-tab-pane label="examination">
+          <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+          <span v-else> <examinationFull :features="features"> </examinationFull></span>
+        </el-tab-pane>
+        <el-tab-pane label="mdm">
+          <span v-if="features.medDecisionMaking.summaryDisplay">
+            <medDecisionMakingSummary :features="features"
+          /></span>
+          <span v-else><medDecisionMakingFull :features="features" /></span>
+        </el-tab-pane>
+        <el-tab-pane label="full">
+          <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
+          <span v-else> <historyFull :features="features"> </historyFull></span>
 
-      <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
-      <span v-else> <examinationFull :features="features"> </examinationFull></span>
+          <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
+          <span v-else> <examinationFull :features="features"> </examinationFull></span>
 
-      <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
-      <span v-else><medDecisionMakingFull :features="features" /></span>
+          <span v-if="features.medDecisionMaking.summaryDisplay">
+            <medDecisionMakingSummary :features="features"
+          /></span>
+          <span v-else><medDecisionMakingFull :features="features" /></span>
+        </el-tab-pane>
+      </el-tabs>
 
       <cptCode :features="features" />
     </el-dialog>
