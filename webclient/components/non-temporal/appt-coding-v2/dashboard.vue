@@ -32,7 +32,19 @@ export default {
       features: {
         billingDuration: 36,
         isThisIntake: true,
+        cptCode: {
+          99201: false,
+          99202: false,
+          99203: false,
+          99204: false,
+          99205: false,
 
+          99211: false,
+          99212: false,
+          99213: false,
+          99214: false,
+          99215: false,
+        },
         history: {
           summaryDisplay: false,
           chiefComplaint: true, // 0 -> false 1-> true
