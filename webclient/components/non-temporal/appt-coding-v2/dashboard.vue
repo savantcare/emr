@@ -11,7 +11,7 @@
       <span v-if="features.medDecisionMaking.summaryDisplay"> <medDecisionMakingSummary :features="features" /></span>
       <span v-else><medDecisionMakingFull :features="features" /></span>
 
-      <cptCode :features="features/>
+      <cptCode :features="features" />
     </el-dialog>
   </div>
 </template>
