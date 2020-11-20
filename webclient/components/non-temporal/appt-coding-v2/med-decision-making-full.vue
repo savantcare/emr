@@ -20,12 +20,26 @@
           Medical decision making
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 4; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="
+            grid-column-start: 2;
+            grid-column-end: 4;
+            font-size: 1.2rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+          "
         >
           Medical Decision Making Element
         </div>
         <div
-          style="grid-column-start: 4; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="
+            grid-column-start: 4;
+            grid-column-end: 6;
+            font-size: 1.2rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+          "
         >
           Determined by
         </div>
@@ -66,6 +80,7 @@
             font-size: 1.5rem;
             border: 1px solid #000;
             text-align: center;
+            font-weight: bold;
           "
         >
           Problem Points ({{ problemPointsTotal }})
@@ -152,7 +167,14 @@
           5
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="
+            grid-column-start: 2;
+            grid-column-end: 6;
+            font-size: 1.5rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+          "
         >
           Data points ({{ dataPoints }})
         </div>
@@ -161,9 +183,10 @@
           style="
             grid-column-start: 2;
             grid-column-end: 5;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
+            font-weight: bold;
           "
         >
           Categories of Data to be Reviewed (max=1 for each)
@@ -172,9 +195,10 @@
           style="
             grid-column-start: 5;
             grid-column-end: 6;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
+            font-weight: bold;
           "
         >
           Points
@@ -297,7 +321,14 @@
         </div>
         <div :class="features.medDecisionMaking.dataPoints.independentTracing === true ? 'notStrike' : 'strike'">2</div>
         <div
-          style="grid-column-start: 2; grid-column-end: 6; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="
+            grid-column-start: 2;
+            grid-column-end: 6;
+            font-size: 1.5rem;
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+          "
         >
           Table of risk
         </div>

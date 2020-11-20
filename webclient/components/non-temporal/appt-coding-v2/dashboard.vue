@@ -21,6 +21,8 @@
           <span v-else><medDecisionMakingFull :features="features" /></span>
         </el-tab-pane>
         <el-tab-pane label="Full">
+          <el-slider v-model="features.billingDuration" show-input></el-slider>
+
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
           <span v-else> <historyFull :features="features"> </historyFull></span>
 
