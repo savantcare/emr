@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card hover>
-      <div style="display: grid; grid-template-columns: repeat(5, 1fr); border: solid">
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); border: solid">
         <div
           style="
             writing-mode: vertical-rl;
@@ -20,7 +20,7 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 4;
+            grid-column-end: 5;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -31,8 +31,8 @@
         </div>
         <div
           style="
-            grid-column-start: 4;
-            grid-column-end: 6;
+            grid-column-start: 5;
+            grid-column-end: 8;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -42,39 +42,39 @@
           Determined by
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 4; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Number of diagnoses or management options
         </div>
         <div
-          style="grid-column-start: 4; grid-column-end: 6; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 5; grid-column-end: 8; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Problem points chart
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 4; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Amount and/or complexity of data to be reviewed
         </div>
         <div
-          style="grid-column-start: 4; grid-column-end: 6; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 5; grid-column-end: 8; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Data points chart
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 4; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Risk of significant complications, morbidity, and/or mortality
         </div>
         <div
-          style="grid-column-start: 4; grid-column-end: 6; font-size: 1rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 5; grid-column-end: 8; font-size: 1rem; border: 1px solid #000; text-align: center"
         >
           Table of risk
         </div>
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 6;
+            grid-column-end: 8;
             font-size: 1.5rem;
             border: 1px solid #000;
             text-align: center;
@@ -86,7 +86,7 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 5;
+            grid-column-end: 6;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -97,8 +97,8 @@
         </div>
         <div
           style="
-            grid-column-start: 5;
-            grid-column-end: 6;
+            grid-column-start: 6;
+            grid-column-end: 8;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -107,7 +107,7 @@
         >
           Points per problem
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Self-limiting or minor (stable, improved, or worsening (max=2)
           <el-input-number
             size="small"
@@ -116,10 +116,10 @@
             :max="2"
           ></el-input-number>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           1
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Established problem (to examining physician); stable or improved
           <el-input-number
             v-model="features.medDecisionMaking.problemPoints.establishedStable"
@@ -127,10 +127,10 @@
             :max="12"
           ></el-input-number>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           2
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Established problem (to examining physician); worsening
           <el-input-number
             v-model="features.medDecisionMaking.problemPoints.establishedWorsening"
@@ -138,10 +138,10 @@
             :max="12"
           ></el-input-number>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           3
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           New problem (to examining physician); no additional workup or diagnostic procedures ordered (max=1)
           <el-input-number
             v-model="features.medDecisionMaking.problemPoints.newToExamining"
@@ -149,10 +149,10 @@
             :max="12"
           ></el-input-number>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           4
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           New problem (to examining physician); additional workup planned (Additional workup does not include referring
           patient to another physician for future care)
           <el-input-number
@@ -161,13 +161,13 @@
             :max="12"
           ></el-input-number>
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           5
         </div>
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 6;
+            grid-column-end: 8;
             font-size: 1.5rem;
             border: 1px solid #000;
             text-align: center;
@@ -180,7 +180,7 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 5;
+            grid-column-end: 7;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -191,8 +191,8 @@
         </div>
         <div
           style="
-            grid-column-start: 5;
-            grid-column-end: 6;
+            grid-column-start: 7;
+            grid-column-end: 8;
             font-size: 1.2rem;
             border: 1px solid #000;
             text-align: center;
@@ -201,7 +201,7 @@
         >
           Points
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -218,7 +218,7 @@
         <div :class="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? 'notStrike' : 'strike'">
           1
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -235,7 +235,7 @@
         <div :class="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? 'notStrike' : 'strike'">
           1
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -252,7 +252,7 @@
         <div :class="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? 'notStrike' : 'strike'">
           1
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -269,7 +269,7 @@
         <div :class="features.medDecisionMaking.dataPoints.discussionTestResults === true ? 'notStrike' : 'strike'">
           1
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -284,7 +284,7 @@
           ><sub><br />And/or obtain history from someone other than patient</sub>
         </div>
         <div :class="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? 'notStrike' : 'strike'">1</div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -302,7 +302,7 @@
           >
         </div>
         <div :class="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? 'notStrike' : 'strike'">2</div>
-        <div style="grid-column-start: 2; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 2; grid-column-end: 7; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -321,7 +321,7 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 6;
+            grid-column-end: 8;
             font-size: 1.5rem;
             border: 1px solid #000;
             text-align: center;
@@ -346,18 +346,6 @@
         <div
           style="
             grid-column-start: 3;
-            grid-column-end: 4;
-            font-size: 1rem;
-            text-align: center;
-            border: 1px solid;
-            font-weight: bold;
-          "
-        >
-          Presenting problems
-        </div>
-        <div
-          style="
-            grid-column-start: 4;
             grid-column-end: 5;
             font-size: 1rem;
             text-align: center;
@@ -365,7 +353,7 @@
             font-weight: bold;
           "
         >
-          Diagnostic procedure ordered
+          Presenting problems
         </div>
         <div
           style="
@@ -377,11 +365,23 @@
             font-weight: bold;
           "
         >
+          Diagnostic procedure ordered
+        </div>
+        <div
+          style="
+            grid-column-start: 6;
+            grid-column-end: 8;
+            font-size: 1rem;
+            text-align: center;
+            border: 1px solid;
+            font-weight: bold;
+          "
+        >
           Management options selected
         </div>
 
         <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
-        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 3; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -393,7 +393,7 @@
           <br />
           <sub>or minor problem</sub>
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -403,7 +403,7 @@
             >Venipuncture; EKG; urinalysis</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -415,7 +415,7 @@
         </div>
 
         <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
-        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 3; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -426,7 +426,7 @@
           ><br />
           <sub>Two or more self-limited or minor problems; One stable chronic illness; Acute uncomplicated illness</sub>
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -436,7 +436,7 @@
             >Arterial puncture</el-button
           >
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -448,7 +448,7 @@
         </div>
 
         <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
-        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 3; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -463,10 +463,10 @@
             symptoms</sub
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Electroencephalogram Neuropsychological testing
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -478,7 +478,7 @@
         </div>
 
         <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
-        <div style="grid-column-start: 3; grid-column-end: 4; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 3; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
@@ -492,10 +492,10 @@
             illnesses that pose a threat to life or bodily function</sub
           >
         </div>
-        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           Lumbar puncture suicide risk assessment
         </div>
-        <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
+        <div style="grid-column-start: 6; grid-column-end: 8; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
             size="mini"
