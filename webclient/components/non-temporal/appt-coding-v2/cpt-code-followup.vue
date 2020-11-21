@@ -4,7 +4,7 @@
       round
       size="mini"
       :type="features.isThisIntake ? 'info' : 'primary'"
-      :class="features.isThisIntake ? 'strike' : 'notStrike'"
+      :class="features.isThisIntake ? 'strike' : ''"
       @click="features.isThisIntake = false"
       >Established Patient Office (requires 2 of 3)</el-button
     >

@@ -4,7 +4,7 @@
       round
       size="mini"
       :type="features.isThisIntake ? 'primary' : 'info'"
-      :class="features.isThisIntake ? 'notStrike' : 'strike'"
+      :class="features.isThisIntake ? '' : 'strike'"
       @click="features.isThisIntake = true"
       >New Patient Office (requires 3 of 3)</el-button
     >
