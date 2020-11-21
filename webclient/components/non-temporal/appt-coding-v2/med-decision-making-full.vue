@@ -1,9 +1,7 @@
 <template>
   <div>
     <el-card hover>
-      <div
-        style="display: grid; grid-template-columns: repeat(5, 1fr); grid-template-row: repeat(9, 1fr); border: solid"
-      >
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); border: solid">
         <div
           style="
             writing-mode: vertical-rl;
