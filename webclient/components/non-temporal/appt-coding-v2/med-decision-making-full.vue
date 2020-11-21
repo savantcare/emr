@@ -465,9 +465,9 @@
             symptoms</sub
           >
         </div>
-        <div
-          style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
-        ></div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Electroencephalogram Neuropsychological testing
+        </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
@@ -494,9 +494,9 @@
             illnesses that pose a threat to life or bodily function</sub
           >
         </div>
-        <div
-          style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid"
-        ></div>
+        <div style="grid-column-start: 4; grid-column-end: 5; font-size: 1rem; text-align: center; border: 1px solid">
+          Lumbar puncture suicide risk assessment
+        </div>
         <div style="grid-column-start: 5; grid-column-end: 6; font-size: 1rem; text-align: center; border: 1px solid">
           <el-button
             round
