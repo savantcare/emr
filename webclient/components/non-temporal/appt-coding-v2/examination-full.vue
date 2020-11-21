@@ -2,7 +2,7 @@
   <div>
     <el-card hover>
       <div
-        style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-row: repeat(9, 1fr); border: solid"
+        style="display: grid; grid-template-columns: repeat(8, 1fr); grid-template-row: repeat(9, 1fr); border: solid"
       >
         <div
           style="
@@ -20,40 +20,52 @@
           Examination
         </div>
         <div
-          style="grid-column-start: 2; grid-column-end: 3; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 2; grid-column-end: 4; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
           System/Body area
         </div>
         <div
-          style="grid-column-start: 3; grid-column-end: 5; font-size: 2rem; border: 1px solid #000; text-align: center"
+          style="grid-column-start: 4; grid-column-end: 9; font-size: 2rem; border: 1px solid #000; text-align: center"
         >
           Examination
         </div>
-        <div style="border: 1px solid #000; text-align: center">Constitutional</div>
-        <div style="grid-column-start: 3; grid-column-end: 5; border: 1px solid #000">
-          * 3/7 vital signs: sitting or standing BP, supine BP, pulse rate and regularity, respiration, temperature,
-          height, weight <br />* Generalappearance
+        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
+          Constitutional
         </div>
-        <div style="border: 1px solid #000; text-align: center">Musculoskeletal</div>
-        <div style="grid-column-start: 3; grid-column-end: 5; border: 1px solid #000">
+        <div style="grid-column-start: 4; grid-column-end: 9; border: 1px solid #000">
+          * 3/7 vital signs: sitting or standing BP, supine BP, pulse rate and regularity, respiration, temperature,
+          height, weight <br />* General appearance
+        </div>
+        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
+          Musculoskeletal
+        </div>
+        <div style="grid-column-start: 4; grid-column-end: 9; border: 1px solid #000">
           * Muscle strength and tone <br />
           * Gait and station
         </div>
-        <div style="border: 1px solid #000; text-align: center">Psychiatric</div>
-        <div>
-          * Speech <br />
-          * Thought process<br />
-          * Associations<br />
-          * Abnormal/psychotic thoughts<br />
-          * Judgment and insight<br />
-          * Orientation<br />
+        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
+          Psychiatric
         </div>
-        <div>
-          * Recent and remote memory <br />
-          * Attention and concentration <br />
-          * Language<br />
-          * Fund of knowledge<br />
-          * Mood and affect
+        <div style="border: 1px solid #000; text-align: center; grid-column-start: 4; grid-column-end: 9">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
+            <div>
+              * Speech <br />
+              * Thought process<br />
+              * Associations<br />
+              * Abnormal/psychotic thoughts<br />
+            </div>
+            <div>
+              * Judgment and insight<br />
+              * Orientation<br />
+              * Recent and remote memory <br />
+              * Attention and concentration <br />
+            </div>
+            <div>
+              * Language<br />
+              * Fund of knowledge<br />
+              * Mood and affect
+            </div>
+          </div>
         </div>
         <div
           style="
