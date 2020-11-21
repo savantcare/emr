@@ -70,7 +70,7 @@
         <div
           style="
             grid-column-start: 2;
-            grid-column-end: 4;
+            grid-column-end: 6;
             border: 1px solid #000;
             font-weight: bold;
             text-align: center;
@@ -80,8 +80,8 @@
         </div>
         <div
           style="
-            grid-column-start: 4;
-            grid-column-end: 5;
+            grid-column-start: 6;
+            grid-column-end: 9;
             border: 1px solid #000;
             font-weight: bold;
             text-align: center;
@@ -90,7 +90,7 @@
         >
           Examination type (min)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -101,6 +101,7 @@
           >
         </div>
         <div
+          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 1
               ? (features.examination.type.pf = true)
@@ -110,7 +111,7 @@
         >
           Problem focused (PF)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -121,6 +122,7 @@
           >
         </div>
         <div
+          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 6
               ? (features.examination.type.epf = true)
@@ -130,7 +132,7 @@
         >
           Expanded problem focused (EPF)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -141,6 +143,7 @@
           >
         </div>
         <div
+          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 9
               ? (features.examination.type.det = true)
@@ -150,7 +153,7 @@
         >
           Detailed (DET)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 4; border: 1px solid #000">
+        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -161,6 +164,7 @@
           >
         </div>
         <div
+          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 10
               ? (features.examination.type.comp = true)
