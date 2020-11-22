@@ -26,8 +26,12 @@
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
           <span v-else> <historyFull :features="features"> </historyFull></span>
 
+          <br />
+
           <span v-if="features.examination.summaryDisplay"> <examinationSummary :features="features" /></span>
           <span v-else> <examinationFull :features="features"> </examinationFull></span>
+
+          <br />
 
           <span v-if="features.medDecisionMaking.summaryDisplay">
             <medDecisionMakingSummary :features="features"
@@ -48,6 +52,7 @@
           </ul>
         </el-tab-pane>
       </el-tabs>
+      <br />
 
       <cptCode :features="features" />
     </el-dialog>
