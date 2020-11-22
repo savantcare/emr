@@ -22,14 +22,16 @@
       <div :class="features.billingDuration > 1 ? 'notStrike' : 'strike'">>1</div>
       <div
         :class="
-          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99211
+          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99211
             ? 'notStrike'
             : 'strike'
         "
       >
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99211">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.time >= 99211"
+          >=></span
+        >
         99211
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99211">
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.work >= 99211">
           &lt;=
         </span>
       </div>
@@ -41,13 +43,15 @@
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
       <div
         :class="
-          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99212
+          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99212
             ? 'notStrike'
             : 'strike'
         "
       >
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99212">=></span>
-        99212<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99212"
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.time >= 99212"
+          >=></span
+        >
+        99212<span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.work >= 99212"
           >&lt;=
         </span>
       </div>
@@ -60,13 +64,15 @@
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
       <div
         :class="
-          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99213
+          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99213
             ? 'notStrike'
             : 'strike'
         "
       >
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99213">=></span>
-        99213<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99213"
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.time >= 99213"
+          >=></span
+        >
+        99213<span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.work >= 99213"
           >&lt;=</span
         >
       </div>
@@ -77,13 +83,15 @@
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
       <div
         :class="
-          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99214
+          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99214
             ? 'notStrike'
             : 'strike'
         "
       >
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99214">=></span>
-        99214<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99214"
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.time >= 99214"
+          >=></span
+        >
+        99214<span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.work >= 99214"
           >&lt;=</span
         >
       </div>
@@ -96,13 +104,15 @@
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
       <div
         :class="
-          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99215
+          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99215
             ? 'notStrike'
             : 'strike'
         "
       >
-        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99215">=></span>
-        99215<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99215"
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.time >= 99215"
+          >=></span
+        >
+        99215<span style="color: green; font-weight: bold" v-if="features.highestCode.selected.followup.work >= 99215"
           >&lt;=</span
         >
       </div>
@@ -152,19 +162,19 @@ export default {
       console.log(levels)
 
       if (levels[1] === 0) {
-        this.features.cptCode.selected.followup.work = 99211
+        this.features.highestCode.selected.followup.work = 99211
         return 99211
       } else if (levels[1] === 1) {
-        this.features.cptCode.selected.followup.work = 99212
+        this.features.highestCode.selected.followup.work = 99212
         return 99212
       } else if (levels[1] === 2) {
-        this.features.cptCode.selected.followup.work = 99213
+        this.features.highestCode.selected.followup.work = 99213
         return 99213
       } else if (levels[1] === 3) {
-        this.features.cptCode.selected.followup.work = 99214
+        this.features.highestCode.selected.followup.work = 99214
         return 99214
       } else if (levels[1] === 4) {
-        this.features.cptCode.selected.followup.work = 99214
+        this.features.highestCode.selected.followup.work = 99214
         return 99215
       }
       /*
@@ -175,15 +185,15 @@ levels: {
             secondHighest: 0, // Out of 3, the 2nd highest is the code.
           },
 
-      levels[0] = this.features.cptCode.levels.history
-      levels[1] = this.features.cptCode.levels.exam
-      levels[2] = this.features.cptCode.levels.mdm
+      levels[0] = this.features.highestCode.levels.history
+      levels[1] = this.features.highestCode.levels.exam
+      levels[2] = this.features.highestCode.levels.mdm
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
 
       console.log(levels)
 
-      this.features.cptCode.levels.secondHighest = levels[1]
+      this.features.highestCode.levels.secondHighest = levels[1]
 
       if (levels[1] === 0) return 99211
       if (levels[1] === 1) return 99212

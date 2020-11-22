@@ -85,14 +85,14 @@ export default {
       immediate: true,
       handler(newVal, oldVal) {
         console.log(newVal)
-        if (newVal > 25) this.features.cptCode.selected.followup.time = 99215
-        else if (newVal > 16) this.features.cptCode.selected.followup.time = 99214
-        else if (newVal > 8) this.features.cptCode.selected.followup.time = 99213
-        else if (newVal > 5) this.features.cptCode.selected.followup.time = 99212
-        else if (newVal > 1) this.features.cptCode.selected.followup.time = 99211
-        else this.features.cptCode.selected.followup.time = 0
+        if (newVal > 25) this.features.highestCode.selected.followup.time = 99215
+        else if (newVal > 16) this.features.highestCode.selected.followup.time = 99214
+        else if (newVal > 8) this.features.highestCode.selected.followup.time = 99213
+        else if (newVal > 5) this.features.highestCode.selected.followup.time = 99212
+        else if (newVal > 1) this.features.highestCode.selected.followup.time = 99211
+        else this.features.highestCode.selected.followup.time = 0
 
-        console.log(this.features.cptCode.selected.followup.time)
+        console.log(this.features.highestCode.selected.followup.time)
       },
     },
     'features.history.type': {
@@ -128,7 +128,7 @@ export default {
       features: {
         billingDuration: 15,
         isThisIntake: true,
-        cptCode: {
+        highestCode: {
           selected: {
             intake: {
               time: 1,
