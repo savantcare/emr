@@ -38,13 +38,13 @@
           <h3>Rounded corner buttons</h3>
           <ul>
             <li>Blue: user selected button</li>
-            <li>White with a cross: User may choose</li>
+            <li>White with a orange line: User may choose</li>
           </ul>
           <br /><br />
           <h3>Rectangle</h3>
           <ul>
             <li>Green: Algorithm choice</li>
-            <li>White with a cross: Algorithm eliminated</li>
+            <li>White with a orange line: Algorithm eliminated</li>
           </ul>
         </el-tab-pane>
       </el-tabs>

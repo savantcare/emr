@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card hover>
-      <div style="display: grid; grid-template-columns: repeat(7, 1fr); border: 2px solid #ebeef5">
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); border: 2px solid #ebeef5; border-radius: 15px">
         <div
           style="
             writing-mode: vertical-rl;
@@ -12,7 +12,7 @@
             grid-row-start: 1;
             grid-row-end: 33;
             font-size: 5rem;
-            color: #606266;
+            color: #909399;
           "
         >
           Medical decision making

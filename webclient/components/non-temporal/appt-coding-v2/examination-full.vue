@@ -19,7 +19,7 @@
             grid-row-start: 1;
             grid-row-end: 10;
             font-size: 5rem;
-            color: #606266;
+            color: #909399;
           "
         >
           Examination
