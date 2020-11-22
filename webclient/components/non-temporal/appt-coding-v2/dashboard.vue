@@ -53,8 +53,11 @@
         </el-tab-pane>
       </el-tabs>
       <br />
-
-      <cptCode :features="features" />
+      <el-tabs tab-position="left">
+        <el-tab-pane label="CPT Code burd">
+          <cptCode :features="features" />
+        </el-tab-pane>
+      </el-tabs>
     </el-dialog>
   </div>
 </template>
