@@ -23,6 +23,9 @@
       <div :class="workHighestCode >= 99211 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99211">=></span>
         99211
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99211">
+          &lt;=
+        </span>
       </div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
@@ -31,7 +34,9 @@
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
       <div :class="workHighestCode >= 99212 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99212">=></span>
-        99212
+        99212<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99212"
+          >&lt;=
+        </span>
       </div>
       <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
@@ -42,7 +47,9 @@
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
       <div :class="workHighestCode >= 99213 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99213">=></span>
-        99213
+        99213<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99213"
+          >&lt;=</span
+        >
       </div>
       <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
@@ -51,7 +58,9 @@
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
       <div :class="workHighestCode >= 99214 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99214">=></span>
-        99214
+        99214<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99214"
+          >&lt;=</span
+        >
       </div>
       <div :class="features.history.type.det ? 'notStrike' : 'strike'">DET</div>
       <div :class="features.examination.type.det ? 'notStrike' : 'strike'">DET</div>
@@ -62,7 +71,9 @@
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
       <div :class="workHighestCode >= 99215 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99215">=></span>
-        99215
+        99215<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99215"
+          >&lt;=</span
+        >
       </div>
       <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
@@ -109,12 +120,22 @@ export default {
 
       console.log(levels)
 
-      if (levels[1] === 0) return 99211
-      if (levels[1] === 1) return 99212
-      if (levels[1] === 2) return 99213
-      if (levels[1] === 3) return 99214
-      if (levels[1] === 4) return 99215
-
+      if (levels[1] === 0) {
+        this.features.cptCode.selected.followup.work = 99211
+        return 99211
+      } else if (levels[1] === 1) {
+        this.features.cptCode.selected.followup.work = 99212
+        return 99212
+      } else if (levels[1] === 2) {
+        this.features.cptCode.selected.followup.work = 99213
+        return 99213
+      } else if (levels[1] === 3) {
+        this.features.cptCode.selected.followup.work = 99214
+        return 99214
+      } else if (levels[1] === 4) {
+        this.features.cptCode.selected.followup.work = 99214
+        return 99215
+      }
       /*
 levels: {
             history: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
