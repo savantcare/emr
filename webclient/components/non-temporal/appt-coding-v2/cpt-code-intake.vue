@@ -20,7 +20,7 @@
       <div class="gridItem" style="font-weight: bold">Exam</div>
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
+      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">>5</div>
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">
         <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99201"
           >=></span
@@ -38,7 +38,7 @@
         Straight forward
       </div>
 
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">>10</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">
         <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99202"
           >=></span
