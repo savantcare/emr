@@ -95,11 +95,11 @@ export default {
         else this.features.highestCode.selected.followup.time = 0
 
         // for intake
-        if (newVal > 52) this.features.highestCode.selected.intake.time = 99201
-        else if (newVal > 37) this.features.highestCode.selected.intake.time = 99202
+        if (newVal > 52) this.features.highestCode.selected.intake.time = 99205
+        else if (newVal > 37) this.features.highestCode.selected.intake.time = 99204
         else if (newVal > 15) this.features.highestCode.selected.intake.time = 99203
-        else if (newVal > 10) this.features.highestCode.selected.intake.time = 99204
-        else if (newVal > 5) this.features.highestCode.selected.intake.time = 99205
+        else if (newVal > 10) this.features.highestCode.selected.intake.time = 99202
+        else if (newVal > 5) this.features.highestCode.selected.intake.time = 99201
         else this.features.highestCode.selected.intake.time = 0
 
         console.log(this.features.highestCode.selected)

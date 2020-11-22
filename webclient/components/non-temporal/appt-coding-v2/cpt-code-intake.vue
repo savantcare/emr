@@ -38,13 +38,28 @@
       </div>
 
       <div :class="features.billingDuration > 15 ? 'notStrike' : 'strike'">>15</div>
-      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">99203</div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99203"
+          >=></span
+        >
+
+        99203
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.work >= 99203">
+          &lt;=
+        </span>
+      </div>
       <div :class="features.history.type.det ? 'notStrike' : 'strike'">DET</div>
       <div :class="features.examination.type.det ? 'notStrike' : 'strike'">DET</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div :class="features.billingDuration > 37 ? 'notStrike' : 'strike'">>37</div>
-      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">99204</div>
+      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99204"
+          >=></span
+        >
+
+        99204
+      </div>
       <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
@@ -57,6 +72,10 @@
         :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
         :class="features.isThisIntake ? 'notStrike' : 'strike'"
       >
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99205"
+          >=></span
+        >
+
         99205
       </div>
       <div
