@@ -35,16 +35,16 @@
           <span v-else><medDecisionMakingFull :features="features" /></span>
         </el-tab-pane>
         <el-tab-pane label="Legend">
+          <h3>Rounded corner buttons</h3>
           <ul>
-            <li>Rounded corners: buttons</li>
             <li>Blue: user selected button</li>
             <li>White with a cross: User may choose</li>
           </ul>
           <br /><br />
+          <h3>Rectangle</h3>
           <ul>
-            <li>Rectangle</li>
-            <li>Green: System choice</li>
-            <li>White with a cross: System eliminated</li>
+            <li>Green: Algorithm choice</li>
+            <li>White with a cross: Algorithm eliminated</li>
           </ul>
         </el-tab-pane>
       </el-tabs>
