@@ -12,6 +12,7 @@
             grid-row-start: 1;
             grid-row-end: 33;
             font-size: 5rem;
+            color: #606266;
           "
         >
           Medical decision making

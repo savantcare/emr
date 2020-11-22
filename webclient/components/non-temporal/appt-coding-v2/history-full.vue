@@ -249,5 +249,7 @@ export default {
   grid-row-start: 1;
   grid-row-end: 8;
   font-size: 5rem;
+  color: #606266;
+
 }
 </style>
