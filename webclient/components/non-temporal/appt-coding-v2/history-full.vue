@@ -1,6 +1,5 @@
 <template>
-  <el-card hover>
-    <div style="display: grid; grid-template-columns: repeat(11, 1fr); grid-template-row: repeat(8, 1fr); border: 2px solid #ebeef5
+    <div style="display: grid; grid-template-columns: repeat(11, 1fr); grid-template-row: repeat(8, 1fr); border: 2px solid #ebeef5; border-radius: 15px;
 ">
       <div class="verticalHeader" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
         History
@@ -216,12 +215,10 @@
                     Comprehensive (COMP)
                 </div>
               </div>
-            </el-card>
           </template>
 
       </div>
-    </div></el-card
-  >
+    </div>
 </template>
 <script>
 export default {

@@ -1,13 +1,11 @@
 <template>
-  <el-card hover>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #f2f6fc">
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 2rem">
-        CPT Codes
-      </div>
-      <div><cptCodeIntake :features="features" /></div>
-      <div><cptCodeFollowUp :features="features" /></div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #f2f6fc">
+    <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 2rem">
+      CPT Codes
     </div>
-  </el-card>
+    <div><cptCodeIntake :features="features" /></div>
+    <div><cptCodeFollowUp :features="features" /></div>
+  </div>
 </template>
 
 <script>
