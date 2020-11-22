@@ -355,28 +355,10 @@
         >
           Presenting problems
         </div>
-        <div
-          style="
-            grid-column-start: 5;
-            grid-column-end: 6;
-            font-size: 1rem;
-            text-align: center;
-            border: 1px solid;
-            font-weight: bold;
-          "
-        >
+        <div style="grid-column: 5/6; font-size: 1rem; text-align: center; border: 1px solid; font-weight: bold">
           Diagnostic procedure ordered
         </div>
-        <div
-          style="
-            grid-column-start: 6;
-            grid-column-end: 8;
-            font-size: 1rem;
-            text-align: center;
-            border: 1px solid;
-            font-weight: bold;
-          "
-        >
+        <div style="grid-column: 6/8; font-size: 1rem; text-align: center; border: 1px solid; font-weight: bold">
           Management options selected
         </div>
 
@@ -506,9 +488,7 @@
           >
           <br /><sub>Requiring intensive monitoring for toxicity</sub>
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 6; text-align: center">
-          2/3 elements must be met or exceeded
-        </div>
+        <div style="grid-column: 2/ 8; text-align: center">2/3 elements must be met or exceeded</div>
         <div
           style="
             grid-column-start: 2;
@@ -546,14 +526,7 @@
           Risk
         </div>
         <div
-          style="
-            grid-column-start: 5;
-            grid-column-end: 6;
-            font-size: 1rem;
-            text-align: center;
-            border: 1px solid;
-            font-weight: bold;
-          "
+          style="grid-column: 5/8; font-size: 1rem; text-align: center; border: 1px solid; font-weight: bold"
           @click="features.medDecisionMaking.summaryDisplay = !features.medDecisionMaking.summaryDisplay"
         >
           Complexity of decison making ({{ complexity }}) (min)
@@ -563,7 +536,11 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 0 ? 'notStrike' : 'strike'">0-1</div>
         <div :class="features.medDecisionMaking.risk.type >= 1 ? 'notStrike' : 'strike'">Minimal</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
+        <div
+          id="complexity"
+          style="grid-column: 5/8"
+          :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'"
+        >
           Straight forward
         </div>
 
@@ -571,7 +548,11 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 2 ? 'notStrike' : 'strike'">2</div>
         <div :class="features.medDecisionMaking.risk.type >= 2 ? 'notStrike' : 'strike'">Low</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">
+        <div
+          id="complexity"
+          style="grid-column: 5/8"
+          :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'"
+        >
           Low
         </div>
 
@@ -579,14 +560,22 @@
         <div :class="features.medDecisionMaking.dataPoints.points >= 3 ? 'notStrike' : 'strike'">3</div>
         <div :class="features.medDecisionMaking.risk.type >= 3 ? 'notStrike' : 'strike'">Moderate</div>
 
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'">
+        <div
+          id="complexity"
+          style="grid-column: 5/8"
+          :class="features.medDecisionMaking.complexity.level >= 3 ? 'notStrike' : 'strike'"
+        >
           Moderate
         </div>
 
         <div :class="features.medDecisionMaking.problemPoints.total >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.dataPoints.points >= 4 ? 'notStrike' : 'strike'">4</div>
         <div :class="features.medDecisionMaking.risk.type >= 4 ? 'notStrike' : 'strike'">High</div>
-        <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">
+        <div
+          id="complexity"
+          style="grid-column: 5/8"
+          :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'"
+        >
           High
         </div>
       </div>
