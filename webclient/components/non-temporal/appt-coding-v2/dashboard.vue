@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">99213</el-button>
+    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">{{ apptCode }}</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <el-tabs tab-position="left">
         <el-tab-pane label="Billing duration">
@@ -80,6 +80,21 @@ import medDecisionMakingSummary from './med-decision-making-summary.vue'
 import cptCode from './cpt-code.vue'
 
 export default {
+  computed: {
+    apptCode() {
+      if (this.features.isThisIntake === true) {
+        return this.features.highestCode.selected.intake.time > this.features.highestCode.selected.intake.work
+          ? this.features.highestCode.selected.intake.time
+          : this.features.highestCode.selected.intake.work
+      }
+
+      if (this.features.isThisIntake === false) {
+        return this.features.highestCode.selected.followup.time > this.features.highestCode.selected.followup.work
+          ? this.features.highestCode.selected.followup.time
+          : this.features.highestCode.selected.followup.work
+      }
+    },
+  },
   watch: {
     'features.billingDuration': {
       immediate: true,
