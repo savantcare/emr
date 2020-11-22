@@ -19,34 +19,22 @@
         >
           Examination
         </div>
-        <div
-          style="grid-column-start: 2; grid-column-end: 4; font-size: 2rem; border: 1px solid #000; text-align: center"
-        >
+        <div style="grid-column: 2/4; font-size: 2rem; border: 1px solid #000; text-align: center">
           System/Body area
         </div>
-        <div
-          style="grid-column-start: 4; grid-column-end: 9; font-size: 2rem; border: 1px solid #000; text-align: center"
-        >
-          Examination
-        </div>
-        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
-          Constitutional
-        </div>
-        <div style="grid-column-start: 4; grid-column-end: 9; border: 1px solid #000">
+        <div style="grid-column: 4/9; font-size: 2rem; border: 1px solid #000; text-align: center">Examination</div>
+        <div style="border: 1px solid #000; text-align: center; grid-column: 2/4">Constitutional</div>
+        <div style="grid-column: 4/9; border: 1px solid #000">
           * 3/7 vital signs: sitting or standing BP, supine BP, pulse rate and regularity, respiration, temperature,
           height, weight <br />* General appearance
         </div>
-        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
-          Musculoskeletal
-        </div>
-        <div style="grid-column-start: 4; grid-column-end: 9; border: 1px solid #000">
+        <div style="border: 1px solid #000; text-align: center; grid-column: 2/4">Musculoskeletal</div>
+        <div style="grid-column: 4/9; border: 1px solid #000">
           * Muscle strength and tone <br />
           * Gait and station
         </div>
-        <div style="border: 1px solid #000; text-align: center; grid-column-start: 2; grid-column-end: 4">
-          Psychiatric
-        </div>
-        <div style="border: 1px solid #000; text-align: center; grid-column-start: 4; grid-column-end: 9">
+        <div style="border: 1px solid #000; text-align: center; grid-column: 2/4">Psychiatric</div>
+        <div style="border: 1px solid #000; text-align: center; grid-column: 4/9">
           <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
             <div>
               * Speech <br />
@@ -90,7 +78,7 @@
         >
           Examination type (min)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
+        <div style="grid-column: 2/6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -101,7 +89,7 @@
           >
         </div>
         <div
-          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
+          style="grid-column: 6/9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 1
               ? (features.examination.type.pf = true)
@@ -111,7 +99,7 @@
         >
           Problem focused (PF)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
+        <div style="grid-column: 2/6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -122,7 +110,7 @@
           >
         </div>
         <div
-          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
+          style="grid-column: 6/9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 6
               ? (features.examination.type.epf = true)
@@ -132,7 +120,7 @@
         >
           Expanded problem focused (EPF)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
+        <div style="grid-column: 2/6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -143,7 +131,7 @@
           >
         </div>
         <div
-          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
+          style="grid-column: 6/9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 9
               ? (features.examination.type.det = true)
@@ -153,7 +141,7 @@
         >
           Detailed (DET)
         </div>
-        <div style="grid-column-start: 2; grid-column-end: 6; border: 1px solid #000">
+        <div style="grid-column: 2/6; border: 1px solid #000">
           <el-button
             round
             size="mini"
@@ -164,7 +152,7 @@
           >
         </div>
         <div
-          style="grid-column-start: 6; grid-column-end: 9; border: 1px solid #000"
+          style="grid-column: 6/9; border: 1px solid #000"
           :class="[
             features.examination.bullets >= 10
               ? (features.examination.type.comp = true)
