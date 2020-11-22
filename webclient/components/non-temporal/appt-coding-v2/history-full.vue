@@ -30,7 +30,7 @@
       <div class="gridItem" style="font-weight: bold;grid-column: 7/9">PFSH</div>
       <div class="gridItem" style="font-weight: bold;grid-column: 9/10">ROS</div>
       <div class="gridItem" style="font-weight: bold;grid-column: 10/12" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type (min)</div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center;grid-column: 2/4">
+      <div class="gridItem" style="grid-row: 4/8; text-align: center;grid-column: 2/4">
         <el-button
           round
           size="mini"
@@ -41,7 +41,7 @@
           Yes
         </el-button>
       </div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center;grid-column: 4/7">
+      <div class="gridItem" style="grid-row: 4/6; text-align: center;grid-column: 4/7">
         <el-button
           round
           size="mini"
@@ -53,7 +53,7 @@
         ><br />
         <sub>(1-3 elements or 1-2 chronic conditions)</sub>
       </div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center;grid-column: 7/9">
+      <div class="gridItem" style="grid-row: 4/6; text-align: center;grid-column: 7/9">
         <el-button
           round
           size="mini"
@@ -91,7 +91,7 @@
                     Problem focussed (PF)
                 </div>
 
-                <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center; grid-column: 4/7">
+                <div class="gridItem" style="grid-row: 6/8; text-align: center; grid-column: 4/7">
                   <el-button
                     round
                     size="mini"
