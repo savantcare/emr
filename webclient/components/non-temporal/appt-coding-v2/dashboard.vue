@@ -151,7 +151,7 @@ export default {
       dIsSettingsDialogVisible: false,
       features: {
         billingDuration: 15,
-        isThisIntake: true,
+        isThisIntake: false,
         highestCode: {
           selected: {
             intake: {
@@ -242,11 +242,19 @@ export default {
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
 
+      // For followup only 2 out of 3 need to be met
       if (levels[1] === 0) this.features.highestCode.selected.followup.work = 99211
       if (levels[1] === 1) this.features.highestCode.selected.followup.work = 99212
       if (levels[1] === 2) this.features.highestCode.selected.followup.work = 99213
       if (levels[1] === 3) this.features.highestCode.selected.followup.work = 99214
       if (levels[1] === 4) this.features.highestCode.selected.followup.work = 99215
+
+      // For followup only 3 out of 3 need to be met
+      if (levels[2] === 0) this.features.highestCode.selected.intake.work = 99201
+      if (levels[2] === 1) this.features.highestCode.selected.intake.work = 99202
+      if (levels[2] === 2) this.features.highestCode.selected.intake.work = 99203
+      if (levels[2] === 3) this.features.highestCode.selected.intake.work = 99204
+      if (levels[2] === 4) this.features.highestCode.selected.intake.work = 99205
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
