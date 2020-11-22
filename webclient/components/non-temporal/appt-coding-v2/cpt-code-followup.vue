@@ -20,7 +20,7 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div :class="features.billingDuration > 1 ? 'notStrike' : 'strike'">>1</div>
-      <div :class="highestCode >= 99211 ? 'notStrike' : 'strike'">
+      <div :class="workHighestCode >= 99211 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99211">=></span>
         99211
       </div>
@@ -29,7 +29,7 @@
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
 
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
-      <div :class="highestCode >= 99212 ? 'notStrike' : 'strike'">
+      <div :class="workHighestCode >= 99212 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99212">=></span>
         99212
       </div>
@@ -40,7 +40,7 @@
       </div>
 
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
-      <div :class="highestCode >= 99213 ? 'notStrike' : 'strike'">
+      <div :class="workHighestCode >= 99213 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99213">=></span>
         99213
       </div>
@@ -49,7 +49,7 @@
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
-      <div :class="highestCode >= 99214 ? 'notStrike' : 'strike'">
+      <div :class="workHighestCode >= 99214 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99214">=></span>
         99214
       </div>
@@ -60,7 +60,7 @@
       </div>
 
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
-      <div :class="highestCode >= 99215 ? 'notStrike' : 'strike'">
+      <div :class="workHighestCode >= 99215 ? 'notStrike' : 'strike'">
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99215">=></span>
         99215
       </div>
@@ -91,8 +91,38 @@ export default {
     },
   },
   computed: {
-    highestCode() {
+    workHighestCode() {
+      //debugger
       let levels = new Array()
+
+      if (this.features.history.type.comp) levels[0] = 5
+      else if (this.features.history.type.det) levels[0] = 4
+      else if (this.features.history.type.epf) levels[0] = 3
+      else if (this.features.history.type.pf) levels[0] = 2
+      else levels[0] = 0
+
+      if (this.features.examination.type.comp) levels[1] = 5
+      else if (this.features.examination.type.det) levels[1] = 4
+      else if (this.features.examination.type.epf) levels[1] = 3
+      else if (this.features.examination.type.pf) levels[1] = 2
+      else levels[1] = 0
+
+      console.log(levels)
+
+      if (levels[1] === 0) return 99211
+      if (levels[1] === 1) return 99212
+      if (levels[1] === 2) return 99213
+      if (levels[1] === 3) return 99214
+      if (levels[1] === 4) return 99215
+
+      /*
+levels: {
+            history: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            exam: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
+            mdm: 1, // 0->unknown 1->n/a 2->straight-forward 3->low 4->moderate 5->high
+            secondHighest: 0, // Out of 3, the 2nd highest is the code.
+          },
+
       levels[0] = this.features.cptCode.levels.history
       levels[1] = this.features.cptCode.levels.exam
       levels[2] = this.features.cptCode.levels.mdm
@@ -103,11 +133,13 @@ export default {
 
       this.features.cptCode.levels.secondHighest = levels[1]
 
-      if (levels[1] === 1) return 99211
-      if (levels[1] === 2) return 99212
-      if (levels[1] === 3) return 99213
-      if (levels[1] === 4) return 99214
-      if (levels[1] === 5) return 99215
+      if (levels[1] === 0) return 99211
+      if (levels[1] === 1) return 99212
+      if (levels[1] === 2) return 99213
+      if (levels[1] === 3) return 99214
+      if (levels[1] === 4) return 99215
+   
+    */
     },
   },
 }

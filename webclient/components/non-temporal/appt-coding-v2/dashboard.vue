@@ -81,16 +81,19 @@ import cptCode from './cpt-code.vue'
 
 export default {
   watch: {
-    'features.billingDuration': function (newVal, oldVal) {
-      console.log(newVal)
-      if (newVal > 25) this.features.cptCode.selected.followup.time = 99215
-      else if (newVal > 16) this.features.cptCode.selected.followup.time = 99214
-      else if (newVal > 8) this.features.cptCode.selected.followup.time = 99213
-      else if (newVal > 5) this.features.cptCode.selected.followup.time = 99212
-      else if (newVal > 1) this.features.cptCode.selected.followup.time = 99211
-      else this.features.cptCode.selected.followup.time = 0
+    'features.billingDuration': {
+      immediate: true,
+      handler(newVal, oldVal) {
+        console.log(newVal)
+        if (newVal > 25) this.features.cptCode.selected.followup.time = 99215
+        else if (newVal > 16) this.features.cptCode.selected.followup.time = 99214
+        else if (newVal > 8) this.features.cptCode.selected.followup.time = 99213
+        else if (newVal > 5) this.features.cptCode.selected.followup.time = 99212
+        else if (newVal > 1) this.features.cptCode.selected.followup.time = 99211
+        else this.features.cptCode.selected.followup.time = 0
 
-      console.log(this.features.cptCode.selected.followup.time)
+        console.log(this.features.cptCode.selected.followup.time)
+      },
     },
   },
   data() {
@@ -109,12 +112,6 @@ export default {
               time: 1,
               work: 1,
             },
-          },
-          levels: {
-            history: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
-            exam: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
-            mdm: 1, // 0->unknown 1->n/a 2->straight-forward 3->low 4->moderate 5->high
-            secondHighest: 0, // Out of 3, the 2nd highest is the code.
           },
         },
         history: {
