@@ -84,20 +84,19 @@ export default {
     return {
       dIsSettingsDialogVisible: false,
       features: {
-        billingDuration: 36,
+        billingDuration: 15,
         isThisIntake: true,
         cptCode: {
-          c99201: false,
-          c99202: false,
-          c99203: false,
-          c99204: false,
-          c99205: false,
-
-          c99211: false,
-          c99212: false,
-          c99213: false,
-          c99214: false,
-          c99215: false,
+          selected: {
+            intake: {
+              time: 1,
+              work: 1,
+            },
+            followup: {
+              time: 1,
+              work: 1,
+            },
+          },
           levels: {
             history: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
             exam: 1, // 0->unknown 1->n/a 2->PF 3->EPF 4->DET 5->COMP
