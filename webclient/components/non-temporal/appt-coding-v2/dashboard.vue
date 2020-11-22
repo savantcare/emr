@@ -121,6 +121,24 @@ export default {
         console.log(this.features.examination.level)
       },
     },
+    'features.history.level': {
+      immediate: true,
+      handler(newVal, oldVal) {
+        this.decideWorkCode()
+      },
+    },
+    'features.examination.level': {
+      immediate: true,
+      handler(newVal, oldVal) {
+        this.decideWorkCode()
+      },
+    },
+    'features.medDecisionMaking.level': {
+      immediate: true,
+      handler(newVal, oldVal) {
+        this.decideWorkCode()
+      },
+    },
   },
   data() {
     return {
@@ -210,6 +228,24 @@ export default {
   },
   async mounted() {},
   methods: {
+    decideWorkCode() {
+      let levels = new Array()
+      levels[0] = this.features.history.level
+      levels[1] = this.features.examination.level
+      levels[2] = this.features.medDecisionMaking.level
+
+      levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
+
+      console.log(levels)
+
+      if (levels[1] === 0) this.features.highestCode.selected.followup.work = 99211
+      if (levels[1] === 1) this.features.highestCode.selected.followup.work = 99212
+      if (levels[1] === 2) this.features.highestCode.selected.followup.work = 99213
+      if (levels[1] === 3) this.features.highestCode.selected.followup.work = 99214
+      if (levels[1] === 4) this.features.highestCode.selected.followup.work = 99215
+
+      console.log('Deciding work code', this.features.highestCode.selected.followup.work)
+    },
     handleClickOnSettingsIcon() {
       console.log('setting to true')
       this.dIsSettingsDialogVisible = true
