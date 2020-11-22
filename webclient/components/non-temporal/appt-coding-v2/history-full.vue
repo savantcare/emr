@@ -1,6 +1,7 @@
 <template>
   <el-card hover>
-    <div style="display: grid; grid-template-columns: repeat(11, 1fr); grid-template-row: repeat(8, 1fr); border: solid">
+    <div style="display: grid; grid-template-columns: repeat(11, 1fr); grid-template-row: repeat(8, 1fr); border: 2px solid #ebeef5
+">
       <div class="verticalHeader" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
         History
       </div>
@@ -237,7 +238,7 @@ export default {
 <style scoped>
 .gridItem {
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #DCDFE6;
   padding: 2px;
   font-size: 1rem;
   text-align: center;

@@ -8,7 +8,10 @@
       @click="features.isThisIntake = false"
       >Established Patient Office (requires 2 of 3)</el-button
     >
-    <div v-if="features.isThisIntake === false" style="display: grid; grid-template-columns: 5; border: solid">
+    <div
+      v-if="features.isThisIntake === false"
+      style="display: grid; grid-template-columns: 5; border: 1px solid #f2f6fc"
+    >
       <div class="gridItem" style="grid-column: 1/6"></div>
       <div class="gridItem" style="font-weight: bold">Time</div>
       <div class="gridItem" style="font-weight: bold">CPT code</div>

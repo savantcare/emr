@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card hover>
-      <div style="display: grid; grid-template-columns: repeat(7, 1fr); border: solid">
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); border: 2px solid #ebeef5">
         <div
           style="
             writing-mode: vertical-rl;
@@ -12,7 +12,6 @@
             grid-row-start: 1;
             grid-row-end: 33;
             font-size: 5rem;
-            border: 1px solid #000;
           "
         >
           Medical decision making
@@ -305,6 +304,12 @@
           "
         >
           Table of risk
+          <div style="font-size: 1rem; font-weight: normal">
+            <sub
+              >(The highest level of risk in any one category determines the overall risk. Ref: Page 66 burd
+              manual)</sub
+            >
+          </div>
         </div>
 
         <div

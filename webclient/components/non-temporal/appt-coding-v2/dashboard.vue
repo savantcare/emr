@@ -171,7 +171,7 @@ export default {
 <style>
 .gridItem {
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #f2f6fc;
   padding: 0px;
   font-size: 1rem;
   text-align: center;
