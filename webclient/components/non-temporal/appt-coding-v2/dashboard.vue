@@ -231,8 +231,11 @@ export default {
     decideWorkCode() {
       let levels = new Array()
       levels[0] = this.features.history.level
+      console.log('history', levels[0])
       levels[1] = this.features.examination.level
+      console.log('examination', levels[1])
       levels[2] = this.features.medDecisionMaking.level
+      console.log('med decision making', levels[2])
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
 
@@ -247,12 +250,9 @@ export default {
       console.log('Deciding work code', this.features.highestCode.selected.followup.work)
     },
     handleClickOnSettingsIcon() {
-      console.log('setting to true')
       this.dIsSettingsDialogVisible = true
     },
-    handleChange(val) {
-      console.log(val)
-    },
+    handleChange(val) {},
   },
 }
 </script>
