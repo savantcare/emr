@@ -4,7 +4,11 @@
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <el-tabs tab-position="left">
         <el-tab-pane label="Billing duration">
-          <el-slider v-model="features.billingDuration" show-input></el-slider>
+          <div
+            style="display: grid; grid-template-columns: repeat(1, 1fr); border: 2px solid #ebeef5; border-radius: 15px"
+          >
+            <el-slider v-model="features.billingDuration" show-input></el-slider>
+          </div>
         </el-tab-pane>
         <el-tab-pane label="History">
           <span v-if="features.history.summaryDisplay"> <historySummary :features="features"> </historySummary></span>
