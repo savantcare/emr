@@ -95,6 +95,32 @@ export default {
         console.log(this.features.cptCode.selected.followup.time)
       },
     },
+    'features.history.type': {
+      immediate: true,
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log(this.features.history.type)
+        if (this.features.history.type.comp) this.features.history.level = 4
+        else if (this.features.history.type.det) this.features.history.level = 3
+        else if (this.features.history.type.epf) this.features.history.level = 2
+        else if (this.features.history.type.pf) this.features.history.level = 1
+        else this.features.history.level = 0
+        console.log(this.features.history.level)
+      },
+    },
+    'features.examination.type': {
+      immediate: true,
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log(this.features.examination.type)
+        if (this.features.examination.type.comp) this.features.examination.level = 4
+        else if (this.features.examination.type.det) this.features.examination.level = 3
+        else if (this.features.examination.type.epf) this.features.examination.level = 2
+        else if (this.features.examination.type.pf) this.features.examination.level = 1
+        else this.features.examination.level = 0
+        console.log(this.features.examination.level)
+      },
+    },
   },
   data() {
     return {
@@ -126,6 +152,7 @@ export default {
             det: false,
             comp: false,
           },
+          level: 0,
         },
         examination: {
           summaryDisplay: false,
@@ -136,6 +163,7 @@ export default {
             det: false,
             comp: false,
           },
+          level: 0,
         },
         medDecisionMaking: {
           summaryDisplay: false,
