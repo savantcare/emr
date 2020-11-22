@@ -22,7 +22,7 @@
       <div :class="features.billingDuration > 1 ? 'notStrike' : 'strike'">>1</div>
       <div
         :class="
-          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99211
+          features.highestCode.selected.followup.time >= 99211 || features.highestCode.selected.followup.work >= 99211
             ? 'notStrike'
             : 'strike'
         "
@@ -43,7 +43,7 @@
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
       <div
         :class="
-          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99212
+          features.highestCode.selected.followup.time >= 99212 || features.highestCode.selected.followup.work >= 99212
             ? 'notStrike'
             : 'strike'
         "
@@ -64,7 +64,7 @@
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
       <div
         :class="
-          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99213
+          features.highestCode.selected.followup.time >= 99213 || features.highestCode.selected.followup.work >= 99213
             ? 'notStrike'
             : 'strike'
         "
@@ -83,7 +83,7 @@
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
       <div
         :class="
-          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99214
+          features.highestCode.selected.followup.time >= 99214 || features.highestCode.selected.followup.work >= 99214
             ? 'notStrike'
             : 'strike'
         "
@@ -104,7 +104,7 @@
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
       <div
         :class="
-          features.highestCode.selected.followup.time || features.highestCode.selected.followup.work >= 99215
+          features.highestCode.selected.followup.time >= 99215 || features.highestCode.selected.followup.work >= 99215
             ? 'notStrike'
             : 'strike'
         "
