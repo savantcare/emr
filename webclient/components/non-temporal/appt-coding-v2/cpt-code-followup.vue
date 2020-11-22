@@ -20,19 +20,32 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div :class="features.billingDuration > 1 ? 'notStrike' : 'strike'">>1</div>
-      <div :class="workHighestCode >= 99211 ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99211
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99211">=></span>
         99211
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99211">
           &lt;=
         </span>
       </div>
+
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
 
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
-      <div :class="workHighestCode >= 99212 ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99212
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99212">=></span>
         99212<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99212"
           >&lt;=
@@ -45,7 +58,13 @@
       </div>
 
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
-      <div :class="workHighestCode >= 99213 ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99213
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99213">=></span>
         99213<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99213"
           >&lt;=</span
@@ -56,7 +75,13 @@
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
-      <div :class="workHighestCode >= 99214 ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99214
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99214">=></span>
         99214<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99214"
           >&lt;=</span
@@ -69,7 +94,13 @@
       </div>
 
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
-      <div :class="workHighestCode >= 99215 ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.cptCode.selected.followup.time || features.cptCode.selected.followup.work >= 99215
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99215">=></span>
         99215<span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.work >= 99215"
           >&lt;=</span
