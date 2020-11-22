@@ -88,6 +88,7 @@ export default {
       else if (newVal > 8) this.features.cptCode.selected.followup.time = 99213
       else if (newVal > 5) this.features.cptCode.selected.followup.time = 99212
       else if (newVal > 1) this.features.cptCode.selected.followup.time = 99211
+      else this.features.cptCode.selected.followup.time = 0
 
       console.log(this.features.cptCode.selected.followup.time)
     },
