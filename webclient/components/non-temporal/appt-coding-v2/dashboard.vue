@@ -204,12 +204,12 @@ export default {
 .strike {
   position: relative;
   text-align: center;
-  border: solid 1px;
+  border: solid 1px #dcdfe6;
 }
 .notStrike {
   text-align: center;
   background-color: #67c23a;
-  border: solid 1px;
+  border: solid 1px #dcdfe6;
 }
 .strike::after {
   content: ' ';
