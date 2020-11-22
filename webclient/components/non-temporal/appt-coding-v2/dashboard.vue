@@ -133,7 +133,7 @@ export default {
         this.decideWorkCode()
       },
     },
-    'features.medDecisionMaking.level': {
+    'features.medDecisionMaking.complexity.level': {
       immediate: true,
       handler(newVal, oldVal) {
         this.decideWorkCode()
@@ -234,7 +234,7 @@ export default {
       console.log('history', levels[0])
       levels[1] = this.features.examination.level
       console.log('examination', levels[1])
-      levels[2] = this.features.medDecisionMaking.level
+      levels[2] = this.features.medDecisionMaking.complexity.level
       console.log('med decision making', levels[2])
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level

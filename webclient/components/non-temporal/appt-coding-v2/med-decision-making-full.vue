@@ -621,13 +621,12 @@ export default {
       levels[0] = problemPointLevel
       levels[1] = dataPointsLevel
       levels[2] = riskLevel
-      console.log(problemPointLevel, dataPointsLevel, riskLevel)
 
-      levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
-
-      console.log(levels)
+      levels.sort((a, b) => b - a) // now array index 0 is highest level and array index 1 is 2nd highest level
 
       this.features.medDecisionMaking.complexity.level = levels[1]
+
+      console.log(this.features.medDecisionMaking.complexity.level)
 
       return levels[1]
     },
