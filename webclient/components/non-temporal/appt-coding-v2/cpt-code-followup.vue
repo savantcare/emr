@@ -21,7 +21,7 @@
 
       <div :class="features.billingDuration > 1 ? 'notStrike' : 'strike'">>1</div>
       <div :class="highestCode >= 99211 ? 'notStrike' : 'strike'">
-        <span v-if="features.cptCode.selected.followup.time >= 99211">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99211">=></span>
         99211
       </div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">N/A</div>
@@ -30,7 +30,7 @@
 
       <div :class="features.billingDuration > 5 ? 'notStrike' : 'strike'">>5</div>
       <div :class="highestCode >= 99212 ? 'notStrike' : 'strike'">
-        <span v-if="features.cptCode.selected.followup.time >= 99212">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99212">=></span>
         99212
       </div>
       <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
@@ -41,7 +41,7 @@
 
       <div :class="features.billingDuration > 8 ? 'notStrike' : 'strike'">>8</div>
       <div :class="highestCode >= 99213 ? 'notStrike' : 'strike'">
-        <span v-if="features.cptCode.selected.followup.time >= 99213">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99213">=></span>
         99213
       </div>
       <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
@@ -50,7 +50,7 @@
 
       <div :class="features.billingDuration > 16 ? 'notStrike' : 'strike'">>16</div>
       <div :class="highestCode >= 99214 ? 'notStrike' : 'strike'">
-        <span v-if="features.cptCode.selected.followup.time >= 99214">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99214">=></span>
         99214
       </div>
       <div :class="features.history.type.det ? 'notStrike' : 'strike'">DET</div>
@@ -61,7 +61,7 @@
 
       <div :class="features.billingDuration > 25 ? 'notStrike' : 'strike'">>25</div>
       <div :class="highestCode >= 99215 ? 'notStrike' : 'strike'">
-        <span v-if="features.cptCode.selected.followup.time >= 99215">=></span>
+        <span style="color: green; font-weight: bold" v-if="features.cptCode.selected.followup.time >= 99215">=></span>
         99215
       </div>
       <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
