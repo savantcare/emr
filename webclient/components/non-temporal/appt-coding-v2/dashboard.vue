@@ -80,6 +80,18 @@ import medDecisionMakingSummary from './med-decision-making-summary.vue'
 import cptCode from './cpt-code.vue'
 
 export default {
+  watch: {
+    'features.billingDuration': function (newVal, oldVal) {
+      console.log(newVal)
+      if (newVal > 25) this.features.cptCode.selected.followup.time = 99215
+      else if (newVal > 16) this.features.cptCode.selected.followup.time = 99214
+      else if (newVal > 8) this.features.cptCode.selected.followup.time = 99213
+      else if (newVal > 5) this.features.cptCode.selected.followup.time = 99212
+      else if (newVal > 1) this.features.cptCode.selected.followup.time = 99211
+
+      console.log(this.features.cptCode.selected.followup.time)
+    },
+  },
   data() {
     return {
       dIsSettingsDialogVisible: false,
