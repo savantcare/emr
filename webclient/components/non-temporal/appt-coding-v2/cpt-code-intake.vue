@@ -71,6 +71,9 @@
         >
 
         99204
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.work >= 99204">
+          &lt;=
+        </span>
       </div>
       <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
@@ -91,6 +94,9 @@
         >
 
         99205
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.work >= 99205">
+          &lt;=
+        </span>
       </div>
       <div
         class="gridItem"
