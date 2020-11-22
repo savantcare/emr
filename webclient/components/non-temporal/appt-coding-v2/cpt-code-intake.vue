@@ -38,7 +38,13 @@
       </div>
 
       <div :class="features.billingDuration > 15 ? 'notStrike' : 'strike'">>15</div>
-      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.highestCode.selected.intake.time >= 99203 || features.highestCode.selected.intake.work >= 99203
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99203"
           >=></span
         >
@@ -53,7 +59,13 @@
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 2 ? 'notStrike' : 'strike'">Low</div>
 
       <div :class="features.billingDuration > 37 ? 'notStrike' : 'strike'">>37</div>
-      <div :class="features.isThisIntake ? 'notStrike' : 'strike'">
+      <div
+        :class="
+          features.highestCode.selected.intake.time >= 99204 || features.highestCode.selected.intake.work >= 99204
+            ? 'notStrike'
+            : 'strike'
+        "
+      >
         <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99204"
           >=></span
         >
@@ -68,9 +80,11 @@
       <div :class="features.billingDuration > 52 ? 'notStrike' : 'strike'">>52</div>
 
       <div
-        class="gridItem"
-        :style="!features.isThisIntake ? 'background-color: #909399' : 'background-color: #92a8d1'"
-        :class="features.isThisIntake ? 'notStrike' : 'strike'"
+        :class="
+          features.highestCode.selected.intake.time >= 99205 || features.highestCode.selected.intake.work >= 99205
+            ? 'notStrike'
+            : 'strike'
+        "
       >
         <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99205"
           >=></span
