@@ -1,36 +1,36 @@
 <template>
   <el-card hover>
-    <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-row: repeat(8, 1fr); border: solid">
+    <div style="display: grid; grid-template-columns: repeat(11, 1fr); grid-template-row: repeat(8, 1fr); border: solid">
       <div class="verticalHeader" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
         History
       </div>
 
-      <div class="gridItem" style="font-weight: bold">Chief complaint (CC)</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 2/4">Chief complaint (CC)</div>
 
-      <div class="gridItem" style="font-weight: bold">History of present illness</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 4/7;">History of present illness</div>
 
-      <div class="gridItem" style="font-weight: bold">Past, family, social history (PFSH)</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 7/9;">Past, family, social history (PFSH)</div>
 
-      <div class="gridItem" style="grid-column-start: 5; grid-column-end: 7; font-weight: bold">Review of systems</div>
-      <div class="gridItem">Reason for the visit</div>
+      <div class="gridItem" style="grid-column-start: 5; grid-column: 9/12; font-weight: bold">Review of systems</div>
+      <div class="gridItem" style="grid-column: 2/4">Reason for the visit</div>
 
-      <div class="gridItem">
+      <div class="gridItem" style="grid-column: 4/7">
         Location; seveity; timing; quality; duration context;modifying factors; associated signs and symptoms
       </div>
 
-      <div class="gridItem">Past medical, family medical, social</div>
+      <div class="gridItem" style="grid-column: 7/9">Past medical, family medical, social</div>
 
-      <div class="gridItem" style="grid-column-start: 5; grid-column-end: 7">
+      <div class="gridItem" style="grid-column: 9/12">
         Constitutional; Eyes; Ears, Nose, Mouth, and Throat; Cardiovascular; Respiratory; Genitourinary;
         Musculoskeletal; Gastrointestinal; Skin/Breast; Neurological; Psychiatric; Endocrine; Hematologic/Lymphatic;
         Allergic/Immunologic
       </div>
-      <div class="gridItem" style="font-weight: bold">CC</div>
-      <div class="gridItem" style="font-weight: bold">HPI</div>
-      <div class="gridItem" style="font-weight: bold">PFSH</div>
-      <div class="gridItem" style="font-weight: bold">ROS</div>
-      <div class="gridItem" style="font-weight: bold" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type (min)</div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center">
+      <div class="gridItem" style="font-weight: bold;grid-column: 2/4">CC</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 4/7">HPI</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 7/9">PFSH</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 9/10">ROS</div>
+      <div class="gridItem" style="font-weight: bold;grid-column: 10/12" @click="features.history.summaryDisplay=!features.history.summaryDisplay">History type (min)</div>
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 8; text-align: center;grid-column: 2/4">
         <el-button
           round
           size="mini"
@@ -41,7 +41,7 @@
           Yes
         </el-button>
       </div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center;grid-column: 4/7">
         <el-button
           round
           size="mini"
@@ -53,7 +53,7 @@
         ><br />
         <sub>(1-3 elements or 1-2 chronic conditions)</sub>
       </div>
-      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center">
+      <div class="gridItem" style="grid-row-start: 4; grid-row-end: 6; text-align: center;grid-column: 7/9">
         <el-button
           round
           size="mini"
@@ -64,9 +64,10 @@
           N/A
         </el-button>
       </div>
-      <div class="gridItem">
+      <div class="gridItem" style="grid-column: 9/10">
         <el-button
           round
+          style="grid-column: 9/10"
           size="mini"
           :class="features.history.ros === 1 ? '' : 'strike'"
           :type="features.history.ros === 1 ? 'primary' : 'info'"
@@ -77,7 +78,7 @@
       </div>
       <div class="gridItem"
         
-          :style="features.history.type.pf ? 'background-color: #67C23A' : 'background-color: #909399'"
+          :style="features.history.type.pf ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
           :class="
             features.history.chiefComplaint &&
             features.history.hpi >= 1 &&
@@ -90,10 +91,11 @@
                     Problem focussed (PF)
                 </div>
 
-                <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center">
+                <div class="gridItem" style="grid-row-start: 6; grid-row-end: 8; text-align: center; grid-column: 4/7">
                   <el-button
                     round
                     size="mini"
+                    style="grid-column: 4/7"
                     :class="features.history.hpi === 2 ? '' : 'strike'"
                     :type="features.history.hpi === 2 ? 'primary' : 'info'"
                     @click="features.history.hpi = 2"
@@ -102,7 +104,7 @@
                   ><br />
                   <sub>(4 elements or 3 chronic conditions)</sub>
                 </div>
-                <div class="gridItem">
+                <div class="gridItem" style="grid-column: 9/10">
                   <el-button
                     round
                     size="mini"
@@ -128,11 +130,11 @@
  
                       ]
                   "
-                  :style="features.history.type.epf ? 'background-color: #67C23A' : 'background-color: #909399'"
+                  :style="features.history.type.epf ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
                 >
                   Expanded problem focussed (EPF)
                 </div>
-                <div class="gridItem">
+                <div class="gridItem" style="grid-column: 7/9">
                   <el-button
                     round
                     size="mini"
@@ -167,12 +169,12 @@
 
                       features.history.type.det ? '' : 'strike'
                     ]"
-                    :style="features.history.type.det ? 'background-color: #67C23A' : 'background-color: #909399'"
+                    :style="features.history.type.det ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
 
                   >
                     Detailed (DET)
                 </div>
-                <div class="gridItem">
+                <div class="gridItem" style="font-weight: bold;grid-column: 7/9">
                   <el-button
                     round
                     size="mini"
@@ -208,7 +210,7 @@
                       features.history.type.comp ? '' : 'strike'
                     ]"
 
-                    :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
+                    :style="features.history.type.comp ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
 
                   >
                     Comprehensive (COMP)
