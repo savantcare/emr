@@ -11,12 +11,14 @@
       <b>Appt locked:</b>
       {{ cfApptLockDateInHumanReadableFormat }}
     </div>
+    <h2>History</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
+    <h2>Objective</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
     <el-collapse>
       <el-collapse-item title="Vitals" name="1">
@@ -51,15 +53,19 @@
         </div>
       </el-collapse-item>
     </el-collapse>
+    <h2>Assessment</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+    <h2>Plan</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
+    <h2>Others</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
+    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+
     <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
