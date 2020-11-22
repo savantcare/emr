@@ -3,7 +3,7 @@
     <el-button
       round
       size="mini"
-      :type="features.isThisIntake ? 'primary' : 'info'"
+      :type="features.isThisIntake ? 'primary' : ''"
       :class="features.isThisIntake ? '' : 'strike'"
       @click="features.isThisIntake = true"
       >New Patient Office (requires 3 of 3)</el-button

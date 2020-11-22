@@ -34,6 +34,19 @@
           /></span>
           <span v-else><medDecisionMakingFull :features="features" /></span>
         </el-tab-pane>
+        <el-tab-pane label="Legend">
+          <ul>
+            <li>Rounded corners: buttons</li>
+            <li>Blue: user selected button</li>
+            <li>White with a cross: User may choose</li>
+          </ul>
+          <br /><br />
+          <ul>
+            <li>Rectangle</li>
+            <li>Green: System choice</li>
+            <li>White with a cross: System eliminated</li>
+          </ul>
+        </el-tab-pane>
       </el-tabs>
 
       <cptCode :features="features" />
@@ -191,7 +204,6 @@ export default {
 .strike {
   position: relative;
   text-align: center;
-  background-color: #909399;
   border: solid 1px;
 }
 .notStrike {

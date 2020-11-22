@@ -34,7 +34,7 @@
         <el-button
           round
           size="mini"
-          :type="features.history.chiefComplaint ? 'primary' : 'info'"
+          :type="features.history.chiefComplaint ? 'primary' : ''"
           :class="features.history.chiefComplaint ? '' : 'strike'"
           @click="features.history.chiefComplaint = !features.history.chiefComplaint"
         >
@@ -46,7 +46,7 @@
           round
           size="mini"
           :class="features.history.hpi === 1 ? '' : 'strike'"
-          :type="features.history.hpi === 1 ? 'primary' : 'info'"
+          :type="features.history.hpi === 1 ? 'primary' : ''"
           @click="features.history.hpi = 1"
         >
           Brief </el-button
@@ -58,7 +58,7 @@
           round
           size="mini"
           :class="features.history.pfsh === 1 ? '' : 'strike'"
-          :type="features.history.pfsh === 1 ? 'primary' : 'info'"
+          :type="features.history.pfsh === 1 ? 'primary' : ''"
           @click="features.history.pfsh = 1"
         >
           N/A
@@ -70,7 +70,7 @@
           style="grid-column: 9/10"
           size="mini"
           :class="features.history.ros === 1 ? '' : 'strike'"
-          :type="features.history.ros === 1 ? 'primary' : 'info'"
+          :type="features.history.ros === 1 ? 'primary' : ''"
           @click="features.history.ros = 1"
         >
           N/A
@@ -97,7 +97,7 @@
                     size="mini"
                     style="grid-column: 4/7"
                     :class="features.history.hpi === 2 ? '' : 'strike'"
-                    :type="features.history.hpi === 2 ? 'primary' : 'info'"
+                    :type="features.history.hpi === 2 ? 'primary' : ''"
                     @click="features.history.hpi = 2"
                   >
                     Extended </el-button
@@ -109,7 +109,7 @@
                     round
                     size="mini"
                     :class="features.history.ros === 2 ? '' : 'strike'"
-                    :type="features.history.ros === 2 ? 'primary' : 'info'"
+                    :type="features.history.ros === 2 ? 'primary' : ''"
                     @click="features.history.ros = 2"
                   >
                     Problem pertinent </el-button
@@ -117,7 +117,6 @@
                   <sub>(1 system)</sub>
                 </div>
                 <div
-                  class="gridItem"
                   :class="[
                     features.history.chiefComplaint &&
                     features.history.hpi >= 1 &&
@@ -126,11 +125,11 @@
                       ? (features.history.type.epf = true)
                       : (features.history.type.epf = false),
                       
-                     features.history.type.epf ? '' : 'strike'
+                     features.history.type.epf ? 'notStrike' : 'strike'
  
                       ]
                   "
-                  :style="features.history.type.epf ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
+                  style="grid-column: 10/12"
                 >
                   Expanded problem focussed (EPF)
                 </div>
@@ -139,7 +138,7 @@
                     round
                     size="mini"
                     :class="features.history.pfsh === 2 ? '' : 'strike'"
-                    :type="features.history.pfsh === 2 ? 'primary' : 'info'"
+                    :type="features.history.pfsh === 2 ? 'primary' : ''"
                     @click="features.history.pfsh = 2"
                   >
                     Pertinent </el-button
@@ -151,14 +150,14 @@
                     round
                     size="mini"
                     :class="features.history.ros === 3 ? '' : 'strike'"
-                    :type="features.history.ros === 3 ? 'primary' : 'info'"
+                    :type="features.history.ros === 3 ? 'primary' : ''"
                     @click="features.history.ros = 3"
                   >
                     Extended </el-button
                   ><br />
                   <sub>2-9 systems</sub>
                 </div>
-                <div class="gridItem"
+                <div
                     :class="[
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
@@ -167,9 +166,9 @@
                         ? (features.history.type.det = true)
                         : (features.history.type.det = false),
 
-                      features.history.type.det ? '' : 'strike'
+                      features.history.type.det ? 'notStrike' : 'strike'
                     ]"
-                    :style="features.history.type.det ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
+                    style="grid-column: 10/12"
 
                   >
                     Detailed (DET)
@@ -179,7 +178,7 @@
                     round
                     size="mini"
                     :class="features.history.pfsh === 3 ? '' : 'strike'"
-                    :type="features.history.pfsh === 3 ? 'primary' : 'info'"
+                    :type="features.history.pfsh === 3 ? 'primary' : ''"
                     @click="features.history.pfsh = 3"
                   >
                     Complete </el-button
@@ -191,14 +190,14 @@
                     round
                     size="mini"
                     :class="features.history.ros === 4 ? '' : 'strike'"
-                    :type="features.history.ros === 4 ? 'primary' : 'info'"
+                    :type="features.history.ros === 4 ? 'primary' : ''"
                     @click="features.history.ros = 4"
                   >
                     Complete </el-button
                   ><br />
                   <sub>(10-14 systems)</sub>
                 </div>
-                <div class="gridItem"
+                <div
                     :class="[
                       features.history.chiefComplaint &&
                       features.history.hpi >= 2 &&
@@ -207,10 +206,10 @@
                         ? (features.history.type.comp = true)
                         : (features.history.type.comp = false),
                     
-                      features.history.type.comp ? '' : 'strike'
+                      features.history.type.comp ? 'notStrike' : 'strike'
                     ]"
 
-                    :style="features.history.type.comp ? 'background-color: #67C23A; grid-column: 10/12' : 'background-color: #909399; grid-column: 10/12'"
+                    style="grid-column: 10/12"
 
                   >
                     Comprehensive (COMP)

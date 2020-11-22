@@ -83,7 +83,7 @@
             round
             size="mini"
             :class="features.examination.bullets === 1 ? 'notStrike' : 'strike'"
-            :type="features.examination.bullets === 1 ? 'primary' : 'info'"
+            :type="features.examination.bullets === 1 ? 'primary' : ''"
             @click="features.examination.bullets = 1"
             >1-5 bullets</el-button
           >
@@ -104,7 +104,7 @@
             round
             size="mini"
             :class="features.examination.bullets === 6 ? '' : 'strike'"
-            :type="features.examination.bullets === 6 ? 'primary' : 'info'"
+            :type="features.examination.bullets === 6 ? 'primary' : ''"
             @click="features.examination.bullets = 6"
             >At least 6 bullets</el-button
           >
@@ -125,7 +125,7 @@
             round
             size="mini"
             :class="features.examination.bullets === 9 ? '' : 'strike'"
-            :type="features.examination.bullets === 9 ? 'primary' : 'info'"
+            :type="features.examination.bullets === 9 ? 'primary' : ''"
             @click="features.examination.bullets = 9"
             >At least 9 bullets</el-button
           >
@@ -146,7 +146,7 @@
             round
             size="mini"
             :class="features.examination.bullets === 10 ? '' : 'strike'"
-            :type="features.examination.bullets === 10 ? 'primary' : 'info'"
+            :type="features.examination.bullets === 10 ? 'primary' : ''"
             @click="features.examination.bullets = 10"
             >All bullets in Const/ Psych boxes and 1 bullet in Musculoskeletal box</el-button
           >

@@ -182,7 +182,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderClinical === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.reviewOrderClinical = !features.medDecisionMaking.dataPoints
                 .reviewOrderClinical
@@ -199,7 +199,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderRadiology === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.reviewOrderRadiology = !features.medDecisionMaking.dataPoints
                 .reviewOrderRadiology
@@ -216,7 +216,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.reviewOrderMedicine === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.reviewOrderMedicine = !features.medDecisionMaking.dataPoints
                 .reviewOrderMedicine
@@ -233,7 +233,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.discussionTestResults === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.discussionTestResults === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.discussionTestResults === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.discussionTestResults = !features.medDecisionMaking.dataPoints
                 .discussionTestResults
@@ -250,7 +250,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.decisionOldRecords === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.decisionOldRecords = !features.medDecisionMaking.dataPoints
                 .decisionOldRecords
@@ -265,7 +265,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.reviewOldRecords === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.reviewOldRecords = !features.medDecisionMaking.dataPoints
                 .reviewOldRecords
@@ -283,7 +283,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.dataPoints.independentTracing === true ? '' : 'strike'"
-            :type="features.medDecisionMaking.dataPoints.independentTracing === true ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.dataPoints.independentTracing === true ? 'primary' : ''"
             @click="
               features.medDecisionMaking.dataPoints.independentTracing = !features.medDecisionMaking.dataPoints
                 .independentTracing
@@ -344,7 +344,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.problem >= 1 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.problem >= 1 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.problem >= 1 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.problem = 1"
             >One self-limited</el-button
           >
@@ -356,7 +356,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.diagnostic >= 1 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.diagnostic >= 1 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.diagnostic >= 1 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.diagnostic = 1"
             >Venipuncture; EKG; urinalysis</el-button
           >
@@ -366,7 +366,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.management >= 1 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.management >= 1 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.management >= 1 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.management = 1"
             >Rest</el-button
           >
@@ -378,7 +378,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.problem >= 2 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.problem >= 2 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.problem >= 2 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.problem = 2"
             >Stable</el-button
           ><br />
@@ -389,7 +389,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.diagnostic >= 2 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.diagnostic >= 2 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.diagnostic >= 2 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.diagnostic = 2"
             >Arterial puncture</el-button
           >
@@ -399,7 +399,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.management >= 2 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.management >= 2 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.management >= 2 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.management = 2"
             >OTC drugs</el-button
           >
@@ -411,7 +411,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.problem >= 3 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.problem >= 3 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.problem >= 3 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.problem = 3"
             >Systemic symptoms</el-button
           ><br />
@@ -429,7 +429,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.management >= 3 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.management >= 3 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.management >= 3 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.management = 3"
             >Prescription drug management</el-button
           >
@@ -441,7 +441,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.problem >= 4 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.problem >= 4 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.problem >= 4 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.problem = 4"
             >Threat to bodily function</el-button
           >
@@ -458,7 +458,7 @@
             round
             size="mini"
             :class="features.medDecisionMaking.risk.management >= 4 ? '' : 'strike'"
-            :type="features.medDecisionMaking.risk.management >= 4 ? 'primary' : 'info'"
+            :type="features.medDecisionMaking.risk.management >= 4 ? 'primary' : ''"
             @click="features.medDecisionMaking.risk.management = 4"
             >Drug therapy</el-button
           >
