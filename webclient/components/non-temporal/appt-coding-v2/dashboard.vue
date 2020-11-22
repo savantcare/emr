@@ -39,17 +39,21 @@
           <span v-else><medDecisionMakingFull :features="features" /></span>
         </el-tab-pane>
         <el-tab-pane label="Legend">
-          <h3>Rounded corner buttons</h3>
-          <ul>
-            <li>Blue: user selected button</li>
-            <li>White with a orange line: User may choose</li>
-          </ul>
-          <br /><br />
-          <h3>Rectangle</h3>
-          <ul>
-            <li>Green: Algorithm choice</li>
-            <li>White with a orange line: Algorithm eliminated</li>
-          </ul>
+          <div
+            style="display: grid; grid-template-columns: repeat(1, 1fr); border: 2px solid #ebeef5; border-radius: 15px"
+          >
+            <h3>Rounded corner buttons</h3>
+            <ul>
+              <li>Blue: user selected button</li>
+              <li>White with a orange line: User may choose</li>
+            </ul>
+            <br /><br />
+            <h3>Rectangle</h3>
+            <ul>
+              <li>Green: Algorithm choice</li>
+              <li>White with a orange line: Algorithm eliminated</li>
+            </ul>
+          </div>
         </el-tab-pane>
       </el-tabs>
       <br />
