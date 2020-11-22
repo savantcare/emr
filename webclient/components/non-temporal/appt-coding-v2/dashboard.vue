@@ -85,6 +85,8 @@ export default {
       immediate: true,
       handler(newVal, oldVal) {
         console.log(newVal)
+
+        // for followup
         if (newVal > 25) this.features.highestCode.selected.followup.time = 99215
         else if (newVal > 16) this.features.highestCode.selected.followup.time = 99214
         else if (newVal > 8) this.features.highestCode.selected.followup.time = 99213
@@ -92,33 +94,37 @@ export default {
         else if (newVal > 1) this.features.highestCode.selected.followup.time = 99211
         else this.features.highestCode.selected.followup.time = 0
 
-        console.log(this.features.highestCode.selected.followup.time)
+        // for intake
+        if (newVal > 52) this.features.highestCode.selected.intake.time = 99201
+        else if (newVal > 37) this.features.highestCode.selected.intake.time = 99202
+        else if (newVal > 15) this.features.highestCode.selected.intake.time = 99203
+        else if (newVal > 10) this.features.highestCode.selected.intake.time = 99204
+        else if (newVal > 5) this.features.highestCode.selected.intake.time = 99205
+        else this.features.highestCode.selected.intake.time = 0
+
+        console.log(this.features.highestCode.selected)
       },
     },
     'features.history.type': {
       immediate: true,
       deep: true,
       handler(newVal, oldVal) {
-        console.log(this.features.history.type)
         if (this.features.history.type.comp) this.features.history.level = 4
         else if (this.features.history.type.det) this.features.history.level = 3
         else if (this.features.history.type.epf) this.features.history.level = 2
         else if (this.features.history.type.pf) this.features.history.level = 1
         else this.features.history.level = 0
-        console.log(this.features.history.level)
       },
     },
     'features.examination.type': {
       immediate: true,
       deep: true,
       handler(newVal, oldVal) {
-        console.log(this.features.examination.type)
         if (this.features.examination.type.comp) this.features.examination.level = 4
         else if (this.features.examination.type.det) this.features.examination.level = 3
         else if (this.features.examination.type.epf) this.features.examination.level = 2
         else if (this.features.examination.type.pf) this.features.examination.level = 1
         else this.features.examination.level = 0
-        console.log(this.features.examination.level)
       },
     },
     'features.history.level': {
@@ -231,23 +237,16 @@ export default {
     decideWorkCode() {
       let levels = new Array()
       levels[0] = this.features.history.level
-      console.log('history', levels[0])
       levels[1] = this.features.examination.level
-      console.log('examination', levels[1])
       levels[2] = this.features.medDecisionMaking.complexity.level
-      console.log('med decision making', levels[2])
 
       levels.sort((a, b) => b - a) // now 0 is highest level and 1 is 2nd highest level
-
-      console.log(levels)
 
       if (levels[1] === 0) this.features.highestCode.selected.followup.work = 99211
       if (levels[1] === 1) this.features.highestCode.selected.followup.work = 99212
       if (levels[1] === 2) this.features.highestCode.selected.followup.work = 99213
       if (levels[1] === 3) this.features.highestCode.selected.followup.work = 99214
       if (levels[1] === 4) this.features.highestCode.selected.followup.work = 99215
-
-      console.log('Deciding work code', this.features.highestCode.selected.followup.work)
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
