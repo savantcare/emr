@@ -21,7 +21,16 @@
       <div class="gridItem" style="font-weight: bold">MDM</div>
 
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
-      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99201</div>
+      <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99201"
+          >=></span
+        >
+
+        99201
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.work >= 99201">
+          &lt;=
+        </span>
+      </div>
 
       <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
@@ -30,7 +39,16 @@
       </div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
-      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99202</div>
+      <div :class="features.isThisIntake ? 'strike' : 'notStrike'">
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.time >= 99202"
+          >=></span
+        >
+
+        99202
+        <span style="color: green; font-weight: bold" v-if="features.highestCode.selected.intake.work >= 99202">
+          &lt;=
+        </span>
+      </div>
       <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">

@@ -249,12 +249,28 @@ export default {
       if (levels[1] === 3) this.features.highestCode.selected.followup.work = 99214
       if (levels[1] === 4) this.features.highestCode.selected.followup.work = 99215
 
-      // For followup only 3 out of 3 need to be met
-      if (levels[2] === 0) this.features.highestCode.selected.intake.work = 99201
-      if (levels[2] === 1) this.features.highestCode.selected.intake.work = 99202
-      if (levels[2] === 2) this.features.highestCode.selected.intake.work = 99203
-      if (levels[2] === 3) this.features.highestCode.selected.intake.work = 99204
-      if (levels[2] === 4) this.features.highestCode.selected.intake.work = 99205
+      // For intake 3 out of 3 need to be met
+      if (levels[0] >= 1 && levels[1] >= 1 && levels[2] >= 1) {
+        this.features.highestCode.selected.intake.work = 99201
+      }
+
+      if (levels[0] >= 2 && levels[1] >= 2 && levels[2] >= 1) {
+        this.features.highestCode.selected.intake.work = 99202
+      }
+
+      if (levels[0] >= 3 && levels[1] >= 3 && levels[2] >= 2) {
+        this.features.highestCode.selected.intake.work = 99203
+      }
+
+      if (levels[0] >= 4 && levels[1] >= 4 && levels[2] >= 3) {
+        this.features.highestCode.selected.intake.work = 99204
+      }
+
+      if (levels[0] >= 4 && levels[1] >= 4 && levels[2] >= 4) {
+        this.features.highestCode.selected.intake.work = 99205
+      }
+
+      console.log(this.features.highestCode.selected.intake)
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
