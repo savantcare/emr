@@ -23,15 +23,15 @@
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
       <div class="gridItem" :class="features.isThisIntake ? 'strike' : 'notStrike'">99201</div>
 
-      <div :class="features.history.type.pf ? 'strike' : 'notStrike'">PF</div>
-      <div :class="features.examination.type.pf ? 'strike' : 'notStrike'">PF</div>
+      <div :class="features.history.type.pf ? 'notStrike' : 'strike'">PF</div>
+      <div :class="features.examination.type.pf ? 'notStrike' : 'strike'">PF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
       </div>
 
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">Not used</div>
       <div :class="features.isThisIntake ? 'strike' : 'notStrike'">99202</div>
-      <div :class="features.history.type.epf ? 'strike' : 'notStrike'">EPF</div>
+      <div :class="features.history.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div :class="features.examination.type.epf ? 'notStrike' : 'strike'">EPF</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 1 ? 'notStrike' : 'strike'">
         Straight forward
@@ -98,18 +98,8 @@
           &lt;=
         </span>
       </div>
-      <div
-        class="gridItem"
-        :style="features.history.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        COMP
-      </div>
-      <div
-        class="gridItem"
-        :style="features.examination.type.comp ? 'background-color: #67C23A' : 'background-color: #909399'"
-      >
-        COMP
-      </div>
+      <div :class="features.history.type.comp ? 'notStrike' : 'strike'">COMP</div>
+      <div :class="features.examination.type.comp ? 'notStrike' : 'strike'">COMP</div>
       <div id="complexity" :class="features.medDecisionMaking.complexity.level >= 4 ? 'notStrike' : 'strike'">High</div>
     </div>
   </el-card>
