@@ -14,11 +14,13 @@
             ><apptNotePrintableView
               :_showNoteForApptId="lowerValueForComparisonClientUniqRowId"
               :key="lowerValueForComparisonClientUniqRowId"
+              side="full"
             /> </el-col
           ><el-col :span="12"
             ><apptNotePrintableView
               :_showNoteForApptId="higherValueForComparisonClientUniqRowId"
               :key="higherValueForComparisonClientUniqRowId"
+              side="full"
           /></el-col>
         </el-row>
       </el-drawer>

@@ -1,59 +1,66 @@
 <template>
   <div class="A4">
-    <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
-    <b>Appt Date:</b>
+    <div v-if="_side === 'left' || _side === 'full'">
+      <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
+      <b>Appt Date:</b>
 
-    {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
-    <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
+      {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
+      <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
 
-    <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
-    <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
-      <b>Appt locked:</b>
-      {{ cfApptLockDateInHumanReadableFormat }}
+      <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
+      <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
+        <b>Appt locked:</b>
+        {{ cfApptLockDateInHumanReadableFormat }}
+      </div>
+
+      <h2>History</h2>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
+      <h2>Objective</h2>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
+      <el-collapse>
+        <el-collapse-item title="Vitals" name="1">
+          <div style="display: grid; grid-template-columns: 1fr 1fr">
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" />
+            </div>
+            <div>
+              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
+            </div>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+      <h2>Others</h2>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
+      <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
-    <h2>History</h2>
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-    <h2>Objective</h2>
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
-    <el-collapse>
-      <el-collapse-item title="Vitals" name="1">
-        <div style="display: grid; grid-template-columns: 1fr 1fr">
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" />
-          </div>
-          <div>
-            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
-          </div>
-        </div>
-      </el-collapse-item>
-    </el-collapse>
-    <div v-if="_side === 'right'">
+    <div v-if="_side === 'right' || _side === 'full'">
       <h2>Assessment</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
@@ -64,10 +71,6 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
     </div>
-    <h2>Others</h2>
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
-    <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
 

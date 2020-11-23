@@ -12,7 +12,7 @@
       <div style="grid-column: 9/10"><ctSettings></ctSettings></div>
     </div>
     <div>
-      <apptNote />
+      <apptNote _side="right" />
     </div>
   </div>
 </template>
