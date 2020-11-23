@@ -32,7 +32,18 @@
             -->
         <component :is="card.componentToShowObject"></component>
       </div>
-      <ctSearchBoxInsideLeftScreenExtension></ctSearchBoxInsideLeftScreenExtension>
+      <b>Chief Complaint</b>
+      <editChiefComplaint />
+      <b>Past psych history </b>
+      <pastPsychHistory />
+      <b>Family history </b>
+      <familyHistory />
+      <b>Allergies</b>
+      <allergies />
+      <b>Misc note </b>
+      <miscNote />
+      <b>Process notes</b>
+      <processNote />
     </div>
   </el-drawer>
 </template>
@@ -41,6 +52,12 @@
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 import ctSearchBoxInsideLeftScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import editChiefComplaint from '@/components/temporal/chief-complaint/change-layer/add-chief-complaint.vue'
+import pastPsychHistory from '@/components/temporal/past-psych-history/change-layer/past-psych-history-add.vue'
+import familyHistory from '@/components/temporal/family-history/change-layer/family-history-add.vue'
+import allergies from '@/components/temporal/allergies/change-layer/allergy-add.vue'
+import miscNote from '@/components/temporal/miscellaneous-notes/change-layer/add-ct.vue'
+import processNote from '@/components/temporal/process-notes/change-layer/add-ct.vue'
 
 export default {
   data() {
@@ -50,6 +67,12 @@ export default {
   },
   components: {
     ctSearchBoxInsideLeftScreenExtension,
+    editChiefComplaint,
+    pastPsychHistory,
+    familyHistory,
+    allergies,
+    miscNote,
+    processNote,
   },
   computed: {
     cfArCardsInLeftSideOfViewLayer() {
@@ -116,6 +139,6 @@ Why I have added the following css?
  */
 body .leftScreenExtensionDrawer {
   right: unset;
-  width: 504px; /* This is 35% of total screen widfth of 1440px. Since when we show the left drawer in the analysis mode we give the drawer 35% of the total available space. We give 65 to graphs */
+  width: 720px; /* This is 50% of total screen widfth of 1440px. Since when we show the left drawer in the analysis mode we give the drawer 35% of the total available space. We give 65 to graphs */
 }
 </style>

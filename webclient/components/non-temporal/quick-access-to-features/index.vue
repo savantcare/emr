@@ -105,14 +105,14 @@ export default {
       // set the split dimensions
 
       clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 60 }],
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
       })
 
       clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 40 }],
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
       this.$notify.success({
-        message: 'Welcome to work product mode',
+        message: 'Editing assesment and plan',
         position: 'top-left',
         duration: 1000,
         showClose: false,
@@ -132,14 +132,14 @@ export default {
 
       // set the split dimensions
       clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 35 }],
+        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
       })
 
       clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 65 }],
+        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
       })
       this.$notify.success({
-        message: 'Welcome to analysis mode',
+        message: 'Editing history and exam',
         position: 'top-right',
         duration: 1000,
         showClose: false,

@@ -31,6 +31,8 @@ import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db
 import ctSearchBoxInsideRightScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
+import dx from '@/components/temporal/process-notes/change-layer/add-ct.vue'
+
 export default {
   data() {
     return {
