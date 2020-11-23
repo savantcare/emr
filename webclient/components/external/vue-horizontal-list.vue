@@ -389,7 +389,6 @@ export default {
 .vhl-container {
   overflow-y: hidden;
   height: 100%;
-  margin-bottom: -24px;
 }
 
 .vhl-list {
