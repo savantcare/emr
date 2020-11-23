@@ -13,17 +13,28 @@
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
 
-      <h2>History</h2>
+      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">History</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-      <h2>Objective</h2>
+      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Objective</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
-      <el-collapse>
-        <el-collapse-item title="Vitals" name="1">
+
+      <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
+        <div @click="dblOnAndOffSwitchToShowContent = !dblOnAndOffSwitchToShowContent" style="cursor: pointer">
+          <el-row>
+            <el-col :span="20" class="sectionHeading"> Vitals </el-col>
+            <el-col :span="4">
+              <span style="float: right; font-size: 1rem; margin-right: 10px">
+                <i :class="dblOnAndOffSwitchToShowContent ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"></i>
+              </span>
+            </el-col>
+          </el-row>
+        </div>
+        <el-row :style="cfGetCssForAnimateToShowContent">
           <div style="display: grid; grid-template-columns: 1fr 1fr">
             <div>
               <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
@@ -53,19 +64,20 @@
               <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
             </div>
           </div>
-        </el-collapse-item>
-      </el-collapse>
-      <h2>Others</h2>
+        </el-row>
+      </div>
+
+      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Others</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
-      <h2>Assessment</h2>
+      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Assessment</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-      <h2>Plan</h2>
+      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Plan</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
@@ -98,6 +110,7 @@ export default {
       patientCurrentApptObj: {},
       formDef: {},
       arrowDirection: 0,
+      dblOnAndOffSwitchToShowContent: false,
     }
   },
   props: {
@@ -136,6 +149,13 @@ export default {
     this.patientCurrentApptObj = await clientTblOfAppointments.find(this._showNoteForApptId)
   },
   computed: {
+    cfGetCssForAnimateToShowContent() {
+      if (this.dblOnAndOffSwitchToShowContent) {
+        return 'max-height: 1000px; overflow:hidden; transition: max-height 0.6s, overflow 0.6s 0.6s;'
+      } else {
+        return 'max-height: 0; overflow:hidden; transition: max-height 0.6s, overflow 0s;'
+      }
+    },
     cfApptLockDateInHumanReadableFormat() {
       return moment(this.patientCurrentApptObj['ROW_END']).format('MMM DD YYYY HH:mm') // parse integer
     },
@@ -174,5 +194,9 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal5: Give a line break before and after the element */
   display: block;
+}
+.sectionHeading {
+  font-size: 1rem;
+  color: #606266;
 }
 </style>
