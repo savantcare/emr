@@ -140,7 +140,7 @@ export default {
           .get()
 
         const updateState = clientTblOfLeftSideViewCards.update({
-          clientSideUniqRowId: 2,
+          clientSideUniqRowId: 2, // This is hard code for "/paper-view-of-appt-note-with-amendment-or-modify-feature/step1-decide-notes-to-show-and-their-appt-id.vue"
           currentDisplayStateOfComponent: 1,
           firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],
         })

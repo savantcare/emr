@@ -228,6 +228,8 @@ export default {
 
       const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
 
+      if (!printableApptNoteComponentCardObj) return
+
       // Goal: Find if current ID matches with firstParam or secondParam. It has to match with one of those 2
       if (printableApptNoteComponentCardObj['secondParameterGivenToComponentBeforeMounting'] === this._apptId) {
         // Handle the case when the current ID matches with the second param Need to compare with first
