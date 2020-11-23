@@ -24,47 +24,38 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
 
       <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
-        <div @click="dblOnAndOffSwitchToShowContent = !dblOnAndOffSwitchToShowContent" style="cursor: pointer">
-          <el-row>
-            <el-col :span="20" class="sectionHeading"> Vitals </el-col>
-            <el-col :span="4">
-              <span style="float: right; font-size: 1rem; margin-right: 10px">
-                <i :class="dblOnAndOffSwitchToShowContent ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"></i>
-              </span>
-            </el-col>
-          </el-row>
-        </div>
-        <el-row :style="cfGetCssForAnimateToShowContent">
-          <div style="display: grid; grid-template-columns: 1fr 1fr">
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" />
-            </div>
-            <div>
-              <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
-            </div>
-          </div>
+        <el-row>
+          <el-col :span="20" class="sectionHeading"> Vitals </el-col>
         </el-row>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr">
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="weight" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="height" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="pulse" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="temperature" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_pressure" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="blood_sugar" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="bmi" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="oxygen_saturation" />
+          </div>
+          <div>
+            <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="waist_circumference" />
+          </div>
+        </div>
       </div>
 
       <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Others</h2>
@@ -110,7 +101,6 @@ export default {
       patientCurrentApptObj: {},
       formDef: {},
       arrowDirection: 0,
-      dblOnAndOffSwitchToShowContent: false,
     }
   },
   props: {

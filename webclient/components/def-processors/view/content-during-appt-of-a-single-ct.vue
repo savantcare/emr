@@ -1,6 +1,6 @@
 <template>
   <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
-    <div @click="dblOnAndOffSwitchToShowContent = !dblOnAndOffSwitchToShowContent" style="cursor: pointer">
+    <div>
       <el-row>
         <el-col :span="9" class="sectionHeading">
           {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
@@ -54,19 +54,14 @@
             </span>
           </el-button-group>
         </el-col>
-        <el-col :span="5">
-          <span style="float: right; font-size: 1rem; margin-right: 10px">
-            <i :class="dblOnAndOffSwitchToShowContent ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"></i>
-          </span>
-        </el-col>
       </el-row>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
     <!-- <el-row v-if="dblOnAndOffSwitchToShowContent"> -->
-    <el-row :style="cfGetCssForAnimateToShowContent">
-      <div :style="cfGetDataRowStyle">
-        <!-- This is for each data row -->
-        <!-- Design: 
+
+    <div :style="cfGetDataRowStyle">
+      <!-- This is for each data row -->
+      <!-- Design: 
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
@@ -92,55 +87,54 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
+      <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
          Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
          Each appt gets a slide of its own
          -->
 
-        <vue-horizontal-list
-          :items="cfGetEntityValueDuringEachAppt"
-          :options="options"
-          :currentSlideNumber="currentSlideNumber"
-          class="g2-container-for-all-timeline-boxes"
-        >
-          <template v-slot:default="{ item }">
-            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
-            </div>
-            <div
-              class="item"
-              id="each-row-of-entity-inside-appt"
-              v-for="entityRow in item[_formDef.id]"
-              :key="entityRow.clientSideUniqRowId"
-            >
-              <getRowContent
-                :_entityRow="entityRow"
-                :_formDef="_formDef"
-                :_ApptStatus="item['apptStatus']"
-                :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-              />
-              <!-- end of each-row-of-entity -->
-              <!-- This is for action associated with each row -->
-              <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-              <!-- Case 1/2: When this appt is locked what row actions to show-->
-            </div>
-            <!-- end of actions of each row -->
-          </template>
-        </vue-horizontal-list>
-      </div>
-      <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
-        <h4>Addendum:</h4>
-        <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
-          <div style="margin: 5px 0">
-            {{ entityRow.description }}
-            <br />
-            <span style="font-size: 0.625rem"
-              >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
-            >
+      <vue-horizontal-list
+        :items="cfGetEntityValueDuringEachAppt"
+        :options="options"
+        :currentSlideNumber="currentSlideNumber"
+        class="g2-container-for-all-timeline-boxes"
+      >
+        <template v-slot:default="{ item }">
+          <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+            Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
           </div>
+          <div
+            class="item"
+            id="each-row-of-entity-inside-appt"
+            v-for="entityRow in item[_formDef.id]"
+            :key="entityRow.clientSideUniqRowId"
+          >
+            <getRowContent
+              :_entityRow="entityRow"
+              :_formDef="_formDef"
+              :_ApptStatus="item['apptStatus']"
+              :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+            />
+            <!-- end of each-row-of-entity -->
+            <!-- This is for action associated with each row -->
+            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+            <!-- Case 1/2: When this appt is locked what row actions to show-->
+          </div>
+          <!-- end of actions of each row -->
+        </template>
+      </vue-horizontal-list>
+    </div>
+    <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
+      <h4>Addendum:</h4>
+      <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
+        <div style="margin: 5px 0">
+          {{ entityRow.description }}
+          <br />
+          <span style="font-size: 0.625rem"
+            >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
+          >
         </div>
       </div>
-    </el-row>
+    </div>
   </div>
 </template>
 
@@ -165,7 +159,6 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       currentSlideNumber: 0,
-      dblOnAndOffSwitchToShowContent: false,
       options: {
         responsive: [
           { end: 576, size: 1 },
@@ -228,13 +221,6 @@ export default {
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
   },
   computed: {
-    cfGetCssForAnimateToShowContent() {
-      if (this.dblOnAndOffSwitchToShowContent) {
-        return 'max-height: 5em; overflow:hidden; transition: max-height 0.6s, overflow 0.6s 0.6s;'
-      } else {
-        return 'max-height: 0; overflow:hidden; transition: max-height 0.6s, overflow 0s;'
-      }
-    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
