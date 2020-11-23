@@ -1,9 +1,9 @@
 <template>
   <el-card shadow="hover" class="box-card s-css-class-outer-most-card">
-    <div slot="header" class="s-css-class-outer-most-card-header clearfix">
-      <div style="display: grid; grid-template-columns: 1fr 5fr">
-        <div>Correlate</div>
-        <div>
+    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
+    <el-dialog title="Correlate" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
+      <div slot="header" class="s-css-class-outer-most-card-header clearfix">
+        <div style="display: grid; grid-template-columns: 1fr 5fr">
           <tags-input
             element-id="tags"
             v-model="selectedSeriesTags"
@@ -17,8 +17,8 @@
           ></tags-input>
         </div>
       </div>
-    </div>
-    <highcharts :options="cfChartOptions"></highcharts>
+      <highcharts :options="cfChartOptions"></highcharts>
+    </el-dialog>
   </el-card>
 </template>
 
@@ -49,6 +49,7 @@ export default {
       dynamicallyAddedSeries: {},
       selectedSeriesTags: [],
       availableSeriesTags: [],
+      dIsSettingsDialogVisible: false,
     }
   },
   computed: {
@@ -212,6 +213,11 @@ export default {
     },
   },
   methods: {
+    handleClickOnSettingsIcon() {
+      this.dIsSettingsDialogVisible = true
+    },
+    handleChange(val) {},
+
     mfCreateSeries(pTableName) {
       // All the 3 conditions are applied sequentially
       if (
