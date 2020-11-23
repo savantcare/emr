@@ -53,19 +53,20 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-    <h2>Assessment</h2>
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-    <h2>Plan</h2>
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
-    <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
+    <div v-if="_viewType === 'full'">
+      <h2>Assessment</h2>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
+      <h2>Plan</h2>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
+    </div>
     <h2>Others</h2>
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
     <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
-
     <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
   </div>
 </template>
@@ -100,6 +101,11 @@ export default {
     _showNoteForApptId: {
       type: Number,
       required: true,
+    },
+    _viewType: {
+      type: String,
+      required: true,
+      default: 'full',
     },
   },
   filters: {

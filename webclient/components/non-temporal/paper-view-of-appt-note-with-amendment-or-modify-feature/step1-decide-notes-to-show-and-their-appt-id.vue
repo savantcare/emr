@@ -28,6 +28,7 @@
       <apptNotePrintableView
         :_showNoteForApptId="firstNoteForComparisonClientUniqRowId"
         :key="firstNoteForComparisonClientUniqRowId"
+        _viewType="partial"
       />
     </div>
   </div>
