@@ -44,7 +44,7 @@ export const rowState = {
 
 // Others
 
-const Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted = 2147483648000
+const Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted = 2147483648000
 
 class clientTblManage extends Model {
   // For Class syntax https://javascript.info/class
@@ -195,7 +195,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientTbl = this.query()
-      .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
+      .where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
     return arFromClientTbl
@@ -204,7 +204,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetNonEmptyRowsToChange(pFldForNonEmptyCheck) {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
     const arFromClientTbl = this.query()
-      .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
+      .where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted)
       .where(pFldForNonEmptyCheck, (value) => value.length > 0)
       .get()
 
@@ -226,9 +226,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetRowsToChange() {
     // Step 1/2: Get valid data and not deleted data from temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientTbl = this.query()
-      .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
-      .get()
+    const arFromClientTbl = this.query().where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted).get()
 
     // DataSet -> It is possible that some UUID is being changed and now there are 2 records with same UUID
 
@@ -261,9 +259,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     if (!pFldsForNonEmptyCheck) return
 
-    const arFromClientTbl = this.query()
-      .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
-      .get()
+    const arFromClientTbl = this.query().where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted).get()
 
     if (arFromClientTbl.length < 1) {
       // no records came back. Returning empty array instead of null since others may do a length check
@@ -316,9 +312,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static fnGetPresentUniqueUuidRows() {
     // Following query makes sure I get valid data and not discontimued data fromm temporal table. Ref: https://mariadb.com/kb/en/temporal-data-tables/
-    const arFromClientTbl = this.query()
-      .where('ROW_END', Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted)
-      .get()
+    const arFromClientTbl = this.query().where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted).get()
     const uniqueUuidRows = []
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and now there are 2 records with same UUID
@@ -974,7 +968,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             where: (record) => {
               return (
                 record.serverSideRowUuid === changedRowBeingSaved.serverSideRowUuid &&
-                record.ROW_END === Time_In_Milliseconds_In_Future_Stored_By_MariaDB_To_Mark_Row_As_Not_Deleted &&
+                record.ROW_END === Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted &&
                 record.clientSideUniqRowId !== changedRowBeingSaved.clientSideUniqRowId
               )
             },
