@@ -13,14 +13,14 @@
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
 
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">History</h2>
+      <h2>History</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Objective</h2>
+      <h2>Objective</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
       <el-collapse>
         <el-collapse-item title="Vitals" name="1">
@@ -55,17 +55,17 @@
           </div>
         </el-collapse-item>
       </el-collapse>
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Others</h2>
+      <h2>Others</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Assessment</h2>
+      <h2>Assessment</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Plan</h2>
+      <h2>Plan</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
