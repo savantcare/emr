@@ -6,10 +6,10 @@
       <div style="grid-column: 1/4">
         <ctCorrelate />
       </div>
-      <div style="grid-column: 4/7"><ctScBrainDialog /></div>
-      <div style="grid-column: 7/9">Pt data timeline</div>
-      <div style="grid-column: 9/9"><ctCoding /></div>
-      <div style="grid-column: 10/10"><ctSettings></ctSettings></div>
+      <div style="grid-column: 4/6"><ctScBrainDialog /></div>
+      <div style="grid-column: 6/8"><el-button type="primary">Pt data timeline</el-button></div>
+      <div style="grid-column: 8/9"><ctCoding /></div>
+      <div style="grid-column: 9/10"><ctSettings></ctSettings></div>
     </div>
     <div>
       <h2>Assessment</h2>
