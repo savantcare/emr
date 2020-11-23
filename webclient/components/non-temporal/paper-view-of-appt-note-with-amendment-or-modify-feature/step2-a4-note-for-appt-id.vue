@@ -161,7 +161,7 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 */
 .A4 {
   /* Goal 1: Give dimensions: International standard size of A4 is 210x197mm Ref: https://en.wikipedia.org/wiki/Paper_size */
-  width: 17cm; /* Default value for this in papercss is 21cm */
+  width: 18cm; /* Default value for this in papercss is 21cm */
   /*height: 29.7cm; */ /* A4 has a size of 29.7 but not setting it so that the note page break does not take extra space */
 
   /* Goal 2: Give margin and padding */
