@@ -93,7 +93,6 @@ export default {
     return {
       patientCurrentApptObj: {},
       formDef: {},
-      dDebounceCounter: '',
       arrowDirection: 0,
     }
   },
