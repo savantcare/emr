@@ -1,57 +1,69 @@
 <template>
-  <el-collapse @change="mfVueHorizontalListSetCurrentSlide">
-    <el-collapse-item name="1">
-      <template slot="title">
-        {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
-        <el-button-group>
-          <span v-if="currentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-              <div style="text-align: right; margin: 0">
-                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-                <!-- Amendment icon -->
+  <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
+    <div @click="dblOnAndOffSwitchToShowContent = !dblOnAndOffSwitchToShowContent" style="cursor: pointer">
+      <el-row>
+        <el-col :span="9" class="sectionHeading">
+          {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
+        </el-col>
+        <el-col :span="10">
+          <el-button-group>
+            <span v-if="currentApptObj['apptStatus'] === 'locked'">
+              <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+                <div style="text-align: right; margin: 0">
+                  <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+                  <!-- Amendment icon -->
+                  <el-button
+                    v-if="amendmentData.length > 0"
+                    type="success"
+                    icon="el-icon-check"
+                    style="position: absolute; bottom: 15px; right: 15px"
+                    size="mini"
+                    @click="mfSaveAddendum(amendmentData, _formDef.id)"
+                    circle
+                  ></el-button>
+                </div>
                 <el-button
-                  v-if="amendmentData.length > 0"
-                  type="success"
-                  icon="el-icon-check"
-                  style="position: absolute; bottom: 15px; right: 15px"
+                  slot="reference"
+                  class="el-icon-edit-outline"
                   size="mini"
-                  @click="mfSaveAddendum(amendmentData, _formDef.id)"
-                  circle
-                ></el-button>
-              </div>
+                  style="padding: 3px; color: #c0c4cc; border: none"
+                />
+              </el-popover>
+            </span>
+            <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
+            <span v-else>
+              <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
               <el-button
-                slot="reference"
-                class="el-icon-edit-outline"
+                v-if="
+                  cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
+                  !_formDef.maxNumberOfTemporallyValidRows
+                "
+                class="el-icon-circle-plus-outline"
                 size="mini"
+                @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
-              />
-            </el-popover>
+              ></el-button>
+              <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
+              <el-button
+                v-if="cfGetArOfDataRows.length > 1"
+                class="el-icon-money"
+                size="mini"
+                @click="mfOpenMultiEditCtInEditLayer"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+            </span>
+          </el-button-group>
+        </el-col>
+        <el-col :span="5">
+          <span style="float: right; font-size: 1rem; margin-right: 10px">
+            <i :class="dblOnAndOffSwitchToShowContent ? 'el-icon-arrow-down' : 'el-icon-arrow-right'"></i>
           </span>
-          <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
-          <span v-else>
-            <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
-            <el-button
-              v-if="
-                cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
-                !_formDef.maxNumberOfTemporallyValidRows
-              "
-              class="el-icon-circle-plus-outline"
-              size="mini"
-              @click="mfOpenAddInEditLayer"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-            <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
-            <el-button
-              v-if="cfGetArOfDataRows.length > 1"
-              class="el-icon-money"
-              size="mini"
-              @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-          </span>
-        </el-button-group>
-      </template>
-      <!-- Section 2/2: This starts after the header ends -->
+        </el-col>
+      </el-row>
+    </div>
+    <!-- Section 2/2: This starts after the header ends -->
+    <!-- <el-row v-if="dblOnAndOffSwitchToShowContent"> -->
+    <el-row :style="cfGetCssForAnimateToShowContent">
       <div :style="cfGetDataRowStyle">
         <!-- This is for each data row -->
         <!-- Design: 
@@ -128,8 +140,8 @@
           </div>
         </div>
       </div>
-    </el-collapse-item>
-  </el-collapse>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -153,6 +165,7 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       currentSlideNumber: 0,
+      dblOnAndOffSwitchToShowContent: false,
       options: {
         responsive: [
           { end: 576, size: 1 },
@@ -215,6 +228,13 @@ export default {
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
   },
   computed: {
+    cfGetCssForAnimateToShowContent() {
+      if (this.dblOnAndOffSwitchToShowContent) {
+        return 'max-height: 5em; overflow:hidden; transition: max-height 0.6s, overflow 0.6s 0.6s;'
+      } else {
+        return 'max-height: 0; overflow:hidden; transition: max-height 0.6s, overflow 0s;'
+      }
+    },
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
         clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
