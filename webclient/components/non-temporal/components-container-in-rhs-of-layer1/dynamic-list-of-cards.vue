@@ -12,20 +12,9 @@
       <div style="grid-column: 9/10"><ctSettings></ctSettings></div>
     </div>
     <div>
-      <h2>Assessment</h2>
-
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="diagnosis" />
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="screens" />
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="goals" />
-      <h2>Plan</h2>
-
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="recommendations" />
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="reminders" />
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="plan_comments" />
-      <ctPaperNoteStructure :_apptId="showNoteForApptId" _entity="service_statements" />
+      <apptNote />
     </div>
   </div>
-  <!--  <div style="margin: 10px"><vitals /></div> -->
 </template>
 <script>
 import ctCorrelate from '@/components/non-temporal/correlate/design-2.vue'
@@ -37,8 +26,10 @@ import ctSettings from '@/components/non-temporal/layer-1-left-side-header/setti
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
+import apptNote from '@/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/step1-decide-notes-to-show-and-their-appt-id.vue'
+
 export default {
-  components: { ctCorrelate, ctCoding, ctScBrainDialog, ctSettings, ctPaperNoteStructure },
+  components: { ctCorrelate, ctCoding, ctScBrainDialog, ctSettings, ctPaperNoteStructure, apptNote },
   computed: {
     dshowNoteForApptId() {
       /*

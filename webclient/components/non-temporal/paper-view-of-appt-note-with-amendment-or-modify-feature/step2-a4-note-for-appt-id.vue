@@ -53,7 +53,7 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-    <div v-if="_viewType === 'full'">
+    <div v-if="_side === 'right'">
       <h2>Assessment</h2>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
@@ -102,10 +102,10 @@ export default {
       type: Number,
       required: true,
     },
-    _viewType: {
+    _side: {
       type: String,
       required: true,
-      default: 'full',
+      default: 'left',
     },
   },
   filters: {

@@ -28,7 +28,7 @@
       <apptNotePrintableView
         :_showNoteForApptId="firstNoteForComparisonClientUniqRowId"
         :key="firstNoteForComparisonClientUniqRowId"
-        _viewType="partial"
+        :_side="_side"
       />
     </div>
   </div>
@@ -52,6 +52,12 @@ export default {
   components: { apptNotePrintableView },
 
   mounted: function () {},
+  props: {
+    _side: {
+      type: String,
+      default: 'left',
+    },
+  },
   methods: {
     handleDrawerClosed() {
       // Once drawer is closed I need to empty the 2nd param so the prev and next button work properly and do not open the drawer
@@ -69,6 +75,10 @@ export default {
         })
         .get()
 
+      console.log(clientSideArray)
+
+      if (!clientSideArray) return
+
       for (let i = 0; i < clientSideArray.length; i++) {
         if (clientSideArray[i]['clientSideUniqRowId'] < pApptClientUniqRowId) {
           secondNoteForComparisonClientUniqRowId = clientSideArray[i]['clientSideUniqRowId']
@@ -84,6 +94,10 @@ export default {
           return record['apptStatus'] === 'unlocked' || record['apptStatus'] === 'locked'
         })
         .get()
+
+      console.log(clientSideArray)
+
+      if (!clientSideArray) return
 
       for (let i = 0; i < clientSideArray.length; i++) {
         if (clientSideArray[i]['clientSideUniqRowId'] > pApptClientUniqRowId) {
@@ -114,6 +128,10 @@ export default {
       let numberOfNotesToCompare = 0
       const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
 
+      if (!apptNoteComponentObj) {
+        // this happens if clientTblOfLeftSideViewCards does not have data yet due to race condition
+        return 1
+      }
       let noteIDs = new Array()
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting']) {
@@ -149,6 +167,10 @@ export default {
         this.firstNoteForComparisonClientUniqRowId = apptObj[0]['clientSideUniqRowId']
         noteIDs[0] = this.secondNoteForComparisonClientUniqRowId
       }
+
+      console.log(noteIDs)
+
+      if (!noteIDs) return 0
 
       if (noteIDs.length === 2) this.dUidrawerToShowComparisonOf2Notes = true
 
