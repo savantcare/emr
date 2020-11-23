@@ -69,7 +69,7 @@ export default {
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfTimeOfMeasurement() {
-      return moment(this.cfLatestDataRowFromClientTbl.timeOfMeasurementInMilliseconds).format('MMM YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientTbl.timeOfMeasurementInMilliSecs).format('MMM YYYY') // parse integer
     },
   },
   async mounted() {

@@ -92,8 +92,8 @@
           class="g2-container-for-all-timeline-boxes"
         >
           <template v-slot:default="{ item }">
-            <div v-if="currentApptObj.apptStartMilliSecondsOnCalendar !== item.apptStartMilliSecondsOnCalendar">
-              Appt on: {{ item.apptStartMilliSecondsOnCalendar | moment }}
+            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
               class="item"
@@ -105,7 +105,7 @@
                 :_entityRow="entityRow"
                 :_formDef="_formDef"
                 :_ApptStatus="item['apptStatus']"
-                :_apptStartMilliSecondsOnCalendar="item['apptStartMilliSecondsOnCalendar']"
+                :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
               />
               <!-- end of each-row-of-entity -->
               <!-- This is for action associated with each row -->

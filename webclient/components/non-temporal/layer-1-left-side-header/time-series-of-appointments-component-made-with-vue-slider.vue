@@ -32,8 +32,8 @@ __proto__: Object
       :included="true"
       @drag-start="mfHandleUserGeneratedSliderEvent"
       @change="mfHandleUserGeneratedSliderEvent"
-      :dMinApptStartMilliseconds="0"
-      :dMaxApptStartMilliseconds="100"
+      :dMinApptStartMilliSecs="0"
+      :dMaxApptStartMilliSecs="100"
       :tooltip-formatter="getTooltipForThisMark"
       :style="sendCssVariablesForIconColorAndSizeToStyleSheet"
     >
@@ -66,8 +66,8 @@ export default {
     return {
       dCurrentActiveButtonClientRowId: 0,
       dCurrentValueOnTheSlider: 0,
-      dMaxApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
-      dMinApptStartMilliseconds: -1, // -1 is assumed to indicate value has never been set
+      dMaxApptStartMilliSecs: -1, // -1 is assumed to indicate value has never been set
+      dMinApptStartMilliSecs: -1, // -1 is assumed to indicate value has never been set
       dMarksOnSlider: {},
       dClientUniqRowIdAtEachSliderMark: {},
       dApptStatusAtEachSliderMark: {},
@@ -173,45 +173,45 @@ export default {
 
       // Goal: Get max and min values. This is needed to calculate the percentages. Probably nor needed for equidistant
       for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
-        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
+        const apptStartMilliSecsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecsOnCalendar']
 
-        if (this.dMinApptStartMilliseconds === -1) {
-          this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMinApptStartMilliSecs === -1) {
+          this.dMinApptStartMilliSecs = apptStartMilliSecsOnCalendar
         }
 
-        if (this.dMaxApptStartMilliseconds === -1) {
-          this.dMaxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMaxApptStartMilliSecs === -1) {
+          this.dMaxApptStartMilliSecs = apptStartMilliSecsOnCalendar
         }
 
-        if (this.dMaxApptStartMilliseconds < apptStartMilliSecondsOnCalendar) {
-          this.dMaxApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMaxApptStartMilliSecs < apptStartMilliSecsOnCalendar) {
+          this.dMaxApptStartMilliSecs = apptStartMilliSecsOnCalendar
         }
-        if (this.dMinApptStartMilliseconds > apptStartMilliSecondsOnCalendar) {
-          this.dMinApptStartMilliseconds = apptStartMilliSecondsOnCalendar
+        if (this.dMinApptStartMilliSecs > apptStartMilliSecsOnCalendar) {
+          this.dMinApptStartMilliSecs = apptStartMilliSecsOnCalendar
         }
       }
 
-      const spread = this.dMaxApptStartMilliseconds - this.dMinApptStartMilliseconds
+      const spread = this.dMaxApptStartMilliSecs - this.dMinApptStartMilliSecs
 
       // Ref: https://stackoverflow.com/questions/15593850/sort-array-based-on-object-attribute-javascript
       this.arOfAppointmentsFromClientDB.sort(function (a, b) {
-        return a.apptStartMilliSecondsOnCalendar > b.apptStartMilliSecondsOnCalendar
+        return a.apptStartMilliSecsOnCalendar > b.apptStartMilliSecsOnCalendar
           ? 1
-          : b.apptStartMilliSecondsOnCalendar > a.apptStartMilliSecondsOnCalendar
+          : b.apptStartMilliSecsOnCalendar > a.apptStartMilliSecsOnCalendar
           ? -1
           : 0
       })
 
       for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
         // Update the slider component
-        const apptStartMilliSecondsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
+        const apptStartMilliSecsOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecsOnCalendar']
 
         let sliderMarkPoint = null
         let percentage = null
         if (this.dConfigProportionalOrEquiDistant === 'EquiDistant') {
           sliderMarkPoint = (i / (this.arOfAppointmentsFromClientDB.length - 1)) * 100
         } else {
-          percentage = ((apptStartMilliSecondsOnCalendar - this.dMinApptStartMilliseconds) / spread) * 100
+          percentage = ((apptStartMilliSecsOnCalendar - this.dMinApptStartMilliSecs) / spread) * 100
 
           sliderMarkPoint = Math.round(percentage)
         }
@@ -254,7 +254,7 @@ export default {
         ]
         this.dApptStatusAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientDB[i]['apptStatus']
         this.dApptCalendarTimeAtEachSliderMark[sliderMarkPoint] = this.arOfAppointmentsFromClientDB[i][
-          'apptStartMilliSecondsOnCalendar'
+          'apptStartMilliSecsOnCalendar'
         ]
       }
       return this.dMarksOnSlider

@@ -171,7 +171,7 @@ export default {
     _ApptStatus: {
       required: true,
     },
-    _apptStartMilliSecondsOnCalendar: {
+    _apptStartMilliSecsOnCalendar: {
       required: true,
     },
   },
@@ -227,7 +227,7 @@ export default {
 
       if (
         pRow.vnRowStateInSession.toString().endsWith(rowState.SameAsDB) &&
-        pRow.ROW_START < this._apptStartMilliSecondsOnCalendar
+        pRow.ROW_START < this._apptStartMilliSecsOnCalendar
       ) {
         return 'color: #409EFF' // Blue as per https://element.eleme.io/#/en-US/component/color
       } else if (

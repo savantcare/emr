@@ -73,9 +73,9 @@ export default {
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+          const timeOfMeasurementInMilliSecs = data[i].timeOfMeasurementInMilliSecs
           const graphData = data[i][clientTbl.graphSeries1FieldName]
-          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliSecs, graphData])
         }
         return arDataToShowOnGraph
       } else {

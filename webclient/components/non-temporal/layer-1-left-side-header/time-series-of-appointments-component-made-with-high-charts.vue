@@ -168,7 +168,7 @@ export default {
       this.arOfAppointmentsFromClientDB = this.cfGetLatestAppointmentsFromInClientDB
 
       for (let i = 0; i < this.arOfAppointmentsFromClientDB.length; i++) {
-        const timeOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecondsOnCalendar']
+        const timeOnCalendar = this.arOfAppointmentsFromClientDB[i]['apptStartMilliSecsOnCalendar']
 
         let markerSymbol = ''
         if (this.arOfAppointmentsFromClientDB[i]['apptStatus'] === 'locked') {

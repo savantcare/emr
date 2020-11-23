@@ -11,7 +11,7 @@ CREATE TABLE `users` (
   `middleName` varchar(50) DEFAULT NULL,
   `lastName` varchar(50) DEFAULT NULL,
   `emailAddress` varchar(100) DEFAULT NULL,
-  `dateOfBirthInMilliseconds` datetime(3) DEFAULT NULL,
+  `dateOfBirthInMilliSecs` datetime(3) DEFAULT NULL,
   `notes` text DEFAULT NULL,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;

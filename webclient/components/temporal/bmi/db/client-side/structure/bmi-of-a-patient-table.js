@@ -5,7 +5,7 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
-const defaultValueOfTimeOfMeasurementInMilliseconds = () => Math.floor(Date.now())
+const defaultValueOfTimeOfMeasurementInMilliSecs = () => Math.floor(Date.now())
 
 export default class bmi extends clientTblManage {
   static entity = 'tblBmi'
@@ -41,14 +41,14 @@ export default class bmi extends clientTblManage {
       ptUuid: this.string(null),
       bmiInKgM2: this.string(''),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
-      timeOfMeasurementInMilliseconds: this.uid(() => defaultValueOfTimeOfMeasurementInMilliseconds()),
+      timeOfMeasurementInMilliSecs: this.uid(() => defaultValueOfTimeOfMeasurementInMilliSecs()),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
-      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliseconds is used.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliSecs is used.
     }
   }
 }
@@ -74,7 +74,7 @@ export const bmiFormDef = {
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliseconds',
+      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,
@@ -100,7 +100,7 @@ export const bmiFormDef = {
       notes: {
         minLength: minLength(0),
       },
-      timeOfMeasurementInMilliseconds: {
+      timeOfMeasurementInMilliSecs: {
         minLength: minLength(0),
       },
     },

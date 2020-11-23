@@ -52,7 +52,7 @@ Code synced with ref implementation on 4th august 2020
         </el-button-group>
 
         <el-button
-          :type="mfTypeOfButton('dateOfBirthInMilliseconds')"
+          :type="mfTypeOfButton('dateOfBirthInMilliSecs')"
           plain
           :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
           size="small"
@@ -83,7 +83,7 @@ export default {
   },
   computed: {
     cfFormatDateOfBirth() {
-      return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
+      return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliSecs).format('MMM DD YYYY') // parse integer
     },
   },
 }

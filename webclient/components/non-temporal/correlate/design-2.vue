@@ -120,7 +120,7 @@ export default {
 
       const arDataToShowOnGraph = []
 
-      let timeOfMeasurementInMilliseconds = 0
+      let timeOfMeasurementInMilliSecs = 0
 
       for (let i = 0; i < arOfApts.length; i++) {
         let depressionScore = this.mfGetProsOnApptLockDate(arOfApts[i])
@@ -128,12 +128,12 @@ export default {
         let graphData = (depressionScore / maxValue) * 100
         if (arOfApts[i]['ROW_END'] === 2147483648000) {
           // This means it is current data
-          timeOfMeasurementInMilliseconds = Math.floor(Date.now())
+          timeOfMeasurementInMilliSecs = Math.floor(Date.now())
         } else {
-          timeOfMeasurementInMilliseconds = arOfApts[i]['ROW_END']
+          timeOfMeasurementInMilliSecs = arOfApts[i]['ROW_END']
         }
         graphData = Math.round(graphData)
-        arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+        arDataToShowOnGraph.push([timeOfMeasurementInMilliSecs, graphData])
       }
 
       return arDataToShowOnGraph
@@ -149,10 +149,10 @@ export default {
       const arDataToShowOnGraph = []
 
       for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
-        const timeOfMeasurementInMilliseconds = arOfObjectsFromClientDB[i].ROW_START
+        const timeOfMeasurementInMilliSecs = arOfObjectsFromClientDB[i].ROW_START
 
         arDataToShowOnGraph.push({
-          x: timeOfMeasurementInMilliseconds,
+          x: timeOfMeasurementInMilliSecs,
           y: 50,
           tooltip:
             arOfObjectsFromClientDB[i].tblLinkToServiceStatementFieldMaster.serviceStatementFieldNameInDb +
@@ -298,10 +298,10 @@ export default {
         }
 
         for (let i = 0; i < numberOfPointsOnGraph; i++) {
-          const timeOfMeasurementInMilliseconds = data[i].timeOfMeasurementInMilliseconds
+          const timeOfMeasurementInMilliSecs = data[i].timeOfMeasurementInMilliSecs
           const graphData = (data[i][pFieldName] / maxGraphData) * 100
           graphData = Math.round(graphData)
-          arDataToShowOnGraph.push([timeOfMeasurementInMilliseconds, graphData])
+          arDataToShowOnGraph.push([timeOfMeasurementInMilliSecs, graphData])
         }
 
         return arDataToShowOnGraph

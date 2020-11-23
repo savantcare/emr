@@ -56,7 +56,7 @@ export default {
         const statusOfNewRowsSent = await allClientTbls[entity].sfSendNewChangedRowsToServer()
         console.log(statusOfNewRowsSent)
         // Step2: Save all changed rows
-        const statusOfChangedRowsSent = await allClientTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some milliseconds of this rows lock time
+        const statusOfChangedRowsSent = await allClientTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some MilliSecs of this rows lock time
         console.log(statusOfChangedRowsSent)
       }
 
@@ -78,7 +78,7 @@ export default {
       if (arOfObjectsFromClientDB.length === 0) {
         newAppt = await clientTblOfAppointments.insert({
           data: {
-            apptStartMilliSecondsOnCalendar: Math.floor(Date.now()),
+            apptStartMilliSecsOnCalendar: Math.floor(Date.now()),
             apptProviderUuid: 1,
             apptStatus: 'unlocked',
             ROW_START: Math.floor(Date.now()),

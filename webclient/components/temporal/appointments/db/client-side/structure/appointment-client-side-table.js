@@ -18,7 +18,7 @@ export default class tblAppointments extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      apptStartMilliSecondsOnCalendar: this.number(2147483648000),
+      apptStartMilliSecsOnCalendar: this.number(2147483648000),
       apptProviderUuid: this.string(null),
       apptStatus: this.string(null), // values can be cancelled / late-cancellation /  no-show / not-ready-for-lock / locked / not-locked
 

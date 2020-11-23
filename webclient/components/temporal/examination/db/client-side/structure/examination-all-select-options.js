@@ -20,7 +20,7 @@ export default class examinationAllSelectOptions extends clientTblManage {
       examinationFieldOptionLabel: this.string(null),
       examinationFieldNameInDb: this.string(null),
 
-      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliseconds is used.
+      ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliSecs is used.
     }
   }
 }

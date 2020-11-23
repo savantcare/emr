@@ -1,6 +1,6 @@
 use sc_vital_signs;
 
-INSERT INTO `temperature` (`serverSideRowUuid`, `ptUuid`, `temperatureInFarehnite`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `temperature` (`serverSideRowUuid`, `ptUuid`, `temperatureInFarehnite`, `timeOfMeasurementInMilliSecs`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 801, '2020-10-13 06:00:43.747', 'test 1', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '::1'),
 ('0690f1c0-1e88-11eb-8415-3f7083223286', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 50, '2020-11-04 10:25:13.948', 'aaaaa`', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1'),
 ('0a978d10-1e60-11eb-9a21-cd4fb1d311e4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 102, '2020-11-04 05:39:00.833', '', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1'),

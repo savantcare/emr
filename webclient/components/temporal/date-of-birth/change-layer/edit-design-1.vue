@@ -21,8 +21,8 @@ Code synced with ref implementation on 4th august 2020
           <el-form-item>
             <el-input
               placeholder="Date of birth"
-              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliseconds')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliseconds')"
+              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliSecs')"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliSecs')"
             >
             </el-input>
             <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats

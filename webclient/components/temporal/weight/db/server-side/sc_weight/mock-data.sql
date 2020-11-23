@@ -1,6 +1,6 @@
 use sc_vital_signs;
 
-INSERT INTO `weight` (`serverSideRowUuid`, `ptUuid`, `weightInPounds`, `timeOfMeasurementInMilliseconds`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
+INSERT INTO `weight` (`serverSideRowUuid`, `ptUuid`, `weightInPounds`, `timeOfMeasurementInMilliSecs`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES
 ('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 178, '2020-01-01 08:00:00.000', 'test a', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '::1'),
 ('01d628d0-1e88-11eb-8415-3f7083223286', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 50, '2020-11-04 10:25:06.013', 'aaaa', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1'),
 ('0b6c29f0-1d96-11eb-b2f6-d1c45a129671', 'bfe041fa-073b-4223-8c69-0540ee678ff8', 60, '2020-11-01 18:30:00.000', 'test', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1'),

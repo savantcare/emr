@@ -25,10 +25,10 @@ export default {
     cfAge() {
       const currentDate = new Date()
       const currentMS = currentDate.getTime()
-      const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds
+      const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliSecs
       const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
       return '(' + age + 'Y)'
-      // return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds).format('MMM DD YYYY') // parse integer
+      // return moment(this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliSecs).format('MMM DD YYYY') // parse integer
     },
   },
 }

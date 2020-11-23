@@ -9,7 +9,7 @@ export default class ptDateOfBirth extends clientTblManage {
   static entity = 'tblDateOfBirth'
   static apiUrl = process.env.baseUrlForLumen + '/date-of-birth'
 
-  static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
+  static graphSeries1FieldName = 'dateOfBirthInMilliSecs'
   static graphSeries1Unit = 'Lbs'
 
   static primaryKey = 'clientSideUniqRowId'
@@ -21,7 +21,7 @@ export default class ptDateOfBirth extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      dateOfBirthInMilliseconds: this.number(null), // For date decision see name/db/structure/table.js
+      dateOfBirthInMilliSecs: this.number(null), // For date decision see name/db/structure/table.js
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),

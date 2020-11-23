@@ -3,7 +3,7 @@
     <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
     <b>Appt Date:</b>
 
-    {{ patientCurrentApptObj['apptStartMilliSecondsOnCalendar'] | moment }}
+    {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
     <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
 
     <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
