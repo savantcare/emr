@@ -107,7 +107,7 @@ import goalsAdd from '@/components/temporal/goals/change-layer/add-ct.vue'
 import recAdd from '@/components/temporal/recommendations/change-layer/recommendation-add.vue'
 
 import remAdd from '@/components/temporal/reminders/change-layer/add-ct.vue'
-import remView from '@/components/temporal/reminders/view-layer/table-ct.vue'
+import remView from '@/components/temporal/reminders/view-layer/grid-design2-ct.vue'
 
 import pcAdd from '@/components/temporal/plan-comments/change-layer/add-ct.vue'
 import ssAdd from '@/components/temporal/service-statements/change-layer/add-ss.vue'
