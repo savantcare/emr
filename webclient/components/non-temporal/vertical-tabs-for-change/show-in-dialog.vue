@@ -43,6 +43,9 @@
       top="1vh"
       width="80%"
     >
+      <!-- Why not keep each el-tab-pane content inside v-if
+When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
+    -->
       <div style="display: grid; grid-template-columns: 1fr">
         <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
           <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
@@ -89,12 +92,8 @@
             ><screensAdd v-if="activeTabName === 'screens'"
           /></el-tab-pane>
           <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd v-if="activeTabName === 'goals'" /></el-tab-pane>
-          <el-tab-pane label="Recommendations" name="recommendations" key="22"
-            ><recAdd v-if="activeTabName === 'recommendations'"
-          /></el-tab-pane>
-          <el-tab-pane label="Reminders" name="reminders" key="23">
-            <remAdd v-if="activeTabName === 'reminders'" /> <remView
-          /></el-tab-pane>
+          <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
+          <el-tab-pane label="Reminders" name="reminders"> <remAdd /> <remView /> ></el-tab-pane>
           <el-tab-pane label="Plan comments" name="plan_comments" key="24"
             ><pcAdd v-if="activeTabName === 'plan_comments'"
           /></el-tab-pane>
