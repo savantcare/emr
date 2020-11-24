@@ -58,7 +58,6 @@ export const chiefComplaintFormDef = {
   showFormReviewedButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  showFormReviewedButton: false,
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
@@ -68,13 +67,4 @@ export const chiefComplaintFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   styleForEachRowInPaperView:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 7fr 1fr; grid-column-gap: 1rem',
-
-  // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
-  validationsObj: {
-    value: {
-      description: {
-        minLength: minLength(8),
-      },
-    },
-  },
 }
