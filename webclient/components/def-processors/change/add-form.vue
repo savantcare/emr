@@ -143,6 +143,8 @@
                 {{ propFieldDef.fieldNameInUi }}
               </div>
               <el-input
+                @focus="nameOfFieldWithFocus = 'input'"
+                @blur="nameOfFieldWithFocus = 'not-input'"
                 :ref="propFieldDef.fieldNameInDb"
                 :type="propFieldDef.fieldType"
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
@@ -269,7 +271,7 @@ export default {
     this.value = this._formDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
-    return { value: [] }
+    return { value: [], nameOfFieldWithFocus: '' }
   },
   validations() {
     return this._formDef.validationsObj
@@ -295,6 +297,7 @@ export default {
   computed: {
     // allClientTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
+      console.log(this.nameOfFieldWithFocus)
       const r = allClientTbls[this._formDef.id].fnGetNewRowsInEditState()
       return r
     },
