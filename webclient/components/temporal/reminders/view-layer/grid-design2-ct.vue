@@ -1,14 +1,7 @@
 <!-- Reference implementation -->
 <template>
   <div>
-    <showContentInCardComponent
-      propMainCardName="Reminders"
-      :propActionsThatCanBeInvokedFromCardHeader="[
-        {
-          actionDescription: 'Show deleted',
-        },
-      ]"
-    >
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr">
       <el-card
         slot="bodySlotContentFromParentToShowAboveChildCards"
         v-for="rem in cfArOfRemForDisplayInTable"
@@ -42,7 +35,7 @@
         <div class="left-half-card-overlay" @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"></div>
         <div class="right-half-card-overlay" @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"></div>
       </el-card>
-    </showContentInCardComponent>
+    </div>
 
     <ctActOnSocketMessages></ctActOnSocketMessages>
   </div>

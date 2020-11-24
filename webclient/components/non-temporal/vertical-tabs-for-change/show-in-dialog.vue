@@ -91,7 +91,14 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
       /></el-tab-pane>
       <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd v-if="activeTabName === 'goals'" /></el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
-      <el-tab-pane label="Reminders" name="reminders"> <remAdd /> <remView /></el-tab-pane>
+      <el-tab-pane label="Reminders" name="reminders">
+        <el-tabs v-model="first">
+          <el-tab-pane label="Fast" name="first"> <remAdd /> <remView /> </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
+          <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
+          <el-tab-pane label="Multi edit reminders" name="fourth">Multi edit reminders</el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="24"
         ><pcAdd v-if="activeTabName === 'plan_comments'"
       /></el-tab-pane>
