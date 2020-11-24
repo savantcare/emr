@@ -2,209 +2,200 @@
 <template>
   <div>
     <!-- Start rendering the add form -->
-    <el-form>
-      <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
-      <div v-if="cfGetClientTblNewRowsInEditState.length">
-        <!-- _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
-        <!-- Start to process each row -->
-        <el-form
-          v-for="ormRow in cfGetClientTblNewRowsInEditState"
-          :key="ormRow.clientSideUniqRowId"
-          :id="`each-data-row` + _formDef.id"
-          :style="_formDef.styleForEachRowInAddForm"
-        >
-          <!-- Start to process fields in the row -->
-          <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-            <el-form-item>
-              <!-- Start to process each field -->
-              <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
-                <!-- The following are the possible field types -->
+    <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
 
-                <!-- HEADING -->
-                <div v-if="propFieldDef.fieldType === 'heading'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    <!-- the field printing happens lower so each field type can decide what format to apply -->
-                    <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-                  </div>
-                </div>
+    <!-- _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
+    <!-- Start to process each row -->
+    <div v-if="cfGetClientTblNewRowsInEditState.length">
+      <div
+        v-for="ormRow in cfGetClientTblNewRowsInEditState"
+        :key="ormRow.clientSideUniqRowId"
+        :id="`each-data-row` + _formDef.id"
+        :style="_formDef.styleForEachRowInAddForm"
+      >
+        <!-- Start to process fields in the row -->
+        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
+          <!-- Start to process each field -->
+          <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
+            <!-- The following are the possible field types -->
 
-                <!-- AUTO COMPLETE  
+            <!-- HEADING -->
+            <div v-if="propFieldDef.fieldType === 'heading'">
+              <div v-if="propFieldDef.showFieldLabel">
+                <!-- the field printing happens lower so each field type can decide what format to apply -->
+                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+              </div>
+            </div>
+
+            <!-- AUTO COMPLETE  
               fetch-suggestions="propFieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
-                <div v-else-if="propFieldDef.fieldType === 'autocomplete'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
+            <div v-else-if="propFieldDef.fieldType === 'autocomplete'">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
 
-                  <el-autocomplete
-                    v-model="value[propFieldDef.fieldNameInDb]"
-                    class="inline-input"
-                    :fetch-suggestions="propFieldDef.selectOptions"
-                    :placeholder="propFieldDef.fieldNameInUi"
-                    style="width: 100%"
-                    :highlight-first-item="true"
-                    @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  ></el-autocomplete>
-                </div>
+              <el-autocomplete
+                v-model="value[propFieldDef.fieldNameInDb]"
+                class="inline-input"
+                :fetch-suggestions="propFieldDef.selectOptions"
+                :placeholder="propFieldDef.fieldNameInUi"
+                style="width: 100%"
+                :highlight-first-item="true"
+                @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+              ></el-autocomplete>
+            </div>
 
-                <!-- multi-select-with-buttons -->
-                <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <div
-                    v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                      propFieldDef.fieldNameInDb,
-                      ormRow.clientSideUniqRowId
-                    )"
-                    :key="item.id"
-                  >
-                    <el-button
-                      v-model="value[propFieldDef.fieldNameInDb]"
-                      :type="item.selected ? 'primary' : 'plain'"
-                      @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                      >{{ item.value }}</el-button
-                    >
-                  </div>
-                </div>
+            <!-- multi-select-with-buttons -->
+            <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
+              <div
+                v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
+                  propFieldDef.fieldNameInDb,
+                  ormRow.clientSideUniqRowId
+                )"
+                :key="item.id"
+              >
+                <el-button
+                  v-model="value[propFieldDef.fieldNameInDb]"
+                  :type="item.selected ? 'primary' : 'plain'"
+                  @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  >{{ item.value }}</el-button
+                >
+              </div>
+            </div>
 
-                <!-- SLIDER type field value[propFieldDef.fieldNameInDb] -->
-                <div v-else-if="propFieldDef.fieldType === 'slider'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <div class="block">
-                    <el-slider
-                      v-model="value[propFieldDef.fieldNameInDb]"
-                      :step="propFieldDef.fieldOptions.step"
-                      show-stops
-                      :min="propFieldDef.fieldOptions.min"
-                      :max="propFieldDef.fieldOptions.max"
-                      :marks="propFieldDef.marks"
-                      :format-tooltip="propFieldDef.ft"
-                      @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    >
-                    </el-slider>
-                  </div>
-                </div>
+            <!-- SLIDER type field value[propFieldDef.fieldNameInDb] -->
+            <div v-else-if="propFieldDef.fieldType === 'slider'">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
+              <div class="block">
+                <el-slider
+                  v-model="value[propFieldDef.fieldNameInDb]"
+                  :step="propFieldDef.fieldOptions.step"
+                  show-stops
+                  :min="propFieldDef.fieldOptions.min"
+                  :max="propFieldDef.fieldOptions.max"
+                  :marks="propFieldDef.marks"
+                  :format-tooltip="propFieldDef.ft"
+                  @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                >
+                </el-slider>
+              </div>
+            </div>
 
-                <!-- SELECT -->
-                <div v-else-if="propFieldDef.fieldType === 'select'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <el-select v-model="value" filterable :placeholder="propFieldDef.fieldNameInUi">
-                    <el-option
-                      v-for="item in propFieldDef.selectOptions"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                      @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    >
-                    </el-option>
-                  </el-select>
-                </div>
+            <!-- SELECT -->
+            <div v-else-if="propFieldDef.fieldType === 'select'">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
+              <el-select v-model="value" filterable :placeholder="propFieldDef.fieldNameInUi">
+                <el-option
+                  v-for="item in propFieldDef.selectOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                >
+                </el-option>
+              </el-select>
+            </div>
 
-                <!-- DATE -->
-                <div v-if="propFieldDef.fieldType === 'date'">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
+            <!-- DATE -->
+            <div v-if="propFieldDef.fieldType === 'date'">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
 
-                  <el-date-picker
-                    :ref="propFieldDef.fieldNameInDb"
-                    format="MMM dd yyyy"
-                    value-format="timestamp"
-                    type="date"
-                    style="width: 100%"
-                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                    :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    :placeholder="propFieldDef.fieldNameInUi"
-                  >
-                  </el-date-picker>
-                </div>
+              <el-date-picker
+                :ref="propFieldDef.fieldNameInDb"
+                format="MMM dd yyyy"
+                value-format="timestamp"
+                type="date"
+                style="width: 100%"
+                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                :placeholder="propFieldDef.fieldNameInUi"
+              >
+              </el-date-picker>
+            </div>
 
-                <!-- NUMBER -->
-                <div v-if="propFieldDef.fieldType.includes('number')">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <el-input-number
-                    v-model="value[propFieldDef.fieldNameInDb]"
-                    :ref="propFieldDef.fieldNameInDb"
-                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                    :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  ></el-input-number>
-                  {{ propFieldDef.unitOfMeasurement }}
-                </div>
+            <!-- NUMBER -->
+            <div v-if="propFieldDef.fieldType.includes('number')">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
+              <el-input-number
+                v-model="value[propFieldDef.fieldNameInDb]"
+                :ref="propFieldDef.fieldNameInDb"
+                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+              ></el-input-number>
+              {{ propFieldDef.unitOfMeasurement }}
+            </div>
 
-                <!-- input/textarea -->
-                <div v-if="propFieldDef.fieldType.includes('text')">
-                  <div v-if="propFieldDef.showFieldLabel">
-                    {{ propFieldDef.fieldNameInUi }}
-                  </div>
-                  <el-input
-                    :ref="propFieldDef.fieldNameInDb"
-                    :type="propFieldDef.fieldType"
-                    :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                    :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
-                    :placeholder="propFieldDef.fieldNameInUi"
-                    :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                    @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  ></el-input>
-                </div>
+            <!-- input/textarea -->
+            <div v-if="propFieldDef.fieldType.includes('text')">
+              <div v-if="propFieldDef.showFieldLabel">
+                {{ propFieldDef.fieldNameInUi }}
+              </div>
+              <el-input
+                :ref="propFieldDef.fieldNameInDb"
+                :type="propFieldDef.fieldType"
+                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
+                :placeholder="propFieldDef.fieldNameInUi"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+              ></el-input>
+            </div>
 
-                <!-- Prop explaination
+            <!-- Prop explaination
             Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
             Remove should not come if there is only one _formDef.maxRow
           -->
-              </el-card>
-            </el-form-item>
+          </el-card>
 
-            <!-- Just ended processing all the fields in the row -->
-          </div>
-          <el-button
-            v-if="
-              mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
-            "
-            plain
-            round
-            size="mini"
-            type="warning"
-            style="float: right"
-            @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
-            >Remove</el-button
-          >
-
-          <!-- Just ended processing each row -->
-        </el-form>
-      </div>
-      <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
-      <p v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</p>
-
-      <!-- Form action buttons below the form -->
-      <el-form-item>
-        <el-button v-if="_formDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
-          >Reviewed</el-button
-        >
-
-        <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+          <!-- Just ended processing all the fields in the row -->
+        </div>
         <el-button
           v-if="
             mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
           "
-          type="primary"
           plain
-          @click="mfAddEmptyRowInEditLayerientSideTable"
-          >Add more</el-button
+          round
+          size="mini"
+          type="warning"
+          style="float: right"
+          @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
+          >Remove</el-button
         >
-        <el-button v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
-          >Reset form</el-button
-        >
-      </el-form-item>
-    </el-form>
+
+        <!-- Just ended processing each row -->
+      </div>
+    </div>
+    <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
+    <div v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</div>
+
+    <!-- Form action buttons below the form -->
+    <el-button v-if="_formDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
+      >Reviewed</el-button
+    >
+
+    <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+    <el-button
+      v-if="mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows"
+      type="primary"
+      plain
+      @click="mfAddEmptyRowInEditLayerientSideTable"
+      >Add more</el-button
+    >
+    <el-button v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm">Reset form</el-button>
 
     <!-- Goal: Show data at the time of sending to server -->
     <el-table
