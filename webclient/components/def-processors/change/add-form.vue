@@ -1,12 +1,11 @@
 <!-- Goal: Show multiple add rows along with remove each row. At end A. Reviewed B. Reset form C. Add more  -->
 <template>
   <div>
-    <!-- Start rendering the add form -->
-    <!-- Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row -->
-
-    <!-- _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr -->
-    <!-- Start to process each row -->
-    <div v-if="cfGetClientTblNewRowsInEditState.length">
+    <!-- Start rendering the add form 
+         Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row 
+        _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
+        Start to process each row -->
+    <div v-if="cfGetClientTblNewRowsInEditState.length && cfGetClientTblNewRows.length">
       <div
         v-for="ormRow in cfGetClientTblNewRowsInEditState"
         :key="ormRow.clientSideUniqRowId"
@@ -153,18 +152,18 @@
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
               ></el-input>
             </div>
-
-            <!-- Prop explaination
-            Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
-            20 columns to input and 4 columns to remove button
-            Remove should not come if there is only one _formDef.maxRow
-          --></div>
+          </div>
 
           <!-- Just ended processing all the fields in the row -->
         </div>
 
         <div>
-          <!-- this will be the 1fr of the display grid -->
+          <!-- Goal: Show remove button on the RHS of each row.
+               This will be the 1fr of the display grid 
+               Remove should not come if there is only one _formDef.maxRow
+               
+               TODO Not clear: Why is there a v-if condition in el-button
+               -->
           <el-button
             v-if="
               mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
@@ -173,7 +172,7 @@
             round
             size="mini"
             type="warning"
-            @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
+            @click="mfDeleteRowInClientSideTable(ormRow.clientSideUniqRowId)"
             >Remove</el-button
           >
         </div>
@@ -184,7 +183,7 @@
       </div>
     </div>
     <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
-    <div v-else>{{ mfAddEmptyRowInEditLayerientSideTable() }}</div>
+    <div v-else>{{ mfAddEmptyRowInClientSideTable() }}</div>
 
     <!-- Form action buttons below the form -->
     <el-button v-if="_formDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
@@ -198,7 +197,7 @@
       plain
       size="mini"
       round
-      @click="mfAddEmptyRowInEditLayerientSideTable"
+      @click="mfAddEmptyRowInClientSideTable"
       >Add more</el-button
     >
     <el-button size="mini" round v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
@@ -290,6 +289,10 @@ export default {
       const r = allClientTbls[this._formDef.id].fnGetNewRowsInEditState()
       return r
     },
+    cfGetClientTblNewRows() {
+      const r = allClientTbls[this._formDef.id].fnGetNewRows()
+      return r
+    },
     cfGetClientTblReadyToReviewedStateRows() {
       return allClientTbls[this._formDef.id].fnGetNewRowsInFormValidationPassState()
     },
@@ -317,7 +320,7 @@ export default {
       return arOfObjectsFromClientDB
     },
 
-    async mfAddEmptyRowInEditLayerientSideTable() {
+    async mfAddEmptyRowInClientSideTable() {
       // TODO: this should be part of base class
 
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
@@ -386,7 +389,7 @@ export default {
       }
       return ''
     },
-    async mfDeleteRowInEditLayerientSideTable(pClientRowId) {
+    async mfDeleteRowInClientSideTable(pClientRowId) {
       await allClientTbls[this._formDef.id].delete(pClientRowId)
       this.mfSetFormFieldFocus()
     },

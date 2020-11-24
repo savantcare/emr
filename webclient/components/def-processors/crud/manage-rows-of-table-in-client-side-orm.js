@@ -113,6 +113,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  static fnGetNewRows() {
+    const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New).get()
+    return arFromClientTbl
+  }
+
   static fnGetNewRowsInEditState() {
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.New)
