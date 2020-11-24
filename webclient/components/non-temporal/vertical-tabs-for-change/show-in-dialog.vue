@@ -57,7 +57,7 @@
           <el-tab-pane label="Family history" name="family_history" key="4"
             ><familyHistory v-if="activeTabName === 'family_history'"
           /></el-tab-pane>
-          <el-tab-pane label="M review of systems" name="medical_review_of_systems" key="5"
+          <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
             ><mrosAdd v-if="activeTabName === 'medical_review_of_systems'"
           /></el-tab-pane>
           <el-tab-pane label="Allergies" name="allergies" key="6"
@@ -76,11 +76,11 @@
             <bmiAdd name="bmi" key="15" v-if="activeTabName === 'vitals'" />
             <waistCircumferenceAdd name="waist_circumference" key="16" v-if="activeTabName === 'vitals'"
           /></el-tab-pane>
-          <el-tab-pane label="Misc Note" name="misc_note" key="17"
-            ><miscNote v-if="activeTabName === 'misc_note'"
+          <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"
+            ><miscNote v-if="activeTabName === 'miscellaneous_notes'"
           /></el-tab-pane>
-          <el-tab-pane label="Process Note" name="process_note" key="18">
-            <processNote v-if="activeTabName === 'process_note'"
+          <el-tab-pane label="Process Note" name="process_notes" key="18">
+            <processNote v-if="activeTabName === 'process_notes'"
           /></el-tab-pane>
           <el-tab-pane label="Diagnosis" name="diagnosis" key="19"
             ><dxAdd v-if="activeTabName === 'diagnosis'"

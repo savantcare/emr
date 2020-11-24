@@ -63,6 +63,9 @@ export const miscellaneousNotesFormDef = {
     return []
   },
   showReviewedButtonInForm: false,
+  showAddMoreButtonInForm: false,
+  showResetFormButton: false,
+
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
