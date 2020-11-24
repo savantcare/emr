@@ -1,8 +1,8 @@
 <template>
   <div style="">
     <div style="cursor: pointer">
-      <el-divider content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)">
-        {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
+      <el-divider class="entity-header" content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)">
+        <h3>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}</h3>
 
         <el-button-group>
           <span v-if="currentApptObj['apptStatus'] === 'locked'">
@@ -468,5 +468,10 @@ http://jsfiddle.net/kf1y2npw/30/
   border-style: solid;
   border-width: 1px;
   border-color: grey;
+}
+.entity-header h3 {
+  color: #444;
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 </style>

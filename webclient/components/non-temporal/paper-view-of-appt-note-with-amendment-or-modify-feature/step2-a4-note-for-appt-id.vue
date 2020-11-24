@@ -13,7 +13,7 @@
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
 
-      <el-divider class="section-header"><h3 style="">History</h3></el-divider>
+      <el-divider class="section-header"><h3>History</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
@@ -194,7 +194,12 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   font-size: 1rem;
   color: #606266;
 }
+
+/* Where ever the section-header class is applied it will look for all H3 inside it and make the color lighter. This is used for the headings in the paper-note for Assessment / plan etc ..
+Why was this color chosen? As per https://element.eleme.io/#/en-US/component/color the #303133 is the color of primary text
+*/
 .section-header h3 {
-  color: #606266;
+  color: #333333;
+  font-weight: 500;
 }
 </style>
