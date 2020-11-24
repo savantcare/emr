@@ -115,6 +115,9 @@
 
 
             -->
+
+        <ctChangeInTabs />
+        <!--
         <el-button
           style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px"
           plain
@@ -126,6 +129,7 @@
           class="el-icon-edit"
         >
         </el-button>
+                -->
       </el-tooltip>
       <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
         <el-button
@@ -150,6 +154,8 @@
 
 <script>
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import ctChangeInTabs from '@/components/non-temporal/cts-tabs-in-change-layer/show-tabs-in-dialog-ct.vue'
+
 // Library
 import moment from 'moment'
 
@@ -158,6 +164,9 @@ export default {
     return {
       mouseOnThisRow: false,
     }
+  },
+  components: {
+    ctChangeInTabs,
   },
   props: {
     _formDef: {

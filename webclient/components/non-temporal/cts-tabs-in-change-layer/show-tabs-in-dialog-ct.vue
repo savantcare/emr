@@ -12,7 +12,8 @@ dialog
 
 -->
 <template>
-  <!--  Explanation of props sent to ct 
+  <div>
+    <!--  Explanation of props sent to ct 
 
         Goal: make it easy to read view layer and also show change layer as a seperate layer
           custom-class="multi-tab-dialog"
@@ -43,20 +44,22 @@ dialog
         Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
     -->
-  <el-dialog
-    custom-class="multi-tab-dialog"
-    :modal="true"
-    :close-on-click-modal="true"
-    :close-on-press-escape="true"
-    :show-close="false"
-    :visible.sync="vblIsdialogHoldingTabsInEditLayerVisible"
-    :lock-scroll="true"
-    top="1vh"
-    :width="vsDialogWidth"
-  >
-    <div style="display: grid; grid-template-columns: 2fr 10fr 1fr">
-      <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
-      <!-- 
+    <el-button plain class="el-icon-edit" size="mini" @click="handleClickOnSettingsIcon"></el-button>
+
+    <el-dialog
+      custom-class="multi-tab-dialog"
+      :modal="true"
+      :close-on-click-modal="true"
+      :close-on-press-escape="true"
+      :show-close="false"
+      :visible.sync="dIsSettingsDialogVisible"
+      :lock-scroll="true"
+      top="1vh"
+      :width="vsDialogWidth"
+    >
+      <div style="display: grid; grid-template-columns: 1fr">
+        <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
+        <!-- 
         Active Tab is changed in following 3 cases:
           1. If a tab is removed, an adjacent tab is made active
           2. When left and right arrow are pressed the active tab changes.
@@ -94,7 +97,6 @@ dialog
                        │Active tab changed in UI│                 
                        └────────────────────────┘                          
       -->
-      <div>
         <el-tabs tab-position="left" style="height: 900px">
           <el-tab-pane label="Chief complaint"></el-tab-pane>
           <el-tab-pane label="P review of systems"></el-tab-pane>
@@ -113,38 +115,17 @@ dialog
           <el-tab-pane label="Service statements"></el-tab-pane>
         </el-tabs>
       </div>
-
-      <div>
-        <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
-          <el-tab-pane
-            v-for="(tab, loopCount) in cfArTabsInEditLayer"
-            :key="tab.id"
-            :label="tab.label + '(' + (loopCount + 1) + ')'"
-            :name="tab.id"
-            :closable="tab.closable"
-          >
-            <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
-            <component :is="tab.ctToShow" :first-prop="tab.vstPropsToGiveToCt"></component>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-      <div class="set-of-tabs">
-        <ctSetOfTabs></ctSetOfTabs>
-      </div>
-    </div>
-  </el-dialog>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
-import ctSetOfTabs from './set-of-tabs-ct'
-
 export default {
   name: 'CLTabsInDialogManager',
-  components: {
-    ctSetOfTabs,
-  },
   data() {
-    return {}
+    return {
+      dIsSettingsDialogVisible: false,
+    }
   },
 
   computed: {
@@ -166,7 +147,7 @@ export default {
     },
     vblIsdialogHoldingTabsInEditLayerVisible: {
       get() {
-        return this.$store.state.vstObjTabsInCL.vblIsdialogHoldingTabsInEditLayerVisible
+        this.dIsSettingsDialogVisible = true
       },
       set(value) {
         this.$store.commit('mtfSetTabDialogVisibility', value)
@@ -288,6 +269,10 @@ export default {
         this.$store.commit('mtfSetvsSelectedTabId', arNewTabs[idOfNewActiveTab].id)
       }
     },
+    handleClickOnSettingsIcon() {
+      this.dIsSettingsDialogVisible = true
+    },
+    handleChange(val) {},
   },
 }
 </script>

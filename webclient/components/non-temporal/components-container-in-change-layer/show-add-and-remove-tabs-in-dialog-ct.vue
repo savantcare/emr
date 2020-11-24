@@ -54,7 +54,7 @@ dialog
     top="1vh"
     :width="vsDialogWidth"
   >
-    <div style="display: grid; grid-template-columns: 2fr 10fr 1fr">
+    <div style="display: grid; grid-template-columns: 10fr 1fr">
       <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
       <!-- 
         Active Tab is changed in following 3 cases:

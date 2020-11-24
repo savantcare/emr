@@ -33,6 +33,9 @@
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
               <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
+              <ctChangeInTabs />
+              <!--
+              
               <el-button
                 v-if="
                   cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
@@ -43,6 +46,8 @@
                 @click="mfOpenAddInEditLayer"
                 style="padding: 3px; color: #c0c4cc; border: none"
               ></el-button>
+
+              -->
               <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
               <el-button
                 v-if="cfGetArOfDataRows.length > 1"
@@ -151,6 +156,7 @@ import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
+import ctChangeInTabs from '@/components/non-temporal/cts-tabs-in-change-layer/show-tabs-in-dialog-ct.vue'
 
 export default {
   data() {
@@ -196,7 +202,7 @@ export default {
       items: [],
     }
   },
-  components: { VueHorizontalList, getRowContent },
+  components: { VueHorizontalList, getRowContent, ctChangeInTabs },
   mixins: [clInvokeMixin],
 
   filters: {
