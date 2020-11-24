@@ -99,7 +99,7 @@ export const diagnosisFormDef = {
     { fieldNameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []

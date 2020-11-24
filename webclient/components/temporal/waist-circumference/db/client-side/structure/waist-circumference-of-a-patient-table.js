@@ -82,7 +82,7 @@ export const waistCircumferenceFormDef = {
       showFieldLabel: true,
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['waistCircumferenceInInches'],
   fnCreated: function () {

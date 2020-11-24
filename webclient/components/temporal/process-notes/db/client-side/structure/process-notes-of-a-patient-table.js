@@ -56,7 +56,7 @@ export const processNotesFormDef = {
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   fnCreated: function () {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
     return []

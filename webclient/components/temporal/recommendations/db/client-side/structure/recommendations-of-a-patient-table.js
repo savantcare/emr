@@ -67,7 +67,10 @@ export const recommendationsFormDef = {
     },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
+  showAddMoreButtonInForm: false,
+  showResetFormButton: false,
+
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []

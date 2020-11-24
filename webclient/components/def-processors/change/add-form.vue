@@ -186,13 +186,16 @@
     <div v-else>{{ mfAddEmptyRowInClientSideTable() }}</div>
 
     <!-- Form action buttons below the form -->
-    <el-button v-if="_formDef.showFormReviewedButton === true" type="primary" plain @click="mfOnReviewed"
+    <el-button v-if="_formDef.showReviewedButtonInForm === true" type="primary" plain @click="mfOnReviewed"
       >Reviewed</el-button
     >
 
     <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
     <el-button
-      v-if="mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows"
+      v-if="
+        _formDef.showAddMoreButtonInForm !== false &&
+        (mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows)
+      "
       type="primary"
       plain
       size="mini"
@@ -200,7 +203,13 @@
       @click="mfAddEmptyRowInClientSideTable"
       >Add more</el-button
     >
-    <el-button size="mini" round v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
+    <el-button
+      size="mini"
+      round
+      v-if="_formDef.showResetFormButton !== false"
+      type="warning"
+      plain
+      @click="mfOnResetForm"
       >Reset form</el-button
     >
 
@@ -349,8 +358,15 @@ export default {
       const firstField = this._formDef.fieldsDef[0].fieldNameInDb
       if (this.$refs[firstField]) {
         const lastElement = this.$refs[firstField].length
-        // console.log('setting focus of', lastElement - 1, 'length is', lastElement)
-        this.$refs[firstField][lastElement - 1].focus()
+        // When rec is opened first time there is only 1 single row. So I want the focus to be on first row. When user starts to type in first row then a 2nd empty row gets inserted automatically but I want the focus to remain on first row.
+        // When user starts to type in 2nd row then 3rd row gets inserted automatically. When user deletes the 2nd row I want the focus to be on 1st.
+        if (!lastElement) return
+        if (!this.$refs[firstField]) return
+        console.log(firstField, lastElement, this.$refs[firstField])
+        if (lastElement === 1) {
+          if (this.$refs[firstField][lastElement - 1]) this.$refs[firstField][lastElement - 1].focus()
+        }
+        if (this.$refs[firstField][lastElement - 2]) this.$refs[firstField][lastElement - 2].focus()
       }
     },
     // Cannot call allClientTbls[this._formDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function

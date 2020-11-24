@@ -82,7 +82,7 @@ export const pulseFormDef = {
       showFieldLabel: true,
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['pulseInBpm'],
   fnCreated: function () {

@@ -66,7 +66,7 @@ export const allergiesFormDef = {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
   validationsObj: {

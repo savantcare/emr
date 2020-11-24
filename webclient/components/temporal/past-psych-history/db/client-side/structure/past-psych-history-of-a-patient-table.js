@@ -111,7 +111,7 @@ export const pastPsychHistoryFormDef = {
     'past_substance_abuse',
   ],
   maxNumberOfTemporallyValidRows: 1,
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   validationsObj: {
     value: {
       past_outpatient_treatment: {

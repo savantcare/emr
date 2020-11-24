@@ -59,7 +59,7 @@ export const screensFormDef = {
     // Giving span 24 since it is inside div grid and I want to take all available width
     { fieldNameInDb: 'name', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   additionalRowActions: [
     {
       textInUi: 'Start',

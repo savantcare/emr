@@ -81,7 +81,7 @@ export const heightFormDef = {
       showFieldLabel: true,
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['heightInInches'],
   fnCreated: function () {

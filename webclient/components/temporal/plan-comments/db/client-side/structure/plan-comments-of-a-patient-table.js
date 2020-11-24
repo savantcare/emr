@@ -61,7 +61,7 @@ export const planCommentsFormDef = {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {

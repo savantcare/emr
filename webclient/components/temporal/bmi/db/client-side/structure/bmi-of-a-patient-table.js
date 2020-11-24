@@ -81,7 +81,7 @@ export const bmiFormDef = {
       showFieldLabel: true,
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bmiInKgM2'],
   fnCreated: function () {

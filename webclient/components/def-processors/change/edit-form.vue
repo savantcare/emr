@@ -84,7 +84,7 @@
       </div>
       <el-form-item>
         <el-button
-          v-if="_formDef.showFormReviewedButton === true"
+          v-if="_formDef.showReviewedButtonInForm === true"
           type="primary"
           size="mini"
           plain

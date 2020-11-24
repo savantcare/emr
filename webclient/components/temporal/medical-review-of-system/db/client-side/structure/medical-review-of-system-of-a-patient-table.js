@@ -76,7 +76,7 @@ export const medicalReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [

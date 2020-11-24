@@ -81,7 +81,7 @@ export const bloodSugarFormDef = {
       showFieldLabel: true,
     },
   ],
-  showFormReviewedButton: false,
+  showReviewedButtonInForm: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bloodSugarMgDL'],
   fnCreated: function () {
