@@ -358,6 +358,8 @@ export default {
       //console.log()
       let rowStatus = 0
 
+      if (!pEvent) return
+
       if (pEvent.length > 2) {
         rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
       } else {

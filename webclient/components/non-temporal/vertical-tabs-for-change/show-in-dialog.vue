@@ -149,6 +149,14 @@ export default {
     pcAdd,
     ssAdd,
   },
+  watch: {
+    activeTabName: {
+      immediate: true,
+      handler(pNVal, pOVal) {
+        console.log('setting tabIndex for', pNVal)
+      },
+    },
+  },
   computed: {
     vblIsdialogHoldingTabsInEditLayerVisible: {
       get() {
