@@ -10,7 +10,7 @@
       <div
         v-for="ormRow in cfGetClientTblNewRowsInEditState"
         :key="ormRow.clientSideUniqRowId"
-        :id="`each-data-row` + _formDef.id"
+        :id="`each-data-row-` + _formDef.id"
         :style="_formDef.styleForEachRowInAddForm"
       >
         <!-- Start to process fields in the row -->
@@ -163,19 +163,20 @@
 
           <!-- Just ended processing all the fields in the row -->
         </div>
-        <el-button
-          v-if="
-            mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
-          "
-          plain
-          round
-          size="mini"
-          type="warning"
-          style="float: right"
-          @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
-          >Remove</el-button
-        >
-
+        <div>
+          <!-- this will be the 1fr of the display grid -->
+          <el-button
+            v-if="
+              mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
+            "
+            plain
+            round
+            size="mini"
+            type="warning"
+            @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"
+            >Remove</el-button
+          >
+        </div>
         <!-- Just ended processing each row -->
       </div>
     </div>
@@ -192,10 +193,14 @@
       v-if="mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows"
       type="primary"
       plain
+      size="mini"
+      round
       @click="mfAddEmptyRowInEditLayerientSideTable"
       >Add more</el-button
     >
-    <el-button v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm">Reset form</el-button>
+    <el-button size="mini" round v-if="_formDef.resetForm !== false" type="warning" plain @click="mfOnResetForm"
+      >Reset form</el-button
+    >
 
     <!-- Goal: Show data at the time of sending to server -->
     <el-table
