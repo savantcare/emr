@@ -5,19 +5,6 @@
       propMainCardName="Reminders"
       :propActionsThatCanBeInvokedFromCardHeader="[
         {
-          actionDescription: 'Add',
-          isDefaultAction: true,
-        },
-        {
-          actionDescription: 'Multi edit',
-        },
-        {
-          actionDescription: 'Multi delete',
-        },
-        {
-          actionDescription: 'Toggle card display',
-        },
-        {
           actionDescription: 'Show deleted',
         },
       ]"

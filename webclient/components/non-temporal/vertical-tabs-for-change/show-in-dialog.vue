@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!--  Explanation of props sent to ct 
+  <!--  Explanation of props sent to ct 
 
         Goal: make it easy to read view layer and also show change layer as a seperate layer
           custom-class="multi-tab-dialog"
@@ -31,79 +30,76 @@
         Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
     -->
-    <el-dialog
-      custom-class="multi-tab-dialog"
-      :modal="true"
-      :close-on-click-modal="true"
-      :before-close="handleClose"
-      :close-on-press-escape="true"
-      :show-close="false"
-      :visible="cfDrawerVisibility"
-      :lock-scroll="true"
-      top="1vh"
-      width="80%"
-    >
-      <!-- Why not keep each el-tab-pane content inside v-if
+  <el-dialog
+    custom-class="multi-tab-dialog"
+    :modal="true"
+    :close-on-click-modal="true"
+    :before-close="handleClose"
+    :close-on-press-escape="true"
+    :show-close="false"
+    :visible="cfDrawerVisibility"
+    :lock-scroll="true"
+    top="1vh"
+    width="80%"
+  >
+    <!-- Why not keep each el-tab-pane content inside v-if
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
     -->
-      <div style="display: grid; grid-template-columns: 1fr">
-        <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
-          <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
-            ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
-          /></el-tab-pane>
-          <el-tab-pane label="P review of systems" name="psych_review_of_system" key="2"
-            ><prosAdd v-if="activeTabName === 'psych_review_of_system'"
-          /></el-tab-pane>
-          <el-tab-pane label="Past psych history" name="past_psych_history" key="3"
-            ><pastPsychHistory v-if="activeTabName === 'past_psych_history'"
-          /></el-tab-pane>
-          <el-tab-pane label="Family history" name="family_history" key="4"
-            ><familyHistory v-if="activeTabName === 'family_history'"
-          /></el-tab-pane>
-          <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
-            ><mrosAdd v-if="activeTabName === 'medical_review_of_system'"
-          /></el-tab-pane>
-          <el-tab-pane label="Allergies" name="allergies" key="6"
-            ><allergies v-if="activeTabName === 'allergies'"
-          /></el-tab-pane>
-          <el-tab-pane label="Examination" name="examination" key="7"
-            ><examAdd v-if="activeTabName === 'examination'"
-          /></el-tab-pane>
-          <el-tab-pane label="Vitals" name="vitals" key="8"
-            ><weightAdd name="weight" key="9" v-if="activeTabName === 'vitals'" />
-            <heightAdd name="height" key="10" v-if="activeTabName === 'vitals'" />
-            <pulseAdd name="pulse" key="11" v-if="activeTabName === 'vitals'" />
-            <temperatureAdd name="temperature" key="12" v-if="activeTabName === 'vitals'" />
-            <bloodPressureAdd name="blood_pressure" key="13" v-if="activeTabName === 'vitals'" />
-            <bloodSugarAdd name="blood_sugar" key="14" v-if="activeTabName === 'vitals'" />
-            <bmiAdd name="bmi" key="15" v-if="activeTabName === 'vitals'" />
-            <waistCircumferenceAdd name="waist_circumference" key="16" v-if="activeTabName === 'vitals'"
-          /></el-tab-pane>
-          <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"
-            ><miscNote v-if="activeTabName === 'miscellaneous_notes'"
-          /></el-tab-pane>
-          <el-tab-pane label="Process Note" name="process_notes" key="18">
-            <processNote v-if="activeTabName === 'process_notes'"
-          /></el-tab-pane>
-          <el-tab-pane label="Diagnosis" name="diagnosis" key="19"
-            ><dxAdd v-if="activeTabName === 'diagnosis'"
-          /></el-tab-pane>
-          <el-tab-pane label="Screens" name="screens" key="20"
-            ><screensAdd v-if="activeTabName === 'screens'"
-          /></el-tab-pane>
-          <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd v-if="activeTabName === 'goals'" /></el-tab-pane>
-          <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
-          <el-tab-pane label="Reminders" name="reminders"> <remAdd /> <remView /></el-tab-pane>
-          <el-tab-pane label="Plan comments" name="plan_comments" key="24"
-            ><pcAdd v-if="activeTabName === 'plan_comments'"
-          /></el-tab-pane>
-          <el-tab-pane label="Service statements" name="service_statements" key="25"
-            ><ssAdd v-if="activeTabName === 'service_statements'"
-          /></el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-dialog>
-  </div>
+    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
+      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
+        ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
+      /></el-tab-pane>
+      <el-tab-pane label="P review of systems" name="psych_review_of_system" key="2"
+        ><prosAdd v-if="activeTabName === 'psych_review_of_system'"
+      /></el-tab-pane>
+      <el-tab-pane label="Past psych history" name="past_psych_history" key="3"
+        ><pastPsychHistory v-if="activeTabName === 'past_psych_history'"
+      /></el-tab-pane>
+      <el-tab-pane label="Family history" name="family_history" key="4"
+        ><familyHistory v-if="activeTabName === 'family_history'"
+      /></el-tab-pane>
+      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
+        ><mrosAdd v-if="activeTabName === 'medical_review_of_system'"
+      /></el-tab-pane>
+      <el-tab-pane label="Allergies" name="allergies" key="6"
+        ><allergies v-if="activeTabName === 'allergies'"
+      /></el-tab-pane>
+      <el-tab-pane label="Examination" name="examination" key="7"
+        ><examAdd v-if="activeTabName === 'examination'"
+      /></el-tab-pane>
+      <el-tab-pane label="Vitals" name="vitals" key="8"
+        ><weightAdd name="weight" key="9" v-if="activeTabName === 'vitals'" />
+        <heightAdd name="height" key="10" v-if="activeTabName === 'vitals'" />
+        <pulseAdd name="pulse" key="11" v-if="activeTabName === 'vitals'" />
+        <temperatureAdd name="temperature" key="12" v-if="activeTabName === 'vitals'" />
+        <bloodPressureAdd name="blood_pressure" key="13" v-if="activeTabName === 'vitals'" />
+        <bloodSugarAdd name="blood_sugar" key="14" v-if="activeTabName === 'vitals'" />
+        <bmiAdd name="bmi" key="15" v-if="activeTabName === 'vitals'" />
+        <waistCircumferenceAdd name="waist_circumference" key="16" v-if="activeTabName === 'vitals'"
+      /></el-tab-pane>
+      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"
+        ><miscNote v-if="activeTabName === 'miscellaneous_notes'"
+      /></el-tab-pane>
+      <el-tab-pane label="Process Note" name="process_notes" key="18">
+        <processNote v-if="activeTabName === 'process_notes'"
+      /></el-tab-pane>
+      <el-tab-pane label="Diagnosis" name="diagnosis" key="19"
+        ><dxAdd v-if="activeTabName === 'diagnosis'"
+      /></el-tab-pane>
+      <el-tab-pane label="Screens" name="screens" key="20"
+        ><screensAdd v-if="activeTabName === 'screens'"
+      /></el-tab-pane>
+      <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd v-if="activeTabName === 'goals'" /></el-tab-pane>
+      <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
+      <el-tab-pane label="Reminders" name="reminders"> <remAdd /> <remView /></el-tab-pane>
+      <el-tab-pane label="Plan comments" name="plan_comments" key="24"
+        ><pcAdd v-if="activeTabName === 'plan_comments'"
+      /></el-tab-pane>
+      <el-tab-pane label="Service statements" name="service_statements" key="25"
+        ><ssAdd v-if="activeTabName === 'service_statements'"
+      /></el-tab-pane>
+    </el-tabs>
+  </el-dialog>
 </template>
 
 <script>
