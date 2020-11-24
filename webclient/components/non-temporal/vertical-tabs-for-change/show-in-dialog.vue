@@ -48,32 +48,32 @@
     >
       <div style="display: grid; grid-template-columns: 1fr">
         <el-tabs tab-position="left" style="height: 900px">
-          <el-tab-pane label="Chief complaint"><editChiefComplaint /></el-tab-pane>
-          <el-tab-pane label="P review of systems"><prosAdd /></el-tab-pane>
-          <el-tab-pane label="Past psych history"><pastPsychHistory /></el-tab-pane>
-          <el-tab-pane label="Family history"><familyHistory /></el-tab-pane>
-          <el-tab-pane label="M review of systems"><mrosAdd /></el-tab-pane>
-          <el-tab-pane label="Allergies"><allergies /></el-tab-pane>
-          <el-tab-pane label="Examination"><examAdd /></el-tab-pane>
-          <el-tab-pane label="Vitals"
-            ><weightAdd />
-            <heightAdd />
-            <pulseAdd />
-            <temperatureAdd />
-            <bloodPressureAdd />
-            <bloodSugarAdd />
-            <bmiAdd />
-            <waistCircumferenceAdd
+          <el-tab-pane label="Chief complaint" name="1" key="1"><editChiefComplaint /></el-tab-pane>
+          <el-tab-pane label="P review of systems" name="2" key="2"><prosAdd /></el-tab-pane>
+          <el-tab-pane label="Past psych history" key="3"><pastPsychHistory /></el-tab-pane>
+          <el-tab-pane label="Family history" key="4"><familyHistory /></el-tab-pane>
+          <el-tab-pane label="M review of systems" key="5"><mrosAdd /></el-tab-pane>
+          <el-tab-pane label="Allergies" key="6"><allergies /></el-tab-pane>
+          <el-tab-pane label="Examination" key="7"><examAdd /></el-tab-pane>
+          <el-tab-pane label="Vitals" key="8"
+            ><weightAdd key="9" />
+            <heightAdd key="10" />
+            <pulseAdd key="11" />
+            <temperatureAdd key="12" />
+            <bloodPressureAdd key="13" />
+            <bloodSugarAdd key="14" />
+            <bmiAdd key="15" />
+            <waistCircumferenceAdd key="16"
           /></el-tab-pane>
-          <el-tab-pane label="Misc Note"> <miscNote /></el-tab-pane>
-          <el-tab-pane label="Process Note"> <processNote /></el-tab-pane>
-          <el-tab-pane label="Diagnosis"><dxAdd /></el-tab-pane>
-          <el-tab-pane label="Screens"><screensAdd /></el-tab-pane>
-          <el-tab-pane label="Goals"><goalsAdd /></el-tab-pane>
-          <el-tab-pane label="Recommendations"><recAdd /></el-tab-pane>
-          <el-tab-pane label="Reminders"><remAdd /></el-tab-pane>
-          <el-tab-pane label="Plan comments"><pcAdd /></el-tab-pane>
-          <el-tab-pane label="Service statements"><ssAdd /></el-tab-pane>
+          <el-tab-pane label="Misc Note" key="17"> <miscNote /></el-tab-pane>
+          <el-tab-pane label="Process Note" key="18"> <processNote /></el-tab-pane>
+          <el-tab-pane label="Diagnosis" key="19"><dxAdd /></el-tab-pane>
+          <el-tab-pane label="Screens" key="20"><screensAdd /></el-tab-pane>
+          <el-tab-pane label="Goals" key="21"><goalsAdd /></el-tab-pane>
+          <el-tab-pane label="Recommendations" key="22"><recAdd /></el-tab-pane>
+          <el-tab-pane label="Reminders" key="23"> <remAdd /></el-tab-pane>
+          <el-tab-pane label="Plan comments" key="24"><pcAdd /></el-tab-pane>
+          <el-tab-pane label="Service statements" key="25"><ssAdd /></el-tab-pane>
         </el-tabs>
       </div>
     </el-dialog>
@@ -114,6 +114,7 @@ export default {
   data() {
     return {
       dIsSettingsDialogVisible: false,
+      activeTab: '2',
     }
   },
   props: {
