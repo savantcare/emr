@@ -264,6 +264,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     if (!pFldsForNonEmptyCheck) return
 
+    this.$fetch()
     const arFromClientTbl = this.query().where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted).get()
 
     if (arFromClientTbl.length < 1) {
@@ -613,7 +614,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         isValidationError: false,
       }
     }
-    const arFromClientTbl = this.update({
+    const arFromClientTbl = this.$update({
       where: pClientRowId,
       data: row,
     })
@@ -649,7 +650,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.fnGetNewRowsInEditState()
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        this.delete(arFromClientTbl[i].clientSideUniqRowId)
+        this.$delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }
@@ -658,7 +659,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.fnGetAllChangeRowsInEditState()
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        this.delete(arFromClientTbl[i].clientSideUniqRowId)
+        this.$delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }
