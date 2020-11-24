@@ -95,6 +95,26 @@ dialog
                        └────────────────────────┘                          
       -->
       <div>
+        <el-tabs tab-position="left" style="height: 900px">
+          <el-tab-pane label="Chief complaint"></el-tab-pane>
+          <el-tab-pane label="P review of systems"></el-tab-pane>
+          <el-tab-pane label="Past psych history"></el-tab-pane>
+          <el-tab-pane label="Family history"></el-tab-pane>
+          <el-tab-pane label="M review of systems"></el-tab-pane>
+          <el-tab-pane label="Allergies"></el-tab-pane>
+          <el-tab-pane label="Examination"></el-tab-pane>
+          <el-tab-pane label="Vitals"></el-tab-pane>
+          <el-tab-pane label="Diagnosis"></el-tab-pane>
+          <el-tab-pane label="Screens"></el-tab-pane>
+          <el-tab-pane label="Goals"></el-tab-pane>
+          <el-tab-pane label="Recommendations"></el-tab-pane>
+          <el-tab-pane label="Reminders"></el-tab-pane>
+          <el-tab-pane label="Plan comments"></el-tab-pane>
+          <el-tab-pane label="Service statements"></el-tab-pane>
+        </el-tabs>
+      </div>
+
+      <div>
         <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
           <el-tab-pane
             v-for="(tab, loopCount) in cfArTabsInEditLayer"
