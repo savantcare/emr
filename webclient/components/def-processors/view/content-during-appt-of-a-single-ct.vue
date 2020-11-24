@@ -3,7 +3,7 @@
     <div>
       <el-row>
         <el-col :span="9" class="sectionHeading">
-          <ctChangeInTabs :_entity="_formDef.plural" />
+          <ctChangeInTabs :_formDef="_formDef" />
         </el-col>
         <el-col :span="10">
           <el-button-group>

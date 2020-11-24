@@ -32,7 +32,7 @@
           :width="vsDialogWidth"
     -->
     <el-button plain round size="mini" @click="handleClickOnSettingsIcon">
-      {{ _entity.charAt(0).toUpperCase() + _entity.slice(1) }}
+      {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
     </el-button>
 
     <el-dialog
@@ -47,33 +47,33 @@
       width="80%"
     >
       <div style="display: grid; grid-template-columns: 1fr">
-        <el-tabs tab-position="left" style="height: 900px">
-          <el-tab-pane label="Chief complaint" name="1" key="1"><editChiefComplaint /></el-tab-pane>
-          <el-tab-pane label="P review of systems" name="2" key="2"><prosAdd /></el-tab-pane>
-          <el-tab-pane label="Past psych history" key="3"><pastPsychHistory /></el-tab-pane>
-          <el-tab-pane label="Family history" key="4"><familyHistory /></el-tab-pane>
-          <el-tab-pane label="M review of systems" key="5"><mrosAdd /></el-tab-pane>
-          <el-tab-pane label="Allergies" key="6"><allergies /></el-tab-pane>
-          <el-tab-pane label="Examination" key="7"><examAdd /></el-tab-pane>
-          <el-tab-pane label="Vitals" key="8"
-            ><weightAdd key="9" />
-            <heightAdd key="10" />
-            <pulseAdd key="11" />
-            <temperatureAdd key="12" />
-            <bloodPressureAdd key="13" />
-            <bloodSugarAdd key="14" />
-            <bmiAdd key="15" />
-            <waistCircumferenceAdd key="16"
+        <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
+          <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"><editChiefComplaint /></el-tab-pane>
+          <el-tab-pane label="P review of systems" name="psych_review_of_system" key="2"><prosAdd /></el-tab-pane>
+          <el-tab-pane label="Past psych history" name="past_psych_history" key="3"><pastPsychHistory /></el-tab-pane>
+          <el-tab-pane label="Family history" name="family_history" key="4"><familyHistory /></el-tab-pane>
+          <el-tab-pane label="M review of systems" name="medical_review_of_systems" key="5"><mrosAdd /></el-tab-pane>
+          <el-tab-pane label="Allergies" name="allergies" key="6"><allergies /></el-tab-pane>
+          <el-tab-pane label="Examination" name="examination" key="7"><examAdd /></el-tab-pane>
+          <el-tab-pane label="Vitals" name="vitals" key="8"
+            ><weightAdd name="weight" key="9" />
+            <heightAdd name="height" key="10" />
+            <pulseAdd name="pulse" key="11" />
+            <temperatureAdd name="temperature" key="12" />
+            <bloodPressureAdd name="blood_pressure" key="13" />
+            <bloodSugarAdd name="blood_sugar" key="14" />
+            <bmiAdd name="bmi" key="15" />
+            <waistCircumferenceAdd name="waist_circumference" key="16"
           /></el-tab-pane>
-          <el-tab-pane label="Misc Note" key="17"> <miscNote /></el-tab-pane>
-          <el-tab-pane label="Process Note" key="18"> <processNote /></el-tab-pane>
-          <el-tab-pane label="Diagnosis" key="19"><dxAdd /></el-tab-pane>
-          <el-tab-pane label="Screens" key="20"><screensAdd /></el-tab-pane>
-          <el-tab-pane label="Goals" key="21"><goalsAdd /></el-tab-pane>
-          <el-tab-pane label="Recommendations" key="22"><recAdd /></el-tab-pane>
-          <el-tab-pane label="Reminders" key="23"> <remAdd /></el-tab-pane>
-          <el-tab-pane label="Plan comments" key="24"><pcAdd /></el-tab-pane>
-          <el-tab-pane label="Service statements" key="25"><ssAdd /></el-tab-pane>
+          <el-tab-pane label="Misc Note" name="misc_note" key="17"> <miscNote /></el-tab-pane>
+          <el-tab-pane label="Process Note" name="process_note" key="18"> <processNote /></el-tab-pane>
+          <el-tab-pane label="Diagnosis" name="diagnosis" key="19"><dxAdd /></el-tab-pane>
+          <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
+          <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
+          <el-tab-pane label="Recommendations" name="recommendations" key="22"><recAdd /></el-tab-pane>
+          <el-tab-pane label="Reminders" name="reminders" key="23"> <remAdd /></el-tab-pane>
+          <el-tab-pane label="Plan comments" name="plan_comments" key="24"><pcAdd /></el-tab-pane>
+          <el-tab-pane label="Service statements" name="service_statements" key="25"><ssAdd /></el-tab-pane>
         </el-tabs>
       </div>
     </el-dialog>
@@ -114,12 +114,13 @@ export default {
   data() {
     return {
       dIsSettingsDialogVisible: false,
-      activeTab: '2',
+      activeTabName: 'psych_review_of_system',
     }
   },
   props: {
-    _entity: {
-      type: String,
+    _formDef: {
+      type: Object,
+      required: true,
     },
   },
   components: {
@@ -160,6 +161,7 @@ export default {
   },
   mounted() {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
+    this.activeTabName = this._formDef.id
   },
   methods: {
     handleClickOnSettingsIcon() {
