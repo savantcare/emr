@@ -13,14 +13,14 @@
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
 
-      <el-divider style="color: blue"><h3 style="">History</h3></el-divider>
+      <el-divider class="section-header"><h3 style="">History</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-      <el-divider><h3 style="">Objective</h3></el-divider>
+      <el-divider class="section-header"><h3 style="">Objective</h3></el-divider>
 
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
 
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <el-divider><h3>Others</h3></el-divider>
+      <el-divider class="section-header"><h3>Others</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
@@ -186,6 +186,9 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
 
   /* Goal5: Give a line break before and after the element */
   display: block;
+}
+.section-header.el-divider.el-divider--horizontal {
+  background-color: #409eff;
 }
 .sectionHeading {
   font-size: 1rem;
