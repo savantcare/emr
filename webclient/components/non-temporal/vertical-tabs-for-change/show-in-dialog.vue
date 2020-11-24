@@ -243,8 +243,6 @@ export default {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
     this.cfArTabsInEditLayer = [] // Template has a for loop running on this.
     this.cfVSSelectedTabId = ''
-
-    console.log(this._entity)
   },
   methods: {
     // #region kbselect

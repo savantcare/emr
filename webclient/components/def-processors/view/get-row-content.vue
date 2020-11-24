@@ -154,7 +154,7 @@
 
 <script>
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import ctChangeInTabs from '@/components/non-temporal/cts-tabs-in-change-layer/show-vertical-tabs-in-dialog-for-change.vue'
+import ctChangeInTabs from '@/components/non-temporal/vertical-tabs-for-change/show-in-dialog.vue'
 
 // Library
 import moment from 'moment'
