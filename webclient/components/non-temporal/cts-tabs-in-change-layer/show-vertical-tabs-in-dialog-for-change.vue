@@ -57,7 +57,7 @@ dialog
       :visible.sync="dIsSettingsDialogVisible"
       :lock-scroll="true"
       top="1vh"
-      :width="vsDialogWidth"
+      width="80%"
     >
       <div style="display: grid; grid-template-columns: 1fr">
         <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
@@ -100,21 +100,32 @@ dialog
                        └────────────────────────┘                          
       -->
         <el-tabs tab-position="left" style="height: 900px">
-          <el-tab-pane label="Chief complaint"></el-tab-pane>
-          <el-tab-pane label="P review of systems"></el-tab-pane>
-          <el-tab-pane label="Past psych history"></el-tab-pane>
-          <el-tab-pane label="Family history"></el-tab-pane>
-          <el-tab-pane label="M review of systems"></el-tab-pane>
-          <el-tab-pane label="Allergies"></el-tab-pane>
-          <el-tab-pane label="Examination"></el-tab-pane>
-          <el-tab-pane label="Vitals"></el-tab-pane>
-          <el-tab-pane label="Diagnosis"></el-tab-pane>
-          <el-tab-pane label="Screens"></el-tab-pane>
-          <el-tab-pane label="Goals"></el-tab-pane>
-          <el-tab-pane label="Recommendations"></el-tab-pane>
-          <el-tab-pane label="Reminders"></el-tab-pane>
-          <el-tab-pane label="Plan comments"></el-tab-pane>
-          <el-tab-pane label="Service statements"></el-tab-pane>
+          <el-tab-pane label="Chief complaint"><editChiefComplaint /></el-tab-pane>
+          <el-tab-pane label="P review of systems"><prosAdd /></el-tab-pane>
+          <el-tab-pane label="Past psych history"><pastPsychHistory /></el-tab-pane>
+          <el-tab-pane label="Family history"><familyHistory /></el-tab-pane>
+          <el-tab-pane label="M review of systems"><mrosAdd /></el-tab-pane>
+          <el-tab-pane label="Allergies"><allergies /></el-tab-pane>
+          <el-tab-pane label="Examination"><examAdd /></el-tab-pane>
+          <el-tab-pane label="Vitals"
+            ><weightAdd />
+            <heightAdd />
+            <pulseAdd />
+            <temperatureAdd />
+            <bloodPressureAdd />
+            <bloodSugarAdd />
+            <bmiAdd />
+            <waistCircumferenceAdd
+          /></el-tab-pane>
+          <el-tab-pane label="Misc Note"> <miscNote /></el-tab-pane>
+          <el-tab-pane label="Process Note"> <processNote /></el-tab-pane>
+          <el-tab-pane label="Diagnosis"><dxAdd /></el-tab-pane>
+          <el-tab-pane label="Screens"><screensAdd /></el-tab-pane>
+          <el-tab-pane label="Goals"><goalsAdd /></el-tab-pane>
+          <el-tab-pane label="Recommendations"><recAdd /></el-tab-pane>
+          <el-tab-pane label="Reminders"><remAdd /></el-tab-pane>
+          <el-tab-pane label="Plan comments"><pcAdd /></el-tab-pane>
+          <el-tab-pane label="Service statements"><ssAdd /></el-tab-pane>
         </el-tabs>
       </div>
     </el-dialog>
@@ -122,6 +133,34 @@ dialog
 </template>
 
 <script>
+import editChiefComplaint from '@/components/temporal/chief-complaint/change-layer/add-chief-complaint.vue'
+import prosAdd from '@/components/temporal/psych-review-of-system/change-layer/add-ss.vue'
+import pastPsychHistory from '@/components/temporal/past-psych-history/change-layer/past-psych-history-add.vue'
+import familyHistory from '@/components/temporal/family-history/change-layer/family-history-add.vue'
+import allergies from '@/components/temporal/allergies/change-layer/allergy-add.vue'
+import miscNote from '@/components/temporal/miscellaneous-notes/change-layer/add-ct.vue'
+import processNote from '@/components/temporal/process-notes/change-layer/add-ct.vue'
+import examAdd from '@/components/temporal/examination/change-layer/add-examination.vue'
+
+import weightAdd from '@/components/temporal/weight/change-layer/add-weight.vue'
+import pulseAdd from '@/components/temporal/pulse/change-layer/add-pulse.vue'
+import heightAdd from '@/components/temporal/height/change-layer/add-height.vue'
+import temperatureAdd from '@/components/temporal/temperature/change-layer/add-temperature.vue'
+import bloodPressureAdd from '@/components/temporal/blood-pressure/change-layer/add-blood-pressure.vue'
+import bloodSugarAdd from '@/components/temporal/blood-sugar/change-layer/add-blood-sugar.vue'
+import waistCircumferenceAdd from '@/components/temporal/waist-circumference/change-layer/add-waist-circumference.vue'
+import bmiAdd from '@/components/temporal/bmi/change-layer/add-bmi.vue'
+import oxygenSaturationAdd from '@/components/temporal/oxygen-saturation/change-layer/add-oxygen-saturation.vue'
+
+import mrosAdd from '@/components/temporal/medical-review-of-system/change-layer/add-ss.vue'
+import dxAdd from '@/components/temporal/diagnosis/change-layer/diagnosis-add.vue'
+import screensAdd from '@/components/temporal/screens/change-layer/add-ct.vue'
+import goalsAdd from '@/components/temporal/goals/change-layer/add-ct.vue'
+import recAdd from '@/components/temporal/recommendations/change-layer/recommendation-add.vue'
+import remAdd from '@/components/temporal/reminders/change-layer/add-ct.vue'
+import pcAdd from '@/components/temporal/plan-comments/change-layer/add-ct.vue'
+import ssAdd from '@/components/temporal/service-statements/change-layer/add-ss.vue'
+
 export default {
   name: 'CLTabsInDialogManager',
   data() {
@@ -133,6 +172,32 @@ export default {
     _entity: {
       type: String,
     },
+  },
+  components: {
+    editChiefComplaint,
+    prosAdd,
+    pastPsychHistory,
+    familyHistory,
+    allergies,
+    miscNote,
+    processNote,
+    dxAdd,
+    screensAdd,
+    examAdd,
+    weightAdd,
+    heightAdd,
+    pulseAdd,
+    temperatureAdd,
+    bloodPressureAdd,
+    bloodSugarAdd,
+    bmiAdd,
+    waistCircumferenceAdd,
+    mrosAdd,
+    goalsAdd,
+    recAdd,
+    remAdd,
+    pcAdd,
+    ssAdd,
   },
   computed: {
     cfArTabsInEditLayer: {
