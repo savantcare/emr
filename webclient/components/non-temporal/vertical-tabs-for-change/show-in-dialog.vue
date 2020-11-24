@@ -31,17 +31,14 @@
         Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
     -->
-    <el-button plain round size="mini" @click="handleClickOnSettingsIcon">
-      {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
-    </el-button>
-
     <el-dialog
       custom-class="multi-tab-dialog"
       :modal="true"
       :close-on-click-modal="true"
+      :before-close="handleClose"
       :close-on-press-escape="true"
       :show-close="false"
-      :visible.sync="dIsSettingsDialogVisible"
+      :visible="cfDrawerVisibility"
       :lock-scroll="true"
       top="1vh"
       width="80%"
@@ -71,9 +68,7 @@
           <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
           <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
           <el-tab-pane label="Recommendations" name="recommendations" key="22"><recAdd /></el-tab-pane>
-          <el-tab-pane label="Reminders" name="reminders" key="23">
-            <remAdd :_formDef="_formDef" /> <remView :_formDef="_formDef"
-          /></el-tab-pane>
+          <el-tab-pane label="Reminders" name="reminders" key="23"> <remAdd /> <remView /></el-tab-pane>
           <el-tab-pane label="Plan comments" name="plan_comments" key="24"><pcAdd /></el-tab-pane>
           <el-tab-pane label="Service statements" name="service_statements" key="25"><ssAdd /></el-tab-pane>
         </el-tabs>
@@ -83,6 +78,8 @@
 </template>
 
 <script>
+import allClientTbls from '@/components/def-processors/all-client-tables.js'
+
 import editChiefComplaint from '@/components/temporal/chief-complaint/change-layer/add-chief-complaint.vue'
 import prosAdd from '@/components/temporal/psych-review-of-system/change-layer/add-ss.vue'
 import pastPsychHistory from '@/components/temporal/past-psych-history/change-layer/past-psych-history-add.vue'
@@ -119,15 +116,9 @@ export default {
   name: 'CLTabsInDialogManager',
   data() {
     return {
-      dIsSettingsDialogVisible: false,
       activeTabName: 'psych_review_of_system',
+      formDefId: '',
     }
-  },
-  props: {
-    _formDef: {
-      type: Object,
-      required: true,
-    },
   },
   components: {
     editChiefComplaint,
@@ -173,16 +164,33 @@ export default {
         this.$store.commit('mtfSetTabDialogVisibility', value)
       },
     },
+    cfDrawerVisibility() {
+      const drawerVisibility = allClientTbls.common_for_all_cts.find('form-def-id-for-change-in-vertical-tabs')
+
+      if (drawerVisibility) {
+        if (drawerVisibility['fieldValue'] !== 'false') {
+          this.formDefId = drawerVisibility['fieldValue']
+          this.activeTabName = this.formDefId
+          return true
+        }
+      }
+
+      return false
+    },
   },
   mounted() {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
-    this.activeTabName = this._formDef.id
   },
   methods: {
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
     },
     handleChange(val) {},
+    handleClose(done) {
+      allClientTbls.common_for_all_cts.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'false' }],
+      })
+    },
   },
 }
 </script>

@@ -41,6 +41,7 @@
 
     <!-- GOAL5: Init component to show components in left extension -->
     <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+    <ctChangeInTabs />
 
     <!-- GOAL7: Init drawer component -->
     <!--    <ctMapDrawer></ctMapDrawer> -->
@@ -107,6 +108,7 @@ import ctLayer1LeftSideCards from '@/components/non-temporal/components-containe
 import ctLayer1RightSideCards from '@/components/non-temporal/components-container-in-rhs-of-layer1/dynamic-list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-change-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
+import ctChangeInTabs from '@/components/non-temporal/vertical-tabs-for-change/show-in-dialog.vue'
 import ctRightScreenExtensionDrawer from '@/components/non-temporal/components-container-in-rhs-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/non-temporal/map/drawer.vue'
 import ctDeletedDrawer from '@/components/non-temporal/ct-deleted-rows/drawer.vue'
@@ -148,6 +150,7 @@ export default {
     ctFeed,
     ctToGiveProductTour,
     ctInitOfComponents,
+    ctChangeInTabs,
   },
   data() {
     return {}
@@ -186,19 +189,21 @@ export default {
       return false
     },
 
-    cfSendFontSizeCustomizedByUserInPercentageToHtml(){
+    cfSendFontSizeCustomizedByUserInPercentageToHtml() {
       var font_size_of_root = '100%'
-      const font_size_customized_by_user_in_percentage = clientSideTableOfCommonForAllComponents.find('font-size-customized-by-user-value-in-percentage')
+      const font_size_customized_by_user_in_percentage = clientSideTableOfCommonForAllComponents.find(
+        'font-size-customized-by-user-value-in-percentage'
+      )
 
       if (font_size_customized_by_user_in_percentage) {
         font_size_of_root = font_size_customized_by_user_in_percentage['fieldValue'] + '%'
       }
-      
+
       /**
        * Ref: https://stackoverflow.com/questions/48172814/how-to-compute-styles-on-body-or-html-using-vue-js
        */
-      
-      document.querySelector('html').style.fontSize = font_size_of_root;
+
+      document.querySelector('html').style.fontSize = font_size_of_root
     },
   },
   methods: {
@@ -237,10 +242,14 @@ I have write the below css to overright the default font-size given in library f
 convert pixel to rem:
 Ref: https://www.ninjaunits.com/converters/pixels/pixels-rem/
 */
-.el-tabs__item, .el-input, input, button {
+.el-tabs__item,
+.el-input,
+input,
+button {
   font-size: 0.875rem;
 }
-.el-collapse-item__header, .el-collapse-item__content {
+.el-collapse-item__header,
+.el-collapse-item__content {
   font-size: 0.8125rem;
 }
 
@@ -248,6 +257,6 @@ Ref: https://www.ninjaunits.com/converters/pixels/pixels-rem/
 I have added the following css because if we set font-size=200% then v-tour popup width becomes bigger than page width
 */
 .v-tour .el-card__body {
-    max-width: 600px;
+  max-width: 600px;
 }
 </style>

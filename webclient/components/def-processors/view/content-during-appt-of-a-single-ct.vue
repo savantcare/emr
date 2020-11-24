@@ -3,7 +3,7 @@
     <div>
       <el-row>
         <el-col :span="9" class="sectionHeading">
-          <ctChangeInTabs :_formDef="_formDef" />
+          <el-button size="mini" @click="changeIconClickedSoSetUpState(_formDef.id)">{{ _formDef.plural }}</el-button>
         </el-col>
         <el-col :span="10">
           <el-button-group>
@@ -155,7 +155,6 @@ import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
-import ctChangeInTabs from '@/components/non-temporal/vertical-tabs-for-change/show-in-dialog.vue'
 
 export default {
   data() {
@@ -201,7 +200,7 @@ export default {
       items: [],
     }
   },
-  components: { VueHorizontalList, getRowContent, ctChangeInTabs },
+  components: { VueHorizontalList, getRowContent },
   mixins: [clInvokeMixin],
 
   filters: {
@@ -342,6 +341,12 @@ export default {
     },
   },
   methods: {
+    changeIconClickedSoSetUpState(pFormDefId) {
+      const updateState = allClientTbls.common_for_all_cts.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pFormDefId }],
+      })
+    },
+
     mfGetArOfDataRows(pApptObj) {
       const emptyArray = []
 

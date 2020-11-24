@@ -1,4 +1,5 @@
 import allergiesClientTbl from '@/components/temporal/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import chiefComplaintClientTbl from '@/components/temporal/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import diagnosisClientTbl from '@/components/temporal/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
@@ -54,6 +55,7 @@ On line 195 there us:
 */
 const allClientTbls = {
   allergies: allergiesClientTbl,
+  common_for_all_cts: commonForAllCts,
   chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,

@@ -116,7 +116,6 @@
 
             -->
 
-        <ctChangeInTabs />
         <!--
         <el-button
           style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px"
@@ -154,7 +153,6 @@
 
 <script>
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import ctChangeInTabs from '@/components/non-temporal/vertical-tabs-for-change/show-in-dialog.vue'
 
 // Library
 import moment from 'moment'
@@ -165,9 +163,7 @@ export default {
       mouseOnThisRow: false,
     }
   },
-  components: {
-    ctChangeInTabs,
-  },
+  components: {},
   props: {
     _formDef: {
       type: Object,
