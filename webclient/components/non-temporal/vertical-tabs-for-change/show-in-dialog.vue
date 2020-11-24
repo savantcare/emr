@@ -58,7 +58,7 @@
             ><familyHistory v-if="activeTabName === 'family_history'"
           /></el-tab-pane>
           <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
-            ><mrosAdd v-if="activeTabName === 'medical_review_of_systems'"
+            ><mrosAdd v-if="activeTabName === 'medical_review_of_system'"
           /></el-tab-pane>
           <el-tab-pane label="Allergies" name="allergies" key="6"
             ><allergies v-if="activeTabName === 'allergies'"
