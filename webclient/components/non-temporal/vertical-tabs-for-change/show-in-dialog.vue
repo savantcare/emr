@@ -71,7 +71,9 @@
           <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
           <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
           <el-tab-pane label="Recommendations" name="recommendations" key="22"><recAdd /></el-tab-pane>
-          <el-tab-pane label="Reminders" name="reminders" key="23"> <remAdd /></el-tab-pane>
+          <el-tab-pane label="Reminders" name="reminders" key="23">
+            <remAdd :_formDef="_formDef" /> <remView :_formDef="_formDef"
+          /></el-tab-pane>
           <el-tab-pane label="Plan comments" name="plan_comments" key="24"><pcAdd /></el-tab-pane>
           <el-tab-pane label="Service statements" name="service_statements" key="25"><ssAdd /></el-tab-pane>
         </el-tabs>
@@ -104,8 +106,12 @@ import mrosAdd from '@/components/temporal/medical-review-of-system/change-layer
 import dxAdd from '@/components/temporal/diagnosis/change-layer/diagnosis-add.vue'
 import screensAdd from '@/components/temporal/screens/change-layer/add-ct.vue'
 import goalsAdd from '@/components/temporal/goals/change-layer/add-ct.vue'
+
 import recAdd from '@/components/temporal/recommendations/change-layer/recommendation-add.vue'
+
 import remAdd from '@/components/temporal/reminders/change-layer/add-ct.vue'
+import remView from '@/components/temporal/reminders/view-layer/table-ct.vue'
+
 import pcAdd from '@/components/temporal/plan-comments/change-layer/add-ct.vue'
 import ssAdd from '@/components/temporal/service-statements/change-layer/add-ss.vue'
 
@@ -146,6 +152,7 @@ export default {
     goalsAdd,
     recAdd,
     remAdd,
+    remView,
     pcAdd,
     ssAdd,
   },
