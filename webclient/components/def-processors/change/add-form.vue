@@ -170,6 +170,8 @@
               mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
             "
             plain
+            round
+            size="mini"
             type="warning"
             style="float: right"
             @click="mfDeleteRowInEditLayerientSideTable(ormRow.clientSideUniqRowId)"

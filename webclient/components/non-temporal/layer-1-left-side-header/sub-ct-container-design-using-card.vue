@@ -16,14 +16,12 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 import ctSlider from './time-series-of-appointments-component-made-with-vue-slider.vue'
 
 import ctTogleHealthOther from './toggle-health-other-component.vue'
-import ctAccord from '@/components/external/vue-horizontal-collapse/HorizontalCollapse.vue'
-
 import ctCoding from '../appt-coding-v2/dashboard.vue'
 import ctSettings from './settings-component.vue'
 //
 
 export default {
-  components: { ctSlider, ctAccord, ctCoding, ctSettings },
+  components: { ctSlider, ctCoding, ctSettings },
 }
 </script>
 
