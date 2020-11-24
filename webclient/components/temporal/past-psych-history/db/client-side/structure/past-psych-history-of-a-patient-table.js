@@ -59,7 +59,7 @@ export const pastPsychHistoryFormDef = {
   plural: 'past psych history',
   singular: 'past psych history',
   styleForEachRowInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 1fr; grid-column-gap: 1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem; grid-row-gap: 1rem',
   fieldsDef: [
     {
       fieldNameInDb: 'past_outpatient_treatment',
@@ -134,6 +134,4 @@ export const pastPsychHistoryFormDef = {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
-  styleForEachRowInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 }
