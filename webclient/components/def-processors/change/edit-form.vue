@@ -53,6 +53,7 @@
                 :label="item.label"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
               >
               </el-option>
             </el-select>
@@ -67,6 +68,7 @@
               style="width: 100%"
               :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter($event)"
               :placeholder="propFieldDef.fieldNameInUi"
             >
             </el-date-picker>
@@ -78,6 +80,7 @@
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
               :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter($event)"
             ></el-input>
           </el-col>
         </el-form-item>
@@ -282,6 +285,20 @@ export default {
       this.dnClientIdOfCopiedRowBeingChanged = await allClientTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
         pOrmRowToChange.clientSideUniqRowId
       )
+    },
+    mfForTabActionByEnter: function(event) {
+        //Isolate the node that we're after
+        const currentNode = event.target;
+        if(currentNode.tagName!="TEXTAREA"){
+          event.preventDefault();
+            //find all tab-able elements
+          const allElements = document.querySelectorAll('input, button, a, area, object, select, textarea');
+          //Find the current tab index.
+          const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el));
+          //focus the following element
+          const targetIndex = (currentIndex + 1) % allElements.length;
+          allElements[targetIndex].focus();
+        }        
     },
     mfSetFormFieldFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
