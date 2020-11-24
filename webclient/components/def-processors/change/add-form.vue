@@ -16,7 +16,7 @@
         <!-- Start to process fields in the row -->
         <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
           <!-- Start to process each field -->
-          <el-card :span="propFieldDef.span" shadow="hover" :style="propFieldDef.fieldStyle">
+          <div :style="propFieldDef.fieldStyle">
             <!-- The following are the possible field types -->
 
             <!-- HEADING -->
@@ -158,11 +158,11 @@
             Goal: Show remove button on the RHS of each row. Since element.io divides it into 24 columns. we are giving
             20 columns to input and 4 columns to remove button
             Remove should not come if there is only one _formDef.maxRow
-          -->
-          </el-card>
+          --></div>
 
           <!-- Just ended processing all the fields in the row -->
         </div>
+
         <div>
           <!-- this will be the 1fr of the display grid -->
           <el-button
@@ -178,6 +178,9 @@
           >
         </div>
         <!-- Just ended processing each row -->
+        <div style="grid-column: 1/3">
+          <el-divider />
+        </div>
       </div>
     </div>
     <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
