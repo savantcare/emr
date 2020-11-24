@@ -108,6 +108,7 @@ export const pastPsychHistoryFormDef = {
   ],
   maxNumberOfTemporallyValidRows: 1,
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   validationsObj: {
     value: {
       past_outpatient_treatment: {
