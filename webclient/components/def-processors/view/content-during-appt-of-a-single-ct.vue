@@ -3,7 +3,7 @@
     <div>
       <el-row>
         <el-col :span="9" class="sectionHeading">
-          {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
+          <ctChangeInTabs :_entity="_formDef.plural" />
         </el-col>
         <el-col :span="10">
           <el-button-group>
@@ -33,7 +33,6 @@
             <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
             <span v-else>
               <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
-              <ctChangeInTabs />
               <!--
               
               <el-button
@@ -156,7 +155,7 @@ import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
-import ctChangeInTabs from '@/components/non-temporal/cts-tabs-in-change-layer/show-tabs-in-dialog-ct.vue'
+import ctChangeInTabs from '@/components/non-temporal/cts-tabs-in-change-layer/show-vertical-tabs-in-dialog-for-change.vue'
 
 export default {
   data() {

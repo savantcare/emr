@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button class="el-icon-setting" @click="handleClickOnSettingsIcon"></button>
+    <el-button size="mini" circle type="primary" icon="el-icon-setting" @click="handleClickOnSettingsIcon"></el-button>
+
     <el-dialog title="" :visible.sync="dIsSettingsDialogVisible" width="30%">
       <h3>5 minute tutorial</h3>
       <el-collapse v-model="activeNames" @change="handleChange">

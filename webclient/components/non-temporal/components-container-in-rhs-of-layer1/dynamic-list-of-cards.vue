@@ -7,7 +7,7 @@
         <ctCorrelate />
       </div>
       <div style="grid-column: 4/6"><ctScBrainDialog /></div>
-      <div style="grid-column: 6/8"><el-button type="primary">Pt data timeline</el-button></div>
+      <div style="grid-column: 6/8"><el-button size="mini" mini round type="primary">Pt data timeline</el-button></div>
       <div style="grid-column: 8/9"><ctCoding /></div>
       <div style="grid-column: 9/10"><ctSettings></ctSettings></div>
     </div>

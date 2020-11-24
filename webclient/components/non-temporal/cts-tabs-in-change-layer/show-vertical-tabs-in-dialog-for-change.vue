@@ -44,7 +44,9 @@ dialog
         Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
     -->
-    <el-button plain class="el-icon-edit" size="mini" @click="handleClickOnSettingsIcon"></el-button>
+    <el-button plain round size="mini" @click="handleClickOnSettingsIcon">
+      {{ _entity.charAt(0).toUpperCase() + _entity.slice(1) }}
+    </el-button>
 
     <el-dialog
       custom-class="multi-tab-dialog"
@@ -127,7 +129,11 @@ export default {
       dIsSettingsDialogVisible: false,
     }
   },
-
+  props: {
+    _entity: {
+      type: String,
+    },
+  },
   computed: {
     cfArTabsInEditLayer: {
       get() {
@@ -172,16 +178,8 @@ export default {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
     this.cfArTabsInEditLayer = [] // Template has a for loop running on this.
     this.cfVSSelectedTabId = ''
-    /*
-    const self = this // this is not available inside addEventListener since execution context changes. Hence assining this to self Ref: https://stackoverflow.com/a/50818181
-      window.addEventListener(
-      'keyup',
-      function (e) {
-        console.log('the keyboard key up detected')
-        self.selectActiveTabFromKeyboard(e)
-      }.bind()
-    )
-    */
+
+    console.log(this._entity)
   },
   methods: {
     // #region kbselect

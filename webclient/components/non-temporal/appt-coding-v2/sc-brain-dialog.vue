@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">SC brain</el-button>
+    <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">SC brain</el-button>
     <el-dialog title="ScBrain" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh"> </el-dialog>
   </div>
 </template>

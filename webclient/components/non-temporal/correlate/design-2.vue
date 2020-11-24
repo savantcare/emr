@@ -1,6 +1,6 @@
 <template>
-  <el-card shadow="hover" class="box-card s-css-class-outer-most-card">
-    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
+  <div>
+    <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
     <el-dialog title="Correlate" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <div slot="header" class="s-css-class-outer-most-card-header clearfix">
         <div style="display: grid; grid-template-columns: 1fr 5fr">
@@ -19,7 +19,7 @@
       </div>
       <highcharts :options="cfChartOptions"></highcharts>
     </el-dialog>
-  </el-card>
+  </div>
 </template>
 
 <script>

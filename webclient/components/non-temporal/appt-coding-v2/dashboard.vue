@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="handleClickOnSettingsIcon">{{ apptCode }}</el-button>
+    <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">{{ apptCode }}</el-button>
     <el-dialog title="Insurance: Anthem" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <el-tabs tab-position="left">
         <el-tab-pane label="Billing duration">
