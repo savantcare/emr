@@ -70,6 +70,8 @@ export const goalsFormDef = {
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 1fr; grid-column-gap: 1rem',
   showReviewedButtonInForm: false,
+  showAddMoreButtonInForm: false,
+  showResetFormButton: false,
 
   additionalRowActions: [
     {
