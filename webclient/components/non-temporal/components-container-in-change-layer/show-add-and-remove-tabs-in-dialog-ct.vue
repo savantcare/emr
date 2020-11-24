@@ -51,9 +51,10 @@ dialog
     :show-close="false"
     :visible.sync="vblIsdialogHoldingTabsInEditLayerVisible"
     :lock-scroll="true"
+    top="1vh"
     :width="vsDialogWidth"
   >
-    <el-row type="flex">
+    <div style="display: grid; grid-template-columns: 2fr 10fr 1fr">
       <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
       <!-- 
         Active Tab is changed in following 3 cases:
@@ -93,8 +94,27 @@ dialog
                        │Active tab changed in UI│                 
                        └────────────────────────┘                          
       -->
+      <div>
+        <el-tabs tab-position="left" style="height: 900px">
+          <el-tab-pane label="Chief complaint"></el-tab-pane>
+          <el-tab-pane label="Psych review of systems"></el-tab-pane>
+          <el-tab-pane label="Past psych history"></el-tab-pane>
+          <el-tab-pane label="Family history"></el-tab-pane>
+          <el-tab-pane label="Medical review of systems"></el-tab-pane>
+          <el-tab-pane label="Allergies"></el-tab-pane>
+          <el-tab-pane label="Examination"></el-tab-pane>
+          <el-tab-pane label="Vitals"></el-tab-pane>
+          <el-tab-pane label="Diagnosis"></el-tab-pane>
+          <el-tab-pane label="Screens"></el-tab-pane>
+          <el-tab-pane label="Goals"></el-tab-pane>
+          <el-tab-pane label="Recommendations"></el-tab-pane>
+          <el-tab-pane label="Reminders"></el-tab-pane>
+          <el-tab-pane label="Plan comments"></el-tab-pane>
+          <el-tab-pane label="Service statements"></el-tab-pane>
+        </el-tabs>
+      </div>
 
-      <el-col :span="24">
+      <div>
         <el-tabs v-model="cfVSSelectedTabId" type="card" @tab-remove="mfHandleTabRemove">
           <el-tab-pane
             v-for="(tab, loopCount) in cfArTabsInEditLayer"
@@ -107,11 +127,11 @@ dialog
             <component :is="tab.ctToShow" :first-prop="tab.vstPropsToGiveToCt"></component>
           </el-tab-pane>
         </el-tabs>
-      </el-col>
-      <el-col class="set-of-tabs">
+      </div>
+      <div class="set-of-tabs">
         <ctSetOfTabs></ctSetOfTabs>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </el-dialog>
 </template>
 
