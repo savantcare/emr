@@ -1,16 +1,3 @@
-<!-- Is ctShowAddAndRemoveTabsInDialog a component or a view? View is actually intended to be
-accessed by navigation url Ref:
-https://stackoverflow.com/questions/50865828/what-is-the-difference-between-the-views-and-components-folders-in-a-vue-project
-ctShowAddAndRemoveTabsInDialog is not expected to be accessed by a URL. */
-
-Create a tree strucrure that looks like:
-
-dialog
- -- tabs
-   --- tabpane
-      ---- Component
-
--->
 <template>
   <div>
     <!--  Explanation of props sent to ct 
@@ -60,45 +47,6 @@ dialog
       width="80%"
     >
       <div style="display: grid; grid-template-columns: 1fr">
-        <!-- By passing editable we tell element.io to give add and close option Red: https://element.eleme.io/#/en-US/component/tabs#tabs-attributes -->
-        <!-- 
-        Active Tab is changed in following 3 cases:
-          1. If a tab is removed, an adjacent tab is made active
-          2. When left and right arrow are pressed the active tab changes.
-          3. When a number on KB is pressed the active tab changes.
-
-        How is active tab changed?
-          The active tab depends on ct -> el-tabs -> v-model = cfVSSelectedTabId (line 72 of this file)
-          When cfVSSelectedTabId (Line 117 of this file) changes the active tab will change. 
-          Since cfVSSelectedTabId is a computed function it will change when anything it depends on changes
-          cfVSSelectedTabId depends on this.$store.state.vstObjTabsInCL.vsSelectedTabId (Line 119 of this file)
-          So any Ct can change this.$store.state.vstObjTabsInCL.vsSelectedTabId and that will change the active Tab
-          The flowchart of changes is:       
-          
-                           ┌──────────┐                           
-                           │  Any ct  │                           ctShowAddAndRemoveTabsInDialog:171
-                           └────┬─────┘                           
-                                │                                 
-                ┌───────────────▼─────────────────┐               
-                │  Call state mutation function   │                 vstOfTabsAndDialogInEditLayer:36            
-                └────────────────┬────────────────┘               
-                                 │                                
-┌────────────────────────────────▼───────────────────────────────┐
-│Changes this.$store.state.vstObjTabsInCL.vsSelectedTabId        │  vstOfTabsAndDialogInEditLayer:37 
-└────────────────────────────────┬───────────────────────────────┘
-                                 │                                
-                 ┌───────────────▼────────────────────────────┐               
-                 │Changes computed function cfVSSelectedTabId │     ctShowAddAndRemoveTabsInDialog:117         
-                 └────────────────┬───────────────────────────┘               
-                                  │                               
-                       ┌──────────▼─────────────┐                 
-                       │changes el-tabs v-model │                   ctShowAddAndRemoveTabsInDialog:72
-                       └──────────┬─────────────┘                 
-                                  │                               
-                       ┌──────────▼─────────────┐                 
-                       │Active tab changed in UI│                 
-                       └────────────────────────┘                          
-      -->
         <el-tabs tab-position="left" style="height: 900px">
           <el-tab-pane label="Chief complaint"><editChiefComplaint /></el-tab-pane>
           <el-tab-pane label="P review of systems"><prosAdd /></el-tab-pane>
@@ -200,22 +148,6 @@ export default {
     ssAdd,
   },
   computed: {
-    cfArTabsInEditLayer: {
-      get() {
-        return this.$store.state.vstObjTabsInCL.arTabs
-      },
-      set(value) {
-        this.$store.commit('mtfSetArTabs', value)
-      },
-    },
-    cfVSSelectedTabId: {
-      get() {
-        return this.$store.state.vstObjTabsInCL.vsSelectedTabId
-      },
-      set(value) {
-        this.$store.commit('mtfSetvsSelectedTabId', value)
-      },
-    },
     vblIsdialogHoldingTabsInEditLayerVisible: {
       get() {
         this.dIsSettingsDialogVisible = true
@@ -224,112 +156,11 @@ export default {
         this.$store.commit('mtfSetTabDialogVisibility', value)
       },
     },
-    vsDialogWidth: {
-      get() {
-        /*
-        get the edit layer dialog width based on tab width
-        if tab width is 'large' then dialog width will be 80%
-        for tab width is 'small' dialog width will be 50%
-        */
-        const cfDialogWidth = this.$store.state.vstObjTabsInCL.vsDialogWidth
-        return cfDialogWidth === '' || cfDialogWidth === 'small' ? '50%' : '95%'
-      },
-      set(value) {
-        this.$store.commit('mtfSetTabDialogWidth', value)
-      },
-    },
   },
   mounted() {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
-    this.cfArTabsInEditLayer = [] // Template has a for loop running on this.
-    this.cfVSSelectedTabId = ''
   },
   methods: {
-    // #region kbselect
-    selectActiveTabFromKeyboard(pEvent) {
-      /*
-      Try to get this working with vue-shortkey. Note added by VK oct 5th 2020
-      if (this.vblIsdialogHoldingTabsInEditLayerVisible === false) {
-        // Rejection reason 1: 2nd layer not active
-        return
-      }
-      if (pEvent.srcElement.type === 'text') {
-        // Rejection reason 2: inside text input hence meant as form entry hence dont activate tab
-        return
-      }
-      if (pEvent.keyCode === 37) {
-        // left arrow pressed let us find the position of the tab
-        const currentTabIdx = this.cfArTabsInEditLayer.findIndex(
-          (tab) => tab.id === this.cfVSSelectedTabId
-        )
-        // Current tab idx is: ', currentTabIdx
-        if (currentTabIdx === 0) {
-          // at first tab so ignore
-        } else {
-          this.$store.commit(
-            'mtfSetvsSelectedTabId',
-            this.cfArTabsInEditLayer[currentTabIdx - 1].id
-          )
-        }
-        return
-      }
-      if (pEvent.keyCode === 39) {
-        // right arrow pressed let us find the position of the tab
-        const currentTabIdx = this.cfArTabsInEditLayer.findIndex(
-          (tab) => tab.id === this.cfVSSelectedTabId
-        )
-        if (currentTabIdx === this.cfArTabsInEditLayer.length - 1) {
-          // at last tab so ignore
-        } else {
-          this.$store.commit(
-            'mtfSetvsSelectedTabId',
-            this.cfArTabsInEditLayer[currentTabIdx + 1].id
-          )
-        }
-        return
-      }
-      const maxValidKeyCodeEnteredByUser = 48 + this.cfArTabsInEditLayer.length
-      // max code:', maxValidKeyCodeEnteredByUser, 'pressed code is', pEvent.keyCode
-      if (pEvent.keyCode >= '49' && pEvent.keyCode <= maxValidKeyCodeEnteredByUser) {
-        // Activating tab at position' + pEvent.key
-        this.$store.commit('mtfSetvsSelectedTabId', this.cfArTabsInEditLayer[pEvent.key - 1].id)
-      } else {
-        // Rejection reason 3: User entered # is higher then max tabs
-      }
-      */
-    },
-    // #endregion kbselect
-    mfHandleTabRemove(pTabBeingRemovedId) {
-      let tabToRemoveFoundAt = false // this is needed to find which tab to activate
-      let loopCount = 0
-      const arNewTabs = this.cfArTabsInEditLayer.filter((tab) => {
-        if (tab.id !== pTabBeingRemovedId) {
-          loopCount++
-          return true
-        } else {
-          // this is the tab that is being removed
-          tabToRemoveFoundAt = loopCount
-          return false
-        }
-      })
-
-      this.$store.commit('mtfSetArTabs', arNewTabs)
-
-      // If there are no more tabs in the diaglog then hide the dialog
-      if (arNewTabs.length === 0) {
-        this.vblIsdialogHoldingTabsInEditLayerVisible = false
-      } else {
-        // Once a tab is removed an existing tab needs to be made active
-
-        let idOfNewActiveTab = 0
-        if (tabToRemoveFoundAt === 0) {
-          idOfNewActiveTab = 0
-        } else {
-          idOfNewActiveTab = tabToRemoveFoundAt - 1
-        }
-        this.$store.commit('mtfSetvsSelectedTabId', arNewTabs[idOfNewActiveTab].id)
-      }
-    },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
     },
