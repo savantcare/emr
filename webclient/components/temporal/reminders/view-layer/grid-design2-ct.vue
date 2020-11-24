@@ -30,25 +30,12 @@
         shadow="hover"
         :style="mfGetCssClassNameForEachDataRow(rem)"
       >
-        <el-button-group style="float: right; display: none">
-          <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-            <el-button
-              style="padding: 3px; color: #c0c4cc; border: none"
-              plain
-              @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"
-              class="el-icon-edit"
-            >
-            </el-button>
-          </el-tooltip>
+        <el-button-group style="float: right; display: none; z-index: 1000">
           <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-            <el-button style="padding: 3px; color: #c0c4cc; border: none" plain class="el-icon-discover"> </el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
             <el-button
-              style="padding: 3px; color: #c0c4cc; border: none"
+              style="padding: 3px; color: #c0c4cc; border: none; background: transparent"
               plain
-              @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"
-              class="el-icon-circle-close"
+              class="el-icon-discover"
             >
             </el-button>
           </el-tooltip>
@@ -65,6 +52,8 @@
         <div v-else>
           {{ rem.description }}
         </div>
+        <div class="left-half-card-overlay" @click="mxOpenEditCtInEditLayer(rem.clientSideUniqRowId)"></div>
+        <div class="right-half-card-overlay" @click="mfIconDeleteClickedOnChildCard(rem.clientSideUniqRowId)"></div>
       </el-card>
     </showContentInCardComponent>
 
@@ -161,3 +150,35 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+/**
+  What are the significance of classes left-half-card-overlay and right-half-card-overlay?
+  -- Our target was to show blue overlay (to indicate edit mode) in the left half side of a card and red overlay (to indicate delete mode) on right half side of the card on mouseover.
+  These classes are for that feature. By default, it's background-color is transparent and on hover we are changing the background-color as par our requirement.
+*/
+.left-half-card-overlay {
+  width: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 999;
+}
+.left-half-card-overlay:hover {
+  background-color: rgba(204, 204, 255, 0.3);
+}
+.right-half-card-overlay {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 999;
+}
+.right-half-card-overlay:hover {
+  background-color: rgba(255, 204, 203, 0.3);
+}
+</style>
