@@ -1,8 +1,9 @@
 <template>
   <div style="">
     <div style="cursor: pointer">
-      <el-divider content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)"
-        >{{ _formDef.plural }}
+      <el-divider content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)">
+        {{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}
+
         <el-button-group>
           <span v-if="currentApptObj['apptStatus'] === 'locked'">
             <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
