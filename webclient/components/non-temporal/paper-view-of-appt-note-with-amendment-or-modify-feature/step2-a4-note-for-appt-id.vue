@@ -65,12 +65,12 @@
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
-      <el-divider><h3 style="">Assessment</h3></el-divider>
+      <el-divider class="section-header"><h3>Assessment</h3></el-divider>
 
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-      <el-divider><h3 style="">Plan</h3></el-divider>
+      <el-divider class="section-header"><h3>Plan</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
@@ -188,7 +188,7 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   display: block;
 }
 .section-header.el-divider.el-divider--horizontal {
-  background-color: #409eff;
+  background-color: rgb(160, 207, 255);
 }
 .sectionHeading {
   font-size: 1rem;
