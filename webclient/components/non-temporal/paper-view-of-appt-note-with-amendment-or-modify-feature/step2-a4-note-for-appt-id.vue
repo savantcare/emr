@@ -13,14 +13,15 @@
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
 
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">History</h2>
+      <el-divider style="color: blue"><h3 style="">History</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Objective</h2>
+      <el-divider><h3 style="">Objective</h3></el-divider>
+
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="examination" />
 
       <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
@@ -58,17 +59,18 @@
         </div>
       </div>
 
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Others</h2>
+      <el-divider><h3>Others</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Assessment</h2>
+      <el-divider><h3 style="">Assessment</h3></el-divider>
+
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
-      <h2 style="margin-top: 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px">Plan</h2>
+      <el-divider><h3 style="">Plan</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />

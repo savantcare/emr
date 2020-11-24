@@ -1,6 +1,6 @@
 <template>
   <div style="">
-    <div>
+    <div style="cursor: pointer">
       <el-divider content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)"
         >{{ _formDef.plural }}
         <el-button-group>
