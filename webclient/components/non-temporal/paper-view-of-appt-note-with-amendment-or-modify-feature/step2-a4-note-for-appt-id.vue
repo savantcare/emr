@@ -194,4 +194,7 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   font-size: 1rem;
   color: #606266;
 }
+.section-header h3 {
+  color: #606266;
+}
 </style>
