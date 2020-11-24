@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" @click="auth('github')">OAuth Login with github</el-button>Choose a patient
+    <el-button type="primary" @click="auth('savantcare')">OAuth Login</el-button>Choose a patient
     <br />
     <br />
     <a href="/pf/abcd">TP1: Test patient 1</a>
@@ -17,49 +17,35 @@ import VueAuthenticate from 'vue-authenticate'
 import Axios from 'axios'
 
 Vue.use(VueAxios, Axios)
-Vue.use(VueAuthenticate, {
-  baseUrl: 'http://192.168.0.100', // Your API domain
 
-  providers: {
-    github: {
-      clientId: '0370b3eb38840b3129ca',
-      redirectUri: 'http://192.168.0.100/auth/callback', // Your client app URL
-    },
-  },
-})
 export default {
   components: {},
   data: function () {
     return {
-      isAuthenticated: this.$auth.isAuthenticated(),
+      isAuthenticated: false,
       access_token: null,
       response: null,
     }
   },
   methods: {
     auth: function (provider) {
-      if (this.$auth.isAuthenticated()) {
-        this.$auth.logout()
+      const data = {
+        client_id: 'superstars-discourseonhttp',
+        response_type: 'code',
+        redirect_uri: 'https://www.savantcare.com/superstars/auth/oauth2_basic/callback',
       }
-
-      this.response = null
-
-      var this_ = this
-      this.$auth
-        .authenticate(provider)
-        .then(function (authResponse) {
-          this_.isAuthenticated = this_.$auth.isAuthenticated()
-
-          if (provider === 'github') {
-            this_.$http.get('https://api.github.com/user').then(function (response) {
-              this_.response = response
-              console.log(this_.response)
-            })
-          }
-        })
-        .catch(function (err) {
-          this_.isAuthenticated = this_.$auth.isAuthenticated()
-          this_.response = err
+      const headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      }
+      Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+      Axios.post('https://www.savantcare.com/v3/se/oauth/authorize.php', data, {
+        headers: headers,
+      })
+        .then((response) => (this.articleId = response.data.id))
+        .catch((error) => {
+          this.errorMessage = error.message
+          console.error('There was an error!', error)
         })
     },
   },
