@@ -5,7 +5,7 @@
          Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row 
         _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
         Start to process each row -->
-    <div v-if="cfGetClientTblNewRowsInEditState.length && cfGetClientTblNewRows.length">
+    <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
       <div
         v-for="ormRow in cfGetClientTblNewRowsInEditState"
         :key="ormRow.clientSideUniqRowId"
@@ -177,7 +177,7 @@
           >
         </div>
         <!-- Just ended processing each row -->
-        <div style="grid-column: 1/3">
+        <div style="grid-column: 1 / n">
           <el-divider />
         </div>
       </div>
@@ -298,9 +298,24 @@ export default {
       const r = allClientTbls[this._formDef.id].fnGetNewRowsInEditState()
       return r
     },
-    cfGetClientTblNewRows() {
-      const r = allClientTbls[this._formDef.id].fnGetNewRows()
-      return r
+    cfEmptyRowAtBottom() {
+      // Csae 1: There can be infinite number of data rows
+      if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
+        const r = allClientTbls[this._formDef.id].fnGetNewRows()
+        if (r.length > 0) return true
+      } else {
+        // Case 2: There can only be limited number of data rows
+        const currentRowCount = allClientTbls[this._formDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        if (currentRowCount >= this._formDef.maxNumberOfTemporallyValidRows) {
+          // Case 2A: Max number of data rows has been reached. So do not add a new row at bottom
+          return true
+        } else {
+          // There are no new reows and max number of rows has not been reached. So return false and remaining system will add a row
+          const r = allClientTbls[this._formDef.id].fnGetNewRows()
+          if (r.length === 0) return false
+        }
+      }
+      return false
     },
     cfGetClientTblReadyToReviewedStateRows() {
       return allClientTbls[this._formDef.id].fnGetNewRowsInFormValidationPassState()
