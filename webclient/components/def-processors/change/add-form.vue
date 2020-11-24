@@ -177,7 +177,7 @@
           >
         </div>
         <!-- Just ended processing each row -->
-        <div style="grid-column: 1 / n">
+        <div style="grid-column: 1 / -1">
           <el-divider />
         </div>
       </div>
