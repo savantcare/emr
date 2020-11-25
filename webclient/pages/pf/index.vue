@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" @click="auth('savantcare')">OAuth Login with github</el-button>Choose a patient
+    <el-button type="primary" @click="auth('savantcare')">OAuth Login savantcare</el-button>Choose a patient
     <br />
     <br />
     <a href="/pf/abcd">TP1: Test patient 1</a>
@@ -13,20 +13,10 @@
 <script>
 import Vue from 'vue'
 import VueAxios from 'vue-axios'
-import VueAuthenticate from 'vue-authenticate'
 import Axios from 'axios'
 
 Vue.use(VueAxios, Axios)
-Vue.use(VueAuthenticate, {
-  baseUrl: 'http://192.168.0.100', // Your API domain
 
-  providers: {
-    savantcare: {
-      clientId: '0370b3eb38840b3129ca',
-      redirectUri: 'http://192.168.0.100/auth/callback', // Your client app URL
-    },
-  },
-})
 export default {
   components: {},
   data: function () {
