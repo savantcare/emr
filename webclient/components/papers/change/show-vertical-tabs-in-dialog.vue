@@ -129,7 +129,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 </template>
 
 <script>
-import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 
 import editChiefComplaint from '@/components/temporal/chief-complaint/change-layer/add-chief-complaint.vue'
 import prosAdd from '@/components/temporal/psych-review-of-system/change-layer/add-ss.vue'

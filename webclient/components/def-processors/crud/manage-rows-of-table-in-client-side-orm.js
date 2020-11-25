@@ -829,9 +829,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static async mfSendNewRowsToServer() {
   
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
-      The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allClientTbls[this._formDef.id] ie; 'vnRowStateInSession' = 24
+      The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allPatientDataTbls[this._formDef.id] ie; 'vnRowStateInSession' = 24
   
-    const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allClientTbls[this._formDef.id] since get benefit of caching.
+    const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allPatientDataTbls[this._formDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
          I cannot do validation here. Since this is getting invoked when button has already been pressed  
@@ -949,7 +949,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
           Q): Why following where clause needed?
           A):
-              Whenever we change a record and hit save button, we get two records in allClientTbls with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
+              Whenever we change a record and hit save button, we get two records in allPatientDataTbls with the same uuid and old one needs to be marked as histry by updating ROW_END to current timestamp.
               In real time 3 cases may happen.
                 1. User changes an existing record. i.e. rowState = 1
                 2. User already changed a record and then again changes that record i.e. rowState = 34571
@@ -959,15 +959,15 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
           Q) What we have done to deal with the above mentioned problem?
           A)
-              We are following below mentioned logic in where clause of allClientTbls update:
+              We are following below mentioned logic in where clause of allPatientDataTbls update:
               -- The expression looks like: "exp A" && ("exp B1" || "exp B2" || "exp B3")
-                "exp A" -> search record from allClientTbls whose uuid = this.dnOrmUuidOfRowToChange
+                "exp A" -> search record from allPatientDataTbls whose uuid = this.dnOrmUuidOfRowToChange
                 "exp B1" -> "vnRowStateInSession === 1",
-                    allClientTbls record that came from database (Case: User changes an existing record)
+                    allPatientDataTbls record that came from database (Case: User changes an existing record)
                 "exp B2" -> "vnRowStateInSession === 34571",
-                    allClientTbls record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
+                    allPatientDataTbls record that once changed successfully ie: API Success and than going to be change again (Case: User already changed a record and then again changes that record)
                 "exp B3" -> "vnRowStateInSession === 24571",
-                    allClientTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
+                    allPatientDataTbls record that once added successfully ie: API Success and than going to be change (Case: User adds a record and then changes that newly added record again)
        */
           await this.update({
             where: (record) => {
@@ -994,8 +994,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
         /*
           Goal:
-          According to our change layer architecture, when i click to open change layer, a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) inserted into allClientTbls and it displayed on the top of timeline.
-          When change api request then we should need to insert a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) again in allClientTbls for further change.
+          According to our change layer architecture, when i click to open change layer, a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) inserted into allPatientDataTbls and it displayed on the top of timeline.
+          When change api request then we should need to insert a duplicate changedRowBeingSaved (copy of changedRowBeingSaved) again in allPatientDataTbls for further change.
         */
         this.dnClientIdOfRowToChange = this.dnClientIdOfCopiedRowBeingChanged
         this.dnClientIdOfCopiedRowBeingChanged = null

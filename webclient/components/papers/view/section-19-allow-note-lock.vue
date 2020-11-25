@@ -11,7 +11,7 @@
 <script>
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/papers/view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
-import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 
 export default {
   data() {
@@ -45,18 +45,18 @@ export default {
       console.log('lock button clicked')
 
       /* Loop through all the tables */
-      for (const entity in allClientTbls) {
+      for (const entity in allPatientDataTbls) {
         console.log(
           'Delegating responsibility to',
-          allClientTbls[entity].entity,
+          allPatientDataTbls[entity].entity,
           'Letting it decide if there is some data to be saved and if so then save the data.'
         )
 
         // Step1: Save all new rows
-        const statusOfNewRowsSent = await allClientTbls[entity].sfSendNewChangedRowsToServer()
+        const statusOfNewRowsSent = await allPatientDataTbls[entity].sfSendNewChangedRowsToServer()
         console.log(statusOfNewRowsSent)
         // Step2: Save all changed rows
-        const statusOfChangedRowsSent = await allClientTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some MilliSecs of this rows lock time
+        const statusOfChangedRowsSent = await allPatientDataTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some MilliSecs of this rows lock time
         console.log(statusOfChangedRowsSent)
       }
 

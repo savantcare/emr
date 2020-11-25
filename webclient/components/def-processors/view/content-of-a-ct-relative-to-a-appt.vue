@@ -291,7 +291,7 @@ import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
 
 import moment from 'moment'
 
-import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
@@ -436,11 +436,11 @@ export default {
       let arOfObjectsFromClientDB = []
 
       if (pApptObj['apptStatus'] === 'unlocked') {
-        arOfObjectsFromClientDB = allClientTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+        arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
           this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
         )
       } else {
-        arOfObjectsFromClientDB = allClientTbls[this._formDef.id]
+        arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id]
           .query()
           .where('ROW_END', (value) => value > pApptObj['ROW_END'])
           .where('ROW_START', (value) => value < pApptObj['ROW_END'])

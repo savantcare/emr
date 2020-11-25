@@ -256,7 +256,7 @@
   </div>
 </template>
 <script>
-import allClientTbls from '../all-client-tables.js'
+import allPatientDataTbls from '../all-client-tables.js'
 import allFormDefs from '../all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
@@ -284,7 +284,7 @@ export default {
         // id and fields must be present
         if (obj.id) {
           if (obj.fieldsDef) {
-            if (Object.keys(allClientTbls).includes(obj.id)) {
+            if (Object.keys(allPatientDataTbls).includes(obj.id)) {
               return true
             }
           }
@@ -295,42 +295,42 @@ export default {
     },
   },
   computed: {
-    // allClientTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
+    // allPatientDataTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
       console.log(this.nameOfFieldWithFocus)
-      const r = allClientTbls[this._formDef.id].fnGetNewRowsInEditState()
+      const r = allPatientDataTbls[this._formDef.id].fnGetNewRowsInEditState()
       return r
     },
     cfEmptyRowAtBottom() {
       // Csae 1: There can be infinite number of data rows
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
-        const r = allClientTbls[this._formDef.id].fnGetNewRows()
+        const r = allPatientDataTbls[this._formDef.id].fnGetNewRows()
         if (r.length > 0) return true
       } else {
         // Case 2: There can only be limited number of data rows
-        const currentRowCount = allClientTbls[this._formDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        const currentRowCount = allPatientDataTbls[this._formDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
         if (currentRowCount >= this._formDef.maxNumberOfTemporallyValidRows) {
           // Case 2A: Max number of data rows has been reached. So do not add a new row at bottom
           return true
         } else {
           // There are no new reows and max number of rows has not been reached. So return false and remaining system will add a row
-          const r = allClientTbls[this._formDef.id].fnGetNewRows()
+          const r = allPatientDataTbls[this._formDef.id].fnGetNewRows()
           if (r.length === 0) return false
         }
       }
       return false
     },
     cfGetClientTblReadyToReviewedStateRows() {
-      return allClientTbls[this._formDef.id].fnGetNewRowsInFormValidationPassState()
+      return allPatientDataTbls[this._formDef.id].fnGetNewRowsInFormValidationPassState()
     },
     cfGetClientTblApiSuccessStateRows() {
-      return allClientTbls[this._formDef.id].fnGetNewRowsInApiSuccessState()
+      return allPatientDataTbls[this._formDef.id].fnGetNewRowsInApiSuccessState()
     },
     cfGetClientTblApiErrorStateRows() {
-      return allClientTbls[this._formDef.id].fnGetNewRowsInApiErrorState()
+      return allPatientDataTbls[this._formDef.id].fnGetNewRowsInApiErrorState()
     },
     cfGetClientTblApiSendingStateRows() {
-      return allClientTbls[this._formDef.id].fnGetNewRowsInApiSendingState()
+      return allPatientDataTbls[this._formDef.id].fnGetNewRowsInApiSendingState()
     },
   },
   methods: {
@@ -339,7 +339,7 @@ export default {
     },
 
     mfGetArOfDataRows() {
-      const arOfObjectsFromClientDB = allClientTbls[this._formDef.id]
+      const arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
         .where('vnRowStateInSession', (value) => value > 1) // 2 is new on client.
@@ -353,13 +353,13 @@ export default {
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
         // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
       } else {
-        const currentRowCount = allClientTbls[this._formDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
+        const currentRowCount = allPatientDataTbls[this._formDef.id].query().count() // Get number of rows. The number of rows has to be less then maxNumberOfTemporallyValidRows
         if (currentRowCount >= this._formDef.maxNumberOfTemporallyValidRows) {
           return
         }
       }
 
-      const arFromClientTbl = await allClientTbls[this._formDef.id].insert({
+      const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
@@ -387,9 +387,9 @@ export default {
         if (this.$refs[firstField][lastElement - 2]) this.$refs[firstField][lastElement - 2].focus()
       }
     },
-    // Cannot call allClientTbls[this._formDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
+    // Cannot call allPatientDataTbls[this._formDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
     mfGetFldValue(pClientRowId, pFldName) {
-      return allClientTbls[this._formDef.id].fnGetFldValue(pClientRowId, pFldName)
+      return allPatientDataTbls[this._formDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
     mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
@@ -405,11 +405,11 @@ export default {
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
-      allClientTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
+      allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfGetCssClassNameForEachDataRow(pClientRowId) {
-      const arFromClientTbl = allClientTbls[this._formDef.id].find(pClientRowId)
+      const arFromClientTbl = allPatientDataTbls[this._formDef.id].find(pClientRowId)
       /* TODO: this needs to check for 2456 or 2457 instead of 24
           invalid: organge
           valid: green
@@ -424,11 +424,11 @@ export default {
       return ''
     },
     async mfDeleteRowInClientSideTable(pClientRowId) {
-      await allClientTbls[this._formDef.id].delete(pClientRowId)
+      await allPatientDataTbls[this._formDef.id].delete(pClientRowId)
       this.mfSetFormFieldFocus()
     },
     mfOnResetForm(formName) {
-      allClientTbls[this._formDef.id].fnDeleteNewRowsInEditState()
+      allPatientDataTbls[this._formDef.id].fnDeleteNewRowsInEditState()
     },
   },
 }

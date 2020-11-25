@@ -83,7 +83,7 @@ import ctActOnSocketMessages from '../change/act-on-socket-messages-from-server-
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
-import allClientTbls from '../all-client-tables.js'
+import allPatientDataTbls from '../all-client-tables.js'
 
 export default {
   components: { ctActOnSocketMessages },
@@ -100,7 +100,7 @@ export default {
         // id and fields must be present
         if (obj.id) {
           if (obj.fieldsDef) {
-            if (Object.keys(allClientTbls).includes(obj.id)) {
+            if (Object.keys(allPatientDataTbls).includes(obj.id)) {
               return true
             }
           }
@@ -116,7 +116,7 @@ export default {
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = allClientTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+      const arFromClientTbl = allPatientDataTbls[this._formDef.id].fnGetPresentUniqueUuidNotEmptyRows(
         this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
       )
 

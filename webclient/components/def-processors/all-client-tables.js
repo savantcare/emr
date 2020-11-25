@@ -53,7 +53,7 @@ On line 195 there us:
     is used to run the line 30 described above.
 
 */
-const allClientTbls = {
+const allPatientDataTbls = {
   allergies: allergiesClientTbl,
   chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
@@ -83,4 +83,4 @@ const allClientTbls = {
   oxygen_saturation: oxygenSaturationClientTbl,
 }
 
-export default allClientTbls
+export default allPatientDataTbls

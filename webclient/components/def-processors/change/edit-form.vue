@@ -120,7 +120,7 @@
   </div>
 </template>
 <script>
-import allClientTbls from '../all-client-tables.js'
+import allPatientDataTbls from '../all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
@@ -167,7 +167,7 @@ export default {
         if (obj.id) {
           // fieldsdef defines the fields that are shown in the form to edit
           if (obj.fieldsDef) {
-            if (Object.keys(allClientTbls).includes(obj.id)) {
+            if (Object.keys(allPatientDataTbls).includes(obj.id)) {
               return true
             }
           }
@@ -194,7 +194,7 @@ export default {
 
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientTbl = allClientTbls[this._formDef.id]
+      const arFromClientTbl = allPatientDataTbls[this._formDef.id]
         .query()
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
@@ -262,16 +262,16 @@ export default {
         if (pNVal === null) {
           /* When called first time this.dnClientIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnClientIdOfRowToChange is the previous row that just got saved. */
-          const arOrmRowToChange = allClientTbls[this._formDef.id].find(this.dnClientIdOfRowToChange)
+          const arOrmRowToChange = allPatientDataTbls[this._formDef.id].find(this.dnClientIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
-          const vnExistingChangeRowId = allClientTbls[this._formDef.id].fnGetChangeRowIdInEditState(
+          const vnExistingChangeRowId = allPatientDataTbls[this._formDef.id].fnGetChangeRowIdInEditState(
             arOrmRowToChange.serverSideRowUuid
           ) // For a given UUID there can be only 1 row in edit state.
           if (vnExistingChangeRowId === false) {
             // Adding a new blank record. Since this is temporal DB. Why is row copied and then edited/changed? See line 176
-            this.dnClientIdOfCopiedRowBeingChanged = await allClientTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
-              arOrmRowToChange.clientSideUniqRowId
-            )
+            this.dnClientIdOfCopiedRowBeingChanged = await allPatientDataTbls[
+              this._formDef.id
+            ].fnCopyRowAndGetCopiedRowId(arOrmRowToChange.clientSideUniqRowId)
           } else {
             this.dnClientIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
@@ -282,7 +282,7 @@ export default {
   methods: {
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
-      this.dnClientIdOfCopiedRowBeingChanged = await allClientTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
+      this.dnClientIdOfCopiedRowBeingChanged = await allPatientDataTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
         pOrmRowToChange.clientSideUniqRowId
       )
     },
@@ -310,12 +310,12 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
-      return allClientTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
+      return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       // TODO: need to do form validation here just like in add form
       const rowStatus = rowState.SameAsDB_Copy_Changed_FormValidationPass
-      allClientTbls[this._formDef.id].fnSetValueOfFld(
+      allPatientDataTbls[this._formDef.id].fnSetValueOfFld(
         pEvent,
         this.dnClientIdOfCopiedRowBeingChanged,
         pFldName,

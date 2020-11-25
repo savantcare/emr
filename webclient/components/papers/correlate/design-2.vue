@@ -35,7 +35,7 @@ import clientTblOfPatientPsychReviewOfSystems from '@/components/temporal/psych-
 
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import allClientTbls from '@/components/def-processors/all-client-tables.js'
+import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 import allFormDefs from '@/components/def-processors/all-form-definations.js'
 
 import { Chart } from 'highcharts-vue'
@@ -94,7 +94,7 @@ export default {
         enabled: false,
       }
 
-      for (const table in allClientTbls) {
+      for (const table in allPatientDataTbls) {
         this.mfCreateSeries(table)
       }
 
@@ -291,7 +291,7 @@ export default {
     mfGetDataForGraph(pTableName, pFieldName) {
       // Step 2/2 : Get the data for the graph
       const arDataToShowOnGraph = []
-      const data = allClientTbls[pTableName].all() // .all is built into vuex-orm and will return all records
+      const data = allPatientDataTbls[pTableName].all() // .all is built into vuex-orm and will return all records
       const numberOfPointsOnGraph = data.length
       if (numberOfPointsOnGraph > 0) {
         // Goal: Find the max value. So percentage can be made.
