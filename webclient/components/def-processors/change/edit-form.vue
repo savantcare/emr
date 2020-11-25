@@ -15,6 +15,7 @@
               style="width: 100%"
               :highlight-first-item="true"
               @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter($event)"
             ></el-autocomplete>
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
@@ -53,6 +54,7 @@
                 :label="item.label"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
               >
               </el-option>
             </el-select>
@@ -67,6 +69,7 @@
               style="width: 100%"
               :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter($event)"
               :placeholder="propFieldDef.fieldNameInUi"
             >
             </el-date-picker>
@@ -78,6 +81,7 @@
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
               :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter($event)"
               @focus="showHistoryOnFocus = true"
               @blue="showHistoryOnFocus = false"
             ></el-input>
@@ -322,6 +326,20 @@ export default {
         rowStatus
       )
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+    },
+    mfForTabActionByEnter: function(event) {
+        //Isolate the node that we're after
+        const currentNode = event.target;
+        if(currentNode.tagName!="TEXTAREA"){
+          event.preventDefault();
+            //find all tab-able elements
+          const allElements = document.querySelectorAll('input, button, a, area, object, select, textarea');
+          //Find the current tab index.
+          const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el));
+          //focus the following element
+          const targetIndex = (currentIndex + 1) % allElements.length;
+          allElements[targetIndex].focus();
+        }        
     },
   },
 }

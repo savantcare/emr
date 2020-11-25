@@ -41,6 +41,7 @@
                 style="width: 100%"
                 :highlight-first-item="true"
                 @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
               ></el-autocomplete>
             </div>
 
@@ -97,6 +98,7 @@
                   :label="item.label"
                   :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                   @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  @keydown.enter.native="mfForTabActionByEnter($event)"
                 >
                 </el-option>
               </el-select>
@@ -117,6 +119,7 @@
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
                 :placeholder="propFieldDef.fieldNameInUi"
               >
               </el-date-picker>
@@ -133,6 +136,7 @@
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
               ></el-input-number>
               {{ propFieldDef.unitOfMeasurement }}
             </div>
@@ -152,6 +156,7 @@
                 :placeholder="propFieldDef.fieldNameInUi"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter($event)"
               ></el-input>
             </div>
           </div>
@@ -336,6 +341,21 @@ export default {
   methods: {
     log(item) {
       console.log(item)
+    },
+
+    mfForTabActionByEnter: function(event) {
+        //Isolate the node that we're after
+        const currentNode = event.target;
+        if(currentNode.tagName!="TEXTAREA"){
+          event.preventDefault();
+            //find all tab-able elements
+          const allElements = document.querySelectorAll('input, button, a, area, object, select, textarea');
+          //Find the current tab index.
+          const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el));
+          //focus the following element
+          const targetIndex = (currentIndex + 1) % allElements.length;
+          allElements[targetIndex].focus();
+        }        
     },
 
     mfGetArOfDataRows() {
