@@ -46,11 +46,13 @@
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
     -->
     <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName" type="border-card">
-      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
-        ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
+      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1">
+        <span slot="label"><u>C</u>hief complaint</span>
+        <editChiefComplaint v-if="activeTabName === 'chief_complaint'"
       /></el-tab-pane>
-      <el-tab-pane label="Sub Psych ROS (HPI)" name="psych_review_of_system" key="2"
-        ><prosAdd v-if="activeTabName === 'psych_review_of_system'"
+      <el-tab-pane label="Sub Psych ROS (HPI)" name="psych_review_of_system" key="2">
+        <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
+        <prosAdd v-if="activeTabName === 'psych_review_of_system'"
       /></el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history" key="3"
         ><pastPsychHistory v-if="activeTabName === 'past_psych_history'"
