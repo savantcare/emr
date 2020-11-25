@@ -44,56 +44,44 @@
   >
     <!-- Why not keep each el-tab-pane content inside v-if
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
+Since if created again the whole state is created again.
+So things like collapsible state will get destroyed. Even though the rem description is there inside vuex-orm
     -->
     <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1">
         <span slot="label"><u>C</u>hief complaint</span>
-        <editChiefComplaint v-if="activeTabName === 'chief_complaint'"
-      /></el-tab-pane>
+        <editChiefComplaint />
+      </el-tab-pane>
       <el-tab-pane label="Sub Psych ROS (HPI)" name="psych_review_of_system" key="2">
         <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
-        <prosAdd v-if="activeTabName === 'psych_review_of_system'"
-      /></el-tab-pane>
+        <prosAdd />
+      </el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history" key="3">
         <span slot="label"><u>P</u>ast psych history</span>
-        <pastPsychHistory v-if="activeTabName === 'past_psych_history'"
-      /></el-tab-pane>
+        <pastPsychHistory />
+      </el-tab-pane>
       <el-tab-pane label="Family history" name="family_history" key="4">
         <span slot="label"><u>F</u>amily history</span>
-        <familyHistory v-if="activeTabName === 'family_history'"
-      /></el-tab-pane>
-      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
-        ><mrosAdd v-if="activeTabName === 'medical_review_of_system'"
-      /></el-tab-pane>
-      <el-tab-pane label="Allergies" name="allergies" key="6"
-        ><allergies v-if="activeTabName === 'allergies'"
-      /></el-tab-pane>
-      <el-tab-pane label="Examination" name="examination" key="7"
-        ><examAdd v-if="activeTabName === 'examination'"
-      /></el-tab-pane>
+        <familyHistory />
+      </el-tab-pane>
+      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"><mrosAdd /></el-tab-pane>
+      <el-tab-pane label="Allergies" name="allergies" key="6"><allergies /></el-tab-pane>
+      <el-tab-pane label="Examination" name="examination" key="7"><examAdd /></el-tab-pane>
       <el-tab-pane label="Vitals" name="vitals" key="8"
-        ><weightAdd name="weight" key="9" v-if="activeTabName === 'vitals'" />
-        <heightAdd name="height" key="10" v-if="activeTabName === 'vitals'" />
-        <pulseAdd name="pulse" key="11" v-if="activeTabName === 'vitals'" />
-        <temperatureAdd name="temperature" key="12" v-if="activeTabName === 'vitals'" />
-        <bloodPressureAdd name="blood_pressure" key="13" v-if="activeTabName === 'vitals'" />
-        <bloodSugarAdd name="blood_sugar" key="14" v-if="activeTabName === 'vitals'" />
-        <bmiAdd name="bmi" key="15" v-if="activeTabName === 'vitals'" />
-        <waistCircumferenceAdd name="waist_circumference" key="16" v-if="activeTabName === 'vitals'"
+        ><weightAdd name="weight" key="9" />
+        <heightAdd name="height" key="10" />
+        <pulseAdd name="pulse" key="11" />
+        <temperatureAdd name="temperature" key="12" />
+        <bloodPressureAdd name="blood_pressure" key="13" />
+        <bloodSugarAdd name="blood_sugar" key="14" />
+        <bmiAdd name="bmi" key="15" />
+        <waistCircumferenceAdd name="waist_circumference" key="16"
       /></el-tab-pane>
-      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"
-        ><miscNote v-if="activeTabName === 'miscellaneous_notes'"
-      /></el-tab-pane>
-      <el-tab-pane label="Process Note" name="process_notes" key="18">
-        <processNote v-if="activeTabName === 'process_notes'"
-      /></el-tab-pane>
-      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19"
-        ><dxAdd v-if="activeTabName === 'diagnosis'"
-      /></el-tab-pane>
-      <el-tab-pane label="Screens" name="screens" key="20"
-        ><screensAdd v-if="activeTabName === 'screens'"
-      /></el-tab-pane>
-      <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd v-if="activeTabName === 'goals'" /></el-tab-pane>
+      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"><miscNote /></el-tab-pane>
+      <el-tab-pane label="Process Note" name="process_notes" key="18"> <processNote /></el-tab-pane>
+      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19"><dxAdd /></el-tab-pane>
+      <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
+      <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
         <el-tabs v-model="first">
@@ -104,14 +92,11 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
           <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
-      <el-tab-pane label="Plan comments" name="plan_comments" key="24"
-        ><pcAdd v-if="activeTabName === 'plan_comments'"
-      /></el-tab-pane>
+      <el-tab-pane label="Plan comments" name="plan_comments" key="24"><pcAdd /></el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="25">
         <span slot="label"><u>S</u>ervice statements</span>
-
-        <ssAdd v-if="activeTabName === 'service_statements'"
-      /></el-tab-pane>
+        <ssAdd />
+      </el-tab-pane>
     </el-tabs>
   </el-dialog>
 </template>
