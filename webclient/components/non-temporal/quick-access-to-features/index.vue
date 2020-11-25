@@ -70,19 +70,16 @@ export default {
       this.toggleBetweenHealthAndOtherComponents()
     },
     actOnUserIntentToSeeChiefComplaint() {
-      console.log('alt_c pressed')
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'chief_complaint' }],
       })
     },
     actOnUserIntentToSeeHPI() {
-      console.log('alt_c pressed')
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'psych_review_of_system' }],
       })
     },
     actOnUserIntentToSeeSS() {
-      console.log('alt_c pressed')
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'service_statements' }],
       })
