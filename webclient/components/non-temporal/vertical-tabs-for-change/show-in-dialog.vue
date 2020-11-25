@@ -93,10 +93,11 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
       <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
         <el-tabs v-model="first">
-          <el-tab-pane label="Fast" name="first"> <remAdd /> <remView /> </el-tab-pane>
+          <el-tab-pane label="Fast" name="first">
+            <el-divider>Add</el-divider> <remAdd /> <el-divider>Edit</el-divider><remMHorizontalEdit />
+          </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
           <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
-          <el-tab-pane label="Multi edit reminders" name="fourth">Multi edit reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="24"
@@ -139,7 +140,7 @@ import goalsAdd from '@/components/temporal/goals/change-layer/add-ct.vue'
 import recAdd from '@/components/temporal/recommendations/change-layer/recommendation-add.vue'
 
 import remAdd from '@/components/temporal/reminders/change-layer/add-ct.vue'
-import remView from '@/components/temporal/reminders/view-layer/grid-design2-ct.vue'
+import remMHorizontalEdit from '@/components/temporal/reminders/change-layer/medit-horizontal.vue'
 
 import pcAdd from '@/components/temporal/plan-comments/change-layer/add-ct.vue'
 import ssAdd from '@/components/temporal/service-statements/change-layer/add-ss.vue'
@@ -175,7 +176,7 @@ export default {
     goalsAdd,
     recAdd,
     remAdd,
-    remView,
+    remMHorizontalEdit,
     pcAdd,
     ssAdd,
   },
