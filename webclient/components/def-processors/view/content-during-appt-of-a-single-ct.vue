@@ -1,64 +1,18 @@
 <template>
   <div style="">
     <div style="cursor: pointer">
-      <el-divider class="entity-header" content-position="left" @click="changeIconClickedSoSetUpState(_formDef.id)">
+      <el-divider class="entity-header" content-position="left" @click="heading_clicked_so_set_up_state(_formDef.id)">
         <h3>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}</h3>
 
-        <el-button-group>
-          <span v-if="currentApptObj['apptStatus'] === 'locked'">
-            <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
-              <div style="text-align: right; margin: 0">
-                <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
-                <!-- Amendment icon -->
-                <el-button
-                  v-if="amendmentData.length > 0"
-                  type="success"
-                  icon="el-icon-check"
-                  style="position: absolute; bottom: 15px; right: 15px"
-                  size="mini"
-                  @click="mfSaveAddendum(amendmentData, _formDef.id)"
-                  circle
-                ></el-button>
-              </div>
-              <el-button
-                slot="reference"
-                class="el-icon-edit-outline"
-                size="mini"
-                style="padding: 3px; color: #c0c4cc; border: none"
-              />
-            </el-popover>
-          </span>
-          <!-- Case 2/2: When this appt is un-locked. This decides what header action buttons to show when the appt is not locked -->
-          <span v-else>
-            <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
-            <!--
-              
-              <el-button
-                v-if="
-                  cfGetArOfDataRows.length < _formDef.maxNumberOfTemporallyValidRows ||
-                  !_formDef.maxNumberOfTemporallyValidRows
-                "
-                class="el-icon-circle-plus-outline"
-                size="mini"
-                @click="mfOpenAddInEditLayer"
-                style="padding: 3px; color: #c0c4cc; border: none"
-              ></el-button>
-
-              -->
-            <!-- Multi edit. v-if stops giving multiedit when there is only a single row. There has to be more then 1 row for multi edit to make sense -->
-            <el-button
-              v-if="cfGetArOfDataRows.length > 1"
-              class="el-icon-money"
-              size="mini"
-              @click="mfOpenMultiEditCtInEditLayer"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-          </span>
-        </el-button-group>
+        <!-- If appt is locked:
+                 on click user goes to the change paper. And the change paper will show the box to add addendum.
+             If appt is unlocked: 
+                  Multiedit feature is given by the change paper.    
+                  Add button is not needed since the change paper will allow each add.
+         -->
       </el-divider>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
-    <!-- <el-row v-if="dblOnAndOffSwitchToShowContent"> -->
 
     <div :style="cfGetDataRowStyle">
       <!-- This is for each data row -->
@@ -338,7 +292,7 @@ export default {
     },
   },
   methods: {
-    changeIconClickedSoSetUpState(pFormDefId) {
+    heading_clicked_so_set_up_state(pFormDefId) {
       const updateState = allClientTbls.common_for_all_cts.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pFormDefId }],
       })
