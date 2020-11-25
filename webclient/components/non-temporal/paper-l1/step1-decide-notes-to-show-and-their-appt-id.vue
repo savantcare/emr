@@ -38,7 +38,7 @@
 
 <script>
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/step2-a4-note-for-appt-id.vue'
+import apptNotePrintableView from '@/components/non-temporal/paper-l1/step2-a4-note-for-appt-id.vue'
 import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
@@ -161,7 +161,7 @@ export default {
           .get()
 
         const updateState = clientTblOfLeftSideViewCards.update({
-          clientSideUniqRowId: 2, // This is hard code for "/paper-view-of-appt-note-with-amendment-or-modify-feature/step1-decide-notes-to-show-and-their-appt-id.vue"
+          clientSideUniqRowId: 2, // This is hard code for "/paper-l1/step1-decide-notes-to-show-and-their-appt-id.vue"
           currentDisplayStateOfComponent: 1,
           firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],
         })

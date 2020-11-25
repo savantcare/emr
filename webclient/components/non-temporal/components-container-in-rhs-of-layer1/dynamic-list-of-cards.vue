@@ -26,7 +26,7 @@ import ctSettings from '@/components/non-temporal/layer-1-left-side-header/setti
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import apptNote from '@/components/non-temporal/paper-view-of-appt-note-with-amendment-or-modify-feature/step1-decide-notes-to-show-and-their-appt-id.vue'
+import apptNote from '@/components/non-temporal/paper-l1/step1-decide-notes-to-show-and-their-appt-id.vue'
 
 export default {
   components: { ctCorrelate, ctCoding, ctScBrainDialog, ctSettings, ctPaperNoteStructure, apptNote },
