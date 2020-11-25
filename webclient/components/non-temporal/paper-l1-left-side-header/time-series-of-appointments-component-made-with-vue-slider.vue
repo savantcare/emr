@@ -56,7 +56,7 @@ __proto__: Object
 </template>
 
 <script>
-import clientTblOfLeftSideViewCards from '@/components/non-temporal/components-container-in-lhs-of-layer1/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'

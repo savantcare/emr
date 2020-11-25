@@ -4,7 +4,9 @@ import phq9MasterClass from './phq9-all-select-options.js'
 import phq9AllSelectOptionsTbl from './phq9-all-select-options.js'
 import phq9OfAPatientTbl from '~/components/temporal/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 
-const { v1: uuidv1 } = require('uuid')
+const {
+  v1: uuidv1,
+} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
 let count = 0
 const intUniqueId = () => ++count
 
