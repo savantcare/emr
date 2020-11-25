@@ -16,7 +16,7 @@ https://vuejs.org/v2/style-guide/#Single-instance-component-names-strongly-recom
 import ctSlider from './time-series-of-appointments-component-made-with-vue-slider.vue'
 
 import ctTogleHealthOther from './toggle-health-other-component.vue'
-import ctCoding from '@/components/non-temporal/appt-coding-v2/dashboard.vue'
+import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from './settings-component.vue'
 //
 

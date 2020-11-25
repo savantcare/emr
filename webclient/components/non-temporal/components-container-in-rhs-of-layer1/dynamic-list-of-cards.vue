@@ -18,9 +18,9 @@
 </template>
 <script>
 import ctCorrelate from '@/components/non-temporal/correlate/design-2.vue'
-import ctScBrainDialog from '@/components/non-temporal/appt-coding-v2/sc-brain-dialog.vue'
+import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue'
 
-import ctCoding from '@/components/non-temporal/appt-coding-v2/dashboard.vue'
+import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from '@/components/papers/view/left-side-header/settings-component.vue'
 
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
