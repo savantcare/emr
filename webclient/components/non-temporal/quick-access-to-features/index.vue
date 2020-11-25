@@ -17,6 +17,10 @@
     <div v-shortkey="['f3']" @shortkey="actOnF3ShortKeyPressed()"></div>
     <div v-shortkey="['f10']" @shortkey="actOnF10ShortKeyPressed()"></div>
     <!-- End of defining short cut keys -->
+
+    <!-- Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
+    <div v-shortkey.once="['ctrl', 'c']" @shortkey="actOnUserIntentToSeeChiefComplaint()"></div>
+    <div v-shortkey.once="['ctrl', 'h']" @shortkey="actOnUserIntentToSeeHPI()"></div>
   </div>
 </template>
 
@@ -63,6 +67,18 @@ export default {
     },
     actOnF10ShortKeyPressed() {
       this.toggleBetweenHealthAndOtherComponents()
+    },
+    actOnUserIntentToSeeChiefComplaint() {
+      console.log('alt_c pressed')
+      clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'chief_complaint' }],
+      })
+    },
+    actOnUserIntentToSeeHPI() {
+      console.log('alt_c pressed')
+      clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'psych_review_of_system' }],
+      })
     },
     goToDashboardMode() {
       clientTblOfCommonForAllComponents.insertOrUpdate({
