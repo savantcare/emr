@@ -1,6 +1,32 @@
 <template>
   <div style="">
-    <div style="cursor: pointer">
+    <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
+    Hence only print a seperate row for heding when needed.
+    
+    Following are the cases when a seperate row for heading is not needed.
+    If there is only 1 possible row and 1 possible field then no need to show a seperate line for header
+    The format for such data will be "Child complaint: Sleep"
+    Without the following if statement the format was becoming
+    Child complaint 
+    Sleep
+
+    Explanation of v-if
+    !_formDef.maxNumberOfTemporallyValidRows || _formDef.maxNumberOfTemporallyValidRows > 1 
+    First is checking if Ct has defined _formDef.maxNumberOfTemporallyValidRows. For ct that has not defined this property in the object the heading will come.
+    If 1st check fails the heding will come if 2nd check passes. 
+    
+    There are ptDataTbl like MentalStatusExam that have many fields. For thos I need to show the heading "Mental status exam"
+    
+    
+    -->
+    <span
+      v-if="
+        !_formDef.maxNumberOfTemporallyValidRows ||
+        _formDef.maxNumberOfTemporallyValidRows > 1 ||
+        _formDef.fieldsDef.length > 1
+      "
+      style="cursor: pointer"
+    >
       <el-divider class="entity-header" content-position="left" @click="heading_clicked_so_set_up_state(_formDef.id)">
         <h3>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}</h3>
 
@@ -11,7 +37,10 @@
                   Add button is not needed since the change paper will allow each add.
          -->
       </el-divider>
-    </div>
+    </span>
+    <span v-else>
+      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+    </span>
     <!-- Section 2/2: This starts after the header ends -->
 
     <div :style="cfGetDataRowStyle">

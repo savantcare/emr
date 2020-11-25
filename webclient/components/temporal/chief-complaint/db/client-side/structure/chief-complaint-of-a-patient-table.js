@@ -54,7 +54,7 @@ export const chiefComplaintFormDef = {
   id: 'chief_complaint',
   plural: 'chief complaint',
   singular: 'chief complaint',
-  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'text', span: 24 }],
+  fieldsDef: [{ fieldNameInDb: 'description', fieldNameInUi: 'Description', showFieldLabel: false, fieldType: 'text' }],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
 
