@@ -5,9 +5,7 @@ import medicalReviewOfSystemAllSelectOptionsTbl from './medical-review-of-system
 import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
-const {
-  v1: uuidv1,
-} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
+const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 

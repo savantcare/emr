@@ -18,9 +18,7 @@ import VueStateOfDeletedDrawerModule from '~/components/non-temporal/ct-deleted-
 import database from '~/store/import-tables-and-register-to-client-side-database'
 
 // Ref: https://stackoverflow.com/a/62247034
-const {
-  v1: uuidv1,
-} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
+const { v1: uuidv1 } = require('uuid')
 VuexORM.use(VuexORMAxios, { axios })
 VuexORM.use(VuexclientTblOfCtSearchPhrases, {
   tokenize: true, // Ref: https://github.com/client-side/plugin-search#configurations needed so "goal add" works when list has "add goal"

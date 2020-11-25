@@ -3,9 +3,7 @@ import clientTblManage from '~/components/def-processors/crud/manage-rows-of-tab
 import psychReviewOfSystemsAllSelectOptionsTbl from './psych-review-of-system-all-select-options.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
-const {
-  v1: uuidv1,
-} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
+const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 

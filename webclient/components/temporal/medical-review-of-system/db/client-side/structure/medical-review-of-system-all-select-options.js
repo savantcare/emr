@@ -1,9 +1,7 @@
 import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import medicalReviewOfSystemForPatientClass from './medical-review-of-system-of-a-patient-table.js'
 
-const {
-  v1: uuidv1,
-} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
+const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 

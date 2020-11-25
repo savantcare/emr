@@ -4,9 +4,7 @@ import serviceStatementsAllSelectOptionsTbl from './service-statements-all-selec
 import serviceStatementsOfAPatientTbl from '@/components/temporal/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
-const {
-  v1: uuidv1,
-} = require('~/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/node_modules/uuid')
+const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
