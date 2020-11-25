@@ -186,7 +186,7 @@ export default {
     // #region kbselect
     selectActiveTabFromKeyboard(pEvent) {
       /*
-      Try to get this working with vue-shortkey. Note added by VK oct 5th 2020
+      Try to get this working with KB shortcuts. Note added by VK oct 5th 2020
       if (this.vblIsdialogHoldingTabsInEditLayerVisible === false) {
         // Rejection reason 1: 2nd layer not active
         return
