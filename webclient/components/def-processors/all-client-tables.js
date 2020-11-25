@@ -55,7 +55,6 @@ On line 195 there us:
 */
 const allClientTbls = {
   allergies: allergiesClientTbl,
-  common_for_all_cts: commonForAllCts,
   chief_complaint: chiefComplaintClientTbl,
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,

@@ -163,6 +163,8 @@ import remMHorizontalEdit from '@/components/temporal/reminders/change-layer/med
 import pcAdd from '@/components/temporal/plan-comments/change-layer/add-ct.vue'
 import ssAdd from '@/components/temporal/service-statements/change-layer/add-ss.vue'
 
+import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+
 export default {
   name: 'CLTabsInDialogManager',
   data() {
@@ -216,7 +218,7 @@ export default {
       },
     },
     cfDrawerVisibility() {
-      const drawerVisibility = allClientTbls.common_for_all_cts.find('form-def-id-for-change-in-vertical-tabs')
+      const drawerVisibility = commonForAllCts.find('form-def-id-for-change-in-vertical-tabs')
 
       if (drawerVisibility) {
         if (drawerVisibility['fieldValue'] !== 'false') {
@@ -238,7 +240,7 @@ export default {
     },
     handleChange(val) {},
     handleClose(done) {
-      allClientTbls.common_for_all_cts.insertOrUpdate({
+      commonForAllCts.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'false' }],
       })
     },

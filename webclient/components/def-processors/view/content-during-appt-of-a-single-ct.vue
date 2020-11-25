@@ -1,5 +1,5 @@
 <template>
-  <div style="">
+  <div style="display: grid; grid-template-columns: 2fr 1fr">
     <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
     Hence only print a seperate row for heding when needed.
     
@@ -19,7 +19,7 @@
     
     
     -->
-    <span
+    <div
       v-if="
         !_formDef.maxNumberOfTemporallyValidRows ||
         _formDef.maxNumberOfTemporallyValidRows > 1 ||
@@ -37,10 +37,10 @@
                   Add button is not needed since the change paper will allow each add.
          -->
       </el-divider>
-    </span>
-    <span v-else>
+    </div>
+    <div v-else>
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
-    </span>
+    </div>
     <!-- Section 2/2: This starts after the header ends -->
 
     <div :style="cfGetDataRowStyle">
@@ -76,36 +76,29 @@
          Each appt gets a slide of its own
          -->
 
-      <vue-horizontal-list
-        :items="cf_get_entity_value_during_each_appt"
-        :options="options"
-        :currentSlideNumber="currentSlideNumber"
-        class="g2-container-for-all-timeline-boxes"
-      >
-        <template v-slot:default="{ item }">
-          <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-            Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
-          </div>
-          <div
-            class="item"
-            id="each-row-of-entity-inside-appt"
-            v-for="entityRow in item[_formDef.id]"
-            :key="entityRow.clientSideUniqRowId"
-          >
-            <getRowContent
-              :_entityRow="entityRow"
-              :_formDef="_formDef"
-              :_ApptStatus="item['apptStatus']"
-              :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-            />
-            <!-- end of each-row-of-entity -->
-            <!-- This is for action associated with each row -->
-            <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-            <!-- Case 1/2: When this appt is locked what row actions to show-->
-          </div>
-          <!-- end of actions of each row -->
-        </template>
-      </vue-horizontal-list>
+      <div v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
+        <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+          Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
+        </div>
+        <div
+          class="item"
+          id="each-row-of-entity-inside-appt"
+          v-for="entityRow in item[_formDef.id]"
+          :key="entityRow.clientSideUniqRowId"
+        >
+          <getRowContent
+            :_entityRow="entityRow"
+            :_formDef="_formDef"
+            :_ApptStatus="item['apptStatus']"
+            :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+          />
+          <!-- end of each-row-of-entity -->
+          <!-- This is for action associated with each row -->
+          <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
+          <!-- Case 1/2: When this appt is locked what row actions to show-->
+        </div>
+        <!-- end of actions of each row -->
+      </div>
     </div>
     <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
       <h4>Addendum:</h4>
@@ -135,6 +128,7 @@ import allClientTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
+import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   data() {
@@ -322,7 +316,7 @@ export default {
   },
   methods: {
     heading_clicked_so_set_up_state(pFormDefId) {
-      const updateState = allClientTbls.common_for_all_cts.insertOrUpdate({
+      const updateState = commonForAllCts.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pFormDefId }],
       })
     },
@@ -439,7 +433,7 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .g2-container-for-all-timeline-boxes {
   /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
-  max-width: 556px; /* Ref: line no-168 */
+  max-width: 400px; /* Ref: line no-168 */
   margin-left: auto;
   margin-right: auto;
   padding: 4px 4px;
@@ -447,9 +441,6 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .g3-each-box-in-timeline {
   display: inline-block; /* Does not add a line break */
-  padding: 10px;
-  border-style: solid;
-  border-width: 1px;
   border-color: grey;
 }
 .entity-header h3 {
