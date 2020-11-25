@@ -45,7 +45,7 @@
     <!-- Why not keep each el-tab-pane content inside v-if
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
     -->
-    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
+    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName" @tab-click="$root.$emit('change-tab-from-show-vertical-tabs-in-dialog', activeTabName, nameOfFieldWithFocus[activeTabName])">
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
         ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
       /></el-tab-pane>
@@ -151,6 +151,7 @@ export default {
     return {
       activeTabName: 'psych_review_of_system',
       formDefId: '',
+      nameOfFieldWithFocus: {}
     }
   },
   components: {
@@ -212,9 +213,19 @@ export default {
     },
   },
   mounted() {
-    this.vblIsdialogHoldingTabsInEditLayerVisible = false
+    this.vblIsdialogHoldingTabsInEditLayerVisible = false;
+
+    const eventName = 'focus-field-from-add-form'
+    this.$root.$on(eventName, (name, fieldID) => {
+      // this.mfSetFieldRefocus(data)
+      setTimeout(() => this.mfSetValueFieldWithFocus(name, fieldID), 200)
+    })
   },
   methods: {
+    mfSetValueFieldWithFocus(name,fieldID) {
+      this.nameOfFieldWithFocus[name] = fieldID;
+      console.log('fieldID', fieldID, this.nameOfFieldWithFocus);
+    },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
     },

@@ -7,9 +7,9 @@
         Start to process each row -->
     <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
       <div
-        v-for="ormRow in cfGetClientTblNewRowsInEditState"
-        :key="ormRow.clientSideUniqRowId"
-        :id="`each-data-row-` + _formDef.id"
+        v-for="(ormRow, ormIndex) in cfGetClientTblNewRowsInEditState"
+        :key="ormIndex"
+        :id="`each-data-row-`+ ormIndex +`-`+ _formDef.id"
         :style="_formDef.styleForEachRowInAddForm"
       >
         <!-- Start to process fields in the row -->
@@ -142,9 +142,14 @@
               <div v-if="propFieldDef.showFieldLabel">
                 {{ propFieldDef.fieldNameInUi }}
               </div>
+              <!-- 
+                v-focus="propFieldDef.fieldNameInDb+`_`+ormIndex === nameOfFieldWithFocus" 
+                 nameOfFieldWithFocus = _formDef.id+`_`+propFieldDef.fieldNameInDb+`_`+ormIndex
+                @blur="nameOfFieldWithFocus = null"
+                @focus="mfSetValueFieldWithFocus(_formDef.id, propFieldDef.fieldNameInDb+`_`+ormIndex)"
+                -->
               <el-input
-                @focus="nameOfFieldWithFocus = 'input'"
-                @blur="nameOfFieldWithFocus = 'not-input'"
+                @focus="$root.$emit('focus-field-from-add-form', _formDef.id, propFieldDef.fieldNameInDb+`_`+ormIndex)"
                 :ref="propFieldDef.fieldNameInDb"
                 :type="propFieldDef.fieldType"
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
@@ -269,9 +274,17 @@ export default {
       This was first used for slider form control.
   */
     this.value = this._formDef.fnCreated(this.mfGetArOfDataRows())
+    console.log('data bind add');
+  },
+  mounted() {
+    //call from show-vertical-tabs-in-dialog.vue
+    const eventName = 'change-tab-from-show-vertical-tabs-in-dialog'
+    this.$root.$on(eventName, (tabeName, field) => {
+      this.mfSetFieldRefocus(tabeName, field)
+    })
   },
   data() {
-    return { value: [], nameOfFieldWithFocus: '' }
+    return { value: [] }
   },
   validations() {
     return this._formDef.validationsObj
@@ -297,7 +310,6 @@ export default {
   computed: {
     // allClientTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      console.log(this.nameOfFieldWithFocus)
       const r = allClientTbls[this._formDef.id].fnGetNewRowsInEditState()
       return r
     },
@@ -385,6 +397,19 @@ export default {
           if (this.$refs[firstField][lastElement - 1]) this.$refs[firstField][lastElement - 1].focus()
         }
         if (this.$refs[firstField][lastElement - 2]) this.$refs[firstField][lastElement - 2].focus()
+      }
+    },
+    // Set focus for last time witch field active
+    mfSetFieldRefocus(tabeName, field) {
+      // console.log('focus active tab name',tabeName, field)
+      if(field) {
+        const getFieldID = field;
+        const arName = getFieldID.split("_");
+        if(arName.length > 1) {
+          setTimeout(() => {
+            if(this.$refs[arName[0]] && this.$refs[arName[0]][arName[1]]){this.$refs[arName[0]][arName[1]].focus()}
+          }, 500)
+        }
       }
     },
     // Cannot call allClientTbls[this._formDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
