@@ -13,7 +13,7 @@ export default {
     clientTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
-        componentToShowPath: 'papers/view-left-side-header/sub-ct-container-design-using-card.vue',
+        componentToShowPath: 'papers/view/left-side-header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })
