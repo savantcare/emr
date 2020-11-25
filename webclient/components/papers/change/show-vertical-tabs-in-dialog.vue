@@ -64,11 +64,21 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"><u>F</u>amily history</span>
         <familyHistory />
       </el-tab-pane>
-      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"><mrosAdd /></el-tab-pane>
-      <el-tab-pane label="Allergies" name="allergies" key="6"><allergies /></el-tab-pane>
-      <el-tab-pane label="Examination" name="examination" key="7"><examAdd /></el-tab-pane>
-      <el-tab-pane label="Vitals" name="vitals" key="8"
-        ><weightAdd name="weight" key="9" />
+      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5">
+        <span slot="label"><u>M</u> review of systems</span>
+        <mrosAdd
+      /></el-tab-pane>
+      <el-tab-pane label="Allergies" name="allergies" key="6">
+        <span slot="label"><u>A</u>llergies</span>
+        <allergies />
+      </el-tab-pane>
+      <el-tab-pane label="Examination" name="examination" key="7">
+        <span slot="label"><u>E</u>xamination</span>
+        <examAdd />
+      </el-tab-pane>
+      <el-tab-pane label="Vitals" name="vitals" key="8">
+        <span slot="label"><u>V</u>itals</span>
+        <weightAdd name="weight" key="9" />
         <heightAdd name="height" key="10" />
         <pulseAdd name="pulse" key="11" />
         <temperatureAdd name="temperature" key="12" />
@@ -77,11 +87,22 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <bmiAdd name="bmi" key="15" />
         <waistCircumferenceAdd name="waist_circumference" key="16"
       /></el-tab-pane>
-      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19"><dxAdd /></el-tab-pane>
-      <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
-      <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
-      <el-tab-pane label="Recommendations" name="recommendations"><recAdd /></el-tab-pane>
+      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19">
+        <span slot="label">Asmnt & <u>d</u>iagnosis</span>
+        <dxAdd
+      /></el-tab-pane>
+      <el-tab-pane label="Screens" name="screens" key="20">
+        <span slot="label">Sc<u>r</u>eens</span><screensAdd
+      /></el-tab-pane>
+      <el-tab-pane label="Goals" name="goals" key="21">
+        <span slot="label"><u>G</u>oals</span>
+        <goalsAdd
+      /></el-tab-pane>
+      <el-tab-pane label="Recommendations" name="recommendations">
+        <span slot="label"><u>R</u>ecommendations</span> <recAdd
+      /></el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
+        <span slot="label">Rem<u>i</u>nders</span>
         <el-tabs v-model="first">
           <el-tab-pane label="Fast" name="first">
             <el-divider>Add</el-divider> <remAdd /> <el-divider>Edit</el-divider><remMHorizontalEdit />
@@ -90,13 +111,19 @@ So things like collapsible state will get destroyed. Even though the rem descrip
           <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
-      <el-tab-pane label="Plan comments" name="plan_comments" key="24"><pcAdd /></el-tab-pane>
+      <el-tab-pane label="Plan comments" name="plan_comments" key="24">
+        <span slot="label">P<u>l</u>an comments</span> <pcAdd
+      /></el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="25">
         <span slot="label"><u>S</u>ervice statements</span>
         <ssAdd />
       </el-tab-pane>
-      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"><miscNote /></el-tab-pane>
-      <el-tab-pane label="Process Note" name="process_notes" key="18"> <processNote /></el-tab-pane>
+      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17">
+        <span slot="label">Mis<u>c</u> note</span> <miscNote
+      /></el-tab-pane>
+      <el-tab-pane label="Process Note" name="process_notes" key="18">
+        <span slot="label">Pr<u>o</u>cess note</span> <processNote
+      /></el-tab-pane>
     </el-tabs>
   </el-dialog>
 </template>
