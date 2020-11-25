@@ -59,9 +59,18 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
 
 export const psychReviewOfSystemFormDef = {
   id: 'psych_review_of_system',
-  plural: 'pysch review of system',
+  plural: 'Subjective + Psych ROS (HPI)',
   singular: 'pysch review of system',
   fieldsDef: [
+    {
+      fieldNameInDb: 'subjective',
+      fieldNameInUi: 'Subjective',
+      fieldType: 'textarea',
+      showFieldLabel: true,
+      // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
+      span: 24,
+      fieldStyle: 'padding: 20px',
+    },
     {
       fieldNameInDb: 'heading_depression',
       fieldNameInUi: 'Depression',

@@ -49,7 +49,7 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
         ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
       /></el-tab-pane>
-      <el-tab-pane label="P review of systems" name="psych_review_of_system" key="2"
+      <el-tab-pane label="Sub Psych ROS (HPI)" name="psych_review_of_system" key="2"
         ><prosAdd v-if="activeTabName === 'psych_review_of_system'"
       /></el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history" key="3"
