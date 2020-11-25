@@ -99,7 +99,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <goalsAdd
       /></el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
-        <span slot="label"><u>R</u>ecommendations</span> <recAdd
+        <span slot="label">Recommenda<u>t</u>ions</span> <recAdd
       /></el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
         <span slot="label">Rem<u>i</u>nders</span>
@@ -119,7 +119,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <ssAdd />
       </el-tab-pane>
       <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17">
-        <span slot="label">Mis<u>c</u> note</span> <miscNote
+        <span slot="label">Misc <u>n</u>ote</span> <miscNote
       /></el-tab-pane>
       <el-tab-pane label="Process Note" name="process_notes" key="18">
         <span slot="label">Pr<u>o</u>cess note</span> <processNote

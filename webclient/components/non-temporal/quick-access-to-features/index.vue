@@ -15,6 +15,7 @@
 
 <script>
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import reminders from '../../temporal/reminders/db/client-side/structure/reminders-of-a-patient-table'
 
 export default {
   data() {
@@ -25,26 +26,22 @@ export default {
     // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
 
     this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
-
     this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
-
-    this.$mousetrap.bind(['s', 'ctrl+s'], this.actOnUserIntentToSeeSS)
-
-    this.$mousetrap.bind(['p', 'ctrl+p'], function (e) {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'past_psych_history' }],
-      })
-      // Goal: Do not see p typed in the input field
-      return false
-    })
-
-    this.$mousetrap.bind(['f', 'ctrl+f'], function (e) {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'family_history' }],
-      })
-      // Goal: Do not see C typed in the input field
-      return false
-    })
+    this.$mousetrap.bind(['p', 'ctrl+p'], this.actOnUserIntentToSeePastPsychHistory)
+    this.$mousetrap.bind(['f', 'ctrl+f'], this.actOnUserIntentToSeeFamilyHistory)
+    this.$mousetrap.bind(['m', 'ctrl+m'], this.medical_review_of_system)
+    this.$mousetrap.bind(['a', 'ctrl+a'], this.allergies)
+    this.$mousetrap.bind(['e', 'ctrl+e'], this.examination)
+    this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
+    this.$mousetrap.bind(['d', 'ctrl+d'], this.diagnosis)
+    this.$mousetrap.bind(['r', 'ctrl+r'], this.screens)
+    this.$mousetrap.bind(['g', 'ctrl+g'], this.goals)
+    this.$mousetrap.bind(['t', 'ctrl+t'], this.recommendations)
+    this.$mousetrap.bind(['i', 'ctrl+i'], this.reminders)
+    this.$mousetrap.bind(['l', 'ctrl+l'], this.plan_comments)
+    this.$mousetrap.bind(['s', 'ctrl+s'], this.service_statements)
+    this.$mousetrap.bind(['n', 'ctrl+n'], this.miscellaneous_notes)
+    this.$mousetrap.bind(['o', 'ctrl+o'], this.process_notes)
 
     // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
     this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
@@ -87,27 +84,65 @@ export default {
     actOnF10ShortKeyPressed() {
       this.toggleBetweenHealthAndOtherComponents()
     },
-    actOnUserIntentToSeeChiefComplaint() {
+    activateTab(pTab) {
       clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'chief_complaint' }],
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pTab }],
       })
       // Goal: Do not see C typed in the input field
       return false
     },
+    actOnUserIntentToSeeChiefComplaint() {
+      return this.activateTab('chief_complaint')
+    },
     actOnUserIntentToSeeHPI() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'psych_review_of_system' }],
-      })
-      // Goal: Do not see H typed in the input field
-      return false
+      return this.activateTab('psych_review_of_system')
     },
-    actOnUserIntentToSeeSS() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'service_statements' }],
-      })
-      // Goal: Do not see S typed in the input field
-      return false
+    actOnUserIntentToSeePastPsychHistory() {
+      return this.activateTab('past_psych_history')
     },
+    actOnUserIntentToSeeFamilyHistory() {
+      return this.activateTab('family_history')
+    },
+    medical_review_of_system() {
+      return this.activateTab('medical_review_of_system')
+    },
+    allergies() {
+      return this.activateTab('allergies')
+    },
+    examination() {
+      return this.activateTab('examination')
+    },
+    vitals() {
+      return this.activateTab('vitals')
+    },
+    diagnosis() {
+      return this.activateTab('diagnosis')
+    },
+    screens() {
+      return this.activateTab('screens')
+    },
+    goals() {
+      return this.activateTab('goals')
+    },
+    recommendations() {
+      return this.activateTab('recommendations')
+    },
+    reminders() {
+      return this.activateTab('reminders')
+    },
+    plan_comments() {
+      return this.activateTab('plan_comments')
+    },
+    service_statements() {
+      return this.activateTab('service_statements')
+    },
+    miscellaneous_notes() {
+      return this.activateTab('miscellaneous_notes')
+    },
+    process_notes() {
+      return this.activateTab('process_notes')
+    },
+
     goToDashboardMode() {
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
