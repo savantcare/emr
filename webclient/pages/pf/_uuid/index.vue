@@ -136,6 +136,10 @@ Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
 
+// For keyboard contraol Ref: https://github.com/g33kio/vue-mousetrap#readme
+import VueMousetrap from 'vue-mousetrap'
+Vue.use(VueMousetrap)
+
 export default {
   components: {
     ctLayer1LeftSideCards,

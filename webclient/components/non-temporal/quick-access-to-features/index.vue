@@ -10,18 +10,6 @@
       style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
     ></span>
     <!-- END of hot corner area defination -->
-
-    <!-- Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
-    <div v-shortkey="['f1']" @shortkey="actOnF1ShortKeyPressed()"></div>
-    <div v-shortkey="['f2']" @shortkey="actOnF2ShortKeyPressed()"></div>
-    <div v-shortkey="['f3']" @shortkey="actOnF3ShortKeyPressed()"></div>
-    <div v-shortkey="['f10']" @shortkey="actOnF10ShortKeyPressed()"></div>
-    <!-- End of defining short cut keys -->
-
-    <!-- Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
-    <div v-shortkey.once="['ctrl', 'c']" @shortkey="actOnUserIntentToSeeChiefComplaint()"></div>
-    <div v-shortkey.once="['ctrl', 'h']" @shortkey="actOnUserIntentToSeeHPI()"></div>
-    <div v-shortkey.once="['ctrl', 's']" @shortkey="actOnUserIntentToSeeSS()"></div>
   </div>
 </template>
 
@@ -34,6 +22,17 @@ export default {
   },
   computed: {},
   mounted() {
+    // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
+    this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
+    this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
+    this.$mousetrap.bind(['s', 'ctrl+s'], this.actOnUserIntentToSeeSS)
+
+    // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
+    this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
+    this.$mousetrap.bind(['f2'], this.actOnF2ShortKeyPressed)
+    this.$mousetrap.bind(['f3'], this.actOnF3ShortKeyPressed)
+    this.$mousetrap.bind(['f10'], this.actOnF10ShortKeyPressed)
+
     this.$root.$on('from-product-tour-start-work-product-mode', (pRowId) => {
       this.goToWorkProductMode()
     })
@@ -73,16 +72,22 @@ export default {
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'chief_complaint' }],
       })
+      // Goal: Do not see C typed in the input field
+      return false
     },
     actOnUserIntentToSeeHPI() {
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'psych_review_of_system' }],
       })
+      // Goal: Do not see H typed in the input field
+      return false
     },
     actOnUserIntentToSeeSS() {
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'service_statements' }],
       })
+      // Goal: Do not see S typed in the input field
+      return false
     },
     goToDashboardMode() {
       clientTblOfCommonForAllComponents.insertOrUpdate({
