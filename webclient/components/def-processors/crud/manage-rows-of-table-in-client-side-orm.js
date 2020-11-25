@@ -264,7 +264,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     if (!pFldsForNonEmptyCheck) return
 
-    // $fetch use for get data from LocalForage 
+    // $fetch use for Load data from the IndexedDB store associated to a model and persist them in the Vuex Store
     this.$fetch()
     const arFromClientTbl = this.query().where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted).get()
 
