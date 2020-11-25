@@ -77,8 +77,6 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <bmiAdd name="bmi" key="15" />
         <waistCircumferenceAdd name="waist_circumference" key="16"
       /></el-tab-pane>
-      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"><miscNote /></el-tab-pane>
-      <el-tab-pane label="Process Note" name="process_notes" key="18"> <processNote /></el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19"><dxAdd /></el-tab-pane>
       <el-tab-pane label="Screens" name="screens" key="20"><screensAdd /></el-tab-pane>
       <el-tab-pane label="Goals" name="goals" key="21"><goalsAdd /></el-tab-pane>
@@ -97,6 +95,8 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"><u>S</u>ervice statements</span>
         <ssAdd />
       </el-tab-pane>
+      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17"><miscNote /></el-tab-pane>
+      <el-tab-pane label="Process Note" name="process_notes" key="18"> <processNote /></el-tab-pane>
     </el-tabs>
   </el-dialog>
 </template>
