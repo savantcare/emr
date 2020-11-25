@@ -59,9 +59,6 @@
         </div>
       </div>
 
-      <el-divider class="section-header"><h3>Others</h3></el-divider>
-      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
-      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
       <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
@@ -75,6 +72,9 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="service_statements" />
+      <el-divider class="section-header"><h3>Others</h3></el-divider>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="miscellaneous_notes" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="process_notes" />
     </div>
   </div>
 </template>
