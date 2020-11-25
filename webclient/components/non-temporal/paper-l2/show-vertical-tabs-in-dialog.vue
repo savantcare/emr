@@ -45,7 +45,7 @@
     <!-- Why not keep each el-tab-pane content inside v-if
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
     -->
-    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName">
+    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1"
         ><editChiefComplaint v-if="activeTabName === 'chief_complaint'"
       /></el-tab-pane>
