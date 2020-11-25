@@ -152,6 +152,7 @@
                 :placeholder="propFieldDef.fieldNameInUi"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter"
               ></el-input>
             </div>
           </div>
@@ -336,6 +337,19 @@ export default {
   methods: {
     log(item) {
       console.log(item)
+    },
+
+    mfForTabActionByEnter: function(e) {
+        // Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
+        const currentNode = e.target;
+        if(currentNode.tagName!="TEXTAREA"){
+          //Isolating the node that we're after to put focus on that node.
+          const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'));
+          const index = inputs.indexOf(e.target);
+          if (index < inputs.length) {
+            inputs[index + 1].focus();
+          }
+      }  
     },
 
     mfGetArOfDataRows() {
