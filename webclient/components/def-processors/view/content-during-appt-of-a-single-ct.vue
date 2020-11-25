@@ -48,7 +48,7 @@
          -->
 
       <vue-horizontal-list
-        :items="cfGetEntityValueDuringEachAppt"
+        :items="cf_get_entity_value_during_each_appt"
         :options="options"
         :currentSlideNumber="currentSlideNumber"
         class="g2-container-for-all-timeline-boxes"
@@ -240,7 +240,7 @@ export default {
 
       return arFromClientTblOfAddendums
     },
-    cfGetEntityValueDuringEachAppt() {
+    cf_get_entity_value_during_each_appt() {
       const arOfAppts = clientTblOfAppointments.query().get()
       let i = arOfAppts.length
       while (i--) {
