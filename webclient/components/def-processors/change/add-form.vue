@@ -355,7 +355,7 @@ export default {
           return
         }
       }
-
+      // Use $create for insert data in LocalForage
       const arFromClientTbl = await allClientTbls[this._formDef.id].$create({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
