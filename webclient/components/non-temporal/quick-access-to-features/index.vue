@@ -21,6 +21,7 @@
     <!-- Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
     <div v-shortkey.once="['ctrl', 'c']" @shortkey="actOnUserIntentToSeeChiefComplaint()"></div>
     <div v-shortkey.once="['ctrl', 'h']" @shortkey="actOnUserIntentToSeeHPI()"></div>
+    <div v-shortkey.once="['ctrl', 's']" @shortkey="actOnUserIntentToSeeSS()"></div>
   </div>
 </template>
 
@@ -78,6 +79,12 @@ export default {
       console.log('alt_c pressed')
       clientTblOfCommonForAllComponents.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'psych_review_of_system' }],
+      })
+    },
+    actOnUserIntentToSeeSS() {
+      console.log('alt_c pressed')
+      clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'service_statements' }],
       })
     },
     goToDashboardMode() {

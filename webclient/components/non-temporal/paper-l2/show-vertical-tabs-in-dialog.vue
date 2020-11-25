@@ -105,8 +105,10 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
       <el-tab-pane label="Plan comments" name="plan_comments" key="24"
         ><pcAdd v-if="activeTabName === 'plan_comments'"
       /></el-tab-pane>
-      <el-tab-pane label="Service statements" name="service_statements" key="25"
-        ><ssAdd v-if="activeTabName === 'service_statements'"
+      <el-tab-pane label="Service statements" name="service_statements" key="25">
+        <span slot="label"><u>S</u>ervice statements</span>
+
+        <ssAdd v-if="activeTabName === 'service_statements'"
       /></el-tab-pane>
     </el-tabs>
   </el-dialog>
