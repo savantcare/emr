@@ -84,7 +84,7 @@ const fnSelectOptionCallBack = (pId, pCallBack) => {
 }
 export const diagnosisFormDef = {
   id: 'diagnosis',
-  plural: 'diagnosis',
+  plural: 'asmnt & diagnosis',
   singular: 'diagnosis',
 
   fieldsDef: [

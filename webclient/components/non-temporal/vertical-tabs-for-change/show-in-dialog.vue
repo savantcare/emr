@@ -83,7 +83,7 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
       <el-tab-pane label="Process Note" name="process_notes" key="18">
         <processNote v-if="activeTabName === 'process_notes'"
       /></el-tab-pane>
-      <el-tab-pane label="Diagnosis" name="diagnosis" key="19"
+      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19"
         ><dxAdd v-if="activeTabName === 'diagnosis'"
       /></el-tab-pane>
       <el-tab-pane label="Screens" name="screens" key="20"
