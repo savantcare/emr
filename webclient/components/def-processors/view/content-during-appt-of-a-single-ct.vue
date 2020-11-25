@@ -76,29 +76,28 @@
          Each appt gets a slide of its own
          -->
 
-      <div v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-        <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-          Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
-        </div>
-        <div
-          class="item"
-          id="each-row-of-entity-inside-appt"
-          v-for="entityRow in item[_formDef.id]"
-          :key="entityRow.clientSideUniqRowId"
-        >
-          <getRowContent
-            :_entityRow="entityRow"
-            :_formDef="_formDef"
-            :_ApptStatus="item['apptStatus']"
-            :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-          />
-          <!-- end of each-row-of-entity -->
-          <!-- This is for action associated with each row -->
-          <div v-if="currentApptObj['apptStatus'] === 'locked'" id="row-actions-when-app-is-locked"></div>
-          <!-- Case 1/2: When this appt is locked what row actions to show-->
-        </div>
+      <ul v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
+        <li>
+          <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+            Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
+          </div>
+          <div
+            class="item"
+            id="each-row-of-entity-inside-appt"
+            v-for="entityRow in item[_formDef.id]"
+            :key="entityRow.clientSideUniqRowId"
+          >
+            <getRowContent
+              :_entityRow="entityRow"
+              :_formDef="_formDef"
+              :_ApptStatus="item['apptStatus']"
+              :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+            />
+            <!-- end of each-row-of-entity -->
+          </div>
+        </li>
         <!-- end of actions of each row -->
-      </div>
+      </ul>
     </div>
     <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
       <h4>Addendum:</h4>
