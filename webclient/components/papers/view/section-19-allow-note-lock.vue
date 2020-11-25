@@ -10,7 +10,7 @@
 
 <script>
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/non-temporal/paper-l1-lhs-container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view-lhs-container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import allClientTbls from '@/components/def-processors/all-client-tables.js'
 
 export default {

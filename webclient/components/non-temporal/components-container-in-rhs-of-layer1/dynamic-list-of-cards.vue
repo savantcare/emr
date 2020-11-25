@@ -21,12 +21,12 @@ import ctCorrelate from '@/components/non-temporal/correlate/design-2.vue'
 import ctScBrainDialog from '@/components/non-temporal/appt-coding-v2/sc-brain-dialog.vue'
 
 import ctCoding from '@/components/non-temporal/appt-coding-v2/dashboard.vue'
-import ctSettings from '@/components/non-temporal/paper-l1-left-side-header/settings-component.vue'
+import ctSettings from '@/components/papers/view-left-side-header/settings-component.vue'
 
 import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import apptNote from '@/components/non-temporal/paper-l1/step1-decide-notes-to-show-and-their-appt-id.vue'
+import apptNote from '@/components/papers/view/step1-decide-notes-to-show-and-their-appt-id.vue'
 
 export default {
   components: { ctCorrelate, ctCoding, ctScBrainDialog, ctSettings, ctPaperNoteStructure, apptNote },
