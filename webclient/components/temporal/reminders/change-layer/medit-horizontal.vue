@@ -30,10 +30,9 @@ How to solve this?
       -- If number of slide in slider is 1 (computed function 'getNumOfCarouselSlides' return 1) then no need to show arrow in slider. In this case 'dsSliderArrowVisiblity' should be 'never'.
       Otherwise if number of slide in slider is greater then 1 then we need to show arrow for next/previous slide. In this case 'dsSliderArrowVisiblity' should be 'always'.
      -->
-    <el-carousel :arrow="dsSliderArrowVisiblity" trigger="click" :autoplay="false" @change="slideChanged">
-      <!-- Reason for v-bind to pass boolean value https://stackoverflow.com/questions/49225002/passing-boolean-vue-prop-value-in-html -->
-      <el-carousel-item v-for="slide in getNumOfCarouselSlides" :key="slide">
-        <!-- Performance analysis  TODO
+    <!-- Reason for v-bind to pass boolean value https://stackoverflow.com/questions/49225002/passing-boolean-vue-prop-value-in-html -->
+    <div v-for="slide in getNumOfCarouselSlides" :key="slide">
+      <!-- Performance analysis  TODO
           
             If getNumOfCarouselSlides is 3  
               When carousel is first invoked.
@@ -50,20 +49,19 @@ How to solve this?
               From the change component message given is 18 times    
               {{ console.log('slide is ', slide) }}
         -->
-        <!-- Why give :gutter="20" 
+      <!-- Why give :gutter="20" 
               There are 3 cards and they will come attached to each other if I do not give :gutter=20
           -->
 
-        <el-row type="flex" :gutter="20">
-          <el-col v-for="remId in getArrayOfRemIdsToShowInThisCard" :key="remId">
-            <el-card>
-              <!-- For diff types of formType see remcl/edit-design-1.vue -->
-              <ctChangeRem :first-prop="remId" form-type="embedded"></ctChangeRem>
-            </el-card>
-          </el-col>
-        </el-row>
-      </el-carousel-item>
-    </el-carousel>
+      <div>
+        <el-col v-for="remId in getArrayOfRemIdsToShowInThisCard" :key="remId">
+          <el-card>
+            <!-- For diff types of formType see remcl/edit-design-1.vue -->
+            <ctChangeRem :first-prop="remId" form-type="embedded"></ctChangeRem>
+          </el-card>
+        </el-col>
+      </div>
+    </div>
   </div>
   <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
@@ -94,10 +92,7 @@ export default {
           If I return the actual length of this.daUniqueIdOfEachRowFromOrm.length
           say the length is 100 then 300 times the change component will get called with different params.
         */
-      const count = this.daUniqueIdOfEachRowFromOrm.length / 3
-      const intValue = Math.ceil(count)
-      console.log('number of slides in carousel are', count, intValue)
-      return intValue
+      return this.daUniqueIdOfEachRowFromOrm.length
     },
   },
   watch: {
