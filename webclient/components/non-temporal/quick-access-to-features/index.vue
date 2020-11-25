@@ -23,9 +23,28 @@ export default {
   computed: {},
   mounted() {
     // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
+
     this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
+
     this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
+
     this.$mousetrap.bind(['s', 'ctrl+s'], this.actOnUserIntentToSeeSS)
+
+    this.$mousetrap.bind(['p', 'ctrl+p'], function (e) {
+      clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'past_psych_history' }],
+      })
+      // Goal: Do not see p typed in the input field
+      return false
+    })
+
+    this.$mousetrap.bind(['f', 'ctrl+f'], function (e) {
+      clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'family_history' }],
+      })
+      // Goal: Do not see C typed in the input field
+      return false
+    })
 
     // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
     this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)

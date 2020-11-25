@@ -54,11 +54,13 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
         <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
         <prosAdd v-if="activeTabName === 'psych_review_of_system'"
       /></el-tab-pane>
-      <el-tab-pane label="Past psych history" name="past_psych_history" key="3"
-        ><pastPsychHistory v-if="activeTabName === 'past_psych_history'"
+      <el-tab-pane label="Past psych history" name="past_psych_history" key="3">
+        <span slot="label"><u>P</u>ast psych history</span>
+        <pastPsychHistory v-if="activeTabName === 'past_psych_history'"
       /></el-tab-pane>
-      <el-tab-pane label="Family history" name="family_history" key="4"
-        ><familyHistory v-if="activeTabName === 'family_history'"
+      <el-tab-pane label="Family history" name="family_history" key="4">
+        <span slot="label"><u>F</u>amily history</span>
+        <familyHistory v-if="activeTabName === 'family_history'"
       /></el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5"
         ><mrosAdd v-if="activeTabName === 'medical_review_of_system'"
