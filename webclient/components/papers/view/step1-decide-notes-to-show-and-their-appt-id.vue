@@ -39,7 +39,7 @@
 <script>
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/papers/view/step2-a4-note-for-appt-id.vue'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-lhs-container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {

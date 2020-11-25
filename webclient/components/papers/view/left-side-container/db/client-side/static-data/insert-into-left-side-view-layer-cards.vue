@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientTblOfLeftSideCards from '@/components/papers/view-lhs-container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideCards from '@/components/papers/view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
