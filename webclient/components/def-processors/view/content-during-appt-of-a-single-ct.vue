@@ -20,7 +20,10 @@
     
     -->
 
-    <div style="text-align: left; cursor: pointer" @click="heading_clicked_so_set_up_state(_formDef.id)">
+    <div
+      style="text-align: left; cursor: pointer; color: #606266"
+      @click="heading_clicked_so_set_up_state(_formDef.id)"
+    >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
     </div>
     <!-- Section 2/2: This starts after the header ends -->

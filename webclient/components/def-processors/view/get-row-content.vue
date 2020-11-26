@@ -1,15 +1,17 @@
 <template>
-  <div
-    id="container-for-1-data-row"
-    @mouseover="mOver()"
-    @mouseleave="mLeave()"
-    :style="
-      _formDef.styleForEachRowInPaperView
-        ? _formDef.styleForEachRowInPaperView
-        : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-    "
-  >
-    <span v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
+  <div>
+    <div
+      id="container-for-1-data-row"
+      @mouseover="mOver()"
+      @mouseleave="mLeave()"
+      :style="
+        _formDef.styleForEachRowInPaperView
+          ? _formDef.styleForEachRowInPaperView
+          : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
+      "
+      v-for="(propFieldDef, id) in _formDef.fieldsDef"
+      :key="id"
+    >
       <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
         <!-- Each field type gets to control how it prints the field name -->
         <h3>{{ propFieldDef.fieldNameInUi }}</h3>
@@ -78,84 +80,24 @@
       </div>
 
       <!-- Not specified field type -->
-      <span v-else id="not-matched-field-type">
-        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui" style="color: #909399">
-          {{ propFieldDef.fieldNameInUi }}
-        </div>
-        <!-- Goal: skip fields that are null or empty -->
-        <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-          {{ _entityRow[propFieldDef.fieldNameInDb] }}
-        </div>
-      </span>
-    </span>
-    <div v-show="mouseOnThisRow" id="row-actions-when-appt-is-unlocked" v-if="_ApptStatus === 'unlocked'">
-      <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
-      <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-      <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
-        <el-button @click="additionalRowAction.executeThisFn(_entityRow)">{{ additionalRowAction.textInUi }}</el-button>
-      </span>
+      <div v-else-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399">
+        {{ propFieldDef.fieldNameInUi }}:
+      </div>
+      <!-- Goal: skip fields that are null or empty -->
+      <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+        {{ _entityRow[propFieldDef.fieldNameInDb] }}
+      </div>
+      <div v-show="mouseOnThisRow" id="row-actions-when-appt-is-unlocked" v-if="_ApptStatus === 'unlocked'">
+        <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
-      <el-tooltip class="item" effect="light" content="Click to edit" placement="top-start" :open-delay="500">
-        <!--
-                    Why @click has a condition
-                    Goal: If this row is not coming from DB but it was added on the client then:
-                  1. For edit I do not want to create a copy. I want to edit the row that has been added.
-                  Why?
-                  A copied row when undone expect to be left with orginal
-                  But a new row when undone does not expect to be left with original.
-
-                  In case of new row created on client during edit do not create a copy.
-                  -->
-
-        <!-- 
-            why we have added right 60px?
-            -- We have three icons there. If we add 'position - absolute' for all the three icons than icons coming on top of each other.
-            In this case, we need to add icon position from right. I have maintain 20px space between each icons.
-
-            See following diagram:
-
-            edit  info  delete       |
-              |     |      |__20px___|
-              |     |                |
-              |     |______40px______|
-              |                      |
-              |_________60px_________|
-
-
-            -->
-
-        <!--
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 60px"
-          plain
-          @click="
-            String(_entityRow.vnRowStateInSession).startsWith(2) && _entityRow.vnRowStateInSession !== 24751
-              ? mfOpenAddInEditLayer()
-              : mxOpenEditCtInEditLayer(_entityRow.clientSideUniqRowId)
-          "
-          class="el-icon-edit"
-        >
-        </el-button>
-                -->
-      </el-tooltip>
-      <el-tooltip class="item" effect="light" content="info" placement="top-end" :open-delay="500">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 40px"
-          plain
-          class="el-icon-discover"
-        >
-        </el-button>
-      </el-tooltip>
-      <el-tooltip class="item" effect="light" content="Click to delete" placement="top-end" :open-delay="500">
-        <el-button
-          style="padding: 3px; color: #c0c4cc; border: none; position: absolute; right: 20px"
-          plain
-          @click="mfIconDeleteClickedOnChildCard(_entityRow.clientSideUniqRowId)"
-          class="el-icon-circle-close"
-        >
-        </el-button>
-      </el-tooltip>
+        <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
+        <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
+          <el-button @click="additionalRowAction.executeThisFn(_entityRow)">{{
+            additionalRowAction.textInUi
+          }}</el-button>
+        </span>
+      </div>
     </div>
   </div>
 </template>
