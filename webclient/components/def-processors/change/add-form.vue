@@ -7,9 +7,9 @@
         Start to process each row -->
     <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
       <div
-        v-for="ormRow in cfGetClientTblNewRowsInEditState"
-        :key="ormRow.clientSideUniqRowId"
-        :id="`each-data-row-` + _formDef.id"
+        v-for="(ormRow, index) in cfGetClientTblNewRowsInEditState"
+        :key="index"
+        :id="`each-data-row-` + index + `-` + _formDef.id"
         :style="_formDef.styleForEachRowInAddForm"
       >
         <!-- Start to process fields in the row -->
@@ -143,8 +143,8 @@
                 {{ propFieldDef.fieldNameInUi }}
               </div>
               <el-input
-                @focus="nameOfFieldWithFocus = 'input'"
-                @blur="nameOfFieldWithFocus = 'not-input'"
+                @focus="mfSetFormFieldFocusEvent(propFieldDef.fieldNameInDb, index)"
+                :id="propFieldDef.fieldNameInDb"
                 :ref="propFieldDef.fieldNameInDb"
                 :type="propFieldDef.fieldType"
                 :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
@@ -271,7 +271,7 @@ export default {
     this.value = this._formDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
-    return { value: [], nameOfFieldWithFocus: '' }
+    return { value: [] }
   },
   validations() {
     return this._formDef.validationsObj
@@ -333,11 +333,25 @@ export default {
       return allPatientDataTbls[this._formDef.id].fnGetNewRowsInApiSendingState()
     },
   },
+  mounted() {
+    const eventName = 'event-from-tab-change-to-focus-form-field'
+    this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
+      setTimeout(() => this.mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails), 200)
+    })
+  },
   methods: {
     log(item) {
       console.log(item)
     },
-
+    mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails) {
+      if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index']) {
+        document
+          .querySelector(
+            '#each-data-row-' + pArFieldDetails['index'] + '-' + pTabName + ' #' + pArFieldDetails['fieldNameInDb']
+          )
+          .focus()
+      }
+    },
     mfGetArOfDataRows() {
       const arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id]
         .query()
@@ -429,6 +443,10 @@ export default {
     },
     mfOnResetForm(formName) {
       allPatientDataTbls[this._formDef.id].fnDeleteNewRowsInEditState()
+    },
+    mfSetFormFieldFocusEvent(pFieldNameInDb, pIndex) {
+      const eventName = 'event-from-form-field-to-set-focus'
+      this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
     },
   },
 }

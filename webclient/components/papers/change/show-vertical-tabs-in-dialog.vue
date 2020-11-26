@@ -47,7 +47,13 @@ When rem is loaded the user goes to rec and comes back to rem. I do not want rem
 Since if created again the whole state is created again.
 So things like collapsible state will get destroyed. Even though the rem description is there inside vuex-orm
     -->
-    <el-tabs tab-position="left" style="height: 900px" v-model="activeTabName" type="border-card">
+    <el-tabs
+      tab-position="left"
+      style="height: 900px"
+      v-model="activeTabName"
+      type="border-card"
+      @tab-click="mfSendFormFieldFocusEvent(activeTabName)"
+    >
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1">
         <span slot="label"><u>C</u>hief complaint</span>
         <editChiefComplaint />
@@ -171,6 +177,7 @@ export default {
     return {
       activeTabName: 'psych_review_of_system',
       formDefId: '',
+      arFormFieldIndexWithFocus: {},
     }
   },
   components: {
@@ -233,8 +240,18 @@ export default {
   },
   mounted() {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
+
+    const eventName = 'event-from-form-field-to-set-focus'
+    this.$root.$on(eventName, (pFormDefId, pFieldNameInDb, pIndex) => {
+      setTimeout(() => this.mfStoreFormFieldFocusInArray(pFormDefId, pFieldNameInDb, pIndex), 200)
+    })
   },
   methods: {
+    mfStoreFormFieldFocusInArray(pFormDefId, pFieldNameInDb, pIndex) {
+      this.arFormFieldIndexWithFocus[pFormDefId] = []
+      this.arFormFieldIndexWithFocus[pFormDefId]['index'] = pIndex
+      this.arFormFieldIndexWithFocus[pFormDefId]['fieldNameInDb'] = pFieldNameInDb
+    },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true
     },
@@ -243,6 +260,10 @@ export default {
       commonForAllCts.insertOrUpdate({
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'false' }],
       })
+    },
+    mfSendFormFieldFocusEvent(pActiveTabName) {
+      const eventName = 'event-from-tab-change-to-focus-form-field'
+      this.$root.$emit(eventName, pActiveTabName, this.arFormFieldIndexWithFocus[pActiveTabName])
     },
   },
 }
