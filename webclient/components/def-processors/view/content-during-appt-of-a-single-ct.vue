@@ -428,9 +428,14 @@ Current choice:
   Features?
   1. First view has only one card with a indication that there are more cards.
   2. Card height and width are not fixed. So they change based on content.
-  Not working:
-  1. When only one single line of content it needs to be thin.
+  3. In the same timeline different cards can have different hieghts.
+  4. When only one single line of content box is thin.
 
+  Not working:
+  1. Current slide has 1 line of contnet. Previous slide has 20 lines of content. The width is taken as per the previous slide.
+
+
+Software that were compared:
 1. https://github.com/fuxingloh/vue-horizontal-list
 2. https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
     https://codepen.io/colinlord/pen/oZNoOO
