@@ -1,5 +1,5 @@
 <template>
-  <div style="display: grid; grid-template-columns: 1fr 2fr">
+  <div style="display: grid; grid-template-columns: 1fr 3fr; align-items: top">
     <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
     Hence only print a seperate row for heding when needed.
     
@@ -38,7 +38,7 @@
          -->
       </el-divider>
     </div>
-    <div v-else>
+    <div style="text-align: left" v-else>
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
@@ -457,7 +457,7 @@ http://jsfiddle.net/kf1y2npw/30/
 }
 
 .app {
-  padding: 20px 0;
+  padding: 0px 0;
   display: grid;
   grid-gap: 20px 0;
   grid-template-columns: 20px 1fr 20px;
@@ -498,7 +498,7 @@ http://jsfiddle.net/kf1y2npw/30/
 .hs > li,
 .item {
   scroll-snap-align: center;
-  padding: calc(20px / 2 * 1.5);
+  padding: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
