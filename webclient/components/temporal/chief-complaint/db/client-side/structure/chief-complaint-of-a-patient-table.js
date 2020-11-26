@@ -69,4 +69,5 @@ export const chiefComplaintFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   styleForEachRowInPaperView:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 7fr 1fr; grid-column-gap: 1rem',
+  styleForBoxInPaperTypeView: 'display: grid; grid-template-columns: 1fr 3fr; align-items: top',
 }

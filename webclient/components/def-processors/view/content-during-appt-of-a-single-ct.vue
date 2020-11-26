@@ -1,5 +1,5 @@
 <template>
-  <div style="display: grid; grid-template-columns: 1fr 3fr; align-items: top">
+  <div :style="_formDef.styleForBoxInPaperTypeView">
     <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
     Hence only print a seperate row for heding when needed.
     
@@ -19,26 +19,8 @@
     
     
     -->
-    <div
-      v-if="
-        !_formDef.maxNumberOfTemporallyValidRows ||
-        _formDef.maxNumberOfTemporallyValidRows > 1 ||
-        _formDef.fieldsDef.length > 1
-      "
-      style="cursor: pointer"
-    >
-      <el-divider class="entity-header" content-position="left" @click="heading_clicked_so_set_up_state(_formDef.id)">
-        <h3>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }}</h3>
 
-        <!-- If appt is locked:
-                 on click user goes to the change paper. And the change paper will show the box to add addendum.
-             If appt is unlocked: 
-                  Multiedit feature is given by the change paper.    
-                  Add button is not needed since the change paper will allow each add.
-         -->
-      </el-divider>
-    </div>
-    <div style="text-align: left" @click="heading_clicked_so_set_up_state(_formDef.id)" v-else>
+    <div style="text-align: left; cursor: pointer" @click="heading_clicked_so_set_up_state(_formDef.id)">
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
@@ -399,26 +381,6 @@ h3 {
   float: none;
   display: flex;
 }
-.sectionHeader {
-  margin-top: 1rem !important;
-  padding-bottom: 0.1rem !important;
-  /* border-bottom: 1px solid rgba(144, 147, 153, 0.1); */
-  border-top: 1px solid transparent;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
-}
-.sectionHeading {
-  font-size: 1rem;
-  color: #606266;
-}
-.subSectionHeader {
-  margin-top: 1rem !important;
-  padding-bottom: 0.1rem !important;
-}
-
-.field-type-heading {
-  grid-column-start: 1;
-}
 
 /* ref:
 How to let user see past easily?
@@ -447,14 +409,6 @@ http://jsfiddle.net/rnwa4fv5/
 https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow
 http://jsfiddle.net/kf1y2npw/30/
 */
-
-.g2-container-for-all-timeline-boxes {
-  /* Same as #app at https://github.com/fuxingloh/vue-horizontal-list */
-  max-width: 400px; /* Ref: line no-168 */
-  margin-left: auto;
-  margin-right: auto;
-  padding: 4px 4px;
-}
 
 .app {
   padding: 0px 0;
