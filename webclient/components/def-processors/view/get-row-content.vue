@@ -88,7 +88,6 @@
       <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
         {{ _entityRow[propFieldDef.fieldNameInDb] }}
       </div>
-      <div v-show="mouseOnThisRow" id="row-actions-when-appt-is-unlocked" v-if="_ApptStatus === 'unlocked'">
         <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
         <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
