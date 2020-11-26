@@ -1,5 +1,5 @@
 <template>
-  <div style="display: grid; grid-template-columns: 2fr 1fr">
+  <div style="display: grid; grid-template-columns: 1fr 2fr">
     <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
     Hence only print a seperate row for heding when needed.
     
@@ -43,7 +43,7 @@
     </div>
     <!-- Section 2/2: This starts after the header ends -->
 
-    <div :style="cfGetDataRowStyle">
+    <div :style="cfGetDataRowStyle" class="app">
       <!-- This is for each data row -->
       <!-- Design: 
 
@@ -74,29 +74,32 @@
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
          Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
          Each appt gets a slide of its own
+
+         Horizontal time lie: https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
          -->
 
-      <ul v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-        <li>
-          <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-            Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
-          </div>
-          <div
-            class="item"
-            id="each-row-of-entity-inside-appt"
-            v-for="entityRow in item[_formDef.id]"
-            :key="entityRow.clientSideUniqRowId"
-          >
-            <getRowContent
-              :_entityRow="entityRow"
-              :_formDef="_formDef"
-              :_ApptStatus="item['apptStatus']"
-              :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-            />
-            <!-- end of each-row-of-entity -->
-          </div>
-        </li>
-        <!-- end of actions of each row -->
+      <ul class="hs full no-scrollbar">
+        <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
+          <li class="item">
+            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
+            </div>
+            <div
+              id="each-row-of-entity-inside-appt"
+              v-for="entityRow in item[_formDef.id]"
+              :key="entityRow.clientSideUniqRowId"
+            >
+              <getRowContent
+                :_entityRow="entityRow"
+                :_formDef="_formDef"
+                :_ApptStatus="item['apptStatus']"
+                :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+              />
+              <!-- end of each-row-of-entity -->
+            </div>
+          </li>
+          <!-- end of actions of each row -->
+        </section>
       </ul>
     </div>
     <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
@@ -446,5 +449,70 @@ http://jsfiddle.net/kf1y2npw/30/
   color: #444;
   font-weight: 500;
   font-size: 0.8rem;
+}
+
+:root {
+  --gutter: 20px;
+}
+
+.app {
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+}
+
+.app {
+  overflow-y: scroll;
+}
+
+.app > * {
+  grid-column: 2 / -2;
+}
+
+.app > .full {
+  grid-column: 1 / -1;
+}
+
+.hs {
+  display: grid;
+  grid-gap: calc(var(--gutter) / 2);
+  grid-template-columns: 10px;
+
+  grid-auto-flow: column;
+  grid-auto-columns: calc(50% - var(--gutter) * 2);
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(0.75 * var(--gutter));
+  margin-bottom: calc(-0.25 * var(--gutter));
+}
+
+.hs:before,
+.hs:after {
+  content: '';
+  width: 10px;
+}
+.hs > li,
+.item {
+  scroll-snap-align: center;
+  padding: calc(var(--gutter) / 2 * 1.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  border-color: aqua;
+  border: solid;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>
