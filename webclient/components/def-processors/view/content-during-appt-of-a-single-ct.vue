@@ -420,15 +420,26 @@ h3 {
   grid-column-start: 1;
 }
 
-/* ref: 
+/* ref:
 How to let user see past easily?
+
+Current choice:
+  https://codepen.io/vikaskedia/pen/XWjrvZW
+  Features?
+  1. First view has only one card with a indication that there are more cards.
+  2. Card height and width are not fixed. So they change based on content.
+  Not working:
+  1. When only one single line of content it needs to be thin.
+
 1. https://github.com/fuxingloh/vue-horizontal-list
-2. https://codepen.io/colinlord/pen/oZNoOO
-3. https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 https://codepen.io/dannievinther/pen/vVydZJ
+2. https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
+    https://codepen.io/colinlord/pen/oZNoOO
+3. https://uxdesign.cc/creating-horizontal-scrolling-containers-the-right-way-css-grid-c256f64fc585
+    https://codepen.io/dannievinther/pen/vVydZJ
 
 Designs not being used:
 http://jsfiddle.net/rnwa4fv5/
-https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow 
+https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-overflow
 http://jsfiddle.net/kf1y2npw/30/
 */
 
@@ -438,16 +449,6 @@ http://jsfiddle.net/kf1y2npw/30/
   margin-left: auto;
   margin-right: auto;
   padding: 4px 4px;
-}
-
-.g3-each-box-in-timeline {
-  display: inline-block; /* Does not add a line break */
-  border-color: grey;
-}
-.entity-header h3 {
-  color: #444;
-  font-weight: 500;
-  font-size: 0.8rem;
 }
 
 .app {
@@ -463,7 +464,7 @@ http://jsfiddle.net/kf1y2npw/30/
 }
 
 .app > * {
-  grid-column: 2 / -2;
+  grid-column: 1 / -1;
 }
 
 .app > .full {
@@ -476,7 +477,7 @@ http://jsfiddle.net/kf1y2npw/30/
   grid-template-columns: 10px;
 
   grid-auto-flow: column;
-  grid-auto-columns: calc(50% - 20px * 2);
+  grid-auto-columns: calc(95% - 20px * 2);
 
   overflow-x: scroll;
   scroll-snap-type: x proximity;
@@ -499,8 +500,10 @@ http://jsfiddle.net/kf1y2npw/30/
   align-items: center;
   background: #fff;
   border-radius: 8px;
-  border-color: aqua;
-  border: solid;
+  border-width: 1px;
+  border-color: #ebeef5;
+  border-style: solid;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
 .no-scrollbar {
   scrollbar-width: none;
