@@ -60,6 +60,9 @@ export const screensFormDef = {
     { fieldNameInDb: 'name', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
   ],
   showReviewedButtonInForm: false,
+  showAddMoreButtonInForm: false,
+  showResetFormButton: false,
+
   additionalRowActions: [
     {
       textInUi: 'Start',
