@@ -57,7 +57,7 @@
         -->
 
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
+         Using ternary operator for style since some components may not define _formDef.decideFieldNameValuePlacement and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar">
@@ -67,17 +67,25 @@
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
-              id="each-row-of-patient-data-inside-appt"
-              v-for="entityRow in item[_formDef.id]"
-              :key="entityRow.clientSideUniqRowId"
+              :style="
+                _formDef.decideRowPlacement
+                  ? _formDef.decideRowPlacement
+                  : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem'
+              "
             >
-              <getRowContent
-                :_entityRow="entityRow"
-                :_formDef="_formDef"
-                :_ApptStatus="item['apptStatus']"
-                :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-              />
-              <!-- end of each-row-of-entity -->
+              <div
+                id="each-row-of-patient-data-inside-appt"
+                v-for="entityRow in item[_formDef.id]"
+                :key="entityRow.clientSideUniqRowId"
+              >
+                <getRowContent
+                  :_entityRow="entityRow"
+                  :_formDef="_formDef"
+                  :_ApptStatus="item['apptStatus']"
+                  :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+                />
+                <!-- end of each-row-of-entity -->
+              </div>
             </div>
           </li>
           <!-- end of actions of each row -->

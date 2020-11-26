@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <div
-      id="container-for-1-data-row"
-      @mouseover="mOver()"
-      @mouseleave="mLeave()"
-      :style="
-        _formDef.styleForEachRowInPaperView
-          ? _formDef.styleForEachRowInPaperView
+  <div       id="container-for-1-data-row" :style="
+        _formDef.decideFieldNameValuePlacement
+          ? _formDef.decideFieldNameValuePlacement
           : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-      "
+      ">
+    <div
+      @mouseover="mOver()"
+      @mouseleave="mLeave()" 
       v-for="(propFieldDef, id) in _formDef.fieldsDef"
       :key="id"
+      id="start-processing-each-field-of-row"
     >
       <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
         <!-- Each field type gets to control how it prints the field name -->
@@ -68,7 +67,7 @@
       </div>
 
       <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui" style="display:inline;">{{ propFieldDef.fieldNameInUi }}</div>
         <div id="field-value-in-db">
           {{ _entityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
         </div>
@@ -81,11 +80,11 @@
 
       <!-- Not specified field type -->
 
-      <div v-else-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399">
+      <span v-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
         {{ propFieldDef.fieldNameInUi }}:
-      </div>
+      </span>
       <!-- Goal: skip fields that are null or empty -->
-      <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+      <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db" style="display:inline">
         {{ _entityRow[propFieldDef.fieldNameInDb] }}
       </div>
         <!-- Case 2/2: When this appt is un-locked what row actions to show-->

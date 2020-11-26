@@ -101,14 +101,14 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-        <!-- Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value -->
+        <!-- Using ternary operator for style since some components may not define _formDef.decideFieldNameValuePlacement and for those Ct I want to use default value -->
         <div
           id="each-data-row"
           v-for="row in mfGetArOfDataRows(this.currentApptObj)"
           :key="row.clientSideUniqRowId"
           :style="
-            _formDef.styleForEachRowInPaperView
-              ? _formDef.styleForEachRowInPaperView
+            _formDef.decideFieldNameValuePlacement
+              ? _formDef.decideFieldNameValuePlacement
               : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
           "
         >
