@@ -68,8 +68,8 @@
             </div>
             <div
               :style="
-                _formDef.decideRowPlacement
-                  ? _formDef.decideRowPlacement
+                _formDef.ctrlPlacementOfEveryRowInsideADiv
+                  ? _formDef.ctrlPlacementOfEveryRowInsideADiv
                   : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem'
               "
             >

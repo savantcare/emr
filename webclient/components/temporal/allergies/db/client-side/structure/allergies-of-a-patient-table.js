@@ -72,6 +72,11 @@ export const allergiesFormDef = {
 
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryFieldsNameAndValueInsideADiv:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem; grid-row-gap: .1rem',
+  ctrlPlacementOfEveryRowInsideADiv:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+
   validationsObj: {
     value: {
       allergen: {
