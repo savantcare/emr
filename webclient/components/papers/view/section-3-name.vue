@@ -1,6 +1,6 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
-  <div>
+  <div style="color: #303133">
     <template v-if="cfLatestDataRowFromClientTbl">
       {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }}
     </template>
