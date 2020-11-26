@@ -50,18 +50,30 @@ Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-
 
 Pirority:
 
-1. When I go from recs to rem the form field focus needs to be maintained.
-1. Slider to be able to work with weight
-1. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave like tab index.
-1. Get correlate to work from button
-1. When adding weight the format is lost.
-1. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
-1. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
-1. Put page in full screen using https://mirari.cc/vue-fullscreen/
-1. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
-1. Patient timeline: https://jinfang134.github.io/vue-pipeline/
-1. Top header appt slider / search / code / timeline -> expandable
-   https://stackoverflow.com/questions/58100158/how-to-use-vue-transition-to-expand-and-shrink-a-div
-   https://jsfiddle.net/7bcs2er6/1/
-   https://codepen.io/sustained/pen/Rwbdgob
-1. Search in top header using https://theoxiong.github.io/vue-search-panel/
+1. Slide to control dynamically in new slider
+2. When I go from recs to rem the form field focus needs to be maintained.
+   Data structure will be maintain by verital-tabs-in-dialog.vue
+   There will be a object
+   component_id: {
+   fieldInFocus:
+   CaretPosition:
+   }
+
+Pass object as prop so sub ct can update the Obj.
+
+Whenever tab_click event is fired use data from this Obj to set focus and caret position.
+
+Whenever onFocus is fired the sub Ct. updates the value in this object.
+
+3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave like tab index.
+4. Get correlate to work from button
+5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
+6. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
+7. Put page in full screen using https://mirari.cc/vue-fullscreen/
+8. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
+9. Patient timeline: https://jinfang134.github.io/vue-pipeline/
+10. Top header appt slider / search / code / timeline -> expandable
+    https://stackoverflow.com/questions/58100158/how-to-use-vue-transition-to-expand-and-shrink-a-div
+    https://jsfiddle.net/7bcs2er6/1/
+    https://codepen.io/sustained/pen/Rwbdgob
+11. Search in top header using https://theoxiong.github.io/vue-search-panel/
