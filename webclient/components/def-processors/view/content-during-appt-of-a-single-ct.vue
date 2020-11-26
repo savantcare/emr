@@ -57,7 +57,7 @@
         -->
 
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _formDef.decideFieldNameValuePlacement and for those Ct I want to use default value 
+         Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInsideADiv and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar">
