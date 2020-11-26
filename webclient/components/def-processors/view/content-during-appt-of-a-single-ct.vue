@@ -38,7 +38,7 @@
          -->
       </el-divider>
     </div>
-    <div style="text-align: left" v-else>
+    <div style="text-align: left" @click="heading_clicked_so_set_up_state(_formDef.id)" v-else>
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
