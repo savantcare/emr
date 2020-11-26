@@ -73,10 +73,7 @@
 
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
          Using ternary operator for style since some components may not define _formDef.styleForEachRowInPaperView and for those Ct I want to use default value 
-         Each appt gets a slide of its own
-
-         Horizontal time lie: https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
-         -->
+         Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar">
         <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
@@ -424,8 +421,10 @@ h3 {
 }
 
 /* ref: 
-Design being used
-https://github.com/fuxingloh/vue-horizontal-list
+How to let user see past easily?
+1. https://github.com/fuxingloh/vue-horizontal-list
+2. https://codepen.io/colinlord/pen/oZNoOO
+3. https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 https://codepen.io/dannievinther/pen/vVydZJ
 
 Designs not being used:
 http://jsfiddle.net/rnwa4fv5/
@@ -451,15 +450,11 @@ http://jsfiddle.net/kf1y2npw/30/
   font-size: 0.8rem;
 }
 
-:root {
-  --gutter: 20px;
-}
-
 .app {
-  padding: var(--gutter) 0;
+  padding: 20px 0;
   display: grid;
-  grid-gap: var(--gutter) 0;
-  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  grid-gap: 20px 0;
+  grid-template-columns: 20px 1fr 20px;
   align-content: start;
 }
 
@@ -477,16 +472,16 @@ http://jsfiddle.net/kf1y2npw/30/
 
 .hs {
   display: grid;
-  grid-gap: calc(var(--gutter) / 2);
+  grid-gap: calc(20px / 2);
   grid-template-columns: 10px;
 
   grid-auto-flow: column;
-  grid-auto-columns: calc(50% - var(--gutter) * 2);
+  grid-auto-columns: calc(50% - 20px * 2);
 
   overflow-x: scroll;
   scroll-snap-type: x proximity;
-  padding-bottom: calc(0.75 * var(--gutter));
-  margin-bottom: calc(-0.25 * var(--gutter));
+  padding-bottom: calc(0.75 * 20px);
+  margin-bottom: calc(-0.25 * 20px);
 }
 
 .hs:before,
@@ -497,7 +492,7 @@ http://jsfiddle.net/kf1y2npw/30/
 .hs > li,
 .item {
   scroll-snap-align: center;
-  padding: calc(var(--gutter) / 2 * 1.5);
+  padding: calc(20px / 2 * 1.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
