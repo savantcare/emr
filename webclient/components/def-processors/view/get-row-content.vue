@@ -1,84 +1,93 @@
 <template>
-  <div id="container-for-1-data-row" :style="mfGetBorder()" @mouseover="mOver()" @mouseleave="mLeave()">
-    <div :style="mfGetCssClassNameForEachDataRow(_entityRow)">
-      <span v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-        <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
-          <!-- Each field type gets to control how it prints the field name -->
+  <div
+    id="container-for-1-data-row"
+    @mouseover="mOver()"
+    @mouseleave="mLeave()"
+    :style="
+      _formDef.styleForEachRowInPaperView
+        ? _formDef.styleForEachRowInPaperView
+        : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
+    "
+  >
+    <span v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
+      <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+        <!-- Each field type gets to control how it prints the field name -->
+        <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+      </div>
+
+      <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+        <!-- Each field type gets to control how it prints the field name -->
+        <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+      </div>
+
+      <!-- There may be many different types of fields. Here dealing with select type field -->
+      <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+        <!-- Each field type gets to control how it prints the field name -->
+        <div v-if="propFieldDef.showFieldLabel">
           <h3>{{ propFieldDef.fieldNameInUi }}</h3>
         </div>
-
-        <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
-          <!-- Each field type gets to control how it prints the field name -->
-          <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
-        </div>
-
-        <!-- There may be many different types of fields. Here dealing with select type field -->
-        <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
-          <!-- Each field type gets to control how it prints the field name -->
-          <div v-if="propFieldDef.showFieldLabel">
-            <h3>{{ propFieldDef.fieldNameInUi }}</h3>
-          </div>
-          <!-- Since it is select there will be many options hence need to do a for loop on options -->
-          <!-- Since it is View layer I should only show the selected options and not all the options -->
-          <div
-            v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-              propFieldDef.fieldNameInDb,
-              _entityRow.clientSideUniqRowId
-            )"
-            :key="item.id"
-            v-if="item.selected"
-          >
-            <!-- this v-if is part of this div and not <div id="selected-option">
+        <!-- Since it is select there will be many options hence need to do a for loop on options -->
+        <!-- Since it is View layer I should only show the selected options and not all the options -->
+        <div
+          v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
+            propFieldDef.fieldNameInDb,
+            _entityRow.clientSideUniqRowId
+          )"
+          :key="item.id"
+          v-if="item.selected"
+        >
+          <!-- this v-if is part of this div and not <div id="selected-option">
                   reason: So that empty divs are not generated.
                   If <div id="selected-option" v-if="item.selected">
                     then a empty divs for each of the select options will get generated.
                   -->
 
-            <!-- Goal: Only show the selected option -->
-            <div id="selected-option">
-              {{ item.value }}
-            </div>
+          <!-- Goal: Only show the selected option -->
+          <div id="selected-option">
+            {{ item.value }}
           </div>
         </div>
-        <!-- Slider field type -->
-        <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-          <div v-if="_entityRow[propFieldDef.fieldNameInDb] > 0">
-            <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-              <h4>{{ propFieldDef.fieldNameInUi }}</h4>
-            </div>
-            <div id="field-value-in-db">
-              <div v-if="_entityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
-              <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-              <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
-              <div v-else>
-                {{ _entityRow[propFieldDef.fieldNameInDb] }}
-              </div>
-            </div>
+      </div>
+      <!-- Slider field type -->
+      <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
+        <div v-if="_entityRow[propFieldDef.fieldNameInDb] > 0">
+          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
+            <h4>{{ propFieldDef.fieldNameInUi }}</h4>
           </div>
-        </div>
-
-        <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
           <div id="field-value-in-db">
-            {{ _entityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+            <div v-if="_entityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
+            <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+            <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+            <div v-else>
+              {{ _entityRow[propFieldDef.fieldNameInDb] }}
+            </div>
           </div>
         </div>
+      </div>
 
-        <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
-          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-          <div id="field-value-in-db">{{ _entityRow[propFieldDef.fieldNameInDb] | moment }}</div>
+      <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
+        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+        <div id="field-value-in-db">
+          {{ _entityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
         </div>
+      </div>
 
-        <!-- Not specified field type -->
-        <span v-else id="not-matched-field-type">
-          <span v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</span>
-          <!-- Goal: skip fields that are null or empty -->
-          <span v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
-            {{ _entityRow[propFieldDef.fieldNameInDb] }}
-          </span>
-        </span>
+      <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
+        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
+        <div id="field-value-in-db">{{ _entityRow[propFieldDef.fieldNameInDb] | moment }}</div>
+      </div>
+
+      <!-- Not specified field type -->
+      <span v-else id="not-matched-field-type">
+        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui" style="color: #909399">
+          {{ propFieldDef.fieldNameInUi }}
+        </div>
+        <!-- Goal: skip fields that are null or empty -->
+        <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db">
+          {{ _entityRow[propFieldDef.fieldNameInDb] }}
+        </div>
       </span>
-    </div>
+    </span>
     <div v-show="mouseOnThisRow" id="row-actions-when-appt-is-unlocked" v-if="_ApptStatus === 'unlocked'">
       <!-- Case 2/2: When this appt is un-locked what row actions to show-->
 
@@ -247,18 +256,7 @@ export default {
       }
       return string
     },
-    mfGetBorder() {
-      let string = 'display: grid; grid-template-columns: 2fr 1fr;'
-      if (this.mouseOnThisRow === true) {
-        string = string + 'box-shadow: inset 0 -1px  rgba(144, 147, 153, .6);' /* It is inset to prevent jumping */
-      }
-      return string
-    },
   },
 }
 </script>
-<style scoped>
-#field-value-in-db {
-  margin-left: 3%; /* Without this the begining of the text was getting cut off inside the Horizontal slides scroll */
-}
-</style>
+<style scoped></style>

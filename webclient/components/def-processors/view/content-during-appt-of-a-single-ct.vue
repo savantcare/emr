@@ -64,7 +64,7 @@
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
-              id="each-row-of-entity-inside-appt"
+              id="each-row-of-patient-data-inside-appt"
               v-for="entityRow in item[_formDef.id]"
               :key="entityRow.clientSideUniqRowId"
             >
