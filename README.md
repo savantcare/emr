@@ -65,15 +65,13 @@ Whenever tab_click event is fired use data from this Obj to set focus and caret 
 
 Whenever onFocus is fired the sub Ct. updates the value in this object.
 
-3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave like tab index.
+1. Focus not working for number 1 field and also when form opened first time once the Ct has already loaded.
+2. When header appointments are changed choosing different slides
+3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
 4. Get correlate to work from button
 5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
 6. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
 7. Put page in full screen using https://mirari.cc/vue-fullscreen/
 8. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
 9. Patient timeline: https://jinfang134.github.io/vue-pipeline/
-10. Top header appt slider / search / code / timeline -> expandable
-    https://stackoverflow.com/questions/58100158/how-to-use-vue-transition-to-expand-and-shrink-a-div
-    https://jsfiddle.net/7bcs2er6/1/
-    https://codepen.io/sustained/pen/Rwbdgob
-11. Search in top header using https://theoxiong.github.io/vue-search-panel/
+10. Search in top header using https://theoxiong.github.io/vue-search-panel/
