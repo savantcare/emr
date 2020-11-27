@@ -11,17 +11,22 @@
       :key="id"
       id="start-processing-each-field-of-row"
     >
-      <div :id="id" v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel">
+
+      <!-- Goal: There are many different types of fields. Using v-if to identify the type of field and then taking action. -->
+
+      <!-- HEADING -->
+      <div v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <h3>{{ propFieldDef.fieldNameInUi }}</h3>
       </div>
 
-      <div :id="id" v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel">
+      <!-- BUTTON -->
+      <div v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
       </div>
 
-      <!-- There may be many different types of fields. Here dealing with select type field -->
+      <!-- SELECT -->
       <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
         <!-- Each field type gets to control how it prints the field name -->
         <div v-if="propFieldDef.showFieldLabel">
@@ -49,7 +54,8 @@
           </div>
         </div>
       </div>
-      <!-- Slider field type -->
+
+      <!-- SLIDER -->
       <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
         <div v-if="_entityRow[propFieldDef.fieldNameInDb] > 0">
           <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
@@ -66,6 +72,7 @@
         </div>
       </div>
 
+      <!-- NUMBER -->
       <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
         <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui" style="display:inline;">{{ propFieldDef.fieldNameInUi }}</div>
         <div id="field-value-in-db">
@@ -78,8 +85,8 @@
         <div id="field-value-in-db">{{ _entityRow[propFieldDef.fieldNameInDb] | moment }}</div>
       </div>
 
-      <!-- Not specified field type -->
 
+      <!-- INPUT / TEXT AREA -->
       <span v-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
         {{ propFieldDef.fieldNameInUi }}:
       </span>
