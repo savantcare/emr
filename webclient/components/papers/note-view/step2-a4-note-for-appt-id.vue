@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import ctPaperNoteStructure from '@/components/def-processors/view/router-for-full-note-time-series.vue'
+import ctPaperNoteStructure from '@/components/papers/note-view/router-for-full-note-time-series.vue'
 
 // init tables
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
