@@ -11,7 +11,17 @@ export default {
     return {}
   },
   /**
-   * https://michaelnthiessen.com/call-method-on-page-load/
+   * Why we use created() instead of mounted() ?
+   * --
+   * Problem: In the mounted section of 'section-19-allow-note-lock.vue' file, there is a query to fetch appointment.
+   * In this case the query trying to fetch data from appointment table before the load initial data in that table.
+   *
+   * Solution: On the page load, insert appointment initial data before the mounted hook called.
+   *
+   * The created hook is run before the mounted hook is run.
+   * And in the created hook, nearly everything in the component has been setup. The only thing missing is the DOM.
+   *
+   * Ref: https://michaelnthiessen.com/call-method-on-page-load/
    */
   created() {
     clientTblOfAppointments.insert({
