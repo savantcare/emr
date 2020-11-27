@@ -344,13 +344,20 @@ export default {
       console.log(item)
     },
     mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails) {
-      if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index']) {
+      if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index'] > -1) {
         document
           .querySelector(
             '#each-data-row-' + pArFieldDetails['index'] + '-' + pTabName + ' #' + pArFieldDetails['fieldNameInDb']
           )
           .focus()
+      } else {
+        if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
+          document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child').focus()
+        } else {
+          document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child').focus()
+        }
       }
+      console.log(pTabName, pArFieldDetails)
     },
     mfGetArOfDataRows() {
       const arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id]
