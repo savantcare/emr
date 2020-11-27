@@ -21,7 +21,7 @@ import ctCorrelate from '@/components/papers/correlate/design-2.vue'
 import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue'
 
 import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
-import ctSettings from '@/components/papers/note-view/left-side-header/settings-component.vue'
+import ctSettings from '@/components/papers/note-view/lhs/header/settings-component.vue'
 
 import ctPaperNoteStructure from '@/components/papers/note-view/router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
