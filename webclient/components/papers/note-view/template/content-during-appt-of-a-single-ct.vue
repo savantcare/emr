@@ -67,7 +67,7 @@
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
-              id="container-for-all-rows-of-one-appointment"
+              id="container-to-ctrl-placement-of-every-row-inside-a-div"
               :style="
                 _formDef.ctrlPlacementOfEveryRowInsideADiv
                   ? _formDef.ctrlPlacementOfEveryRowInsideADiv
@@ -75,7 +75,7 @@
               "
             >
               <div
-                id="container-for-all-fields-of-one-row"
+                id="container-for-all-rows-of-one-appointment"
                 v-for="entityRow in item[_formDef.id]"
                 :key="entityRow.clientSideUniqRowId"
               >
