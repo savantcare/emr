@@ -142,6 +142,12 @@
               <div v-if="propFieldDef.showFieldLabel">
                 {{ propFieldDef.fieldNameInUi }}
               </div>
+              <!-- 
+                Goal: When I go from recommendation to reminder the form field focus needs to be maintained.
+
+                Form focus step. 1: 
+                  On focus input field called a method function named 'mfSetFormFieldFocusEvent' to store current focus position
+                -->
               <el-input
                 @focus="mfSetFormFieldFocusEvent(propFieldDef.fieldNameInDb, index)"
                 :id="propFieldDef.fieldNameInDb"
@@ -335,6 +341,11 @@ export default {
     },
   },
   mounted() {
+    /**
+     * Form focus step. 8:
+     *  Receive tabName and array of previously saved focus position details from event listener and
+     *  then call a method function named 'mfSetFormFieldFocusOnTabChange' to restore focus position
+     */
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
       setTimeout(() => this.mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails), 200)
@@ -344,28 +355,42 @@ export default {
     log(item) {
       console.log(item)
     },
-    mfForTabActionByEnter: function(e) {
-        /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 
+    mfForTabActionByEnter: function (e) {
+      /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
 
-        //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab. 
-        const currentNode = e.target;
-        if(currentNode.tagName!="TEXTAREA"){
-          //Isolate the node that we're after to put focus on that node.
-          const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'));
-          const index = inputs.indexOf(e.target);
-          if (index < inputs.length) {
-            inputs[index + 1].focus();
-          }
-      }  
+      //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
+      const currentNode = e.target
+      if (currentNode.tagName != 'TEXTAREA') {
+        //Isolate the node that we're after to put focus on that node.
+        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'))
+        const index = inputs.indexOf(e.target)
+        if (index < inputs.length) {
+          inputs[index + 1].focus()
+        }
+      }
     },
     mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails) {
-      if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index']) {
+      /**
+       * Form focus step. 9:
+       * In this function two types of scenario may happened:
+       * i) We something do in this tab and then switch to another tab and again back to this tab
+       *    -- this scenario we covered in if statement using previously stored tabName, form index and fieldNameInDb.
+       * ii) We click this tab first time after page load
+       *    -- this scenario we covered in else statement that first input field should be focused.
+       */
+      if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index'] > -1) {
         document
           .querySelector(
             '#each-data-row-' + pArFieldDetails['index'] + '-' + pTabName + ' #' + pArFieldDetails['fieldNameInDb']
           )
           .focus()
+      } else {
+        if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
+          document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child').focus()
+        } else {
+          document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child').focus()
+        }
       }
     },
     mfGetArOfDataRows() {
@@ -461,6 +486,14 @@ export default {
       allPatientDataTbls[this._formDef.id].fnDeleteNewRowsInEditState()
     },
     mfSetFormFieldFocusEvent(pFieldNameInDb, pIndex) {
+      /**
+       * Form focus step. 2:
+       *  Send fieldNameInDb and form index (focus posiotion detail) to 'show-vertical-tabs-in-dialog.vue' page using event listener
+       *
+       * Q. Why we send focus position details to another page?
+       * -- Because, our goal is that if we switch the tab and again back to the previous tab, we need to restore the focus position.
+       *   Hence, we store the focus position in the 'show-vertical-tabs-in-dialog.vue' page.
+       */
       const eventName = 'event-from-form-field-to-set-focus'
       this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
     },
