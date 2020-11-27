@@ -152,6 +152,7 @@
                 :placeholder="propFieldDef.fieldNameInUi"
                 :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
                 @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter"
               ></el-input>
             </div>
           </div>
@@ -342,6 +343,21 @@ export default {
   methods: {
     log(item) {
       console.log(item)
+    },
+    mfForTabActionByEnter: function(e) {
+        /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 
+          Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
+
+        //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab. 
+        const currentNode = e.target;
+        if(currentNode.tagName!="TEXTAREA"){
+          //Isolate the node that we're after to put focus on that node.
+          const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'));
+          const index = inputs.indexOf(e.target);
+          if (index < inputs.length) {
+            inputs[index + 1].focus();
+          }
+      }  
     },
     mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails) {
       if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index']) {
