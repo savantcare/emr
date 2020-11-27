@@ -30,7 +30,7 @@
       <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
         <!-- Each field type gets to control how it prints the field name -->
         <div v-if="propFieldDef.showFieldLabel">
-          <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+          <b>{{ propFieldDef.fieldNameInUi }}</b>
         </div>
         <!-- Since it is select there will be many options hence need to do a for loop on options -->
         <!-- Since it is View layer I should only show the selected options and not all the options -->
@@ -94,8 +94,6 @@
         </span>
         {{ _entityRow[propFieldDef.fieldNameInDb] }}
       </div>
-        <!-- Case 2/2: When this appt is un-locked what row actions to show-->
-
         <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
         <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
           <el-button @click="additionalRowAction.executeThisFn(_entityRow)">{{

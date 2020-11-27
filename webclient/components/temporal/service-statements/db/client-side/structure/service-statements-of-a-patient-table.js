@@ -105,6 +105,8 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryFieldsNameAndValueInsideADiv:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
+  ctrlPlacementOfEveryRowInsideADiv:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
