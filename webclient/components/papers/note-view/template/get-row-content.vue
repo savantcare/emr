@@ -87,11 +87,11 @@
 
 
       <!-- INPUT / TEXT AREA -->
-      <span v-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
-        {{ propFieldDef.fieldNameInUi }}:
-      </span>
       <!-- Goal: skip fields that are null or empty -->
-      <div v-if="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db" style="display:inline">
+      <div v-else="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db" style="display:inline">
+        <span v-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
+           {{ propFieldDef.fieldNameInUi }}:
+        </span>
         {{ _entityRow[propFieldDef.fieldNameInDb] }}
       </div>
         <!-- Case 2/2: When this appt is un-locked what row actions to show-->
