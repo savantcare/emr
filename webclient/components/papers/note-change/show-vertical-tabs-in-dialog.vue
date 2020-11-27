@@ -49,7 +49,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     -->
 
     <!--
-      Form focus step. 6: 
+      Form focus step: 6/9
         When we switching tab then call a method function called 'mfSendFormFieldFocusEvent'.
         Ref: https://element.eleme.io/#/en-US/component/tabs#tabs-events
     -->
@@ -184,7 +184,7 @@ export default {
       activeTabName: 'psych_review_of_system',
       formDefId: '',
       /**
-       * Form focus step. 4:
+       * Form focus step: 4/9
        *  Initialize a array named 'arFormFieldIndexWithFocus' for storing cursor focus position.
        */
       arFormFieldIndexWithFocus: {},
@@ -252,19 +252,20 @@ export default {
     this.vblIsdialogHoldingTabsInEditLayerVisible = false
 
     /**
-     * Form focus step. 3:
+     * Form focus step: 3/9
      *  Receive fieldNameInDb and form index (focus posiotion detail) from event listener
-     *  then call a method function named 'mfStoreFormFieldFocusInArray' to store focus position details.
+     *  then call a method function named 'mf_store_id_of_focussed_field_in_tab' to store focus position details.
+     * Doc should have explained why is timeout needed ? @raj
      */
     const eventName = 'event-from-form-field-to-set-focus'
     this.$root.$on(eventName, (pFormDefId, pFieldNameInDb, pIndex) => {
-      setTimeout(() => this.mfStoreFormFieldFocusInArray(pFormDefId, pFieldNameInDb, pIndex), 200)
+      setTimeout(() => this.mf_store_id_of_focussed_field_in_tab(pFormDefId, pFieldNameInDb, pIndex), 200)
     })
   },
   methods: {
-    mfStoreFormFieldFocusInArray(pFormDefId, pFieldNameInDb, pIndex) {
+    mf_store_id_of_focussed_field_in_tab(pFormDefId, pFieldNameInDb, pIndex) {
       /**
-       * Form focus step. 5:
+       * Form focus step: 5/9
        *  Storing form focus position details in a multidimentional array
        */
       this.arFormFieldIndexWithFocus[pFormDefId] = []
@@ -282,7 +283,7 @@ export default {
     },
     mfSendFormFieldFocusEvent(pActiveTabName) {
       /**
-       * Form focus step. 7:
+       * Form focus step: 7/9
        *  Send activeTabName and focus position array set (previously stored focus position for this tab) to 'add-form.vue' page using event listener
        */
       const eventName = 'event-from-tab-change-to-focus-form-field'

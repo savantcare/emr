@@ -145,11 +145,11 @@
               <!-- 
                 Goal: When I go from recommendation to reminder the form field focus needs to be maintained.
 
-                Form focus step. 1: 
-                  On focus input field called a method function named 'mfSetFormFieldFocusEvent' to store current focus position
+                Form focus step: 1/9
+                  On focus input field called a method function named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
                 -->
               <el-input
-                @focus="mfSetFormFieldFocusEvent(propFieldDef.fieldNameInDb, index)"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(propFieldDef.fieldNameInDb, index)"
                 :id="propFieldDef.fieldNameInDb"
                 :ref="propFieldDef.fieldNameInDb"
                 :type="propFieldDef.fieldType"
@@ -342,13 +342,15 @@ export default {
   },
   mounted() {
     /**
-     * Form focus step. 8:
+     * Form focus step: 8/9
      *  Receive tabName and array of previously saved focus position details from event listener and
-     *  then call a method function named 'mfSetFormFieldFocusOnTabChange' to restore focus position
+     *  then call a method function named 'mf_restore_form_field_focus_on_tab_change' to restore focus position
+     *
+     * Doc should have explained the reason for needing setTimeOut @raj
      */
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
-      setTimeout(() => this.mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails), 200)
+      setTimeout(() => this.mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails), 200)
     })
   },
   methods: {
@@ -370,9 +372,9 @@ export default {
         }
       }
     },
-    mfSetFormFieldFocusOnTabChange(pTabName, pArFieldDetails) {
+    mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails) {
       /**
-       * Form focus step. 9:
+       * Form focus step: 9/9
        * In this function two types of scenario may happened:
        * i) We something do in this tab and then switch to another tab and again back to this tab
        *    -- this scenario we covered in if statement using previously stored tabName, form index and fieldNameInDb.
@@ -485,14 +487,14 @@ export default {
     mfOnResetForm(formName) {
       allPatientDataTbls[this._formDef.id].fnDeleteNewRowsInEditState()
     },
-    mfSetFormFieldFocusEvent(pFieldNameInDb, pIndex) {
+    mf_store_id_of_field_which_has_focus_in_this_form(pFieldNameInDb, pIndex) {
       /**
-       * Form focus step. 2:
+       * Form focus step: 2/9
        *  Send fieldNameInDb and form index (focus posiotion detail) to 'show-vertical-tabs-in-dialog.vue' page using event listener
        *
        * Q. Why we send focus position details to another page?
        * -- Because, our goal is that if we switch the tab and again back to the previous tab, we need to restore the focus position.
-       *   Hence, we store the focus position in the 'show-vertical-tabs-in-dialog.vue' page.
+       *   Hence, we store the focus position in the 'show-vertical-tabs-in-dialog.vue' component.
        */
       const eventName = 'event-from-form-field-to-set-focus'
       this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
