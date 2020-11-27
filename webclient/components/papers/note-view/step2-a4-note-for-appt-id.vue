@@ -58,8 +58,6 @@
           </div>
         </div>
       </div>
-
-      <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
     </div>
     <div v-if="_side === 'right' || _side === 'full'">
       <el-divider class="section-header"><h3>Assessment</h3></el-divider>
@@ -92,8 +90,6 @@ import apptNotePrintableView from '@/components/papers/note-view/step2-a4-note-f
 import headerPaperNote from './section-2-header-arrows-name-comparison.vue'
 import agePaperNote from './section-4-age.vue'
 
-import lockButtonPrintSection from './section-19-allow-note-lock.vue'
-
 // Library
 import moment from 'moment'
 
@@ -125,7 +121,6 @@ export default {
     apptNotePrintableView,
     agePaperNote,
     headerPaperNote,
-    lockButtonPrintSection,
     ctPaperNoteStructure,
     ctPaperNoteStructure,
   },

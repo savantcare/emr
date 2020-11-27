@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!-- this 10px is the distance between the card and all other 4 sides. -->
-    <div style="display: grid; grid-template-columns: repeat(9, 1fr); width: 700px">
-      <!-- Following el-card style is set to overflow visible and height 65px. This is because tooltip on appointment slider wasn't fully visible as el-card overflow property by default set to hidden. Also since slider is generating on the fly, it was causing malformation on mouse overing/tooltip. Hence overflow is visible and height set to 65px. -->
-      <div style="grid-column: 1/4">
-        <ctCorrelate />
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); width: 700px">
+      <div><ctCorrelate /></div>
+      <div><ctScBrainDialog /></div>
+      <div><el-button size="mini" round type="primary">Pt data timeline</el-button></div>
+      <div><ctCoding /></div>
+      <div style="vertical-align: top">
+        <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
       </div>
-      <div style="grid-column: 4/6"><ctScBrainDialog /></div>
-      <div style="grid-column: 6/8"><el-button size="mini" mini round type="primary">Pt data timeline</el-button></div>
-      <div style="grid-column: 8/9"><ctCoding /></div>
-      <div style="grid-column: 9/10"><ctSettings></ctSettings></div>
+      <div><ctSettings></ctSettings></div>
     </div>
-    <div>
-      <apptNote _side="right" />
-    </div>
+    <div><apptNote _side="right" /></div>
   </div>
 </template>
 <script>
@@ -28,8 +25,18 @@ import clientTblOfAppointments from '@/components/temporal/appointments/db/clien
 
 import apptNote from '@/components/papers/note-view/step1-decide-notes-to-show-and-their-appt-id.vue'
 
+import lockButtonPrintSection from '../../section-19-allow-note-lock.vue'
+
 export default {
-  components: { ctCorrelate, ctCoding, ctScBrainDialog, ctSettings, ctPaperNoteStructure, apptNote },
+  components: {
+    ctCorrelate,
+    ctCoding,
+    ctScBrainDialog,
+    ctSettings,
+    ctPaperNoteStructure,
+    apptNote,
+    lockButtonPrintSection,
+  },
   computed: {
     dshowNoteForApptId() {
       /*

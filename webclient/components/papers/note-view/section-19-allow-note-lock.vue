@@ -1,9 +1,8 @@
 <template>
   <!-- SECTION 13 -->
   <div v-if="currentApptObj['apptStatus'] !== 'locked'">
-    <br /><br />
     <div style="display: flex; justify-content: center">
-      <el-button @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
+      <el-button round size="mini" @click="lockButtonClicked" type="primary">Reviewed - Lock the note </el-button>
     </div>
   </div>
 </template>
