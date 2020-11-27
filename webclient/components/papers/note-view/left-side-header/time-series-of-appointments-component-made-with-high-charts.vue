@@ -13,7 +13,7 @@ https://stackoverflow.com/questions/31980710/unable-to-set-the-selected-state-in
 </template>
 
 <script>
-import clientTblOfLeftSideViewCards from '@/components/papers/view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/note-view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'

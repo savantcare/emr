@@ -15,8 +15,8 @@
   </div>
 </template>
 <script>
-import clientTblOfDynamicCards from '@/components/papers/view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
-import clientTblOfDynamicCardsInsertData from '@/components/papers/view/left-side-container/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
+import clientTblOfDynamicCards from '@/components/papers/note-view/left-side-container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfDynamicCardsInsertData from '@/components/papers/note-view/left-side-container/db/client-side/static-data/insert-into-left-side-view-layer-cards.vue'
 import clientTblCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
