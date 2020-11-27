@@ -10,7 +10,10 @@ export default {
   data() {
     return {}
   },
-  mounted() {
+  /**
+   * https://michaelnthiessen.com/call-method-on-page-load/
+   */
+  created() {
     clientTblOfAppointments.insert({
       data: {
         apptStartMilliSecsOnCalendar: 1601725467558,

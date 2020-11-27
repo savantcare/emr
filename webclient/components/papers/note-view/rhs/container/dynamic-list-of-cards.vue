@@ -6,7 +6,13 @@
       <div><el-button size="mini" round type="primary">Pt data timeline</el-button></div>
       <div><ctCoding /></div>
       <div style="vertical-align: top">
-        <lockButtonPrintSection :_apptId="_showNoteForApptId"></lockButtonPrintSection>
+        <!-- 
+          Data properties that start with _ or $ will not be proxied on the Vue instance 
+          because they may conflict with Vue’s internal properties and API methods.
+
+          Ref: https://vuejs.org/v2/api/#data
+        -->
+        <lockButtonPrintSection :_apptId="showNoteForApptId"></lockButtonPrintSection>
       </div>
       <div><ctSettings></ctSettings></div>
     </div>
