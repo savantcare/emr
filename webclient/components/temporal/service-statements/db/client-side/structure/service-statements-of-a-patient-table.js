@@ -50,7 +50,7 @@ export const serviceStatementsFormDef = {
   singular: 'service statement',
   fieldsDef: [
     {
-      fieldNameInDb: 'total_minutes_in_psychotherapy_select',
+      fieldNameInDb: 'total_minutes_in_psychotherapy_select', // _select is important since it is used by curd/manage-rows to decide append or replace. Since default behavior of curd/manage-rows is to replace.
       fieldNameInUi: 'Total minutes in psychotherapy',
       fieldType: 'multi-select-with-buttons',
       span: 24,

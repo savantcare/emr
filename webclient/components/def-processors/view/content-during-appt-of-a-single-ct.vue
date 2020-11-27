@@ -60,13 +60,14 @@
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInsideADiv and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
-      <ul class="hs full no-scrollbar">
+      <ul class="hs full no-scrollbar" id="container-for-all-appointments">
         <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-          <li class="item">
+          <li class="item" id="container-for-one-appointment">
             <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
+              id="container-for-all-rows-of-one-appointment"
               :style="
                 _formDef.ctrlPlacementOfEveryRowInsideADiv
                   ? _formDef.ctrlPlacementOfEveryRowInsideADiv
@@ -74,7 +75,7 @@
               "
             >
               <div
-                id="each-row-of-patient-data-inside-appt"
+                id="container-for-all-fields-of-one-row"
                 v-for="entityRow in item[_formDef.id]"
                 :key="entityRow.clientSideUniqRowId"
               >
