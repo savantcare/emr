@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 import psychReviewOfSystemsAllSelectOptionsTbl from './psych-review-of-system-all-select-options.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 

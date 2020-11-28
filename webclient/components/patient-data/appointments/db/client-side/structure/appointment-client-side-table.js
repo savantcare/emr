@@ -1,5 +1,5 @@
 // For ref implementation see name/db/structure/table.js
-import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0

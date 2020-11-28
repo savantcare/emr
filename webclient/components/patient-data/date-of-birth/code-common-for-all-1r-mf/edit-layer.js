@@ -1,6 +1,6 @@
 import clientTbl from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],

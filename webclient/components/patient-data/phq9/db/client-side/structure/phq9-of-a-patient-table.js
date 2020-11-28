@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 import phq9MasterClass from './phq9-all-select-options.js'
 import phq9AllSelectOptionsTbl from './phq9-all-select-options.js'
 import phq9OfAPatientTbl from '~/components/patient-data/phq9/db/client-side/structure/phq9-of-a-patient-table.js'

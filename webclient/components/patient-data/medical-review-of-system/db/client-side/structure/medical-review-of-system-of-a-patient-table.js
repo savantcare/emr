@@ -1,5 +1,5 @@
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 import medicalReviewOfSystemMasterClass from './medical-review-of-system-all-select-options.js'
 import medicalReviewOfSystemAllSelectOptionsTbl from './medical-review-of-system-all-select-options.js'
 import medicalReviewOfSystemOfAPatientTbl from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
