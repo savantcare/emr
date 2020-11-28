@@ -122,7 +122,6 @@ import moment from 'moment'
 
 import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import VueHorizontalList from '@/components/external/vue-horizontal-list.vue'
 import getRowContent from './get-row-content.vue'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
@@ -170,7 +169,7 @@ export default {
       items: [],
     }
   },
-  components: { VueHorizontalList, getRowContent },
+  components: { getRowContent },
   mixins: [clInvokeMixin],
 
   filters: {
@@ -372,12 +371,6 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
-    },
-    mfVueHorizontalListSetCurrentSlide(val) {
-      if (val) {
-        const eventName = 'event-for-set-horizontal-list-current-slide'
-        this.$root.$emit(eventName)
-      }
     },
   },
 }

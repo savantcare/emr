@@ -25,23 +25,23 @@ export default {
   mounted() {
     // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
 
-    this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
-    this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
-    this.$mousetrap.bind(['p', 'ctrl+p'], this.actOnUserIntentToSeePastPsychHistory)
-    this.$mousetrap.bind(['f', 'ctrl+f'], this.actOnUserIntentToSeeFamilyHistory)
-    this.$mousetrap.bind(['m', 'ctrl+m'], this.medical_review_of_system)
     this.$mousetrap.bind(['a', 'ctrl+a'], this.allergies)
-    this.$mousetrap.bind(['e', 'ctrl+e'], this.examination)
-    this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
+    this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
     this.$mousetrap.bind(['d', 'ctrl+d'], this.diagnosis)
-    this.$mousetrap.bind(['r', 'ctrl+r'], this.screens)
+    this.$mousetrap.bind(['e', 'ctrl+e'], this.examination)
+    this.$mousetrap.bind(['f', 'ctrl+f'], this.actOnUserIntentToSeeFamilyHistory)
     this.$mousetrap.bind(['g', 'ctrl+g'], this.goals)
-    this.$mousetrap.bind(['t', 'ctrl+t'], this.recommendations)
+    this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
     this.$mousetrap.bind(['i', 'ctrl+i'], this.reminders)
     this.$mousetrap.bind(['l', 'ctrl+l'], this.plan_comments)
-    this.$mousetrap.bind(['s', 'ctrl+s'], this.service_statements)
+    this.$mousetrap.bind(['m', 'ctrl+m'], this.medical_review_of_system)
     this.$mousetrap.bind(['n', 'ctrl+n'], this.miscellaneous_notes)
     this.$mousetrap.bind(['o', 'ctrl+o'], this.process_notes)
+    this.$mousetrap.bind(['p', 'ctrl+p'], this.actOnUserIntentToSeePastPsychHistory)
+    this.$mousetrap.bind(['r', 'ctrl+r'], this.screens)
+    this.$mousetrap.bind(['s', 'ctrl+s'], this.service_statements)
+    this.$mousetrap.bind(['t', 'ctrl+t'], this.recommendations)
+    this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
 
     // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
     this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
