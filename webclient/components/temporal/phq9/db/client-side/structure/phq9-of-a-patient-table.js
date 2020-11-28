@@ -58,7 +58,7 @@ export const phq9FormDef = {
   fieldsDef: [
     {
       nameInDb: 'interest',
-      fieldNameInUi: 'Little interest or pleasure in doing things?',
+      nameInUi: 'Little interest or pleasure in doing things?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -76,7 +76,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'depressed',
-      fieldNameInUi: 'Feeling down depressed or hopeless?',
+      nameInUi: 'Feeling down depressed or hopeless?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -94,7 +94,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'sleep',
-      fieldNameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
+      nameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -112,7 +112,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'energy',
-      fieldNameInUi: 'Feeling tired or having little energy?',
+      nameInUi: 'Feeling tired or having little energy?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -130,7 +130,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'appetite',
-      fieldNameInUi: 'Poor appetite or overeating?',
+      nameInUi: 'Poor appetite or overeating?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -148,7 +148,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'down',
-      fieldNameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
+      nameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -166,7 +166,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'concentrating',
-      fieldNameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
+      nameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       fieldType: 'slider',
       span: 24,
       showFieldLabel: true,
@@ -203,7 +203,7 @@ export const phq9FormDef = {
     },
     {
       nameInDb: 'hurting',
-      fieldNameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
+      nameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
       fieldType: 'slider',
       span: 24,
       fieldOptions: { min: 0, max: 3, step: 1 },

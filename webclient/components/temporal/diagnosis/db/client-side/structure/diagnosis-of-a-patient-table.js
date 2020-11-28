@@ -90,13 +90,13 @@ export const diagnosisFormDef = {
   fieldsDef: [
     {
       nameInDb: 'diagnosis',
-      fieldNameInUi: 'Diagnosis',
+      nameInUi: 'Diagnosis',
       fieldType: 'autocomplete',
       selectOptions: fnSelectOptionCallBack,
       span: 24,
     },
-    { nameInDb: 'assessment', fieldNameInUi: 'Assessment', fieldType: 'textarea', span: 24 },
-    { nameInDb: 'onset', fieldNameInUi: 'Onset', fieldType: 'date', span: 24 },
+    { nameInDb: 'assessment', nameInUi: 'Assessment', fieldType: 'textarea', span: 24 },
+    { nameInDb: 'onset', nameInUi: 'Onset', fieldType: 'date', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
   showReviewedButtonInForm: false,

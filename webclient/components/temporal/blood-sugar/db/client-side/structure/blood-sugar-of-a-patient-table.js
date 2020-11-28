@@ -60,7 +60,7 @@ export const bloodSugarFormDef = {
   fieldsDef: [
     {
       nameInDb: 'bloodSugarMgDL',
-      fieldNameInUi: 'Blood sugar',
+      nameInUi: 'Blood sugar',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
@@ -68,14 +68,14 @@ export const bloodSugarFormDef = {
     },
     {
       nameInDb: 'notes',
-      fieldNameInUi: 'Notes',
+      nameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',
-      fieldNameInUi: 'Measured on',
+      nameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,
       showFieldLabel: true,

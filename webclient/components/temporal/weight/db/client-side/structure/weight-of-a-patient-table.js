@@ -60,7 +60,7 @@ export const weightFormDef = {
   fieldsDef: [
     {
       nameInDb: 'weightInPounds',
-      fieldNameInUi: 'Weight',
+      nameInUi: 'Weight',
       fieldType: 'number',
       span: 24,
       showFieldLabel: false,
@@ -68,14 +68,14 @@ export const weightFormDef = {
     },
     {
       nameInDb: 'notes',
-      fieldNameInUi: 'Notes',
+      nameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',
-      fieldNameInUi: 'Measured on',
+      nameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,
       showFieldLabel: true,

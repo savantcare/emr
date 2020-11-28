@@ -40,7 +40,7 @@
           style="width: 100%"
           :row-style="mfStyleForEachDataRow"
         >
-          <el-table-column v-for="(_fieldDef, id) in propFormDef.fieldsDef" :key="id" :label="_fieldDef.fieldNameInUi">
+          <el-table-column v-for="(_fieldDef, id) in propFormDef.fieldsDef" :key="id" :label="_fieldDef.nameInUi">
             <!-- 
                 :formatter="_fieldDef.formatter"
                 :min-width="_fieldDef.minWidth"

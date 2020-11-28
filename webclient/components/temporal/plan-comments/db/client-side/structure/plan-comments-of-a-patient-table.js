@@ -53,7 +53,7 @@ export const planCommentsFormDef = {
   id: 'plan_comments',
   plural: 'plan comments',
   singular: 'plan comment',
-  fieldsDef: [{ nameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 }],
+  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', fieldType: 'textarea', span: 24 }],
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInsideADiv:

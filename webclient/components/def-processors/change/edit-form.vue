@@ -3,7 +3,7 @@
   <div>
     <el-form>
       <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-        <el-form-item :label="_fieldDef.showFieldLabel ? _fieldDef.fieldNameInUi : ''">
+        <el-form-item :label="_fieldDef.showFieldLabel ? _fieldDef.nameInUi : ''">
           <el-col :span="_fieldDef.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
@@ -11,7 +11,7 @@
               v-model="searchKeyword"
               class="inline-input"
               :fetch-suggestions="_fieldDef.selectOptions"
-              :placeholder="_fieldDef.fieldNameInUi"
+              :placeholder="_fieldDef.nameInUi"
               style="width: 100%"
               :highlight-first-item="true"
               @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
@@ -19,7 +19,7 @@
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
             <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
-              {{ _fieldDef.fieldNameInUi }}
+              {{ _fieldDef.nameInUi }}
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
                   _fieldDef.nameInDb,
@@ -37,7 +37,7 @@
 
             <!-- Field type 3: Do the following when it is heading type field -->
             <div v-else-if="_fieldDef.fieldType === 'heading'">
-              <h3>{{ _fieldDef.fieldNameInUi }}</h3>
+              <h3>{{ _fieldDef.nameInUi }}</h3>
             </div>
 
             <!-- Field type 4: Do the following when it is select type field -->
@@ -45,7 +45,7 @@
               v-else-if="_fieldDef.fieldType === 'select'"
               v-model="value"
               filterable
-              :placeholder="_fieldDef.fieldNameInUi"
+              :placeholder="_fieldDef.nameInUi"
             >
               <el-option
                 v-for="item in _fieldDef.selectOptions"
@@ -67,7 +67,7 @@
               style="width: 100%"
               :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
-              :placeholder="_fieldDef.fieldNameInUi"
+              :placeholder="_fieldDef.nameInUi"
             >
             </el-date-picker>
 

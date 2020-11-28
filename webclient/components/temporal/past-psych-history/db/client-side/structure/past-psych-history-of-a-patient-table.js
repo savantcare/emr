@@ -66,37 +66,37 @@ export const pastPsychHistoryFormDef = {
   fieldsDef: [
     {
       nameInDb: 'past_outpatient_treatment',
-      fieldNameInUi: 'Past outpatient treatment',
+      nameInUi: 'Past outpatient treatment',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
       nameInDb: 'past_meds_trials',
-      fieldNameInUi: 'Past meds trials',
+      nameInUi: 'Past meds trials',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
       nameInDb: 'hospitalization',
-      fieldNameInUi: 'Hospitalization',
+      nameInUi: 'Hospitalization',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
       nameInDb: 'history_of_violence',
-      fieldNameInUi: 'History of violence',
+      nameInUi: 'History of violence',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
       nameInDb: 'history_of_self_harm',
-      fieldNameInUi: 'History of self harm',
+      nameInUi: 'History of self harm',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
       nameInDb: 'past_substance_abuse',
-      fieldNameInUi: 'Past substance abuse',
+      nameInUi: 'Past substance abuse',
       fieldType: 'textarea',
       showFieldLabel: true,
     },

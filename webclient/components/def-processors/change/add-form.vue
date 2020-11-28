@@ -22,7 +22,7 @@
             <div v-if="_fieldDef.fieldType === 'heading'">
               <div v-if="_fieldDef.showFieldLabel">
                 <!-- the field printing happens lower so each field type can decide what format to apply -->
-                <h3>{{ _fieldDef.fieldNameInUi }}</h3>
+                <h3>{{ _fieldDef.nameInUi }}</h3>
               </div>
             </div>
 
@@ -30,14 +30,14 @@
               fetch-suggestions="_fieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
             <div v-else-if="_fieldDef.fieldType === 'autocomplete'">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
 
               <el-autocomplete
                 v-model="value[_fieldDef.nameInDb]"
                 class="inline-input"
                 :fetch-suggestions="_fieldDef.selectOptions"
-                :placeholder="_fieldDef.fieldNameInUi"
+                :placeholder="_fieldDef.nameInUi"
                 style="width: 100%"
                 :highlight-first-item="true"
                 @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
@@ -47,7 +47,7 @@
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
@@ -68,7 +68,7 @@
             <!-- SLIDER type field value[_fieldDef.nameInDb] -->
             <div v-else-if="_fieldDef.fieldType === 'slider'">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
               <div class="block">
                 <el-slider
@@ -88,9 +88,9 @@
             <!-- SELECT -->
             <div v-else-if="_fieldDef.fieldType === 'select'">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
-              <el-select v-model="value" filterable :placeholder="_fieldDef.fieldNameInUi">
+              <el-select v-model="value" filterable :placeholder="_fieldDef.nameInUi">
                 <el-option
                   v-for="item in _fieldDef.selectOptions"
                   :key="item.value"
@@ -105,7 +105,7 @@
             <!-- DATE -->
             <div v-if="_fieldDef.fieldType === 'date'">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
 
               <el-date-picker
@@ -117,7 +117,7 @@
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                :placeholder="_fieldDef.fieldNameInUi"
+                :placeholder="_fieldDef.nameInUi"
               >
               </el-date-picker>
             </div>
@@ -125,7 +125,7 @@
             <!-- NUMBER -->
             <div v-if="_fieldDef.fieldType.includes('number')">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
               <el-input-number
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
@@ -142,7 +142,7 @@
             <!-- input/textarea -->
             <div v-if="_fieldDef.fieldType.includes('text')">
               <div v-if="_fieldDef.showFieldLabel">
-                {{ _fieldDef.fieldNameInUi }}
+                {{ _fieldDef.nameInUi }}
               </div>
               <!-- 
                 Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component. 
@@ -158,7 +158,7 @@
                 :type="_fieldDef.fieldType"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
-                :placeholder="_fieldDef.fieldNameInUi"
+                :placeholder="_fieldDef.nameInUi"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @keydown.enter.native="mfForTabActionByEnter"
@@ -246,7 +246,7 @@
     >
       <el-table-column align="center" label="Addded this session">
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.fieldNameInUi"></el-table-column>
+          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.nameInUi"></el-table-column>
         </div>
       </el-table-column>
     </el-table>

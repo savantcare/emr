@@ -59,7 +59,7 @@ export const recommendationsFormDef = {
   fieldsDef: [
     {
       nameInDb: 'description',
-      fieldNameInUi: 'Description',
+      nameInUi: 'Description',
       fieldType: 'textarea',
       span: 24,
       required: true,
