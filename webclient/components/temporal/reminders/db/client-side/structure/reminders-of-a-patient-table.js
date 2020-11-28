@@ -61,7 +61,7 @@ export const remindersFormDef = {
       nameInDb: 'description',
       nameInUi: 'Description',
       type: 'textarea',
-      span: 24,
+
       style: 'padding: 0px',
     },
   ],

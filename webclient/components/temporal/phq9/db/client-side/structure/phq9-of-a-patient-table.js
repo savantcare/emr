@@ -60,7 +60,6 @@ export const phq9FormDef = {
       nameInDb: 'interest',
       nameInUi: 'Little interest or pleasure in doing things?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -78,7 +77,6 @@ export const phq9FormDef = {
       nameInDb: 'depressed',
       nameInUi: 'Feeling down depressed or hopeless?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -96,7 +94,6 @@ export const phq9FormDef = {
       nameInDb: 'sleep',
       nameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -114,7 +111,6 @@ export const phq9FormDef = {
       nameInDb: 'energy',
       nameInUi: 'Feeling tired or having little energy?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -132,7 +128,6 @@ export const phq9FormDef = {
       nameInDb: 'appetite',
       nameInUi: 'Poor appetite or overeating?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -150,7 +145,6 @@ export const phq9FormDef = {
       nameInDb: 'down',
       nameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -168,7 +162,6 @@ export const phq9FormDef = {
       nameInDb: 'concentrating',
       nameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -187,7 +180,6 @@ export const phq9FormDef = {
       fieldNameInUi:
         'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?',
       type: 'slider',
-      span: 24,
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -205,7 +197,7 @@ export const phq9FormDef = {
       nameInDb: 'hurting',
       nameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
       type: 'slider',
-      span: 24,
+
       fieldOptions: { min: 0, max: 3, step: 1 },
       showLabel: true,
       marks: {

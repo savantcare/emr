@@ -47,9 +47,9 @@ export const nameFormDef = {
   plural: 'names',
   singular: 'name',
   fieldsDef: [
-    { nameInDb: 'firstName', nameInUi: 'First name', type: 'text', span: 8 },
-    { nameInDb: 'middleName', nameInUi: 'Middle name', type: 'text', span: 8 },
-    { nameInDb: 'lastName', nameInUi: 'Last name', type: 'text', span: 8 },
+    { nameInDb: 'firstName', nameInUi: 'First name', type: 'text' },
+    { nameInDb: 'middleName', nameInUi: 'Middle name', type: 'text' },
+    { nameInDb: 'lastName', nameInUi: 'Last name', type: 'text' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['firstName'],
   fnCreated: function () {},

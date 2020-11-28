@@ -68,7 +68,7 @@ export const psychReviewOfSystemFormDef = {
       type: 'textarea',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
-      span: 24,
+
       style: 'padding: 20px',
     },
     {
@@ -77,14 +77,14 @@ export const psychReviewOfSystemFormDef = {
       type: 'heading',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
-      span: 24,
+
       style: 'padding: 20px',
     },
     {
       nameInDb: 'depressive_mood',
       nameInUi: 'Depressive mood',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -102,7 +102,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'interest',
       nameInUi: 'Interest',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -120,7 +120,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'sleep',
       nameInUi: 'Sleep',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -138,7 +138,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'selfEsteem',
       nameInUi: 'Gulf / Self esteem',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -156,7 +156,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'energy',
       nameInUi: 'Energy',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -174,7 +174,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'concDist',
       nameInUi: 'Conc/Dist',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -192,7 +192,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'appetite',
       nameInUi: 'Apptetite',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -210,7 +210,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'pmrPma',
       nameInUi: 'PMR/PMA',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -229,13 +229,12 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Gateway mood symptoms',
       type: 'heading',
       showLabel: true,
-      span: 12,
     },
     {
       nameInDb: 'obese',
       nameInUi: 'Obese',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -253,7 +252,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'thinCachectic',
       nameInUi: 'Thin or cachectic',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -271,7 +270,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'disheveledUnkempt',
       nameInUi: 'Disheveled/unkempt',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
@@ -289,7 +288,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'malodorous',
       nameInUi: 'Malodorous',
       type: 'slider',
-      span: 24,
+
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },

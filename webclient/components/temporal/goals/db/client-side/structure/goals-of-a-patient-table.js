@@ -57,12 +57,12 @@ export const goalsFormDef = {
   plural: 'goals',
   singular: 'goal',
   fieldsDef: [
-    { nameInDb: 'description', nameInUi: 'Description', type: 'textarea', span: 24 },
+    { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },
     {
       nameInDb: 'rating',
       nameInUi: 'Rating',
       type: 'slider',
-      span: 24,
+
       fieldOptions: { min: 0, max: 10, step: 1 },
       style: 'padding: 20px',
     },

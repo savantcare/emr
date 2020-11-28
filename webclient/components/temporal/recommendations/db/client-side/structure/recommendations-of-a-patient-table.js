@@ -61,7 +61,7 @@ export const recommendationsFormDef = {
       nameInDb: 'description',
       nameInUi: 'Description',
       type: 'textarea',
-      span: 24,
+
       required: true,
       minLength: 5,
     },

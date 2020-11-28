@@ -4,7 +4,7 @@
     <el-form>
       <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
         <el-form-item :label="_fieldDef.showLabel ? _fieldDef.nameInUi : ''">
-          <el-col :span="_fieldDef.span">
+          <el-col>
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
               v-if="_fieldDef.type === 'autocomplete'"
