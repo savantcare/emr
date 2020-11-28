@@ -56,6 +56,23 @@ export default {
         serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'I have reviewed 2 or more systems with patient',
+        serviceStatementFieldNameInDb: 'review_of_systems_multi_select',
+      },
+    })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'I performed a complete review of systems',
+        serviceStatementFieldNameInDb: 'review_of_systems_multi_select',
+      },
+    })
   },
 }
 </script>

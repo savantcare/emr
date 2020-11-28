@@ -73,6 +73,14 @@ export const serviceStatementsFormDef = {
       showLabel: true,
       fieldStyle: 'padding: 20px',
     },
+    {
+      nameInDb: 'review_of_systems_multi_select',
+      nameInUi: 'Review of systems',
+      type: 'multi-select-with-buttons',
+      span: 24,
+      showLabel: true,
+      fieldStyle: 'padding: 20px',
+    },
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
@@ -122,7 +130,11 @@ export const serviceStatementsFormDef = {
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['serviceStatementFieldOptionId']
       data['value'] = data['serviceStatementFieldOptionLabel']
-      data['selected'] = selectedIDs.includes(data['id']) ? true : false
+      if (selectedIDs) {
+        data['selected'] = selectedIDs.includes(data['id']) ? true : false
+      } else {
+        data['selected'] = false
+      }
     })
 
     return arOfAllSelectOptions
