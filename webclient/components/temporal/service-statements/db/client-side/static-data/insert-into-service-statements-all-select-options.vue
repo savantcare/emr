@@ -16,51 +16,6 @@ export default {
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '60',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '55',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '50',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '45',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '40',
-        serviceStatementFieldNameInDb: 'total_minutes_in_psychotherapy_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Client Centered',
         serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
@@ -99,51 +54,6 @@ export default {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Bibilotherapy',
         serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '60',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '55',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '50',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '45',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
-      },
-    })
-
-    i = i + 1
-    serviceStatementsAllSelectOptionsTbl.insert({
-      data: {
-        serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: '40',
-        serviceStatementFieldNameInDb: 'total_minutes_with_patient_select',
       },
     })
   },

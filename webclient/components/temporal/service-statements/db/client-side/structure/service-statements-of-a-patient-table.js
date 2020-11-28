@@ -50,9 +50,17 @@ export const serviceStatementsFormDef = {
   singular: 'service statement',
   fieldsDef: [
     {
-      nameInDb: 'total_minutes_in_psychotherapy_select', // _select is important since it is used by curd/manage-rows to decide append or replace. Since default behavior of curd/manage-rows is to replace.
+      nameInDb: 'total_minutes_in_psychotherapy', // _select is important since it is used by curd/manage-rows to decide append or replace. Since default behavior of curd/manage-rows is to replace.
       nameInUi: 'Total minutes in psychotherapy',
-      type: 'multi-select-with-buttons',
+      type: 'number',
+      span: 24,
+      showLabel: true,
+      fieldStyle: 'padding: 20px',
+    },
+    {
+      nameInDb: 'total_minutes_with_patient',
+      nameInUi: 'Total minutes with patient',
+      type: 'number',
       span: 24,
       showLabel: true,
       fieldStyle: 'padding: 20px',
@@ -60,14 +68,6 @@ export const serviceStatementsFormDef = {
     {
       nameInDb: 'modality_of_psychotherapy_multi_select',
       nameInUi: 'Modality of psychotherapy',
-      type: 'multi-select-with-buttons',
-      span: 24,
-      showLabel: true,
-      fieldStyle: 'padding: 20px',
-    },
-    {
-      nameInDb: 'total_minutes_with_patient_select',
-      nameInUi: 'Total minutes with patient',
       type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
