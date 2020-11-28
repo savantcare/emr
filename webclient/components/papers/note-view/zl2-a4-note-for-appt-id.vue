@@ -78,13 +78,13 @@
 </template>
 
 <script>
-import ctPaperNoteStructure from '@/components/papers/note-view/router-for-full-note-time-series.vue'
+import ctPaperNoteStructure from '@/components/papers/note-view/zl3-router-for-full-note-time-series.vue'
 
 // init tables
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/papers/note-view/step2-a4-note-for-appt-id.vue'
+import apptNotePrintableView from '@/components/papers/note-view/zl2-a4-note-for-appt-id.vue'
 
 // smaller sections
 import headerPaperNote from './section-2-header-arrows-name-comparison.vue'

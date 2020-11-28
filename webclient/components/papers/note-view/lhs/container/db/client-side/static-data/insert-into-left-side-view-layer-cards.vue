@@ -20,7 +20,7 @@ export default {
     clientTblOfLeftSideCards.insert({
       data: {
         name: 'Appt note',
-        componentToShowPath: 'papers/note-view/step1-decide-notes-to-show-and-their-appt-id.vue',
+        componentToShowPath: 'papers/note-view/zl1-decide-notes-to-show-and-their-appt-id.vue',
         currentDisplayStateOfComponent: 1,
         firstParameterGivenToComponentBeforeMounting: 0,
         secondParameterGivenToComponentBeforeMounting: 0,

@@ -122,7 +122,7 @@ import moment from 'moment'
 
 import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
-import getRowContent from './get-row-content.vue'
+import getRowContent from './zl5-get-row-content.vue'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {

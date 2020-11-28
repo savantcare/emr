@@ -67,10 +67,11 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
 
 1. Focus not working for
    A. Number field
-   B. I close the change paper and open the change paper again.
+   B. I click outside the change paper and then open the change paper again.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
    D. When I use keyboard shortcut to go to a different tab the focus does not change.
-2. When header appointments are changed choosing different slides
+   E. When I go to service statement the focus is not on the right area of the form.
+2. When header appointments are changed choosing different slides of chief complaint.
 3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
 4. Get correlate to work from button
 5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
