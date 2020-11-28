@@ -65,7 +65,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
-      fieldType: 'textarea',
+      type: 'textarea',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
@@ -74,7 +74,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'heading_depression',
       nameInUi: 'Depression',
-      fieldType: 'heading',
+      type: 'heading',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
@@ -83,7 +83,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'depressive_mood',
       nameInUi: 'Depressive mood',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -101,7 +101,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'interest',
       nameInUi: 'Interest',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -119,7 +119,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'sleep',
       nameInUi: 'Sleep',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -137,7 +137,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'selfEsteem',
       nameInUi: 'Gulf / Self esteem',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -155,7 +155,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'energy',
       nameInUi: 'Energy',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -173,7 +173,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'concDist',
       nameInUi: 'Conc/Dist',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -191,7 +191,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'appetite',
       nameInUi: 'Apptetite',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -209,7 +209,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'pmrPma',
       nameInUi: 'PMR/PMA',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -227,14 +227,14 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'heading_gateway',
       nameInUi: 'Gateway mood symptoms',
-      fieldType: 'heading',
+      type: 'heading',
       showLabel: true,
       span: 12,
     },
     {
       nameInDb: 'obese',
       nameInUi: 'Obese',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -252,7 +252,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'thinCachectic',
       nameInUi: 'Thin or cachectic',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -270,7 +270,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'disheveledUnkempt',
       nameInUi: 'Disheveled/unkempt',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,
@@ -288,7 +288,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'malodorous',
       nameInUi: 'Malodorous',
-      fieldType: 'slider',
+      type: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
       showLabel: true,

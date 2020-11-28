@@ -15,13 +15,13 @@
       <!-- Goal: There are many different types of fields. Using v-if to identify the type of field and then taking action. -->
 
       <!-- HEADING -->
-      <div v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showLabel" :id="id" >
+      <div v-if="_fieldDef.type === 'heading' && _fieldDef.showLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <h3>{{ _fieldDef.nameInUi }}</h3>
       </div>
 
       <!-- BUTTON -->
-      <div v-else-if="_fieldDef.fieldType === 'button' && _fieldDef.showLabel" :id="id" >
+      <div v-else-if="_fieldDef.type === 'button' && _fieldDef.showLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <el-button size="mini" type="primary" round>{{ _fieldDef.nameInUi }}</el-button>
       </div>
@@ -56,7 +56,7 @@
       </div>
 
       <!-- SLIDER -->
-      <div v-else-if="_fieldDef.fieldType.includes('slider')" id="field-type-slider">
+      <div v-else-if="_fieldDef.type.includes('slider')" id="field-type-slider">
         <div v-if="_entityRow[_fieldDef.nameInDb] > 0">
           <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
             <h4>{{ _fieldDef.nameInUi }}</h4>
@@ -73,14 +73,14 @@
       </div>
 
       <!-- NUMBER -->
-      <div v-else-if="_fieldDef.fieldType.includes('number')" id="field-type-number">
+      <div v-else-if="_fieldDef.type.includes('number')" id="field-type-number">
         <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.nameInUi }}</div>
         <div id="field-value-in-db">
           {{ _entityRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}
         </div>
       </div>
 
-      <div v-else-if="_fieldDef.fieldType.includes('date')" id="field-type-date">
+      <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
         <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
         <div id="field-value-in-db">{{ _entityRow[_fieldDef.nameInDb] | moment }}</div>
       </div>

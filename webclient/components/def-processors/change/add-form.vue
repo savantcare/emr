@@ -19,7 +19,7 @@
             <!-- The following are the possible field types -->
 
             <!-- HEADING -->
-            <div v-if="_fieldDef.fieldType === 'heading'">
+            <div v-if="_fieldDef.type === 'heading'">
               <div v-if="_fieldDef.showLabel">
                 <!-- the field printing happens lower so each field type can decide what format to apply -->
                 <h3>{{ _fieldDef.nameInUi }}</h3>
@@ -28,7 +28,7 @@
 
             <!-- AUTO COMPLETE  
               fetch-suggestions="_fieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
-            <div v-else-if="_fieldDef.fieldType === 'autocomplete'">
+            <div v-else-if="_fieldDef.type === 'autocomplete'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -45,7 +45,7 @@
             </div>
 
             <!-- multi-select-with-buttons -->
-            <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
+            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -66,7 +66,7 @@
             </div>
 
             <!-- SLIDER type field value[_fieldDef.nameInDb] -->
-            <div v-else-if="_fieldDef.fieldType === 'slider'">
+            <div v-else-if="_fieldDef.type === 'slider'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -86,7 +86,7 @@
             </div>
 
             <!-- SELECT -->
-            <div v-else-if="_fieldDef.fieldType === 'select'">
+            <div v-else-if="_fieldDef.type === 'select'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -103,7 +103,7 @@
             </div>
 
             <!-- DATE -->
-            <div v-if="_fieldDef.fieldType === 'date'">
+            <div v-if="_fieldDef.type === 'date'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -123,7 +123,7 @@
             </div>
 
             <!-- NUMBER -->
-            <div v-if="_fieldDef.fieldType.includes('number')">
+            <div v-if="_fieldDef.type.includes('number')">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -140,7 +140,7 @@
             </div>
 
             <!-- input/textarea -->
-            <div v-if="_fieldDef.fieldType.includes('text')">
+            <div v-if="_fieldDef.type.includes('text')">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -155,7 +155,7 @@
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 :id="_fieldDef.nameInDb"
                 :ref="_fieldDef.nameInDb"
-                :type="_fieldDef.fieldType"
+                :type="_fieldDef.type"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                 :placeholder="_fieldDef.nameInUi"

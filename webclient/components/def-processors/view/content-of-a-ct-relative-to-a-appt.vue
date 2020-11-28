@@ -116,7 +116,7 @@
 
           <div
             id="each-field-of-data-row"
-            :class="'field-type-' + _fieldDef.fieldType"
+            :class="'field-type-' + _fieldDef.type"
             v-for="(_fieldDef, id) in _formDef.fieldsDef"
             :key="id"
             :style="mfGetCssClassNameForEachDataRow(row)"
@@ -136,12 +136,12 @@
               If I evaluate the 2nd param first it will give error in console when row[_fieldDef.nameInDb] is null
               -->
 
-            <div :id="id" v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showLabel">
+            <div :id="id" v-if="_fieldDef.type === 'heading' && _fieldDef.showLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <h3>{{ _fieldDef.nameInUi }}</h3>
             </div>
 
-            <div :id="id" v-else-if="_fieldDef.fieldType === 'button' && _fieldDef.showLabel">
+            <div :id="id" v-else-if="_fieldDef.type === 'button' && _fieldDef.showLabel">
               <!-- the field printing is not common for all field types so that heading can be applied -->
               <el-button size="mini" type="primary" round>{{ _fieldDef.nameInUi }}</el-button>
             </div>
@@ -175,7 +175,7 @@
               </div>
             </div>
             <!-- Slider field type -->
-            <div v-else-if="_fieldDef.fieldType.includes('slider')" id="field-type-slider">
+            <div v-else-if="_fieldDef.type.includes('slider')" id="field-type-slider">
               <div v-if="row[_fieldDef.nameInDb] > 0">
                 <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
                   <h4>{{ _fieldDef.nameInUi }}</h4>
@@ -191,12 +191,12 @@
               </div>
             </div>
 
-            <div v-else-if="_fieldDef.fieldType.includes('number')" id="field-type-number">
+            <div v-else-if="_fieldDef.type.includes('number')" id="field-type-number">
               <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
               <div id="field-value-in-db">{{ row[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}</div>
             </div>
 
-            <div v-else-if="_fieldDef.fieldType.includes('date')" id="field-type-date">
+            <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
               <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
               <div id="field-value-in-db">{{ row[_fieldDef.nameInDb] | moment }}</div>
             </div>

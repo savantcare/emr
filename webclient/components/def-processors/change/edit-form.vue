@@ -7,7 +7,7 @@
           <el-col :span="_fieldDef.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
-              v-if="_fieldDef.fieldType === 'autocomplete'"
+              v-if="_fieldDef.type === 'autocomplete'"
               v-model="searchKeyword"
               class="inline-input"
               :fetch-suggestions="_fieldDef.selectOptions"
@@ -18,7 +18,7 @@
             ></el-autocomplete>
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
-            <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
+            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
               {{ _fieldDef.nameInUi }}
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
@@ -36,13 +36,13 @@
             </div>
 
             <!-- Field type 3: Do the following when it is heading type field -->
-            <div v-else-if="_fieldDef.fieldType === 'heading'">
+            <div v-else-if="_fieldDef.type === 'heading'">
               <h3>{{ _fieldDef.nameInUi }}</h3>
             </div>
 
             <!-- Field type 4: Do the following when it is select type field -->
             <el-select
-              v-else-if="_fieldDef.fieldType === 'select'"
+              v-else-if="_fieldDef.type === 'select'"
               v-model="value"
               filterable
               :placeholder="_fieldDef.nameInUi"
@@ -59,7 +59,7 @@
 
             <!-- Field type 5: Do the following when it is date type field -->
             <el-date-picker
-              v-else-if="_fieldDef.fieldType === 'date'"
+              v-else-if="_fieldDef.type === 'date'"
               :ref="_fieldDef.nameInDb"
               format="MMM dd yyyy"
               value-format="timestamp"
@@ -74,7 +74,7 @@
             <el-input
               v-else
               :ref="_fieldDef.nameInDb"
-              :type="_fieldDef.fieldType"
+              :type="_fieldDef.type"
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
               :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"

@@ -61,7 +61,7 @@ export const heightFormDef = {
     {
       nameInDb: 'heightInInches',
       nameInUi: 'Height',
-      fieldType: 'number',
+      type: 'number',
       span: 24,
       showLabel: false,
       unitOfMeasurement: 'inches',
@@ -69,14 +69,14 @@ export const heightFormDef = {
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
-      fieldType: 'textarea',
+      type: 'textarea',
       span: 24,
       showLabel: true,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',
       nameInUi: 'Measured on',
-      fieldType: 'date',
+      type: 'date',
       span: 24,
       showLabel: true,
     },

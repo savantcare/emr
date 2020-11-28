@@ -46,8 +46,8 @@
                 :min-width="_fieldDef.minWidth"
                  -->
             <div slot-scope="{ row }">
-              <span v-if="_fieldDef.fieldType === 'date'">{{ row[_fieldDef.nameInDb] | moment }}</span>
-              <span v-else-if="_fieldDef.fieldType === 'autocomplete'">{{
+              <span v-if="_fieldDef.type === 'date'">{{ row[_fieldDef.nameInDb] | moment }}</span>
+              <span v-else-if="_fieldDef.type === 'autocomplete'">{{
                 _fieldDef.selectOptions(row[_fieldDef.nameInDb], (callBack) => {})
               }}</span>
               <span v-else>{{ row[_fieldDef.nameInDb] }}</span>

@@ -52,7 +52,7 @@ export const processNotesFormDef = {
   id: 'process_notes',
   plural: 'process notes',
   singular: 'process note',
-  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', fieldType: 'textarea', span: 24 }],
+  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', type: 'textarea', span: 24 }],
   styleForEachRowInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInsideADiv:

@@ -52,7 +52,7 @@ export const serviceStatementsFormDef = {
     {
       nameInDb: 'total_minutes_in_psychotherapy_select', // _select is important since it is used by curd/manage-rows to decide append or replace. Since default behavior of curd/manage-rows is to replace.
       nameInUi: 'Total minutes in psychotherapy',
-      fieldType: 'multi-select-with-buttons',
+      type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
       fieldStyle: 'padding: 20px',
@@ -60,7 +60,7 @@ export const serviceStatementsFormDef = {
     {
       nameInDb: 'modality_of_psychotherapy_multi_select',
       nameInUi: 'Modality of psychotherapy',
-      fieldType: 'multi-select-with-buttons',
+      type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
       fieldStyle: 'padding: 20px',
@@ -68,7 +68,7 @@ export const serviceStatementsFormDef = {
     {
       nameInDb: 'total_minutes_with_patient_select',
       nameInUi: 'Total minutes with patient',
-      fieldType: 'multi-select-with-buttons',
+      type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
       fieldStyle: 'padding: 20px',
