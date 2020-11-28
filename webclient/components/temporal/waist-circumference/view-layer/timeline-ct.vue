@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//def-processors/view/timeline-structure.vue'
+import timeLineView from '@/components//papers/note-view/template/timeline-structure.vue'
 import { waistCircumferenceFormDef } from '@/components/temporal/waist-circumference/db/client-side/structure/waist-circumference-of-a-patient-table.js'
 
 export default {

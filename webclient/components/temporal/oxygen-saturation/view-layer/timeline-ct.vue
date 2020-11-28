@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//def-processors/view/timeline-structure.vue'
+import timeLineView from '@/components//papers/note-view/template/timeline-structure.vue'
 import { oxygenSaturationFormDef } from '@/components/temporal/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
 
 export default {

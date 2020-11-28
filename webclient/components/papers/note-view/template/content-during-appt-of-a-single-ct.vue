@@ -116,7 +116,7 @@ import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side
 import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/papers/note-view/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
 
-import clInvokeMixin from '@/components//def-processors/view/cl-invoke-mixin.js'
+import clInvokeMixin from '@/components//papers/note-view/template/cl-invoke-mixin.js'
 
 import moment from 'moment'
 

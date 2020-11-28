@@ -79,11 +79,11 @@
 </template>
 
 <script>
-import ctActOnSocketMessages from '../change/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '@/components/def-processors/change/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
-import allPatientDataTbls from '../all-client-tables.js'
+import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
 
 export default {
   components: { ctActOnSocketMessages },
