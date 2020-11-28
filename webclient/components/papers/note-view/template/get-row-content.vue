@@ -7,7 +7,7 @@
     <div
       @mouseover="mOver()"
       @mouseleave="mLeave()" 
-      v-for="(propFieldDef, id) in _formDef.fieldsDef"
+      v-for="(_fieldDef, id) in _formDef.fieldsDef"
       :key="id"
       id="start-processing-each-field-of-row"
     >
@@ -15,28 +15,28 @@
       <!-- Goal: There are many different types of fields. Using v-if to identify the type of field and then taking action. -->
 
       <!-- HEADING -->
-      <div v-if="propFieldDef.fieldType === 'heading' && propFieldDef.showFieldLabel" :id="id" >
+      <div v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showFieldLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
-        <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+        <h3>{{ _fieldDef.fieldNameInUi }}</h3>
       </div>
 
       <!-- BUTTON -->
-      <div v-else-if="propFieldDef.fieldType === 'button' && propFieldDef.showFieldLabel" :id="id" >
+      <div v-else-if="_fieldDef.fieldType === 'button' && _fieldDef.showFieldLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
-        <el-button size="mini" type="primary" round>{{ propFieldDef.fieldNameInUi }}</el-button>
+        <el-button size="mini" type="primary" round>{{ _fieldDef.fieldNameInUi }}</el-button>
       </div>
 
       <!-- SELECT -->
-      <div v-else-if="propFieldDef.fieldNameInDb.includes('select')">
+      <div v-else-if="_fieldDef.fieldNameInDb.includes('select')">
         <!-- Each field type gets to control how it prints the field name -->
-        <div v-if="propFieldDef.showFieldLabel">
-          <b>{{ propFieldDef.fieldNameInUi }}</b>
+        <div v-if="_fieldDef.showFieldLabel">
+          <b>{{ _fieldDef.fieldNameInUi }}</b>
         </div>
         <!-- Since it is select there will be many options hence need to do a for loop on options -->
         <!-- Since it is View layer I should only show the selected options and not all the options -->
         <div
           v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-            propFieldDef.fieldNameInDb,
+            _fieldDef.fieldNameInDb,
             _entityRow.clientSideUniqRowId
           )"
           :key="item.id"
@@ -56,43 +56,43 @@
       </div>
 
       <!-- SLIDER -->
-      <div v-else-if="propFieldDef.fieldType.includes('slider')" id="field-type-slider">
-        <div v-if="_entityRow[propFieldDef.fieldNameInDb] > 0">
-          <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">
-            <h4>{{ propFieldDef.fieldNameInUi }}</h4>
+      <div v-else-if="_fieldDef.fieldType.includes('slider')" id="field-type-slider">
+        <div v-if="_entityRow[_fieldDef.fieldNameInDb] > 0">
+          <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">
+            <h4>{{ _fieldDef.fieldNameInUi }}</h4>
           </div>
           <div id="field-value-in-db">
-            <div v-if="_entityRow[propFieldDef.fieldNameInDb] == 1">Not present</div>
-            <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-            <div v-else-if="_entityRow[propFieldDef.fieldNameInDb] == 3">Syndromal</div>
+            <div v-if="_entityRow[_fieldDef.fieldNameInDb] == 1">Not present</div>
+            <div v-else-if="_entityRow[_fieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
+            <div v-else-if="_entityRow[_fieldDef.fieldNameInDb] == 3">Syndromal</div>
             <div v-else>
-              {{ _entityRow[propFieldDef.fieldNameInDb] }}
+              {{ _entityRow[_fieldDef.fieldNameInDb] }}
             </div>
           </div>
         </div>
       </div>
 
       <!-- NUMBER -->
-      <div v-else-if="propFieldDef.fieldType.includes('number')" id="field-type-number">
-        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui" style="display:inline;">{{ propFieldDef.fieldNameInUi }}</div>
+      <div v-else-if="_fieldDef.fieldType.includes('number')" id="field-type-number">
+        <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.fieldNameInUi }}</div>
         <div id="field-value-in-db">
-          {{ _entityRow[propFieldDef.fieldNameInDb] }} {{ propFieldDef.unitOfMeasurement }}
+          {{ _entityRow[_fieldDef.fieldNameInDb] }} {{ _fieldDef.unitOfMeasurement }}
         </div>
       </div>
 
-      <div v-else-if="propFieldDef.fieldType.includes('date')" id="field-type-date">
-        <div v-if="propFieldDef.showFieldLabel" id="field-name-in-ui">{{ propFieldDef.fieldNameInUi }}</div>
-        <div id="field-value-in-db">{{ _entityRow[propFieldDef.fieldNameInDb] | moment }}</div>
+      <div v-else-if="_fieldDef.fieldType.includes('date')" id="field-type-date">
+        <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">{{ _fieldDef.fieldNameInUi }}</div>
+        <div id="field-value-in-db">{{ _entityRow[_fieldDef.fieldNameInDb] | moment }}</div>
       </div>
 
 
       <!-- INPUT / TEXT AREA -->
       <!-- Goal: skip fields that are null or empty -->
-      <div v-else="_entityRow[propFieldDef.fieldNameInDb]" id="field-value-in-db" style="display:inline">
-        <span v-if="propFieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
-           {{ propFieldDef.fieldNameInUi }}:
+      <div v-else="_entityRow[_fieldDef.fieldNameInDb]" id="field-value-in-db" style="display:inline">
+        <span v-if="_fieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
+           {{ _fieldDef.fieldNameInUi }}:
         </span>
-        {{ _entityRow[propFieldDef.fieldNameInDb] }}
+        {{ _entityRow[_fieldDef.fieldNameInDb] }}
       </div>
         <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
         <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">

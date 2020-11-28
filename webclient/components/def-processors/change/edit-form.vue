@@ -2,82 +2,82 @@
 <template>
   <div>
     <el-form>
-      <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-        <el-form-item :label="propFieldDef.showFieldLabel ? propFieldDef.fieldNameInUi : ''">
-          <el-col :span="propFieldDef.span">
+      <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+        <el-form-item :label="_fieldDef.showFieldLabel ? _fieldDef.fieldNameInUi : ''">
+          <el-col :span="_fieldDef.span">
             <!-- Field type 1: Do the following when it is auto-complete type field -->
             <el-autocomplete
-              v-if="propFieldDef.fieldType === 'autocomplete'"
+              v-if="_fieldDef.fieldType === 'autocomplete'"
               v-model="searchKeyword"
               class="inline-input"
-              :fetch-suggestions="propFieldDef.selectOptions"
-              :placeholder="propFieldDef.fieldNameInUi"
+              :fetch-suggestions="_fieldDef.selectOptions"
+              :placeholder="_fieldDef.fieldNameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
             ></el-autocomplete>
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
-            <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
-              {{ propFieldDef.fieldNameInUi }}
+            <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
+              {{ _fieldDef.fieldNameInUi }}
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  propFieldDef.fieldNameInDb,
+                  _fieldDef.fieldNameInDb,
                   dnClientIdOfCopiedRowBeingChanged
                 )"
                 :key="item.id"
               >
                 <el-button
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, propFieldDef.fieldNameInDb)"
+                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, _fieldDef.fieldNameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>
             </div>
 
             <!-- Field type 3: Do the following when it is heading type field -->
-            <div v-else-if="propFieldDef.fieldType === 'heading'">
-              <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+            <div v-else-if="_fieldDef.fieldType === 'heading'">
+              <h3>{{ _fieldDef.fieldNameInUi }}</h3>
             </div>
 
             <!-- Field type 4: Do the following when it is select type field -->
             <el-select
-              v-else-if="propFieldDef.fieldType === 'select'"
+              v-else-if="_fieldDef.fieldType === 'select'"
               v-model="value"
               filterable
-              :placeholder="propFieldDef.fieldNameInUi"
+              :placeholder="_fieldDef.fieldNameInUi"
             >
               <el-option
-                v-for="item in propFieldDef.selectOptions"
+                v-for="item in _fieldDef.selectOptions"
                 :key="item.value"
                 :label="item.label"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
               >
               </el-option>
             </el-select>
 
             <!-- Field type 5: Do the following when it is date type field -->
             <el-date-picker
-              v-else-if="propFieldDef.fieldType === 'date'"
-              :ref="propFieldDef.fieldNameInDb"
+              v-else-if="_fieldDef.fieldType === 'date'"
+              :ref="_fieldDef.fieldNameInDb"
               format="MMM dd yyyy"
               value-format="timestamp"
               type="date"
               style="width: 100%"
-              :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
-              :placeholder="propFieldDef.fieldNameInUi"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.fieldNameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.fieldNameInDb)"
+              :placeholder="_fieldDef.fieldNameInUi"
             >
             </el-date-picker>
 
             <el-input
               v-else
-              :ref="propFieldDef.fieldNameInDb"
-              :type="propFieldDef.fieldType"
+              :ref="_fieldDef.fieldNameInDb"
+              :type="_fieldDef.fieldType"
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
-              :value="mfGetCopiedRowBeingChangedFldVal(propFieldDef.fieldNameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, propFieldDef.fieldNameInDb)"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.fieldNameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.fieldNameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
               @focus="showHistoryOnFocus = true"
               @blue="showHistoryOnFocus = false"
@@ -324,20 +324,20 @@ export default {
       )
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfForTabActionByEnter: function(e) {
-        /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 
+    mfForTabActionByEnter: function (e) {
+      /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
 
-        //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab. 
-        const currentNode = e.target;
-        if(currentNode.tagName!="TEXTAREA"){
-          //Isolate the node that we're after to put focus on that node.
-          const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'));
-          const index = inputs.indexOf(e.target);
-          if (index < inputs.length) {
-            inputs[index + 1].focus();
-          }
-      }  
+      //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
+      const currentNode = e.target
+      if (currentNode.tagName != 'TEXTAREA') {
+        //Isolate the node that we're after to put focus on that node.
+        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'))
+        const index = inputs.indexOf(e.target)
+        if (index < inputs.length) {
+          inputs[index + 1].focus()
+        }
+      }
     },
   },
 }

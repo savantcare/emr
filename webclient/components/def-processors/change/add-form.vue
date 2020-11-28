@@ -13,151 +13,154 @@
         :style="_formDef.styleForEachRowInAddForm"
       >
         <!-- Start to process fields in the row -->
-        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
           <!-- Start to process each field -->
-          <div :style="propFieldDef.fieldStyle">
+          <div :style="_fieldDef.fieldStyle">
             <!-- The following are the possible field types -->
 
             <!-- HEADING -->
-            <div v-if="propFieldDef.fieldType === 'heading'">
-              <div v-if="propFieldDef.showFieldLabel">
+            <div v-if="_fieldDef.fieldType === 'heading'">
+              <div v-if="_fieldDef.showFieldLabel">
                 <!-- the field printing happens lower so each field type can decide what format to apply -->
-                <h3>{{ propFieldDef.fieldNameInUi }}</h3>
+                <h3>{{ _fieldDef.fieldNameInUi }}</h3>
               </div>
             </div>
 
             <!-- AUTO COMPLETE  
-              fetch-suggestions="propFieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
-            <div v-else-if="propFieldDef.fieldType === 'autocomplete'">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+              fetch-suggestions="_fieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
+            <div v-else-if="_fieldDef.fieldType === 'autocomplete'">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
 
               <el-autocomplete
-                v-model="value[propFieldDef.fieldNameInDb]"
+                v-model="value[_fieldDef.fieldNameInDb]"
                 class="inline-input"
-                :fetch-suggestions="propFieldDef.selectOptions"
-                :placeholder="propFieldDef.fieldNameInUi"
+                :fetch-suggestions="_fieldDef.selectOptions"
+                :placeholder="_fieldDef.fieldNameInUi"
                 style="width: 100%"
                 :highlight-first-item="true"
-                @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
               ></el-autocomplete>
             </div>
 
             <!-- multi-select-with-buttons -->
-            <div v-else-if="propFieldDef.fieldType === 'multi-select-with-buttons'">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  propFieldDef.fieldNameInDb,
+                  _fieldDef.fieldNameInDb,
                   ormRow.clientSideUniqRowId
                 )"
                 :key="item.id"
               >
                 <el-button
-                  v-model="value[propFieldDef.fieldNameInDb]"
+                  v-model="value[_fieldDef.fieldNameInDb]"
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetFldValueUsingCache(item.id, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>
             </div>
 
-            <!-- SLIDER type field value[propFieldDef.fieldNameInDb] -->
-            <div v-else-if="propFieldDef.fieldType === 'slider'">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <!-- SLIDER type field value[_fieldDef.fieldNameInDb] -->
+            <div v-else-if="_fieldDef.fieldType === 'slider'">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
               <div class="block">
                 <el-slider
-                  v-model="value[propFieldDef.fieldNameInDb]"
-                  :step="propFieldDef.fieldOptions.step"
+                  v-model="value[_fieldDef.fieldNameInDb]"
+                  :step="_fieldDef.fieldOptions.step"
                   show-stops
-                  :min="propFieldDef.fieldOptions.min"
-                  :max="propFieldDef.fieldOptions.max"
-                  :marks="propFieldDef.marks"
-                  :format-tooltip="propFieldDef.ft"
-                  @change="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  :min="_fieldDef.fieldOptions.min"
+                  :max="_fieldDef.fieldOptions.max"
+                  :marks="_fieldDef.marks"
+                  :format-tooltip="_fieldDef.ft"
+                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
                 >
                 </el-slider>
               </div>
             </div>
 
             <!-- SELECT -->
-            <div v-else-if="propFieldDef.fieldType === 'select'">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <div v-else-if="_fieldDef.fieldType === 'select'">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
-              <el-select v-model="value" filterable :placeholder="propFieldDef.fieldNameInUi">
+              <el-select v-model="value" filterable :placeholder="_fieldDef.fieldNameInUi">
                 <el-option
-                  v-for="item in propFieldDef.selectOptions"
+                  v-for="item in _fieldDef.selectOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                  @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
                 >
                 </el-option>
               </el-select>
             </div>
 
             <!-- DATE -->
-            <div v-if="propFieldDef.fieldType === 'date'">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <div v-if="_fieldDef.fieldType === 'date'">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
 
               <el-date-picker
-                :ref="propFieldDef.fieldNameInDb"
+                :ref="_fieldDef.fieldNameInDb"
                 format="MMM dd yyyy"
                 value-format="timestamp"
                 type="date"
                 style="width: 100%"
-                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                :placeholder="propFieldDef.fieldNameInUi"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                :placeholder="_fieldDef.fieldNameInUi"
               >
               </el-date-picker>
             </div>
 
             <!-- NUMBER -->
-            <div v-if="propFieldDef.fieldType.includes('number')">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <div v-if="_fieldDef.fieldType.includes('number')">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
               <el-input-number
-                v-model="value[propFieldDef.fieldNameInDb]"
-                :ref="propFieldDef.fieldNameInDb"
-                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.fieldNameInDb, index)"
+                :id="_fieldDef.fieldNameInDb"
+                :ref="_fieldDef.fieldNameInDb"
+                v-model="value[_fieldDef.fieldNameInDb]"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
               ></el-input-number>
-              {{ propFieldDef.unitOfMeasurement }}
+              {{ _fieldDef.unitOfMeasurement }}
             </div>
 
             <!-- input/textarea -->
-            <div v-if="propFieldDef.fieldType.includes('text')">
-              <div v-if="propFieldDef.showFieldLabel">
-                {{ propFieldDef.fieldNameInUi }}
+            <div v-if="_fieldDef.fieldType.includes('text')">
+              <div v-if="_fieldDef.showFieldLabel">
+                {{ _fieldDef.fieldNameInUi }}
               </div>
               <!-- 
-                Goal: When I go from recommendation to reminder the form field focus needs to be maintained.
+                Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component. 
+                The Cts inside the tab are not remounted when the tavs are switched
 
                 Form focus step: 1/9
-                  On focus input field called a method function named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
+                  On focus event call fn named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
                 -->
               <el-input
-                @focus="mf_store_id_of_field_which_has_focus_in_this_form(propFieldDef.fieldNameInDb, index)"
-                :id="propFieldDef.fieldNameInDb"
-                :ref="propFieldDef.fieldNameInDb"
-                :type="propFieldDef.fieldType"
-                :class="mfGetCssClassNameForEachDataRow(ormRow.clientSideUniqRowId)"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.fieldNameInDb, index)"
+                :id="_fieldDef.fieldNameInDb"
+                :ref="_fieldDef.fieldNameInDb"
+                :type="_fieldDef.fieldType"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
-                :placeholder="propFieldDef.fieldNameInUi"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, propFieldDef.fieldNameInDb)"
+                :placeholder="_fieldDef.fieldNameInUi"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
                 @keydown.enter.native="mfForTabActionByEnter"
               ></el-input>
             </div>
@@ -229,8 +232,8 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Sending to server">
-        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="propFieldDef.fieldNameInDb" :label="propFieldDef.fieldNameInDb"></el-table-column>
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+          <el-table-column :prop="_fieldDef.fieldNameInDb" :label="_fieldDef.fieldNameInDb"></el-table-column>
         </div>
       </el-table-column>
     </el-table>
@@ -242,8 +245,8 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column align="center" label="Addded this session">
-        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="propFieldDef.fieldNameInDb" :label="propFieldDef.fieldNameInUi"></el-table-column>
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+          <el-table-column :prop="_fieldDef.fieldNameInDb" :label="_fieldDef.fieldNameInUi"></el-table-column>
         </div>
       </el-table-column>
     </el-table>
@@ -255,8 +258,8 @@
       style="width: 100%; background: #f0f9eb"
     >
       <el-table-column label="Attempted but failed to save">
-        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column prop="propFieldDef.fieldNameUi" label="Attempted but failed to save"></el-table-column>
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+          <el-table-column prop="_fieldDef.fieldNameUi" label="Attempted but failed to save"></el-table-column>
         </div>
       </el-table-column>
     </el-table>
@@ -445,10 +448,10 @@ export default {
       }
     },
     // Cannot call allPatientDataTbls[this._formDef.id] function directly from template so need to have a method function to act as a pipe between template and the ORM function
-    mfGetFldValue(pClientRowId, pFldName) {
+    mf_get_fld_value(pClientRowId, pFldName) {
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
-    mfSetFldValueUsingCache(pEvent, pClientRowId, pFldName) {
+    mf_set_fld_value_using_cache(pEvent, pClientRowId, pFldName) {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
       //console.log()
       let rowStatus = 0
@@ -465,7 +468,7 @@ export default {
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mfGetCssClassNameForEachDataRow(pClientRowId) {
+    mf_get_css_class_name_for_each_data_row(pClientRowId) {
       const arFromClientTbl = allPatientDataTbls[this._formDef.id].find(pClientRowId)
       /* TODO: this needs to check for 2456 or 2457 instead of 24
           invalid: organge

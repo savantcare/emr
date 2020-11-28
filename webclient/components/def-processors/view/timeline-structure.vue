@@ -51,8 +51,8 @@
         :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 2"
         @keyup.native="mfKeyPress($event, row.id, row.description)"
       >
-        <div v-for="(propFieldDef, id) in _formDef.fieldsDef" :key="id">
-          {{ row[propFieldDef.fieldNameInDb] }}
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+          {{ row[_fieldDef.fieldNameInDb] }}
         </div>
         <el-button-group style="float: right">
           <el-button

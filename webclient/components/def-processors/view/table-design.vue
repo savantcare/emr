@@ -40,21 +40,17 @@
           style="width: 100%"
           :row-style="mfStyleForEachDataRow"
         >
-          <el-table-column
-            v-for="(propFieldDef, id) in propFormDef.fieldsDef"
-            :key="id"
-            :label="propFieldDef.fieldNameInUi"
-          >
+          <el-table-column v-for="(_fieldDef, id) in propFormDef.fieldsDef" :key="id" :label="_fieldDef.fieldNameInUi">
             <!-- 
-                :formatter="propFieldDef.formatter"
-                :min-width="propFieldDef.minWidth"
+                :formatter="_fieldDef.formatter"
+                :min-width="_fieldDef.minWidth"
                  -->
             <div slot-scope="{ row }">
-              <span v-if="propFieldDef.fieldType === 'date'">{{ row[propFieldDef.fieldNameInDb] | moment }}</span>
-              <span v-else-if="propFieldDef.fieldType === 'autocomplete'">{{
-                propFieldDef.selectOptions(row[propFieldDef.fieldNameInDb], (callBack) => {})
+              <span v-if="_fieldDef.fieldType === 'date'">{{ row[_fieldDef.fieldNameInDb] | moment }}</span>
+              <span v-else-if="_fieldDef.fieldType === 'autocomplete'">{{
+                _fieldDef.selectOptions(row[_fieldDef.fieldNameInDb], (callBack) => {})
               }}</span>
-              <span v-else>{{ row[propFieldDef.fieldNameInDb] }}</span>
+              <span v-else>{{ row[_fieldDef.fieldNameInDb] }}</span>
             </div>
           </el-table-column>
           <el-table-column label="Actions" :align="'right'">

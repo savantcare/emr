@@ -50,7 +50,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 
     <!--
       Form focus step: 6/9
-        When we switching tab then call a method function called 'mfSendFormFieldFocusEvent'.
+        When we switching tab then call a method function called 'mf_send_id_of_focussed_field_to_ct_inside_tab'.
         Ref: https://element.eleme.io/#/en-US/component/tabs#tabs-events
     -->
     <el-tabs
@@ -58,7 +58,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       style="height: 900px"
       v-model="activeTabName"
       type="border-card"
-      @tab-click="mfSendFormFieldFocusEvent(activeTabName)"
+      @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     >
       <el-tab-pane label="Chief complaint" name="chief_complaint" key="1">
         <span slot="label"><u>C</u>hief complaint</span>
@@ -281,7 +281,7 @@ export default {
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: 'false' }],
       })
     },
-    mfSendFormFieldFocusEvent(pActiveTabName) {
+    mf_send_id_of_focussed_field_to_ct_inside_tab(pActiveTabName) {
       /**
        * Form focus step: 7/9
        *  Send activeTabName and focus position array set (previously stored focus position for this tab) to 'add-form.vue' page using event listener
