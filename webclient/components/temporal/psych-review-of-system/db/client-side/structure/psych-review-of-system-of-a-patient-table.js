@@ -63,7 +63,7 @@ export const psychReviewOfSystemFormDef = {
   singular: 'pysch review of system',
   fieldsDef: [
     {
-      fieldNameInDb: 'subjective',
+      nameInDb: 'subjective',
       fieldNameInUi: 'Subjective',
       fieldType: 'textarea',
       showFieldLabel: true,
@@ -72,7 +72,7 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'heading_depression',
+      nameInDb: 'heading_depression',
       fieldNameInUi: 'Depression',
       fieldType: 'heading',
       showFieldLabel: true,
@@ -81,7 +81,7 @@ export const psychReviewOfSystemFormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'depressive_mood',
+      nameInDb: 'depressive_mood',
       fieldNameInUi: 'Depressive mood',
       fieldType: 'slider',
       span: 24,
@@ -99,7 +99,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'interest',
+      nameInDb: 'interest',
       fieldNameInUi: 'Interest',
       fieldType: 'slider',
       span: 24,
@@ -117,7 +117,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'sleep',
+      nameInDb: 'sleep',
       fieldNameInUi: 'Sleep',
       fieldType: 'slider',
       span: 24,
@@ -135,7 +135,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'selfEsteem',
+      nameInDb: 'selfEsteem',
       fieldNameInUi: 'Gulf / Self esteem',
       fieldType: 'slider',
       span: 24,
@@ -153,7 +153,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'energy',
+      nameInDb: 'energy',
       fieldNameInUi: 'Energy',
       fieldType: 'slider',
       span: 24,
@@ -171,7 +171,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'concDist',
+      nameInDb: 'concDist',
       fieldNameInUi: 'Conc/Dist',
       fieldType: 'slider',
       span: 24,
@@ -189,7 +189,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'appetite',
+      nameInDb: 'appetite',
       fieldNameInUi: 'Apptetite',
       fieldType: 'slider',
       span: 24,
@@ -207,7 +207,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'pmrPma',
+      nameInDb: 'pmrPma',
       fieldNameInUi: 'PMR/PMA',
       fieldType: 'slider',
       span: 24,
@@ -225,14 +225,14 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'heading_gateway',
+      nameInDb: 'heading_gateway',
       fieldNameInUi: 'Gateway mood symptoms',
       fieldType: 'heading',
       showFieldLabel: true,
       span: 12,
     },
     {
-      fieldNameInDb: 'obese',
+      nameInDb: 'obese',
       fieldNameInUi: 'Obese',
       fieldType: 'slider',
       span: 24,
@@ -250,7 +250,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'thinCachectic',
+      nameInDb: 'thinCachectic',
       fieldNameInUi: 'Thin or cachectic',
       fieldType: 'slider',
       span: 24,
@@ -268,7 +268,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'disheveledUnkempt',
+      nameInDb: 'disheveledUnkempt',
       fieldNameInUi: 'Disheveled/unkempt',
       fieldType: 'slider',
       span: 24,
@@ -286,7 +286,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      fieldNameInDb: 'malodorous',
+      nameInDb: 'malodorous',
       fieldNameInUi: 'Malodorous',
       fieldType: 'slider',
       span: 24,

@@ -60,7 +60,7 @@ export const temperatureFormDef = {
   singular: 'temperature',
   fieldsDef: [
     {
-      fieldNameInDb: 'temperatureInFarehnite',
+      nameInDb: 'temperatureInFarehnite',
       fieldNameInUi: 'Temperature',
       fieldType: 'number',
       span: 24,
@@ -68,14 +68,14 @@ export const temperatureFormDef = {
       unitOfMeasurement: 'farehnite',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

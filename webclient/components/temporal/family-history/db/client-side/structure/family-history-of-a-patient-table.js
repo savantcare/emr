@@ -57,8 +57,8 @@ export const familyHistoryFormDef = {
   plural: 'family history',
   singular: 'family history',
   fieldsDef: [
-    { fieldNameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: 'text', span: 24 },
-    { fieldNameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
+    { nameInDb: 'relationship', fieldNameInUi: 'Relationship', fieldType: 'text', span: 24 },
+    { nameInDb: 'description', fieldNameInUi: 'Description', fieldType: 'textarea', span: 24 },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['relationship'],
   fnCreated: function () {

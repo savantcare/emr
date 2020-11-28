@@ -60,7 +60,7 @@ export const pulseFormDef = {
   singular: 'pulse',
   fieldsDef: [
     {
-      fieldNameInDb: 'pulseInBpm',
+      nameInDb: 'pulseInBpm',
       fieldNameInUi: 'Pulse',
       fieldType: 'number',
       span: 24,
@@ -68,14 +68,14 @@ export const pulseFormDef = {
       unitOfMeasurement: 'bpm',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

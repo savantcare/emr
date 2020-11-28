@@ -65,37 +65,37 @@ export const pastPsychHistoryFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
   fieldsDef: [
     {
-      fieldNameInDb: 'past_outpatient_treatment',
+      nameInDb: 'past_outpatient_treatment',
       fieldNameInUi: 'Past outpatient treatment',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'past_meds_trials',
+      nameInDb: 'past_meds_trials',
       fieldNameInUi: 'Past meds trials',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'hospitalization',
+      nameInDb: 'hospitalization',
       fieldNameInUi: 'Hospitalization',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'history_of_violence',
+      nameInDb: 'history_of_violence',
       fieldNameInUi: 'History of violence',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'history_of_self_harm',
+      nameInDb: 'history_of_self_harm',
       fieldNameInUi: 'History of self harm',
       fieldType: 'textarea',
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'past_substance_abuse',
+      nameInDb: 'past_substance_abuse',
       fieldNameInUi: 'Past substance abuse',
       fieldType: 'textarea',
       showFieldLabel: true,

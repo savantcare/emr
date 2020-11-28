@@ -59,7 +59,7 @@ export const bmiFormDef = {
   singular: 'bmi',
   fieldsDef: [
     {
-      fieldNameInDb: 'bmiInKgM2',
+      nameInDb: 'bmiInKgM2',
       fieldNameInUi: 'Bmi',
       fieldType: 'number',
       span: 24,
@@ -67,14 +67,14 @@ export const bmiFormDef = {
       unitOfMeasurement: ' kg/m2',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

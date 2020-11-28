@@ -59,7 +59,7 @@ export const oxygenSaturationFormDef = {
   singular: 'oxygen saturation',
   fieldsDef: [
     {
-      fieldNameInDb: 'oxygenSaturationInSpo2',
+      nameInDb: 'oxygenSaturationInSpo2',
       fieldNameInUi: 'Oxygen saturation',
       fieldType: 'number',
       span: 24,
@@ -67,14 +67,14 @@ export const oxygenSaturationFormDef = {
       unitOfMeasurement: ' SaO2',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

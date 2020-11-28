@@ -14,7 +14,7 @@
               :placeholder="_fieldDef.fieldNameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
             ></el-autocomplete>
 
             <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
@@ -22,14 +22,14 @@
               {{ _fieldDef.fieldNameInUi }}
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  _fieldDef.fieldNameInDb,
+                  _fieldDef.nameInDb,
                   dnClientIdOfCopiedRowBeingChanged
                 )"
                 :key="item.id"
               >
                 <el-button
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, _fieldDef.fieldNameInDb)"
+                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, _fieldDef.nameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>
@@ -51,8 +51,8 @@
                 v-for="item in _fieldDef.selectOptions"
                 :key="item.value"
                 :label="item.label"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                :value="mfGetFldValue(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
               >
               </el-option>
             </el-select>
@@ -60,24 +60,24 @@
             <!-- Field type 5: Do the following when it is date type field -->
             <el-date-picker
               v-else-if="_fieldDef.fieldType === 'date'"
-              :ref="_fieldDef.fieldNameInDb"
+              :ref="_fieldDef.nameInDb"
               format="MMM dd yyyy"
               value-format="timestamp"
               type="date"
               style="width: 100%"
-              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.fieldNameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.fieldNameInDb)"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               :placeholder="_fieldDef.fieldNameInUi"
             >
             </el-date-picker>
 
             <el-input
               v-else
-              :ref="_fieldDef.fieldNameInDb"
+              :ref="_fieldDef.nameInDb"
               :type="_fieldDef.fieldType"
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
-              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.fieldNameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.fieldNameInDb)"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
               @focus="showHistoryOnFocus = true"
               @blue="showHistoryOnFocus = false"

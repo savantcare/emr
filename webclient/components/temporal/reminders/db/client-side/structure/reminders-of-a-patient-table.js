@@ -58,7 +58,7 @@ export const remindersFormDef = {
   singular: 'reminder',
   fieldsDef: [
     {
-      fieldNameInDb: 'description',
+      nameInDb: 'description',
       fieldNameInUi: 'Description',
       fieldType: 'textarea',
       span: 24,

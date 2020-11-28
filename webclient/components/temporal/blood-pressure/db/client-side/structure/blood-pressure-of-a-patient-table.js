@@ -60,7 +60,7 @@ export const bloodPressureFormDef = {
   singular: 'blood pressure',
   fieldsDef: [
     {
-      fieldNameInDb: 'bloodPressureSystolic',
+      nameInDb: 'bloodPressureSystolic',
       fieldNameInUi: 'Blood pressure systolic',
       fieldType: 'number',
       span: 12,
@@ -68,7 +68,7 @@ export const bloodPressureFormDef = {
       unitOfMeasurement: 'systolic',
     },
     {
-      fieldNameInDb: 'bloodPressureDiastolic',
+      nameInDb: 'bloodPressureDiastolic',
       fieldNameInUi: 'Blood pressure diastolic',
       fieldType: 'number',
       span: 12,
@@ -76,14 +76,14 @@ export const bloodPressureFormDef = {
       unitOfMeasurement: 'diastolic',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

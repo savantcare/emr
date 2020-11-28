@@ -60,7 +60,7 @@ export const waistCircumferenceFormDef = {
   singular: 'waist circumference',
   fieldsDef: [
     {
-      fieldNameInDb: 'waistCircumferenceInInches',
+      nameInDb: 'waistCircumferenceInInches',
       fieldNameInUi: 'Waist circumference inches',
       fieldType: 'number',
       span: 24,
@@ -68,14 +68,14 @@ export const waistCircumferenceFormDef = {
       unitOfMeasurement: ' inches',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

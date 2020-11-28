@@ -52,7 +52,7 @@
         @keyup.native="mfKeyPress($event, row.id, row.description)"
       >
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          {{ row[_fieldDef.fieldNameInDb] }}
+          {{ row[_fieldDef.nameInDb] }}
         </div>
         <el-button-group style="float: right">
           <el-button

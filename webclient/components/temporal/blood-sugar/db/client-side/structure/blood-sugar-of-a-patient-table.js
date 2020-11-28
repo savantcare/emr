@@ -59,7 +59,7 @@ export const bloodSugarFormDef = {
   singular: 'blood sugar',
   fieldsDef: [
     {
-      fieldNameInDb: 'bloodSugarMgDL',
+      nameInDb: 'bloodSugarMgDL',
       fieldNameInUi: 'Blood sugar',
       fieldType: 'number',
       span: 24,
@@ -67,14 +67,14 @@ export const bloodSugarFormDef = {
       unitOfMeasurement: ' mg/dL',
     },
     {
-      fieldNameInDb: 'notes',
+      nameInDb: 'notes',
       fieldNameInUi: 'Notes',
       fieldType: 'textarea',
       span: 24,
       showFieldLabel: true,
     },
     {
-      fieldNameInDb: 'timeOfMeasurementInMilliSecs',
+      nameInDb: 'timeOfMeasurementInMilliSecs',
       fieldNameInUi: 'Measured on',
       fieldType: 'date',
       span: 24,

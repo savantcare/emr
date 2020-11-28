@@ -46,11 +46,11 @@
                 :min-width="_fieldDef.minWidth"
                  -->
             <div slot-scope="{ row }">
-              <span v-if="_fieldDef.fieldType === 'date'">{{ row[_fieldDef.fieldNameInDb] | moment }}</span>
+              <span v-if="_fieldDef.fieldType === 'date'">{{ row[_fieldDef.nameInDb] | moment }}</span>
               <span v-else-if="_fieldDef.fieldType === 'autocomplete'">{{
-                _fieldDef.selectOptions(row[_fieldDef.fieldNameInDb], (callBack) => {})
+                _fieldDef.selectOptions(row[_fieldDef.nameInDb], (callBack) => {})
               }}</span>
-              <span v-else>{{ row[_fieldDef.fieldNameInDb] }}</span>
+              <span v-else>{{ row[_fieldDef.nameInDb] }}</span>
             </div>
           </el-table-column>
           <el-table-column label="Actions" :align="'right'">

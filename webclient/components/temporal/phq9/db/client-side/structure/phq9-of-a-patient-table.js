@@ -57,7 +57,7 @@ export const phq9FormDef = {
   singular: 'phq9',
   fieldsDef: [
     {
-      fieldNameInDb: 'interest',
+      nameInDb: 'interest',
       fieldNameInUi: 'Little interest or pleasure in doing things?',
       fieldType: 'slider',
       span: 24,
@@ -75,7 +75,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'depressed',
+      nameInDb: 'depressed',
       fieldNameInUi: 'Feeling down depressed or hopeless?',
       fieldType: 'slider',
       span: 24,
@@ -93,7 +93,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'sleep',
+      nameInDb: 'sleep',
       fieldNameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
       fieldType: 'slider',
       span: 24,
@@ -111,7 +111,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'energy',
+      nameInDb: 'energy',
       fieldNameInUi: 'Feeling tired or having little energy?',
       fieldType: 'slider',
       span: 24,
@@ -129,7 +129,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'appetite',
+      nameInDb: 'appetite',
       fieldNameInUi: 'Poor appetite or overeating?',
       fieldType: 'slider',
       span: 24,
@@ -147,7 +147,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'down',
+      nameInDb: 'down',
       fieldNameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       fieldType: 'slider',
       span: 24,
@@ -165,7 +165,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'concentrating',
+      nameInDb: 'concentrating',
       fieldNameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       fieldType: 'slider',
       span: 24,
@@ -183,7 +183,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'slowly',
+      nameInDb: 'slowly',
       fieldNameInUi:
         'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?',
       fieldType: 'slider',
@@ -202,7 +202,7 @@ export const phq9FormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'hurting',
+      nameInDb: 'hurting',
       fieldNameInUi: 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
       fieldType: 'slider',
       span: 24,

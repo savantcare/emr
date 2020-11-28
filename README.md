@@ -65,7 +65,10 @@ Whenever tab_click event is fired use data from this Obj to set focus and caret 
 
 Whenever onFocus is fired the sub Ct. updates the value in this object.
 
-1. Focus not working for number 1 field and also when form opened first time once the Ct has already loaded.
+1. Focus not working for
+   A. Number field
+   B. I close the change paper and open the change paper again.
+   C. instead of 200ms hardcoded it needs to be callback so it is smooth
 2. When header appointments are changed choosing different slides
 3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
 4. Get correlate to work from button

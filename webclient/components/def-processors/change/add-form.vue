@@ -34,13 +34,13 @@
               </div>
 
               <el-autocomplete
-                v-model="value[_fieldDef.fieldNameInDb]"
+                v-model="value[_fieldDef.nameInDb]"
                 class="inline-input"
                 :fetch-suggestions="_fieldDef.selectOptions"
                 :placeholder="_fieldDef.fieldNameInUi"
                 style="width: 100%"
                 :highlight-first-item="true"
-                @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
               ></el-autocomplete>
             </div>
 
@@ -51,35 +51,35 @@
               </div>
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  _fieldDef.fieldNameInDb,
+                  _fieldDef.nameInDb,
                   ormRow.clientSideUniqRowId
                 )"
                 :key="item.id"
               >
                 <el-button
-                  v-model="value[_fieldDef.fieldNameInDb]"
+                  v-model="value[_fieldDef.nameInDb]"
                   :type="item.selected ? 'primary' : 'plain'"
-                  @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                  @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   >{{ item.value }}</el-button
                 >
               </div>
             </div>
 
-            <!-- SLIDER type field value[_fieldDef.fieldNameInDb] -->
+            <!-- SLIDER type field value[_fieldDef.nameInDb] -->
             <div v-else-if="_fieldDef.fieldType === 'slider'">
               <div v-if="_fieldDef.showFieldLabel">
                 {{ _fieldDef.fieldNameInUi }}
               </div>
               <div class="block">
                 <el-slider
-                  v-model="value[_fieldDef.fieldNameInDb]"
+                  v-model="value[_fieldDef.nameInDb]"
                   :step="_fieldDef.fieldOptions.step"
                   show-stops
                   :min="_fieldDef.fieldOptions.min"
                   :max="_fieldDef.fieldOptions.max"
                   :marks="_fieldDef.marks"
                   :format-tooltip="_fieldDef.ft"
-                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 >
                 </el-slider>
               </div>
@@ -95,8 +95,8 @@
                   v-for="item in _fieldDef.selectOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
-                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 >
                 </el-option>
               </el-select>
@@ -109,14 +109,14 @@
               </div>
 
               <el-date-picker
-                :ref="_fieldDef.fieldNameInDb"
+                :ref="_fieldDef.nameInDb"
                 format="MMM dd yyyy"
                 value-format="timestamp"
                 type="date"
                 style="width: 100%"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
-                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 :placeholder="_fieldDef.fieldNameInUi"
               >
               </el-date-picker>
@@ -128,13 +128,13 @@
                 {{ _fieldDef.fieldNameInUi }}
               </div>
               <el-input-number
-                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.fieldNameInDb, index)"
-                :id="_fieldDef.fieldNameInDb"
-                :ref="_fieldDef.fieldNameInDb"
-                v-model="value[_fieldDef.fieldNameInDb]"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
+                :id="_fieldDef.nameInDb"
+                :ref="_fieldDef.nameInDb"
+                v-model="value[_fieldDef.nameInDb]"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
-                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
               ></el-input-number>
               {{ _fieldDef.unitOfMeasurement }}
             </div>
@@ -152,15 +152,15 @@
                   On focus event call fn named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
                 -->
               <el-input
-                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.fieldNameInDb, index)"
-                :id="_fieldDef.fieldNameInDb"
-                :ref="_fieldDef.fieldNameInDb"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
+                :id="_fieldDef.nameInDb"
+                :ref="_fieldDef.nameInDb"
                 :type="_fieldDef.fieldType"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                 :placeholder="_fieldDef.fieldNameInUi"
-                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.fieldNameInDb)"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @keydown.enter.native="mfForTabActionByEnter"
               ></el-input>
             </div>
@@ -233,7 +233,7 @@
     >
       <el-table-column label="Sending to server">
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="_fieldDef.fieldNameInDb" :label="_fieldDef.fieldNameInDb"></el-table-column>
+          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.nameInDb"></el-table-column>
         </div>
       </el-table-column>
     </el-table>
@@ -246,7 +246,7 @@
     >
       <el-table-column align="center" label="Addded this session">
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="_fieldDef.fieldNameInDb" :label="_fieldDef.fieldNameInUi"></el-table-column>
+          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.fieldNameInUi"></el-table-column>
         </div>
       </el-table-column>
     </el-table>
@@ -433,7 +433,7 @@ export default {
     },
     mfSetFormFieldFocus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
-      const firstField = this._formDef.fieldsDef[0].fieldNameInDb
+      const firstField = this._formDef.fieldsDef[0].nameInDb
       if (this.$refs[firstField]) {
         const lastElement = this.$refs[firstField].length
         // When rec is opened first time there is only 1 single row. So I want the focus to be on first row. When user starts to type in first row then a 2nd empty row gets inserted automatically but I want the focus to remain on first row.

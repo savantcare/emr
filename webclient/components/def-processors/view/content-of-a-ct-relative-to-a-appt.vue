@@ -91,7 +91,7 @@
 
           Solution 2:
           div for id="each-field-of-data-row" has a if statement. So this div does not get generated if this field does not have content.
-          v-if="row[_fieldDef.fieldNameInDb].toString().length > 0"
+          v-if="row[_fieldDef.nameInDb].toString().length > 0"
 
 
         Goal 4: Each time a heading type field comes go to the next row   (Not working)
@@ -120,20 +120,20 @@
             v-for="(_fieldDef, id) in _formDef.fieldsDef"
             :key="id"
             :style="mfGetCssClassNameForEachDataRow(row)"
-            v-if="row[_fieldDef.fieldNameInDb] && row[_fieldDef.fieldNameInDb].toString().length > 0"
+            v-if="row[_fieldDef.nameInDb] && row[_fieldDef.nameInDb].toString().length > 0"
           >
             <!-- 
               Explanation of v-if statement
               Goal: Skip any empty fields in the row 
-              row[_fieldDef.fieldNameInDb] can either be integer or string
+              row[_fieldDef.nameInDb] can either be integer or string
               For e.g. for recs it is string and for psych review of systems it is number
 
               Goal: Skip fields that are null
               For e.g. notes in weight will be null if never set.
               The first condition in && is evaluated first.
-              So first I evaluate row[_fieldDef.fieldNameInDb] to make sure it is not null
-              Then i evaluate row[_fieldDef.fieldNameInDb].toString().length
-              If I evaluate the 2nd param first it will give error in console when row[_fieldDef.fieldNameInDb] is null
+              So first I evaluate row[_fieldDef.nameInDb] to make sure it is not null
+              Then i evaluate row[_fieldDef.nameInDb].toString().length
+              If I evaluate the 2nd param first it will give error in console when row[_fieldDef.nameInDb] is null
               -->
 
             <div :id="id" v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showFieldLabel">
@@ -147,7 +147,7 @@
             </div>
 
             <!-- There may be many different types of fields. Here dealing with select type field -->
-            <div v-else-if="_fieldDef.fieldNameInDb.includes('select')">
+            <div v-else-if="_fieldDef.nameInDb.includes('select')">
               <!-- Each fieldtype gets to control its own way of showing the field label -->
               <div v-if="_fieldDef.showFieldLabel">
                 <h3>{{ _fieldDef.fieldNameInUi }}</h3>
@@ -156,7 +156,7 @@
               <!-- Since it is View layer I should only show the selected options and not all the options -->
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  _fieldDef.fieldNameInDb,
+                  _fieldDef.nameInDb,
                   row.clientSideUniqRowId
                 )"
                 :key="item.id"
@@ -176,16 +176,16 @@
             </div>
             <!-- Slider field type -->
             <div v-else-if="_fieldDef.fieldType.includes('slider')" id="field-type-slider">
-              <div v-if="row[_fieldDef.fieldNameInDb] > 0">
+              <div v-if="row[_fieldDef.nameInDb] > 0">
                 <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">
                   <h4>{{ _fieldDef.fieldNameInUi }}</h4>
                 </div>
                 <div id="field-value-in-db">
-                  <div v-if="row[_fieldDef.fieldNameInDb] == 1">Not present</div>
-                  <div v-else-if="row[_fieldDef.fieldNameInDb] == 2">Sub-Syndromal</div>
-                  <div v-else-if="row[_fieldDef.fieldNameInDb] == 3">Syndromal</div>
+                  <div v-if="row[_fieldDef.nameInDb] == 1">Not present</div>
+                  <div v-else-if="row[_fieldDef.nameInDb] == 2">Sub-Syndromal</div>
+                  <div v-else-if="row[_fieldDef.nameInDb] == 3">Syndromal</div>
                   <div v-else>
-                    {{ row[_fieldDef.fieldNameInDb] }}
+                    {{ row[_fieldDef.nameInDb] }}
                   </div>
                 </div>
               </div>
@@ -193,20 +193,20 @@
 
             <div v-else-if="_fieldDef.fieldType.includes('number')" id="field-type-number">
               <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">{{ _fieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">{{ row[_fieldDef.fieldNameInDb] }} {{ _fieldDef.unitOfMeasurement }}</div>
+              <div id="field-value-in-db">{{ row[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}</div>
             </div>
 
             <div v-else-if="_fieldDef.fieldType.includes('date')" id="field-type-date">
               <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">{{ _fieldDef.fieldNameInUi }}</div>
-              <div id="field-value-in-db">{{ row[_fieldDef.fieldNameInDb] | moment }}</div>
+              <div id="field-value-in-db">{{ row[_fieldDef.nameInDb] | moment }}</div>
             </div>
 
             <!-- Not specified field type -->
             <div v-else id="not-matched-field-type">
               <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">{{ _fieldDef.fieldNameInUi }}</div>
               <!-- Goal: skip fields that are null or empty -->
-              <div v-if="row[_fieldDef.fieldNameInDb]" id="field-value-in-db">
-                {{ row[_fieldDef.fieldNameInDb] }}
+              <div v-if="row[_fieldDef.nameInDb]" id="field-value-in-db">
+                {{ row[_fieldDef.nameInDb] }}
               </div>
             </div>
           </div>

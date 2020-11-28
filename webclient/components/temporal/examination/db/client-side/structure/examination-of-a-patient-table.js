@@ -50,7 +50,7 @@ export const examinationFormDef = {
   singular: 'examination',
   fieldsDef: [
     {
-      fieldNameInDb: 'appearance_select',
+      nameInDb: 'appearance_select',
       fieldNameInUi: 'Appearance',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -58,7 +58,7 @@ export const examinationFormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'attitude_multi_select',
+      nameInDb: 'attitude_multi_select',
       fieldNameInUi: 'Attitude',
       fieldType: 'multi-select-with-buttons',
       span: 12,
@@ -66,7 +66,7 @@ export const examinationFormDef = {
       fieldStyle: 'padding: 20px',
     },
     {
-      fieldNameInDb: 'psychomotor_select',
+      nameInDb: 'psychomotor_select',
       fieldNameInUi: 'Psychomotor',
       fieldType: 'multi-select-with-buttons',
       span: 12,

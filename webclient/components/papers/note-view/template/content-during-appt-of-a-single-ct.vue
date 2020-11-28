@@ -46,7 +46,7 @@
 
           Solution 2:
           div for id="each-field-of-data-row" has a if statement. So this div does not get generated if this field does not have content.
-          v-if="row[_fieldDef.fieldNameInDb].toString().length > 0"
+          v-if="row[_fieldDef.nameInDb].toString().length > 0"
 
 
         Goal 4: Each time a heading type field comes go to the next row   (Not working)
