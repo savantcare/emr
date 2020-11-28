@@ -20,7 +20,7 @@
 
             <!-- HEADING -->
             <div v-if="_fieldDef.fieldType === 'heading'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 <!-- the field printing happens lower so each field type can decide what format to apply -->
                 <h3>{{ _fieldDef.nameInUi }}</h3>
               </div>
@@ -29,7 +29,7 @@
             <!-- AUTO COMPLETE  
               fetch-suggestions="_fieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
             <div v-else-if="_fieldDef.fieldType === 'autocomplete'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
 
@@ -46,7 +46,7 @@
 
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.fieldType === 'multi-select-with-buttons'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <div
@@ -67,7 +67,7 @@
 
             <!-- SLIDER type field value[_fieldDef.nameInDb] -->
             <div v-else-if="_fieldDef.fieldType === 'slider'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <div class="block">
@@ -87,7 +87,7 @@
 
             <!-- SELECT -->
             <div v-else-if="_fieldDef.fieldType === 'select'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <el-select v-model="value" filterable :placeholder="_fieldDef.nameInUi">
@@ -104,7 +104,7 @@
 
             <!-- DATE -->
             <div v-if="_fieldDef.fieldType === 'date'">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
 
@@ -124,7 +124,7 @@
 
             <!-- NUMBER -->
             <div v-if="_fieldDef.fieldType.includes('number')">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <el-input-number
@@ -141,7 +141,7 @@
 
             <!-- input/textarea -->
             <div v-if="_fieldDef.fieldType.includes('text')">
-              <div v-if="_fieldDef.showFieldLabel">
+              <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <!-- 

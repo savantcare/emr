@@ -15,13 +15,13 @@
       <!-- Goal: There are many different types of fields. Using v-if to identify the type of field and then taking action. -->
 
       <!-- HEADING -->
-      <div v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showFieldLabel" :id="id" >
+      <div v-if="_fieldDef.fieldType === 'heading' && _fieldDef.showLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <h3>{{ _fieldDef.nameInUi }}</h3>
       </div>
 
       <!-- BUTTON -->
-      <div v-else-if="_fieldDef.fieldType === 'button' && _fieldDef.showFieldLabel" :id="id" >
+      <div v-else-if="_fieldDef.fieldType === 'button' && _fieldDef.showLabel" :id="id" >
         <!-- Each field type gets to control how it prints the field name -->
         <el-button size="mini" type="primary" round>{{ _fieldDef.nameInUi }}</el-button>
       </div>
@@ -29,7 +29,7 @@
       <!-- SELECT -->
       <div v-else-if="_fieldDef.nameInDb.includes('select')">
         <!-- Each field type gets to control how it prints the field name -->
-        <div v-if="_fieldDef.showFieldLabel">
+        <div v-if="_fieldDef.showLabel">
           <b>{{ _fieldDef.nameInUi }}</b>
         </div>
         <!-- Since it is select there will be many options hence need to do a for loop on options -->
@@ -58,7 +58,7 @@
       <!-- SLIDER -->
       <div v-else-if="_fieldDef.fieldType.includes('slider')" id="field-type-slider">
         <div v-if="_entityRow[_fieldDef.nameInDb] > 0">
-          <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">
+          <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
             <h4>{{ _fieldDef.nameInUi }}</h4>
           </div>
           <div id="field-value-in-db">
@@ -74,14 +74,14 @@
 
       <!-- NUMBER -->
       <div v-else-if="_fieldDef.fieldType.includes('number')" id="field-type-number">
-        <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.nameInUi }}</div>
+        <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.nameInUi }}</div>
         <div id="field-value-in-db">
           {{ _entityRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}
         </div>
       </div>
 
       <div v-else-if="_fieldDef.fieldType.includes('date')" id="field-type-date">
-        <div v-if="_fieldDef.showFieldLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
+        <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
         <div id="field-value-in-db">{{ _entityRow[_fieldDef.nameInDb] | moment }}</div>
       </div>
 
@@ -89,7 +89,7 @@
       <!-- INPUT / TEXT AREA -->
       <!-- Goal: skip fields that are null or empty -->
       <div v-else="_entityRow[_fieldDef.nameInDb]" id="field-value-in-db" style="display:inline">
-        <span v-if="_fieldDef.showFieldLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
+        <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
            {{ _fieldDef.nameInUi }}:
         </span>
         {{ _entityRow[_fieldDef.nameInDb] }}

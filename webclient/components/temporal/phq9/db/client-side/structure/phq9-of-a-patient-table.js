@@ -61,7 +61,7 @@ export const phq9FormDef = {
       nameInUi: 'Little interest or pleasure in doing things?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -79,7 +79,7 @@ export const phq9FormDef = {
       nameInUi: 'Feeling down depressed or hopeless?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -97,7 +97,7 @@ export const phq9FormDef = {
       nameInUi: 'Trouble falling or staying asleep, or sleeping too much?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -115,7 +115,7 @@ export const phq9FormDef = {
       nameInUi: 'Feeling tired or having little energy?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -133,7 +133,7 @@ export const phq9FormDef = {
       nameInUi: 'Poor appetite or overeating?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -151,7 +151,7 @@ export const phq9FormDef = {
       nameInUi: 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -169,7 +169,7 @@ export const phq9FormDef = {
       nameInUi: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -188,7 +188,7 @@ export const phq9FormDef = {
         'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?',
       fieldType: 'slider',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not at all',
@@ -207,7 +207,7 @@ export const phq9FormDef = {
       fieldType: 'slider',
       span: 24,
       fieldOptions: { min: 0, max: 3, step: 1 },
-      showFieldLabel: true,
+      showLabel: true,
       marks: {
         0: 'Not at all',
         1: 'Several days',

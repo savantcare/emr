@@ -54,7 +54,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Total minutes in psychotherapy',
       fieldType: 'multi-select-with-buttons',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
     {
@@ -62,7 +62,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Modality of psychotherapy',
       fieldType: 'multi-select-with-buttons',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
     {
@@ -70,7 +70,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Total minutes with patient',
       fieldType: 'multi-select-with-buttons',
       span: 24,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
   ],

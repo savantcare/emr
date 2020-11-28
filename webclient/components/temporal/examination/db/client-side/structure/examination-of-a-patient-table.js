@@ -54,7 +54,7 @@ export const examinationFormDef = {
       nameInUi: 'Appearance',
       fieldType: 'multi-select-with-buttons',
       span: 12,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
     {
@@ -62,7 +62,7 @@ export const examinationFormDef = {
       nameInUi: 'Attitude',
       fieldType: 'multi-select-with-buttons',
       span: 12,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
     {
@@ -70,7 +70,7 @@ export const examinationFormDef = {
       nameInUi: 'Psychomotor',
       fieldType: 'multi-select-with-buttons',
       span: 12,
-      showFieldLabel: true,
+      showLabel: true,
       fieldStyle: 'padding: 20px',
     },
   ],

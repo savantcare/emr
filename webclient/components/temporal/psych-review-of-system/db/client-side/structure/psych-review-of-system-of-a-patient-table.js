@@ -66,7 +66,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
       fieldType: 'textarea',
-      showFieldLabel: true,
+      showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
       fieldStyle: 'padding: 20px',
@@ -75,7 +75,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'heading_depression',
       nameInUi: 'Depression',
       fieldType: 'heading',
-      showFieldLabel: true,
+      showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
       fieldStyle: 'padding: 20px',
@@ -86,7 +86,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -104,7 +104,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -122,7 +122,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -140,7 +140,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -158,7 +158,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -176,7 +176,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -194,7 +194,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -212,7 +212,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -228,7 +228,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'heading_gateway',
       nameInUi: 'Gateway mood symptoms',
       fieldType: 'heading',
-      showFieldLabel: true,
+      showLabel: true,
       span: 12,
     },
     {
@@ -237,7 +237,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -255,7 +255,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -273,7 +273,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
@@ -291,7 +291,7 @@ export const psychReviewOfSystemFormDef = {
       fieldType: 'slider',
       span: 24,
       fieldStyle: 'padding: 20px',
-      showFieldLabel: true,
+      showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
         0: 'Not evaluated',
