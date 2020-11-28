@@ -60,20 +60,26 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     >
-      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1">
+      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
         <editChiefComplaint />
       </el-tab-pane>
-      <el-tab-pane label="Sub Psych ROS (HPI)" name="psych_review_of_system" key="2">
+      <el-tab-pane
+        label="Sub Psych ROS (HPI)"
+        name="psych_review_of_system"
+        tabIndex="0"
+        problem1="This tab index is not getting applied to the child div inside el-tab-pane"
+        key="2"
+      >
         <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
         <prosAdd />
       </el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history" key="3">
-        <span slot="label"><u>P</u>ast psych history</span>
+        <span slot="label" tabIndex="0"><u>P</u>ast psych history</span>
         <pastPsychHistory />
       </el-tab-pane>
       <el-tab-pane label="Family history" name="family_history" key="4">
-        <span slot="label"><u>F</u>amily history</span>
+        <span slot="label" tabIndex="0"><u>F</u>amily history</span>
         <familyHistory />
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5">

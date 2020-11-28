@@ -23,6 +23,8 @@
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
+      @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)"
+      why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
       @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>

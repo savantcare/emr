@@ -69,6 +69,7 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
    A. Number field
    B. I close the change paper and open the change paper again.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
+   D. When I use keyboard shortcut to go to a different tab the focus does not change.
 2. When header appointments are changed choosing different slides
 3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
 4. Get correlate to work from button
