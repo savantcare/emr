@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/note-view/template/timeline-structure.vue'
+import timeLineView from '@/components//papers/note-view/templates/timeline-structure.vue'
 import { heightFormDef } from '@/components/temporal/height/db/client-side/structure/height-of-a-patient-table.js'
 
 export default {

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/note-view/template/timeline-structure.vue'
+import timeLineView from '@/components//papers/note-view/templates/timeline-structure.vue'
 import { processNotesFormDef } from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 export default {

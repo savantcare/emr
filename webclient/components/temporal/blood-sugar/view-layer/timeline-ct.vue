@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/note-view/template/timeline-structure.vue'
+import timeLineView from '@/components//papers/note-view/templates/timeline-structure.vue'
 import { bloodSugarFormDef } from '@/components/temporal/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
 
 export default {
