@@ -27,7 +27,7 @@ import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from '@/components/papers/note-view/lhs/header/settings-component.vue'
 
 import ctPaperNoteStructure from '@/components/papers/note-view/zl3-router-for-full-note-time-series.vue'
-import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import apptNote from '@/components/papers/note-view/zl1-decide-notes-to-show-and-their-appt-id.vue'
 

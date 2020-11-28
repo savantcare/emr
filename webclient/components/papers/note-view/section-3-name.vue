@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import clientTbl from '@/components/temporal/name/db/client-side/structure/name-of-a-patient-table.js'
+import clientTbl from '@/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
 
 export default {
   props: {

@@ -112,8 +112,8 @@
 </template>
 
 <script>
-import clientTblOfAddendums from '~/components/temporal/amendment/db/client-side/structure/amendment-client-side-table.js'
-import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAddendums from '~/components/patient-data/amendment/db/client-side/structure/amendment-client-side-table.js'
+import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/papers/note-view/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 import clInvokeMixin from '@/components//papers/note-view/templates/cl-invoke-mixin.js'

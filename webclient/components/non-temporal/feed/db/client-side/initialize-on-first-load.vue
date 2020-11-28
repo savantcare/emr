@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import initializeSsComponent from '@/components/temporal/service-statements/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeSsComponent from '@/components/patient-data/service-statements/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 export default {
   components: {

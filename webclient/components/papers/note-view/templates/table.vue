@@ -108,11 +108,11 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 <script>
 import clInvokeMixin from './cl-invoke-mixin.js'
 
-import reminderClientTbl from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
-import recommendationClientTbl from '@/components/temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-import miscNotesClientTbl from '@/components/temporal/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
-import planCommentsClientTbl from '@/components/temporal/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
-import processNotesClientTbl from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
+import reminderClientTbl from '@/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js' // Path without @ can be resolved by vsCode. Hence do not use webpack specific @ sign that represents src folder.
+import recommendationClientTbl from '@/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+import miscNotesClientTbl from '@/components/patient-data/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
+import planCommentsClientTbl from '@/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import processNotesClientTbl from '@/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 // defining all rows in this object
 const clientTbl = {

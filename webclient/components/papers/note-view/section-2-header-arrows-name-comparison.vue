@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import clientTblOfAppointments from '@/components/temporal/appointments/db/client-side/structure/appointment-client-side-table.js'
+import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/papers/note-view/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import namePrintSection from './section-3-name.vue'
 

@@ -64,52 +64,52 @@ import initializeFeedComponent from '@/components/non-temporal/feed/db/client-si
 import initializeMapComponent from '@/components/non-temporal/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // temporal/PII
-import initializeDobComponent from '@/components/temporal/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeNameComponent from '@/components/temporal/name/db/client-side/initialize-on-first-load.vue'
+import initializeDobComponent from '@/components/patient-data/date-of-birth/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeNameComponent from '@/components/patient-data/name/db/client-side/initialize-on-first-load.vue'
 
-import initializeWeightComponent from '@/components/temporal/weight/db/client-side/initialize-on-first-load.vue'
-import initializeHeightComponent from '@/components/temporal/height/db/client-side/initialize-on-first-load.vue'
-import initializePulseComponent from '@/components/temporal/pulse/db/client-side/initialize-on-first-load.vue'
-import initializeTemperatureComponent from '@/components/temporal/temperature/db/client-side/initialize-on-first-load.vue'
-import initializeBloodPressureComponent from '@/components/temporal/blood-pressure/db/client-side/initialize-on-first-load.vue'
-import initializeBloodSugarComponent from '@/components/temporal/blood-sugar/db/client-side/initialize-on-first-load.vue'
-import initializeWaistCircumferenceComponent from '@/components/temporal/waist-circumference/db/client-side/initialize-on-first-load.vue'
-import initializeBmiComponent from '@/components/temporal/bmi/db/client-side/initialize-on-first-load.vue'
-import initializeOxygenSaturationComponent from '@/components/temporal/oxygen-saturation/db/client-side/initialize-on-first-load.vue'
+import initializeWeightComponent from '@/components/patient-data/weight/db/client-side/initialize-on-first-load.vue'
+import initializeHeightComponent from '@/components/patient-data/height/db/client-side/initialize-on-first-load.vue'
+import initializePulseComponent from '@/components/patient-data/pulse/db/client-side/initialize-on-first-load.vue'
+import initializeTemperatureComponent from '@/components/patient-data/temperature/db/client-side/initialize-on-first-load.vue'
+import initializeBloodPressureComponent from '@/components/patient-data/blood-pressure/db/client-side/initialize-on-first-load.vue'
+import initializeBloodSugarComponent from '@/components/patient-data/blood-sugar/db/client-side/initialize-on-first-load.vue'
+import initializeWaistCircumferenceComponent from '@/components/patient-data/waist-circumference/db/client-side/initialize-on-first-load.vue'
+import initializeBmiComponent from '@/components/patient-data/bmi/db/client-side/initialize-on-first-load.vue'
+import initializeOxygenSaturationComponent from '@/components/patient-data/oxygen-saturation/db/client-side/initialize-on-first-load.vue'
 
 // temporal/others
-import initializeExaminationComponent from '@/components/temporal/examination/db/client-side/initialize-on-first-load.vue'
-import initializePhq9Component from '@/components/temporal/phq9/db/client-side/initialize-on-first-load.vue'
-import initializeProsComponent from '@/components/temporal/psych-review-of-system/db/client-side/initialize-on-first-load.vue'
+import initializeExaminationComponent from '@/components/patient-data/examination/db/client-side/initialize-on-first-load.vue'
+import initializePhq9Component from '@/components/patient-data/phq9/db/client-side/initialize-on-first-load.vue'
+import initializeProsComponent from '@/components/patient-data/psych-review-of-system/db/client-side/initialize-on-first-load.vue'
 
 // START: Each field can take multiple values at 1 time in the temporal database
-import initializeAllergiesComponent from '@/components/temporal/allergies/db/client-side/initialize-on-first-load.vue'
-import initializeChiefComplaintComponent from '~/components/temporal/chief-complaint/db/client-side/initialize-on-first-load.vue'
-import initializeFamilyHistoryComponent from '@/components/temporal/family-history/db/client-side/initialize-on-first-load.vue'
-import initializeMiscNotesComponent from '~/components/temporal/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
-import initializePlanCommentsComponent from '~/components/temporal/plan-comments/db/client-side/initialize-on-first-load.vue'
-import initializeProcessNotesComponent from '~/components/temporal/process-notes/db/client-side/initialize-on-first-load.vue'
-import initializeRecComponent from '@/components/temporal/recommendations/db/client-side/initialize-on-first-load.vue'
-import initializeRemComponent from '@/components/temporal/reminders/db/client-side/initialize-on-first-load.vue'
-import initializeGoalComponent from '@/components/temporal/goals/db/client-side/initialize-on-first-load.vue'
+import initializeAllergiesComponent from '@/components/patient-data/allergies/db/client-side/initialize-on-first-load.vue'
+import initializeChiefComplaintComponent from '~/components/patient-data/chief-complaint/db/client-side/initialize-on-first-load.vue'
+import initializeFamilyHistoryComponent from '@/components/patient-data/family-history/db/client-side/initialize-on-first-load.vue'
+import initializeMiscNotesComponent from '~/components/patient-data/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
+import initializePlanCommentsComponent from '~/components/patient-data/plan-comments/db/client-side/initialize-on-first-load.vue'
+import initializeProcessNotesComponent from '~/components/patient-data/process-notes/db/client-side/initialize-on-first-load.vue'
+import initializeRecComponent from '@/components/patient-data/recommendations/db/client-side/initialize-on-first-load.vue'
+import initializeRemComponent from '@/components/patient-data/reminders/db/client-side/initialize-on-first-load.vue'
+import initializeGoalComponent from '@/components/patient-data/goals/db/client-side/initialize-on-first-load.vue'
 
-import initializeScreenComponent from '@/components/temporal/screens/db/client-side/initialize-on-first-load.vue'
+import initializeScreenComponent from '@/components/patient-data/screens/db/client-side/initialize-on-first-load.vue'
 
 // END
 
-import initializeServiceStatementComponent from '@/components/temporal/service-statements/db/client-side/initialize-on-first-load.vue'
+import initializeServiceStatementComponent from '@/components/patient-data/service-statements/db/client-side/initialize-on-first-load.vue'
 
-import initializePastPsychHistoryComponent from '@/components/temporal/past-psych-history/db/client-side/initialize-on-first-load.vue'
+import initializePastPsychHistoryComponent from '@/components/patient-data/past-psych-history/db/client-side/initialize-on-first-load.vue'
 
-import initializeMedicalReviewOfSystemsComponent from '@/components/temporal/medical-review-of-system/db/client-side/initialize-on-first-load.vue'
+import initializeMedicalReviewOfSystemsComponent from '@/components/patient-data/medical-review-of-system/db/client-side/initialize-on-first-load.vue'
 
 // 1time-Mrow-mField
-import initializePhoneNumberComponent from '@/components/temporal/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import initializeDiagnosisComponent from '@/components/temporal/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
+import initializePhoneNumberComponent from '@/components/patient-data/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeDiagnosisComponent from '@/components/patient-data/diagnosis/db/client-side/static-data/insert-into-master-of-search-phrases-ct'
 
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
-import clientTblOfAppointmentsInsertData from '@/components/temporal/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
+import clientTblOfAppointmentsInsertData from '@/components/patient-data/appointments/db/client-side/static-data/insert-into-appointment-client-side-table'
 
 export default {
   components: {

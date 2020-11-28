@@ -52,12 +52,12 @@
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 import ctSearchBoxInsideLeftScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import editChiefComplaint from '@/components/temporal/chief-complaint/change-layer/add-chief-complaint.vue'
-import pastPsychHistory from '@/components/temporal/past-psych-history/change-layer/past-psych-history-add.vue'
-import familyHistory from '@/components/temporal/family-history/change-layer/family-history-add.vue'
-import allergies from '@/components/temporal/allergies/change-layer/allergy-add.vue'
-import miscNote from '@/components/temporal/miscellaneous-notes/change-layer/add-ct.vue'
-import processNote from '@/components/temporal/process-notes/change-layer/add-ct.vue'
+import editChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/add-chief-complaint.vue'
+import pastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
+import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
+import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
+import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
+import processNote from '@/components/patient-data/process-notes/change-layer/add-ct.vue'
 
 export default {
   data() {

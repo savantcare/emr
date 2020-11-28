@@ -40,7 +40,9 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="rec.label"
-                  >{{ rec.label }}</div>
+                  >
+                    {{ rec.label }}
+                  </div>
                 </el-card>
               </div>
             </el-col>
@@ -58,7 +60,9 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="g.label + ' [Rating: ' + g.rating + ']'"
-                  >{{ g.label }}</div>
+                  >
+                    {{ g.label }}
+                  </div>
                 </el-card>
               </div>
             </el-col>
@@ -102,11 +106,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'top'" style="font-size: 0.75rem">
-                      <el-tab-pane
-                        v-for="eachMed in arMedData"
-                        :key="eachMed.name"
-                        :label="eachMed.label"
-                      >
+                      <el-tab-pane v-for="eachMed in arMedData" :key="eachMed.name" :label="eachMed.label">
                         <!-- <el-row>
                           <el-col :span="7"><div class="med-table-header">Name</div></el-col>
                           <el-col :span="3"><div class="med-table-header">Quantity</div></el-col>
@@ -123,10 +123,9 @@
                           :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                         >
                           <el-col :span="24">
-                            <div
-                              class="med-name"
-                              :title="med.medName + ' [ Quantity : ' + med.quantity + ']'"
-                            >{{ med.medName }}</div>
+                            <div class="med-name" :title="med.medName + ' [ Quantity : ' + med.quantity + ']'">
+                              {{ med.medName }}
+                            </div>
                           </el-col>
                           <!-- <el-col :span="3">
                             <div class="med-quant">{{ med.quantity }}</div>
@@ -163,7 +162,9 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="rem.description"
-                  >{{ rem.description }}</div>
+                  >
+                    {{ rem.description }}
+                  </div>
                 </el-card>
               </div>
             </el-col>
@@ -198,7 +199,9 @@
                     class="map-item-row"
                     :class="{ 'odd-row': index % 2 === 1, 'even-row': index % 2 === 0 }"
                     :title="allergy.allergen + ' [Reaction: ' + allergy.reactions + ']'"
-                  >{{ allergy.allergen }}</div>
+                  >
+                    {{ allergy.allergen }}
+                  </div>
                 </el-card>
               </div>
             </el-col>
@@ -222,10 +225,7 @@
                         :label="eachExamination.label"
                       >
                         <div v-if="eachExamination.selectedValues.length > 0">
-                          <div
-                            v-for="(value, index) in eachExamination.selectedValues"
-                            :key="index"
-                          >{{ value }}</div>
+                          <div v-for="(value, index) in eachExamination.selectedValues" :key="index">{{ value }}</div>
                         </div>
                         <div v-else>No data found</div>
                       </el-tab-pane>
@@ -244,11 +244,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
-                      <el-tab-pane
-                        v-for="eachPros in arProsData"
-                        :key="eachPros.name"
-                        :label="eachPros.label"
-                      >
+                      <el-tab-pane v-for="eachPros in arProsData" :key="eachPros.name" :label="eachPros.label">
                         <div v-if="eachPros.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachPros.questionAnswers"
@@ -322,7 +318,9 @@
                               :title="
                                 '[' + contact.contactType + '] ' + contact.belongingType + ' of ' + contact.contactName
                               "
-                            >{{ contact.value }}</div>
+                            >
+                              {{ contact.value }}
+                            </div>
                           </el-col>
                         </el-row>
                       </el-tab-pane>
@@ -345,11 +343,7 @@
                   </div>
                   <div style="padding-top: 2px">
                     <el-tabs :tab-position="'left'" style="height: 200px; font-size: 0.75rem">
-                      <el-tab-pane
-                        v-for="eachScr in arScrData"
-                        :key="eachScr.name"
-                        :label="eachScr.label"
-                      >
+                      <el-tab-pane v-for="eachScr in arScrData" :key="eachScr.name" :label="eachScr.label">
                         <div v-if="eachScr.questionAnswers.length > 0">
                           <div
                             v-for="(qnaItem, index) in eachScr.questionAnswers"
@@ -477,12 +471,12 @@
 </template>
 
 <script>
-import clientTblForReminder from '@/components/temporal/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
+import clientTblForReminder from '@/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 /*
-import clientTblForTemperature from '@/components/temporal/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
-import clientTblForBloodPressure from '@/components/temporal/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
-import clientTblForBloodSugar from '@/components/temporal/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
+import clientTblForTemperature from '@/components/patient-data/vital-signs/sub-cts/temperature/db/client-side/structure/table.js'
+import clientTblForBloodPressure from '@/components/patient-data/vital-signs/sub-cts/blood-pressure-levels/db/client-side/structure/table.js'
+import clientTblForBloodSugar from '@/components/patient-data/vital-signs/sub-cts/blood-sugar-levels/db/client-side/structure/table.js'
 */
 
 export default {

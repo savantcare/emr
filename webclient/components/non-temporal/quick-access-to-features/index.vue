@@ -15,7 +15,7 @@
 
 <script>
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import reminders from '../../temporal/reminders/db/client-side/structure/reminders-of-a-patient-table'
+import reminders from '../../patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table'
 
 export default {
   data() {

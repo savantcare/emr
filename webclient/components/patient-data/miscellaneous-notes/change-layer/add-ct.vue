@@ -1,0 +1,20 @@
+<template>
+  <ctAddStructure :_formDef="formDef"></ctAddStructure>
+</template>
+
+<script>
+import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
+import { miscellaneousNotesFormDef } from '@/components/patient-data/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
+
+export default {
+  data: function () {
+    return {
+      formDef: miscellaneousNotesFormDef,
+    }
+  },
+
+  components: {
+    ctAddStructure,
+  },
+}
+</script>
