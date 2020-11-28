@@ -15,13 +15,14 @@
     First is checking if Ct has defined _formDef.maxNumberOfTemporallyValidRows. For ct that has not defined this property in the object the heading will come.
     If 1st check fails the heding will come if 2nd check passes. 
     
-    There are ptDataTbl like MentalStatusExam that have many fields. For thos I need to show the heading "Mental status exam"
-    
-    
+    There are ptDataTbl like MentalStatusExam that have many fields. For thos I need to show the heading "Mental status exam"  
     -->
 
     <div
       style="text-align: left; cursor: pointer; color: #606266"
+      tabIndex="0"
+      why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
+      why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
       @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
