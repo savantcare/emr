@@ -29,10 +29,11 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table serviceStatementFieldOptionId = 2 */
-      total_minutes_in_psychotherapy_select: this.string(''),
-      total_minutes_with_patient_select: this.string(''),
+      total_minutes_in_psychotherapy: this.string(''),
+      total_minutes_with_patient: this.string(''),
       modality_of_psychotherapy_multi_select: this.string(''),
-
+      review_of_systems_multi_select: this.string(''),
+      optional_multi_select: this.string(''),
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -81,6 +82,14 @@ export const serviceStatementsFormDef = {
       showLabel: true,
       fieldStyle: 'padding: 20px',
     },
+    {
+      nameInDb: 'optional_multi_select',
+      nameInUi: 'Optional',
+      type: 'multi-select-with-buttons',
+      span: 24,
+      showLabel: true,
+      fieldStyle: 'padding: 20px',
+    },
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
@@ -88,9 +97,9 @@ export const serviceStatementsFormDef = {
   maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
-    'total_minutes_in_psychotherapy_select',
+    'total_minutes_in_psychotherapy',
     'modality_of_psychotherapy_multi_select',
-    'total_minutes_with_patient_select',
+    'total_minutes_with_patient',
   ],
   validationsObj: {
     value: {

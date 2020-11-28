@@ -69,8 +69,16 @@ export default {
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'I performed a complete review of systems',
+        serviceStatementFieldOptionLabel: 'I performed 14pt review of systems',
         serviceStatementFieldNameInDb: 'review_of_systems_multi_select',
+      },
+    })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Pertinent Medical Records Reviewed',
+        serviceStatementFieldNameInDb: 'optional_multi_select',
       },
     })
   },
