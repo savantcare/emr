@@ -62,7 +62,7 @@ export const remindersFormDef = {
       nameInUi: 'Description',
       type: 'textarea',
       span: 24,
-      fieldStyle: 'padding: 0px',
+      style: 'padding: 0px',
     },
   ],
   styleForEachRowInAddForm:

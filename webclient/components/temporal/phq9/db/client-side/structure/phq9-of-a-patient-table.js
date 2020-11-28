@@ -72,7 +72,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'depressed',
@@ -90,7 +90,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'sleep',
@@ -108,7 +108,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'energy',
@@ -126,7 +126,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'appetite',
@@ -144,7 +144,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'down',
@@ -162,7 +162,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'concentrating',
@@ -180,7 +180,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'slowly',
@@ -199,7 +199,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'hurting',
@@ -217,7 +217,7 @@ export const phq9FormDef = {
       ft: function formatTooltip(val) {
         return this.marks[val]
       },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
   ],
   showReviewedButtonInForm: false,

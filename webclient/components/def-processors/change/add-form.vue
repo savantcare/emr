@@ -15,7 +15,7 @@
         <!-- Start to process fields in the row -->
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
           <!-- Start to process each field -->
-          <div :style="_fieldDef.fieldStyle">
+          <div :style="_fieldDef.style">
             <!-- The following are the possible field types -->
 
             <!-- HEADING -->

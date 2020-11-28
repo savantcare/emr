@@ -69,7 +69,7 @@ export const psychReviewOfSystemFormDef = {
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'heading_depression',
@@ -78,14 +78,14 @@ export const psychReviewOfSystemFormDef = {
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'depressive_mood',
       nameInUi: 'Depressive mood',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -103,7 +103,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Interest',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -121,7 +121,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Sleep',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -139,7 +139,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Gulf / Self esteem',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -157,7 +157,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Energy',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -175,7 +175,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Conc/Dist',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -193,7 +193,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Apptetite',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -211,7 +211,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'PMR/PMA',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -236,7 +236,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Obese',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -254,7 +254,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Thin or cachectic',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -272,7 +272,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Disheveled/unkempt',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {
@@ -290,7 +290,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Malodorous',
       type: 'slider',
       span: 24,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },
       marks: {

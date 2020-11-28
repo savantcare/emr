@@ -55,7 +55,7 @@ export const examinationFormDef = {
       type: 'multi-select-with-buttons',
       span: 12,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'attitude_multi_select',
@@ -63,7 +63,7 @@ export const examinationFormDef = {
       type: 'multi-select-with-buttons',
       span: 12,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'psychomotor_select',
@@ -71,7 +71,7 @@ export const examinationFormDef = {
       type: 'multi-select-with-buttons',
       span: 12,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
   ],
   showReviewedButtonInForm: false,

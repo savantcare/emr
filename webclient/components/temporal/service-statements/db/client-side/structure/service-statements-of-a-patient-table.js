@@ -56,7 +56,7 @@ export const serviceStatementsFormDef = {
       type: 'number',
       span: 24,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'total_minutes_with_patient',
@@ -64,7 +64,7 @@ export const serviceStatementsFormDef = {
       type: 'number',
       span: 24,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'modality_of_psychotherapy_multi_select',
@@ -72,7 +72,7 @@ export const serviceStatementsFormDef = {
       type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'review_of_systems_multi_select',
@@ -80,7 +80,7 @@ export const serviceStatementsFormDef = {
       type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
     {
       nameInDb: 'optional_multi_select',
@@ -88,7 +88,7 @@ export const serviceStatementsFormDef = {
       type: 'multi-select-with-buttons',
       span: 24,
       showLabel: true,
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
   ],
   showReviewedButtonInForm: false,

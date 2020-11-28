@@ -64,7 +64,7 @@ export const goalsFormDef = {
       type: 'slider',
       span: 24,
       fieldOptions: { min: 0, max: 10, step: 1 },
-      fieldStyle: 'padding: 20px',
+      style: 'padding: 20px',
     },
   ],
   styleForEachRowInAddForm:
