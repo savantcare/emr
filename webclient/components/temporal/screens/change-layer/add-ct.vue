@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
 import { screensFormDef } from '@/components/temporal/screens/db/client-side/structure/screens-of-a-patient-table.js'
 
 export default {

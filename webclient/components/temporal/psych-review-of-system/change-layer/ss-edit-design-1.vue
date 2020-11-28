@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components//def-processors/change/edit-form.vue'
+import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
 import psychReviewOfSystemsAllSelectOptionsTbl from '../db/client-side/structure/psych-review-of-system-all-select-options.js'
 import psychReviewOfSystemsOfAPatientTbl from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import { psychReviewOfSystemFormDef } from '@/components/temporal/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'

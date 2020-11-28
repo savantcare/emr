@@ -37,13 +37,13 @@ import oxygenSaturationClientTbl from '@/components/temporal/oxygen-saturation/d
 
  Step 2:
  -------
- In temporal/1-/def-processors/change/add-form.vue
+ In temporal/1-/papers/note-change/templates/add-form.vue
 On line 164 there us: 
 > import clientTbl from '../tables.js'
 
  Step 3:
  -------
- In temporal/1-/def-processors/change/add-form.vue
+ In temporal/1-/papers/note-change/templates/add-form.vue
 On line 195 there us: 
       return clientTbl[this._formDef.id].fnGetNewRowsInEditState()
 

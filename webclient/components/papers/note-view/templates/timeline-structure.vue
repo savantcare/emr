@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import ctActOnSocketMessages from '@/components/def-processors/change/act-on-socket-messages-from-server-ct.vue'
+import ctActOnSocketMessages from '@/components/papers/note-change/templates/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 

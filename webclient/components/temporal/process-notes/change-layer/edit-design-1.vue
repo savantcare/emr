@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components//def-processors/change/edit-form.vue'
+import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
 import { processNotesFormDef } from '@/components/temporal/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 
 export default {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components//def-processors/change/edit-form.vue'
+import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
 import { weightFormDef } from '@/components/temporal/weight/db/client-side/structure/weight-of-a-patient-table.js'
 
 export default {

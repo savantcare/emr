@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
 import { bloodPressureFormDef } from '@/components/temporal/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
 
 export default {

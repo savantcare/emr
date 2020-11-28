@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddStructure from '@/components//def-processors/change/add-form.vue'
+import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
 import medicalReviewOfSystemAllSelectOptionsTbl from '../db/client-side/structure/medical-review-of-system-all-select-options.js'
 import medicalReviewOfSystemOfAPatientTbl from '@/components/temporal/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 

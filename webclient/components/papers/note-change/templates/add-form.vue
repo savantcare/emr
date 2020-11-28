@@ -267,7 +267,7 @@
 </template>
 <script>
 import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
-import allFormDefs from '../all-form-definations.js'
+import allFormDefs from '@/components/def-processors/all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
 

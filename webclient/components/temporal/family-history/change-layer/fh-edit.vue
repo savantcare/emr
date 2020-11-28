@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditStructure from '@/components//def-processors/change/edit-form.vue'
+import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
 import { familyHistoryFormDef } from '@/components/temporal/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
