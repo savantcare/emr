@@ -57,6 +57,8 @@
                 :key="item.id"
               >
                 <el-button
+                  size="mini"
+                  round
                   v-model="value[_fieldDef.nameInDb]"
                   :type="item.selected ? 'primary' : 'plain'"
                   @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"

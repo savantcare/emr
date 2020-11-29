@@ -13,6 +13,35 @@ export default {
   },
   mounted() {
     let i = 1
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Acceptance and commitement therapy',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Bibilotherapy',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'CBT',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
@@ -34,7 +63,7 @@ export default {
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Holistic Therapy',
+        serviceStatementFieldOptionLabel: 'EMDR',
         serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
@@ -52,7 +81,79 @@ export default {
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         serviceStatementFieldOptionId: i + '#',
-        serviceStatementFieldOptionLabel: 'Bibilotherapy',
+        serviceStatementFieldOptionLabel: 'Holistic Therapy',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Insight oriented',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Motivational interviewing',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Positive psychology',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Psycho analytic',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Psycho dynamic',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Solution focussed',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Supportive',
+        serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
+      },
+    })
+
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel: 'Trauma focussed',
         serviceStatementFieldNameInDb: 'modality_of_psychotherapy_multi_select',
       },
     })
@@ -78,6 +179,15 @@ export default {
       data: {
         serviceStatementFieldOptionId: i + '#',
         serviceStatementFieldOptionLabel: 'Pertinent Medical Records Reviewed',
+        serviceStatementFieldNameInDb: 'optional_multi_select',
+      },
+    })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        serviceStatementFieldOptionId: i + '#',
+        serviceStatementFieldOptionLabel:
+          'CURES: CA state controlled substance patient registry was checked on this patient and reviewed',
         serviceStatementFieldNameInDb: 'optional_multi_select',
       },
     })
