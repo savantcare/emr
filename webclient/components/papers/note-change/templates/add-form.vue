@@ -171,7 +171,7 @@
                 :placeholder="_fieldDef.nameInUi"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                @keydown.enter.native="mfForTabActionByEnter"
+                @keydown.enter.native="mf_for_tab_action_by_enter"
               ></el-input>
             </div>
           </div>
@@ -188,7 +188,8 @@
                -->
           <el-button
             v-if="
-              mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows
+              mf_get_ar_of_data_rows() < _formDef.maxNumberOfTemporallyValidRows ||
+              !_formDef.maxNumberOfTemporallyValidRows
             "
             plain
             round
@@ -205,7 +206,7 @@
       </div>
     </div>
     <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
-    <div v-else>{{ mfAddEmptyRowInClientSideTable() }}</div>
+    <div v-else>{{ mf_add_empty_row_in_client_side_table() }}</div>
 
     <!-- Form action buttons below the form -->
     <el-button v-if="_formDef.showReviewedButtonInForm === true" type="primary" plain @click="mfOnReviewed"
@@ -216,13 +217,13 @@
     <el-button
       v-if="
         _formDef.showAddMoreButtonInForm !== false &&
-        (mfGetArOfDataRows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows)
+        (mf_get_ar_of_data_rows() < _formDef.maxNumberOfTemporallyValidRows || !_formDef.maxNumberOfTemporallyValidRows)
       "
       type="primary"
       plain
       size="mini"
       round
-      @click="mfAddEmptyRowInClientSideTable"
+      @click="mf_add_empty_row_in_client_side_table"
       >Add more</el-button
     >
     <el-button
@@ -231,7 +232,7 @@
       v-if="_formDef.showResetFormButton !== false"
       type="warning"
       plain
-      @click="mfOnResetForm"
+      @click="mf_on_reset_form"
       >Reset form</el-button
     >
 
@@ -288,7 +289,7 @@ export default {
       2nd time onwards it will return an array of data that came from vuex-orm
       This was first used for slider form control.
   */
-    this.value = this._formDef.fnCreated(this.mfGetArOfDataRows())
+    this.value = this._formDef.fnCreated(this.mf_get_ar_of_data_rows())
   },
   data() {
     return { value: [], searchFilter: '' }
@@ -370,7 +371,7 @@ export default {
     log(item) {
       console.log(item)
     },
-    mfForTabActionByEnter: function (e) {
+    mf_for_tab_action_by_enter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
 
@@ -408,7 +409,7 @@ export default {
         }
       }
     },
-    mfGetArOfDataRows() {
+    mf_get_ar_of_data_rows() {
       const arOfObjectsFromClientDB = allPatientDataTbls[this._formDef.id]
         .query()
         .where('ROW_END', 2147483648000) // if unlocked then only current rows should be shown
@@ -417,7 +418,7 @@ export default {
       return arOfObjectsFromClientDB
     },
 
-    async mfAddEmptyRowInClientSideTable() {
+    async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
 
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
@@ -439,9 +440,9 @@ export default {
         console.log('FATAL ERROR')
       }
 
-      this.mfSetFormFieldFocus()
+      this.mf_set_form_field_focus()
     },
-    mfSetFormFieldFocus() {
+    mf_set_form_field_focus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
       const firstField = this._formDef.fieldsDef[0].nameInDb
       if (this.$refs[firstField]) {
@@ -495,9 +496,9 @@ export default {
     },
     async mfDeleteRowInClientSideTable(pClientRowId) {
       await allPatientDataTbls[this._formDef.id].delete(pClientRowId)
-      this.mfSetFormFieldFocus()
+      this.mf_set_form_field_focus()
     },
-    mfOnResetForm(formName) {
+    mf_on_reset_form(formName) {
       allPatientDataTbls[this._formDef.id].fnDeleteNewRowsInEditState()
     },
     mf_store_id_of_field_which_has_focus_in_this_form(pFieldNameInDb, pIndex) {
