@@ -10,13 +10,13 @@ export default class serviceStatementsAllSelectOptions extends clientTblManage {
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/service-statements/v20'
 
-  static primaryKey = 'serviceStatementFieldOptionId'
+  static primaryKey = 'fieldOptionId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      serviceStatementFieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      fieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       serviceStatementFieldOptionLabel: this.string(null),
       serviceStatementFieldNameInDb: this.string(null),
 

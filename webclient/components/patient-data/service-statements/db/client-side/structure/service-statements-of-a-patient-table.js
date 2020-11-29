@@ -22,13 +22,13 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblServiceStatementsAllSelectOptions/serviceStatementFieldOptionId
+      /* This field is used to store the value of tblServiceStatementsAllSelectOptions/fieldOptionId
          E.g: The  tblServiceStatementsAllSelectOptions has:
-         serviceStatementFieldOptionId  |         serviceStatementFieldOptionLabel    
+         fieldOptionId  |         serviceStatementFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table serviceStatementFieldOptionId = 2 */
+          When doctor assigns 2 to this patient then in this table fieldOptionId = 2 */
       total_minutes_in_psychotherapy: this.string(''),
       total_minutes_with_patient: this.string(''),
       modality_of_psychotherapy_multi_select: this.string(''),
@@ -132,7 +132,7 @@ export const serviceStatementsFormDef = {
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['serviceStatementFieldOptionId']
+      data['id'] = data['fieldOptionId']
       data['value'] = data['serviceStatementFieldOptionLabel']
       if (selectedIDs) {
         data['selected'] = selectedIDs.includes(data['id']) ? true : false
@@ -151,7 +151,7 @@ export const serviceStatementsFormDef = {
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('serviceStatementFieldNameInDb', pFieldNameInDb)
-      .where('serviceStatementFieldOptionId', pfieldValue)
+      .where('fieldOptionId', pfieldValue)
       .get()
 
     const optionIdToLabel = arOfAllSelectOptions[0]['serviceStatementFieldOptionLabel']
