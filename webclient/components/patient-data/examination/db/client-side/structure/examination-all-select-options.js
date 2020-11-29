@@ -17,7 +17,7 @@ export default class examinationAllSelectOptions extends clientTblManage {
       ...super.fields(),
 
       fieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
-      examinationFieldOptionLabel: this.string(null),
+      fieldOptionLabel: this.string(null),
       examinationFieldNameInDb: this.string(null),
 
       ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliSecs is used.

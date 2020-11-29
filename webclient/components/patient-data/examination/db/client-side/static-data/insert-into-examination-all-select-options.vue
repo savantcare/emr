@@ -85,7 +85,7 @@ export default {
         examinationAllSelectOptionsTbl.insert({
           data: {
             fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
-            examinationFieldOptionLabel: label,
+            fieldOptionLabel: label,
             examinationFieldNameInDb: fldName,
           },
         })

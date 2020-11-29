@@ -24,7 +24,7 @@ export default class examinationForPatientClass extends clientTblManage {
 
       /* This field is used to store the value of tblExaminationAllSelectOptions/fieldOptionId
          E.g: The  tblExaminationAllSelectOptions has:
-         fieldOptionId  |         examinationFieldOptionLabel    
+         fieldOptionId  |         fieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
@@ -207,7 +207,7 @@ export const examinationFormDef = {
 
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['fieldOptionId']
-      data['value'] = data['examinationFieldOptionLabel']
+      data['value'] = data['fieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
     return arOfAllSelectOptions
@@ -223,7 +223,7 @@ export const examinationFormDef = {
       .where('fieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['examinationFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
 
     return optionIdToLabel
   },
