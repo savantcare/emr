@@ -185,8 +185,8 @@ export default {
     serviceStatementsAllSelectOptionsTbl.insert({
       data: {
         fieldOptionId: '#' + i + '#',
-        fieldOptionLabel:
-          'CURES: CA state controlled substance patient registry was checked on this patient and reviewed',
+        fieldOptionLabel: 'CURES: checked on this patient and reviewed',
+        subText: 'CURES is CA state controlled substance patient registry',
         fieldNameInDb: 'optional_multi_select',
       },
     })
