@@ -48,6 +48,31 @@ export default {
         { label: 'Mumbling' },
         { label: 'Other' },
       ],
+      mood_affect_multi_select: [
+        { label: 'Euthymic' },
+        { label: 'Stable' },
+        { label: 'Dysphoric' },
+        { label: 'Irritable' },
+        { label: 'Angry' },
+        { label: 'Bright' },
+        { label: 'Euphoric' },
+      ],
+      thought_content_multi_select: [
+        { label: 'No SI, intent or plan' },
+        { label: 'No passive death wish' },
+        { label: 'No HI, intent or plan' },
+        { label: 'No delusional thinking observed' },
+        { label: 'No obsessive thinking observed' },
+        { label: 'Reminations' },
+        { label: '+SI without intent or plan' },
+        { label: '+SI as detailed below' },
+        { label: '+HI as detailed below' },
+        { label: '+delusions' },
+        { label: '+IOR' },
+        { label: '+obsessions' },
+        { label: 'Other' },
+        { label: 'Passive death wish' },
+      ],
     }
 
     let rowUniqId = 0
