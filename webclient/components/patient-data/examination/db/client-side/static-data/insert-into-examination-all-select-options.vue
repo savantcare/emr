@@ -25,9 +25,16 @@ export default {
         { label: 'Disheveled, unkempt' },
         { label: 'Malodorous' },
       ],
+      attitude_multi_select: [
+        { label: 'Pleasent and cooperative' },
+        { label: 'Uncooperative' },
+        { label: 'Hostile or defiant' },
+        { label: 'Guarded' },
+        { label: 'Evasive' },
+      ],
     }
 
-    let i = 0
+    let rowUniqId = 0
     let fldName = {}
     for (fldName in selectOptions) {
       const obj = selectOptions[fldName]
@@ -35,11 +42,12 @@ export default {
         const label = obj[i].label
         examinationAllSelectOptionsTbl.insert({
           data: {
-            examinationFieldOptionId: '#' + i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            examinationFieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             examinationFieldOptionLabel: label,
             examinationFieldNameInDb: fldName,
           },
         })
+        rowUniqId++
       }
     }
   },
