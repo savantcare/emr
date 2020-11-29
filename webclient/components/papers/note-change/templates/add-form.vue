@@ -2,7 +2,7 @@
 <template>
   <div>
     <div v-if="_formDef.showFilterBySearchInAddForm">
-      <el-input placeholder="filter" v-model="searchFilter" />
+      <el-input placeholder="Filter .." v-model="searchFilter" />
     </div>
     <!-- Start rendering the add form 
          Scenario: There are existing rows in edit state. If there no such rows this form inside v-else creates a empty row 
@@ -16,9 +16,9 @@
         :style="_formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm"
       >
         <!-- Start to process fields in the row -->
-        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
+        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style">
           <!-- Start to process each field -->
-          <div :style="_fieldDef.style">
+          <div>
             <!-- The following are the possible field types -->
 
             <!-- HEADING -->

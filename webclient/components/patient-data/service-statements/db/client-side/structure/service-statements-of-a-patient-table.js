@@ -69,7 +69,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Modality of psychotherapy',
       type: 'multi-select-with-buttons',
       showLabel: true,
-      style: 'padding: 20px',
+      style: 'padding: 20px; grid-column: 1/2',
     },
     {
       nameInDb: 'review_of_systems_multi_select',
@@ -83,7 +83,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Optional',
       type: 'multi-select-with-buttons',
       showLabel: true,
-      style: 'padding: 20px',
+      style: 'padding: 20px; grid-column: 2/2; grid-row: 2/3',
     },
   ],
   showReviewedButtonInForm: false,
