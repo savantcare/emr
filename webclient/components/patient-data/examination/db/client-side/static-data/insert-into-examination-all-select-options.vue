@@ -32,6 +32,13 @@ export default {
         { label: 'Guarded' },
         { label: 'Evasive' },
       ],
+      psychomotor_select: [{ label: 'Agitated' }, { label: 'Retarded' }, { label: 'Other' }],
+      eye_contact_multi_select: [
+        { label: 'Appropriate' },
+        { label: 'Downcast' },
+        { label: 'Intense' },
+        { label: 'Fleeting' },
+      ],
     }
 
     let rowUniqId = 0
