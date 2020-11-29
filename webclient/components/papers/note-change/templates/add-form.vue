@@ -68,7 +68,7 @@
                     @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                     >{{ item.value }}</el-button
                   >
-                  <span v-if="item.subText"><br />{{ item.subText }}</span>
+                  <span v-if="item.subText"><br />({{ item.subText }})</span>
                 </div>
               </div>
             </div>

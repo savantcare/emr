@@ -204,7 +204,7 @@ export default {
       data: {
         fieldOptionId: '#' + i + '#',
         fieldOptionLabel: 'Further data and history obtained from family member',
-        subText: ' as per patient’s consent.',
+        subText: 'as per patient’s consent.',
         fieldNameInDb: 'optional_multi_select',
       },
     })
