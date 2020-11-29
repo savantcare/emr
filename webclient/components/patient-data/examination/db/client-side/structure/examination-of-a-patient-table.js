@@ -173,6 +173,8 @@ export const examinationFormDef = {
   maxNumberOfTemporallyValidRows: 1,
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryRowInViewNote:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],
   validationsObj: {

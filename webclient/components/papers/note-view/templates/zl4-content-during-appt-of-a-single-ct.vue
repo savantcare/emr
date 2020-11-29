@@ -70,7 +70,7 @@
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
-              id="container-to-ctrl-placement-of-every-row-inside-a-div"
+              id="container-to-ctrl-placement-of-every-row-in-view-note"
               :style="
                 _formDef.ctrlPlacementOfEveryRowInViewNote
                   ? _formDef.ctrlPlacementOfEveryRowInViewNote
