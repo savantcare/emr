@@ -24,7 +24,7 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
 
       /* This field is used to store the value of tblServiceStatementsAllSelectOptions/fieldOptionId
          E.g: The  tblServiceStatementsAllSelectOptions has:
-         fieldOptionId  |         serviceStatementFieldOptionLabel    
+         fieldOptionId  |         fieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
@@ -124,7 +124,7 @@ export const serviceStatementsFormDef = {
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
-      .where('serviceStatementFieldNameInDb', fieldNameInDb)
+      .where('fieldNameInDb', fieldNameInDb)
       .get()
 
     // get the value for this field in patient table
@@ -133,7 +133,7 @@ export const serviceStatementsFormDef = {
 
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['fieldOptionId']
-      data['value'] = data['serviceStatementFieldOptionLabel']
+      data['value'] = data['fieldOptionLabel']
       if (selectedIDs) {
         data['selected'] = selectedIDs.includes(data['id']) ? true : false
       } else {
@@ -150,11 +150,11 @@ export const serviceStatementsFormDef = {
 
     let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
       .query()
-      .where('serviceStatementFieldNameInDb', pFieldNameInDb)
+      .where('fieldNameInDb', pFieldNameInDb)
       .where('fieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['serviceStatementFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
 
     return optionIdToLabel
   },
