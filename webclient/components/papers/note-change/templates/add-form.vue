@@ -52,7 +52,7 @@
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
               <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
+                <b>{{ _fieldDef.nameInUi }}</b>
               </div>
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
