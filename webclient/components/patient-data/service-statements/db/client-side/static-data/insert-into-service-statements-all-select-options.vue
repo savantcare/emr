@@ -199,6 +199,33 @@ export default {
         fieldNameInDb: 'optional_multi_select',
       },
     })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        fieldOptionId: '#' + i + '#',
+        fieldOptionLabel: 'Further data and history obtained from family member',
+        subText: ' as per patient’s consent.',
+        fieldNameInDb: 'optional_multi_select',
+      },
+    })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        fieldOptionId: '#' + i + '#',
+        fieldOptionLabel: 'Spent greater than 50 % of time face to face',
+        subText: 'with patient and/or family doing counseling and/or coordination of care.',
+        fieldNameInDb: 'optional_multi_select',
+      },
+    })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        fieldOptionId: '#' + i + '#',
+        fieldOptionLabel: 'Risks, benefits and side effects of psychotropic medications',
+        subText: 'have been discussed with the patient.',
+        fieldNameInDb: 'optional_multi_select',
+      },
+    })
   },
 }
 </script>
