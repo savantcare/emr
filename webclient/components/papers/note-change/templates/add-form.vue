@@ -4,16 +4,18 @@
     <div v-if="_formDef.showFilterBySearchInAddForm">
       <el-input placeholder="Filter .." v-model="searchFilter" />
     </div>
-    <!-- Start rendering the add form 
-         Scenario: There are existing rows in edit state. If there no such rows this form inside v-else creates a empty row 
-        _formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
-        Start to process each row -->
-    <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
+    <!-- Start rendering the add form Start to process each row -->
+    <div
+      v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom"
+      why1="Find existing rows in edit state. If there no such rows inside v-else creates a empty row "
+      why2="cfEmptyRowAtBottom creates a empty row at bottom is the new row has some data in it. This empty row at bottom allows faster entering of data"
+    >
       <div
         v-for="(ormRow, index) in cfGetClientTblNewRowsInEditState"
         :key="index"
         :id="`each-data-row-` + index + `-` + _formDef.id"
         :style="_formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm"
+        why1="This has grid design like grid-template-columns: 1fr 1fr 1fr "
       >
         <!-- Start to process fields in the row -->
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style">
