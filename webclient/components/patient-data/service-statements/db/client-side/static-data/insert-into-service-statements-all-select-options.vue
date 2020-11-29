@@ -190,6 +190,15 @@ export default {
         fieldNameInDb: 'optional_multi_select',
       },
     })
+    i = i + 1
+    serviceStatementsAllSelectOptionsTbl.insert({
+      data: {
+        fieldOptionId: '#' + i + '#',
+        fieldOptionLabel: 'Please refer to Assessment and Plan section',
+        subText: 'for content of coordination of care and counseling',
+        fieldNameInDb: 'optional_multi_select',
+      },
+    })
   },
 }
 </script>
