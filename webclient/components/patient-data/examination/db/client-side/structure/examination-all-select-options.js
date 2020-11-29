@@ -10,13 +10,13 @@ export default class examinationAllSelectOptions extends clientTblManage {
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/examination/v20'
 
-  static primaryKey = 'examinationFieldOptionId'
+  static primaryKey = 'fieldOptionId'
 
   static fields() {
     return {
       ...super.fields(),
 
-      examinationFieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
+      fieldOptionId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work This is the unique ID for each service statement
       examinationFieldOptionLabel: this.string(null),
       examinationFieldNameInDb: this.string(null),
 

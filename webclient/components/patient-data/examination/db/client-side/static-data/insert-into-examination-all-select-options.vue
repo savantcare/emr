@@ -84,7 +84,7 @@ export default {
         const label = obj[i].label
         examinationAllSelectOptionsTbl.insert({
           data: {
-            examinationFieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             examinationFieldOptionLabel: label,
             examinationFieldNameInDb: fldName,
           },

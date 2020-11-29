@@ -22,13 +22,13 @@ export default class examinationForPatientClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      /* This field is used to store the value of tblExaminationAllSelectOptions/examinationFieldOptionId
+      /* This field is used to store the value of tblExaminationAllSelectOptions/fieldOptionId
          E.g: The  tblExaminationAllSelectOptions has:
-         examinationFieldOptionId  |         examinationFieldOptionLabel    
+         fieldOptionId  |         examinationFieldOptionLabel    
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
-          When doctor assigns 2 to this patient then in this table examinationFieldOptionId = 2 */
+          When doctor assigns 2 to this patient then in this table fieldOptionId = 2 */
       appearance_multi_select: this.string(''),
       attitude_multi_select: this.string(''),
       psychomotor_multi_select: this.string(''),
@@ -206,7 +206,7 @@ export const examinationFormDef = {
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['examinationFieldOptionId']
+      data['id'] = data['fieldOptionId']
       data['value'] = data['examinationFieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
@@ -220,7 +220,7 @@ export const examinationFormDef = {
     let arOfAllSelectOptions = examinationAllSelectOptionsTbl
       .query()
       .where('examinationFieldNameInDb', pFieldNameInDb)
-      .where('examinationFieldOptionId', pfieldValue)
+      .where('fieldOptionId', pfieldValue)
       .get()
 
     const optionIdToLabel = arOfAllSelectOptions[0]['examinationFieldOptionLabel']
