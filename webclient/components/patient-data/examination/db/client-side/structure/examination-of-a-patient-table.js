@@ -169,7 +169,7 @@ export const examinationFormDef = {
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
-
+  showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',

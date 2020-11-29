@@ -39,6 +39,15 @@ export default {
         { label: 'Intense' },
         { label: 'Fleeting' },
       ],
+      speech_multi_select: [
+        { label: 'Regular, rate and rhythym' },
+        { label: 'Fluent' },
+        { label: 'Inchorent' },
+        { label: 'Talkative' },
+        { label: 'Pressured' },
+        { label: 'Mumbling' },
+        { label: 'Other' },
+      ],
     }
 
     let rowUniqId = 0

@@ -71,12 +71,13 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
    D. When I use keyboard shortcut to go to a different tab the focus does not change.
    E. When I go to service statement the focus is not on the right area of the form.
-2. When header appointments are changed choosing different slides of chief complaint.
-3. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
-4. Get correlate to work from button
-5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
-6. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
-7. Put page in full screen using https://mirari.cc/vue-fullscreen/
-8. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
-9. Patient timeline: https://jinfang134.github.io/vue-pipeline/
-10. Search in top header using https://theoxiong.github.io/vue-search-panel/
+2. Dialog box scroll in add is not working.
+3. When header appointments are changed choosing different slides of chief complaint.
+4. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
+5. Get correlate to work from button
+6. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
+7. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
+8. Put page in full screen using https://mirari.cc/vue-fullscreen/
+9. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
+10. Patient timeline: https://jinfang134.github.io/vue-pipeline/
+11. Search in top header using https://theoxiong.github.io/vue-search-panel/
