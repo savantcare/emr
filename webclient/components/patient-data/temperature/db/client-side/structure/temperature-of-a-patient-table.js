@@ -87,7 +87,7 @@ export const temperatureFormDef = {
     return []
   },
 
-  styleForEachRowInAddForm:
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {

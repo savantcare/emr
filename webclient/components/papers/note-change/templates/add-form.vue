@@ -3,14 +3,14 @@
   <div>
     <!-- Start rendering the add form 
          Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row 
-        _formDef.styleForEachRowInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
+        _formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
         Start to process each row -->
     <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
       <div
         v-for="(ormRow, index) in cfGetClientTblNewRowsInEditState"
         :key="index"
         :id="`each-data-row-` + index + `-` + _formDef.id"
-        :style="_formDef.styleForEachRowInAddForm"
+        :style="_formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm"
       >
         <!-- Start to process fields in the row -->
         <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">

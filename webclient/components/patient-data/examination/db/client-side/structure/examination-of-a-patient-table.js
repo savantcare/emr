@@ -75,7 +75,7 @@ export const examinationFormDef = {
   showResetFormButton: false,
 
   maxNumberOfTemporallyValidRows: 1,
-  styleForEachRowInAddForm:
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],

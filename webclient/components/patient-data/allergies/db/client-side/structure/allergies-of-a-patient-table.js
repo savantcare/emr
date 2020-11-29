@@ -70,11 +70,11 @@ export const allergiesFormDef = {
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
 
-  styleForEachRowInAddForm:
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',
-  ctrlPlacementOfEveryFieldsNameAndValueInsideADiv:
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem; grid-row-gap: .1rem',
-  ctrlPlacementOfEveryRowInsideADiv:
+  ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   validationsObj: {

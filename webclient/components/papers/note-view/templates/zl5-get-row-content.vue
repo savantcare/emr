@@ -1,7 +1,7 @@
 <template>
   <div       id="container-for-1-data-row" :style="
-        _formDef.ctrlPlacementOfEveryFieldsNameAndValueInsideADiv
-          ? _formDef.ctrlPlacementOfEveryFieldsNameAndValueInsideADiv
+        _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
+          ? _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
           : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
       ">
     <div

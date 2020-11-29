@@ -113,11 +113,11 @@ export const serviceStatementsFormDef = {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
   },
-  styleForEachRowInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
-  ctrlPlacementOfEveryFieldsNameAndValueInsideADiv:
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
-  ctrlPlacementOfEveryRowInsideADiv:
+  ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {

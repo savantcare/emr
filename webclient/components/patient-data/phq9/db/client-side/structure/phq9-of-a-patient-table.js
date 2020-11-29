@@ -251,6 +251,6 @@ export const phq9FormDef = {
 
     return optionIdToLabel
   },
-  styleForEachRowInAddForm:
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 20px; margin: 20px; display: grid; grid-template-columns: 1fr ; grid-column-gap: 1rem',
 }

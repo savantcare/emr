@@ -60,7 +60,7 @@
         -->
 
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInsideADiv and for those Ct I want to use default value 
+         Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
@@ -72,8 +72,8 @@
             <div
               id="container-to-ctrl-placement-of-every-row-inside-a-div"
               :style="
-                _formDef.ctrlPlacementOfEveryRowInsideADiv
-                  ? _formDef.ctrlPlacementOfEveryRowInsideADiv
+                _formDef.ctrlPlacementOfEveryRowInViewNote
+                  ? _formDef.ctrlPlacementOfEveryRowInViewNote
                   : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem'
               "
             >
