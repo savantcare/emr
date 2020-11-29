@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     const selectOptions = {
-      appearance_select: [
+      appearance_multi_select: [
         { label: 'Good grooming and hygiene' },
         { label: 'No apparent distress' },
         { label: 'Well developed, well nourished' },
@@ -32,7 +32,7 @@ export default {
         { label: 'Guarded' },
         { label: 'Evasive' },
       ],
-      psychomotor_select: [{ label: 'Agitated' }, { label: 'Retarded' }, { label: 'Other' }],
+      psychomotor_multi_select: [{ label: 'Agitated' }, { label: 'Retarded' }, { label: 'Other' }],
       eye_contact_multi_select: [
         { label: 'Appropriate' },
         { label: 'Downcast' },

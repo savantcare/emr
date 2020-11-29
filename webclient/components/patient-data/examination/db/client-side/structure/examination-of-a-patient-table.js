@@ -29,9 +29,9 @@ export default class examinationForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table examinationFieldOptionId = 2 */
-      appearance_select: this.string(''),
+      appearance_multi_select: this.string(''),
       attitude_multi_select: this.string(''),
-      psychomotor_select: this.string(''),
+      psychomotor_multi_select: this.string(''),
       eye_contact_multi_select: this.string(''),
       speech_multi_select: this.string(''),
       mood_affect_multi_select: this.string(''),
@@ -62,7 +62,7 @@ export const examinationFormDef = {
   singular: 'examination',
   fieldsDef: [
     {
-      nameInDb: 'appearance_select',
+      nameInDb: 'appearance_multi_select',
       nameInUi: 'Appearance',
       type: 'multi-select-with-buttons',
       showLabel: true,
@@ -76,7 +76,7 @@ export const examinationFormDef = {
       style: 'padding: 20px',
     },
     {
-      nameInDb: 'psychomotor_select',
+      nameInDb: 'psychomotor_multi_select',
       nameInUi: 'Psychomotor',
       type: 'multi-select-with-buttons',
       showLabel: true,
