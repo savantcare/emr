@@ -73,6 +73,7 @@ export default {
         { label: 'Other' },
         { label: 'Passive death wish' },
       ],
+      perceptions_multi_select: [{ label: 'No AVH' }, { label: '+AH' }, { label: '+VH' }, { label: '+Command AH' }],
     }
 
     let rowUniqId = 0
