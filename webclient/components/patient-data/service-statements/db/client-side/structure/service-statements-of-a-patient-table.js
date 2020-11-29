@@ -88,7 +88,7 @@ export const serviceStatementsFormDef = {
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
-
+  showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [

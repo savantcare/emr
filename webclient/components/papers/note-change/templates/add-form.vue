@@ -1,8 +1,11 @@
 <!-- Goal: Show multiple add rows along with remove each row. At end A. Reviewed B. Reset form C. Add more  -->
 <template>
   <div>
+    <div v-if="_formDef.showFilterBySearchInAddForm">
+      <el-input placeholder="filter" v-model="searchFilter" />
+    </div>
     <!-- Start rendering the add form 
-         Scenario: There are existiing rows in edit state. If there no such rows this form inside v-else creates a empty row 
+         Scenario: There are existing rows in edit state. If there no such rows this form inside v-else creates a empty row 
         _formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm has the grid design like grid-template-columns: 1fr 1fr 1fr 
         Start to process each row -->
     <div v-if="cfGetClientTblNewRowsInEditState.length && cfEmptyRowAtBottom">
@@ -56,15 +59,17 @@
                 )"
                 :key="item.id"
               >
-                <el-button
-                  size="mini"
-                  round
-                  v-model="value[_fieldDef.nameInDb]"
-                  :type="item.selected ? 'primary' : 'plain'"
-                  @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                  >{{ item.value }}</el-button
-                >
-                <span v-if="item.subText"><br />{{ item.subText }}</span>
+                <div v-if="!searchFilter || item.value.toLowerCase().includes(searchFilter.toLowerCase())">
+                  <el-button
+                    size="mini"
+                    round
+                    v-model="value[_fieldDef.nameInDb]"
+                    :type="item.selected ? 'primary' : 'plain'"
+                    @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                    >{{ item.value }}</el-button
+                  >
+                  <span v-if="item.subText"><br />{{ item.subText }}</span>
+                </div>
               </div>
             </div>
 
@@ -284,7 +289,7 @@ export default {
     this.value = this._formDef.fnCreated(this.mfGetArOfDataRows())
   },
   data() {
-    return { value: [] }
+    return { value: [], searchFilter: '' }
   },
   validations() {
     return this._formDef.validationsObj
@@ -310,12 +315,12 @@ export default {
   computed: {
     // allPatientDataTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
-      console.log(this.nameOfFieldWithFocus)
-      const r = allPatientDataTbls[this._formDef.id].fnGetNewRowsInEditState()
+      const r = allPatientDataTbls[this._formDef.id].fnGetNewRowsInEditState() // for things like SS it will return 1 row. For things like reminders it will return 0 to many rows
       return r
     },
     cfEmptyRowAtBottom() {
-      // Csae 1: There can be infinite number of data rows
+      // Why? When entering reminders there should always be a empty row at bottom so reminbders can be added faster
+      // Case 1: There can be infinite number of data rows
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
         const r = allPatientDataTbls[this._formDef.id].fnGetNewRows()
         if (r.length > 0) return true
