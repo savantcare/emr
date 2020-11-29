@@ -86,7 +86,7 @@ export default {
           data: {
             fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             fieldOptionLabel: label,
-            examinationFieldNameInDb: fldName,
+            fieldNameInDb: fldName,
           },
         })
         rowUniqId++

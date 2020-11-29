@@ -198,7 +198,7 @@ export const examinationFormDef = {
     let arOfAllSelectOptions = examinationAllSelectOptionsTbl
       .query()
       .where('ROW_END', 2147483648000)
-      .where('examinationFieldNameInDb', fieldNameInDb)
+      .where('fieldNameInDb', fieldNameInDb)
       .get()
 
     // get the value for this field in patient table
@@ -219,7 +219,7 @@ export const examinationFormDef = {
 
     let arOfAllSelectOptions = examinationAllSelectOptionsTbl
       .query()
-      .where('examinationFieldNameInDb', pFieldNameInDb)
+      .where('fieldNameInDb', pFieldNameInDb)
       .where('fieldOptionId', pfieldValue)
       .get()
 
