@@ -12,203 +12,36 @@ export default {
     return {}
   },
   mounted() {
-    let i = 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
-        examinationFieldOptionLabel: 'Good grooming and hygiene',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
+    const selectOptions = {
+      appearance_select: [
+        { label: 'Good grooming and hygiene' },
+        { label: 'No apparent distress' },
+        { label: 'Well developed, well nourished' },
+        { label: 'Appears stated age' },
+        { label: 'Appears younger than stated age' },
+        { label: 'Appears older than stated age' },
+        { label: 'Obese' },
+        { label: 'Thin or cachectic' },
+        { label: 'Disheveled, unkempt' },
+        { label: 'Malodorous' },
+      ],
+    }
 
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'No apparent distress',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Well developed, well nourished',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Appears stated age',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Appears younger than stated age',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Appears older than stated age',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Obese',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Thin or cachectic',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Disheveled, unkempt',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Malodorous',
-        examinationFieldNameInDb: 'appearance_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Pleasent and cooperative',
-        examinationFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Uncooperative',
-        examinationFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Hostile or defiant',
-        examinationFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Guarded',
-        examinationFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Evasive',
-        examinationFieldNameInDb: 'attitude_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Agitated',
-        examinationFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Retarded',
-        examinationFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Other',
-        examinationFieldNameInDb: 'psychomotor_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Appropriate',
-        examinationFieldNameInDb: 'eye_contact_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Downcast',
-        examinationFieldNameInDb: 'eye_contact_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Intense',
-        examinationFieldNameInDb: 'eye_contact_multi_select',
-      },
-    })
-
-    i = i + 1
-    examinationAllSelectOptionsTbl.insert({
-      data: {
-        examinationFieldOptionId: '#' + i + '#',
-        examinationFieldOptionLabel: 'Fleeting',
-        examinationFieldNameInDb: 'eye_contact_multi_select',
-      },
-    })
+    let i = 0
+    let fldName = {}
+    for (fldName in selectOptions) {
+      const obj = selectOptions[fldName]
+      for (let i = 0; i < obj.length; i++) {
+        const label = obj[i].label
+        examinationAllSelectOptionsTbl.insert({
+          data: {
+            examinationFieldOptionId: '#' + i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            examinationFieldOptionLabel: label,
+            examinationFieldNameInDb: fldName,
+          },
+        })
+      }
+    }
   },
 }
 </script>

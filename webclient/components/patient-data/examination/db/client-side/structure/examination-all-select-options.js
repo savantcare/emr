@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class examinationAllSelectOptions extends clientTblManage {
-  static entity = 'tblexaminationAllSelectOptions'
+  static entity = 'tblExaminationAllSelectOptions'
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/examination/v20'
 
