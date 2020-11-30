@@ -55,7 +55,6 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     -->
     <el-tabs
       tab-position="left"
-      style="height: 900px"
       v-model="activeTabName"
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
