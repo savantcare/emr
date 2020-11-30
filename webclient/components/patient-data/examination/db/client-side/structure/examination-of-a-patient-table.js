@@ -66,7 +66,7 @@ export const examinationFormDef = {
       nameInUi: 'Appearance',
       type: 'multi-select-with-buttons',
       showLabel: true,
-      style: 'padding: 20px',
+      style: 'padding: 20px; grid-row: 1/3',
     },
     {
       nameInDb: 'attitude_multi_select',
