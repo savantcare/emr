@@ -487,9 +487,9 @@ export default {
       //console.log()
       let rowStatus = 0
 
-      if (!pEvent) return
-
-      if (pEvent.length > 2) {
+      // if (!pEvent) return // I have removed this line of code because if pEvent comes blank then
+      // we need to update field value as blank in ORM.
+      if (pEvent && pEvent.length > 2) {
         rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
       } else {
         rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
