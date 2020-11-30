@@ -120,6 +120,9 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"><u>G</u>oals</span>
         <goalsAdd
       /></el-tab-pane>
+      <el-tab-pane label="Medication orders" name="orders">
+        <span slot="label">Medication orders</span> <recAdd />
+      </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
         <span slot="label">Recommenda<u>t</u>ions</span> <recAdd
       /></el-tab-pane>
@@ -158,6 +161,7 @@ import prosAdd from '@/components/patient-data/psych-review-of-system/change-lay
 import pastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
+import medicationOrder from '@/components/patient-data/medication-order/change-layer/medication-order-add.vue'
 
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
