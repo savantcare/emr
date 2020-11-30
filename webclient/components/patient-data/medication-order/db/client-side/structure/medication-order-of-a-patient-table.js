@@ -6,8 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class medical_history extends clientTblManage {
-  static entity = 'tblMedicalHistory'
+export default class medication_order extends clientTblManage {
+  static entity = 'tblmedicationOrder'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -52,10 +52,10 @@ export default class medical_history extends clientTblManage {
   }
 }
 
-export const medicalHistoryFormDef = {
-  id: 'medical_history',
-  plural: 'medical history',
-  singular: 'medical history',
+export const medicationOrderFormDef = {
+  id: 'medication_order',
+  plural: 'medication order',
+  singular: 'medication order',
   fieldsDef: [
     { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'text' },
     { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },

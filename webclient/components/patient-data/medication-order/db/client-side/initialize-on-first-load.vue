@@ -1,16 +1,16 @@
 <template>
   <div>
-    <initializeMedicalHistoryComponent />
+    <initializemedicationOrderComponent />
   </div>
 </template>
 
 <script>
-import initializeMedicalHistoryComponent from '@/components/patient-data/medication-order/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializemedicationOrderComponent from '@/components/patient-data/medication-order/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
 
 export default {
   components: {
-    initializeMedicalHistoryComponent,
+    initializemedicationOrderComponent,
   },
   async mounted() {
     /*
@@ -20,7 +20,7 @@ export default {
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
 
-    if (process.env.useServerDBForMedicalHistory === true) {
+    if (process.env.useServerDBFormedicationOrder === true) {
       const proFromDB = await clientTbl.api().get(clientTbl.apiUrl)
       if (proFromDB.ok) {
       }

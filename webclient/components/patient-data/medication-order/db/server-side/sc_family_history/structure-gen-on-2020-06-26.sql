@@ -1,8 +1,8 @@
-use sc_medical_history;
+use sc_medication_order;
 
-DROP TABLE IF EXISTS `medical_history`;
+DROP TABLE IF EXISTS `medication_order`;
 
-CREATE TABLE `medical_history` (
+CREATE TABLE `medication_order` (
   `serverSideRowUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,

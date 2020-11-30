@@ -5,13 +5,13 @@
 
 <script>
 import timeLineView from '@/components//papers/note-view/templates/timeline-structure.vue'
-import { medicalHistoryFormDef } from '@/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import { medicationOrderFormDef } from '@/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
 
 export default {
   components: { timeLineView },
   data: function () {
     return {
-      formDef: medicalHistoryFormDef,
+      formDef: medicationOrderFormDef,
     }
   },
 }

@@ -1,1 +1,1 @@
-drop database sc_medical_history
+drop database sc_medication_order

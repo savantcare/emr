@@ -1,1 +1,1 @@
-create database sc_medical_history
+create database sc_medication_order
