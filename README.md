@@ -65,19 +65,21 @@ Whenever tab_click event is fired use data from this Obj to set focus and caret 
 
 Whenever onFocus is fired the sub Ct. updates the value in this object.
 
-1. Focus not working for
+1. On backspace in CC the first charecter does not go away.
+2. Dialog box scroll in add is not working.
+3. Focus not working for
    A. Number field
    B. I click outside the change paper and then open the change paper again.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
    D. When I use keyboard shortcut to go to a different tab the focus does not change.
    E. When I go to service statement the focus is not on the right area of the form.
-2. Dialog box scroll in add is not working.
-3. When header appointments are changed choosing different slides of chief complaint.
-4. When adding a chief complaint if I press enter the whole page gets refreshed. Enter key to behave better.
-5. Get correlate to work from button
-6. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
-7. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
-8. Put page in full screen using https://mirari.cc/vue-fullscreen/
-9. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
-10. Patient timeline: https://jinfang134.github.io/vue-pipeline/
-11. Search in top header using https://theoxiong.github.io/vue-search-panel/
+4. When header appointments are changed choosing different slides of chief complaint.
+5. Enter key to behave better => Check family history. Problem video recorded on 29th Nov
+6. Get correlate to work from button
+7. Get scBrain to work from button as a paper
+8. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
+9. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
+10. Put page in full screen using https://mirari.cc/vue-fullscreen/
+11. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
+12. Patient timeline: https://jinfang134.github.io/vue-pipeline/
+13. Search in top header using https://theoxiong.github.io/vue-search-panel/
