@@ -74,6 +74,15 @@ export default {
         { label: 'Passive death wish' },
       ],
       perceptions_multi_select: [{ label: 'No AVH' }, { label: '+AH' }, { label: '+VH' }, { label: '+Command AH' }],
+      thought_process_multi_select: [
+        { label: 'Disorganized' },
+        { label: 'Circumstantial' },
+        { label: 'Linear logical and goal-directed' },
+        { label: 'Tangential' },
+        { label: 'Looseness of association' },
+        { label: 'Flight of ideas' },
+        { label: 'Poverty of thought' },
+      ],
     }
 
     let rowUniqId = 0
