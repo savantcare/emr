@@ -15,72 +15,72 @@ export default {
     let i = 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
-        medicalReviewOfSystemFieldOptionLabel: 'Change in appetite',
-        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
+        fieldOptionId: i + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+        fieldOptionLabel: 'Change in appetite',
+        fieldNameInDb: 'recently_noticed_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Fatigue',
-        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Fatigue',
+        fieldNameInDb: 'recently_noticed_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Change in weight',
-        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Change in weight',
+        fieldNameInDb: 'recently_noticed_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'None',
-        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'None',
+        fieldNameInDb: 'recently_noticed_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Night sweats',
-        medicalReviewOfSystemFieldNameInDb: 'recently_noticed_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Night sweats',
+        fieldNameInDb: 'recently_noticed_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Difficulty sleeping',
-        medicalReviewOfSystemFieldNameInDb: 'constitutional_systems_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Difficulty sleeping',
+        fieldNameInDb: 'constitutional_systems_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Feeling hotter than everyone',
-        medicalReviewOfSystemFieldNameInDb: 'constitutional_systems_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Feeling hotter than everyone',
+        fieldNameInDb: 'constitutional_systems_select',
       },
     })
 
     i = i + 1
     medicalReviewOfSystemAllSelectOptionsTbl.insert({
       data: {
-        medicalReviewOfSystemFieldOptionId: i + '#',
-        medicalReviewOfSystemFieldOptionLabel: 'Sores that dont heal',
-        medicalReviewOfSystemFieldNameInDb: 'skin_conditions_select',
+        fieldOptionId: i + '#',
+        fieldOptionLabel: 'Sores that dont heal',
+        fieldNameInDb: 'skin_conditions_select',
       },
     })
   },

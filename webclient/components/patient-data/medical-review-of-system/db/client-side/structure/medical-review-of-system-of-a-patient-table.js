@@ -116,7 +116,7 @@ export const medicalReviewOfSystemFormDef = {
       arOfAllSelectOptions = medicalReviewOfSystemAllSelectOptionsTbl
         .query()
         .where('ROW_END', 2147483648000)
-        .where('medicalReviewOfSystemFieldNameInDb', fieldNameInDb)
+        .where('fieldNameInDb', fieldNameInDb)
         .get()
       this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = arOfAllSelectOptions
     } else {
@@ -127,8 +127,8 @@ export const medicalReviewOfSystemFormDef = {
     let selectedIDs = row[fieldNameInDb]
 
     arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['medicalReviewOfSystemFieldOptionId']
-      data['value'] = data['medicalReviewOfSystemFieldOptionLabel']
+      data['id'] = data['fieldOptionId']
+      data['value'] = data['fieldOptionLabel']
       data['selected'] = selectedIDs.includes(data['id']) ? true : false
     })
 
@@ -141,11 +141,11 @@ export const medicalReviewOfSystemFormDef = {
 
     let arOfAllSelectOptions = medicalReviewOfSystemAllSelectOptionsTbl
       .query()
-      .where('medicalReviewOfSystemFieldNameInDb', pFieldNameInDb)
-      .where('medicalReviewOfSystemFieldOptionId', pfieldValue)
+      .where('fieldNameInDb', pFieldNameInDb)
+      .where('fieldOptionId', pfieldValue)
       .get()
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['medicalReviewOfSystemFieldOptionLabel']
+    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
 
     return optionIdToLabel
   },
