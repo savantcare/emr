@@ -11,6 +11,7 @@ import { miscellaneousNotesFormDef } from '~/components/patient-data/miscellaneo
 import { nameFormDef } from '~/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
 import { pastPsychHistoryFormDef } from '~/components/patient-data/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 import { planCommentsFormDef } from '~/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import { socialHistoryFormDef } from '~/components/patient-data/social-history/db/client-side/structure/social-history-of-a-patient-table.js'
 import { processNotesFormDef } from '~/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import { recommendationsFormDef } from '~/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import { remindersFormDef } from '~/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
@@ -42,6 +43,7 @@ const allFormDefs = {
   name: nameFormDef,
   past_psych_history: pastPsychHistoryFormDef,
   plan_comments: planCommentsFormDef,
+  social_history: socialHistoryFormDef,
   process_notes: processNotesFormDef,
   recommendations: recommendationsFormDef,
   reminders: remindersFormDef,

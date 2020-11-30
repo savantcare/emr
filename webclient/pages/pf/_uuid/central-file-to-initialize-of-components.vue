@@ -90,6 +90,7 @@ import initializeFamilyHistoryComponent from '@/components/patient-data/family-h
 import initializeMedicalHistoryComponent from '@/components/patient-data/medical-history/db/client-side/initialize-on-first-load.vue'
 import initializeMiscNotesComponent from '~/components/patient-data/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
 import initializePlanCommentsComponent from '~/components/patient-data/plan-comments/db/client-side/initialize-on-first-load.vue'
+import initializeSHComponent from '~/components/patient-data/social-history/db/client-side/initialize-on-first-load.vue'
 import initializeProcessNotesComponent from '~/components/patient-data/process-notes/db/client-side/initialize-on-first-load.vue'
 import initializeRecComponent from '@/components/patient-data/recommendations/db/client-side/initialize-on-first-load.vue'
 import initializeRemComponent from '@/components/patient-data/reminders/db/client-side/initialize-on-first-load.vue'

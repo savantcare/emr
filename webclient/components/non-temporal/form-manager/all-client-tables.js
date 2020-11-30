@@ -12,6 +12,7 @@ import miscNotesClientTbl from '~/components/patient-data/miscellaneous-notes/db
 import nameClientTbl from '~/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
 import pastPsychHistoryClientTbl from '~/components/patient-data/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 import planCommentsClientTbl from '~/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
+import socialHistoryClientTbl from '~/components/patient-data/social-history/db/client-side/structure/social-history-of-a-patient-table.js'
 import processNotesClientTbl from '~/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import recommendationClientTbl from '~/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 import reminderClientTbl from '~/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
@@ -69,6 +70,7 @@ const allPatientDataTbls = {
   name: nameClientTbl,
   past_psych_history: pastPsychHistoryClientTbl,
   plan_comments: planCommentsClientTbl,
+  social_history: socialHistoryClientTbl,
   process_notes: processNotesClientTbl,
   recommendations: recommendationClientTbl,
   reminders: reminderClientTbl,

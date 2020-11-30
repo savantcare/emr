@@ -108,6 +108,9 @@ database.register(tableStructureForMiscNotes)
 import tableStructureForPlanComments from '~/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 database.register(tableStructureForPlanComments)
 
+import tableStructureForSHx from '~/components/patient-data/social-history/db/client-side/structure/social-history-of-a-patient-table.js'
+database.register(tableStructureForSHx)
+
 import tableStructureForProcessNotes from '~/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 database.register(tableStructureForProcessNotes)
 
