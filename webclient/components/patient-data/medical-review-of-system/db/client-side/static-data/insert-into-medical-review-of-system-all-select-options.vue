@@ -33,6 +33,15 @@ export default {
         { label: 'Hair changes' },
         { label: 'None' },
       ],
+      allergies_select: [{ label: 'Seasonal allergies' }, { label: 'Hives' }, { label: 'None' }],
+      ear_nose_mouth_throat_select: [
+        { label: 'Pain in the front of your neck' },
+        { label: 'Neck lumps or goiter' },
+        { label: 'Difficulty Swallowing' },
+        { label: 'Change in Hearing' },
+        { label: 'Voice Changes' },
+        { label: 'None' },
+      ],
     }
     let rowUniqId = 0
     let fldName = {}
