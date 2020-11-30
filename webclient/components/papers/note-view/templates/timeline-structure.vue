@@ -83,7 +83,7 @@ import ctActOnSocketMessages from '@/components/papers/note-change/templates/act
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
-import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
+import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
 export default {
   components: { ctActOnSocketMessages },

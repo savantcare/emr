@@ -121,8 +121,8 @@
   </div>
 </template>
 <script>
-import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
-import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
+import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   /*

@@ -46,7 +46,7 @@ import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.
 import ctActOnSocketMessages from '@/components/papers/note-change/templates/act-on-socket-messages-from-server-ct.vue'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import showContentInCardComponent from '@/components/non-temporal/display-manager/show-content-in-card-component.vue'
-import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   components: { ctActOnSocketMessages, showContentInCardComponent },

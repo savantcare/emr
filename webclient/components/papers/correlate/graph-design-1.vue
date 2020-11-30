@@ -28,8 +28,8 @@ import clientTblOfPatientPsychReviewOfSystems from '@/components/patient-data/ps
 
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import allPatientDataTbls from '@/components/def-processors/all-client-tables.js'
-import allFormDefs from '@/components/def-processors/all-form-definations.js'
+import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
+import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 
 import { Chart } from 'highcharts-vue'
 

@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { rowState } from '@/components/def-processors/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
 
 // Library
 import moment from 'moment'
