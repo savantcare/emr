@@ -38,7 +38,11 @@ export default class social_history extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
+      current_social_situation: this.string(''),
+      education_work_history: this.string(''),
+      social_supports: this.string(''),
+      developmental_history: this.string(''),
+      trauma_history: this.string(''),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -53,9 +57,15 @@ export const socialHistoryFormDef = {
   id: 'social_history',
   plural: 'social history',
   singular: 'social history',
-  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', type: 'textarea' }],
+  fieldsDef: [
+    { nameInDb: 'current_social_situation', nameInUi: 'Current social situation', type: 'textarea' },
+    { nameInDb: 'education_work_history', nameInUi: 'Education / Work / Military Hx', type: 'textarea' },
+    { nameInDb: 'social_supports', nameInUi: 'Social supports', type: 'textarea' },
+    { nameInDb: 'developmental_history', nameInUi: 'Developmental history', type: 'textarea' },
+    { nameInDb: 'trauma_history', nameInUi: 'Trauma history', type: 'textarea' },
+  ],
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
@@ -66,6 +76,7 @@ export const socialHistoryFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  maxNumberOfTemporallyValidRows: 1,
 
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {

@@ -38,8 +38,11 @@ export default class medication_order extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      description: this.string(''),
       drugName: this.string(''),
+      directionsForPatient: this.string(''),
+      startDate: this.string(''),
+      qty: this.string(''),
+      daysSupply: this.string(''),
       priority: this.number(0),
       isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
@@ -58,7 +61,10 @@ export const medicationOrderFormDef = {
   singular: 'medication order',
   fieldsDef: [
     { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'text' },
-    { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },
+    { nameInDb: 'directionsForPatient', nameInUi: 'Direction for the patient', type: 'textarea' },
+    { nameInDb: 'startDate', nameInUi: 'Start date', type: 'textarea' },
+    { nameInDb: 'qty', nameInUi: 'Quantity', type: 'textarea' },
+    { nameInDb: 'daysSupply', nameInUi: 'Days supply', type: 'textarea' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
   fnCreated: function () {
