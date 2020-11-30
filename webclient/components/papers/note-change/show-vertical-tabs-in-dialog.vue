@@ -60,7 +60,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     >
-      <el-tab-pane label="Chief complaint" name="chief_complaint" key="1" tabIndex="0">
+      <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
         <editChiefComplaint />
       </el-tab-pane>
@@ -69,58 +69,55 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         name="psych_review_of_system"
         tabIndex="0"
         problem1="This tab index is not getting applied to the child div inside el-tab-pane"
-        key="2"
       >
         <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
         <prosAdd />
       </el-tab-pane>
-      <el-tab-pane label="Past psych history" name="past_psych_history" key="3">
+      <el-tab-pane label="Past psych history" name="past_psych_history">
         <span slot="label" tabIndex="0"><u>P</u>ast psych history</span>
         <pastPsychHistory />
       </el-tab-pane>
-      <el-tab-pane label="Family history" name="family_history" key="4">
+      <el-tab-pane label="Family history" name="family_history">
         <span slot="label" tabIndex="0"><u>F</u>amily history</span>
         <familyHistory />
       </el-tab-pane>
-      <el-tab-pane label="Medical history" name="medical_history" key="5">
+      <el-tab-pane label="Medical history" name="medical_history">
         <span slot="label" tabIndex="0">Medical histor<u>y</u></span>
         <medicalHistory />
       </el-tab-pane>
-      <el-tab-pane label="Social history" name="social_history" key="5">
+      <el-tab-pane label="Social history" name="social_history">
         <span slot="label" tabIndex="0">Social histor<u>y</u></span>
         <socialHistory />
       </el-tab-pane>
-      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="6">
+      <el-tab-pane label="M review of systems" name="medical_review_of_system">
         <span slot="label">M revie<u>w</u> of systems</span>
         <mrosAdd
       /></el-tab-pane>
-      <el-tab-pane label="Allergies" name="allergies" key="7">
+      <el-tab-pane label="Allergies" name="allergies">
         <span slot="label"><u>A</u>llergies</span>
         <allergies />
       </el-tab-pane>
-      <el-tab-pane label="Examination" name="examination" key="8">
+      <el-tab-pane label="Examination" name="examination">
         <span slot="label"><u>E</u>xamination</span>
         <examAdd />
       </el-tab-pane>
-      <el-tab-pane label="Vitals" name="vitals" key="9">
+      <el-tab-pane label="Vitals" name="vitals">
         <span slot="label"><u>V</u>itals</span>
-        <weightAdd name="weight" key="10" />
-        <heightAdd name="height" key="11" />
-        <pulseAdd name="pulse" key="12" />
-        <temperatureAdd name="temperature" key="13" />
-        <bloodPressureAdd name="blood_pressure" key="14" />
-        <bloodSugarAdd name="blood_sugar" key="15" />
-        <bmiAdd name="bmi" key="16" />
-        <waistCircumferenceAdd name="waist_circumference" key="17"
+        <weightAdd name="weight" />
+        <heightAdd name="height" />
+        <pulseAdd name="pulse" />
+        <temperatureAdd name="temperature" />
+        <bloodPressureAdd name="blood_pressure" />
+        <bloodSugarAdd name="blood_sugar" />
+        <bmiAdd name="bmi" />
+        <waistCircumferenceAdd name="waist_circumference"
       /></el-tab-pane>
-      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19">
+      <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">
         <span slot="label">Asmnt & <u>d</u>iagnosis</span>
         <dxAdd
       /></el-tab-pane>
-      <el-tab-pane label="Screens" name="screens" key="20">
-        <span slot="label">Sc<u>r</u>eens</span><screensAdd
-      /></el-tab-pane>
-      <el-tab-pane label="Goals" name="goals" key="21">
+      <el-tab-pane label="Screens" name="screens"> <span slot="label">Sc<u>r</u>eens</span><screensAdd /></el-tab-pane>
+      <el-tab-pane label="Goals" name="goals">
         <span slot="label"><u>G</u>oals</span>
         <goalsAdd
       /></el-tab-pane>
