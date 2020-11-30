@@ -55,7 +55,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     -->
 
     <!-- 
-      Q). Why we added the following css?
+      Q). Why we have removed height from below el-tabs?
         Problem: Dialog box scroll in add is not working.
         Solution: I have removed height from below el-tabs section.
           Hence, the height of popup window is same as height of content. And if height of content is greater than 
