@@ -61,7 +61,14 @@
                 )"
                 :key="item.id"
               >
-                <div v-if="!searchFilter || item.value.toLowerCase().includes(searchFilter.toLowerCase())">
+                <div
+                  v-if="
+                    !searchFilter ||
+                    item.value.toLowerCase().includes(searchFilter.toLowerCase()) ||
+                    mf_matched_field_name(_fieldDef.nameInUi)
+                  "
+                  why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
+                >
                   <el-button
                     size="mini"
                     round
@@ -371,6 +378,10 @@ export default {
     log(item) {
       console.log(item)
     },
+    mf_matched_field_name(pFieldName) {
+      return pFieldName.includes(this.searchFilter)
+    },
+
     mf_for_tab_action_by_enter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
