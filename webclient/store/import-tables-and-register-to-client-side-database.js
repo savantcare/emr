@@ -99,8 +99,8 @@ database.register(tableStructureForAllergies)
 import tableStructureForChiefComplaint from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 database.register(tableStructureForChiefComplaint)
 
-import tableStructureForFH from '~/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
-database.register(tableStructureForFH)
+import tableStructureForRec from '~/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
+database.register(tableStructureForRec)
 
 import tableStructureForMiscNotes from '~/components/patient-data/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 database.register(tableStructureForMiscNotes)
@@ -111,8 +111,11 @@ database.register(tableStructureForPlanComments)
 import tableStructureForProcessNotes from '~/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 database.register(tableStructureForProcessNotes)
 
-import tableStructureForRec from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
-database.register(tableStructureForRec)
+import tableStructureForFH from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+database.register(tableStructureForFH)
+
+import tableStructureForMH from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
+database.register(tableStructureForMH)
 
 import tableStructureForRem from '~/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 database.register(tableStructureForRem)

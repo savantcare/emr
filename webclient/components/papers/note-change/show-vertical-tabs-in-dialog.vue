@@ -82,28 +82,32 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label" tabIndex="0"><u>F</u>amily history</span>
         <familyHistory />
       </el-tab-pane>
-      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="5">
+      <el-tab-pane label="Medical history" name="medical_history" key="5">
+        <span slot="label" tabIndex="0"><u>M</u>edical history</span>
+        <medicalHistory />
+      </el-tab-pane>
+      <el-tab-pane label="M review of systems" name="medical_review_of_system" key="6">
         <span slot="label"><u>M</u> review of systems</span>
         <mrosAdd
       /></el-tab-pane>
-      <el-tab-pane label="Allergies" name="allergies" key="6">
+      <el-tab-pane label="Allergies" name="allergies" key="7">
         <span slot="label"><u>A</u>llergies</span>
         <allergies />
       </el-tab-pane>
-      <el-tab-pane label="Examination" name="examination" key="7">
+      <el-tab-pane label="Examination" name="examination" key="8">
         <span slot="label"><u>E</u>xamination</span>
         <examAdd />
       </el-tab-pane>
-      <el-tab-pane label="Vitals" name="vitals" key="8">
+      <el-tab-pane label="Vitals" name="vitals" key="9">
         <span slot="label"><u>V</u>itals</span>
-        <weightAdd name="weight" key="9" />
-        <heightAdd name="height" key="10" />
-        <pulseAdd name="pulse" key="11" />
-        <temperatureAdd name="temperature" key="12" />
-        <bloodPressureAdd name="blood_pressure" key="13" />
-        <bloodSugarAdd name="blood_sugar" key="14" />
-        <bmiAdd name="bmi" key="15" />
-        <waistCircumferenceAdd name="waist_circumference" key="16"
+        <weightAdd name="weight" key="10" />
+        <heightAdd name="height" key="11" />
+        <pulseAdd name="pulse" key="12" />
+        <temperatureAdd name="temperature" key="13" />
+        <bloodPressureAdd name="blood_pressure" key="14" />
+        <bloodSugarAdd name="blood_sugar" key="15" />
+        <bmiAdd name="bmi" key="16" />
+        <waistCircumferenceAdd name="waist_circumference" key="17"
       /></el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis" key="19">
         <span slot="label">Asmnt & <u>d</u>iagnosis</span>
@@ -129,17 +133,17 @@ So things like collapsible state will get destroyed. Even though the rem descrip
           <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
-      <el-tab-pane label="Plan comments" name="plan_comments" key="24">
+      <el-tab-pane label="Plan comments" name="plan_comments" key="400">
         <span slot="label">P<u>l</u>an comments</span> <pcAdd
       /></el-tab-pane>
-      <el-tab-pane label="Service statements" name="service_statements" key="25">
+      <el-tab-pane label="Service statements" name="service_statements" key="300">
         <span slot="label"><u>S</u>ervice statements</span>
         <ssAdd />
       </el-tab-pane>
-      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="17">
+      <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="200">
         <span slot="label">Misc <u>n</u>ote</span> <miscNote
       /></el-tab-pane>
-      <el-tab-pane label="Process Note" name="process_notes" key="18">
+      <el-tab-pane label="Process Note" name="process_notes" key="100">
         <span slot="label">Pr<u>o</u>cess note</span> <processNote
       /></el-tab-pane>
     </el-tabs>
@@ -153,6 +157,8 @@ import editChiefComplaint from '@/components/patient-data/chief-complaint/change
 import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-ss.vue'
 import pastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
+import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
+
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
 import processNote from '@/components/patient-data/process-notes/change-layer/add-ct.vue'
@@ -201,6 +207,7 @@ export default {
     prosAdd,
     pastPsychHistory,
     familyHistory,
+    medicalHistory,
     allergies,
     miscNote,
     processNote,

@@ -2,6 +2,7 @@ import { allergiesFormDef } from '~/components/patient-data/allergies/db/client-
 import { chiefComplaintFormDef } from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import { diagnosisFormDef } from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import { familyHistoryFormDef } from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
+import { medicalHistoryFormDef } from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
 import { heightFormDef } from '~/components/patient-data/height/db/client-side/structure/height-of-a-patient-table.js'
 import { examinationFormDef } from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { medicalReviewOfSystemFormDef } from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
@@ -31,6 +32,7 @@ const allFormDefs = {
   chief_complaint: chiefComplaintFormDef,
   diagnosis: diagnosisFormDef,
   family_history: familyHistoryFormDef,
+  medical_history: medicalHistoryFormDef,
   height: heightFormDef,
   medical_review_of_system: medicalReviewOfSystemFormDef,
   examination: examinationFormDef,
