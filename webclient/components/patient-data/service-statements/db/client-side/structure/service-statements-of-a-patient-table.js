@@ -90,7 +90,7 @@ export const serviceStatementsFormDef = {
   showResetFormButton: false,
   showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
-
+  cacheOfMasterListOfSelectOptions: {},
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'total_minutes_in_psychotherapy',
     'modality_of_psychotherapy_multi_select',
@@ -121,12 +121,17 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
-      .query()
-      .where('ROW_END', 2147483648000)
-      .where('fieldNameInDb', fieldNameInDb)
-      .get()
-
+    let arOfAllSelectOptions = []
+    if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
+      arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
+        .query()
+        .where('ROW_END', 2147483648000)
+        .where('fieldNameInDb', fieldNameInDb)
+        .get()
+      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = arOfAllSelectOptions
+    } else {
+      arOfAllSelectOptions = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
+    }
     // get the value for this field in patient table
     let row = serviceStatementsOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
