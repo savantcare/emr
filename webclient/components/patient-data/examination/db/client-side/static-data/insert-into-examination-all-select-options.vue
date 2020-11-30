@@ -80,9 +80,41 @@ export default {
         { label: 'Linear logical and goal-directed' },
         { label: 'Tangential' },
         { label: 'Looseness of association' },
+        { label: 'No looseness of association' },
         { label: 'Flight of ideas' },
         { label: 'Poverty of thought' },
       ],
+      constitutional_multi_select: [{ label: 'Vital signs stable' }],
+      cognition_multi_select: [
+        { label: 'Imparied' },
+        { label: 'Fluctuating' },
+        { label: 'Grossly intact, no memory imparirement' },
+      ],
+      insight_multi_select: [
+        { label: 'Good' },
+        { label: 'Fair' },
+        { label: 'Poor' },
+        { label: 'Limited' },
+        { label: 'Impaired' },
+        { label: 'Questionable' },
+      ],
+      judgement_multi_select: [
+        { label: 'Good' },
+        { label: 'Fair' },
+        { label: 'Poor' },
+        { label: 'Limited' },
+        { label: 'Impaired' },
+        { label: 'Questionable' },
+      ],
+      impulse_control_multi_select: [
+        { label: 'Good' },
+        { label: 'Fair' },
+        { label: 'Poor' },
+        { label: 'Limited' },
+        { label: 'Impaired' },
+        { label: 'Questionable' },
+      ],
+      neurological_multi_select: [{ label: 'Gait and station normal' }, { label: 'Gait and station abnormal' }],
     }
 
     let rowUniqId = 0
