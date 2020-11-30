@@ -42,6 +42,70 @@ export default {
         { label: 'Voice Changes' },
         { label: 'None' },
       ],
+      eyes_head_select: [
+        { label: 'Loss of Vision' },
+        { label: 'Blurry Vision' },
+        { label: 'Eye burning/watering' },
+        { label: 'None' },
+      ],
+      respiratory_select: [
+        { label: 'Shortness of breath' },
+        { label: 'Frequent coughs' },
+        { label: 'Wheezing' },
+        { label: 'None' },
+      ],
+      cardiovascular_select: [
+        { label: 'Chest Pain' },
+        { label: 'Palpitations/Heart racing' },
+        { label: 'Swollen ankles' },
+        { label: 'None' },
+      ],
+      gastrointestinal_select: [
+        { label: 'Heartburn' },
+        { label: 'Nausea' },
+        { label: 'Abdominal pain' },
+        { label: 'Diarrhea' },
+        { label: 'Constipation' },
+        { label: 'None' },
+      ],
+      urinary_select: [
+        { label: 'Blood in urine' },
+        { label: 'Frequent urination at night' },
+        { label: 'Problems with libido/sex drive' },
+        { label: 'Men - problems with erections' },
+        { label: 'None' },
+      ],
+      endocrine_select: [
+        { label: 'Breast discharge' },
+        { label: 'Women - irregular periods' },
+        { label: 'Women - difficulty getting pregnant' },
+        { label: 'None' },
+      ],
+      musculoskeletal_select: [
+        { label: 'Back Pain' },
+        { label: 'Pain in joints' },
+        { label: 'Muscle crampsBony painNone' },
+      ],
+      neurological_select: [
+        { label: 'Shakiness' },
+        { label: 'Tingling/burning of feet or hands' },
+        { label: 'Numbness of feet or hands' },
+        { label: 'Episodes of facial numbness or difficulty speaking' },
+        { label: 'Headaches' },
+        { label: 'None' },
+      ],
+      psychological_select: [
+        { label: 'Anxiety' },
+        { label: 'Mood swings worse than usual' },
+        { label: 'Depressed' },
+        { label: 'None' },
+      ],
+      heme_lymphatic_select: [
+        { label: 'Bruise Easily' },
+        { label: 'Have swollen glands' },
+        { label: 'Bleed a lot' },
+        { label: 'None' },
+      ],
     }
     let rowUniqId = 0
     let fldName = {}
