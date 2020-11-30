@@ -559,19 +559,18 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
     /* Ref: https://stackoverflow.com/questions/38399050/vue-equivalent-of-settimeout */
 
-    // if it is a select type field the timeout will be 10ms since a user cannot click on and off as fast as typing
-    var timeToWait = 50
     if (pFldName.includes('select')) {
-      timeToWait = 10
+      // if it is a select type field no need for waiting since a user cannot click on and off as fast as typing
+      this.fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus)
+    } else {
+      this.vOrmSaveScheduled = setTimeout(
+        function (scope) {
+          scope.fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus)
+        },
+        50,
+        this
+      )
     }
-
-    this.vOrmSaveScheduled = setTimeout(
-      function (scope) {
-        scope.fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus)
-      },
-      timeToWait, // setting timeout of 500 ms
-      this
-    )
   }
 
   static fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus) {
