@@ -83,7 +83,7 @@ export const serviceStatementsFormDef = {
       nameInUi: 'Optional',
       type: 'multi-select-with-buttons',
       showLabel: true,
-      style: 'padding: 20px; grid-column: 2/2; grid-row: 2/3',
+      style: 'padding: 20px; grid-column: 2/2; grid-row: 2/6',
     },
   ],
   showReviewedButtonInForm: false,
