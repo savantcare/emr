@@ -263,4 +263,19 @@ I have added the following css because if we set font-size=200% then v-tour popu
 .v-tour .el-card__body {
   max-width: 600px;
 }
+
+/**
+  Q). Why we added the following css?
+    Problem: Dialog box scroll in add is not working.
+    Solution: I have added two css to resolve this issue.
+      First, height: 100%; - That means, the height of el-tabs__content should be same as height of popup window.
+      Second, overflow-y: auto; - That means, if height of content is greater than height of popup 
+      then scroll on y-axis will automatically appear.
+
+  I have added this css in index.vue because we need to apply this logic for all the popup windows.
+ */
+.el-tabs__content {
+  height: 100%;
+  overflow-y: auto;
+}
 </style>
