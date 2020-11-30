@@ -171,6 +171,7 @@ export const examinationFormDef = {
   showResetFormButton: false,
   showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
+  cacheOfMasterListOfSelectOptions: {},
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
@@ -197,12 +198,18 @@ export const examinationFormDef = {
   },
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let arOfAllSelectOptions = examinationAllSelectOptionsTbl
-      .query()
-      .where('ROW_END', 2147483648000)
-      .where('fieldNameInDb', fieldNameInDb)
-      .get()
+    let arOfAllSelectOptions = []
+    if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
+      arOfAllSelectOptions = examinationAllSelectOptionsTbl
+        .query()
+        .where('ROW_END', 2147483648000)
+        .where('fieldNameInDb', fieldNameInDb)
+        .get()
 
+      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = arOfAllSelectOptions
+    } else {
+      arOfAllSelectOptions = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
+    }
     // get the value for this field in patient table
     let row = examinationOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
