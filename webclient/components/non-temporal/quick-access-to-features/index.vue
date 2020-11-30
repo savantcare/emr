@@ -34,7 +34,7 @@ export default {
     this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
     this.$mousetrap.bind(['i', 'ctrl+i'], this.reminders)
     this.$mousetrap.bind(['l', 'ctrl+l'], this.plan_comments)
-    this.$mousetrap.bind(['m', 'ctrl+m'], this.medical_review_of_system)
+    this.$mousetrap.bind(['m', 'ctrl+w'], this.medication_orders)
     this.$mousetrap.bind(['n', 'ctrl+n'], this.miscellaneous_notes)
     this.$mousetrap.bind(['o', 'ctrl+o'], this.process_notes)
     this.$mousetrap.bind(['p', 'ctrl+p'], this.actOnUserIntentToSeePastPsychHistory)
@@ -42,6 +42,8 @@ export default {
     this.$mousetrap.bind(['s', 'ctrl+s'], this.service_statements)
     this.$mousetrap.bind(['t', 'ctrl+t'], this.recommendations)
     this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
+    this.$mousetrap.bind(['w', 'ctrl+w'], this.medical_review_of_system)
+    this.$mousetrap.bind(['y', 'ctrl+f'], this.medicalHistory)
 
     // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
     this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
@@ -103,6 +105,9 @@ export default {
     actOnUserIntentToSeeFamilyHistory() {
       return this.activateTab('family_history')
     },
+    medicalHistory() {
+      return this.activateTab('medical_history')
+    },
     medical_review_of_system() {
       return this.activateTab('medical_review_of_system')
     },
@@ -114,6 +119,9 @@ export default {
     },
     vitals() {
       return this.activateTab('vitals')
+    },
+    medication_orders() {
+      return this.activateTab('medication_orders')
     },
     diagnosis() {
       return this.activateTab('diagnosis')

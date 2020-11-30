@@ -39,7 +39,7 @@ export default class medical_history extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
-      diagnosis: this.string(''),
+      drugName: this.string(''),
       priority: this.number(0),
       isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
@@ -57,7 +57,7 @@ export const medicalHistoryFormDef = {
   plural: 'medical history',
   singular: 'medical history',
   fieldsDef: [
-    { nameInDb: 'diagnosis', nameInUi: 'Diagnosis', type: 'text' },
+    { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'text' },
     { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],

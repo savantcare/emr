@@ -83,11 +83,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <familyHistory />
       </el-tab-pane>
       <el-tab-pane label="Medical history" name="medical_history" key="5">
-        <span slot="label" tabIndex="0"><u>M</u>edical history</span>
+        <span slot="label" tabIndex="0">Medical histor<u>y</u></span>
         <medicalHistory />
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system" key="6">
-        <span slot="label"><u>M</u> review of systems</span>
+        <span slot="label">M revie<u>w</u> of systems</span>
         <mrosAdd
       /></el-tab-pane>
       <el-tab-pane label="Allergies" name="allergies" key="7">
@@ -120,8 +120,8 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"><u>G</u>oals</span>
         <goalsAdd
       /></el-tab-pane>
-      <el-tab-pane label="Medication orders" name="orders">
-        <span slot="label">Medication orders</span> <recAdd />
+      <el-tab-pane label="Medication orders" name="medication_orders">
+        <span slot="label"><u>M</u>edication orders</span> <medicationOrder />
       </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
         <span slot="label">Recommenda<u>t</u>ions</span> <recAdd
@@ -192,6 +192,7 @@ import pcAdd from '@/components/patient-data/plan-comments/change-layer/add-ct.v
 import ssAdd from '@/components/patient-data/service-statements/change-layer/add-ss.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import MedicationOrderAdd from '../../patient-data/medication-order/change-layer/medication-order-add.vue'
 
 export default {
   name: 'CLTabsInDialogManager',
@@ -212,6 +213,7 @@ export default {
     pastPsychHistory,
     familyHistory,
     medicalHistory,
+    medicationOrder,
     allergies,
     miscNote,
     processNote,
