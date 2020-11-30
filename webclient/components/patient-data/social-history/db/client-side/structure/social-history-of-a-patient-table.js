@@ -49,7 +49,7 @@ export default class social_history extends clientTblManage {
   }
 }
 
-export const planCommentsFormDef = {
+export const socialHistoryFormDef = {
   id: 'social_history',
   plural: 'social history',
   singular: 'social history',
