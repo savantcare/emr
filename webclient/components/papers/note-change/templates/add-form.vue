@@ -388,7 +388,7 @@ export default {
       console.log(item)
     },
     mf_matched_field_name(pFieldName) {
-      return pFieldName.includes(this.searchFilter)
+      return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
     },
 
     mf_for_tab_action_by_enter: function (e) {
