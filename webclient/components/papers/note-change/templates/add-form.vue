@@ -52,7 +52,7 @@
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
               <div v-if="_fieldDef.showLabel">
-                <b>{{ _fieldDef.nameInUi }}</b>
+                <b><span v-html="highlight(_fieldDef.nameInUi)"></span></b>
               </div>
               <div
                 v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
@@ -75,8 +75,8 @@
                     v-model="value[_fieldDef.nameInDb]"
                     :type="item.selected ? 'primary' : 'plain'"
                     @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                    >{{ item.value }}</el-button
-                  >
+                    ><span v-html="highlight(item.value)"></span
+                  ></el-button>
                   <span v-if="item.subText"><br />({{ item.subText }})</span>
                 </div>
               </div>
@@ -375,6 +375,15 @@ export default {
     })
   },
   methods: {
+    highlight(pText) {
+      // https://stackoverflow.com/questions/8644428/how-to-highlight-text-using-javascript
+      const hilit = pText.replace(
+        new RegExp(this.searchFilter + '(?!([^<]+)?<)', 'gi'),
+        '<b style="background-color:#ff0;font-size:100%">$&</b>'
+      )
+      //console.log(hilit)
+      return hilit
+    },
     log(item) {
       console.log(item)
     },
