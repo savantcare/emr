@@ -17,11 +17,22 @@ export default {
         { label: 'Change in appetite' },
         { label: 'Fatigue' },
         { label: 'Change in weight' },
-        { label: 'None' },
         { label: 'Night sweats' },
+        { label: 'None' },
       ],
-      constitutional_systems_select: [{ label: 'Difficulty sleeping' }, { label: 'Feeling hotter than everyone' }],
-      skin_conditions_select: [{ label: 'Sores that dont heal' }],
+      constitutional_systems_select: [
+        { label: 'Difficulty sleeping' },
+        { label: 'Feeling hotter than everyone' },
+        { label: 'Feeling colder than everyone' },
+        { label: 'None' },
+      ],
+      skin_conditions_select: [
+        { label: 'Sores that dont heal' },
+        { label: 'Foot ulcers' },
+        { label: 'Dry skin' },
+        { label: 'Hair changes' },
+        { label: 'None' },
+      ],
     }
     let rowUniqId = 0
     let fldName = {}
