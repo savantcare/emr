@@ -4,7 +4,7 @@
 
 <script>
 import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
-import { medicationOrderFormDef } from '@/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import { medicationOrderFormDef } from '@/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 
 export default {
   data: function () {

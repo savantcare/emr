@@ -19,6 +19,7 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_history" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="social_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
       <el-divider class="section-header"><h3 style="">Objective</h3></el-divider>
@@ -67,6 +68,7 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
       <el-divider class="section-header"><h3>Plan</h3></el-divider>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medication_orders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="recommendations" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="reminders" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="plan_comments" />

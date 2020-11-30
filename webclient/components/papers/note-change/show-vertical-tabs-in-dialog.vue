@@ -163,7 +163,7 @@ import pastPsychHistory from '@/components/patient-data/past-psych-history/chang
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
 import socialHistory from '@/components/patient-data/social-history/change-layer/add-ct.vue'
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
-import medicationOrder from '@/components/patient-data/medication-order/change-layer/medication-order-add.vue'
+import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
@@ -194,7 +194,7 @@ import pcAdd from '@/components/patient-data/plan-comments/change-layer/add-ct.v
 import ssAdd from '@/components/patient-data/service-statements/change-layer/add-ss.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import MedicationOrderAdd from '../../patient-data/medication-order/change-layer/medication-order-add.vue'
+import MedicationOrderAdd from '../../patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 export default {
   name: 'CLTabsInDialogManager',

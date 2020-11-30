@@ -120,7 +120,7 @@ database.register(tableStructureForFH)
 import tableStructureForMH from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
 database.register(tableStructureForMH)
 
-import tableStructureForMO from '~/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import tableStructureForMO from '~/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 database.register(tableStructureForMO)
 
 import tableStructureForRem from '~/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import initializemedicationOrderComponent from '@/components/patient-data/medication-order/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import clientTbl from '~/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import initializemedicationOrderComponent from '@/components/patient-data/medication-orders/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import clientTbl from '~/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 
 export default {
   components: {

@@ -53,7 +53,7 @@ export default class medication_order extends clientTblManage {
 }
 
 export const medicationOrderFormDef = {
-  id: 'medication_order',
+  id: 'medication_orders',
   plural: 'medication order',
   singular: 'medication order',
   fieldsDef: [

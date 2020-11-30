@@ -3,7 +3,7 @@ import { chiefComplaintFormDef } from '~/components/patient-data/chief-complaint
 import { diagnosisFormDef } from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import { familyHistoryFormDef } from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import { medicalHistoryFormDef } from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
-import { medicationOrderFormDef } from '~/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import { medicationOrderFormDef } from '~/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 import { heightFormDef } from '~/components/patient-data/height/db/client-side/structure/height-of-a-patient-table.js'
 import { examinationFormDef } from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { medicalReviewOfSystemFormDef } from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
@@ -35,7 +35,7 @@ const allFormDefs = {
   diagnosis: diagnosisFormDef,
   family_history: familyHistoryFormDef,
   medical_history: medicalHistoryFormDef,
-  medication_order: medicationOrderFormDef,
+  medication_orders: medicationOrderFormDef,
   height: heightFormDef,
   medical_review_of_system: medicalReviewOfSystemFormDef,
   examination: examinationFormDef,

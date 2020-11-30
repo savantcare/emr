@@ -4,7 +4,7 @@ import chiefComplaintClientTbl from '~/components/patient-data/chief-complaint/d
 import diagnosisClientTbl from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import medicalHistoryClientTbl from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
-import medicationOrderClientTbl from '~/components/patient-data/medication-order/db/client-side/structure/medication-order-of-a-patient-table.js'
+import medicationOrderClientTbl from '~/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 import heightClientTbl from '~/components/patient-data/height/db/client-side/structure/height-of-a-patient-table.js'
 import examinationOfAPatientTbl from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import medicalReviewOfSystemOfAPatientTbl from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
@@ -62,7 +62,7 @@ const allPatientDataTbls = {
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,
   medical_history: medicalHistoryClientTbl,
-  medication_order: medicationOrderClientTbl,
+  medication_orders: medicationOrderClientTbl,
   height: heightClientTbl,
   medical_review_of_system: medicalReviewOfSystemOfAPatientTbl,
   examination: examinationOfAPatientTbl,
