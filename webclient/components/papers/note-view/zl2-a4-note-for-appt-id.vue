@@ -18,6 +18,7 @@
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="family_history" />
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_history" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medical_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="allergies" />
       <el-divider class="section-header"><h3 style="">Objective</h3></el-divider>
