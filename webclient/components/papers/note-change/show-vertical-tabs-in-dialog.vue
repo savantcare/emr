@@ -53,6 +53,21 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         When we switching tab then call a method function called 'mf_send_id_of_focussed_field_to_ct_inside_tab'.
         Ref: https://element.eleme.io/#/en-US/component/tabs#tabs-events
     -->
+
+    <!-- 
+      Q). Why we added the following css?
+        Problem: Dialog box scroll in add is not working.
+        Solution: I have removed height from below el-tabs section.
+          Hence, the height of popup window is same as height of content. And if height of content is greater than 
+          parent window height then scroll on y-axis will automatically appear on parent window.
+
+    <el-tabs
+      tab-position="left"
+      style="height: 900px"
+      v-model="activeTabName"
+      type="border-card"
+      @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
+    > -->
     <el-tabs
       tab-position="left"
       v-model="activeTabName"
