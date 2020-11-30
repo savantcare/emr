@@ -45,6 +45,7 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
       neurological_select: this.string(''),
       psychological_select: this.string(''),
       heme_lymphatic_select: this.string(''),
+      any_other_signs_symptoms: this.string(''),
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -163,10 +164,17 @@ export const medicalReviewOfSystemFormDef = {
 
     {
       nameInDb: 'heme_lymphatic_select',
-      nameInUi: 'Q15: Heme/Lymphatic: Do you?',
+      nameInUi: 'Q15) Heme/Lymphatic: Do you?',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
+    },
+    {
+      nameInDb: 'any_other_signs_symptoms',
+      nameInUi: 'Q16) Do you have any other signs, symptoms or problems other than above? If yes, please explain',
+      type: 'textarea',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3',
     },
   ],
   showReviewedButtonInForm: false,

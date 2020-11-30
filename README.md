@@ -83,3 +83,7 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
 11. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
 12. Patient timeline: https://jinfang134.github.io/vue-pipeline/
 13. Search in top header using https://theoxiong.github.io/vue-search-panel/
+14. Panel for: Medications
+    Social history
+    Medical history
+15. Reminders multi edit system aling with horizontal tabs.
