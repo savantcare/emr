@@ -1,1 +1,1 @@
-drop database sc_plan_comments
+drop database sc_social_history

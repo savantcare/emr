@@ -1,8 +1,8 @@
-use sc_plan_comments;
+use sc_social_history;
 
-DROP TABLE IF EXISTS `plan_comments`;
+DROP TABLE IF EXISTS `social_history`;
 
-CREATE TABLE `plan_comments` (
+CREATE TABLE `social_history` (
   `serverSideRowUuid` char(36) NOT NULL,
   `ptUuid` char(36) NOT NULL,
   `description` text NOT NULL,

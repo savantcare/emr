@@ -1,1 +1,1 @@
-create database sc_plan_comments
+create database sc_social_history

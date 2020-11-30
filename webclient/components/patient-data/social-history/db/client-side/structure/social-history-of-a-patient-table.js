@@ -6,8 +6,8 @@ const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
 
-export default class plan_comments extends clientTblManage {
-  static entity = 'tblPlanComments'
+export default class social_history extends clientTblManage {
+  static entity = 'tblSocialHistory'
 
   /* 
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
@@ -50,9 +50,9 @@ export default class plan_comments extends clientTblManage {
 }
 
 export const planCommentsFormDef = {
-  id: 'plan_comments',
-  plural: 'plan comments',
-  singular: 'plan comment',
+  id: 'social_history',
+  plural: 'social history',
+  singular: 'social history',
   fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', type: 'textarea' }],
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
