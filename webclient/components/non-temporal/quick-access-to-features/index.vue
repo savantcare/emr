@@ -30,7 +30,12 @@ export default {
       return false
     }
 
-    this.$mousetrap.bind(['a', 'ctrl+a'], this.allergies)
+    // For reason of reasign see: https://stackoverflow.com/questions/52311630/problem-with-scope-functions-in-method-from-vue-js
+    var parentScope = this
+
+    this.$mousetrap.bind(['a', 'ctrl+a'], function (e) {
+      parentScope.activateTab(e, 'allergies')
+    })
     this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
     this.$mousetrap.bind(['d', 'ctrl+d'], this.diagnosis)
     this.$mousetrap.bind(['e', 'ctrl+e'], this.examination)
@@ -72,15 +77,6 @@ export default {
     })
   },
   methods: {
-    // Goal: Catch mouse events
-    actOnMouseOverSpan(mode) {
-      if (mode == 'analysis') {
-        this.goToAnalysisMode()
-      } else if (mode == 'production') {
-        this.goToWorkProductMode()
-      }
-    },
-
     // Goal: Catch KB events
     actOnF1ShortKeyPressed() {
       this.goToDashboardMode()
@@ -94,10 +90,20 @@ export default {
     actOnF10ShortKeyPressed() {
       this.toggleBetweenHealthAndOtherComponents()
     },
-    activateTab(pTab) {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pTab }],
-      })
+    activateTab(e, pTab) {
+      //      debugger
+      if (
+        e.srcElement.tagName == 'INPUT' ||
+        e.srcElement.tagName == 'SELECT' ||
+        e.srcElement.tagName == 'TEXTAREA' ||
+        (e.srcElement.contentEditable && e.srcElement.contentEditable == 'true')
+      ) {
+        console.log('this shortcut not allowed here')
+      } else {
+        clientTblOfCommonForAllComponents.insertOrUpdate({
+          data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pTab }],
+        })
+      }
       // Goal: Do not see C typed in the input field
       return false
     },
@@ -119,8 +125,8 @@ export default {
     medical_review_of_system() {
       return this.activateTab('medical_review_of_system')
     },
-    allergies() {
-      return this.activateTab('allergies')
+    allergies(e) {
+      return this.activateTab('allergies', e)
     },
     examination() {
       return this.activateTab('examination')
@@ -191,60 +197,6 @@ export default {
       })
     },
 
-    goToWorkProductMode() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: true }],
-      })
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // set the split dimensions
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
-      })
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
-      })
-      this.$notify.success({
-        message: 'Editing assesment and plan',
-        position: 'top-left',
-        duration: 1000,
-        showClose: false,
-        type: 'success',
-      })
-    },
-
-    goToAnalysisMode() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: true }],
-      })
-
-      // set the split dimensions
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
-      })
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
-      })
-      this.$notify.success({
-        message: 'Editing history and exam',
-        position: 'top-right',
-        duration: 1000,
-        showClose: false,
-        type: 'success',
-      })
-    },
     toggleBetweenHealthAndOtherComponents() {
       // Goal: Decide if I need to do update or insert
       const arOfObjectsFromCommonForAllComponents = clientTblOfCommonForAllComponents.find(
