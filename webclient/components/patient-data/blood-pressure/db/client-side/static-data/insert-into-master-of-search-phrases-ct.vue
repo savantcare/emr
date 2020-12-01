@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'blood-pressure',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/blood-pressure/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/blood-pressure/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add blood-pressure',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/blood-pressure/change-layer/add-blood-pressure.vue',
+        ctToShow: 'patient-data/blood-pressure/change-layer/add-blood-pressure.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit blood-pressure',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/blood-pressure/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/blood-pressure/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit blood-pressure',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/blood-pressure/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/blood-pressure/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted blood-pressure',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/blood-pressure/view-layer/deleted.vue',
+        ctToShow: 'patient-data/blood-pressure/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

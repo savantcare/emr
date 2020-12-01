@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'temperature',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/temperature/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/temperature/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add temperature',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/temperature/change-layer/add-temperature.vue',
+        ctToShow: 'patient-data/temperature/change-layer/add-temperature.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit temperature',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/temperature/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/temperature/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit temperature',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/temperature/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/temperature/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted temperature',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/temperature/view-layer/deleted.vue',
+        ctToShow: 'patient-data/temperature/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

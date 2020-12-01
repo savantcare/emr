@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'goals',
         ctAbbr: 'g',
-        ctToShow: 'temporal/goals/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/goals/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add goals',
         ctAbbr: 'ag',
-        ctToShow: 'temporal/goals/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/goals/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit goals',
         ctAbbr: 'cg',
-        ctToShow: 'temporal/goals/change-layer/goal-edit.vue',
+        ctToShow: 'patient-data/goals/change-layer/goal-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit goals',
         ctAbbr: 'mcg',
-        ctToShow: 'temporal/goals/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/goals/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted goals',
         ctAbbr: 'dg',
-        ctToShow: 'temporal/goals/view-layer/deleted.vue',
+        ctToShow: 'patient-data/goals/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

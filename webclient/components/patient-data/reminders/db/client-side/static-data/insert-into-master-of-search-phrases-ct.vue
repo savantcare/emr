@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'reminders',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/reminders/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/reminders/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add reminders',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/reminders/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/reminders/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit reminders',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/reminders/change-layer/reminder-edit.vue',
+        ctToShow: 'patient-data/reminders/change-layer/reminder-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit reminders',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/reminders/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/reminders/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted reminders',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/reminders/view-layer/deleted.vue',
+        ctToShow: 'patient-data/reminders/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

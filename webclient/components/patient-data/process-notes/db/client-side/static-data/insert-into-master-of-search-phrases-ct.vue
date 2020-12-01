@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'process-notes',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/process-notes/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/process-notes/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add process-notes',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/process-notes/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/process-notes/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit process-notes',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/process-notes/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/process-notes/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit process-notes',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/process-notes/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/process-notes/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted process-notes',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/process-notes/view-layer/deleted.vue',
+        ctToShow: 'patient-data/process-notes/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

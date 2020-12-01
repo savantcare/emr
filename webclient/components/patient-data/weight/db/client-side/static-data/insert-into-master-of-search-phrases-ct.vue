@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'weight',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/weight/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/weight/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add weight',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/weight/change-layer/add-weight.vue',
+        ctToShow: 'patient-data/weight/change-layer/add-weight.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit weight',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/weight/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/weight/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit weight',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/weight/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/weight/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted weight',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/weight/view-layer/deleted.vue',
+        ctToShow: 'patient-data/weight/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

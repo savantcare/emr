@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'blood-sugar',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/blood-sugar/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/blood-sugar/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add blood-sugar',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/blood-sugar/change-layer/add-blood-sugar.vue',
+        ctToShow: 'patient-data/blood-sugar/change-layer/add-blood-sugar.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit blood-sugar',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/blood-sugar/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/blood-sugar/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit blood-sugar',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/blood-sugar/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/blood-sugar/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted blood-sugar',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/blood-sugar/view-layer/deleted.vue',
+        ctToShow: 'patient-data/blood-sugar/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
