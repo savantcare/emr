@@ -27,7 +27,8 @@
       </div>
 
       <!-- SELECT -->
-      <div v-else-if="_fieldDef.nameInDb.includes('select')">
+      <!-- Goal: skip fields that are null or empty for this  _dataRow[_fieldDef.nameInDb]-->
+      <div v-else-if="_fieldDef.nameInDb.includes('select')  && _dataRow[_fieldDef.nameInDb]">
         <!-- Each field type gets to control how it prints the field name -->
         <div v-if="_fieldDef.showLabel">
           <b>{{ _fieldDef.nameInUi }}</b>
@@ -88,7 +89,7 @@
 
       <!-- INPUT / TEXT AREA -->
       <!-- Goal: skip fields that are null or empty -->
-      <div v-else="_dataRow[_fieldDef.nameInDb]" id="field-value-in-db" style="display:inline">
+      <div v-else-if="_fieldDef.type.includes('text') && _dataRow[_fieldDef.nameInDb]" id="field-value-in-db" style="display:inline">
         <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
            {{ _fieldDef.nameInUi }}:
         </span>
