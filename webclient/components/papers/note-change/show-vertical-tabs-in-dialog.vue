@@ -260,6 +260,19 @@ export default {
         console.log('setting tabIndex for', pNVal)
       },
     },
+    cfDrawerVisibility: {
+      /**
+       * Why we added this watcher on computed function named 'cfDrawerVisibility'
+       * Problem: I click outside the change paper and then open the change paper again then focus not working.
+       * Solution: If value of cfDrawerVisibility will change and if it will true then call method function to focus field
+       */
+      immediate: true,
+      handler(pVal) {
+        if (pVal) {
+          this.mf_send_id_of_focussed_field_to_ct_inside_tab(this.activeTabName)
+        }
+      },
+    },
   },
   computed: {
     vblIsdialogHoldingTabsInEditLayerVisible: {
@@ -303,10 +316,14 @@ export default {
       /**
        * Form focus step: 5/9
        *  Storing form focus position details in a multidimentional array
+       *
+       * In the case of vitals, activeTabName and pFormDefId is different.
+       * To resolve this above case, I have sent activeTabName as array key and added one more item as formDefId
        */
-      this.arFormFieldIndexWithFocus[pFormDefId] = []
-      this.arFormFieldIndexWithFocus[pFormDefId]['index'] = pIndex
-      this.arFormFieldIndexWithFocus[pFormDefId]['fieldNameInDb'] = pFieldNameInDb
+      this.arFormFieldIndexWithFocus[this.activeTabName] = []
+      this.arFormFieldIndexWithFocus[this.activeTabName]['formDefId'] = pFormDefId
+      this.arFormFieldIndexWithFocus[this.activeTabName]['index'] = pIndex
+      this.arFormFieldIndexWithFocus[this.activeTabName]['fieldNameInDb'] = pFieldNameInDb
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true

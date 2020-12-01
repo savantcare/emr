@@ -140,13 +140,20 @@
             </div>
 
             <!-- NUMBER -->
-            <div v-if="_fieldDef.type.includes('number')">
+            <!--
+              Q) Why we add :id attribute in the below div and remove from el-input-number or el-input?
+              --
+                Problem: Unable to set id attribute of el-input to link with for attribute in el-form-item
+                Ref: https://github.com/ElemeFE/element/issues/7622
+
+                Solution: I have added :id attribute in parent div and in javascript use like - 'div#parent_div_id input'
+              -->
+            <div v-if="_fieldDef.type.includes('number')" :id="_fieldDef.nameInDb">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
               <el-input-number
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
-                :id="_fieldDef.nameInDb"
                 :ref="_fieldDef.nameInDb"
                 v-model="value[_fieldDef.nameInDb]"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
@@ -157,7 +164,7 @@
             </div>
 
             <!-- input/textarea -->
-            <div v-if="_fieldDef.type.includes('text')">
+            <div v-if="_fieldDef.type.includes('text')" :id="_fieldDef.nameInDb">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
@@ -170,7 +177,6 @@
                 -->
               <el-input
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
-                :id="_fieldDef.nameInDb"
                 :ref="_fieldDef.nameInDb"
                 :type="_fieldDef.type"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
@@ -416,16 +422,32 @@ export default {
        *    -- this scenario we covered in else statement that first input field should be focused.
        */
       if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index'] > -1) {
-        document
-          .querySelector(
-            '#each-data-row-' + pArFieldDetails['index'] + '-' + pTabName + ' #' + pArFieldDetails['fieldNameInDb']
-          )
-          .focus()
+        const queryString =
+          '#each-data-row-' +
+          pArFieldDetails['index'] +
+          '-' +
+          pArFieldDetails['formDefId'] +
+          ' #' +
+          pArFieldDetails['fieldNameInDb']
+
+        if (document.querySelector(queryString + ' input')) {
+          document.querySelector(queryString + ' input').focus()
+        } else if (document.querySelector(queryString + ' textarea')) {
+          document.querySelector(queryString + ' textarea').focus()
+        }
       } else {
         if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
           document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child').focus()
-        } else {
+        } else if (document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child')) {
           document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child').focus()
+        } else if (pTabName == 'vitals') {
+          /**
+           * Exceptional case:
+           * In the case of 'vitals', activeTabName and element name is different.
+           * The activeTabName is vitals and multiple components like weight, height, etc. are included in this tab.
+           * Hence, if we click vitals tab first time after page load then first input field of first component(weight) will be focused.
+           */
+          document.querySelector('#each-data-row-0-weight input:first-child').focus()
         }
       }
     },
