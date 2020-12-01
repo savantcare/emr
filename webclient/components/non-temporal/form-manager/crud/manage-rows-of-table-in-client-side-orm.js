@@ -589,7 +589,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
       let valueForThisField = null
 
-      if (currentValue[pFldName].includes(pEvent)) {
+      if (currentValue[pFldName] && currentValue[pFldName].includes(pEvent)) {
         valueForThisField = currentValue[pFldName]
         valueForThisField = valueForThisField.replace(pEvent, '') // Scenario 1/3: Removed
       } else {

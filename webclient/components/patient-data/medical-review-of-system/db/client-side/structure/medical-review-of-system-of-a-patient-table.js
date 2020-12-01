@@ -30,21 +30,21 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table medicalReviewOfSystemFieldOptionId = 2 */
-      constitutional_systems_select: this.string(''),
-      skin_conditions_select: this.string(''),
-      allergies_select: this.string(''),
-      ear_nose_mouth_throat_select: this.string(''),
-      eyes_head_select: this.string(''),
-      respiratory_select: this.string(''),
-      cardiovascular_select: this.string(''),
-      gastrointestinal_select: this.string(''),
-      urinary_select: this.string(''),
-      endocrine_select: this.string(''),
-      musculoskeletal_select: this.string(''),
-      neurological_select: this.string(''),
-      psychological_select: this.string(''),
-      heme_lymphatic_select: this.string(''),
-      any_other_signs_symptoms: this.string(''),
+      constitutional_systems_select: this.string(null).nullable(),
+      skin_conditions_select: this.string(null).nullable(),
+      allergies_select: this.string(null).nullable(),
+      ear_nose_mouth_throat_select: this.string(null).nullable(),
+      eyes_head_select: this.string(null).nullable(),
+      respiratory_select: this.string(null).nullable(),
+      cardiovascular_select: this.string(null).nullable(),
+      gastrointestinal_select: this.string(null).nullable(),
+      urinary_select: this.string(null).nullable(),
+      endocrine_select: this.string(null).nullable(),
+      musculoskeletal_select: this.string(null).nullable(),
+      neurological_select: this.string(null).nullable(),
+      psychological_select: this.string(null).nullable(),
+      heme_lymphatic_select: this.string(null).nullable(),
+      any_other_signs_symptoms: this.string(null).nullable(),
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -230,7 +230,9 @@ export const medicalReviewOfSystemFormDef = {
     arOfAllSelectOptions.forEach(function (data) {
       data['id'] = data['fieldOptionId']
       data['value'] = data['fieldOptionLabel']
-      data['selected'] = selectedIDs.includes(data['id']) ? true : false
+      if (selectedIDs) {
+        data['selected'] = selectedIDs.includes(data['id']) ? true : false
+      }
     })
 
     return arOfAllSelectOptions
