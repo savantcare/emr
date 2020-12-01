@@ -79,11 +79,11 @@
             >
               <div
                 id="container-for-all-rows-of-one-appointment"
-                v-for="entityRow in item[_formDef.id]"
-                :key="entityRow.clientSideUniqRowId"
+                v-for="dataRow in item[_formDef.id]"
+                :key="dataRow.clientSideUniqRowId"
               >
                 <getRowContent
-                  :_entityRow="entityRow"
+                  :_dataRow="dataRow"
                   :_formDef="_formDef"
                   :_ApptStatus="item['apptStatus']"
                   :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
@@ -98,13 +98,11 @@
     </div>
     <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
       <h4>Addendum:</h4>
-      <div v-for="entityRow in cfArOfAddendumForDisplay" :key="entityRow.clientSideUniqRowId">
+      <div v-for="dataRow in cfArOfAddendumForDisplay" :key="dataRow.clientSideUniqRowId">
         <div style="margin: 5px 0">
-          {{ entityRow.description }}
+          {{ dataRow.description }}
           <br />
-          <span style="font-size: 0.625rem"
-            >Added by {{ entityRow.addedBy }} at {{ entityRow.ROW_START | moment }}</span
-          >
+          <span style="font-size: 0.625rem">Added by {{ dataRow.addedBy }} at {{ dataRow.ROW_START | moment }}</span>
         </div>
       </div>
     </div>

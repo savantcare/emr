@@ -37,7 +37,7 @@
         <div
           v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
             _fieldDef.nameInDb,
-            _entityRow.clientSideUniqRowId
+            _dataRow.clientSideUniqRowId
           )"
           :key="item.id"
           v-if="item.selected"
@@ -57,16 +57,16 @@
 
       <!-- SLIDER -->
       <div v-else-if="_fieldDef.type.includes('slider')" id="field-type-slider">
-        <div v-if="_entityRow[_fieldDef.nameInDb] > 0">
+        <div v-if="_dataRow[_fieldDef.nameInDb] > 0">
           <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
             <h4>{{ _fieldDef.nameInUi }}</h4>
           </div>
           <div id="field-value-in-db">
-            <div v-if="_entityRow[_fieldDef.nameInDb] == 1">Not present</div>
-            <div v-else-if="_entityRow[_fieldDef.nameInDb] == 2">Sub-Syndromal</div>
-            <div v-else-if="_entityRow[_fieldDef.nameInDb] == 3">Syndromal</div>
+            <div v-if="_dataRow[_fieldDef.nameInDb] == 1">Not present</div>
+            <div v-else-if="_dataRow[_fieldDef.nameInDb] == 2">Sub-Syndromal</div>
+            <div v-else-if="_dataRow[_fieldDef.nameInDb] == 3">Syndromal</div>
             <div v-else>
-              {{ _entityRow[_fieldDef.nameInDb] }}
+              {{ _dataRow[_fieldDef.nameInDb] }}
             </div>
           </div>
         </div>
@@ -76,27 +76,27 @@
       <div v-else-if="_fieldDef.type.includes('number')" id="field-type-number">
         <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.nameInUi }}</div>
         <div id="field-value-in-db">
-          {{ _entityRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}
+          {{ _dataRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}
         </div>
       </div>
 
       <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
         <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
-        <div id="field-value-in-db">{{ _entityRow[_fieldDef.nameInDb] | moment }}</div>
+        <div id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] | moment }}</div>
       </div>
 
 
       <!-- INPUT / TEXT AREA -->
       <!-- Goal: skip fields that are null or empty -->
-      <div v-else="_entityRow[_fieldDef.nameInDb]" id="field-value-in-db" style="display:inline">
+      <div v-else="_dataRow[_fieldDef.nameInDb]" id="field-value-in-db" style="display:inline">
         <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
            {{ _fieldDef.nameInUi }}:
         </span>
-        {{ _entityRow[_fieldDef.nameInDb] }}
+        {{ _dataRow[_fieldDef.nameInDb] }}
       </div>
         <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
         <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
-          <el-button @click="additionalRowAction.executeThisFn(_entityRow)">{{
+          <el-button @click="additionalRowAction.executeThisFn(_dataRow)">{{
             additionalRowAction.textInUi
           }}</el-button>
         </span>
@@ -123,7 +123,7 @@ export default {
       type: Object,
       required: true,
     },
-    _entityRow: {
+    _dataRow: {
       type: Object,
       required: true,
     },
