@@ -574,30 +574,29 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnSetFldInVuex(pEvent, pClientRowId, pFldName, pRowStatus) {
+    let row = {}
+
     /* check if fldName has the word "select" or "multiselect" since in those cases:
         1. Take current pFldName value out of the row
         2. If the incoming value:
             Exists inside pFldName then remove it and update the value of pFldName
             Does not exist inside pFldName then add it to the previous value of pFldName and then update the value of pFldName
     */
-
-    let row = {}
-
     if (pFldName.includes('select')) {
-      // get the current valie
+      // get the current value
       const currentValue = this.find(pClientRowId)
-
       let valueForThisField = null
 
       if (currentValue[pFldName] && currentValue[pFldName].includes(pEvent)) {
         valueForThisField = currentValue[pFldName]
-        valueForThisField = valueForThisField.replace(pEvent, '') // Scenario 1/3: Removed
+        valueForThisField = valueForThisField.replace(pEvent, '') // Scenario 1/2: Removed. User has clicked on the same button again hence removing it.
       } else {
-        valueForThisField = currentValue[pFldName] + pEvent // Scenario 2/3: Added
+        valueForThisField = currentValue[pFldName] ? currentValue[pFldName] + pEvent : pEvent // Scenario 2/2: User clicked on this for first time hence added
       }
 
-      if (valueForThisField === null) {
-        valueForThisField = pEvent // Scenario 3/3: Set first time
+      // When I did valueForThisField = valueForThisField.replace(pEvent, '') I am not sure if that resulted in the field being empty or not. So here I am checking if the field is empty. And hence setting it to null
+      if (valueForThisField.length < 1) {
+        valueForThisField = null
       }
 
       row = {
@@ -605,6 +604,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         vnRowStateInSession: pRowStatus,
         isValidationError: false,
       }
+      // end SELECT field processing
     } else {
       row = {
         [pFldName]: pEvent,
@@ -612,6 +612,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         isValidationError: false,
       }
     }
+
     const arFromClientTbl = this.update({
       where: pClientRowId,
       data: row,
