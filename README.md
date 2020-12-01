@@ -50,22 +50,7 @@ Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-
 
 Pirority:
 
-1. Slide to control dynamically in new slider
-2. When I go from recs to rem the form field focus needs to be maintained.
-   Data structure will be maintain by verital-tabs-in-dialog.vue
-   There will be a object
-   component_id: {
-   fieldInFocus:
-   CaretPosition:
-   }
-
-Pass object as prop so sub ct can update the Obj.
-
-Whenever tab_click event is fired use data from this Obj to set focus and caret position.
-
-Whenever onFocus is fired the sub Ct. updates the value in this object.
-
-1. Focus not working for
+1. Focus not working for (Should the code be written with a Object instead of events)
    A. Number field
    B. I click outside the change paper and then open the change paper again.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
@@ -81,8 +66,10 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
 9. Search in top header using https://theoxiong.github.io/vue-search-panel/
 10. Panel for: Medications
 11. Reminders multi edit system aling with horizontal tabs.
-12. Why has arrow pointing up and down come in the 2nd layer edit form?
+12. Why has arrow pointing up and down come in the 2nd layer edit form left side menu.
 13. A way to mark template values like "All normal"
 14. Automated test.
 15. For MROS When none is selected others need to removed from vuex-orm
 16. For SS mutually exclusive
+17. past psych hx enter key not showing in view mode
+18. Dx, Screen, Meds
