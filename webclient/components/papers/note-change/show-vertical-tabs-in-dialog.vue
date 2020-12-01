@@ -68,12 +68,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     > -->
-    <el-tabs
-      tab-position="left"
-      v-model="activeTabName"
-      type="border-card"
-      @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
-    >
+    <el-tabs tab-position="left" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
         <editChiefComplaint />
@@ -256,8 +251,14 @@ export default {
   watch: {
     activeTabName: {
       immediate: true,
-      handler(pNVal, pOVal) {
-        console.log('setting tabIndex for', pNVal)
+      handler(pVal) {
+        console.log('setting tabIndex for', pVal)
+
+        /**
+         * Problem: When I use keyboard shortcut to go to a different tab the focus does not change.
+         * Solution: If activetabName will change then call method function to focus form field instead of @tab-click
+         */
+        this.mf_send_id_of_focussed_field_to_ct_inside_tab(pVal)
       },
     },
     cfDrawerVisibility: {
