@@ -2,7 +2,7 @@
   <div>
     <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
     <el-dialog title="Correlate" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <graph></graph>
+      <correlateGraphCt></correlateGraphCt>
     </el-dialog>
   </div>
 </template>
@@ -27,7 +27,7 @@ import graphDesign from './graph-design-1'
 
 export default {
   components: {
-    graph : graphDesign,
+    correlateGraphCt : graphDesign,
   },
   data() {
     return {
