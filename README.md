@@ -82,6 +82,6 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
 10. Panel for: Medications
 11. Reminders multi edit system aling with horizontal tabs.
 12. Why has arrow pointing up and down come in the 2nd layer edit form?
-13. MROS empty data rows also show up in view layer
-14. A way to mark template values like "All normal"
-15. Automated test.
+13. A way to mark template values like "All normal"
+14. Automated test.
+15. select options depend on each other. So if none is selected the others go away
