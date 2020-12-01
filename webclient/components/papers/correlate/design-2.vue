@@ -2,22 +2,7 @@
   <div>
     <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
     <el-dialog title="Correlate" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
-      <div slot="header" class="s-css-class-outer-most-card-header clearfix">
-        <div style="display: grid; grid-template-columns: 1fr 5fr">
-          <tags-input
-            element-id="tags"
-            v-model="selectedSeriesTags"
-            :existing-tags="availableSeriesTags"
-            :typeahead="true"
-            :typeahead-activation-threshold="0"
-            :typeahead-hide-discard="true"
-            :only-existing-tags="true"
-            @tag-added="mfTagAdded"
-            :placeholder="cfGetPlaceholder"
-          ></tags-input>
-        </div>
-      </div>
-      <highcharts :options="cfChartOptions"></highcharts>
+      <correlateGraphCt></correlateGraphCt>
     </el-dialog>
   </div>
 </template>
@@ -38,11 +23,11 @@ import clientTblOfAppointments from '@/components/patient-data/appointments/db/c
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 
-import { Chart } from 'highcharts-vue'
+import graphDesign from './graph-design-1'
 
 export default {
   components: {
-    highcharts: Chart,
+    correlateGraphCt : graphDesign,
   },
   data() {
     return {
@@ -64,45 +49,6 @@ export default {
         return 'No more time series available'
       }
       return numberOfSeriesAvailable + ' more' //
-    },
-    cfChartOptions() {
-      var chart = {
-        xAxis: [
-          {
-            title: {
-              text: 'Measured on',
-            },
-            type: 'datetime',
-            labels: {
-              enabled: 'true',
-              format: '{value:%m-%Y}', // X axis now shows month and year
-            },
-          },
-        ],
-        title: {
-          text: '',
-        }, // Reason: Y axis will have clientTbl.entity for e.g. "weight" written beside it. This is small space. Difficult design decisions need to be made instead of doing everything.
-
-        series: [],
-        chart: {
-          width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
-          zoomType: 'x',
-        },
-      }
-
-      chart.credits = {
-        enabled: false,
-      }
-
-      for (const table in allPatientDataTbls) {
-        this.mfCreateSeries(table)
-      }
-
-      for (var property in this.dynamicallyAddedSeries) {
-        chart.series.push(this.dynamicallyAddedSeries[property])
-      }
-
-      return chart
     },
 
     cfGetProsDepressionDataForGraph() {
