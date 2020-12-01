@@ -79,6 +79,7 @@ export const weightFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['weightInPounds'],
   fnCreated: function () {

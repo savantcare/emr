@@ -79,8 +79,11 @@ export const heightFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['heightInInches'],
+  ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []

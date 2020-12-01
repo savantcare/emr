@@ -80,6 +80,7 @@ export const pulseFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['pulseInBpm'],
   fnCreated: function () {

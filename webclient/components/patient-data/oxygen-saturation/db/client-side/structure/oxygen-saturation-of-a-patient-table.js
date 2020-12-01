@@ -79,6 +79,7 @@ export const oxygenSaturationFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['oxygenSaturationInSpo2'],
   fnCreated: function () {

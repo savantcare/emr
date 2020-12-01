@@ -62,11 +62,36 @@ export const examinationFormDef = {
   singular: 'examination',
   fieldsDef: [
     {
+      nameInUi: 'Constitutional',
+      type: 'heading',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; text-align: center',
+    },
+    {
       nameInDb: 'appearance_multi_select',
       nameInUi: 'Appearance',
       type: 'multi-select-with-buttons',
       showLabel: true,
-      style: 'padding: 20px; grid-row: 1/3',
+      style: 'padding: 20px',
+    },
+    {
+      nameInUi: 'Musculoskeletal',
+      type: 'heading',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; text-align: center',
+    },
+    {
+      nameInDb: 'neurological_multi_select',
+      nameInUi: 'Neurological',
+      type: 'multi-select-with-buttons',
+      showLabel: true,
+      style: 'paddong: 20px',
+    },
+    {
+      nameInUi: 'Psychiatric',
+      type: 'heading',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; text-align: center',
     },
     {
       nameInDb: 'attitude_multi_select',
@@ -155,13 +180,6 @@ export const examinationFormDef = {
     {
       nameInDb: 'impulse_control_multi_select',
       nameInUi: 'Impulse control',
-      type: 'multi-select-with-buttons',
-      showLabel: true,
-      style: 'paddong: 20px',
-    },
-    {
-      nameInDb: 'neurological_multi_select',
-      nameInUi: 'Neurological',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'paddong: 20px',

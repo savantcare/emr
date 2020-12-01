@@ -80,6 +80,7 @@ export const temperatureFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['temperatureInFarehnite'],
   fnCreated: function () {

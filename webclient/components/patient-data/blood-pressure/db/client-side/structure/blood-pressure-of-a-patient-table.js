@@ -87,6 +87,7 @@ export const bloodPressureFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bloodPressureSystolic'],
   fnCreated: function () {
