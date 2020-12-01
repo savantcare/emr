@@ -332,10 +332,11 @@ export default {
       const currentNode = e.target
       if (currentNode.tagName != 'TEXTAREA') {
         //Isolate the node that we're after to put focus on that node.
-        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'))
+        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea,button,select,date'))
         const index = inputs.indexOf(e.target)
         if (index < inputs.length) {
           inputs[index + 1].focus()
+          e.preventDefault(); // prevents default behaviour of input fields
         }
       }
     },

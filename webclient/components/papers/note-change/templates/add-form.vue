@@ -395,16 +395,17 @@ export default {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
 
-      //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
+      //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input, enter acts as tab.
       const currentNode = e.target
-      if (currentNode.tagName != 'TEXTAREA') {
+       if (currentNode.tagName != 'TEXTAREA') {
         //Isolate the node that we're after to put focus on that node.
-        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'))
+        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea,button,select,date'))
         const index = inputs.indexOf(e.target)
         if (index < inputs.length) {
           inputs[index + 1].focus()
+          e.preventDefault(); // prevents default behaviour of input fields
         }
-      }
+       }
     },
     mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails) {
       /**
@@ -497,7 +498,7 @@ export default {
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      //this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mf_get_css_class_name_for_each_data_row(pClientRowId) {
       const arFromClientTbl = allPatientDataTbls[this._formDef.id].find(pClientRowId)
