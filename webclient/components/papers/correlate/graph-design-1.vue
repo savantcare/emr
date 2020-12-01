@@ -77,8 +77,7 @@ export default {
 
         series: [],
         chart: {
-          width: 500,  // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
-          height: 500, // on page load default height should be 50% of page height, ie; 700px. We have developed this software to run on 1440*900
+          width: 720,  // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
           zoomType: 'x',
         },
       }
