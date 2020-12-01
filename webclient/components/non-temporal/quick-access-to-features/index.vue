@@ -111,7 +111,7 @@ export default {
         '. y',
         '. z',
       ],
-      this.dotPhrases
+      this.oneSearchBox
     )
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
         return false
       }
     },
-    dotPhrases() {
+    oneSearchBox() {
       console.log('invoke dp')
     },
 
