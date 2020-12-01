@@ -82,7 +82,37 @@ export default {
     })
 
     // Open dot phrases
-    this.$mousetrap.bind(['. a', 'ctrl+f'], this.dotPhrases)
+    this.$mousetrap.bind(
+      [
+        '. a',
+        '. b',
+        '. c',
+        '. d',
+        '. e',
+        '. f',
+        '. g',
+        '. h',
+        '. i',
+        '. j',
+        '. k',
+        '. l',
+        '. m',
+        '. n',
+        '. o',
+        '. p',
+        '. q',
+        '. r',
+        '. s',
+        '. t',
+        '. u',
+        '. v',
+        '. w',
+        '. x',
+        '. y',
+        '. z',
+      ],
+      this.dotPhrases
+    )
   },
   methods: {
     activateTab(e, pTab) {
