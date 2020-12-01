@@ -25,7 +25,7 @@ Key things to see:
 
 Todo:
 
-1. complet DB interaction of Cts
+1. complete DB interaction of Cts
 2. Only do for reminders. For the unlocked note the amendment icon will not be there. Instead of the amendment icon, show row level and card level actions on mouseover.
 3. For appt note of multiple pages there is contnet overflow. Similar question answered on stackoverflow at: https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
 4. Dont show prev and next if it is the first or last note.
@@ -65,25 +65,23 @@ Whenever tab_click event is fired use data from this Obj to set focus and caret 
 
 Whenever onFocus is fired the sub Ct. updates the value in this object.
 
-1. On backspace in CC the first charecter does not go away.
-2. Dialog box scroll in add is not working.
-3. Focus not working for
+1. Focus not working for
    A. Number field
    B. I click outside the change paper and then open the change paper again.
    C. instead of 200ms hardcoded it needs to be callback so it is smooth
    D. When I use keyboard shortcut to go to a different tab the focus does not change.
    E. When I go to service statement the focus is not on the right area of the form.
-4. When header appointments are changed choosing different slides of chief complaint.
-5. Enter key to behave better => Check family history. Problem video recorded on 29th Nov
-6. Get correlate to work from button
-7. Get scBrain to work from button as a paper
-8. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
-9. Protect against tab closed before "Reviewed lock the note" is clicked A. Save to local storage if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
-10. Put page in full screen using https://mirari.cc/vue-fullscreen/
-11. formdef file should control what buttons show under a form. Using that remove the "reset" button in the add form @vikaskedia
-12. Patient timeline: https://jinfang134.github.io/vue-pipeline/
-13. Search in top header using https://theoxiong.github.io/vue-search-panel/
-14. Panel for: Medications
-    Social history
-    Medical history
-15. Reminders multi edit system aling with horizontal tabs.
+2. When header appointments are changed choosing different slides of chief complaint.
+3. Enter key to behave better => Check family history. Problem video recorded on 29th Nov
+4. Get scBrain to work from button as a paper
+5. Internal users like doctors login using oauth Using: https://github.com/dgrubelic/vue-authenticate
+6. Protect against tab closed before "Reviewed lock the note" is clicked Phase 1 -> Save to local storage on each chnage. Read from local straoge when load. Phase 2 -> Only If system becomes slow -> if 1. No activity for 5 seconds 2. The data has some edits compared to last time save happened. B. On page reload resotre from local storage and fire api in background for update
+7. Put page in full screen using https://mirari.cc/vue-fullscreen/
+8. Patient timeline: https://jinfang134.github.io/vue-pipeline/
+9. Search in top header using https://theoxiong.github.io/vue-search-panel/
+10. Panel for: Medications
+11. Reminders multi edit system aling with horizontal tabs.
+12. Why has arrow pointing up and down come in the 2nd layer edit form?
+13. MROS empty data rows also show up in view layer
+14. A way to mark template values like "All normal"
+15. Automated test.
