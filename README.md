@@ -84,4 +84,5 @@ Whenever onFocus is fired the sub Ct. updates the value in this object.
 12. Why has arrow pointing up and down come in the 2nd layer edit form?
 13. A way to mark template values like "All normal"
 14. Automated test.
-15. select options depend on each other. So if none is selected the others go away
+15. For MROS When none is selected others need to removed from vuex-orm
+16. For SS mutually exclusive
