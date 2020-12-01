@@ -92,7 +92,10 @@
         <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399">
           {{ _fieldDef.nameInUi }}:
         </span>
-        {{ _dataRow[_fieldDef.nameInDb] }}
+        <span
+          v-html="converNewLIneToBR(_dataRow[_fieldDef.nameInDb])"
+          why="calling inside v-html so that html charecters like br tag are rendered"
+        ></span>
       </div>
       <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
       <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
@@ -137,6 +140,9 @@ export default {
     },
   },
   methods: {
+    converNewLIneToBR(pText) {
+      return pText.replace(/\n/g, '<br>')
+    },
     mOver(pRowId) {
       console.log(this._ApptStatus)
       setTimeout(() => {

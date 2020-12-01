@@ -71,5 +71,4 @@ Pirority:
 14. Automated test.
 15. For MROS When none is selected others need to removed from vuex-orm
 16. For SS mutually exclusive
-17. past psych hx enter key not showing in view mode
-18. Dx, Screen, Meds
+17. Dx, Screen, Meds
