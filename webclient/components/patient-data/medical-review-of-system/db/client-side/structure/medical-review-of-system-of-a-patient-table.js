@@ -253,21 +253,20 @@ export const medicalReviewOfSystemFormDef = {
           vnRowStateInSession: 1
 */
     var userHasSelectedNone = false
-    if (fieldNameInDb === 'constitutional_systems_select') {
-      for (var i = 0; i < selectDropDown.length; i++) {
-        if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
-          userHasSelectedNone = true
-        }
-      }
 
-      if (userHasSelectedNone) {
-        var i = selectDropDown.length
-        // for reasons of using while see: https://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
-        while (i--) {
-          if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
-          } else {
-            selectDropDown.splice(i, 1)
-          }
+    for (var i = 0; i < selectDropDown.length; i++) {
+      if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        userHasSelectedNone = true
+      }
+    }
+
+    if (userHasSelectedNone) {
+      var i = selectDropDown.length
+      // for reasons of using while see: https://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
+      while (i--) {
+        if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        } else {
+          selectDropDown.splice(i, 1)
         }
       }
     }
