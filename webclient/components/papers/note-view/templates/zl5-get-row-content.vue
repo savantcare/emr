@@ -1,29 +1,31 @@
 <template>
-  <div       id="container-for-1-data-row" :style="
-        _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
-          ? _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
-          : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
-      ">
+  <div
+    id="container-for-1-data-row"
+    :style="
+      _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
+        ? _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote
+        : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem'
+    "
+  >
     <div
       @mouseover="mOver()"
-      @mouseleave="mLeave()" 
+      @mouseleave="mLeave()"
       v-for="(_fieldDef, id) in _formDef.fieldsDef"
       :key="id"
       id="start-processing-each-field-of-row"
       v-if="_dataRow[_fieldDef.nameInDb]"
       why="skippling empty fields here since if I loop a empty div the display:grid inserts a empty div. Also more performant."
     >
-
       <!-- Goal: There are many different types of fields. Using v-if to identify the type of field and then taking action. -->
 
       <!-- HEADING -->
-      <div v-if="_fieldDef.type === 'heading' && _fieldDef.showLabel" :id="id" >
+      <div v-if="_fieldDef.type === 'heading' && _fieldDef.showLabel" :id="id">
         <!-- Each field type gets to control how it prints the field name -->
         <h3>{{ _fieldDef.nameInUi }}</h3>
       </div>
 
       <!-- BUTTON -->
-      <div v-else-if="_fieldDef.type === 'button' && _fieldDef.showLabel" :id="id" >
+      <div v-else-if="_fieldDef.type === 'button' && _fieldDef.showLabel" :id="id">
         <!-- Each field type gets to control how it prints the field name -->
         <el-button size="mini" type="primary" round>{{ _fieldDef.nameInUi }}</el-button>
       </div>
@@ -76,10 +78,8 @@
 
       <!-- NUMBER -->
       <div v-else-if="_fieldDef.type.includes('number')" id="field-type-number">
-        <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display:inline;">{{ _fieldDef.nameInUi }}</div>
-        <div id="field-value-in-db">
-          {{ _dataRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}
-        </div>
+        <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display: inline">{{ _fieldDef.nameInUi }}</div>
+        <div id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}</div>
       </div>
 
       <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
@@ -87,21 +87,17 @@
         <div id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] | moment }}</div>
       </div>
 
-
       <!-- INPUT / TEXT AREA -->
-      <div v-else-if="_fieldDef.type.includes('text')" id="field-value-in-db" style="display:inline">
-        <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399;">
-           {{ _fieldDef.nameInUi }}:
+      <div v-else-if="_fieldDef.type.includes('text')" id="field-value-in-db" style="display: inline">
+        <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399">
+          {{ _fieldDef.nameInUi }}:
         </span>
         {{ _dataRow[_fieldDef.nameInDb] }}
       </div>
-        <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
-        <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
-          <el-button @click="additionalRowAction.executeThisFn(_dataRow)">{{
-            additionalRowAction.textInUi
-          }}</el-button>
-        </span>
-      </div>
+      <!-- Additional row actions example -> Take screen. The additional rows actions are defined in the formDef -->
+      <span v-for="(additionalRowAction, id) in _formDef.additionalRowActions" :key="id">
+        <el-button @click="additionalRowAction.executeThisFn(_dataRow)">{{ additionalRowAction.textInUi }}</el-button>
+      </span>
     </div>
   </div>
 </template>
