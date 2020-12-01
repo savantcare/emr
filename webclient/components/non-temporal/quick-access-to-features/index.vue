@@ -22,8 +22,13 @@ export default {
     return {}
   },
   computed: {},
+
   mounted() {
     // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
+
+    this.$mousetrap.prototype.stopCallback = function (e, element, combo) {
+      return false
+    }
 
     this.$mousetrap.bind(['a', 'ctrl+a'], this.allergies)
     this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
@@ -44,6 +49,9 @@ export default {
     this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
     this.$mousetrap.bind(['w', 'ctrl+w'], this.medical_review_of_system)
     this.$mousetrap.bind(['y', 'ctrl+f'], this.medicalHistory)
+
+    // Open dot phrases
+    this.$mousetrap.bind(['. a', 'ctrl+f'], this.dotPhrases)
 
     // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
     this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
@@ -149,6 +157,10 @@ export default {
     },
     process_notes() {
       return this.activateTab('process_notes')
+    },
+
+    dotPhrases() {
+      console.log('invoke dp')
     },
 
     goToDashboardMode() {

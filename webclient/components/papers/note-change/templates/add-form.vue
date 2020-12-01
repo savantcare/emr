@@ -242,45 +242,6 @@
       @click="mf_on_reset_form"
       >Reset form</el-button
     >
-
-    <!-- Goal: Show data at the time of sending to server -->
-    <el-table
-      v-if="cfGetClientTblApiSendingStateRows.length > 0"
-      :data="cfGetClientTblApiSendingStateRows"
-      style="width: 100%; background: #f0f9eb"
-    >
-      <el-table-column label="Sending to server">
-        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.nameInDb"></el-table-column>
-        </div>
-      </el-table-column>
-    </el-table>
-
-    <!-- Goal: Show data saved successfuly this session -->
-    <el-table
-      v-if="cfGetClientTblApiSuccessStateRows.length > 0"
-      :data="cfGetClientTblApiSuccessStateRows"
-      style="width: 100%; background: #f0f9eb"
-    >
-      <el-table-column align="center" label="Addded this session">
-        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column :prop="_fieldDef.nameInDb" :label="_fieldDef.nameInUi"></el-table-column>
-        </div>
-      </el-table-column>
-    </el-table>
-
-    <!-- Goal: Show data of API that failed in this session -->
-    <el-table
-      v-if="cfGetClientTblApiErrorStateRows.length > 0"
-      :data="cfGetClientTblApiErrorStateRows"
-      style="width: 100%; background: #f0f9eb"
-    >
-      <el-table-column label="Attempted but failed to save">
-        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-          <el-table-column prop="_fieldDef.fieldNameUi" label="Attempted but failed to save"></el-table-column>
-        </div>
-      </el-table-column>
-    </el-table>
   </div>
 </template>
 <script>

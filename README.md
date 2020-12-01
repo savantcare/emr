@@ -72,3 +72,7 @@ Pirority:
 15. For MROS When none is selected others need to removed from vuex-orm
 16. For SS mutually exclusive
 17. Dx, Screen, Meds
+18. Dot phrases
+    https://github.com/hasinhayder/javascript-text-expander
+    https://github.com/github/text-expander-element
+    Ideal: https://www.statnote.com/
