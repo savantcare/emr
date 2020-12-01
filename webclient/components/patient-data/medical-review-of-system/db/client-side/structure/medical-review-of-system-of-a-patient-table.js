@@ -69,63 +69,63 @@ export const medicalReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'constitutional_systems_select',
-      nameInUi: 'Q1) Constitutional systems?',
+      nameInUi: 'Q1) Constitutional systems:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'skin_conditions_select',
-      nameInUi: 'Q2) Skin conditions?',
+      nameInUi: 'Q2) Skin conditions:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'allergies_select',
-      nameInUi: 'Q3) Allergies - Do you have?',
+      nameInUi: 'Q3) Allergies:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'ear_nose_mouth_throat_select',
-      nameInUi: 'Q4) Ears/Nose/Mouth Throat: Have you recently had?',
+      nameInUi: 'Q4) Ears/Nose/Mouth Throat:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'eyes_head_select',
-      nameInUi: 'Q5) Eyes/Head: Have you recently had?',
+      nameInUi: 'Q5) Eyes/Head:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'respiratory_select',
-      nameInUi: 'Q6) Respiratory: Do you have?',
+      nameInUi: 'Q6) Respiratory:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'cardiovascular_select',
-      nameInUi: 'Q7) Cardiovascular: Do you have?',
+      nameInUi: 'Q7) Cardiovascular:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'gastrointestinal_select',
-      nameInUi: 'Q8) Gastrointestinal: Do you have?',
+      nameInUi: 'Q8) Gastrointestinal:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'urinary_select',
-      nameInUi: 'Q9) Urinary: Do you have?',
+      nameInUi: 'Q9) Urinary:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
@@ -133,28 +133,28 @@ export const medicalReviewOfSystemFormDef = {
 
     {
       nameInDb: 'endocrine_select',
-      nameInUi: 'Q10) Endocrine: Do you have?',
+      nameInUi: 'Q10) Endocrine:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'musculoskeletal_select',
-      nameInUi: 'Q11) Musculoskeletal: Do you have?',
+      nameInUi: 'Q11) Musculoskeletal:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'neurological_select',
-      nameInUi: 'Q12) Neurological: Do you feel?',
+      nameInUi: 'Q12) Neurological:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
     },
     {
       nameInDb: 'psychological_select',
-      nameInUi: 'Q13) Psychological: Do you feel?',
+      nameInUi: 'Q13) Psychological:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
@@ -162,7 +162,7 @@ export const medicalReviewOfSystemFormDef = {
 
     {
       nameInDb: 'heme_lymphatic_select',
-      nameInUi: 'Q14) Heme/Lymphatic: Do you?',
+      nameInUi: 'Q14) Heme/Lymphatic:',
       type: 'multi-select-with-buttons',
       showLabel: true,
       style: 'padding: 20px',
@@ -207,7 +207,7 @@ export const medicalReviewOfSystemFormDef = {
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryFieldsNameAndValueInViewNote:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr  1fr 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
