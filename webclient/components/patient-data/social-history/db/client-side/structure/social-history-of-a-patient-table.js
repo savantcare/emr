@@ -58,17 +58,22 @@ export const socialHistoryFormDef = {
   plural: 'social history',
   singular: 'social history',
   fieldsDef: [
-    { nameInDb: 'current_social_situation', nameInUi: 'Current social situation', type: 'textarea' },
-    { nameInDb: 'education_work_history', nameInUi: 'Education / Work / Military Hx', type: 'textarea' },
-    { nameInDb: 'social_supports', nameInUi: 'Social supports', type: 'textarea' },
-    { nameInDb: 'developmental_history', nameInUi: 'Developmental history', type: 'textarea' },
-    { nameInDb: 'trauma_history', nameInUi: 'Trauma history', type: 'textarea' },
+    { nameInDb: 'current_social_situation', nameInUi: 'Current social situation', type: 'textarea', showLabel: true },
+    {
+      nameInDb: 'education_work_history',
+      nameInUi: 'Education / Work / Military Hx',
+      type: 'textarea',
+      showLabel: true,
+    },
+    { nameInDb: 'social_supports', nameInUi: 'Social supports', type: 'textarea', showLabel: true },
+    { nameInDb: 'developmental_history', nameInUi: 'Developmental history', type: 'textarea', showLabel: true },
+    { nameInDb: 'trauma_history', nameInUi: 'Trauma history', type: 'textarea', showLabel: true },
   ],
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['current_social_situation'],
   fnCreated: function () {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
     return []

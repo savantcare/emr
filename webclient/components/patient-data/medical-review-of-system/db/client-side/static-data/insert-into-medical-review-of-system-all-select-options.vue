@@ -13,14 +13,12 @@ export default {
   },
   mounted() {
     const selectOptions = {
-      recently_noticed_select: [
+      constitutional_systems_select: [
         { label: 'Change in appetite' },
         { label: 'Fatigue' },
         { label: 'Change in weight' },
         { label: 'Night sweats' },
         { label: 'None' },
-      ],
-      constitutional_systems_select: [
         { label: 'Difficulty sleeping' },
         { label: 'Feeling hotter than everyone' },
         { label: 'Feeling colder than everyone' },
