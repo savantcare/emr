@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'date of birth',
         ctAbbr: 'w',
-        ctToShow: 'temporal/date-of-birth/view-layer/dob-table.vue',
+        ctToShow: 'patient-data/date-of-birth/view-layer/dob-table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'date of birth - edit',
         ctAbbr: 'wc',
-        ctToShow: 'temporal/date-of-birth/change-layer/edit-design-1.vue', // El -> Edit layer
+        ctToShow: 'patient-data/date-of-birth/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',
       },

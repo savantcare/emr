@@ -50,6 +50,7 @@ export default {
       ],
       mood_affect_multi_select: [
         { label: 'Euthymic' },
+        { label: 'reactive' },
         { label: 'Stable' },
         { label: 'Dysphoric' },
         { label: 'Irritable' },
@@ -63,7 +64,8 @@ export default {
         { label: 'No HI, intent or plan' },
         { label: 'No delusional thinking observed' },
         { label: 'No obsessive thinking observed' },
-        { label: 'Reminations' },
+        { label: 'No ruminations' },
+        { label: '+ruminations' },
         { label: '+SI without intent or plan' },
         { label: '+SI as detailed below' },
         { label: '+HI as detailed below' },
@@ -89,6 +91,9 @@ export default {
         { label: 'Imparied' },
         { label: 'Fluctuating' },
         { label: 'Grossly intact, no memory imparirement' },
+        { label: 'Adequate fund of knowledge' },
+        { label: 'No language deficit' },
+        { label: 'Normal attention' },
       ],
       insight_multi_select: [
         { label: 'Good' },
@@ -125,7 +130,7 @@ export default {
         const label = obj[i].label
         examinationAllSelectOptionsTbl.insert({
           data: {
-            fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            fieldOptionId: '#' + label.replace(/ /g, '_') + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             fieldOptionLabel: label,
             fieldNameInDb: fldName,
           },

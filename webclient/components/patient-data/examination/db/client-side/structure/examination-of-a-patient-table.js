@@ -29,21 +29,21 @@ export default class examinationForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table fieldOptionId = 2 */
-      appearance_multi_select: this.string(''),
-      attitude_multi_select: this.string(''),
-      psychomotor_multi_select: this.string(''),
-      eye_contact_multi_select: this.string(''),
-      speech_multi_select: this.string(''),
-      mood_affect_multi_select: this.string(''),
-      thought_content_multi_select: this.string(''),
-      perceptions_multi_select: this.string(''),
-      thought_process_multi_select: this.string(''),
-      constitutional_multi_select: this.string(''),
-      cognition_multi_select: this.string(''),
-      insight_multi_select: this.string(''),
-      judgement_multi_select: this.string(''),
-      impulse_control_multi_select: this.string(''),
-      neurological_multi_select: this.string(''),
+      appearance_multi_select: this.string(null).nullable(),
+      attitude_multi_select: this.string(null).nullable(),
+      psychomotor_multi_select: this.string(null).nullable(),
+      eye_contact_multi_select: this.string(null).nullable(),
+      speech_multi_select: this.string(null).nullable(),
+      mood_affect_multi_select: this.string(null).nullable(),
+      thought_content_multi_select: this.string(null).nullable(),
+      perceptions_multi_select: this.string(null).nullable(),
+      thought_process_multi_select: this.string(null).nullable(),
+      constitutional_multi_select: this.string(null).nullable(),
+      cognition_multi_select: this.string(null).nullable(),
+      insight_multi_select: this.string(null).nullable(),
+      judgement_multi_select: this.string(null).nullable(),
+      impulse_control_multi_select: this.string(null).nullable(),
+      neurological_multi_select: this.string(null).nullable(),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -216,42 +216,65 @@ export const examinationFormDef = {
   },
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let arOfAllSelectOptions = []
+    let masterListOfSelectOptionsForAField = []
     if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
-      arOfAllSelectOptions = examinationAllSelectOptionsTbl
+      masterListOfSelectOptionsForAField = examinationAllSelectOptionsTbl
         .query()
         .where('ROW_END', 2147483648000)
         .where('fieldNameInDb', fieldNameInDb)
         .get()
-
-      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = arOfAllSelectOptions
+      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = masterListOfSelectOptionsForAField
     } else {
-      arOfAllSelectOptions = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
+      masterListOfSelectOptionsForAField = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
     }
     // get the value for this field in patient table
     let row = examinationOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
 
-    arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['fieldOptionId']
-      data['value'] = data['fieldOptionLabel']
-      data['selected'] = selectedIDs.includes(data['id']) ? true : false
-    })
-    return arOfAllSelectOptions
-  },
-  fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
-    if (pfieldValue === '') return
+    var selectDropDown = []
 
-    // from numbers get the labels
+    for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
+      selectDropDown[i] = new Array()
+      selectDropDown[i]['id'] = masterListOfSelectOptionsForAField[i]['fieldOptionId']
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['fieldOptionLabel']
+      if (selectedIDs) {
+        selectDropDown[i]['selected'] = selectedIDs.includes(masterListOfSelectOptionsForAField[i]['fieldOptionId'])
+          ? true
+          : false
+      }
+    }
 
-    let arOfAllSelectOptions = examinationAllSelectOptionsTbl
-      .query()
-      .where('fieldNameInDb', pFieldNameInDb)
-      .where('fieldOptionId', pfieldValue)
-      .get()
+    /* run custom rules to remove selected options. The data structure is:
+          $id: "#0#"
+          ROW_END: 2147483648000
+          fieldNameInDb: "constitutional_systems_select"
+          fieldOptionId: "#0#"
+          fieldOptionLabel: "Change in appetite"
+          id: "#0#"
+          isValidationError: false
+          selected: true
+          value: "Change in appetite"
+          vnRowStateInSession: 1
+*/
+    var userHasSelectedNone = false
 
-    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
+    for (var i = 0; i < selectDropDown.length; i++) {
+      if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        userHasSelectedNone = true
+      }
+    }
 
-    return optionIdToLabel
+    if (userHasSelectedNone) {
+      var i = selectDropDown.length
+      // for reasons of using while see: https://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
+      while (i--) {
+        if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        } else {
+          selectDropDown.splice(i, 1)
+        }
+      }
+    }
+
+    return selectDropDown
   },
 }

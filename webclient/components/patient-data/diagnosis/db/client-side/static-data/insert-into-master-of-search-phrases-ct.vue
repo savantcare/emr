@@ -15,7 +15,7 @@ export default {
       data: {
         value: 'diagnosis',
         ctAbbr: 'dx',
-        ctToShow: 'temporal/diagnosis/view-layer/table-ct.vue',
+        ctToShow: 'patient-data/diagnosis/view-layer/table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -23,7 +23,7 @@ export default {
       data: {
         value: 'add diagnosis',
         ctAbbr: 'adx',
-        ctToShow: 'temporal/diagnosis/change-layer/diagnosis-add.vue',
+        ctToShow: 'patient-data/diagnosis/change-layer/diagnosis-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'edit diagnosis',
         ctAbbr: 'cdx',
-        ctToShow: 'temporal/diagnosis/change-layer/diagnosis-edit.vue',
+        ctToShow: 'patient-data/diagnosis/change-layer/diagnosis-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -42,7 +42,7 @@ export default {
       data: {
         value: 'multi edit diagnosis',
         ctAbbr: 'mcdx',
-        ctToShow: 'temporal/diagnosis/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/diagnosis/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -51,7 +51,7 @@ export default {
       data: {
         value: 'deleted diagnosis',
         ctAbbr: 'ddx',
-        ctToShow: 'temporal/diagnosis/view-layer/deleted.vue',
+        ctToShow: 'patient-data/diagnosis/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

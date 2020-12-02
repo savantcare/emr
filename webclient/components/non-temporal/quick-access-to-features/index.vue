@@ -1,16 +1,5 @@
 <template>
-  <div>
-    <!-- Goal: Implement "system preferences -> Mission control -> hot corners" concept of MacOS on the view area -->
-    <span
-      @mouseover="actOnMouseOverSpan('analysis')"
-      style="position: absolute; width: 4px; height: 50px; background-color: blue"
-    ></span>
-    <span
-      @mouseover="actOnMouseOverSpan('production')"
-      style="position: absolute; width: 4px; height: 50px; background-color: green; right: 0"
-    ></span>
-    <!-- END of hot corner area defination -->
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -22,217 +11,135 @@ export default {
     return {}
   },
   computed: {},
+
   mounted() {
     // Goal: Open different "patient data sections" in the change layer with KB shortcuts-->
 
-    this.$mousetrap.bind(['a', 'ctrl+a'], this.allergies)
-    this.$mousetrap.bind(['c', 'ctrl+c'], this.actOnUserIntentToSeeChiefComplaint)
-    this.$mousetrap.bind(['d', 'ctrl+d'], this.diagnosis)
-    this.$mousetrap.bind(['e', 'ctrl+e'], this.examination)
-    this.$mousetrap.bind(['f', 'ctrl+f'], this.actOnUserIntentToSeeFamilyHistory)
-    this.$mousetrap.bind(['g', 'ctrl+g'], this.goals)
-    this.$mousetrap.bind(['h', 'ctrl+h'], this.actOnUserIntentToSeeHPI)
-    this.$mousetrap.bind(['i', 'ctrl+i'], this.reminders)
-    this.$mousetrap.bind(['l', 'ctrl+l'], this.plan_comments)
-    this.$mousetrap.bind(['m', 'ctrl+w'], this.medication_orders)
-    this.$mousetrap.bind(['n', 'ctrl+n'], this.miscellaneous_notes)
-    this.$mousetrap.bind(['o', 'ctrl+o'], this.process_notes)
-    this.$mousetrap.bind(['p', 'ctrl+p'], this.actOnUserIntentToSeePastPsychHistory)
-    this.$mousetrap.bind(['r', 'ctrl+r'], this.screens)
-    this.$mousetrap.bind(['s', 'ctrl+s'], this.service_statements)
-    this.$mousetrap.bind(['t', 'ctrl+t'], this.recommendations)
-    this.$mousetrap.bind(['v', 'ctrl+v'], this.vitals)
-    this.$mousetrap.bind(['w', 'ctrl+w'], this.medical_review_of_system)
-    this.$mousetrap.bind(['y', 'ctrl+f'], this.medicalHistory)
+    // Overwriting the Stopcallback fn so by default all shortcuts will work in input area. Ref: https://craig.is/killing/mice
+    this.$mousetrap.prototype.stopCallback = function (e, element, combo) {
+      return false
+    }
 
-    // Goal: Implement "system preferences -> Mission control -> Show desktop -> Function key assignment" concept of MacOS on the view area -->
-    this.$mousetrap.bind(['f1'], this.actOnF1ShortKeyPressed)
-    this.$mousetrap.bind(['f2'], this.actOnF2ShortKeyPressed)
-    this.$mousetrap.bind(['f3'], this.actOnF3ShortKeyPressed)
-    this.$mousetrap.bind(['f10'], this.actOnF10ShortKeyPressed)
+    // For reason of reasign see: https://stackoverflow.com/questions/52311630/problem-with-scope-functions-in-method-from-vue-js
+    var parentScope = this
 
-    this.$root.$on('from-product-tour-start-work-product-mode', (pRowId) => {
-      this.goToWorkProductMode()
+    this.$mousetrap.bind(['a', 'ctrl+a'], function (e) {
+      return parentScope.activateTab(e, 'allergies') // if actuvateTab returns true then the charecter shows in the form. Otherwise the charecter does not show in form
+    })
+    this.$mousetrap.bind(['c', 'ctrl+c'], function (e) {
+      return parentScope.activateTab(e, 'chief_complaint')
+    })
+    this.$mousetrap.bind(['d', 'ctrl+d'], function (e) {
+      return parentScope.activateTab(e, 'diagnosis')
+    })
+    this.$mousetrap.bind(['e', 'ctrl+e'], function (e) {
+      return parentScope.activateTab(e, 'examination')
+    })
+    this.$mousetrap.bind(['f', 'ctrl+f'], function (e) {
+      return parentScope.activateTab(e, 'family_history')
+    })
+    this.$mousetrap.bind(['g', 'ctrl+g'], function (e) {
+      return parentScope.activateTab(e, 'goals')
+    })
+    this.$mousetrap.bind(['h', 'ctrl+h'], function (e) {
+      return parentScope.activateTab(e, 'psych_review_of_system')
+    })
+    this.$mousetrap.bind(['i', 'ctrl+i'], function (e) {
+      return parentScope.activateTab(e, 'reminders')
+    })
+    this.$mousetrap.bind(['l', 'ctrl+l'], function (e) {
+      return parentScope.activateTab(e, 'plan_comments')
+    })
+    this.$mousetrap.bind(['m', 'ctrl+w'], function (e) {
+      return parentScope.activateTab(e, 'medication_orders')
+    })
+    this.$mousetrap.bind(['n', 'ctrl+n'], function (e) {
+      return parentScope.activateTab(e, 'miscellaneous_notes')
+    })
+    this.$mousetrap.bind(['o', 'ctrl+o'], function (e) {
+      return parentScope.activateTab(e, 'process_notes')
+    })
+    this.$mousetrap.bind(['p', 'ctrl+p'], function (e) {
+      return parentScope.activateTab(e, 'past_psych_history')
+    })
+    this.$mousetrap.bind(['r', 'ctrl+r'], function (e) {
+      return parentScope.activateTab(e, 'screens')
+    })
+    this.$mousetrap.bind(['s', 'ctrl+s'], function (e) {
+      return parentScope.activateTab(e, 'service_statements')
+    })
+    this.$mousetrap.bind(['t', 'ctrl+t'], function (e) {
+      return parentScope.activateTab(e, 'recommendations')
+    })
+    this.$mousetrap.bind(['v', 'ctrl+v'], function (e) {
+      return parentScope.activateTab(e, 'vitals')
+    })
+    this.$mousetrap.bind(['w', 'ctrl+w'], function (e) {
+      return parentScope.activateTab(e, 'medical_review_of_system')
+    })
+    this.$mousetrap.bind(['y', 'ctrl+f'], function (e) {
+      return parentScope.activateTab(e, 'medical_history')
     })
 
-    this.$root.$on('from-product-tour-start-dashboard-mode', (pRowId) => {
-      this.goToDashboardMode()
-    })
-
-    this.$root.$on('from-product-tour-start-analysis-mode', (pRowId) => {
-      this.goToAnalysisMode()
-    })
+    // Open dot phrases
+    this.$mousetrap.bind(
+      [
+        '. a',
+        '. b',
+        '. c',
+        '. d',
+        '. e',
+        '. f',
+        '. g',
+        '. h',
+        '. i',
+        '. j',
+        '. k',
+        '. l',
+        '. m',
+        '. n',
+        '. o',
+        '. p',
+        '. q',
+        '. r',
+        '. s',
+        '. t',
+        '. u',
+        '. v',
+        '. w',
+        '. x',
+        '. y',
+        '. z',
+      ],
+      this.oneSearchBox
+    )
   },
   methods: {
-    // Goal: Catch mouse events
-    actOnMouseOverSpan(mode) {
-      if (mode == 'analysis') {
-        this.goToAnalysisMode()
-      } else if (mode == 'production') {
-        this.goToWorkProductMode()
+    activateTab(e, pTab) {
+      // This if is needed so that ".a" and any such pattern will work from input and textarea.
+      if (
+        e.srcElement.tagName == 'INPUT' ||
+        e.srcElement.tagName == 'SELECT' ||
+        e.srcElement.tagName == 'TEXTAREA' ||
+        (e.srcElement.contentEditable && e.srcElement.contentEditable == 'true')
+      ) {
+        // case: Shortcut not allowed here
+        return true // If user pressed a .. this a will be visisble since I am returning true here
+      } else {
+        clientTblOfCommonForAllComponents.insertOrUpdate({
+          data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pTab }],
+        })
+        // Goal: Do not see C typed in the input field
+        return false
       }
     },
-
-    // Goal: Catch KB events
-    actOnF1ShortKeyPressed() {
-      this.goToDashboardMode()
-    },
-    actOnF2ShortKeyPressed() {
-      this.goToWorkProductMode()
-    },
-    actOnF3ShortKeyPressed() {
-      this.goToAnalysisMode()
-    },
-    actOnF10ShortKeyPressed() {
-      this.toggleBetweenHealthAndOtherComponents()
-    },
-    activateTab(pTab) {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pTab }],
+    oneSearchBox() {
+      const status = clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'one-search-box', fieldValue: 'jaikalima' }],
       })
-      // Goal: Do not see C typed in the input field
-      return false
-    },
-    actOnUserIntentToSeeChiefComplaint() {
-      return this.activateTab('chief_complaint')
-    },
-    actOnUserIntentToSeeHPI() {
-      return this.activateTab('psych_review_of_system')
-    },
-    actOnUserIntentToSeePastPsychHistory() {
-      return this.activateTab('past_psych_history')
-    },
-    actOnUserIntentToSeeFamilyHistory() {
-      return this.activateTab('family_history')
-    },
-    medicalHistory() {
-      return this.activateTab('medical_history')
-    },
-    medical_review_of_system() {
-      return this.activateTab('medical_review_of_system')
-    },
-    allergies() {
-      return this.activateTab('allergies')
-    },
-    examination() {
-      return this.activateTab('examination')
-    },
-    vitals() {
-      return this.activateTab('vitals')
-    },
-    medication_orders() {
-      return this.activateTab('medication_orders')
-    },
-    diagnosis() {
-      return this.activateTab('diagnosis')
-    },
-    screens() {
-      return this.activateTab('screens')
-    },
-    goals() {
-      return this.activateTab('goals')
-    },
-    recommendations() {
-      return this.activateTab('recommendations')
-    },
-    reminders() {
-      return this.activateTab('reminders')
-    },
-    plan_comments() {
-      return this.activateTab('plan_comments')
-    },
-    service_statements() {
-      return this.activateTab('service_statements')
-    },
-    miscellaneous_notes() {
-      return this.activateTab('miscellaneous_notes')
-    },
-    process_notes() {
-      return this.activateTab('process_notes')
+      return false // this makes sure that this charecter does not go to the next element
     },
 
-    goToDashboardMode() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // set the split dimensions
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
-      })
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
-      })
-      this.$notify.success({
-        message: 'Welcome to dashboard',
-        position: 'top-left',
-        duration: 1000,
-        showClose: false,
-        type: 'success',
-      })
-    },
-
-    goToWorkProductMode() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: true }],
-      })
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // set the split dimensions
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
-      })
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
-      })
-      this.$notify.success({
-        message: 'Editing assesment and plan',
-        position: 'top-left',
-        duration: 1000,
-        showClose: false,
-        type: 'success',
-      })
-    },
-
-    goToAnalysisMode() {
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'right-screen-extension-drawer-visibility', fieldValue: false }],
-      })
-
-      // For left side extension drawer // TODO: rename this to mtfSetLeftSideExtensionDrawerVisibility
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'left-screen-extension-drawer-visibility', fieldValue: true }],
-      })
-
-      // set the split dimensions
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-left-side-split-size', fieldValue: 50 }],
-      })
-
-      clientTblOfCommonForAllComponents.insertOrUpdate({
-        data: [{ fieldName: 'layer1-right-side-split-size', fieldValue: 50 }],
-      })
-      this.$notify.success({
-        message: 'Editing history and exam',
-        position: 'top-right',
-        duration: 1000,
-        showClose: false,
-        type: 'success',
-      })
-    },
     toggleBetweenHealthAndOtherComponents() {
       // Goal: Decide if I need to do update or insert
       const arOfObjectsFromCommonForAllComponents = clientTblOfCommonForAllComponents.find(

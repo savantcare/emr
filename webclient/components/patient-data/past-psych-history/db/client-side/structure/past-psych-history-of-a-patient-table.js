@@ -63,6 +63,9 @@ export const pastPsychHistoryFormDef = {
 
   ctrlPlacementOfEveryFieldsNameAndValueInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
+  ctrlPlacementOfEveryRowInViewNote:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+
   fieldsDef: [
     {
       nameInDb: 'past_outpatient_treatment',

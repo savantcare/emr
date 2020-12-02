@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'past_psych_history',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/past-psych-history/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/past-psych-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add past_psych_history',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/past-psych-history/change-layer/past-psych-history-add.vue',
+        ctToShow: 'patient-data/past-psych-history/change-layer/past-psych-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit past_psych_history',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/past-psych-history/change-layer/fh-edit.vue',
+        ctToShow: 'patient-data/past-psych-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit past_psych_history',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/past-psych-history/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/past-psych-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted past_psych_history',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/past-psych-history/view-layer/deleted.vue',
+        ctToShow: 'patient-data/past-psych-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

@@ -18,7 +18,6 @@ export default {
         { label: 'Fatigue' },
         { label: 'Change in weight' },
         { label: 'Night sweats' },
-        { label: 'None' },
         { label: 'Difficulty sleeping' },
         { label: 'Feeling hotter than everyone' },
         { label: 'Feeling colder than everyone' },
@@ -113,7 +112,7 @@ export default {
         const label = obj[i].label
         medicalReviewOfSystemAllSelectOptionsTbl.insert({
           data: {
-            fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            fieldOptionId: '#' + label.replace(/ /g, '_') + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             fieldOptionLabel: label,
             fieldNameInDb: fldName,
           },

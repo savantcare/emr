@@ -132,7 +132,7 @@ export default {
         const label = obj[i].label
         serviceStatementsAllSelectOptionsTbl.insert({
           data: {
-            fieldOptionId: '#' + rowUniqId + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
+            fieldOptionId: '#' + label.replace(/ /g, '_') + '#', // # is the seperator charecter so toggle can work. Look inside manage-rows
             fieldOptionLabel: label,
             fieldNameInDb: fldName,
           },

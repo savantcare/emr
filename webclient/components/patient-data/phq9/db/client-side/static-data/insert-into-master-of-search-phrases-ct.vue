@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'phq9',
         ctAbbr: 'ss',
-        ctToShow: 'temporal/phq9/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'patient-data/phq9/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit phq9',
         ctAbbr: 'sse',
-        ctToShow: 'temporal/phq9/change-layer/ss-edit-design-1.vue',
+        ctToShow: 'patient-data/phq9/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add phq9',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/phq9/change-layer/add-ss.vue',
+        ctToShow: 'patient-data/phq9/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

@@ -68,12 +68,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     > -->
-    <el-tabs
-      tab-position="left"
-      v-model="activeTabName"
-      type="border-card"
-      @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
-    >
+    <el-tabs tab-position="left" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
         <editChiefComplaint />
@@ -256,8 +251,27 @@ export default {
   watch: {
     activeTabName: {
       immediate: true,
-      handler(pNVal, pOVal) {
-        console.log('setting tabIndex for', pNVal)
+      handler(pVal) {
+        console.log('setting tabIndex for', pVal)
+
+        /**
+         * Problem: When I use keyboard shortcut to go to a different tab the focus does not change.
+         * Solution: If activetabName will change then call method function to focus form field instead of @tab-click
+         */
+        this.mf_send_id_of_focussed_field_to_ct_inside_tab(pVal)
+      },
+    },
+    cfDrawerVisibility: {
+      /**
+       * Why we added this watcher on computed function named 'cfDrawerVisibility'
+       * Problem: I click outside the change paper and then open the change paper again then focus not working.
+       * Solution: If value of cfDrawerVisibility will change and if it will true then call method function to focus field
+       */
+      immediate: true,
+      handler(pVal) {
+        if (pVal) {
+          this.mf_send_id_of_focussed_field_to_ct_inside_tab(this.activeTabName)
+        }
       },
     },
   },
@@ -303,10 +317,14 @@ export default {
       /**
        * Form focus step: 5/9
        *  Storing form focus position details in a multidimentional array
+       *
+       * In the case of vitals, activeTabName and pFormDefId is different.
+       * To resolve this above case, I have sent activeTabName as array key and added one more item as formDefId
        */
-      this.arFormFieldIndexWithFocus[pFormDefId] = []
-      this.arFormFieldIndexWithFocus[pFormDefId]['index'] = pIndex
-      this.arFormFieldIndexWithFocus[pFormDefId]['fieldNameInDb'] = pFieldNameInDb
+      this.arFormFieldIndexWithFocus[this.activeTabName] = []
+      this.arFormFieldIndexWithFocus[this.activeTabName]['formDefId'] = pFormDefId
+      this.arFormFieldIndexWithFocus[this.activeTabName]['index'] = pIndex
+      this.arFormFieldIndexWithFocus[this.activeTabName]['fieldNameInDb'] = pFieldNameInDb
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'medical-history',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/medical-history/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/medical-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add medical-history',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/medical-history/change-layer/medical-history-add.vue',
+        ctToShow: 'patient-data/medical-history/change-layer/medical-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit medical-history',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/medical-history/change-layer/fh-edit.vue',
+        ctToShow: 'patient-data/medical-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit medical-history',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/medical-history/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/medical-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted medical-history',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/medical-history/view-layer/deleted.vue',
+        ctToShow: 'patient-data/medical-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

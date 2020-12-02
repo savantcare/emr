@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'miscellaneous_notes',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/miscellaneous-notes/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/miscellaneous-notes/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add miscellaneous_notes',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/miscellaneous-notes/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/miscellaneous-notes/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit miscellaneous_notes',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/miscellaneous-notes/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/miscellaneous-notes/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit miscellaneous_notes',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/miscellaneous-notes/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/miscellaneous-notes/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted miscellaneous_notes',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/miscellaneous-notes/view-layer/deleted.vue',
+        ctToShow: 'patient-data/miscellaneous-notes/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

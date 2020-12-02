@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'waist-circumference',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/waist-circumference/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/waist-circumference/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add waist-circumference',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/waist-circumference/change-layer/add-waist-circumference.vue',
+        ctToShow: 'patient-data/waist-circumference/change-layer/add-waist-circumference.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit waist-circumference',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/waist-circumference/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/waist-circumference/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit waist-circumference',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/waist-circumference/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/waist-circumference/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted waist-circumference',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/waist-circumference/view-layer/deleted.vue',
+        ctToShow: 'patient-data/waist-circumference/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
