@@ -2,7 +2,7 @@
   <div>
     <div style="display: grid; grid-template-columns: repeat(6, 1fr); width: 700px">
       <div><ctCorrelate /></div>
-      <div><ctScBrainDialog /></div>
+      <div><el-button size="mini" round type="primary" @click="invokeOneBoxSearch">SC brain</el-button></div>
       <div><el-button size="mini" round type="primary">Pt data timeline</el-button></div>
       <div><ctCoding /></div>
       <div style="vertical-align: top">
@@ -21,7 +21,7 @@
 </template>
 <script>
 import ctCorrelate from '@/components/papers/correlate/design-2.vue'
-import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from '@/components/papers/note-view/lhs/header/settings-component.vue'
@@ -37,7 +37,6 @@ export default {
   components: {
     ctCorrelate,
     ctCoding,
-    ctScBrainDialog,
     ctSettings,
     ctPaperNoteStructure,
     apptNote,
@@ -67,6 +66,12 @@ export default {
       showNoteForApptId: 5,
     }
   },
-  computed: {},
+  methods: {
+    invokeOneBoxSearch() {
+      const status = clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'one-search-box', fieldValue: 'jaikalima' }],
+      })
+    },
+  },
 }
 </script>
