@@ -18,7 +18,6 @@ export default {
         { label: 'Fatigue' },
         { label: 'Change in weight' },
         { label: 'Night sweats' },
-        { label: 'None' },
         { label: 'Difficulty sleeping' },
         { label: 'Feeling hotter than everyone' },
         { label: 'Feeling colder than everyone' },
