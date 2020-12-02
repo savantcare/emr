@@ -11,9 +11,7 @@
     top="1vh"
     width="80%"
   >
-    jai kali ma
-
-    <el-input></el-input>
+    <el-input v-model="searchTerm" placeholder="Please input"></el-input>
   </el-dialog>
 </template>
 
@@ -22,13 +20,14 @@ import commonForAllCts from '@/components/non-temporal/common-for-all-components
 
 export default {
   data() {
-    return {}
+    return {
+      searchTerm: '',
+    }
   },
   components: {},
   watch: {},
   computed: {
     cfDrawerVisibility() {
-      debugger
       const drawerVisibility = commonForAllCts.find('one-search-box')
 
       if (drawerVisibility) {
@@ -40,7 +39,13 @@ export default {
     },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    handleClose(done) {
+      commonForAllCts.insertOrUpdate({
+        data: [{ fieldName: 'one-search-box', fieldValue: 'false' }],
+      })
+    },
+  },
 }
 </script>
 
