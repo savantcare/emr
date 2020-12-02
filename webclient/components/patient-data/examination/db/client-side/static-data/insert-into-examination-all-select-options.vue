@@ -50,6 +50,7 @@ export default {
       ],
       mood_affect_multi_select: [
         { label: 'Euthymic' },
+        { label: 'reactive' },
         { label: 'Stable' },
         { label: 'Dysphoric' },
         { label: 'Irritable' },
@@ -63,7 +64,8 @@ export default {
         { label: 'No HI, intent or plan' },
         { label: 'No delusional thinking observed' },
         { label: 'No obsessive thinking observed' },
-        { label: 'No Ruminations' },
+        { label: 'No ruminations' },
+        { label: '+ruminations' },
         { label: '+SI without intent or plan' },
         { label: '+SI as detailed below' },
         { label: '+HI as detailed below' },
