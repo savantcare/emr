@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'medication-order',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/medication-order/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/medication-order/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add medication-order',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/medication-order/change-layer/medication-order-add.vue',
+        ctToShow: 'patient-data/medication-order/change-layer/medication-order-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit medication-order',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/medication-order/change-layer/fh-edit.vue',
+        ctToShow: 'patient-data/medication-order/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit medication-order',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/medication-order/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/medication-order/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted medication-order',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/medication-order/view-layer/deleted.vue',
+        ctToShow: 'patient-data/medication-order/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

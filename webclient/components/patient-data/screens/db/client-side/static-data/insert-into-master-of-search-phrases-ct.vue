@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'screens',
         ctAbbr: 'g',
-        ctToShow: 'temporal/screens/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/screens/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add screens',
         ctAbbr: 'ag',
-        ctToShow: 'temporal/screens/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/screens/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit screens',
         ctAbbr: 'cg',
-        ctToShow: 'temporal/screens/change-layer/screen-edit.vue',
+        ctToShow: 'patient-data/screens/change-layer/screen-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit screens',
         ctAbbr: 'mcg',
-        ctToShow: 'temporal/screens/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/screens/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted screens',
         ctAbbr: 'dg',
-        ctToShow: 'temporal/screens/view-layer/deleted.vue',
+        ctToShow: 'patient-data/screens/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

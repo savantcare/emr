@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'examination',
         ctAbbr: 'ss',
-        ctToShow: 'temporal/examination/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'patient-data/examination/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit examination',
         ctAbbr: 'sse',
-        ctToShow: 'temporal/examination/change-layer/examination-edit-design.vue',
+        ctToShow: 'patient-data/examination/change-layer/examination-edit-design.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add examination',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/examination/change-layer/add-examination.vue',
+        ctToShow: 'patient-data/examination/change-layer/add-examination.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

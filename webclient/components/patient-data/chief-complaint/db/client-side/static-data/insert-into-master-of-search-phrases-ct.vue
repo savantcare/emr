@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'chief-complaint',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/chief-complaint/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/chief-complaint/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add chief-complaint',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/chief-complaint/change-layer/add-chief-complaint.vue',
+        ctToShow: 'patient-data/chief-complaint/change-layer/add-chief-complaint.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit chief-complaint',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/chief-complaint/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/chief-complaint/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit chief-complaint',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/chief-complaint/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/chief-complaint/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted chief-complaint',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/chief-complaint/view-layer/deleted.vue',
+        ctToShow: 'patient-data/chief-complaint/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'bmi',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/bmi/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/bmi/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add bmi',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/bmi/change-layer/add-bmi.vue',
+        ctToShow: 'patient-data/bmi/change-layer/add-bmi.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit bmi',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/bmi/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/bmi/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit bmi',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/bmi/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/bmi/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted bmi',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/bmi/view-layer/deleted.vue',
+        ctToShow: 'patient-data/bmi/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

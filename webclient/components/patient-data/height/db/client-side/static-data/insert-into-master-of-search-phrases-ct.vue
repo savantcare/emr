@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'height',
         ctAbbr: 'cc',
-        ctToShow: 'temporal/height/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/height/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add height',
         ctAbbr: 'acc',
-        ctToShow: 'temporal/height/change-layer/add-height.vue',
+        ctToShow: 'patient-data/height/change-layer/add-height.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit height',
         ctAbbr: 'ccc',
-        ctToShow: 'temporal/height/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/height/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit height',
         ctAbbr: 'mccc',
-        ctToShow: 'temporal/height/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/height/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted height',
         ctAbbr: 'dcc',
-        ctToShow: 'temporal/height/view-layer/deleted.vue',
+        ctToShow: 'patient-data/height/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

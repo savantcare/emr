@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'service statements',
         ctAbbr: 'ss',
-        ctToShow: 'temporal/service-statements/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'patient-data/service-statements/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit service_statements',
         ctAbbr: 'sse',
-        ctToShow: 'temporal/service-statements/change-layer/ss-edit-design-1.vue',
+        ctToShow: 'patient-data/service-statements/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add service_statements',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/service-statements/change-layer/add-ss.vue',
+        ctToShow: 'patient-data/service-statements/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

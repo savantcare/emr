@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'recommendations',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/recommendations/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/recommendations/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add recommendations',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/recommendations/change-layer/recommendation-add.vue',
+        ctToShow: 'patient-data/recommendations/change-layer/recommendation-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit recommendation',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/recommendations/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/recommendations/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit recommendations',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/recommendations/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/recommendations/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted recommendations',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/recommendations/view-layer/deleted.vue',
+        ctToShow: 'patient-data/recommendations/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

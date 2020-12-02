@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'social-history',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/social-history/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/social-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add social-history',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/social-history/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/social-history/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit social-history',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/social-history/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/social-history/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit social-history',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/social-history/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/social-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted social-history',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/social-history/view-layer/deleted.vue',
+        ctToShow: 'patient-data/social-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

@@ -14,7 +14,7 @@ export default {
       data: {
         value: 'pysch review of system',
         ctAbbr: 'ss',
-        ctToShow: 'temporal/psych-review-of-system/view-layer/ss-design-1-ct.vue',
+        ctToShow: 'patient-data/psych-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit psych_review_of_system',
         ctAbbr: 'sse',
-        ctToShow: 'temporal/psych-review-of-system/change-layer/ss-edit-design-1.vue',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/ss-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add psych_review_of_system',
         ctAbbr: 'dss',
-        ctToShow: 'temporal/psych-review-of-system/change-layer/add-ss.vue',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/add-ss.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

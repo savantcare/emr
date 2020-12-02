@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'plan-comments',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/plan-comments/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/plan-comments/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add plan-comments',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/plan-comments/change-layer/add-ct.vue',
+        ctToShow: 'patient-data/plan-comments/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit plan-comments',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/plan-comments/change-layer/edit-design-1.vue',
+        ctToShow: 'patient-data/plan-comments/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit plan-comments',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/plan-comments/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/plan-comments/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted plan-comments',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/plan-comments/view-layer/deleted.vue',
+        ctToShow: 'patient-data/plan-comments/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

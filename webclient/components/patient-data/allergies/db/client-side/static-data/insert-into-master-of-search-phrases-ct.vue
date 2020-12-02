@@ -16,7 +16,7 @@ export default {
       data: {
         value: 'allergies',
         ctAbbr: 'rem',
-        ctToShow: 'temporal/allergies/view-layer/timeline-ct.vue',
+        ctToShow: 'patient-data/allergies/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
@@ -24,7 +24,7 @@ export default {
       data: {
         value: 'add allergies',
         ctAbbr: 'arem',
-        ctToShow: 'temporal/allergies/change-layer/allergy-add.vue',
+        ctToShow: 'patient-data/allergies/change-layer/allergy-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
       },
@@ -33,7 +33,7 @@ export default {
       data: {
         value: 'edit allergies',
         ctAbbr: 'crem',
-        ctToShow: 'temporal/allergies/change-layer/allergy-edit.vue',
+        ctToShow: 'patient-data/allergies/change-layer/allergy-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -43,7 +43,7 @@ export default {
       data: {
         value: 'multi edit allergies',
         ctAbbr: 'mcrem',
-        ctToShow: 'temporal/allergies/change-layer/medit-design-1.vue',
+        ctToShow: 'patient-data/allergies/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
@@ -52,7 +52,7 @@ export default {
       data: {
         value: 'deleted allergies',
         ctAbbr: 'drem',
-        ctToShow: 'temporal/allergies/view-layer/deleted.vue',
+        ctToShow: 'patient-data/allergies/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
