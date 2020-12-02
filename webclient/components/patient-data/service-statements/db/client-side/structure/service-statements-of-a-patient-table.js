@@ -29,11 +29,11 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table fieldOptionId = 2 */
-      total_minutes_in_psychotherapy: this.string(''),
-      total_minutes_with_patient: this.string(''),
-      modality_of_psychotherapy_multi_select: this.string(''),
-      review_of_systems_multi_select: this.string(''),
-      optional_multi_select: this.string(''),
+      total_minutes_in_psychotherapy: this.string(null).nullable(),
+      total_minutes_with_patient: this.string(null).nullable(),
+      modality_of_psychotherapy_multi_select: this.string(null).nullable(),
+      review_of_systems_multi_select: this.string(null).nullable(),
+      optional_multi_select: this.string(null).nullable(),
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -121,33 +121,68 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let arOfAllSelectOptions = []
+    let masterListOfSelectOptionsForAField = []
     if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
-      arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
+      masterListOfSelectOptionsForAField = serviceStatementsAllSelectOptionsTbl
         .query()
         .where('ROW_END', 2147483648000)
         .where('fieldNameInDb', fieldNameInDb)
         .get()
-      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = arOfAllSelectOptions
+      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = masterListOfSelectOptionsForAField
     } else {
-      arOfAllSelectOptions = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
+      masterListOfSelectOptionsForAField = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
     }
     // get the value for this field in patient table
     let row = serviceStatementsOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
 
-    arOfAllSelectOptions.forEach(function (data) {
-      data['id'] = data['fieldOptionId']
-      data['value'] = data['fieldOptionLabel']
-      if (selectedIDs) {
-        data['selected'] = selectedIDs.includes(data['id']) ? true : false
-      } else {
-        data['selected'] = false
-      }
-    })
+    var selectDropDown = []
 
-    return arOfAllSelectOptions
+    for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
+      selectDropDown[i] = new Array()
+      selectDropDown[i]['id'] = masterListOfSelectOptionsForAField[i]['fieldOptionId']
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['fieldOptionLabel']
+      if (selectedIDs) {
+        selectDropDown[i]['selected'] = selectedIDs.includes(masterListOfSelectOptionsForAField[i]['fieldOptionId'])
+          ? true
+          : false
+      }
+    }
+
+    /* run custom rules to remove selected options. The data structure is:
+            $id: "#0#"
+            ROW_END: 2147483648000
+            fieldNameInDb: "constitutional_systems_select"
+            fieldOptionId: "#0#"
+            fieldOptionLabel: "Change in appetite"
+            id: "#0#"
+            isValidationError: false
+            selected: true
+            value: "Change in appetite"
+            vnRowStateInSession: 1
+  */
+    var userHasSelectedNone = false
+
+    for (var i = 0; i < selectDropDown.length; i++) {
+      if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        userHasSelectedNone = true
+      }
+    }
+
+    if (userHasSelectedNone) {
+      var i = selectDropDown.length
+      // for reasons of using while see: https://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
+      while (i--) {
+        if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        } else {
+          selectDropDown.splice(i, 1)
+        }
+      }
+    }
+
+    return selectDropDown
   },
+
   fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
     if (pfieldValue === '') return
 
