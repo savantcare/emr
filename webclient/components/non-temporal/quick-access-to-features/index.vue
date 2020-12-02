@@ -134,7 +134,10 @@ export default {
       }
     },
     oneSearchBox() {
-      console.log('invoke dp')
+      const status = clientTblOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'one-search-box', fieldValue: 'jaikalima' }],
+      })
+      return false // this makes sure that this charecter does not go to the next element
     },
 
     toggleBetweenHealthAndOtherComponents() {
