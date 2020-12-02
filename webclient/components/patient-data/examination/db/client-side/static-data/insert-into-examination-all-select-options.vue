@@ -91,6 +91,9 @@ export default {
         { label: 'Imparied' },
         { label: 'Fluctuating' },
         { label: 'Grossly intact, no memory imparirement' },
+        { label: 'Adequate fund of knowledge' },
+        { label: 'No language deficit' },
+        { label: 'Normal attention' },
       ],
       insight_multi_select: [
         { label: 'Good' },
