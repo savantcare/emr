@@ -265,4 +265,33 @@ I have added the following css because if we set font-size=200% then v-tour popu
 .v-tour .el-card__body {
   max-width: 600px;
 }
+
+/** 
+  Why we added the following css?
+    Problem: Why has arrow pointing up and down come in the 2nd layer edit form left side menu.
+
+    As per the plugin 'element-io el-tabs' (mentioned in webclient/node_modules/element-ui/lib/element-ui.common.js) up and down arrow will appear if container size of el-tabs navigation is lesser than nav size.
+    
+    In the second layer edit form popup left hand side, above mentioned container is containing the nav area. 
+    In our case, height of popup container is dynamic and it takes equanimity height of all the navBars.  
+    Hence, navSize is equal to the container size in our case which causes the up and down arrow.
+
+    Posible solution was as follows: 
+    1. Give a height of the container such that it always greater than navSize
+    2. Change in node_module library and introduce a '<=' instead of '<'
+    3. Using a padding in 'el-tabs__nav-scroll'
+
+    Solution 1 is cumbersome as the number of navBar is dynamic, 
+    hence height needs to be re-calculated everytime. 
+
+    Solution 2 is not preffered as altering library file may cause problem in future updation of the library. 
+
+    Solution 3 is what we have done to solve the problem. 
+      While going through the library I found container height is being calculated by the offsetHeight of the container element. 
+      As per this document - https://www.w3schools.com/jsref/prop_element_offsetheight.asp offsetHeight is height of an element including padding and border of the element. 
+      So, in order to make container height larger than navBar I am adding padding 5px in navBar container element or el-tabs__nav-scroll.
+*/
+.el-tabs__nav-scroll {
+  padding: 5px 0;
+}
 </style>
