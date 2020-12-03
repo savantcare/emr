@@ -270,7 +270,17 @@ export default {
       immediate: true,
       handler(pVal) {
         if (pVal) {
-          this.mf_send_id_of_focussed_field_to_ct_inside_tab(this.activeTabName)
+          /**
+           * Why we have added setTimeout function below?
+           * -- In the below function named 'mf_send_id_of_focussed_field_to_ct_inside_tab',
+           * fired a event to the 'add-form.vue' page.
+           * In the mounted hook of 'add-form.vue' page, listen the below fired event and then process to focus.
+           *
+           * In this case, when I click first time on the 'm review of system' after page load,
+           * initializing mounted hook of 'add-form.vue' after the event fired, thats the problem.
+           * So, to solve this problem I have added 200 millisecond delay to fire event in the time of popup load.
+           */
+          setTimeout(() => this.mf_send_id_of_focussed_field_to_ct_inside_tab(this.activeTabName), 200)
         }
       },
     },
