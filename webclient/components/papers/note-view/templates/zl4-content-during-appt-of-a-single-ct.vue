@@ -63,38 +63,72 @@
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
-      <ul class="hs full no-scrollbar" id="container-for-all-appointments">
-        <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-          <li class="item" id="container-for-one-appointment">
-            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
-            </div>
+      <div class="container-for-all-appointments">
+        <div id="slides">
+          <input
+            v-for="(item, index) in cf_get_entity_value_during_each_appt"
+            :key="item.id"
+            type="radio"
+            name="slider"
+            v-model="currentSlideNumber"
+            v-bind:value="index"
+            :id="`slide` + index"
+            class="set"
+            :checked="item.clientSideUniqRowId == _apptId"
+          />
+
+          <div style="overflow: hidden; margin: auto">
             <div
-              id="container-to-ctrl-placement-of-every-row-in-view-note"
+              class="transition-container"
               :style="
-                _formDef.ctrlPlacementOfEveryRowInViewNote
-                  ? _formDef.ctrlPlacementOfEveryRowInViewNote
-                  : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem'
+                `width: ` +
+                cf_get_entity_value_during_each_appt.length * 100 +
+                `%; margin-left: -` +
+                currentSlideNumber * 100 +
+                `%`
               "
             >
               <div
-                id="container-for-all-rows-of-one-appointment"
-                v-for="dataRow in item[_formDef.id]"
-                :key="dataRow.clientSideUniqRowId"
+                v-for="item in cf_get_entity_value_during_each_appt"
+                :key="item.id"
+                class="slide"
+                :style="`width: ` + 100 / cf_get_entity_value_during_each_appt.length + `%`"
               >
-                <getRowContent
-                  :_dataRow="dataRow"
-                  :_formDef="_formDef"
-                  :_ApptStatus="item['apptStatus']"
-                  :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
-                />
-                <!-- end of each-row-of-entity -->
+                <div v-if="item.apptStatus == 'locked'">Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}</div>
+                <div
+                  id="container-to-ctrl-placement-of-every-row-in-view-note"
+                  :style="
+                    _formDef.ctrlPlacementOfEveryRowInViewNote
+                      ? _formDef.ctrlPlacementOfEveryRowInViewNote
+                      : 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem'
+                  "
+                >
+                  <div
+                    id="container-for-all-rows-of-one-appointment"
+                    v-for="dataRow in item[_formDef.id]"
+                    :key="dataRow.clientSideUniqRowId"
+                  >
+                    <getRowContent
+                      :_dataRow="dataRow"
+                      :_formDef="_formDef"
+                      :_ApptStatus="item['apptStatus']"
+                      :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </li>
-          <!-- end of actions of each row -->
-        </section>
-      </ul>
+          </div>
+          <div id="controls">
+            <label
+              v-for="(item, index) in cf_get_entity_value_during_each_appt"
+              :key="item.id"
+              :for="`slide` + index"
+              :class="currentSlideNumber == index ? `active` : ``"
+            ></label>
+          </div>
+        </div>
+      </div>
     </div>
     <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
       <h4>Addendum:</h4>
@@ -416,66 +450,43 @@ https://stackoverflow.com/questions/41522938/scrolling-on-x-axis-in-a-div-with-o
 http://jsfiddle.net/kf1y2npw/30/
 */
 
-.app {
-  padding: 0px 0;
-  display: grid;
-  grid-gap: 20px 0;
-  grid-template-columns: 20px 1fr 20px;
-  align-content: start;
+/**
+  CSS for Content Slider without Javascript
+  Ref: https://codeconvey.com/pure-css-content-slider-without-javascript/
+*/
+.container-for-all-appointments *,
+.container-for-all-appointments *:before,
+.container-for-all-appointments *:after {
+  box-sizing: border-box;
 }
-
-.app {
-  overflow-y: scroll;
-}
-
-.app > * {
-  grid-column: 1 / -1;
-}
-
-.app > .full {
-  grid-column: 1 / -1;
-}
-
-.hs {
-  display: grid;
-  grid-gap: calc(20px / 2);
-  grid-template-columns: 10px;
-
-  grid-auto-flow: column;
-  grid-auto-columns: calc(95% - 20px * 2);
-
-  overflow-x: scroll;
-  scroll-snap-type: x proximity;
-  padding-bottom: calc(0.75 * 20px);
-  margin-bottom: calc(-0.25 * 20px);
-}
-
-.hs:before,
-.hs:after {
-  content: '';
-  width: 10px;
-}
-.hs > li,
-.item {
-  scroll-snap-align: center;
-  padding: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  border-radius: 8px;
-  border-width: 1px;
-  border-color: #ebeef5;
-  border-style: solid;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-}
-.no-scrollbar {
-  scrollbar-width: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-.no-scrollbar::-webkit-scrollbar {
+#slides input.set {
   display: none;
+}
+#slides .transition-container {
+  -webkit-transform: translateZ(0);
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+#slides .slide {
+  float: left;
+}
+#controls {
+  width: 100%;
+  text-align: center;
+}
+#controls label {
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  opacity: 0.3;
+  cursor: pointer;
+  background: #000;
+  margin: 0 2px;
+}
+#controls label:hover,
+#controls label.active {
+  opacity: 0.8;
 }
 </style>
