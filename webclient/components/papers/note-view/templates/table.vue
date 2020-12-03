@@ -113,7 +113,7 @@ import recommendationClientTbl from '@/components/patient-data/recommendations/d
 import miscNotesClientTbl from '@/components/patient-data/miscellaneous-notes/db/client-side/structure/miscellaneous-notes-of-a-patient-table.js'
 import planCommentsClientTbl from '@/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import processNotesClientTbl from '@/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
-import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 // defining all rows in this object
 const clientTbl = {
   reminders: reminderClientTbl,
