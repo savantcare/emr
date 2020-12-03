@@ -1,6 +1,6 @@
 import clientTbl from '../db/client-side/structure/table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import { rowState } from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   mixins: [mxFullSyncWithDbServer],
@@ -189,7 +189,7 @@ export default {
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       const rowStatus = rowState.SameAsDB_Copy_Changed // 3 is copy on client and 4 is changed on client
       clientTbl.fnSetValueOfFld(pEvent, this.dnClientIdOfCopiedRowBeingChanged, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
   },
 }

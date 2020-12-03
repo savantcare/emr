@@ -258,7 +258,7 @@
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
-import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   created() {
@@ -509,7 +509,7 @@ export default {
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mf_get_css_class_name_for_each_data_row(pClientRowId) {
       const arFromClientTbl = allPatientDataTbls[this._formDef.id].find(pClientRowId)

@@ -1,6 +1,6 @@
 // Reference implmentation for Ct that has 1 row and multiple fields.
 // For docs read webclient/docs/models.md
-import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0

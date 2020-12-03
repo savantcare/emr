@@ -1,4 +1,4 @@
-import clientTblManage from '~/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import medicalReviewOfSystemForPatientClass from './medical-review-of-system-of-a-patient-table.js'
 
 const { v1: uuidv1 } = require('uuid')

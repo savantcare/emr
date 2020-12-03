@@ -85,7 +85,7 @@
 import moment from 'moment'
 import clInvokeMixin from './cl-invoke-mixin.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
-import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 export default {
   mixins: [clInvokeMixin],

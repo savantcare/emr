@@ -122,7 +122,7 @@
 </template>
 <script>
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
-import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   /*
@@ -322,7 +322,7 @@ export default {
         pFldName,
         rowStatus
       )
-      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/crud/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+      this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfForTabActionByEnter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 

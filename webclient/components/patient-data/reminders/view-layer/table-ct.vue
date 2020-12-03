@@ -108,7 +108,7 @@ Setting the <el-table-column as tabindex=-1 does not help -->
 <script>
 import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import { rowState } from '@/components/non-temporal/form-manager/crud/manage-rows-of-table-in-client-side-orm.js'
+import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
 export default {
   mixins: [clInvokeMixin],
