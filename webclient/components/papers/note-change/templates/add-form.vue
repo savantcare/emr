@@ -387,7 +387,7 @@ export default {
        *    -- this scenario we covered in else statement that first input field should be focused.
        */
       if (pArFieldDetails && pArFieldDetails['fieldNameInDb'] && pArFieldDetails['index'] > -1) {
-        const queryString =
+        var parentDivQuerySelector =
           '#each-data-row-' +
           pArFieldDetails['index'] +
           '-' +
@@ -395,24 +395,22 @@ export default {
           ' #' +
           pArFieldDetails['fieldNameInDb']
 
-        if (document.querySelector(queryString + ' button')) {
-          /**
-           * In the case of M review of system or service statement the form field displayed as button
-           */
-          document.querySelector(queryString + ' button').focus()
-        } else if (document.querySelector(queryString + ' input')) {
-          document.querySelector(queryString + ' input').focus()
-        } else if (document.querySelector(queryString + ' textarea')) {
-          document.querySelector(queryString + ' textarea').focus()
+        var focusableElement = document.querySelectorAll(
+          parentDivQuerySelector +
+            ' button, ' +
+            parentDivQuerySelector +
+            ' input, ' +
+            parentDivQuerySelector +
+            ' select, ' +
+            parentDivQuerySelector +
+            ' textarea'
+        )
+
+        if (focusableElement[0]) {
+          focusableElement[0].focus()
         }
       } else {
-        if (document.querySelector('#each-data-row-0-' + pTabName + ' button:first-child')) {
-          document.querySelector('#each-data-row-0-' + pTabName + ' button:first-child').focus()
-        } else if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
-          document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child').focus()
-        } else if (document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child')) {
-          document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child').focus()
-        } else if (pTabName == 'vitals') {
+        if (pTabName == 'vitals') {
           /**
            * Exceptional case:
            * In the case of 'vitals', activeTabName and element name is different.
@@ -420,6 +418,26 @@ export default {
            * Hence, if we click vitals tab first time after page load then first input field of first component(weight) will be focused.
            */
           document.querySelector('#each-data-row-0-weight input:first-child').focus()
+        } else {
+          /**
+           * I have get all the elements using querySelectorAll() and a comma-separated list of elements to target.
+           * I want to look for buttons, input, textarea and select.
+           * This returns a node list from which we can grab the first element as needed.
+           */
+          var focusableElement = document.querySelectorAll(
+            '#each-data-row-0-' +
+              pTabName +
+              ' button, #each-data-row-0-' +
+              pTabName +
+              ' input, #each-data-row-0-' +
+              pTabName +
+              ' select, #each-data-row-0-' +
+              pTabName +
+              ' textarea'
+          )
+          if (focusableElement[0]) {
+            focusableElement[0].focus()
+          }
         }
       }
     },
