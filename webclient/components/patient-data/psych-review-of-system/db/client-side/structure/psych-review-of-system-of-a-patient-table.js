@@ -28,6 +28,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
+      subjective: this.string(null).nullable(),
       depressive_mood: this.number(0),
       interest: this.number(0),
       sleep: this.number(0),
