@@ -55,7 +55,7 @@
                 <b><span v-html="highlight(_fieldDef.nameInUi)"></span></b>
               </div>
               <div
-                v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
+                v-for="(item, optionIndex) in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
                   _fieldDef.nameInDb,
                   ormRow.clientSideUniqRowId
                 )"
@@ -68,13 +68,17 @@
                     mf_matched_field_name(_fieldDef.nameInUi)
                   "
                   why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
+                  :id="_fieldDef.nameInDb + optionIndex"
                 >
                   <el-button
                     size="mini"
                     round
                     v-model="value[_fieldDef.nameInDb]"
                     :type="item.selected ? 'primary' : 'plain'"
-                    @click="mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                    @click="
+                      mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
+                      mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb + optionIndex, index)
+                    "
                     ><span v-html="highlight(item.value)"></span
                   ></el-button>
                   <span v-if="item.subText"><br />({{ item.subText }})</span>
@@ -391,13 +395,20 @@ export default {
           ' #' +
           pArFieldDetails['fieldNameInDb']
 
-        if (document.querySelector(queryString + ' input')) {
+        if (document.querySelector(queryString + ' button')) {
+          /**
+           * In the case of M review of system or service statement the form field displayed as button
+           */
+          document.querySelector(queryString + ' button').focus()
+        } else if (document.querySelector(queryString + ' input')) {
           document.querySelector(queryString + ' input').focus()
         } else if (document.querySelector(queryString + ' textarea')) {
           document.querySelector(queryString + ' textarea').focus()
         }
       } else {
-        if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
+        if (document.querySelector('#each-data-row-0-' + pTabName + ' button:first-child')) {
+          document.querySelector('#each-data-row-0-' + pTabName + ' button:first-child').focus()
+        } else if (document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child')) {
           document.querySelector('#each-data-row-0-' + pTabName + ' input:first-child').focus()
         } else if (document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child')) {
           document.querySelector('#each-data-row-0-' + pTabName + ' textarea:first-child').focus()
