@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit medical_review_of_system',
         ctAbbr: 'sse',
-        ctToShow: 'patient-data/medical-review-of-system/change-layer/ss-edit-design-1.vue',
+        ctToShow: 'patient-data/medical-review-of-system/change-layer/pros-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
