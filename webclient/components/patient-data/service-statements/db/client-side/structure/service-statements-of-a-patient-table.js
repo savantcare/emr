@@ -1,6 +1,6 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-var serviceStatementsEachFieldAllSelectOptions = require('../static-data/insert-into-service-statements-all-select-options.js')
+var serviceStatementsEachFieldAllSelectOptions = require('../static-data/create-obj-for-each-field-of-service-statements-all-select-options.js')
   .serviceStatementsEachFieldAllSelectOptions
 import serviceStatementsOfAPatientTbl from '~/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
