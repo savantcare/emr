@@ -70,9 +70,7 @@ database.register(tableStructureForSSOfPatient)
 import tableStructureForPsychHistoryOfPatient from '~/components/patient-data/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
 database.register(tableStructureForPsychHistoryOfPatient)
 
-import tableStructureForMedicalReviewOfSystemsMaster from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-all-select-options.js'
 import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
-database.register(tableStructureForMedicalReviewOfSystemsMaster)
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
 // Examination tables

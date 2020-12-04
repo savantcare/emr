@@ -1,13 +1,11 @@
 <template>
   <div>
     <step1_init_search_phrases />
-    <step2_init_ss_field_names />
   </div>
 </template>
 
 <script>
 import step1_init_search_phrases from '@/components/patient-data/medical-review-of-system/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import step2_init_ss_field_names from '@/components/patient-data/medical-review-of-system/db/client-side/static-data/insert-into-medical-review-of-system-all-select-options.vue'
 
 import clientTbl from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 // import step2_init_ss_field_names from '@/components/patient-data/medical-review-of-system/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
@@ -15,7 +13,6 @@ import clientTbl from '~/components/patient-data/medical-review-of-system/db/cli
 export default {
   components: {
     step1_init_search_phrases,
-    step2_init_ss_field_names,
   },
   async mounted() {
     /*

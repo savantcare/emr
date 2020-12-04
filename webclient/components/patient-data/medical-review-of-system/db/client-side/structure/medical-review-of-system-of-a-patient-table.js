@@ -1,7 +1,9 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-import medicalReviewOfSystemMasterClass from './medical-review-of-system-all-select-options.js'
-import medicalReviewOfSystemAllSelectOptionsTbl from './medical-review-of-system-all-select-options.js'
+
+var mrosEachFieldAllSelectOptions = require('../static-data/insert-into-medical-review-of-system-all-select-options')
+  .mrosEachFieldAllSelectOptions
+
 import medicalReviewOfSystemOfAPatientTbl from '~/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
@@ -212,17 +214,8 @@ export const medicalReviewOfSystemFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let masterListOfSelectOptionsForAField = []
-    if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
-      masterListOfSelectOptionsForAField = medicalReviewOfSystemAllSelectOptionsTbl
-        .query()
-        .where('ROW_END', 2147483648000)
-        .where('fieldNameInDb', fieldNameInDb)
-        .get()
-      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = masterListOfSelectOptionsForAField
-    } else {
-      masterListOfSelectOptionsForAField = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
-    }
+    let masterListOfSelectOptionsForAField = mrosEachFieldAllSelectOptions[fieldNameInDb]
+
     // get the value for this field in patient table
     let row = medicalReviewOfSystemOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
@@ -231,12 +224,12 @@ export const medicalReviewOfSystemFormDef = {
 
     for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
       selectDropDown[i] = new Array()
-      selectDropDown[i]['id'] = masterListOfSelectOptionsForAField[i]['fieldOptionId']
-      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['fieldOptionLabel']
+      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
+
+      selectDropDown[i]['id'] = fieldOptionId
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
       if (selectedIDs) {
-        selectDropDown[i]['selected'] = selectedIDs.includes(masterListOfSelectOptionsForAField[i]['fieldOptionId'])
-          ? true
-          : false
+        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
       }
     }
 
@@ -272,20 +265,5 @@ export const medicalReviewOfSystemFormDef = {
     }
 
     return selectDropDown
-  },
-  fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
-    if (pfieldValue === '') return
-
-    // from numbers get the labels
-
-    let arOfAllSelectOptions = medicalReviewOfSystemAllSelectOptionsTbl
-      .query()
-      .where('fieldNameInDb', pFieldNameInDb)
-      .where('fieldOptionId', pfieldValue)
-      .get()
-
-    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
-
-    return optionIdToLabel
   },
 }
