@@ -1,9 +1,9 @@
 <template>
-  <ctAddStructure :_formDef="formDef" :firstProp="firstProp"></ctAddStructure>
+  <ctAddForm :_formDef="formDef" :firstProp="firstProp"></ctAddForm>
 </template>
 
 <script>
-import ctAddStructure from '@/components//papers/note-change/templates/edit-form.vue'
+import ctAddForm from '@/components//papers/note-change/templates/edit-form.vue'
 import { diagnosisFormDef } from '@/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
 
   components: {
-    ctAddStructure,
+    ctAddForm,
   },
 }
 </script>

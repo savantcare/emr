@@ -1,9 +1,9 @@
 <template>
-  <ctAddStructure :_formDef="formDef"></ctAddStructure>
+  <ctAddForm :_formDef="formDef"></ctAddForm>
 </template>
 
 <script>
-import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
+import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
 import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 
 export default {
@@ -13,7 +13,7 @@ export default {
     }
   },
   components: {
-    ctAddStructure,
+    ctAddForm,
   },
 }
 </script>
