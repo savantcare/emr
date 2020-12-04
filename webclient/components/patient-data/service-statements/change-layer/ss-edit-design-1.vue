@@ -4,8 +4,6 @@
 
 <script>
 import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
-import serviceStatementsAllSelectOptionsTbl from '../db/client-side/structure/service-statements-all-select-options.js'
-import serviceStatementsOfAPatientTbl from '@/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { serviceStatementsFormDef } from '@/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {

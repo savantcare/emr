@@ -1,6 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-import serviceStatementsAllSelectOptionsTbl from './service-statements-all-select-options.js'
+var serviceStatementsAllSelectOptionsTbl = require('../static-data/insert-into-service-statements-all-select-options.js')
+  .serviceStatementsAllSelectOptionsTbl
 import serviceStatementsOfAPatientTbl from '~/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
@@ -121,17 +122,7 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let masterListOfSelectOptionsForAField = []
-    if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
-      masterListOfSelectOptionsForAField = serviceStatementsAllSelectOptionsTbl
-        .query()
-        .where('ROW_END', 2147483648000)
-        .where('fieldNameInDb', fieldNameInDb)
-        .get()
-      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = masterListOfSelectOptionsForAField
-    } else {
-      masterListOfSelectOptionsForAField = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
-    }
+    let masterListOfSelectOptionsForAField = serviceStatementsAllSelectOptionsTbl[fieldNameInDb]
     // get the value for this field in patient table
     let row = serviceStatementsOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
@@ -140,12 +131,11 @@ export const serviceStatementsFormDef = {
 
     for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
       selectDropDown[i] = new Array()
-      selectDropDown[i]['id'] = masterListOfSelectOptionsForAField[i]['fieldOptionId']
-      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['fieldOptionLabel']
+      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
+      selectDropDown[i]['id'] = fieldOptionId
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
       if (selectedIDs) {
-        selectDropDown[i]['selected'] = selectedIDs.includes(masterListOfSelectOptionsForAField[i]['fieldOptionId'])
-          ? true
-          : false
+        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
       }
     }
 
@@ -188,11 +178,7 @@ export const serviceStatementsFormDef = {
 
     // from numbers get the labels
 
-    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl
-      .query()
-      .where('fieldNameInDb', pFieldNameInDb)
-      .where('fieldOptionId', pfieldValue)
-      .get()
+    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl[0]
 
     const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
 
