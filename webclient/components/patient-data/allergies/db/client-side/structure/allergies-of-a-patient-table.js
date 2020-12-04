@@ -128,12 +128,19 @@ export const allergiesPresentFormDef = {
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     let masterListOfSelectOptionsForAField = [{ label: 'Yes' }, { label: 'No' }, { label: 'Not evaluated' }]
 
+    let row = allergiesPresentClientTbl.find(pclientSideUniqRowId)
+    let selectedIDs = row[fieldNameInDb]
+
     var selectDropDown = []
     for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
       selectDropDown[i] = new Array()
-      selectDropDown[i]['id'] = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#'
+
+      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#'
+      selectDropDown[i]['id'] = fieldOptionId
       selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
-      selectDropDown[i]['selected'] = true
+      if (selectedIDs) {
+        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
+      }
     }
     return selectDropDown
   },
