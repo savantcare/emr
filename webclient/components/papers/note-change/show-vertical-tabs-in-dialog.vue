@@ -167,7 +167,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
 import editChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/add-chief-complaint.vue'
-import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-ss.vue'
+import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import pastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
 import socialHistory from '@/components/patient-data/social-history/change-layer/add-ct.vue'

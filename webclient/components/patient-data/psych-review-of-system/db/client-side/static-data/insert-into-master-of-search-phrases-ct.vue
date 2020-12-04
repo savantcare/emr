@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add psych_review_of_system',
         ctAbbr: 'dss',
-        ctToShow: 'patient-data/psych-review-of-system/change-layer/add-ss.vue',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/add-pros.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
