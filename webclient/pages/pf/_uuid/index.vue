@@ -9,6 +9,7 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
     -->
   <div :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
+    <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
     <!-- GOAL1: Initialize the keyboard and mouse controls -->
     <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
@@ -54,6 +55,12 @@
 
     <!-- GOAL10: Init -->
     <ctInitOfComponents></ctInitOfComponents>
+
+    <button v-if="$fullscreen.support" type="button" class="btn btn-default btn-map-fullscreen" @click="toggleFullScreen">
+        <i  :class="[fullscreen ? 'el-icon-full-screen' : 'el-icon-full-screen']"></i>
+      </button>
+    </fullscreen>
+    <!-- <button type="button" @click="toggle" >Fullscreen</button> -->
   </div>
 </template>
 
@@ -62,6 +69,8 @@
 </style>
 
 <script>
+// https://mirari.cc/vue-fullscreen/
+import fullscreen from 'vue-fullscreen'
 import Vue from 'vue'
 /* The folloiwng line makes $tours available to each component
 Ref: https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example
@@ -133,6 +142,7 @@ Vue.use(Vuelidate)
 
 Vue.component('VueSlider', VueSlider)
 
+Vue.use(fullscreen) // Use for page full screen
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
@@ -159,7 +169,9 @@ export default {
     ctOneSearchBox,
   },
   data() {
-    return {}
+    return {
+      fullscreen: false
+    }
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
@@ -221,6 +233,13 @@ export default {
           fieldValue: this.$socket.id,
         },
       })
+    },
+    toggleFullScreen () {
+      this.$refs['fullscreen'].toggle() // recommended
+      // this.fullscreen = !this.fullscreen // deprecated
+    },
+    fullscreenChange (fullscreen) {
+      this.fullscreen = fullscreen
     },
     log(message) {
       console.log(message)
@@ -294,4 +313,40 @@ I have added the following css because if we set font-size=200% then v-tour popu
 .el-tabs__nav-scroll {
   padding: 5px 0;
 }
+.wrapper {
+  position: relative;
+  height: 400px;
+}
+.wrapper>.chart-container {
+  height: 100%;
+  width: 100%;
+}
+.wrapper>.btn-map-fullscreen {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 28px;
+  line-height: 28px;
+  text-align: center;
+  outline: none;
+}
+.wrapper>.fullscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper>.fullscreen>.chart-container {
+  height: 60%;
+  width: 60%;
+}
+.wrapper>.fullscreen>.btn-map-fullscreen {
+  left: 10px;
+  top: 10px;
+  right: auto;
+  bottom: auto;
+}
+
 </style>
