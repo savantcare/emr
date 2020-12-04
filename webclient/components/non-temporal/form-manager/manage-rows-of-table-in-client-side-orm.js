@@ -613,7 +613,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       }
     }
 
-    const arFromClientTbl = this.update({
+    const arFromClientTbl = this.$update({
       where: pClientRowId,
       data: row,
     })
@@ -649,7 +649,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.fnGetNewRowsInEditState()
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        this.delete(arFromClientTbl[i].clientSideUniqRowId)
+        this.$delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }
@@ -658,7 +658,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arFromClientTbl = this.fnGetAllChangeRowsInEditState()
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-        this.delete(arFromClientTbl[i].clientSideUniqRowId)
+        this.$delete(arFromClientTbl[i].clientSideUniqRowId)
       }
     }
   }

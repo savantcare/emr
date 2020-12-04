@@ -5,7 +5,7 @@
         :tabindex="cfPosInArCardsInPtsOfViewLayer * 100 + 1"
         @keyup="mfKeyPress($event, 'header')"
         class="capitalize"
-        >{{ propFormDef.id }}</span
+        >{{ _fieldDef.id }}</span
       >
       <el-button-group style="float: right">
         <el-button
@@ -40,7 +40,7 @@
           style="width: 100%"
           :row-style="mfStyleForEachDataRow"
         >
-          <el-table-column v-for="(_fieldDef, id) in propFormDef.fieldsDef" :key="id" :label="_fieldDef.nameInUi">
+          <el-table-column v-for="(_fieldDef, id) in _fieldDef.fieldsDef" :key="id" :label="_fieldDef.nameInUi">
             <!-- 
                 :formatter="_fieldDef.formatter"
                 :min-width="_fieldDef.minWidth"
@@ -93,7 +93,7 @@ export default {
     return {}
   },
   props: {
-    propFormDef: {
+    _fieldDef: {
       type: Object,
       required: true,
       validator: function (obj) {
@@ -115,12 +115,12 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this.propFormDef.id).get()
+      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this._fieldDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {
-      const arFromClientTbl = allPatientDataTbls[this.propFormDef.id].fnGetPresentUniqueUuidNotEmptyRows(
-        this.propFormDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
+      const arFromClientTbl = allPatientDataTbls[this._fieldDef.id].fnGetPresentUniqueUuidNotEmptyRows(
+        this._fieldDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
       )
       /*  Q) Should this function return the array it gets from ORM or modify the array?
               Option1: Return ORM array

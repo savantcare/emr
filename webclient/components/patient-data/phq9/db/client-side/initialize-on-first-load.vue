@@ -18,6 +18,8 @@ export default {
     step2_init_ss_field_names,
   },
   async mounted() {
+    // $fetch use for Load data from the IndexedDB store associated to a model and persist them in the Vuex Store
+    await clientTbl.$fetch()
     /*
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function

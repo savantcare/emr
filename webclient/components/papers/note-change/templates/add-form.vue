@@ -462,7 +462,7 @@ export default {
         }
       }
 
-      const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({
+      const arFromClientTbl = await allPatientDataTbls[this._formDef.id].$create({
         data: {
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript

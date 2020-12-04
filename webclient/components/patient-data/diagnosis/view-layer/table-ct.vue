@@ -1,6 +1,6 @@
 <!-- Reference implementation -->
 <template>
-  <tableView :propFormDef="formDef" />
+  <tableView :_fieldDef="formDef" />
   <!-- :showTableHeader="false" -->
 </template>
 
