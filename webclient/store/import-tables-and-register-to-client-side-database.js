@@ -74,9 +74,7 @@ import tableStructureForMedicalReviewOfSystemsOfPatient from '~/components/patie
 database.register(tableStructureForMedicalReviewOfSystemsOfPatient)
 
 // Examination tables
-import tableStructureForMSEMaster from '~/components/patient-data/examination/db/client-side/structure/examination-all-select-options.js'
 import tableStructureForMSEOfPatient from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
-database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables

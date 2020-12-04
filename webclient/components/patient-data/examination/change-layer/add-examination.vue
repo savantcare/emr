@@ -4,7 +4,6 @@
 
 <script>
 import ctAddStructure from '@/components//papers/note-change/templates/add-form.vue'
-import examinationAllSelectOptionsTbl from '../db/client-side/structure/examination-all-select-options.js'
 import examinationOfAPatientTbl from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 import { examinationFormDef } from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'

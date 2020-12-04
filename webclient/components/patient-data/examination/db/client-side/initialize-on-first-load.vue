@@ -1,13 +1,11 @@
 <template>
   <div>
     <step1_init_search_phrases />
-    <step2_init_examination_select_options />
   </div>
 </template>
 
 <script>
 import step1_init_search_phrases from '@/components/patient-data/examination/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
-import step2_init_examination_select_options from '@/components/patient-data/examination/db/client-side/static-data/insert-into-examination-all-select-options.vue'
 
 import clientTbl from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 // import step2_init_examination_field_names from '@/components/patient-data/examination/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
@@ -15,7 +13,6 @@ import clientTbl from '~/components/patient-data/examination/db/client-side/stru
 export default {
   components: {
     step1_init_search_phrases,
-    step2_init_examination_select_options,
   },
   async mounted() {
     /*

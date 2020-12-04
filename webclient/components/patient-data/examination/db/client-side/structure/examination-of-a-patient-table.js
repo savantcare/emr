@@ -1,6 +1,9 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-import examinationAllSelectOptionsTbl from './examination-all-select-options.js'
+
+var examEachFieldAllSelectOptions = require('../static-data/insert-into-examination-all-select-options.js')
+  .examEachFieldAllSelectOptions
+
 import examinationOfAPatientTbl from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
@@ -216,17 +219,8 @@ export const examinationFormDef = {
   },
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let masterListOfSelectOptionsForAField = []
-    if (!this.cacheOfMasterListOfSelectOptions[fieldNameInDb]) {
-      masterListOfSelectOptionsForAField = examinationAllSelectOptionsTbl
-        .query()
-        .where('ROW_END', 2147483648000)
-        .where('fieldNameInDb', fieldNameInDb)
-        .get()
-      this.cacheOfMasterListOfSelectOptions[fieldNameInDb] = masterListOfSelectOptionsForAField
-    } else {
-      masterListOfSelectOptionsForAField = this.cacheOfMasterListOfSelectOptions[fieldNameInDb]
-    }
+    let masterListOfSelectOptionsForAField = examEachFieldAllSelectOptions[fieldNameInDb]
+
     // get the value for this field in patient table
     let row = examinationOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
@@ -235,12 +229,11 @@ export const examinationFormDef = {
 
     for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
       selectDropDown[i] = new Array()
-      selectDropDown[i]['id'] = masterListOfSelectOptionsForAField[i]['fieldOptionId']
-      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['fieldOptionLabel']
+      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
+      selectDropDown[i]['id'] = fieldOptionId
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
       if (selectedIDs) {
-        selectDropDown[i]['selected'] = selectedIDs.includes(masterListOfSelectOptionsForAField[i]['fieldOptionId'])
-          ? true
-          : false
+        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
       }
     }
 
