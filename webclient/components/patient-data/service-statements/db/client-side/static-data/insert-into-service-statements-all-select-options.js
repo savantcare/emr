@@ -109,4 +109,4 @@ const selectOptions = {
   ],
 }
 
-exports.serviceStatementsAllSelectOptionsTbl = selectOptions
+exports.serviceStatementsEachFieldAllSelectOptions = selectOptions

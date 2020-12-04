@@ -1,7 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-var serviceStatementsAllSelectOptionsTbl = require('../static-data/insert-into-service-statements-all-select-options.js')
-  .serviceStatementsAllSelectOptionsTbl
+var serviceStatementsEachFieldAllSelectOptions = require('../static-data/insert-into-service-statements-all-select-options.js')
+  .serviceStatementsEachFieldAllSelectOptions
 import serviceStatementsOfAPatientTbl from '~/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
@@ -122,7 +122,7 @@ export const serviceStatementsFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let masterListOfSelectOptionsForAField = serviceStatementsAllSelectOptionsTbl[fieldNameInDb]
+    let masterListOfSelectOptionsForAField = serviceStatementsEachFieldAllSelectOptions[fieldNameInDb]
     // get the value for this field in patient table
     let row = serviceStatementsOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
@@ -178,7 +178,7 @@ export const serviceStatementsFormDef = {
 
     // from numbers get the labels
 
-    let arOfAllSelectOptions = serviceStatementsAllSelectOptionsTbl[0]
+    let arOfAllSelectOptions = serviceStatementsEachFieldAllSelectOptions[0]
 
     const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
 
