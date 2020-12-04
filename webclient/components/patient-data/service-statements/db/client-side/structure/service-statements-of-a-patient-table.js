@@ -172,16 +172,4 @@ export const serviceStatementsFormDef = {
 
     return selectDropDown
   },
-
-  fnGetSelectOptionLabel: function (pFieldNameInDb, pfieldValue) {
-    if (pfieldValue === '') return
-
-    // from numbers get the labels
-
-    let arOfAllSelectOptions = serviceStatementsEachFieldAllSelectOptions[0]
-
-    const optionIdToLabel = arOfAllSelectOptions[0]['fieldOptionLabel']
-
-    return optionIdToLabel
-  },
 }
