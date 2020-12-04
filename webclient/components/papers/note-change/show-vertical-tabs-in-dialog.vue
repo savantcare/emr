@@ -189,7 +189,7 @@ import waistCircumferenceAdd from '@/components/patient-data/waist-circumference
 import bmiAdd from '@/components/patient-data/bmi/change-layer/add-bmi.vue'
 import oxygenSaturationAdd from '@/components/patient-data/oxygen-saturation/change-layer/add-oxygen-saturation.vue'
 
-import mrosAdd from '@/components/patient-data/medical-review-of-system/change-layer/add-ss.vue'
+import mrosAdd from '@/components/patient-data/medical-review-of-system/change-layer/add-mros.vue'
 import dxAdd from '@/components/patient-data/diagnosis/change-layer/diagnosis-add.vue'
 import screensAdd from '@/components/patient-data/screens/change-layer/add-ct.vue'
 import goalsAdd from '@/components/patient-data/goals/change-layer/add-ct.vue'

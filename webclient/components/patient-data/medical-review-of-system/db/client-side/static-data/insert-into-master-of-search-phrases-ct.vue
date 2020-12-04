@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add medical_review_of_system',
         ctAbbr: 'dss',
-        ctToShow: 'patient-data/medical-review-of-system/change-layer/add-ss.vue',
+        ctToShow: 'patient-data/medical-review-of-system/change-layer/add-mros.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
