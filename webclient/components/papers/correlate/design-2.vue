@@ -15,7 +15,6 @@ import clientTblOfPatientReminders from '@/components/patient-data/reminders/db/
 import clientTblOfExamination from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 // For pros
-import clientTblOfMasterPsychReviewOfSystems from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
 import clientTblOfPatientPsychReviewOfSystems from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
@@ -27,7 +26,7 @@ import graphDesign from './graph-design-1'
 
 export default {
   components: {
-    correlateGraphCt : graphDesign,
+    correlateGraphCt: graphDesign,
   },
   data() {
     return {

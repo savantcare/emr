@@ -23,7 +23,6 @@ import clientTblOfPatientReminders from '@/components/patient-data/reminders/db/
 import clientTblOfExamination from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 // For pros
-import clientTblOfMasterPsychReviewOfSystems from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
 import clientTblOfPatientPsychReviewOfSystems from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
@@ -77,7 +76,7 @@ export default {
 
         series: [],
         chart: {
-          width: 720,  // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
+          width: 720, // on page load default width should be 50% of page width, ie; 700px. We have developed this software to run on 1440*900
           zoomType: 'x',
         },
       }

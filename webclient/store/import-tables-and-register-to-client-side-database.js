@@ -82,9 +82,7 @@ database.register(tableStructureForMSEMaster)
 database.register(tableStructureForMSEOfPatient)
 
 // Psych review of systems tables
-import tableStructureForPROSMaster from '~/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-all-select-options.js'
 import tableStructureForPROSOfPatient from '~/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
-database.register(tableStructureForPROSMaster)
 database.register(tableStructureForPROSOfPatient)
 
 // Other components tables

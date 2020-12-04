@@ -4,7 +4,6 @@
 
 <script>
 import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
-import psychReviewOfSystemsAllSelectOptionsTbl from '../db/client-side/structure/psych-review-of-system-all-select-options.js'
 import psychReviewOfSystemsOfAPatientTbl from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import { psychReviewOfSystemFormDef } from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
