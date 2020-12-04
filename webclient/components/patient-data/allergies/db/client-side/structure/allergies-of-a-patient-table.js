@@ -53,6 +53,23 @@ export default class allergies extends clientTblManage {
   }
 }
 
+export class allergiesPresentClientTbl extends clientTblManage {
+  static entity = 'tblAllergiesPresent'
+
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/allergies/v20'
+
+  static primaryKey = 'clientSideUniqRowId'
+
+  static fields() {
+    return {
+      ...super.fields(),
+
+      clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
+      present: this.string(null).nullable(),
+    }
+  }
+}
+
 export const allergiesFormDef = {
   id: 'allergies',
   plural: 'allergies',
@@ -91,4 +108,18 @@ export const allergiesFormDef = {
       },
     },
   },
+}
+export const allergiesPresentFormDef = {
+  id: 'allergies_present',
+  plural: 'allergies present',
+  singular: 'allergy present',
+  fieldsDef: [{ nameInDb: 'present', nameInUi: 'Allergies present?', type: 'text' }],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['present'],
+  fnCreated: function () {
+    // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
+    return []
+  },
+  showReviewedButtonInForm: false,
+  showResetFormButton: false,
+  maxNumberOfTemporallyValidRows: 1,
 }
