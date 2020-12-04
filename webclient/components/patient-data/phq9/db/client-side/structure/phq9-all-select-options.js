@@ -6,7 +6,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class phq9AllSelectOptions extends clientTblManage {
-  static entity = 'tblPsychReviewOfSystemsAllSelectOptions'
+  static entity = 'tblPhq9'
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/phq9/v20'
 
