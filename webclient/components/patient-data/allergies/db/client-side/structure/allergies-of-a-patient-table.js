@@ -66,6 +66,7 @@ export class allergiesPresentClientTbl extends clientTblManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       present: this.string(null).nullable(),
+      ROW_END: this.number(2147483648000), // this is used by mf_get_ar_of_data_rows inside add-form.vue. In this table it is not useful but still keeping it so I can use template code.
     }
   }
 }
@@ -113,7 +114,9 @@ export const allergiesPresentFormDef = {
   id: 'allergies_present',
   plural: 'allergies present',
   singular: 'allergy present',
-  fieldsDef: [{ nameInDb: 'present', nameInUi: 'Allergies present?', type: 'text' }],
+  fieldsDef: [
+    { nameInDb: 'present', nameInUi: 'Allergies present?', type: 'multi-select-with-buttons', showLabel: true },
+  ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['present'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
@@ -122,4 +125,16 @@ export const allergiesPresentFormDef = {
   showReviewedButtonInForm: false,
   showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
+  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
+    let masterListOfSelectOptionsForAField = [{ label: 'Yes' }, { label: 'No' }, { label: 'Not evaluated' }]
+
+    var selectDropDown = []
+    for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
+      selectDropDown[i] = new Array()
+      selectDropDown[i]['id'] = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#'
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
+      selectDropDown[i]['selected'] = true
+    }
+    return selectDropDown
+  },
 }
