@@ -1,9 +1,9 @@
 <template>
   <div
-    v-if="rowId"
+    v-if="_rowIdForEdit"
     why="This is inside v-if so the component does not get called if the rowId has not been fetched yet."
   >
-    <ctEditStructure :_formDef="formDef" :firstProp="rowId"></ctEditStructure>
+    <ctEditStructure :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditStructure>
   </div>
 </template>
 
@@ -19,10 +19,13 @@ export default {
       rowId: null,
     }
   },
-
+  props: {
+    _rowIdForEdit: {
+      type: Number,
+    },
+  },
   mounted() {
-    const status = chiefComplainTbl.fnGetPresentUniqueUuidNotEmptyRows(['description'])
-    this.rowId = status[0]['clientSideUniqRowId']
+    //debugger
   },
 
   components: {

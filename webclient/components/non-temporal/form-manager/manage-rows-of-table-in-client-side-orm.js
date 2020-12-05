@@ -184,7 +184,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         return (
           record.vnRowStateInSession === rowState.SameAsDB_Copy ||
           record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
-          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError
+          record.vnRowStateInSession === rowState.SameAsDB_Copy_Changed_FormValidationPass
         )
       })
       .get()
@@ -195,6 +195,17 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     } else {
       return false
     }
+  }
+
+  static isThereSavedPresentDataInTable() {
+    const arFromClientTbl = this.query()
+      .where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted)
+      //.where('vnRowStateInSession', (value) => value.toString().startsWith('1'))
+      .where('vnRowStateInSession', (value) => value === 1)
+      .get()
+
+    if (arFromClientTbl.length > 0) return arFromClientTbl
+    return false
   }
 
   static fnGetNotEmptyRows(pFldForNonEmptyCheck) {

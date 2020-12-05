@@ -1,7 +1,7 @@
 <template>
-  <div v-if="numberOfChiefComplaintInDb > 0">
+  <div v-if="rowIdForEdit > 0">
     Edit CC
-    <chiefComplainEdit />
+    <chiefComplainEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
     <chiefComplainAdd />
@@ -15,25 +15,19 @@ import chiefComplainAdd from '@/components/patient-data/chief-complaint/change-l
 
 export default {
   data: function () {
-    return {}
+    return {
+      rowIdForEdit: null,
+    }
   },
   components: {
     chiefComplainEdit,
     chiefComplainAdd,
   },
-  computed: {
-    numberOfChiefComplaintInDb() {
-      //debugger
-
-      const status = chiefComplainTbl.find(1)
-      if (status) {
-        const rowState = status['vnRowStateInSession']
-        if (rowState.toString().startsWith('1')) {
-          return true
-        }
-      }
-      return false
-    },
+  mounted() {
+    const status = chiefComplainTbl.isThereSavedPresentDataInTable()
+    if (status) {
+      this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
+    }
   },
 }
 </script>

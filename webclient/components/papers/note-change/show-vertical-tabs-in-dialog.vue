@@ -71,7 +71,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     <el-tabs tab-position="left" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
-        <routeChiefComplaint />
+        <routeChiefComplaint
+          :key="new Date().getTime()"
+          why="Generating key everytime since the router decides the clientSideUniqRowId of the row to be edited. If the mounted fn was not getting called then the correct ID was not being sent to the edit ct."
+          improvement="here the key can be current appt ID. Since during one appt the router does not need to be invoked twice."
+        />
       </el-tab-pane>
       <el-tab-pane
         label="Sub Psych ROS (HPI)"
@@ -216,6 +220,7 @@ export default {
        *  Initialize a array named 'arFormFieldIndexWithFocus' for storing cursor focus position.
        */
       arFormFieldIndexWithFocus: {},
+      first: 0,
     }
   },
   components: {
