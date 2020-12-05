@@ -272,7 +272,7 @@ export default {
     this.value = this._formDef.fnCreated(this.mf_get_ar_of_data_rows())
   },
   data() {
-    return { value: [], searchFilter: '' }
+    return { value: [], searchFilter: null }
   },
   validations() {
     return this._formDef.validationsObj
@@ -350,12 +350,14 @@ export default {
   methods: {
     filterTermHighlight(pText) {
       // https://stackoverflow.com/questions/8644428/how-to-filterTermHighlight-text-using-javascript
-      const hilit = pText.replace(
-        new RegExp(this.searchFilter + '(?!([^<]+)?<)', 'gi'),
-        '<b style="background-color:#ff0;font-size:100%">$&</b>'
-      )
-      //console.log(hilit)
-      return hilit
+      if (this.searchFilter) {
+        const hilit = pText.replace(
+          new RegExp(this.searchFilter + '(?!([^<]+)?<)', 'gi'),
+          '<b style="background-color:#ff0;font-size:100%">$&</b>'
+        )
+        return hilit
+      }
+      return pText
     },
     log(item) {
       console.log(item)
