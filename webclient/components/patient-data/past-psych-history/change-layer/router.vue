@@ -1,6 +1,6 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    Edit CC
+    Edit Past psych history
     <pastPsychHistoryEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
@@ -27,6 +27,7 @@ export default {
     const status = pastPsychHistoryTbl.isThereSavedPresentDataInTable()
     if (status) {
       this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
+      console.log(this.rowIdForEdit)
     }
   },
 }

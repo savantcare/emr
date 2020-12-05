@@ -10,7 +10,6 @@
 <script>
 import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
 import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
-import chiefComplainTbl from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 
 export default {
   data: function () {
