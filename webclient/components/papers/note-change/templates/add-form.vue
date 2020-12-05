@@ -44,7 +44,7 @@
                 :fetch-suggestions="_fieldDef.selectOptions"
                 :placeholder="_fieldDef.nameInUi"
                 style="width: 100%"
-                :highlight-first-item="true"
+                :filterTermHighlight-first-item="true"
                 @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
               ></el-autocomplete>
             </div>
@@ -52,7 +52,7 @@
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
               <div v-if="_fieldDef.showLabel">
-                <b><span v-html="highlight(_fieldDef.nameInUi)"></span></b>
+                <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
               </div>
               <div
                 v-for="(item, optionIndex) in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
@@ -79,7 +79,7 @@
                       mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
                       mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb + optionIndex, index)
                     "
-                    ><span v-html="highlight(item.value)"></span
+                    ><span v-html="filterTermHighlight(item.value)"></span
                   ></el-button>
                   <span v-if="item.subText"><br />({{ item.subText }})</span>
                 </div>
@@ -346,8 +346,8 @@ export default {
     })
   },
   methods: {
-    highlight(pText) {
-      // https://stackoverflow.com/questions/8644428/how-to-highlight-text-using-javascript
+    filterTermHighlight(pText) {
+      // https://stackoverflow.com/questions/8644428/how-to-filterTermHighlight-text-using-javascript
       const hilit = pText.replace(
         new RegExp(this.searchFilter + '(?!([^<]+)?<)', 'gi'),
         '<b style="background-color:#ff0;font-size:100%">$&</b>'
