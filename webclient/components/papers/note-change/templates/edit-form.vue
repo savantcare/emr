@@ -90,12 +90,12 @@
           style="padding-inline-start: 20px"
         >
           <el-timeline-item
-            v-for="row in cfTimeLineDataAr"
+            v-for="row in mfTimeLineDataAr(_fieldDef.nameInDb)"
             :key="row.ROW_START"
             :timestamp="row.ROW_START | moment"
             :type="row.type"
           >
-            {{ row.description }}
+            {{ row[_fieldDef.nameInDb] }}
             <!-- The following come on right of the description that comes in the timeline. 
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
@@ -198,42 +198,7 @@ export default {
       return moment(date).format('MMMM Do YYYY, h:mm a')
     },
   },
-  computed: {
-    cfTimeLineDataAr() {
-      const timelineDataArray = []
-
-      // TODO: timeline of UUID should be base class
-      // Insight: to create timeline the uuid will be same but id will be different.
-      const arFromClientTbl = allPatientDataTbls[this._formDef.id]
-        .query()
-        .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
-        .orderBy('ROW_START', 'desc')
-        .get()
-
-      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
-      if (arFromClientTbl.length) {
-        let rowInTimeLine = []
-        for (let i = 0; i < arFromClientTbl.length; i++) {
-          rowInTimeLine = {}
-          rowInTimeLine.description = arFromClientTbl[i].description
-          if (
-            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
-            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
-            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail
-          ) {
-            rowInTimeLine.type = 'warning' // row is being edited and is not on server
-          } else {
-            rowInTimeLine.type = ''
-          }
-          rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
-          rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
-
-          timelineDataArray.push(rowInTimeLine)
-        }
-      }
-      return timelineDataArray
-    },
-  },
+  computed: {},
 
   watch: {
     firstProp: {
@@ -286,6 +251,41 @@ export default {
     },
   },
   methods: {
+    mfTimeLineDataAr(pFieldNameInDb) {
+      const timelineDataArray = []
+
+      // TODO: timeline of UUID should be base class
+      // Insight: to create timeline the uuid will be same but id will be different.
+      const arFromClientTbl = allPatientDataTbls[this._formDef.id]
+        .query()
+        .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
+        .orderBy('ROW_START', 'desc')
+        .get()
+
+      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
+      if (arFromClientTbl.length) {
+        let rowInTimeLine = []
+        for (let i = 0; i < arFromClientTbl.length; i++) {
+          rowInTimeLine = {}
+          rowInTimeLine[pFieldNameInDb] = arFromClientTbl[i][pFieldNameInDb]
+          if (
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
+            arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail
+          ) {
+            rowInTimeLine.type = 'warning' // row is being edited and is not on server
+          } else {
+            rowInTimeLine.type = ''
+          }
+          rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
+          rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
+
+          timelineDataArray.push(rowInTimeLine)
+        }
+      }
+      return timelineDataArray
+    },
+
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
       this.dnClientIdOfCopiedRowBeingChanged = await allPatientDataTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
