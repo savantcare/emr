@@ -50,7 +50,7 @@
             </div>
 
             <!-- multi-select-with-buttons -->
-            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
+            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'" id="div-containing-all-buttons">
               <div v-if="_fieldDef.showLabel" :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'">
                 <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
               </div>
@@ -60,7 +60,7 @@
                   ormRow.clientSideUniqRowId
                 )"
                 :key="item.id"
-                id="div-containing-all-buttons"
+                id="div-containing-one-button"
                 :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'"
               >
                 <span
@@ -88,6 +88,23 @@
               </div>
             </div>
 
+            <!-- SELECT -->
+            <div v-else-if="_fieldDef.type === 'select'">
+              <div v-if="_fieldDef.showLabel">
+                {{ _fieldDef.nameInUi }}
+              </div>
+              <el-select v-model="value" filterable :placeholder="_fieldDef.nameInUi">
+                <el-option
+                  v-for="item in _fieldDef.selectOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                >
+                </el-option>
+              </el-select>
+            </div>
+
             <!-- SLIDER type field value[_fieldDef.nameInDb] -->
             <div v-else-if="_fieldDef.type === 'slider'">
               <div v-if="_fieldDef.showLabel">
@@ -106,23 +123,6 @@
                 >
                 </el-slider>
               </div>
-            </div>
-
-            <!-- SELECT -->
-            <div v-else-if="_fieldDef.type === 'select'">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
-              <el-select v-model="value" filterable :placeholder="_fieldDef.nameInUi">
-                <el-option
-                  v-for="item in _fieldDef.selectOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                >
-                </el-option>
-              </el-select>
             </div>
 
             <!-- DATE -->
