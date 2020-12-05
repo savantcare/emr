@@ -92,7 +92,7 @@
           <el-timeline-item
             v-for="row in cfTimeLineDataAr"
             :key="row.ROW_START"
-            :timestamp="row.createdAt"
+            :timestamp="row.ROW_START | moment"
             :type="row.type"
           >
             {{ row.description }}
@@ -125,6 +125,8 @@
 <script>
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
+
+import moment from 'moment'
 
 export default {
   /*
@@ -191,6 +193,11 @@ export default {
         null implies that system is ready for pClientIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }
   },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm a')
+    },
+  },
   computed: {
     cfTimeLineDataAr() {
       const timelineDataArray = []
@@ -206,13 +213,9 @@ export default {
       console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
       if (arFromClientTbl.length) {
         let rowInTimeLine = []
-        let date = ''
         for (let i = 0; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
           rowInTimeLine.description = arFromClientTbl[i].description
-          date = new Date(arFromClientTbl[i].ROW_START * 1000)
-          rowInTimeLine.createdAt =
-            date.toLocaleString('default', { month: 'long' }) + '-' + date.getDate() + '-' + date.getFullYear()
           if (
             arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
             arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy_Changed ||
