@@ -51,7 +51,7 @@
 
             <!-- multi-select-with-buttons -->
             <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
-              <div v-if="_fieldDef.showLabel">
+              <div v-if="_fieldDef.showLabel" :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'">
                 <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
               </div>
               <div
@@ -60,8 +60,10 @@
                   ormRow.clientSideUniqRowId
                 )"
                 :key="item.id"
+                id="div-containing-all-buttons"
+                :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'"
               >
-                <div
+                <span
                   v-if="
                     !searchFilter ||
                     item.value.toLowerCase().includes(searchFilter.toLowerCase()) ||
@@ -82,7 +84,7 @@
                     ><span v-html="filterTermHighlight(item.value)"></span
                   ></el-button>
                   <span v-if="item.subText"><br />({{ item.subText }})</span>
-                </div>
+                </span>
               </div>
             </div>
 

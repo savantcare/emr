@@ -1,3 +1,20 @@
+## Allergies has:
+
+1. deleted
+2. resolved
+   (This data table is shown at the bottom of the page)
+
+When there are no rows in the allergies main form then the button of NKDA is possible to be clicked.
+If the doctor clicks on "NKDA" the printed note we say "NKDA"
+What if allergies form is empty and doctor did not click on NKDA?
+Then in printed form do not show allergies table.
+
+When there is data in "allergies main form" then "NKDA" is greyed out and unclickable.
+
+## DX
+
+DX will also have resolved and deleted
+
 ```
 Layer 1
 =========

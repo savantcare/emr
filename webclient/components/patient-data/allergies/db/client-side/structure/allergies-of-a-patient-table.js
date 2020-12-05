@@ -115,7 +115,13 @@ export const allergiesPresentFormDef = {
   plural: 'allergies present',
   singular: 'allergy present',
   fieldsDef: [
-    { nameInDb: 'present', nameInUi: 'Allergies present?', type: 'multi-select-with-buttons', showLabel: true },
+    {
+      nameInDb: 'present',
+      nameInUi: 'Allergies?',
+      type: 'multi-select-with-buttons',
+      showLabel: true,
+      compactDisplay: true,
+    },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['present'],
   fnCreated: function () {
@@ -126,7 +132,11 @@ export const allergiesPresentFormDef = {
   showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
-    let masterListOfSelectOptionsForAField = [{ label: 'Yes' }, { label: 'No' }, { label: 'Not evaluated' }]
+    let masterListOfSelectOptionsForAField = [
+      { label: 'Yes' },
+      { label: 'No known drug allergies' },
+      { label: 'Not evaluated' },
+    ]
 
     let row = allergiesPresentClientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
