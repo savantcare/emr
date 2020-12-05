@@ -1,23 +1,25 @@
 <template>
-  <div v-if="numberOfChiefComplaintInDb > 0">Invoke edit</div>
+  <div v-if="numberOfChiefComplaintInDb > 0">
+    Edit CC
+    <chiefComplainEdit />
+  </div>
   <div v-else>
-    <ctAddForm :_formDef="formDef"></ctAddForm>
+    <chiefComplainAdd />
   </div>
 </template>
 
 <script>
-import ctAddForm from '@/components/papers/note-change/templates/add-form.vue'
-import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import chiefComplainTbl from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import chiefComplainEdit from '@/components/patient-data/chief-complaint/change-layer/edit-design-1.vue'
+import chiefComplainAdd from '@/components/patient-data/chief-complaint/change-layer/add-chief-complaint.vue'
 
 export default {
   data: function () {
-    return {
-      formDef: chiefComplaintFormDef,
-    }
+    return {}
   },
   components: {
-    ctAddForm,
+    chiefComplainEdit,
+    chiefComplainAdd,
   },
   computed: {
     numberOfChiefComplaintInDb() {
