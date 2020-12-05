@@ -65,7 +65,7 @@ export class allergiesPresentClientTbl extends clientTblManage {
       ...super.fields(),
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
-      present: this.string(null).nullable(),
+      present: this.string('"#Not_evaluated#"').nullable(),
       ROW_END: this.number(2147483648000), // this is used by mf_get_ar_of_data_rows inside add-form.vue. In this table it is not useful but still keeping it so I can use template code.
     }
   }
