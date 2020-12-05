@@ -79,11 +79,35 @@
               :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
-              @focus="showHistoryOnFocus = true"
-              @blue="showHistoryOnFocus = false"
+              @focus="fieldIsInFocus = true"
+              @blur="fieldIsInFocus = false"
             ></el-input>
           </el-col>
         </el-form-item>
+        <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
+        <el-timeline
+          v-show="_fieldDef.showHistory === 'always' || fieldIsInFocus === true"
+          style="padding-inline-start: 20px"
+        >
+          <el-timeline-item
+            v-for="row in cfTimeLineDataAr"
+            :key="row.ROW_START"
+            :timestamp="row.createdAt"
+            :type="row.type"
+          >
+            {{ row.description }}
+            <!-- The following come on right of the description that comes in the timeline. 
+        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
+        and it is not "Sending to server"
+        -->
+            <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
+              >sending to server</span
+            >
+            <span v-if="row.vnRowStateInSession == 34571" class="api-response-message el-button--success"
+              >saved this session</span
+            >
+          </el-timeline-item>
+        </el-timeline>
       </div>
       <el-form-item>
         <el-button
@@ -96,28 +120,6 @@
         >
       </el-form-item>
     </el-form>
-
-    <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
-    <el-timeline v-if="showHistoryOnFocus === true" style="padding-inline-start: 20px">
-      <el-timeline-item
-        v-for="row in cfTimeLineDataAr"
-        :key="row.ROW_START"
-        :timestamp="row.createdAt"
-        :type="row.type"
-      >
-        {{ row.description }}
-        <!-- The following come on right of the description that comes in the timeline. 
-        Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
-        and it is not "Sending to server"
-        -->
-        <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
-          >sending to server</span
-        >
-        <span v-if="row.vnRowStateInSession == 34571" class="api-response-message el-button--success"
-          >saved this session</span
-        >
-      </el-timeline-item>
-    </el-timeline>
   </div>
 </template>
 <script>
@@ -184,7 +186,7 @@ export default {
       dnOrmUuidOfRowToChange: '',
       dnClientIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       dnClientIdOfCopiedRowBeingChanged: -1,
-      showHistoryOnFocus: false,
+      fieldIsInFocus: false,
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
         null implies that system is ready for pClientIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }
