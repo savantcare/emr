@@ -71,7 +71,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     <el-tabs tab-position="left" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
-        <editChiefComplaint />
+        <routeChiefComplaint />
       </el-tab-pane>
       <el-tab-pane
         label="Sub Psych ROS (HPI)"
@@ -166,7 +166,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 <script>
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
-import editChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/add-chief-complaint.vue'
+import routeChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/router.vue'
 import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import pastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
@@ -219,7 +219,7 @@ export default {
     }
   },
   components: {
-    editChiefComplaint,
+    routeChiefComplaint,
     prosAdd,
     pastPsychHistory,
     familyHistory,

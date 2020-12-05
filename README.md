@@ -65,14 +65,13 @@ Pirority:
 8. Patient timeline: https://jinfang134.github.io/vue-pipeline/
 9. Search in top header using https://theoxiong.github.io/vue-search-panel/
 10. Panel for: Medications
-11. Reminders multi edit system aling with horizontal tabs.
-12. Why has arrow pointing up and down come in the 2nd layer edit form left side menu.
-13. A way to mark template values like "All normal"
-14. Automated test.
-15. For MROS When none is selected others need to removed from vuex-orm
-16. For SS mutually exclusive
-17. Dx, Screen, Meds
-18. Dot phrases
+11. Reminders multi edit system along with horizontal tabs.
+12. A way to mark template values like "All normal"
+13. Automated test.
+14. For MROS When none is selected others need to removed from vuex-orm
+15. For SS mutually exclusive
+16. Dx, Screen, Meds
+17. Dot phrases
     https://github.com/hasinhayder/javascript-text-expander
     https://github.com/github/text-expander-element
     Ideal: https://www.statnote.com/
