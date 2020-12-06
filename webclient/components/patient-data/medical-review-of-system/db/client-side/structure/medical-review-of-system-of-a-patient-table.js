@@ -184,15 +184,24 @@ export const medicalReviewOfSystemFormDef = {
   cacheOfMasterListOfSelectOptions: {},
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
-    'recently_noticed_select',
     'constitutional_systems_select',
     'skin_conditions_select',
+    'allergies_select',
+    'ear_nose_mouth_throat_select',
+    'eyes_head_select',
+    'respiratory_select',
+    'cardiovascular_select',
+    'gastrointestinal_select',
+    'urinary_select',
+    'endocrine_select',
+    'musculoskeletal_select',
+    'neurological_select',
+    'psychological_select',
+    'heme_lymphatic_select',
+    'any_other_signs_symptoms',
   ],
   validationsObj: {
     value: {
-      recently_noticed_select: {
-        minLength: minLength(1),
-      },
       constitutional_systems_select: {
         minLength: minLength(8),
       },
