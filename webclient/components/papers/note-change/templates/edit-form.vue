@@ -33,8 +33,10 @@
         </div>
 
         <!-- MULTI SELECT WITH BUTTONS -->
-        <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
-          {{ _fieldDef.nameInUi }}
+        <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'" id="div-containing-all-buttons">
+          <div v-if="_fieldDef.showLabel" :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'">
+            <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
+          </div>
           <div
             v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
               _fieldDef.nameInDb,
@@ -252,6 +254,23 @@ export default {
     },
   },
   methods: {
+    filterTermHighlight(pText) {
+      // https://stackoverflow.com/questions/8644428/how-to-filterTermHighlight-text-using-javascript
+      if (this.searchFilter) {
+        const hilit = pText.replace(
+          new RegExp(this.searchFilter + '(?!([^<]+)?<)', 'gi'),
+          '<b style="background-color:#ff0;font-size:100%">$&</b>'
+        )
+        return hilit
+      }
+      return pText
+    },
+    log(item) {
+      console.log(item)
+    },
+    mf_matched_field_name(pFieldName) {
+      return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
+    },
     mfTimeLineDataAr(pFieldNameInDb) {
       const timelineDataArray = []
 
