@@ -89,17 +89,24 @@
           >
           </el-date-picker>
 
-          <el-input
-            v-else
-            :ref="_fieldDef.nameInDb"
-            :type="_fieldDef.type"
-            :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
-            :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-            @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
-            @keydown.enter.native="mfForTabActionByEnter"
-            @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
-          ></el-input>
+          <!-- input/textarea -->
+          <div v-if="_fieldDef.type.includes('text')" :id="_fieldDef.nameInDb">
+            <div v-if="_fieldDef.showLabel">
+              {{ _fieldDef.nameInUi }}
+            </div>
+
+            <el-input
+              :ref="_fieldDef.nameInDb"
+              :type="_fieldDef.type"
+              :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+              @keydown.enter.native="mfForTabActionByEnter"
+              @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+            ></el-input>
+          </div>
         </div>
+
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
         <br />
         <el-timeline
