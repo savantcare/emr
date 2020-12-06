@@ -10,7 +10,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class serviceStatementsForPatientClass extends clientTblManage {
-  static entity = 'tblServiceStatementsOfPatient'
+  static entity = 'tblServiceStatements'
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/service-statements/v20'
 
