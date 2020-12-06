@@ -198,7 +198,23 @@ export const examinationFormDef = {
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['appearance_select', 'attitude_multi_select', 'psychomotor_select'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
+    'appearance_multi_select',
+    'attitude_multi_select',
+    'psychomotor_multi_select',
+    'eye_contact_multi_select',
+    'speech_multi_select',
+    'mood_affect_multi_select',
+    'thought_content_multi_select',
+    'perceptions_multi_select',
+    'thought_process_multi_select',
+    'constitutional_multi_select',
+    'cognition_multi_select',
+    'insight_multi_select',
+    'judgement_multi_select',
+    'impulse_control_multi_select',
+    'neurological_multi_select',
+  ],
   validationsObj: {
     value: {
       appearance_select: {
