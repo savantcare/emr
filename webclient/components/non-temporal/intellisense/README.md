@@ -6,6 +6,8 @@ https://github.com/voerro/vue-tagsinput
 
 # For textarea:
 
+https://github.com/zurb/tribute#readme @ or # not needed has vue compatibity with https://www.npmjs.com/package/vue-tribute
+https://github.com/Akryum/vue-mention
 https://github.com/TunaYagci/vue-mentionable
 https://stackoverflow.com/questions/58864588/display-live-suggestion-words-in-v-text-field-or-v-textarea-vuetify-vue-js
 http://imankulov.github.io/asuggest/ -> no dropdown / Jquery
