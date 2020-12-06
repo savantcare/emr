@@ -1,8 +1,9 @@
 <template>
   <div>
     <ctAddForm :_formDef="formDef"></ctAddForm>
+
     <vue-tribute :options="options">
-      <input type="text" placeholder="@..." @tribute-no-match="noMatchFound" ref="foo" />
+      <el-input placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
     </vue-tribute>
   </div>
 </template>
@@ -15,6 +16,7 @@ import VueTribute from 'vue-tribute'
 export default {
   data: function () {
     return {
+      input: 'jai',
       formDef: chiefComplaintFormDef,
       options: {
         autocompleteMode: true,
@@ -33,6 +35,7 @@ export default {
   },
   mounted() {
     this.options.menuContainer = this.$refs.menuContainer
+    // debugger
   },
   methods: {
     noMatchFound() {
@@ -74,7 +77,6 @@ textarea {
   padding: 1rem;
   width: 100%;
   border-radius: 0.25rem;
-  height: 100px;
   outline: none;
   &:focus {
     background: #fff;
