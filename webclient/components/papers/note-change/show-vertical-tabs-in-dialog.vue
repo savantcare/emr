@@ -109,7 +109,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system">
         <span slot="label">M revie<u>w</u> of systems</span>
-        <mrosAdd
+        <routerMros :key="new Date().getTime()"
       /></el-tab-pane>
       <el-tab-pane label="Allergies" name="allergies">
         <span slot="label"><u>A</u>llergies</span>
@@ -198,7 +198,7 @@ import waistCircumferenceAdd from '@/components/patient-data/waist-circumference
 import bmiAdd from '@/components/patient-data/bmi/change-layer/add-bmi.vue'
 import oxygenSaturationAdd from '@/components/patient-data/oxygen-saturation/change-layer/add-oxygen-saturation.vue'
 
-import mrosAdd from '@/components/patient-data/medical-review-of-system/change-layer/add-mros.vue'
+import routerMros from '@/components/patient-data/medical-review-of-system/change-layer/router.vue'
 import dxAdd from '@/components/patient-data/diagnosis/change-layer/diagnosis-add.vue'
 import screensAdd from '@/components/patient-data/screens/change-layer/add-ct.vue'
 import goalsAdd from '@/components/patient-data/goals/change-layer/add-ct.vue'
@@ -250,7 +250,7 @@ export default {
     bloodSugarAdd,
     bmiAdd,
     waistCircumferenceAdd,
-    mrosAdd,
+    routerMros,
     goalsAdd,
     recAdd,
     remAdd,
