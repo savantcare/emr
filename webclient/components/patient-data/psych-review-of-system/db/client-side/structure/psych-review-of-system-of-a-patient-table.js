@@ -312,6 +312,7 @@ export const psychReviewOfSystemFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
+    'subjective',
     'depressive_mood',
     'interest',
     'sleep',
