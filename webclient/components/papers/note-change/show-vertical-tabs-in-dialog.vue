@@ -160,7 +160,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       /></el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="300">
         <span slot="label"><u>S</u>ervice statements</span>
-        <ssAdd />
+        <routeSS :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="200">
         <span slot="label">Misc <u>n</u>ote</span> <miscNote
@@ -209,7 +209,7 @@ import remAdd from '@/components/patient-data/reminders/change-layer/add-ct.vue'
 import remMHorizontalEdit from '@/components/patient-data/reminders/change-layer/medit-horizontal.vue'
 
 import pcAdd from '@/components/patient-data/plan-comments/change-layer/add-ct.vue'
-import ssAdd from '@/components/patient-data/service-statements/change-layer/add-ss.vue'
+import routeSS from '@/components/patient-data/service-statements/change-layer/router.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import MedicationOrderAdd from '../../patient-data/medication-orders/change-layer/medication-order-add.vue'
@@ -256,7 +256,7 @@ export default {
     remAdd,
     remMHorizontalEdit,
     pcAdd,
-    ssAdd,
+    routeSS,
   },
   watch: {
     activeTabName: {

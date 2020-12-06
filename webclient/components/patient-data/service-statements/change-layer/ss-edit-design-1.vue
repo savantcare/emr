@@ -1,5 +1,5 @@
 <template>
-  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
     }
   },
   props: {
-    firstProp: {
+    _rowIdForEdit: {
       type: Number,
     },
   },
