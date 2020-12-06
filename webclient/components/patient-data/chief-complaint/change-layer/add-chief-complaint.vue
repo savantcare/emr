@@ -50,13 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-}
 .scroll {
   width: 100%;
   max-height: 300px;
@@ -77,52 +70,14 @@ body {
   position: relative;
 }
 input[type='text'],
-.content-editable {
-  appearance: none;
-  border: none;
-  background: #eee;
-  padding: 1rem 1rem;
-  color: #666;
-  width: 100%;
-  border-radius: 0.25rem;
-  font-size: 16px;
-  outline: none;
-  &:focus {
-    background: #fff;
-  }
-}
-.content-editable:empty:before {
-  content: attr(placeholder);
-  display: block;
-  color: #666;
-}
 textarea {
-  appearance: none;
-  border: none;
-  background: #eee;
   padding: 1rem;
   width: 100%;
   border-radius: 0.25rem;
-  font-size: 16px;
   height: 100px;
   outline: none;
   &:focus {
     background: #fff;
-  }
-}
-.btn {
-  appearance: none;
-  border: none;
-  cursor: pointer;
-  margin: 20px 0;
-  background: #fc466b;
-  color: #fff;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(#000, 0.18);
-  &:hover {
-    background: darken(#fc466b, 3%);
   }
 }
 // Tribute-specific styles
