@@ -72,7 +72,7 @@ export const pastPsychHistoryFormDef = {
       nameInUi: 'Past outpatient treatment',
       type: 'textarea',
       showLabel: true,
-      showHistory: 'always',
+      showHistory: 'onFocus',
     },
     {
       nameInDb: 'past_meds_trials',
@@ -86,7 +86,7 @@ export const pastPsychHistoryFormDef = {
       nameInUi: 'Hospitalization',
       type: 'textarea',
       showLabel: true,
-      showHistory: 'always',
+      showHistory: 'onFocus',
     },
     {
       nameInDb: 'history_of_violence',
@@ -100,7 +100,7 @@ export const pastPsychHistoryFormDef = {
       nameInUi: 'History of self harm',
       type: 'textarea',
       showLabel: true,
-      showHistory: 'always',
+      showHistory: 'onFocus',
     },
     {
       nameInDb: 'past_substance_abuse',
