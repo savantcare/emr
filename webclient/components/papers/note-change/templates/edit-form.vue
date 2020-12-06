@@ -88,6 +88,19 @@
             :placeholder="_fieldDef.nameInUi"
           >
           </el-date-picker>
+          <!-- NUMBER -->
+          <div v-if="_fieldDef.type.includes('number')" :id="_fieldDef.nameInDb">
+            <div v-if="_fieldDef.showLabel">
+              {{ _fieldDef.nameInUi }}
+            </div>
+            <el-input-number
+              :ref="_fieldDef.nameInDb"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+              @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+            ></el-input-number>
+            {{ _fieldDef.unitOfMeasurement }}
+          </div>
 
           <!-- input/textarea -->
           <div v-if="_fieldDef.type.includes('text')" :id="_fieldDef.nameInDb">
