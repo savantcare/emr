@@ -419,7 +419,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     } else {
       // if caching is removed then typing will update every 1 second when the vuex store gets updated.
       // returning from cache
-      return this.arOrmRowsCached[this.entity][pClientRowId][pFldName]
+      const value = this.arOrmRowsCached[this.entity][pClientRowId][pFldName]
+      return value
     }
   }
 
