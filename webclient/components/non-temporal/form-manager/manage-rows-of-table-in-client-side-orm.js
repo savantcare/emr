@@ -407,7 +407,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       typeof this.arOrmRowsCached[this.entity] === 'undefined' ||
       typeof this.arOrmRowsCached[this.entity][pClientRowId] === 'undefined'
     ) {
-      // finding in model
+      // finding in vuex-orm model
       const arFromClientTbl = this.find(pClientRowId)
       if (arFromClientTbl) {
         if (typeof this.arOrmRowsCached[this.entity] === 'undefined') {
