@@ -162,7 +162,9 @@
                 :ref="_fieldDef.nameInDb"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="
+                  mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, _fieldDef.type)
+                "
               ></el-input-number>
               {{ _fieldDef.unitOfMeasurement }}
             </div>
@@ -496,17 +498,25 @@ export default {
     mf_get_fld_value(pClientRowId, pFldName) {
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(pClientRowId, pFldName)
     },
-    mf_set_fld_value_using_cache(pEvent, pClientRowId, pFldName) {
+    mf_set_fld_value_using_cache(pEvent, pClientRowId, pFldName, pFldType) {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
       //console.log()
       let rowStatus = 0
 
       // if (!pEvent) return // I have removed this line of code because if pEvent comes blank then
       // we need to update field value as blank in ORM.
-      if (pEvent && pEvent.length > 2) {
-        rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+      if (pFldType === 'number') {
+        if (pEvent && pEvent > 0) {
+          rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+        } else {
+          rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
+        }
       } else {
-        rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
+        if (pEvent && pEvent.length > 2) {
+          rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+        } else {
+          rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
+        }
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
 
