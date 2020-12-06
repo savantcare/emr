@@ -1,9 +1,9 @@
 <template>
-  <ctEditStructure :_formDef="formDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
 </template>
 
 <script>
-import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
 import examinationOfAPatientTbl from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { examinationFormDef } from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
@@ -26,7 +26,7 @@ export default {
   created() {},
 
   components: {
-    ctEditStructure,
+    ctEditFormTemplate,
   },
 }
 </script>

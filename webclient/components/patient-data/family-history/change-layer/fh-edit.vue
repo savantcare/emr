@@ -1,9 +1,9 @@
 <template>
-  <ctEditStructure :_formDef="formDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
 </template>
 
 <script>
-import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
 import { familyHistoryFormDef } from '@/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
 
   components: {
-    ctEditStructure,
+    ctEditFormTemplate,
   },
 }
 </script>

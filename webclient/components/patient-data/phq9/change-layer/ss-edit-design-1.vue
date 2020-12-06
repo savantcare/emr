@@ -1,9 +1,9 @@
 <template>
-  <ctEditStructure :_formDef="formDef" :firstProp="firstProp"></ctEditStructure>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
 </template>
 
 <script>
-import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
 import phq9AllSelectOptionsTbl from '../db/client-side/structure/phq9-all-select-options.js'
 import phq9OfAPatientTbl from '@/components/patient-data/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
 import { phq9FormDef } from '@/components/patient-data/phq9/db/client-side/structure/phq9-of-a-patient-table.js'
@@ -27,7 +27,7 @@ export default {
   created() {},
 
   components: {
-    ctEditStructure,
+    ctEditFormTemplate,
   },
 }
 </script>

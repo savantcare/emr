@@ -3,12 +3,12 @@
     v-if="_rowIdForEdit"
     why="This is inside v-if so the component does not get called if the rowId has not been fetched yet."
   >
-    <ctEditStructure :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditStructure>
+    <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
   </div>
 </template>
 
 <script>
-import ctEditStructure from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
 import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   },
 
   components: {
-    ctEditStructure,
+    ctEditFormTemplate,
   },
 }
 </script>
