@@ -15,7 +15,6 @@ export default {
   data: function () {
     return {
       formDef: chiefComplaintFormDef,
-      rowId: null,
     }
   },
   props: {

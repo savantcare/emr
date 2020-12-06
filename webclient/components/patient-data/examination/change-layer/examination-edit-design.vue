@@ -1,10 +1,14 @@
 <template>
-  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
+  <div
+    v-if="_rowIdForEdit"
+    why="This is inside v-if so the component does not get called if the rowId has not been fetched yet."
+  >
+    <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+  </div>
 </template>
 
 <script>
 import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
-import examinationOfAPatientTbl from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 import { examinationFormDef } from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 export default {
@@ -14,13 +18,13 @@ export default {
     }
   },
   props: {
-    firstProp: {
+    _rowIdForEdit: {
       type: Number,
     },
   },
 
   mounted() {
-    //    console.log(this.dataFormFields)
+    //   console.log(this._rowIdForEdit)
   },
 
   created() {},

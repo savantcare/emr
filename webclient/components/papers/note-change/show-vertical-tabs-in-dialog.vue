@@ -117,7 +117,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Examination" name="examination">
         <span slot="label"><u>E</u>xamination</span>
-        <examAdd />
+        <routeExam :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Vitals" name="vitals">
         <span slot="label"><u>V</u>itals</span>
@@ -186,7 +186,7 @@ import medicationOrder from '@/components/patient-data/medication-orders/change-
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
 import processNote from '@/components/patient-data/process-notes/change-layer/add-ct.vue'
-import examAdd from '@/components/patient-data/examination/change-layer/add-examination.vue'
+import routeExam from '@/components/patient-data/examination/change-layer/router.vue'
 
 import weightAdd from '@/components/patient-data/weight/change-layer/add-weight.vue'
 import pulseAdd from '@/components/patient-data/pulse/change-layer/add-pulse.vue'
@@ -241,7 +241,7 @@ export default {
     processNote,
     dxAdd,
     screensAdd,
-    examAdd,
+    routeExam,
     weightAdd,
     heightAdd,
     pulseAdd,
