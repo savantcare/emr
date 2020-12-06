@@ -79,14 +79,13 @@
               :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
-              @focus="fieldIsInFocus = true"
-              @blur="fieldIsInFocus = false"
+              @focus="currentFieldInFocus = _fieldDef.nameInDb"
             ></el-input>
           </el-col>
         </el-form-item>
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
         <el-timeline
-          v-show="_fieldDef.showHistory === 'always' || fieldIsInFocus === true"
+          v-show="_fieldDef.showHistory === 'always' || currentFieldInFocus === _fieldDef.nameInDb"
           style="padding-inline-start: 20px"
         >
           <el-timeline-item
@@ -188,7 +187,7 @@ export default {
       dnOrmUuidOfRowToChange: '',
       dnClientIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       dnClientIdOfCopiedRowBeingChanged: -1,
-      fieldIsInFocus: false,
+      currentFieldInFocus: false,
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
         null implies that system is ready for pClientIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }
