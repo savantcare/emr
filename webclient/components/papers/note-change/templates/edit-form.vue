@@ -101,6 +101,7 @@
           ></el-input>
         </div>
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
+        <br />
         <el-timeline
           v-show="_fieldDef.showHistory === 'always' || nameInDbOfCurrentFieldInFocus === _fieldDef.nameInDb"
           style="padding-inline-start: 20px"
@@ -297,7 +298,7 @@ export default {
       console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
       if (arFromClientTbl.length) {
         let rowInTimeLine = []
-        for (let i = 0; i < arFromClientTbl.length; i++) {
+        for (let i = 1; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
 
           // do not insert empty row
