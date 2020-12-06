@@ -40,7 +40,7 @@ export default class oxygenSaturationClass extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      oxygenSaturationInSpo2: this.string(''),
+      oxygenSaturationInSpo2: this.number(null).nullable(),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       timeOfMeasurementInMilliSecs: this.uid(() => defaultValueOfTimeOfMeasurementInMilliSecs()),
       recordChangedByUuid: this.string(null),
