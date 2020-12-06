@@ -1,6 +1,6 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    Edit social history
+    Edit medical review of systems
     <medicalReviewOfSystemEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
