@@ -8,7 +8,7 @@ let count = 0
 const intUniqueId = () => ++count
 
 export default class psychReviewOfSystemsForPatientClass extends clientTblManage {
-  static entity = 'tblPsychReviewOfSystemsOfPatient'
+  static entity = 'tblPsychReviewOfSystem'
 
   static apiUrl = process.env.baseUrlForLumen + '/public/api/psych-review-of-system/v20'
 
