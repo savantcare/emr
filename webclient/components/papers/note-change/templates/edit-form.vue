@@ -1,124 +1,125 @@
 <!-- Reference implementation for Mr1f (Multiple row 1 field) -->
 <template>
   <div>
-    <el-form>
-      <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id">
-        <el-form-item :label="_fieldDef.showLabel ? _fieldDef.nameInUi : ''">
-          <el-col>
-            <!-- Field type 1: Do the following when it is auto-complete type field -->
-            <el-autocomplete
-              v-if="_fieldDef.type === 'autocomplete'"
-              v-model="searchKeyword"
-              class="inline-input"
-              :fetch-suggestions="_fieldDef.selectOptions"
-              :placeholder="_fieldDef.nameInUi"
-              style="width: 100%"
-              :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-            ></el-autocomplete>
+    <div v-if="_formDef.showFilterBySearchInAddForm">
+      <el-input placeholder="Filter .." v-model="searchFilter" />
+    </div>
+    <!-- Start to process fields in the row -->
+    <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style">
+      <!-- Start to process each field -->
+      <div>
+        <!-- HEADING -->
+        <div v-if="_fieldDef.type === 'heading'">
+          <div v-if="_fieldDef.showLabel">
+            <h3>{{ _fieldDef.nameInUi }}</h3>
+          </div>
+        </div>
 
-            <!-- Field type 2: Do the following when it is multi-select-with-buttons type field -->
-            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
-              {{ _fieldDef.nameInUi }}
-              <div
-                v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
-                  _fieldDef.nameInDb,
-                  dnClientIdOfCopiedRowBeingChanged
-                )"
-                :key="item.id"
-              >
-                <el-button
-                  :type="item.selected ? 'primary' : 'plain'"
-                  @click="mfSetCopiedRowBeingChangedFldVal(item.id, _fieldDef.nameInDb)"
-                  >{{ item.value }}</el-button
-                >
-              </div>
-            </div>
+        <!--  AUTO COMPLETE  -->
+        <div v-else-if="_fieldDef.type === 'autocomplete'">
+          <div v-if="_fieldDef.showLabel">
+            {{ _fieldDef.nameInUi }}
+          </div>
 
-            <!-- Field type 3: Do the following when it is heading type field -->
-            <div v-else-if="_fieldDef.type === 'heading'">
-              <h3>{{ _fieldDef.nameInUi }}</h3>
-            </div>
+          <el-autocomplete
+            v-model="searchKeyword"
+            class="inline-input"
+            :fetch-suggestions="_fieldDef.selectOptions"
+            :placeholder="_fieldDef.nameInUi"
+            style="width: 100%"
+            :highlight-first-item="true"
+            @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+          ></el-autocomplete>
+        </div>
 
-            <!-- Field type 4: Do the following when it is select type field -->
-            <el-select
-              v-else-if="_fieldDef.type === 'select'"
-              v-model="value"
-              filterable
-              :placeholder="_fieldDef.nameInUi"
-            >
-              <el-option
-                v-for="item in _fieldDef.selectOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="mfGetFldValue(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-              >
-              </el-option>
-            </el-select>
-
-            <!-- Field type 5: Do the following when it is date type field -->
-            <el-date-picker
-              v-else-if="_fieldDef.type === 'date'"
-              :ref="_fieldDef.nameInDb"
-              format="MMM dd yyyy"
-              value-format="timestamp"
-              type="date"
-              style="width: 100%"
-              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
-              :placeholder="_fieldDef.nameInUi"
-            >
-            </el-date-picker>
-
-            <el-input
-              v-else
-              :ref="_fieldDef.nameInDb"
-              :type="_fieldDef.type"
-              :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
-              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
-              @keydown.enter.native="mfForTabActionByEnter"
-              @focus="currentFieldInFocus = _fieldDef.nameInDb"
-            ></el-input>
-          </el-col>
-        </el-form-item>
-        <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
-        <el-timeline
-          v-show="_fieldDef.showHistory === 'always' || currentFieldInFocus === _fieldDef.nameInDb"
-          style="padding-inline-start: 20px"
-        >
-          <el-timeline-item
-            v-for="row in mfTimeLineDataAr(_fieldDef.nameInDb)"
-            :key="row.ROW_START"
-            :timestamp="row.ROW_START | moment"
-            :type="row.type"
+        <!-- MULTI SELECT WITH BUTTONS -->
+        <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'">
+          {{ _fieldDef.nameInUi }}
+          <div
+            v-for="item in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
+              _fieldDef.nameInDb,
+              dnClientIdOfCopiedRowBeingChanged
+            )"
+            :key="item.id"
           >
-            {{ row[_fieldDef.nameInDb] }}
-            <!-- The following come on right of the description that comes in the timeline. 
+            <el-button
+              :type="item.selected ? 'primary' : 'plain'"
+              @click="mfSetCopiedRowBeingChangedFldVal(item.id, _fieldDef.nameInDb)"
+              >{{ item.value }}</el-button
+            >
+          </div>
+        </div>
+
+        <!-- SELECT-->
+        <el-select v-else-if="_fieldDef.type === 'select'" v-model="value" filterable :placeholder="_fieldDef.nameInUi">
+          <el-option
+            v-for="item in _fieldDef.selectOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="mfGetFldValue(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+            @input="mfSetFldValueUsingCache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+          >
+          </el-option>
+        </el-select>
+
+        <!-- DATE -->
+        <el-date-picker
+          v-else-if="_fieldDef.type === 'date'"
+          :ref="_fieldDef.nameInDb"
+          format="MMM dd yyyy"
+          value-format="timestamp"
+          type="date"
+          style="width: 100%"
+          :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+          :placeholder="_fieldDef.nameInUi"
+        >
+        </el-date-picker>
+
+        <el-input
+          v-else
+          :ref="_fieldDef.nameInDb"
+          :type="_fieldDef.type"
+          :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
+          :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+          @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+          @keydown.enter.native="mfForTabActionByEnter"
+          @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+        ></el-input>
+      </div>
+      <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
+      <el-timeline
+        v-show="_fieldDef.showHistory === 'always' || nameInDbOfCurrentFieldInFocus === _fieldDef.nameInDb"
+        style="padding-inline-start: 20px"
+      >
+        <el-timeline-item
+          v-for="row in mfTimeLineDataAr(_fieldDef.nameInDb)"
+          :key="row.ROW_START"
+          :timestamp="row.ROW_START | moment"
+          :type="row.type"
+        >
+          {{ row[_fieldDef.nameInDb] }}
+          <!-- The following come on right of the description that comes in the timeline. 
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
-            <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
-              >sending to server</span
-            >
-            <span v-if="row.vnRowStateInSession == 34571" class="api-response-message el-button--success"
-              >saved this session</span
-            >
-          </el-timeline-item>
-        </el-timeline>
-      </div>
-      <el-form-item>
-        <el-button
-          v-if="_formDef.showReviewedButtonInForm === true"
-          type="primary"
-          size="mini"
-          plain
-          @click="sfSendCopyChangedRowsToServer"
-          >Reviewed</el-button
-        >
-      </el-form-item>
-    </el-form>
+          <span v-if="row.vnRowStateInSession == 345" class="api-response-message el-button--warning"
+            >sending to server</span
+          >
+          <span v-if="row.vnRowStateInSession == 34571" class="api-response-message el-button--success"
+            >saved this session</span
+          >
+        </el-timeline-item>
+      </el-timeline>
+    </div>
+    <el-button
+      v-if="_formDef.showReviewedButtonInForm === true"
+      type="primary"
+      size="mini"
+      plain
+      @click="sfSendCopyChangedRowsToServer"
+      >Reviewed</el-button
+    >
   </div>
 </template>
 <script>
@@ -187,7 +188,8 @@ export default {
       dnOrmUuidOfRowToChange: '',
       dnClientIdOfRowToChange: this.firstProp, // why not use this.firstProp everywhere? When submit is success this needs to get updated. Not advised to update prop inside Ct. Ref: https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
       dnClientIdOfCopiedRowBeingChanged: -1,
-      currentFieldInFocus: false,
+      nameInDbOfCurrentFieldInFocus: false,
+      searchFilter: null,
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
         null implies that system is ready for pClientIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }

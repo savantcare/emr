@@ -49,7 +49,7 @@
               ></el-autocomplete>
             </div>
 
-            <!-- multi-select-with-buttons -->
+            <!-- MULTI SELECT WITH BUTTONS -->
             <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'" id="div-containing-all-buttons">
               <div v-if="_fieldDef.showLabel" :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'">
                 <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
