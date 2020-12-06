@@ -105,7 +105,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Social history" name="social_history">
         <span slot="label" tabIndex="0">Social histor<u>y</u></span>
-        <socialHistory />
+        <routeSocialHistory :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system">
         <span slot="label">M revie<u>w</u> of systems</span>
@@ -179,7 +179,7 @@ import routeChiefComplaint from '@/components/patient-data/chief-complaint/chang
 import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import routePastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/router.vue'
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
-import socialHistory from '@/components/patient-data/social-history/change-layer/add-ct.vue'
+import routeSocialHistory from '@/components/patient-data/social-history/change-layer/router.vue'
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
@@ -233,7 +233,7 @@ export default {
     prosAdd,
     routePastPsychHistory,
     familyHistory,
-    socialHistory,
+    routeSocialHistory,
     medicalHistory,
     medicationOrder,
     allergies,
