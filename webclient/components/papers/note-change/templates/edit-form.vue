@@ -268,7 +268,11 @@ export default {
           rowInTimeLine = {}
 
           // do not insert empty row
-          if (arFromClientTbl[i][pFieldNameInDb].length < 1) {
+          if (arFromClientTbl[i][pFieldNameInDb]) {
+            if (arFromClientTbl[i][pFieldNameInDb].length < 1) {
+              continue
+            }
+          } else {
             continue
           }
 
@@ -335,7 +339,7 @@ export default {
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfForTabActionByEnter: function (e) {
-      /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter. 
+      /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
 
       //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.

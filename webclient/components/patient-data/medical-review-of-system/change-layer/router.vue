@@ -10,7 +10,7 @@
 
 <script>
 import medicalReviewOfSystemTbl from '@/components/patient-data/medical-review-of-system/db/client-side/structure/medical-review-of-system-of-a-patient-table.js'
-import medicalReviewOfSystemEdit from '@/components/patient-data/medical-review-of-system/change-layer/ss-edit-design-1.vue'
+import medicalReviewOfSystemEdit from '@/components/patient-data/medical-review-of-system/change-layer/mros-edit-design-1.vue'
 import medicalReviewOfSystemAdd from '@/components/patient-data/medical-review-of-system/change-layer/add-mros.vue'
 
 export default {

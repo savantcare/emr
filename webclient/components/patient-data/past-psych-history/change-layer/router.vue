@@ -10,7 +10,7 @@
 
 <script>
 import pastPsychHistoryTbl from '@/components/patient-data/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
-import pastPsychHistoryEdit from '@/components/patient-data/past-psych-history/change-layer/fh-edit.vue'
+import pastPsychHistoryEdit from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-edit.vue'
 import pastPsychHistoryAdd from '@/components/patient-data/past-psych-history/change-layer/past-psych-history-add.vue'
 
 export default {
