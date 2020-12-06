@@ -266,6 +266,12 @@ export default {
         let rowInTimeLine = []
         for (let i = 0; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
+
+          // do not insert empty row
+          if (arFromClientTbl[i][pFieldNameInDb].length < 1) {
+            continue
+          }
+
           rowInTimeLine[pFieldNameInDb] = arFromClientTbl[i][pFieldNameInDb]
           if (
             arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
