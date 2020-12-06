@@ -4,6 +4,14 @@
 
 https://github.com/voerro/vue-tagsinput
 
+# For textarea:
+
+https://github.com/TunaYagci/vue-mentionable
+https://stackoverflow.com/questions/58864588/display-live-suggestion-words-in-v-text-field-or-v-textarea-vuetify-vue-js
+http://imankulov.github.io/asuggest/ -> no dropdown / Jquery
+https://github.com/atmb4u/AutoJS -> only on right arrow / Jquery
+http://bassistance.de/jquery-plugins/jquery-plugin-autocomplete/ / Jquery
+
 ## Grammar
 
 https://github.com/SAP/chevrotain
