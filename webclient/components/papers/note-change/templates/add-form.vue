@@ -31,8 +31,7 @@
               </div>
             </div>
 
-            <!-- AUTO COMPLETE  
-              fetch-suggestions="_fieldDef.selectOptions This is per field since if there are 3 fields each may implement their select options on thier own -->
+            <!-- AUTO COMPLETE  -->
             <div v-else-if="_fieldDef.type === 'autocomplete'">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
