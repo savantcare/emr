@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ctAddForm :_formDef="formDef"></ctAddForm>
+    <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
 
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
       <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms">Gasteway mood symptoms</el-tab-pane>

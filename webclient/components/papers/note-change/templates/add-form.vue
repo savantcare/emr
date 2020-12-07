@@ -15,10 +15,16 @@
         :key="index"
         :id="`each-data-row-` + index + `-` + _formDef.id"
         :style="_formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm"
-        why1="This has grid design like grid-template-columns: 1fr 1fr 1fr "
+        why1="This style has grid design like grid-template-columns: 1fr 1fr 1fr "
       >
         <!-- Start to process fields in the row -->
-        <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style">
+
+        <div
+          v-for="(_fieldDef, id) in _formDef.fieldsDef"
+          :key="id"
+          :style="_fieldDef.style"
+          v-if="_regexForFieldSubset ? _fieldDef.nameInDb.match(_regexForFieldSubset) : true"
+        >
           <!-- Start to process each field -->
           <div>
             <!-- The following are the possible field types -->
@@ -308,6 +314,9 @@ export default {
 
         return false
       },
+    },
+    _regexForFieldSubset: {
+      type: String,
     },
   },
   computed: {
