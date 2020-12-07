@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><el-input type="textarea" placeholder="Subjective" /><br /><br /><br /></div>
+    <div><el-input type="textarea" placeholder="Subjective" v-model="subjective" /><br /><br /><br /></div>
     <div class="depression-grid-container">
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Depressive mood</div>
       <div>
@@ -76,7 +76,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Notes</div>
       <div style="grid-column: 20/26">
-        <el-input :rows="7" type="textarea" v-model="depressionNotes" placeholder="Notes"></el-input>
+        <el-input :rows="7" type="textarea" v-model="depression.notes" placeholder="Notes"></el-input>
       </div>
       <div style="grid-column: 1/26; text-align: center; font-weight: bold; background: #67c23a">Depression</div>
     </div>
@@ -154,8 +154,9 @@ export default {
   data: function () {
     return {
       formDef: psychReviewOfSystemFormDef,
-      depressionNotes: '',
+      subjective: '',
       depression: {
+        notes: '',
         depressive: -1,
         interest: -1,
         sleep: -1,
