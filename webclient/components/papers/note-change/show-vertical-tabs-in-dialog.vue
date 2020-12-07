@@ -152,17 +152,17 @@ So things like collapsible state will get destroyed. Even though the rem descrip
             <el-divider>Add</el-divider> <remAdd /> <el-divider>Edit</el-divider><remMHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
-          <el-tab-pane label="Deleted reminders" name="third">Deleted reminders</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="400">
         <span slot="label">P<u>l</u>an comments</span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <pcAdd /> <el-divider>Edit</el-divider><pcEdit />
+            <el-divider>Add</el-divider> <pcAdd /> <el-divider>Edit</el-divider><pcHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Plan comments timelime</el-tab-pane>
-          <el-tab-pane label="Deleted reminders" name="third">Deleted plan comments</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted plan comments</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="300">
@@ -216,6 +216,8 @@ import remAdd from '@/components/patient-data/reminders/change-layer/add-ct.vue'
 import remMHorizontalEdit from '@/components/patient-data/reminders/change-layer/medit-horizontal.vue'
 
 import pcAdd from '@/components/patient-data/plan-comments/change-layer/add-ct.vue'
+import pcHorizontalEdit from '@/components/patient-data/plan-comments/change-layer/medit-horizontal.vue'
+
 import routeSS from '@/components/patient-data/service-statements/change-layer/router.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
@@ -263,6 +265,7 @@ export default {
     remAdd,
     remMHorizontalEdit,
     pcAdd,
+    pcHorizontalEdit,
     routeSS,
   },
   watch: {
