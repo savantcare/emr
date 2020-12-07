@@ -2,8 +2,8 @@
   <div>
     <ctAddForm :_formDef="formDef"></ctAddForm>
 
-    <vue-tribute :options="options">
-      <el-input placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
+    <vue-tribute :options="options" ref="tributeRef">
+      <el-input ref="tributeElInput" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
       <!-- <input type="text" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input" class="el-input__inner"> -->
     </vue-tribute>
     <div class="menu-tribute-list" ref="menuTributeContainer"></div>
@@ -37,6 +37,7 @@ export default {
   },
   mounted() {
     this.options.menuContainer = this.$refs.menuTributeContainer;
+    this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input;
     // debugger
   },
   methods: {
