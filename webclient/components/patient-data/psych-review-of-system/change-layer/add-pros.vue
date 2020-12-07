@@ -3,9 +3,19 @@
     <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
 
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
-      <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms">Gasteway mood symptoms</el-tab-pane>
-      <el-tab-pane label="Depression" name="depression">Depression</el-tab-pane>
-      <el-tab-pane label="Mania" name="mania">Mania/Hypomania</el-tab-pane>
+      <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms"
+        >Gasteway mood symptoms
+        <ctAddForm :_formDef="formDef" _regexForFieldSubset="obese.*"></ctAddForm>
+      </el-tab-pane>
+      <el-tab-pane label="Depression" name="depression"
+        >Depression
+
+        <ctAddForm :_formDef="formDef" _regexForFieldSubset="depressive.*"></ctAddForm>
+      </el-tab-pane>
+      <el-tab-pane label="Mania" name="mania"
+        >Mania/Hypomania
+        <ctAddForm :_formDef="formDef" _regexForFieldSubset="malo.*"></ctAddForm>
+      </el-tab-pane>
       <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
       <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
       <el-tab-pane label="Substance abuse" name="Substance">Substance abuse</el-tab-pane>

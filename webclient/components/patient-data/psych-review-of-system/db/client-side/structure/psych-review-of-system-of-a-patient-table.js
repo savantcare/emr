@@ -41,11 +41,6 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       thinCachectic: this.number(0),
       disheveledUnkempt: this.number(0),
       malodorous: this.number(0),
-      /* Heading fields need default values since there is a empty check on these in zl4-content-during-appt-of-a-single-ct.vue. 
-          The empty check is there to decide if a div should be included in DOM or not. Since Div is used by css:grid.
-          If a grid withput content is included then there will be a empty box in the paper note */
-      heading_gateway: this.string('heading_gateway'),
-      heading_depression: this.string('heading_depression'),
 
       patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
@@ -77,15 +72,6 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
       type: 'textarea',
-      showLabel: true,
-      // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
-
-      style: 'padding: 20px',
-    },
-    {
-      nameInDb: 'heading_depression',
-      nameInUi: 'Depression',
-      type: 'heading',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
 
