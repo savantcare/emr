@@ -131,9 +131,6 @@
             </div>
 
             <div v-else-if="_fieldDef.type === 'vertical-slider'">
-              <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
-                {{ _fieldDef.nameInUi }}
-              </div>
               <div>
                 <vue-slider
                   class="slider"
@@ -142,6 +139,9 @@
                   @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 >
                 </vue-slider>
+                <div style="text-align: center">
+                  {{ _fieldDef.nameInUi }}
+                </div>
               </div>
             </div>
 
