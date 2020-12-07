@@ -54,6 +54,7 @@ Pirority:
 2. Words get cut in past meds trials textarea. But it works fine on element.io website. When typing to at the edge t is on one line and O is on another line.
 3. Div gets a border in psych ROS
 4. Notes not getting locked the 2nd time onwards
+   4.5. Addendum not working.
 5. Shortcut to set values
 6. Reminbders add and edit to work.
 7. Focus not working for (Should the code be written with a Object instead of events)
