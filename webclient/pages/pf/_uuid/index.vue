@@ -294,4 +294,16 @@ I have added the following css because if we set font-size=200% then v-tour popu
 .el-tabs__nav-scroll {
   padding: 5px 0;
 }
+
+/**
+  Why we added this following css?
+  Problem: Words get cut in past meds trials textarea. But it works fine on element.io website. 
+    When typing to at the edge t is on one line and O is on another line.
+
+  Solution: 
+    Ref: https://stackoverflow.com/questions/33431090/textarea-breaks-words-and-doesnt-make-new-lines
+ */
+textarea.el-textarea__inner {
+  word-break: normal;
+}
 </style>
