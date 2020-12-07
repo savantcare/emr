@@ -175,6 +175,17 @@ export default {
         elevated: -1,
         dayToDay: -1,
       },
+      mania: {
+        elevation: -1,
+        irritable: -1,
+        energy: -1,
+        sleep: -1,
+        talking: -1,
+        racing: -1,
+        distractability: -1,
+        risk: -1,
+        notes: '',
+      },
       sliderOptions: {
         width: 'auto',
         height: 200,
