@@ -157,14 +157,38 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetAllRowsPossibleToEdit() {
+    /* 
+        Need 
+        1) Present ROW_END has to be future. Since past rows cannot be edited 
+        2) Start with 1 (already saved to  DB) 
+        3) Unique UUID. Since each row is copied before editing. If I dont take unique UUID then I will edit the present row in DB and the new copied row being changed.
+    */
     const arFromClientTbl = this.query()
-      .where('vnRowStateInSession', rowState.SameAsDB)
-      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy)
-      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed)
-      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail)
-      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError)
+      .where('ROW_END', Future_MilliSecs_In_MariaDB_To_Mark_Row_As_Not_Deleted)
+      .where('vnRowStateInSession', (value) => value.toString().startsWith('1'))
       .get()
-    return arFromClientTbl
+
+    // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and in that scenario there are 2 records with same UUID
+    const uniqueUuidRows = []
+    let foundInArToReturn = false
+    for (let i = 0; i < arFromClientTbl.length; i++) {
+      for (let j = 0; j < uniqueUuidRows.length; j++) {
+        if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+          /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
+          In the array that is returned from this Fn I am returning the array with the new data.       
+          Hence in the following line I over write the old row
+          */
+          uniqueUuidRows[j] = arFromClientTbl[i]
+          foundInArToReturn = true
+        }
+      }
+      if (foundInArToReturn) {
+      } else {
+        uniqueUuidRows.push(arFromClientTbl[i])
+      }
+    }
+
+    return uniqueUuidRows
   }
 
   static fnGetAllChangeRowsInEditState() {
@@ -311,11 +335,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       }
     }
 
-    const uniqueUuidRows = []
-
-    //debugger
-
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and in that scenario there are 2 records with same UUID
+    const uniqueUuidRows = []
     let foundInArToReturn = false
     for (let i = 0; i < arFromClientTbl.length; i++) {
       for (let j = 0; j < uniqueUuidRows.length; j++) {
