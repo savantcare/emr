@@ -4,12 +4,11 @@
 
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
       <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms"
-        >Gasteway mood symptoms
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="obese.*"></ctAddForm>
+        >Gateway mood symptoms. In the past 10 days, how many days have you:
+        <ctAddForm :_formDef="formDef" _regexForFieldSubset="gateway.*"></ctAddForm>
       </el-tab-pane>
       <el-tab-pane label="Depression" name="depression"
         >Depression
-
         <ctAddForm :_formDef="formDef" _regexForFieldSubset="depressive.*"></ctAddForm>
       </el-tab-pane>
       <el-tab-pane label="Mania" name="mania"

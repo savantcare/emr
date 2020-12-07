@@ -28,15 +28,26 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
+
       subjective: this.string(null).nullable(),
+
       depressive_mood: this.number(0),
-      interest: this.number(0),
-      sleep: this.number(0),
-      selfEsteem: this.number(0),
-      energy: this.number(0),
-      concDist: this.number(0),
-      appetite: this.number(0),
-      pmrPma: this.number(0),
+      depressive_interest: this.number(0),
+      depressive_sleep: this.number(0),
+      depressive_esteem: this.number(0),
+      depressive_energy: this.number(0),
+      depressive_conc: this.number(0),
+      depressive_appetite: this.number(0),
+      depressive_retardation: this.number(0),
+      depressive_suicidal: this.number(0),
+
+      gateway_depressed: this.number(0),
+      gateway_energetic: this.number(0),
+      gateway_interest: this.number(0),
+      gateway_mood: this.number(0),
+      gateway_irritable: this.number(0),
+      gateway_difficult: this.number(0),
+
       obese: this.number(0),
       thinCachectic: this.number(0),
       disheveledUnkempt: this.number(0),
@@ -96,7 +107,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'interest',
+      nameInDb: 'depressive_interest',
       nameInUi: 'Interest',
       type: 'vertical-slider',
 
@@ -114,7 +125,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'sleep',
+      nameInDb: 'depressive_sleep',
       nameInUi: 'Sleep',
       type: 'vertical-slider',
 
@@ -132,7 +143,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'selfEsteem',
+      nameInDb: 'depressive_esteem',
       nameInUi: 'Gulf / Self esteem',
       type: 'vertical-slider',
 
@@ -150,7 +161,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'energy',
+      nameInDb: 'depressive_energy',
       nameInUi: 'Energy',
       type: 'vertical-slider',
 
@@ -168,7 +179,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'concDist',
+      nameInDb: 'depressive_conc',
       nameInUi: 'Conc/Dist',
       type: 'vertical-slider',
 
@@ -186,7 +197,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'appetite',
+      nameInDb: 'depressive_appetite',
       nameInUi: 'Apptetite',
       type: 'vertical-slider',
 
@@ -204,7 +215,7 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'pmrPma',
+      nameInDb: 'depressive_retardation',
       nameInUi: 'PMR/PMA',
       type: 'vertical-slider',
 
@@ -222,11 +233,132 @@ export const psychReviewOfSystemFormDef = {
       },
     },
     {
-      nameInDb: 'heading_gateway',
-      nameInUi: 'Gateway mood symptoms',
-      type: 'heading',
+      nameInDb: 'depressive_suicidal',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
       showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
     },
+
+    {
+      nameInDb: 'gateway_depressed',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'gateway_energetic',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'gateway_interest',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'gateway_mood',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'gateway_irritable',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'gateway_difficult',
+      nameInUi: 'Suicidal ideation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+
     {
       nameInDb: 'obese',
       nameInUi: 'Obese',
