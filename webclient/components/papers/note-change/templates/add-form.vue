@@ -129,7 +129,12 @@
                 {{ _fieldDef.nameInUi }}
               </div>
               <div>
-                <vue-slider class="slider" v-model="value[_fieldDef.nameInDb]" v-bind="_formDef.sliderOptions">
+                <vue-slider
+                  class="slider"
+                  v-model="value[_fieldDef.nameInDb]"
+                  v-bind="_formDef.sliderOptions"
+                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                >
                 </vue-slider>
               </div>
             </div>
