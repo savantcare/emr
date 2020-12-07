@@ -80,23 +80,18 @@
       <div style="grid-column: 1/26; text-align: center; font-weight: bold; background: #67c23a">Depression</div>
     </div>
 
-    <!-- GW moood symptoms -->
+    <!-- GW MOOD SYMPTOMS -->
     <br />
     <div class="gw-mood-grid-container">
-      <div style="grid-column: 1/11; text-align: center; font-weight: bold; background: #67c23a">
+      <div style="grid-column: 1/7; text-align: center; font-weight: bold; background: #67c23a">
         In past 10 days, how many days have you been? (For most of the day)
       </div>
-      <div style="grid-column: 11/13; text-align: center; font-weight: bold"></div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Depressed?</div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.depressed" v-bind="moodSymptomOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="gwMoodTooltip(value, focus)" />
           </template>
         </vue-slider>
-      </div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
-        Felt low interest or motivation?
       </div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.interest" v-bind="moodSymptomOptions">
@@ -105,16 +100,12 @@
           </template>
         </vue-slider>
       </div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Abnormally irritable?</div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.irritable" v-bind="moodSymptomOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="gwMoodTooltip(value, focus)" />
           </template>
         </vue-slider>
-      </div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
-        Abnormally energetic or high energy?
       </div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.energetic" v-bind="moodSymptomOptions">
@@ -123,18 +114,12 @@
           </template>
         </vue-slider>
       </div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
-        Abnormal mood elevation?
-      </div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.elevated" v-bind="moodSymptomOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="gwMoodTooltip(value, focus)" />
           </template>
         </vue-slider>
-      </div>
-      <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
-        How difficult to the above symptoms make your day to day life?
       </div>
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.dayToDay" v-bind="moodSymptomOptions">
@@ -143,8 +128,14 @@
           </template>
         </vue-slider>
       </div>
+      <div style="text-align: center">Depressed?</div>
+      <div style="text-align: center">Felt low interest or motivation?</div>
+      <div style="text-align: center">Abnormally irritable?</div>
+      <div style="text-align: center">Abnormally energetic or high energy?</div>
+      <div style="text-align: center">Abnormal mood elevation?</div>
+      <div style="text-align: center">How difficult do the above symptoms make your day to day life?</div>
 
-      <div style="grid-column: 1/13; text-align: center; font-weight: bold; background: #67c23a">
+      <div style="grid-column: 1/7; text-align: center; font-weight: bold; background: #67c23a">
         Gateway mood symptoms
       </div>
     </div>
@@ -211,17 +202,17 @@ export default {
   methods: {
     depressedTooltip(value, focus) {
       if (value === -1)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center"> <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not rated</div> </div>'
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not rated</div>'
       else if (value === 0)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center"> <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not present</div> </div>'
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not present</div>'
       else if (value === 1)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center"> <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Sub syndromal</div> </div>'
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Sub syndromal</div>'
       else if (value === 2)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center"> <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Syndromal</div> </div>'
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Syndromal</div>'
     },
     gwMoodTooltip(value, focus) {
       if (value === -1)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center"> <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not rated</div> </div>'
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not rated</div>'
       else return value
     },
   },
@@ -241,7 +232,8 @@ export default {
 
 .gw-mood-grid-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  row-gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .gw-mood-grid-container > div {
