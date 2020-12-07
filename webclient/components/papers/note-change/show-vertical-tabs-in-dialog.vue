@@ -107,7 +107,13 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Medical history" name="medical_history">
         <span slot="label" tabIndex="0">Medical histor<u>y</u></span>
-        <medicalHistory />
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <medicalHistory /> <el-divider>Edit</el-divider><mhHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Medical history timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted medical history</el-tab-pane>
+        </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Social history" name="social_history">
         <span slot="label" tabIndex="0">Social histor<u>y</u></span>
@@ -218,7 +224,10 @@ import familyHistory from '@/components/patient-data/family-history/change-layer
 import fhHorizontalEdit from '@/components/patient-data/family-history/change-layer/medit-horizontal.vue'
 
 import routeSocialHistory from '@/components/patient-data/social-history/change-layer/router.vue'
+
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
+import mhHorizontalEdit from '@/components/patient-data/medical-history/change-layer/medit-horizontal.vue'
+
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
@@ -282,6 +291,7 @@ export default {
     fhHorizontalEdit,
     routeSocialHistory,
     medicalHistory,
+    mhHorizontalEdit,
     medicationOrder,
     allergies,
     miscNote,
