@@ -156,6 +156,17 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     return arFromClientTbl
   }
 
+  static fnGetAllRowsPossibleToEdit() {
+    const arFromClientTbl = this.query()
+      .where('vnRowStateInSession', rowState.SameAsDB)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_FormValidationFail)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_RequestedSave_ApiError)
+      .get()
+    return arFromClientTbl
+  }
+
   static fnGetAllChangeRowsInEditState() {
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.SameAsDB_Copy)

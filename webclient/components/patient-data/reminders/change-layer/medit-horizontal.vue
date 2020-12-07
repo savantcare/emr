@@ -66,7 +66,7 @@ export default {
 
     daUniqueIdOfEachRowFromOrm() {
       let daUniqueIdOfEachRowFromOrm = new Array()
-      const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(['description'])
+      const resultArFromOrm = clientTbl.fnGetAllRowsPossibleToEdit()
       if (resultArFromOrm.length) {
         for (let i = 0; i < resultArFromOrm.length; i++) {
           daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)
