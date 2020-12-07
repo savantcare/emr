@@ -2,9 +2,11 @@
   <div>
     <ctAddForm :_formDef="formDef"></ctAddForm>
 
-    <vue-tribute :options="options">
-      <el-input placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
+    <vue-tribute :options="options" ref="tributeRef">
+      <el-input ref="tributeElInput" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
+      <!-- <input type="text" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input" class="el-input__inner"> -->
     </vue-tribute>
+    <div class="menu-tribute-list" ref="menuTributeContainer"></div>
   </div>
 </template>
 
@@ -24,8 +26,8 @@ export default {
           { key: 'depression', value: 'Patient has history of depression' },
           { key: 'anxiety', value: 'Patient has history of anxiety' },
         ],
-        positionMenu: true,
-        menuContainer: document.querySelector('.menu-container'),
+        positionMenu: false,
+        menuContainer: document.body
       },
     }
   },
@@ -34,7 +36,10 @@ export default {
     VueTribute,
   },
   mounted() {
-    this.options.menuContainer = this.$refs.menuContainer
+    // Vue Tribute display menu list position reference with menuTributeContainer
+    this.options.menuContainer = this.$refs.menuTributeContainer;
+    // Update VueTribute slots
+    this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input;
     // debugger
   },
   methods: {
@@ -68,10 +73,10 @@ export default {
   flex-direction: column;
   padding: 0 20px;
 }
-.v-tribute {
-  width: 100%;
-  position: relative;
-}
+// .v-tribute {
+//   width: 100%;
+//   position: relative;
+// }
 input[type='text'],
 textarea {
   padding: 1rem;
@@ -82,9 +87,13 @@ textarea {
     background: #fff;
   }
 }
+// .menu-tribute-list {
+//   width: 100%;
+//   height: 100%;
+// }
 // Tribute-specific styles
 .tribute-container {
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
   height: auto;
