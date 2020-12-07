@@ -143,8 +143,16 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"><u>M</u>edication orders</span> <medicationOrder />
       </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
-        <span slot="label">Recommenda<u>t</u>ions</span> <recAdd
-      /></el-tab-pane>
+        <span slot="label">Recommenda<u>t</u>ions</span>
+
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <recAdd /> <el-divider>Edit</el-divider><recMHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted reminders</el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
         <span slot="label">Rem<u>i</u>nders</span>
         <el-tabs v-model="activeHorizontalTab">
@@ -230,6 +238,7 @@ import screensAdd from '@/components/patient-data/screens/change-layer/add-ct.vu
 import goalsAdd from '@/components/patient-data/goals/change-layer/add-ct.vue'
 
 import recAdd from '@/components/patient-data/recommendations/change-layer/recommendation-add.vue'
+import recMHorizontalEdit from '@/components/patient-data/recommendations/change-layer/medit-horizontal.vue'
 
 import remAdd from '@/components/patient-data/reminders/change-layer/add-ct.vue'
 import remMHorizontalEdit from '@/components/patient-data/reminders/change-layer/medit-horizontal.vue'
@@ -283,6 +292,7 @@ export default {
     routerMros,
     goalsAdd,
     recAdd,
+    recMHorizontalEdit,
     remAdd,
     remMHorizontalEdit,
     pcAdd,
