@@ -36,7 +36,9 @@ export default {
     VueTribute,
   },
   mounted() {
+    // Vue Tribute display menu list position reference with menuTributeContainer
     this.options.menuContainer = this.$refs.menuTributeContainer;
+    // Update VueTribute slots
     this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input;
     // debugger
   },
