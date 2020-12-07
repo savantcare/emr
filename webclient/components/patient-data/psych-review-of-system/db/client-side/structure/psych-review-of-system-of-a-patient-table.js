@@ -75,7 +75,7 @@ export const psychReviewOfSystemFormDef = {
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
 
-      style: 'padding: 20px',
+      style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',
     },
     {
       nameInDb: 'depressive_mood',
