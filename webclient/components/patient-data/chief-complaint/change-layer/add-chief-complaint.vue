@@ -3,8 +3,7 @@
     <ctAddForm :_formDef="formDef"></ctAddForm>
 
     <vue-tribute :options="options" ref="tributeRef">
-      <el-input ref="tributeElInput" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input"></el-input>
-      <!-- <input type="text" placeholder="Please input" @tribute-no-match="noMatchFound" v-model="input" class="el-input__inner"> -->
+      <el-input ref="tributeElInput" placeholder="Please input" v-model="input"></el-input>
     </vue-tribute>
     <div class="menu-tribute-list" ref="menuTributeContainer"></div>
   </div>
@@ -18,7 +17,7 @@ import VueTribute from 'vue-tribute'
 export default {
   data: function () {
     return {
-      input: 'jai',
+      input: '',
       formDef: chiefComplaintFormDef,
       options: {
         autocompleteMode: true,
@@ -27,7 +26,7 @@ export default {
           { key: 'anxiety', value: 'Patient has history of anxiety' },
         ],
         positionMenu: false,
-        menuContainer: document.body
+        menuContainer: document.body,
       },
     }
   },
@@ -37,15 +36,12 @@ export default {
   },
   mounted() {
     // Vue Tribute display menu list position reference with menuTributeContainer
-    this.options.menuContainer = this.$refs.menuTributeContainer;
+    this.options.menuContainer = this.$refs.menuTributeContainer
     // Update VueTribute slots
-    this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input;
+    this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input
     // debugger
   },
   methods: {
-    noMatchFound() {
-      console.log('No matches found!')
-    },
     append() {
       let kv = Math.random().toString(36).slice(2)
       this.options.values.push({
