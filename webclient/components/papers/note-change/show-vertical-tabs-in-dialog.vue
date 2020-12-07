@@ -156,8 +156,15 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="400">
-        <span slot="label">P<u>l</u>an comments</span> <pcAdd
-      /></el-tab-pane>
+        <span slot="label">P<u>l</u>an comments</span>
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <pcAdd /> <el-divider>Edit</el-divider><pcEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Plan comments timelime</el-tab-pane>
+          <el-tab-pane label="Deleted reminders" name="third">Deleted plan comments</el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="300">
         <span slot="label"><u>S</u>ervice statements</span>
         <routeSS :key="new Date().getTime()" />
