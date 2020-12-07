@@ -116,6 +116,7 @@
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
               @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+              @blur="nameInDbOfCurrentFieldInFocus = false"
             ></el-input>
           </div>
         </div>
