@@ -97,7 +97,13 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Family history" name="family_history">
         <span slot="label" tabIndex="0"><u>F</u>amily history</span>
-        <familyHistory />
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <familyHistory /> <el-divider>Edit</el-divider><fhHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Family history timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted family history</el-tab-pane>
+        </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Medical history" name="medical_history">
         <span slot="label" tabIndex="0">Medical histor<u>y</u></span>
@@ -207,7 +213,10 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import routeChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/router.vue'
 import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import routePastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/router.vue'
+
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
+import fhHorizontalEdit from '@/components/patient-data/family-history/change-layer/medit-horizontal.vue'
+
 import routeSocialHistory from '@/components/patient-data/social-history/change-layer/router.vue'
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
@@ -270,6 +279,7 @@ export default {
     prosAdd,
     routePastPsychHistory,
     familyHistory,
+    fhHorizontalEdit,
     routeSocialHistory,
     medicalHistory,
     medicationOrder,
