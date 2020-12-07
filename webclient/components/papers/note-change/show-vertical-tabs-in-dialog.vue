@@ -147,8 +147,8 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       /></el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
         <span slot="label">Rem<u>i</u>nders</span>
-        <el-tabs v-model="first">
-          <el-tab-pane label="Fast" name="first">
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider> <remAdd /> <el-divider>Edit</el-divider><remMHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
@@ -225,7 +225,7 @@ export default {
        *  Initialize a array named 'arFormFieldIndexWithFocus' for storing cursor focus position.
        */
       arFormFieldIndexWithFocus: {},
-      first: 0,
+      activeHorizontalTab: 'change',
     }
   },
   components: {
