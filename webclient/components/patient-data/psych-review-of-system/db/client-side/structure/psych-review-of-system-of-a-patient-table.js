@@ -62,6 +62,16 @@ export const psychReviewOfSystemFormDef = {
   id: 'psych_review_of_system',
   plural: 'Subjective + Psych ROS (HPI)',
   singular: 'pysch review of system',
+  sliderOptions: {
+    width: 'auto',
+    height: 200,
+    direction: 'btt',
+    tooltip: 'always',
+    marks: false,
+    internal: 1,
+    min: -1,
+    max: 2,
+  },
   fieldsDef: [
     {
       nameInDb: 'subjective',
@@ -84,7 +94,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'depressive_mood',
       nameInUi: 'Depressive mood',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -102,7 +112,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'interest',
       nameInUi: 'Interest',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -120,7 +130,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'sleep',
       nameInUi: 'Sleep',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -138,7 +148,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'selfEsteem',
       nameInUi: 'Gulf / Self esteem',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -156,7 +166,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'energy',
       nameInUi: 'Energy',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -174,7 +184,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'concDist',
       nameInUi: 'Conc/Dist',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -192,7 +202,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'appetite',
       nameInUi: 'Apptetite',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -210,7 +220,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'pmrPma',
       nameInUi: 'PMR/PMA',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -234,7 +244,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'obese',
       nameInUi: 'Obese',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -252,7 +262,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'thinCachectic',
       nameInUi: 'Thin or cachectic',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -270,7 +280,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'disheveledUnkempt',
       nameInUi: 'Disheveled/unkempt',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
@@ -288,7 +298,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'malodorous',
       nameInUi: 'Malodorous',
-      type: 'slider',
+      type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,

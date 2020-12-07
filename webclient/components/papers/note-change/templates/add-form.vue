@@ -124,6 +124,16 @@
               </div>
             </div>
 
+            <div v-else-if="_fieldDef.type === 'vertical-slider'">
+              <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">
+                {{ _fieldDef.nameInUi }}
+              </div>
+              <div>
+                <vue-slider class="slider" v-model="value[_fieldDef.nameInDb]" v-bind="_formDef.sliderOptions">
+                </vue-slider>
+              </div>
+            </div>
+
             <!-- DATE -->
             <div v-if="_fieldDef.type === 'date'">
               <div v-if="_fieldDef.showLabel">
