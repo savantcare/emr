@@ -1,9 +1,10 @@
 <template>
   <div>
+    <div><el-input type="textarea" placeholder="Subjective" /><br /><br /><br /></div>
     <div class="depression-grid-container">
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Depressive mood</div>
       <div>
-        <vue-slider class="slider" v-model="depressive" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.depressive" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -11,7 +12,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Interest</div>
       <div>
-        <vue-slider class="slider" v-model="interest" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.interest" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -19,7 +20,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Sleep</div>
       <div>
-        <vue-slider class="slider" v-model="sleep" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.sleep" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -27,7 +28,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Guilt</div>
       <div>
-        <vue-slider class="slider" v-model="guilt" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.guilt" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -35,7 +36,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Energy</div>
       <div>
-        <vue-slider class="slider" v-model="energy" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.energy" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -43,7 +44,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Concentration</div>
       <div>
-        <vue-slider class="slider" v-model="concentration" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.concentration" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -51,7 +52,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Appetite</div>
       <div>
-        <vue-slider class="slider" v-model="appetite" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.appetite" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -59,7 +60,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Agitation</div>
       <div>
-        <vue-slider class="slider" v-model="agitation" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.agitation" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -67,7 +68,7 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Sucidal</div>
       <div>
-        <vue-slider class="slider" v-model="suicidal" v-bind="depressionOptions">
+        <vue-slider class="slider" v-model="depression.suicidal" v-bind="depressionOptions">
           <template v-slot:tooltip="{ value, focus }">
             <span v-html="depressedTooltip(value, focus)" />
           </template>
@@ -154,15 +155,17 @@ export default {
     return {
       formDef: psychReviewOfSystemFormDef,
       depressionNotes: '',
-      depressive: -1,
-      interest: -1,
-      sleep: -1,
-      guilt: -1,
-      energy: -1,
-      concentration: -1,
-      appetite: -1,
-      agitation: -1,
-      suicidal: -1,
+      depression: {
+        depressive: -1,
+        interest: -1,
+        sleep: -1,
+        guilt: -1,
+        energy: -1,
+        concentration: -1,
+        appetite: -1,
+        agitation: -1,
+        suicidal: -1,
+      },
       gwMoodSymptoms: {
         depressed: -1,
         interest: -1,
