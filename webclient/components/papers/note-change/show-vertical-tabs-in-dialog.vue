@@ -474,4 +474,11 @@ Disabled shadow provided by modal=true in line 50
 .el-tabs__content .el-tab-pane:focus {
   outline: 0;
 }
+
+/** Goal: When using the top horizontal tab bar. There is a extra line below the bar. I removed the line to make the system cleaner.
+The horizontal bar at the bottom of the tabs is visible at: https://element.eleme.io/#/en-US/component/tabs
+ */
+.el-tabs__nav-wrap::after {
+  background-color: #fff;
+}
 </style>
