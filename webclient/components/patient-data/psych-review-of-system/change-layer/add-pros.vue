@@ -83,9 +83,10 @@
     <!-- GW MOOD SYMPTOMS -->
     <br />
     <div class="gw-mood-grid-container">
-      <div style="grid-column: 1/7; text-align: center; font-weight: bold; background: #67c23a">
+      <div style="grid-column: 1/6; text-align: center; font-weight: bold; background: #67c23a">
         In past 10 days, how many days have you been? (For most of the day)
       </div>
+      <div />
       <div>
         <vue-slider class="slider" v-model="gwMoodSymptoms.depressed" v-bind="moodSymptomOptions">
           <template v-slot:tooltip="{ value, focus }">
@@ -122,9 +123,9 @@
         </vue-slider>
       </div>
       <div>
-        <vue-slider class="slider" v-model="gwMoodSymptoms.dayToDay" v-bind="moodSymptomOptions">
+        <vue-slider class="slider" v-model="gwMoodSymptoms.dayToDay" v-bind="moodSymptomOptions" :max="4">
           <template v-slot:tooltip="{ value, focus }">
-            <span v-html="gwMoodTooltip(value, focus)" />
+            <span v-html="gwDayToDayTooltip(value, focus)" />
           </template>
         </vue-slider>
       </div>
@@ -212,8 +213,22 @@ export default {
     },
     gwMoodTooltip(value, focus) {
       if (value === -1)
-        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(144, 147, 153);">Not rated</div>'
-      else return value
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 0.8rem; color: rgb(0, 0, 0);">Not rated</div>'
+      else return '<div style="text-align: center; font-size: 0.8rem; color: rgb(0, 0, 0);">' + value + 'd </div>'
+    },
+    gwDayToDayTooltip(value, focus) {
+      if (value === -1)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0, 0, 0);">Not rated</div>'
+      if (value === 0)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0, 0, 0);">Not at all</div>'
+      if (value === 1)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0, 0, 0);">Somewhat difficult</div>'
+      if (value === 2)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0, 0, 0);">Very difficult</div>'
+      if (value === 3)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0, 0, 0);">Extremely difficult</div>'
+      if (value === 4)
+        return '<div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-size: 1rem; color: rgb(0,0,0);">Incapaciting</div>'
     },
   },
 }
@@ -222,6 +237,7 @@ export default {
 <style scoped>
 .depression-grid-container {
   display: grid;
+  row-gap: 25px;
   grid-template-columns: repeat(25, 1fr);
 }
 
