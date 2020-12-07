@@ -170,11 +170,25 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <routeSS :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="200">
-        <span slot="label">Misc <u>n</u>ote</span> <miscNote
-      /></el-tab-pane>
+        <span slot="label">Misc <u>n</u>ote</span>
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <miscNote /> <el-divider>Edit</el-divider><miscHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Misc notes timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Misc Notes comments</el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
       <el-tab-pane label="Process Note" name="process_notes" key="100">
-        <span slot="label">Pr<u>o</u>cess note</span> <processNote
-      /></el-tab-pane>
+        <span slot="label">Pr<u>o</u>cess note</span>
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider> <processNote /> <el-divider>Edit</el-divider><pnHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Process note timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Process note comments</el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
     </el-tabs>
   </el-dialog>
 </template>
@@ -191,8 +205,13 @@ import medicalHistory from '@/components/patient-data/medical-history/change-lay
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
+
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
+import miscHorizontalEdit from '@/components/patient-data/miscellaneous-notes/change-layer/medit-horizontal.vue'
+
 import processNote from '@/components/patient-data/process-notes/change-layer/add-ct.vue'
+import pnHorizontalEdit from '@/components/patient-data/process-notes/change-layer/medit-horizontal.vue'
+
 import routeExam from '@/components/patient-data/examination/change-layer/router.vue'
 
 import weightAdd from '@/components/patient-data/weight/change-layer/add-weight.vue'
@@ -247,7 +266,9 @@ export default {
     medicationOrder,
     allergies,
     miscNote,
+    miscHorizontalEdit,
     processNote,
+    pnHorizontalEdit,
     dxAdd,
     screensAdd,
     routeExam,
