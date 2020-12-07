@@ -239,10 +239,11 @@
             >Remove</el-button
           >
         </div>
-        <!-- Just ended processing each row -->
-        <div style="grid-column: 1 / -1">
-          <el-divider />
-        </div>
+        <!-- Just ended processing one row -->
+        <!-- goal: show divider only between rows and not at the end of the last row -->
+        <div v-if="index == cfGetClientTblNewRowsInEditState.length - 1" style="grid-column: 1 / -1"></div>
+        <div v-else><el-divider /></div>
+        <!-- End of the divider placement logic -->
       </div>
     </div>
     <!-- Scenario: There are no edit state rows. Then create a empty row for faster data input -->
