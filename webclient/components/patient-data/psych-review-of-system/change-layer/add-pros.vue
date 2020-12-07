@@ -1,6 +1,13 @@
 <template>
   <div>
-    <div><el-input type="textarea" placeholder="Subjective" v-model="subjective" /><br /><br /><br /></div>
+    <div>
+      <el-input
+        type="textarea"
+        :autosize="{ minRows: 2, maxRows: 20 }"
+        placeholder="Subjective"
+        v-model="subjective"
+      /><br /><br /><br />
+    </div>
     <div class="depression-grid-container">
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Depressive mood</div>
       <div>
@@ -76,7 +83,12 @@
       </div>
       <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center">Notes</div>
       <div style="grid-column: 20/26">
-        <el-input :rows="7" type="textarea" v-model="depression.notes" placeholder="Notes"></el-input>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 8, maxRows: 20 }"
+          placeholder="Notes"
+          v-model="depression.notes"
+        ></el-input>
       </div>
       <div style="grid-column: 1/26; text-align: center; font-weight: bold; background: #67c23a">Depression</div>
     </div>
