@@ -13,7 +13,7 @@
       </el-tab-pane>
       <el-tab-pane label="Mania" name="mania"
         >Mania/Hypomania
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="malo.*"></ctAddForm>
+        <ctAddForm :_formDef="formDef" _regexForFieldSubset="mania.*"></ctAddForm>
       </el-tab-pane>
       <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
       <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>

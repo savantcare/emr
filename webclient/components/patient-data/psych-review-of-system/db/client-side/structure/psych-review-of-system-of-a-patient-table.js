@@ -48,6 +48,15 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       gateway_irritable: this.number(0),
       gateway_difficult: this.number(0),
 
+      mania_mood: this.number(0),
+      mania_irritable: this.number(0),
+      mania_energy: this.number(0),
+      mania_sleep: this.number(0),
+      mania_talking: this.number(0),
+      mania_racing: this.number(0),
+      mania_distractability: this.number(0),
+      mania_risk: this.number(0),
+
       obese: this.number(0),
       thinCachectic: this.number(0),
       disheveledUnkempt: this.number(0),
@@ -253,7 +262,7 @@ export const psychReviewOfSystemFormDef = {
 
     {
       nameInDb: 'gateway_depressed',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Felt depressed',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
@@ -271,7 +280,7 @@ export const psychReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'gateway_energetic',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Low interest or motivation',
       type: 'vertical-slider',
       style: 'padding: 20px',
       showLabel: true,
@@ -288,7 +297,7 @@ export const psychReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'gateway_interest',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Abnormally irritable',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
@@ -306,7 +315,7 @@ export const psychReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'gateway_mood',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Abnormally energetic',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
@@ -324,7 +333,7 @@ export const psychReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'gateway_irritable',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Abnormal mood',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
@@ -342,7 +351,152 @@ export const psychReviewOfSystemFormDef = {
     },
     {
       nameInDb: 'gateway_difficult',
-      nameInUi: 'Suicidal ideation',
+      nameInUi: 'Difficult do the above symptoms',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+
+    {
+      nameInDb: 'mania_mood',
+      nameInUi: 'Mood elevation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_irritable',
+      nameInUi: 'Irritable',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_energy',
+      nameInUi: 'Energy',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_sleep',
+      nameInUi: 'Sleep',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_talking',
+      nameInUi: 'Talking',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_racing',
+      nameInUi: 'Racing',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_distractability',
+      nameInUi: 'distractability',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      marks: {
+        0: 'Not evaluated',
+        1: 'Not present',
+        2: 'Sub-syndromal',
+        3: 'Syndromal',
+      },
+      ft: function formatTooltip(val) {
+        return this.marks[val]
+      },
+    },
+    {
+      nameInDb: 'mania_risk',
+      nameInUi: 'Risk',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
