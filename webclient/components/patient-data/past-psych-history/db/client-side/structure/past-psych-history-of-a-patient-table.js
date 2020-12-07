@@ -59,7 +59,7 @@ export const pastPsychHistoryFormDef = {
   plural: 'past psych history',
   singular: 'past psych history',
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem; grid-row-gap: 1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem; grid-row-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryFieldsNameAndValueInViewNote:
