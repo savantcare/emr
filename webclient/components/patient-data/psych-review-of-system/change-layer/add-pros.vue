@@ -1,5 +1,27 @@
 <template>
-  <ctAddForm :_formDef="formDef"></ctAddForm>
+  <div>
+    <ctAddForm :_formDef="formDef"></ctAddForm>
+
+    <el-tabs v-model="activeHorizontalTab" tab-position="left">
+      <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms">Gasteway mood symptoms</el-tab-pane>
+      <el-tab-pane label="Depression" name="depression">Depression</el-tab-pane>
+      <el-tab-pane label="Mania" name="mania">Mania/Hypomania</el-tab-pane>
+      <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
+      <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
+      <el-tab-pane label="Substance abuse" name="Substance">Substance abuse</el-tab-pane>
+      <el-tab-pane label="GAD" name="gad">GAD</el-tab-pane>
+      <el-tab-pane label="Panic attacks" name="Panic">Panic attacks</el-tab-pane>
+      <el-tab-pane label="Social anxiety" name="social">Social anxiety</el-tab-pane>
+      <el-tab-pane label="OCD" name="ocd">OCD</el-tab-pane>
+      <el-tab-pane label="PTSD" name="ptsd">PTSD</el-tab-pane>
+      <el-tab-pane label="ADHD" name="ptsd">ADHD</el-tab-pane>
+      <el-tab-pane label="Anorexia" name="ptsd">Anorexia</el-tab-pane>
+      <el-tab-pane label="Bulimia" name="ptsd">Bulimia</el-tab-pane>
+      <el-tab-pane label="Dementia" name="ptsd">Dementia</el-tab-pane>
+      <el-tab-pane label="Suicide" name="ptsd">Suicide</el-tab-pane>
+      <el-tab-pane label="Homicide" name="ptsd">Homicide</el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 
 <script>
