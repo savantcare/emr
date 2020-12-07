@@ -1,13 +1,14 @@
 <!-- Reference implementation -->
 
 <template>
-  <div v-if="daUniqueIdOfEachRowFromOrm.length > 0" class="block">
-    <el-card>
-      <!-- For diff types of formType see remcl/edit-design-1.vue -->
-      <ctChangeRem :first-prop="daUniqueIdOfEachRowFromOrm.clientSideUniqRowId" form-type="embedded"></ctChangeRem>
-    </el-card>
+  <div>
+    <div v-for="(rem, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+      <el-card>
+        <!-- For diff types of formType see remcl/edit-design-1.vue -->
+        <ctChangeRem :first-prop="rem['clientSideUniqRowId']" form-type="embedded"></ctChangeRem>
+      </el-card>
+    </div>
   </div>
-  <div v-else><el-alert title="No reminder found." type="info" show-icon> </el-alert></div>
 </template>
 <script>
 import clientTbl from '../db/client-side/structure/reminders-of-a-patient-table.js'
