@@ -404,4 +404,13 @@ Disabled shadow provided by modal=true in line 50
 .v-modal {
   background: none;
 }
+
+/**
+  Problem: Div gets a border in psych ROS
+  -- To remove focus outline from a div, we need to add a css 'outline: 0' to that div
+  Ref: https://stackoverflow.com/questions/33632907/remove-border-outline-that-appears-after-i-click-an-element-on-my-page
+*/
+.el-tabs__content .el-tab-pane:focus {
+  outline: 0;
+}
 </style>
