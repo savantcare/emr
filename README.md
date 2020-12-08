@@ -51,6 +51,9 @@ Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-
 Pirority:
 
 1. get tribute working for Chief complaint
+   No match found should not be there
+   dropdown is also coming at bottom - it should not be there
+   integration with add-form.vue and edit-form.vue. Remove the old chief complaint field of type text and only the tribute type field should be there.
 2. Notes not getting locked the 2nd time onwards
 3. Addendum not working.
 4. Shortcut to set values

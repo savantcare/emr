@@ -191,6 +191,14 @@
             </div>
 
             <!-- input/textarea -->
+            <div v-if="_fieldDef.type.includes('tribute')" :id="_fieldDef.nameInDb">
+              <div v-if="_fieldDef.showLabel">
+                {{ _fieldDef.nameInUi }}
+              </div>
+              <div>Using tribute library</div>
+            </div>
+
+            <!-- input/textarea -->
             <div v-if="_fieldDef.type.includes('text')" :id="_fieldDef.nameInDb">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}

@@ -56,6 +56,13 @@ export const chiefComplaintFormDef = {
   singular: 'chief complaint',
   fieldsDef: [
     { nameInDb: 'description', nameInUi: 'Description', showLabel: false, type: 'text', showHistory: 'always' },
+    {
+      nameInDb: 'tributeDescription',
+      nameInUi: 'TDescription',
+      showLabel: false,
+      type: 'tribute',
+      showHistory: 'always',
+    },
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
