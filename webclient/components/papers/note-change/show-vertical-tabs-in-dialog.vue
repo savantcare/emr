@@ -14,7 +14,7 @@
           :show-close="false"
 
         Goal: control dialog visibility based on user actions
-          :visible.sync="vblIsdialogHoldingTabsInEditLayerVisible"      
+          :visible.sync="vIsDialogHoldingTabsInChangeLayerVisible"      
 
         Earlier width="90%" but it has been removed why?
           Goal is to let user read as much of the view layer as possible when the user is in change layer
@@ -40,7 +40,7 @@
     :visible="cfDrawerVisibility"
     :lock-scroll="true"
     top="1vh"
-    width="80%"
+    :width="widthOfDialogContainingVerticalTabsAndComponent"
   >
     <!-- Why not keep each el-tab-pane content inside v-if
 When rem is loaded the user goes to rec and comes back to rem. I do not want rem to be created again.
@@ -286,6 +286,7 @@ export default {
        */
       arFormFieldIndexWithFocus: {},
       activeHorizontalTab: 'change',
+      widthOfDialogContainingVerticalTabsAndComponent: '80%',
     }
   },
   components: {
@@ -336,6 +337,13 @@ export default {
          * Solution: If activetabName will change then call method function to focus form field instead of @tab-click
          */
         this.mf_send_id_of_focussed_field_to_ct_inside_tab(pVal)
+
+        /* Goal2: Increase the width if this is medication list */
+        if (pVal === 'medication_list') {
+          this.widthOfDialogContainingVerticalTabsAndComponent = '100%'
+        } else {
+          this.widthOfDialogContainingVerticalTabsAndComponent = '80%'
+        }
       },
     },
     cfDrawerVisibility: {
@@ -363,7 +371,7 @@ export default {
     },
   },
   computed: {
-    vblIsdialogHoldingTabsInEditLayerVisible: {
+    vIsDialogHoldingTabsInChangeLayerVisible: {
       get() {
         this.dIsSettingsDialogVisible = true
       },
@@ -386,7 +394,7 @@ export default {
     },
   },
   mounted() {
-    this.vblIsdialogHoldingTabsInEditLayerVisible = false
+    this.vIsDialogHoldingTabsInChangeLayerVisible = false
 
     /**
      * Form focus step: 3/9
