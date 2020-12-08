@@ -30,27 +30,28 @@ export default {
   },
   beforeMount() {
     this.columnDefs = [
-      { headerName: 'Name', field: 'name', sortable: true, editable: true },
-      { headerName: 'Dosage', field: 'dosage', editable: true, width: 70 },
+      { headerName: 'Medication', field: 'medication', sortable: true, editable: true },
+      { headerName: 'Dose', field: 'dose', editable: true, width: 70 },
       { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
       { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
       { headerName: 'Instructions', field: 'instructions', editable: true },
       {
-        headerName: 'Start date',
+        headerName: 'Prescribed',
         field: 'startDate',
         editable: true,
         filter: 'agDateColumnFilter',
+        width: 100,
       },
-      { headerName: 'End date', field: 'endDate', editable: true },
-      { headerName: 'Reconciled on', field: 'reconciledOn', editable: true },
-      { headerName: 'Connected orders', field: 'connectedOrders', editable: true },
+      { headerName: 'End', field: 'endDate', editable: true, width: 70 },
+      { headerName: 'Reconciled', field: 'reconciledOn', editable: true, width: 70 },
+      { headerName: '# Orders', field: 'connectedOrders', editable: true, width: 70 },
       { headerName: 'Notes', field: 'notes', editable: true },
     ]
 
     this.rowData = [
       {
-        name: 'Lexapro',
-        dosage: '1',
+        medication: 'Lexapro',
+        dose: '1',
         provider: 'vs',
         condition: 'depression',
         instructions: 'daily',
@@ -61,8 +62,8 @@ export default {
         notes: 's',
       },
       {
-        name: 'Prozac',
-        dosage: '2',
+        medication: 'Prozac',
+        dose: '2',
         provider: 'sp',
         condition: 'anxiety',
         instructions: 'weekly',
@@ -73,8 +74,8 @@ export default {
         notes: 's',
       },
       {
-        name: 'Aspirin',
-        dosage: '3',
+        medication: 'Aspirin',
+        dose: '3',
         provider: 'mk',
         condition: 'headache',
         instructions: 'as needed',

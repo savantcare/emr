@@ -77,8 +77,14 @@ Pirority:
 17. Automated test.
 18. For MROS When none is selected others need to removed from vuex-orm
 19. For SS mutually exclusive
-20. Dx, Screen, Meds
-21. Dot phrases
+20. Dx, Screen,
+21. Meds list
+    add a row with a button at top https://stackoverflow.com/questions/38505806/add-remove-rows-in-ag-grid
+    Auto fit cols
+    Filters terms at top like https://inspiredehrs.org/medication-list/#
+    date in cell editing https://plnkr.co/edit/?p=preview&preview
+    note col open when row is clicked like in https://inspiredehrs.org/medication-list/# maybe use https://www.ag-grid.com/javascript-grid-master-detail/
+22. Dot phrases
     https://github.com/hasinhayder/javascript-text-expander
     https://github.com/github/text-expander-element
     Ideal: https://www.statnote.com/
