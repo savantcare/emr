@@ -115,6 +115,10 @@ So things like collapsible state will get destroyed. Even though the rem descrip
           <el-tab-pane label="Deleted" name="third">Deleted medical history</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
+      <el-tab-pane label="Medication list" name="medication_list">
+        <span slot="label" tabIndex="0">Medication list</span>
+        <routeMedicationList :key="new Date().getTime()" />
+      </el-tab-pane>
       <el-tab-pane label="Social history" name="social_history">
         <span slot="label" tabIndex="0">Social histor<u>y</u></span>
         <routeSocialHistory :key="new Date().getTime()" />
@@ -224,6 +228,7 @@ import familyHistory from '@/components/patient-data/family-history/change-layer
 import fhHorizontalEdit from '@/components/patient-data/family-history/change-layer/medit-horizontal.vue'
 
 import routeSocialHistory from '@/components/patient-data/social-history/change-layer/router.vue'
+import routeMedicationList from '@/components/patient-data/medication-list/change-layer/add.vue'
 
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
 import mhHorizontalEdit from '@/components/patient-data/medical-history/change-layer/medit-horizontal.vue'
@@ -318,6 +323,7 @@ export default {
     pcAdd,
     pcHorizontalEdit,
     routeSS,
+    routeMedicationList,
   },
   watch: {
     activeTabName: {
