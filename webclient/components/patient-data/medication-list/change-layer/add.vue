@@ -2,6 +2,28 @@
   <div>
     Medication list
     <el-button type="primary" round @click="mfAdd()">Add</el-button>
+    <el-button size="mini" type="success" effect="dark">Active</el-button>
+    <el-button size="mini" type="success" effect="dark">Discontinued</el-button>
+    <el-button size="mini" type="success" effect="dark">SC</el-button>
+    <el-button size="mini" type="success" effect="dark">Non-SC</el-button>
+    <el-dropdown size="mini" split-button type="success">
+      Provider
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>Action 1</el-dropdown-item>
+        <el-dropdown-item>Action 2</el-dropdown-item>
+        <el-dropdown-item>Action 3</el-dropdown-item>
+        <el-dropdown-item>Action 4</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+    <el-dropdown size="mini" split-button type="success">
+      Condition
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>Action 1</el-dropdown-item>
+        <el-dropdown-item>Action 2</el-dropdown-item>
+        <el-dropdown-item>Action 3</el-dropdown-item>
+        <el-dropdown-item>Action 4</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
     <ag-grid-vue
       style="width: 1420px; height: 800px"
       class="ag-theme-alpine"
@@ -40,11 +62,11 @@ export default {
         field: 'startDate',
         editable: true,
         filter: 'agDateColumnFilter',
-        width: 100,
+        width: 120,
       },
       { headerName: 'End', field: 'endDate', editable: true, width: 70 },
-      { headerName: 'Reconciled', field: 'reconciledOn', editable: true, width: 70 },
-      { headerName: '# Orders', field: 'connectedOrders', editable: true, width: 70 },
+      { headerName: 'Reconciled', field: 'reconciledOn', editable: true, width: 100 },
+      { headerName: '# Orders', field: 'connectedOrders', editable: true, width: 90 },
       { headerName: 'Notes', field: 'notes', editable: true },
     ]
 
@@ -58,7 +80,7 @@ export default {
         startDate: 'a',
         endDate: 'b',
         reconciledOn: 'a',
-        connectedOrders: 'a',
+        connectedOrders: '1',
         notes: 's',
       },
       {
@@ -70,7 +92,7 @@ export default {
         startDate: 'a',
         endDate: 'b',
         reconciledOn: 'a',
-        connectedOrders: 'a',
+        connectedOrders: 'N/A',
         notes: 's',
       },
       {
@@ -82,7 +104,7 @@ export default {
         startDate: 'a',
         endDate: 'b',
         reconciledOn: 'a',
-        connectedOrders: 'a',
+        connectedOrders: '3',
         notes: 's',
       },
     ]

@@ -79,11 +79,19 @@ Pirority:
 19. For SS mutually exclusive
 20. Dx, Screen,
 21. Meds list
+    Editing in cell vs Form
+    -- Text area is easier to put
+    -- Editing in spreadsheet is stressful
     add a row with a button at top https://stackoverflow.com/questions/38505806/add-remove-rows-in-ag-grid
+    Adding and removing tags from rows: https://element.eleme.io/#/en-US/component/tag
     Auto fit cols
     Filters terms at top like https://inspiredehrs.org/medication-list/#
     date in cell editing https://plnkr.co/edit/?p=preview&preview
-    note col open when row is clicked like in https://inspiredehrs.org/medication-list/# maybe use https://www.ag-grid.com/javascript-grid-master-detail/
+    note col open when row is clicked like in https://inspiredehrs.org/medication-list/# maybe use https://www.ag-grid.com/javascript-grid-master-detail/ element.io has this feature
+    press button to update the reconcioled on: https://blog.ag-grid.com/cell-renderers-in-ag-grid-every-different-flavour/
+    Fix col for operations "Edit / reconcile / discontinue / delete" https://element.eleme.io/#/en-US/component/table#table-with-fixed-column
+    ag-grid vs elementio
+    Since expecting less then 50 virtual scroll is not needed. hence prefer element.
 22. Dot phrases
     https://github.com/hasinhayder/javascript-text-expander
     https://github.com/github/text-expander-element
