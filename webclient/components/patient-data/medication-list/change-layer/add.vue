@@ -35,7 +35,12 @@ export default {
       { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
       { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
       { headerName: 'Instructions', field: 'instructions', editable: true },
-      { headerName: 'Start date', field: 'startDate', editable: true, filter: 'agDateColumnFilter' },
+      {
+        headerName: 'Start date',
+        field: 'startDate',
+        editable: true,
+        filter: 'agDateColumnFilter',
+      },
       { headerName: 'End date', field: 'endDate', editable: true },
       { headerName: 'Reconciled on', field: 'reconciledOn', editable: true },
       { headerName: 'Connected orders', field: 'connectedOrders', editable: true },
@@ -93,23 +98,7 @@ export default {
       })
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader)
     },
-    onGridReady(params) {
-      const httpRequest = new XMLHttpRequest()
-      const updateData = (data) => {
-        this.rowData = data
-      }
-
-      httpRequest.open(
-        'GET',
-        'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinnersSmall.json'
-      )
-      httpRequest.send()
-      httpRequest.onreadystatechange = () => {
-        if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-          updateData(JSON.parse(httpRequest.responseText))
-        }
-      }
-    },
+    onGridReady(params) {},
   },
 }
 </script>
