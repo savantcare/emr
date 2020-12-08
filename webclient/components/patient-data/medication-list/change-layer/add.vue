@@ -1,7 +1,7 @@
 <template>
   <div>
     Medication list
-
+    <el-button type="primary" round @click="mfAdd()">Add</el-button>
     <ag-grid-vue
       style="width: 1420px; height: 800px"
       class="ag-theme-alpine"
@@ -100,6 +100,22 @@ export default {
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader)
     },
     onGridReady(params) {},
+
+    mfAdd() {
+      const newData = {
+        medication: 'Escitalaporal',
+        dose: '1',
+        provider: 'vs',
+        condition: 'depression',
+        instructions: 'daily',
+        startDate: 'a',
+        endDate: 'b',
+        reconciledOn: 'a',
+        connectedOrders: 'a',
+        notes: 's',
+      }
+      this.rowData.push(newData)
+    },
   },
 }
 </script>
