@@ -28,8 +28,10 @@ export default {
   },
   beforeMount() {
     this.columnDefs = [
-      { headerName: 'Name', field: 'name' },
+      { headerName: 'Name', field: 'name', sortable: true },
       { headerName: 'Dosage', field: 'dosage' },
+      { headerName: 'Provider', field: 'provider', sortable: true, filter: true },
+      { headerName: 'Condition', field: 'condition', sortable: true, filter: true },
       { headerName: 'Instructions', field: 'instructions' },
       { headerName: 'Start date', field: 'startDate' },
       { headerName: 'End date', field: 'endDate' },
@@ -42,6 +44,8 @@ export default {
       {
         name: 'Lexapro',
         dosage: '1',
+        provider: 'vs',
+        condition: 'depression',
         instructions: 'daily',
         startDate: 'a',
         endDate: 'b',
@@ -52,6 +56,8 @@ export default {
       {
         name: 'Prozac',
         dosage: '2',
+        provider: 'sp',
+        condition: 'anxiety',
         instructions: 'weekly',
         startDate: 'a',
         endDate: 'b',
@@ -62,6 +68,8 @@ export default {
       {
         name: 'Aspirin',
         dosage: '3',
+        provider: 'mk',
+        condition: 'headache',
         instructions: 'as needed',
         startDate: 'a',
         endDate: 'b',
