@@ -7,6 +7,7 @@
       class="ag-theme-alpine"
       :columnDefs="columnDefs"
       :rowData="rowData"
+      :defaultColDef="defaultColDef"
     >
     </ag-grid-vue>
   </div>
@@ -21,6 +22,7 @@ export default {
     return {
       columnDefs: null,
       rowData: null,
+      defaultColDef: null,
     }
   },
   components: {
@@ -28,16 +30,16 @@ export default {
   },
   beforeMount() {
     this.columnDefs = [
-      { headerName: 'Name', field: 'name', sortable: true },
-      { headerName: 'Dosage', field: 'dosage' },
-      { headerName: 'Provider', field: 'provider', sortable: true, filter: true },
-      { headerName: 'Condition', field: 'condition', sortable: true, filter: true },
-      { headerName: 'Instructions', field: 'instructions' },
-      { headerName: 'Start date', field: 'startDate' },
-      { headerName: 'End date', field: 'endDate' },
-      { headerName: 'Reconciled on', field: 'reconciledOn' },
-      { headerName: 'Connected orders', field: 'connectedOrders' },
-      { headerName: 'Notes', field: 'notes' },
+      { headerName: 'Name', field: 'name', sortable: true, editable: true },
+      { headerName: 'Dosage', field: 'dosage', editable: true, width: 70 },
+      { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
+      { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
+      { headerName: 'Instructions', field: 'instructions', editable: true },
+      { headerName: 'Start date', field: 'startDate', editable: true },
+      { headerName: 'End date', field: 'endDate', editable: true },
+      { headerName: 'Reconciled on', field: 'reconciledOn', editable: true },
+      { headerName: 'Connected orders', field: 'connectedOrders', editable: true },
+      { headerName: 'Notes', field: 'notes', editable: true },
     ]
 
     this.rowData = [
@@ -78,6 +80,36 @@ export default {
         notes: 's',
       },
     ]
+    this.defaultColDef = { resizable: true }
+  },
+  methods: {
+    sizeToFit() {
+      this.gridApi.sizeColumnsToFit()
+    },
+    autoSizeAll(skipHeader) {
+      var allColumnIds = []
+      this.gridColumnApi.getAllColumns().forEach(function (column) {
+        allColumnIds.push(column.colId)
+      })
+      this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader)
+    },
+    onGridReady(params) {
+      const httpRequest = new XMLHttpRequest()
+      const updateData = (data) => {
+        this.rowData = data
+      }
+
+      httpRequest.open(
+        'GET',
+        'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/olympicWinnersSmall.json'
+      )
+      httpRequest.send()
+      httpRequest.onreadystatechange = () => {
+        if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+          updateData(JSON.parse(httpRequest.responseText))
+        }
+      }
+    },
   },
 }
 </script>
