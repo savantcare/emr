@@ -3,7 +3,7 @@
     Medication list
 
     <ag-grid-vue
-      style="width: 800px; height: 500px"
+      style="width: 1420px; height: 800px"
       class="ag-theme-alpine"
       :columnDefs="columnDefs"
       :rowData="rowData"
@@ -35,7 +35,7 @@ export default {
       { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
       { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
       { headerName: 'Instructions', field: 'instructions', editable: true },
-      { headerName: 'Start date', field: 'startDate', editable: true },
+      { headerName: 'Start date', field: 'startDate', editable: true, filter: 'agDateColumnFilter' },
       { headerName: 'End date', field: 'endDate', editable: true },
       { headerName: 'Reconciled on', field: 'reconciledOn', editable: true },
       { headerName: 'Connected orders', field: 'connectedOrders', editable: true },

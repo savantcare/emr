@@ -68,7 +68,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     > -->
-    <el-tabs tab-position="left" v-model="activeTabName" type="border-card">
+    <el-tabs :tab-position="positionOfAllTabNames" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
         <span slot="label"><u>C</u>hief complaint</span>
         <routeChiefComplaint
@@ -287,6 +287,7 @@ export default {
       arFormFieldIndexWithFocus: {},
       activeHorizontalTab: 'change',
       widthOfDialogContainingVerticalTabsAndComponent: '80%',
+      positionOfAllTabNames: 'left',
     }
   },
   components: {
@@ -338,11 +339,13 @@ export default {
          */
         this.mf_send_id_of_focussed_field_to_ct_inside_tab(pVal)
 
-        /* Goal2: Increase the width if this is medication list */
+        /* Goal2: Help large horizontal spae needing Ct. medication-list. Increase the width if this is medication list */
         if (pVal === 'medication_list') {
           this.widthOfDialogContainingVerticalTabsAndComponent = '100%'
+          this.positionOfAllTabNames = 'bottom'
         } else {
           this.widthOfDialogContainingVerticalTabsAndComponent = '80%'
+          this.positionOfAllTabNames = 'left'
         }
       },
     },
