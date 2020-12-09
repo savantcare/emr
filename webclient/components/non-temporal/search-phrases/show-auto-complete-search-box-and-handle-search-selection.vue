@@ -1,7 +1,6 @@
 <template>
   <div id="manage-layer1-right-side-cards">
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
-
     <el-autocomplete
       v-model="searchKeyword"
       class="inline-input"
@@ -9,21 +8,22 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="mfHandleSuggestionSelectedByUser"
+      @select="getDataContentFromP1"
     ></el-autocomplete>
+    <el-card v-for="row in this.results" :key="row.id">{{ row.goal }}</el-card>
   </div>
 </template>
 
 <script>
 import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
-
+import clientTblFromP1 from "../../patient-data/name/db/client-side/structure/replica-of-a-patient-table-p1"
 export default {
   components: {
     // core
   },
   data() {
-    return { searchKeyword: '' }
+    return { searchKeyword: '', results: []}
   },
   computed: {
     cfSearchBoxPlaceholder() {
@@ -58,10 +58,20 @@ export default {
         pCallBack(arFromClientTbl)
       }
     },
-
+    async getDataContentFromP1(){
+      
+      const response = await fetch('https://www.savantcare.com/my/api/public/index.php/api/showPastGoals', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVSUQiOjE5NzI0fQ.QtbS0OETPqxfjBxN0oI5xURd5aYHuChMOi6sHm6MhHc',
+        }
+      }).then(response => response.json())
+        .then(data => this.results = data.data);
+    },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
       // Goal: Add the card in Layer1RightSide (Current state in View layer) or tab in edit layer (Change layer)
-
+      
       const objCtToAdd = {
         label: pSelectedSuggestion.value,
         // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working
@@ -72,7 +82,7 @@ export default {
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         // delete if this card is already existing
         const arFromClientTbl = clientTblOfDynamicCards.query().where('name', pSelectedSuggestion.value).get()
-
+        console.log("3 i am mfHandleSuggestionSelectedByUser",arFromClientTbl)
         if (arFromClientTbl.length > 0) {
           if (arFromClientTbl[0]['clientSideUniqRowId']) {
             clientTblOfDynamicCards.delete(arFromClientTbl[0]['clientSideUniqRowId'])
