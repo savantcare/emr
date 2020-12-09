@@ -54,9 +54,8 @@ export default {
     this.columnDefs = [
       { headerName: 'Medication', field: 'medication', sortable: true, editable: true },
       { headerName: 'Dose', field: 'dose', editable: true, width: 70 },
-      { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
-      { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
       { headerName: 'Instructions', field: 'instructions', editable: true },
+
       {
         headerName: 'Prescribed',
         field: 'startDate',
@@ -64,7 +63,10 @@ export default {
         filter: 'agDateColumnFilter',
         width: 120,
       },
-      { headerName: 'End', field: 'endDate', editable: true, width: 70 },
+      { headerName: 'Provider', field: 'provider', sortable: true, filter: true, editable: true },
+      { headerName: 'Condition', field: 'condition', sortable: true, filter: true, editable: true },
+
+      { headerName: 'Discon.', field: 'endDate', editable: true, width: 70 },
       { headerName: 'Reconciled', field: 'reconciledOn', editable: true, width: 100 },
       { headerName: '# Orders', field: 'connectedOrders', editable: true, width: 90 },
       { headerName: 'Notes', field: 'notes', editable: true },
