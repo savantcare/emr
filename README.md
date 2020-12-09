@@ -51,6 +51,7 @@ Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-
 Pirority:
 
 1. get tribute working for Chief complaint
+   Is it better to use simple textarea instead of element io input box? Only problem is the issue of autogrow. Div contenteditable needs very simple css to autogrow https://stackoverflow.com/questions/15856700/how-to-make-a-div-autogrow-where-contenteditable-true
    No match found should not be there
    dropdown is also coming at bottom - it should not be there
    integration with add-form.vue and edit-form.vue. Remove the old chief complaint field of type text and only the tribute type field should be there.
