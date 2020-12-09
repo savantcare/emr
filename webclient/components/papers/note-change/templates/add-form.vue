@@ -207,7 +207,6 @@
                   type="text"
                   class="el-input__inner"
                   :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
-                  :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
@@ -232,7 +231,6 @@
                   type="text"
                   class="el-textarea__inner"
                   :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
-                  :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   @input="
@@ -674,7 +672,7 @@ export default {
 }
 
 /** 
-  Start css for tribute
+  CSS for tribute popup that comes when typing
  */
 .tribute-container {
   top: 0;

@@ -78,6 +78,7 @@ export const chiefComplaintFormDef = {
         ],
         positionMenu: true,
         menuContainer: document.querySelector('.menu-container'),
+        noMatchTemplate: '',
         //selectTemplate: function (item) {
         //return '@' + item.original.value
         //},
