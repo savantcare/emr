@@ -88,7 +88,11 @@
       </div>
 
       <!-- INPUT / TEXT AREA -->
-      <div v-else-if="_fieldDef.type.includes('text')" id="field-value-in-db" style="display: inline">
+      <div
+        v-else-if="_fieldDef.type.includes('text') || _fieldDef.type.includes('tribute')"
+        id="field-value-in-db"
+        style="display: inline"
+      >
         <span v-if="_fieldDef.showLabel" id="not-matched-field-type-field-name-in-ui" style="color: #909399">
           {{ _fieldDef.nameInUi }}:
         </span>
