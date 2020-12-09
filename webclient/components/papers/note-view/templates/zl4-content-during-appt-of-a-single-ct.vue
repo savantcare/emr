@@ -19,6 +19,7 @@
     -->
 
     <div
+      v-if="currentApptObj['apptStatus'] === 'unlocked'"
       style="text-align: left; cursor: pointer; color: #606266"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
@@ -28,6 +29,31 @@
       @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+    </div>
+    <div
+      v-else
+      style="text-align: left; cursor: pointer; color: #606266"
+      tabIndex="0"
+      why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
+      why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
+      why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
+    >
+      <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          <!-- Amendment icon -->
+          <el-button
+            v-if="amendmentData.length > 0"
+            type="success"
+            icon="el-icon-check"
+            style="position: absolute; bottom: 15px; right: 15px"
+            size="mini"
+            @click="mfSaveAddendum(amendmentData, _formDef.id)"
+            circle
+          ></el-button>
+        </div>
+        <b slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+      </el-popover>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
 
@@ -250,7 +276,7 @@ export default {
       const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
         .where('appointmentId', this._apptId)
-        .where('component', 'reminders')
+        .where('component', this._formDef.id)
         .orderBy('ROW_START', 'asc')
         .get()
 
@@ -369,6 +395,7 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
+      this.isAddendumPopoverVisible = false // close popup automatically after amendment saved successfully
     },
   },
 }
