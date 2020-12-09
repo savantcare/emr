@@ -190,12 +190,55 @@
               {{ _fieldDef.unitOfMeasurement }}
             </div>
 
-            <!-- input/textarea -->
-            <div v-if="_fieldDef.type.includes('tribute')" :id="_fieldDef.nameInDb">
+            <!-- tribute-input/textarea -->
+            <div v-if="_fieldDef.type.includes('tribute-input')" :id="_fieldDef.nameInDb">
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
-              <div>Using tribute library</div>
+              <!--
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                to use el-input. Hence, I am using simple input box for vue-tribute.
+                I am assigning a class 'el-input__inner' for same design as el-input.
+                -->
+              <vue-tribute :options="_fieldDef.tributeOptions">
+                <input
+                  @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
+                  :ref="_fieldDef.nameInDb"
+                  type="text"
+                  class="el-input__inner"
+                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                  :placeholder="_fieldDef.nameInUi"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                />
+              </vue-tribute>
+            </div>
+
+            <!-- tribute-textarea -->
+            <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb">
+              <div v-if="_fieldDef.showLabel">
+                {{ _fieldDef.nameInUi }}
+              </div>
+              <!--
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                to use el-input. Hence, I am using simple textarea for vue-tribute.
+                I am assigning a class 'el-textarea__inner' for same design as el-input.
+                -->
+              <vue-tribute :options="_fieldDef.tributeOptions">
+                <textarea
+                  @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
+                  :ref="_fieldDef.nameInDb"
+                  type="text"
+                  class="el-textarea__inner"
+                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                  :placeholder="_fieldDef.nameInUi"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @input="
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
+                    mf_auto_resize_textarea($event)
+                  "
+                ></textarea>
+              </vue-tribute>
             </div>
 
             <!-- input/textarea -->
@@ -291,6 +334,7 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
+import VueTribute from 'vue-tribute'
 
 export default {
   created() {
@@ -302,7 +346,10 @@ export default {
     this.value = this._formDef.fnCreated(this.mf_get_ar_of_data_rows())
   },
   data() {
-    return { value: [], searchFilter: null }
+    return {
+      value: [],
+      searchFilter: null,
+    }
   },
   validations() {
     return this._formDef.validationsObj
@@ -327,6 +374,9 @@ export default {
     _regexForFieldSubset: {
       type: String,
     },
+  },
+  components: {
+    VueTribute,
   },
   computed: {
     // allPatientDataTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
@@ -381,6 +431,13 @@ export default {
     })
   },
   methods: {
+    mf_auto_resize_textarea(event) {
+      /**
+       * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
+       */
+      event.target.style.height = 'auto'
+      event.target.style.height = `${event.target.scrollHeight + 5}px`
+    },
     filterTermHighlight(pText) {
       // https://stackoverflow.com/questions/8644428/how-to-filterTermHighlight-text-using-javascript
       if (this.searchFilter) {
@@ -536,6 +593,13 @@ export default {
       //console.log()
       let rowStatus = 0
 
+      /**
+       * Why we need to check pEvent is object?
+       * -- In some cases like vue-tribute it returns a object otherwise returns as string.
+       */
+      if (pEvent instanceof Object) {
+        pEvent = pEvent.target.value
+      }
       // if (!pEvent) return // I have removed this line of code because if pEvent comes blank then
       // we need to update field value as blank in ORM.
       if (pFldType === 'number') {
@@ -605,5 +669,49 @@ export default {
 
 .validaionErrorExist .el-textarea__inner {
   border-color: #ff4949;
+}
+
+/** 
+  CSS for tribute popup that comes when typing
+ */
+.tribute-container {
+  top: 0;
+  left: 0;
+  height: auto;
+  max-height: 300px;
+  max-width: 500px;
+  overflow: auto;
+  display: block;
+  z-index: 999999;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.13);
+}
+.tribute-container ul {
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.tribute-container li {
+  color: #3f5efb;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.tribute-container li.highlight,
+.tribute-container li:hover {
+  background: #3f5efb;
+  color: #fff;
+}
+.tribute-container li span {
+  font-weight: bold;
+}
+.tribute-container li.no-match {
+  cursor: default;
 }
 </style>

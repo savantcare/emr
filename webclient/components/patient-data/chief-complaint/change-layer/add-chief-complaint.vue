@@ -1,63 +1,25 @@
 <template>
   <div>
     <ctAddForm :_formDef="formDef"></ctAddForm>
-
-    <vue-tribute :options="options" ref="tributeRef">
-      <el-input ref="tributeElInput" placeholder="Please input" v-model="input"></el-input>
-    </vue-tribute>
-    <div class="menu-tribute-list" ref="menuTributeContainer"></div>
   </div>
 </template>
 
 <script>
 import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
 import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
-import VueTribute from 'vue-tribute'
 
 export default {
   data: function () {
     return {
       input: '',
       formDef: chiefComplaintFormDef,
-      options: {
-        autocompleteMode: true,
-        values: [
-          { key: 'depression - Patient has history of depression', value: 'Patient has history of depression' },
-          { key: 'anxiety - Patient has history of anxiety', value: 'Patient has history of anxiety' },
-          { key: 'past - Past substance use', value: 'Past substance use' },
-          { key: 'ex', value: 'examination' },
-          { key: 'hx', value: 'history' },
-          {
-            key: 'mdm low risk',
-            value:
-              'Patoient is deemed low risk becaquse patient has 2 chromnic iolleness and taking prescription medication',
-          },
-        ],
-        positionMenu: false,
-        menuContainer: document.body,
-      },
     }
   },
   components: {
     ctAddForm,
-    VueTribute,
   },
-  mounted() {
-    // Vue Tribute display menu list position reference with menuTributeContainer
-    this.options.menuContainer = this.$refs.menuTributeContainer
-    // Update VueTribute slots
-    this.$refs.tributeRef.$slots.default[0].elm = this.$refs.tributeElInput.$refs.input
-    // debugger
-  },
-  methods: {
-    append() {
-      let kv = Math.random().toString(36).slice(2)
-      this.options.values.push({
-        key: kv,
-        value: kv,
-      })
-    },
-  },
+  mounted() {},
+  methods: {},
 }
 </script>
 
@@ -96,48 +58,4 @@ textarea {
 //   height: 100%;
 // }
 // Tribute-specific styles
-.tribute-container {
-  // position: absolute;
-  top: 0;
-  left: 0;
-  height: auto;
-  max-height: 300px;
-  max-width: 500px;
-  overflow: auto;
-  display: block;
-  z-index: 999999;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(#000, 0.13);
-}
-.tribute-container ul {
-  margin: 0;
-  margin-top: 2px;
-  padding: 0;
-  list-style: none;
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid rgba(#000, 0.13);
-  background-clip: padding-box;
-  overflow: hidden;
-}
-.tribute-container li {
-  color: #3f5efb;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.tribute-container li.highlight,
-.tribute-container li:hover {
-  background: #3f5efb;
-  color: #fff;
-}
-.tribute-container li span {
-  font-weight: bold;
-}
-.tribute-container li.no-match {
-  cursor: default;
-}
-.tribute-container .menu-highlighted {
-  font-weight: bold;
-}
 </style>
