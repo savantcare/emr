@@ -434,6 +434,9 @@ export default {
   },
   methods: {
     mf_auto_resize_textarea(event) {
+      /**
+       * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
+       */
       event.target.style.height = 'auto'
       event.target.style.height = `${event.target.scrollHeight + 5}px`
     },
