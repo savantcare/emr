@@ -55,13 +55,33 @@ export const chiefComplaintFormDef = {
   plural: 'chief complaint',
   singular: 'chief complaint',
   fieldsDef: [
-    { nameInDb: 'description', nameInUi: 'Description', showLabel: false, type: 'text', showHistory: 'always' },
+    //{ nameInDb: 'description', nameInUi: 'Description', showLabel: false, type: 'text', showHistory: 'always' },
     {
-      nameInDb: 'tributeDescription',
-      nameInUi: 'TDescription',
+      nameInDb: 'description',
+      nameInUi: 'Description',
       showLabel: false,
-      type: 'tribute',
+      type: 'tribute-input',
       showHistory: 'always',
+      tributeOptions: {
+        autocompleteMode: true,
+        values: [
+          { key: 'depression - Patient has history of depression', value: 'Patient has history of depression' },
+          { key: 'anxiety - Patient has history of anxiety', value: 'Patient has history of anxiety' },
+          { key: 'past - Past substance use', value: 'Past substance use' },
+          { key: 'ex', value: 'examination' },
+          { key: 'hx', value: 'history' },
+          {
+            key: 'mdm low risk',
+            value:
+              'Patoient is deemed low risk becaquse patient has 2 chromnic iolleness and taking prescription medication',
+          },
+        ],
+        positionMenu: true,
+        menuContainer: document.querySelector('.menu-container'),
+        //selectTemplate: function (item) {
+        //return '@' + item.original.value
+        //},
+      },
     },
   ],
   showReviewedButtonInForm: false,
