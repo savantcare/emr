@@ -64,6 +64,7 @@ export default {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
           Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVSUQiOjE5NzI0fQ.QtbS0OETPqxfjBxN0oI5xURd5aYHuChMOi6sHm6MhHc',
         }
       }).then(response => response.json())
