@@ -227,6 +227,22 @@ export default {
     },
   },
 }
+
+document.addEventListener("keydown", function(e) {
+  if(e.keyCode==13)
+  {
+    e.preventDefault(); // prevents default behaviour of input fields
+    var currentElement = e.target; // Element which has current focus
+    var curIndex = currentElement.tabIndex; //get current elements tab index
+   
+    var getElements = Array.from(document.querySelectorAll('input,textarea,button,select,date,a')); //get all specified elements of document
+    const index = getElements.indexOf(e.target)
+
+    if(getElements[index+1].tabIndex >=curIndex){ //check the tabindex to see if it's the element we want
+       getElements[index+1].focus();
+    }
+  }
+}); 
 </script>
 
 <style>
