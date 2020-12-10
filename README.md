@@ -50,11 +50,18 @@ Ref: https://stackoverflow.com/questions/26361748/are-rem-units-only-useful-for-
 
 Pirority:
 
-1. get tribute working for Chief complaint
-   Is it better to use simple textarea instead of element io input box? Only problem is the issue of autogrow. Div contenteditable needs very simple css to autogrow https://stackoverflow.com/questions/15856700/how-to-make-a-div-autogrow-where-contenteditable-true
-   No match found should not be there
-   dropdown is also coming at bottom - it should not be there
-   integration with add-form.vue and edit-form.vue. Remove the old chief complaint field of type text and only the tribute type field should be there.
+1. Tribute related
+
+A. patient-data-dynamic-collection-terms-start-with-equal-to.js make name and dob work.
+When someone types =dob then it should enter date of birth of the patient
+B. search suggestion to show more accurate search based on exact keyword. "pata" should not match "patient"
+C. Use all 4 collections in chief complaint and past psych history. When entering DX use only diagnosis-master-collection.js
+D. search suggestions to be based on most times used: Issue created: https://github.com/zurb/tribute/issues/582
+
+1.1. On clicking pt name show the insurance name and consent forms signed and send hdr button, and pharmacy name and pt photo. See design idea at: https://youtu.be/2jSP5tgRhl4?t=185 This data will be shown in the view-paper. Design guideline: Keep the data in a el-card and make the card visible onclick. Do not use vue-horizontal-expand
+
+1.2. Screen to enter vitals info https://www.youtube.com/watch?v=mMQfNjW5ro4&t=27s
+
 2. Notes not getting locked the 2nd time onwards
 3. Addendum not working.
 4. Shortcut to set values
