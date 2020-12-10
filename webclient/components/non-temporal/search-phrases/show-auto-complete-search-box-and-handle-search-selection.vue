@@ -8,7 +8,7 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="getDataContentFromP1"
+      @select="getDataContentFromP1(searchKeyword)"
     ></el-autocomplete>
     <el-card v-for="row in this.results" :key="row.id">{{ row.goal }}</el-card>
   </div>
@@ -17,7 +17,8 @@
 <script>
 import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
-import clientTblFromP1 from "../../patient-data/name/db/client-side/structure/replica-of-a-patient-table-p1"
+import allpostDefs from '@/components/non-temporal/form-manager/all-post-definations-of-p1.js'
+
 export default {
   components: {
     // core
@@ -58,9 +59,8 @@ export default {
         pCallBack(arFromClientTbl)
       }
     },
-    async getDataContentFromP1(){
-      
-      const response = await fetch('https://www.savantcare.com/my/api/public/index.php/api/showPastGoals', {
+    async getDataContentFromP1(searchKeyword){
+      const response = await fetch(allpostDefs[searchKeyword].url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

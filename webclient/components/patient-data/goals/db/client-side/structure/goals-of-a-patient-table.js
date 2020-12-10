@@ -107,3 +107,7 @@ export const goalsFormDef = {
     },
   },
 }
+
+export const goalApiData = {
+  url: 'https://www.savantcare.com/my/api/public/index.php/api/showPastGoals',
+}
