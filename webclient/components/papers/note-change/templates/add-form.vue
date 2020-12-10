@@ -209,6 +209,7 @@
                   :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  :tabindex="id.toString()"
                   @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 />
               </vue-tribute>
@@ -233,6 +234,7 @@
                   :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  :tabindex="id.toString()"
                   @input="
                     mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
                     mf_auto_resize_textarea($event)
@@ -261,6 +263,7 @@
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                 :placeholder="_fieldDef.nameInUi"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                :tabindex="id.toString()"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @keydown.enter.native="mf_for_tab_action_by_enter"
               ></el-input>
@@ -349,6 +352,7 @@ export default {
     return {
       value: [],
       searchFilter: null,
+      tabIndexInc: 0
     }
   },
   validations() {
@@ -454,22 +458,6 @@ export default {
     },
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
-    },
-
-    mf_for_tab_action_by_enter: function (e) {
-      /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
-          Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
-
-      //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
-      const currentNode = e.target
-      if (currentNode.tagName != 'TEXTAREA') {
-        //Isolate the node that we're after to put focus on that node.
-        const inputs = Array.from(document.querySelectorAll('input[type="text"],textarea'))
-        const index = inputs.indexOf(e.target)
-        if (index < inputs.length) {
-          inputs[index + 1].focus()
-        }
-      }
     },
     mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails) {
       /**
