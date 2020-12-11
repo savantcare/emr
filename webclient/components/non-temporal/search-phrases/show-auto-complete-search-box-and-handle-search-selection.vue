@@ -8,9 +8,9 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="getDataContentFromP1(searchKeyword)"
+      @select="getDataContentFromP1"
     ></el-autocomplete>
-    <el-card v-for="row in this.results" :key="row.id">{{ row.goal }}</el-card>
+    <el-card v-html="this.results"></el-card>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     // core
   },
   data() {
-    return { searchKeyword: '', results: []}
+    return { searchKeyword: '', results: ''}
   },
   computed: {
     cfSearchBoxPlaceholder() {
@@ -59,16 +59,50 @@ export default {
         pCallBack(arFromClientTbl)
       }
     },
-    async getDataContentFromP1(searchKeyword){
-      const response = await fetch(allpostDefs[searchKeyword].url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          'Access-Control-Allow-Origin': '*',
-          Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVSUQiOjE5NzI0fQ.QtbS0OETPqxfjBxN0oI5xURd5aYHuChMOi6sHm6MhHc',
-        }
-      }).then(response => response.json())
-        .then(data => this.results = data.data);
+    async getDataContentFromP1(pSelectedSuggestion){
+      console.log("p1",pSelectedSuggestion);
+      const objCtToAdd = {
+        label: pSelectedSuggestion.value,
+        // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working
+        ctToShow: require('@/components/' + pSelectedSuggestion.ctToShow).default,
+        id: pSelectedSuggestion.id,
+        closable: true,
+      }
+      if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
+        const response = await fetch(allpostDefs[pSelectedSuggestion.value].url+"?activityDoneByUserId=19724&clientTimeOfActivity=2020-12-11 15:21:17&clientTimeZoneAbbreviationOfActivity=India Standard Time&userId=19724", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'access-control-allow-origin': '*',
+            Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVSUQiOjE5NzI0LCJpYXQiOjE2MDc2ODAyNDl9.PpTQL8xFj1gIEwyOhhLUm-HJArM_Z_CJ1VnbXQRtvdI',
+          }
+        }).then(response => response.json())
+          .then(data => this.results = data.data);
+      }  else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
+        // Change layer
+        this.$store.commit('mtfShowNewFirstTabInEditLayer', objCtToAdd)
+      }
+      /* Goal: Increase the usageCount of the search term so I can order them better
+        Update query ref: https://vuex-orm.org/guide/data/inserting-and-updating.html#updates */
+      clientTblOfCtSearchPhrases.update({
+        where: pSelectedSuggestion.clientSideUniqRowId,
+        data: {
+          searchPhraseUsageCount: pSelectedSuggestion.searchPhraseUsageCount + 1,
+        },
+      })
+
+      /* Goal: Once search work is done then the input area needs to be empty */
+      this.searchKeyword = ''
+
+      /* Goal: scrolling to top of the search input box */
+      const options = {
+        container: '#layer1RightSide',
+        easing: 'ease-in',
+        offset: 6000, // if offset is negative I do not come on top of search box. Not sure what this means
+        force: true,
+        cancelable: true,
+      }
+      this.$scrollTo('#manage-layer1-right-side-cards', 500, options)
     },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
       // Goal: Add the card in Layer1RightSide (Current state in View layer) or tab in edit layer (Change layer)
@@ -128,3 +162,17 @@ export default {
   },
 }
 </script>
+<style >
+.col-md-12 .avatar {
+  display: none;
+}
+.col-md-12 thead {
+  display: none;
+}
+.col-md-12 .ui-sortable tr td:first-child {
+  display: none;
+}
+.col-md-12 a {
+  display: none;
+}
+</style>

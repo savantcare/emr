@@ -76,3 +76,13 @@ export const planCommentsFormDef = {
     },
   },
 }
+
+export const plncmApiData = {
+  url: 'https://www.savantcare.com/v1/api/plan-comment/public/index.php/api/scBrainToGetPlanComment',
+  getParams: {
+    actionDoneByUserId: '19724',
+    actionDoneOnUserId: '19724',
+    clientTime: '2020-12-11 15:21:17',
+    clientTimeZone: 'India Standard Time',
+  },
+}
