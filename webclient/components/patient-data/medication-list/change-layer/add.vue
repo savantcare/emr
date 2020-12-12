@@ -110,6 +110,7 @@ export default {
         contextMenu: true,
         autoRowSize: true, // Goal: Add multiline comments in the notes column
         height: '400', // Ref: https://handsontable.com/docs/8.2.0/tutorial-grid-sizing.html
+        afterChange: this.afterChangeVue,
         colHeaders: [
           'Medication',
           'Dose',
@@ -232,6 +233,19 @@ export default {
         ],
       }
       return chart
+    },
+  },
+  methods: {
+    afterChangeVue(changes, source) {
+      console.log('changes, source => ', changes, source)
+      if (changes) {
+        const row = changes[0][0]
+        const col = changes[0][1]
+        const newVal = changes[0][3]
+        this.tableData[(row, col)] = newVal
+        console.log(this.tableData)
+        this.cfChartOptions()
+      }
     },
   },
 }
