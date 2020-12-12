@@ -69,7 +69,7 @@ export default {
           '12/12/2020',
           'VS',
           'Depression',
-          '12/12/2020',
+          '12/12/2021',
           '12/12/2020',
           1,
           'asda',
@@ -82,7 +82,7 @@ export default {
           '1/12/2020',
           'SP',
           'Anxiety',
-          '12/12/2020',
+          '12/12/2022',
           '12/12/2020',
           2,
           'asd',
@@ -95,7 +95,7 @@ export default {
           '2/12/2020',
           'CS',
           'Cold',
-          '12/12/2020',
+          '12/12/2023',
           '12/12/2020',
           3,
           'asdads',
@@ -214,8 +214,8 @@ export default {
       for (let i = 0; i < this.tableData.length; i++) {
         var obj = new Object()
         obj.name = this.tableData[i][0]
-        obj.start = this.tableData[i][3]
-        obj.end = this.tableData[i][6]
+        obj.start = Date.parse(this.tableData[i][3])
+        obj.end = Date.parse(this.tableData[i][6])
         chartData.push(obj)
       }
 
