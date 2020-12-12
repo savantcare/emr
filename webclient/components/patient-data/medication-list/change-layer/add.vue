@@ -3,13 +3,13 @@
 2. el-button not working for actions column
 
 Need to implement-
-1. Graph at the bottom that shows neds overlapping.
+1. Graph at bottom changes dynamically.
 2. Filter buttons at the top
 3. Multiline notes 
 4. Tree of notes
 5. Expandable rows
 6. Order
-7. Search for important columns
+7. Search box for important columns
 8. Add
 9. Open from 2 different place with different buttons selected
 10. Buttons availabnle are dynamic
@@ -129,6 +129,7 @@ export default {
             // med name column
             type: 'dropdown',
             source: ['Aspirin', 'Lithium', 'Lemyctal', 'Escitaloparam', 'Haldol'],
+            editor: false,
           },
           {}, // dosage column
           {}, // instructions column
