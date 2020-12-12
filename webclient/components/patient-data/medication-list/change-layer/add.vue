@@ -201,6 +201,13 @@ export default {
           {}, // notes
           { renderer: 'html', editor: false },
         ],
+        cells: function (row, col) {
+          var cellProperties = {}
+          if (row === 0) {
+            cellProperties.renderer = this.firstRowRenderer // uses function directly
+          }
+          return cellProperties
+        },
       },
     }
   },
@@ -245,8 +252,13 @@ export default {
         const newVal = changes[0][3]
         this.tableData[(row, col)] = newVal
         console.log(this.tableData)
-        this.cfChartOptions()
       }
+    },
+    firstRowRenderer(instance, td, row, col, prop, value, cellProperties) {
+      Handsontable.renderers.TextRenderer.apply(this, arguments)
+      td.style.fontWeight = 'bold'
+      td.style.color = 'green'
+      td.style.background = '#CEC'
     },
   },
 }
