@@ -1,3 +1,20 @@
+<!--
+1. Comments not coming in the proper layer https://handsontable.com/docs/3.0.0/demo-comments_.html
+2. el-button not working for actions column
+
+Need to implement-
+1. Graph at the bottom
+2. Filter buttons at the top
+3. Multiline notes 
+4. Tree of notes
+5. Expandable rows
+6. Order
+7. Search for important columns
+8. Add
+9. Open from 2 different place with different buttons selected
+10. Buttons availabnle are dynamic
+-->
+
 <template>
   <div>
     <el-button type="primary" round @click="mfAdd()">Add</el-button>
@@ -49,7 +66,7 @@ export default {
           '12/12/2020',
           1,
           'asda',
-          'Delete',
+          '<el-button>Delete</el-button>',
         ],
         [
           'Lexapro',
@@ -62,7 +79,7 @@ export default {
           '12/12/2020',
           2,
           'asd',
-          'Delete',
+          '<button>Discontinue</button>',
         ],
         [
           'Lithium',
@@ -75,14 +92,15 @@ export default {
           '12/12/2020',
           3,
           'asdads',
-          'Discontinue',
+          '<button>Order</button>',
         ],
       ],
       hotSettings: {
         rowHeaders: false,
         colHeaders: false,
         licenseKey: 'non-commercial-and-evaluation',
-        fixedColumnsRight: 2,
+        comments: true, // Ref: https://handsontable.com/docs/3.0.0/demo-comments_.html
+        contextMenu: true,
         colHeaders: [
           'Medication',
           'Dose',
@@ -170,7 +188,7 @@ export default {
             },
           },
           {},
-          {},
+          { renderer: 'html', editor: false },
         ],
       },
     }
