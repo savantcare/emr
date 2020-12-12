@@ -3,7 +3,7 @@
 2. el-button not working for actions column
 
 Need to implement-
-1. Graph at the bottom
+1. Graph at the bottom that shows neds overlapping.
 2. Filter buttons at the top
 3. Multiline notes 
 4. Tree of notes
@@ -42,10 +42,13 @@ Need to implement-
     </el-dropdown>
 
     <hot-table :data="tableData" :settings="hotSettings"></hot-table>
+
+    <highcharts :options="cfChartOptions"></highcharts>
   </div>
 </template>
 
 <script>
+import { Chart } from 'highcharts-vue'
 import { HotTable } from '@handsontable/vue'
 import moment from 'moment'
 import numbro from 'numbro'
@@ -101,6 +104,8 @@ export default {
         licenseKey: 'non-commercial-and-evaluation',
         comments: true, // Ref: https://handsontable.com/docs/3.0.0/demo-comments_.html
         contextMenu: true,
+        autoRowSize: true, // Goal: Add multiline comments in the notes column
+        height: '400', // Ref: https://handsontable.com/docs/8.2.0/tutorial-grid-sizing.html
         colHeaders: [
           'Medication',
           'Dose',
@@ -195,6 +200,48 @@ export default {
   },
   components: {
     HotTable,
+    highcharts: Chart,
+  },
+  computed: {
+    cfChartOptions() {
+      var chart = {
+        title: {
+          text: 'Med overlap Chart',
+        },
+
+        series: [
+          {
+            name: 'Med overlap',
+            data: [
+              {
+                id: 's',
+                name: 'Start prototype',
+                start: '1/12/2020',
+                end: '12/12/2020',
+              },
+              {
+                id: 'b',
+                name: 'Develop',
+                start: '1/12/2020',
+                end: '12/12/2020',
+              },
+              {
+                id: 'a',
+                name: 'Run acceptance tests',
+                start: '1/12/2020',
+                end: '12/12/2020',
+              },
+              {
+                name: 'Test prototype',
+                start: '1/12/2020',
+                end: '12/12/2020',
+              },
+            ],
+          },
+        ],
+      }
+      return chart
+    },
   },
 }
 </script>
