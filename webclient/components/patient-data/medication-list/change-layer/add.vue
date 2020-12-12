@@ -38,14 +38,51 @@ export default {
   data: function () {
     return {
       tableData: [
-        ['Aspirin', '10 mg', 'Daily', '12/12/2020', 'VS'],
-        ['Lexapro', '20 mg', 'With water', '1/12/2020', 'SP'],
-        ['Lithium', '30 mg', 'Before food', '2/12/2020', 'CS'],
+        [
+          'Aspirin',
+          '10 mg',
+          'Daily',
+          '12/12/2020',
+          'VS',
+          'Depression',
+          '12/12/2020',
+          '12/12/2020',
+          1,
+          'asda',
+          'Delete',
+        ],
+        [
+          'Lexapro',
+          '20 mg',
+          'With water',
+          '1/12/2020',
+          'SP',
+          'Anxiety',
+          '12/12/2020',
+          '12/12/2020',
+          2,
+          'asd',
+          'Delete',
+        ],
+        [
+          'Lithium',
+          '30 mg',
+          'Before food',
+          '2/12/2020',
+          'CS',
+          'Cold',
+          '12/12/2020',
+          '12/12/2020',
+          3,
+          'asdads',
+          'Discontinue',
+        ],
       ],
       hotSettings: {
         rowHeaders: false,
         colHeaders: false,
         licenseKey: 'non-commercial-and-evaluation',
+        fixedColumnsRight: 2,
         colHeaders: [
           'Medication',
           'Dose',
@@ -57,8 +94,10 @@ export default {
           'Reconciled',
           '# of orders',
           'Notes',
+          'Actions',
         ],
         columns: [
+          {},
           {
             // med name column
             type: 'dropdown',
@@ -85,9 +124,53 @@ export default {
             },
           },
           {
+            // Provider
             type: 'dropdown',
             source: ['VS', 'SP', 'CS', 'TH'],
           },
+          {
+            // Condfition
+            type: 'dropdown',
+            source: ['Depression', 'Anxiety', 'Cough', 'Cold'],
+          },
+          {
+            // discon
+            type: 'date',
+            dateFormat: 'MM/DD/YYYY',
+            correctFormat: true,
+            defaultDate: '01/01/1900',
+            // datePicker additional options (see https://github.com/dbushell/Pikaday#configuration)
+            datePickerConfig: {
+              // First day of the week (0: Sunday, 1: Monday, etc)
+              firstDay: 0,
+              showWeekNumber: true,
+              numberOfMonths: 3,
+              disableDayFn: function (date) {
+                // Disable Sunday and Saturday
+                return date.getDay() === 0 || date.getDay() === 6
+              },
+            },
+          },
+          {
+            // reconciled
+            type: 'date',
+            dateFormat: 'MM/DD/YYYY',
+            correctFormat: true,
+            defaultDate: '01/01/1900',
+            // datePicker additional options (see https://github.com/dbushell/Pikaday#configuration)
+            datePickerConfig: {
+              // First day of the week (0: Sunday, 1: Monday, etc)
+              firstDay: 0,
+              showWeekNumber: true,
+              numberOfMonths: 3,
+              disableDayFn: function (date) {
+                // Disable Sunday and Saturday
+                return date.getDay() === 0 || date.getDay() === 6
+              },
+            },
+          },
+          {},
+          {},
         ],
       },
     }
