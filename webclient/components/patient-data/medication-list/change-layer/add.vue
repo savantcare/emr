@@ -43,16 +43,20 @@ Need to implement-
 
     <hot-table :data="tableData" :settings="hotSettings"></hot-table>
 
-    <highcharts :options="cfChartOptions"></highcharts>
+    <highcharts :constructor-type="'ganttChart'" :options="cfChartOptions"></highcharts>
   </div>
 </template>
 
 <script>
-import { Chart } from 'highcharts-vue'
 import { HotTable } from '@handsontable/vue'
+import Highcharts from 'highcharts'
+import Gantt from 'highcharts/modules/gantt'
+import { Chart } from 'highcharts-vue'
 import moment from 'moment'
 import numbro from 'numbro'
 import pikaday from 'pikaday'
+
+Gantt(Highcharts)
 
 export default {
   data: function () {
@@ -216,25 +220,25 @@ export default {
               {
                 id: 's',
                 name: 'Start prototype',
-                start: '1/12/2020',
-                end: '12/12/2020',
+                start: Date.UTC(2014, 10, 18),
+                end: Date.UTC(2016, 10, 18),
               },
               {
                 id: 'b',
                 name: 'Develop',
-                start: '1/12/2020',
-                end: '12/12/2020',
+                start: Date.UTC(2012, 10, 18),
+                end: Date.UTC(2014, 10, 18),
               },
               {
                 id: 'a',
                 name: 'Run acceptance tests',
-                start: '1/12/2020',
-                end: '12/12/2020',
+                start: Date.UTC(2011, 10, 18),
+                end: Date.UTC(2012, 10, 18),
               },
               {
                 name: 'Test prototype',
-                start: '1/12/2020',
-                end: '12/12/2020',
+                start: Date.UTC(2011, 10, 18),
+                end: Date.UTC(2010, 10, 18),
               },
             ],
           },
