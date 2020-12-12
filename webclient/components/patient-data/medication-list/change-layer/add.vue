@@ -24,18 +24,29 @@
       </el-dropdown-menu>
     </el-dropdown>
 
-    <hot-table :data="data" :settings="hotSettings"></hot-table>
+    <hot-table :data="tableData" :settings="hotSettings"></hot-table>
   </div>
 </template>
 
 <script>
 import { HotTable } from '@handsontable/vue'
+import moment from 'moment'
+import numbro from 'numbro'
+import pikaday from 'pikaday'
 
 export default {
   data: function () {
     return {
-      data: [
-        [
+      tableData: [
+        ['Aspirin', '10 mg', 'Daily', '12/12/2020', 'VS'],
+        ['Lexapro', '20 mg', 'With water', '1/12/2020', 'SP'],
+        ['Lithium', '30 mg', 'Before food', '2/12/2020', 'CS'],
+      ],
+      hotSettings: {
+        rowHeaders: false,
+        colHeaders: false,
+        licenseKey: 'non-commercial-and-evaluation',
+        colHeaders: [
           'Medication',
           'Dose',
           'Instructions',
@@ -47,14 +58,37 @@ export default {
           '# of orders',
           'Notes',
         ],
-        ['2016', 10, 11, 12, 13],
-        ['2017', 20, 11, 14, 13],
-        ['2018', 30, 15, 12, 13],
-      ],
-      hotSettings: {
-        rowHeaders: false,
-        colHeaders: false,
-        licenseKey: 'non-commercial-and-evaluation',
+        columns: [
+          {
+            // med name column
+            type: 'dropdown',
+            source: ['Aspirin', 'Lithium', 'Lemyctal', 'Escitaloparam', 'Haldol'],
+          },
+          {}, // dosage column
+          {}, // instructions column
+          {
+            // date prescribed column
+            type: 'date',
+            dateFormat: 'MM/DD/YYYY',
+            correctFormat: true,
+            defaultDate: '01/01/1900',
+            // datePicker additional options (see https://github.com/dbushell/Pikaday#configuration)
+            datePickerConfig: {
+              // First day of the week (0: Sunday, 1: Monday, etc)
+              firstDay: 0,
+              showWeekNumber: true,
+              numberOfMonths: 3,
+              disableDayFn: function (date) {
+                // Disable Sunday and Saturday
+                return date.getDay() === 0 || date.getDay() === 6
+              },
+            },
+          },
+          {
+            type: 'dropdown',
+            source: ['VS', 'SP', 'CS', 'TH'],
+          },
+        ],
       },
     }
   },
