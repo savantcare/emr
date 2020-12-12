@@ -124,7 +124,6 @@ export default {
           'Actions',
         ],
         columns: [
-          {},
           {
             // med name column
             type: 'dropdown',
@@ -196,7 +195,8 @@ export default {
               },
             },
           },
-          {},
+          {}, // # of orders
+          {}, // notes
           { renderer: 'html', editor: false },
         ],
       },
@@ -208,6 +208,17 @@ export default {
   },
   computed: {
     cfChartOptions() {
+      // creating chart data
+      var chartData = new Array()
+
+      for (let i = 0; i < this.tableData.length; i++) {
+        var obj = new Object()
+        obj.name = this.tableData[i][0]
+        obj.start = this.tableData[i][3]
+        obj.end = this.tableData[i][6]
+        chartData.push(obj)
+      }
+
       var chart = {
         title: {
           text: 'Med overlap Chart',
@@ -216,31 +227,7 @@ export default {
         series: [
           {
             name: 'Med overlap',
-            data: [
-              {
-                id: 's',
-                name: 'Start prototype',
-                start: Date.UTC(2014, 10, 18),
-                end: Date.UTC(2016, 10, 18),
-              },
-              {
-                id: 'b',
-                name: 'Develop',
-                start: Date.UTC(2012, 10, 18),
-                end: Date.UTC(2014, 10, 18),
-              },
-              {
-                id: 'a',
-                name: 'Run acceptance tests',
-                start: Date.UTC(2011, 10, 18),
-                end: Date.UTC(2012, 10, 18),
-              },
-              {
-                name: 'Test prototype',
-                start: Date.UTC(2011, 10, 18),
-                end: Date.UTC(2010, 10, 18),
-              },
-            ],
+            data: chartData,
           },
         ],
       }
