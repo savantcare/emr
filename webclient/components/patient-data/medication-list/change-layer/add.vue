@@ -116,6 +116,7 @@ export default {
           notes: 'asdads',
         },
       ],
+      filteredTable: [],
       filters: {
         activeMeds: true,
         inActiveMeds: true,
@@ -130,27 +131,40 @@ export default {
   },
   computed: {
     cfFilteredTableData() {
-      let filteredTable = this.tableData.map((a) => Object.assign({}, a))
+      this.filteredTable = this.tableData.map((a) => Object.assign({}, a))
 
       if (this.filters.activeMeds === false && this.filters.inActiveMeds === false) {
+        // no matches
         return []
+      } else if (this.filters.activeMeds === true && this.filters.inActiveMeds === true) {
+        // all matches
+      } else if (this.filters.activeMeds === true) {
+        var i = this.filteredTable.length
+        while (i--) {
+          if (this.filteredTable.discDate > 1) {
+            this.filteredTable.splice(i, 1)
+          }
+        }
       }
 
       if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
+        // no matches
         return []
+      } else if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
+        // all matches
       }
 
-      return filteredTable
+      return this.filteredTable
     },
     cfChartOptions() {
       // creating chart data
       var chartData = new Array()
 
-      for (let i = 0; i < this.tableData.length; i++) {
+      for (let i = 0; i < this.filteredTable.length; i++) {
         var obj = new Object()
-        obj.name = this.tableData[i]['meds']
-        obj.start = Date.parse(this.tableData[i]['prescribed'])
-        obj.end = Date.parse(this.tableData[i]['discDate'])
+        obj.name = this.filteredTable[i]['meds']
+        obj.start = Date.parse(this.filteredTable[i]['prescribed'])
+        obj.end = Date.parse(this.filteredTable[i]['discDate'])
         chartData.push(obj)
       }
 
