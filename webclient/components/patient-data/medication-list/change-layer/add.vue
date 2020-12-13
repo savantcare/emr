@@ -8,19 +8,17 @@
     <el-dropdown size="mini" split-button type="success">
       Provider
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>Action 1</el-dropdown-item>
-        <el-dropdown-item>Action 2</el-dropdown-item>
-        <el-dropdown-item>Action 3</el-dropdown-item>
-        <el-dropdown-item>Action 4</el-dropdown-item>
+        <el-dropdown-item>VS</el-dropdown-item>
+        <el-dropdown-item>SP</el-dropdown-item>
+        <el-dropdown-item>CS</el-dropdown-item>
+        <el-dropdown-item>MK</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <el-dropdown size="mini" split-button type="success">
       Condition
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>Action 1</el-dropdown-item>
-        <el-dropdown-item>Action 2</el-dropdown-item>
-        <el-dropdown-item>Action 3</el-dropdown-item>
-        <el-dropdown-item>Action 4</el-dropdown-item>
+        <el-dropdown-item>Depression</el-dropdown-item>
+        <el-dropdown-item>Anxiety</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -35,7 +33,12 @@
       <el-table-column prop="reconciledDate" label="Reconc. date"> </el-table-column>
       <el-table-column prop="orders" label="Orders"> </el-table-column>
       <el-table-column prop="notes" label="Notes"> </el-table-column>
-      <el-table-column prop="actions" label="Actions"> </el-table-column>
+      <el-table-column fixed="right" label="Operations" width="120">
+        <template slot-scope="scope">
+          <el-button @click="handleClick" type="text" size="small">Detail</el-button>
+          <el-button type="text" size="small">Edit</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <highcharts :constructor-type="'ganttChart'" :options="cfChartOptions"></highcharts>
   </div>
@@ -63,7 +66,6 @@ export default {
           reconciledDate: '12/12/2020',
           orders: 1,
           notes: 'asda',
-          actions: '<el-button>Delete</el-button>',
         },
         {
           meds: 'Lexapro',
@@ -76,7 +78,6 @@ export default {
           reconciledDate: '12/12/2020',
           orders: 2,
           notes: 'asd',
-          actions: '<button>Discontinue</button>',
         },
         {
           meds: 'Lithium',
@@ -89,7 +90,6 @@ export default {
           reconciledDate: '12/12/2020',
           orders: 3,
           notes: 'asdads',
-          actions: '<button>Order</button>',
         },
       ],
     }
