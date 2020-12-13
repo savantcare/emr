@@ -87,7 +87,7 @@ export default {
           prescribed: 1607854627231, // milliseconds for Wed Jan 31 2001 14:40:08 From https://currentmillis.com/
           provider: 'VS',
           condition: 'Depression',
-          discDate: 1607854627231,
+          discDate: 1627865352498,
           reconciledDate: 1607854627231,
           orders: 1,
           notes: 'asda',
@@ -99,7 +99,7 @@ export default {
           prescribed: 988789908908, // milliseconds for Wed May 02 2001 07:51:48 From https://currentmillis.com/
           provider: 'SP',
           condition: 'Anxiety',
-          discDate: 1607854627231,
+          discDate: 1107854627231,
           reconciledDate: 1607854627231,
           orders: 2,
           notes: 'asd',
@@ -142,7 +142,8 @@ export default {
       } else if (this.filters.activeMeds === true) {
         var i = this.filteredTable.length
         while (i--) {
-          if (this.filteredTable.discDate > 1) {
+          const diff = Date.now() - this.filteredTable[i].discDate
+          if (diff > 0) {
             this.filteredTable.splice(i, 1)
           }
         }
