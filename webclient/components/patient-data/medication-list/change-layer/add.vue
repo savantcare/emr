@@ -1,24 +1,17 @@
 <template>
   <div>
-    <el-button type="primary" round @click="mfAdd()">Add</el-button>
-    <el-button size="mini" type="success" effect="dark">Active</el-button>
-    <el-button size="mini" type="success" effect="dark">Discontinued</el-button>
-    <el-button size="mini" type="success" effect="dark">SC</el-button>
-    <el-button size="mini" type="success" effect="dark">Non-SC</el-button>
-    <el-dropdown @command="mfProviderDropDownCommand">
-      <el-button size="mini" type="success">
-        Provider - {{ providerFilter }} <i class="el-icon-arrow-down el-icon--right"></i
-      ></el-button>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="All">All</el-dropdown-item>
-        <el-dropdown-item command="VS">VS</el-dropdown-item>
-        <el-dropdown-item command="SP">SP</el-dropdown-item>
-        <el-dropdown-item command="CS">CS</el-dropdown-item>
-        <el-dropdown-item command="MK"> MK</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+    <el-button size="mini" type="primary" plain round @click="mfAdd()">Add</el-button>
+    <el-divider direction="vertical"></el-divider>
+
+    <el-button size="mini" type="primary" plain round effect="dark">Active</el-button>
+    <el-button size="mini" type="primary" plain round effect="dark">Discontinued</el-button>
+    <el-divider direction="vertical"></el-divider>
+
+    <el-button size="mini" type="primary" plain round effect="dark">SC</el-button>
+    <el-button size="mini" type="primary" plain round effect="dark">Non-SC</el-button>
+    <el-divider direction="vertical"></el-divider>
     <el-dropdown @command="mfConditionDropDownCommand">
-      <el-button size="mini" type="success">
+      <el-button size="mini" type="primary" plain round>
         Condition - {{ conditionFilter }} <i class="el-icon-arrow-down el-icon--right"></i
       ></el-button>
       <el-dropdown-menu slot="dropdown">
@@ -27,6 +20,7 @@
         <el-dropdown-item command="Anxiety">Anxiety</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+    <el-divider direction="vertical"></el-divider>
 
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="meds" label="Medication" width="180"> </el-table-column>
