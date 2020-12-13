@@ -60,7 +60,7 @@
       <el-table-column fixed="right" label="Operations" width="120">
         <template slot-scope="scope">
           <el-button type="text" size="small">Detail</el-button>
-          <el-button type="text" size="small">Edit</el-button>
+          <el-button type="text" size="small">Ordr</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -203,6 +203,7 @@ export default {
           {
             name: 'Med overlap',
             data: chartData,
+            pointWidth: 10, // Ref: https://api.highcharts.com/gantt/series.gantt.pointWidth
           },
         ],
       }
