@@ -3,12 +3,36 @@
     <el-button size="mini" type="primary" plain round @click="mfAdd()">Add</el-button>
     <el-divider direction="vertical"></el-divider>
 
-    <el-button size="mini" type="primary" plain round effect="dark">Active</el-button>
-    <el-button size="mini" type="primary" plain round effect="dark">Discontinued</el-button>
+    <el-button
+      size="mini"
+      :type="filters.activeMeds ? 'primary' : 'info'"
+      @click="filters.activeMeds = !filters.activeMeds"
+      round
+      >Active</el-button
+    >
+    <el-button
+      size="mini"
+      :type="filters.inActiveMeds ? 'primary' : 'info'"
+      @click="filters.inActiveMeds = !filters.inActiveMeds"
+      round
+      >Discontinued</el-button
+    >
     <el-divider direction="vertical"></el-divider>
 
-    <el-button size="mini" type="primary" plain round effect="dark">SC</el-button>
-    <el-button size="mini" type="primary" plain round effect="dark">Non-SC</el-button>
+    <el-button
+      size="mini"
+      :type="filters.scPrescribed ? 'primary' : 'info'"
+      round
+      @click="filters.scPrescribed = !filters.scPrescribed"
+      >SC</el-button
+    >
+    <el-button
+      size="mini"
+      :type="filters.nonSCPrescribed ? 'primary' : 'info'"
+      round
+      @click="filters.nonSCPrescribed = !filters.nonSCPrescribed"
+      >Non-SC</el-button
+    >
     <el-divider direction="vertical"></el-divider>
     <el-dropdown @command="mfConditionDropDownCommand">
       <el-button size="mini" type="primary" plain round>
@@ -95,8 +119,8 @@ export default {
       filters: {
         activeMeds: true,
         inActiveMeds: true,
-        sc: true,
-        nonSC: true,
+        scPrescribed: true,
+        nonSCPrescribed: true,
         conditions: 'All',
       },
     }
@@ -119,9 +143,11 @@ export default {
 
       var chart = {
         title: {
-          text: 'Med overlap Chart',
+          text: '',
         },
-
+        credits: {
+          enabled: false,
+        },
         series: [
           {
             name: 'Med overlap',
