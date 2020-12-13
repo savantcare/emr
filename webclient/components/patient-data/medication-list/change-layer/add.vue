@@ -46,7 +46,7 @@
     </el-dropdown>
     <el-divider direction="vertical"></el-divider>
 
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="cfFilteredTableData" style="width: 100%">
       <el-table-column prop="meds" label="Medication" width="180"> </el-table-column>
       <el-table-column prop="dose" label="Dose" width="100"> </el-table-column>
       <el-table-column prop="instructions" label="Instructions"> </el-table-column>
@@ -129,6 +129,9 @@ export default {
     highcharts: Chart,
   },
   computed: {
+    cfFilteredTableData() {
+      return this.tableData
+    },
     cfChartOptions() {
       // creating chart data
       var chartData = new Array()
