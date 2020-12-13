@@ -5,20 +5,20 @@
     <el-button size="mini" type="success" effect="dark">Discontinued</el-button>
     <el-button size="mini" type="success" effect="dark">SC</el-button>
     <el-button size="mini" type="success" effect="dark">Non-SC</el-button>
-    <el-dropdown size="mini" split-button type="success">
+    <el-dropdown size="mini" split-button type="success" @command="mfProviderDropDownCommand">
       Provider
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>VS</el-dropdown-item>
-        <el-dropdown-item>SP</el-dropdown-item>
-        <el-dropdown-item>CS</el-dropdown-item>
-        <el-dropdown-item>MK</el-dropdown-item>
+        <el-dropdown-item command="vs">VS</el-dropdown-item>
+        <el-dropdown-item command="sp">SP</el-dropdown-item>
+        <el-dropdown-item command="cs">CS</el-dropdown-item>
+        <el-dropdown-item command="mk"> MK</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <el-dropdown size="mini" split-button type="success">
+    <el-dropdown size="mini" split-button type="success" @command="mfConditionDropDownCommand">
       Condition
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>Depression</el-dropdown-item>
-        <el-dropdown-item>Anxiety</el-dropdown-item>
+        <el-dropdown-item command="depression">Depression</el-dropdown-item>
+        <el-dropdown-item command="anxiety">Anxiety</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -92,6 +92,8 @@ export default {
           notes: 'asdads',
         },
       ],
+      providerFilter: '',
+      conditionFilter: '',
     }
   },
   components: {
@@ -141,6 +143,12 @@ export default {
         actions: '<button>Order</button>',
       }
       this.tableData.push(newData)
+    },
+    mfConditionDropDownCommand(p) {
+      console.log(p)
+    },
+    mfProviderDropDownCommand(p) {
+      console.log(p)
     },
   },
 }
