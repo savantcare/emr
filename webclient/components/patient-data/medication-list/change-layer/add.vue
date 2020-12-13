@@ -109,7 +109,7 @@ export default {
           dose: '30 mg',
           instructions: 'Before food',
           prescribed: 999999908998, // milliseconds for Sun Sep 09 2001 01:45:08 From https://currentmillis.com/
-          provider: 'CS',
+          provider: 'not-sc',
           condition: 'Cold',
           discDate: 1607854627231,
           reconciledDate: 1607854627231,
@@ -160,8 +160,22 @@ export default {
       if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
         // no matches
         return []
-      } else if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
+      } else if (this.filters.scPrescribed === true && this.filters.nonSCPrescribed === true) {
         // all matches
+      } else if (this.filters.scPrescribed === true) {
+        var i = this.filteredTable.length
+        while (i--) {
+          if (this.filteredTable[i].provider === 'not-sc') {
+            this.filteredTable.splice(i, 1)
+          }
+        }
+      } else if (this.filters.nonSCPrescribed === true) {
+        var i = this.filteredTable.length
+        while (i--) {
+          if (this.filteredTable[i].provider !== 'not-sc') {
+            this.filteredTable.splice(i, 1)
+          }
+        }
       }
 
       return this.filteredTable
