@@ -130,7 +130,17 @@ export default {
   },
   computed: {
     cfFilteredTableData() {
-      return this.tableData
+      let filteredTable = this.tableData.map((a) => Object.assign({}, a))
+
+      if (this.filters.activeMeds === false && this.filters.inActiveMeds === false) {
+        return []
+      }
+
+      if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
+        return []
+      }
+
+      return filteredTable
     },
     cfChartOptions() {
       // creating chart data
