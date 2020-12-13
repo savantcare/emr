@@ -5,8 +5,10 @@
     <el-button size="mini" type="success" effect="dark">Discontinued</el-button>
     <el-button size="mini" type="success" effect="dark">SC</el-button>
     <el-button size="mini" type="success" effect="dark">Non-SC</el-button>
-    <el-dropdown size="mini" split-button type="success" @command="mfProviderDropDownCommand">
-      Provider - {{ providerFilter }}
+    <el-dropdown @command="mfProviderDropDownCommand">
+      <el-button size="mini" type="success">
+        Provider - {{ providerFilter }} <i class="el-icon-arrow-down el-icon--right"></i
+      ></el-button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="All">All</el-dropdown-item>
         <el-dropdown-item command="VS">VS</el-dropdown-item>
@@ -15,8 +17,10 @@
         <el-dropdown-item command="MK"> MK</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <el-dropdown size="mini" split-button type="success" @command="mfConditionDropDownCommand">
-      Condition - {{ conditionFilter }}
+    <el-dropdown @command="mfConditionDropDownCommand">
+      <el-button size="mini" type="success">
+        Condition - {{ conditionFilter }} <i class="el-icon-arrow-down el-icon--right"></i
+      ></el-button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="All">All</el-dropdown-item>
         <el-dropdown-item command="Depression">Depression</el-dropdown-item>
