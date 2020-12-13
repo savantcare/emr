@@ -53,8 +53,8 @@
       <el-table-column prop="prescribed" label="Prescribed" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="provider" label="Provider"> </el-table-column>
       <el-table-column prop="condition" label="Condition"> </el-table-column>
-      <el-table-column prop="discDate" label="Disc date"> </el-table-column>
-      <el-table-column prop="reconciledDate" label="Reconc. date"> </el-table-column>
+      <el-table-column prop="discDate" label="Disc date" :formatter="dateFormatter"> </el-table-column>
+      <el-table-column prop="reconciledDate" label="Reconc. date" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="orders" label="Orders"> </el-table-column>
       <el-table-column prop="notes" label="Notes"> </el-table-column>
       <el-table-column fixed="right" label="Operations" width="120">
@@ -87,8 +87,8 @@ export default {
           prescribed: 1607854627231, // milliseconds for Wed Jan 31 2001 14:40:08 From https://currentmillis.com/
           provider: 'VS',
           condition: 'Depression',
-          discDate: '12/12/2021',
-          reconciledDate: '12/12/2020',
+          discDate: 1607854627231,
+          reconciledDate: 1607854627231,
           orders: 1,
           notes: 'asda',
         },
@@ -99,8 +99,8 @@ export default {
           prescribed: 988789908908, // milliseconds for Wed May 02 2001 07:51:48 From https://currentmillis.com/
           provider: 'SP',
           condition: 'Anxiety',
-          discDate: '12/12/2022',
-          reconciledDate: '12/12/2020',
+          discDate: 1607854627231,
+          reconciledDate: 1607854627231,
           orders: 2,
           notes: 'asd',
         },
@@ -111,8 +111,8 @@ export default {
           prescribed: 999999908998, // milliseconds for Sun Sep 09 2001 01:45:08 From https://currentmillis.com/
           provider: 'CS',
           condition: 'Cold',
-          discDate: '12/12/2023',
-          reconciledDate: '12/12/2020',
+          discDate: 1607854627231,
+          reconciledDate: 1607854627231,
           orders: 3,
           notes: 'asdads',
         },
