@@ -260,6 +260,22 @@ export default {
       td.style.color = 'green'
       td.style.background = '#CEC'
     },
+    mfAdd() {
+      const newData = [
+        'Lexapro',
+        '20 mg',
+        'With water',
+        '1/12/2020',
+        'SP',
+        'Anxiety',
+        '12/12/2022',
+        '12/12/2020',
+        2,
+        'asd',
+        '<button>Discontinue</button>',
+      ]
+      this.tableData.push(newData)
+    },
   },
 }
 </script>
