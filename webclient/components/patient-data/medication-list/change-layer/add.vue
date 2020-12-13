@@ -72,6 +72,7 @@
 import Highcharts from 'highcharts'
 import Gantt from 'highcharts/modules/gantt'
 import { Chart } from 'highcharts-vue'
+import moment from 'moment'
 
 Gantt(Highcharts)
 
@@ -83,7 +84,7 @@ export default {
           meds: 'Aspirin',
           dose: '10 mg',
           instructions: 'Daily',
-          prescribed: '12/12/2020',
+          prescribed: 1607854627231, // milliseconds for Wed Jan 31 2001 14:40:08 From https://currentmillis.com/
           provider: 'VS',
           condition: 'Depression',
           discDate: '12/12/2021',
@@ -95,7 +96,7 @@ export default {
           meds: 'Lexapro',
           dose: '20 mg',
           instructions: 'With water',
-          prescribed: '1/12/2020',
+          prescribed: 988789908908, // milliseconds for Wed May 02 2001 07:51:48 From https://currentmillis.com/
           provider: 'SP',
           condition: 'Anxiety',
           discDate: '12/12/2022',
@@ -107,7 +108,7 @@ export default {
           meds: 'Lithium',
           dose: '30 mg',
           instructions: 'Before food',
-          prescribed: '2/12/2020',
+          prescribed: 999999908998, // milliseconds for Sun Sep 09 2001 01:45:08 From https://currentmillis.com/
           provider: 'CS',
           condition: 'Cold',
           discDate: '12/12/2023',
@@ -207,7 +208,8 @@ export default {
     },
     dateFormatter(row, col, value, index) {
       //debugger
-      return value
+      console.log(value)
+      return moment(value).format('MMM Do YYYY')
     },
   },
 }
