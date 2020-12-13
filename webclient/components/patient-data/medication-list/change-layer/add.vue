@@ -50,7 +50,7 @@
       <el-table-column prop="meds" label="Medication" width="180"> </el-table-column>
       <el-table-column prop="dose" label="Dose" width="100"> </el-table-column>
       <el-table-column prop="instructions" label="Instructions"> </el-table-column>
-      <el-table-column prop="prescribed" label="Prescribed"> </el-table-column>
+      <el-table-column prop="prescribed" label="Prescribed" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="provider" label="Provider"> </el-table-column>
       <el-table-column prop="condition" label="Condition"> </el-table-column>
       <el-table-column prop="discDate" label="Disc date"> </el-table-column>
@@ -204,6 +204,10 @@ export default {
     },
     mfConditionDropDownCommand(p) {
       this.filters.conditions = p
+    },
+    dateFormatter(row, col, value, index) {
+      //debugger
+      return value
     },
   },
 }
