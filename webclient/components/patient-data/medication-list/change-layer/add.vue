@@ -12,7 +12,7 @@
     <el-divider direction="vertical"></el-divider>
     <el-dropdown @command="mfConditionDropDownCommand">
       <el-button size="mini" type="primary" plain round>
-        Condition - {{ conditionFilter }} <i class="el-icon-arrow-down el-icon--right"></i
+        Condition - {{ filters.conditions }} <i class="el-icon-arrow-down el-icon--right"></i
       ></el-button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="All">All</el-dropdown-item>
@@ -92,8 +92,13 @@ export default {
           notes: 'asdads',
         },
       ],
-      providerFilter: 'All',
-      conditionFilter: 'All',
+      filters: {
+        activeMeds: true,
+        inActiveMeds: true,
+        sc: true,
+        nonSC: true,
+        conditions: 'All',
+      },
     }
   },
   components: {
@@ -145,13 +150,8 @@ export default {
       this.tableData.push(newData)
     },
     mfConditionDropDownCommand(p) {
-      this.conditionFilter = p
-    },
-    mfProviderDropDownCommand(p) {
-      this.providerFilter = p
+      this.filters.conditions = p
     },
   },
 }
 </script>
-
-<style src="@/node_modules/handsontable/dist/handsontable.full.css"></style>
