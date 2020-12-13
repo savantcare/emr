@@ -147,6 +147,14 @@ export default {
             this.filteredTable.splice(i, 1)
           }
         }
+      } else if (this.filters.activeMeds === false) {
+        var i = this.filteredTable.length
+        while (i--) {
+          const diff = this.filteredTable[i].discDate - Date.now()
+          if (diff > 0) {
+            this.filteredTable.splice(i, 1)
+          }
+        }
       }
 
       if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
