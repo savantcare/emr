@@ -164,8 +164,8 @@ export default {
       for (let i = 0; i < this.filteredTable.length; i++) {
         var obj = new Object()
         obj.name = this.filteredTable[i]['meds']
-        obj.start = Date.parse(this.filteredTable[i]['prescribed'])
-        obj.end = Date.parse(this.filteredTable[i]['discDate'])
+        obj.start = this.filteredTable[i]['prescribed']
+        obj.end = this.filteredTable[i]['discDate']
         chartData.push(obj)
       }
 
