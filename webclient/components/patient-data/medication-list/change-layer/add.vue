@@ -219,6 +219,10 @@ export default {
         }
       }
 
+      if (this.tableFilters.conditions === 'All') {
+        // do nothing
+      }
+
       return this.filteredTable
     },
     cfChartOptions() {
