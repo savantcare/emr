@@ -1,26 +1,23 @@
-const patientDataPoints = 
-[
-      { key: '=dob', value: '' },
-      { key: '=name', value: '' },
-      { key: '=dxlist', value: '' },
-      { key: '=medlist', value: '' },
-      { key: '=recommendations', value: '' },
-      {
-        key: '=reminders',
-        value:
-          '',
-      },
-    ]
-    
+import clientTblForNameCt from '@/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
 
-  for(keys in patientDataPoints)
+const patientDataPoints = [
+  { key: '=dob', value: '' },
+  { key: '=name', value: '' },
+  { key: '=dxlist', value: '' },
+  { key: '=medlist', value: '' },
+  { key: '=recommendations', value: '' },
+  { key: '=reminders', value: '' },
+]
 
-  if(key ==="=dob") {
-    patientDataPoints.value = vuex.orm.query(get DOB)
+patientDataPoints.forEach(async function (data) {
+  if (data.key === '=dob') {
+    data.value = '02oct2020'
   }
 
-  if(key ==="=name") {
-    patientDataPoints.value = vuex.orm.query(get name)
+  if (data.key === '=name') {
+    const arOfObjectsFromClientDB = await clientTblForNameCt.query().where('ROW_END', 2147483648000).get()
+    data.value = arOfObjectsFromClientDB[0].firstName + ' ' + arOfObjectsFromClientDB[0].lastName
   }
+})
 
-export patientDataPoints
+export default patientDataPoints

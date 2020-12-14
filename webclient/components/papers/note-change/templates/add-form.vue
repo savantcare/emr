@@ -200,7 +200,7 @@
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
-              <vue-tribute :options="_fieldDef.tributeOptions">
+              <vue-tribute :options="doTributeOptions">
                 <input
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                   :ref="_fieldDef.nameInDb"
@@ -334,6 +334,7 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
+import patientDataPoints from '@/components/non-temporal/tribute/patient-data-dynamic-collection-terms-start-with-equal-to.js'
 import VueTribute from 'vue-tribute'
 
 export default {
@@ -349,6 +350,13 @@ export default {
     return {
       value: [],
       searchFilter: null,
+      doTributeOptions: {
+        autocompleteMode: true,
+        values: patientDataPoints,
+        positionMenu: true,
+        menuContainer: document.querySelector('.menu-container'),
+        noMatchTemplate: '',
+      },
     }
   },
   validations() {
