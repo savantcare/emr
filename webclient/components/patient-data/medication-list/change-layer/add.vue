@@ -46,11 +46,16 @@
     </el-dropdown>
     <el-divider direction="vertical"></el-divider>
 
+    <!-- TABLE START -->
     <el-table :data="cfFilteredTableData" style="width: 100%">
       <el-table-column prop="meds" label="Medication" width="180"> </el-table-column>
       <el-table-column prop="dose" label="Dose" width="100"> </el-table-column>
       <el-table-column prop="instructions" label="Instructions"> </el-table-column>
-      <el-table-column prop="prescribed" label="Prescribed" :formatter="dateFormatter"> </el-table-column>
+      <el-table-column prop="prescribed" label="Prescribed"
+        ><template slot-scope="scope">
+          {{ scope.row.prescribed | moment }}
+        </template>
+      </el-table-column>
       <el-table-column prop="provider" label="Provider"> </el-table-column>
       <el-table-column prop="condition" label="Condition">
         <template slot-scope="scope">
@@ -69,7 +74,11 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="reconciledDate" label="Reconc. date" :formatter="dateFormatter"> </el-table-column>
+      <el-table-column prop="reconciledDate" label="Reconc. date">
+        <template slot-scope="scope">
+          {{ scope.row.reconciledDate | moment }}
+        </template>
+      </el-table-column>
       <el-table-column prop="orders" label="Orders"> </el-table-column>
       <el-table-column prop="notes" label="Notes"> </el-table-column>
       <el-table-column fixed="right" label="Operations" width="120">
@@ -147,7 +156,7 @@ export default {
   components: {
     highcharts: Chart,
   },
-  tableFilters: {
+  filters: {
     moment: function (date) {
       return moment(date).format('MMM Do YYYY')
     },
@@ -265,10 +274,6 @@ export default {
     },
     mfConditionDropDownCommand(p) {
       this.tableFilters.conditions = p
-    },
-    dateFormatter(row, col, value, index) {
-      if (value === null) return 'Not applicable'
-      return moment(value).format('MMM Do YYYY')
     },
   },
 }
