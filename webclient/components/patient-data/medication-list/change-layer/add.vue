@@ -136,6 +136,7 @@ export default {
     cfFilteredTableData() {
       this.filteredTable = this.tableData.map((a) => Object.assign({}, a))
 
+      // Finding which are activemeds
       if (this.filters.activeMeds === false && this.filters.inActiveMeds === false) {
         // no matches
         return []
@@ -144,14 +145,22 @@ export default {
       } else if (this.filters.activeMeds === true) {
         var i = this.filteredTable.length
         while (i--) {
+          if (this.filteredTable[i].discDate === null) {
+            continue // discDate for Medications is null for meds that are active.
+          }
           const diff = Date.now() - this.filteredTable[i].discDate
           if (diff > 0) {
             this.filteredTable.splice(i, 1)
           }
         }
       } else if (this.filters.activeMeds === false) {
+        // looking for meds that have already been discontinued
         var i = this.filteredTable.length
         while (i--) {
+          if (this.filteredTable[i].discDate === null) {
+            this.filteredTable.splice(i, 1)
+            continue // discDate for Medications is null for meds that are active.
+          }
           const diff = this.filteredTable[i].discDate - Date.now()
           if (diff > 0) {
             this.filteredTable.splice(i, 1)
@@ -159,6 +168,7 @@ export default {
         }
       }
 
+      // Fiding which are prescribed by SC doctors
       if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
         // no matches
         return []
@@ -190,7 +200,11 @@ export default {
         var obj = new Object()
         obj.name = this.filteredTable[i]['meds']
         obj.start = this.filteredTable[i]['prescribed']
-        obj.end = this.filteredTable[i]['discDate']
+        if (this.filteredTable[i]['discDate'] === null) {
+          obj.end = Date.now()
+        } else {
+          obj.end = this.filteredTable[i]['discDate']
+        }
         chartData.push(obj)
       }
 
