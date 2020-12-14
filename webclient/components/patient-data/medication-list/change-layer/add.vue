@@ -59,8 +59,10 @@
       <el-table-column prop="notes" label="Notes"> </el-table-column>
       <el-table-column fixed="right" label="Operations" width="120">
         <template slot-scope="scope">
-          <el-button type="text" size="small">Detail</el-button>
-          <el-button type="text" size="small">Ordr</el-button>
+          <div v-if="scope.row.provider !== 'not-sc' && scope.row.discDate > Date.now()">
+            <el-button type="text" size="small">Order</el-button>
+          </div>
+          <el-button type="text" size="small">Info</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -231,8 +233,6 @@ export default {
       this.filters.conditions = p
     },
     dateFormatter(row, col, value, index) {
-      //debugger
-      console.log(value)
       return moment(value).format('MMM Do YYYY')
     },
   },
