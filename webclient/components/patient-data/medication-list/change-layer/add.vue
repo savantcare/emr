@@ -5,15 +5,15 @@
 
     <el-button
       size="mini"
-      :type="filters.activeMeds ? 'primary' : 'info'"
-      @click="filters.activeMeds = !filters.activeMeds"
+      :type="tableFilters.activeMeds ? 'primary' : 'info'"
+      @click="tableFilters.activeMeds = !tableFilters.activeMeds"
       round
       >Active</el-button
     >
     <el-button
       size="mini"
-      :type="filters.inActiveMeds ? 'primary' : 'info'"
-      @click="filters.inActiveMeds = !filters.inActiveMeds"
+      :type="tableFilters.inActiveMeds ? 'primary' : 'info'"
+      @click="tableFilters.inActiveMeds = !tableFilters.inActiveMeds"
       round
       >Discontinued</el-button
     >
@@ -21,22 +21,22 @@
 
     <el-button
       size="mini"
-      :type="filters.scPrescribed ? 'primary' : 'info'"
+      :type="tableFilters.scPrescribed ? 'primary' : 'info'"
       round
-      @click="filters.scPrescribed = !filters.scPrescribed"
+      @click="tableFilters.scPrescribed = !tableFilters.scPrescribed"
       >SC</el-button
     >
     <el-button
       size="mini"
-      :type="filters.nonSCPrescribed ? 'primary' : 'info'"
+      :type="tableFilters.nonSCPrescribed ? 'primary' : 'info'"
       round
-      @click="filters.nonSCPrescribed = !filters.nonSCPrescribed"
+      @click="tableFilters.nonSCPrescribed = !tableFilters.nonSCPrescribed"
       >Non-SC</el-button
     >
     <el-divider direction="vertical"></el-divider>
     <el-dropdown @command="mfConditionDropDownCommand">
       <el-button size="mini" type="primary" plain round>
-        Condition - {{ filters.conditions }} <i class="el-icon-arrow-down el-icon--right"></i
+        Condition - {{ tableFilters.conditions }} <i class="el-icon-arrow-down el-icon--right"></i
       ></el-button>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="All">All</el-dropdown-item>
@@ -54,7 +54,9 @@
       <el-table-column prop="provider" label="Provider"> </el-table-column>
       <el-table-column prop="condition" label="Condition">
         <template slot-scope="scope">
-          <el-button type="text" size="small">{{ scope.row.condition }}</el-button>
+          <el-button type="text" size="small" @click="tableFilters.conditions = scope.row.condition">{{
+            scope.row.condition
+          }}</el-button>
         </template>
       </el-table-column>
       <el-table-column prop="discDate" label="Disc date">
@@ -133,7 +135,7 @@ export default {
         },
       ],
       filteredTable: [],
-      filters: {
+      tableFilters: {
         activeMeds: true,
         inActiveMeds: true,
         scPrescribed: true,
@@ -145,7 +147,7 @@ export default {
   components: {
     highcharts: Chart,
   },
-  filters: {
+  tableFilters: {
     moment: function (date) {
       return moment(date).format('MMM Do YYYY')
     },
@@ -155,12 +157,12 @@ export default {
       this.filteredTable = this.tableData.map((a) => Object.assign({}, a))
 
       // Finding which are activemeds
-      if (this.filters.activeMeds === false && this.filters.inActiveMeds === false) {
+      if (this.tableFilters.activeMeds === false && this.tableFilters.inActiveMeds === false) {
         // no matches
         return []
-      } else if (this.filters.activeMeds === true && this.filters.inActiveMeds === true) {
+      } else if (this.tableFilters.activeMeds === true && this.tableFilters.inActiveMeds === true) {
         // all matches
-      } else if (this.filters.activeMeds === true) {
+      } else if (this.tableFilters.activeMeds === true) {
         var i = this.filteredTable.length
         while (i--) {
           if (this.filteredTable[i].discDate === null) {
@@ -171,7 +173,7 @@ export default {
             this.filteredTable.splice(i, 1)
           }
         }
-      } else if (this.filters.activeMeds === false) {
+      } else if (this.tableFilters.activeMeds === false) {
         // looking for meds that have already been discontinued
         var i = this.filteredTable.length
         while (i--) {
@@ -187,19 +189,19 @@ export default {
       }
 
       // Fiding which are prescribed by SC doctors
-      if (this.filters.scPrescribed === false && this.filters.nonSCPrescribed === false) {
+      if (this.tableFilters.scPrescribed === false && this.tableFilters.nonSCPrescribed === false) {
         // no matches
         return []
-      } else if (this.filters.scPrescribed === true && this.filters.nonSCPrescribed === true) {
+      } else if (this.tableFilters.scPrescribed === true && this.tableFilters.nonSCPrescribed === true) {
         // all matches
-      } else if (this.filters.scPrescribed === true) {
+      } else if (this.tableFilters.scPrescribed === true) {
         var i = this.filteredTable.length
         while (i--) {
           if (this.filteredTable[i].provider === 'not-sc') {
             this.filteredTable.splice(i, 1)
           }
         }
-      } else if (this.filters.nonSCPrescribed === true) {
+      } else if (this.tableFilters.nonSCPrescribed === true) {
         var i = this.filteredTable.length
         while (i--) {
           if (this.filteredTable[i].provider !== 'not-sc') {
@@ -262,7 +264,7 @@ export default {
       this.tableData.push(newData)
     },
     mfConditionDropDownCommand(p) {
-      this.filters.conditions = p
+      this.tableFilters.conditions = p
     },
     dateFormatter(row, col, value, index) {
       if (value === null) return 'Not applicable'
