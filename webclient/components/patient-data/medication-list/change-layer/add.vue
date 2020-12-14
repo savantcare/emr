@@ -52,7 +52,11 @@
       <el-table-column prop="instructions" label="Instructions"> </el-table-column>
       <el-table-column prop="prescribed" label="Prescribed" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="provider" label="Provider"> </el-table-column>
-      <el-table-column prop="condition" label="Condition"> </el-table-column>
+      <el-table-column prop="condition" label="Condition">
+        <template slot-scope="scope">
+          <el-button type="text" size="small">{{ scope.row.condition }}</el-button>
+        </template>
+      </el-table-column>
       <el-table-column prop="discDate" label="Disc date">
         <template slot-scope="scope">
           <div v-if="scope.row.discDate === null">
