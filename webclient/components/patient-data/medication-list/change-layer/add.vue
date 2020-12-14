@@ -1,5 +1,7 @@
 <template>
   <div>
+    <ctAddForm :_formDef="formDef"></ctAddForm>
+
     <el-button size="mini" type="primary" plain round @click="mfAdd()">Add</el-button>
     <el-divider direction="vertical"></el-divider>
 
@@ -98,13 +100,18 @@
 import Highcharts from 'highcharts'
 import Gantt from 'highcharts/modules/gantt'
 import { Chart } from 'highcharts-vue'
+Gantt(Highcharts)
+
 import moment from 'moment'
 
-Gantt(Highcharts)
+import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
+import { medicationOrderFormDef } from '@/components/patient-data/medication-orders/db/client-side/structure/medication-order-of-a-patient-table.js'
 
 export default {
   data: function () {
     return {
+      formDef: medicationOrderFormDef,
+
       tableData: [
         {
           meds: 'Aspirin',
@@ -155,6 +162,7 @@ export default {
   },
   components: {
     highcharts: Chart,
+    ctAddForm,
   },
   filters: {
     moment: function (date) {
