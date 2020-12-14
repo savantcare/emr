@@ -59,7 +59,7 @@
       <el-table-column prop="notes" label="Notes"> </el-table-column>
       <el-table-column fixed="right" label="Operations" width="120">
         <template slot-scope="scope">
-          <div v-if="scope.row.provider !== 'not-sc' && scope.row.discDate > Date.now()">
+          <div v-if="scope.row.provider !== 'not-sc' && scope.row.discDate === null">
             <el-button type="text" size="small">Order</el-button>
           </div>
           <el-button type="text" size="small">Info</el-button>
@@ -89,7 +89,7 @@ export default {
           prescribed: 1607854627231, // milliseconds for Wed Jan 31 2001 14:40:08 From https://currentmillis.com/
           provider: 'VS',
           condition: 'Depression',
-          discDate: 1627865352498,
+          discDate: null,
           reconciledDate: 1607854627231,
           orders: 1,
           notes: 'asda',
@@ -233,6 +233,7 @@ export default {
       this.filters.conditions = p
     },
     dateFormatter(row, col, value, index) {
+      if (value === null) return 'Not applicable'
       return moment(value).format('MMM Do YYYY')
     },
   },
