@@ -83,9 +83,9 @@
       <el-table-column prop="notes" label="Notes"> </el-table-column>
       <el-table-column fixed="right" label="Operations" width="120">
         <template slot-scope="scope">
-          <div v-if="scope.row.provider !== 'not-sc' && scope.row.discDate === null">
+          <span v-if="scope.row.provider !== 'not-sc' && scope.row.discDate === null">
             <el-button type="text" size="small">Order</el-button>
-          </div>
+          </span>
           <el-button type="text" size="small">Info</el-button>
         </template>
       </el-table-column>
