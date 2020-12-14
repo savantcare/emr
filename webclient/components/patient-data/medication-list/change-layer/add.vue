@@ -53,7 +53,16 @@
       <el-table-column prop="prescribed" label="Prescribed" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="provider" label="Provider"> </el-table-column>
       <el-table-column prop="condition" label="Condition"> </el-table-column>
-      <el-table-column prop="discDate" label="Disc date" :formatter="dateFormatter"> </el-table-column>
+      <el-table-column prop="discDate" label="Disc date">
+        <template slot-scope="scope">
+          <div v-if="scope.row.discDate === null">
+            <el-button type="text" size="small">Discontinue</el-button>
+          </div>
+          <div v-else>
+            {{ scope.row.discDate | moment }}
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="reconciledDate" label="Reconc. date" :formatter="dateFormatter"> </el-table-column>
       <el-table-column prop="orders" label="Orders"> </el-table-column>
       <el-table-column prop="notes" label="Notes"> </el-table-column>
@@ -131,6 +140,11 @@ export default {
   },
   components: {
     highcharts: Chart,
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMM Do YYYY')
+    },
   },
   computed: {
     cfFilteredTableData() {
