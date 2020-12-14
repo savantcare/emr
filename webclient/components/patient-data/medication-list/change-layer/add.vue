@@ -221,6 +221,13 @@ export default {
 
       if (this.tableFilters.conditions === 'All') {
         // do nothing
+      } else {
+        var i = this.filteredTable.length
+        while (i--) {
+          if (this.filteredTable[i].condition !== this.tableFilters.conditions) {
+            this.filteredTable.splice(i, 1)
+          }
+        }
       }
 
       return this.filteredTable
