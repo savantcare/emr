@@ -9,7 +9,7 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="mfGetDataContentFromP1"
+      @select="mfHandleFectedContentSelectedByUser"
     ></el-autocomplete>
   </div>
 </template>
@@ -59,7 +59,8 @@ export default {
         pCallBack(arFromClientTbl)
       }
     },
-    async mfGetDataContentFromP1(pSelectedSuggestion){
+    
+    async mfHandleFectedContentSelectedByUser(pSelectedSuggestion){
       
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         if (typeof pSelectedSuggestion.remoteUrl !== 'undefined') {
