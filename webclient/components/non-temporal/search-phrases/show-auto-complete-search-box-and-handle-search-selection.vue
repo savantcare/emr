@@ -17,7 +17,6 @@
 <script>
 import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
-import allpostDefs from '@/components/non-temporal/form-manager/all-post-definations-of-p1.js'
 
 export default {
   components: {
@@ -59,7 +58,7 @@ export default {
         pCallBack(arFromClientTbl)
       }
     },
-    
+
     async mfHandleFectedContentSelectedByUser(pSelectedSuggestion){
       
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
