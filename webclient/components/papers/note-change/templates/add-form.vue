@@ -423,7 +423,12 @@ export default {
      *  Receive tabName and array of previously saved focus position details from event listener and
      *  then call a method function named 'mf_restore_form_field_focus_on_tab_change' to restore focus position
      *
-     * Doc should have explained the reason for needing setTimeOut @raj
+     * Q1. Why use setTimeout()?
+     * Ans: The input field not initialized in the DOM (Document Object Model) at the time of changing the tab. It takes some time to initialize.
+     * Q2. Can I use callback method instead of setTimeout()?
+     * Ans: No,
+     *  Here are two different types of event use.
+1 st event is when changing the tab and 2 nd event is after creat an input element in the dom. If I use is the callback for 2 nd event is need to use the recursive function but the recursive function is bad to use instant of setTimeout.
      */
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
