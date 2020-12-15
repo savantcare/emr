@@ -9,7 +9,7 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="mfHandleFectedContentSelectedByUser"
+      @select="mfHandleFetchedContentSelectedByUser"
     ></el-autocomplete>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
       }
     },
 
-    async mfHandleFectedContentSelectedByUser(pSelectedSuggestion){
+    async mfHandleFetchedContentSelectedByUser(pSelectedSuggestion){
       
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
         if (typeof pSelectedSuggestion.remoteUrl !== 'undefined') {
