@@ -9,7 +9,7 @@
       :placeholder="cfSearchBoxPlaceholder"
       style="width: 100%"
       :highlight-first-item="true"
-      @select="mfHandleFetchedContentSelectedByUser"
+      @select="mfHandleContentOfItemSelectedByUser"
     ></el-autocomplete>
   </div>
 </template>
@@ -59,10 +59,11 @@ export default {
       }
     },
 
-    async mfHandleFetchedContentSelectedByUser(pSelectedSuggestion){
-      
+    async mfHandleContentOfItemSelectedByUser(pSelectedSuggestion){
+      console.log(pSelectedSuggestion);
       if (pSelectedSuggestion.displayLocation === 'PresentTimeStateViewLayer') {
-        if (typeof pSelectedSuggestion.remoteUrl !== 'undefined') {
+        if (pSelectedSuggestion.remoteUrl !== '') {
+          console.log("in if");
           const response = await fetch(pSelectedSuggestion.remoteUrl, {
             method: 'GET',
             headers: {

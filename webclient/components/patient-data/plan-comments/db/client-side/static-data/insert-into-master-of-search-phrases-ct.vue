@@ -17,7 +17,6 @@ export default {
         value: 'plan-comments',
         remoteUrl: 'https://www.savantcare.com/v1/api/plan-comment/public/index.php/api/scBrainToGetPlanComments?actionDoneByUserId=19724&actionDoneOnUserId=19724&clientTime=2020-12-11 15:21:17&clientTimeZone=India Standard Time',
         ctAbbr: 'rem',
-        ctToShow: 'patient-data/plan-comments/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
     })
