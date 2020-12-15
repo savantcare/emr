@@ -64,9 +64,9 @@
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
-        <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-          <li class="item" id="container-for-one-appointment">
-            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
+        <section v-for="(item, itemIndex) in cf_get_entity_value_during_each_appt" :key="itemIndex">
+          <li class="item" :id="'container-for-one-appointment_'+itemIndex">
+            <div v-if="item.apptStatus === 'locked'">
               Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
@@ -272,9 +272,14 @@ export default {
       for (let j = 0; j < arOfAppts.length; j++) {
         if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
+          // Programmatically use VueScrollTo. Ref: https://www.npmjs.com/package/vue-scrollto
+          setTimeout(() => {
+            const element = document.getElementById('container-for-one-appointment_'+j);
+            const objScrollTo  = this.$scrollTo(element, 100, {container:'#container-for-all-appointments', x: true, y: false});
+            // objScrollTo();
+          }, 200);
         }
       }
-
       return arOfAppts
     },
 
