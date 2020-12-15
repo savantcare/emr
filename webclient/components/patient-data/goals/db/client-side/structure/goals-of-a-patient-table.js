@@ -107,13 +107,3 @@ export const goalsFormDef = {
     },
   },
 }
-
-export const goalApiData = {
-  url: 'https://www.savantcare.com/v1/api/goal-api/public/index.php/api/scBrainToGetGoal',
-  getParams: {
-    activityDoneByUserId: '19724',
-    clientTimeOfActivity: '2020-12-11 15:21:17',
-    clientTimeZoneAbbreviationOfActivity: 'India Standard Time',
-    userId: '19724',
-  },
-}
