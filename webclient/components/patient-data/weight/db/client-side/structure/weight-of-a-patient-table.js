@@ -68,7 +68,7 @@ export const weightFormDef = {
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
-      type: 'textarea',
+      type: 'tribute-editor',
       showLabel: true,
     },
     {

@@ -68,7 +68,7 @@ export const heightFormDef = {
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
-      type: 'textarea',
+      type: 'tribute-editor',
       showLabel: true,
     },
     {

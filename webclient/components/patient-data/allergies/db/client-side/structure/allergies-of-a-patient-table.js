@@ -76,9 +76,9 @@ export const allergiesFormDef = {
   plural: 'allergies',
   singular: 'allergy',
   fieldsDef: [
-    { nameInDb: 'allergen', nameInUi: 'Allergen', type: 'text' },
-    { nameInDb: 'reaction', nameInUi: 'Reaction', type: 'text' },
-    { nameInDb: 'onset', nameInUi: 'Onset', type: 'text' },
+    { nameInDb: 'allergen', nameInUi: 'Allergen', type: 'tribute-input' },
+    { nameInDb: 'reaction', nameInUi: 'Reaction', type: 'tribute-input' },
+    { nameInDb: 'onset', nameInUi: 'Onset', type: 'tribute-input' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['allergen'],
   fnCreated: function () {

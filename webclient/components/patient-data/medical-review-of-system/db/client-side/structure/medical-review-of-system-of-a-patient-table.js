@@ -172,7 +172,7 @@ export const medicalReviewOfSystemFormDef = {
     {
       nameInDb: 'any_other_signs_symptoms',
       nameInUi: '15. Do you have any other signs, symptoms or problems other than above? If yes, please explain',
-      type: 'textarea',
+      type: 'tribute-editor',
       showLabel: true,
       style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },

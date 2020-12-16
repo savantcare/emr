@@ -57,7 +57,7 @@ export const goalsFormDef = {
   plural: 'goals',
   singular: 'goal',
   fieldsDef: [
-    { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },
+    { nameInDb: 'description', nameInUi: 'Description', type: 'tribute-editor' },
     {
       nameInDb: 'rating',
       nameInUi: 'Rating',
