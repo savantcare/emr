@@ -118,8 +118,13 @@ export default {
           const arOfObjectsFromClientDB = allPatientDataTbls[pSelectedSuggestion.value].fnGetPresentUniqueUuidNotEmptyRows(
             'description'
           )
-          this.localOrmResult.push(arOfObjectsFromClientDB);
-          console.log("data 1",this.localOrmResult);
+          console.log("hie",arOfObjectsFromClientDB.length);
+          if (arOfObjectsFromClientDB.length > 0) {   
+            console.log("in if",arOfObjectsFromClientDB.length);
+            this.localOrmResult.push(arOfObjectsFromClientDB);
+          }
+          
+          console.log("data 2",this.localOrmResult);
 
         }
         
