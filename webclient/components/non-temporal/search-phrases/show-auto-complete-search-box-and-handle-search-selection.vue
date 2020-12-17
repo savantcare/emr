@@ -1,5 +1,19 @@
 <template>
   <div id="manage-layer1-right-side-cards">
+    <el-card
+      v-for="cardComponent in this.localOrmResult"
+      :key="cardComponent.clientSideUniqRowId"
+      style="margin: 10px"
+    >
+      <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
+      <!--  Why not use keep-alive before <component v-bind:is="card.ctToShow"></component> 
+                Sorrounding component with keepAlive does not help. Since previous rendering of rex
+                is not hidden. When user types rex 2 times, rex is being displayed 2 times
+
+                The vue inbuilt component <component /> acts as a placeholder for another component and accepts a special :is prop with the name of the component it should render.                
+      -->
+      <div v-for="card in cardComponent" :key="card.clientSideUniqRowId">{{ card.description }}</div>
+    </el-card>
     <el-card v-html="this.results"></el-card>
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
     <el-autocomplete
@@ -17,16 +31,17 @@
 <script>
 import clientTblOfCtSearchPhrases from '@/components/non-temporal/search-phrases/db/client-side/structure/table-to-store-search-phrases-given-by-each-components.js'
 import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
-
+import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 export default {
   components: {
     // core
   },
   data() {
-    return { searchKeyword: '', results: ''}
+    return { searchKeyword: '', results: '', localOrmResult : []}
   },
   computed: {
     cfSearchBoxPlaceholder() {
+      
       let arFromClientTbl = {}
       arFromClientTbl = clientTblOfCtSearchPhrases.query().orderBy('searchPhraseUsageCount', 'desc').get()
       const objRowFromOrm = arFromClientTbl[0]
@@ -35,6 +50,31 @@ export default {
       } else {
         return 'e.g. screening'
       }
+    },
+    cfArCardsInLeftSideOfViewLayer() {
+      console.log("i am computed function 1")
+      const arOfObjectsFromClientDB = clientTblOfDynamicCards
+        .query()
+        .where('currentDisplayStateOfComponent', (value) => value > 0)
+        .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideLeftScreenExtension')
+
+        .get()
+      console.log("i am here",arOfObjectsFromClientDB);
+      let componentToShowPath = ''
+
+      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
+        componentToShowPath = arOfObjectsFromClientDB[i]['componentToShowPath']
+        if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
+          console.log('requring the Ct Obj')
+
+          this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
+            arOfObjectsFromClientDB[i]['componentToShowPath']).default
+        }
+
+        arOfObjectsFromClientDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[componentToShowPath]
+      }
+
+      return arOfObjectsFromClientDB
     },
   },
   mounted() {},
@@ -75,11 +115,23 @@ export default {
             .then(data => this.results = data.data);
         } else {
           // Fetch Data from local vuex-orm
-          console.log("Fetch Data from local vuex-orm")
+          const arOfObjectsFromClientDB = allPatientDataTbls[pSelectedSuggestion.value].fnGetPresentUniqueUuidNotEmptyRows(
+            'description'
+          )
+          this.localOrmResult.push(arOfObjectsFromClientDB);
+          console.log("data 1",this.localOrmResult);
+
         }
         
 
       }  else if (pSelectedSuggestion.displayLocation === 'edit-layer') {
+        const objCtToAdd = {
+          label: pSelectedSuggestion.value,
+          // Here I have to use a variable otherwise webpack gives error. https://stackoverflow.com/questions/57349167/vue-js-dynamic-image-src-with-webpack-require-not-working
+          ctToShow: require('@/components/' + pSelectedSuggestion.ctToShow).default,
+          id: pSelectedSuggestion.id,
+          closable: true,
+        }
         // Change layer
         this.$store.commit('mtfShowNewFirstTabInEditLayer', objCtToAdd)
       }
