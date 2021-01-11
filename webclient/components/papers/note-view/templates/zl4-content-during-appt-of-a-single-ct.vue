@@ -64,10 +64,10 @@
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
-        <section v-for="(item, itemIndex) in cf_get_entity_value_during_each_appt" :key="itemIndex">
-          <li class="item" :id="'container-for-one-appointment_'+itemIndex">
-            <div v-if="item.apptStatus === 'locked'">
-              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
+        <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
+          <li class="item" :id="'container-for-one-appointment_'+index">
+            <div v-if="objAppt.apptStatus === 'locked'">
+              Appt on: {{ objAppt.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
               id="container-to-ctrl-placement-of-every-row-in-view-note"
@@ -79,14 +79,14 @@
             >
               <div
                 id="container-for-all-rows-of-one-appointment"
-                v-for="dataRow in item[_formDef.id]"
+                v-for="dataRow in objAppt[_formDef.id]"
                 :key="dataRow.clientSideUniqRowId"
               >
                 <getRowContent
                   :_dataRow="dataRow"
                   :_formDef="_formDef"
-                  :_ApptStatus="item['apptStatus']"
-                  :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+                  :_ApptStatus="objAppt['apptStatus']"
+                  :_apptStartMilliSecsOnCalendar="objAppt['apptStartMilliSecsOnCalendar']"
                 />
                 <!-- end of each-row-of-entity -->
               </div>
