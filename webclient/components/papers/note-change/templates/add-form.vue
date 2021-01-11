@@ -337,6 +337,7 @@ import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-
 import mergedDataPoints from '@/components/non-temporal/tribute/merged-collection.js'
 import VueTribute from 'vue-tribute'
 
+var findElementTimer;
 export default {
   created() {
     /* Goal: init the values when the form is mounted. For e.g. when a form is mounted I want all slider values to be init so slider can show the current state.
@@ -435,10 +436,36 @@ export default {
      */
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
-      setTimeout(() => this.mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails), 200)
+      /**
+       *  `mf_to_find_the_element` the function work 2 think
+       * 1st: the listener (this.$root.$on) method is invoked frequently, it might greatly affect the performance of the browser
+       * 2nd: try to find the input is initialized in the DOM or not
+       *   */
+      this.mf_to_find_the_element(this.mf_restore_form_field_focus_on_tab_change, pTabName, pArFieldDetails);
     })
   },
   methods: {
+    mf_to_find_the_element(callBack, pTabName, pArFieldDetails) {
+      let calling = 0;
+      // 2nd: `fiendElement` function try to find the input is initialized in the DOM or not;
+      let fiendElement = function () {
+        if(pArFieldDetails) {
+          callBack.apply(this, [pTabName, pArFieldDetails])
+        } else {
+          if(calling < 4) {
+            setTimeout(()=>fiendElement(), calling*100);
+          } else {
+            callBack.apply(this, [pTabName, pArFieldDetails])
+          }
+        }
+        ++calling
+      }
+      // 1st: This is debouncing -> time-consuming computations
+      clearTimeout(findElementTimer);
+      findElementTimer = setTimeout(function() {
+        fiendElement();
+      }, 500);
+    },
     mf_auto_resize_textarea(event) {
       /**
        * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
@@ -480,6 +507,7 @@ export default {
       }
     },
     mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails) {
+      console.log('element focus', pTabName, pArFieldDetails);
       /**
        * Form focus step: 9/9
        * In this function two types of scenario may happened:
