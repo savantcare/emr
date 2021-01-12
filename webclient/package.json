@@ -39,6 +39,7 @@
     "uuid": "^8.3.0",
     "vue": "^2.6.11",
     "vue-authenticate": "^1.4.1",
+    "vue-autosuggest": "^2.2.0",
     "vue-awesome-swiper": "^4.1.1",
     "vue-clickaway": "^2.2.2",
     "vue-handsontable": "0.0.2",
