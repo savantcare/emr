@@ -69,13 +69,13 @@ export const bloodSugarFormDef = {
       nameInDb: 'notes',
       nameInUi: 'Notes',
       type: 'textarea',
-      showLabel: true,
+      showLabel: false,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',
       nameInUi: 'Measured on',
       type: 'date',
-      showLabel: true,
+      showLabel: false,
     },
   ],
   showReviewedButtonInForm: false,
@@ -88,7 +88,7 @@ export const bloodSugarFormDef = {
   },
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
     value: {
