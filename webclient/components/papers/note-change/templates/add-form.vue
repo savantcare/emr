@@ -231,7 +231,7 @@
                 to use el-input. Hence, I am using simple textarea for vue-tribute.
                 I am assigning a class 'el-textarea__inner' for same design as el-input.
               -->
-              <vue-tribute :options="doTributeOptions">
+              <!-- <vue-tribute :options="doTributeOptions">
                 <textarea
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                   :ref="_fieldDef.nameInDb"
@@ -245,20 +245,22 @@
                     mf_auto_resize_textarea($event)
                   "
                 ></textarea>
-              </vue-tribute>
-              <!-- <vue-autosuggest
-                :suggestions="[{data:['Frodo', 'Samwise', 'Gandalf', 'Galadriel', 'Faramir', 'Éowyn']}]"
-                :input-props="{id:'autosuggest__input'}"
-                placeholder="test"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
-                    mf_auto_resize_textarea($event)"
-                @selected="selectHandler"
+              </vue-tribute>-->
+              <vue-autosuggest
+                v-model="query"
+                :suggestions="filteredOptions"
+                @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 @click="clickHandler"
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @selected="mf_set_fld_value_using_cache($event,ormRow.clientSideUniqRowId,_fieldDef.nameInDb)"
+                :get-suggestion-value="getSuggestionValue"
+                :placeholder="_fieldDef.nameInUi"
+                :input-props="{id:'autosuggest__input'}"
               >
-                <template slot-scope="{suggestion}">
-                  <span class="my-suggestion-item">{{suggestion.item}}</span>
-                </template>
-              </vue-autosuggest>-->
+                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                  <div style="{ display: 'flex', color: '#3f5efb'}">{{suggestion.item.value}}</div>
+                </div>
+              </vue-autosuggest>
             </div>
 
             <!-- input/textarea -->
