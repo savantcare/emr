@@ -210,7 +210,6 @@
                 v-model="query"
                 :suggestions="filteredOptions"
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
-                @click="clickHandler"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @selected="mf_set_fld_value_using_cache($event,ormRow.clientSideUniqRowId,_fieldDef.nameInDb)"
                 :get-suggestion-value="getSuggestionValue"
@@ -231,7 +230,7 @@
                 to use el-input. Hence, I am using simple textarea for vue-tribute.
                 I am assigning a class 'el-textarea__inner' for same design as el-input.
               -->
-              <!-- <vue-tribute :options="doTributeOptions">
+              <vue-tribute :options="doTributeOptions">
                 <textarea
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                   :ref="_fieldDef.nameInDb"
@@ -245,12 +244,11 @@
                     mf_auto_resize_textarea($event)
                   "
                 ></textarea>
-              </vue-tribute>-->
+              </vue-tribute>
               <vue-autosuggest
                 v-model="query"
                 :suggestions="filteredOptions"
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
-                @click="clickHandler"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @selected="mf_set_fld_value_using_cache($event,ormRow.clientSideUniqRowId,_fieldDef.nameInDb)"
                 :get-suggestion-value="getSuggestionValue"
@@ -477,51 +475,6 @@ export default {
     })
   },
   methods: {
-    clickHandler(item) {
-      console.log("click",item);
-      
-      // event fired when clicking on the input
-    },
-    onSelected(pEvent,pClientRowId, pFldName) {  
-      this.query = pEvent.item.value;
-      // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
-      //console.log()
-      let rowStatus = 0
-
-      /**
-       * Why we need to check pEvent is object?
-       * -- In some cases like vue-tribute it returns a object otherwise returns as string.
-       */
-      pEvent = pEvent.item.value
-      if (pEvent instanceof Object) {
-        pEvent = item.item.value
-      }
-      // if (!pEvent) return // I have removed this line of code because if pEvent comes blank then
-      // we need to update field value as blank in ORM.
-      if (pFldType === 'number') {
-        if (pEvent && pEvent > 0) {
-          rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
-        } else {
-          rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
-        }
-      } else {
-        if (pEvent && pEvent.length > 2) {
-          rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
-        } else {
-          rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
-        }
-      }
-      // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
-      allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
-      this.$forceUpdate()
-    },
-    onInputChange(text) {
-      console.log("onInputChange",text);
-      // event fired when the input changes
-      if (text === '' || text === undefined) {
-        return;
-      }
-    },
     /**
      * This is what the <input/> value is set to when you are selecting a suggestion.
      */
