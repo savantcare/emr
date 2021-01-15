@@ -29,6 +29,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
+    $router->get('test/', ['uses' => 'oAuthLoginController@index']);
 
     // Blood Pressure
     $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
