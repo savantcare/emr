@@ -1,6 +1,9 @@
 <template>
   <div>
     <el-button type="primary" @click="auth('oauth2')">Login with OAuth</el-button>Choose a patient
+    
+     Button to login
+    
     <br />
     <br />
     <!-- {{getUserInfo}} -->
@@ -54,7 +57,7 @@ Vue.use(VueAuthenticate, {
         clientId: 'clientId',
         redirectUri: 'redirectUri'
       }
-    },
+    }
   },
 })
 export default {
@@ -82,6 +85,15 @@ export default {
     },
   },
   methods: {
+
+    authenticate: function (provider) {
+      this.$auth.authenticate(provider).then(function (authResponse) {
+        cnosle.log(authResponse)
+        // Execute application logic after successful social authentication
+      })
+    },
+
+
     auth: function (provider) {
       if (this.$auth.isAuthenticated()) {
         //this.$auth.logout()
