@@ -10,6 +10,14 @@
       why1="Find existing rows in edit state. If there no such rows inside v-else creates a empty row "
       why2="cfEmptyRowAtBottom creates a empty row at bottom is the new row has some data in it. This empty row at bottom allows faster entering of data"
     >
+      <el-button
+        size="mini"
+        round
+        :type="normalDefaultBtn ? 'primary' : 'plain'"
+        @click="mf_set_fld_default_value(_formDef,cfGetClientTblNewRowsInEditState)"
+        style="float:right"
+      >All Normal</el-button>
+
       <div
         v-for="(ormRow, index) in cfGetClientTblNewRowsInEditState"
         :key="index"
@@ -39,9 +47,7 @@
 
             <!-- AUTO COMPLETE  -->
             <div v-else-if="_fieldDef.type === 'autocomplete'">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
 
               <el-autocomplete
                 v-model="value[_fieldDef.nameInDb]"
@@ -55,10 +61,19 @@
             </div>
 
             <!-- MULTI SELECT WITH BUTTONS -->
-            <div v-else-if="_fieldDef.type === 'multi-select-with-buttons'" id="div-containing-all-buttons">
-              <div v-if="_fieldDef.showLabel" :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'">
-                <b><span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span></b>
+            <div
+              v-else-if="_fieldDef.type === 'multi-select-with-buttons'"
+              id="div-containing-all-buttons"
+            >
+              <div
+                v-if="_fieldDef.showLabel"
+                :style="_fieldDef.compactDisplay ? 'display: inline' : 'display: block'"
+              >
+                <b>
+                  <span v-html="filterTermHighlight(_fieldDef.nameInUi)"></span>
+                </b>
               </div>
+
               <div
                 v-for="(item, optionIndex) in _formDef.fnGetAllSelectOptionsAndSelectedForAField(
                   _fieldDef.nameInDb,
@@ -77,6 +92,10 @@
                   why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
                   :id="_fieldDef.nameInDb + optionIndex"
                 >
+                  <span
+                    style="display:none"
+                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb,'247']}}</span>
+
                   <el-button
                     size="mini"
                     round
@@ -86,18 +105,20 @@
                       mf_set_fld_value_using_cache(item.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
                       mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb + optionIndex, index)
                     "
-                    ><span v-html="filterTermHighlight(item.value)"></span
-                  ></el-button>
-                  <span v-if="item.subText"><br />({{ item.subText }})</span>
+                  >
+                    <span v-html="filterTermHighlight(item.value)"></span>
+                  </el-button>
+                  <span v-if="item.subText">
+                    <br />
+                    {{ item.subText }}
+                  </span>
                 </span>
               </div>
             </div>
 
             <!-- SELECT -->
             <div v-else-if="_fieldDef.type === 'select'">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <el-select v-model="value" filterable :placeholder="_fieldDef.nameInUi">
                 <el-option
                   v-for="item in _fieldDef.selectOptions"
@@ -105,16 +126,13 @@
                   :label="item.label"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                >
-                </el-option>
+                ></el-option>
               </el-select>
             </div>
 
             <!-- SLIDER type field value[_fieldDef.nameInDb] -->
             <div v-else-if="_fieldDef.type === 'slider'">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <div class="block">
                 <el-slider
                   v-model="value[_fieldDef.nameInDb]"
@@ -125,8 +143,7 @@
                   :marks="_fieldDef.marks"
                   :format-tooltip="_fieldDef.ft"
                   @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                >
-                </el-slider>
+                ></el-slider>
               </div>
             </div>
 
@@ -137,19 +154,14 @@
                   v-model="value[_fieldDef.nameInDb]"
                   v-bind="_formDef.sliderOptions"
                   @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                >
-                </vue-slider>
-                <div style="text-align: center">
-                  {{ _fieldDef.nameInUi }}
-                </div>
+                ></vue-slider>
+                <div style="text-align: center">{{ _fieldDef.nameInUi }}</div>
               </div>
             </div>
 
             <!-- DATE -->
             <div v-if="_fieldDef.type === 'date'">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
 
               <el-date-picker
                 :ref="_fieldDef.nameInDb"
@@ -161,8 +173,7 @@
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 :placeholder="_fieldDef.nameInUi"
-              >
-              </el-date-picker>
+              ></el-date-picker>
             </div>
 
             <!-- NUMBER -->
@@ -173,11 +184,9 @@
                 Ref: https://github.com/ElemeFE/element/issues/7622
 
                 Solution: I have added :id attribute in parent div and in javascript use like - 'div#parent_div_id input'
-              -->
+            -->
             <div v-if="_fieldDef.type.includes('number')" :id="_fieldDef.nameInDb">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <el-input-number
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 :ref="_fieldDef.nameInDb"
@@ -192,14 +201,12 @@
 
             <!-- tribute-input/textarea -->
             <div v-if="_fieldDef.type.includes('tribute-input')" :id="_fieldDef.nameInDb">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <!--
                 According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
-                -->
+              -->
               <vue-tribute :options="doTributeOptions">
                 <input
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
@@ -216,14 +223,12 @@
 
             <!-- tribute-textarea -->
             <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <!--
                 According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
                 to use el-input. Hence, I am using simple textarea for vue-tribute.
                 I am assigning a class 'el-textarea__inner' for same design as el-input.
-                -->
+              -->
               <vue-tribute :options="doTributeOptions">
                 <textarea
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
@@ -243,16 +248,14 @@
 
             <!-- input/textarea -->
             <div v-if="_fieldDef.type.includes('text')" :id="_fieldDef.nameInDb">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
+              <div v-if="_fieldDef.showLabel">{{ _fieldDef.nameInUi }}</div>
               <!-- 
                 Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component. 
                 The Cts inside the tab are not remounted when the tavs are switched
 
                 Form focus step: 1/9
                   On focus event call fn named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
-                -->
+              -->
               <el-input
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 :ref="_fieldDef.nameInDb"
@@ -276,7 +279,7 @@
                Remove should not come if there is only one _formDef.maxRow
                
                TODO Not clear: Why is there a v-if condition in el-button
-               -->
+          -->
           <el-button
             v-if="
               mf_get_ar_of_data_rows() < _formDef.maxNumberOfTemporallyValidRows ||
@@ -287,13 +290,17 @@
             size="mini"
             type="warning"
             @click="mfDeleteRowInClientSideTable(ormRow.clientSideUniqRowId)"
-            >Remove</el-button
-          >
+          >Remove</el-button>
         </div>
         <!-- Just ended processing one row -->
         <!-- goal: show divider only between rows and not at the end of the last row -->
-        <div v-if="index == cfGetClientTblNewRowsInEditState.length - 1" style="grid-column: 1 / -1"></div>
-        <div v-else><el-divider /></div>
+        <div
+          v-if="index == cfGetClientTblNewRowsInEditState.length - 1"
+          style="grid-column: 1 / -1"
+        ></div>
+        <div v-else>
+          <el-divider />
+        </div>
         <!-- End of the divider placement logic -->
       </div>
     </div>
@@ -301,9 +308,12 @@
     <div v-else>{{ mf_add_empty_row_in_client_side_table() }}</div>
 
     <!-- Form action buttons below the form -->
-    <el-button v-if="_formDef.showReviewedButtonInForm === true" type="primary" plain @click="mfOnReviewed"
-      >Reviewed</el-button
-    >
+    <el-button
+      v-if="_formDef.showReviewedButtonInForm === true"
+      type="primary"
+      plain
+      @click="mfOnReviewed"
+    >Reviewed</el-button>
 
     <!-- Add. v-if makes sure that for Ct like chief complaint it will not display add if greater then 0 rows. !_formDef.maxNumberOfTemporallyValidRows makes sure that is a ct has not defined max Rows then the add button comes. -->
     <el-button
@@ -316,8 +326,7 @@
       size="mini"
       round
       @click="mf_add_empty_row_in_client_side_table"
-      >Add more</el-button
-    >
+    >Add more</el-button>
     <el-button
       size="mini"
       round
@@ -325,8 +334,7 @@
       type="warning"
       plain
       @click="mf_on_reset_form"
-      >Reset form</el-button
-    >
+    >Reset form</el-button>
   </div>
 </template>
 <script>
@@ -349,7 +357,10 @@ export default {
   data() {
     return {
       value: [],
+      defaultNormalArray: ['#Shortness_of_breath#','#Shakiness#','#Feeling_hotter_than_everyone#'],
+      clickedDataArray:[],
       searchFilter: null,
+      normalDefaultBtn : false,
       doTributeOptions: {
         autocompleteMode: true,
         values: mergedDataPoints,
@@ -357,6 +368,7 @@ export default {
         menuContainer: document.querySelector('.menu-container'),
         noMatchTemplate: '',
       },
+      allFieldValue: []
     }
   },
   validations() {
@@ -439,6 +451,11 @@ export default {
     })
   },
   methods: {
+    isInArray(value, array) {
+       console.log(value, array);
+       
+      return array.indexOf(value) > -1;
+    },
     mf_auto_resize_textarea(event) {
       /**
        * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
@@ -600,7 +617,8 @@ export default {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
       //console.log()
       let rowStatus = 0
-
+      console.log(pEvent);
+      this.clickedDataArray.push(pEvent);
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.
@@ -624,7 +642,7 @@ export default {
         }
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
-
+      //console.log(rowStatus,this._formDef.id);
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
@@ -661,6 +679,22 @@ export default {
        */
       const eventName = 'event-from-form-field-to-set-focus'
       this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
+    },
+    mf_set_fld_default_value(item,cfGetClientTblNewRowsInEditState){
+      if(this.normalDefaultBtn){
+        this.normalDefaultBtn = false
+      } else {
+        this.normalDefaultBtn = true
+      }
+      for(let row in this.clickedDataArray){
+        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.clickedDataArray[row]][0],this.allFieldValue[this.clickedDataArray[row]][1],this.allFieldValue[this.clickedDataArray[row]][2],this.allFieldValue[this.clickedDataArray[row]][3])      
+      }
+      
+      for(let row in this.defaultNormalArray){
+        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.defaultNormalArray[row]][0],this.allFieldValue[this.defaultNormalArray[row]][1],this.allFieldValue[this.defaultNormalArray[row]][2],this.allFieldValue[this.defaultNormalArray[row]][3])
+        
+      }
+       
     },
   },
 }
