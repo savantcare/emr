@@ -82,6 +82,8 @@ export const bmiFormDef = {
   showResetFormButton: false,
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['bmiInKgM2'],
+  ctrlPlacementOfEveryRowInViewNote: 'padding:0px',
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding:0px',
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []
