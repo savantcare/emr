@@ -11,6 +11,7 @@
       why2="cfEmptyRowAtBottom creates a empty row at bottom is the new row has some data in it. This empty row at bottom allows faster entering of data"
     >
       <el-button
+        v-if="this._formDef.id == 'medical_review_of_system'"
         size="mini"
         round
         :type="normalDefaultBtn ? 'primary' : 'plain'"
@@ -681,6 +682,8 @@ export default {
       this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
     },
     mf_set_fld_default_value(item,cfGetClientTblNewRowsInEditState){
+      console.log(this._formDef.id);
+      
       if(this.normalDefaultBtn){
         this.normalDefaultBtn = false
       } else {
