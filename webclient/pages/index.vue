@@ -47,6 +47,8 @@ import GoogleLogin from 'vue-google-login'
 import { LoaderPlugin } from 'vue-google-login';
 import VueCookies from 'vue-cookies'
 
+//See the reference link here https://www.npmjs.com/package/vue-google-login
+// Created client id from https://console.developers.google.com/
 Vue.use(LoaderPlugin, {
         client_id: '709054643834-30j9268npj9tltbhnbdso8etbpkk22g6.apps.googleusercontent.com'
   });
@@ -55,7 +57,6 @@ Vue.use(LoaderPlugin, {
         // console.log('isSignedIn: ',auth2.isSignedIn.get())
         // console.log('currentUser: ',auth2.currentUser.get())
         const authResponse = auth2.currentUser.get().getAuthResponse()
-        console.log('auth: ',authResponse,Object.keys(authResponse).length)
         if(Object.keys(authResponse).length>0){
           console.log('google login')
         }else{
@@ -74,10 +75,19 @@ export default {
   created: function () {
         this.getUserInfo        
         console.log('From cookie: ',$cookies.get('loginObj'))
-
-        this.setUserAccessToken
+        this.resetUserAccessToken()
         
     },
+
+  //This is testing to get google id_token before expiry
+  // mounted() {
+  //   this.interval = setInterval(() => {
+  //     this.resetUserAccessToken()
+  //   },5000)
+  // },
+
+
+
   computed: {
     getUserInfo() {
       this.userData = localStorage.getItem('authorizedUserDetails')
@@ -92,20 +102,6 @@ export default {
       }      
       
     },
-
-    setUserAccessToken(){
-      const googleOauth = Vue.GoogleAuth
-      googleOauth.then(auth2 => {
-        const authResponse = auth2.currentUser.get().getAuthResponse()
-        console.log('auth: ',authResponse,Object.keys(authResponse).length)
-        if(Object.keys(authResponse).length>0){
-          console.log('google login')
-        }else{
-          console.log('google logout')
-          this.logOutUser()
-        }
-      })
-    }
     
   },
   data: function () {
@@ -139,7 +135,7 @@ export default {
               email:profile.getEmail()
             }
             this.loggedinUser = loginObj
-            console.log(googleUser.getAuthResponse()) //Get the response object from the user's auth session. access_token and so on
+            //console.log(googleUser.getAuthResponse()) //Get the auth response object from the user's auth session. access_token and so on
             if(this.loggedinUser){
               localStorage.setItem('authorizedUserDetails',JSON.stringify(this.loggedinUser))
               this.logoutButton = true
@@ -153,7 +149,6 @@ export default {
                 email: this.loggedinUser.email
               }
               }).then(function (response) {
-                console.log(response.data)
                 //get loggedin user's details from scemr database and set into browser cookie
                 const userObj = response.data
                 Vue.$cookies.set('loginObj',userObj)
@@ -169,7 +164,6 @@ export default {
         const auth2 = gapi.auth2.getAuthInstance();     
         console.log(auth2)   
         auth2.signOut().then(function () {
-          console.log('User signed out.');
           auth2.disconnect();  
         });
 
@@ -177,7 +171,20 @@ export default {
         this.$cookies.remove("loginObj")
         this.logoutButton = false
         this.loggedinUser = null
-      },      
+      }, 
+      
+      resetUserAccessToken(){
+         Vue.GoogleAuth.then(auth2 => {
+           const authResponse = auth2.currentUser.get().getAuthResponse()
+           if(Object.keys(authResponse).length>0){
+             console.log('google login')
+             this.authResponse = authResponse
+           }else{
+             console.log('google logout')
+             this.logOutUser()
+           }
+         })
+     }
       
   }
 }
