@@ -51,7 +51,7 @@ export default {
     UseServerDBForFamilyHistory: false,
     makeFetchPostApiCalls: false,
     loadInitialDataFromServer: false,
-    baseUrlForLumen: 'http://localhost:8000',
+    baseUrlForLumen: 'http://localhost:3000',
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.
