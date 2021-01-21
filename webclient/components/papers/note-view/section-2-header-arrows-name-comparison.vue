@@ -1,58 +1,78 @@
 <template>
-  <el-row type="flex" justify="space-between">
-    <el-col :span="4"
-      ><div class="grid-content">
-        <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
-          <el-button-group class="h1" style="float: left; display: none">
-            <el-button
-              @click="mfLeftArrowClickedLetUsGoToPrevAppt"
-              class="el-icon-arrow-left"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-            <!-- If this note is being compared then do not show the comparison icon -->
-            <el-button
-              v-if="!isThisNoteBeingCompared"
-              class="el-icon-document-copy"
-              @click="compareIconClickedInHeaderSoSetUpStateToCompare('prev')"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-          </el-button-group>
+  <div>
+    <el-row type="flex" justify="space-between">
+      <el-col :span="4"
+        ><div class="grid-content">
+          <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
+            <el-button-group class="h1" style="float: left; display: none">
+              <el-button
+                @click="mfLeftArrowClickedLetUsGoToPrevAppt"
+                class="el-icon-arrow-left"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+              <!-- If this note is being compared then do not show the comparison icon -->
+              <el-button
+                v-if="!isThisNoteBeingCompared"
+                class="el-icon-document-copy"
+                @click="compareIconClickedInHeaderSoSetUpStateToCompare('prev')"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+            </el-button-group>
+          </div>
         </div>
-      </div>
-    </el-col>
-    <el-col :span="16"
-      ><div class="grid-content">
-        <h2 style="text-align: center"><namePrintSection></namePrintSection></h2></div
-    ></el-col>
-    <el-col :span="4"
-      ><div class="grid-content">
-        <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
-          <el-button-group class="h1" style="display: none">
-            <!-- If this note is being compared then do not show the comparison icon -->
-            <el-button
-              v-if="!isThisNoteBeingCompared"
-              class="el-icon-document-copy"
-              @click="compareIconClickedInHeaderSoSetUpStateToCompare('next')"
-              style="padding: 3px; color: #c0c4cc; border: none"
-            ></el-button>
-            <el-button
-              class="el-icon-arrow-right"
-              style="padding: 3px; color: #c0c4cc; border: none"
-              @click="mfRightArrowClickedLetUsGoToNextAppt"
-            ></el-button>
-          </el-button-group>
+      </el-col>
+      <el-col :span="16">
+        <div class="grid-content">
+          <h2
+            style="text-align: center; cursor: pointer"
+            @click="dblOnAndOffSwitchToShowPatientDetails = !dblOnAndOffSwitchToShowPatientDetails"
+          >
+            <namePrintSection></namePrintSection>
+          </h2>
         </div>
-      </div>
-    </el-col>
-  </el-row>
+      </el-col>
+      <el-col :span="4"
+        ><div class="grid-content">
+          <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
+            <el-button-group class="h1" style="display: none">
+              <!-- If this note is being compared then do not show the comparison icon -->
+              <el-button
+                v-if="!isThisNoteBeingCompared"
+                class="el-icon-document-copy"
+                @click="compareIconClickedInHeaderSoSetUpStateToCompare('next')"
+                style="padding: 3px; color: #c0c4cc; border: none"
+              ></el-button>
+              <el-button
+                class="el-icon-arrow-right"
+                style="padding: 3px; color: #c0c4cc; border: none"
+                @click="mfRightArrowClickedLetUsGoToNextAppt"
+              ></el-button>
+            </el-button-group>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :style="cfGetCssForAnimateToShowPatientDetails">
+      <i class="el-icon-caret-top"></i>
+      <el-card>
+        <patientDetailsPrintSection></patientDetailsPrintSection>
+      </el-card>
+    </el-row>
+  </div>
 </template>
 
 <script>
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 import clientTblOfLeftSideViewCards from '@/components/papers/note-view/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
 import namePrintSection from './section-3-name.vue'
+import patientDetailsPrintSection from './section-3.1-patient-details.vue'
 
 export default {
+  data() {
+    return {
+      dblOnAndOffSwitchToShowPatientDetails: false,
+    }
+  },
   props: {
     _apptId: {
       type: Number,
@@ -61,8 +81,16 @@ export default {
   },
   components: {
     namePrintSection,
+    patientDetailsPrintSection,
   },
   computed: {
+    cfGetCssForAnimateToShowPatientDetails() {
+      if (this.dblOnAndOffSwitchToShowPatientDetails) {
+        return 'max-height: 1000px; margin: 15px 0 10px 0; position:relative; transition: max-height 0.8s, overflow 0.5s 0.5s;'
+      } else {
+        return 'max-height: 0; margin: 0px; overflow:hidden; border:0; transition: max-height 0.6s, overflow 0s;'
+      }
+    },
     isThisNoteBeingCompared() {
       const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
       if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {

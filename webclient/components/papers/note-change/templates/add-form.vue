@@ -722,4 +722,25 @@ export default {
 .tribute-container li.no-match {
   cursor: default;
 }
+
+/** 
+  For Vitals tab only:
+  We need to align measurement value, note and date in one row.
+  Hence, I am adding the following css 
+  1. Height of textarea (note field) and height input (measurement value and date) should be same. 
+  2. Maintain a margin of 10px between each row
+  3. Reduce input number field width as 140px due to space issue
+*/
+.el-tab-pane#pane-vitals textarea.el-textarea__inner {
+  height: 40px !important;
+  min-height: 40px !important;
+}
+.el-tab-pane#pane-vitals > div {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.el-tab-pane#pane-vitals .el-input-number {
+  width: 140px;
+}
 </style>
