@@ -19,7 +19,7 @@
     -->
 
     <div
-      style="text-align: left; cursor: pointer; color: #606266"
+      style="text-align: left; cursor: pointer; color: #606266; margin:3px 0 0 0;"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
@@ -63,7 +63,7 @@
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
-      <ul class="hs full no-scrollbar" id="container-for-all-appointments">
+      <ul class="no-scrollbar" id="container-for-all-appointments">
         <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
           <li class="item" id="container-for-one-appointment">
             <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
@@ -458,7 +458,7 @@ http://jsfiddle.net/kf1y2npw/30/
 .hs > li,
 .item {
   scroll-snap-align: center;
-  padding: 1;
+  padding: 3px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -478,4 +478,8 @@ http://jsfiddle.net/kf1y2npw/30/
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+ul#container-for-all-appointments {
+    padding: 0;
+}
+
 </style>
