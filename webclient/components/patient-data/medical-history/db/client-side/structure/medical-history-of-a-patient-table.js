@@ -57,8 +57,8 @@ export const medicalHistoryFormDef = {
   plural: 'medical history',
   singular: 'medical history',
   fieldsDef: [
-    { nameInDb: 'diagnosis', nameInUi: 'Diagnosis', type: 'text' },
-    { nameInDb: 'description', nameInUi: 'Description', type: 'textarea' },
+    { nameInDb: 'diagnosis', nameInUi: 'Diagnosis', type: 'tribute-input' },
+    { nameInDb: 'description', nameInUi: 'Description', type: 'tribute-editor' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
   fnCreated: function () {

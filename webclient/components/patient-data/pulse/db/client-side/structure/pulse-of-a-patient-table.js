@@ -69,8 +69,12 @@ export const pulseFormDef = {
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
-      type: 'textarea',
+      type: 'tribute-editor',
+<<<<<<< HEAD
       showLabel: false,
+=======
+      showLabel: true,
+>>>>>>> 45a1e7ff4e37af382011d2f530ce506487260a9e
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',
