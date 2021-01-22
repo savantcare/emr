@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class RecommendationController extends Controller
 {
-    public function get_all_temporal_recommendations()
+    public function get_all_temporal_recommendations($pPtUuid)
     {
-        $remQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $remQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'"  order by ROW_START desc'));
         return response()->json($remQueryResultObj);
         // return response()->json(Recommendation::all());
     }
