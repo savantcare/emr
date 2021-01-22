@@ -1,7 +1,9 @@
 <template>
   <div>
     <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">SC brain</el-button>
-    <el-dialog title="ScBrain" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh"> </el-dialog>
+    <el-dialog title="ScBrain" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
+      <scBrainCt></scBrainCt>
+    </el-dialog>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ import examinationSummary from './examination-summary.vue'
 import medDecisionMakingFull from './med-decision-making-full.vue'
 import medDecisionMakingSummary from './med-decision-making-summary.vue'
 import cptCode from './cpt-code.vue'
-
+import scBrainCt from '../../non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection'
 export default {
   computed: {
     apptCode() {
@@ -181,6 +183,7 @@ export default {
     medDecisionMakingFull,
     medDecisionMakingSummary,
     cptCode,
+    scBrainCt,
   },
   async mounted() {},
   methods: {
