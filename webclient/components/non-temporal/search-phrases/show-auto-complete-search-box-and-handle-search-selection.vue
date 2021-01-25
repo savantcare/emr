@@ -16,9 +16,9 @@
         >{{ card.description }}</el-card>
       </el-card>
     </div>
-    <el-card v-for="(skillComponent,index) in this.remoteDataResult" :key="index">
+    <div v-for="(skillComponent,index) in this.remoteDataResult" :key="index">
       <el-card v-html="skillComponent"></el-card>
-    </el-card>
+    </div>
     <!-- Mount the Cts so I can get the search terms inside the ORM -->
 
     <el-autocomplete
@@ -54,25 +54,6 @@ export default {
       } else {
         return 'e.g. screening'
       }
-    },
-    cfArCardsInLeftSideOfViewLayer() {
-      const arOfObjectsFromClientDB = clientTblOfDynamicCards
-        .query()
-        .where('currentDisplayStateOfComponent', (value) => value > 0)
-        .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideLeftScreenExtension')
-        .get()
-      
-      let componentToShowPath = ''
-      for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
-        componentToShowPath = arOfObjectsFromClientDB[i]['componentToShowPath']
-        if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
-          
-          this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
-            arOfObjectsFromClientDB[i]['componentToShowPath']).default
-        }
-        arOfObjectsFromClientDB[i]['componentToShowObject'] = this.dArOfComponentObjectsCached[componentToShowPath]
-      }
-      return arOfObjectsFromClientDB
     },
   },
   mounted() {},
