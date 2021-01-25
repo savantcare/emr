@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class AllergiesController extends Controller
 {
-    public function get_all_temporal_allergies()
+    public function get_all_temporal_allergies($pPtUuid)
     {
-        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies order by ROW_START desc'));
+        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($allergiesQueryResultObj);
     }
 
