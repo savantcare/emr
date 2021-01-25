@@ -110,6 +110,8 @@ export default {
         // Change layer
         this.$store.commit('mtfShowNewFirstTabInEditLayer', objCtToAdd)
       }
+      /* Goal: Once search work is done then the input area needs to be empty */
+      this.searchKeyword = ''
       
     },
     mfHandleSuggestionSelectedByUser(pSelectedSuggestion) {
