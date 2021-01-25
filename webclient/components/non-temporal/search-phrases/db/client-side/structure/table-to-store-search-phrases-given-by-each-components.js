@@ -9,6 +9,7 @@ export default class clientTblOfCtSearchPhrases extends Model {
     return {
       clientSideUniqRowId: this.uid(), // vuex-orm generates a unique ID https://vuex-orm.org/guide/model/defining-models.html#uid-type
       value: this.string(''), // this is the search term in the dropdown of the autcocomplete in view layer and edit layer. I call it value since autocomplete function expects the object property to be called value
+      remoteUrl: this.string(''), // this is the condition from where data will fetch
       ctAbbr: this.string(''), // These are industry terms like social history is called shx in medical industry
       ctToShow: this.string(''), // ctToShow => ct To Show. This is used in the <component> the special component inside vue that allows any Ct to be placed inside.
       displayLocation: this.string(''), // This can have the value of "layer1RightSide" or "cl". It is used to decide where to show the ct.
