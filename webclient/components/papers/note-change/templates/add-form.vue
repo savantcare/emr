@@ -10,6 +10,13 @@
       why1="Find existing rows in edit state. If there no such rows inside v-else creates a empty row "
       why2="cfEmptyRowAtBottom creates a empty row at bottom is the new row has some data in it. This empty row at bottom allows faster entering of data"
     >
+      <el-button
+        v-if="this._formDef.showAllnormalButtonInForm" size="mini"
+        round
+        :type="normalDefaultBtn ? 'primary' : 'plain'"
+        @click="mf_set_fld_normal_value(_formDef,cfGetClientTblNewRowsInEditState)"
+        style="float:right"
+      >All Normal</el-button>
       <div
         v-for="(ormRow, index) in cfGetClientTblNewRowsInEditState"
         :key="index"
@@ -77,6 +84,10 @@
                   why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
                   :id="_fieldDef.nameInDb + optionIndex"
                 >
+                <span
+                    style="display:none"
+                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb,'247']}}</span>
+
                   <el-button
                     size="mini"
                     round
@@ -349,7 +360,11 @@ export default {
   data() {
     return {
       value: [],
+      defaultNormalArray: this._formDef.defaultNormalArray,
+      clickedDataArray:[],
       searchFilter: null,
+      normalDefaultBtn : false,
+      allFieldValue: [],
       doTributeOptions: {
         autocompleteMode: true,
         values: mergedDataPoints,
@@ -439,6 +454,11 @@ export default {
     })
   },
   methods: {
+    isInArray(value, array) {
+       console.log(value, array);
+       
+      return array.indexOf(value) > -1;
+    },
     mf_auto_resize_textarea(event) {
       /**
        * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
@@ -662,6 +682,20 @@ export default {
       const eventName = 'event-from-form-field-to-set-focus'
       this.$root.$emit(eventName, this._formDef.id, pFieldNameInDb, pIndex)
     },
+    mf_set_fld_normal_value(item,cfGetClientTblNewRowsInEditState){
+      if(this.normalDefaultBtn){
+        this.normalDefaultBtn = false
+      } else {
+        this.normalDefaultBtn = true
+      }
+      for(let row in this.clickedDataArray){
+        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.clickedDataArray[row]][0],this.allFieldValue[this.clickedDataArray[row]][1],this.allFieldValue[this.clickedDataArray[row]][2],this.allFieldValue[this.clickedDataArray[row]][3])      
+      }
+      
+      for(let row in this.defaultNormalArray){
+        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.defaultNormalArray[row]][0],this.allFieldValue[this.defaultNormalArray[row]][1],this.allFieldValue[this.defaultNormalArray[row]][2],this.allFieldValue[this.defaultNormalArray[row]][3])      
+      }
+    }
   },
 }
 </script>
