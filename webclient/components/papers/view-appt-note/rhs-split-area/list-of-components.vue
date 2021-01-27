@@ -26,10 +26,10 @@ import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue
 import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header/settings-component.vue'
 
-import ctPaperNoteStructure from '@/components/papers/view-appt-note/zl3-router-for-full-note-time-series.vue'
+import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/seq3-router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import apptNote from '@/components/papers/view-appt-note/zl1-decide-notes-to-show-and-their-appt-id.vue'
+import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-notes-to-show-and-their-appt-id.vue'
 
 import lockButtonPrintSection from '../section-19-allow-note-lock.vue'
 

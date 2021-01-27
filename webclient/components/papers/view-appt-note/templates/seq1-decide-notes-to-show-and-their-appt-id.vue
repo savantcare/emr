@@ -38,7 +38,7 @@
 
 <script>
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/papers/view-appt-note/zl2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
+import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
 import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import contentDuringApptOfASingleCt from '@/components/papers/view-appt-note/templates/zl4-content-during-appt-of-a-single-ct.vue'
+import contentDuringApptOfASingleCt from '@/components/papers/view-appt-note/templates/seq4-content-during-appt-of-a-single-ct.vue'
 import allFormDefs from '@/components//non-temporal/form-manager/all-form-definations.js'
 
 export default {

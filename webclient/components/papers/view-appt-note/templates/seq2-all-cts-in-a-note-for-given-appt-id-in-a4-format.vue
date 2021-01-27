@@ -81,17 +81,17 @@
 </template>
 
 <script>
-import ctPaperNoteStructure from '@/components/papers/view-appt-note/zl3-router-for-full-note-time-series.vue'
+import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/seq3-router-for-full-note-time-series.vue'
 
 // init tables
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/papers/view-appt-note/zl2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
+import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
 
 // smaller sections
-import headerPaperNote from './lhs-split-area/section-2-header-arrows-name-comparison.vue'
-import agePaperNote from './lhs-split-area/section-4-age.vue'
+import headerPaperNote from '../lhs-split-area/section-2-header-arrows-name-comparison.vue'
+import agePaperNote from '../lhs-split-area/section-4-age.vue'
 
 // Library
 import moment from 'moment'
