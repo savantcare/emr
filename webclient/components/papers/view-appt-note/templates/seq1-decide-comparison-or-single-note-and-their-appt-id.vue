@@ -143,7 +143,7 @@ export default {
 
         noteIDs.push(this.firstNoteForComparisonClientUniqRowId)
       }
-      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
+      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) { // This value is set by section-2-header-arrows-name-comparison
         numberOfNotesToCompare++
         this.secondNoteForComparisonClientUniqRowId =
           apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']

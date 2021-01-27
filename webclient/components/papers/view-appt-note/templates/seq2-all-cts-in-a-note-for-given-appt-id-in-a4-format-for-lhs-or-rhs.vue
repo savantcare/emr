@@ -101,7 +101,6 @@ export default {
     return {
       patientCurrentApptObj: {},
       formDef: {},
-      arrowDirection: 0,
     }
   },
   props: {

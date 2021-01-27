@@ -1,10 +1,6 @@
 <template>
   <div>
-    <contentDuringApptOfASingleCt
-      :_apptId="_apptId"
-      :_formDef="formDef"
-      :arrowDirection="arrowDirection"
-    ></contentDuringApptOfASingleCt>
+    <contentDuringApptOfASingleCt :_apptId="_apptId" :_formDef="formDef"></contentDuringApptOfASingleCt>
   </div>
 </template>
 
@@ -20,9 +16,6 @@ export default {
     _apptId: {
       type: Number,
       required: true,
-    },
-    arrowDirection: {
-      type: Number,
     },
     _entity: {
       type: String,

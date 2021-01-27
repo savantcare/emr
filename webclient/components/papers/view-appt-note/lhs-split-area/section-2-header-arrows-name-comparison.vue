@@ -196,6 +196,7 @@ export default {
           firstParameterGivenToComponentBeforeMounting: prevId,
         })
       } else {
+        // This value is used in seq1-decide-comparison-or-single-note-and-their-appt-id
         const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           secondParameterGivenToComponentBeforeMounting: prevId,
