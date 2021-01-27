@@ -13,7 +13,7 @@ export default {
   /**
    * Why we use created() instead of mounted() ?
    * --
-   * Problem: In the mounted section of 'section-19-allow-note-lock.vue' file, there is a query to fetch appointment.
+   * Problem: In the mounted section of 'allow-note-lock-button.vue' file, there is a query to fetch appointment.
    * In this case the query trying to fetch data from appointment table before the load initial data in that table.
    *
    * Solution: On the page load, insert appointment initial data before the mounted hook called.

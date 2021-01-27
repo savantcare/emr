@@ -31,7 +31,7 @@ import clientTblOfAppointments from '@/components/patient-data/appointments/db/c
 
 import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-comparison-or-single-note-and-their-appt-id.vue'
 
-import lockButtonPrintSection from '../section-19-allow-note-lock.vue'
+import lockButtonPrintSection from './header/allow-note-lock-button.vue'
 
 export default {
   components: {
