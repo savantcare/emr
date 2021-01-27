@@ -3,7 +3,7 @@
 <template></template>
 
 <script>
-import clientTblOfLeftSideCards from '@/components/papers/view-appt-note/lhs/split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
     clientTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
-        componentToShowPath: 'papers/view-appt-note/lhs/split-area/header/sub-ct-container-design-using-card.vue',
+        componentToShowPath: 'papers/view-appt-note/lhs-split-area/header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
     })

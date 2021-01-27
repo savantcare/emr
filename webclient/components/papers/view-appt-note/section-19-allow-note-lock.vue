@@ -9,7 +9,7 @@
 
 <script>
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs/split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
 export default {

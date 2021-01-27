@@ -104,7 +104,7 @@ Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctFeed from '@/components/non-temporal/feed/drawer.vue'
-import ctPaperViewNoteLeftSideComponents from '@/components/papers/view-appt-note/lhs/split-area/list-of-components.vue'
+import ctPaperViewNoteLeftSideComponents from '@/components/papers/view-appt-note/lhs-split-area/list-of-components.vue'
 import ctPaperViewNoteRightSideComponents from '@/components/papers/view-appt-note/rhs/split-area/list-of-components.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-change-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'

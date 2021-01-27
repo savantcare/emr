@@ -21,7 +21,7 @@ database.register(clientTblOfAppointments)
 database.register(clientTblOfAddendums)
 
 // table that decides which cards to show
-import tableStructureForLeftSideView from '~/components/papers/view-appt-note/lhs/split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
+import tableStructureForLeftSideView from '~/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
 import tableStructureForRightSideView from '~/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 database.register(tableStructureForLeftSideView)
 database.register(tableStructureForRightSideView)
