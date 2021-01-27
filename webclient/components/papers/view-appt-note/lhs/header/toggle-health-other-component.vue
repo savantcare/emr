@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import clientTblOfLeftSideCards from '@/components/papers/view-appt-note/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideCards from '@/components/papers/view-appt-note/lhs/split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
