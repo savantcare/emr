@@ -1,5 +1,5 @@
 // this will have list of all the meds. This is not patient specifig.
-const medicationsMasterDataPoints = [
+const medicationsMasterValues = [
   { key: 'A-HYDROCORT 100 MG Injection', value: 'A-HYDROCORT 100 MG Injection' },
   { key: 'A-METHAPRED 125 MG Injection', value: 'A-METHAPRED 125 MG Injection' },
   { key: 'A-MethaPred 40 MG Injection', value: 'A-MethaPred 40 MG Injection' },
@@ -13,4 +13,4 @@ const medicationsMasterDataPoints = [
   { key: 'ABELCET 100 MG in 20 ML Injection', value: 'ABELCET 100 MG in 20 ML Injection' },
 ]
 
-export default medicationsMasterDataPoints
+export default medicationsMasterValues

@@ -1,7 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
-import medicationsMasterDataPoints from '@/components/non-temporal/tribute/medications-master-collection'
+import medicationsMasterValues from '~/components/non-temporal/tribute/medications-master-values'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -91,7 +91,7 @@ export const medicationOrderFormDef = {
       showLabel: true,
       tributeOptions: {
         autocompleteMode: true,
-        values: medicationsMasterDataPoints,
+        values: medicationsMasterValues,
         positionMenu: true,
         menuContainer: document.querySelector('.menu-container'),
         noMatchTemplate: '',

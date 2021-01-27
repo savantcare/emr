@@ -5,14 +5,14 @@
 4. patient-data-dynamic-collection-terms-start-with-equal-to
 */
 
-import commonDataPoints from './common-terms-collection.js'
-import diagnosisMasterDataPoints from './diagnosis-master-collection.js'
-import medicationsMasterDataPoints from './medications-master-collection.js'
+import commonDataValues from './common-terms-values.js'
+import diagnosisMasterValues from './diagnosis-master-values.js'
+import medicationsMasterValues from './medications-master-values.js'
 import patientDataPoints from './patient-data-dynamic-collection-terms-start-with-equal-to.js'
 
-const mergedDataPoints = commonDataPoints
-  .concat(diagnosisMasterDataPoints)
-  .concat(medicationsMasterDataPoints)
+const allMergedValues = commonDataValues
+  .concat(diagnosisMasterValues)
+  .concat(medicationsMasterValues)
   .concat(patientDataPoints)
 
-export default mergedDataPoints
+export default allMergedValues
