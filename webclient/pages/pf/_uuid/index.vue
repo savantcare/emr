@@ -58,8 +58,8 @@
     <!-- GOAL10: Init -->
     <ctInitOfComponents></ctInitOfComponents>
     
-    <div style="top: 0;position: absolute;right: 5px;">
-      <el-button round size="mini" class="btn-map-fullscreen"  @click="toggleFullScreen" type="primary" ><i  :class="[fullscreen ? 'el-icon-rank' : 'el-icon-full-screen']"></i> </el-button>
+    <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
+      <el-button round size="mini" class="btn-map-fullscreen"  @click="toggleFullScreen" type="primary" ><i  :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i> </el-button>
     </div>
     </fullscreen>
   </div>
@@ -374,5 +374,16 @@ textarea.el-textarea__inner {
 
 button.el-button.btn-map-fullscreen.el-button--primary.el-button--mini.is-round {
     padding: 7px;
+}
+
+.full-screen-button-mode-off{
+  top: 0;
+  position: absolute;
+  left: 1377px;
+}
+.full-screen-button-mode-on{
+  top: 0;
+  position: absolute;
+  right: 5px;
 }
 </style>
