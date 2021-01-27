@@ -1,6 +1,6 @@
 <template>
   <div>
-    <clientTblOfDynamicCardsInsertData />
+    <clientTblOfDynamicComponentsInsertData />
     <!-- this 10px is the distance between the card and all other 4 sides. -->
     <div v-for="card in cfArCardsInLeftSideOfViewLayer" :key="card.clientSideUniqRowId" style="margin: 10px">
       <!-- Using https://vuejs.org/v2/guide/components.html#Dynamic-Components -->
@@ -15,12 +15,12 @@
   </div>
 </template>
 <script>
-import clientTblOfDynamicCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
-import clientTblOfDynamicCardsInsertData from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/static-data/insert-into-left-side-view-layer-components.vue'
+import clientTblOfDynamicComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfDynamicComponentsInsertData from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/static-data/insert-into-left-side-view-layer-components.vue'
 import clientTblCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
-  components: { clientTblOfDynamicCardsInsertData },
+  components: { clientTblOfDynamicComponentsInsertData },
   data() {
     return {
       dArOfComponentObjectsCached: [], // first dimension is the clientSideUniqRowId and second is the cache of the object
@@ -51,7 +51,7 @@ export default {
       2. currentDisplayStateOfComponent is > 0. Since 0 is reserved to mark the component as not to show.
 
       */
-      const arOfObjectsFromClientDB = clientTblOfDynamicCards
+      const arOfObjectsFromClientDB = clientTblOfDynamicComponents
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('classificationOfComponent', vComponentClassificationToShowUser)

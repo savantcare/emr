@@ -84,7 +84,7 @@
 <script>
 import moment from 'moment'
 import clInvokeMixin from './cl-invoke-mixin.js'
-import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
+import clientTblOfDynamicComponents from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 export default {
@@ -115,7 +115,7 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
   computed: {
     cfPosInArCardsInPtsOfViewLayer() {
-      const arFromClientTbl = clientTblOfDynamicCards.query().where('name', this.propFormDef.id).get()
+      const arFromClientTbl = clientTblOfDynamicComponents.query().where('name', this.propFormDef.id).get()
       return arFromClientTbl['clientSideUniqRowId']
     },
     cfArOfRemForDisplayInTable() {

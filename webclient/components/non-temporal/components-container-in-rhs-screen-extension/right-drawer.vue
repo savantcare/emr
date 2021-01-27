@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import clientTblOfDynamicCards from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
+import clientTblOfDynamicComponents from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 import ctSearchBoxInsideRightScreenExtension from '@/components/non-temporal/search-phrases/show-auto-complete-search-box-and-handle-search-selection.vue'
 import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     cfArCardsInLeftSideOfViewLayer() {
-      const arOfObjectsFromClientDB = clientTblOfDynamicCards
+      const arOfObjectsFromClientDB = clientTblOfDynamicComponents
         .query()
         .where('currentDisplayStateOfComponent', (value) => value > 0)
         .where('identifierOfparentComponentThatIncludedThisSearchComponent', 'ctSearchBoxInsideRightScreenExtension')
