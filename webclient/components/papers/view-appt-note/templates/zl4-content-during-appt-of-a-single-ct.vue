@@ -112,7 +112,7 @@
 <script>
 import clientTblOfAddendums from '~/components/patient-data/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 
 import clInvokeMixin from '@/components//papers/view-appt-note/templates/cl-invoke-mixin.js'
 

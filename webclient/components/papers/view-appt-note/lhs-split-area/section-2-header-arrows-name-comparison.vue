@@ -63,7 +63,7 @@
 
 <script>
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import namePrintSection from './section-3-name.vue'
 import patientDetailsPrintSection from './section-3.1-patient-details.vue'
 
