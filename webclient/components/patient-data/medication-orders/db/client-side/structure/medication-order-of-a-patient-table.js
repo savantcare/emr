@@ -59,27 +59,46 @@ export default class medication_order extends clientTblManage {
   }
 }
 
-const fnSelectOptionCallBack = (pId, pCallBack) => {
+const fnSelectOptionCallBackForDrugName = (pId, pCallBack) => {
   const options = [
     {
       id: '1',
-      value: 'ADHD',
+      value: 'Test drug name 1',
     },
     {
       id: '2',
-      value: 'Depression',
+      value: 'Test drug name 2',
     },
     {
       id: '3',
-      value: 'Anxiety',
+      value: 'Test drug name 3',
     },
     {
       id: '4',
-      value: 'Flu',
+      value: 'Test drug name 4',
     },
     {
       id: '5',
-      value: 'Pain',
+      value: 'Test drug name 5',
+    },
+  ]
+  pCallBack(options)
+  const getData = options.filter((item) => item.id === pId)
+  if (getData.length) {
+    return getData[0].value
+  }
+  return ''
+}
+
+const fnSelectOptionCallBackForOrderingProvider = (pId, pCallBack) => {
+  const options = [
+    {
+      id: '1',
+      value: 'Dr. vidushi savant',
+    },
+    {
+      id: '2',
+      value: 'Dr. Sonia Parikh',
     },
   ]
   pCallBack(options)
@@ -95,7 +114,7 @@ export const medicationOrderFormDef = {
   plural: 'medication order',
   singular: 'medication order',
   fieldsDef: [
-    { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'tribute-input', showLabel: true },
+    { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'autocomplete', showLabel: true, selectOptions: fnSelectOptionCallBackForDrugName },
     { nameInDb: 'directionsForPatient', nameInUi: 'Direction for the patient', type: 'tribute-editor', showLabel: true },
     { nameInDb: 'startDate', nameInUi: 'Start date', type: 'date', showLabel: true },
     { nameInDb: 'qty', nameInUi: 'Quantity', type: 'tribute-input', showLabel: true },
@@ -103,7 +122,7 @@ export const medicationOrderFormDef = {
     { nameInDb: 'numberOfRefill', nameInUi: 'Numnber of refill', type: 'tribute-input', showLabel: true },
     { nameInDb: 'dispenseAsWritten', nameInUi: 'Dispense as written', type: 'tribute-editor', showLabel: true },
     { nameInDb: 'notesToPharmacist', nameInUi: 'Notes to pharmacist', type: 'tribute-editor', showLabel: true },
-    { nameInDb: 'orderingProvider', nameInUi: 'Ordering provider', type: 'autocomplete', showLabel: true, selectOptions: fnSelectOptionCallBack },
+    { nameInDb: 'orderingProvider', nameInUi: 'Ordering provider', type: 'autocomplete', showLabel: true, selectOptions: fnSelectOptionCallBackForOrderingProvider },
     { nameInDb: 'pharmacy', nameInUi: 'Pharmacy', type: 'tribute-editor', showLabel: true },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
