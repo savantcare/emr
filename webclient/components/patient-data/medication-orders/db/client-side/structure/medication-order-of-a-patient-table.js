@@ -1,6 +1,7 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import medicationsMasterValues from '~/components/non-temporal/tribute/medications-master-values'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -59,20 +60,62 @@ export default class medication_order extends clientTblManage {
   }
 }
 
+const fnSelectOptionCallBackForOrderingProvider = (pId, pCallBack) => {
+  const options = [
+    {
+      id: '1',
+      value: 'Dr. vidushi savant',
+    },
+    {
+      id: '2',
+      value: 'Dr. Sonia Parikh',
+    },
+  ]
+  pCallBack(options)
+  const getData = options.filter((item) => item.id === pId)
+  if (getData.length) {
+    return getData[0].value
+  }
+  return ''
+}
+
 export const medicationOrderFormDef = {
   id: 'medication_orders',
   plural: 'medication order',
   singular: 'medication order',
   fieldsDef: [
-    { nameInDb: 'drugName', nameInUi: 'Drug name', type: 'tribute-input', showLabel: true },
-    { nameInDb: 'directionsForPatient', nameInUi: 'Direction for the patient', type: 'tribute-editor', showLabel: true },
+    {
+      nameInDb: 'drugName',
+      nameInUi: 'Drug name',
+      type: 'tribute-input',
+      showLabel: true,
+      tributeOptions: {
+        autocompleteMode: true,
+        values: medicationsMasterValues,
+        positionMenu: true,
+        menuContainer: document.querySelector('.menu-container'),
+        noMatchTemplate: '',
+      },
+    },
+    {
+      nameInDb: 'directionsForPatient',
+      nameInUi: 'Direction for the patient',
+      type: 'tribute-editor',
+      showLabel: true,
+    },
     { nameInDb: 'startDate', nameInUi: 'Start date', type: 'date', showLabel: true },
     { nameInDb: 'qty', nameInUi: 'Quantity', type: 'tribute-input', showLabel: true },
     { nameInDb: 'daysSupply', nameInUi: 'Days supply', type: 'tribute-input', showLabel: true },
     { nameInDb: 'numberOfRefill', nameInUi: 'Numnber of refill', type: 'tribute-input', showLabel: true },
     { nameInDb: 'dispenseAsWritten', nameInUi: 'Dispense as written', type: 'tribute-editor', showLabel: true },
     { nameInDb: 'notesToPharmacist', nameInUi: 'Notes to pharmacist', type: 'tribute-editor', showLabel: true },
-    { nameInDb: 'orderingProvider', nameInUi: 'Ordering provider', type: 'tribute-editor', showLabel: true },
+    {
+      nameInDb: 'orderingProvider',
+      nameInUi: 'Ordering provider',
+      type: 'autocomplete',
+      showLabel: true,
+      selectOptions: fnSelectOptionCallBackForOrderingProvider,
+    },
     { nameInDb: 'pharmacy', nameInUi: 'Pharmacy', type: 'tribute-editor', showLabel: true },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],

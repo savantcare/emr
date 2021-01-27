@@ -1,4 +1,4 @@
-const commonDataPoints = [
+const commonDataValues = [
   { key: 'depression - Patient has history of depression', value: 'Patient has history of depression' },
   { key: 'anxiety - Patient has history of anxiety', value: 'Patient has history of anxiety' },
   { key: 'past - Past substance use', value: 'Past substance use' },
@@ -10,4 +10,4 @@ const commonDataPoints = [
   },
 ]
 
-export default commonDataPoints
+export default commonDataValues
