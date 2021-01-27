@@ -201,7 +201,7 @@
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
               <vue-tribute
-                :options="_fieldDef.tributeOptions === 'undefined' ? doTributeOptions : _fieldDef.tributeOptions"
+                :options="(_fieldDef.tributeOptions) ? _fieldDef.tributeOptions : doTributeOptions"
               >
                 <input
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
