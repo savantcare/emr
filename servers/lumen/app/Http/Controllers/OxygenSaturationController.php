@@ -10,9 +10,9 @@ use Predis\Autoloader;
 
 class OxygenSaturationController extends Controller
 {
-    public function get_all_temporal_oxygen_saturations()
+    public function get_all_temporal_oxygen_saturations($pPtUuid)
     {
-        $oxygenSaturationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.oxygenSaturation FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $oxygenSaturationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliseconds) * 1000 as timeOfMeasurementInMilliseconds FROM sc_vital_signs.oxygenSaturation FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         return response()->json($oxygenSaturationQueryResultObj);
     }
