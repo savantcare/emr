@@ -59,6 +59,37 @@ export default class medication_order extends clientTblManage {
   }
 }
 
+const fnSelectOptionCallBack = (pId, pCallBack) => {
+  const options = [
+    {
+      id: '1',
+      value: 'ADHD',
+    },
+    {
+      id: '2',
+      value: 'Depression',
+    },
+    {
+      id: '3',
+      value: 'Anxiety',
+    },
+    {
+      id: '4',
+      value: 'Flu',
+    },
+    {
+      id: '5',
+      value: 'Pain',
+    },
+  ]
+  pCallBack(options)
+  const getData = options.filter((item) => item.id === pId)
+  if (getData.length) {
+    return getData[0].value
+  }
+  return ''
+}
+
 export const medicationOrderFormDef = {
   id: 'medication_orders',
   plural: 'medication order',
@@ -72,7 +103,7 @@ export const medicationOrderFormDef = {
     { nameInDb: 'numberOfRefill', nameInUi: 'Numnber of refill', type: 'tribute-input', showLabel: true },
     { nameInDb: 'dispenseAsWritten', nameInUi: 'Dispense as written', type: 'tribute-editor', showLabel: true },
     { nameInDb: 'notesToPharmacist', nameInUi: 'Notes to pharmacist', type: 'tribute-editor', showLabel: true },
-    { nameInDb: 'orderingProvider', nameInUi: 'Ordering provider', type: 'tribute-editor', showLabel: true },
+    { nameInDb: 'orderingProvider', nameInUi: 'Ordering provider', type: 'autocomplete', showLabel: true, selectOptions: fnSelectOptionCallBack },
     { nameInDb: 'pharmacy', nameInUi: 'Pharmacy', type: 'tribute-editor', showLabel: true },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
