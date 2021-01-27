@@ -13,7 +13,7 @@ https://stackoverflow.com/questions/31980710/unable-to-set-the-selected-state-in
 </template>
 
 <script>
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
@@ -85,7 +85,7 @@ export default {
 
                 // Goal: if it is a locked or unlocked note then show the note
                 var clientSideUniqRowIdAtThisSliderMark = event.point.clientSideUniqRowId
-                const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewCards.find(2)
+                const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewComponents.find(2)
                 if (
                   cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
                     clientSideUniqRowIdAtThisSliderMark &&
@@ -101,7 +101,7 @@ export default {
 
                 // This update will lead to the note card visibility getting toggled
                 // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
-                const updateState = clientTblOfLeftSideViewCards.update({
+                const updateState = clientTblOfLeftSideViewComponents.update({
                   clientSideUniqRowId: 2,
                   currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
                   firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,

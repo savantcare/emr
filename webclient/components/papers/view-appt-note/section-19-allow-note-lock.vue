@@ -9,7 +9,7 @@
 
 <script>
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
 export default {
@@ -90,7 +90,7 @@ export default {
       const newApptId = newApptObj['clientSideUniqRowId']
 
       // Go to the next appt on the slider
-      const updateState = await clientTblOfLeftSideViewCards.update({
+      const updateState = await clientTblOfLeftSideViewComponents.update({
         clientSideUniqRowId: 2,
         firstParameterGivenToComponentBeforeMounting: newApptId,
       })

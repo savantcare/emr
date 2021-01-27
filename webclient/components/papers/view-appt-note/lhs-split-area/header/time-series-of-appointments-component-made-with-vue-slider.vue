@@ -56,7 +56,7 @@ __proto__: Object
 </template>
 
 <script>
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import moment from 'moment'
@@ -281,7 +281,7 @@ export default {
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'no-show'
       ) {
         // Remove the previous note window if there is any
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           currentDisplayStateOfComponent: 0,
         })
@@ -298,7 +298,7 @@ export default {
       1. This mark is alaready active
       2. This mark is not active and should be made active */
 
-      const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewCards.find(2)
+      const cardOfApptNoteComponentVisibilityCurrentValue = clientTblOfLeftSideViewComponents.find(2)
 
       if (
         cardOfApptNoteComponentVisibilityCurrentValue['firstParameterGivenToComponentBeforeMounting'] ===
@@ -315,7 +315,7 @@ export default {
 
       // This update will lead to the note card visibility getting toggled
       // Writing this in client Side DB since appt-note-printable-view-with-amendment-feature component depends on this data.
-      const updateState = await clientTblOfLeftSideViewCards.update({
+      const updateState = await clientTblOfLeftSideViewComponents.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: this.currentDisplayStateOfComponent,
         firstParameterGivenToComponentBeforeMounting: this.dCurrentActiveButtonClientRowId,

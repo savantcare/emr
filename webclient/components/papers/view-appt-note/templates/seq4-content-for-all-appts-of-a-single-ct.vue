@@ -112,7 +112,7 @@
 <script>
 import clientTblOfAddendums from '~/components/patient-data/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 
 import clInvokeMixin from '@/components//papers/view-appt-note/templates/cl-invoke-mixin.js'
 
@@ -194,7 +194,7 @@ export default {
   computed: {
     cfGetDataRowStyle() {
       /* When I come to this fn the following scenarios are possible
-        clientTblOfLeftSideViewCards(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
+        clientTblOfLeftSideViewComponents(2) has 2 fields F1. firstParameterGivenToComponentBeforeMounting F2. secondParameterGivenToComponentBeforeMounting
         Possibilities are 1. Both have values 2. Only 1 has value.
         First goal: Find if _apptId is same as F1 or F2. If _apptId == F2 then it is comparison mode. If _apptId != F2 then for certain I can say _apptId == F1. _apptId may or many not be comparison mode.
         if there is value in F2 then _apptId is in comparison mode. If F2 is empty then this is single note render mode.
@@ -203,7 +203,7 @@ export default {
       let secondaryDuringComparisonApptObj = {}
       let secondaryDuringComparisonDataRows = {}
 
-      const printableApptNoteComponentCardObj = clientTblOfLeftSideViewCards.find(2)
+      const printableApptNoteComponentCardObj = clientTblOfLeftSideViewComponents.find(2)
 
       if (!printableApptNoteComponentCardObj) return
 

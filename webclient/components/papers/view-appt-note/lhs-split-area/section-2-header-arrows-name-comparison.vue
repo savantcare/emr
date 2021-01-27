@@ -63,7 +63,7 @@
 
 <script>
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import namePrintSection from './section-3-name.vue'
 import patientDetailsPrintSection from './section-3.1-patient-details.vue'
 
@@ -92,7 +92,7 @@ export default {
       }
     },
     isThisNoteBeingCompared() {
-      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewComponents.find(2)
       if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
         return true
       } else {
@@ -173,7 +173,7 @@ export default {
       }
 
       // This state is picked up by decide-notes-to-print-and-their-appt-id in the same folder. That is the parent of this Ct.
-      const updateState = clientTblOfLeftSideViewCards.update({
+      const updateState = clientTblOfLeftSideViewComponents.update({
         clientSideUniqRowId: 2,
         currentDisplayStateOfComponent: 1,
         firstParameterGivenToComponentBeforeMounting: this._apptId,
@@ -185,18 +185,18 @@ export default {
       // So goal is to replace my value in the state with the new value.
       // Once I do that it will take care of both the above cases.
 
-      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewComponents.find(2)
 
       let prevId = 0
       prevId = this.mfGetPrevApptId(this._apptId)
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this._apptId) {
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: prevId,
         })
       } else {
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           secondParameterGivenToComponentBeforeMounting: prevId,
         })
@@ -207,17 +207,17 @@ export default {
     },
 
     mfRightArrowClickedLetUsGoToNextAppt() {
-      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewComponents.find(2)
       let nextId = 0
       nextId = this.mfGetNextApptId(this._apptId)
 
       if (apptNoteComponentObj['firstParameterGivenToComponentBeforeMounting'] === this._apptId) {
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           firstParameterGivenToComponentBeforeMounting: nextId,
         })
       } else {
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2,
           secondParameterGivenToComponentBeforeMounting: nextId,
         })

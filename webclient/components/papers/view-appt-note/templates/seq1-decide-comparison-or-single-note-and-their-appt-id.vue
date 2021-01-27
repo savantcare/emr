@@ -39,7 +39,7 @@
 <script>
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format-for-lhs-or-rhs.vue'
-import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
+import clientTblOfLeftSideViewComponents from '@/components/papers/view-appt-note/lhs-split-area/db/client-side/structure/left-hand-side-table-of-components.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 export default {
@@ -63,7 +63,7 @@ export default {
   methods: {
     handleDrawerClosed() {
       // Once drawer is closed I need to empty the 2nd param so the prev and next button work properly and do not open the drawer
-      const updateState = clientTblOfLeftSideViewCards.update({
+      const updateState = clientTblOfLeftSideViewComponents.update({
         clientSideUniqRowId: 2,
         secondParameterGivenToComponentBeforeMounting: 0,
       })
@@ -128,10 +128,10 @@ export default {
 
     cfNumberOfNotesToCompare() {
       let numberOfNotesToCompare = 0
-      const apptNoteComponentObj = clientTblOfLeftSideViewCards.find(2)
+      const apptNoteComponentObj = clientTblOfLeftSideViewComponents.find(2)
 
       if (!apptNoteComponentObj) {
-        // this happens if clientTblOfLeftSideViewCards does not have data yet due to race condition
+        // this happens if clientTblOfLeftSideViewComponents does not have data yet due to race condition
         return 1
       }
       let noteIDs = new Array()
@@ -160,7 +160,7 @@ export default {
           .orderBy('clientSideUniqRowId', 'desc')
           .get()
 
-        const updateState = clientTblOfLeftSideViewCards.update({
+        const updateState = clientTblOfLeftSideViewComponents.update({
           clientSideUniqRowId: 2, // This is hard code for "/paper-l1/zl1-decide-notes-to-show-and-their-appt-id.vue"
           currentDisplayStateOfComponent: 1,
           firstParameterGivenToComponentBeforeMounting: apptObj[0]['clientSideUniqRowId'],
