@@ -90,8 +90,8 @@ import clientTblOfAppointments from '@/components/patient-data/appointments/db/c
 import apptNotePrintableView from '@/components/papers/view-appt-note/zl2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
 
 // smaller sections
-import headerPaperNote from './section-2-header-arrows-name-comparison.vue'
-import agePaperNote from './section-4-age.vue'
+import headerPaperNote from './lhs-split-area/section-2-header-arrows-name-comparison.vue'
+import agePaperNote from './lhs-split-area/section-4-age.vue'
 
 // Library
 import moment from 'moment'
