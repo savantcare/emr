@@ -120,7 +120,7 @@ import moment from 'moment'
 
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
-import getRowContent from './seq5-get-row-content.vue'
+import getRowContent from './seq5-show-content-for-a-single-appt.vue'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
