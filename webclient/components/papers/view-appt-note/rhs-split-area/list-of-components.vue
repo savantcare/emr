@@ -24,10 +24,8 @@ import ctCorrelate from '@/components/papers/correlate/design-2.vue'
 import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue'
 
 import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
-import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header/settings-component.vue'
+import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header/settings.vue'
 
-import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/seq3-router-for-full-note-time-series.vue'
-import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-comparison-or-single-note-and-their-appt-id.vue'
 
@@ -39,7 +37,6 @@ export default {
     ctCoding,
     ctScBrainDialog,
     ctSettings,
-    ctPaperNoteStructure,
     apptNote,
     lockButtonPrintSection,
   },
