@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/view-appt-note/templates/timeline-structure.vue'
+import timeLineView from '@/components//papers/view-appt-note/templates/generic-timeline-structure.vue'
 import { chiefComplaintFormDef } from '@/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 
 export default {

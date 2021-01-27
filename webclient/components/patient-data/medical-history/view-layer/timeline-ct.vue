@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/view-appt-note/templates/timeline-structure.vue'
+import timeLineView from '@/components//papers/view-appt-note/templates/generic-timeline-structure.vue'
 import { medicalHistoryFormDef } from '@/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
 
 export default {

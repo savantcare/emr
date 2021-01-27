@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/view-appt-note/templates/timeline-structure.vue'
+import timeLineView from '@/components//papers/view-appt-note/templates/generic-timeline-structure.vue'
 import { goalsFormDef } from '@/components/patient-data/goals/db/client-side/structure/goals-of-a-patient-table.js'
 
 export default {
