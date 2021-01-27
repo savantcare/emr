@@ -91,7 +91,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
-      type: 'textarea',
+      type: 'tribute-editor',
       showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
 

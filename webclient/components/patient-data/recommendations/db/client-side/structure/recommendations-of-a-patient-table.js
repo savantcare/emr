@@ -60,7 +60,7 @@ export const recommendationsFormDef = {
     {
       nameInDb: 'description',
       nameInUi: 'Description',
-      type: 'textarea',
+      type: 'tribute-editor',
 
       required: true,
       minLength: 5,

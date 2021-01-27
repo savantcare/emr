@@ -68,8 +68,8 @@ export const weightFormDef = {
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
-      type: 'textarea',
-      showLabel: false,
+      type: 'tribute-editor',
+      showLabel: true,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',

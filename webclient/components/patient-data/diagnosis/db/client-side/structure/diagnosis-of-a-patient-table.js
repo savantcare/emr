@@ -94,7 +94,7 @@ export const diagnosisFormDef = {
       type: 'autocomplete',
       selectOptions: fnSelectOptionCallBack,
     },
-    { nameInDb: 'assessment', nameInUi: 'Assessment', type: 'textarea' },
+    { nameInDb: 'assessment', nameInUi: 'Assessment', type: 'tribute-editor' },
     { nameInDb: 'onset', nameInUi: 'Onset', type: 'date' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['diagnosis'],
