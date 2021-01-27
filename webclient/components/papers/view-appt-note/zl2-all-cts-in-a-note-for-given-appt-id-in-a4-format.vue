@@ -81,13 +81,13 @@
 </template>
 
 <script>
-import ctPaperNoteStructure from '@/components/papers/note-view/zl3-router-for-full-note-time-series.vue'
+import ctPaperNoteStructure from '@/components/papers/view-appt-note/zl3-router-for-full-note-time-series.vue'
 
 // init tables
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/papers/note-view/zl2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
+import apptNotePrintableView from '@/components/papers/view-appt-note/zl2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
 
 // smaller sections
 import headerPaperNote from './section-2-header-arrows-name-comparison.vue'

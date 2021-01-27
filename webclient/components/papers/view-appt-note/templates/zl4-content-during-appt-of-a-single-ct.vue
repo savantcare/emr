@@ -19,7 +19,7 @@
     -->
 
     <div
-      style="text-align: left; cursor: pointer; color: #606266; margin:3px 0 0 0;"
+      style="text-align: left; cursor: pointer; color: #606266; margin: 3px 0 0 0"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
@@ -112,9 +112,9 @@
 <script>
 import clientTblOfAddendums from '~/components/patient-data/amendment/db/client-side/structure/amendment-client-side-table.js'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
-import clientTblOfLeftSideViewCards from '@/components/papers/note-view/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
+import clientTblOfLeftSideViewCards from '@/components/papers/view-appt-note/lhs/container/db/client-side/structure/left-hand-side-table-of-cards.js'
 
-import clInvokeMixin from '@/components//papers/note-view/templates/cl-invoke-mixin.js'
+import clInvokeMixin from '@/components//papers/view-appt-note/templates/cl-invoke-mixin.js'
 
 import moment from 'moment'
 
@@ -479,7 +479,6 @@ http://jsfiddle.net/kf1y2npw/30/
   display: none;
 }
 ul#container-for-all-appointments {
-    padding: 0;
+  padding: 0;
 }
-
 </style>

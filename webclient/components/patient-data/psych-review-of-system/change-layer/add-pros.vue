@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
+import ctAddForm from '@/components//papers/change-appt-note/templates/add-form.vue'
 import psychReviewOfSystemsOfAPatientTbl from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 
 import { psychReviewOfSystemFormDef } from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'

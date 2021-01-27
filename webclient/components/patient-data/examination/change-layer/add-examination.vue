@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
+import ctAddForm from '@/components//papers/change-appt-note/templates/add-form.vue'
 import examinationOfAPatientTbl from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 import { examinationFormDef } from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'

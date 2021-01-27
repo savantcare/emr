@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/change-appt-note/templates/edit-form.vue'
 import { examinationFormDef } from '@/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 
 export default {

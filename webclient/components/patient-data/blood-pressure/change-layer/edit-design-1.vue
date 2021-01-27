@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/change-appt-note/templates/edit-form.vue'
 import { bloodPressureFormDef } from '@/components/patient-data/blood-pressure/db/client-side/structure/blood-pressure-of-a-patient-table.js'
 
 export default {

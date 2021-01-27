@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/change-appt-note/templates/edit-form.vue'
 import { serviceStatementsFormDef } from '@/components/patient-data/service-statements/db/client-side/structure/service-statements-of-a-patient-table.js'
 
 export default {

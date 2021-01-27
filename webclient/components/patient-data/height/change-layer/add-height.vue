@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ctAddForm from '@/components//papers/note-change/templates/add-form.vue'
+import ctAddForm from '@/components//papers/change-appt-note/templates/add-form.vue'
 import { heightFormDef } from '@/components/patient-data/height/db/client-side/structure/height-of-a-patient-table.js'
 
 export default {

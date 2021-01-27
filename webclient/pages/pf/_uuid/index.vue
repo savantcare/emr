@@ -104,11 +104,11 @@ Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctFeed from '@/components/non-temporal/feed/drawer.vue'
-import ctLayer1LeftSideCards from '@/components/papers/note-view/lhs/container/list-of-cards.vue'
-import ctLayer1RightSideCards from '@/components/papers/note-view/rhs/container/list-of-cards.vue'
+import ctLayer1LeftSideCards from '@/components/papers/view-appt-note/lhs/container/list-of-cards.vue'
+import ctLayer1RightSideCards from '@/components/papers/view-appt-note/rhs/container/list-of-cards.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-change-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
-import ctChangeInTabs from '@/components/papers/note-change/show-vertical-tabs-in-dialog.vue'
+import ctChangeInTabs from '@/components/papers/change-appt-note/show-vertical-tabs-in-dialog.vue'
 import ctOneSearchBox from '@/components/papers/one-search-box/show-in-dialog.vue'
 import ctRightScreenExtensionDrawer from '@/components/non-temporal/components-container-in-rhs-screen-extension/right-drawer.vue'
 import ctMapDrawer from '@/components/non-temporal/map/drawer.vue'

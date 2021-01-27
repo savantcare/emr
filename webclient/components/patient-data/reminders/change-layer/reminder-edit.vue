@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ctEditFormTemplate from '@/components//papers/note-change/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components//papers/change-appt-note/templates/edit-form.vue'
 import { remindersFormDef } from '@/components/patient-data/reminders/db/client-side/structure/reminders-of-a-patient-table.js'
 
 export default {

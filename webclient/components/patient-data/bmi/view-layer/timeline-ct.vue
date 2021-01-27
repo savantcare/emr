@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import timeLineView from '@/components//papers/note-view/templates/timeline-structure.vue'
+import timeLineView from '@/components//papers/view-appt-note/templates/timeline-structure.vue'
 import { bmiFormDef } from '@/components/patient-data/bmi/db/client-side/structure/bmi-of-a-patient-table.js'
 
 export default {
