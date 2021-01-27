@@ -87,7 +87,7 @@ import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/s
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
 // This component to show 2 notes side by side
-import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format.vue'
+import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format-for-lhs-or-rhs.vue'
 
 // smaller sections
 import headerPaperNote from '../lhs-split-area/section-2-header-arrows-name-comparison.vue'

@@ -29,7 +29,7 @@ import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header
 import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/seq3-router-for-full-note-time-series.vue'
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 
-import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-notes-to-show-and-their-appt-id.vue'
+import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-comparison-or-single-note-and-their-appt-id.vue'
 
 import lockButtonPrintSection from '../section-19-allow-note-lock.vue'
 
