@@ -71,7 +71,7 @@ but ptHeight and ptWeight are sharing arOrmRowsCached
 Answer (In slack channel core_team on 5th aug 2020)
 ------
 A static class property becomes part of the constructor, therefore applies to anything that inherits it. If it’s to be unique for each model, it should be a prototype property.
-The active record approach means Vuex ORM caches the model, therefore it inherits the ctor properties 
+The active record approach means Vuex ORM caches the model, therefore it inherits the ctor properties
 
 Question 2 (In slack channel core_team on 5th aug 2020)
 ----------
@@ -157,10 +157,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetAllRowsPossibleToEdit() {
-    /* 
-        Need 
-        1) Present ROW_END has to be future. Since past rows cannot be edited 
-        2) Start with 1 (already saved to  DB) 
+    /*
+        Need
+        1) Present ROW_END has to be future. Since past rows cannot be edited
+        2) Start with 1 (already saved to  DB)
         3) Unique UUID. Since each row is copied before editing. If I dont take unique UUID then I will edit the present row in DB and the new copied row being changed.
     */
     const arFromClientTbl = this.query()
@@ -175,7 +175,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       for (let j = 0; j < uniqueUuidRows.length; j++) {
         if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
-          In the array that is returned from this Fn I am returning the array with the new data.       
+          In the array that is returned from this Fn I am returning the array with the new data.
           Hence in the following line I over write the old row
           */
           uniqueUuidRows[j] = arFromClientTbl[i]
@@ -204,13 +204,13 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static fnGetChangeRowIdInEditState(pUuid) {
     /*
       Q) Why did we remove orWhere clause?
-        Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like: 
-        where (serverSideRowUuid=4545d6 AND vnRowStateInSession=3) 
-        OR vnRowStateInSession=34 
+        Multiple 'where' with 'orWhere' clause not returning correct data. The 'orWhere' clause skips the first where clause like:
+        where (serverSideRowUuid=4545d6 AND vnRowStateInSession=3)
+        OR vnRowStateInSession=34
         OR vnRowStateInSession=3456
 
         But we want the following query:
-        where serverSideRowUuid=4545d6 AND 
+        where serverSideRowUuid=4545d6 AND
         (vnRowStateInSession=3 OR vnRowStateInSession=34 OR vnRowStateInSession=3456)
     */
     const arFromClientTbl = this.query()
@@ -270,7 +270,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
-    Since everytime a row is updated the previous row is marked as deleted 
+    Since everytime a row is updated the previous row is marked as deleted
     So deleted rows will not cross step 1 query */
     return arFromClientTbl
   }
@@ -290,7 +290,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
 
     /* At this step: It is not possible for dataset to have 2 rows with the same UUID. Since:
-    Since everytime a row is updated the previous row is marked as deleted 
+    Since everytime a row is updated the previous row is marked as deleted
     So deleted rows will not cross step 1 query */
     return arFromClientTbl
   }
@@ -342,7 +342,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       for (let j = 0; j < uniqueUuidRows.length; j++) {
         if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
-          In the array that is returned from this Fn I am returning the array with the new data.       
+          In the array that is returned from this Fn I am returning the array with the new data.
           Hence in the following line I over write the old row
           */
           uniqueUuidRows[j] = arFromClientTbl[i]
@@ -369,7 +369,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       for (let j = 0; j < uniqueUuidRows.length; j++) {
         if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
-          In the array that is returned from this Fn I am returning the array with the new data.       
+          In the array that is returned from this Fn I am returning the array with the new data.
           Hence in the following line I over write the old row
           */
           if (arFromClientTbl[i].clientSideUniqRowId > uniqueUuidRows[j].clientSideUniqRowId) {
@@ -392,18 +392,18 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
 
   static fnGetDeletedRows() {
-    /* 
-    
+    /*
+
     Method 1: Get deleted rows from clientTbl using query like: select max(id) where ROW_END < current_time group by 'serverSideRowUuid'
     Problem:- But I am unable to find vuex-orm groupBy query
- 
+
     Method 2: Get all the rows having ROW_END is less then current_time. Then after, using forEach loop remove the record that have been changed and not deleted.
     Problem:- But it is not standard method.
-    Decided to use this.  
+    Decided to use this.
 
     Method 3: When i click on 'X' button, send a api request to the server and get all the deleted rows.
     Problem: It is not satisfying our P20 architecture.
- 
+
     Method 4: Maintain a 'isDeleted' enum(0 ,1) flag in database. But need to approval from Vikas sir.
     Need to discuss
     */
@@ -518,16 +518,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     this.fnCreateTimeoutToSaveToState(pEvent, pClientRowId, pFldName, pRowStatus)
   }
 
-  /*  
-    Why? 
+  /*
+    Why?
     Put the value of what the user is typing in cache?
        so that the user can see form fld has the charecters that he has typed.
-  
-    How? 
+
+    How?
     Step 1: This is called in the form on each key press (@input is invoked on each key press)
             Ref: The chain is started at add.vue
-            The sequence is: add.vue-> mfSetFldUsingCache 
-                              => mfSetFldUsingCache -> ormRem.setfld 
+            The sequence is: add.vue-> mfSetFldUsingCache
+                              => mfSetFldUsingCache -> ormRem.setfld
                                 => ormRem.setfld -> this.fnPutFldValueInCache
 
     Step 2: The work done by this function is used on each key press at:
@@ -535,7 +535,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
                               => add.vue:113:ormRem.getfld
                                 => rowStatus.js:97
 
-    Problem?                              
+    Problem?
       When the cache array is update we want vue to react to the change and update add.vue:15:value="mfGetFld"
 
       forceUpdates are not good quality code. With 2 dimensional array if we do not follow right approach then force update will be needed
@@ -576,7 +576,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       Method 3 of updating cache:
       this.arOrmRowsCached[pClientRowId] = newRow // vue does not react. Now add.vue:115:setfldInEditLayerientSideTableOnTimeOut needs this.$forceUpdate
       */
-    /* 
+    /*
       Method 4 of updating cache:
       This will not work since $set is not available outside vue conetxt this is not vue context
       this.$set(this.arOrmRowsCached, pClientRowId, newRow)
@@ -678,7 +678,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       data: arToCopy,
     })
     /* Goal: Get id of the row that has been inserted into the ORM
-    Option1: 
+    Option1:
     const idOfNewRow = newRow.ptName[0].clientSideUniqRowId
     Cannot use this since ptName is hardcoded. For different Ct this will be different.
     Hence need a dynamic way to get the value in place of ptName
@@ -724,10 +724,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         A)
           We are dealing cases like:
             1. User adds data, hits save button twice or double click
-            2. user adds data, hits save button and again tries to add another data and click save button before previous api call finished. 
+            2. user adds data, hits save button and again tries to add another data and click save button before previous api call finished.
           Here is the problem and how we are resolving this:
             Save process starts with searching from clientTbl for the records having 'vnRowStateInSession' = 2457.
-            Now, 'vnRowStateInSession' of clientTbl record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update. 
+            Now, 'vnRowStateInSession' of clientTbl record gets updated only after api call finishes and in above mentioned cases, system initiates this save process again before 'vnRowStateInSession' update.
             That means the second time searching for 'vnRowStateInSession' = 2457 will point to the same record multiple times which should not be the actual case.
             To solve this, we are maintaining an array 'arOrmRowIdSendingToServerQueue' during the process, which contains clientTbl row id that are going to be saved.
             In if statement we are searching if clientTbl row id exist in that array. if yes then api sending process already happened for the row, hence not to do anything. if not found then in else statement we are initiating the api calling process after pushing clientTbl row id in 'arOrmRowIdSendingToServerQueue'.
@@ -755,7 +755,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
               data: {
                 vnRowStateInSession: rowState.SameAsDB,
-                /* The sequence at this point is ->  New_Changed_FormValidationPass_RequestedSave_SameAsDB.  
+                /* The sequence at this point is ->  New_Changed_FormValidationPass_RequestedSave_SameAsDB.
                    SameAsDB is always considered a marker. So whenever SameAsDB is reached we forget the old state. If we keep remembering the old state then the whole state can be 100 steps long.
                    No need to set ROW_END: Math.floor(Date.now()), since that is set when row is deleted or updated. (For temporal update is like delete and insert)
                 */
@@ -797,8 +797,16 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       )
       .first()
 
+    const ptUuidFromOrm = await clientTblOfCommonForAllComponents
+      .query()
+      .where(
+        'fieldName',
+        'ptUuid'
+      )
+      .first()
+
     // console.log(tableCommonForAllComponents)
-    pOrmRowArray.ptUuid = 'bfe041fa-073b-4223-8c69-0540ee678ff8'
+    pOrmRowArray.ptUuid = ptUuidFromOrm.fieldValue
     pOrmRowArray.recordChangedByUuid = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     pOrmRowArray[
       'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
@@ -871,20 +879,20 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   }
   /*
   static async mfSendNewRowsToServer() {
-  
+
       Goal: If i submitted 4 records with a empty record at once. We need to run submit process on those records which is not empty.
       The computed function 'cfGetClientTblReadyToReviewedStateRows' returns all the newly added row which is not empty from allPatientDataTbls[this._formDef.id] ie; 'vnRowStateInSession' = 24
-  
+
     const arFromClientTbl = this.fnGetNewRowsInFormValidationPassState() // calling cf instead of allPatientDataTbls[this._formDef.id] since get benefit of caching.
     if (arFromClientTbl.length) {
       for (let i = 0; i < arFromClientTbl.length; i++) {
-         I cannot do validation here. Since this is getting invoked when button has already been pressed  
+         I cannot do validation here. Since this is getting invoked when button has already been pressed
           I need to tell the user a row is valid or not when he is editing that row / field.
           The theme colors are at: https://element.eleme.io/#/en-US/component/color
           data same as DB: Regular text
           Valid data in edit state: success color
           data in error state: warning color
-  
+
         await this.update({
           where: (record) => record.clientSideUniqRowId === arFromClientTbl[i].clientSideUniqRowId,
           data: {
@@ -902,7 +910,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     let failed = 0
     /*
       Q: Why we use .map instead of forEach loop?
-      -- We want to be able to loop over an array/list (dataRow) in sequential order. Furthermore, each iteration using async/await. forEach is unable to deal with this kind of scenario but .map function is suitable in this case. 
+      -- We want to be able to loop over an array/list (dataRow) in sequential order. Furthermore, each iteration using async/await. forEach is unable to deal with this kind of scenario but .map function is suitable in this case.
       Hence we are using .map instead of forEach loop.
       Ref: https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
     */

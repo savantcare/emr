@@ -31,8 +31,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 
     // Blood Pressure
-    $router->get('blood-pressure/v20/', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
-    $router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@get_one_blood_pressure']);
+    $router->get('blood-pressure/v20/{pPtUuid}', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
+    //$router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@get_one_blood_pressure']);
     $router->post('blood-pressure/v20/', ['uses' => 'BloodPressureController@create']);
     $router->put('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@update']);
     $router->options('blood-pressure/v20', function () {
@@ -47,8 +47,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Blood Sugar
-    $router->get('blood-sugar/v20/', ['uses' => 'BloodSugarController@get_all_temporal_blood_sugars']);
-    $router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@get_one_blood_sugar']);
+    $router->get('blood-sugar/v20/{pPtUuid}', ['uses' => 'BloodSugarController@get_all_temporal_blood_sugars']);
+    //$router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@get_one_blood_sugar']);
     $router->post('blood-sugar/v20/', ['uses' => 'BloodSugarController@create']);
     $router->put('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@update']);
     $router->options('blood-sugar/v20', function () {
@@ -95,8 +95,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // REMINDERS
-    $router->get('reminders/v20/', ['uses' => 'ReminderController@get_all_temporal_reminders']);
-    $router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@get_one_reminder']);
+    $router->get('reminders/v20/{pPtUuid}', ['uses' => 'ReminderController@get_all_temporal_reminders']);
+    //$router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@get_one_reminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
     $router->delete('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
     $router->put('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@update']);
@@ -113,8 +113,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Recommendations
-    $router->get('recommendations/v20/', ['uses' => 'RecommendationController@get_all_temporal_recommendations']);
-    $router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@get_one_recommendation']);
+    $router->get('recommendations/v20/{pPtUuid}', ['uses' => 'RecommendationController@get_all_temporal_recommendations']);
+    //$router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@get_one_recommendation']);
     $router->post('recommendations/v20/', ['uses' => 'RecommendationController@create']);
     $router->delete('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
     $router->put('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@update']);
@@ -291,7 +291,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Allergies
-    $router->get('allergies/v20/', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
+    $router->get('allergies/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
     //$router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@get_one_allergies']);
     $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
     $router->delete('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);

@@ -6,8 +6,8 @@
           Why not put it inside <SplitArea> the event does not get fired.
           Why not put a div inside and then put mouseleave event over there?
             when go from Layer1LeftSide to layer1RightSide the event gets fired.
-        Ref: https://codepen.io/intotheprogram/pen/ZjxZdg 
-    -->
+        Ref: https://codepen.io/intotheprogram/pen/ZjxZdg
+  -->
   <div :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
     <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
     <!-- GOAL1: Initialize the keyboard and mouse controls -->
@@ -20,7 +20,7 @@
     <!-- Prop explanation:
         :gutterSize="0"
           This is thickness of the line between left and right panels. This line is used to adjust size of left and right
-      -->
+    -->
     <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
     <Split style="height: 900px; width: 1440px" :gutter-size="4">
       <SplitArea :size="cfLayer1LeftSideSplitSize">
@@ -30,7 +30,9 @@
         <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
         drawer. When there is a veritical bar that can be moved around but the drawer does not response. It becomes very confusing
         for the user-->
-        <div v-if="cfRightScreenExtensionVisibility"><ctRightScreenExtensionDrawer /></div>
+        <div v-if="cfRightScreenExtensionVisibility">
+          <ctRightScreenExtensionDrawer />
+        </div>
         <div v-else>
           <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
         </div>
@@ -146,6 +148,7 @@ Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
 
+
 // For keyboard contraol Ref: https://github.com/g33kio/vue-mousetrap#readme
 import VueMousetrap from 'vue-mousetrap'
 Vue.use(VueMousetrap)
@@ -171,6 +174,14 @@ export default {
     return {
       fullscreen: false
     }
+  },
+  created() {
+    clientSideTableOfCommonForAllComponents.insert({
+      data: {
+        fieldName:'ptUuid',
+        fieldValue: this.$route.params.uuid,
+      },
+    })
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
@@ -258,10 +269,10 @@ export default {
 } */
 
 /*
-Some font-size css was coming from element-io library file 
+Some font-size css was coming from element-io library file
 - /gt/emr/webclient/node_modules/element-ui/lib/theme-chalk/index.css
 
-I have write the below css to overright the default font-size given in library file 
+I have write the below css to overright the default font-size given in library file
 
 convert pixel to rem:
 Ref: https://www.ninjaunits.com/converters/pixels/pixels-rem/
@@ -284,29 +295,29 @@ I have added the following css because if we set font-size=200% then v-tour popu
   max-width: 600px;
 }
 
-/** 
+/**
   Why we added the following css?
     Problem: Why has arrow pointing up and down come in the 2nd layer edit form left side menu.
 
     As per the plugin 'element-io el-tabs' (mentioned in webclient/node_modules/element-ui/lib/element-ui.common.js) up and down arrow will appear if container size of el-tabs navigation is lesser than nav size.
-    
-    In the second layer edit form popup left hand side, above mentioned container is containing the nav area. 
-    In our case, height of popup container is dynamic and it takes equanimity height of all the navBars.  
+
+    In the second layer edit form popup left hand side, above mentioned container is containing the nav area.
+    In our case, height of popup container is dynamic and it takes equanimity height of all the navBars.
     Hence, navSize is equal to the container size in our case which causes the up and down arrow.
 
-    Posible solution was as follows: 
+    Posible solution was as follows:
     1. Give a height of the container such that it always greater than navSize
     2. Change in node_module library and introduce a '<=' instead of '<'
     3. Using a padding in 'el-tabs__nav-scroll'
 
-    Solution 1 is cumbersome as the number of navBar is dynamic, 
-    hence height needs to be re-calculated everytime. 
+    Solution 1 is cumbersome as the number of navBar is dynamic,
+    hence height needs to be re-calculated everytime.
 
-    Solution 2 is not preffered as altering library file may cause problem in future updation of the library. 
+    Solution 2 is not preffered as altering library file may cause problem in future updation of the library.
 
-    Solution 3 is what we have done to solve the problem. 
-      While going through the library I found container height is being calculated by the offsetHeight of the container element. 
-      As per this document - https://www.w3schools.com/jsref/prop_element_offsetheight.asp offsetHeight is height of an element including padding and border of the element. 
+    Solution 3 is what we have done to solve the problem.
+      While going through the library I found container height is being calculated by the offsetHeight of the container element.
+      As per this document - https://www.w3schools.com/jsref/prop_element_offsetheight.asp offsetHeight is height of an element including padding and border of the element.
       So, in order to make container height larger than navBar I am adding padding 5px in navBar container element or el-tabs__nav-scroll.
 */
 .el-tabs__nav-scroll {
@@ -315,10 +326,10 @@ I have added the following css because if we set font-size=200% then v-tour popu
 
 /**
   Why we added this following css?
-  Problem: Words get cut in past meds trials textarea. But it works fine on element.io website. 
+  Problem: Words get cut in past meds trials textarea. But it works fine on element.io website.
     When typing to at the edge t is on one line and O is on another line.
 
-  Solution: 
+  Solution:
     Ref: https://stackoverflow.com/questions/33431090/textarea-breaks-words-and-doesnt-make-new-lines
  */
 textarea.el-textarea__inner {
