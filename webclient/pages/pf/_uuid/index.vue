@@ -23,7 +23,7 @@
     <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
     <Split style="height: 900px; width: 1440px" :gutter-size="4">
       <SplitArea :size="cfLayer1LeftSideSplitSize">
-        <ctLayer1LeftSideCards></ctLayer1LeftSideCards>
+        <ctPaperViewNoteLeftSideComponents></ctPaperViewNoteLeftSideComponents>
       </SplitArea>
       <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
         <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
@@ -31,7 +31,7 @@
         for the user-->
         <div v-if="cfRightScreenExtensionVisibility"><ctRightScreenExtensionDrawer /></div>
         <div v-else>
-          <ctLayer1RightSideCards></ctLayer1RightSideCards>
+          <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
         </div>
       </SplitArea>
     </Split>
@@ -104,8 +104,8 @@ Vue.component('tags-input', VoerroTagsInput)
 
 // Internal Cts
 import ctFeed from '@/components/non-temporal/feed/drawer.vue'
-import ctLayer1LeftSideCards from '@/components/papers/view-appt-note/lhs/container/list-of-cards.vue'
-import ctLayer1RightSideCards from '@/components/papers/view-appt-note/rhs/container/list-of-cards.vue'
+import ctPaperViewNoteLeftSideComponents from '@/components/papers/view-appt-note/lhs/container/list-of-components.vue'
+import ctPaperViewNoteRightSideComponents from '@/components/papers/view-appt-note/rhs/container/list-of-components.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-change-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
 import ctChangeInTabs from '@/components/papers/change-appt-note/show-vertical-tabs-in-dialog.vue'
@@ -143,8 +143,8 @@ Vue.use(VueMousetrap)
 
 export default {
   components: {
-    ctLayer1LeftSideCards,
-    ctLayer1RightSideCards,
+    ctPaperViewNoteLeftSideComponents,
+    ctPaperViewNoteRightSideComponents,
     ctTabsInDialogInCL,
     ctLeftScreenExtensionDrawer,
     ctRightScreenExtensionDrawer,
