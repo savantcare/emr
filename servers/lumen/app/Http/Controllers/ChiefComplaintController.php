@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class ChiefComplaintController extends Controller
 {
-    public function get_all_temporal_chief_complaint()
+    public function get_all_temporal_chief_complaint($pPtUuid)
     {
-        $chiefComplaintQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_chief_complaint.chief_complaint order by ROW_START desc'));
+        $chiefComplaintQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_chief_complaint.chief_complaint where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($chiefComplaintQueryResultObj);
         // return response()->json(ChiefComplaint::all());
     }

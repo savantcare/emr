@@ -163,8 +163,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Past psych history
-    $router->get('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@get_all_temporal_past_psych_history']);
-    $router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@get_one_past_psych_history']);
+    $router->get('past-psych-history/v20/{pPtUuid}', ['uses' => 'PastPsychHistoryController@get_all_temporal_past_psych_history']);
+    //$router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@get_one_past_psych_history']);
     $router->post('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@create']);
     $router->delete('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@delete']);
     $router->options('past-psych-history/v20', function () {
@@ -179,7 +179,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Examination
-    $router->get('examination/v20/', ['uses' => 'ExaminationController@get_all_temporal_examinations']);
+    $router->get('examination/v20/{pPtUuid}', ['uses' => 'ExaminationController@get_all_temporal_examinations']);
     $router->post('examination/v20/', ['uses' => 'ExaminationController@create']);
     $router->put('examination/v20/{pServerSideRowUuid}', ['uses' => 'ExaminationController@update']);
     $router->delete('examination/v20/{pServerSideRowUuid}', ['uses' => 'ExaminationController@delete']);
@@ -259,8 +259,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Plan Comments
-    $router->get('plan-comments/v20/', ['uses' => 'PlanCommentsController@get_all_temporal_plan_comments']);
-    $router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@get_one_plan_comments']);
+    $router->get('plan-comments/v20/{pPtUuid}', ['uses' => 'PlanCommentsController@get_all_temporal_plan_comments']);
+    //$router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@get_one_plan_comments']);
     $router->post('plan-comments/v20/', ['uses' => 'PlanCommentsController@create']);
     $router->delete('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
     $router->put('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@update']);
@@ -307,8 +307,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Chief Complant
-    $router->get('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@get_all_temporal_chief_complaint']);
-    $router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@get_one_chief_complaint']);
+    $router->get('chief-complaint/v20/{pPtUuid}', ['uses' => 'ChiefComplaintController@get_all_temporal_chief_complaint']);
+    //$router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@get_one_chief_complaint']);
     $router->post('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@create']);
     $router->put('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@update']);
     $router->delete('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
@@ -324,8 +324,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Process Notes
-    $router->get('process-notes/v20/', ['uses' => 'ProcessNotesController@get_all_temporal_process_notes']);
-    $router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@get_one_process_notes']);
+    $router->get('process-notes/v20/{pPtUuid}', ['uses' => 'ProcessNotesController@get_all_temporal_process_notes']);
+    //$router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@get_one_process_notes']);
     $router->post('process-notes/v20/', ['uses' => 'ProcessNotesController@create']);
     $router->delete('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
     $router->options('process-notes/v20', function () {
@@ -340,7 +340,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Goal
-    $router->get('goals/v20/', ['uses' => 'GoalController@get_all_temporal_goals']);
+    $router->get('goals/v20/{pPtUuid}', ['uses' => 'GoalController@get_all_temporal_goals']);
     $router->post('goals/v20/', ['uses' => 'GoalController@create']);
     $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
     $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
@@ -356,8 +356,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Miscellaneous Notes
-    $router->get('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@get_all_temporal_miscellaneous_notes']);
-    $router->get('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@get_one_miscellaneous_note']);
+    $router->get('miscellaneous-notes/v20/{pPtUuid}', ['uses' => 'MiscellaneousNotesController@get_all_temporal_miscellaneous_notes']);
+    //$router->get('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@get_one_miscellaneous_note']);
     $router->post('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@create']);
     $router->delete('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
     $router->put('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@update']);
