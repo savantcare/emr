@@ -29,7 +29,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
-
+    $router->get('validateUser/', ['uses' => 'oAuthLoginController@index']);
     // Blood Pressure
     $router->get('blood-pressure/v20/{pPtUuid}', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
     //$router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@get_one_blood_pressure']);
