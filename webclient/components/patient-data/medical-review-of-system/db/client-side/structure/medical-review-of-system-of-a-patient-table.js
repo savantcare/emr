@@ -62,6 +62,7 @@ export const medicalReviewOfSystemFormDef = {
   id: 'medical_review_of_system',
   plural: 'medical review of system',
   singular: 'medical review of system',
+  defaultNormalArray:['#None#','#Change_in_weight#','#Dry_skin#','#Seasonal_allergies#','#Shortness_of_breath#','#Shakiness#','#Feeling_hotter_than_everyone#'],
   fieldsDef: [
     {
       nameInUi: 'Have you recently noticed any of the following?',
@@ -178,6 +179,7 @@ export const medicalReviewOfSystemFormDef = {
     },
   ],
   showReviewedButtonInForm: false,
+  showAllnormalButtonInForm: true,
   showResetFormButton: false,
   showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
