@@ -2,6 +2,7 @@
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import medicationsMasterValues from '~/components/non-temporal/tribute/medications-master-values'
+import providersMasterValues from '~/components/non-temporal/tribute/providers-master-values'
 
 const { v1: uuidv1 } = require('uuid')
 let count = 0
@@ -60,25 +61,6 @@ export default class medication_order extends clientTblManage {
   }
 }
 
-const fnSelectOptionCallBackForOrderingProvider = (pId, pCallBack) => {
-  const options = [
-    {
-      id: '1',
-      value: 'Dr. vidushi savant',
-    },
-    {
-      id: '2',
-      value: 'Dr. Sonia Parikh',
-    },
-  ]
-  pCallBack(options)
-  const getData = options.filter((item) => item.id === pId)
-  if (getData.length) {
-    return getData[0].value
-  }
-  return ''
-}
-
 export const medicationOrderFormDef = {
   id: 'medication_orders',
   plural: 'medication order',
@@ -112,9 +94,15 @@ export const medicationOrderFormDef = {
     {
       nameInDb: 'orderingProvider',
       nameInUi: 'Ordering provider',
-      type: 'autocomplete',
+      type: 'tribute-input',
       showLabel: true,
-      selectOptions: fnSelectOptionCallBackForOrderingProvider,
+      tributeOptions: {
+        autocompleteMode: true,
+        values: providersMasterValues,
+        positionMenu: true,
+        menuContainer: document.querySelector('.menu-container'),
+        noMatchTemplate: '',
+      },
     },
     { nameInDb: 'pharmacy', nameInUi: 'Pharmacy', type: 'tribute-editor', showLabel: true },
   ],
