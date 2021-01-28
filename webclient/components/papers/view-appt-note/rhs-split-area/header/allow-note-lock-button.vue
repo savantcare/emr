@@ -49,7 +49,7 @@ export default {
        * Hence, we need to get this.currentApptObj everytime when clicked on 'Reviewed - Lock the note' button using new apptId
        */
       this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
-console.log(this.currentApptObj)
+
       /* Loop through all the tables */
       for (const entity in allPatientDataTbls) {
         console.log(
