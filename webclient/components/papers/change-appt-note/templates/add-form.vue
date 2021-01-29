@@ -86,7 +86,7 @@
                 >
                   <span
                     style="display:none"
-                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb,'247']}}</span>
+                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb]}}</span>
                   <el-button
                     size="mini"
                     round
@@ -362,6 +362,7 @@ export default {
     return {
       value: [],
       defaultNormalArray: this._formDef.defaultNormalArray,
+      defaultNormalArrayMd: this._formDef.defaultNormalArrayMd,
       clickedDataArray:[],
       searchFilter: null,
       normalDefaultBtn : false,
@@ -455,11 +456,6 @@ export default {
     })
   },
   methods: {
-    isInArray(value, array) {
-       console.log(value, array);
-       
-      return array.indexOf(value) > -1;
-    },
     mf_auto_resize_textarea(event) {
       /**
        * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
@@ -689,14 +685,19 @@ export default {
       } else {
         this.normalDefaultBtn = true
       }
-      for(let row in this.clickedDataArray){
-        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.clickedDataArray[row]][0],this.allFieldValue[this.clickedDataArray[row]][1],this.allFieldValue[this.clickedDataArray[row]][2],this.allFieldValue[this.clickedDataArray[row]][3])      
-      }
       
-      for(let row in this.defaultNormalArray){
-        console.log(this.allFieldValue);
-        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.defaultNormalArray[row]][0],this.allFieldValue[this.defaultNormalArray[row]][1],this.allFieldValue[this.defaultNormalArray[row]][2],this.allFieldValue[this.defaultNormalArray[row]][3])      
+      for(let row in this.clickedDataArray){
+        allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.allFieldValue[this.clickedDataArray[row]][0],this.allFieldValue[this.clickedDataArray[row]][1],this.allFieldValue[this.clickedDataArray[row]][2],rowState.New_Changed_FormValidationPass)      
       }
+
+      for(let row in this.defaultNormalArrayMd){
+        for(let nestedRow in this.defaultNormalArrayMd[row]){
+          console.log("md ",row, this.defaultNormalArrayMd[row][nestedRow],this.allFieldValue[this.defaultNormalArrayMd[row][nestedRow]][1]);
+          
+          allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.defaultNormalArrayMd[row][nestedRow],this.allFieldValue[this.defaultNormalArrayMd[row][nestedRow]][1],row,rowState.New_Changed_FormValidationPass)
+        }
+      }
+
     }
   },
 }
