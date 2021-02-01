@@ -84,9 +84,12 @@
                   why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
                   :id="_fieldDef.nameInDb + optionIndex"
                 >
+                <!-- 
+                  // need to create specific array from loop data
+                -->
                   <span
                     style="display:none"
-                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb]}}</span>
+                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb]}} </span>
                   <el-button
                     size="mini"
                     round
@@ -404,6 +407,9 @@ export default {
     VueTribute,
   },
   computed: {
+    setAllfieldValue(){
+      console.log("onload");
+    },
     // allPatientDataTbls[this._formDef.id] functions can not be directly called from template. hence computed functions have been defined.
     cfGetClientTblNewRowsInEditState() {
       const r = allPatientDataTbls[this._formDef.id].fnGetNewRowsInEditState() // for things like SS it will return 1 row. For things like reminders it will return 0 to many rows
@@ -450,12 +456,15 @@ export default {
      *
      * Doc should have explained the reason for needing setTimeOut @raj
      */
+    console.log("ek");
+
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
       setTimeout(() => this.mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails), 200)
     })
   },
   methods: {
+    
     mf_auto_resize_textarea(event) {
       /**
        * Ref: https://medium.com/@adamorlowskipoland/vue-auto-resize-textarea-3-different-approaches-8bbda5d074ce
@@ -475,7 +484,7 @@ export default {
       return pText
     },
     log(item) {
-      console.log(item)
+      console.log("log ak",item)
     },
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
@@ -515,7 +524,7 @@ export default {
           pArFieldDetails['fieldNameInDb']
 
         var focusableElement = document.querySelectorAll(
-          parentDivQuerySelector +
+            parentDivQuerySelector +
             ' button, ' +
             parentDivQuerySelector +
             ' input, ' +
@@ -692,8 +701,6 @@ export default {
 
       for(let row in this.defaultNormalArrayMd){
         for(let nestedRow in this.defaultNormalArrayMd[row]){
-          console.log("md ",row, this.defaultNormalArrayMd[row][nestedRow],this.allFieldValue[this.defaultNormalArrayMd[row][nestedRow]][1]);
-          
           allPatientDataTbls[this._formDef.id].fnSetValueOfFld(this.defaultNormalArrayMd[row][nestedRow],this.allFieldValue[this.defaultNormalArrayMd[row][nestedRow]][1],row,rowState.New_Changed_FormValidationPass)
         }
       }
