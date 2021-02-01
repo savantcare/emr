@@ -643,6 +643,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         valueForThisField = null
       }
 
+      // Goal: when user select option "None" remove old selected values from vuex-orm
+      if(valueForThisField && valueForThisField.includes('#None#')){
+        valueForThisField = '#None#'
+      }
+
       row = {
         [pFldName]: valueForThisField,
         vnRowStateInSession: pRowStatus,
