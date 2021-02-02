@@ -14,7 +14,9 @@
       
       <h1 class="title">webclient</h1>
       <div class="links">
-        <GoogleLogin class="button--grey" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-if="!logoutButton">Google Login</GoogleLogin>
+
+
+        <GoogleLogin id="g_id_onload" class="button--grey" auto_select="true" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-if="!logoutButton">Google Login</GoogleLogin>
          <!-- <GoogleLogin :params="params" :logoutButton=true>Logout</GoogleLogin> -->
         <button  class="button--grey" v-if="logoutButton" v-on:click="logOutUser">Logout</button>
         <a
@@ -50,12 +52,15 @@ import VueCookies from 'vue-cookies'
 //See the reference link here https://www.npmjs.com/package/vue-google-login
 // Created client id from https://console.developers.google.com/
 Vue.use(LoaderPlugin, {
-        client_id: '709054643834-30j9268npj9tltbhnbdso8etbpkk22g6.apps.googleusercontent.com'
+        client_id: '709054643834-30j9268npj9tltbhnbdso8etbpkk22g6.apps.googleusercontent.com',
+        approval_prompt: '',
   });
 
   Vue.GoogleAuth.then(auth2 => {
+        // console.log(auth2.getLastSignedInAccount())
+        // console.log(gapi.auth2.getAuthInstance().signIn())
         // console.log('isSignedIn: ',auth2.isSignedIn.get())
-        // console.log('currentUser: ',auth2.currentUser.get())
+        console.log('currentUser: ',auth2.currentUser.get())
         const authResponse = auth2.currentUser.get().getAuthResponse()
         if(Object.keys(authResponse).length>0){
           console.log('google login')
@@ -108,7 +113,9 @@ export default {
     return {
       // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
       params: {
-          client_id: "709054643834-30j9268npj9tltbhnbdso8etbpkk22g6.apps.googleusercontent.com"
+          client_id: "709054643834-30j9268npj9tltbhnbdso8etbpkk22g6.apps.googleusercontent.com",
+          authuser: 0
+
       },
       // only needed if you want to render the button with the google ui
       renderParams: {
@@ -175,16 +182,32 @@ export default {
       
       resetUserAccessToken(){
          Vue.GoogleAuth.then(auth2 => {
+           const isSignedIn = auth2.isSignedIn.get()
            const authResponse = auth2.currentUser.get().getAuthResponse()
-           if(Object.keys(authResponse).length>0){
-             console.log('google login')
+           if(isSignedIn){
+
+             if(this.loggedinUser==null){
+               const profile = auth2.currentUser.get().getBasicProfile()
+                const loginObj = {
+                  googleId: profile.getId(),
+                  fullName: profile.getName(),
+                  givenName:profile.getGivenName(),
+                  familyName:profile.getFamilyName(),
+                  imageUrl:profile.getImageUrl(),
+                  email:profile.getEmail()
+                }
+                this.loggedinUser = loginObj
+                localStorage.setItem('authorizedUserDetails',JSON.stringify(this.loggedinUser))
+                this.logoutButton = true
+             }
+
              this.authResponse = authResponse
            }else{
-             console.log('google logout')
              this.logOutUser()
            }
          })
-     }
+     },
+
       
   }
 }
