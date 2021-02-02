@@ -19,6 +19,7 @@
     -->
 
     <div
+      v-if="currentApptObj['apptStatus'] === 'unlocked'"
       style="text-align: left; cursor: pointer; color: #606266; margin: 3px 0 0 0"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
@@ -28,6 +29,31 @@
       @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+    </div>
+    <div
+      v-else
+      style="text-align: left; cursor: pointer; color: #606266"
+      tabIndex="0"
+      why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
+      why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
+      why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
+    >
+      <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+        <div style="text-align: right; margin: 0">
+          <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
+          <!-- Amendment icon -->
+          <el-button
+            v-if="amendmentData.length > 0"
+            type="success"
+            icon="el-icon-check"
+            style="position: absolute; bottom: 15px; right: 15px"
+            size="mini"
+            @click="mfSaveAddendum(amendmentData, _formDef.id)"
+            circle
+          ></el-button>
+        </div>
+        <b slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+      </el-popover>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
 
@@ -63,11 +89,11 @@
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value 
          Each appt gets a slide of its own         -->
 
-      <ul class="no-scrollbar" id="container-for-all-appointments">
-        <section v-for="item in cf_get_entity_value_during_each_appt" :key="item.id">
-          <li class="item" id="container-for-one-appointment">
-            <div v-if="currentApptObj.apptStartMilliSecsOnCalendar !== item.apptStartMilliSecsOnCalendar">
-              Appt on: {{ item.apptStartMilliSecsOnCalendar | moment }}
+      <ul class="hs full no-scrollbar" id="container-for-all-appointments">
+        <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
+          <li class="item" :id="'container-for-one-appointment_'+index">
+            <div v-if="objAppt.apptStatus === 'locked'">
+              Appt on: {{ objAppt.apptStartMilliSecsOnCalendar | moment }}
             </div>
             <div
               id="container-to-ctrl-placement-of-every-row-in-view-note"
@@ -79,32 +105,32 @@
             >
               <div
                 id="container-for-all-rows-of-one-appointment"
-                v-for="dataRow in item[_formDef.id]"
+                v-for="dataRow in objAppt[_formDef.id]"
                 :key="dataRow.clientSideUniqRowId"
               >
                 <getRowContent
                   :_dataRow="dataRow"
                   :_formDef="_formDef"
-                  :_ApptStatus="item['apptStatus']"
-                  :_apptStartMilliSecsOnCalendar="item['apptStartMilliSecsOnCalendar']"
+                  :_ApptStatus="objAppt['apptStatus']"
+                  :_apptStartMilliSecsOnCalendar="objAppt['apptStartMilliSecsOnCalendar']"
                 />
                 <!-- end of each-row-of-entity -->
+              </div>
+            </div>
+            <div v-if="cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId] && cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId].length > 0" style="width: calc(100% - 10px*2); padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 3fr; grid-column-gap: 1rem">
+              <div><h4>Addendum:</h4></div>
+              <div v-for="dataRow in cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId]" :key="dataRow.clientSideUniqRowId">
+                <div style="margin: 5px 0">
+                  {{ dataRow.description }}
+                  <br />
+                  <span style="font-size: 0.625rem">Added by {{ dataRow.addedBy }} at {{ dataRow.ROW_START | moment }}</span>
+                </div>
               </div>
             </div>
           </li>
           <!-- end of actions of each row -->
         </section>
       </ul>
-    </div>
-    <div v-if="cfArOfAddendumForDisplay && cfArOfAddendumForDisplay.length > 0">
-      <h4>Addendum:</h4>
-      <div v-for="dataRow in cfArOfAddendumForDisplay" :key="dataRow.clientSideUniqRowId">
-        <div style="margin: 5px 0">
-          {{ dataRow.description }}
-          <br />
-          <span style="font-size: 0.625rem">Added by {{ dataRow.addedBy }} at {{ dataRow.ROW_START | moment }}</span>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -249,12 +275,18 @@ export default {
     cfArOfAddendumForDisplay() {
       const arFromClientTblOfAddendums = clientTblOfAddendums
         .query()
-        .where('appointmentId', this._apptId)
-        .where('component', 'reminders')
+        .where('component', this._formDef.id)
         .orderBy('ROW_START', 'asc')
         .get()
 
-      return arFromClientTblOfAddendums
+      let arOfAddendumForDisplay = []
+      for (let j = 0; j < arFromClientTblOfAddendums.length; j++) {
+        if (typeof arOfAddendumForDisplay[arFromClientTblOfAddendums[j].appointmentId] === 'undefined') {
+          arOfAddendumForDisplay[arFromClientTblOfAddendums[j].appointmentId] = []
+        }
+        arOfAddendumForDisplay[arFromClientTblOfAddendums[j].appointmentId].push(arFromClientTblOfAddendums[j])
+      }
+      return arOfAddendumForDisplay
     },
     cf_get_entity_value_during_each_appt() {
       const arOfAppts = clientTblOfAppointments.query().get()
@@ -272,6 +304,12 @@ export default {
       for (let j = 0; j < arOfAppts.length; j++) {
         if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
+
+          setTimeout(() => {
+            const element = document.getElementById('container-for-one-appointment_'+j);
+            const objScrollTo  = this.$scrollTo(element, 100, {container:'#container-for-all-appointments', x: true, y: false});
+            // objScrollTo();
+          }, 200); 
         }
       }
 
@@ -369,6 +407,7 @@ export default {
 
       // remove modal value after save
       this.amendmentData = ''
+      this.isAddendumPopoverVisible = false // close popup automatically after amendment saved successfully
     },
   },
 }
@@ -442,7 +481,7 @@ http://jsfiddle.net/kf1y2npw/30/
   grid-template-columns: 10px;
 
   grid-auto-flow: column;
-  grid-auto-columns: calc(95% - 20px * 2);
+  grid-auto-columns: 100%;
 
   overflow-x: scroll;
   scroll-snap-type: x proximity;
