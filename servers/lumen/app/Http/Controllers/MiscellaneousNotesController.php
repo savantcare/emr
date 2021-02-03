@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class MiscellaneousNotesController extends Controller
 {
-    public function get_all_temporal_miscellaneous_notes()
+    public function get_all_temporal_miscellaneous_notes($pPtUuid)
     {
-        $miscellaneousNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_miscellaneous_notes.miscellaneous_notes order by ROW_START desc'));
+        $miscellaneousNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_miscellaneous_notes.miscellaneous_notes where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($miscellaneousNotesQueryResultObj);
     }
 

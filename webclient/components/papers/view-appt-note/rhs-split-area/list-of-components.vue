@@ -26,7 +26,7 @@ import ctScBrainDialog from '@/components/papers/appt-coding/sc-brain-dialog.vue
 import ctCoding from '@/components/papers/appt-coding/dashboard.vue'
 import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header/settings.vue'
 
-
+import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-comparison-or-single-note-and-their-appt-id.vue'
 
 import lockButtonPrintSection from './header/allow-note-lock-button.vue'
@@ -40,30 +40,38 @@ export default {
     apptNote,
     lockButtonPrintSection,
   },
+  data() {
+    return {
+      showNoteForApptId: 0,
+    }
+  },
+  watch: {
+    /**
+     * Why we use watcher on computed function?
+     * -- In line number - 15, need to send unlocked note appointment ID as _apptId props in lockButtonPrintSection component.
+     * And In section-19-allow-note-lock.vue page props _apptId accepts only number
+     * Hence, I have define a data variable named 'showNoteForApptId' and using computed and watch overwrite that variable
+     */
+    cf_get_unlocked_note_appt_id: {
+      immediate: true,
+      handler(pVal) {
+        this.showNoteForApptId = pVal
+      },
+    },
+  },
   computed: {
-    dshowNoteForApptId() {
-      /*
-      const apptObj = clientTblOfAppointments
+    async cf_get_unlocked_note_appt_id() {
+      const apptObj = await clientTblOfAppointments
         .query()
-        .where('apptStatus', 'locked')
-        .orWhere('apptStatus', 'unlocked')
+        .where('apptStatus', 'unlocked')
         .orderBy('clientSideUniqRowId', 'desc')
         .get()
 
-      console.log(apptObj)
-
       if (apptObj.length === 0) return
-      console.log(apptObj)
+
       this.showNoteForApptId = apptObj[0]['clientSideUniqRowId']
       return this.showNoteForApptId
-      */
     },
   },
-  data() {
-    return {
-      showNoteForApptId: 5,
-    }
-  },
-  computed: {},
 }
 </script>

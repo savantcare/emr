@@ -7,6 +7,7 @@
 <script>
 import initializePastPsychHistoryComponent from '@/components/patient-data/past-psych-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/past-psych-history/db/client-side/structure/past-psych-history-of-a-patient-table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
@@ -21,7 +22,15 @@ export default {
       */
 
     if (process.env.loadInitialDataFromServer === true) {
-      const proFromDB = await clientTbl.api().get(clientTbl.apiUrl)
+      const ptUuidFromOrm = await clientTblOfCommonForAllComponents
+      .query()
+      .where(
+        'fieldName',
+        'ptUuid'
+      )
+      .first()
+
+      const proFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
       if (proFromDB.ok) {
       }
     }

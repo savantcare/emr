@@ -42,6 +42,14 @@ export default {
     async lockButtonClicked() {
       console.log('lock button clicked')
 
+      /**
+       * Why we added below line?
+       * -- When click on the 'Reviewed - Lock the note' more then 1 times after page load,
+       * then mounted function will not fired to get this.currentApptObj with new apptId.
+       * Hence, we need to get this.currentApptObj everytime when clicked on 'Reviewed - Lock the note' button using new apptId
+       */
+      this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
+
       /* Loop through all the tables */
       for (const entity in allPatientDataTbls) {
         console.log(

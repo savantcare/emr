@@ -9,6 +9,7 @@ import step1_init_search_phrases from '@/components/patient-data/examination/db/
 
 import clientTbl from '~/components/patient-data/examination/db/client-side/structure/examination-of-a-patient-table.js'
 // import step2_init_examination_field_names from '@/components/patient-data/examination/db/client-side/dynamic-data/get-initial-data-from-server-ct.vue'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
@@ -28,7 +29,15 @@ export default {
     }
      */
     if (process.env.loadInitialDataFromServer === true) {
-      const proExaminationFromDB = await clientTbl.api().get(clientTbl.apiUrl)
+      const ptUuidFromOrm = await clientTblOfCommonForAllComponents
+      .query()
+      .where(
+        'fieldName',
+        'ptUuid'
+      )
+      .first()
+
+      const proExaminationFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
       if (proExaminationFromDB.ok) {
       }
     }

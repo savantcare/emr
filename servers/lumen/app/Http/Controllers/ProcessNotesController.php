@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class ProcessNotesController extends Controller
 {
-    public function get_all_temporal_process_notes()
+    public function get_all_temporal_process_notes($pPtUuid)
     {
-        $processNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_process_notes.process_notes order by ROW_START desc'));
+        $processNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_process_notes.process_notes  where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($processNotesQueryResultObj);
     }
 
