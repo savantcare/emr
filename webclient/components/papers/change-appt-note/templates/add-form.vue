@@ -84,12 +84,6 @@
                   why1="Reasons for mf_matched_field_name -> If the field name matches then show all the options below that field"
                   :id="_fieldDef.nameInDb + optionIndex"
                 >
-                <!-- 
-                  // need to create specific array from loop data
-                -->
-                  <span
-                    style="display:none"
-                  >{{ allFieldValue[item.id] = [item.id,ormRow.clientSideUniqRowId,_fieldDef.nameInDb]}} </span>
                   <el-button
                     size="mini"
                     round
@@ -456,8 +450,25 @@ export default {
      *
      * Doc should have explained the reason for needing setTimeOut @raj
      */
-    console.log("ek");
+    if(this._formDef.showAllnormalButtonInForm){
+        //console.log("ek",this.allFieldValue);
+        for (let fieldDef in this._formDef.fieldsDef) {   
+            for (let nestedData in this.cfGetClientTblNewRowsInEditState) { 
+              for(let lastNestedData in this._formDef.fnGetAllSelectOptionsAndSelectedForAField(this._formDef.fieldsDef[fieldDef].nameInDb,this.cfGetClientTblNewRowsInEditState[nestedData].clientSideUniqRowId)) {
+                this.allFieldValue[this._formDef.fnGetAllSelectOptionsAndSelectedForAField(this._formDef.fieldsDef[fieldDef].nameInDb,this.cfGetClientTblNewRowsInEditState[nestedData].clientSideUniqRowId)[lastNestedData].id] = [this._formDef.fnGetAllSelectOptionsAndSelectedForAField(this._formDef.fieldsDef[fieldDef].nameInDb,this.cfGetClientTblNewRowsInEditState[nestedData].clientSideUniqRowId)[lastNestedData].id,this.cfGetClientTblNewRowsInEditState[nestedData].clientSideUniqRowId,this._formDef.fieldsDef[fieldDef].nameInDb]         
+              }
+            
+              //console.log("ek",this._formDef.fieldsDef[fieldDef].nameInDb,this.cfGetClientTblNewRowsInEditState[nestedData].clientSideUniqRowId);
 
+            }
+        }
+
+       /*_formDef.fnGetAllSelectOptionsAndSelectedForAField(
+                  _fieldDef.nameInDb,
+                  ormRow.clientSideUniqRowId
+                ) */
+    }
+   
     const eventName = 'event-from-tab-change-to-focus-form-field'
     this.$root.$on(eventName, (pTabName, pArFieldDetails) => {
       setTimeout(() => this.mf_restore_form_field_focus_on_tab_change(pTabName, pArFieldDetails), 200)

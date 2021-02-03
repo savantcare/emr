@@ -226,23 +226,26 @@ export const medicalReviewOfSystemFormDef = {
 
   fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
     let masterListOfSelectOptionsForAField = mrosEachFieldAllSelectOptions[fieldNameInDb]
-
+    
     // get the value for this field in patient table
     let row = medicalReviewOfSystemOfAPatientTbl.find(pclientSideUniqRowId)
     let selectedIDs = row[fieldNameInDb]
 
     var selectDropDown = []
-
-    for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
-      selectDropDown[i] = new Array()
-      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
-
-      selectDropDown[i]['id'] = fieldOptionId
-      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
-      if (selectedIDs) {
-        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
+    if(masterListOfSelectOptionsForAField){
+      //console.log("here",fieldNameInDb); return false;
+      for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
+        selectDropDown[i] = new Array()
+        const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
+  
+        selectDropDown[i]['id'] = fieldOptionId
+        selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
+        if (selectedIDs) {
+          selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
+        }
       }
     }
+    
 
     /* run custom rules to remove selected options. The data structure is:
           $id: "#0#"
