@@ -337,7 +337,7 @@ import allFormDefs from '@/components/non-temporal/form-manager/all-form-definat
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
-import VueTribute from 'vue-tribute'
+import VueTribute from '@/assets/vue-tribute'
 
 export default {
   created() {
