@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class GoalController extends Controller
 {
-    public function get_all_temporal_goals()
+    public function get_all_temporal_goals($pPtUuid)
     {
-        $goalQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_goals.goals FOR SYSTEM_TIME ALL order by ROW_START desc'));
+        $goalQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_goals.goals FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($goalQueryResultObj);
         // return response()->json(Goal::all());
     }
@@ -44,7 +44,7 @@ class GoalController extends Controller
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress,
         );
-       
+
         $goal = Goal::insertGetId($goalData);
 
         return response()->json($goal, 201);
@@ -59,7 +59,7 @@ class GoalController extends Controller
         return response()->json($goal, 200);
     }
 
- 
+
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
         $goal = Goal::findOrFail($pServerSideRowUuid);

@@ -13,9 +13,9 @@ use Predis\Autoloader;
 
 class ExaminationController extends Controller
 {
-    public function get_all_temporal_examinations()
+    public function get_all_temporal_examinations($pPtUuid)
     {
-        $examinationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_examination.pt_examination order by ROW_END desc,ROW_START desc'));
+        $examinationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_examination.pt_examination where ptUuid = "'.$pPtUuid.'" order by ROW_END desc,ROW_START desc'));
         return response()->json($examinationQueryResultObj);
     }
 
@@ -32,7 +32,7 @@ class ExaminationController extends Controller
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
-       
+
         $examination = Examination::insertGetId($arExaminationData);
 
         return response()->json($examination, 201);
@@ -46,7 +46,7 @@ class ExaminationController extends Controller
 
         return response()->json($examination, 200);
     }
- 
+
     public function delete($pServerSideRowUuid)
     {
         $examination = Examination::findOrFail($pServerSideRowUuid);

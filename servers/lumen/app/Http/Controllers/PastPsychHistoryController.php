@@ -12,9 +12,9 @@ use Predis\Autoloader;
 
 class PastPsychHistoryController extends Controller
 {
-    public function get_all_temporal_past_psych_history()
+    public function get_all_temporal_past_psych_history($pPtUuid)
     {
-        $pastPsychHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_past_psych_history.past_psych_history order by ROW_START desc'));
+        $pastPsychHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_past_psych_history.past_psych_history where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($pastPsychHistoryQueryResultObj);
         // return response()->json(PastPsychHistory::all());
     }
