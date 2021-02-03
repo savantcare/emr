@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      "vue-tribute@1.0.6",
+      "/gt/emr/webclient"
+    ]
+  ],
+  "_from": "vue-tribute@1.0.6",
+  "_id": "vue-tribute@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-k84Cm3EOCTOpRLfgl4Ze/8nINNDEMO00UAVZyAcghipEafSDu4GBYAvuOyMPZ1shFOIJXc4Ej/AywP/CuMuwvQ==",
+  "_location": "/vue-tribute",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-tribute@1.0.6",
+    "name": "vue-tribute",
+    "escapedName": "vue-tribute",
+    "rawSpec": "1.0.6",
+    "saveSpec": null,
+    "fetchSpec": "1.0.6"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-tribute/-/vue-tribute-1.0.6.tgz",
+  "_spec": "1.0.6",
+  "_where": "/gt/emr/webclient",
+  "author": {
+    "name": "Collin Henderson",
+    "email": "collin@syropia.net"
+  },
+  "bili": {
+    "format": [
+      "cjs",
+      "umd",
+      "umd-min",
+      "es"
+    ],
+    "moduleName": "VueTribute"
+  },
+  "bugs": {
+    "url": "https://github.com/syropian/vue-tribute/issues"
+  },
+  "description": "A Vue.js wrapper for Zurb's Tribute library for native @mentions",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-jest": "^24.0.0",
+    "bili": "^3.0.4",
+    "jest": "^24.0.0",
+    "node-sass": "^4.14.1",
+    "poi": "^10.0.0-beta.6",
+    "sass-loader": "^8.0.2",
+    "tributejs": "^3.2.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/syropian/vue-tribute#readme",
+  "license": "MIT",
+  "main": "dist/vue-tribute.cjs.js",
+  "module": "dist/vue-tribute.es.js",
+  "name": "vue-tribute",
+  "peerDependencies": {
+    "tributejs": "^2.0.0 || ^3.0"
+  },
+  "poi": {
+    "entry": "example/index.js",
+    "outDir": "example/dist",
+    "publicPath": "/vue-tribute/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syropian/vue-tribute.git"
+  },
+  "scripts": {
+    "build": "bili",
+    "example": "poi example/index.js",
+    "example:build": "rm -rf example/dist && poi build",
+    "example:deploy": "git subtree push --prefix example/dist origin gh-pages",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "version": "npm run example:deploy"
+  },
+  "unpkg": "dist/vue-tribute.min.js",
+  "version": "1.0.6"
+}
