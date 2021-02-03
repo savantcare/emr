@@ -63,8 +63,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // HEIGHT
-    $router->get('height/v20/', ['uses' => 'HeightController@get_all_temporal_heights']);
-    $router->get('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@get_one_height']);
+    $router->get('height/v20/{pPtUuid}', ['uses' => 'HeightController@get_all_temporal_heights']);
+    //$router->get('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@get_one_height']);
     $router->post('height/v20/', ['uses' => 'HeightController@create']);
     $router->put('height/v20/{pServerSideRowUuid}', ['uses' => 'HeightController@update']);
     $router->options('height/v20', function () {
@@ -79,8 +79,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Pulse
-    $router->get('pulse/v20/', ['uses' => 'PulseController@get_all_temporal_pulses']);
-    $router->get('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@get_one_pulse']);
+    $router->get('pulse/v20/{pPtUuid}', ['uses' => 'PulseController@get_all_temporal_pulses']);
+    //$router->get('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@get_one_pulse']);
     $router->post('pulse/v20/', ['uses' => 'PulseController@create']);
     $router->put('pulse/v20/{pServerSideRowUuid}', ['uses' => 'PulseController@update']);
     $router->options('pulse/v20', function () {
@@ -131,8 +131,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Oxygen Saturation
-    $router->get('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@get_all_temporal_oxygen_saturations']);
-    $router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@get_one_oxygen_saturation']);
+    $router->get('oxygen-saturation/v20/{pPtUuid}', ['uses' => 'OxygenSaturationController@get_all_temporal_oxygen_saturations']);
+    //$router->get('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@get_one_oxygen_saturation']);
     $router->post('oxygen-saturation/v20/', ['uses' => 'OxygenSaturationController@create']);
     $router->put('oxygen-saturation/v20/{pServerSideRowUuid}', ['uses' => 'OxygenSaturationController@update']);
     $router->options('oxygen-saturation/v20', function () {
@@ -195,8 +195,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Temperature
-    $router->get('temperature/v20/', ['uses' => 'TemperatureController@get_all_temporal_temperatures']);
-    $router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@get_one_temperature']);
+    $router->get('temperature/v20/{pPtUuid}', ['uses' => 'TemperatureController@get_all_temporal_temperatures']);
+    //$router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@get_one_temperature']);
     $router->post('temperature/v20/', ['uses' => 'TemperatureController@create']);
     $router->put('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@update']);
     $router->options('temperature/v20', function () {
@@ -227,8 +227,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // WEIGHT
-    $router->get('weight/v20/', ['uses' => 'WeightController@get_all_temporal_weights']);
-    $router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@get_one_weight']);
+    $router->get('weight/v20/{pPtUuid}', ['uses' => 'WeightController@get_all_temporal_weights']);
+    //$router->get('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@get_one_weight']);
     $router->post('weight/v20/', ['uses' => 'WeightController@create']);
     $router->put('weight/v20/{pServerSideRowUuid}', ['uses' => 'WeightController@update']);
     $router->options('weight/v20', function () {
@@ -243,8 +243,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // BMI
-    $router->get('bmi/v20/', ['uses' => 'BmiController@get_all_temporal_bmis']);
-    $router->get('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@get_one_bmi']);
+    $router->get('bmi/v20/{pPtUuid}', ['uses' => 'BmiController@get_all_temporal_bmis']);
+    //$router->get('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@get_one_bmi']);
     $router->post('bmi/v20/', ['uses' => 'BmiController@create']);
     $router->put('bmi/v20/{pServerSideRowUuid}', ['uses' => 'BmiController@update']);
     $router->options('bmi/v20', function () {
