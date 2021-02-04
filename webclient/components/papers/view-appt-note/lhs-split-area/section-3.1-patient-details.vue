@@ -2,7 +2,7 @@
 <template>
   <el-row>
     <el-col :span="4">
-      <el-avatar size="custom" src="https://kite.iimb.ac.in/assets/img/vikas_new.png"></el-avatar>
+      <el-avatar :size="75" src="https://kite.iimb.ac.in/assets/img/vikas_new.png"></el-avatar>
     </el-col>
     <el-col :span="20" class="patient-detail-list">
       <el-row class="patient-detail-list-item">

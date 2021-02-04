@@ -55,7 +55,9 @@ export default {
     cf_get_unlocked_note_appt_id: {
       immediate: true,
       handler(pVal) {
-        this.showNoteForApptId = pVal
+        if (pVal > 0) {
+          this.showNoteForApptId = pVal
+        }
       },
     },
   },
