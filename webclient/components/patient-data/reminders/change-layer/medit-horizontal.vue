@@ -21,7 +21,7 @@ export default {
   computed: {
     console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
     daUniqueIdOfEachRowFromOrm() {
-      let daUniqueIdOfEachRowFromOrm = new Array()
+      //let daUniqueIdOfEachRowFromOrm = new Array()
       const resultArFromOrm = clientTbl.fnGetAllRowsPossibleToEdit()
       console.log(resultArFromOrm)
       return resultArFromOrm

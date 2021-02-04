@@ -644,7 +644,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       }
 
       // Goal: when user select option "None" remove old selected values from vuex-orm
-      if(valueForThisField && valueForThisField.includes('#None#')){
+      if (valueForThisField && valueForThisField.includes('#None#')) {
         valueForThisField = '#None#'
       }
 
@@ -802,13 +802,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       )
       .first()
 
-    const ptUuidFromOrm = await clientTblOfCommonForAllComponents
-      .query()
-      .where(
-        'fieldName',
-        'ptUuid'
-      )
-      .first()
+    const ptUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'ptUuid').first()
 
     // console.log(tableCommonForAllComponents)
     pOrmRowArray.ptUuid = ptUuidFromOrm.fieldValue

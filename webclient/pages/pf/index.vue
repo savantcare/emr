@@ -3,10 +3,10 @@
     <el-button type="primary" @click="auth('github')">OAuth Login with github</el-button>Choose a patient
     <br />
     <br />
-    <a href="/pf/abcd">TP1: Test patient 1</a>
+    <a href="/pf/bfe041fa-073b-4223-8c69-0540ee678ff8">TP1: Test patient 1</a>
     <br />
     <br />
-    <a href="/pf/efgh">TP2: Test patient 2</a>
+    <a href="/pf/01817fb0-c1ef-11ea-a3a5-f36fe4d74da4">TP2: Test patient 2</a>
   </div>
 </template>
 
