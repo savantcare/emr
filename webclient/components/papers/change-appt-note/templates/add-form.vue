@@ -200,9 +200,7 @@
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
-              <vue-tribute
-                :options="(_fieldDef.tributeOptions) ? _fieldDef.tributeOptions : doTributeOptions"
-              >
+              <vue-tribute :options="_fieldDef.tributeOptions ? _fieldDef.tributeOptions : doTributeOptions">
                 <input
                   @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                   :ref="_fieldDef.nameInDb"
@@ -333,6 +331,7 @@
 </template>
 <script>
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import allFormDefs from '@/components/non-temporal/form-manager/all-form-definations.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
@@ -553,7 +552,10 @@ export default {
         .get()
       return arOfObjectsFromClientDB
     },
-
+    async mf_get_pt_uuid() {
+      const ptUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'ptUuid').first()
+      return ptUuidFromOrm.fieldValue
+    },
     async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
 
@@ -566,8 +568,10 @@ export default {
         }
       }
 
+      const ptUuid = await this.mf_get_pt_uuid()
       const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({
         data: {
+          ptUuid: ptUuid,
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
