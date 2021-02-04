@@ -23,12 +23,12 @@
       <el-tab-pane label="Social anxiety" name="social">Social anxiety</el-tab-pane>
       <el-tab-pane label="OCD" name="ocd">OCD</el-tab-pane>
       <el-tab-pane label="PTSD" name="ptsd">PTSD</el-tab-pane>
-      <el-tab-pane label="ADHD" name="ptsd">ADHD</el-tab-pane>
-      <el-tab-pane label="Anorexia" name="ptsd">Anorexia</el-tab-pane>
-      <el-tab-pane label="Bulimia" name="ptsd">Bulimia</el-tab-pane>
-      <el-tab-pane label="Dementia" name="ptsd">Dementia</el-tab-pane>
-      <el-tab-pane label="Suicide" name="ptsd">Suicide</el-tab-pane>
-      <el-tab-pane label="Homicide" name="ptsd">Homicide</el-tab-pane>
+      <el-tab-pane label="ADHD" name="adhd">ADHD</el-tab-pane>
+      <el-tab-pane label="Anorexia" name="anorexia">Anorexia</el-tab-pane>
+      <el-tab-pane label="Bulimia" name="bulimia">Bulimia</el-tab-pane>
+      <el-tab-pane label="Dementia" name="dementia">Dementia</el-tab-pane>
+      <el-tab-pane label="Suicide" name="suicide">Suicide</el-tab-pane>
+      <el-tab-pane label="Homicide" name="homicide">Homicide</el-tab-pane>
     </el-tabs>
   </div>
 </template>

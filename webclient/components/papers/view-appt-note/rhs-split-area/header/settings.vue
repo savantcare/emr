@@ -71,11 +71,11 @@ export default {
   async mounted() {
     await clientTblOfCommonForAllComponents.$fetch()
 
-    const fontObject = clientTblOfCommonForAllComponents.find('font-size-customized-by-user-value-in-percentage')
+    const fontObject = await clientTblOfCommonForAllComponents.find('font-size-customized-by-user-value-in-percentage')
 
-    this.fontSizeValue = parseInt(fontObject['fieldValue'])
-
-    if (!this.fontSizeValue) {
+    if (fontObject && fontObject['fieldValue']) {
+      this.fontSizeValue = parseInt(fontObject['fieldValue'])
+    } else {
       this.fontSizeValue = 100
     }
   },

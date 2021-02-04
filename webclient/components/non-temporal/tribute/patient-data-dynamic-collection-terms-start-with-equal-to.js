@@ -14,7 +14,9 @@ patientDataPoints.forEach(async function (data) {
     data.value = '02oct2020'
   } else if (data.key === '=name') {
     const arOfObjectsFromClientDB = await allPatientDataTbls['name'].query().where('ROW_END', 2147483648000).get()
-    data.value = arOfObjectsFromClientDB[0].firstName + ' ' + arOfObjectsFromClientDB[0].lastName
+    if (arOfObjectsFromClientDB && arOfObjectsFromClientDB[0]) {
+      data.value = arOfObjectsFromClientDB[0].firstName + ' ' + arOfObjectsFromClientDB[0].lastName
+    }
   } else if (data.key === '=reminders') {
     const arOfObjectsFromClientDB = await allPatientDataTbls['reminders'].fnGetPresentUniqueUuidNotEmptyRows([
       'description',
