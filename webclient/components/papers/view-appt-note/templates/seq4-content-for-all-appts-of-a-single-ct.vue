@@ -91,7 +91,7 @@
 
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
         <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
-          <li class="item" :id="'container-for-one-appointment_'+index">
+          <li class="item" :id="'container-for-one-appointment_' + _formDef.id + '_' + index">
             <div v-if="objAppt.apptStatus === 'locked'">
               Appt on: {{ objAppt.apptStartMilliSecsOnCalendar | moment }}
             </div>
@@ -117,13 +117,31 @@
                 <!-- end of each-row-of-entity -->
               </div>
             </div>
-            <div v-if="cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId] && cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId].length > 0" style="width: calc(100% - 10px*2); padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 3fr; grid-column-gap: 1rem">
+            <div
+              v-if="
+                cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId] &&
+                cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId].length > 0
+              "
+              style="
+                width: calc(100% - 10px * 2);
+                padding: 0px;
+                margin: 0px;
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                grid-column-gap: 1rem;
+              "
+            >
               <div><h4>Addendum:</h4></div>
-              <div v-for="dataRow in cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId]" :key="dataRow.clientSideUniqRowId">
+              <div
+                v-for="dataRow in cfArOfAddendumForDisplay[objAppt.clientSideUniqRowId]"
+                :key="dataRow.clientSideUniqRowId"
+              >
                 <div style="margin: 5px 0">
                   {{ dataRow.description }}
                   <br />
-                  <span style="font-size: 0.625rem">Added by {{ dataRow.addedBy }} at {{ dataRow.ROW_START | moment }}</span>
+                  <span style="font-size: 0.625rem"
+                    >Added by {{ dataRow.addedBy }} at {{ dataRow.ROW_START | moment }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -291,9 +309,11 @@ export default {
     cf_get_entity_value_during_each_appt() {
       const arOfAppts = clientTblOfAppointments.query().get()
       let i = arOfAppts.length
+
       while (i--) {
         // remove those entries where its empty
         const rows = this.mfGetArOfDataRows(arOfAppts[i])
+
         //debugger
         if (rows.length > 0) {
           arOfAppts[i][this._formDef.id] = rows
@@ -301,15 +321,20 @@ export default {
           arOfAppts.splice(i, 1)
         }
       }
+
       for (let j = 0; j < arOfAppts.length; j++) {
         if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
 
           setTimeout(() => {
-            const element = document.getElementById('container-for-one-appointment_'+j);
-            const objScrollTo  = this.$scrollTo(element, 100, {container:'#container-for-all-appointments', x: true, y: false});
+            const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
+            const objScrollTo = this.$scrollTo(element, 100, {
+              container: '#container-for-all-appointments',
+              x: true,
+              y: false,
+            })
             // objScrollTo();
-          }, 200); 
+          }, 200)
         }
       }
 
