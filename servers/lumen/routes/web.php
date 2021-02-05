@@ -211,8 +211,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Waist Circumference
-    $router->get('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@get_all_temporal_waist_circumferences']);
-    $router->get('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@get_one_waist_circumference']);
+    $router->get('waist-circumference/v20/{pPtUuid}', ['uses' => 'WaistCircumferenceController@get_all_temporal_waist_circumferences']);
+    //$router->get('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@get_one_waist_circumference']);
     $router->post('waist-circumference/v20/', ['uses' => 'WaistCircumferenceController@create']);
     $router->put('waist-circumference/v20/{pServerSideRowUuid}', ['uses' => 'WaistCircumferenceController@update']);
     $router->options('waist-circumference/v20', function () {
