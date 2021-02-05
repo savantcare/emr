@@ -20,14 +20,13 @@ const clientTbl = {
 
 export default {
   mounted() {
-    console.log('mounted act-on-socket-messages-from-server-ct for reminders')
-
+    // console.log('mounted act-on-socket-messages-from-server-ct for reminders')
     /*
       This ct is included by gird-ct-design2.vue and timeline-ct.vue
       even when both the ct's (gird-ct-design2.vue and timeline-ct.vue) are on the same page this.$options.sockets only has
       1 of MsgFromSktForRemToAdd and MsgFromSktForRemToDelete
     */
-    console.log('The current socket event listeners are', this.$options.sockets)
+    // console.log('The current socket event listeners are', this.$options.sockets)
   },
   props: {
     firstProp: {

@@ -459,7 +459,7 @@ export default {
       return pText
     },
     log(item) {
-      console.log(item)
+      // console.log(item)
     },
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
@@ -591,7 +591,7 @@ export default {
         // When user starts to type in 2nd row then 3rd row gets inserted automatically. When user deletes the 2nd row I want the focus to be on 1st.
         if (!lastElement) return
         if (!this.$refs[firstField]) return
-        console.log(firstField, lastElement, this.$refs[firstField])
+        // console.log(firstField, lastElement, this.$refs[firstField])
         if (lastElement === 1) {
           if (this.$refs[firstField][lastElement - 1]) this.$refs[firstField][lastElement - 1].focus()
         }

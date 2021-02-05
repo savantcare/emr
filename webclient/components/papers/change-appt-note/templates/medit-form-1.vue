@@ -101,12 +101,12 @@ export default {
   }, // firstProp is the ClientIdOfRowToChange
 
   computed: {
-    console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
+    // console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
     getArrayOfRemIdsToShowInThisCard() {
       // TODO: Need to know when I am at the last cards
-      console.log('The virtual slide number is', this.diVirtualSlideNumber)
+      // console.log('The virtual slide number is', this.diVirtualSlideNumber)
       const firstCard = this.diVirtualSlideNumber * 3
-      console.log('First rem card', firstCard)
+      // console.log('First rem card', firstCard)
       const arr = this.daUniqueIdOfEachRowFromOrm.slice(firstCard, firstCard + 3)
       return arr
     },
@@ -117,7 +117,7 @@ export default {
         */
       const count = this.daUniqueIdOfEachRowFromOrm.length / 3
       const intValue = Math.ceil(count)
-      console.log('number of slides in carousel are', count, intValue)
+      // console.log('number of slides in carousel are', count, intValue)
       return intValue
     },
   },
@@ -141,7 +141,7 @@ export default {
     },
   },
   mounted() {
-    console.log('In mounted function')
+    // console.log('In mounted function')
     const resultArFromOrm = clientTbl.fnGetPresentUniqueUuidNotEmptyRows(
       this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty
     )
@@ -150,12 +150,12 @@ export default {
         this.daUniqueIdOfEachRowFromOrm.push(resultArFromOrm[i].$id)
       }
     }
-    console.log(this.daUniqueIdOfEachRowFromOrm)
+    // console.log(this.daUniqueIdOfEachRowFromOrm)
   },
   methods: {
     slideChanged(newSlideNumber, oldSlideNumber) {
       // This is virtual scroller. This improves performance substantially.
-      console.log('slide changed from: ', oldSlideNumber, 'to: ', newSlideNumber)
+      // console.log('slide changed from: ', oldSlideNumber, 'to: ', newSlideNumber)
       this.diVirtualSlideNumber = newSlideNumber
     },
   },

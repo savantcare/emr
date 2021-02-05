@@ -120,24 +120,47 @@
             ></el-input>
           </div>
 
-           <!-- tribute-textarea -->
-            <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb">
-              <div v-if="_fieldDef.showLabel">
-                {{ _fieldDef.nameInUi }}
-              </div>
-              <vue-tribute :options="doTributeOptions">
-                <textarea
-                  @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
-                  :ref="_fieldDef.nameInDb"
-                  type="text"
-                  class="el-textarea__inner"
-                  :placeholder="_fieldDef.nameInUi"
-                  :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-                  @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
-                ></textarea>
-              </vue-tribute>
+          <div v-if="_fieldDef.type.includes('tribute-input')" :id="_fieldDef.nameInDb">
+            <div v-if="_fieldDef.showLabel">
+              {{ _fieldDef.nameInUi }}
             </div>
 
+            <!--
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                to use el-input. Hence, I am using simple input box for vue-tribute.
+                I am assigning a class 'el-input__inner' for same design as el-input.
+                -->
+            <vue-tribute :options="_fieldDef.tributeOptions ? _fieldDef.tributeOptions : doTributeOptions">
+              <input
+                :ref="_fieldDef.nameInDb"
+                type="text"
+                class="el-input__inner"
+                :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+                @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+                @keydown.enter.native="mfForTabActionByEnter"
+                @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+                @blur="nameInDbOfCurrentFieldInFocus = false"
+              />
+            </vue-tribute>
+          </div>
+
+          <!-- tribute-textarea -->
+          <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb">
+            <div v-if="_fieldDef.showLabel">
+              {{ _fieldDef.nameInUi }}
+            </div>
+            <vue-tribute :options="doTributeOptions">
+              <textarea
+                @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+                :ref="_fieldDef.nameInDb"
+                type="text"
+                class="el-textarea__inner"
+                :placeholder="_fieldDef.nameInUi"
+                :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+                @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+              ></textarea>
+            </vue-tribute>
+          </div>
         </div>
 
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
@@ -180,6 +203,8 @@
 <script>
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
+import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
+import VueTribute from '@/assets/vue-tribute'
 
 import moment from 'moment'
 
@@ -245,6 +270,13 @@ export default {
       dnClientIdOfCopiedRowBeingChanged: -1,
       nameInDbOfCurrentFieldInFocus: false,
       searchFilter: null,
+      doTributeOptions: {
+        autocompleteMode: true,
+        values: allMergedValues,
+        positionMenu: true,
+        menuContainer: document.querySelector('.menu-container'),
+        noMatchTemplate: '',
+      },
       /* Convention: -1 implies that the system is not ready to have a value. This happens when the DB is still getting loaded.
         null implies that system is ready for pClientIdOfCopiedRowBeingChangedNVal to have a value but does not have a value */
     }
@@ -254,14 +286,16 @@ export default {
       return moment(date).format('MMMM Do YYYY, h:mm a')
     },
   },
+  components: {
+    VueTribute,
+  },
   computed: {},
-
   watch: {
     firstProp: {
       immediate: true,
       handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
-        console.log(pNVal, pOVal)
+        // console.log(pNVal, pOVal)
         this.dnClientIdOfRowToChange = pNVal
         this.dnClientIdOfCopiedRowBeingChanged = null
       },
@@ -319,7 +353,7 @@ export default {
       return pText
     },
     log(item) {
-      console.log(item)
+      // console.log(item)
     },
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
@@ -335,7 +369,7 @@ export default {
         .orderBy('ROW_START', 'desc')
         .get()
 
-      console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
+      // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
       if (arFromClientTbl.length) {
         let rowInTimeLine = []
         for (let i = 1; i < arFromClientTbl.length; i++) {
@@ -409,7 +443,7 @@ export default {
       if (pEvent instanceof Object) {
         pEvent = pEvent.target.value
       }
-      
+
       // TODO: need to do form validation here just like in add form
       const rowStatus = rowState.SameAsDB_Copy_Changed_FormValidationPass
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(

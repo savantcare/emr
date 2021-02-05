@@ -20,9 +20,9 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
-    console.log('name req sent')
+    // console.log('name req sent')
     const step3_get_latest_data_from_db_server = await clientTbl.api().get(clientTbl.apiUrl)
-    console.log('name recd')
+    // console.log('name recd')
     if (step3_get_latest_data_from_db_server.ok) {
     }
   },

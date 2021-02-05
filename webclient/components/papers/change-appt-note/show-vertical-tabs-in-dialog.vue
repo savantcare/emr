@@ -331,7 +331,7 @@ export default {
     activeTabName: {
       immediate: true,
       handler(pVal) {
-        console.log('setting tabIndex for', pVal)
+        // console.log('setting tabIndex for', pVal)
 
         /**
          * Problem: When I use keyboard shortcut to go to a different tab the focus does not change.

@@ -88,7 +88,7 @@ export default {
       for (var i = 0; i < arOfObjectsFromClientDB.length; i++) {
         componentToShowPath = arOfObjectsFromClientDB[i]['componentToShowPath']
         if (!this.dArOfComponentObjectsCached[componentToShowPath]) {
-          console.log('requring the Ct Obj')
+          // console.log('requring the Ct Obj')
 
           this.dArOfComponentObjectsCached[componentToShowPath] = require('@/components/' +
             arOfObjectsFromClientDB[i]['componentToShowPath']).default
