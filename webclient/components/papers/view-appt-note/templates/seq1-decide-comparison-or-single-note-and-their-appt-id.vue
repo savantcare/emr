@@ -77,7 +77,7 @@ export default {
         })
         .get()
 
-      console.log(clientSideArray)
+      // console.log(clientSideArray)
 
       if (!clientSideArray) return
 
@@ -97,7 +97,7 @@ export default {
         })
         .get()
 
-      console.log(clientSideArray)
+      // console.log(clientSideArray)
 
       if (!clientSideArray) return
 
@@ -143,7 +143,8 @@ export default {
 
         noteIDs.push(this.firstNoteForComparisonClientUniqRowId)
       }
-      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) { // This value is set by section-2-header-arrows-name-comparison
+      if (apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']) {
+        // This value is set by section-2-header-arrows-name-comparison
         numberOfNotesToCompare++
         this.secondNoteForComparisonClientUniqRowId =
           apptNoteComponentObj['secondParameterGivenToComponentBeforeMounting']
@@ -170,7 +171,7 @@ export default {
         noteIDs[0] = this.secondNoteForComparisonClientUniqRowId
       }
 
-      console.log(noteIDs)
+      // console.log(noteIDs)
 
       if (!noteIDs) return 0
 

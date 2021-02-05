@@ -626,7 +626,7 @@ export default {
 
       this.features.medDecisionMaking.complexity.level = levels[1]
 
-      console.log(this.features.medDecisionMaking.complexity.level)
+      // console.log(this.features.medDecisionMaking.complexity.level)
 
       return levels[1]
     },

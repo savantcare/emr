@@ -139,11 +139,11 @@ export default {
   async mounted() {},
   methods: {
     handleClickOnSettingsIcon() {
-      console.log('setting to true')
+      // console.log('setting to true')
       this.dIsSettingsDialogVisible = true
     },
     handleChange(val) {
-      console.log(val)
+      // console.log(val)
     },
   },
 }

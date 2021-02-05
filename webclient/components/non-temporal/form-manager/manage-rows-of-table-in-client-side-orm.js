@@ -742,7 +742,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           this.arOrmRowIdSendingToServerQueue[this.entity] = []
         }
         if (this.arOrmRowIdSendingToServerQueue[this.entity].includes(row.clientSideUniqRowId)) {
-          console.log('Already sent to server')
+          // console.log('Already sent to server')
         } else {
           this.arOrmRowIdSendingToServerQueue[this.entity].push(row.clientSideUniqRowId)
           const status = await this.sfMakeApiCAll(row)
@@ -1040,7 +1040,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               ROW_START: Math.floor(Date.now()), // This overwites prev ROW_START. This is done so new rows ROW_START does not overlap the ROW that was just endeed in prev line of code.
             },
           })
-          console.log('update success')
+          // console.log('update success')
         }
 
         /*
@@ -1054,7 +1054,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         console.log('update error', ex)
       }
     })
-    console.log('sfSendCopyChangedRowsToServer-> ', this.dnOrmUuidOfRowToChange)
+    // console.log('sfSendCopyChangedRowsToServer-> ', this.dnOrmUuidOfRowToChange)
   }
 }
 

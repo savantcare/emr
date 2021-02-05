@@ -22,7 +22,7 @@ export default {
     daUniqueIdOfEachRowFromOrm() {
       let daUniqueIdOfEachRowFromOrm = new Array()
       const resultArFromOrm = clientTbl.fnGetAllRowsPossibleToEdit()
-      console.log(resultArFromOrm)
+      // console.log(resultArFromOrm)
       return resultArFromOrm
     },
   },

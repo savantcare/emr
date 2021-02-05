@@ -99,7 +99,7 @@ export default {
     'features.billingDuration': {
       immediate: true,
       handler(newVal, oldVal) {
-        console.log(newVal)
+        // console.log(newVal)
 
         // for followup
         if (newVal > 25) this.features.highestCode.selected.followup.time = 99215
@@ -117,7 +117,7 @@ export default {
         else if (newVal > 5) this.features.highestCode.selected.intake.time = 99201
         else this.features.highestCode.selected.intake.time = 0
 
-        console.log(this.features.highestCode.selected)
+        // console.log(this.features.highestCode.selected)
       },
     },
     'features.history.type': {
@@ -285,7 +285,7 @@ export default {
         this.features.highestCode.selected.intake.work = 99205
       }
 
-      console.log(this.features.highestCode.selected.intake)
+      // console.log(this.features.highestCode.selected.intake)
     },
     handleClickOnSettingsIcon() {
       this.dIsSettingsDialogVisible = true

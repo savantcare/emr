@@ -10,9 +10,7 @@
       <slot name="content">
         <div class="v-step__content">
           <div v-if="step.content" v-html="step.content"></div>
-          <div v-else>
-            This is a demo step! The id of this step is {{ hash }} and it targets {{ step.target }}.
-          </div>
+          <div v-else>This is a demo step! The id of this step is {{ hash }} and it targets {{ step.target }}.</div>
         </div>
       </slot>
 
@@ -148,11 +146,7 @@ export default {
     createStep() {
       if (this.debug) {
         console.log(
-          '[Vue Tour] The target element ' +
-            this.step.target +
-            ' of .v-step[id="' +
-            this.hash +
-            '"] is:',
+          '[Vue Tour] The target element ' + this.step.target + ' of .v-step[id="' + this.hash + '"] is:',
           this.targetElement
         )
       }
@@ -166,11 +160,7 @@ export default {
       } else {
         if (this.debug) {
           console.error(
-            '[Vue Tour] The target element ' +
-              this.step.target +
-              ' of .v-step[id="' +
-              this.hash +
-              '"] does not exist!'
+            '[Vue Tour] The target element ' + this.step.target + ' of .v-step[id="' + this.hash + '"] does not exist!'
           )
         }
         this.$emit('targetNotFound', this.step)
@@ -199,9 +189,7 @@ export default {
     isHighlightEnabled() {
       if (this.debug) {
         console.log(
-          `[Vue Tour] Highlight is ${
-            this.params.highlight ? 'enabled' : 'disabled'
-          } for .v-step[id="${this.hash}"]`
+          `[Vue Tour] Highlight is ${this.params.highlight ? 'enabled' : 'disabled'} for .v-step[id="${this.hash}"]`
         )
       }
       return this.params.highlight
@@ -209,9 +197,7 @@ export default {
     createHighlight() {
       if (this.isHighlightEnabled()) {
         document.body.classList.add(HIGHLIGHT.CLASSES.ACTIVE)
-        const transitionValue = window
-          .getComputedStyle(this.targetElement)
-          .getPropertyValue('transition')
+        const transitionValue = window.getComputedStyle(this.targetElement).getPropertyValue('transition')
 
         // Make sure our background doesn't flick on transitions
         if (transitionValue !== 'all 0s ease 0s') {
@@ -242,9 +228,7 @@ export default {
       }
     },
     isButtonEnabled(name) {
-      return this.params.enabledButtons.hasOwnProperty(name)
-        ? this.params.enabledButtons[name]
-        : true
+      return this.params.enabledButtons.hasOwnProperty(name) ? this.params.enabledButtons[name] : true
     },
   },
   mounted() {

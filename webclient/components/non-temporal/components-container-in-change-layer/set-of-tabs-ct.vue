@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     mfHandleChange(pValue) {
-      console.log('value changed', pValue)
+      // console.log('value changed', pValue)
       if (pValue === 'assessment-tabset') {
         // cannot hardcode, need to query since dont know the ID created when inserted
         const resultArFromOrm = clientTblOfCtSearchPhrases.query().search('add reminder').get()
