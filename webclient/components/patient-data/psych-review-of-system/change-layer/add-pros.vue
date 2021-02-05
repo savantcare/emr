@@ -3,7 +3,7 @@
     <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
 
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
-      <el-tab-pane label="Gateway mood symptoms" name="Gateway mood symptoms"
+      <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
         >Gateway mood symptoms. In the past 10 days, how many days have you:
         <ctAddForm :_formDef="formDef" _regexForFieldSubset="gateway.*"></ctAddForm>
       </el-tab-pane>
@@ -43,6 +43,7 @@ export default {
   data: function () {
     return {
       formDef: psychReviewOfSystemFormDef,
+      activeHorizontalTab: 'gateway_mood_symptoms',
     }
   },
   created() {

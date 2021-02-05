@@ -32,7 +32,7 @@ export default {
     },
   },
   async mounted() {
-    if (!this._apptId === 0) {
+    if (this._apptId === 0) {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
