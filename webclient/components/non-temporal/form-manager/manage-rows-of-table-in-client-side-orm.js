@@ -840,32 +840,41 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
   static async sfSendDeleteDataToServer(pClientDataRowId, rowUuid, deletedNote) {
     try {
-      const socketClientObj = await clientTblOfCommonForAllComponents
-        .query()
-        .where(
-          'fieldName',
-          'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
-        )
-        .first()
+      if (process.env.makeFetchPostApiCalls === true) {
+        const socketClientObj = await clientTblOfCommonForAllComponents
+          .query()
+          .where(
+            'fieldName',
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
+          )
+          .first()
 
-      const response = await fetch(`${this.apiUrl}/${rowUuid}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // "Authorization": "Bearer " + TOKEN
-        },
-        body: JSON.stringify({
-          dNotes: deletedNote,
-          patientId: 'bfe041fa-073b-4223-8c69-0540ee678ff8',
-          client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
-            socketClientObj.fieldValue,
-        }),
-      })
-      if (!response.ok) {
-        return 0
+        const response = await fetch(`${this.apiUrl}/${rowUuid}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            // "Authorization": "Bearer " + TOKEN
+          },
+          body: JSON.stringify({
+            dNotes: deletedNote,
+            client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
+              socketClientObj.fieldValue,
+          }),
+        })
+        if (!response.ok) {
+          return 0
+        } else {
+          this.update({
+            where: (record) => record.serverSideRowUuid === rowUuid,
+            data: {
+              ROW_END: Math.floor(Date.now()),
+            },
+          })
+          return 1
+        }
       } else {
         this.update({
-          where: pClientDataRowId,
+          where: (record) => record.serverSideRowUuid === rowUuid,
           data: {
             ROW_END: Math.floor(Date.now()),
           },
