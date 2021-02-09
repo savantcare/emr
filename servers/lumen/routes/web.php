@@ -98,15 +98,15 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('reminders/v20/{pPtUuid}', ['uses' => 'ReminderController@get_all_temporal_reminders']);
     //$router->get('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@get_one_reminder']);
     $router->post('reminders/v20/', ['uses' => 'ReminderController@create']);
-    $router->delete('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
-    $router->put('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@update']);
-    $router->patch('reminders/v20/{serverSideRowUuid}', ['uses' => 'ReminderController@delete']);
+    $router->delete('reminders/v20/{pServerSideRowUuid}', ['uses' => 'ReminderController@delete']);
+    $router->put('reminders/v20/{pServerSideRowUuid}', ['uses' => 'ReminderController@update']);
+    $router->patch('reminders/v20/{pServerSideRowUuid}', ['uses' => 'ReminderController@delete']);
     $router->options('reminders/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
     });
-    $router->options('reminders/v20/{serverSideRowUuid}', function () {
+    $router->options('reminders/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');

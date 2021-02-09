@@ -189,14 +189,18 @@
           </el-timeline-item>
         </el-timeline>
       </div>
-      <el-button
-        v-if="_formDef.showReviewedButtonInForm === true"
-        type="primary"
-        size="mini"
-        plain
-        @click="sfSendCopyChangedRowsToServer"
-        >Reviewed</el-button
-      >
+      <div>
+        <el-button plain round size="mini" type="warning" @click="mfDeleteRowInServerSideTable()">Delete</el-button>
+
+        <el-button
+          v-if="_formDef.showReviewedButtonInForm === true"
+          type="primary"
+          size="mini"
+          plain
+          @click="sfSendCopyChangedRowsToServer"
+          >Reviewed</el-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -468,6 +472,39 @@ export default {
           inputs[index + 1].focus()
         }
       }
+    },
+    mfDeleteRowInServerSideTable() {
+      this.$prompt(
+        'Do you really want to delete this record? This process cannot be undone.',
+        'Delete ' + this._formDef.singular,
+        {
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel',
+          inputPlaceholder: 'Enter delete note',
+        }
+      )
+        .then(async ({ value }) => {
+          const status = await allPatientDataTbls[this._formDef.id].sfSendDeleteDataToServer(
+            this.dnClientIdOfRowToChange,
+            this.dnOrmUuidOfRowToChange,
+            value
+          )
+
+          if (status === 1) {
+            this.$message({
+              type: 'success',
+              message: 'Reminder deleted.',
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: 'Something went wrong. Please try again later.',
+            })
+          }
+        })
+        .catch(() => {
+          console.log('Delete cancelled')
+        })
     },
   },
 }
