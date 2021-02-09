@@ -70,7 +70,7 @@ export const waistCircumferenceFormDef = {
       nameInDb: 'notes',
       nameInUi: 'Notes',
       type: 'tribute-editor',
-      showLabel: true,
+      showLabel: false,
     },
     {
       nameInDb: 'timeOfMeasurementInMilliSecs',

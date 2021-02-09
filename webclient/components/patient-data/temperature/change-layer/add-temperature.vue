@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-col :span="4"> Temperature </el-col>
+    <el-col :span="4"> <b>Temperature</b> </el-col>
     <el-col :span="20">
       <ctAddForm :_formDef="formDef"></ctAddForm>
     </el-col>

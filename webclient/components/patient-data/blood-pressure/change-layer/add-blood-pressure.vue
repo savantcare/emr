@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-col :span="4"> Blood Pressure </el-col>
+    <el-col :span="4"> <b>Blood Pressure</b> </el-col>
     <el-col :span="20">
       <ctAddForm :_formDef="formDef"></ctAddForm>
     </el-col>

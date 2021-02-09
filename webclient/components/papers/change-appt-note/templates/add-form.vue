@@ -744,7 +744,9 @@ export default {
 .el-tab-pane#pane-vitals > div {
   display: block;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #f5f2f2;
+  padding-bottom: 5px;
 }
 .el-tab-pane#pane-vitals .el-input-number {
   width: 140px;
