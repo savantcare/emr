@@ -1,5 +1,5 @@
 <template>
-  <!--  Explanation of props sent to ct 
+  <!--  Explanation of props sent to ct
 
         Goal: make it easy to read view layer and also show change layer as a seperate layer
           custom-class="multi-tab-dialog"
@@ -14,7 +14,7 @@
           :show-close="false"
 
         Goal: control dialog visibility based on user actions
-          :visible.sync="vIsDialogHoldingTabsInChangeLayerVisible"      
+          :visible.sync="vIsDialogHoldingTabsInChangeLayerVisible"
 
         Earlier width="90%" but it has been removed why?
           Goal is to let user read as much of the view layer as possible when the user is in change layer
@@ -29,7 +29,7 @@
 
         Goal: edit layer needs to become smaller or bigger depending on the child ct
           :width="vsDialogWidth"
-    -->
+  -->
   <el-dialog
     custom-class="multi-tab-dialog"
     :modal="true"
@@ -54,11 +54,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         Ref: https://element.eleme.io/#/en-US/component/tabs#tabs-events
     -->
 
-    <!-- 
+    <!--
       Q). Why we have removed height from below el-tabs?
         Problem: Dialog box scroll in add is not working.
         Solution: I have removed height from below el-tabs section.
-          Hence, the height of popup window is same as height of content. And if height of content is greater than 
+          Hence, the height of popup window is same as height of content. And if height of content is greater than
           parent window height then scroll on y-axis will automatically appear on parent window.
 
     <el-tabs
@@ -67,10 +67,12 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       v-model="activeTabName"
       type="border-card"
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
-    > -->
+    >-->
     <el-tabs :tab-position="positionOfAllTabNames" v-model="activeTabName" type="border-card">
-      <el-tab-pane label="Chief complaint" name="chief_complaint" tabIndex="0">
-        <span slot="label"><u>C</u>hief complaint</span>
+      <el-tab-pane label="Chief complaint" name="chief_complaint" tabindex="0">
+        <span slot="label">
+          <u>C</u>hief complaint
+        </span>
         <routeChiefComplaint
           :key="new Date().getTime()"
           why="Generating key everytime since the router decides the clientSideUniqRowId of the row to be edited. If the mounted fn was not getting called then the correct ID was not being sent to the edit ct."
@@ -80,14 +82,19 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       <el-tab-pane
         label="Sub Psych ROS (HPI)"
         name="psych_review_of_system"
-        tabIndex="0"
+        tabindex="0"
         problem1="This tab index is not getting applied to the child div inside el-tab-pane"
       >
-        <span slot="label">Sub Psych ROS (<u>H</u>PI)</span>
+        <span slot="label">
+          Sub Psych ROS (
+          <u>H</u>PI)
+        </span>
         <prosAdd />
       </el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history">
-        <span slot="label" tabIndex="0"><u>P</u>ast psych history</span>
+        <span slot="label" tabindex="0">
+          <u>P</u>ast psych history
+        </span>
 
         <routePastPsychHistory
           :key="new Date().getTime()"
@@ -96,47 +103,70 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         />
       </el-tab-pane>
       <el-tab-pane label="Family history" name="family_history">
-        <span slot="label" tabIndex="0"><u>F</u>amily history</span>
+        <span slot="label" tabindex="0">
+          <u>F</u>amily history
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <familyHistory /> <el-divider>Edit</el-divider><fhHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <familyHistory />
+            <el-divider>Edit</el-divider>
+            <fhHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Family history timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Deleted family history</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Medical history" name="medical_history">
-        <span slot="label" tabIndex="0">Medical histor<u>y</u></span>
+        <span slot="label" tabindex="0">
+          Medical histor
+          <u>y</u>
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <medicalHistory /> <el-divider>Edit</el-divider><mhHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <medicalHistory />
+            <el-divider>Edit</el-divider>
+            <mhHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Medical history timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Deleted medical history</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Medication list" name="medication_list">
-        <span slot="label" tabIndex="0">Medication list</span>
+        <span slot="label" tabindex="0">Medication list</span>
         <routeMedicationList :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Social history" name="social_history">
-        <span slot="label" tabIndex="0">Social histor<u>y</u></span>
+        <span slot="label" tabindex="0">
+          Social histor
+          <u>y</u>
+        </span>
         <routeSocialHistory :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system">
-        <span slot="label">M revie<u>w</u> of systems</span>
-        <routerMros :key="new Date().getTime()"
-      /></el-tab-pane>
+        <span slot="label">
+          M revie
+          <u>w</u> of systems
+        </span>
+        <routerMros :key="new Date().getTime()" />
+      </el-tab-pane>
       <el-tab-pane label="Allergies" name="allergies">
-        <span slot="label"><u>A</u>llergies</span>
+        <span slot="label">
+          <u>A</u>llergies
+        </span>
         <allergies />
       </el-tab-pane>
       <el-tab-pane label="Examination" name="examination">
-        <span slot="label"><u>E</u>xamination</span>
+        <span slot="label">
+          <u>E</u>xamination
+        </span>
         <routeExam :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Vitals" name="vitals">
-        <span slot="label"><u>V</u>itals</span>
+        <span slot="label">
+          <u>V</u>itals
+        </span>
         <weightAdd name="weight" />
         <heightAdd name="height" />
         <pulseAdd name="pulse" />
@@ -144,70 +174,117 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <bloodPressureAdd name="blood_pressure" />
         <bloodSugarAdd name="blood_sugar" />
         <bmiAdd name="bmi" />
-        <waistCircumferenceAdd name="waist_circumference"
-      /></el-tab-pane>
+        <oxygenSaturationAdd name="oxygenSaturation" />
+        <waistCircumferenceAdd name="waist_circumference" />
+      </el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">
-        <span slot="label">Asmnt & <u>d</u>iagnosis</span>
-        <dxAdd
-      /></el-tab-pane>
-      <el-tab-pane label="Screens" name="screens"> <span slot="label">Sc<u>r</u>eens</span><screensAdd /></el-tab-pane>
+        <span slot="label">
+          Asmnt &
+          <u>d</u>iagnosis
+        </span>
+        <dxAdd />
+      </el-tab-pane>
+      <el-tab-pane label="Screens" name="screens">
+        <span slot="label">
+          Sc
+          <u>r</u>eens
+        </span>
+        <screensAdd />
+      </el-tab-pane>
       <el-tab-pane label="Goals" name="goals">
-        <span slot="label"><u>G</u>oals</span>
-        <goalsAdd
-      /></el-tab-pane>
+        <span slot="label">
+          <u>G</u>oals
+        </span>
+        <goalsAdd />
+      </el-tab-pane>
       <el-tab-pane label="Medication orders" name="medication_orders">
-        <span slot="label"><u>M</u>edication orders</span> <medicationOrder />
+        <span slot="label">
+          <u>M</u>edication orders
+        </span>
+        <medicationOrder />
       </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
-        <span slot="label">Recommenda<u>t</u>ions</span>
+        <span slot="label">
+          Recommenda
+          <u>t</u>ions
+        </span>
 
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <recAdd /> <el-divider>Edit</el-divider><recMHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <recAdd />
+            <el-divider>Edit</el-divider>
+            <recMHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
-        <span slot="label">Rem<u>i</u>nders</span>
+        <span slot="label">
+          Rem
+          <u>i</u>nders
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <remAdd /> <el-divider>Edit</el-divider><remMHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <remAdd />
+            <el-divider>Edit</el-divider>
+            <remMHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Reminder timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Deleted reminders</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="400">
-        <span slot="label">P<u>l</u>an comments</span>
+        <span slot="label">
+          P
+          <u>l</u>an comments
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <pcAdd /> <el-divider>Edit</el-divider><pcHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <pcAdd />
+            <el-divider>Edit</el-divider>
+            <pcHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Plan comments timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Deleted plan comments</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="300">
-        <span slot="label"><u>S</u>ervice statements</span>
+        <span slot="label">
+          <u>S</u>ervice statements
+        </span>
         <routeSS :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="200">
-        <span slot="label">Misc <u>n</u>ote</span>
+        <span slot="label">
+          Misc
+          <u>n</u>ote
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <miscNote /> <el-divider>Edit</el-divider><miscHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <miscNote />
+            <el-divider>Edit</el-divider>
+            <miscHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Misc notes timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Misc Notes comments</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Process Note" name="process_notes" key="100">
-        <span slot="label">Pr<u>o</u>cess note</span>
+        <span slot="label">
+          Pr
+          <u>o</u>cess note
+        </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
-            <el-divider>Add</el-divider> <processNote /> <el-divider>Edit</el-divider><pnHorizontalEdit />
+            <el-divider>Add</el-divider>
+            <processNote />
+            <el-divider>Edit</el-divider>
+            <pnHorizontalEdit />
           </el-tab-pane>
           <el-tab-pane label="Timeline" name="second">Process note timelime</el-tab-pane>
           <el-tab-pane label="Deleted" name="third">Process note comments</el-tab-pane>
@@ -315,6 +392,7 @@ export default {
     bloodPressureAdd,
     bloodSugarAdd,
     bmiAdd,
+    oxygenSaturationAdd,
     waistCircumferenceAdd,
     routerMros,
     goalsAdd,
@@ -451,7 +529,7 @@ Goal
 1. Read the view layer even when I have change layer open
 2. Clearly see the change layer as different from view layer
 
-Option 1: 
+Option 1:
 When I set modal=true in el-dialog the background content is hard to read. Hence goal 1 is defeated.
 
 Option 2:
