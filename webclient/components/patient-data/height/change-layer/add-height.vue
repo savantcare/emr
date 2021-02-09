@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-col :span="4"> Height </el-col>
+    <el-col :span="4"> <b>Height</b> </el-col>
     <el-col :span="20">
       <ctAddForm :_formDef="formDef"></ctAddForm>
     </el-col>
