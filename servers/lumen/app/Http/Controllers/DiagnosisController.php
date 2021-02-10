@@ -12,13 +12,10 @@ class DiagnosisController extends Controller
 {
     public function getAllTemporalDiagnosis($pPtUuid)
     {
-        
-        // $dignosisQueryResultObj = DB::select(DB::raw('SELECT *,round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(onset) * 1000 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
-        // return response()->json($dignosisQueryResultObj);
 
-        $oxygenSaturationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(onset) * 1000 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(onset) * 1000 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
-        return response()->json($oxygenSaturationQueryResultObj);
+        return response()->json($dignosisQueryResultObj);
     }
 
     public function create(Request $pRequest)
