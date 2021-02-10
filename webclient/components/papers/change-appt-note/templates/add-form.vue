@@ -117,14 +117,16 @@
               </div>
               <div class="block">
                 <el-slider
-                  v-model="value[_fieldDef.nameInDb]"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   :step="_fieldDef.fieldOptions.step"
                   show-stops
                   :min="_fieldDef.fieldOptions.min"
                   :max="_fieldDef.fieldOptions.max"
                   :marks="_fieldDef.marks"
                   :format-tooltip="_fieldDef.ft"
-                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @input="
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'slider')
+                  "
                 >
                 </el-slider>
               </div>
@@ -621,6 +623,12 @@ export default {
           rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
         } else {
           rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
+        }
+      } else if (pFldType === 'slider') {
+        if (pEvent && pEvent > 0) {
+          rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+        } else {
+          rowStatus = rowState.New
         }
       } else {
         if (pEvent && pEvent.length > 2) {

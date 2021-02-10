@@ -161,6 +161,26 @@
               ></textarea>
             </vue-tribute>
           </div>
+
+          <!-- SLIDER type field value[_fieldDef.nameInDb] -->
+          <div v-else-if="_fieldDef.type === 'slider'">
+            <div v-if="_fieldDef.showLabel">
+              {{ _fieldDef.nameInUi }}
+            </div>
+            <div class="block">
+              <el-slider
+                :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+                :step="_fieldDef.fieldOptions.step"
+                show-stops
+                :min="_fieldDef.fieldOptions.min"
+                :max="_fieldDef.fieldOptions.max"
+                :marks="_fieldDef.marks"
+                :format-tooltip="_fieldDef.ft"
+                @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+              >
+              </el-slider>
+            </div>
+          </div>
         </div>
 
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->

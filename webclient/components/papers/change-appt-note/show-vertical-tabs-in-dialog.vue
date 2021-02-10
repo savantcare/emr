@@ -70,9 +70,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     >-->
     <el-tabs :tab-position="positionOfAllTabNames" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabindex="0">
-        <span slot="label">
-          <u>C</u>hief complaint
-        </span>
+        <span slot="label"> <u>C</u>hief complaint </span>
         <routeChiefComplaint
           :key="new Date().getTime()"
           why="Generating key everytime since the router decides the clientSideUniqRowId of the row to be edited. If the mounted fn was not getting called then the correct ID was not being sent to the edit ct."
@@ -85,16 +83,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         tabindex="0"
         problem1="This tab index is not getting applied to the child div inside el-tab-pane"
       >
-        <span slot="label">
-          Sub Psych ROS (
-          <u>H</u>PI)
-        </span>
+        <span slot="label"> Sub Psych ROS (<u>H</u>PI) </span>
         <prosAdd />
       </el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history">
-        <span slot="label" tabindex="0">
-          <u>P</u>ast psych history
-        </span>
+        <span slot="label" tabindex="0"> <u>P</u>ast psych history </span>
 
         <routePastPsychHistory
           :key="new Date().getTime()"
@@ -103,9 +96,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         />
       </el-tab-pane>
       <el-tab-pane label="Family history" name="family_history">
-        <span slot="label" tabindex="0">
-          <u>F</u>amily history
-        </span>
+        <span slot="label" tabindex="0"> <u>F</u>amily history </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -118,10 +109,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Medical history" name="medical_history">
-        <span slot="label" tabindex="0">
-          Medical histor
-          <u>y</u>
-        </span>
+        <span slot="label" tabindex="0"> Medical histor<u>y</u> </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -138,35 +126,23 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <routeMedicationList :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Social history" name="social_history">
-        <span slot="label" tabindex="0">
-          Social histor
-          <u>y</u>
-        </span>
+        <span slot="label" tabindex="0"> Social histor<u>y</u> </span>
         <routeSocialHistory :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="M review of systems" name="medical_review_of_system">
-        <span slot="label">
-          M revie
-          <u>w</u> of systems
-        </span>
+        <span slot="label"> M revie<u>w</u> of systems </span>
         <routerMros :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Allergies" name="allergies">
-        <span slot="label">
-          <u>A</u>llergies
-        </span>
+        <span slot="label"> <u>A</u>llergies </span>
         <allergies />
       </el-tab-pane>
       <el-tab-pane label="Examination" name="examination">
-        <span slot="label">
-          <u>E</u>xamination
-        </span>
+        <span slot="label"> <u>E</u>xamination </span>
         <routeExam :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Vitals" name="vitals">
-        <span slot="label">
-          <u>V</u>itals
-        </span>
+        <span slot="label"> <u>V</u>itals </span>
         <weightAdd name="weight" />
         <heightAdd name="height" />
         <pulseAdd name="pulse" />
@@ -178,36 +154,34 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <waistCircumferenceAdd name="waist_circumference" />
       </el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">
-        <span slot="label">
-          Asmnt &
-          <u>d</u>iagnosis
-        </span>
+        <span slot="label"> Asmnt & <u>d</u>iagnosis </span>
         <dxAdd />
       </el-tab-pane>
       <el-tab-pane label="Screens" name="screens">
-        <span slot="label">
-          Sc
-          <u>r</u>eens
-        </span>
+        <span slot="label"> Sc<u>r</u>eens </span>
         <screensAdd />
       </el-tab-pane>
+
       <el-tab-pane label="Goals" name="goals">
-        <span slot="label">
-          <u>G</u>oals
-        </span>
-        <goalsAdd />
+        <span slot="label"> <u>G</u>oals </span>
+        <el-tabs v-model="activeHorizontalTab">
+          <el-tab-pane label="Change" name="change">
+            <el-divider>Add</el-divider>
+            <goalsAdd />
+            <el-divider>Edit</el-divider>
+            <goalMHorizontalEdit />
+          </el-tab-pane>
+          <el-tab-pane label="Timeline" name="second">Goal timelime</el-tab-pane>
+          <el-tab-pane label="Deleted" name="third">Deleted goals</el-tab-pane>
+        </el-tabs>
       </el-tab-pane>
+
       <el-tab-pane label="Medication orders" name="medication_orders">
-        <span slot="label">
-          <u>M</u>edication orders
-        </span>
+        <span slot="label"> <u>M</u>edication orders </span>
         <medicationOrder />
       </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
-        <span slot="label">
-          Recommenda
-          <u>t</u>ions
-        </span>
+        <span slot="label"> Recommenda<u>t</u>ions </span>
 
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
@@ -221,10 +195,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Reminders" name="reminders">
-        <span slot="label">
-          Rem
-          <u>i</u>nders
-        </span>
+        <span slot="label"> Rem<u>i</u>nders </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -237,10 +208,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Plan comments" name="plan_comments" key="400">
-        <span slot="label">
-          P
-          <u>l</u>an comments
-        </span>
+        <span slot="label"> P<u>l</u>an comments </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -253,16 +221,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Service statements" name="service_statements" key="300">
-        <span slot="label">
-          <u>S</u>ervice statements
-        </span>
+        <span slot="label"> <u>S</u>ervice statements </span>
         <routeSS :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Misc Note" name="miscellaneous_notes" key="200">
-        <span slot="label">
-          Misc
-          <u>n</u>ote
-        </span>
+        <span slot="label"> Misc<u>n</u>ote </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -275,10 +238,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="Process Note" name="process_notes" key="100">
-        <span slot="label">
-          Pr
-          <u>o</u>cess note
-        </span>
+        <span slot="label"> Pr<u>o</u>cess note </span>
         <el-tabs v-model="activeHorizontalTab">
           <el-tab-pane label="Change" name="change">
             <el-divider>Add</el-divider>
@@ -336,6 +296,7 @@ import routerMros from '@/components/patient-data/medical-review-of-system/chang
 import dxAdd from '@/components/patient-data/diagnosis/change-layer/diagnosis-add.vue'
 import screensAdd from '@/components/patient-data/screens/change-layer/add-ct.vue'
 import goalsAdd from '@/components/patient-data/goals/change-layer/add-ct.vue'
+import goalMHorizontalEdit from '@/components/patient-data/goals/change-layer/medit-horizontal.vue'
 
 import recAdd from '@/components/patient-data/recommendations/change-layer/recommendation-add.vue'
 import recMHorizontalEdit from '@/components/patient-data/recommendations/change-layer/medit-horizontal.vue'
@@ -396,6 +357,7 @@ export default {
     waistCircumferenceAdd,
     routerMros,
     goalsAdd,
+    goalMHorizontalEdit,
     recAdd,
     recMHorizontalEdit,
     remAdd,
