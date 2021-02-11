@@ -42,7 +42,7 @@ export default class diagnosis extends clientTblManage {
       ptUuid: this.string(null),
       diagnosis: this.string(''),
       assessment: this.string(''),
-      onset: this.uid(() => defaultValueOfOnsetInMilliSecs()),
+      onset: this.string(defaultValueOfOnsetInMilliSecs()),
       priority: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),

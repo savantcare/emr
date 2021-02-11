@@ -164,7 +164,7 @@
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="
-                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'date')
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
                   "
                 :placeholder="_fieldDef.nameInUi"
               >
