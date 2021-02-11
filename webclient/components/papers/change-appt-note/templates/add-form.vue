@@ -50,9 +50,8 @@
                 :placeholder="_fieldDef.nameInUi"
                 style="width: 100%"
                 :filterTermHighlight-first-item="true"
-                @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="
-                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'autocomplete')
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
                   "
               ></el-autocomplete>
             </div>
