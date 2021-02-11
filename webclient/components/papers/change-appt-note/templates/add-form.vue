@@ -367,7 +367,6 @@ export default {
     }
   },
   validations() {
-    console.log("valid",this._formDef.validationsObj);
     return this._formDef.validationsObj
   },
   props: {
