@@ -326,6 +326,9 @@ export default {
       activeHorizontalTab: 'change',
       widthOfDialogContainingVerticalTabsAndComponent: '80%',
       positionOfAllTabNames: 'left',
+      daOfAllComponentInVitals: [
+        'weight', 'height', 'pulse', 'temperature', 'blood_pressure', 'blood_sugar', 'bmi', 'oxygen_saturation', 'waist_circumference'
+      ]
     }
   },
   components: {
@@ -427,7 +430,11 @@ export default {
 
       if (drawerVisibility) {
         if (drawerVisibility['fieldValue'] !== 'false') {
-          this.formDefId = drawerVisibility['fieldValue']
+          if (this.daOfAllComponentInVitals.includes(drawerVisibility['fieldValue'])) {
+            this.formDefId = 'vitals'
+          } else {
+            this.formDefId = drawerVisibility['fieldValue']
+          }
           this.activeTabName = this.formDefId
           return true
         }
