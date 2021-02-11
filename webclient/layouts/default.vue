@@ -56,6 +56,22 @@ html {
   background-color: #35495e;
 }
 
+
+.button--blue {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid rgb(0, 153, 255);
+  color: rgba(0, 0, 255, 0.705);
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+
+.button--blue:hover {
+  color: #fff;
+  background-color: rgb(0, 153, 255);
+}
+
 /* Now text inside the button willl change based on Dr. Keeling choice inside the browser settings 
 The default value given by element.io is 14px
 

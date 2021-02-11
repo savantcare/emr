@@ -3,22 +3,31 @@
     
     <br>
     <div>
-      <div v-if="loggedinUser">
+      <div v-if="loggedInUserDetails">
          <img :src="loggedinUser.imageUrl">
         <h1>Welcome {{loggedinUser.fullName}}</h1>
         <h2>Your Email id: {{loggedinUser.email}}</h2>
       </div>
       <br>
-      {{loggedinUser}}
       
+      loggedInUserDetails = {{loggedInUserDetails}}
       
       <h1 class="title">webclient</h1>
       <div class="links">
 
 
-        <GoogleLogin id="g_id_onload" class="button--grey" auto_select="true" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-if="!logoutButton">Google Login</GoogleLogin>
+        <GoogleLogin id="g_id_onload" class="button--grey" auto_select="true" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-if="!loggedInUserDetails">Google Login</GoogleLogin>
          <!-- <GoogleLogin :params="params" :logoutButton=true>Logout</GoogleLogin> -->
-        <button  class="button--grey" v-if="logoutButton" v-on:click="logOutUser">Logout</button>
+        <button  class="button--grey" v-if="loggedInUserDetails" v-on:click="logOutUser">Logout</button>
+        
+        <a
+          :href="'http://localhost/pf/'+loggedInUserDetails.publicUniqueId"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button--blue" v-if="loggedInUserDetails"
+        >
+          Open Profile Page
+        </a>
         <a
           href="https://savantcare.github.io"
           target="_blank"
@@ -46,8 +55,11 @@ import Vue from 'vue'
 import VueAxios from 'vue-axios'
 import Axios from 'axios'
 import GoogleLogin from 'vue-google-login'
-import { LoaderPlugin } from 'vue-google-login';
+import { LoaderPlugin } from 'vue-google-login'
 import VueCookies from 'vue-cookies'
+import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+import { objectEach } from 'highcharts'
+ import { mdbBtn } from 'mdbvue';
 
 //See the reference link here https://www.npmjs.com/package/vue-google-login
 // Created client id from https://console.developers.google.com/
@@ -60,7 +72,7 @@ Vue.use(LoaderPlugin, {
         // console.log(auth2.getLastSignedInAccount())
         // console.log(gapi.auth2.getAuthInstance().signIn())
         // console.log('isSignedIn: ',auth2.isSignedIn.get())
-        console.log('currentUser: ',auth2.currentUser.get())
+        // console.log('currentUser: ',auth2.currentUser.get())
         const authResponse = auth2.currentUser.get().getAuthResponse()
         if(Object.keys(authResponse).length>0){
           console.log('google login')
@@ -72,17 +84,18 @@ Vue.use(LoaderPlugin, {
 
 Vue.use(VueCookies)
 Vue.use(VueAxios, Axios)
+
 export default {
   name: 'App',
   components: {
-    GoogleLogin
+    GoogleLogin,mdbBtn
   },
   created: function () {
         this.getUserInfo        
-        console.log('From cookie: ',$cookies.get('loginObj'))
+        // console.log('From cookie: ',$cookies.get('loginObj'))
         this.resetUserAccessToken()
-        
-    },
+        this.getLoggedInUserUniqueId  
+  },
 
   //This is testing to get google id_token before expiry
   // mounted() {
@@ -95,20 +108,35 @@ export default {
 
   computed: {
     getUserInfo() {
-      this.userData = localStorage.getItem('authorizedUserDetails')
-      
+      this.userData = localStorage.getItem('authorizedUserDetails')      
       if(this.userData){
         const objUserData = JSON.parse(this.userData.replace(/\+/g, ' '))
         this.loggedinUser = objUserData
-        this.logoutButton = true
         return this.loggedinUser  
       }else{
         return null
       }      
       
     },
+
+    getLoggedInUserUniqueId() {
+      var userObj = $cookies.get('loginObj')   
+      this.loggedInUserDetails = userObj
+      if(userObj){        
+        this.commonOrmTableForAllComponents = clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName:'createdUuid',
+            fieldValue: userObj.publicUniqueId,
+          },
+        })
+      }
+      return this.commonOrmTableForAllComponents      
+    },
     
   },
+
+
+
   data: function () {
     return {
       // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
@@ -124,68 +152,81 @@ export default {
           longtitle: true
       },
       loggedinUser: null,
-      logoutButton: false
+      commonOrmTableForAllComponents: null,
+      loggedInUserDetails: null
     }
   },
 
   methods: {
 
-    onSuccess(googleUser) { 
-            // This only gets the user information: id, name, imageUrl and email
-            const profile = googleUser.getBasicProfile()
-            const loginObj = {
-              googleId: profile.getId(),
-              fullName: profile.getName(),
-              givenName:profile.getGivenName(),
-              familyName:profile.getFamilyName(),
-              imageUrl:profile.getImageUrl(),
-              email:profile.getEmail()
-            }
-            this.loggedinUser = loginObj
-            //console.log(googleUser.getAuthResponse()) //Get the auth response object from the user's auth session. access_token and so on
-            if(this.loggedinUser){
-              localStorage.setItem('authorizedUserDetails',JSON.stringify(this.loggedinUser))
-              this.logoutButton = true
-              Axios({
-                method: 'post',
-                headers: {
-                      'Content-Type': 'application/json',
-                    },
-                url: 'https://staging.savantcare.com/v3/se/oauth/user.php',
+      onSuccess(googleUser) { 
+          // This only gets the user information: id, name, imageUrl and email
+          const profile = googleUser.getBasicProfile()
+          const loginObj = {
+            googleId: profile.getId(),
+            fullName: profile.getName(),
+            givenName:profile.getGivenName(),
+            familyName:profile.getFamilyName(),
+            imageUrl:profile.getImageUrl(),
+            email:profile.getEmail()
+          }
+          this.loggedinUser = loginObj
+          //console.log(googleUser.getAuthResponse()) //Get the auth response object from the user's auth session. access_token and so on
+          const authResponseData = googleUser.getAuthResponse()
+          if(this.loggedinUser){
+            let self = this
+            Axios({
+              method: 'post',
+              headers: {
+                    'Content-Type': 'application/json',
+                  },
+              url: 'https://staging.savantcare.com/v3/se/oauth/user.php',
               data: {
                 email: this.loggedinUser.email
               }
-              }).then(function (response) {
+            }).then(function (response) {
                 //get loggedin user's details from scemr database and set into browser cookie
-                const userObj = response.data
-                Vue.$cookies.set('loginObj',userObj)
-              });
-            }
-
+                var userObj = response.data.user_data
+                var message = response.data.message
+                if(userObj){
+                  self.loggedInUserDetails = userObj
+                    Vue.$cookies.set('loginObj',userObj)
+                    clientSideTableOfCommonForAllComponents.insert({
+                      data: {
+                        fieldName:'createdUuid',
+                        fieldValue: userObj.publicUniqueId,
+                      },
+                    })
+                  localStorage.setItem('authorizedUserDetails',JSON.stringify(self.loggedinUser))
+                }
+                self.info(message)
+                
+            });
+          }
       },
 
       onFailure() {
             
       },
       logOutUser(){
-        const auth2 = gapi.auth2.getAuthInstance();     
-        console.log(auth2)   
+        const auth2 = gapi.auth2.getAuthInstance();    
         auth2.signOut().then(function () {
           auth2.disconnect();  
         });
-
+        if(this.loggedInUserDetails){
+            clientSideTableOfCommonForAllComponents.delete(this.loggedInUserDetails.publicUniqueId)
+        }
         localStorage.removeItem('authorizedUserDetails')
         this.$cookies.remove("loginObj")
-        this.logoutButton = false
         this.loggedinUser = null
+        this.loggedInUserDetails = null
       }, 
-      
+
       resetUserAccessToken(){
          Vue.GoogleAuth.then(auth2 => {
            const isSignedIn = auth2.isSignedIn.get()
            const authResponse = auth2.currentUser.get().getAuthResponse()
            if(isSignedIn){
-
              if(this.loggedinUser==null){
                const profile = auth2.currentUser.get().getBasicProfile()
                 const loginObj = {
@@ -198,17 +239,20 @@ export default {
                 }
                 this.loggedinUser = loginObj
                 localStorage.setItem('authorizedUserDetails',JSON.stringify(this.loggedinUser))
-                this.logoutButton = true
              }
 
              this.authResponse = authResponse
            }else{
-             this.logOutUser()
+             if(this.loggedInUserDetails){
+                this.logOutUser()
+             }
            }
          })
-     },
+      },
 
-      
+      info(message) {
+        this.$notify.info({message: message, position: 'top right', timeOut: 10000});
+      },
   }
 }
 </script>
