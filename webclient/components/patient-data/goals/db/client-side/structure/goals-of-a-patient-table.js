@@ -72,8 +72,10 @@ export const goalsFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  ctrlPlacementOfEveryRowInViewNote:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
-  additionalRowActions: [
+  /*additionalRowActions: [
     {
       textInUi: 'Rate',
       executeThisFn: function (pScreenRow) {
@@ -85,7 +87,7 @@ export const goalsFormDef = {
         })
       },
     },
-  ],
+  ],*/
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   fnCreated: function (pRow) {
     // Goal: When it starts i need to initialize value with the initial slider value

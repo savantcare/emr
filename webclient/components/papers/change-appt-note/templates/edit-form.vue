@@ -513,7 +513,7 @@ export default {
           if (status === 1) {
             this.$message({
               type: 'success',
-              message: 'Reminder deleted.',
+              message: this._formDef.singular + ' deleted.',
             })
           } else {
             this.$message({

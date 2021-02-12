@@ -60,6 +60,19 @@
       </div>
 
       <!-- SLIDER -->
+      <div v-else-if="_fieldDef.type.includes('slider') && _fieldDef.nameInDb === 'rating'" id="field-type-slider">
+        <div v-if="_dataRow[_fieldDef.nameInDb] > 0">
+          <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
+            <h4>{{ _fieldDef.nameInUi }}</h4>
+          </div>
+          <div id="field-value-in-db">
+            <div>
+              {{ _dataRow[_fieldDef.nameInDb] }}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div v-else-if="_fieldDef.type.includes('slider')" id="field-type-slider">
         <div v-if="_dataRow[_fieldDef.nameInDb] > 0">
           <div v-if="_fieldDef.showLabel" id="field-name-in-ui">

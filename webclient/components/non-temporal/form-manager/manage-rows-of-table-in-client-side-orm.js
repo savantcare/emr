@@ -957,17 +957,6 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           },
         })
 
-        /**
-         * Send socket id to the server for update from socket
-         */
-        const socketClientObj = await clientTblOfCommonForAllComponents
-          .query()
-          .where(
-            'fieldNameInDb',
-            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'
-          )
-          .first()
-
         let response = {}
         if (process.env.makeFetchPostApiCalls === true) {
           const response = await fetch(this.apiUrl + '/' + changedRowBeingSaved.serverSideRowUuid, {
@@ -978,9 +967,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             },
             // this.mfGetCopiedRowBeingChangedFldVal(this._formDef.atLeastOneOfFieldsForCheckingIfRowIsEmpty),
             body: JSON.stringify({
-              description: 'jaikalima',
-              client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change:
-                socketClientObj.fieldValue,
+              data: changedRowBeingSaved,
             }),
           })
         } else {
