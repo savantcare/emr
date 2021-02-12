@@ -279,6 +279,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('diagnosis/v20/{pPtUuid}', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
     $router->delete('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
+    $router->put('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@update']);
     $router->options('diagnosis/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
