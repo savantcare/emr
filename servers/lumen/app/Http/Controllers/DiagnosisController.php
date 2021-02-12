@@ -33,6 +33,21 @@ class DiagnosisController extends Controller
 
         return response()->json($insertDiagnosis, 201);
     }
+
+    public function update($pServerSideRowUuid, Request $pRequest)
+    {
+        $requestData = $pRequest->all();
+
+        $onset = (int)($requestData['data']['onset']);
+        $diagnosis = $requestData['data']['diagnosis'];
+        $assessment = $requestData['data']['assessment'];
+        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
+
+        $updatePlanComments = DB::statement("UPDATE `sc_dx`.`assignedDiagnosis` SET `diagnosis` = {$diagnosis}, `assessment` = {$assessment},`onset` = {$onset},`recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `assignedDiagnosis`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+
+        return response()->json($updatePlanComments, 200);
+    }
     
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
