@@ -29,7 +29,7 @@ class DiagnosisController extends Controller
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertDiagnosis = DB::statement("INSERT INTO `sc_dx`.`assignedDiagnosis` (`serverSideRowUuid`, `ptUuid`, `diagnosis`,`assessment`,`onset`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$diagnosis}, '{$assessment}', FROM_UNIXTIME({$onset}/1000), '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertDiagnosis = DB::statement("INSERT INTO `sc_dx`.`assignedDiagnosis` (`serverSideRowUuid`, `ptUuid`, `diagnosis`,`assessment`,`onset`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', '{$diagnosis}', '{$assessment}', FROM_UNIXTIME({$onset}/1000), '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertDiagnosis, 201);
     }

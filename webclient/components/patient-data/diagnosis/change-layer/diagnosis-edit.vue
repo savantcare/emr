@@ -1,9 +1,9 @@
 <template>
-  <ctAddForm :_formDef="formDef" :firstProp="firstProp"></ctAddForm>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
 </template>
 
 <script>
-import ctAddForm from '@/components//papers/change-appt-note/templates/edit-form.vue'
+import ctEditFormTemplate from '@/components/papers/change-appt-note/templates/edit-form.vue'
 import { diagnosisFormDef } from '@/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 
 export default {
@@ -19,11 +19,11 @@ export default {
   },
 
   mounted() {
-    //    console.log(this.dataFormFields)
+
   },
 
   components: {
-    ctAddForm,
+    ctEditFormTemplate,
   },
 }
 </script>

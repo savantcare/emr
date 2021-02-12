@@ -29,7 +29,7 @@
               :placeholder="_fieldDef.nameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
             ></el-autocomplete>
           </div>
 
@@ -456,9 +456,9 @@ export default {
 
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
-      // From this point on the state is same for change and add
+      // From this point on the state is same for change and add    
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
-    },
+    },  
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       /**
        * Why we need to check pEvent is object?

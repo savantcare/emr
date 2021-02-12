@@ -84,11 +84,42 @@ const fnSelectOptionCallBack = (pId, pCallBack) => {
   }
   return ''
 }
+
+const getSelectNameByValue = (pId) => {
+  const options = [
+    {
+      id: '1',
+      value: 'ADHD',
+    },
+    {
+      id: '2',
+      value: 'Depression',
+    },
+    {
+      id: '3',
+      value: 'Anxiety',
+    },
+    {
+      id: '4',
+      value: 'Flu',
+    },
+    {
+      id: '5',
+      value: 'Pain',
+    },
+  ]
+  const getData = options.filter((item) => item.id === pId)
+  if (getData.length) {
+    return getData[0].value
+  }
+  return ''
+}
+
 export const diagnosisFormDef = {
   id: 'diagnosis',
   plural: 'asmnt & diagnosis',
   singular: 'diagnosis',
-
+  getSelectNameByValue: getSelectNameByValue(),
   fieldsDef: [
     {
       nameInDb: 'diagnosis',
