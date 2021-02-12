@@ -343,7 +343,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('goals/v20/{pPtUuid}', ['uses' => 'GoalController@get_all_temporal_goals']);
     $router->post('goals/v20/', ['uses' => 'GoalController@create']);
     $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
-    $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
+    $router->patch('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
     $router->options('goals/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
