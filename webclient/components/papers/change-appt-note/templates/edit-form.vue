@@ -23,7 +23,7 @@
             </div>
 
             <el-autocomplete
-              v-model="searchKeyword"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               class="inline-input"
               :fetch-suggestions="_fieldDef.selectOptions"
               :placeholder="_fieldDef.nameInUi"

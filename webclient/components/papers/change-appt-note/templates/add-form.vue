@@ -44,13 +44,15 @@
               </div>
 
               <el-autocomplete
-                v-model="value[_fieldDef.nameInDb]"
+                :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 class="inline-input"
                 :fetch-suggestions="_fieldDef.selectOptions"
                 :placeholder="_fieldDef.nameInUi"
                 style="width: 100%"
                 :filterTermHighlight-first-item="true"
-                @select="mf_set_fld_value_using_cache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
+                  "
               ></el-autocomplete>
             </div>
 
@@ -161,7 +163,9 @@
                 style="width: 100%"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                @input="
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
+                  "
                 :placeholder="_fieldDef.nameInUi"
               >
               </el-date-picker>
