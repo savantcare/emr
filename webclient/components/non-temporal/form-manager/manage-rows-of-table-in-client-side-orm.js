@@ -850,7 +850,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           .first()
 
         const response = await fetch(`${this.apiUrl}/${rowUuid}`, {
-          method: 'PATCH',
+          method: 'DELETE',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             // "Authorization": "Bearer " + TOKEN

@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class Diagnosis extends Model
 {
     protected $connection = 'diagnosisDB';
-    protected $table = 'diagnosis';
+    protected $table = 'assignedDiagnosis';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
