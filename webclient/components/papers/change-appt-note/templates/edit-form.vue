@@ -83,8 +83,8 @@
             value-format="timestamp"
             type="date"
             style="width: 100%"
-            :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-            @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+            :value="new Date(mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb))"
+            @input="new Date(mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb))"
             :placeholder="_fieldDef.nameInUi"
           >
           </el-date-picker>
@@ -457,6 +457,7 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
+      console.log("here",allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName))
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
