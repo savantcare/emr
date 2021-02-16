@@ -12,17 +12,18 @@ use Predis\Autoloader;
 
 class ServiceStatementController extends Controller
 {
-    public function get_all_temporal_service_statements()
+    public function get_all_temporal_service_statements($pPtUuid)
     {
-        $serviceStatementQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements order by ROW_START desc'));
+        $serviceStatementQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_service_statements.service_statements FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+
         return response()->json($serviceStatementQueryResultObj);
         // return response()->json(ServiceStatement::all());
     }
 
-    public function get_one_service_statement($pServerSideRowUuid)
+    /*public function get_one_service_statement($pServerSideRowUuid)
     {
         return response()->json(ServiceStatement::find($pServerSideRowUuid));
-    }
+    }*/
 
     public function create(Request $pRequest)
     {
@@ -30,9 +31,9 @@ class ServiceStatementController extends Controller
         $recordChangedFromIPAddress = $this->get_client_ip();
         $serviceStatementData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'patientUuid' => $requestData['data']['patientUuid'],
-            'total_minutes_in_psychotherapy_select' => $requestData['data']['total_minutes_in_psychotherapy_select'],
-            'total_minutes_with_patient_select' => $requestData['data']['total_minutes_with_patient_select'],
+            'ptUuid' => $requestData['data']['ptUuid'],
+            'total_minutes_in_psychotherapy' => $requestData['data']['total_minutes_in_psychotherapy'],
+            'total_minutes_with_patient' => $requestData['data']['total_minutes_with_patient'],
             'modality_of_psychotherapy_multi_select' => $requestData['data']['modality_of_psychotherapy_multi_select'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
@@ -43,8 +44,8 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'total_minutes_in_psychotherapy_select' => $requestData['data']['total_minutes_in_psychotherapy_select'],
-            'total_minutes_with_patient_select' => $requestData['data']['total_minutes_with_patient_select'],
+            'total_minutes_in_psychotherapy' => $requestData['data']['total_minutes_in_psychotherapy'],
+            'total_minutes_with_patient' => $requestData['data']['total_minutes_with_patient'],
             'modality_of_psychotherapy_multi_select' => $requestData['data']['modality_of_psychotherapy_multi_select'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
@@ -68,8 +69,8 @@ class ServiceStatementController extends Controller
         $channel = 'MsgFromSktForServiceStatementToChange';
         $message = array(
             'serverSideRowUuid' => $pServerSideRowUuid,
-            'total_minutes_in_psychotherapy_select' => $requestData['total_minutes_in_psychotherapy_select'],
-            'total_minutes_with_patient_select' => $requestData['total_minutes_with_patient_select'],
+            'total_minutes_in_psychotherapy' => $requestData['total_minutes_in_psychotherapy'],
+            'total_minutes_with_patient' => $requestData['total_minutes_with_patient'],
             'modality_of_psychotherapy_multi_select' => $requestData['modality_of_psychotherapy_multi_select'],
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );

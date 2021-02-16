@@ -35,7 +35,7 @@ export default class serviceStatementsForPatientClass extends clientTblManage {
       modality_of_psychotherapy_multi_select: this.string(null).nullable(),
       review_of_systems_multi_select: this.string(null).nullable(),
       optional_multi_select: this.string(null).nullable(),
-      patientUuid: this.string(null),
+      ptUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

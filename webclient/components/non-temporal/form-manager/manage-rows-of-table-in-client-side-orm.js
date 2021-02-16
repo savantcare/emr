@@ -805,7 +805,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const ptUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'ptUuid').first()
 
     // console.log(tableCommonForAllComponents)
-    pOrmRowArray.ptUuid = ptUuidFromOrm.fieldValue
+    //pOrmRowArray.ptUuid = ptUuidFromOrm.fieldValue
     pOrmRowArray.recordChangedByUuid = 'bua674fa-073b-4223-8c69-0540ee786kj8'
     pOrmRowArray[
       'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change'

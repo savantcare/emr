@@ -50,9 +50,7 @@
                 :placeholder="_fieldDef.nameInUi"
                 style="width: 100%"
                 :filterTermHighlight-first-item="true"
-                @input="
-                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
-                  "
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
               ></el-autocomplete>
             </div>
 
@@ -163,9 +161,7 @@
                 style="width: 100%"
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
-                @input="
-                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
-                  "
+                @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 :placeholder="_fieldDef.nameInUi"
               >
               </el-date-picker>
@@ -642,7 +638,7 @@ export default {
         }
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
-
+      console.log('rowStatus:', pEvent, pClientRowId, pFldName, rowStatus)
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
