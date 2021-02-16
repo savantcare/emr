@@ -13,7 +13,7 @@ class WaistCircumferenceController extends Controller
 {
     public function get_all_temporal_waist_circumferences($pPtUuid)
     {
-        $waistCircumferenceQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, round(UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000) as timeOfMeasurementInMilliSecs FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $waistCircumferenceQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim((UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000))+0 as timeOfMeasurementInMilliSecs FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         /* For some situations in row_start and row_end we are getting decimal values and in our frontend we have a query which checks round value because of this reason we are using round function */
 
