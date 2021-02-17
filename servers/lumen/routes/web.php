@@ -148,9 +148,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Service statement
     $router->get('service-statements/v20/{pPtUuid}', ['uses' => 'ServiceStatementController@get_all_temporal_service_statements']);
-    //$router->get('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@get_one_service_statement']);
     $router->post('service-statements/v20/', ['uses' => 'ServiceStatementController@create']);
-    $router->delete('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@delete']);
+    $router->put('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
     $router->options('service-statements/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')

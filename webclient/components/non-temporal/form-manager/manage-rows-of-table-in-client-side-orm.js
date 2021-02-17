@@ -946,6 +946,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   static async sfSendCopyChangedRowsToServer() {
     const arFromClientTbl = this.query()
       .where('vnRowStateInSession', rowState.SameAsDB_Copy_Changed_FormValidationPass)
+      .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed__FormValidationPass_RequestedSave_ApiError)
       .get()
 
     const promises = arFromClientTbl.map(async (changedRowBeingSaved) => {

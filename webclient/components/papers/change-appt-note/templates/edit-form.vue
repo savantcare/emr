@@ -210,7 +210,15 @@
         </el-timeline>
       </div>
       <div>
-        <el-button plain round size="mini" type="warning" @click="mfDeleteRowInServerSideTable()">Delete</el-button>
+        <el-button
+          v-if="_formDef.showDeleteButtonInForm === true"
+          plain
+          round
+          size="mini"
+          type="warning"
+          @click="mfDeleteRowInServerSideTable()"
+          >Delete</el-button
+        >
 
         <el-button
           v-if="_formDef.showReviewedButtonInForm === true"

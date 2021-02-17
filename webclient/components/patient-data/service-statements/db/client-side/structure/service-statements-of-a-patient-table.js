@@ -89,6 +89,7 @@ export const serviceStatementsFormDef = {
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: false,
   showFilterBySearchInAddForm: true,
   maxNumberOfTemporallyValidRows: 1,
   cacheOfMasterListOfSelectOptions: {},
