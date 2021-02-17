@@ -28,7 +28,6 @@
               :fetch-suggestions="_fieldDef.selectOptions"
               :placeholder="_fieldDef.nameInUi"
               style="width: 100%"
-              value-format="timestamp"
               :highlight-first-item="true"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
             ></el-autocomplete>

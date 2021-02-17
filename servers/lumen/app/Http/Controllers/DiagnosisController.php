@@ -38,9 +38,9 @@ class DiagnosisController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $onset = (int)($requestData['rowToUpsert']['onset']);
-        $diagnosis = $requestData['rowToUpsert']['diagnosis'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $onset = (int)($requestData['onset']);
+        $diagnosis = $requestData['diagnosis'];
+        $recordChangedByUuid = $requestData['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateDiagnosis = DB::statement("UPDATE `sc_dx`.`assignedDiagnosis` SET `diagnosis` = {$diagnosis}, `onset` = FROM_UNIXTIME({$onset}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `assignedDiagnosis`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
