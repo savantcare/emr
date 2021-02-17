@@ -43,7 +43,7 @@ class DiagnosisController extends Controller
         $recordChangedByUuid = $requestData['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateDiagnosis = DB::statement("UPDATE `sc_dx`.`assignedDiagnosis` SET `diagnosis` = {$diagnosis}, `onset` = FROM_UNIXTIME({$onset}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `assignedDiagnosis`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+        $updateDiagnosis = DB::statement("UPDATE `sc_dx`.`assignedDiagnosis` SET `diagnosis` = '{$diagnosis}', `onset` = FROM_UNIXTIME({$onset}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `assignedDiagnosis`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($updateDiagnosis, 200);
     }
