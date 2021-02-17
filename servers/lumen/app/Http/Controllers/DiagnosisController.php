@@ -13,7 +13,7 @@ class DiagnosisController extends Controller
     public function get_all_temporal_goals($pPtUuid)
     {
 
-        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(onset) * 1000 as timeOfMeasurementInMilliSecs FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(onset))+0 * 1000 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         return response()->json($dignosisQueryResultObj);
     }
@@ -37,6 +37,8 @@ class DiagnosisController extends Controller
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
+        $onset = date("Y-m-d H:i:s", $requestData['data']['onset']);
+        $requestData['data']['onset'] = $onset;
         $diagnosis = Diagnosis::findOrFail($pServerSideRowUuid);
         $diagnosis->update($requestData['data']);
 
