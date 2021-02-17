@@ -155,7 +155,10 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">
         <span slot="label"> Asmnt & <u>d</u>iagnosis </span>
+        <el-divider>Add</el-divider>
         <dxAdd />
+        <el-divider>Edit</el-divider>
+        <diagnosisMHorizontalEdit/>
       </el-tab-pane>
       <el-tab-pane label="Screens" name="screens">
         <span slot="label"> Sc<u>r</u>eens </span>
@@ -294,6 +297,7 @@ import oxygenSaturationAdd from '@/components/patient-data/oxygen-saturation/cha
 
 import routerMros from '@/components/patient-data/medical-review-of-system/change-layer/router.vue'
 import dxAdd from '@/components/patient-data/diagnosis/change-layer/diagnosis-add.vue'
+import diagnosisMHorizontalEdit from '@/components/patient-data/diagnosis/change-layer/medit-horizontal.vue'
 import screensAdd from '@/components/patient-data/screens/change-layer/add-ct.vue'
 import goalsAdd from '@/components/patient-data/goals/change-layer/add-ct.vue'
 import goalMHorizontalEdit from '@/components/patient-data/goals/change-layer/medit-horizontal.vue'
@@ -361,6 +365,7 @@ export default {
     routerMros,
     goalsAdd,
     goalMHorizontalEdit,
+    diagnosisMHorizontalEdit,
     recAdd,
     recMHorizontalEdit,
     remAdd,

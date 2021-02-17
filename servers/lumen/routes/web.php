@@ -275,21 +275,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
-    // Diagnosis
-    $router->get('diagnosis/v20/{pPtUuid}', ['uses' => 'DiagnosisController@getAllTemporalDiagnosis']);
-    $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
-    $router->delete('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
-    $router->options('diagnosis/v20', function () {
-        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
-            ->header('Access-Control-Allow-Credentials', 'true')
-            ->header('Connection', 'keep-alive');
-    });
-    $router->options('diagnosis/v20/{pServerSideRowUuid}', function () {
-        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
-            ->header('Access-Control-Allow-Credentials', 'true')
-            ->header('Connection', 'keep-alive');
-    });
-
     // Allergies
     $router->get('allergies/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
     //$router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@get_one_allergies']);
@@ -339,11 +324,27 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Connection', 'keep-alive');
     });
 
+    // Diagnosis
+    $router->get('diagnosis/v20/{pPtUuid}', ['uses' => 'DiagnosisController@get_all_temporal_diagnosis']);
+    $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
+    $router->patch('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
+    $router->put('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@update']);
+    $router->options('diagnosis/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('diagnosis/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
     // Goal
     $router->get('goals/v20/{pPtUuid}', ['uses' => 'GoalController@get_all_temporal_goals']);
     $router->post('goals/v20/', ['uses' => 'GoalController@create']);
-    $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
     $router->patch('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
+    $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
     $router->options('goals/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')

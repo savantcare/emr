@@ -29,7 +29,7 @@
               :placeholder="_fieldDef.nameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
             ></el-autocomplete>
           </div>
 
