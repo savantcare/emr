@@ -145,13 +145,13 @@ export const diagnosisFormDef = {
   validationsObj: {
     value: {
       diagnosis: {
-        minLength: minLength(0),
+        minLength: minLength(1),
       },
       assessment: {
-        minLength: minLength(0),
+        minLength: minLength(8),
       },
       onset: {
-        minLength: minLength(0),
+        minLength: minLength(8),
       },
     },
   },
