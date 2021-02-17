@@ -327,7 +327,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Diagnosis
     $router->get('diagnosis/v20/{pPtUuid}', ['uses' => 'DiagnosisController@get_all_temporal_diagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
-    $router->delete('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
+    $router->patch('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@delete']);
     $router->put('diagnosis/v20/{pServerSideRowUuid}', ['uses' => 'DiagnosisController@update']);
     $router->options('diagnosis/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
@@ -343,7 +343,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     // Goal
     $router->get('goals/v20/{pPtUuid}', ['uses' => 'GoalController@get_all_temporal_goals']);
     $router->post('goals/v20/', ['uses' => 'GoalController@create']);
-    $router->delete('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
+    $router->patch('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@delete']);
     $router->put('goals/v20/{pServerSideRowUuid}', ['uses' => 'GoalController@update']);
     $router->options('goals/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)

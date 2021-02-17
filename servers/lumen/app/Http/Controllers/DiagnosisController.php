@@ -13,7 +13,7 @@ class DiagnosisController extends Controller
     public function get_all_temporal_diagnosis($pPtUuid)
     {
 
-        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(onset) * 1000)+0 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(onset) * 1000) as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         return response()->json($dignosisQueryResultObj);
     }
@@ -37,12 +37,15 @@ class DiagnosisController extends Controller
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
-        $onset = date("Y-m-d H:i:s", $requestData['data']['onset']);
-        $requestData['data']['onset'] = $onset;
-        $diagnosis = Diagnosis::findOrFail($pServerSideRowUuid);
-        $diagnosis->update($requestData['data']);
 
-        return response()->json($diagnosis, 200);
+        $onset = (int)($requestData['rowToUpsert']['onset']);
+        $diagnosis = $requestData['rowToUpsert']['diagnosis'];
+        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $recordChangedFromIPAddress = $this->get_client_ip();
+
+        $updateDiagnosis = DB::statement("UPDATE `sc_dx`.`assignedDiagnosis` SET `diagnosis` = {$diagnosis}, `onset` = FROM_UNIXTIME({$onset}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `assignedDiagnosis`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+
+        return response()->json($updateDiagnosis, 200);
     }
     
     public function delete($pServerSideRowUuid, Request $pRequest)
