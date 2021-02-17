@@ -12,8 +12,11 @@ class DiagnosisController extends Controller
 {
     public function get_all_temporal_diagnosis($pPtUuid)
     {
-
-        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(onset) * 1000) as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        /* Why use  trim(UNIX_TIMESTAMP(onset) * 1000)+0 
+            Ans : Remove floating point from onset date timestamp.
+            reffarence : https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html
+        */
+        $dignosisQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(onset) * 1000)+0 as onset FROM sc_dx.assignedDiagnosis FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         return response()->json($dignosisQueryResultObj);
     }
