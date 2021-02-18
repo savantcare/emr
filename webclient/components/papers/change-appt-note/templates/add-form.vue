@@ -164,7 +164,7 @@
                 :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="
-                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)
+                    mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'number')
                   "
                 :placeholder="_fieldDef.nameInUi"
               >
@@ -637,7 +637,7 @@ export default {
       } else {
         if (pEvent && pEvent.length > 2) {
           rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
-        } else {
+        } else {     
           rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
         }
       }
