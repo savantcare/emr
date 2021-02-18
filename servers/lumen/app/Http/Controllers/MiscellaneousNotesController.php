@@ -14,13 +14,9 @@ class MiscellaneousNotesController extends Controller
 {
     public function get_all_temporal_miscellaneous_notes($pPtUuid)
     {
-        $miscellaneousNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_miscellaneous_notes.miscellaneous_notes where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
-        return response()->json($miscellaneousNotesQueryResultObj);
-    }
+        $miscellaneousNotesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_miscellaneous_notes.miscellaneous_notes FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
-    public function get_one_miscellaneous_note($pServerSideRowUuid)
-    {
-        return response()->json(MiscellaneousNotes::find($pServerSideRowUuid));
+        return response()->json($miscellaneousNotesQueryResultObj);
     }
 
     public function create(Request $pRequest)
@@ -43,7 +39,8 @@ class MiscellaneousNotesController extends Controller
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $miscellaneousNotes = MiscellaneousNotes::findOrFail($pServerSideRowUuid);
-        $miscellaneousNotes->update($pRequest->all());
+        $requestData = $pRequest->all();
+        $miscellaneousNotes->update($requestData['data']);
 
         return response()->json($miscellaneousNotes, 200);
     }
