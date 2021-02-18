@@ -638,7 +638,7 @@ export default {
         if (pEvent && pEvent > 0) {
           rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
         } else {
-          rowStatus = rowState.New
+          rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
         }
       } else {
         if (pEvent && pEvent.length > 2) {
