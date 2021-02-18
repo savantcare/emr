@@ -44,13 +44,30 @@ class PlanCommentsController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $description = $requestData['rowToUpsert']['description'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $description = $requestData['data']['description'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updatePlanComments = DB::statement("UPDATE `sc_plan_comments`.`plan_comments` SET `description` = {$description}, `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `plan_comments`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+        $updatePlanComments = DB::statement("UPDATE `sc_plan_comments`.`plan_comments` SET `description` = '{$description}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `plan_comments`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($updatePlanComments, 200);
+    }
+
+    public function delete($pServerSideRowUuid, Request $pRequest)
+    {
+        $planComments = PlanComments::findOrFail($pServerSideRowUuid);
+        $requestData = $pRequest->all();
+
+        if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
+            $updateData = array(
+                'deletedNote' => $requestData['dNotes']
+            );
+            $planComments->update($updateData);
+        }
+
+        $planComments->delete();
+        
+        return response('Deleted successfully', 200);
     }
 
     public function get_client_ip()
