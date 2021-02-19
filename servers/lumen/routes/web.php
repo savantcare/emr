@@ -296,7 +296,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     //$router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@get_one_chief_complaint']);
     $router->post('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@create']);
     $router->put('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@update']);
-    $router->delete('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
+    $router->patch('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
      $router->options('chief-complaint/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
