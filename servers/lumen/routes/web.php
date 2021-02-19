@@ -324,6 +324,22 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Connection', 'keep-alive');
     });
 
+    // Medical History
+    $router->get('medical-history/v20/{pPtUuid}', ['uses' => 'MedicalHistoryController@get_all_temporal_medical_histories']);
+    $router->post('medical-history/v20/', ['uses' => 'MedicalHistoryController@create']);
+    $router->patch('medical-history/v20/{pServerSideRowUuid}', ['uses' => 'MedicalHistoryController@delete']);
+    $router->put('medical-history/v20/{pServerSideRowUuid}', ['uses' => 'MedicalHistoryController@update']);
+    $router->options('medical-history/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('medical-history/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
     // Diagnosis
     $router->get('diagnosis/v20/{pPtUuid}', ['uses' => 'DiagnosisController@get_all_temporal_diagnosis']);
     $router->post('diagnosis/v20/', ['uses' => 'DiagnosisController@create']);
