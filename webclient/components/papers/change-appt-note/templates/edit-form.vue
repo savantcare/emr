@@ -23,13 +23,13 @@
             </div>
 
             <el-autocomplete
-              v-model="searchKeyword"
+              :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
               class="inline-input"
               :fetch-suggestions="_fieldDef.selectOptions"
               :placeholder="_fieldDef.nameInUi"
               style="width: 100%"
               :highlight-first-item="true"
-              @select="mfSetFldValueUsingCache($event.id, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+              @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
             ></el-autocomplete>
           </div>
 
@@ -513,7 +513,7 @@ export default {
           if (status === 1) {
             this.$message({
               type: 'success',
-              message: 'Reminder deleted.',
+              message: this._formDef.singular + ' deleted.',
             })
           } else {
             this.$message({
