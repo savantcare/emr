@@ -9,9 +9,7 @@
         <h2>Your Email id: {{loggedinUser.email}}</h2>
       </div>
       <br>
-      
-      loggedInUserDetails = {{loggedInUserDetails}}
-      
+      <!-- loggedInUserDetails = {{loggedInUserDetails}} -->
       <h1 class="title">webclient</h1>
       <div class="links">
 
@@ -58,8 +56,6 @@ import GoogleLogin from 'vue-google-login'
 import { LoaderPlugin } from 'vue-google-login'
 import VueCookies from 'vue-cookies'
 import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import { objectEach } from 'highcharts'
- import { mdbBtn } from 'mdbvue';
 
 //See the reference link here https://www.npmjs.com/package/vue-google-login
 // Created client id from https://console.developers.google.com/
@@ -88,26 +84,23 @@ Vue.use(VueAxios, Axios)
 export default {
   name: 'App',
   components: {
-    GoogleLogin,mdbBtn
+    GoogleLogin
   },
   created: function () {
-        this.getUserInfo        
+        this.cfGetUserGoogleInfo     
         // console.log('From cookie: ',$cookies.get('loginObj'))
-        this.resetUserAccessToken()
-        this.getLoggedInUserUniqueId  
+        this.mfResetUserAccessToken()
   },
 
   //This is testing to get google id_token before expiry
   // mounted() {
   //   this.interval = setInterval(() => {
-  //     this.resetUserAccessToken()
+  //     this.mfResetUserAccessToken()
   //   },5000)
   // },
 
-
-
   computed: {
-    getUserInfo() {
+    cfGetUserGoogleInfo() {
       this.userData = localStorage.getItem('authorizedUserDetails')      
       if(this.userData){
         const objUserData = JSON.parse(this.userData.replace(/\+/g, ' '))
@@ -115,22 +108,8 @@ export default {
         return this.loggedinUser  
       }else{
         return null
-      }      
+      }    
       
-    },
-
-    getLoggedInUserUniqueId() {
-      var userObj = $cookies.get('loginObj')   
-      this.loggedInUserDetails = userObj
-      if(userObj){        
-        this.commonOrmTableForAllComponents = clientSideTableOfCommonForAllComponents.insert({
-          data: {
-            fieldName:'createdUuid',
-            fieldValue: userObj.publicUniqueId,
-          },
-        })
-      }
-      return this.commonOrmTableForAllComponents      
     },
     
   },
@@ -190,17 +169,9 @@ export default {
                 var message = response.data.message
                 if(userObj){
                   self.loggedInUserDetails = userObj
-                    Vue.$cookies.set('loginObj',userObj)
-                    clientSideTableOfCommonForAllComponents.insert({
-                      data: {
-                        fieldName:'createdUuid',
-                        fieldValue: userObj.publicUniqueId,
-                      },
-                    })
+                  Vue.$cookies.set('loginObj',userObj)
                   localStorage.setItem('authorizedUserDetails',JSON.stringify(self.loggedinUser))
-                }
-                self.info(message)
-                
+                }                
             });
           }
       },
@@ -222,11 +193,13 @@ export default {
         this.loggedInUserDetails = null
       }, 
 
-      resetUserAccessToken(){
+      mfResetUserAccessToken(){
          Vue.GoogleAuth.then(auth2 => {
            const isSignedIn = auth2.isSignedIn.get()
            const authResponse = auth2.currentUser.get().getAuthResponse()
-           if(isSignedIn){
+           var userObj = $cookies.get('loginObj')
+           if(isSignedIn && userObj){
+             this.loggedInUserDetails = userObj
              if(this.loggedinUser==null){
                const profile = auth2.currentUser.get().getBasicProfile()
                 const loginObj = {
@@ -240,18 +213,14 @@ export default {
                 this.loggedinUser = loginObj
                 localStorage.setItem('authorizedUserDetails',JSON.stringify(this.loggedinUser))
              }
-
              this.authResponse = authResponse
            }else{
+             //if isSignedIn = false means google account signed out but if p20 still loggedin then forcefully signout the user
              if(this.loggedInUserDetails){
                 this.logOutUser()
              }
            }
          })
-      },
-
-      info(message) {
-        this.$notify.info({message: message, position: 'top right', timeOut: 10000});
       },
   }
 }

@@ -189,9 +189,9 @@ export default {
         fieldValue: this.$route.params.uuid,
       },
     }),
-    this.getLoggedInUserUniqueId()
+    this.mfGetLoggedInUserUuidAndInsertIntoOrm()
 
-    var loggedInUserObj = clientSideTableOfCommonForAllComponents.query().where('fieldName', 'createdUuid').first()
+    var loggedInUserObj = clientSideTableOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
     if(loggedInUserObj){
       this.loggedInUuid = loggedInUserObj.fieldValue
     }
@@ -268,12 +268,12 @@ export default {
       console.log(message)
     },
 
-    getLoggedInUserUniqueId() {
+    mfGetLoggedInUserUuidAndInsertIntoOrm() {
       var userObj = $cookies.get('loginObj')
       if(userObj){        
         this.commonOrmTableForAllComponents = clientSideTableOfCommonForAllComponents.insert({
           data: {
-            fieldName:'createdUuid',
+            fieldName:'loggedInUserUuid',
             fieldValue: userObj.publicUniqueId,
           },
         })
