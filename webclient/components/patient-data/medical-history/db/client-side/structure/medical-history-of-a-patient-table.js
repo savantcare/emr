@@ -40,8 +40,6 @@ export default class medical_history extends clientTblManage {
       ptUuid: this.string(null),
       description: this.string(''),
       diagnosis: this.string(''),
-      priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

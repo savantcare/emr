@@ -17,11 +17,6 @@ class MedicalHistoryController extends Controller
         return response()->json($medicalHistoryQueryResultObj);
     }
 
-    public function get_one_medical_history($pServerSideRowUuid)
-    {
-        return response()->json(MedicalHistory::find($pServerSideRowUuid));
-    }
-
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();
@@ -31,8 +26,6 @@ class MedicalHistoryController extends Controller
             'ptUuid' => $requestData['data']['ptUuid'],
             'diagnosis' => $requestData['data']['diagnosis'],
             'description' => $requestData['data']['description'],
-            'priority' => $requestData['data']['priority'],
-            'isAutoRem' => $requestData['data']['isAutoRem'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress,
         );
