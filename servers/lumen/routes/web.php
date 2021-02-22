@@ -310,9 +310,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Process Notes
     $router->get('process-notes/v20/{pPtUuid}', ['uses' => 'ProcessNotesController@get_all_temporal_process_notes']);
-    //$router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@get_one_process_notes']);
     $router->post('process-notes/v20/', ['uses' => 'ProcessNotesController@create']);
-    $router->delete('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
+    $router->put('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@update']);
+    $router->patch('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
     $router->options('process-notes/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
@@ -360,7 +360,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('miscellaneous-notes/v20/{pPtUuid}', ['uses' => 'MiscellaneousNotesController@get_all_temporal_miscellaneous_notes']);
     //$router->get('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@get_one_miscellaneous_note']);
     $router->post('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@create']);
-    $router->delete('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
+    $router->patch('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
     $router->put('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@update']);
     $router->options('miscellaneous-notes/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)

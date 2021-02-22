@@ -337,8 +337,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
 
     // Goal: From the set of valid data, find unique UUIDs since it is possible that some UUID is being changed and in that scenario there are 2 records with same UUID
     const uniqueUuidRows = []
-    let foundInArToReturn = false
     for (let i = 0; i < arFromClientTbl.length; i++) {
+      let foundInArToReturn = false
       for (let j = 0; j < uniqueUuidRows.length; j++) {
         if (arFromClientTbl[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
           /* Suppose a row is being changed. Now 2 rows have the same serverSideRowUuid. The old row and the new changed row.
