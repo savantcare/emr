@@ -32,6 +32,7 @@ export default class examinationForPatientClass extends clientTblManage {
               2                    |  Spent 20 min with patient
 
           When doctor assigns 2 to this patient then in this table fieldOptionId = 2 */
+      ptUuid: this.string(null),
       appearance_multi_select: this.string(null).nullable(),
       attitude_multi_select: this.string(null).nullable(),
       psychomotor_multi_select: this.string(null).nullable(),

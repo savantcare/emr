@@ -26,9 +26,18 @@ class ExaminationController extends Controller
         $arExaminationData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
-            'appearance_select' => $requestData['data']['appearance_select'],
-            'psychomotor_select' => $requestData['data']['psychomotor_select'],
+            'appearance_multi_select' => $requestData['data']['appearance_multi_select'],
+            'cognition_multi_select' => $requestData['data']['cognition_multi_select'],
             'attitude_multi_select' => $requestData['data']['attitude_multi_select'],
+            'constitutional_multi_select' => $requestData['data']['constitutional_multi_select'],
+            'eye_contact_multi_select' => $requestData['data']['eye_contact_multi_select'],
+            'impulse_control_multi_select' => $requestData['data']['impulse_control_multi_select'],
+            'insight_multi_select' => $requestData['data']['insight_multi_select'],
+            'judgement_multi_select' => $requestData['data']['judgement_multi_select'],
+            'mood_affect_multi_select' => $requestData['data']['mood_affect_multi_select'],
+            'neurological_multi_select' => $requestData['data']['neurological_multi_select'],
+            'perceptions_multi_select' => $requestData['data']['perceptions_multi_select'],
+            'psychomotor_multi_select' => $requestData['data']['psychomotor_multi_select'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
