@@ -147,10 +147,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Service statement
-    $router->get('service-statements/v20/', ['uses' => 'ServiceStatementController@get_all_temporal_service_statements']);
-    $router->get('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@get_one_service_statement']);
+    $router->get('service-statements/v20/{pPtUuid}', ['uses' => 'ServiceStatementController@get_all_temporal_service_statements']);
     $router->post('service-statements/v20/', ['uses' => 'ServiceStatementController@create']);
-    $router->delete('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@delete']);
+    $router->put('service-statements/v20/{pServerSideRowUuid}', ['uses' => 'ServiceStatementController@update']);
     $router->options('service-statements/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
@@ -296,7 +295,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     //$router->get('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@get_one_chief_complaint']);
     $router->post('chief-complaint/v20/', ['uses' => 'ChiefComplaintController@create']);
     $router->put('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@update']);
-    $router->delete('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
+    $router->patch('chief-complaint/v20/{pServerSideRowUuid}', ['uses' => 'ChiefComplaintController@delete']);
      $router->options('chief-complaint/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
@@ -310,9 +309,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Process Notes
     $router->get('process-notes/v20/{pPtUuid}', ['uses' => 'ProcessNotesController@get_all_temporal_process_notes']);
-    //$router->get('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@get_one_process_notes']);
     $router->post('process-notes/v20/', ['uses' => 'ProcessNotesController@create']);
-    $router->delete('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
+    $router->put('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@update']);
+    $router->patch('process-notes/v20/{pServerSideRowUuid}', ['uses' => 'ProcessNotesController@delete']);
     $router->options('process-notes/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
@@ -360,7 +359,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('miscellaneous-notes/v20/{pPtUuid}', ['uses' => 'MiscellaneousNotesController@get_all_temporal_miscellaneous_notes']);
     //$router->get('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@get_one_miscellaneous_note']);
     $router->post('miscellaneous-notes/v20/', ['uses' => 'MiscellaneousNotesController@create']);
-    $router->delete('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
+    $router->patch('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@delete']);
     $router->put('miscellaneous-notes/v20/{pServerSideRowUuid}', ['uses' => 'MiscellaneousNotesController@update']);
     $router->options('miscellaneous-notes/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)

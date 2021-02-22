@@ -20,7 +20,7 @@ class ChiefComplaint extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'recordChangedByUuid',
+        'ptUuid', 'description', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress', 'recordChangedFromSection'
     ];
 
     /**

@@ -14,14 +14,9 @@ class ChiefComplaintController extends Controller
 {
     public function get_all_temporal_chief_complaint($pPtUuid)
     {
-        $chiefComplaintQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_chief_complaint.chief_complaint where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
-        return response()->json($chiefComplaintQueryResultObj);
-        // return response()->json(ChiefComplaint::all());
-    }
+        $chiefComplaintQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_chief_complaint.chief_complaint FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
-    public function get_one_chief_complaint($pServerSideRowUuid)
-    {
-        return response()->json(ChiefComplaint::find($pServerSideRowUuid));
+        return response()->json($chiefComplaintQueryResultObj);
     }
 
     public function create(Request $pRequest)
@@ -45,12 +40,13 @@ class ChiefComplaintController extends Controller
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $chiefComplaint = ChiefComplaint::findOrFail($pServerSideRowUuid);
-        $chiefComplaint->update($pRequest->all());
+        $requestData = $pRequest->all();
+        $chiefComplaint->update($requestData['data']);
 
         /**
          * Send data to socket
          */
-        $requestData = $pRequest->all();
+        /*$requestData = $pRequest->all();
         $channel = 'MsgFromSktForChiefComplaintToChange';
         $message = array(
             'serverSideRowUuid' => $pServerSideRowUuid,
@@ -59,7 +55,7 @@ class ChiefComplaintController extends Controller
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
         return response()->json($chiefComplaint, 200);
     }
@@ -81,14 +77,14 @@ class ChiefComplaintController extends Controller
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForChiefComplaintToDelete';
+        /*$channel = 'MsgFromSktForChiefComplaintToDelete';
         $message = array(
             'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
         return response('Deleted successfully', 200);
     }
