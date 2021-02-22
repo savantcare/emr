@@ -66,6 +66,7 @@ export const chiefComplaintFormDef = {
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: false,
 
   maxNumberOfTemporallyValidRows: 1,
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
