@@ -14,8 +14,8 @@ class RecommendationController extends Controller
 {
     public function get_all_temporal_recommendations($pPtUuid)
     {
-        $remQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'"  order by ROW_START desc'));
-        return response()->json($remQueryResultObj);
+        $recommendationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_recommendations.recommendations FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'"  order by ROW_START desc'));
+        return response()->json($recommendationQueryResultObj);
         // return response()->json(Recommendation::all());
     }
 
@@ -23,7 +23,7 @@ class RecommendationController extends Controller
     {
         $requestData = $pRequest->all();
         $recordChangedFromIPAddress = $this->get_client_ip();
-        $remData = array(
+        $recommendationData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'description' => $requestData['data']['description'],
@@ -31,7 +31,7 @@ class RecommendationController extends Controller
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
 
-        $recommendation = Recommendation::insertGetId($remData);
+        $recommendation = Recommendation::insertGetId($recommendationData);
 
         /*$channel = 'MsgFromSktForRemToAdd';
         $message = array(
