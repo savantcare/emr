@@ -8,61 +8,65 @@
             when go from Layer1LeftSide to layer1RightSide the event gets fired.
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg
   -->
-  <div :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
-    <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
-    <!-- GOAL1: Initialize the keyboard and mouse controls -->
-    <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
+  <div>
+    <div v-if="!loggedInUuid" class="text-center"><a href="http://localhost"><h1>Please login</h1></a></div>
+    <div v-if="loggedInUuid" :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
+      <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
+      <!-- GOAL1: Initialize the keyboard and mouse controls -->
+      <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
-    <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
-    <ctToGiveProductTour></ctToGiveProductTour>
+      <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
+      <ctToGiveProductTour></ctToGiveProductTour>
 
-    <!-- GOAL3: Open the default cards on left side and right side -->
-    <!-- Prop explanation:
-        :gutterSize="0"
-          This is thickness of the line between left and right panels. This line is used to adjust size of left and right
-    -->
-    <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
-    <Split style="height: 900px; width: 1440px" :gutter-size="4">
-      <SplitArea :size="cfLayer1LeftSideSplitSize">
-        <ctPaperViewNoteLeftSideComponents></ctPaperViewNoteLeftSideComponents>
-      </SplitArea>
-      <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
-        <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
-        drawer. When there is a veritical bar that can be moved around but the drawer does not response. It becomes very confusing
-        for the user-->
-        <div v-if="cfRightScreenExtensionVisibility">
-          <ctRightScreenExtensionDrawer />
-        </div>
-        <div v-else>
-          <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
-        </div>
-      </SplitArea>
-    </Split>
+      <!-- GOAL3: Open the default cards on left side and right side -->
+      <!-- Prop explanation:
+          :gutterSize="0"
+            This is thickness of the line between left and right panels. This line is used to adjust size of left and right
+      -->
+      <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
+      <Split style="height: 900px; width: 1440px" :gutter-size="4">
+        <SplitArea :size="cfLayer1LeftSideSplitSize">
+          <ctPaperViewNoteLeftSideComponents></ctPaperViewNoteLeftSideComponents>
+        </SplitArea>
+        <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
+          <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
+          drawer. When there is a veritical bar that can be moved around but the drawer does not response. It becomes very confusing
+          for the user-->
+          <div v-if="cfRightScreenExtensionVisibility">
+            <ctRightScreenExtensionDrawer />
+          </div>
+          <div v-else>
+            <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
+          </div>
+        </SplitArea>
+      </Split>
 
-    <!-- GOAL4: Init component to show tabs in edit layer -->
-    <ctTabsInDialogInCL></ctTabsInDialogInCL>
+      <!-- GOAL4: Init component to show tabs in edit layer -->
+      <ctTabsInDialogInCL></ctTabsInDialogInCL>
 
-    <!-- GOAL5: Init component to show components in left extension -->
-    <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
-    <ctChangeInTabs />
-    <ctOneSearchBox />
-    <!-- GOAL7: Init drawer component -->
-    <!--    <ctMapDrawer></ctMapDrawer> -->
+      <!-- GOAL5: Init component to show components in left extension -->
+      <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+      <ctChangeInTabs />
+      <ctOneSearchBox />
+      <!-- GOAL7: Init drawer component -->
+      <!--    <ctMapDrawer></ctMapDrawer> -->
 
-    <!-- GOAL8: Init -->
-    <ctDeletedDrawer></ctDeletedDrawer>
+      <!-- GOAL8: Init -->
+      <ctDeletedDrawer></ctDeletedDrawer>
 
-    <!-- GOAL9: Init -->
-    <ctFeed></ctFeed>
+      <!-- GOAL9: Init -->
+      <ctFeed></ctFeed>
 
-    <!-- GOAL10: Init -->
-    <ctInitOfComponents></ctInitOfComponents>
-    
-    <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
-      <el-button round size="mini" class="btn-map-fullscreen"  @click="toggleFullScreen" type="primary" ><i  :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i> </el-button>
+      <!-- GOAL10: Init -->
+      <ctInitOfComponents></ctInitOfComponents>
+      
+      <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
+        <el-button round size="mini" class="btn-map-fullscreen"  @click="toggleFullScreen" type="primary" ><i  :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i> </el-button>
+      </div>
+      </fullscreen>
     </div>
-    </fullscreen>
   </div>
+
 </template>
 
 <style scoped>
@@ -71,6 +75,7 @@
 
 <script>
 import Vue from 'vue'
+import VueCookies from 'vue-cookies'
 // https://mirari.cc/vue-fullscreen/
 import fullscreen from 'vue-fullscreen'
 /* The folloiwng line makes $tours available to each component
@@ -143,6 +148,7 @@ Vue.use(Vuelidate)
 
 Vue.component('VueSlider', VueSlider)
 
+Vue.use(VueCookies)
 Vue.use(fullscreen)
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
@@ -172,7 +178,8 @@ export default {
   },
   data() {
     return {
-      fullscreen: false
+      fullscreen: false,
+      loggedInUuid: null
     }
   },
   created() {
@@ -181,7 +188,13 @@ export default {
         fieldName:'ptUuid',
         fieldValue: this.$route.params.uuid,
       },
-    })
+    }),
+    this.mfGetLoggedInUserUuidAndInsertIntoOrm()
+
+    var loggedInUserObj = clientSideTableOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
+    if(loggedInUserObj){
+      this.loggedInUuid = loggedInUserObj.fieldValue
+    }
   },
   mounted() {
     // when page first loads the change layer tabs are set to not show
@@ -254,6 +267,19 @@ export default {
     log(message) {
       console.log(message)
     },
+
+    mfGetLoggedInUserUuidAndInsertIntoOrm() {
+      var userObj = $cookies.get('loginObj')
+      if(userObj){        
+        this.commonOrmTableForAllComponents = clientSideTableOfCommonForAllComponents.insert({
+          data: {
+            fieldName:'loggedInUserUuid',
+            fieldValue: userObj.publicUniqueId,
+          },
+        })
+      }   
+    }
+
   },
 }
 </script>
