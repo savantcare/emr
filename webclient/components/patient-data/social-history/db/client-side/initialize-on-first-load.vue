@@ -1,16 +1,17 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeSocialHistoryComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/social-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeSocialHistoryComponent from '@/components/patient-data/social-history/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/social-history/db/client-side/structure/social-history-of-a-patient-table.js'
+import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeSocialHistoryComponent,
   },
   async mounted() {
     /*
@@ -20,8 +21,15 @@ export default {
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
     if (process.env.loadInitialDataFromServer === true) {
-      const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl)
-      if (proRemsFromDB.ok) {
+      const ptUuidFromOrm = await clientTblOfCommonForAllComponents
+      .query()
+      .where(
+        'fieldName',
+        'ptUuid'
+      )
+      .first()
+      const proSocialHistoryFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+      if (proSocialHistoryFromDB.ok) {
       }
     }
   },
