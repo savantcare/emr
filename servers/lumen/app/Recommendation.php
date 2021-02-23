@@ -20,7 +20,7 @@ class Recommendation extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'description', 'notes', 'recordChangedByUuid',
+        'ptUuid', 'description', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
