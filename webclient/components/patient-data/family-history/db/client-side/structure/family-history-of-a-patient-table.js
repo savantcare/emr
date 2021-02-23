@@ -41,7 +41,6 @@ export default class family_history extends clientTblManage {
       description: this.string(''),
       relationship: this.string(''),
       priority: this.number(0),
-      isAutoRem: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -68,6 +67,7 @@ export const familyHistoryFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: true,
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 1fr; grid-column-gap: 1rem',
