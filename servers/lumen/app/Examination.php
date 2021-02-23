@@ -20,7 +20,7 @@ class Examination extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'recordChangedByUuid','cognition_multi_select','attitude_multi_select','eye_contact_multi_select','impulse_control_multi_select','insight_multi_select','judgement_multi_select','mood_affect_multi_select','neurological_multi_select','perceptions_multi_select','psychomotor_multi_select','recordChangedFromIPAddress',
+        'ptUuid', 'recordChangedByUuid','appearance_multi_select','cognition_multi_select','attitude_multi_select','eye_contact_multi_select','impulse_control_multi_select','insight_multi_select','judgement_multi_select','mood_affect_multi_select','neurological_multi_select','perceptions_multi_select','psychomotor_multi_select','recordChangedFromIPAddress',
     ];
 
     /**
