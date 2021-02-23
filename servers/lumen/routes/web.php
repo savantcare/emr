@@ -116,7 +116,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('recommendations/v20/{pPtUuid}', ['uses' => 'RecommendationController@get_all_temporal_recommendations']);
     //$router->get('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@get_one_recommendation']);
     $router->post('recommendations/v20/', ['uses' => 'RecommendationController@create']);
-    $router->delete('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
     $router->put('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@update']);
     $router->patch('recommendations/v20/{pServerSideRowUuid}', ['uses' => 'RecommendationController@delete']);
     $router->options('recommendations/v20', function () {

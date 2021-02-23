@@ -19,25 +19,21 @@ class RecommendationController extends Controller
         // return response()->json(Recommendation::all());
     }
 
-    public function get_one_recommendation($pServerSideRowUuid)
-    {
-        return response()->json(Recommendation::find($pServerSideRowUuid));
-    }
-
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();
-
+        $recordChangedFromIPAddress = $this->get_client_ip();
         $remData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
             'description' => $requestData['data']['description'],
-            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid']
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
 
-        $Recommendation = Recommendation::insertGetId($remData);
+        $recommendation = Recommendation::insertGetId($remData);
 
-        $channel = 'MsgFromSktForRemToAdd';
+        /*$channel = 'MsgFromSktForRemToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'description' => $requestData['data']['description'],
@@ -45,60 +41,82 @@ class RecommendationController extends Controller
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
-        // $Recommendation = Recommendation::create($request->all());
-        return response()->json($Recommendation, 201);
+        // $recommendation = Recommendation::create($request->all());
+        return response()->json($recommendation, 201);
     }
 
     public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $Recommendation = Recommendation::findOrFail($pServerSideRowUuid);
-        $Recommendation->update($pRequest->all());
+        $requestData = $pRequest->all();
+        $recommendation = Recommendation::findOrFail($pServerSideRowUuid);
+        $recommendation->update($requestData['data']);
 
         /**
          * Send data to socket
          */
-        $requestData = $pRequest->all();
+        /*$requestData = $pRequest->all();
         $channel = 'MsgFromSktForRemToChange';
         $message = array(
             'serverSideRowUuid' => $pServerSideRowUuid,
-            'description' => $requestData['description'],
-            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
+            'description' => $requestData['data']['description'],
+            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
-        return response()->json($Recommendation, 200);
+        return response()->json($recommendation, 200);
     }
 
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $Recommendation = Recommendation::findOrFail($pServerSideRowUuid);
+        $recommendation = Recommendation::findOrFail($pServerSideRowUuid);
         $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
-            $Recommendation->update($updateData);
+            $recommendation->update($updateData);
         }
 
-        $Recommendation->delete();
+        $recommendation->delete();
 
         /**
          * Send data to socket
          */
-        $channel = 'MsgFromSktForRemToDelete';
+        /*$channel = 'MsgFromSktForRemToDelete';
         $message = array(
             'serverSideRowUuid' => $pServerSideRowUuid,
             'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
         return response('Deleted successfully', 200);
+    }
+
+    public function get_client_ip()
+    {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        } elseif (isset($_SERVER['HTTP_FORWARDED'])) {
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipaddress = 'UNKNOWN';
+        }
+        return $ipaddress;
     }
 }
