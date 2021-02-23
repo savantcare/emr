@@ -45,17 +45,17 @@ class FamilyHistoryController extends Controller
 
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
-        $FamilyHistory = FamilyHistory::findOrFail($pServerSideRowUuid);
+        $familyHistory = FamilyHistory::findOrFail($pServerSideRowUuid);
         $requestData = $pRequest->all();
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
                 'notes' => $requestData['dNotes']
             );
-            $FamilyHistory->update($updateData);
+            $familyHistory->update($updateData);
         }
 
-        $FamilyHistory->delete();
+        $familyHistory->delete();
 
         return response('Deleted successfully', 200);
     }
