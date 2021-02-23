@@ -56,13 +56,6 @@ class ExaminationController extends Controller
         return response()->json($examination, 200);
     }
 
-    public function delete($pServerSideRowUuid)
-    {
-        $examination = Examination::findOrFail($pServerSideRowUuid);
-        $examination->delete();
-        return response('Deleted successfully', 200);
-    }
-
     public function get_client_ip() {
         $ipaddress = '';
         if (isset($_SERVER['HTTP_CLIENT_IP']))
