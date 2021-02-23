@@ -371,4 +371,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Connection', 'keep-alive');
     });
 
+     // Family History
+     $router->get('family-history/v20/{pPtUuid}', ['uses' => 'FamilyHistoryController@get_all_temporal_family_history']);
+     $router->post('family-history/v20/', ['uses' => 'FamilyHistoryController@create']);
+     $router->patch('family-history/v20/{pServerSideRowUuid}', ['uses' => 'FamilyHistoryController@delete']);
+     $router->put('family-history/v20/{pServerSideRowUuid}', ['uses' => 'FamilyHistoryController@update']);
+     $router->options('family-history/v20', function () {
+         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+         ->header('Access-Control-Allow-Credentials', 'true')
+         ->header('Connection', 'keep-alive');
+     });
+     $router->options('family-history/v20/{pServerSideRowUuid}', function () {
+         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+         ->header('Access-Control-Allow-Credentials', 'true')
+         ->header('Connection', 'keep-alive');
+     });
+
 });
