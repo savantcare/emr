@@ -406,7 +406,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
      // Social History
     $router->get('social-history/v20/{pPtUuid}', ['uses' => 'SocialHistoryController@get_all_temporal_social_histories']);
     $router->post('social-history/v20/', ['uses' => 'SocialHistoryController@create']);
-    $router->patch('social-history/v20/{pServerSideRowUuid}', ['uses' => 'SocialHistoryController@delete']);
     $router->put('social-history/v20/{pServerSideRowUuid}', ['uses' => 'SocialHistoryController@update']);
     $router->options('social-history/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
