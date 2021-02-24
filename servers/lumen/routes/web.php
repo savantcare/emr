@@ -162,9 +162,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Past psych history
     $router->get('past-psych-history/v20/{pPtUuid}', ['uses' => 'PastPsychHistoryController@get_all_temporal_past_psych_history']);
-    //$router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@get_one_past_psych_history']);
     $router->post('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@create']);
-    $router->delete('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@delete']);
+    $router->put('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@update']);
     $router->options('past-psych-history/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
@@ -402,5 +401,21 @@ $router->group(['prefix' => 'api'], function () use ($router) {
          ->header('Access-Control-Allow-Credentials', 'true')
          ->header('Connection', 'keep-alive');
      });
+
+     // Social History
+    $router->get('social-history/v20/{pPtUuid}', ['uses' => 'SocialHistoryController@get_all_temporal_social_histories']);
+    $router->post('social-history/v20/', ['uses' => 'SocialHistoryController@create']);
+    //$router->patch('social-history/v20/{pServerSideRowUuid}', ['uses' => 'SocialHistoryController@delete']);
+    $router->put('social-history/v20/{pServerSideRowUuid}', ['uses' => 'SocialHistoryController@update']);
+    $router->options('social-history/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('social-history/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
 
 });

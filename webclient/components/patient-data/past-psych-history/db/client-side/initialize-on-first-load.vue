@@ -20,7 +20,6 @@ export default {
         When using json-server backend the code is:
         const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
-
     if (process.env.loadInitialDataFromServer === true) {
       const ptUuidFromOrm = await clientTblOfCommonForAllComponents
       .query()
@@ -29,9 +28,8 @@ export default {
         'ptUuid'
       )
       .first()
-
-      const proFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
-      if (proFromDB.ok) {
+      const proPastPsychHistoryFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+      if (proPastPsychHistoryFromDB.ok) {
       }
     }
   },

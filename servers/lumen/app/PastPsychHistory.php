@@ -20,7 +20,7 @@ class PastPsychHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'recordChangedByUuid',
+        'ptUuid','past_outpatient_treatment','past_meds_trials','hospitalization','history_of_violence','history_of_self_harm','past_substance_abuse','recordChangedByUuid',
     ];
 
     /**
