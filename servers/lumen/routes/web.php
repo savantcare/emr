@@ -403,4 +403,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
          ->header('Connection', 'keep-alive');
      });
 
+    // Medical Review of System
+    $router->get('medical-review-of-system/v20/{pPtUuid}', ['uses' => 'MedicalReviewOfSystemController@get_all_temporal_medical_review_of_system']);
+    //$router->get('medical-review-of-system/v20/{pServerSideRowUuid}', ['uses' => 'MedicalReviewOfSystemController@get_one_medical_review_of_system']);
+    $router->post('medical-review-of-system/v20/', ['uses' => 'MedicalReviewOfSystemController@create']);
+    $router->put('medical-review-of-system/v20/{pServerSideRowUuid}', ['uses' => 'MedicalReviewOfSystemController@update']);
+    $router->options('medical-review-of-system/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('medical-review-of-system/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
 });

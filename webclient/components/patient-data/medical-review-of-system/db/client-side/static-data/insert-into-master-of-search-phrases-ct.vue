@@ -13,7 +13,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'medical review of system',
-        ctAbbr: 'ss',
+        ctAbbr: 'mros',
         ctToShow: 'patient-data/medical-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -21,8 +21,8 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit medical_review_of_system',
-        ctAbbr: 'sse',
-        ctToShow: 'patient-data/medical-review-of-system/change-layer/pros-edit-design-1.vue',
+        ctAbbr: 'emros',
+        ctToShow: 'patient-data/medical-review-of-system/change-layer/mros-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -31,7 +31,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add medical_review_of_system',
-        ctAbbr: 'dss',
+        ctAbbr: 'amros',
         ctToShow: 'patient-data/medical-review-of-system/change-layer/add-mros.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
