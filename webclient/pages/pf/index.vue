@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!loggedInUuid" class="text-center"><a href="http://localhost"><h1>Please login</h1></a></div>
-    <div v-if="loggedInUuid">
+    <div v-else>
       <el-button type="primary" @click="auth('github')">OAuth Login with github</el-button>Choose a patient
       <br />
       <br />

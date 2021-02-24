@@ -10,7 +10,7 @@
   -->
   <div>
     <div v-if="!loggedInUuid" class="text-center"><a href="http://localhost"><h1>Please login</h1></a></div>
-    <div v-if="loggedInUuid" :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
+    <div v-else :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
       <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
       <!-- GOAL1: Initialize the keyboard and mouse controls -->
       <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
