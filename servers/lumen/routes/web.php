@@ -260,7 +260,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('plan-comments/v20/{pPtUuid}', ['uses' => 'PlanCommentsController@get_all_temporal_plan_comments']);
     //$router->get('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@get_one_plan_comments']);
     $router->post('plan-comments/v20/', ['uses' => 'PlanCommentsController@create']);
-    $router->delete('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
+    $router->patch('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@delete']);
     $router->put('plan-comments/v20/{pServerSideRowUuid}', ['uses' => 'PlanCommentsController@update']);
     $router->options('plan-comments/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
