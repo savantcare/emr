@@ -48,8 +48,6 @@ export default class examinationForPatientClass extends clientTblManage {
       judgement_multi_select: this.string(null).nullable(),
       impulse_control_multi_select: this.string(null).nullable(),
       neurological_multi_select: this.string(null).nullable(),
-
-      patientUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
