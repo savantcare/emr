@@ -18,6 +18,7 @@
     <initializeChiefComplaintComponent />
     <initializeFamilyHistoryComponent />
     <initializeMedicalHistoryComponent />
+    <initializeSocialHistoryComponent />
     <initializeMiscNotesComponent />
     <initializePlanCommentsComponent />
     <initializeProcessNotesComponent />
@@ -88,6 +89,7 @@ import initializeAllergiesComponent from '@/components/patient-data/allergies/db
 import initializeChiefComplaintComponent from '~/components/patient-data/chief-complaint/db/client-side/initialize-on-first-load.vue'
 import initializeFamilyHistoryComponent from '@/components/patient-data/family-history/db/client-side/initialize-on-first-load.vue'
 import initializeMedicalHistoryComponent from '@/components/patient-data/medical-history/db/client-side/initialize-on-first-load.vue'
+import initializeSocialHistoryComponent from '@/components/patient-data/social-history/db/client-side/initialize-on-first-load.vue'
 import initializeMiscNotesComponent from '~/components/patient-data/miscellaneous-notes/db/client-side/initialize-on-first-load.vue'
 import initializePlanCommentsComponent from '~/components/patient-data/plan-comments/db/client-side/initialize-on-first-load.vue'
 import initializeSHComponent from '~/components/patient-data/social-history/db/client-side/initialize-on-first-load.vue'
@@ -142,6 +144,7 @@ export default {
     initializeChiefComplaintComponent,
     initializeFamilyHistoryComponent,
     initializeMedicalHistoryComponent,
+    initializeSocialHistoryComponent,
     initializeMiscNotesComponent,
     initializePlanCommentsComponent,
     initializeProcessNotesComponent,
