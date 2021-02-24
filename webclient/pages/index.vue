@@ -7,42 +7,40 @@
          <img :src="loggedinUser.imageUrl">
         <h1>Welcome {{loggedinUser.fullName}}</h1>
         <h2>Your Email id: {{loggedinUser.email}}</h2>
-      </div>
-      <br>
-      <!-- loggedInUserDetails = {{loggedInUserDetails}} -->
-      <h1 class="title">webclient</h1>
-      <div class="links">
 
+        <br>
+        <button  class="button--grey" v-on:click="logOutUser">Logout</button>
 
-        <GoogleLogin id="g_id_onload" class="button--grey" auto_select="true" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-if="!loggedInUserDetails">Google Login</GoogleLogin>
-         <!-- <GoogleLogin :params="params" :logoutButton=true>Logout</GoogleLogin> -->
-        <button  class="button--grey" v-if="loggedInUserDetails" v-on:click="logOutUser">Logout</button>
-        
         <a
           :href="'http://localhost/pf/'+loggedInUserDetails.publicUniqueId"
           target="_blank"
           rel="noopener noreferrer"
-          class="button--blue" v-if="loggedInUserDetails"
+          class="button--blue"
         >
           Open Profile Page
         </a>
-        <a
-          href="https://savantcare.github.io"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/savantcare/emr"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        <br><br>
       </div>
+      <!-- loggedInUserDetails = {{loggedInUserDetails}} -->
+
+      <GoogleLogin id="g_id_onload" class="button--grey" auto_select="true" :params="params" :onSuccess="onSuccess" :onFailure="onFailure" v-else>Google Login</GoogleLogin>
+
+      <a
+        href="https://savantcare.github.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button--green"
+      >
+        Documentation
+      </a>
+      <a
+        href="https://github.com/savantcare/emr"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button--grey"
+      >
+        GitHub
+      </a>
     </div>
   </div>
   

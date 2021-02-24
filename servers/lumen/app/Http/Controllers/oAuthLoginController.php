@@ -10,7 +10,7 @@ use Google_Service_Drive;
 
 \Predis\Autoloader::register();
 
-class oAuthLoginController extends Controller
+class OAuthLoginController extends Controller
 {
     public function index()
     {
