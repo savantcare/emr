@@ -72,6 +72,7 @@ export const remindersFormDef = {
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
+  showDeleteButtonInForm: true,
   showResetFormButton: false,
   fnCreated: function () {
     // it is critical that emoty array is returned. Since v-model uses it. And validation uses v-model
