@@ -418,4 +418,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // Psych Ros
+    $router->get('psych-review-of-system/v20/{pPtUuid}', ['uses' => 'PsychReviewOfSystemsController@get_all_temporal_psychReviewOfSystems']);
+    $router->post('psych-review-of-system/v20/', ['uses' => 'PsychReviewOfSystemsController@create']);
+    $router->patch('psych-review-of-system/v20/{pServerSideRowUuid}', ['uses' => 'PsychReviewOfSystemsController@delete']);
+    $router->put('psych-review-of-system/v20/{pServerSideRowUuid}', ['uses' => 'PsychReviewOfSystemsController@update']);
+    $router->options('psych-review-of-system/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('psych-review-of-system/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+
 });

@@ -20,7 +20,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-
+      ptUuid: this.string(null),
       /* This field is used to store the value of tblPsychReviewOfSystemsAllSelectOptions/psychReviewOfSystemFieldOptionId
          E.g: The  tblPsychReviewOfSystemsAllSelectOptions has:
          psychReviewOfSystemFieldOptionId  |         psychReviewOfSystemFieldOptionLabel    
@@ -62,7 +62,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       disheveledUnkempt: this.number(0),
       malodorous: this.number(0),
 
-      patientUuid: this.string(null),
+      ptUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
