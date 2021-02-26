@@ -558,6 +558,10 @@ export default {
       const ptUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'ptUuid').first()
       return ptUuidFromOrm.fieldValue
     },
+    async mf_get_recordChangedBy_uuid() {
+      const loggedInUserUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
+      return loggedInUserUuidFromOrm.fieldValue
+    },
     async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
 
@@ -571,9 +575,11 @@ export default {
       }
 
       const ptUuid = await this.mf_get_pt_uuid()
+      const recordChangedByUuid = await this.mf_get_recordChangedBy_uuid()
       const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({
         data: {
           ptUuid: ptUuid,
+          recordChangedByUuid: recordChangedByUuid,
           vnRowStateInSession: 2, // For meaning of diff values read webclient/cts/def-processors/crud/forms.md
           ROW_START: Math.floor(Date.now()), // Ref: https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
         },
