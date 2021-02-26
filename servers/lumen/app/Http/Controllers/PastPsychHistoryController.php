@@ -48,53 +48,11 @@ class PastPsychHistoryController extends Controller
 
     public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $PastPsychHistory = PastPsychHistory::findOrFail($pServerSideRowUuid);
-        $PastPsychHistory->update($pRequest->all());
-
-        /**
-         * Send data to socket
-         */
         $requestData = $pRequest->all();
-        $channel = 'MsgFromSktForPastPsychHistoryToChange';
-        $message = array(
-            'serverSideRowUuid' => $pServerSideRowUuid,
-            'pastPsychHistoryMasterId' => $requestData['pastPsychHistoryMasterId'],
-            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        return response()->json($PastPsychHistory, 200);
-    }
-
-    public function delete($pServerSideRowUuid, Request $pRequest)
-    {
         $pastPsychHistory = PastPsychHistory::findOrFail($pServerSideRowUuid);
-        $requestData = $pRequest->all();
+        $pastPsychHistory->update($requestData['data']);
 
-        if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
-            $updateData = array(
-                'notes' => $requestData['dNotes']
-            );
-            $pastPsychHistory->update($updateData);
-        }
-
-        $pastPsychHistory->delete();
-
-        /**
-         * Send data to socket
-         */
-        $channel = 'MsgFromSktForPastPsychHistoryToDelete';
-        $message = array(
-            'serverSideRowUuid' => $pServerSideRowUuid,
-            'client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change' => $requestData['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']
-        );
-
-        $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
-
-        return response('Deleted successfully', 200);
+        return response()->json($pastPsychHistory, 200);
     }
 
     public function get_client_ip()
