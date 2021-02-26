@@ -418,4 +418,19 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // Social History
+    $router->get('user/v20/{pPtUuid}', ['uses' => 'UserController@get_all_temporal_users']);
+    $router->post('user/v20/', ['uses' => 'UserController@create']);
+    $router->put('user/v20/{pServerSideRowUuid}', ['uses' => 'UserController@update']);
+    $router->options('user/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('user/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
 });

@@ -14,6 +14,7 @@
       </div>
 
       <el-divider class="section-header"><h3>History</h3></el-divider>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
