@@ -19,11 +19,6 @@ class ReminderController extends Controller
         // return response()->json(Reminder::all());
     }
 
-    public function get_one_reminder($pServerSideRowUuid)
-    {
-        return response()->json(Reminder::find($pServerSideRowUuid));
-    }
-
     /*
 
     To check postman/post/ URL: http://localhost:8000/public/api/reminders/v20/
