@@ -15,8 +15,9 @@ class ExaminationController extends Controller
 {
     public function get_all_temporal_examinations($pPtUuid)
     {
-        $examinationQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_examination.pt_examination where ptUuid = "'.$pPtUuid.'" order by ROW_END desc,ROW_START desc'));
-        return response()->json($examinationQueryResultObj);
+        $examinationQuery = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_examination.pt_examination FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+
+        return response()->json($examinationQuery);
     }
 
     public function create(Request $pRequest)
@@ -26,9 +27,21 @@ class ExaminationController extends Controller
         $arExaminationData = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'ptUuid' => $requestData['data']['ptUuid'],
-            'appearance_select' => $requestData['data']['appearance_select'],
-            'psychomotor_select' => $requestData['data']['psychomotor_select'],
+            'appearance_multi_select' => $requestData['data']['appearance_multi_select'],
+            'cognition_multi_select' => $requestData['data']['cognition_multi_select'],
             'attitude_multi_select' => $requestData['data']['attitude_multi_select'],
+            'constitutional_multi_select' => $requestData['data']['constitutional_multi_select'],
+            'eye_contact_multi_select' => $requestData['data']['eye_contact_multi_select'],
+            'speech_multi_select' => $requestData['data']['speech_multi_select'],
+            'thought_content_multi_select' => $requestData['data']['thought_content_multi_select'],
+            'thought_process_multi_select' => $requestData['data']['thought_process_multi_select'],
+            'impulse_control_multi_select' => $requestData['data']['impulse_control_multi_select'],
+            'insight_multi_select' => $requestData['data']['insight_multi_select'],
+            'judgement_multi_select' => $requestData['data']['judgement_multi_select'],
+            'mood_affect_multi_select' => $requestData['data']['mood_affect_multi_select'],
+            'neurological_multi_select' => $requestData['data']['neurological_multi_select'],
+            'perceptions_multi_select' => $requestData['data']['perceptions_multi_select'],
+            'psychomotor_multi_select' => $requestData['data']['psychomotor_multi_select'],
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
@@ -45,13 +58,6 @@ class ExaminationController extends Controller
         $examination->update($requestData['data']);
 
         return response()->json($examination, 200);
-    }
-
-    public function delete($pServerSideRowUuid)
-    {
-        $examination = Examination::findOrFail($pServerSideRowUuid);
-        $examination->delete();
-        return response('Deleted successfully', 200);
     }
 
     public function get_client_ip() {
