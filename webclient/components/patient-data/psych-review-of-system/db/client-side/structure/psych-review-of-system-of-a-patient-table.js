@@ -119,7 +119,6 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'depressive_interest',
       nameInUi: 'Interest',
       type: 'vertical-slider',
-
       style: 'padding: 20px',
       showLabel: true,
       fieldOptions: { min: 0, max: 3, step: 1 },

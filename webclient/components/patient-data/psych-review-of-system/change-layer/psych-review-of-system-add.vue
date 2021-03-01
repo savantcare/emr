@@ -1,22 +1,20 @@
 <template>
   <div>
     <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
-
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
       <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
         >Gateway mood symptoms. In the past 10 days, how many days have you:
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="gateway.*"></ctAddForm>
       </el-tab-pane>
       <el-tab-pane label="Depression" name="depression"
         >Depression
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="depressive.*"></ctAddForm>
       </el-tab-pane>
       <el-tab-pane label="Mania" name="mania"
         >Mania/Hypomania
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="mania.*"></ctAddForm>
       </el-tab-pane>
-      <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
-      <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
+      <el-tab-pane label="Psychosis" name="psychosis">Psychosis
+      </el-tab-pane>
+      <el-tab-pane label="Sleep" name="Sleep">Sleep
+      </el-tab-pane>
       <el-tab-pane label="Substance abuse" name="Substance">Substance abuse</el-tab-pane>
       <el-tab-pane label="GAD" name="gad">GAD</el-tab-pane>
       <el-tab-pane label="Panic attacks" name="Panic">Panic attacks</el-tab-pane>
