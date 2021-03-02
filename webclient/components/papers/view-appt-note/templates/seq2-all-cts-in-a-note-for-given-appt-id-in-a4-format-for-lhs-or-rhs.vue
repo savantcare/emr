@@ -1,7 +1,9 @@
 <template>
   <div class="A4">
     <div v-if="_side === 'left' || _side === 'full'">
-      <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
+      <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
+        <headerPaperNote :_apptId="_showNoteForApptId" _entity="name" > </headerPaperNote><i style="float:right;display:inline"class="el-icon-pencil" ></i>
+      </div>
       <b>Appt Date:</b>
 
       {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
@@ -14,6 +16,7 @@
       </div>
 
       <el-divider class="section-header"><h3>History</h3></el-divider>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="past_psych_history" />
