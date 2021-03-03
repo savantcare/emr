@@ -1,11 +1,10 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    <div v-for="(name, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+    
       <el-card>
         <!-- For diff types of formType see namecl/name-edit-design.vue -->
-        <ctChangeName :first-prop="name['clientSideUniqRowId']" form-type="embedded"></ctChangeName>
+        <ctChangeName :first-prop="daUniqueIdOfEachRowFromOrm['clientSideUniqRowId']" form-type="embedded"></ctChangeName>
       </el-card>
-    </div>
   </div>
 </template>
 
@@ -25,7 +24,7 @@ export default {
     daUniqueIdOfEachRowFromOrm() {
       let daUniqueIdOfEachRowFromOrm = new Array()
       const resultArFromOrm = clientTbl.fnGetAllRowsPossibleToEdit()
-      return resultArFromOrm
+      return resultArFromOrm[0]
     },
   },
   mounted() {

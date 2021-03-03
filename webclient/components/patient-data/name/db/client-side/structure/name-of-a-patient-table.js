@@ -55,5 +55,5 @@ export const nameFormDef = {
   fnCreated: function () {},
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
-    'padding: 0px; margin: 5px; display: grid; grid-template-columns: 3fr 3fr 3fr',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 3fr; grid-column-gap: 1rem',
 }

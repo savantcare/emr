@@ -70,7 +70,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
     >-->
     <el-tabs :tab-position="positionOfAllTabNames" v-model="activeTabName" type="border-card">
       <el-tab-pane label="Name" name="name" tabindex="0">
-        <span slot="label"> <u>N</u>ame </span>
+        <span slot="label"> Name </span>
         <name />
       </el-tab-pane>
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabindex="0">
