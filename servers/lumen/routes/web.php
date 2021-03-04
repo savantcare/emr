@@ -164,7 +164,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('past-psych-history/v20/{pPtUuid}', ['uses' => 'PastPsychHistoryController@get_all_temporal_past_psych_history']);
     //$router->get('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@get_one_past_psych_history']);
     $router->post('past-psych-history/v20/', ['uses' => 'PastPsychHistoryController@create']);
-    $router->delete('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@delete']);
+    $router->put('past-psych-history/v20/{pServerSideRowUuid}', ['uses' => 'PastPsychHistoryController@update']);
     $router->options('past-psych-history/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
