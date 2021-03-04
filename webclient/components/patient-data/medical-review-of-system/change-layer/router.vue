@@ -27,7 +27,6 @@ export default {
     const status = medicalReviewOfSystemTbl.isThereSavedPresentDataInTable()
     if (status) {
       this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
-      console.log(this.rowIdForEdit)
     }
   },
 }
