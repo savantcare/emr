@@ -13,7 +13,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'medical review of system',
-        ctAbbr: 'smros',
+        ctAbbr: 'mros',
         ctToShow: 'patient-data/medical-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
