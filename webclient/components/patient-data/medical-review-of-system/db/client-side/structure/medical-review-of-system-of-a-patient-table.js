@@ -27,7 +27,7 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
 
       /* This field is used to store the value of tblMedicalReviewOfSystemAllSelectOptions/medicalReviewOfSystemFieldOptionId
          E.g: The  tblMedicalReviewOfSystemAllSelectOptions has:
-         medicalReviewOfSystemFieldOptionId  |         medicalReviewOfSystemFieldOptionLabel    
+         medicalReviewOfSystemFieldOptionId  |         medicalReviewOfSystemFieldOptionLabel
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
@@ -47,7 +47,7 @@ export default class medicalReviewOfSystemForPatientClass extends clientTblManag
       psychological_select: this.string(null).nullable(),
       heme_lymphatic_select: this.string(null).nullable(),
       any_other_signs_symptoms: this.string(null).nullable(),
-      patientUuid: this.string(null),
+      ptUuid: this.string(null),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
