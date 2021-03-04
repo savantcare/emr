@@ -46,10 +46,10 @@ class HeightController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $heightInInches = $requestData['rowToUpsert']['heightInInches'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $heightInInches = $requestData['data']['heightInInches'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateHeight = DB::statement("UPDATE `sc_vital_signs`.`height` SET `heightInInches` = {$heightInInches}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `height`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");

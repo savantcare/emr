@@ -148,7 +148,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       <el-tab-pane label="Vitals" name="vitals">
         <span slot="label"> <u>V</u>itals </span>
         <routeWeight name="weight" />
-        <heightAdd name="height" />
+        <routeHeight name="height" />
         <pulseAdd name="pulse" />
         <temperatureAdd name="temperature" />
         <bloodPressureAdd name="blood_pressure" />
@@ -292,7 +292,7 @@ import routeExam from '@/components/patient-data/examination/change-layer/router
 
 import routeWeight from '@/components/patient-data/weight/change-layer/router.vue'
 import pulseAdd from '@/components/patient-data/pulse/change-layer/add-pulse.vue'
-import heightAdd from '@/components/patient-data/height/change-layer/add-height.vue'
+import routeHeight from '@/components/patient-data/height/change-layer/router.vue'
 import temperatureAdd from '@/components/patient-data/temperature/change-layer/add-temperature.vue'
 import bloodPressureAdd from '@/components/patient-data/blood-pressure/change-layer/add-blood-pressure.vue'
 import bloodSugarAdd from '@/components/patient-data/blood-sugar/change-layer/add-blood-sugar.vue'
@@ -360,7 +360,7 @@ export default {
     screensAdd,
     routeExam,
     routeWeight,
-    heightAdd,
+    routeHeight,
     pulseAdd,
     temperatureAdd,
     bloodPressureAdd,
