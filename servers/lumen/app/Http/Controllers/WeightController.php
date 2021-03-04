@@ -45,10 +45,10 @@ class WeightController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $weightInPounds = $requestData['rowToUpsert']['weightInPounds'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $weightInPounds = $requestData['data']['weightInPounds'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateWeight = DB::statement("UPDATE `sc_vital_signs`.`weight` SET `weightInPounds` = {$weightInPounds}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `weight`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
