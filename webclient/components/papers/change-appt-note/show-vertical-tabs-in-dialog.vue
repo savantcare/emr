@@ -69,6 +69,10 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       @tab-click="mf_send_id_of_focussed_field_to_ct_inside_tab(activeTabName)"
     >-->
     <el-tabs :tab-position="positionOfAllTabNames" v-model="activeTabName" type="border-card">
+      <el-tab-pane label="Name" name="name" tabindex="0">
+        <span slot="label"> Name </span>
+        <name />
+      </el-tab-pane>
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabindex="0">
         <span slot="label"> <u>C</u>hief complaint </span>
         <routeChiefComplaint
@@ -271,6 +275,7 @@ import routeSocialHistory from '@/components/patient-data/social-history/change-
 import routeMedicationList from '@/components/patient-data/medication-list/change-layer/add.vue'
 
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
+import name from '@/components/patient-data/name/change-layer/router.vue'
 import mhHorizontalEdit from '@/components/patient-data/medical-history/change-layer/medit-horizontal.vue'
 
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
@@ -343,6 +348,7 @@ export default {
     fhHorizontalEdit,
     routeSocialHistory,
     medicalHistory,
+    name,
     mhHorizontalEdit,
     medicationOrder,
     allergies,

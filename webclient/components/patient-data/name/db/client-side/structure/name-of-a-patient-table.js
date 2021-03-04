@@ -14,7 +14,7 @@ export default class ptName extends clientTblManage {
    static apiUrl = process.env.baseUrl + '/name'
    */
 
-  static apiUrl = process.env.baseUrlForLumen + '/name'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/user/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
@@ -24,7 +24,7 @@ export default class ptName extends clientTblManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-
+      ptUuid: this.string(null),
       /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software. 
       Each browser tab will only work for 1 patient. So no need to store patientUuid inside vue state 
       ptUuid: this.string(null), */
@@ -47,13 +47,13 @@ export const nameFormDef = {
   plural: 'names',
   singular: 'name',
   fieldsDef: [
-    { nameInDb: 'firstName', nameInUi: 'First name', type: 'tribute-input' },
-    { nameInDb: 'middleName', nameInUi: 'Middle name', type: 'tribute-input' },
-    { nameInDb: 'lastName', nameInUi: 'Last name', type: 'tribute-input' },
+    { nameInDb: 'firstName', nameInUi: 'First name', type: 'text' },
+    { nameInDb: 'middleName', nameInUi: 'Middle name', type: 'text' },
+    { nameInDb: 'lastName', nameInUi: 'Last name', type: 'text' },
   ],
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['firstName'],
   fnCreated: function () {},
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
-    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 3fr; grid-column-gap: 1rem',
 }

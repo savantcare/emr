@@ -1,10 +1,14 @@
 <template>
   <div class="A4">
     <div v-if="_side === 'left' || _side === 'full'">
-      <headerPaperNote :_apptId="_showNoteForApptId"></headerPaperNote>
+      <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
+        <headerPaperNote :_apptId="_showNoteForApptId" _entity="name" > </headerPaperNote><i style="float:right;display:inline" class="el-icon-pencil" ></i>
+        
+      </div>
       <b>Appt Date:</b>
 
       {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />
       <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
 
       <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
@@ -12,7 +16,7 @@
         <b>Appt locked:</b>
         {{ cfApptLockDateInHumanReadableFormat }}
       </div>
-
+      
       <el-divider class="section-header"><h3>History</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="psych_review_of_system" />
