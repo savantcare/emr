@@ -15,7 +15,7 @@ import vstOfTabsAndDialogInEditLayerModule from '~/components/non-temporal/compo
 import VueStateOfMapDrawerModule from '~/components/non-temporal/map/vue-state-of-map-drawer'
 import VueStateOfDeletedDrawerModule from '~/components/non-temporal/ct-deleted-rows/vue-state-of-deleted-drawer'
 
-import database from '~/store/import-tables-and-register-to-client-side-database'
+import database from '~/store/import-vuex-orm-tables-and-register-to-client-side-database'
 
 // Ref: https://stackoverflow.com/a/62247034
 const { v1: uuidv1 } = require('uuid')
