@@ -9,64 +9,67 @@
         Ref: https://codepen.io/intotheprogram/pen/ZjxZdg
   -->
   <div>
-    <div v-if="!loggedInUuid" class="text-center"><a href="http://localhost"><h1>Please login</h1></a></div>
+    <div v-if="!loggedInUuid" class="text-center">
+      <a href="http://localhost"><h1>Please login</h1></a>
+    </div>
     <div v-else :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
       <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
-      <!-- GOAL1: Initialize the keyboard and mouse controls -->
-      <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
+        <!-- GOAL1: Initialize the keyboard and mouse controls -->
+        <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
-      <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
-      <ctToGiveProductTour></ctToGiveProductTour>
+        <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
+        <ctToGiveProductTour></ctToGiveProductTour>
 
-      <!-- GOAL3: Open the default cards on left side and right side -->
-      <!-- Prop explanation:
+        <!-- GOAL3: Open the default cards on left side and right side -->
+        <!-- Prop explanation:
           :gutterSize="0"
             This is thickness of the line between left and right panels. This line is used to adjust size of left and right
       -->
-      <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
-      <Split style="height: 900px; width: 1440px" :gutter-size="4">
-        <SplitArea :size="cfLayer1LeftSideSplitSize">
-          <ctPaperViewNoteLeftSideComponents></ctPaperViewNoteLeftSideComponents>
-        </SplitArea>
-        <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
-          <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
+        <!-- 1440 / 900 is the default resolution for a macbook air. This app is being developed for macbook air -->
+        <Split style="height: 900px; width: 1440px" :gutter-size="4">
+          <SplitArea :size="cfLayer1LeftSideSplitSize">
+            <ctPaperViewNoteLeftSideComponents></ctPaperViewNoteLeftSideComponents>
+          </SplitArea>
+          <SplitArea id="layer1RightSide" :size="cfLayer1RightSideSplitSize">
+            <!-- Right screen extension is not a drawer. Since split size cannot be used when it is a
           drawer. When there is a veritical bar that can be moved around but the drawer does not response. It becomes very confusing
           for the user-->
-          <div v-if="cfRightScreenExtensionVisibility">
-            <ctRightScreenExtensionDrawer />
-          </div>
-          <div v-else>
-            <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
-          </div>
-        </SplitArea>
-      </Split>
+            <div v-if="cfRightScreenExtensionVisibility">
+              <ctRightScreenExtensionDrawer />
+            </div>
+            <div v-else>
+              <ctPaperViewNoteRightSideComponents></ctPaperViewNoteRightSideComponents>
+            </div>
+          </SplitArea>
+        </Split>
 
-      <!-- GOAL4: Init component to show tabs in edit layer -->
-      <ctTabsInDialogInCL></ctTabsInDialogInCL>
+        <!-- GOAL4: Init component to show tabs in edit layer -->
+        <ctTabsInDialogInCL></ctTabsInDialogInCL>
 
-      <!-- GOAL5: Init component to show components in left extension -->
-      <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
-      <ctChangeInTabs />
-      <ctOneSearchBox />
-      <!-- GOAL7: Init drawer component -->
-      <!--    <ctMapDrawer></ctMapDrawer> -->
+        <!-- GOAL5: Init component to show components in left extension -->
+        <ctLeftScreenExtensionDrawer></ctLeftScreenExtensionDrawer>
+        <ctChangeInTabs />
+        <ctOneSearchBox />
+        <!-- GOAL7: Init drawer component -->
+        <!--    <ctMapDrawer></ctMapDrawer> -->
 
-      <!-- GOAL8: Init -->
-      <ctDeletedDrawer></ctDeletedDrawer>
+        <!-- GOAL8: Init -->
+        <ctDeletedDrawer></ctDeletedDrawer>
 
-      <!-- GOAL9: Init -->
-      <ctFeed></ctFeed>
+        <!-- GOAL9: Init -->
+        <ctFeed></ctFeed>
 
-      <!-- GOAL10: Init -->
-      <ctInitOfComponents></ctInitOfComponents>
-      
-      <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
-        <el-button round size="mini" class="btn-map-fullscreen"  @click="toggleFullScreen" type="primary" ><i  :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i> </el-button>
-      </div>
+        <!-- GOAL10: Init -->
+        <ctInitOfComponents></ctInitOfComponents>
+
+        <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
+          <el-button round size="mini" class="btn-map-fullscreen" @click="toggleFullScreen" type="primary"
+            ><i :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i>
+          </el-button>
+        </div>
       </fullscreen>
     </div>
   </div>
-
 </template>
 
 <style scoped>
@@ -132,7 +135,7 @@ import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/c
 import ctToGiveQuickAccessToFeatures from '~/components/non-temporal/quick-access-to-features/index.vue'
 
 import ctToGiveProductTour from '~/components/non-temporal/product-tour/index.vue'
-import ctInitOfComponents from './central-file-to-initialize-of-components.vue'
+import ctInitOfComponents from './central-file-to-initialize-components.vue'
 
 // Ref: https://github.com/MetinSeylan/Vue-Socket.io#-installation
 Vue.use(
@@ -153,7 +156,6 @@ Vue.use(fullscreen)
 Vue.use(VueSplit)
 Vue.use(VueScrollTo)
 Vue.use(ToggleButton)
-
 
 // For keyboard contraol Ref: https://github.com/g33kio/vue-mousetrap#readme
 import VueMousetrap from 'vue-mousetrap'
@@ -179,20 +181,20 @@ export default {
   data() {
     return {
       fullscreen: false,
-      loggedInUuid: null
+      loggedInUuid: null,
     }
   },
   created() {
     clientSideTableOfCommonForAllComponents.insert({
       data: {
-        fieldName:'ptUuid',
+        fieldName: 'ptUuid',
         fieldValue: this.$route.params.uuid,
       },
     }),
-    this.mfGetLoggedInUserUuidAndInsertIntoOrm()
+      this.mfGetLoggedInUserUuidAndInsertIntoOrm()
 
     var loggedInUserObj = clientSideTableOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
-    if(loggedInUserObj){
+    if (loggedInUserObj) {
       this.loggedInUuid = loggedInUserObj.fieldValue
     }
   },
@@ -257,11 +259,11 @@ export default {
         },
       })
     },
-    toggleFullScreen () {
+    toggleFullScreen() {
       this.$refs['fullscreen'].toggle() // recommended
       // this.fullscreen = !this.fullscreen // deprecated
     },
-    fullscreenChange (fullscreen) {
+    fullscreenChange(fullscreen) {
       this.fullscreen = fullscreen
     },
     log(message) {
@@ -270,16 +272,15 @@ export default {
 
     mfGetLoggedInUserUuidAndInsertIntoOrm() {
       var userObj = $cookies.get('loginObj')
-      if(userObj){        
+      if (userObj) {
         this.commonOrmTableForAllComponents = clientSideTableOfCommonForAllComponents.insert({
           data: {
-            fieldName:'loggedInUserUuid',
+            fieldName: 'loggedInUserUuid',
             fieldValue: userObj.publicUniqueId,
           },
         })
-      }   
-    }
-
+      }
+    },
   },
 }
 </script>
@@ -366,11 +367,11 @@ textarea.el-textarea__inner {
   position: relative;
   height: 400px;
 }
-.wrapper>.chart-container {
+.wrapper > .chart-container {
   height: 100%;
   width: 100%;
 }
-.wrapper>.btn-map-fullscreen {
+.wrapper > .btn-map-fullscreen {
   position: absolute;
   top: 3px;
   right: 6px;
@@ -382,16 +383,16 @@ textarea.el-textarea__inner {
   text-align: center;
   outline: none;
 }
-.wrapper>.fullscreen {
+.wrapper > .fullscreen {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.wrapper>.fullscreen>.chart-container {
+.wrapper > .fullscreen > .chart-container {
   height: 60%;
   width: 60%;
 }
-.wrapper>.fullscreen>.btn-map-fullscreen {
+.wrapper > .fullscreen > .btn-map-fullscreen {
   left: 10px;
   top: 10px;
   right: auto;
@@ -399,15 +400,15 @@ textarea.el-textarea__inner {
 }
 
 button.el-button.btn-map-fullscreen.el-button--primary.el-button--mini.is-round {
-    padding: 7px;
+  padding: 7px;
 }
 
-.full-screen-button-mode-off{
+.full-screen-button-mode-off {
   top: 0;
   position: absolute;
   left: 1377px;
 }
-.full-screen-button-mode-on{
+.full-screen-button-mode-on {
   top: 0;
   position: absolute;
   right: 5px;

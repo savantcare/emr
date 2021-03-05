@@ -18,15 +18,15 @@ windows:
             - cd utils/db
             - ./start-json-server-for-mock-db.sh
         - redisServer:
-            - cd servers/redis
+            - cd servers/redis-for-socket-io
             - ./start-redis-server.sh
         - redisUI:
-            - cd servers/redis
+            - cd servers/redis-for-socket-io
             - ./start-redis-web-interface.sh
         - msgPipeline:
             - cd servers/msg-pipeline
             - ./start-redis-client-and-socket-server.sh
         - remServer:
-            - cd servers/lumen
+            - cd servers/lumen-for-api
             - php -S localhost:8000 -t .
         - Terminal:
