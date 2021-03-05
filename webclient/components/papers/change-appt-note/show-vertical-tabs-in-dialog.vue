@@ -149,8 +149,8 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"> <u>V</u>itals </span>
         <routeWeight name="weight" />
         <routeHeight name="height" />
-        <pulseAdd name="pulse" />
-        <temperatureAdd name="temperature" />
+        <routePulse name="pulse" />
+        <routeTemperature name="temperature" />
         <bloodPressureAdd name="blood_pressure" />
         <bloodSugarAdd name="blood_sugar" />
         <bmiAdd name="bmi" />
@@ -291,9 +291,9 @@ import pnHorizontalEdit from '@/components/patient-data/process-notes/change-lay
 import routeExam from '@/components/patient-data/examination/change-layer/router.vue'
 
 import routeWeight from '@/components/patient-data/weight/change-layer/router.vue'
-import pulseAdd from '@/components/patient-data/pulse/change-layer/add-pulse.vue'
+import routePulse from '@/components/patient-data/pulse/change-layer/router.vue'
 import routeHeight from '@/components/patient-data/height/change-layer/router.vue'
-import temperatureAdd from '@/components/patient-data/temperature/change-layer/add-temperature.vue'
+import routeTemperature from '@/components/patient-data/temperature/change-layer/router.vue'
 import bloodPressureAdd from '@/components/patient-data/blood-pressure/change-layer/add-blood-pressure.vue'
 import bloodSugarAdd from '@/components/patient-data/blood-sugar/change-layer/add-blood-sugar.vue'
 import waistCircumferenceAdd from '@/components/patient-data/waist-circumference/change-layer/add-waist-circumference.vue'
@@ -361,8 +361,8 @@ export default {
     routeExam,
     routeWeight,
     routeHeight,
-    pulseAdd,
-    temperatureAdd,
+    routePulse,
+    routeTemperature,
     bloodPressureAdd,
     bloodSugarAdd,
     bmiAdd,
