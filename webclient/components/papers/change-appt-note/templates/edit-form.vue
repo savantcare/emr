@@ -236,7 +236,7 @@
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
-import VueTribute from '@/assets/vue-tribute'
+import VueTribute from '@/customized-node-modules/vue-tribute'
 
 import moment from 'moment'
 
