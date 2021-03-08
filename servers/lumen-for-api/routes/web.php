@@ -196,7 +196,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('temperature/v20/{pPtUuid}', ['uses' => 'TemperatureController@get_all_temporal_temperatures']);
     //$router->get('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@get_one_temperature']);
     $router->post('temperature/v20/', ['uses' => 'TemperatureController@create']);
-    $router->put('temperature/v20/{serverSideRowUuid}', ['uses' => 'TemperatureController@update']);
+    $router->put('temperature/v20/{pServerSideRowUuid}', ['uses' => 'TemperatureController@update']);
     $router->options('temperature/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
         ->header('Access-Control-Allow-Credentials', 'true')
