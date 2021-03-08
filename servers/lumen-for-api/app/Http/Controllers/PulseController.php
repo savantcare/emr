@@ -46,10 +46,10 @@ class PulseController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $pulseInBpm = $requestData['rowToUpsert']['pulseInBpm'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $pulseInBpm = $requestData['data']['pulseInBpm'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updatePulse = DB::statement("UPDATE `sc_vital_signs`.`pulse` SET `pulseInBpm` = {$pulseInBpm}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `pulse`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");

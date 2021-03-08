@@ -59,10 +59,10 @@ class TemperatureController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $temperatureInFarehnite = $requestData['rowToUpsert']['temperatureInFarehnite'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $temperatureInFarehnite = $requestData['data']['temperatureInFarehnite'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateTempereture = DB::statement("UPDATE `sc_vital_signs`.`temperature` SET `temperatureInFarehnite` = {$temperatureInFarehnite}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `temperature`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
