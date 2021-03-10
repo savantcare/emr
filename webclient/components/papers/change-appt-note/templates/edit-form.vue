@@ -113,6 +113,7 @@
               :type="_fieldDef.type"
               :autosize="{ minRows: 2, maxNumberOfRows: 4 }"
               :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+              :placeholder="_fieldDef.nameInUi"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
               @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"

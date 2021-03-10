@@ -8,7 +8,7 @@
       <b>Appt Date:</b>
 
       {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
-      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />
+      <!--<ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />-->
       <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
 
       <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->

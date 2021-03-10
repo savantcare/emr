@@ -30,8 +30,8 @@ export default class ptName extends clientTblManage {
       ptUuid: this.string(null), */
 
       firstName: this.string(null),
-      middleName: this.string(''),
-      lastName: this.string(null),
+      middleName: this.string(null).nullable(),
+      lastName: this.string(null).nullable(),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
