@@ -45,10 +45,10 @@ class OxygenSaturationController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $oxygenSaturationInSpo2 = $requestData['rowToUpsert']['oxygenSaturationInSpo2'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $oxygenSaturationInSpo2 = $requestData['data']['oxygenSaturationInSpo2'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateOxygenSaturation = DB::statement("UPDATE `sc_vital_signs`.`oxygenSaturation` SET `oxygenSaturationInSpo2` = {$oxygenSaturationInSpo2}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `oxygenSaturation`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");

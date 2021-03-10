@@ -48,10 +48,10 @@ class WaistCircumferenceController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $waistCircumferenceInInches = $requestData['rowToUpsert']['waistCircumferenceInInches'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $waistCircumferenceInInches = $requestData['data']['waistCircumferenceInInches'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateWaistCircumference = DB::statement("UPDATE `sc_vital_signs`.`waistCircumference` SET `waistCircumferenceInInches` = {$waistCircumferenceInInches}, `timeOfMeasurementInMilliSecs` = round(FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000)), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `waistCircumference`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");

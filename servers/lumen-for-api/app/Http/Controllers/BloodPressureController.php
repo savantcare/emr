@@ -45,11 +45,11 @@ class BloodPressureController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $bloodPressureDiastolic = $requestData['rowToUpsert']['bloodPressureDiastolic'];
-        $bloodPressureSystolic = $requestData['rowToUpsert']['bloodPressureSystolic'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $bloodPressureDiastolic = $requestData['data']['bloodPressureDiastolic'];
+        $bloodPressureSystolic = $requestData['data']['bloodPressureSystolic'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateBloodPressure = DB::statement("UPDATE `sc_vital_signs`.`bloodPressureLevels` SET `bloodPressureDiastolic` = {$bloodPressureDiastolic}, `bloodPressureSystolic` = {$bloodPressureSystolic}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bloodPressureLevels`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");

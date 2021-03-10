@@ -151,11 +151,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <routeHeight name="height" />
         <routePulse name="pulse" />
         <routeTemperature name="temperature" />
-        <bloodPressureAdd name="blood_pressure" />
-        <bloodSugarAdd name="blood_sugar" />
-        <bmiAdd name="bmi" />
-        <oxygenSaturationAdd name="oxygenSaturation" />
-        <waistCircumferenceAdd name="waist_circumference" />
+        <routeBloodPressure name="blood_pressure" />
+        <routeBloodSugar name="blood_sugar" />
+        <routeBmi name="bmi" />
+        <routeOxygenSaturation name="oxygenSaturation" />
+        <routeWaistCircumference name="waist_circumference" />
       </el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">
         <span slot="label"> Asmnt & <u>d</u>iagnosis </span>
@@ -294,11 +294,11 @@ import routeWeight from '@/components/patient-data/weight/change-layer/router.vu
 import routePulse from '@/components/patient-data/pulse/change-layer/router.vue'
 import routeHeight from '@/components/patient-data/height/change-layer/router.vue'
 import routeTemperature from '@/components/patient-data/temperature/change-layer/router.vue'
-import bloodPressureAdd from '@/components/patient-data/blood-pressure/change-layer/add-blood-pressure.vue'
-import bloodSugarAdd from '@/components/patient-data/blood-sugar/change-layer/add-blood-sugar.vue'
-import waistCircumferenceAdd from '@/components/patient-data/waist-circumference/change-layer/add-waist-circumference.vue'
-import bmiAdd from '@/components/patient-data/bmi/change-layer/add-bmi.vue'
-import oxygenSaturationAdd from '@/components/patient-data/oxygen-saturation/change-layer/add-oxygen-saturation.vue'
+import routeBloodPressure from '@/components/patient-data/blood-pressure/change-layer/router.vue'
+import routeBloodSugar from '@/components/patient-data/blood-sugar/change-layer/router.vue'
+import routeWaistCircumference from '@/components/patient-data/waist-circumference/change-layer/router.vue'
+import routeBmi from '@/components/patient-data/bmi/change-layer/router.vue'
+import routeOxygenSaturation from '@/components/patient-data/oxygen-saturation/change-layer/router.vue'
 
 import routerMros from '@/components/patient-data/medical-review-of-system/change-layer/router.vue'
 import dxAdd from '@/components/patient-data/diagnosis/change-layer/diagnosis-add.vue'
@@ -363,11 +363,11 @@ export default {
     routeHeight,
     routePulse,
     routeTemperature,
-    bloodPressureAdd,
-    bloodSugarAdd,
-    bmiAdd,
-    oxygenSaturationAdd,
-    waistCircumferenceAdd,
+    routeBloodPressure,
+    routeBloodSugar,
+    routeBmi,
+    routeOxygenSaturation,
+    routeWaistCircumference,
     routerMros,
     goalsAdd,
     goalMHorizontalEdit,
