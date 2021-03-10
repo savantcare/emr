@@ -1,8 +1,8 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
-  <div style="color: #303133">
+  <div class="patient-name-section" style="color: #303133">
     <template v-if="cfLatestDataRowFromClientTbl">
-      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }} <i @click="heading_clicked_so_set_up_state('name')" style="" class="el-icon-edit" ></i>
+      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }} <i @click="heading_clicked_so_set_up_state('name')" style="position: absolute;display: none;margin-left: 9px;" class="el-icon-edit" ></i>
     </template>
   </div>
 </template>
@@ -60,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.patient-name-section:hover .el-icon-edit {
+  display: inline !important;
+}
+</style>
