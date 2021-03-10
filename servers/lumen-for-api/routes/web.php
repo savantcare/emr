@@ -34,7 +34,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('blood-pressure/v20/{pPtUuid}', ['uses' => 'BloodPressureController@get_all_temporal_blood_pressures']);
     //$router->get('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@get_one_blood_pressure']);
     $router->post('blood-pressure/v20/', ['uses' => 'BloodPressureController@create']);
-    $router->put('blood-pressure/v20/{serverSideRowUuid}', ['uses' => 'BloodPressureController@update']);
+    $router->put('blood-pressure/v20/{pServerSideRowUuid}', ['uses' => 'BloodPressureController@update']);
     $router->options('blood-pressure/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
@@ -50,7 +50,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('blood-sugar/v20/{pPtUuid}', ['uses' => 'BloodSugarController@get_all_temporal_blood_sugars']);
     //$router->get('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@get_one_blood_sugar']);
     $router->post('blood-sugar/v20/', ['uses' => 'BloodSugarController@create']);
-    $router->put('blood-sugar/v20/{serverSideRowUuid}', ['uses' => 'BloodSugarController@update']);
+    $router->put('blood-sugar/v20/{pServerSideRowUuid}', ['uses' => 'BloodSugarController@update']);
     $router->options('blood-sugar/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')

@@ -45,10 +45,10 @@ class BmiController extends Controller
     {
         $requestData = $pRequest->all();
 
-        $timeOfMeasurementInMilliSecs = (int)($requestData['rowToUpsert']['timeOfMeasurementInMilliSecs']);
-        $bmiInKgM2 = $requestData['rowToUpsert']['bmiInKgM2'];
-        $notes = $requestData['rowToUpsert']['notes'];
-        $recordChangedByUuid = $requestData['rowToUpsert']['recordChangedByUuid'];
+        $timeOfMeasurementInMilliSecs = (int)($requestData['data']['timeOfMeasurementInMilliSecs']);
+        $bmiInKgM2 = $requestData['data']['bmiInKgM2'];
+        $notes = $requestData['data']['notes'];
+        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
         $updateBmi = DB::statement("UPDATE `sc_vital_signs`.`bmi` SET `bmiInKgM2` = {$bmiInKgM2}, `timeOfMeasurementInMilliSecs` = FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `bmi`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
