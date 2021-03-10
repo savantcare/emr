@@ -2,13 +2,14 @@
 <template>
   <div style="color: #303133">
     <template v-if="cfLatestDataRowFromClientTbl">
-      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }}
+      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }} <i @click="heading_clicked_so_set_up_state('name')" style="" class="el-icon-edit" ></i>
     </template>
   </div>
 </template>
 
 <script>
 import clientTbl from '@/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
+import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   props: {
@@ -22,8 +23,8 @@ export default {
   },
   computed: {
     cfLatestDataRowFromClientTbl() {
-      let arOfObjectsFromClientDB = clientTbl.query().where('ROW_END', 2147483648000).get()
-      return arOfObjectsFromClientDB[0]
+      let arOfObjectsFromClientDB = clientTbl.query().where('ROW_END', 2147483648000).last()
+      return arOfObjectsFromClientDB
     },
     initialFirstName() {
       // console.log(this.cfLatestDataRowFromClientTbl.middleName)
@@ -44,11 +45,18 @@ export default {
     initialLastName() {
       // console.log(this.cfLatestDataRowFromClientTbl.lastName)
       if (this.cfLatestDataRowFromClientTbl.lastName) {
-        return this.cfLatestDataRowFromClientTbl.lastName.charAt(0)
+        return this.cfLatestDataRowFromClientTbl.lastName
       } else {
         return ''
       }
     },
   },
+  methods: {
+    heading_clicked_so_set_up_state(pFormDefId) {
+      const updateState = commonForAllCts.insertOrUpdate({
+        data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pFormDefId }],
+      })
+    },
+  }
 }
 </script>
