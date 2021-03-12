@@ -9,7 +9,7 @@
 
       {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
       <!--<ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />-->
-      <agePaperNote :_apptId="_showNoteForApptId"></agePaperNote>
+      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="date_of_birth" />
 
       <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
       <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">

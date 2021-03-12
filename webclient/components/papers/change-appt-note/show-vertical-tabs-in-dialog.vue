@@ -73,6 +73,14 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <span slot="label"> Name </span>
         <name />
       </el-tab-pane>
+      <el-tab-pane label="Date Of Birth" name="date_of_birth" tabindex="0">
+        <span slot="label"> <u>D</u>OB</span>
+        <routerDateOfBirth
+          :key="new Date().getTime()"
+          why="Generating key everytime since the router decides the clientSideUniqRowId of the row to be edited. If the mounted fn was not getting called then the correct ID was not being sent to the edit ct."
+          improvement="here the key can be current appt ID. Since during one appt the router does not need to be invoked twice."
+        />
+      </el-tab-pane>
       <el-tab-pane label="Chief complaint" name="chief_complaint" tabindex="0">
         <span slot="label"> <u>C</u>hief complaint </span>
         <routeChiefComplaint
@@ -265,6 +273,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 import allPatientDataTbls from '@/components/non-temporal/form-manager/all-client-tables.js'
 
 import routeChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/router.vue'
+import routerDateOfBirth from '@/components/patient-data/date-of-birth/change-layer/router.vue'
 import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import routePastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/router.vue'
 
@@ -342,6 +351,7 @@ export default {
   },
   components: {
     routeChiefComplaint,
+    routerDateOfBirth,
     prosAdd,
     routePastPsychHistory,
     familyHistory,
