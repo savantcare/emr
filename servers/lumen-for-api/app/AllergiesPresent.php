@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Allergies extends Model
+class AllergiesPresent extends Model
 {
     protected $connection = 'allergiesDB';
-    protected $table = 'allergies';
+    protected $table = 'allergies_present';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class Allergies extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'allergen', 'reaction', 'onset', 'recordChangedByUuid',
+        'ptUuid', 'present', 'recordChangedByUuid',
     ];
 
     /**

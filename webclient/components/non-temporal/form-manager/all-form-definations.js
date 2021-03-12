@@ -1,5 +1,5 @@
 import { allergiesFormDef } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
-import { allergiesPresentFormDef } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import { allergiesPresentFormDef } from '~/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
 import { chiefComplaintFormDef } from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import { dateOfBirthFormDef } from '~/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
 import { diagnosisFormDef } from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'

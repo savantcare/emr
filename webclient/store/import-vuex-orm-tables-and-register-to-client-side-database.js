@@ -88,7 +88,7 @@ database.register(tableStructureForPROSOfPatient)
 import tableStructureForAllergies from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 database.register(tableStructureForAllergies)
 
-import { allergiesPresentClientTbl } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import allergiesPresentClientTbl from '~/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
 database.register(allergiesPresentClientTbl)
 
 import tableStructureForChiefComplaint from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'

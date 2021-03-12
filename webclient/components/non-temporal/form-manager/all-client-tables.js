@@ -1,6 +1,5 @@
-import allergiesClientTbl, {
-  allergiesPresentClientTbl,
-} from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import allergiesClientTbl from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import allergiesPresentClientTbl from '~/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import chiefComplaintClientTbl from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import dateOfBirthClientTbl from '~/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
@@ -34,26 +33,26 @@ import bmiClientTbl from '~/components/patient-data/bmi/db/client-side/structure
 import oxygenSaturationClientTbl from '~/components/patient-data/oxygen-saturation/db/client-side/structure/oxygen-saturation-of-a-patient-table.js'
 
 /* the framework like add uses this object to find the correct vuex-orm-table to run the quries.
- For e.g. 
+ For e.g.
  Step 1:
  ------
  see: temporal/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js
- On line 55 (approx) there is   
+ On line 55 (approx) there is
  > id: 'recommendations',
 
  Step 2:
  -------
  In temporal/1-/papers/change-appt-note/templates/add-form.vue
-On line 164 there us: 
+On line 164 there us:
 > import clientTbl from '../tables.js'
 
  Step 3:
  -------
  In temporal/1-/papers/change-appt-note/templates/add-form.vue
-On line 195 there us: 
+On line 195 there us:
       return clientTbl[this._formDef.id].fnGetNewRowsInEditState()
 
-    Hence 
+    Hence
     import recommendationClientTbl from '@/components/patient-data/recommendations/db/client-side/structure/recommendations-of-a-patient-table.js'
 
     is used to run the line 30 described above.

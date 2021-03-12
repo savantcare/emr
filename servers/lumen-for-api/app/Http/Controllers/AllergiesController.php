@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Allergies;
+use App\AllergiesPresent;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use DB;
@@ -14,7 +15,13 @@ class AllergiesController extends Controller
 {
     public function get_all_temporal_allergies($pPtUuid)
     {
-        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        return response()->json($allergiesQueryResultObj);
+    }
+
+    public function get_all_temporal_allergies_present($pPtUuid)
+    {
+        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies_present where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
         return response()->json($allergiesQueryResultObj);
     }
 
@@ -37,6 +44,23 @@ class AllergiesController extends Controller
         return response()->json($allergies, 201);
     }
 
+    public function create_present(Request $pRequest)
+    {
+        $requestData = $pRequest->all();
+        $recordChangedFromIPAddress = $this->get_client_ip();
+        $allergiesPresentData = array(
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
+            'ptUuid' => $requestData['data']['ptUuid'],
+            'present' => $requestData['data']['present'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
+        );
+
+        $allergiesPresent = AllergiesPresent::insertGetId($allergiesPresentData);
+
+        return response()->json($allergiesPresent, 201);
+    }
+
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $allergies = Allergies::findOrFail($pServerSideRowUuid);
@@ -44,7 +68,6 @@ class AllergiesController extends Controller
 
         return response()->json($allergies, 200);
     }
-
 
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
