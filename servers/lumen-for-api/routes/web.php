@@ -449,7 +449,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Date Of Birth
-    $router->get('date-of-birth/v20/{pPtUuid}', ['uses' => 'UserController@get_user_dob']);
+    $router->get('date-of-birth/v20/{pPtUuid}', ['uses' => 'UserController@get_user_detail']);
     $router->put('date-of-birth/v20/{pServerSideRowUuid}', ['uses' => 'UserController@updateDateOfBirth']);
     $router->options('date-of-birth/v20', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)

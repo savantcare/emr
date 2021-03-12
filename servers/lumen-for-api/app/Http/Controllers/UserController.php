@@ -14,27 +14,9 @@ class UserController extends Controller
 
     public function get_user_detail($pPtUuid)
     {
-        $userQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(dateOfBirthInMilliseconds) * 1000 as dateOfBirthInMilliseconds FROM sc_users.users WHERE serverSideRowUuid = '{$pPtUuid}' order by ROW_START desc"));
+        $userQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(dateOfBirthInMilliseconds) * 1000)+0 as dateOfBirthInMilliseconds FROM sc_users.users WHERE serverSideRowUuid = '{$pPtUuid}' order by ROW_START desc"));
 
         return response()->json($userQueryResultObj);
-    }
-
-    public function get_user_dob($pPtUuid)
-    {
-        $user = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END,dateOfBirthInMilliseconds as dateOfBirth, trim(UNIX_TIMESTAMP(dateOfBirthInMilliseconds) * 1000)+0 as dateOfBirthInMilliseconds FROM sc_users.users WHERE serverSideRowUuid = '{$pPtUuid}' order by ROW_START desc"));
-
-        $age ='';
-
-        if($user[0]->dateOfBirth){
-            $dob = $user[0]->dateOfBirth;
-            $dobYear = Carbon::parse($dob)->format('Y');
-            $dobMonth = Carbon::parse($dob)->format('m');
-            $dobDay = Carbon::parse($dob)->format('d');
-            $age = Carbon::createFromDate(intval($dobYear), intval($dobMonth), intval($dobDay))->diff(Carbon::now())->format('%y years'); //can you get full age: format('%y years, %m months and %d days')
-            $user[0]->age = $age;
-        }
-
-        return response()->json($user);
     }
 
     public function update($pServerSideRowUuid, Request $pRequest)

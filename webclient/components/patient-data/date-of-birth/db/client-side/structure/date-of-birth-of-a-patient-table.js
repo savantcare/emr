@@ -21,9 +21,7 @@ export default class date_of_birth extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
 
-      // dateOfBirthInMilliseconds: this.uid(() => defaultValueOfOnsetInMilliSecs()), // For date decision see name/db/structure/table.js;
-      dateOfBirthInMilliseconds: this.string(null), // For date decision see name/db/structure/table.js;
-      age: this.string(null), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
+      dateOfBirthInMilliseconds: this.uid(() => defaultValueOfOnsetInMilliSecs()), // For date decision see name/db/structure/table.js;
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
