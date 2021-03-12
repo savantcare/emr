@@ -1,6 +1,7 @@
 import { allergiesFormDef } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 import { allergiesPresentFormDef } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 import { chiefComplaintFormDef } from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import { dateOfBirthFormDef } from '~/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
 import { diagnosisFormDef } from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import { familyHistoryFormDef } from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import { medicalHistoryFormDef } from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
@@ -34,6 +35,7 @@ const allFormDefs = {
   allergies: allergiesFormDef,
   allergies_present: allergiesPresentFormDef,
   chief_complaint: chiefComplaintFormDef,
+  date_of_birth: dateOfBirthFormDef,
   diagnosis: diagnosisFormDef,
   family_history: familyHistoryFormDef,
   medical_history: medicalHistoryFormDef,

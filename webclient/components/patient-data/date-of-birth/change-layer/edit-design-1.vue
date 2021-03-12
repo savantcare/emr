@@ -14,77 +14,25 @@ Code synced with ref implementation on 4th august 2020
 
 -->
 <template>
-  <div>
-    <el-row :gutter="20">
-      <el-col :span="12">
-        <el-form>
-          <el-form-item>
-            <el-input
-              placeholder="Date of birth"
-              :value="mfGetCopiedRowBeingChangedFldVal('dateOfBirthInMilliSecs')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'dateOfBirthInMilliSecs')"
-            >
-            </el-input>
-            <!-- element.io "By default, the component accepts and emits a Date object."  Ref: https://element.eleme.io/#/en-US/component/date-picker#date-formats
-             Date object has date in a string. To accept a timestamp format the prop sent to the Ct is
-             value-format="timestamp"
-        -->
-            <el-input
-              placeholder="Notes"
-              type="textarea"
-              :autosize="{ minRows: 2 }"
-              :value="mfGetCopiedRowBeingChangedFldVal('notes')"
-              @input="mfSetCopiedRowBeingChangedFldVal($event, 'notes')"
-            ></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button :disabled="cfHasSomeFldChanged" type="primary" plain @click="mfOnReviewed">Reviewed</el-button>
-            <el-button :disabled="cfHasSomeFldChanged" type="warning" plain @click="mfOnResetForm"
-              >Reset form</el-button
-            >
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
-  </div>
+  <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
 </template>
 
 <script>
-import editMixin from '../code-common-for-all-1r-mf/edit-layer.js'
+import ctEditFormTemplate from '@/components/papers/change-appt-note/templates/edit-form.vue'
+import { dateOfBirthFormDef } from '@/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
 export default {
-  mixins: [editMixin],
-  data() {
+   data: function () {
     return {
-      pickerOptions: {
-        disabledDate(time) {
-          return time.getTime() > Date.now()
-        },
-        shortcuts: [
-          {
-            text: 'Today',
-            onClick(picker) {
-              picker.$emit('pick', new Date())
-            },
-          },
-          {
-            text: 'Yesterday',
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24)
-              picker.$emit('pick', date)
-            },
-          },
-          {
-            text: 'A week ago',
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit('pick', date)
-            },
-          },
-        ],
-      },
+      formDef: dateOfBirthFormDef,
     }
+  },
+  props: {
+    _rowIdForEdit: {
+      type: Number,
+    },
+  },
+  components: {
+    ctEditFormTemplate,
   },
 }
 </script>

@@ -3,6 +3,7 @@ import allergiesClientTbl, {
 } from '~/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import chiefComplaintClientTbl from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
+import dateOfBirthClientTbl from '~/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
 import diagnosisClientTbl from '~/components/patient-data/diagnosis/db/client-side/structure/diagnosis-of-a-patient-table.js'
 import familyHistoryClientTbl from '~/components/patient-data/family-history/db/client-side/structure/family-history-of-a-patient-table.js'
 import medicalHistoryClientTbl from '~/components/patient-data/medical-history/db/client-side/structure/medical-history-of-a-patient-table.js'
@@ -62,6 +63,7 @@ const allPatientDataTbls = {
   allergies: allergiesClientTbl,
   allergies_present: allergiesPresentClientTbl,
   chief_complaint: chiefComplaintClientTbl,
+  date_of_birth: dateOfBirthClientTbl,
   diagnosis: diagnosisClientTbl,
   family_history: familyHistoryClientTbl,
   medical_history: medicalHistoryClientTbl,

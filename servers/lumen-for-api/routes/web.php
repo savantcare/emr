@@ -448,4 +448,18 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // Date Of Birth
+    $router->get('date-of-birth/v20/{pPtUuid}', ['uses' => 'UserController@get_user_dob']);
+    $router->put('date-of-birth/v20/{pServerSideRowUuid}', ['uses' => 'UserController@updateDateOfBirth']);
+    $router->options('date-of-birth/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('date-of-birth/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+
 });
