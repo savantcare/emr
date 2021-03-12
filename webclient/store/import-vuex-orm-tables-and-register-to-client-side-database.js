@@ -126,7 +126,7 @@ database.register(tableStructureForRem)
 import tableStructureForName from '~/components/patient-data/name/db/client-side/structure/name-of-a-patient-table.js'
 database.register(tableStructureForName)
 
-import tableStructureForDob from '~/components/patient-data/date-of-birth/db/client-side/structure/table.js'
+import tableStructureForDob from '~/components/patient-data/date-of-birth/db/client-side/structure/date-of-birth-of-a-patient-table.js'
 database.register(tableStructureForDob)
 
 import tableStructureForGoal from '~/components/patient-data/goals/db/client-side/structure/goals-of-a-patient-table.js'
