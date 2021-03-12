@@ -20,7 +20,7 @@ const mxFullSyncWithDbServer = require('@/components/patient-data/' +
 import moment from 'moment'
 
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
-import clientTbl from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/date-of-birth-of-a-patient-table.js'
 import clientTblOfDynamicComponents from '~/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
 export default {

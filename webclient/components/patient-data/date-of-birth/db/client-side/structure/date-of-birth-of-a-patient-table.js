@@ -43,15 +43,15 @@ export const dateOfBirthFormDef = {
       nameInUi: 'DOB',
       showLabel: false,
       type: 'date',
-      showHistory: 'always',
+      showHistory: false,
     },
   ],
-  showReviewedButtonInForm: false,
+  showReviewedButtonInForm: true,
   showResetFormButton: false,
   showDeleteButtonInForm: false,
 
   maxNumberOfTemporallyValidRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['dateOfBirthInMilliseconds'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []

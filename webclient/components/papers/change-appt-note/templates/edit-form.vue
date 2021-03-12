@@ -116,7 +116,7 @@
               :placeholder="_fieldDef.nameInUi"
               @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               @keydown.enter.native="mfForTabActionByEnter"
-              @focus="nameInDbOfCurrentFieldInFocus = _fieldDef.nameInDb"
+              @focus="nameInDbOfCurrentFieldInFocus = false"
               @blur="nameInDbOfCurrentFieldInFocus = false"
             ></el-input>
           </div>
@@ -226,7 +226,7 @@
           type="primary"
           size="mini"
           plain
-          @click="sfSendCopyChangedRowsToServer"
+          @click="mfSendCopyChangedRowsToServer"
           >Reviewed</el-button
         >
       </div>
@@ -501,6 +501,9 @@ export default {
           inputs[index + 1].focus()
         }
       }
+    },
+    async mfSendCopyChangedRowsToServer(){
+      const statusOfChangedRowsSent = await allPatientDataTbls[this._formDef.id].sfSendCopyChangedRowsToServer()
     },
     mfDeleteRowInServerSideTable() {
       this.$prompt(

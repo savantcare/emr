@@ -829,6 +829,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
         if (!response.ok) {
           return 0 // Returns error code when api fails to update record in DB
         } else {
+          this.$message({
+            type: 'success',
+            message: 'Row saved successfully.',
+          })
           return 1 // Returns success code when api successfully updates record in DB
         }
       } catch (ex) {
@@ -986,6 +990,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           })
           console.log('Failed to update')
         } else {
+          this.$message({
+            type: 'success',
+            message: 'Row updated successfully.',
+          })
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
           Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
           dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed changedRowBeingSaved. And we want to set ROW_END for id 2 and not id 3

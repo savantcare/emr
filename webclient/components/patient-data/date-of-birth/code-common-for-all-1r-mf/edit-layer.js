@@ -1,4 +1,4 @@
-import clientTbl from '../db/client-side/structure/table.js'
+import clientTbl from '../db/client-side/structure/date-of-birth-of-a-patient-table.js'
 import mxFullSyncWithDbServer from '../db/full-sync-with-db-server-mixin'
 import { rowState } from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
