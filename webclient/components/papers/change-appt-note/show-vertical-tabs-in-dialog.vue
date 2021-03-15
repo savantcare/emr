@@ -147,7 +147,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
       </el-tab-pane>
       <el-tab-pane label="Allergies" name="allergies">
         <span slot="label"> <u>A</u>llergies </span>
-        <allergies />
+        <routeallergies />
       </el-tab-pane>
       <el-tab-pane label="Examination" name="examination">
         <span slot="label"> <u>E</u>xamination </span>
@@ -289,7 +289,7 @@ import mhHorizontalEdit from '@/components/patient-data/medical-history/change-l
 
 import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
-import allergies from '@/components/patient-data/allergies/change-layer/allergy-add.vue'
+import routeallergies from '@/components/patient-data/allergies/change-layer/router.vue'
 
 import miscNote from '@/components/patient-data/miscellaneous-notes/change-layer/add-ct.vue'
 import miscHorizontalEdit from '@/components/patient-data/miscellaneous-notes/change-layer/medit-horizontal.vue'
@@ -361,7 +361,7 @@ export default {
     name,
     mhHorizontalEdit,
     medicationOrder,
-    allergies,
+    routeallergies,
     miscNote,
     miscHorizontalEdit,
     processNote,
