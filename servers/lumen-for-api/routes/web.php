@@ -464,4 +464,19 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // Medication order
+    $router->get('medication-order/v20/{pPtUuid}', ['uses' => 'MedicationOrderController@get_all_temporal_medication_order']);
+    $router->post('medication-order/v20/', ['uses' => 'MedicationOrderController@create']);
+    $router->patch('medication-order/v20/{pServerSideRowUuid}', ['uses' => 'MedicationOrderController@delete']);
+    $router->put('medication-order/v20/{pServerSideRowUuid}', ['uses' => 'MedicationOrderController@update']);
+    $router->options('medication-order/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('medication-order/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
 });

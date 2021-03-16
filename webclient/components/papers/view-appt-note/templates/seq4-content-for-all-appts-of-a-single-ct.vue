@@ -545,4 +545,9 @@ http://jsfiddle.net/kf1y2npw/30/
 ul#container-for-all-appointments {
   padding: 0;
 }
+div#container-for-all-rows-of-one-appointment {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+}
 </style>

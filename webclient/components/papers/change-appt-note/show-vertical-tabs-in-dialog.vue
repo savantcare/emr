@@ -133,10 +133,10 @@ So things like collapsible state will get destroyed. Even though the rem descrip
           <el-tab-pane label="Deleted" name="third">Deleted medical history</el-tab-pane>
         </el-tabs>
       </el-tab-pane>
-      <el-tab-pane label="Medication list" name="medication_list">
+      <!--<el-tab-pane label="Medication list" name="medication_list">
         <span slot="label" tabindex="0">Medication list</span>
         <routeMedicationList :key="new Date().getTime()" />
-      </el-tab-pane>
+      </el-tab-pane>-->
       <el-tab-pane label="Social history" name="social_history">
         <span slot="label" tabindex="0"> Social histor<u>y</u> </span>
         <routeSocialHistory :key="new Date().getTime()" />
@@ -193,7 +193,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
 
       <el-tab-pane label="Medication orders" name="medication_orders">
         <span slot="label"> <u>M</u>edication orders </span>
-        <medicationOrder />
+        <routeMedicationAddAndList :key="new Date().getTime()" />
       </el-tab-pane>
       <el-tab-pane label="Recommendations" name="recommendations">
         <span slot="label"> Recommenda<u>t</u>ions </span>
@@ -281,13 +281,11 @@ import familyHistory from '@/components/patient-data/family-history/change-layer
 import fhHorizontalEdit from '@/components/patient-data/family-history/change-layer/medit-horizontal.vue'
 
 import routeSocialHistory from '@/components/patient-data/social-history/change-layer/router.vue'
-import routeMedicationList from '@/components/patient-data/medication-list/change-layer/add.vue'
+import routeMedicationAddAndList from '@/components/patient-data/medication-orders/change-layer/router.vue'
 
 import medicalHistory from '@/components/patient-data/medical-history/change-layer/medical-history-add.vue'
 import name from '@/components/patient-data/name/change-layer/router.vue'
 import mhHorizontalEdit from '@/components/patient-data/medical-history/change-layer/medit-horizontal.vue'
-
-import medicationOrder from '@/components/patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 import routeallergies from '@/components/patient-data/allergies/change-layer/router.vue'
 
@@ -328,7 +326,6 @@ import pcHorizontalEdit from '@/components/patient-data/plan-comments/change-lay
 import routeSS from '@/components/patient-data/service-statements/change-layer/router.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import MedicationOrderAdd from '../../patient-data/medication-orders/change-layer/medication-order-add.vue'
 
 export default {
   name: 'CLTabsInDialogManager',
@@ -360,7 +357,6 @@ export default {
     medicalHistory,
     name,
     mhHorizontalEdit,
-    medicationOrder,
     routeallergies,
     miscNote,
     miscHorizontalEdit,
@@ -389,7 +385,7 @@ export default {
     pcAdd,
     pcHorizontalEdit,
     routeSS,
-    routeMedicationList,
+    routeMedicationAddAndList,
   },
   watch: {
     activeTabName: {

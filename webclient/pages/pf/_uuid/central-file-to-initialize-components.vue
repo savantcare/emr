@@ -48,6 +48,7 @@
     <initializeBmiComponent />
     <initializeOxygenSaturationComponent />
     <initializeDiagnosisComponent />
+    <initializeMedicationOrderComponent />
 
     <clientTblOfAppointmentsInsertData />
   </div>
@@ -111,6 +112,7 @@ import initializeMedicalReviewOfSystemsComponent from '@/components/patient-data
 // 1time-Mrow-mField
 import initializePhoneNumberComponent from '@/components/patient-data/phone-numbers/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import initializeDiagnosisComponent from '@/components/patient-data/diagnosis/db/client-side/initialize-on-first-load.vue'
+import initializeMedicationOrderComponent from '@/components/patient-data/medication-orders/db/client-side/initialize-on-first-load.vue'
 
 import clientTblOfDynamicComponents from '@/components/non-temporal/search-phrases/db/client-side/structure/dynamic-cards-table.js'
 
@@ -123,6 +125,7 @@ export default {
     initializePastPsychHistoryComponent,
     initializeMedicalReviewOfSystemsComponent,
     initializeDiagnosisComponent,
+    initializeMedicationOrderComponent,
     initializeDobComponent,
     initializeNameComponent,
     initializeWeightComponent,
