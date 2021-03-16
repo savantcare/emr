@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     converNewLIneToBR(pText) {
-      if(pText !== '' && typeof value === 'string'){
+      if(pText !== '' && typeof pText === 'string'){
         return pText.replace(/\n/g, '<br>')
       } else {
         return pText
