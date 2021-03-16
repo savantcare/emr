@@ -96,8 +96,8 @@
       </div>
 
       <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
-        <div v-if="_fieldDef.showLabel" id="field-name-in-ui">{{ _fieldDef.nameInUi }}</div>
-        <div id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] | moment }}</div>
+        <span v-if="_fieldDef.showLabel" id="field-name-in-ui" style="color: #909399">{{ _fieldDef.nameInUi }}:</span>
+        <span id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] | moment }}</span>
       </div>
 
       <!-- INPUT / TEXT AREA -->
@@ -153,12 +153,16 @@ export default {
   },
   filters: {
     moment: function (date) {
-      return moment(date).format('MMMM Do YYYY, h:mm a')
+      return moment(date).format('MMMM Do YYYY')
     },
   },
   methods: {
     converNewLIneToBR(pText) {
-      return pText.replace(/\n/g, '<br>')
+      if(pText !== '' && typeof value === 'string'){
+        return pText.replace(/\n/g, '<br>')
+      } else {
+        return pText
+      }
     },
     mOver(pRowId) {
       console.log(this._ApptStatus)
