@@ -6,7 +6,6 @@
     <div v-if="present === '#Yes#'">
       <el-divider>Add</el-divider>
         <ctAddForm :_formDef="formDef"></ctAddForm>
-      <el-divider>Edit</el-divider>
     </div>
   </div>
 </template>
