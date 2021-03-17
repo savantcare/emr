@@ -9,7 +9,7 @@ const intUniqueId = () => ++count
 export default class allergiesPresentClientTbl extends clientTblManage {
   static entity = 'tblAllergiesPresent'
 
-  static apiUrl = process.env.baseUrlForLumen + '/public/api/allergiesPresent/v20'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/allergies-present/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 

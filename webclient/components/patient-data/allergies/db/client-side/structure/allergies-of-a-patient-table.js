@@ -39,8 +39,8 @@ export default class allergies extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       allergen: this.string('').nullable(),
-      reaction: this.string(''),
-      onset: this.string(''),
+      reaction: this.string('').nullable(),
+      onset: this.string('').nullable(),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -69,6 +69,7 @@ export const allergiesFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: true,
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 4fr 4fr 1fr; grid-column-gap: 1rem',

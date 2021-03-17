@@ -274,13 +274,24 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Allergies
+    $router->get('allergies-present/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies_present']);
     $router->get('allergies/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
-    $router->get('allergiesPresent/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies_present']);
-    //$router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@get_one_allergies']);
-    $router->post('allergiesPresent/v20/', ['uses' => 'AllergiesController@create_present']);
+    $router->post('allergies-present/v20/', ['uses' => 'AllergiesController@create_present']);
     $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
-    $router->delete('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->put('allergies-present/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@update_present']);
+    $router->put('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@update']);
+    $router->patch('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->options('allergies-present/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
     $router->options('allergies/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('allergies-present/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
