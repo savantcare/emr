@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'allergies',
-        ctAbbr: 'aller',
+        ctAbbr: 'allergy',
         ctToShow: 'patient-data/allergies/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add allergies',
-        ctAbbr: 'aaller',
+        ctAbbr: 'aallergy',
         ctToShow: 'patient-data/allergies/change-layer/allergy-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit allergies',
-        ctAbbr: 'caller',
+        ctAbbr: 'callergy',
         ctToShow: 'patient-data/allergies/change-layer/allergy-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit allergies',
-        ctAbbr: 'mcaller',
+        ctAbbr: 'mcallergy',
         ctToShow: 'patient-data/allergies/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted allergies',
-        ctAbbr: 'daller',
+        ctAbbr: 'dallergy',
         ctToShow: 'patient-data/allergies/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

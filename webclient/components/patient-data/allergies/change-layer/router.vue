@@ -6,9 +6,9 @@
         <ctAddForm :_formDef="formDef"></ctAddForm>
       <el-divider>Edit</el-divider>
         <div v-if="rowIdForEdit > 0">
-          <div v-for="(aller, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+          <div v-for="(allergy, index) in daUniqueIdOfEachRowFromOrm" :key="index">
             <el-card>
-              <allergiesEdit :first-prop="aller['clientSideUniqRowId']" form-type="embedded" />
+              <allergiesEdit :first-prop="allergy['clientSideUniqRowId']" form-type="embedded" />
             </el-card>
           </div>
         </div>
