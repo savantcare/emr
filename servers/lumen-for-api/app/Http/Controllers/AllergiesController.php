@@ -19,10 +19,10 @@ class AllergiesController extends Controller
         return response()->json($allergiesQueryResultObj);
     }
 
-    public function get_all_temporal_allergies_present($pPtUuid)
+    public function get_all_allergies_present($pPtUuid)
     {
-        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies_present where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
-        return response()->json($allergiesQueryResultObj);
+        $allergiesPresentQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies_present where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        return response()->json($allergiesPresentQueryResultObj);
     }
 
     public function create_present(Request $pRequest)
@@ -82,7 +82,7 @@ class AllergiesController extends Controller
             $updateAllergies = Allergies::where('ptUuid', 'like', $ptUuid)->delete();
             $responseStatus['updateAllergies'] = $updateAllergies;
         }
-        
+
         return response()->json($responseStatus, 200);
     }
 

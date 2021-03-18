@@ -274,7 +274,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Allergies
-    $router->get('allergies-present/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies_present']);
+    $router->get('allergies-present/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_allergies_present']);
     $router->get('allergies/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
     $router->post('allergies-present/v20/', ['uses' => 'AllergiesController@create_present']);
     $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
