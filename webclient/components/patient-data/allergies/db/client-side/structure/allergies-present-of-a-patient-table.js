@@ -20,7 +20,7 @@ export default class allergiesPresentClientTbl extends clientTblManage {
       clientSideUniqRowId: this.uid(() => intUniqueId()), // if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
-      present: this.string('"#Not_evaluated#"').nullable(),
+      present: this.string('"#Not_evaluated#"'),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
