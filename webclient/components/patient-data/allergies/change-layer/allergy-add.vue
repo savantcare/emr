@@ -4,17 +4,17 @@
     <ctAddForm :_formDef="allergiesPresentFormDef"></ctAddForm>
     <br />
     <div v-if="present === '#Yes#'">
-      <ctAddForm :_formDef="formDef"></ctAddForm>
+      <el-divider>Add</el-divider>
+        <ctAddForm :_formDef="formDef"></ctAddForm>
     </div>
   </div>
 </template>
 
 <script>
 import ctAddForm from '@/components//papers/change-appt-note/templates/add-form.vue'
+import allergiesPresentClientTbl from '@/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
 import { allergiesFormDef } from '@/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 import { allergiesPresentFormDef } from '@/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
-
-import allergiesPresentClientTbl from '@/components/patient-data/allergies/db/client-side/structure/allergies-present-of-a-patient-table.js'
 
 export default {
   data: function () {

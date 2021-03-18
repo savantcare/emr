@@ -19,10 +19,27 @@ class AllergiesController extends Controller
         return response()->json($allergiesQueryResultObj);
     }
 
-    public function get_all_temporal_allergies_present($pPtUuid)
+    public function get_all_allergies_present($pPtUuid)
     {
-        $allergiesQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies_present where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
-        return response()->json($allergiesQueryResultObj);
+        $allergiesPresentQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_allergies.allergies_present where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        return response()->json($allergiesPresentQueryResultObj);
+    }
+
+    public function create_present(Request $pRequest)
+    {
+        $requestData = $pRequest->all();
+        $recordChangedFromIPAddress = $this->get_client_ip();
+        $allergiesPresentData = array(
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
+            'ptUuid' => $requestData['data']['ptUuid'],
+            'present' => $requestData['data']['present'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
+        );
+
+        $allergiesPresent = AllergiesPresent::insertGetId($allergiesPresentData);
+
+        return response()->json($allergiesPresent, 201);
     }
 
     public function create(Request $pRequest)
@@ -44,29 +61,46 @@ class AllergiesController extends Controller
         return response()->json($allergies, 201);
     }
 
-    public function create_present(Request $pRequest)
+    public function update_present($pServerSideRowUuid, Request $pRequest)
     {
+        $responseStatus = [];
         $requestData = $pRequest->all();
+        $ptUuid = $requestData['data']['ptUuid'];
+        $present = $requestData['data']['present'];
         $recordChangedFromIPAddress = $this->get_client_ip();
-        $allergiesPresentData = array(
-            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'present' => $requestData['data']['present'],
+        $updateAllergiesPresentData = array(
+            'present' => $present,
             'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
             'recordChangedFromIPAddress' => $recordChangedFromIPAddress
         );
 
-        $allergiesPresent = AllergiesPresent::insertGetId($allergiesPresentData);
+        $updateAllergiesPresent = AllergiesPresent::where('serverSideRowUuid', 'like', $pServerSideRowUuid)->update($updateAllergiesPresentData);
+        $responseStatus['updateAllergiesPresent'] = $updateAllergiesPresent;
 
-        return response()->json($allergiesPresent, 201);
+        if($present != '#Yes#')
+        {
+            $updateAllergies = Allergies::where('ptUuid', 'like', $ptUuid)->delete();
+            $responseStatus['updateAllergies'] = $updateAllergies;
+        }
+
+        return response()->json($responseStatus, 200);
     }
 
     public function update($pServerSideRowUuid, Request $pRequest)
     {
-        $allergies = Allergies::findOrFail($pServerSideRowUuid);
-        $allergies->update($pRequest->all());
+        $requestData = $pRequest->all();
+        $recordChangedFromIPAddress = $this->get_client_ip();
+        $updateAllergiesData = array(
+            'allergen' => $requestData['data']['allergen'],
+            'reaction' => $requestData['data']['reaction'],
+            'onset' => $requestData['data']['onset'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
+        );
 
-        return response()->json($allergies, 200);
+        $updateAllergies = Allergies::where('serverSideRowUuid', 'like', $pServerSideRowUuid)->update($updateAllergiesData);
+
+        return response()->json($updateAllergies, 200);
     }
 
     public function delete($pServerSideRowUuid, Request $pRequest)
