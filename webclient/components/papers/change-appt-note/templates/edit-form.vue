@@ -6,7 +6,7 @@
     </div>
     <div :style="_formDef.ctrlPlacementOfEveryFieldsNameAndValueInAddForm">
       <!-- Start to process fields in the row -->
-      <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style">
+      <div v-for="(_fieldDef, id) in _formDef.fieldsDef" :key="id" :style="_fieldDef.style" v-if="_regexForFieldSubset ? _fieldDef.nameInDb.match(_regexForFieldSubset) : true">
         <!-- Start to process each field -->
         <div>
           <!-- HEADING -->
@@ -182,6 +182,21 @@
               </el-slider>
             </div>
           </div>
+       
+          <div v-else-if="_fieldDef.type === 'vertical-slider'">
+            <div>
+              <vue-slider
+                class="slider"
+                :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
+                v-bind="_formDef.sliderOptions"
+                @change="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+              >
+              </vue-slider>
+              <div style="text-align: center">
+                {{ _fieldDef.nameInUi }}
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Goal: Show history of this row. Since this is a single field hence we are showing the history. If it was multiple fields then we do not show the history -->
@@ -294,6 +309,9 @@ export default {
         return false
       },
     },
+    _regexForFieldSubset: {
+      type: String,
+    },
   }, // firstProp is the ClientIdOfRowToChange
 
   data() {
@@ -369,9 +387,13 @@ export default {
           } else {
             this.dnClientIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
+          console.log('hello', this.dnClientIdOfCopiedRowBeingChanged)
         }
       },
     },
+  },
+  mounted() {
+    console.log("hi Akk");
   },
   methods: {
     filterTermHighlight(pText) {
@@ -466,9 +488,13 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
+      if(this._formDef.id == "psych_review_of_system"){
+        console.log("hi",this.dnClientIdOfCopiedRowBeingChanged);
+      }
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
+      console.log("event",pEvent, pFldName);
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.

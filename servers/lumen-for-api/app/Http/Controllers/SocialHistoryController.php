@@ -12,7 +12,7 @@ class SocialHistoryController extends Controller
 {
     public function get_all_temporal_social_histories($pPtUuid)
     {
-        $socialHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_social_history.social_history FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $socialHistoryQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END FROM sc_social_history.social_history where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         return response()->json($socialHistoryQueryResultObj);
     }

@@ -136,9 +136,9 @@
               <div>
                 <vue-slider
                   class="slider"
-                  v-model="value[_fieldDef.nameInDb]"
+                  :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   v-bind="_formDef.sliderOptions"
-                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
+                  @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'slider')"
                 >
                 </vue-slider>
                 <div style="text-align: center">
@@ -614,7 +614,7 @@ export default {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
       //console.log()
       let rowStatus = 0
-
+      console.log(pEvent, pClientRowId, pFldName, pFldType);
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.
