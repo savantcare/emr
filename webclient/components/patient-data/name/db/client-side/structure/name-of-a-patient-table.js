@@ -24,9 +24,8 @@ export default class ptName extends clientTblManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()), //  Only on client side. Not on server side. if this is not set then update based on primary key will not work
       serverSideRowUuid: this.uid(() => uuidv1()),
-      ptUuid: this.string(null),
-      /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software. 
-      Each browser tab will only work for 1 patient. So no need to store patientUuid inside vue state 
+      /* Not stroing ptUuid inside viewstate since writing vuestate slows down the software.
+      Each browser tab will only work for 1 patient. So no need to store patientUuid inside vue state
       ptUuid: this.string(null), */
 
       firstName: this.string(null),

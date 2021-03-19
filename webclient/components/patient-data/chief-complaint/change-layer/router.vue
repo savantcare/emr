@@ -1,6 +1,6 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    <b>Edit chief complaint</b>
+    <el-divider>Edit</el-divider>
     <chiefComplainEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>

@@ -20,7 +20,7 @@
     {
       "uuid": 2,
       "ptUuid": "abcd",
-      "dateOfBirthInMilliseconds": 1596926301000,
+      "dateOfBirthInMilliSeconds": 1596926301000,
       "notes": "Jai kali ma"
     }
   ],

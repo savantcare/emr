@@ -13,7 +13,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'date of birth',
-        ctAbbr: 'w',
+        ctAbbr: 'dob',
         ctToShow: 'patient-data/date-of-birth/view-layer/dob-table-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -21,7 +21,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'date of birth - edit',
-        ctAbbr: 'wc',
+        ctAbbr: 'edob',
         ctToShow: 'patient-data/date-of-birth/change-layer/edit-design-1.vue', // El -> Edit layer
         displayLocation: 'edit-layer',
         needsRowIdToWork: 'no',

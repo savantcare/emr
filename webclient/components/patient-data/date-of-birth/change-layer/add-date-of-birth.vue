@@ -39,10 +39,6 @@ export default {
   flex-direction: column;
   padding: 0 20px;
 }
-// .v-tribute {
-//   width: 100%;
-//   position: relative;
-// }
 input[type='text'],
 textarea {
   padding: 1rem;
@@ -53,9 +49,4 @@ textarea {
     background: #fff;
   }
 }
-// .menu-tribute-list {
-//   width: 100%;
-//   height: 100%;
-// }
-// Tribute-specific styles
 </style>

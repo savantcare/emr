@@ -1,6 +1,6 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    <b>Edit DOB</b>
+    <el-divider>Edit</el-divider>
     <dateOfBirthEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
@@ -28,7 +28,6 @@ export default {
     if (status) {
       this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
     }
-    console.log(this.rowIdForEdit)
   },
 }
 </script>

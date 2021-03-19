@@ -9,7 +9,7 @@ export default class date_of_birth extends clientTblManage {
   static entity = 'tblDateOfBirth'
   static apiUrl = process.env.baseUrlForLumen + '/public/api/date-of-birth/v20'
 
-  static graphSeries1FieldName = 'dateOfBirthInMilliseconds'
+  static graphSeries1FieldName = 'dateOfBirthInMilliSeconds'
   static graphSeries1Unit = 'Lbs'
 
   static primaryKey = 'clientSideUniqRowId'
@@ -20,8 +20,7 @@ export default class date_of_birth extends clientTblManage {
 
       clientSideUniqRowId: this.uid(() => intUniqueId()),
       serverSideRowUuid: this.uid(() => uuidv1()),
-
-      dateOfBirthInMilliseconds: this.uid(() => defaultValueOfOnsetInMilliSecs()), // For date decision see name/db/structure/table.js;
+      dateOfBirthInMilliSeconds: this.uid(() => defaultValueOfOnsetInMilliSecs()), // For date decision see name/db/structure/table.js;
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -39,7 +38,7 @@ export const dateOfBirthFormDef = {
   fieldsDef: [
     //{ nameInDb: 'description', nameInUi: 'Description', showLabel: false, type: 'text', showHistory: 'always' },
     {
-      nameInDb: 'dateOfBirthInMilliseconds',
+      nameInDb: 'dateOfBirthInMilliSeconds',
       nameInUi: 'DOB',
       showLabel: false,
       type: 'date',
@@ -51,7 +50,7 @@ export const dateOfBirthFormDef = {
   showDeleteButtonInForm: false,
 
   maxNumberOfTemporallyValidRows: 1,
-  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['dateOfBirthInMilliseconds'],
+  atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['dateOfBirthInMilliSeconds'],
   fnCreated: function () {
     // it is critical that empty array is returned. Since v-model uses it. And validation uses v-model
     return []

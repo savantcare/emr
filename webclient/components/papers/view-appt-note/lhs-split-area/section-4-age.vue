@@ -16,7 +16,7 @@ export default {
       if(this.cfLatestDataRowFromClientTbl){
         const currentDate = new Date()
         const currentMS = currentDate.getTime()
-        const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliseconds
+        const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliSeconds
         const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
         return age + ' Years'
       } else {

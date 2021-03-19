@@ -127,7 +127,7 @@
             </div>
 
             <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
@@ -197,7 +197,7 @@
             :type="row.type"
           >
             {{ row[_fieldDef.nameInDb] }}
-            <!-- The following come on right of the description that comes in the timeline. 
+            <!-- The following come on right of the description that comes in the timeline.
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
@@ -238,7 +238,7 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
 import VueTribute from '@/customized-node-modules/vue-tribute'
-
+import clientTblOfCommonForAllComponents from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 import moment from 'moment'
 
 export default {
@@ -328,7 +328,6 @@ export default {
       immediate: true,
       handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value. Not doing this in mounted since when click on C in 1st rem mounted gets called. When click on C in 2nd rem mounted does not get called.
-        // console.log(pNVal, pOVal)
         this.dnClientIdOfRowToChange = pNVal
         this.dnClientIdOfCopiedRowBeingChanged = null
       },
@@ -356,6 +355,7 @@ export default {
         if (pNVal === null) {
           /* When called first time this.dnClientIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnClientIdOfRowToChange is the previous row that just got saved. */
+
           const arOrmRowToChange = allPatientDataTbls[this._formDef.id].find(this.dnClientIdOfRowToChange)
           this.dnOrmUuidOfRowToChange = arOrmRowToChange.serverSideRowUuid
           const vnExistingChangeRowId = allPatientDataTbls[this._formDef.id].fnGetChangeRowIdInEditState(
@@ -386,10 +386,14 @@ export default {
       return pText
     },
     log(item) {
-      // console.log(item)
     },
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
+    },
+    // Update record change by uuid in edit form
+    async mf_get_recordChangedBy_uuid() {
+      const loggedInUserUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
+      return loggedInUserUuidFromOrm.fieldValue
     },
     mfTimeLineDataAr(pFieldNameInDb) {
       const timelineDataArray = []
@@ -402,7 +406,6 @@ export default {
         .orderBy('ROW_START', 'desc')
         .get()
 
-      // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
       if (arFromClientTbl.length) {
         let rowInTimeLine = []
         for (let i = 1; i < arFromClientTbl.length; i++) {
@@ -468,7 +471,7 @@ export default {
       // From this point on the state is same for change and add
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
-    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
+    async mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.
@@ -476,6 +479,7 @@ export default {
       if (pEvent instanceof Object) {
         pEvent = pEvent.target.value
       }
+      const recordChangedByUuid = await this.mf_get_recordChangedBy_uuid()
 
       // TODO: need to do form validation here just like in add form
       const rowStatus = rowState.SameAsDB_Copy_Changed_FormValidationPass
@@ -485,6 +489,12 @@ export default {
         pFldName,
         rowStatus
       )
+
+      allPatientDataTbls[this._formDef.id].update({
+        where: (record) => record.serverSideRowUuid === this.dnOrmUuidOfRowToChange,
+        data: { recordChangedByUuid: recordChangedByUuid, }
+      })
+
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
     mfForTabActionByEnter: function (e) {
