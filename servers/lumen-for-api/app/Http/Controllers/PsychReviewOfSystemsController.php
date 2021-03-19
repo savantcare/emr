@@ -21,43 +21,18 @@ class PsychReviewOfSystemsController extends Controller
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();
-        $recordChangedFromIPAddress = $this->get_client_ip();
-        $psychReviewOfSystemsData = array(
-            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
-            'ptUuid' => $requestData['data']['ptUuid'],
-            'subjective' => $requestData['data']['subjective'],
-            'depressive_mood' => $requestData['data']['depressive_mood'],
-            'depressive_interest' => $requestData['data']['depressive_interest'],
-            'depressive_sleep' => $requestData['data']['depressive_sleep'],
-            'depressive_esteem' => $requestData['data']['depressive_esteem'],
-            'depressive_energy' => $requestData['data']['depressive_energy'],
-            'depressive_conc' => $requestData['data']['depressive_conc'],
-            'depressive_appetite' => $requestData['data']['depressive_appetite'],
-            'depressive_retardation' => $requestData['data']['depressive_retardation'],
-            'depressive_suicidal' => $requestData['data']['depressive_suicidal'],
-            'gateway_depressed' => $requestData['data']['gateway_depressed'],
-            'gateway_energetic' => $requestData['data']['gateway_energetic'],
-            'gateway_interest' => $requestData['data']['gateway_interest'],
-            'gateway_mood' => $requestData['data']['gateway_mood'],
-            'gateway_irritable' => $requestData['data']['gateway_irritable'],
-            'gateway_difficult' => $requestData['data']['gateway_difficult'],
-            'mania_mood' => $requestData['data']['mania_mood'],
-            'mania_irritable' => $requestData['data']['mania_irritable'],
-            'mania_energy' => $requestData['data']['mania_energy'],
-            'mania_sleep' => $requestData['data']['mania_sleep'],
-            'mania_talking' => $requestData['data']['mania_talking'],
-            'mania_racing' => $requestData['data']['mania_racing'],
-            'mania_distractability' => $requestData['data']['mania_distractability'],
-            'mania_risk' => $requestData['data']['mania_risk'],
-            'obese' => $requestData['data']['obese'],
-            'thinCachectic' => $requestData['data']['thinCachectic'],
-            'disheveledUnkempt' => $requestData['data']['disheveledUnkempt'],
-            'malodorous' => $requestData['data']['malodorous'],
-            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
-            'recordChangedFromIPAddress' => $recordChangedFromIPAddress,
-        );
+        unset($requestData['data']['$id']);
+        unset($requestData['data']['vnRowStateInSession']);
+        unset($requestData['data']['isValidationError']);
+        unset($requestData['data']['clientSideUniqRowId']);
+        unset($requestData['data']['ROW_START']);
+        unset($requestData['data']['ROW_END']);
+        unset($requestData['data']['client_side_socketId_to_prevent_duplicate_UI_change_on_client_that_requested_server_for_data_change']);
 
-        $psychReviewOfSystems = PsychReviewOfSystems::insertGetId($psychReviewOfSystemsData);
+        $recordChangedFromIPAddress = $this->get_client_ip();
+        $requestData['data']['recordChangedFromIPAddress'] = $recordChangedFromIPAddress;
+
+        $psychReviewOfSystems = PsychReviewOfSystems::insertGetId($requestData['data']);
 
         return response()->json($psychReviewOfSystems, 201);
     }
