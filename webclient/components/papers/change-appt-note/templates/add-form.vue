@@ -614,7 +614,6 @@ export default {
       // Ref: https://vuelidate.js.org/#sub-basic-form see "Withiut v-model"
       //console.log()
       let rowStatus = 0
-      console.log(pEvent, pClientRowId, pFldName, pFldType);
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.

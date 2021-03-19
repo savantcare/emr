@@ -387,13 +387,9 @@ export default {
           } else {
             this.dnClientIdOfCopiedRowBeingChanged = vnExistingChangeRowId
           }
-          console.log('hello', this.dnClientIdOfCopiedRowBeingChanged)
         }
       },
     },
-  },
-  mounted() {
-    console.log("hi Akk");
   },
   methods: {
     filterTermHighlight(pText) {
@@ -488,13 +484,9 @@ export default {
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
-      if(this._formDef.id == "psych_review_of_system"){
-        console.log("hi",this.dnClientIdOfCopiedRowBeingChanged);
-      }
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
     mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
-      console.log("event",pEvent, pFldName);
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.
