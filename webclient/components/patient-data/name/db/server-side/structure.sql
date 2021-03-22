@@ -7,11 +7,13 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `firstName` varchar(50) DEFAULT NULL,
-  `middleName` varchar(50) DEFAULT NULL,
-  `lastName` varchar(50) DEFAULT NULL,
-  `emailAddress` varchar(100) DEFAULT NULL,
-  `dateOfBirthInMilliSecs` datetime(3) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
-  PRIMARY KEY (`uuid`)
+  `firstName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `middleName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emailAddress` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateOfBirthInMilliSeconds` datetime(3) DEFAULT NULL,
+  `recordChangedByUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `recordChangedFromSection` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'patientFile',
+  PRIMARY KEY (`serverSideRowUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;

@@ -1,17 +1,17 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeChiefComplaintComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/chief-complaint/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeChiefComplaintComponent from '@/components/patient-data/chief-complaint/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/chief-complaint/db/client-side/structure/chief-complaint-of-a-patient-table.js'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeChiefComplaintComponent,
   },
   async mounted() {
     /*

@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'past_psych_history',
-        ctAbbr: 'rem',
+        ctAbbr: 'pph',
         ctToShow: 'patient-data/past-psych-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add past_psych_history',
-        ctAbbr: 'arem',
+        ctAbbr: 'apph',
         ctToShow: 'patient-data/past-psych-history/change-layer/past-psych-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit past_psych_history',
-        ctAbbr: 'crem',
+        ctAbbr: 'cpph',
         ctToShow: 'patient-data/past-psych-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit past_psych_history',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcpph',
         ctToShow: 'patient-data/past-psych-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted past_psych_history',
-        ctAbbr: 'drem',
+        ctAbbr: 'dpph',
         ctToShow: 'patient-data/past-psych-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
