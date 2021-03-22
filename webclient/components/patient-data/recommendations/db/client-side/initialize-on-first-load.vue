@@ -18,7 +18,7 @@ export default {
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function
         When using json-server backend the code is:
-        const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
+        const proRexsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
     if (process.env.loadInitialDataFromServer === true) {
       const ptUuidFromOrm = await clientTblOfCommonForAllComponents
@@ -29,8 +29,8 @@ export default {
       )
       .first()
 
-    const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
-      if (proRemsFromDB.ok) {
+      const proRexsFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+      if (proRexsFromDB.ok) {
       }
     }
   },

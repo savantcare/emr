@@ -41,7 +41,7 @@ export default class recommendations extends clientTblManage {
       description: this.string(''),
       notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       priority: this.number(0),
-      isAutoRem: this.number(0),
+      isAutoRex: this.number(0),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),

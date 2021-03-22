@@ -274,13 +274,24 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Allergies
+    $router->get('allergies-present/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_allergies_present']);
     $router->get('allergies/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies']);
-    $router->get('allergiesPresent/v20/{pPtUuid}', ['uses' => 'AllergiesController@get_all_temporal_allergies_present']);
-    //$router->get('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@get_one_allergies']);
-    $router->post('allergiesPresent/v20/', ['uses' => 'AllergiesController@create_present']);
+    $router->post('allergies-present/v20/', ['uses' => 'AllergiesController@create_present']);
     $router->post('allergies/v20/', ['uses' => 'AllergiesController@create']);
-    $router->delete('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->put('allergies-present/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@update_present']);
+    $router->put('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@update']);
+    $router->patch('allergies/v20/{pServerSideRowUuid}', ['uses' => 'AllergiesController@delete']);
+    $router->options('allergies-present/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
     $router->options('allergies/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+            ->header('Access-Control-Allow-Credentials', 'true')
+            ->header('Connection', 'keep-alive');
+    });
+    $router->options('allergies-present/v20/{pServerSideRowUuid}', function () {
         return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Connection', 'keep-alive');
@@ -464,6 +475,22 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             ->header('Connection', 'keep-alive');
     });
 
+    // Medication order
+    $router->get('medication-order/v20/{pPtUuid}', ['uses' => 'MedicationOrderController@get_all_temporal_medication_order']);
+    $router->post('medication-order/v20/', ['uses' => 'MedicationOrderController@create']);
+    $router->patch('medication-order/v20/{pServerSideRowUuid}', ['uses' => 'MedicationOrderController@delete']);
+    $router->put('medication-order/v20/{pServerSideRowUuid}', ['uses' => 'MedicationOrderController@update']);
+    $router->options('medication-order/v20', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    $router->options('medication-order/v20/{pServerSideRowUuid}', function () {
+        return response('OK', \Illuminate\Http\Response::HTTP_NO_CONTENT)
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Connection', 'keep-alive');
+    });
+    
     // Psych Ros
     $router->get('psych-review-of-system/v20/{pPtUuid}', ['uses' => 'PsychReviewOfSystemsController@get_all_temporal_psychReviewOfSystems']);
     $router->post('psych-review-of-system/v20/', ['uses' => 'PsychReviewOfSystemsController@create']);
@@ -479,5 +506,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
-
+    
 });

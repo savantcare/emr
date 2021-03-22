@@ -574,6 +574,11 @@ export default {
         }
       }
 
+      const currentNewRowCount = await allPatientDataTbls[this._formDef.id].query().where('vnRowStateInSession', 2).count()
+      if (currentNewRowCount > 0) {
+        return
+      }
+
       const ptUuid = await this.mf_get_pt_uuid()
       const recordChangedByUuid = await this.mf_get_recordChangedBy_uuid()
       const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({

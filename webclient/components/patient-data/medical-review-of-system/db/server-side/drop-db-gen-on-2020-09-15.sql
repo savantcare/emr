@@ -1,0 +1,1 @@
+drop database sc_medical_review_of_system
