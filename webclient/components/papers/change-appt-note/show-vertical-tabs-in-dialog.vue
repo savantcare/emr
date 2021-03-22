@@ -96,7 +96,11 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         problem1="This tab index is not getting applied to the child div inside el-tab-pane"
       >
         <span slot="label"> Sub Psych ROS (<u>H</u>PI) </span>
-        <prosAdd />
+        <routePsychReviewOfSystem
+          :key="new Date().getTime()"
+          why="Generating key everytime since the router decides the clientSideUniqRowId of the row to be edited. If the mounted fn was not getting called then the correct ID was not being sent to the edit ct."
+          improvement="here the key can be current appt ID. Since during one appt the router does not need to be invoked twice."
+        />
       </el-tab-pane>
       <el-tab-pane label="Past psych history" name="past_psych_history">
         <span slot="label" tabindex="0"> <u>P</u>ast psych history </span>
@@ -274,7 +278,6 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 
 import routeChiefComplaint from '@/components/patient-data/chief-complaint/change-layer/router.vue'
 import routerDateOfBirth from '@/components/patient-data/date-of-birth/change-layer/router.vue'
-import prosAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
 import routePastPsychHistory from '@/components/patient-data/past-psych-history/change-layer/router.vue'
 
 import familyHistory from '@/components/patient-data/family-history/change-layer/family-history-add.vue'
@@ -326,7 +329,7 @@ import pcHorizontalEdit from '@/components/patient-data/plan-comments/change-lay
 import routeSS from '@/components/patient-data/service-statements/change-layer/router.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-
+import routePsychReviewOfSystem from '@/components/patient-data/psych-review-of-system/change-layer/router.vue'
 export default {
   name: 'CLTabsInDialogManager',
   data() {
@@ -349,7 +352,6 @@ export default {
   components: {
     routeChiefComplaint,
     routerDateOfBirth,
-    prosAdd,
     routePastPsychHistory,
     familyHistory,
     fhHorizontalEdit,
@@ -386,6 +388,7 @@ export default {
     pcHorizontalEdit,
     routeSS,
     routeMedicationAddAndList,
+    routePsychReviewOfSystem,
   },
   watch: {
     activeTabName: {
