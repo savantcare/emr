@@ -329,7 +329,6 @@ import pcHorizontalEdit from '@/components/patient-data/plan-comments/change-lay
 import routeSS from '@/components/patient-data/service-statements/change-layer/router.vue'
 
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
-import MedicationOrderAdd from '../../patient-data/medication-orders/change-layer/medication-order-add.vue'
 import routePsychReviewOfSystem from '@/components/patient-data/psych-review-of-system/change-layer/router.vue'
 export default {
   name: 'CLTabsInDialogManager',
