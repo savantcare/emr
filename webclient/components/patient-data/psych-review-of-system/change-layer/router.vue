@@ -1,6 +1,5 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    <b>Edit Psych Review of system</b>
     <psychReviewOfSystemEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>

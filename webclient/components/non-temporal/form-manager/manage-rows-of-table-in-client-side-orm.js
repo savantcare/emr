@@ -671,6 +671,11 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     }
   }
 
+  static async mf_get_recordChangedBy_uuid() {
+    const loggedInUserUuidFromOrm = await clientTblOfCommonForAllComponents.query().where('fieldName', 'loggedInUserUuid').first()
+    return loggedInUserUuidFromOrm.fieldValue
+  }
+
   static async fnCopyRowAndGetCopiedRowId(pOrmSourceRowId) {
     // the copied row will have the same serverSideRowUuid as the first row
     // In temporal table when row is updated first a copy is made but UUID remains same
@@ -678,7 +683,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     const arToCopy = this.find(pOrmSourceRowId)
     delete arToCopy.clientSideUniqRowId // removing the id fld from source so that vuexOrm will create a new primary key in destination
     arToCopy.ROW_START = Math.floor(Date.now()) // set ROW_START to now
-    arToCopy.vnRowStateInSession = rowState.SameAsDB_Copy // // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.vnRowStateInSession = rowState.SameAsDB_Copy // Since this row is copied set the correct rowState For meaning of diff values read ./forms.md
+    arToCopy.recordChangedByUuid = await this.mf_get_recordChangedBy_uuid() 
     const newRow = await this.insert({
       data: arToCopy,
     })
