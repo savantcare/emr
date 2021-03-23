@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'family-history',
-        ctAbbr: 'rem',
+        ctAbbr: 'fh',
         ctToShow: 'patient-data/family-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add family-history',
-        ctAbbr: 'arem',
+        ctAbbr: 'afh',
         ctToShow: 'patient-data/family-history/change-layer/family-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit family-history',
-        ctAbbr: 'crem',
+        ctAbbr: 'cfh',
         ctToShow: 'patient-data/family-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit family-history',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcfh',
         ctToShow: 'patient-data/family-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted family-history',
-        ctAbbr: 'drem',
+        ctAbbr: 'dfh',
         ctToShow: 'patient-data/family-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

@@ -13,7 +13,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'pysch review of system',
-        ctAbbr: 'ss',
+        ctAbbr: 'spros',
         ctToShow: 'patient-data/psych-review-of-system/view-layer/ss-design-1-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -21,8 +21,8 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit psych_review_of_system',
-        ctAbbr: 'sse',
-        ctToShow: 'patient-data/psych-review-of-system/change-layer/pros-edit-design-1.vue',
+        ctAbbr: 'epros',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/psych-review-of-system-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -31,8 +31,8 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add psych_review_of_system',
-        ctAbbr: 'dss',
-        ctToShow: 'patient-data/psych-review-of-system/change-layer/add-pros.vue',
+        ctAbbr: 'apros',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/psych-review-of-system-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },
