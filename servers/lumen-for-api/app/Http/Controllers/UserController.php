@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function get_user_detail($pPtUuid)
     {
-        $userQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(dateOfBirthInMilliseconds) * 1000)+0 as dateOfBirthInMilliseconds FROM sc_users.users WHERE serverSideRowUuid = '{$pPtUuid}' order by ROW_START desc"));
+        $userQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim(UNIX_TIMESTAMP(dateOfBirthInMilliSeconds) * 1000)+0 as dateOfBirthInMilliSeconds FROM sc_users.users WHERE serverSideRowUuid = '{$pPtUuid}' order by ROW_START desc"));
 
         return response()->json($userQueryResultObj);
     }
@@ -30,11 +30,11 @@ class UserController extends Controller
     public function updateDateOfBirth($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
-        $dateOfBirthInMilliseconds = (int)($requestData['data']['dateOfBirthInMilliseconds']);
+        $dateOfBirthInMilliSeconds = (int)($requestData['data']['dateOfBirthInMilliSeconds']);
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $user = DB::statement("UPDATE `sc_users`.`users` SET `dateOfBirthInMilliseconds` = FROM_UNIXTIME({$dateOfBirthInMilliseconds}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `users`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+        $user = DB::statement("UPDATE `sc_users`.`users` SET `dateOfBirthInMilliSeconds` = FROM_UNIXTIME({$dateOfBirthInMilliSeconds}/1000), `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `users`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($user, 200);
     }
