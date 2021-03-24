@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class WaistCircumference extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'waistCircumference';
+    protected $table = 'waist_circumference';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class WaistCircumference extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'waistCircumferenceInInches', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

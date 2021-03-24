@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'pulse',
-        ctAbbr: 'cc',
+        ctAbbr: 'pulse',
         ctToShow: 'patient-data/pulse/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add pulse',
-        ctAbbr: 'acc',
+        ctAbbr: 'apulse',
         ctToShow: 'patient-data/pulse/change-layer/add-pulse.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit pulse',
-        ctAbbr: 'ccc',
+        ctAbbr: 'cpulse',
         ctToShow: 'patient-data/pulse/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit pulse',
-        ctAbbr: 'mccc',
+        ctAbbr: 'mcpulse',
         ctToShow: 'patient-data/pulse/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted pulse',
-        ctAbbr: 'dcc',
+        ctAbbr: 'dpulse',
         ctToShow: 'patient-data/pulse/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

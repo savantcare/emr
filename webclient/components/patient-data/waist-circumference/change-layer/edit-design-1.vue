@@ -1,6 +1,6 @@
 <template>
 <div>
-    <el-col :span="4"> <b>Edit Waist Circumference</b> </el-col>
+    <el-col :span="4"> <b>Waist Circumference</b> </el-col>
     <el-col :span="20">
   <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
   </el-col>
@@ -24,7 +24,6 @@ export default {
   },
 
   mounted() {
-    //    console.log(this.dataFormFields)
   },
 
   components: {

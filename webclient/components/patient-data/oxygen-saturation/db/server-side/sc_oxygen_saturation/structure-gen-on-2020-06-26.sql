@@ -1,13 +1,13 @@
 use sc_vital_signs;
 
-DROP TABLE IF EXISTS `oxygenSaturation`;
+DROP TABLE IF EXISTS `oxygen_saturation`;
 
-CREATE TABLE `oxygenSaturation` (
+CREATE TABLE `oxygen_saturation` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `oxygenSaturationInSpo2` int(11) DEFAULT NULL,
   `timeOfMeasurementInMilliSecs` datetime(3) NOT NULL DEFAULT current_timestamp(3),
-  `notes` text DEFAULT NULL,
+  `notes` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedByUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
    PRIMARY KEY (`serverSideRowUuid`)

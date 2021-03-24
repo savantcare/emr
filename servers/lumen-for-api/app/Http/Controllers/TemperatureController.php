@@ -17,13 +17,6 @@ class TemperatureController extends Controller
         return response()->json($temperatureQuery);
     }
 
-    public function get_one_temperature($pServerSideRowUuid)
-    {
-        $temperatureQuery = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000 as timeOfMeasurementInMilliSecs FROM sc_vital_signs.temperature FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
-
-        return response()->json($temperatureQuery);
-    }
-
     /*
     To check temperature/create in postman make a post request with the following JSON:
     Open postman desktop app and then:

@@ -20,7 +20,7 @@ class Weight extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'weightInPounds', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'weightInPounds', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
