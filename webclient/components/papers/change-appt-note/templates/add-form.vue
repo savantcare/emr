@@ -352,6 +352,7 @@ export default {
   data() {
     return {
       value: [],
+      arOfCtsToInsertEmptyRow: [],
       searchFilter: null,
       doTributeOptions: {
         autocompleteMode: true,
@@ -564,6 +565,17 @@ export default {
     },
     async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
+      
+      /**
+       * Goal: protect duplicate row entry into orm
+       * -- Store _formDef id into a array called 'arOfCtsToInsertEmptyRow'
+       * if already exist then return
+       */
+      if (this.arOfCtsToInsertEmptyRow.includes(this._formDef.id)) {
+        return
+      } else {
+        this.arOfCtsToInsertEmptyRow.push(this._formDef.id)
+      }
 
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
         // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
@@ -594,6 +606,12 @@ export default {
       }
 
       this.mf_set_form_field_focus()
+
+      /* Remove _formDef id from 'arOfCtsToInsertEmptyRow' after this process finished. */
+      const index = this.arOfCtsToInsertEmptyRow.indexOf(this._formDef.id)
+      if (index > -1) {
+        this.arOfCtsToInsertEmptyRow.splice(index, 1)
+      }
     },
     mf_set_form_field_focus() {
       // Ref: https://stackoverflow.com/questions/60291308/vue-js-this-refs-empty-due-to-v-if
