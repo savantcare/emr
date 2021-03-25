@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'weight',
-        ctAbbr: 'cc',
+        ctAbbr: 'w',
         ctToShow: 'patient-data/weight/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add weight',
-        ctAbbr: 'acc',
+        ctAbbr: 'aw',
         ctToShow: 'patient-data/weight/change-layer/add-weight.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit weight',
-        ctAbbr: 'ccc',
+        ctAbbr: 'cw',
         ctToShow: 'patient-data/weight/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit weight',
-        ctAbbr: 'mccc',
+        ctAbbr: 'mcw',
         ctToShow: 'patient-data/weight/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted weight',
-        ctAbbr: 'dcc',
+        ctAbbr: 'dw',
         ctToShow: 'patient-data/weight/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

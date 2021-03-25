@@ -166,7 +166,7 @@ So things like collapsible state will get destroyed. Even though the rem descrip
         <routeBloodPressure name="blood_pressure" />
         <routeBloodSugar name="blood_sugar" />
         <routeBmi name="bmi" />
-        <routeOxygenSaturation name="oxygenSaturation" />
+        <routeOxygenSaturation name="oxygen_saturation" />
         <routeWaistCircumference name="waist_circumference" />
       </el-tab-pane>
       <el-tab-pane label="Asmnt & diagnosis" name="diagnosis">

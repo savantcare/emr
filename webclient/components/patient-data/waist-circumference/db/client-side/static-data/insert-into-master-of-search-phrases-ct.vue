@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'waist-circumference',
-        ctAbbr: 'cc',
+        ctAbbr: 'wc',
         ctToShow: 'patient-data/waist-circumference/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add waist-circumference',
-        ctAbbr: 'acc',
+        ctAbbr: 'awc',
         ctToShow: 'patient-data/waist-circumference/change-layer/add-waist-circumference.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit waist-circumference',
-        ctAbbr: 'ccc',
+        ctAbbr: 'cwc',
         ctToShow: 'patient-data/waist-circumference/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit waist-circumference',
-        ctAbbr: 'mccc',
+        ctAbbr: 'mcwc',
         ctToShow: 'patient-data/waist-circumference/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted waist-circumference',
-        ctAbbr: 'dcc',
+        ctAbbr: 'dwc',
         ctToShow: 'patient-data/waist-circumference/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

@@ -20,7 +20,7 @@ class Pulse extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'pulseInBpm', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'pulseInBpm', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

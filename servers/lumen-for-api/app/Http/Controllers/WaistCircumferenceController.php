@@ -13,16 +13,9 @@ class WaistCircumferenceController extends Controller
 {
     public function get_all_temporal_waist_circumferences($pPtUuid)
     {
-        $waistCircumferenceQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim((UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000))+0 as timeOfMeasurementInMilliSecs FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
+        $waistCircumferenceQueryResultObj = DB::select(DB::raw('SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, trim((UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000))+0 as timeOfMeasurementInMilliSecs FROM sc_vital_signs.waist_circumference FOR SYSTEM_TIME ALL where ptUuid = "'.$pPtUuid.'" order by ROW_START desc'));
 
         /* For some situations in row_start and row_end we are getting decimal values and in our frontend we have a query which checks round value because of this reason we are using round function */
-
-        return response()->json($waistCircumferenceQueryResultObj);
-    }
-
-    public function get_one_waist_circumference($pServerSideRowUuid)
-    {
-        $waistCircumferenceQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, round(UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000) as timeOfMeasurementInMilliSecs FROM sc_vital_signs.waistCircumference FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
 
         return response()->json($waistCircumferenceQueryResultObj);
     }
@@ -39,7 +32,7 @@ class WaistCircumferenceController extends Controller
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $insertWaistCircumference = DB::statement("INSERT INTO `sc_vital_signs`.`waistCircumference` (`serverSideRowUuid`, `ptUuid`, `waistCircumferenceInInches`, `timeOfMeasurementInMilliSecs`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$waistCircumferenceInInches}, round(FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000)), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $insertWaistCircumference = DB::statement("INSERT INTO `sc_vital_signs`.`waist_circumference` (`serverSideRowUuid`, `ptUuid`, `waistCircumferenceInInches`, `timeOfMeasurementInMilliSecs`, `notes`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', {$waistCircumferenceInInches}, round(FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000)), '{$notes}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
 
         return response()->json($insertWaistCircumference, 201);
     }
@@ -54,7 +47,7 @@ class WaistCircumferenceController extends Controller
         $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
 
-        $updateWaistCircumference = DB::statement("UPDATE `sc_vital_signs`.`waistCircumference` SET `waistCircumferenceInInches` = {$waistCircumferenceInInches}, `timeOfMeasurementInMilliSecs` = round(FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000)), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `waistCircumference`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
+        $updateWaistCircumference = DB::statement("UPDATE `sc_vital_signs`.`waist_circumference` SET `waistCircumferenceInInches` = {$waistCircumferenceInInches}, `timeOfMeasurementInMilliSecs` = round(FROM_UNIXTIME({$timeOfMeasurementInMilliSecs}/1000)), `notes` = '{$notes}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `waist_circumference`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
 
         return response()->json($updateWaistCircumference, 200);
     }

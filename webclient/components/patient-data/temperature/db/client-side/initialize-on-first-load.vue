@@ -1,17 +1,17 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeTemperatureComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeTemperatureComponent from '@/components/patient-data/temperature/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/temperature/db/client-side/structure/temperature-of-a-patient-table.js'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeTemperatureComponent,
   },
   async mounted() {
     /*
@@ -29,8 +29,8 @@ export default {
       .first()
 
     if (process.env.loadInitialDataFromServer === true) {
-      const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
-      if (proRemsFromDB.ok) {
+      const proTemperatureFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+      if (proTemperatureFromDB.ok) {
       }
     }
   },

@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class OxygenSaturation extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'oxygenSaturation';
+    protected $table = 'oxygen_saturation';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class OxygenSaturation extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'oxygenSaturationInSpo2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'oxygenSaturationInSpo2', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
