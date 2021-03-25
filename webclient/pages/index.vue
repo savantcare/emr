@@ -62,7 +62,6 @@ Vue.use(LoaderPlugin, {
         approval_prompt: '',
   });
 
-console.log(process.env.NODE_ENV,process.env,process.env)
   Vue.GoogleAuth.then(auth2 => {
         // console.log(auth2.getLastSignedInAccount())
         // console.log(gapi.auth2.getAuthInstance().signIn())
@@ -70,9 +69,9 @@ console.log(process.env.NODE_ENV,process.env,process.env)
         // console.log('currentUser: ',auth2.currentUser.get())
         const authResponse = auth2.currentUser.get().getAuthResponse()
         if(Object.keys(authResponse).length>0){
-          console.log('google login')
+          // console.log('google login')
         }else{
-          console.log('google logout')
+          // console.log('google logout')
           localStorage.removeItem('authorizedUserDetails')
         }
   })
