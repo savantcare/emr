@@ -20,7 +20,7 @@ class Bmi extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bmiInKgM2', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bmiInKgM2', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

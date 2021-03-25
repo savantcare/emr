@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'blood-pressure',
-        ctAbbr: 'cc',
+        ctAbbr: 'bp',
         ctToShow: 'patient-data/blood-pressure/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add blood-pressure',
-        ctAbbr: 'acc',
+        ctAbbr: 'abp',
         ctToShow: 'patient-data/blood-pressure/change-layer/add-blood-pressure.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit blood-pressure',
-        ctAbbr: 'ccc',
+        ctAbbr: 'cbp',
         ctToShow: 'patient-data/blood-pressure/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit blood-pressure',
-        ctAbbr: 'mccc',
+        ctAbbr: 'mcbp',
         ctToShow: 'patient-data/blood-pressure/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted blood-pressure',
-        ctAbbr: 'dcc',
+        ctAbbr: 'dbp',
         ctToShow: 'patient-data/blood-pressure/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

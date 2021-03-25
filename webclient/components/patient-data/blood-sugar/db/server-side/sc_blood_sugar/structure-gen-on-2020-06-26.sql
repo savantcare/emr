@@ -1,8 +1,8 @@
 use sc_vital_signs;
 
-DROP TABLE IF EXISTS `blood-sugar`;
+DROP TABLE IF EXISTS `blood_sugar_levels`;
 
-CREATE TABLE `bloodSugarLevels` (
+CREATE TABLE `blood_sugar_levels` (
   `serverSideRowUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ptUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `bloodSugarMgDL` int(11) DEFAULT NULL,

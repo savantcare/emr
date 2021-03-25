@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-col :span="4">
-      <b>Edit Blood Sugar</b>
-    </el-col>
+    <el-col :span="4"> <b>Blood Sugar</b> </el-col>
     <el-col :span="20">
       <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
     </el-col>
@@ -26,7 +24,6 @@ export default {
   },
 
   mounted() {
-    //    console.log(this.dataFormFields)
   },
 
   components: {
