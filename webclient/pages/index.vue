@@ -12,7 +12,7 @@
         <button  class="button--grey" v-on:click="logOutUser">Logout</button>
 
         <a
-          :href="'http://localhost/pf/'+loggedInUserDetails.publicUniqueId"
+          :href="baseUrlForP20 + '/pf/'+loggedInUserDetails.publicUniqueId"
           target="_blank"
           rel="noopener noreferrer"
           class="button--blue"
@@ -69,9 +69,9 @@ Vue.use(LoaderPlugin, {
         // console.log('currentUser: ',auth2.currentUser.get())
         const authResponse = auth2.currentUser.get().getAuthResponse()
         if(Object.keys(authResponse).length>0){
-          console.log('google login')
+          // console.log('google login')
         }else{
-          console.log('google logout')
+          // console.log('google logout')
           localStorage.removeItem('authorizedUserDetails')
         }
   })
@@ -130,7 +130,8 @@ export default {
       },
       loggedinUser: null,
       commonOrmTableForAllComponents: null,
-      loggedInUserDetails: null
+      loggedInUserDetails: null,
+      baseUrlForP20: process.env.baseUrlForP20
     }
   },
 

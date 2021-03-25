@@ -48,10 +48,24 @@ export default {
         ? 'http://ptserver:8000'
         : 'http://116.203.134.163:8000',
 
-    UseServerDBForFamilyHistory: false,
-    makeFetchPostApiCalls: false,
-    loadInitialDataFromServer: false,
-    baseUrlForLumen: 'http://localhost:3000',
+    baseUrlForP20:
+    process.env.NODE_ENV === 'dev'
+      ? 'http://localhost'
+      : process.env.NODE_ENV === 'test'
+      ? 'http://ptserver'
+      : 'http://116.203.134.163.xip.io',
+
+    UseServerDBForFamilyHistory: true,
+    makeFetchPostApiCalls: true,
+    loadInitialDataFromServer: true,
+    
+    // baseUrlForLumen: 'http://localhost:3000',
+    baseUrlForLumen:
+    process.env.NODE_ENV === 'dev'
+      ? 'http://localhost:8000'
+      : process.env.NODE_ENV === 'test'
+      ? 'http://ptserver:8000'
+      : 'http://116.203.134.163.xip.io:8000',
   },
 
   // Section 8: Nuxt.js dev-modules Factor 4 influencing build time. When I removed the following when I changed the code in the editor and saved the browser showed the changes without 2 seconds without refresh.
