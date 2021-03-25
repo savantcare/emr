@@ -64,7 +64,6 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
-      recordChangedFromSection: this.string(null),
 
       ROW_START: this.number(0),
       ROW_END: this.number(2147483648000), // this is unix_timestamp*1000 value from mariaDB for ROW_END.  When a record is created new in MariaDB system versioned table, this value is set by MariaDB. Internally everywhere timeInMilliSecs is used.
@@ -91,7 +90,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
       type: 'tribute-editor',
-      showLabel: true,
+      showLabel: false,
       // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
 
       style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',

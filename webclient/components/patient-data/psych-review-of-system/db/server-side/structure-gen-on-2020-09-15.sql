@@ -35,6 +35,5 @@ CREATE TABLE `psych_review_of_systems` (
   `malodorous` int(11) NOT NULL,
   `recordChangedByUuid` char(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `recordChangedFromIPAddress` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `recordChangedFromSection` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'patientFile',
    PRIMARY KEY (`serverSideRowUuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 WITH SYSTEM VERSIONING;
