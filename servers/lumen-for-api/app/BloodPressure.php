@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 class BloodPressure extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'bloodPressureLevels';
+    protected $table = 'blood_pressure_levels';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -19,7 +19,7 @@ class BloodPressure extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bloodPressureDiastolic','bloodPressureSystolic', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bloodPressureDiastolic','bloodPressureSystolic', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -37,4 +37,4 @@ class BloodPressure extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}  
+}

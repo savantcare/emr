@@ -1,24 +1,24 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeBloodSugarComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/blood-sugar/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeBloodSugarComponent from '@/components/patient-data/blood-sugar/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/blood-sugar/db/client-side/structure/blood-sugar-of-a-patient-table.js'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeBloodSugarComponent,
   },
   async mounted() {
     /*
         TODO: Need to restrict the load to current patient
         api is vuex-orm-axios plugin function
         When using json-server backend the code is:
-        const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
+        const proBloodSugarFromDB = await clientTbl.api().get(clientTbl.apiUrl + '/getAll')
       */
     const ptUuidFromOrm = await clientTblOfCommonForAllComponents
       .query()
@@ -29,8 +29,8 @@ export default {
       .first()
 
     if (process.env.loadInitialDataFromServer === true) {
-      const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
-      if (proRemsFromDB.ok) {
+      const proBloodSugarFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+      if (proBloodSugarFromDB.ok) {
       }
     }
   },

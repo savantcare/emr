@@ -17,13 +17,6 @@ class BmiController extends Controller
         return response()->json($bmiQueryResultObj);
     }
 
-    public function get_one_bmi($pServerSideRowUuid)
-    {
-        $bmiQueryResultObj = DB::select(DB::raw("SELECT *, round(UNIX_TIMESTAMP(ROW_START) * 1000) as ROW_START, round(UNIX_TIMESTAMP(ROW_END) * 1000) as ROW_END, UNIX_TIMESTAMP(timeOfMeasurementInMilliSecs) * 1000 as timeOfMeasurementInMilliSecs FROM sc_vital_signs.bmi FOR SYSTEM_TIME ALL WHERE serverSideRowUuid LIKE '{$pServerSideRowUuid}' order by ROW_START desc"));
-
-        return response()->json($bmiQueryResultObj);
-    }
-
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();

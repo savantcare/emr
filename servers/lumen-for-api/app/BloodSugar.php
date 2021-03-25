@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class BloodSugar extends Model
 {
     protected $connection = 'bodyMeasurementDB';
-    protected $table = 'bloodSugarLevels';
+    protected $table = 'blood_sugar_levels';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class BloodSugar extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'bloodSugarMgDL', 'timeOfMeasurementInMilliseconds', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
+        'ptUuid', 'bloodSugarMgDL', 'timeOfMeasurementInMilliSecs', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**
@@ -38,4 +38,4 @@ class BloodSugar extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-}  
+}

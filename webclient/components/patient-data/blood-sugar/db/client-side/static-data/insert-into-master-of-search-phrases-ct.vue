@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'blood-sugar',
-        ctAbbr: 'cc',
+        ctAbbr: 'bs',
         ctToShow: 'patient-data/blood-sugar/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add blood-sugar',
-        ctAbbr: 'acc',
+        ctAbbr: 'abs',
         ctToShow: 'patient-data/blood-sugar/change-layer/add-blood-sugar.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit blood-sugar',
-        ctAbbr: 'ccc',
+        ctAbbr: 'cbs',
         ctToShow: 'patient-data/blood-sugar/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit blood-sugar',
-        ctAbbr: 'mccc',
+        ctAbbr: 'mcbs',
         ctToShow: 'patient-data/blood-sugar/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted blood-sugar',
-        ctAbbr: 'dcc',
+        ctAbbr: 'dbs',
         ctToShow: 'patient-data/blood-sugar/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
