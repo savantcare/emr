@@ -1,19 +1,28 @@
 <template>
   <div>
-    <ctEditFormTemplate :_formDef="formDef" :firstProp="_rowIdForEdit" _regexForFieldSubset="subjective"></ctEditFormTemplate>
-
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
+       <el-tab-pane label="Ros Subjective" name="ros_subjective">Subjective:
+        <div v-if="activeHorizontalTab === 'ros_subjective'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="subjective" :firstProp="_rowIdForEdit" ></ctEditFormTemplate>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
         >Gateway mood symptoms. In the past 10 days, how many days have you:
-        <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="gateway.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        <div v-if="activeHorizontalTab === 'gateway_mood_symptoms'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="gateway.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="Depression" name="depression"
         >Depression
-        <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="depressive.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        <div v-if="activeHorizontalTab === 'depression'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="depressive.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="Mania" name="mania"
         >Mania/Hypomania
-        <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="mania.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        <div v-if="activeHorizontalTab === 'mania'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="mania.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        </div>        
       </el-tab-pane>
       <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
       <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
@@ -40,7 +49,7 @@ export default {
   data: function () {
     return {
       formDef: psychReviewOfSystemFormDef,
-      activeHorizontalTab: 'gateway_mood_symptoms',
+      activeHorizontalTab: 'ros_subjective',
     }
   },
   props: {

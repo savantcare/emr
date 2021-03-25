@@ -1,19 +1,25 @@
 <template>
   <div>
-    <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
-
     <el-tabs v-model="activeHorizontalTab" tab-position="left">
-      <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
-        >Gateway mood symptoms. In the past 10 days, how many days have you:
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="gateway.*"></ctAddForm>
+      <el-tab-pane label="Ros Subjective" name="ros_subjective">Subjective:
+        <div v-if="activeHorizontalTab === 'ros_subjective'">
+          <ctAddForm :_formDef="formDef" _regexForFieldSubset="subjective"></ctAddForm>
+        </div>
       </el-tab-pane>
-      <el-tab-pane label="Depression" name="depression"
-        >Depression
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="depressive.*"></ctAddForm>
+      <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms">Gateway mood symptoms. In the past 10 days, how many days have you:
+        <div v-if="activeHorizontalTab === 'gateway_mood_symptoms'">
+          <ctAddForm :_formDef="formDef" _regexForFieldSubset="gateway.*"></ctAddForm>
+        </div>
       </el-tab-pane>
-      <el-tab-pane label="Mania" name="mania"
-        >Mania/Hypomania
-        <ctAddForm :_formDef="formDef" _regexForFieldSubset="mania.*"></ctAddForm>
+      <el-tab-pane label="Depression" name="depression" >Depression
+        <div v-if="activeHorizontalTab === 'depression'">
+          <ctAddForm :_formDef="formDef" _regexForFieldSubset="depressive.*"></ctAddForm>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="Mania" name="mania" >Mania/Hypomania
+        <div v-if="activeHorizontalTab === 'mania'">
+          <ctAddForm :_formDef="formDef" _regexForFieldSubset="mania.*"></ctAddForm>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
       <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
@@ -43,13 +49,12 @@ export default {
   data: function () {
     return {
       formDef: psychReviewOfSystemFormDef,
-      activeHorizontalTab: 'gateway_mood_symptoms',
+      activeHorizontalTab: 'ros_subjective',
     }
   },
   created() {
     // Inside this fn 'this' will refer to this ct (parent) https://stackoverflow.com/questions/59826155/vue-callback-via-props-and-this
   },
-
   components: {
     ctAddForm,
   },
