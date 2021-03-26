@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'social-history',
-        ctAbbr: 'rem',
+        ctAbbr: 'sh',
         ctToShow: 'patient-data/social-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add social-history',
-        ctAbbr: 'arem',
+        ctAbbr: 'ash',
         ctToShow: 'patient-data/social-history/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit social-history',
-        ctAbbr: 'crem',
+        ctAbbr: 'csh',
         ctToShow: 'patient-data/social-history/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit social-history',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcsh',
         ctToShow: 'patient-data/social-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted social-history',
-        ctAbbr: 'drem',
+        ctAbbr: 'dsh',
         ctToShow: 'patient-data/social-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

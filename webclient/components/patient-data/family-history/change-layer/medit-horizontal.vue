@@ -2,28 +2,26 @@
 
 <template>
   <div>
-    <div v-for="(rem, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+    <div v-for="(fh, index) in daUniqueIdOfEachRowFromOrm" :key="index">
       <el-card>
-        <!-- For diff types of formType see remcl/edit-design-1.vue -->
-        <ctChangeRem :first-prop="rem['clientSideUniqRowId']" form-type="embedded"></ctChangeRem>
+        <!-- For diff types of formType see fhcl/edit-design-1.vue -->
+        <ctChangeFh :first-prop="fh['clientSideUniqRowId']" form-type="embedded" />
       </el-card>
     </div>
   </div>
 </template>
 <script>
 import clientTbl from '../db/client-side/structure/family-history-of-a-patient-table.js'
-import ctChangeRem from './fh-edit.vue'
+import ctChangeFh from './fh-edit.vue'
 export default {
-  components: { ctChangeRem },
+  components: { ctChangeFh },
   data() {
     return {}
   },
   computed: {
     // console: () => console, // Ref: https://stackoverflow.com/questions/51080447/
     daUniqueIdOfEachRowFromOrm() {
-      let daUniqueIdOfEachRowFromOrm = new Array()
       const resultArFromOrm = clientTbl.fnGetAllRowsPossibleToEdit()
-      // console.log(resultArFromOrm)
       return resultArFromOrm
     },
   },

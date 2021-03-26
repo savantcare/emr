@@ -5,16 +5,16 @@
     <div v-for="(pn, index) in daUniqueIdOfEachRowFromOrm" :key="index">
       <el-card>
         <!-- For diff types of formType see remcl/edit-design-1.vue -->
-        <ctChangeRem :first-prop="pn['clientSideUniqRowId']" form-type="embedded"></ctChangeRem>
+        <ctChangePn :first-prop="pn['clientSideUniqRowId']" form-type="embedded" />
       </el-card>
     </div>
   </div>
 </template>
 <script>
 import clientTbl from '../db/client-side/structure/process-notes-of-a-patient-table.js'
-import ctChangeRem from './edit-design-1.vue'
+import ctChangePn from './edit-design-1.vue'
 export default {
-  components: { ctChangeRem },
+  components: { ctChangePn },
   data() {
     return {}
   },
