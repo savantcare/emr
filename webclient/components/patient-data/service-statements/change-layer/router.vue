@@ -1,10 +1,8 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    Edit service statements
     <serviceStatementsEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
-    Add service statements
     <serviceStatementsAdd />
   </div>
 </template>

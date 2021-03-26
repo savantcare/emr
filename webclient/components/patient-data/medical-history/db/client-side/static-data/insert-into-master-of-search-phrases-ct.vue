@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'medical-history',
-        ctAbbr: 'rem',
+        ctAbbr: 'mh',
         ctToShow: 'patient-data/medical-history/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add medical-history',
-        ctAbbr: 'arem',
+        ctAbbr: 'amh',
         ctToShow: 'patient-data/medical-history/change-layer/medical-history-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit medical-history',
-        ctAbbr: 'crem',
+        ctAbbr: 'cmh',
         ctToShow: 'patient-data/medical-history/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit medical-history',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcmh',
         ctToShow: 'patient-data/medical-history/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted medical-history',
-        ctAbbr: 'drem',
+        ctAbbr: 'dmh',
         ctToShow: 'patient-data/medical-history/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

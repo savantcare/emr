@@ -2,19 +2,19 @@
 
 <template>
   <div>
-    <div v-for="(rem, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+    <div v-for="(mh, index) in daUniqueIdOfEachRowFromOrm" :key="index">
       <el-card>
-        <!-- For diff types of formType see remcl/edit-design-1.vue -->
-        <ctChangeRem :first-prop="rem['clientSideUniqRowId']" form-type="embedded"></ctChangeRem>
+        <!-- For diff types of formType see mhcl/edit-design-1.vue -->
+        <ctChangemh :first-prop="mh['clientSideUniqRowId']" form-type="embedded" />
       </el-card>
     </div>
   </div>
 </template>
 <script>
 import clientTbl from '../db/client-side/structure/medical-history-of-a-patient-table.js'
-import ctChangeRem from './fh-edit.vue'
+import ctChangemh from './fh-edit.vue'
 export default {
-  components: { ctChangeRem },
+  components: { ctChangemh },
   data() {
     return {}
   },
