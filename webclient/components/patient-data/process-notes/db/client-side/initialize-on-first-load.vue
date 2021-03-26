@@ -1,17 +1,17 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializeProcessNotesComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/process-notes/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializeProcessNotesComponent from '@/components/patient-data/process-notes/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/process-notes/db/client-side/structure/process-notes-of-a-patient-table.js'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializeProcessNotesComponent,
   },
   async mounted() {
     /*

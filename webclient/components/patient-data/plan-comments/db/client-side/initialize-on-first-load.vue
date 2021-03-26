@@ -1,17 +1,17 @@
 <template>
   <div>
-    <initializeRecommendationComponent />
+    <initializePlanCommentsComponent />
   </div>
 </template>
 
 <script>
-import initializeRecommendationComponent from '@/components/patient-data/plan-comments/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
+import initializePlanCommentsComponent from '@/components/patient-data/plan-comments/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 import clientTbl from '~/components/patient-data/plan-comments/db/client-side/structure/plan-comments-of-a-patient-table.js'
 import clientTblOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 export default {
   components: {
-    initializeRecommendationComponent,
+    initializePlanCommentsComponent,
   },
   async mounted() {
     /*

@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'process-notes',
-        ctAbbr: 'rem',
+        ctAbbr: 'pn',
         ctToShow: 'patient-data/process-notes/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add process-notes',
-        ctAbbr: 'arem',
+        ctAbbr: 'apn',
         ctToShow: 'patient-data/process-notes/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit process-notes',
-        ctAbbr: 'crem',
+        ctAbbr: 'cpn',
         ctToShow: 'patient-data/process-notes/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit process-notes',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcpn',
         ctToShow: 'patient-data/process-notes/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted process-notes',
-        ctAbbr: 'drem',
+        ctAbbr: 'dpn',
         ctToShow: 'patient-data/process-notes/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
