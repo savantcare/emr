@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'plan-comments',
-        ctAbbr: 'rem',
+        ctAbbr: 'pc',
         ctToShow: 'patient-data/plan-comments/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add plan-comments',
-        ctAbbr: 'arem',
+        ctAbbr: 'apc',
         ctToShow: 'patient-data/plan-comments/change-layer/add-ct.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit plan-comments',
-        ctAbbr: 'crem',
+        ctAbbr: 'cpc',
         ctToShow: 'patient-data/plan-comments/change-layer/edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit plan-comments',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcpc',
         ctToShow: 'patient-data/plan-comments/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted plan-comments',
-        ctAbbr: 'drem',
+        ctAbbr: 'dpc',
         ctToShow: 'patient-data/plan-comments/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

@@ -15,7 +15,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'medication-order',
-        ctAbbr: 'rem',
+        ctAbbr: 'med',
         ctToShow: 'patient-data/medication-order/view-layer/timeline-ct.vue',
         displayLocation: 'PresentTimeStateViewLayer',
       },
@@ -23,7 +23,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'add medication-order',
-        ctAbbr: 'arem',
+        ctAbbr: 'amed',
         ctToShow: 'patient-data/medication-order/change-layer/medication-order-add.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -32,7 +32,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'edit medication-order',
-        ctAbbr: 'crem',
+        ctAbbr: 'cmed',
         ctToShow: 'patient-data/medication-order/change-layer/fh-edit.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
@@ -42,7 +42,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'multi edit medication-order',
-        ctAbbr: 'mcrem',
+        ctAbbr: 'mcmed',
         ctToShow: 'patient-data/medication-order/change-layer/medit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
@@ -51,7 +51,7 @@ export default {
     clientTblOfCtSearchPhrases.insert({
       data: {
         value: 'deleted medication-order',
-        ctAbbr: 'drem',
+        ctAbbr: 'dmed',
         ctToShow: 'patient-data/medication-order/view-layer/deleted.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',

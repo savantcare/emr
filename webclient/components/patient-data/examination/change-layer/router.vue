@@ -1,10 +1,8 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    Edit Examination
     <examinationEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
-    Add examination
     <examinationAdd />
   </div>
 </template>

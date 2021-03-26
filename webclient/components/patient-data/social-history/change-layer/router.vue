@@ -1,6 +1,5 @@
 <template>
   <div v-if="rowIdForEdit > 0">
-    Edit social history
     <socialHistoryEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>

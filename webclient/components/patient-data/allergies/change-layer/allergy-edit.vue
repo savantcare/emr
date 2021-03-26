@@ -1,10 +1,17 @@
 <template>
-  <ctEditFormTemplate :_formDef="formDef" :firstProp="firstProp"></ctEditFormTemplate>
+  <div>
+    <div v-for="(allergy, index) in daUniqueIdOfEachRowFromOrm" :key="index">
+      <el-card>
+        <ctEditForm :_formDef="formDef" :first-prop="allergy['clientSideUniqRowId']" form-type="embedded" />
+      </el-card>
+    </div>
+  </div>
 </template>
 
 <script>
-import ctEditFormTemplate from '@/components//papers/change-appt-note/templates/edit-form.vue'
+import ctEditForm from '@/components//papers/change-appt-note/templates/edit-form.vue'
 import { allergiesFormDef } from '@/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
+import allergiesTbl from '@/components/patient-data/allergies/db/client-side/structure/allergies-of-a-patient-table.js'
 
 export default {
   data: function () {
@@ -22,7 +29,14 @@ export default {
   },
 
   components: {
-    ctEditFormTemplate,
+    ctEditForm,
+  },
+
+  computed: {
+    daUniqueIdOfEachRowFromOrm() {
+      const resultArFromOrm = allergiesTbl.fnGetAllRowsPossibleToEdit()
+      return resultArFromOrm
+    },
   },
 }
 </script>
