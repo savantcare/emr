@@ -10,7 +10,7 @@
   -->
   <div>
     <div v-if="!loggedInUuid" class="text-center">
-      <a href="http://localhost"><h1>Please login</h1></a>
+      <a :href="baseUrlForP20"><h1>Please login</h1></a>
     </div>
     <div v-else :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
       <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
@@ -182,6 +182,7 @@ export default {
     return {
       fullscreen: false,
       loggedInUuid: null,
+      baseUrlForP20: process.env.baseUrlForP20
     }
   },
   created() {
