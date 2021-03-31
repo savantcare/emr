@@ -58,7 +58,7 @@ export default {
   computed: {
     present() {
       const status = allergiesPresentClientTbl.all()
-      if (status && status.length > 1) {
+      if (status && status.length >= 1) {
         const value = status[status.length - 1].present;
         return value
       }

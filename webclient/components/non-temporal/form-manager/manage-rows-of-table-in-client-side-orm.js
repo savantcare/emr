@@ -972,8 +972,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           },
         })
 
-        let response = {}
-        if (process.env.makeFetchPostApiCalls === true) {
+        //let response = {}
+        //if (process.env.makeFetchPostApiCalls === true) {
           const response = await fetch(this.apiUrl + '/' + changedRowBeingSaved.serverSideRowUuid, {
             method: 'PUT',
             headers: {
@@ -985,9 +985,9 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               data: changedRowBeingSaved,
             }),
           })
-        } else {
-          response.ok = true
-        }
+        //} else {
+        //  response.ok = true
+        //}
         if (!response.ok) {
           /* Goal: Update the value of 'vnRowStateInSession' to success or failure depending on the api response */
           this.update({
@@ -998,10 +998,10 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           })
           console.log('Failed to update')
         } else {
-          this.$message({
+          /*this.$message({
             type: 'success',
             message: 'Row updated successfully.',
-          })
+          })*/
           /* Goal: Update old version of the reminder's ROW_END to current timestamp if change is successful
           Edge case: Say id 2 is changed that created id 3. User then closes the change layer. The table now displays id 3. Now when user clicks change for id 3 firstProp is 3.
           dnClientIdOfRowToChange is = firstProp. So dnClientIdOfRowToChange is also 3. But 3 is the new changed changedRowBeingSaved. And we want to set ROW_END for id 2 and not id 3
@@ -1052,7 +1052,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
             where: changedRowBeingSaved.clientSideUniqRowId,
             data: {
               vnRowStateInSession: rowState.SameAsDB,
-              ROW_START: Math.floor(Date.now()), // This overwites prev ROW_START. This is done so new rows ROW_START does not overlap the ROW that was just endeed in prev line of code.
+              //ROW_START: Math.floor(Date.now()), // This overwites prev ROW_START. This is done so new rows ROW_START does not overlap the ROW that was just endeed in prev line of code.
             },
           })
           // console.log('update success')
