@@ -401,7 +401,25 @@ export default {
           .where('ROW_END', (value) => value > pApptObj['ROW_END']) // Row was locked after the appt was locked. hence row was valid during the appt
           .where('ROW_START', (value) => value < pApptObj['ROW_END']) // Row was created before the appt was locked.
           .where('vnRowStateInSession', rowState.SameAsDB)
+          .orderBy('ROW_START', 'asc')
           .get()
+
+        const uniqueUuidRows = []
+        for (let i = 0; i < arOfObjectsFromClientDB.length; i++) {
+          let foundInArToReturn = false
+          for (let j = 0; j < uniqueUuidRows.length; j++) {
+            if (arOfObjectsFromClientDB[i].serverSideRowUuid === uniqueUuidRows[j].serverSideRowUuid) {
+              uniqueUuidRows[j] = arOfObjectsFromClientDB[i]
+              foundInArToReturn = true
+            }
+          }
+          if (foundInArToReturn) {
+          } else {
+            uniqueUuidRows.push(arOfObjectsFromClientDB[i])
+          }
+        }
+
+        return uniqueUuidRows
       }
       return arOfObjectsFromClientDB
     },
