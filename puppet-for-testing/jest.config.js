@@ -1,10 +1,12 @@
 module.exports = {
   preset: "jest-puppeteer",
   globals: {
-    URL:
-      process.env.NODE_ENV === "test"
-        ? "http://webclient:80/pf/abcd"
-        : "http://localhost:80/pf/abcd", // change URL as per NODE_ENV
+    baseUrl:
+      process.env.NODE_ENV === 'dev'
+        ? 'http://localhost/'
+        : process.env.NODE_ENV === 'test'
+        ? 'http://ptserver:8000'
+        : 'http://116.203.134.163:8000',
   },
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start-test": "export NODE_ENV=dev && npx jest",
-    "start-test-on-git": "export NODE_ENV=test && npx jest"
+    "start-dev": "export NODE_ENV=dev && npx jest",
+    "start-test": "export NODE_ENV=test && npx jest",
+    "start-prod": "export NODE_ENV=prod & npx jest"
   },
   "dependencies": {
     "cryptiles": "^4.1.3",
