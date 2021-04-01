@@ -37,7 +37,7 @@ class ServiceStatementController extends Controller
 
         $serviceStatement = ServiceStatement::insertGetId($serviceStatementData);
 
-        $channel = 'MsgFromSktForServiceStatementToAdd';
+       /* $channel = 'MsgFromSktForServiceStatementToAdd';
         $message = array(
             'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
             'total_minutes_in_psychotherapy' => $requestData['data']['total_minutes_in_psychotherapy'],
@@ -47,7 +47,7 @@ class ServiceStatementController extends Controller
         );
 
         $redis = new \Predis\Client();
-        $redis->publish($channel, json_encode($message));
+        $redis->publish($channel, json_encode($message));*/
 
         // $serviceStatement = ServiceStatement::create($request->all());
         return response()->json($serviceStatement, 201);
