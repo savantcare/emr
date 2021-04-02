@@ -590,6 +590,7 @@ export const psychReviewOfSystemFormDef = {
   maxNumberOfTemporallyValidRows: 1,
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryRowInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; column-gap: 1rem;',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'subjective',

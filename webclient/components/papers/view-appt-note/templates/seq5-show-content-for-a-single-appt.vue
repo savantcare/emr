@@ -102,7 +102,7 @@
 
       <!-- INPUT / TEXT AREA -->
       <div
-        v-else-if="_fieldDef.type.includes('text') || _fieldDef.type.includes('tribute')"
+        v-else-if="_fieldDef.type.includes('text') || _fieldDef.type.includes('tribute') || _fieldDef.type.includes('autocomplete')"
         id="field-value-in-db"
         style="display: inline"
       >

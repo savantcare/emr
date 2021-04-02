@@ -69,6 +69,7 @@ export const remindersFormDef = {
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 4fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: ['description'],
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
