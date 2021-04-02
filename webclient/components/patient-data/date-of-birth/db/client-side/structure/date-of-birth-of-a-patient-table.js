@@ -4,6 +4,7 @@ import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-
 const { v1: uuidv1 } = require('uuid')
 let count = 0
 const intUniqueId = () => ++count
+const defaultValueOfOnsetInMilliSecs = () => Math.floor(Date.now())
 
 export default class date_of_birth extends clientTblManage {
   static entity = 'tblDateOfBirth'
