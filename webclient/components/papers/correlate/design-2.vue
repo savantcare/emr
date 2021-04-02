@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon">Correlate</el-button>
+    <el-button round type="primary" size="mini" @click="handleClickOnSettingsIcon" disabled>Correlate</el-button>
     <el-dialog title="Correlate" :visible.sync="dIsSettingsDialogVisible" width="100%" top="5vh">
       <correlateGraphCt></correlateGraphCt>
     </el-dialog>

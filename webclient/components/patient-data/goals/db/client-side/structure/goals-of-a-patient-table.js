@@ -74,7 +74,7 @@ export const goalsFormDef = {
   showResetFormButton: false,
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
-
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 1rem',
   /*additionalRowActions: [
     {
       textInUi: 'Rate',

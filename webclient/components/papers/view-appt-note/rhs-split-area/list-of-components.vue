@@ -3,7 +3,7 @@
     <div style="display: grid; grid-template-columns: repeat(6, 1fr); width: 700px">
       <div><ctCorrelate /></div>
       <div><ctScBrainDialog /></div>
-      <div><el-button size="mini" round type="primary">Pt data timeline</el-button></div>
+      <div><el-button size="mini" round type="primary" disabled>Pt data timeline</el-button></div>
       <div><ctCoding /></div>
       <div style="vertical-align: top">
         <!-- 
