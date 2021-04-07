@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="rowIdForPresent > 0">
+    <div v-if="cfIsAllergyPresentForEdit > 0">
       <ctEditForm :_formDef="allergiesPresentFormDef" :firstProp="rowIdForPresent" />
     </div>
     <div v-else>
       <ctAddForm :_formDef="allergiesPresentFormDef" />
     </div>
-    <div v-if="present === '#Yes#'">
+    <div v-if="cfPresent === '#Yes#'">
       <el-divider>Add</el-divider>
         <allergiesAdd />
       <div v-if="rowIdForPresent > 0">
@@ -48,21 +48,25 @@ export default {
   },
 
   mounted() {
-    const allergiesPresentStatus = allergiesPresentClientTbl.isThereSavedPresentDataInTable()
-    if (allergiesPresentStatus) {
-      this.rowIdForPresent = allergiesPresentStatus[allergiesPresentStatus.length - 1]['clientSideUniqRowId']
-    }
-
+    this.isAllergyPresentForEdit
   },
 
   computed: {
-    present() {
+    cfPresent() {
       const status = allergiesPresentClientTbl.all()
       if (status && status.length >= 1) {
         const value = status[status.length - 1].present;
         return value
       }
     },
+
+    cfIsAllergyPresentForEdit(){
+      const allergiesPresentStatus = allergiesPresentClientTbl.isThereSavedPresentDataInTable()
+      if (allergiesPresentStatus) {
+        this.rowIdForPresent = allergiesPresentStatus[allergiesPresentStatus.length - 1]['clientSideUniqRowId']
+      }
+      return this.rowIdForPresent;
+    }
   },
 }
 </script>
