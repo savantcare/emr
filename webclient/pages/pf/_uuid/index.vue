@@ -274,19 +274,10 @@ export default {
         },
       })
     },
-    toggleFullScreen() {
-      clientSideTableOfCommonForAllComponents.insert({
-        data: {
-          fieldName:
-            'fullscreen',
-          fieldValue: false,
-        },
-      })
-
-
+    /*toggleFullScreen() {
       this.$refs['fullscreen'].toggle() // recommended
       // this.fullscreen = !this.fullscreen // deprecated
-    },
+    },*/
     fullscreenChange(fullscreen) {
       this.fullscreen = fullscreen
     },
