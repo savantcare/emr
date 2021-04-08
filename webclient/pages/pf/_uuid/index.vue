@@ -13,7 +13,7 @@
       <a :href="baseUrlForP20"><h1>Please login</h1></a>
     </div>
     <div v-else :style="cfSendFontSizeCustomizedByUserInPercentageToHtml">
-      <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE">
+      <fullscreen class="wrapper" ref="fullscreen" @change="fullscreenChange" background="#EEE" :init="cfGetFullScreenMode">
         <!-- GOAL1: Initialize the keyboard and mouse controls -->
         <ctToGiveQuickAccessToFeatures></ctToGiveQuickAccessToFeatures>
 
@@ -62,11 +62,11 @@
         <!-- GOAL10: Init -->
         <ctInitOfComponents></ctInitOfComponents>
 
-        <div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
+        <!--<div :class="[fullscreen ? 'full-screen-button-mode-on' : 'full-screen-button-mode-off']">
           <el-button round size="mini" class="btn-map-fullscreen" @click="toggleFullScreen" type="primary"
             ><i :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i>
           </el-button>
-        </div>
+        </div>-->
       </fullscreen>
     </div>
   </div>
@@ -249,6 +249,20 @@ export default {
 
       document.querySelector('html').style.fontSize = font_size_of_root
     },
+   
+    async cfGetFullScreenMode(){
+      const full_screen_mode = await clientSideTableOfCommonForAllComponents.find(
+        'fullscreen'
+      )
+      
+      if(full_screen_mode){
+        if (full_screen_mode['fieldValue'] == 'true') {
+         this.$refs['fullscreen'].toggle(true)
+        } else {
+          this.$refs['fullscreen'].toggle(false)
+        }
+      }
+    },
   },
   methods: {
     mfUpdateSocketClientId() {
@@ -260,10 +274,10 @@ export default {
         },
       })
     },
-    toggleFullScreen() {
+    /*toggleFullScreen() {
       this.$refs['fullscreen'].toggle() // recommended
       // this.fullscreen = !this.fullscreen // deprecated
-    },
+    },*/
     fullscreenChange(fullscreen) {
       this.fullscreen = fullscreen
     },
