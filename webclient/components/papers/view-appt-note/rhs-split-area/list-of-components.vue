@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="display: grid; grid-template-columns: repeat(6, 1fr); width: 700px">
+    <div style="display: grid; grid-template-columns: repeat(7, 1fr); width: 690px">
       <div><ctCorrelate /></div>
       <div><ctScBrainDialog /></div>
       <div><el-button size="mini" round type="primary" disabled>Pt data timeline</el-button></div>
@@ -15,6 +15,11 @@
         <lockButtonPrintSection :_apptId="showNoteForApptId"></lockButtonPrintSection>
       </div>
       <div><ctSettings></ctSettings></div>
+      <div>
+        <el-button round size="mini" class="btn-map-fullscreen" @click="mfToggleFullScreen" type="primary"
+          ><i :class="[fullscreen ? 'el-icon-close' : 'el-icon-full-screen']"></i>
+        </el-button>
+      </div>
     </div>
     <div><apptNote _side="right" /></div>
   </div>
@@ -28,6 +33,7 @@ import ctSettings from '@/components/papers/view-appt-note/rhs-split-area/header
 
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
 import apptNote from '@/components/papers/view-appt-note/templates/seq1-decide-comparison-or-single-note-and-their-appt-id.vue'
+import clientSideTableOfCommonForAllComponents from '~/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 import lockButtonPrintSection from './header/allow-note-lock-button.vue'
 
@@ -43,6 +49,7 @@ export default {
   data() {
     return {
       showNoteForApptId: 0,
+      fullscreen: false,
     }
   },
   watch: {
@@ -75,5 +82,14 @@ export default {
       return this.showNoteForApptId
     },
   },
+  methods: {
+    mfToggleFullScreen() {
+      this.fullscreen = !this.fullscreen
+
+      clientSideTableOfCommonForAllComponents.insertOrUpdate({
+        data: [{ fieldName: 'fullscreen', fieldValue: this.fullscreen }],
+      })
+    },
+  }
 }
 </script>
