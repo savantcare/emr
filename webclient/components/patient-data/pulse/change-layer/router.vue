@@ -1,5 +1,5 @@
 <template>
-  <div v-if="rowIdForEdit > 0">
+  <div v-if="cfGetRowIdForEdit > 0">
     <pulseEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
@@ -22,10 +22,16 @@ export default {
     pulseAdd,
   },
   mounted() {
-    const status = pulseTbl.isThereSavedPresentDataInTable()
-    if (status) {
-      this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
-    }
+    
+  },
+  computed: {
+    cfGetRowIdForEdit(){
+      const status = pulseTbl.isThereSavedPresentDataInTable()
+      if (status) {
+        this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
+      }
+      return this.rowIdForEdit
+    },
   },
 }
 </script>
