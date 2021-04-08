@@ -1,5 +1,5 @@
 <template>
-  <div v-if="rowIdForEdit > 0">
+  <div v-if="cfGetRowIdForEdit > 0">
     <heightEdit :_rowIdForEdit="rowIdForEdit" :key="rowIdForEdit" />
   </div>
   <div v-else>
@@ -23,10 +23,16 @@ export default {
     heightAdd,
   },
   mounted() {
-    const status = heightTbl.isThereSavedPresentDataInTable()
-    if (status) {
-      this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
-    }
+   
+  },
+  computed: {
+    cfGetRowIdForEdit(){
+      const status = heightTbl.isThereSavedPresentDataInTable()
+      if (status) {
+        this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
+      }
+      return this.rowIdForEdit
+    },
   },
 }
 </script>
