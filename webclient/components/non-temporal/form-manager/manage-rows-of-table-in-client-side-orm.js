@@ -721,7 +721,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
   // This function will return 1 (Success) or 0 (Failure)
   static async sfSendNewChangedRowsToServer() {
     const arFromClientTbl = this.query().where('vnRowStateInSession', rowState.New_Changed_FormValidationPass).get()
-
+    let valSavedInDb = 0
     /*
       Q) Why we use promise in following code?
       A)
@@ -762,6 +762,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
               },
             })
           } else {
+            valSavedInDb = 1
+
             // Handle api returned success
             this.update({
               where: (record) => record.clientSideUniqRowId === row.clientSideUniqRowId,
@@ -798,6 +800,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
     })
 
     await Promise.all(promises)
+    return valSavedInDb
   }
 
   static async sfMakeApiCAll(pOrmRowArray) {
@@ -963,6 +966,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       .orWhere('vnRowStateInSession', rowState.SameAsDB_Copy_Changed__FormValidationPass_RequestedSave_ApiError)
       .get()
 
+    let valSavedInDb = 0
     const promises = arFromClientTbl.map(async (changedRowBeingSaved) => {
       try {
         await this.update({
@@ -998,6 +1002,7 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
           })
           console.log('Failed to update')
         } else {
+          valSavedInDb = 1
           /*this.$message({
             type: 'success',
             message: 'Row updated successfully.',
@@ -1070,6 +1075,8 @@ Decision: We will make arOrmRowsCached as a 3D array. Where the 1st D will be en
       }
     })
     // console.log('sfSendCopyChangedRowsToServer-> ', this.dnOrmUuidOfRowToChange)
+    await Promise.all(promises)
+    return valSavedInDb
   }
 }
 

@@ -29,6 +29,7 @@
       @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
       <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+      <span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>
     </div>
     <div
       v-else
@@ -174,6 +175,7 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       currentSlideNumber: 0,
+      dblIsSavedNotification: false,
       options: {
         responsive: [
           { end: 576, size: 1 },
@@ -234,6 +236,18 @@ export default {
       return
     }
     this.currentApptObj = await clientTblOfAppointments.find(this._apptId)
+
+    const eventName = 'event-to-set-notification-for-save'
+    this.$root.$on(eventName, (pEntity) => {
+      if(pEntity === this._formDef.id){
+        this.dblIsSavedNotification = true 
+
+        let thisDocument = this
+        setTimeout(function(){ 
+          thisDocument.dblIsSavedNotification = false 
+        }, 3000, thisDocument);
+      }
+    })
   },
   computed: {
     cfGetDataRowStyle() {
