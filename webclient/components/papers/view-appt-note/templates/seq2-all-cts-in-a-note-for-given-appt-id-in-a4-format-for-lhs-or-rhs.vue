@@ -69,7 +69,7 @@
       <el-divider class="section-header"><h3>Assessment</h3></el-divider>
 
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
-      <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />
+      <!--<ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="screens" />-->
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="goals" />
       <el-divider class="section-header"><h3>Plan</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="medication_orders" />
@@ -127,7 +127,6 @@ export default {
     apptNotePrintableView,
     agePaperNote,
     headerPaperNote,
-    ctPaperNoteStructure,
     ctPaperNoteStructure,
   },
 
