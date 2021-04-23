@@ -2,7 +2,6 @@ const { loginP20 } = require("../../login.js");
 const timeout = process.env.SLOWMO ? 30000 : 50000;
 
 beforeAll(async () => {
-  jest.setTimeout(10000);
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" }); // Goto the patient file link and wait for loading
 });
 
@@ -27,7 +26,7 @@ describe("Test Recommendation for Addition", () => {
     await ptProfilePage.click('.el-card > .el-card__body > div > .el-button > .el-icon-circle-close');
     await ptProfilePage.waitFor(500);
   }, timeout);
-
+  
   test('Add recommendations skill', async () => {
     await ptProfilePage.waitForSelector('div:nth-child(2) > div > div > .A4 > div > div:nth-child(6) > div > div > b');
     await ptProfilePage.click('div:nth-child(2) > div > div > .A4 > div > div:nth-child(6) > div > div > b');
@@ -61,6 +60,9 @@ describe("Test Recommendation for Addition", () => {
     await ptProfilePage.click('#pane-recommendations div:nth-child(1) > .el-card > .el-card__body > div > div > div > .el-button > span')
     await ptProfilePage.waitFor(500);
 
+    // await ptProfilePage.waitForSelector('.el-message-box > .el-message-box__content > .el-message-box__input > .el-input > .el-input__inner')
+    // await ptProfilePage.click('.el-message-box > .el-message-box__content > .el-message-box__input > .el-input > .el-input__inner')
+    
     await ptProfilePage.waitForSelector('.el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span')
     await ptProfilePage.click('.el-message-box__wrapper > .el-message-box > .el-message-box__btns > .el-button--primary > span')
     await ptProfilePage.waitFor(500);

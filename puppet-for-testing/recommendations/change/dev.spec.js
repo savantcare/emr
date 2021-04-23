@@ -2,7 +2,6 @@ const { loginP20 } = require("../../login.js");
 const timeout = process.env.SLOWMO ? 30000 : 50000;
 
 beforeAll(async () => {
-  jest.setTimeout(10000);
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" }); // Goto the patient file link and wait for loading
 });
 
@@ -41,6 +40,31 @@ describe("Test Recommendation for Addition", () => {
     })
     await ptProfilePage.waitFor(500);
     await ptProfilePage.type('#pane-recommendations #description > .v-tribute > .el-textarea__inner','addText');
+
+    await ptProfilePage.keyboard.press('Escape');
+
+    await ptProfilePage.waitForSelector('div:nth-child(5) > div > div > .el-button > span')
+    await ptProfilePage.click('div:nth-child(5) > div > div > .el-button > span')
+    
+    await ptProfilePage.waitForSelector('div > div:nth-child(6) > div > div > span:nth-child(2)')
+    
+    element = await ptProfilePage.waitForSelector('div > div:nth-child(6) > div > div > span:nth-child(2)')
+    await expect(element).toMatch('Saved successfully')
+  }, timeout);
+
+  test('Change recommendations skill', async () => {
+    await ptProfilePage.waitForSelector('div:nth-child(2) > div > div > .A4 > div > div:nth-child(6) > div > div > b');
+    await ptProfilePage.click('div:nth-child(2) > div > div > .A4 > div > div:nth-child(6) > div > div > b');
+    await ptProfilePage.waitFor(500);
+
+    await ptProfilePage.waitForSelector('#pane-recommendations .el-card__body > div > div > div > div > #description > .v-tribute > .el-textarea__inner');
+    await ptProfilePage.click('#pane-recommendations .el-card__body > div > div > div > div > #description > .v-tribute > .el-textarea__inner');
+    
+    await ptProfilePage.evaluate(function() {
+      document.querySelector('#pane-recommendations .el-card__body > div > div > div > div > #description > .v-tribute > .el-textarea__inner').value = '';
+    })
+    await ptProfilePage.waitFor(500);
+    await ptProfilePage.type('#pane-recommendations .el-card__body > div > div > div > div > #description > .v-tribute > .el-textarea__inner','changeText');
 
     await ptProfilePage.keyboard.press('Escape');
 
