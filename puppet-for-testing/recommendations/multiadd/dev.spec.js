@@ -5,7 +5,7 @@ beforeAll(async () => {
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" }); // Goto the patient file link and wait for loading
 });
 
-describe("Test Recommendation for Addition", () => {
+describe("Test Recommendation for Multi Addition", () => {
   let element, ptProfilePage, profilePage;
   
   test("Title of the page and Login to Patient File", async () => {
