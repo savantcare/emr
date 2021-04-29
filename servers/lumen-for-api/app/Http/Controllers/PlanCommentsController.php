@@ -21,29 +21,27 @@ class PlanCommentsController extends Controller
     public function create(Request $pRequest)
     {
         $requestData = $pRequest->all();
-
-        $serverSideRowUuid = $requestData['data']['serverSideRowUuid'];
-        $ptUuid = $requestData['data']['ptUuid'];
-        $description = $requestData['data']['description'];
-        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
         $recordChangedFromIPAddress = $this->get_client_ip();
+        $planCommentsData = array(
+            'serverSideRowUuid' => $requestData['data']['serverSideRowUuid'],
+            'ptUuid' => $requestData['data']['ptUuid'],
+            'description' => $requestData['data']['description'],
+            'recordChangedByUuid' => $requestData['data']['recordChangedByUuid'],
+            'recordChangedFromIPAddress' => $recordChangedFromIPAddress
+        );
 
-        $insertPlanComments = DB::statement("INSERT INTO `sc_plan_comments`.`plan_comments` (`serverSideRowUuid`, `ptUuid`, `description`, `recordChangedByUuid`, `recordChangedFromIPAddress`) VALUES ('{$serverSideRowUuid}', '{$ptUuid}', '{$description}', '{$recordChangedByUuid}', '{$recordChangedFromIPAddress}')");
+        $planComments = PlanComments::insertGetId($planCommentsData);
 
-        return response()->json($insertPlanComments, 201);
+        return response()->json($planComments, 201);
     }
 
     public function update($pServerSideRowUuid, Request $pRequest)
     {
         $requestData = $pRequest->all();
+        $planComments = PlanComments::findOrFail($pServerSideRowUuid);
+        $planComments->update($requestData['data']);
 
-        $description = $requestData['data']['description'];
-        $recordChangedByUuid = $requestData['data']['recordChangedByUuid'];
-        $recordChangedFromIPAddress = $this->get_client_ip();
-
-        $updatePlanComments = DB::statement("UPDATE `sc_plan_comments`.`plan_comments` SET `description` = '{$description}', `recordChangedByUuid` = '{$recordChangedByUuid}', `recordChangedFromIPAddress` = '{$recordChangedFromIPAddress}' WHERE `plan_comments`.`serverSideRowUuid` = '{$pServerSideRowUuid}'");
-
-        return response()->json($updatePlanComments, 200);
+        return response()->json($planComments, 200);
     }
 
     public function delete($pServerSideRowUuid, Request $pRequest)
@@ -53,13 +51,13 @@ class PlanCommentsController extends Controller
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
-                'deletedNote' => $requestData['dNotes']
+                'notes' => $requestData['dNotes']
             );
             $planComments->update($updateData);
         }
 
         $planComments->delete();
-        
+
         return response('Deleted successfully', 200);
     }
 

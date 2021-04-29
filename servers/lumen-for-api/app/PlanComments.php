@@ -20,7 +20,7 @@ class PlanComments extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'description', 'recordChangedByUuid',
+        'ptUuid', 'description', 'notes', 'recordChangedByUuid', 'recordChangedFromIPAddress'
     ];
 
     /**

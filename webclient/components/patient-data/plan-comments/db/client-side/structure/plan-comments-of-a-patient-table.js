@@ -9,13 +9,13 @@ const intUniqueId = () => ++count
 export default class plan_comments extends clientTblManage {
   static entity = 'tblPlanComments'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/plan-comments/getAll
 
@@ -39,6 +39,7 @@ export default class plan_comments extends clientTblManage {
       serverSideRowUuid: this.uid(() => uuidv1()),
       ptUuid: this.string(null),
       description: this.string(''),
+      notes: this.string(null).nullable(), // Ref: https://vuex-orm.org/guide/model/defining-models.html#primitive-types. Without specifying .null notes gets the default value of "null",
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -67,6 +68,7 @@ export const planCommentsFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: true,
 
   // Ref: https://vuelidate.js.org/#sub-dynamic-validation-schema
   validationsObj: {
