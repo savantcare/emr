@@ -20,7 +20,7 @@ class MedicalHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'description', 'diagnosis', 'recordChangedByUuid','recordChangedFromIPAddress'
+        'ptUuid', 'description', 'diagnosis','notes', 'recordChangedByUuid','recordChangedFromIPAddress'
     ];
 
     /**

@@ -40,6 +40,7 @@ export default class medical_history extends clientTblManage {
       ptUuid: this.string(null),
       description: this.string(''),
       diagnosis: this.string(''),
+      notes: this.string(null).nullable(),
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
       recordChangedFromSection: this.string(null),
@@ -66,6 +67,7 @@ export const medicalHistoryFormDef = {
   showReviewedButtonInForm: false,
   showAddMoreButtonInForm: false,
   showResetFormButton: false,
+  showDeleteButtonInForm: true,
 
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 3fr 3fr 1fr; grid-column-gap: 1rem',
