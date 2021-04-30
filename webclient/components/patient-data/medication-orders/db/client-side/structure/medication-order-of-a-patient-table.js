@@ -11,13 +11,13 @@ const intUniqueId = () => ++count
 export default class medication_order extends clientTblManage {
   static entity = 'tblMedicationOrder'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/medication-order/getAll
 
@@ -87,7 +87,7 @@ export const medicationOrderFormDef = {
     { nameInDb: 'startDate', nameInUi: 'Start date', type: 'date', showLabel: true },
     { nameInDb: 'qty', nameInUi: 'Quantity', type: 'text', showLabel: true },
     { nameInDb: 'daysSupply', nameInUi: 'Days supply', type: 'text', showLabel: true },
-    { nameInDb: 'numberOfRefill', nameInUi: 'Numnber of refill', type: 'text', showLabel: true },
+    { nameInDb: 'numberOfRefill', nameInUi: 'Number of refill', type: 'text', showLabel: true },
     { nameInDb: 'dispenseAsWritten', nameInUi: 'Dispense as written', type: 'text', showLabel: true },
     { nameInDb: 'notesToPharmacist', nameInUi: 'Notes to pharmacist', type: 'tribute-editor', showLabel: true },
     {
