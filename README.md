@@ -17,7 +17,7 @@ Key things to see:
 2. Back and forth on the note
 3. SS and ROS
 4. SC Brain
-5. Add task.
+5. Add task
 6. Patient portal
 7. HDR
 
