@@ -3,7 +3,7 @@ module.exports = {
   globals: {
     baseUrl:
       process.env.NODE_ENV === 'dev'
-        ? 'http://116.203.134.163.xip.io/'
+        ? 'http://116.203.134.163.nip.io/'
         : process.env.NODE_ENV === 'test'
         ? 'http://ptserver:8000'
         : 'http://116.203.134.163:8000',

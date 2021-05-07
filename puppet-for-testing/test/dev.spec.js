@@ -12,9 +12,9 @@ describe("Test header and title of the page", () => {
     async () => {
       const title = await page.title();
       await expect(title).toBe("patient-file"); //Expect Title of the page
-      await page.waitFor(1000);
+      await page.waitForTimeout(1000);
       await loginP20(page);
-      await page.waitFor(500);
+      await page.waitForTimeout(500);
     },
     timeout
   );
