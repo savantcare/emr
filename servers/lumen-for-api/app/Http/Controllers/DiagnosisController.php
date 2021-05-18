@@ -12,7 +12,7 @@ class DiagnosisController extends Controller
 {
     public function get_all_temporal_diagnosis($pPtUuid)
     {
-        /* Why use  trim(UNIX_TIMESTAMP(onset) * 1000)+0 
+        /* Why use  trim(UNIX_TIMESTAMP(onset) * 1000)+0
             Ans : Remove floating point from onset date timestamp.
             reffarence : https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html
         */
@@ -50,7 +50,7 @@ class DiagnosisController extends Controller
 
         return response()->json($updateDiagnosis, 200);
     }
-    
+
     public function delete($pServerSideRowUuid, Request $pRequest)
     {
         $diagnosis = Diagnosis::findOrFail($pServerSideRowUuid);
@@ -58,13 +58,13 @@ class DiagnosisController extends Controller
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
-                'deletedNote' => $requestData['dNotes']
+                'notes' => $requestData['dNotes']
             );
             $diagnosis->update($updateData);
         }
 
         $diagnosis->delete();
-        
+
         return response('Deleted successfully', 200);
     }
     public function get_client_ip()
