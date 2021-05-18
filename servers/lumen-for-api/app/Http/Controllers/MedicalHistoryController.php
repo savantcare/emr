@@ -50,7 +50,7 @@ class MedicalHistoryController extends Controller
 
         if (isset($requestData['dNotes']) && !empty($requestData['dNotes'])) {
             $updateData = array(
-                'deletedNote' => $requestData['dNotes']
+                'notes' => $requestData['dNotes']
             );
             $medicalHistory->update($updateData);
         }
