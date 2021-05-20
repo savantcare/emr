@@ -28,8 +28,8 @@ export default {
       )
       .first()
       if (process.env.loadInitialDataFromServer === true) {
-        const proRemsFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
-        if (proRemsFromDB.ok) {
+        const proDiagnosisFromDB = await clientTbl.api().get(clientTbl.apiUrl+'/'+ptUuidFromOrm.fieldValue)
+        if (proDiagnosisFromDB.ok) {
         }
       }
   },
