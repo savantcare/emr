@@ -3,7 +3,6 @@ const { loginP20 } = require("../../login.js");
 const timeout = process.env.SLOWMO ? 30000 : 50000;
 
 beforeAll(async () => {
-  jest.setTimeout(30000);
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" }); // Goto the patient file link and wait for loading
 });
 
