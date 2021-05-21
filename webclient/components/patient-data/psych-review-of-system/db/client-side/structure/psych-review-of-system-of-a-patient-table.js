@@ -23,7 +23,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       ptUuid: this.string(null),
       /* This field is used to store the value of tblPsychReviewOfSystemsAllSelectOptions/psychReviewOfSystemFieldOptionId
          E.g: The  tblPsychReviewOfSystemsAllSelectOptions has:
-         psychReviewOfSystemFieldOptionId  |         psychReviewOfSystemFieldOptionLabel    
+         psychReviewOfSystemFieldOptionId  |         psychReviewOfSystemFieldOptionLabel
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
 
@@ -82,8 +82,8 @@ export const psychReviewOfSystemFormDef = {
     tooltip: 'always',
     marks: false,
     internal: 1,
-    min: -1,
-    max: 2,
+    min: 0,
+    max: 3,
   },
   fieldsDef: [
     {
@@ -91,7 +91,7 @@ export const psychReviewOfSystemFormDef = {
       nameInUi: 'Subjective',
       type: 'tribute-editor',
       showLabel: false,
-      // Everwhere the content is in grid and I want to take the whole width availabnle inside the grid cell
+      // Everwhere the content is in grid and I want to take the whole width available inside the grid cell
 
       style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',
     },
