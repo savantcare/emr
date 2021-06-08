@@ -28,7 +28,7 @@ jobs:
         run: |
           ls
           sudo mkdir -p /gt/sc-prog-repos/emr              
-          sudo mv ptserver /gt/sc-prog-repos/emr/ptserver     # In source part of move not giving complete path so it runs on act and github
+          sudo mv servers /gt/sc-prog-repos/emr/servers     # In source part of move not giving complete path so it runs on act and github
           sudo mv webclient /gt/sc-prog-repos/emr/webclient
           sudo mv puppet /gt/sc-prog-repos/emr/puppet
           sudo mv utils /gt/sc-prog-repos/emr/utils
@@ -36,8 +36,8 @@ jobs:
           sudo mkdir -p /tmp/logs # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
           sudo chmod -R 777 /tmp/logs
           sudo chmod -R 777 /gt/sc-prog-repos/emr/
-          cd /gt/sc-prog-repos/emr/ptserver
-          sudo rm -rf package-lock.json # remove old package-lock.json file from ptserver
+          cd /gt/sc-prog-repos/emr/servers
+          sudo rm -rf package-lock.json # remove old package-lock.json file from servers
           cd /gt/sc-prog-repos/emr/webclient
           sudo rm -rf package-lock.json # remove old package-lock.json file from webclient
 
@@ -45,7 +45,7 @@ jobs:
         run: |
           ls -a /gt/sc-prog-repos/emr
 
-      - name: Goal 5 -> Start docker containers, ptserver webclient and mariadb
+      - name: Goal 5 -> Start docker containers, servers webclient and mariadb
         run: |
           cd /gt/sc-prog-repos/emr/.github/docker-used-by-workflow
           docker-compose up -d
@@ -74,14 +74,14 @@ jobs:
         run: |
           docker exec -i mariadb mysql -u root -e "show databases"
 
-      # wget run-on-docker_ptserver_1:8000/ will not work as
-      # hostname run-on-docker_ptserver_1 is not known to host.
+      # wget run-on-docker_servers_1:8000/ will not work as
+      # hostname run-on-docker_servers_1 is not known to host.
       # This hostname is only known inside docker network
-      - name: Goal 10 -> Get confitmation that ptserver is running. Wget default is retry 20 times.
+      - name: Goal 10 -> Get confitmation that servers is running. Wget default is retry 20 times.
         run: |
           wget localhost:8000/reminders/getAll
 
-      - name: Goal 11 -> Make sure that ptserver is returning right results
+      - name: Goal 11 -> Make sure that servers is returning right results
         run: |
           cat getAll
 
@@ -106,7 +106,7 @@ jobs:
         run: |
           docker exec -i puppet whoami
 
-      # In ptserver and webclient supervisor runs npm install.
+      # In servers and webclient supervisor runs npm install.
       # Why puppeteer is installed from dockerfile and not installed from npm install inside supervisor or build.yml?
       # If run from supervisor -> npm install is taking long time and node simple-puppet-test-run.js was starting before npm install finished
       # Also the packages will not change often. So better to install the puppeteer packages inside Dockerfile. This makes each CI/CD run faster.
