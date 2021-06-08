@@ -11,8 +11,8 @@ services:
     depends_on:
       - ptserver
     volumes:
-      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/webclient/supervisord.conf:/etc/supervisor/supervisord.conf
-      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/webclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/supervisord.conf:/etc/supervisor/supervisord.conf
+      - /gt/sc-prog-repos/emr/.github/docker-used-by-workflow/ptclient/etc-supervisor-conf.d-services.conf:/etc/supervisor/conf.d/services.conf
       - /gt/sc-prog-repos/emr/:/gt/sc-prog-repos/emr/
       - /tmp/:/tmp/ # ipc:host does not work on mac so need this to store common files
 
