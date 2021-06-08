@@ -23,7 +23,7 @@ services:
     tty: true
     ports:
       - 8000:8000
-    working_dir: /gt/sc-prog-repos/emr/ptserver
+    working_dir: /gt/sc-prog-repos/emr/servers
     # command: bash -c "npm install && npm run start-test"  If I give commands then supervisor will not start.
     depends_on:
       - mariadb
@@ -57,7 +57,7 @@ services:
     user: "0"
     ipc: host
     restart: always
-    working_dir: /gt/sc-prog-repos/emr/puppet
+    working_dir: /gt/sc-prog-repos/emr/puppet-for-testing
     command: "/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf"
     ports:
       - 5901:5900
