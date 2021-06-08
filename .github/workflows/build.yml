@@ -79,11 +79,11 @@ jobs:
       # This hostname is only known inside docker network
       - name: Goal 10 -> Get confitmation that servers is running. Wget default is retry 20 times.
         run: |
-          wget localhost:8000/reminders/getAll
+          wget localhost:8000/public/api/reminders/v20/abcd
 
       - name: Goal 11 -> Make sure that servers is returning right results
         run: |
-          cat getAll
+          cat abcd
 
       - name: Goal 12 -> Get confirmation that webclient is running. Wget default is retry 20 times.
         run: |
