@@ -1,0 +1,7 @@
+use sc_service_statements;
+
+INSERT INTO `service_statements`(`serverSideRowUuid`, `ptUuid`, `total_minutes_in_psychotherapy`, `total_minutes_with_patient`, `modality_of_psychotherapy_multi_select`, `optional_multi_select`, `review_of_systems_multi_select`, `recordChangedByUuid`, `recordChangedFromIPAddress`, `recordChangedFromSection`) VALUES
+('01817fb0-c1ef-11ea-a3a5-f36fe4d74da4', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '20', '30', 'Acceptance and commitement therapy', 'Pertinent Medical Records Reviewed', 'I have reviewed 2 or more systems with patient', 'bfe041fa-073b-4223-8c69-0540ee678ff8', '::1', 'patientFile'),
+('52d68a70-1e9e-11eb-b565-875108ccf6b7', 'bfe041fa-073b-4223-8c69-0540ee678ff8',  '15', '25', 'Dialectical Behavior therapy', 'Please refer to Subjective and Plan section for content and goals of Psychotherapy', 'I performed 14pt review of systems', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1', 'patientFile'),
+('57a6fe40-1e9e-11eb-b565-875108ccf6b7', 'bfe041fa-073b-4223-8c69-0540ee678ff8',  '16', '35', 'Motivational interviewing', 'Status is stable.', 'I have reviewed 2 or more systems with patient', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1', 'patientFile'),
+('dcd7b050-1dae-11eb-ba2e-ed5eba5d4188', 'bfe041fa-073b-4223-8c69-0540ee678ff8',  '25', '40', 'Positive psychology', 'Patient is deemed low risk.', 'I performed 14pt review of systems', 'bua674fa-073b-4223-8c69-0540ee786kj8', '::1', 'patientFile');
