@@ -6,25 +6,30 @@
           <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="subjective" :firstProp="_rowIdForEdit" ></ctEditFormTemplate>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
-        >Gateway mood symptoms. In the past 10 days, how many days have you:
-        <div v-if="activeHorizontalTab === 'gateway_mood_symptoms'">
-          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="gateway.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
-        </div>
-      </el-tab-pane>
       <el-tab-pane label="Depression" name="depression"
         >Depression
         <div v-if="activeHorizontalTab === 'depression'">
           <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="depressive.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="Gateway mood symptoms" name="gateway_mood_symptoms"
+        >Gateway mood symptoms. In the past 10 days, how many days have you:
+        <div v-if="activeHorizontalTab === 'gateway_mood_symptoms'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="gateway.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="Mania" name="mania"
         >Mania/Hypomania
         <div v-if="activeHorizontalTab === 'mania'">
           <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="mania.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
-        </div>        
+        </div>
       </el-tab-pane>
-      <el-tab-pane label="Psychosis" name="psychosis">Psychosis</el-tab-pane>
+      <el-tab-pane label="Psychosis" name="psychosis"
+        >Psychosis
+        <div v-if="activeHorizontalTab === 'psychosis'">
+          <ctEditFormTemplate :_formDef="formDef" _regexForFieldSubset="psychosis.*" :firstProp="_rowIdForEdit"></ctEditFormTemplate>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="Sleep" name="Sleep">Sleep</el-tab-pane>
       <el-tab-pane label="Substance abuse" name="Substance">Substance abuse</el-tab-pane>
       <el-tab-pane label="GAD" name="gad">GAD</el-tab-pane>

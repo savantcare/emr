@@ -141,7 +141,7 @@
                   @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'slider')"
                 >
                 </vue-slider>
-                <div style="text-align: center">
+                <div style="text-align: center; margin-top: 12px;">
                   {{ _fieldDef.nameInUi }}
                 </div>
               </div>
@@ -198,7 +198,7 @@
                 {{ _fieldDef.nameInUi }}
               </div>
               <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
@@ -222,7 +222,7 @@
                 {{ _fieldDef.nameInUi }}
               </div>
               <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple textarea for vue-tribute.
                 I am assigning a class 'el-textarea__inner' for same design as el-input.
                 -->
@@ -248,8 +248,8 @@
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
-              <!-- 
-                Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component. 
+              <!--
+                Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component.
                 The Cts inside the tab are not remounted when the tavs are switched
 
                 Form focus step: 1/9
@@ -274,9 +274,9 @@
 
         <div>
           <!-- Goal: Show remove button on the RHS of each row.
-               This will be the 1fr of the display grid 
+               This will be the 1fr of the display grid
                Remove should not come if there is only one _formDef.maxRow
-               
+
                TODO Not clear: Why is there a v-if condition in el-button
                -->
           <el-button
@@ -565,7 +565,7 @@ export default {
     },
     async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
-      
+
       /**
        * Goal: protect duplicate row entry into orm
        * -- Store _formDef id into a array called 'arOfCtsToInsertEmptyRow'
@@ -721,7 +721,7 @@ export default {
   border-color: #ff4949;
 }
 
-/** 
+/**
   CSS for tribute popup that comes when typing
  */
 .tribute-container {
@@ -765,11 +765,11 @@ export default {
   cursor: default;
 }
 
-/** 
+/**
   For Vitals tab only:
   We need to align measurement value, note and date in one row.
-  Hence, I am adding the following css 
-  1. Height of textarea (note field) and height input (measurement value and date) should be same. 
+  Hence, I am adding the following css
+  1. Height of textarea (note field) and height input (measurement value and date) should be same.
   2. Maintain a margin of 10px between each row
   3. Reduce input number field width as 140px due to space issue
 */

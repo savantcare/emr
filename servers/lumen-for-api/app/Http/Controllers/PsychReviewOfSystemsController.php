@@ -46,23 +46,22 @@ class PsychReviewOfSystemsController extends Controller
         return response()->json($psychReviewOfSystems, 200);
     }
 
+    // public function delete($pServerSideRowUuid, Request $pRequest)
+    // {
+    //     $psychReviewOfSystems = PsychReviewOfSystems::findOrFail($pServerSideRowUuid);
+    //     $requestData = $pRequest->all();
 
-    public function delete($pServerSideRowUuid, Request $pRequest)
-    {
-        $psychReviewOfSystems = PsychReviewOfSystems::findOrFail($pServerSideRowUuid);
-        $requestData = $pRequest->all();
+    //     if (isset($requestData['data']['notes']) && !empty($requestData['data']['notes'])) {
+    //         $updateData = array(
+    //             'notes' => $requestData['data']['notes']
+    //         );
+    //         $psychReviewOfSystems->update($updateData);
+    //     }
 
-        if (isset($requestData['data']['notes']) && !empty($requestData['data']['notes'])) {
-            $updateData = array(
-                'notes' => $requestData['data']['notes']
-            );
-            $psychReviewOfSystems->update($updateData);
-        }
+    //     $psychReviewOfSystems->delete();
 
-        $psychReviewOfSystems->delete();
-
-        return response('Deleted successfully', 200);
-    }
+    //     return response('Deleted successfully', 200);
+    // }
 
     public function get_client_ip() {
         $ipaddress = '';

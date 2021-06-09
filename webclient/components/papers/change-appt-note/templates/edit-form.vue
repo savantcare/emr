@@ -127,7 +127,7 @@
             </div>
 
             <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
@@ -182,7 +182,7 @@
               </el-slider>
             </div>
           </div>
-       
+
           <div v-else-if="_fieldDef.type === 'vertical-slider'">
             <div>
               <vue-slider
@@ -192,7 +192,7 @@
                 @change="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               >
               </vue-slider>
-              <div style="text-align: center">
+              <div style="text-align: center;  margin-top: 12px;">
                 {{ _fieldDef.nameInUi }}
               </div>
             </div>
@@ -212,7 +212,7 @@
             :type="row.type"
           >
             {{ row[_fieldDef.nameInDb] }}
-            <!-- The following come on right of the description that comes in the timeline. 
+            <!-- The following come on right of the description that comes in the timeline.
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
