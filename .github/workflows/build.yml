@@ -104,7 +104,7 @@ jobs:
       # this used a public docker that by default logs into userid 1000
       - name: Goal 16 -> get the logged in user in puppet-for-testing
         run: |
-          docker exec -i puppet-for-testing whoami
+          docker exec -i puppet whoami
 
       # In servers and webclient supervisor runs npm install.
       # Why puppeteer is installed from dockerfile and not installed from npm install inside supervisor or build.yml?
@@ -114,12 +114,12 @@ jobs:
       # The env must have the display variable set.
       - name: Goal 17 -> Checking env for virtual display for puppeteer Ref https://stackoverflow.com/a/56202410
         run: |
-          docker exec -i puppet-for-testing env
+          docker exec -i puppet env
 
       - name: Goal 18 -> Running a very simple puppeteer program
         run: |
-          docker exec -i puppet-for-testing Xvfb :10 -ac &  
-          docker exec -i puppet-for-testing node simple-puppet-test-run.js
+          docker exec -i puppet Xvfb :10 -ac &  
+          docker exec -i puppet node simple-puppet-test-run.js
 
       # This cannot be run from supervisor since then the pipleline will finish. Hence tests need to be run in the pipeline.
       # Programs run inside docker with supervisor are not in the pipeline. Even if program started from supervisor keeps running it will not stop the pipeline
@@ -127,7 +127,7 @@ jobs:
         run: |
           cd /gt/sc-prog-repos/emr/puppet-for-testing
           rm -rf rem # due to rem test in progress
-          docker exec -i puppet-for-testing npm run start-test-on-git # check title of the page
+          docker exec -i puppet npm run start-test-on-git # check title of the page
 
       # in this folder all logs are stored and then uploaded as a artifact. Not using /dev/shm since not available on mac
       # actions that use a Dockerfile those files are probably created as the root user inside the container.  Because the upload-artifact action runs
