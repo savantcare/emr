@@ -63,7 +63,7 @@ jobs:
       # blank root password is set in docker-compose-test.yml file
       - name: Goal 7 -> A. Get confitmation that mariaDB is responding to queries
         run: |
-          docker exec -i mariadb mysql -u root -e "show databases"
+          docker exec -i mariadb mysql -u root -e "show databases;create database sc_vital_signs;create database sc_users;"
 
       - name: Goal 8 -> A. init mariadb with 1. Database 2. Tables and 3. Mock data
         run: |
@@ -72,7 +72,7 @@ jobs:
 
       - name: Goal 9 -> Get confitmation that mariaDB has the databases/tables/mock data
         run: |
-          docker exec -i mariadb mysql -u root -e "show databases;create database sc_vital_signs;create database sc_users;"
+          docker exec -i mariadb mysql -u root -e "show databases;"
 
       # wget run-on-docker_servers_1:8000/ will not work as
       # hostname run-on-docker_servers_1 is not known to host.
