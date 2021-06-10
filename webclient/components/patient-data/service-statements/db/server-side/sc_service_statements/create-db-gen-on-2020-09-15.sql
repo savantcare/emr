@@ -1,1 +1,1 @@
-create database sc_service_statements
+CREATE DATABASE IF NOT EXISTS sc_service_statements;

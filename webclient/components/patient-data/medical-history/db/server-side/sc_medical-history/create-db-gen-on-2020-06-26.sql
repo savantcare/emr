@@ -1,1 +1,1 @@
-create database sc_medical_history
+CREATE DATABASE IF NOT EXISTS sc_medical_history;

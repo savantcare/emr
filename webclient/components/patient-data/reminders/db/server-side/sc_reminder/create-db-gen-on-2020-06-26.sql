@@ -1,1 +1,1 @@
-create database sc_reminders
+CREATE DATABASE IF NOT EXISTS sc_reminders;

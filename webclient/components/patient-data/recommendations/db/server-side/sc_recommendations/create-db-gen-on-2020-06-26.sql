@@ -1,1 +1,1 @@
-create database sc_recommendations
+CREATE DATABASE IF NOT EXISTS sc_recommendations;

@@ -1,1 +1,1 @@
-use sc_users;
+CREATE DATABASE IF NOT EXISTS sc_users;

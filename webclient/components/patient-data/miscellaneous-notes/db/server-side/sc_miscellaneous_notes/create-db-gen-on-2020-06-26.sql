@@ -1,1 +1,1 @@
-create database sc_miscellaneous_notes
+CREATE DATABASE IF NOT EXISTS sc_miscellaneous_notes;

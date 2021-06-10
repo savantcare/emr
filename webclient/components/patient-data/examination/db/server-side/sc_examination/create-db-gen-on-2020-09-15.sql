@@ -1,1 +1,3 @@
-create database sc_examination
+CREATE DATABASE IF NOT EXISTS sc_examination;
+
+

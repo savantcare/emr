@@ -1,1 +1,1 @@
-create database sc_past_psych_history
+CREATE DATABASE IF NOT EXISTS sc_past_psych_history;

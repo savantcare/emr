@@ -1,1 +1,1 @@
-create database sc_screens
+CREATE DATABASE IF NOT EXISTS sc_screens;
