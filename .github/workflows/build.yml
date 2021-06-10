@@ -72,7 +72,7 @@ jobs:
 
       - name: Goal 9 -> Get confitmation that mariaDB has the databases/tables/mock data
         run: |
-          docker exec -i mariadb mysql -u root -e "show databases"
+          docker exec -i mariadb mysql -u root -e "show databases;create database sc_vital_signs;create database sc_users;"
 
       # wget run-on-docker_servers_1:8000/ will not work as
       # hostname run-on-docker_servers_1 is not known to host.
