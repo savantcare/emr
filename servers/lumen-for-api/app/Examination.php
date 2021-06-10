@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class Examination extends Model
 {
     protected $connection = 'examinationDB';
-    protected $table = 'pt_examination';
+    protected $table = 'examination';
     public $timestamps = false;
     protected $primaryKey = 'serverSideRowUuid';
     protected $keyType = 'string';

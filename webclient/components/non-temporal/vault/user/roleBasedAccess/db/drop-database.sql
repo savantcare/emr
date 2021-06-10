@@ -1,1 +1,1 @@
-drop database sc_component
+-- drop database sc_component

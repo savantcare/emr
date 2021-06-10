@@ -141,7 +141,7 @@
                   @change="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'slider')"
                 >
                 </vue-slider>
-                <div style="text-align: center">
+                <div style="text-align: center; margin-top: 12px;">
                   {{ _fieldDef.nameInUi }}
                 </div>
               </div>
@@ -173,7 +173,6 @@
               --
                 Problem: Unable to set id attribute of el-input to link with for attribute in el-form-item
                 Ref: https://github.com/ElemeFE/element/issues/7622
-
                 Solution: I have added :id attribute in parent div and in javascript use like - 'div#parent_div_id input'
               -->
             <div v-if="_fieldDef.type.includes('number')" :id="_fieldDef.nameInDb">
@@ -198,7 +197,7 @@
                 {{ _fieldDef.nameInUi }}
               </div>
               <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
@@ -222,7 +221,7 @@
                 {{ _fieldDef.nameInUi }}
               </div>
               <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple textarea for vue-tribute.
                 I am assigning a class 'el-textarea__inner' for same design as el-input.
                 -->
@@ -248,10 +247,9 @@
               <div v-if="_fieldDef.showLabel">
                 {{ _fieldDef.nameInUi }}
               </div>
-              <!-- 
-                Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component. 
+              <!--
+                Goal: When I switch tabs inside the change paper the form field focus needs to be maintained. Each tab contains a seperate component.
                 The Cts inside the tab are not remounted when the tavs are switched
-
                 Form focus step: 1/9
                   On focus event call fn named 'mf_store_id_of_field_which_has_focus_in_this_form' to store current focus position
                 -->
@@ -274,9 +272,8 @@
 
         <div>
           <!-- Goal: Show remove button on the RHS of each row.
-               This will be the 1fr of the display grid 
+               This will be the 1fr of the display grid
                Remove should not come if there is only one _formDef.maxRow
-               
                TODO Not clear: Why is there a v-if condition in el-button
                -->
           <el-button
@@ -339,7 +336,6 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
 import VueTribute from '@/customized-node-modules/vue-tribute'
-
 export default {
   created() {
     /* Goal: init the values when the form is mounted. For e.g. when a form is mounted I want all slider values to be init so slider can show the current state.
@@ -379,7 +375,6 @@ export default {
             }
           }
         }
-
         return false
       },
     },
@@ -467,11 +462,9 @@ export default {
     mf_matched_field_name(pFieldName) {
       return pFieldName.toLowerCase().includes(this.searchFilter.toLowerCase())
     },
-
     mf_for_tab_action_by_enter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
-
       //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
       const currentNode = e.target
       if (currentNode.tagName != 'TEXTAREA') {
@@ -500,7 +493,6 @@ export default {
           pArFieldDetails['formDefId'] +
           ' #' +
           pArFieldDetails['fieldNameInDb']
-
         var focusableElement = document.querySelectorAll(
           parentDivQuerySelector +
             ' button, ' +
@@ -511,7 +503,6 @@ export default {
             parentDivQuerySelector +
             ' textarea'
         )
-
         if (focusableElement[0]) {
           focusableElement[0].focus()
         }
@@ -565,7 +556,6 @@ export default {
     },
     async mf_add_empty_row_in_client_side_table() {
       // TODO: this should be part of base class
-      
       /**
        * Goal: protect duplicate row entry into orm
        * -- Store _formDef id into a array called 'arOfCtsToInsertEmptyRow'
@@ -576,7 +566,6 @@ export default {
       } else {
         this.arOfCtsToInsertEmptyRow.push(this._formDef.id)
       }
-
       if (!this._formDef || !this._formDef.maxNumberOfTemporallyValidRows) {
         // if maxNumberOfTemporallyValidRows has not been defined then go ahead and add an empty row
       } else {
@@ -585,12 +574,10 @@ export default {
           return
         }
       }
-
       const currentNewRowCount = await allPatientDataTbls[this._formDef.id].query().where('vnRowStateInSession', 2).count()
       if (currentNewRowCount > 0) {
         return
       }
-
       const ptUuid = await this.mf_get_pt_uuid()
       const recordChangedByUuid = await this.mf_get_recordChangedBy_uuid()
       const arFromClientTbl = await allPatientDataTbls[this._formDef.id].insert({
@@ -604,9 +591,7 @@ export default {
       if (!arFromClientTbl) {
         console.log('FATAL ERROR')
       }
-
       this.mf_set_form_field_focus()
-
       /* Remove _formDef id from 'arOfCtsToInsertEmptyRow' after this process finished. */
       const index = this.arOfCtsToInsertEmptyRow.indexOf(this._formDef.id)
       if (index > -1) {
@@ -712,16 +697,13 @@ export default {
 .invalid-dirty-data textarea {
   border-color: #e6a23c;
 }
-
 .valid-dirty-data textarea {
   border-color: #67c23a;
 }
-
 .validaionErrorExist .el-textarea__inner {
   border-color: #ff4949;
 }
-
-/** 
+/**
   CSS for tribute popup that comes when typing
  */
 .tribute-container {
@@ -764,12 +746,11 @@ export default {
 .tribute-container li.no-match {
   cursor: default;
 }
-
-/** 
+/**
   For Vitals tab only:
   We need to align measurement value, note and date in one row.
-  Hence, I am adding the following css 
-  1. Height of textarea (note field) and height input (measurement value and date) should be same. 
+  Hence, I am adding the following css
+  1. Height of textarea (note field) and height input (measurement value and date) should be same.
   2. Maintain a margin of 10px between each row
   3. Reduce input number field width as 140px due to space issue
 */

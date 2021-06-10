@@ -19,7 +19,7 @@ class PsychReviewOfSystems extends Model
      * @var array
      */
     protected $fillable = [
-        'ptUuid', 'subjective', 'depressive_mood', 'depressive_interest', 'depressive_sleep', 'depressive_esteem', 'depressive_energy', 'depressive_conc', 'depressive_appetite', 'depressive_retardation', 'depressive_suicidal', 'gateway_depressed', 'gateway_energetic', 'gateway_interest', 'gateway_mood', 'gateway_irritable', 'gateway_difficult', 'mania_mood', 'mania_irritable', 'mania_energy', 'mania_sleep', 'mania_talking', 'mania_racing', 'mania_distractability', 'mania_risk', 'obese', 'thinCachectic', 'disheveledUnkempt', 'malodorous', 'recordChangedByUuid',
+        'ptUuid', 'subjective', 'depressive_mood', 'depressive_interest', 'depressive_sleep', 'depressive_esteem', 'depressive_energy', 'depressive_conc', 'depressive_appetite', 'depressive_retardation', 'depressive_suicidal', 'gateway_depressed', 'gateway_energetic', 'gateway_interest', 'gateway_mood', 'gateway_irritable', 'gateway_difficult', 'mania_mood', 'mania_irritable', 'mania_energy', 'mania_sleep', 'mania_talking', 'mania_racing', 'mania_distractibility', 'mania_risk', 'psychosis_delusions', 'psychosis_hallucinations', 'psychosis_speech', 'psychosis_behavior', 'psychosis_negativeSx', 'gad_anxiety', 'gad_difficult', 'gad_restless', 'gad_fatigued', 'gad_concentrating', 'gad_irritability', 'gad_muscle', 'gad_disturbance', 'recordChangedByUuid',  'recordChangedFromIPAddress'
     ];
 
     /**
@@ -37,4 +37,4 @@ class PsychReviewOfSystems extends Model
             $model->setAttribute($model->getKeyName(), Uuid::uuid4());
         });
     }
-} 
+}
