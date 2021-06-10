@@ -1,1 +1,1 @@
-drop database sc_user
+-- drop database sc_user

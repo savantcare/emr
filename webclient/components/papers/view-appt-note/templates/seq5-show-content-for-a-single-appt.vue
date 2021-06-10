@@ -79,10 +79,13 @@
             <h4>{{ _fieldDef.nameInUi }}</h4>
           </div>
           <div id="field-value-in-db">
-            <div v-if="_dataRow[_fieldDef.nameInDb] == 1">Not present</div>
+            <!-- <div v-if="_dataRow[_fieldDef.nameInDb] == 1">Not present</div>
             <div v-else-if="_dataRow[_fieldDef.nameInDb] == 2">Sub-Syndromal</div>
             <div v-else-if="_dataRow[_fieldDef.nameInDb] == 3">Syndromal</div>
             <div v-else>
+              {{ _dataRow[_fieldDef.nameInDb] }}
+            </div> -->
+            <div>
               {{ _dataRow[_fieldDef.nameInDb] }}
             </div>
           </div>
@@ -202,7 +205,7 @@ export default {
       /* The color conventions are:
       Case 1: black: Data created during that appt.
       Case 2: orange: form validatoion has failed
-      Case 3: green: some edits have been made and it pases form validation 
+      Case 3: green: some edits have been made and it pases form validation
       Case 4: blue: This is carry forward
       */
 

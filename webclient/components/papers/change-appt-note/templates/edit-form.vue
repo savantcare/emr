@@ -127,7 +127,7 @@
             </div>
 
             <!--
-                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option 
+                According to github docs ref: https://github.com/syropian/vue-tribute there is no any option
                 to use el-input. Hence, I am using simple input box for vue-tribute.
                 I am assigning a class 'el-input__inner' for same design as el-input.
                 -->
@@ -182,7 +182,7 @@
               </el-slider>
             </div>
           </div>
-       
+
           <div v-else-if="_fieldDef.type === 'vertical-slider'">
             <div>
               <vue-slider
@@ -192,7 +192,7 @@
                 @change="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
               >
               </vue-slider>
-              <div style="text-align: center">
+              <div style="text-align: center;  margin-top: 12px;">
                 {{ _fieldDef.nameInUi }}
               </div>
             </div>
@@ -212,7 +212,7 @@
             :type="row.type"
           >
             {{ row[_fieldDef.nameInDb] }}
-            <!-- The following come on right of the description that comes in the timeline. 
+            <!-- The following come on right of the description that comes in the timeline.
         Since they are part of the same line we do not capitalize the first alphabet. So it is "sending to server"
         and it is not "Sending to server"
         -->
@@ -253,38 +253,31 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import allMergedValues from '@/components/non-temporal/tribute/all-merged-values.js'
 import VueTribute from '@/customized-node-modules/vue-tribute'
-
 import moment from 'moment'
-
 export default {
   /*
     Q) Why is firstProp needed?
         There are many reminders when a reminder is to be changed there needs to be a way to find out which reminder
         the user wants to change.
         So firstProp is the remId being changed. The remId is the primary key coming from vuexOrm
-
     Q) Why is this called firstProp?
         This Ct is called in a for loop. In the same for loop other Ct are also called.
         So the prop name has to be generic and cannot be unique to each Ct
-
     Q) Why is firstprop not needed in 1r type Cts?
         Since we definitely know which row is being edited. I do not need to get a incoming ID.
         In 1r Cts the change form can be invoked directly. But for Mr change can only be invoked by clicking on an
         action button in the view layer. Since when action button in VL is clicked i get the ormID of that row
-
     Q) Why we are using 'formType' props?
         This change component has a method named 'mfSetFormFieldFocus' and it is focusing a form field.
         Change component is also being used in multi change component. Over there this component is being iterated several times within a slider.
         The problem is 'mfSetFormFieldFocus' method is also being called for each iteration and putting its own logic of focusing several times. This is causing the slider to now work.
         To prevent this malformation we are using 'formType' prop, passing 'embedded' string from multichange component and within 'mfSetFormFieldFocus' method we are bypassing the entire
         logic if formType value is set to 'embedded'.
-
     Q) What are the diff possible values for formtype?
               1. stand-alone -> it has its own controls
               2. embedded -> that means it has its own submit and other controls. But the same page has other forms also
               3. sub-part-of-another-form -> Data input will be allowed but no action buttons like submit or reset
     */
-
   props: {
     firstProp: {
       type: Number,
@@ -305,7 +298,6 @@ export default {
             }
           }
         }
-
         return false
       },
     },
@@ -313,7 +305,6 @@ export default {
       type: String,
     },
   }, // firstProp is the ClientIdOfRowToChange
-
   data() {
     return {
       dnOrmUuidOfRowToChange: '',
@@ -351,26 +342,21 @@ export default {
         this.dnClientIdOfCopiedRowBeingChanged = null
       },
     },
-
     /* Goal: Create a copy of the row to be changed. If a copy is already there then find the id of the copied row.
     By the time this watchFn exits this.dnClientIdOfCopiedRowBeingChanged will have a valid value */
     dnClientIdOfCopiedRowBeingChanged: {
       immediate: true, // setting this calls this watch when the Ct is first initialized
       /*  In V1 getting id of copied row was part of mounted, that is sequential programming,
           In V2 getting id of copied row is part of watch, this is "act on state" programming.
-
           When called first time:
             pNVal = -1 since data section sets that value
             pOVal is undefined
-
           When called second time:
             pNVal = null since any other function that wants a new row being copied sets it to null
             pOVal is the old value of pNVal. Hence previous row that was being edited  */
-
       async handler(pNVal, pOVal) {
         // NVal => New value and OVal => Old Value
         if (this.dnClientIdOfRowToChange === -1) return // Firstprop has not copied itself to this.dnClientIdOfRowToChange. Look at data section.
-
         if (pNVal === null) {
           /* When called first time this.dnClientIdOfRowToChange is assigned in the data section
               When called 2nd time this.dnClientIdOfRowToChange is the previous row that just got saved. */
@@ -411,7 +397,6 @@ export default {
     },
     mfTimeLineDataAr(pFieldNameInDb) {
       const timelineDataArray = []
-
       // TODO: timeline of UUID should be base class
       // Insight: to create timeline the uuid will be same but id will be different.
       const arFromClientTbl = allPatientDataTbls[this._formDef.id]
@@ -419,13 +404,11 @@ export default {
         .where('serverSideRowUuid', this.dnOrmUuidOfRowToChange)
         .orderBy('ROW_START', 'desc')
         .get()
-
       // console.log('Time line for uuid', this.dnOrmUuidOfRowToChange, arFromClientTbl)
       if (arFromClientTbl.length) {
         let rowInTimeLine = []
         for (let i = 1; i < arFromClientTbl.length; i++) {
           rowInTimeLine = {}
-
           // do not insert empty row
           if (arFromClientTbl[i][pFieldNameInDb]) {
             if (arFromClientTbl[i][pFieldNameInDb].length < 1) {
@@ -434,7 +417,6 @@ export default {
           } else {
             continue
           }
-
           rowInTimeLine[pFieldNameInDb] = arFromClientTbl[i][pFieldNameInDb]
           if (
             arFromClientTbl[i].vnRowStateInSession === rowState.SameAsDB_Copy ||
@@ -447,13 +429,11 @@ export default {
           }
           rowInTimeLine.ROW_START = arFromClientTbl[i].ROW_START
           rowInTimeLine.vnRowStateInSession = arFromClientTbl[i].vnRowStateInSession
-
           timelineDataArray.push(rowInTimeLine)
         }
       }
       return timelineDataArray
     },
-
     /* Why is the row copied and then edited/changed? We want to show the history of the data. If I edit/change the original data then I will not know what the original data to show below the edit/change form. */
     async mfCopyRowToOrm(pOrmRowToChange) {
       this.dnClientIdOfCopiedRowBeingChanged = await allPatientDataTbls[this._formDef.id].fnCopyRowAndGetCopiedRowId(
@@ -478,9 +458,7 @@ export default {
          Why?
          It is a default browser behavior. Clicking on the <label> will trigger 2 clicks, one for <label> and one for <input>.
          Ref: https://stackoverflow.com/a/58724163
-
          This fn is fired once when the property is first defined with undefined value and then is fired twice when a value is assigned to it.
-
         Q) When to get from ORM and when from cache?
          Inside get desc. 1st time it comes from ORM from then on it always come from cache. The cache value is set by mfSetCopiedRowBeingChangedFldVal */
       // From this point on the state is same for change and add
@@ -494,7 +472,6 @@ export default {
       if (pEvent instanceof Object) {
         pEvent = pEvent.target.value
       }
-
       // TODO: need to do form validation here just like in add form
       const rowStatus = rowState.SameAsDB_Copy_Changed_FormValidationPass
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(
@@ -508,7 +485,6 @@ export default {
     mfForTabActionByEnter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
           Ref: https://stackoverflow.com/questions/2523752/behavior-of-enter-key-in-textbox */
-
       //Finding cuurrent node and checking if it is textarea as this function is calling from same place for input and textarea, if it is textarea, we leave textarea to to do its own functionlity by pressing enter. otherwise for input enter ascts as tab.
       const currentNode = e.target
       if (currentNode.tagName != 'TEXTAREA') {
@@ -539,7 +515,6 @@ export default {
             this.dnOrmUuidOfRowToChange,
             value
           )
-
           if (status === 1) {
             this.$message({
               type: 'success',

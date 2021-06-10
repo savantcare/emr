@@ -26,7 +26,6 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
          psychReviewOfSystemFieldOptionId  |         psychReviewOfSystemFieldOptionLabel
               1                    |  Spent 10 min with patient
               2                    |  Spent 20 min with patient
-
           When doctor assigns 2 to this patient then in this table psychReviewOfSystemFieldOptionId = 2 */
 
       subjective: this.string(null).nullable(),
@@ -54,13 +53,44 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       mania_sleep: this.number(0),
       mania_talking: this.number(0),
       mania_racing: this.number(0),
-      mania_distractability: this.number(0),
+      mania_distractibility: this.number(0),
       mania_risk: this.number(0),
 
-      obese: this.number(0),
-      thinCachectic: this.number(0),
-      disheveledUnkempt: this.number(0),
-      malodorous: this.number(0),
+      psychosis_delusions: this.number(0),
+      psychosis_hallucinations: this.number(0),
+      psychosis_speech: this.number(0),
+      psychosis_behavior: this.number(0),
+      psychosis_negativeSx: this.number(0),
+
+      gad_anxiety: this.number(0),
+      gad_difficult: this.number(0),
+      gad_restless: this.number(0),
+      gad_fatigued: this.number(0),
+      gad_concentrating: this.number(0),
+      gad_irritability: this.number(0),
+      gad_muscle: this.number(0),
+      gad_disturbance: this.number(0),
+
+      adhd_inattention : this.number(0),
+      adhd_hyperactivity: this.number(0),
+      adhd_careless: this.number(0),
+      adhd_problem: this.number(0),
+      adhd_poor: this.number(0),
+      adhd_fails: this.number(0),
+      adhd_difficulty: this.number(0),
+      adhd_reluctant: this.number(0),
+      adhd_loses: this.number(0),
+      adhd_distracted: this.number(0),
+      adhd_forgetful: this.number(0),
+      adhd_fidgets: this.number(0),
+      adhd_leaves: this.number(0),
+      adhd_feels: this.number(0),
+      adhd_unable: this.number(0),
+      adhd_seems: this.number(0),
+      adhd_talks: this.number(0),
+      adhd_blurts: this.number(0),
+      adhd_difficulty_waiting: this.number(0),
+      adhd_interrupts: this.number(0),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -81,9 +111,9 @@ export const psychReviewOfSystemFormDef = {
     direction: 'btt',
     tooltip: 'always',
     marks: false,
-    internal: 1,
+    interval: 0.5,
     min: 0,
-    max: 3,
+    max: 1,
   },
   fieldsDef: [
     {
@@ -95,6 +125,9 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',
     },
+
+    //Depression
+    //---------------------
     {
       nameInDb: 'depressive_mood',
       nameInUi: 'Depressive mood',
@@ -102,16 +135,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_interest',
@@ -120,16 +153,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_sleep',
@@ -138,16 +171,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_esteem',
@@ -156,16 +189,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_energy',
@@ -174,16 +207,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_conc',
@@ -192,16 +225,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_appetite',
@@ -210,16 +243,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_retardation',
@@ -228,16 +261,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'depressive_suicidal',
@@ -246,18 +279,21 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
+    //---------------------
 
+    //Gateway mood symptoms
+    //---------------------
     {
       nameInDb: 'gateway_depressed',
       nameInUi: 'Felt depressed',
@@ -265,16 +301,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'gateway_energetic',
@@ -282,16 +318,16 @@ export const psychReviewOfSystemFormDef = {
       type: 'vertical-slider',
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'gateway_interest',
@@ -300,16 +336,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'gateway_mood',
@@ -318,16 +354,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'gateway_irritable',
@@ -336,16 +372,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'gateway_difficult',
@@ -354,18 +390,21 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
+    //---------------------
 
+    //Mania/Hypomania
+    //---------------------
     {
       nameInDb: 'mania_mood',
       nameInUi: 'Mood elevation',
@@ -373,16 +412,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_irritable',
@@ -391,16 +430,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_energy',
@@ -409,16 +448,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_sleep',
@@ -427,16 +466,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_talking',
@@ -445,16 +484,16 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_racing',
@@ -463,34 +502,34 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
-      nameInDb: 'mania_distractability',
-      nameInUi: 'distractability',
+      nameInDb: 'mania_distractibility',
+      nameInUi: 'Distractibility',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
       nameInDb: 'mania_risk',
@@ -499,89 +538,258 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
+    //---------------------
 
+    //Psychosis
+    //---------------------
     {
-      nameInDb: 'obese',
-      nameInUi: 'Obese',
+      nameInDb: 'psychosis_delusions',
+      nameInUi: 'Delusions',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
-      nameInDb: 'thinCachectic',
-      nameInUi: 'Thin or cachectic',
+      nameInDb: 'psychosis_hallucinations',
+      nameInUi: 'Hallucinations',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
-      nameInDb: 'disheveledUnkempt',
-      nameInUi: 'Disheveled/unkempt',
+      nameInDb: 'psychosis_speech',
+      nameInUi: 'Disorganized Speech',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
     {
-      nameInDb: 'malodorous',
-      nameInUi: 'Malodorous',
+      nameInDb: 'psychosis_behavior',
+      nameInUi: 'Disorganized or Catatonic Behavior',
       type: 'vertical-slider',
 
       style: 'padding: 20px',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      marks: {
-        0: 'Not evaluated',
-        1: 'Not present',
-        2: 'Sub-syndromal',
-        3: 'Syndromal',
-      },
-      ft: function formatTooltip(val) {
-        return this.marks[val]
-      },
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'psychosis_negativeSx',
+      nameInUi: 'Negative Sx`s',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
+
+    //GAD
+    //---------------------
+    {
+      nameInDb: 'gad_anxiety',
+      nameInUi: 'Excess worry or anxiety',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_difficult',
+      nameInUi: 'Difficult to control worry',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_restless',
+      nameInUi: 'Restless or on edge',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_fatigued',
+      nameInUi: 'Fatigued',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_concentrating',
+      nameInUi: 'Difficulty Concentrating',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_irritability',
+      nameInUi: 'Irritability',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_muscle',
+      nameInUi: 'Muscle Tension',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gad_disturbance',
+      nameInUi: 'Sleep Disturbance',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
     },
   ],
   showReviewedButtonInForm: false,
@@ -594,56 +802,11 @@ export const psychReviewOfSystemFormDef = {
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'subjective',
-    'depressive_mood',
-    'interest',
-    'sleep',
-    'selfEsteem',
-    'energy',
-    'concDist',
-    'appetite',
-    'pmrPma',
-    'obese',
-    'thinCachectic',
-    'disheveledUnkempt',
-    'malodorous',
   ],
   validationsObj: {
     value: {
-      depressive_mood: {
-        minLength: minLength(0),
-      },
-      interest: {
-        minLength: minLength(0),
-      },
-      sleep: {
-        minLength: minLength(0),
-      },
-      selfEsteem: {
-        minLength: minLength(0),
-      },
-      energy: {
-        minLength: minLength(0),
-      },
-      concDist: {
-        minLength: minLength(0),
-      },
-      appetite: {
-        minLength: minLength(0),
-      },
-      pmrPma: {
-        minLength: minLength(0),
-      },
-      obese: {
-        minLength: minLength(0),
-      },
-      thinCachectic: {
-        minLength: minLength(0),
-      },
-      disheveledUnkempt: {
-        minLength: minLength(0),
-      },
-      malodorous: {
-        minLength: minLength(0),
+      subjective: {
+        minLength: minLength(5),
       },
     },
   },
