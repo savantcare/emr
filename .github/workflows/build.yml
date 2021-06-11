@@ -45,7 +45,6 @@ jobs:
           chmod -R 777 storage/
           chmod -R 777 bootstrap/
           composer install
-          php -S localhost:8000 -t .
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
