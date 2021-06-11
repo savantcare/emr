@@ -57,7 +57,7 @@ jobs:
           docker ps -a
           docker network ls
           docker network inspect docker-used-by-workflow_default
-          docker exec -it ptserver top
+          docker exec -it ptserver composer install lumen-for-api/composer.php
 
       # For some time without password works and later it works with password.
       # Reason: MariaDB first creates a temp DB and then shuts down and creates the proper DB
