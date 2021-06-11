@@ -44,7 +44,7 @@ jobs:
           cd /gt/sc-prog-repos/emr/servers/lumen-for-api
           chmod -R 777 storage/
           chmod -R 777 bootstrap/
-          composer insatll
+          composer install
           php -S localhost:8000 -t .
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
