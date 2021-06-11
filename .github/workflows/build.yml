@@ -20,6 +20,7 @@ jobs:
           pwd
           docker-compose -v  
           docker -v
+          composer -V
 
       - name: Goal 2 -> Check out repository code
         uses: actions/checkout@v2 # This is bringing source code to ubuntu server defined in line 13 Location of checkout is /home/runner/work/emr/emr
