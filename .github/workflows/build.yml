@@ -57,6 +57,7 @@ jobs:
           docker ps -a
           docker network ls
           docker network inspect docker-used-by-workflow_default
+          docker exec -i ptserver top
 
       # For some time without password works and later it works with password.
       # Reason: MariaDB first creates a temp DB and then shuts down and creates the proper DB
@@ -82,7 +83,6 @@ jobs:
         run: |
            #wget localhost:8000/public/index.php
            docker exec -i ptserver ls lumen-for-api
-           docker exec -i ptserver cd  lumen-for-api;composer install
 
       - name: Goal 11 -> Make sure that servers is returning right results
         run: |
