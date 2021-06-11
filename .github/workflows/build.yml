@@ -80,7 +80,7 @@ jobs:
       - name: Goal 10 -> Get confitmation that servers is running. Wget default is retry 20 times.
         run: |
            #wget localhost:8000/public/index.php
-           docker exec -i ptserver "ll"
+           docker exec -i ptserver ll
 
       - name: Goal 11 -> Make sure that servers is returning right results
         run: |
