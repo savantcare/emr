@@ -41,10 +41,6 @@ jobs:
           sudo rm -rf package-lock.json # remove old package-lock.json file from servers
           cd /gt/sc-prog-repos/emr/webclient
           sudo rm -rf package-lock.json # remove old package-lock.json file from webclient
-          cd /gt/sc-prog-repos/emr/servers/lumen-for-api
-          chmod -R 777 storage/
-          chmod -R 777 bootstrap/
-          composer install
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
@@ -84,7 +80,7 @@ jobs:
       # This hostname is only known inside docker network
       - name: Goal 10 -> Get confitmation that servers is running. Wget default is retry 20 times.
         run: |
-           #wget localhost:8000/public/index.php
+           wget localhost:8000/public/index.php
            docker exec -i ptserver ls lumen-for-api
 
       - name: Goal 11 -> Make sure that servers is returning right results
