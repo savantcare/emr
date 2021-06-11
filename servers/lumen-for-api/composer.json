@@ -10,7 +10,7 @@
     "type": "project",
     "require": {
         "google/apiclient": "^2.8",
-        "laravel/lumen-framework": "^7.0",
+        "laravel/lumen-framework": "^8.0",
         "predis/predis": "1.1.1"
     },
     "require-dev": {
