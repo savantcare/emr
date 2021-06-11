@@ -82,6 +82,7 @@ jobs:
         run: |
            #wget localhost:8000/public/index.php
            docker exec -i ptserver ls lumen-for-api
+           docker exec -i ptserver cd  lumen-for-api;composer install
 
       - name: Goal 11 -> Make sure that servers is returning right results
         run: |
