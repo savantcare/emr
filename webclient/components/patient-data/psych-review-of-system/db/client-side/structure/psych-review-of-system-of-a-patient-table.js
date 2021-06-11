@@ -71,6 +71,16 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       gad_muscle: this.number(0),
       gad_disturbance: this.number(0),
 
+      ocd_obsessions: this.number(0),
+      ocd_compulsions: this.number(0),
+      ocd_distressing: this.number(0),
+      ocd_insight: this.number(0),
+
+      ptsd_re_experiencing: this.number(0),
+      ptsd_avoidance: this.number(0),
+      ptsd_arousal: this.number(0),
+      ptsd_negative: this.number(0),
+
       adhd_inattention : this.number(0),
       adhd_hyperactivity: this.number(0),
       adhd_careless: this.number(0),
@@ -91,6 +101,12 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       adhd_blurts: this.number(0),
       adhd_difficulty_waiting: this.number(0),
       adhd_interrupts: this.number(0),
+
+      social_marked_anxiety: this.number(0),
+      social_fear_that: this.number(0),
+      social_social_situation: this.number(0),
+      social_intense_anxiety: this.number(0),
+      social_anxiety_is_out_of_proportion: this.number(0),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -791,6 +807,618 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
+    //---------------------
+
+    //OCD
+    //--------------------- 
+    {
+      nameInDb: 'ocd_obsessions',
+      nameInUi: 'Obsessions',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ocd_compulsions',
+      nameInUi: 'Compulsions',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ocd_distressing',
+      nameInUi: 'Distressing or Impairing or Time-Consuming ( > 1 hr/day)',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ocd_insight',
+      nameInUi: 'Insight',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
+    
+    //PTSD
+    //---------------------
+    {
+      nameInDb: 'ptsd_re_experiencing',
+      nameInUi: 'Re-experiencing Symptoms',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ptsd_avoidance',
+      nameInUi: 'Avoidance Symptoms',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ptsd_arousal',
+      nameInUi: 'Arousal Symptoms',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'ptsd_negative',
+      nameInUi: 'Negative Mood or Cognitions',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
+
+    // ADHD
+    //---------------------
+    {
+      nameInDb: 'adhd_inattention',
+      nameInUi: 'Inattention',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_hyperactivity',
+      nameInUi: 'Hyperactivity',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_careless',
+      nameInUi: 'Careless mistakes or poor attention to detail',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_problem',
+      nameInUi: 'Problem sustaining attention',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_poor',
+      nameInUi: 'Poor listening',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_fails',
+      nameInUi: 'Fails to finish tasks',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_difficulty',
+      nameInUi: 'Difficulty organizing tasks',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_reluctant',
+      nameInUi: 'Reluctant to engage in tasks that require sustained mental effort',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_loses',
+      nameInUi: 'Loses things often',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_distracted',
+      nameInUi: 'Distracted by extraneous stimuli',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_forgetful',
+      nameInUi: 'Forgetful daily activities',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_fidgets',
+      nameInUi: 'Fidgets often',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_leaves',
+      nameInUi: 'Leaves seat often when sitting is expected',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_feels',
+      nameInUi: 'Feels restless',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_unable',
+      nameInUi: 'Unable to engage in leisurely activities quietly',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_seems',
+      nameInUi: 'Seems "on the go" or "driven by motor"',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_talks',
+      nameInUi: 'Talks excessively',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_blurts',
+      nameInUi: 'Blurts out often',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_difficulty_waiting',
+      nameInUi: 'Difficulty waiting turn',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'adhd_interrupts',
+      nameInUi: 'Interrupts or intrudes on others',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
+    
+    //SOCIAL ANXIETY
+    //---------------------
+    {
+      nameInDb: 'social_marked_anxiety',
+      nameInUi: 'Marked anxiety about 1 or more social situations',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_fear_that',
+      nameInUi: 'Fear that will act in a way that will be negatively evaluated',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_social_situation',
+      nameInUi: 'Social situation(s) almost always provokes anxiety',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_intense_anxiety',
+      nameInUi: 'Social situation(s) is avoided or endured with intense anxiety',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_anxiety_is_out_of_proportion',
+      nameInUi: 'Anxiety is out of proportion to actual threat of the situation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
+
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
