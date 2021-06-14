@@ -22,7 +22,7 @@ export default {
       data: {
         value: 'edit psych_review_of_system',
         ctAbbr: 'epros',
-        ctToShow: 'patient-data/psych-review-of-system/change-layer/psych-review-of-system-edit.vue',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/pros-edit-design-1.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'small',
         needsRowIdToWork: 'yes',
@@ -32,7 +32,7 @@ export default {
       data: {
         value: 'add psych_review_of_system',
         ctAbbr: 'apros',
-        ctToShow: 'patient-data/psych-review-of-system/change-layer/psych-review-of-system-add.vue',
+        ctToShow: 'patient-data/psych-review-of-system/change-layer/add-pros.vue',
         displayLocation: 'edit-layer',
         ctWidthInEditLayer: 'large',
       },

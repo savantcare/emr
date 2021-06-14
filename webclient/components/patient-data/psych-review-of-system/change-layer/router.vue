@@ -9,8 +9,9 @@
 
 <script>
 import psychReviewOfSystemTbl from '@/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
-import psychReviewOfSystemEdit from '@/components/patient-data/psych-review-of-system/change-layer/psych-review-of-system-edit.vue'
-import psychReviewOfSystemAdd from '@/components/patient-data/psych-review-of-system/change-layer/psych-review-of-system-add.vue'
+import psychReviewOfSystemAdd from '@/components/patient-data/psych-review-of-system/change-layer/add-pros.vue'
+import psychReviewOfSystemEdit from '@/components/patient-data/psych-review-of-system/change-layer/pros-edit-design-1.vue'
+
 export default {
   data: function () {
     return {
