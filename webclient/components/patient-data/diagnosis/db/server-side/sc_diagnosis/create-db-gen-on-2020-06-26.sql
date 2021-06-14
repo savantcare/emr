@@ -1,1 +1,3 @@
-create database sc_diagnosis
+CREATE DATABASE IF NOT EXISTS sc_diagnosis;
+
+

@@ -1,1 +1,1 @@
-create database sc_family_history
+CREATE DATABASE IF NOT EXISTS sc_family_history;

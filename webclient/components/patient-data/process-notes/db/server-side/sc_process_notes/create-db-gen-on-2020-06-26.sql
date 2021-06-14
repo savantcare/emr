@@ -1,1 +1,1 @@
-create database sc_process_notes
+CREATE DATABASE IF NOT EXISTS sc_process_notes;

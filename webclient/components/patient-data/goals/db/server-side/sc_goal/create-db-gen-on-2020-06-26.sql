@@ -1,1 +1,1 @@
-create database sc_goals
+CREATE DATABASE IF NOT EXISTS sc_goals;

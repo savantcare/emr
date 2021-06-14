@@ -1,1 +1,1 @@
-create database sc_medication_order
+CREATE DATABASE IF NOT EXISTS sc_medication_order;

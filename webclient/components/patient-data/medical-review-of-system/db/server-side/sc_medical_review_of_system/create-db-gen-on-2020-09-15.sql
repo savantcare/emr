@@ -1,1 +1,1 @@
-create database sc_medical_review_of_system
+CREATE DATABASE IF NOT EXISTS sc_medical_review_of_system;

@@ -1,1 +1,1 @@
-create database sc_social_history
+CREATE DATABASE IF NOT EXISTS sc_social_history;

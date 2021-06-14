@@ -1,1 +1,1 @@
-use sc_vital_signs;
+CREATE DATABASE IF NOT EXISTS sc_vital_signs;

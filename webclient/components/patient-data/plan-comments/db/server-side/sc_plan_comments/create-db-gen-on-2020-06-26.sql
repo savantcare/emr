@@ -1,1 +1,1 @@
-create database sc_plan_comments
+CREATE DATABASE IF NOT EXISTS sc_plan_comments;

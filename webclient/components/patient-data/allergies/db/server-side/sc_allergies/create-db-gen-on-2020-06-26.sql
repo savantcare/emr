@@ -1,1 +1,1 @@
-create database sc_allergies
+CREATE DATABASE IF NOT EXISTS sc_allergies;
