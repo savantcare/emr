@@ -30,6 +30,13 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
 
       subjective: this.string(null).nullable(),
 
+      gateway_depressed: this.number(0),
+      gateway_energetic: this.number(0),
+      gateway_interest: this.number(0),
+      gateway_mood: this.number(0),
+      gateway_irritable: this.number(0),
+      gateway_difficult: this.number(0),
+
       depressive_mood: this.number(0),
       depressive_interest: this.number(0),
       depressive_sleep: this.number(0),
@@ -39,13 +46,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       depressive_appetite: this.number(0),
       depressive_retardation: this.number(0),
       depressive_suicidal: this.number(0),
-
-      gateway_depressed: this.number(0),
-      gateway_energetic: this.number(0),
-      gateway_interest: this.number(0),
-      gateway_mood: this.number(0),
-      gateway_irritable: this.number(0),
-      gateway_difficult: this.number(0),
+      depressive_note: this.string(null).nullable(),
 
       mania_mood: this.number(0),
       mania_irritable: this.number(0),
@@ -55,12 +56,19 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       mania_racing: this.number(0),
       mania_distractibility: this.number(0),
       mania_risk: this.number(0),
+      mania_note: this.string(null).nullable(),
 
       psychosis_delusions: this.number(0),
       psychosis_hallucinations: this.number(0),
       psychosis_speech: this.number(0),
       psychosis_behavior: this.number(0),
       psychosis_negativeSx: this.number(0),
+      psychosis_note: this.string(null).nullable(),
+
+      sleep_assessment: this.string(null).nullable(),
+      sleep_note: this.string(null).nullable(),
+
+      substance_note: this.string(null).nullable(),
 
       gad_anxiety: this.number(0),
       gad_difficult: this.number(0),
@@ -70,16 +78,31 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       gad_irritability: this.number(0),
       gad_muscle: this.number(0),
       gad_disturbance: this.number(0),
+      gad_note: this.string(null).nullable(),
+
+      panic_attacks: this.string(null).nullable(),
+      panic_impairment: this.number(0),
+      panic_intensity: this.number(0),
+      panic_note: this.string(null).nullable(),
+
+      social_marked_anxiety: this.number(0),
+      social_fear_that: this.number(0),
+      social_social_situation: this.number(0),
+      social_intense_anxiety: this.number(0),
+      social_anxiety_is_out_of_proportion: this.number(0),
+      social_anxiety_note: this.string(null).nullable(),
 
       ocd_obsessions: this.number(0),
       ocd_compulsions: this.number(0),
       ocd_distressing: this.number(0),
       ocd_insight: this.number(0),
+      ocd_note: this.string(null).nullable(),
 
       ptsd_re_experiencing: this.number(0),
       ptsd_avoidance: this.number(0),
       ptsd_arousal: this.number(0),
       ptsd_negative: this.number(0),
+      ptsd_note: this.string(null).nullable(),
 
       adhd_inattention : this.number(0),
       adhd_hyperactivity: this.number(0),
@@ -101,12 +124,17 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       adhd_blurts: this.number(0),
       adhd_difficulty_waiting: this.number(0),
       adhd_interrupts: this.number(0),
+      adhd_note: this.string(null).nullable(),
 
-      social_marked_anxiety: this.number(0),
-      social_fear_that: this.number(0),
-      social_social_situation: this.number(0),
-      social_intense_anxiety: this.number(0),
-      social_anxiety_is_out_of_proportion: this.number(0),
+      anorexia_note: this.string(null).nullable(),
+
+      bulimia_note: this.string(null).nullable(),
+
+      dementia_note: this.string(null).nullable(),
+
+      suicide_note: this.string(null).nullable(),
+
+      homicide_note: this.string(null).nullable(),
 
       recordChangedByUuid: this.string(null),
       recordChangedFromIPAddress: this.string(null),
@@ -141,6 +169,117 @@ export const psychReviewOfSystemFormDef = {
 
       style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',
     },
+
+    //Gateway mood symptoms
+    //---------------------
+    {
+      nameInDb: 'gateway_depressed',
+      nameInUi: 'Felt depressed',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gateway_energetic',
+      nameInUi: 'Low interest or motivation',
+      type: 'vertical-slider',
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gateway_interest',
+      nameInUi: 'Abnormally irritable',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gateway_mood',
+      nameInUi: 'Abnormally energetic',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gateway_irritable',
+      nameInUi: 'Abnormal mood',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'gateway_difficult',
+      nameInUi: 'Difficult do the above symptoms',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    //---------------------
 
     //Depression
     //---------------------
@@ -306,116 +445,12 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
-    //---------------------
-
-    //Gateway mood symptoms
-    //---------------------
     {
-      nameInDb: 'gateway_depressed',
-      nameInUi: 'Felt depressed',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
+      nameInDb: 'depressive_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
       showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'gateway_energetic',
-      nameInUi: 'Low interest or motivation',
-      type: 'vertical-slider',
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'gateway_interest',
-      nameInUi: 'Abnormally irritable',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'gateway_mood',
-      nameInUi: 'Abnormally energetic',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'gateway_irritable',
-      nameInUi: 'Abnormal mood',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'gateway_difficult',
-      nameInUi: 'Difficult do the above symptoms',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 1, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   0.5: 'Not present',
-      //   1: 'Sub-syndromal',
-      //   2: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
     //---------------------
 
@@ -565,6 +600,13 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
+    {
+      nameInDb: 'mania_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
     //---------------------
 
     //Psychosis
@@ -658,6 +700,42 @@ export const psychReviewOfSystemFormDef = {
       // ft: function formatTooltip(val) {
       //   return this.marks[val]
       // },
+    },
+    {
+      nameInDb: 'psychosis_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Sleep
+    //---------------------
+    {
+      nameInDb: 'sleep_assessment',
+      nameInUi: 'Average number of hours slept per night (doctors assessment)',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    {
+      nameInDb: 'sleep_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Substance Use
+    //---------------------
+    {
+      nameInDb: 'substance_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
     //---------------------
 
@@ -807,10 +885,172 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
+    {
+      nameInDb: 'gad_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Panic Attacks
+    //---------------------
+    {
+      nameInDb: 'panic_attacks',
+      nameInUi: 'Panic Attacks Per Month',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    {
+      nameInDb: 'panic_impairment',
+      nameInUi: 'Impairment Caused by Panic Attacks',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'panic_intensity',
+      nameInUi: 'Intensity of Panic Attacks',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'panic_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //------------------------
+
+    //SOCIAL ANXIETY
+    //---------------------
+    {
+      nameInDb: 'social_marked_anxiety',
+      nameInUi: 'Marked anxiety about 1 or more social situations',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_fear_that',
+      nameInUi: 'Fear that will act in a way that will be negatively evaluated',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_social_situation',
+      nameInUi: 'Social situation(s) almost always provokes anxiety',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_intense_anxiety',
+      nameInUi: 'Social situation(s) is avoided or endured with intense anxiety',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_anxiety_is_out_of_proportion',
+      nameInUi: 'Anxiety is out of proportion to actual threat of the situation',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 3, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   1: 'Not present',
+      //   2: 'Sub-syndromal',
+      //   3: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'social_anxiety_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
     //---------------------
 
     //OCD
-    //--------------------- 
+    //---------------------
     {
       nameInDb: 'ocd_obsessions',
       nameInUi: 'Obsessions',
@@ -883,8 +1123,15 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
+    {
+      nameInDb: 'ocd_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
     //---------------------
-    
+
     //PTSD
     //---------------------
     {
@@ -958,6 +1205,13 @@ export const psychReviewOfSystemFormDef = {
       // ft: function formatTooltip(val) {
       //   return this.marks[val]
       // },
+    },
+    {
+      nameInDb: 'ptsd_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
     //---------------------
 
@@ -1323,102 +1577,69 @@ export const psychReviewOfSystemFormDef = {
       //   return this.marks[val]
       // },
     },
-    //---------------------
-    
-    //SOCIAL ANXIETY
-    //---------------------
     {
-      nameInDb: 'social_marked_anxiety',
-      nameInUi: 'Marked anxiety about 1 or more social situations',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
+      nameInDb: 'adhd_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
       showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   1: 'Not present',
-      //   2: 'Sub-syndromal',
-      //   3: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'social_fear_that',
-      nameInUi: 'Fear that will act in a way that will be negatively evaluated',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   1: 'Not present',
-      //   2: 'Sub-syndromal',
-      //   3: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'social_social_situation',
-      nameInUi: 'Social situation(s) almost always provokes anxiety',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   1: 'Not present',
-      //   2: 'Sub-syndromal',
-      //   3: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'social_intense_anxiety',
-      nameInUi: 'Social situation(s) is avoided or endured with intense anxiety',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   1: 'Not present',
-      //   2: 'Sub-syndromal',
-      //   3: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
-    },
-    {
-      nameInDb: 'social_anxiety_is_out_of_proportion',
-      nameInUi: 'Anxiety is out of proportion to actual threat of the situation',
-      type: 'vertical-slider',
-
-      style: 'padding: 20px',
-      showLabel: true,
-      fieldOptions: { min: 0, max: 3, step: 1 },
-      // marks: {
-      //   0: 'Not evaluated',
-      //   1: 'Not present',
-      //   2: 'Sub-syndromal',
-      //   3: 'Syndromal',
-      // },
-      // ft: function formatTooltip(val) {
-      //   return this.marks[val]
-      // },
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
     //---------------------
 
+    //Anorexia
+    //---------------------
+    {
+      nameInDb: 'anorexia_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Bulimia
+    //---------------------
+    {
+      nameInDb: 'bulimia_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Dementia
+    //---------------------
+    {
+      nameInDb: 'dementia_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Suicide Assessment
+    //---------------------
+    {
+      nameInDb: 'suicide_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
+
+    //Homicide Assessment
+    //---------------------
+    {
+      nameInDb: 'homicide_note',
+      nameInUi: 'Note',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    //---------------------
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
