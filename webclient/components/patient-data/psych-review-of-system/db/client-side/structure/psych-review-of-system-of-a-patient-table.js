@@ -1,6 +1,10 @@
 // For docs read webclient/docs/models.md
 import clientTblManage from '~/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 
+var prosEachFieldAllSelectOptions = require('../static-data/insert-into-psych-review-of-system-all-select-options')
+  .prosEachFieldAllSelectOptions
+
+import psychReviewOfSystemsForPatientTbl from '~/components/patient-data/psych-review-of-system/db/client-side/structure/psych-review-of-system-of-a-patient-table.js'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
 const { v1: uuidv1 } = require('uuid')
@@ -68,6 +72,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       sleep_assessment: this.string(null).nullable(),
       sleep_note: this.string(null).nullable(),
 
+      substance_list: this.string(null).nullable(),
       substance_note: this.string(null).nullable(),
 
       gad_anxiety: this.number(0),
@@ -126,14 +131,23 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       adhd_interrupts: this.number(0),
       adhd_note: this.string(null).nullable(),
 
+      anorexia_food_restriction: this.number(0),
+      anorexia_intense_fear: this.number(0),
+      anorexia_body_image: this.number(0),
+      anorexia_bmi: this.string(null).nullable(),
       anorexia_note: this.string(null).nullable(),
 
+      bulimia_binge_eating: this.number(0),
+      bulimia_compensatory_behaviors: this.number(0),
+      bulimia_self_evaluation: this.number(0),
       bulimia_note: this.string(null).nullable(),
 
       dementia_note: this.string(null).nullable(),
 
+      suicide_ideations: this.string('"#No#"'),
       suicide_note: this.string(null).nullable(),
 
+      homicide_ideations: this.string('"#No#"'),
       homicide_note: this.string(null).nullable(),
 
       recordChangedByUuid: this.string(null),
@@ -730,6 +744,13 @@ export const psychReviewOfSystemFormDef = {
 
     //Substance Use
     //---------------------
+    {
+      nameInDb: 'substance_list',
+      nameInUi: 'Substance List',
+      type: 'multi-select-with-buttons',
+      showLabel: true,
+      style: 'padding: 20px',
+    },
     {
       nameInDb: 'substance_note',
       nameInUi: 'Note',
@@ -1589,6 +1610,67 @@ export const psychReviewOfSystemFormDef = {
     //Anorexia
     //---------------------
     {
+      nameInDb: 'anorexia_food_restriction',
+      nameInUi: 'Food restriction leading to significantly low weight',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'anorexia_intense_fear',
+      nameInUi: 'Intense fear of gaining weight or behavior that interferes with wt gain',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'anorexia_body_image',
+      nameInUi: 'Body image disturbance, or excess influence of shape on self evaluation, or denial of seriousness of low body weight',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'anorexia_bmi',
+      nameInUi: 'Latest BMI',
+      type: 'tribute-editor',
+      showLabel: true,
+      style: 'padding: 20px; grid-column: span 3; font-weight: bold',
+    },
+    {
       nameInDb: 'anorexia_note',
       nameInUi: 'Note',
       type: 'tribute-editor',
@@ -1599,6 +1681,60 @@ export const psychReviewOfSystemFormDef = {
 
     //Bulimia
     //---------------------
+    {
+      nameInDb: 'bulimia_binge_eating',
+      nameInUi: 'Binge eating (large quantity and lack of control of eating)',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'bulimia_compensatory_behaviors',
+      nameInUi: 'Compensatory behaviors (vomiting, laxatives, fasting, exercise)',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
+    {
+      nameInDb: 'bulimia_self_evaluation',
+      nameInUi: 'Self evaluation highly influenced by shape',
+      type: 'vertical-slider',
+
+      style: 'padding: 20px',
+      showLabel: true,
+      fieldOptions: { min: 0, max: 1, step: 1 },
+      // marks: {
+      //   0: 'Not evaluated',
+      //   0.5: 'Not present',
+      //   1: 'Sub-syndromal',
+      //   2: 'Syndromal',
+      // },
+      // ft: function formatTooltip(val) {
+      //   return this.marks[val]
+      // },
+    },
     {
       nameInDb: 'bulimia_note',
       nameInUi: 'Note',
@@ -1622,6 +1758,14 @@ export const psychReviewOfSystemFormDef = {
     //Suicide Assessment
     //---------------------
     {
+      nameInDb: 'suicide_ideations',
+      nameInUi: 'Does patient report suicidal ideations ?',
+      type: 'multi-select-with-buttons',
+      showLabel: true,
+      compactDisplay: true,
+      style: 'padding: 20px; grid-column: span 3;',
+    },
+    {
       nameInDb: 'suicide_note',
       nameInUi: 'Note',
       type: 'tribute-editor',
@@ -1633,6 +1777,14 @@ export const psychReviewOfSystemFormDef = {
     //Homicide Assessment
     //---------------------
     {
+      nameInDb: 'homicide_ideations',
+      nameInUi: 'Does patient report homicidal ideations ?',
+      type: 'multi-select-with-buttons',
+      showLabel: true,
+      compactDisplay: true,
+      style: 'padding: 20px; grid-column: span 3;',
+    },
+    {
       nameInDb: 'homicide_note',
       nameInUi: 'Note',
       type: 'tribute-editor',
@@ -1643,11 +1795,18 @@ export const psychReviewOfSystemFormDef = {
   ],
   showReviewedButtonInForm: false,
   showResetFormButton: false,
-
+  showDeleteButtonInForm: false,
+  showFilterBySearchInAddForm: false,
   maxNumberOfTemporallyValidRows: 1,
+  cacheOfMasterListOfSelectOptions: {},
+
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem',
-  ctrlPlacementOfEveryRowInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; column-gap: 1rem;',
+  // ctrlPlacementOfEveryRowInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; column-gap: 1rem;',
+
+  ctrlPlacementOfEveryRowInViewNote:
+    'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'subjective',
@@ -1683,5 +1842,57 @@ export const psychReviewOfSystemFormDef = {
     const optionIdToLabel = arOfAllSelectOptions[0]['psychReviewOfSystemFieldOptionLabel']
 
     return optionIdToLabel
+  },
+
+  fnGetAllSelectOptionsAndSelectedForAField: function (fieldNameInDb, pclientSideUniqRowId = 1) {
+    let masterListOfSelectOptionsForAField = prosEachFieldAllSelectOptions[fieldNameInDb]
+    // get the value for this field in patient table
+    let row = psychReviewOfSystemsForPatientTbl.find(pclientSideUniqRowId)
+    let selectedIDs = row[fieldNameInDb]
+
+    var selectDropDown = []
+
+    for (var i = 0; i < masterListOfSelectOptionsForAField.length; i++) {
+      selectDropDown[i] = new Array()
+      const fieldOptionId = '#' + masterListOfSelectOptionsForAField[i]['label'].replace(/ /g, '_') + '#' // # is the seperator charecter so toggle can work. Look inside manage-rows
+      selectDropDown[i]['id'] = fieldOptionId
+      selectDropDown[i]['value'] = masterListOfSelectOptionsForAField[i]['label']
+      if (selectedIDs) {
+        selectDropDown[i]['selected'] = selectedIDs.includes(fieldOptionId) ? true : false
+      }
+    }
+
+    /* run custom rules to remove selected options. The data structure is:
+            $id: "#0#"
+            ROW_END: 2147483648000
+            fieldNameInDb: "constitutional_systems_select"
+            fieldOptionId: "#0#"
+            fieldOptionLabel: "Change in appetite"
+            id: "#0#"
+            isValidationError: false
+            selected: true
+            value: "Change in appetite"
+            vnRowStateInSession: 1
+  */
+    var userHasSelectedNone = false
+
+    for (var i = 0; i < selectDropDown.length; i++) {
+      if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        userHasSelectedNone = true
+      }
+    }
+
+    if (userHasSelectedNone) {
+      var i = selectDropDown.length
+      // for reasons of using while see: https://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
+      while (i--) {
+        if (selectDropDown[i]['value'] === 'None' && selectDropDown[i]['selected'] === true) {
+        } else {
+          selectDropDown.splice(i, 1)
+        }
+      }
+    }
+
+    return selectDropDown
   },
 }
