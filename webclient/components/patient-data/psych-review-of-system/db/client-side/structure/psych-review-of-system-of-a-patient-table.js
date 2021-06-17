@@ -69,7 +69,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       psychosis_negativeSx: this.number(0),
       psychosis_note: this.string(null).nullable(),
 
-      sleep_assessment: this.string(null).nullable(),
+      sleep_assessment: this.number(0),
       sleep_note: this.string(null).nullable(),
 
       substance_list: this.string(null).nullable(),
@@ -85,7 +85,7 @@ export default class psychReviewOfSystemsForPatientClass extends clientTblManage
       gad_disturbance: this.number(0),
       gad_note: this.string(null).nullable(),
 
-      panic_attacks: this.string(null).nullable(),
+      panic_attacks: this.number(0),
       panic_impairment: this.number(0),
       panic_intensity: this.number(0),
       panic_note: this.string(null).nullable(),
@@ -729,7 +729,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'sleep_assessment',
       nameInUi: 'Average number of hours slept per night (doctors assessment)',
-      type: 'tribute-editor',
+      type: 'number',
       showLabel: true,
       style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
@@ -920,7 +920,7 @@ export const psychReviewOfSystemFormDef = {
     {
       nameInDb: 'panic_attacks',
       nameInUi: 'Panic Attacks Per Month',
-      type: 'tribute-editor',
+      type: 'number',
       showLabel: true,
       style: 'padding: 20px; grid-column: span 3; font-weight: bold',
     },
