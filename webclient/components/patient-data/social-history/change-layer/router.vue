@@ -26,7 +26,7 @@ export default {
     const status = socialHistoryTbl.isThereSavedPresentDataInTable()
     if (status) {
       this.rowIdForEdit = status[status.length - 1]['clientSideUniqRowId']
-      console.log(this.rowIdForEdit)
+      // console.log(this.rowIdForEdit)
     }
   },
 }

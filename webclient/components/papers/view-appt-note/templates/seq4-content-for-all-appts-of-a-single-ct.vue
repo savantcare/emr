@@ -2,25 +2,25 @@
   <div :style="_formDef.styleForBoxInPaperTypeView">
     <!-- Goal: Save space. This is Paper view layer. Here the goal is to see the whole note at 1 glance.
     Hence only print a seperate row for heding when needed.
-    
+
     Following are the cases when a seperate row for heading is not needed.
     If there is only 1 possible row and 1 possible field then no need to show a seperate line for header
     The format for such data will be "Child complaint: Sleep"
     Without the following if statement the format was becoming
-    Child complaint 
+    Child complaint
     Sleep
 
     Explanation of v-if
-    !_formDef.maxNumberOfTemporallyValidRows || _formDef.maxNumberOfTemporallyValidRows > 1 
+    !_formDef.maxNumberOfTemporallyValidRows || _formDef.maxNumberOfTemporallyValidRows > 1
     First is checking if Ct has defined _formDef.maxNumberOfTemporallyValidRows. For ct that has not defined this property in the object the heading will come.
-    If 1st check fails the heding will come if 2nd check passes. 
-    
-    There are ptDataTbl like MentalStatusExam that have many fields. For thos I need to show the heading "Mental status exam"  
+    If 1st check fails the heding will come if 2nd check passes.
+
+    There are ptDataTbl like MentalStatusExam that have many fields. For thos I need to show the heading "Mental status exam"
     -->
 
     <div
       v-if="currentApptObj['apptStatus'] === 'unlocked'"
-      style="text-align: left; cursor: pointer; color: #606266; margin: 3px 0 0 0"
+      style="text-align: left; cursor: pointer; color: #606266; margin: 8px 0 0 0"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
@@ -60,14 +60,14 @@
 
     <div :style="cfGetDataRowStyle" class="app">
       <!-- This is for each data row -->
-      <!-- Design: 
+      <!-- Design:
 
         Goal 1: Each data row is made into a grid with 3 columns
           How? display: grid; grid-template-columns: 1fr 1fr 1fr
-        
+
         Goal 2: Between columns there is some space
           How? style="grid-column-gap: 1rem
-        
+
         Goal 3: If 1st and 2nd field has no value then 3rd field should be in 1st col and not in 3rd col
           Solution 1:
           How? grid-template-columns: min-content 1fr;
@@ -86,8 +86,8 @@
           How? grid-row-gap: 1rem;              //not working
         -->
 
-      <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields 
-         Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value 
+      <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields
+         Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value
          Each appt gets a slide of its own         -->
 
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
@@ -193,13 +193,13 @@ export default {
            *  A4 page width = 17cm
               A4 page left+right padding 0.5cm+0.5cm = 1cm
               Remaining space for page content = 17cm - 1cm = 16cm
-   
+
               Convert 16cm to pixel:
               Ref: https://www.convert-measurement-units.com/conversion-calculator.php?type=font-size
               16cm = 604px
 
               Slider previous and next icons width = 24px+24px = 48px
-              Remaining width for slider content = 
+              Remaining width for slider content =
               604px (Remaining space for page content in px) - 48px (Slider previous and next icons width) = 556px
            */
           container: 556,
@@ -240,11 +240,11 @@ export default {
     const eventName = 'event-to-set-notification-for-save'
     this.$root.$on(eventName, (pEntity) => {
       if(pEntity === this._formDef.id){
-        this.dblIsSavedNotification = true 
+        this.dblIsSavedNotification = true
 
         let thisDocument = this
-        setTimeout(function(){ 
-          thisDocument.dblIsSavedNotification = false 
+        setTimeout(function(){
+          thisDocument.dblIsSavedNotification = false
         }, 3000, thisDocument);
       }
     })
@@ -554,11 +554,11 @@ http://jsfiddle.net/kf1y2npw/30/
 .hs > li,
 .item {
   scroll-snap-align: center;
-  padding: 3px 0;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background: #fff;
   border-radius: 8px;
   border-width: 1px;
