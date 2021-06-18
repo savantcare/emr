@@ -41,6 +41,10 @@ jobs:
           sudo rm -rf package-lock.json # remove old package-lock.json file from servers
           cd /gt/sc-prog-repos/emr/webclient
           sudo rm -rf package-lock.json # remove old package-lock.json file from webclient
+          cd /gt/sc-prog-repos/emr/servers/lumen-for-api
+          chmod -R 777 storage/
+          chmod -R 777 bootstrap/
+          composer install
 
       - name: Goal 4 -> Make sure /gt/sc-prog-repos has the code
         run: |
