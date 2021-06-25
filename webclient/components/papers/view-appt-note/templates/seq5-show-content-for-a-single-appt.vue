@@ -168,7 +168,7 @@ export default {
       }
     },
     mOver(pRowId) {
-      console.log(this._ApptStatus)
+      // console.log(this._ApptStatus)
       setTimeout(() => {
         this.mouseOnThisRow = true
       }, 500)
@@ -180,7 +180,7 @@ export default {
     },
     mfOpenAddInEditLayer() {
       const term = 'add ' + this._formDef.id
-      console.log(term)
+      // console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
       })
@@ -198,7 +198,7 @@ export default {
           is like working on a gloal variable. So other Cts can also modify this global variable.
       */
       const payload = { searchTerm: 'edit ' + this._formDef.id, pPropsToGiveToCt: pClientDataRowId }
-      console.log(payload)
+      // console.log(payload)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', payload)
     },
     mfGetCssClassNameForEachDataRow(pRow) {
