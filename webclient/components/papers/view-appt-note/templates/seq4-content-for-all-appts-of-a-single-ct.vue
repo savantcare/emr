@@ -89,11 +89,9 @@
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value
          Each appt gets a slide of its own         -->
-      
+
       <ul class="hs full no-scrollbar" id="container-for-all-appointments">
-        <div v-if="cf_get_entity_value_during_each_appt.length <= 0">
-          No Data found
-        </div>
+        <div class="item" v-if="cf_get_entity_value_during_each_appt.length == 0"> No Data found </div>
         <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
           <li class="item" :id="'container-for-one-appointment_' + _formDef.id + '_' + index">
             <div v-if="objAppt.apptStatus === 'locked'">
@@ -449,7 +447,7 @@ export default {
     },
     mfOpenAddInEditLayer() {
       const term = 'add ' + this._formDef.id
-      console.log(term)
+      // console.log(term)
       this.$store.commit('mtfShowNewFirstTabInEditLayerFromSearchPhrase', {
         searchTerm: term,
       })
