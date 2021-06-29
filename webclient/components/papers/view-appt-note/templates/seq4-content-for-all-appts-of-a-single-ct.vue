@@ -90,7 +90,7 @@
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value
          Each appt gets a slide of its own         -->
 
-      <ul class="hs full no-scrollbar" id="container-for-all-appointments">
+      <ul class="hs full no-scrollbar container-for-all-appointments" :id="'container-for-all-appointments_' + _formDef.id">
         <div class="item" v-if="cf_get_entity_value_during_each_appt.length == 0"> No Data found </div>
         <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
           <li class="item" :id="'container-for-one-appointment_' + _formDef.id + '_' + index">
@@ -168,6 +168,8 @@ import allPatientDataTbls from '@/components/non-temporal/form-manager/all-clien
 import { rowState } from '@/components/non-temporal/form-manager/manage-rows-of-table-in-client-side-orm.js'
 import getRowContent from './seq5-show-content-for-a-single-appt.vue'
 import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
+
+import {scroller} from '@/node_modules/vue-scrollto/src/scrollTo'
 
 export default {
   data() {
@@ -341,14 +343,22 @@ export default {
         if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
 
+        /**
+         * Why we added 'scroller' instead of 'scrollTo'?
+         * Using the default 'scrollTo' methods allows for only one scroll action at a time for performance reasons.
+         * scroller factory use directly and create multiple instances and allows multiple scroll action simultaneously at a time.
+         * Ref: https://www.npmjs.com/package/vue-scrollto#simultaneous-scrolling
+         */
+
+          const objScrollTo = scroller()
           setTimeout(() => {
             const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
-            const objScrollTo = this.$scrollTo(element, 100, {
-              container: '#container-for-all-appointments',
+            const container = '#container-for-all-appointments_' + this._formDef.id
+            objScrollTo(element, 100, {
+              container: container,
               x: true,
               y: false,
             })
-            // objScrollTo();
           }, 200)
         }
       }
@@ -574,7 +584,7 @@ http://jsfiddle.net/kf1y2npw/30/
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-ul#container-for-all-appointments {
+ul.container-for-all-appointments {
   padding: 0;
 }
 div#container-for-all-rows-of-one-appointment {

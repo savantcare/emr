@@ -52,23 +52,23 @@ export default {
 
       /* Loop through all the tables */
       for (const entity in allPatientDataTbls) {
-        console.log(
-          'Delegating responsibility to',
-          allPatientDataTbls[entity].entity,
-          'Letting it decide if there is some data to be saved and if so then save the data.'
-        )
+        // console.log(
+        //   'Delegating responsibility to',
+        //   allPatientDataTbls[entity].entity,
+        //   'Letting it decide if there is some data to be saved and if so then save the data.'
+        // )
 
         // Step1: Save all new rows
         const statusOfNewRowsSent = await allPatientDataTbls[entity].sfSendNewChangedRowsToServer()
         //console.log(entity, statusOfNewRowsSent)
-       
+
         // Step2: Save all changed rows
         const statusOfChangedRowsSent = await allPatientDataTbls[entity].sfSendCopyChangedRowsToServer() // Without this the copied row start time may be after some MilliSecs of this rows lock time
         //console.log(entity, statusOfChangedRowsSent)
 
         if(statusOfNewRowsSent === 1 || statusOfChangedRowsSent === 1){
           let root = this.$root
-          setTimeout(function(){ 
+          setTimeout(function(){
             const eventName = 'event-to-set-notification-for-save'
             root.$emit(eventName, entity)
           }, 200, root, entity);
