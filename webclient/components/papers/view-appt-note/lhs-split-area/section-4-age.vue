@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: left; cursor: pointer; color: #606266" @click="heading_clicked_so_set_up_state('date_of_birth')"><b>Age:</b> {{ cfAge }}</div>
+  <div class="date_of_birth_section" @click="heading_clicked_so_set_up_state('date_of_birth')">{{ cfAge }}</div>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
         const currentMS = currentDate.getTime()
         const diff = currentMS - this.cfLatestDataRowFromClientTbl.dateOfBirthInMilliSeconds
         const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
-        return age + ' Years'
+        return '(' + age + ' Years)'
       } else {
         return ''
       }

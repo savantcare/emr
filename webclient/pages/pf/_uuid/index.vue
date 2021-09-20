@@ -20,6 +20,12 @@
         <!-- GOAL2: Initialize the tutorial to teach user the fundamentals of the software -->
         <ctToGiveProductTour></ctToGiveProductTour>
 
+        <!-- Header start -->
+        <el-row class="paper_view_top_header">
+          <ctPaperViewTopHeaderComponents></ctPaperViewTopHeaderComponents>
+        </el-row>
+        <!-- Header end -->
+
         <!-- GOAL3: Open the default cards on left side and right side -->
         <!-- Prop explanation:
           :gutterSize="0"
@@ -123,6 +129,7 @@ Vue.component('tags-input', VoerroTagsInput)
 // Internal Cts
 import ctFeed from '@/components/non-temporal/feed/drawer.vue'
 import ctPaperViewNoteLeftSideComponents from '@/components/papers/view-appt-note/lhs-split-area/list-of-components.vue'
+import ctPaperViewTopHeaderComponents from '@/components/papers/view-appt-note/templates/header-components.vue'
 import ctPaperViewNoteRightSideComponents from '@/components/papers/view-appt-note/rhs-split-area/list-of-components.vue'
 import ctTabsInDialogInCL from '@/components/non-temporal/components-container-in-change-layer/show-add-and-remove-tabs-in-dialog-ct' // Name expands to Component tabs in dialog in change layer
 import ctLeftScreenExtensionDrawer from '@/components/non-temporal/components-container-in-lhs-screen-extension/left-drawer.vue'
@@ -164,6 +171,7 @@ Vue.use(VueMousetrap)
 export default {
   components: {
     ctPaperViewNoteLeftSideComponents,
+    ctPaperViewTopHeaderComponents,
     ctPaperViewNoteRightSideComponents,
     ctTabsInDialogInCL,
     ctLeftScreenExtensionDrawer,
@@ -428,4 +436,32 @@ button.el-button.btn-map-fullscreen.el-button--primary.el-button--mini.is-round 
   position: absolute;
   right: 5px;
 }
+
+
+/**
+  Start css for top header bar
+*/
+.paper_view_top_header {
+    border-bottom: 1px solid rgba(64, 158, 255, 0.8);
+    height: 85px;
+    box-shadow: rgb(239 239 239) 0px 10px 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 1440px;
+}
+.header_name_row {
+    margin-bottom: 5px;
+}
+.patient-name-section {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.date_of_birth_section {
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
 </style>

@@ -1,21 +1,18 @@
 <template>
   <div class="A4">
-    <div v-if="_side === 'left' || _side === 'full'">
-      <div style="border-bottom: 1px solid #eee; margin: 3px 0; padding: 3px 0">
-        <headerPaperNote :_apptId="_showNoteForApptId" _entity="name" > </headerPaperNote><i style="float:right;display:inline" class="el-icon-pencil" ></i>
-        
-      </div>
-      <b>Appt Date:</b>
-
-      {{ patientCurrentApptObj['apptStartMilliSecsOnCalendar'] | moment }}
-      <!--<ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="name" />-->
-      <agePaperNote />
-
+    <div v-if="(_side === 'left' || _side === 'full') && (patientCurrentApptObj['apptStatus'] == 'cancellation' || patientCurrentApptObj['apptStatus'] == 'late-cancellation')">
+      <el-image src="/images/cancelled-appt-left-side.jpg" fit="fill"></el-image>
+    </div>
+    <div v-else-if="(_side === 'left' || _side === 'full') && patientCurrentApptObj['apptStatus'] == 'no-show'">
+      <el-image src="/images/no-show-appt-left-side.jpg" fit="fill"></el-image>
+    </div>
+    <div v-else-if="_side === 'left' || _side === 'full'">
+      
       <!-- Goal: If appt is not locked then do not show "Appt Lock date" -->
-      <div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
+      <!--<div v-if="patientCurrentApptObj['apptStatus'] === 'locked'">
         <b>Appt locked:</b>
         {{ cfApptLockDateInHumanReadableFormat }}
-      </div>
+      </div>-->
       
       <el-divider class="section-header"><h3>History</h3></el-divider>
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="chief_complaint" />
@@ -65,7 +62,13 @@
         </div>
       </div>
     </div>
-    <div v-if="_side === 'right' || _side === 'full'">
+    <div v-else-if="(_side === 'right' || _side === 'full') && (patientCurrentApptObj['apptStatus'] == 'cancellation' || patientCurrentApptObj['apptStatus'] == 'late-cancellation')">
+      <el-image src="/images/cancelled-appt-right-side.jpg" fit="fill"></el-image>
+    </div>
+    <div v-else-if="(_side === 'right' || _side === 'full') && patientCurrentApptObj['apptStatus'] == 'no-show'">
+      <el-image src="/images/no-show-appt-right-side.jpg" fit="fill"></el-image>
+    </div>
+    <div v-else-if="_side === 'right' || _side === 'full'">
       <el-divider class="section-header"><h3>Assessment</h3></el-divider>
 
       <ctPaperNoteStructure :_apptId="_showNoteForApptId" _entity="diagnosis" />
@@ -89,6 +92,7 @@ import ctPaperNoteStructure from '@/components/papers/view-appt-note/templates/s
 
 // init tables
 import clientTblOfAppointments from '@/components/patient-data/appointments/db/client-side/structure/appointment-client-side-table.js'
+import commonForAllCts from '@/components/non-temporal/common-for-all-components/db/client-side/structure/table.js'
 
 // This component to show 2 notes side by side
 import apptNotePrintableView from '@/components/papers/view-appt-note/templates/seq2-all-cts-in-a-note-for-given-appt-id-in-a4-format-for-lhs-or-rhs.vue'
@@ -137,6 +141,10 @@ export default {
     // Goal1 -> If no ID has been sent then return
     if (!this._showNoteForApptId) return
 
+    commonForAllCts.insertOrUpdate({
+      data: [{ fieldName: 'patient-current-appt-id', fieldValue: this._showNoteForApptId }],
+    })
+
     // Get appt details from appt table
     this.patientCurrentApptObj = await clientTblOfAppointments.find(this._showNoteForApptId)
   },
@@ -169,7 +177,7 @@ https://github.com/cognitom/paper-css/blob/master/paper.css
   /* Goal 2: Give margin and padding */
   margin: 0 auto;
   margin-bottom: 0.5cm;
-  padding: 0.5cm; /* In SO/30345808 this is set as 2cm.
+  padding: 0.1cm 0.5cm 0.5cm 0.5cm; /* In SO/30345808 this is set as 2cm.
   What is the right printer margin?
   As per https://stackoverflow.com/questions/3503615/what-are-the-minimum-margins-most-printers-can-handle it should be .25" or .39 inches. This A4 stlye given at https://stackoverflow.com/questions/39486352/a4-page-like-layout-in-html
   gives .78 inches.

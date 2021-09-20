@@ -156,8 +156,8 @@ export default {
       } else {
         const apptObj = clientTblOfAppointments
           .query()
-          .where('apptStatus', 'locked')
-          .orWhere('apptStatus', 'unlocked')
+          //.where('apptStatus', 'locked')
+          //.orWhere('apptStatus', 'unlocked')
           .orderBy('clientSideUniqRowId', 'desc')
           .get()
 

@@ -20,20 +20,20 @@
 
     <div
       v-if="currentApptObj['apptStatus'] === 'unlocked'"
-      style="text-align: left; cursor: pointer; color: #606266; margin: 8px 0 0 0"
+      style="text-align: left; cursor: pointer; color: #409EFF; border-bottom:1px solid #ebeef5;padding-bottom: 2px;"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
-      @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)"
       why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
-      @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
-      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+      <b @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)" @click="heading_clicked_so_set_up_state(_formDef.id)">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+      <el-button @click="mfArrowClickedLetUsGoToTargetContent(previousSlideNumber, 'prev')" class="el-icon-arrow-left" style="padding: 0; border: none;font-size: 0.85rem;" :style="previousSlideNumber >= 0 ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: #c0c4cc;font-weight: normal;'"></el-button>
+      <el-button @click="mfArrowClickedLetUsGoToTargetContent(nextSlideNumber, 'next')" class="el-icon-arrow-right" style="padding: 0; color: #c0c4cc; border: none;margin:0;font-size: 0.85rem;" :style="nextSlideNumber < cf_get_entity_value_during_each_appt.length ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: #c0c4cc;font-weight: normal;'"></el-button>
       <span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>
     </div>
     <div
       v-else
-      style="text-align: left; cursor: pointer; color: #606266"
+      style="text-align: left; cursor: pointer; color: #409EFF;border-bottom:1px solid #ebeef5;padding-bottom: 2px;"
       tabIndex="0"
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
@@ -178,6 +178,8 @@ export default {
       amendmentData: '',
       isAddendumPopoverVisible: false,
       currentSlideNumber: 0,
+      previousSlideNumber: -1,
+      nextSlideNumber: 1,
       dblIsSavedNotification: false,
       options: {
         responsive: [
@@ -342,6 +344,8 @@ export default {
       for (let j = 0; j < arOfAppts.length; j++) {
         if (arOfAppts[j].clientSideUniqRowId === this._apptId) {
           this.currentSlideNumber = j
+          this.previousSlideNumber = j - 1
+          this.nextSlideNumber = j + 1
 
         /**
          * Why we added 'scroller' instead of 'scrollTo'?
@@ -400,7 +404,25 @@ export default {
         data: [{ fieldName: 'form-def-id-for-change-in-vertical-tabs', fieldValue: pFormDefId }],
       })
     },
+    mfArrowClickedLetUsGoToTargetContent(slideNumber, direction) {
+      const arOfAppts = this.cf_get_entity_value_during_each_appt
+      if(slideNumber < 0 && direction == 'prev') return
+      if(slideNumber >= arOfAppts.length && direction == 'next') return
 
+      const objScrollTo = scroller()
+      setTimeout(() => {
+        const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + slideNumber)
+        const container = '#container-for-all-appointments_' + this._formDef.id
+        objScrollTo(element, 500, {
+          container: container,
+          x: true,
+          y: false,
+        })
+      }, 200)
+
+      this.previousSlideNumber = slideNumber - 1
+      this.nextSlideNumber = slideNumber + 1
+    },
     mfGetArOfDataRows(pApptObj) {
       const emptyArray = []
 
@@ -530,9 +552,9 @@ http://jsfiddle.net/kf1y2npw/30/
   align-content: start;
 }
 
-.app {
+/*.app {
   overflow-y: scroll;
-}
+}*/
 
 .app > * {
   grid-column: 1 / -1;
@@ -570,11 +592,11 @@ http://jsfiddle.net/kf1y2npw/30/
   justify-content: center;
   /* align-items: center; */
   background: #fff;
-  border-radius: 8px;
+  /*border-radius: 8px;
   border-width: 1px;
   border-color: #ebeef5;
   border-style: solid;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);*/
 }
 .no-scrollbar {
   scrollbar-width: none;
@@ -588,8 +610,6 @@ ul.container-for-all-appointments {
   padding: 0;
 }
 div#container-for-all-rows-of-one-appointment {
-    border-bottom: 1px solid #ddd;
     margin-bottom: 3px;
-    padding-bottom: 3px;
 }
 </style>
