@@ -178,7 +178,7 @@ export const psychReviewOfSystemFormDef = {
       nameInDb: 'subjective',
       nameInUi: 'Subjective',
       type: 'tribute-editor',
-      showLabel: false,
+      showLabel: true,
       // Everwhere the content is in grid and I want to take the whole width available inside the grid cell
 
       style: 'padding: 20px; grid-column-start: 1;grid-column-end: 4',
@@ -1806,7 +1806,7 @@ export const psychReviewOfSystemFormDef = {
 
   ctrlPlacementOfEveryRowInViewNote:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
-  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: 1rem',
+  ctrlPlacementOfEveryFieldsNameAndValueInViewNote: 'padding: 0px; margin: 0px; display: grid; grid-template-columns: 1fr; grid-column-gap: .1rem; grid-row-gap: .1rem',
 
   atLeastOneOfFieldsForCheckingIfRowIsEmpty: [
     'subjective',

@@ -273,7 +273,7 @@ export default {
 
     mfHandleUserGeneratedSliderEvent(pEventValue) {
       const valueOfSlider = this.dCurrentValueOnTheSlider
-
+      
       // Goal: When late-camcellatoon no-show or cancellation then no need to show the PDF
       if (
         this.dApptStatusAtEachSliderMark[valueOfSlider] == 'cancellation' ||
@@ -286,7 +286,7 @@ export default {
           currentDisplayStateOfComponent: 0,
         })
 
-        return
+       // return
       }
 
       // Goal: If a visible appt icon is clicked again then remove it. Otherwise show the appt note for that icon.

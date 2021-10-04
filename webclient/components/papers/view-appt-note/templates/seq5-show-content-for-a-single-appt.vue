@@ -75,31 +75,27 @@
 
       <div v-else-if="_fieldDef.type.includes('slider')" id="field-type-slider">
         <div v-if="_dataRow[_fieldDef.nameInDb] > 0">
-          <div v-if="_fieldDef.showLabel" id="field-name-in-ui">
-            <h4>{{ _fieldDef.nameInUi }}</h4>
-          </div>
-          <div id="field-value-in-db">
+          <span v-if="_fieldDef.showLabel" id="field-name-in-ui" style="color: #909399"> {{ _fieldDef.nameInUi }}: </span>
+          <span id="field-value-in-db">
             <!-- <div v-if="_dataRow[_fieldDef.nameInDb] == 1">Not present</div>
             <div v-else-if="_dataRow[_fieldDef.nameInDb] == 2">Sub-Syndromal</div>
             <div v-else-if="_dataRow[_fieldDef.nameInDb] == 3">Syndromal</div>
             <div v-else>
               {{ _dataRow[_fieldDef.nameInDb] }}
             </div> -->
-            <div>
-              {{ _dataRow[_fieldDef.nameInDb] }}
-            </div>
-          </div>
+             {{ _dataRow[_fieldDef.nameInDb] }} 
+          </span>
         </div>
       </div>
 
       <!-- NUMBER -->
       <div v-else-if="_fieldDef.type.includes('number')" id="field-type-number">
-        <div v-if="_fieldDef.showLabel" id="field-name-in-ui" style="display: inline">{{ _fieldDef.nameInUi }}</div>
-        <div id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}</div>
+        <span v-if="_fieldDef.showLabel" id="field-name-in-ui" style="color: #909399">{{ _fieldDef.nameInUi }}: </span>
+        <span id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] }} {{ _fieldDef.unitOfMeasurement }}</span>
       </div>
 
       <div v-else-if="_fieldDef.type.includes('date')" id="field-type-date">
-        <span v-if="_fieldDef.showLabel" id="field-name-in-ui" style="color: #909399">{{ _fieldDef.nameInUi }}:</span>
+        <span v-if="_fieldDef.showLabel" id="field-name-in-ui" style="color: #909399">{{ _fieldDef.nameInUi }}: </span>
         <span id="field-value-in-db">{{ _dataRow[_fieldDef.nameInDb] | moment }}</span>
       </div>
 

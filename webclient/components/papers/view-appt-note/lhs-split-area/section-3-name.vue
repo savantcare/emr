@@ -1,8 +1,11 @@
 <!-- Reference implementation for non numeric hence no graph-->
 <template>
-  <div class="patient-name-section" style="color: #303133">
+  <div class="patient-name-section" style="color: #303133; display:inline-block;">
     <template v-if="cfLatestDataRowFromClientTbl">
-      {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }} <i @click="heading_clicked_so_set_up_state('name')" style="position: absolute;display: none;margin-left: 9px;" class="el-icon-edit" ></i>
+      <div @click="heading_clicked_so_set_up_state('name')">
+        {{ initialFirstName }} {{ initialMiddleName }} {{ initialLastName }} 
+      </div>
+      <!--<i @click="heading_clicked_so_set_up_state('name')" style="position: absolute;display: none;margin-left: 9px;" class="el-icon-edit" ></i>-->
     </template>
   </div>
 </template>

@@ -10,13 +10,13 @@ export default {
     return {}
   },
   mounted() {
-    clientTblOfLeftSideCards.insert({
+    /*clientTblOfLeftSideCards.insert({
       data: {
         name: 'Header',
         componentToShowPath: 'papers/view-appt-note/lhs-split-area/header/sub-ct-container-design-using-card.vue',
         classificationOfComponent: 'commonForHealthAndOther',
       },
-    })
+    })*/
     clientTblOfLeftSideCards.insert({
       data: {
         name: 'Appt note',
