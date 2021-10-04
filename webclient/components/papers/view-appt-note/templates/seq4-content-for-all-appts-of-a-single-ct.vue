@@ -25,10 +25,9 @@
       why1="This div has tabindex since any HTML element other than link and form control is a non focusable element. Eg: <span>, <div>, <span>, <img etc."
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
       why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
+      @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)" @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
-      <b @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)" @click="heading_clicked_so_set_up_state(_formDef.id)">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
-      <el-button @click="mfArrowClickedLetUsGoToTargetContent(previousSlideNumber, 'prev')" class="el-icon-arrow-left" style="padding: 0; border: none;font-size: 0.85rem;" :style="previousSlideNumber >= 0 ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: #c0c4cc;font-weight: normal;'"></el-button>
-      <el-button @click="mfArrowClickedLetUsGoToTargetContent(nextSlideNumber, 'next')" class="el-icon-arrow-right" style="padding: 0; color: #c0c4cc; border: none;margin:0;font-size: 0.85rem;" :style="nextSlideNumber < cf_get_entity_value_during_each_appt.length ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: #c0c4cc;font-weight: normal;'"></el-button>
+      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
       <span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>
     </div>
     <div
@@ -58,7 +57,7 @@
     </div>
     <!-- Section 2/2: This starts after the header ends -->
 
-    <div :style="cfGetDataRowStyle" class="app">
+    <div :style="cfGetDataRowStyle" class="app" style="position:relative;">
       <!-- This is for each data row -->
       <!-- Design:
 
@@ -89,6 +88,8 @@
       <!-- This is to loop on fields. Since some rows may have 1 and other rows may have 4 fields
          Using ternary operator for style since some components may not define _formDef.ctrlPlacementOfEveryFieldsNameAndValueInViewNote and for those Ct I want to use default value
          Each appt gets a slide of its own         -->
+
+      <el-button @click="mfArrowClickedLetUsGoToTargetContent(previousSlideNumber, 'prev')" class="el-icon-arrow-left" style="padding: 0; border: none;font-size: 1.5rem;position:absolute;left:-5px;background: transparent;top: 9%;" :style="previousSlideNumber >= 0 ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: rgb(222 225 232);font-weight: normal;'"></el-button>
 
       <ul class="hs full no-scrollbar container-for-all-appointments" :id="'container-for-all-appointments_' + _formDef.id">
         <div class="item" v-if="cf_get_entity_value_during_each_appt.length == 0"> No Data found </div>
@@ -151,6 +152,9 @@
           <!-- end of actions of each row -->
         </section>
       </ul>
+
+      <el-button @click="mfArrowClickedLetUsGoToTargetContent(nextSlideNumber, 'next')" class="el-icon-arrow-right" style="padding: 0; border: none;font-size: 1.5rem;position:absolute;right:0px;background: transparent;top: 9%;" :style="nextSlideNumber < cf_get_entity_value_during_each_appt.length ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: rgb(222 225 232);font-weight: normal;'"></el-button>
+
     </div>
   </div>
 </template>
