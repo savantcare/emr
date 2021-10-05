@@ -10,7 +10,7 @@
           </h2>
         </div>
       </el-col>
-      <el-col :span="11">
+      <el-col :span="8">
         <div class="grid-content" style="vertical-align: middle;display:inline-block;width:45px;">
           <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
             <el-button-group class="h1" style="float: left; display: none">
@@ -52,7 +52,7 @@
         </div>
       </el-col>
 
-      <el-col :span="5">
+      <el-col :span="8">
         <div class="grid-content" style="text-align: right;">
           <div style="vertical-align: top;display:inline-block;">
             <!-- 
@@ -61,7 +61,12 @@
 
               Ref: https://vuejs.org/v2/api/#data
             -->
-            <lockButtonPrintSection :_apptId="showNoteForApptId"></lockButtonPrintSection>
+            <lockButtonPrintSection v-if="cfGetCurrentAppointmentStatus == 'unlocked'" :_apptId="showNoteForApptId"></lockButtonPrintSection>
+            <div v-if="cfGetCurrentAppointmentStatus == 'locked'">
+              <div style="vertical-align: middle;display:inline-block;">
+                <b>Appt locked on: </b> {{ cfGetAppointmentLockedDate | moment }}
+              </div>
+            </div>
           </div>
           <div style="vertical-align: top;display:inline-block;"><ctSettings></ctSettings></div>
           <div style="vertical-align: top;display:inline-block;">
@@ -199,6 +204,18 @@ export default {
 
         if(patientCurrentApptObj)
           return patientCurrentApptObj['apptStartMilliSecsOnCalendar']
+    },
+    cfGetAppointmentLockedDate(){
+      const patientCurrentApptObj = clientTblOfAppointments.find(this._apptId)
+
+      if(patientCurrentApptObj)
+        return patientCurrentApptObj['ROW_END']
+    },
+    cfGetCurrentAppointmentStatus(){
+        const patientCurrentApptObj = clientTblOfAppointments.find(this._apptId)
+
+        if(patientCurrentApptObj)
+          return patientCurrentApptObj['apptStatus']
     }
   },
   methods: {
