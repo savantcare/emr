@@ -27,8 +27,9 @@
       why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
       @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)" @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
-      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
-      <span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>
+      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} </b>
+      <span v-if="contentApptDate !== ''" class="content_appt_date">(Appt date: {{ contentApptDate | moment }})</span> <b>:</b>
+      <!--<span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>-->
     </div>
     <div
       v-else
@@ -52,7 +53,10 @@
             circle
           ></el-button>
         </div>
-        <b slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} :</b>
+        <b slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} 
+          <span v-if="contentApptDate !== ''" class="content_appt_date">(Appt date: {{ contentApptDate | moment }})</span> <b>:</b>
+        </b>
+        
       </el-popover>
     </div>
     <!-- Section 2/2: This starts after the header ends -->
@@ -92,12 +96,12 @@
       <el-button @click="mfArrowClickedLetUsGoToTargetContent(previousSlideNumber, 'prev')" class="el-icon-arrow-left" style="padding: 0; border: none;font-size: 1.5rem;position:absolute;left:-5px;background: transparent;top: 9%;" :style="previousSlideNumber >= 0 ? 'color: rgb(64, 158, 255);font-weight: bold;' : 'color: rgb(222 225 232);font-weight: normal;'"></el-button>
 
       <ul class="hs full no-scrollbar container-for-all-appointments" :id="'container-for-all-appointments_' + _formDef.id">
-        <div class="item" v-if="cf_get_entity_value_during_each_appt.length == 0"> No Data found </div>
+        <div class="item" v-if="cf_get_entity_value_during_each_appt.length == 0" style="background:#fff"> No Data found </div>
         <section v-for="(objAppt, index) in cf_get_entity_value_during_each_appt" :key="index">
           <li class="item" :id="'container-for-one-appointment_' + _formDef.id + '_' + index">
-            <div v-if="objAppt.apptStatus === 'locked'">
-              Appt on: {{ objAppt.apptStartMilliSecsOnCalendar | moment }}
-            </div>
+            <!--<div v-if="objAppt.apptStatus === 'locked'">
+              Appt date: {{ objAppt.apptStartMilliSecsOnCalendar | moment }}
+            </div>-->
             <div
               id="container-to-ctrl-placement-of-every-row-in-view-note"
               :style="
@@ -185,6 +189,7 @@ export default {
       previousSlideNumber: -1,
       nextSlideNumber: 1,
       dblIsSavedNotification: false,
+      contentApptDate: '',
       options: {
         responsive: [
           { end: 576, size: 1 },
@@ -361,12 +366,19 @@ export default {
           const objScrollTo = scroller()
           setTimeout(() => {
             const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
+            element.style.backgroundColor = 'transparent'
             const container = '#container-for-all-appointments_' + this._formDef.id
             objScrollTo(element, 100, {
               container: container,
               x: true,
               y: false,
             })
+          }, 200)
+        } 
+        else {
+          setTimeout(() => {
+            const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
+            element.style.backgroundColor = ''
           }, 200)
         }
       }
@@ -422,6 +434,12 @@ export default {
           x: true,
           y: false,
         })
+
+        if(this.currentSlideNumber == slideNumber){
+          this.contentApptDate = ''
+        } else {
+          this.contentApptDate = arOfAppts[slideNumber].apptStartMilliSecsOnCalendar
+        }
       }, 200)
 
       this.previousSlideNumber = slideNumber - 1
@@ -595,7 +613,7 @@ http://jsfiddle.net/kf1y2npw/30/
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  background: #fff;
+  background: rgba(64, 158, 255,0.08);
   /*border-radius: 8px;
   border-width: 1px;
   border-color: #ebeef5;
@@ -615,5 +633,10 @@ ul.container-for-all-appointments {
 }
 div#container-for-all-rows-of-one-appointment {
     margin-bottom: 3px;
+}
+span.content_appt_date {
+    color: #888;
+    font-size: 0.77rem;
+    font-weight: 400;
 }
 </style>
