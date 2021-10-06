@@ -10,7 +10,7 @@
           </h2>
         </div>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="9">
         <div class="grid-content" style="vertical-align: middle;display:inline-block;width:45px;">
           <div v-if="isThisFirstAppointmentInLockedOrUnlockedState !== 'yes'">
             <el-button-group class="h1" style="float: left; display: none">
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="grid-content" style="vertical-align: middle;display:inline-block;">
-            <b>Appt Date:</b> {{ cfGetCurrentAppointmentDate | moment }}
+            <b>Appt Date:</b> <span class="header_appt_date">{{ cfGetCurrentAppointmentDate | moment }}</span>
         </div>
         <div class="grid-content" style="vertical-align: middle;display:inline-block;width:45px;">
           <div v-if="isThisLastAppointmentInLockedOrUnlockedState !== 'yes'">
@@ -50,9 +50,10 @@
             </el-button-group>
           </div>
         </div>
+        <span v-if="dblIsSavedNotification" style="color: rgb(103, 194, 58);font-weight: bold;vertical-align: middle;font-size: 0.9rem;">Saved successfully.</span>
       </el-col>
 
-      <el-col :span="8">
+      <el-col :span="7">
         <div class="grid-content" style="text-align: right;">
           <div style="vertical-align: top;display:inline-block;">
             <!-- 
@@ -64,7 +65,7 @@
             <lockButtonPrintSection v-if="cfGetCurrentAppointmentStatus == 'unlocked'" :_apptId="showNoteForApptId"></lockButtonPrintSection>
             <div v-if="cfGetCurrentAppointmentStatus == 'locked'">
               <div style="vertical-align: middle;display:inline-block;">
-                <b>Appt locked on: </b> {{ cfGetAppointmentLockedDate | moment }}
+                <b>Appt locked on: </b> <span class="header_appt_date">{{ cfGetAppointmentLockedDate | moment }}</span>
               </div>
             </div>
           </div>
@@ -105,6 +106,7 @@ export default {
       dblOnAndOffSwitchToShowPatientDetails: false,
       showNoteForApptId: 0,
       fullscreen: false,
+      dblIsSavedNotification: false,
     }
   },
   filters: {
@@ -140,6 +142,17 @@ export default {
         }
       },
     },
+  },
+  mounted() {
+    const eventName = 'event-to-set-notification-for-save'
+    this.$root.$on(eventName, (pEntity) => {
+      this.dblIsSavedNotification = true
+
+      let thisDocument = this
+      setTimeout(function(){
+        thisDocument.dblIsSavedNotification = false
+      }, 3000, thisDocument);
+    })
   },
   computed: {
     async cf_get_unlocked_note_appt_id() {
@@ -330,5 +343,8 @@ export default {
 <style scoped>
 .el-row:hover .h1 {
   display: inline-block !important;
+}
+span.header_appt_date {
+    font-size: 0.9rem;
 }
 </style>
