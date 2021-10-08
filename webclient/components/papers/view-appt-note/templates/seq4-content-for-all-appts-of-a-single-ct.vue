@@ -27,7 +27,7 @@
       why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
       @keyup.enter="heading_clicked_so_set_up_state(_formDef.id)" @click="heading_clicked_so_set_up_state(_formDef.id)"
     >
-      <b>{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} </b>
+      <b :id="'content_heading_' + _formDef.id">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} </b>
       <span v-if="contentApptDate !== ''" class="content_appt_date">(Appt date: {{ contentApptDate | moment }})</span> <b>:</b>
       <!--<span v-if="dblIsSavedNotification" style="color: #67c23a;font-weight: bold;font-size: 0.77rem;">Saved successfully</span>-->
     </div>
@@ -39,7 +39,7 @@
       why2="Value of tabindeex is 0 - this is a light touch approach, I am using the built in property of the browser for the navigation to get control. The sequence of focus travel is same as sequence of rendering html."
       why3="Suppose user focusses this div by pressing tab. Once here on pressing entering I want the same behavior as click"
     >
-      <el-popover placement="right" width="400" v-model="isAddendumPopoverVisible">
+      <el-popover title="Add addendum" placement="right" width="400" v-model="isAddendumPopoverVisible">
         <div style="text-align: right; margin: 0">
           <el-input type="textarea" :rows="4" v-model="amendmentData"></el-input>
           <!-- Amendment icon -->
@@ -53,7 +53,7 @@
             circle
           ></el-button>
         </div>
-        <b slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} 
+        <b :id="'content_heading_' + _formDef.id" slot="reference">{{ _formDef.plural.charAt(0).toUpperCase() + _formDef.plural.slice(1) }} 
           <span v-if="contentApptDate !== ''" class="content_appt_date">(Appt date: {{ contentApptDate | moment }})</span> <b>:</b>
         </b>
         
@@ -366,7 +366,7 @@ export default {
           const objScrollTo = scroller()
           setTimeout(() => {
             const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
-            element.style.backgroundColor = 'transparent'
+            //element.style.backgroundColor = 'transparent'
             const container = '#container-for-all-appointments_' + this._formDef.id
             objScrollTo(element, 100, {
               container: container,
@@ -375,12 +375,12 @@ export default {
             })
           }, 200)
         } 
-        else {
+        /*else {
           setTimeout(() => {
             const element = document.getElementById('container-for-one-appointment_' + this._formDef.id + '_' + j)
             element.style.backgroundColor = ''
           }, 200)
-        }
+        }*/
       }
 
       return arOfAppts
@@ -434,6 +434,20 @@ export default {
           x: true,
           y: false,
         })
+
+        const contentHeadingElement = document.getElementById('content_heading_' + this._formDef.id)
+        if(this.currentSlideNumber > slideNumber){
+          element.style.backgroundColor = 'rgba(238, 238, 238, 1)'
+          contentHeadingElement.style.color = '#666'
+        } 
+        else if(this.currentSlideNumber < slideNumber){
+          element.style.backgroundColor = 'rgba(64, 158, 255, 0.1)'
+          contentHeadingElement.style.color = ''
+        }
+        else {
+          element.style.backgroundColor = '#fff'
+          contentHeadingElement.style.color = ''
+        }
 
         if(this.currentSlideNumber == slideNumber){
           this.contentApptDate = ''
@@ -613,7 +627,8 @@ http://jsfiddle.net/kf1y2npw/30/
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  background: rgba(64, 158, 255,0.08);
+  /*background: rgba(64, 158, 255,0.08);*/
+  background: #fff;
   /*border-radius: 8px;
   border-width: 1px;
   border-color: #ebeef5;
