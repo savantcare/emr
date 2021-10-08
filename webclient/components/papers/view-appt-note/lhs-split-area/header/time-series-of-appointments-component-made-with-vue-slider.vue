@@ -43,8 +43,8 @@ __proto__: Object
         <button
           type="button"
           @click="mfHandleUserGeneratedSliderEvent"
-          style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1.5rem"
-          :class="`el-button el-button--default is-plain ${label}`"
+          style="padding: 0px; color: rgb(192, 196, 204); border: none; font-size: 1rem"
+          :class="`el-button el-button--default is-plain ${label} ${dCurrentValueOnTheSlider} ${label.includes(' ' + dCurrentValueOnTheSlider) ? 'active' : ''}`"
         ></button>
       </template>
       <!-- This slot shows a dot at the current selected point ion the slider. I just highlight the icon below the slider. So i do not need this -->
@@ -92,52 +92,7 @@ export default {
   },
   computed: {
     sendCssVariablesForIconColorAndSizeToStyleSheet() {
-      /* Goal: 1. Make icon selected on slider bigger 2. Give the selected icon a vibrant color and remove the grey color from the selected icon */
-      const selectedSize = '1.5rem'
-      const defaultSize = '1rem'
-      let obj = {}
-
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'locked') {
-        obj['--size-of-lock-icon'] = selectedSize
-        obj['--color-of-lock-icon'] = '#67c23a' // success color from https://element.eleme.io/#/en-US/component/color
-      } else {
-        obj['--size-of-lock-icon'] = defaultSize
-        obj['--color-of-lock-icon'] = 'rgb(192, 196, 204)'
-      }
-
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'unlocked') {
-        obj['--size-of-unlock-icon'] = selectedSize
-        obj['--color-of-unlock-icon'] = '#409eff' // main color from https://element.eleme.io/#/en-US/component/color
-      } else {
-        obj['--size-of-unlock-icon'] = defaultSize
-        obj['--color-of-unlock-icon'] = 'rgb(192, 196, 204)'
-      }
-
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'late-cancellation') {
-        obj['--size-of-circle-close-icon'] = selectedSize
-        obj['--color-of-circle-close-icon'] = '#f56c6c' // danger color from https://element.eleme.io/#/en-US/component/color
-      } else {
-        obj['--size-of-circle-close-icon'] = defaultSize
-        obj['--color-of-circle-close-icon'] = 'rgb(192, 196, 204)'
-      }
-
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'cancellation') {
-        obj['--size-of-remove-outline-icon'] = selectedSize
-        obj['--color-of-remove-outline-icon'] = '#e6a23c' // Warning color
-      } else {
-        obj['--size-of-remove-outline-icon'] = defaultSize
-        obj['--color-of-remove-outline-icon'] = 'rgb(192, 196, 204)'
-      }
-
-      if (this.dApptStatusAtEachSliderMark[this.dCurrentValueOnTheSlider] === 'no-show') {
-        obj['--size-of-warning-outline-icon'] = selectedSize
-        obj['--color-of-warning-outline-icon'] = '#f56c6c' // Danger color
-      } else {
-        obj['--size-of-warning-outline-icon'] = defaultSize
-        obj['--color-of-warning-outline-icon'] = 'rgb(192, 196, 204)'
-      }
-
-      return obj
+      //Goal: 1. Make icon selected on slider bigger 2. Give the selected icon a vibrant color and remove the grey color from the selected icon
     },
 
     cfGetLatestAppointmentsFromInClientDB() {
@@ -327,28 +282,24 @@ export default {
 </script>
 
 <style>
-/*  */
-
-.el-icon-lock {
-  font-size: var(--size-of-lock-icon) !important;
-  color: var(--color-of-lock-icon) !important;
+.el-icon-lock.active {
+  font-size: 1.5rem !important;
+  color: #67c23a !important;
 }
-
-.el-icon-unlock {
-  font-size: var(--size-of-unlock-icon) !important;
-  color: var(--color-of-unlock-icon) !important;
+.el-icon-unlock.active {
+  font-size: 1.5rem !important;
+  color: #409eff !important;
 }
-.el-icon-warning-outline {
-  font-size: var(--size-of-warning-outline-icon) !important;
-  color: var(--color-of-warning-outline-icon) !important;
+.el-icon-warning-outline.active {
+  font-size: 1.5rem !important;
+  color: #f56c6c !important;
 }
-.el-icon-remove-outline {
-  font-size: var(--size-of-remove-outline-icon) !important;
-  color: var(--color-of-remove-outline-icon) !important;
+.el-icon-remove-outline.active {
+  font-size: 1.5rem !important;
+  color: #e6a23c !important;
 }
-
-.el-icon-circle-close {
-  font-size: var(--size-of-circle-close-icon) !important;
-  color: var(--color-of-circle-close-icon) !important;
+.el-icon-circle-close.active {
+  font-size: 1.5rem !important;
+  color: #f56c6c !important;
 }
 </style>
