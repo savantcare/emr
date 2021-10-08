@@ -56,6 +56,7 @@ export default class diagnosis extends clientTblManage {
 }
 
 const fnSelectOptionCallBack = (pId, pCallBack) => {
+  const alreadyPopulatedData = diagnosis.fnGetAllRowsPossibleToPopulateInChangeLayer()
   const options = [
     {
       id: '1',
@@ -78,6 +79,18 @@ const fnSelectOptionCallBack = (pId, pCallBack) => {
       value: 'Pain',
     },
   ]
+
+  for (let i = 0; i < options.length; i++) 
+  {
+    for (let j = 0; j < alreadyPopulatedData.length; j++) 
+    {
+      if(options[i].value == alreadyPopulatedData[j].diagnosis)
+      {
+        options.splice(i, 1);
+      }
+    }
+  }
+
   pCallBack(options)
   const getData = options.filter((item) => item.id === pId)
   if (getData.length) {
