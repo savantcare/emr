@@ -80,9 +80,9 @@ const fnSelectOptionCallBack = (pId, pCallBack) => {
     },
   ]
 
-  for (let i = 0; i < options.length; i++) 
+  for (let j = 0; j < alreadyPopulatedData.length; j++) 
   {
-    for (let j = 0; j < alreadyPopulatedData.length; j++) 
+    for (let i = 0; i < options.length; i++)
     {
       if(options[i].value == alreadyPopulatedData[j].diagnosis)
       {
