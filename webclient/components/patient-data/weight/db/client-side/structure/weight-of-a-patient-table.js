@@ -11,13 +11,13 @@ const defaultValueOfTimeOfMeasurementInMilliSecs = () => Math.floor(Date.now())
 export default class weight extends clientTblManage {
   static entity = 'tblWeight'
 
-  /* 
+  /*
     Goal: Change baseurl as per NODE_ENV value. eg: If NODE_ENV == dev then baseurl = "http://localhost:8000" or If NODE_ENV == test then baseurl = "http://ptserver:8000"
     baseurl is defined in nuxt.config.js
     on 3000 json-server runs
     on 8000 nodejs runs along with sequalize
     On 8001 php/lumen/eloquent is running
-    
+
     To check if the api is working you can enter this in the browser:
     http://127.0.0.1:8000/weight/getAll
 
@@ -64,11 +64,13 @@ export const weightFormDef = {
       type: 'number',
       showLabel: false,
       unitOfMeasurement: 'pounds',
+      required: true,
     },
     {
       nameInDb: 'notes',
       nameInUi: 'Notes',
       type: 'tribute-editor',
+      required: true,
       showLabel: false,
     },
     {
@@ -76,6 +78,7 @@ export const weightFormDef = {
       nameInUi: 'Measured on',
       type: 'date',
       showLabel: false,
+      required: true,
     },
   ],
   showReviewedButtonInForm: false,

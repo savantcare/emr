@@ -146,7 +146,7 @@
           </div>
 
           <!-- tribute-textarea -->
-          <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb">
+          <div v-if="_fieldDef.type.includes('tribute-editor')" :id="_fieldDef.nameInDb" @click="mfSetFormFieldRequired($event, _fieldDef.nameInDb, _fieldDef.required)">
             <div v-if="_fieldDef.showLabel">
               {{ _fieldDef.nameInUi }}
             </div>
@@ -158,7 +158,7 @@
                 class="el-textarea__inner"
                 :placeholder="_fieldDef.nameInUi"
                 :value="mfGetCopiedRowBeingChangedFldVal(_fieldDef.nameInDb)"
-                @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb)"
+                @input="mfSetCopiedRowBeingChangedFldVal($event, _fieldDef.nameInDb, _fieldDef.required)"
               ></textarea>
             </vue-tribute>
           </div>
@@ -464,7 +464,7 @@ export default {
       // From this point on the state is same for change and add
       return allPatientDataTbls[this._formDef.id].fnGetFldValue(this.dnClientIdOfCopiedRowBeingChanged, pFldName)
     },
-    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName) {
+    mfSetCopiedRowBeingChangedFldVal(pEvent, pFldName, pFldReq) {
       /**
        * Why we need to check pEvent is object?
        * -- In some cases like vue-tribute it returns a object otherwise returns as string.
@@ -481,6 +481,34 @@ export default {
         rowStatus
       )
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
+
+
+      const element = document.getElementById(pFldName);
+      if(pFldReq){
+        element.getElementsByClassName("el-textarea__inner")[0].required = pFldReq;
+        element.getElementsByClassName("el-textarea__inner")[0].style.borderColor = '#DCDFE6';
+      }
+    },
+    mfSetFormFieldRequired(pEvent, pFldName, pFldReq) {
+      console.log("ID = ", pFldName);
+      console.log("Required = ", pFldReq);
+      console.log("rowState = ", rowState);
+
+      if (pEvent instanceof Object) {
+        pEvent = pEvent.target.value
+      }
+
+      console.log("pEvent = ", pEvent);
+      const element = document.getElementById(pFldName);
+      if(pFldReq){
+        element.getElementsByClassName("el-textarea__inner")[0].required = pFldReq;
+        element.getElementsByClassName("el-textarea__inner")[0].style.borderColor = 'rgb(255, 0, 0)';
+        let fldVal = element.value;
+        console.log("fldVal = ", fldVal);
+        // if(fldVal != "undefined" || fldVal != ""){
+        //   element.getElementsByClassName("el-textarea__inner")[0].style.borderColor = '#DCDFE6';
+        // }
+      }
     },
     mfForTabActionByEnter: function (e) {
       /* In our application, enter key should act as tab for single line text field only, for textarea or multiple line text field, cursor should come to next line by pressing enter. Like textarea other html tags have default behaviour for enter.
