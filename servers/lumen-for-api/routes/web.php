@@ -506,5 +506,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         ->header('Access-Control-Allow-Credentials', 'true')
         ->header('Connection', 'keep-alive');
     });
+
+    // Appointments
+    $router->get('appointments/v20/{pPtUuid}', ['uses' => 'AppointmentsController@get_all_appointments']);
     
 });

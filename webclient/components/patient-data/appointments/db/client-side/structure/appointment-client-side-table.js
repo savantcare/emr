@@ -7,7 +7,7 @@ const intUniqueId = () => ++count
 
 export default class tblAppointments extends clientTblManage {
   static entity = 'tblAppointments'
-  static apiUrl = process.env.baseUrlForLumen + '/date-of-birth'
+  static apiUrl = process.env.baseUrlForLumen + '/public/api/appointments/v20'
 
   static primaryKey = 'clientSideUniqRowId'
 
