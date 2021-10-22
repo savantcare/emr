@@ -10,6 +10,7 @@
     <initializeMapComponent />
 
     <!-- temporal/PII -->
+    <initializeAppointmentsComponent />
     <initializeDobComponent />
     <initializeNameComponent />
 
@@ -67,6 +68,8 @@ import initializeFeedComponent from '@/components/non-temporal/feed/db/client-si
 import initializeMapComponent from '@/components/non-temporal/map/db/client-side/static-data/insert-into-master-of-search-phrases-ct.vue'
 
 // temporal/PII
+import initializeAppointmentsComponent from '@/components/patient-data/appointments/db/client-side/initialize-on-first-load.vue'
+
 import initializeDobComponent from '@/components/patient-data/date-of-birth/db/client-side/initialize-on-first-load.vue'
 import initializeNameComponent from '@/components/patient-data/name/db/client-side/initialize-on-first-load.vue'
 
@@ -126,6 +129,7 @@ export default {
     initializeMedicalReviewOfSystemsComponent,
     initializeDiagnosisComponent,
     initializeMedicationOrderComponent,
+    initializeAppointmentsComponent,
     initializeDobComponent,
     initializeNameComponent,
     initializeWeightComponent,

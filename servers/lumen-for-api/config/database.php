@@ -348,6 +348,22 @@ return [
             'engine' => env('DB_ENGINE', null),
             'timezone' => env('DB_TIMEZONE', '+00:00'),
         ],
+        'dbScemrProdDB' => [
+            'driver' => 'mysql',
+            'host' => '10.2.1.12',
+            'port' => '3306',
+            'database' => 'DB_SCEMR_PROD',
+            'username' => 'root',
+            'password' => 'jaikalima',
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+            'timezone' => env('DB_TIMEZONE', '+00:00'),
+        ],
+
 
     ],
 
