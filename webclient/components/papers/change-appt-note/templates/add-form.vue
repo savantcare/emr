@@ -159,7 +159,7 @@
                 value-format="timestamp"
                 type="date"
                 style="width: 100%"
-                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId, _fieldDef)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, 'number')"
                 :placeholder="_fieldDef.nameInUi"
@@ -182,7 +182,7 @@
               <el-input-number
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 :ref="_fieldDef.nameInDb"
-                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId, _fieldDef)"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                 @input="
                   mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb, _fieldDef.type)
@@ -207,7 +207,7 @@
                   :ref="_fieldDef.nameInDb"
                   type="text"
                   class="el-input__inner"
-                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId, _fieldDef)"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   @input="mf_set_fld_value_using_cache($event, ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
@@ -231,7 +231,7 @@
                   :ref="_fieldDef.nameInDb"
                   type="text"
                   class="el-textarea__inner"
-                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                  :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId, _fieldDef)"
                   :placeholder="_fieldDef.nameInUi"
                   :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
                   @input="
@@ -257,7 +257,7 @@
                 @focus="mf_store_id_of_field_which_has_focus_in_this_form(_fieldDef.nameInDb, index)"
                 :ref="_fieldDef.nameInDb"
                 :type="_fieldDef.type"
-                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId)"
+                :class="mf_get_css_class_name_for_each_data_row(ormRow.clientSideUniqRowId, _fieldDef)"
                 :autosize="{ minRows: 2, maxNumberOfRows: 10 }"
                 :placeholder="_fieldDef.nameInUi"
                 :value="mf_get_fld_value(ormRow.clientSideUniqRowId, _fieldDef.nameInDb)"
@@ -629,11 +629,14 @@ export default {
       if (pEvent instanceof Object) {
         pEvent = pEvent.target.value
       }
+      //console.log(pEvent, pClientRowId, pFldName, pFldType)
       // if (!pEvent) return // I have removed this line of code because if pEvent comes blank then
       // we need to update field value as blank in ORM.
       if (pFldType === 'number') {
         if (pEvent && pEvent > 0) {
           rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+        } else if (pEvent == 0) {
+          rowStatus = rowState.New // This implies valid is true
         } else {
           rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
         }
@@ -646,29 +649,38 @@ export default {
       } else {
         if (pEvent && pEvent.length > 2) {
           rowStatus = rowState.New_Changed_FormValidationPass // This implies valid is true
+        } else if (pEvent && pEvent.length == 0) {
+          rowStatus = rowState.New // This implies valid is true
         } else {
           rowStatus = rowState.New_Changed_FormValidationFail // This implies invalid is true
         }
       }
       // TODO: rowStatus has to be dynamic deoending on if the form is valid or not at this time
-      // console.log('rowStatus:', pEvent, pClientRowId, pFldName, rowStatus)
+      // console.log('rowStatus:', pEvent, pClientRowId, pFldName,pFldType, rowStatus)
       allPatientDataTbls[this._formDef.id].fnSetValueOfFld(pEvent, pClientRowId, pFldName, rowStatus)
       this.$forceUpdate() // Not able to remove it. For the different methods tried read: cts/def-processors/manage-rows-of-table-in-client-side-orm.js:133/fnPutFldValueInCache
     },
-    mf_get_css_class_name_for_each_data_row(pClientRowId) {
+    mf_get_css_class_name_for_each_data_row(pClientRowId, pFieldDef) {
       const arFromClientTbl = allPatientDataTbls[this._formDef.id].find(pClientRowId)
       /* TODO: this needs to check for 2456 or 2457 instead of 24
           invalid: organge
           valid: green
           in db: regular
       */
+      let divClass = ''
       if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationFail) {
         // New -> Changed
-        return 'invalid-dirty-data'
+        divClass = 'invalid-dirty-data'
       } else if (arFromClientTbl && arFromClientTbl.vnRowStateInSession === rowState.New_Changed_FormValidationPass) {
-        return 'valid-dirty-data'
+        divClass = 'valid-dirty-data'
       }
-      return ''
+
+      if(pFieldDef.required && arFromClientTbl[pFieldDef.nameInDb] == '' && arFromClientTbl.vnRowStateInSession !== 2)
+      {
+        divClass = 'invalid-dirty-data-required-field'
+      }
+
+      return divClass
     },
     async mfDeleteRowInClientSideTable(pClientRowId) {
       await allPatientDataTbls[this._formDef.id].delete(pClientRowId)
@@ -767,5 +779,8 @@ export default {
 }
 .el-tab-pane#pane-vitals .el-input-number {
   width: 140px;
+}
+.invalid-dirty-data-required-field {
+    border: 1px solid #ff0000;
 }
 </style>
