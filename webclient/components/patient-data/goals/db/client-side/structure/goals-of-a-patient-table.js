@@ -57,7 +57,7 @@ export const goalsFormDef = {
   plural: 'goals',
   singular: 'goal',
   fieldsDef: [
-    { nameInDb: 'description', nameInUi: 'Description', type: 'tribute-editor' },
+    { nameInDb: 'description', nameInUi: 'Description', type: 'tribute-editor', required: true },
     {
       nameInDb: 'rating',
       nameInUi: 'Rating',
@@ -65,6 +65,7 @@ export const goalsFormDef = {
 
       fieldOptions: { min: 0, max: 10, step: 1 },
       style: 'padding: 20px',
+      required: true,
     },
   ],
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:

@@ -23,7 +23,6 @@
           v-for="(_fieldDef, id) in _formDef.fieldsDef"
           :key="id"
           :style="_fieldDef.style"
-          v-if="_regexForFieldSubset ? _fieldDef.nameInDb.match(_regexForFieldSubset) : true"
         >
           <!-- Start to process each field -->
           <div>
@@ -675,7 +674,7 @@ export default {
         divClass = 'valid-dirty-data'
       }
 
-      if(pFieldDef.required && arFromClientTbl[pFieldDef.nameInDb] == '' && arFromClientTbl.vnRowStateInSession !== 2)
+      if(pFieldDef.required && arFromClientTbl[pFieldDef.nameInDb] === null && arFromClientTbl.vnRowStateInSession !== 2)
       {
         divClass = 'invalid-dirty-data-required-field'
       }

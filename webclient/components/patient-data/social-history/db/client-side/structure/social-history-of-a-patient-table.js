@@ -58,7 +58,7 @@ export const socialHistoryFormDef = {
   plural: 'social history',
   singular: 'social history',
   fieldsDef: [
-    { nameInDb: 'current_social_situation', nameInUi: 'Current social situation', type: 'tribute-editor', showLabel: true },
+    { nameInDb: 'current_social_situation', nameInUi: 'Current social situation', type: 'tribute-editor', required: true, showLabel: true },
     {
       nameInDb: 'education_work_history',
       nameInUi: 'Education / Work / Military Hx',
