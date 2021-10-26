@@ -62,6 +62,7 @@ export const chiefComplaintFormDef = {
       //showLabel: false,
       type: 'tribute-input',
       showHistory: 'always',
+      required: true,
     },
   ],
   showReviewedButtonInForm: false,

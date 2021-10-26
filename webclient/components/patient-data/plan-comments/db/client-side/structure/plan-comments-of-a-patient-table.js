@@ -54,7 +54,7 @@ export const planCommentsFormDef = {
   id: 'plan_comments',
   plural: 'plan comments',
   singular: 'plan comment',
-  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', type: 'tribute-editor' }],
+  fieldsDef: [{ nameInDb: 'description', nameInUi: 'Description', required: true, type: 'tribute-editor' }],
   ctrlPlacementOfEveryFieldsNameAndValueInAddForm:
     'padding: 0px; margin: 0px; display: grid; grid-template-columns: 2fr 1fr; grid-column-gap: 1rem',
   ctrlPlacementOfEveryRowInViewNote:
